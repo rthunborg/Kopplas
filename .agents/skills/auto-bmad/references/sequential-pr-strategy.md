@@ -171,3 +171,27 @@ A folder or PR link alone is insufficient. For larger sets embed primary desktop
 and mobile images and link the remaining exact captures. Refresh evidence after
 fixes, disclose missing captures, and distinguish preliminary feedback from
 formal acceptance. Never ask the owner to locate the images.
+
+## Narrow reuse by explicit schema-2 parallel plans
+
+> **Synthetic qualification complete; operational/adoption gates remain.**
+> See the [verification record](../../../../docs/process/spec-parallel-pr-verification-2026-11-02.md).
+> This is not a product run, source-adoption decision or admission authority;
+> current product qualification remains coordinator-owned. Schema 1 is unchanged.
+
+
+Only the reviewed schema-2 `stories` / `story-pr` adapter in `parallel-epic.md`
+may reuse this publication route outside the fresh sequential scope above. Its
+shared SQLite run/claim/generation authority replaces the sequential exclusive
+writer coordination; the instruction above not to call parallel claims remains
+binding for ordinary sequential runs. Do not run sequential `select`/`next` to
+schedule a parallel run or silently change an existing anchor strategy.
+
+Reuse immutable publication identity, operation intent, publish/merge validators,
+exact-head CI/review/visual wrappers, frontend labels/screenshots and existing
+Git/PR handling. Workers publish only their own main-target story PR and retain
+pending state. Only the coordinator prepares durable repository-wide serialized
+merge custody, uses the existing authorized merge route, observes the exact
+prepared-main + candidate two-parent merge, and verifies combined qualified main.
+A PR or development done marker is not integration. This exception grants no new
+fixer authority, publication/merge/deployment approval or resource ownership.

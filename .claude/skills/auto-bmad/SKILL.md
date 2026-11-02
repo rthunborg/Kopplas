@@ -175,3 +175,21 @@ the legacy epic PR. Existing anchors without a strategy, single-story requests
 and explicit parallel runs keep their existing behavior. For `story-pr`, that
 reference supersedes conflicting E5/E8/E_final/early-done/stop-on-pending and
 branch-deletion instructions below; legacy paths below are unchanged.
+
+## Restricted parallel stories / story-PR adapter (schema 2)
+
+> **Synthetic qualification complete; operational/adoption gates remain.**
+> See the [verification record](../../../docs/process/spec-parallel-pr-verification-2026-11-02.md).
+> This is not a product run, source-adoption decision or admission authority;
+> current product qualification remains coordinator-owned. Schema 1 is unchanged.
+
+
+For an explicit reviewed schema-2 plan only, `epic --parallel --plan <absolute-json>`
+selects `story_source: stories` and `publication_strategy: story-pr` before normal
+source selection. Read `references/parallel-epic.md`'s schema-2 override. It uses
+original folder+ID dispatch and individual main-target PRs, with the existing
+per-story publication pipeline. This narrowly overrides the one-epic-PR statement
+above and the sequential strategy's fresh-only exclusion; schema 1 and ordinary
+sequential dispatch remain unchanged. It does not enroll a product pilot or
+upgrade an active run. Worker PR-ready is pending; only coordinator-observed,
+verified main integration can complete the assignment.

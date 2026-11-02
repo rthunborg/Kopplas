@@ -174,3 +174,36 @@ read `sequential-pr-strategy.md`. Its isolated per-story publication, source
 checkpoint, pending/resume and retained-branch rules apply to a fresh ordinary
 sequential epic pinned `story-pr`. Single-story, legacy anchors without strategy,
 backend-only `epic-pr` and explicit parallel runs retain their existing route.
+
+## Restricted parallel source adapter (schema 2 only)
+
+> **Synthetic qualification complete; operational/adoption gates remain.**
+> See the [verification record](../../../../docs/process/spec-parallel-pr-verification-2026-11-02.md).
+> This is not a product run, source-adoption decision or admission authority;
+> current product qualification remains coordinator-owned. Schema 1 is unchanged.
+
+
+An explicit schema-2 parallel assignment replaces §2's automatic picker and resume
+ownership selection with shared-store validation. Resolve the exact original
+`spec_folder` + `story_id` with `story_plan.py`, preserving its story key, matching
+file, list position and checkpoint values. The full canonical repository-relative
+folder and original ID are the authority; basename-derived artifact names alone
+are insufficient. Reject path/case aliases, ambiguous IDs and state/report name
+collisions. Two different source folders are permitted only in a reviewed plan.
+Each selected folder has one manifest entry, retaining its original position and
+checkpoints; checkpoint or dependency uncertainty blocks dispatch. A pending prerequisite needs a verified actual main
+merge before its dependent can claim; apparent disjoint paths do not prove independence.
+
+Folder+ID dispatch in §5 remains mandatory. Workers may update their own assigned
+story spec and state/report only, plus declared product/test paths. SPEC.md,
+stories.yaml, .memlog.md, RETROSPECTIVE.md, aggregate spec reports and sibling
+bookkeeping remain protected. Do not add status/dependency fields to stories.yaml.
+The coordinator owns aggregate gates, reconciliation and retrospective. The schema-2
+publication exception in `parallel-epic.md` supersedes conflicting Phase 8/9 deltas;
+it never delegates aggregate closure to a worker.
+
+Schema-2 source boundary: each selected folder contains exactly one story entry;
+a reviewed run may pair two such folders. Preserve all source checkpoint values.
+A terminal done_checkpoint stops after that story's own PR, but does not establish
+landing before main merge/verification. Unfulfilled spec_checkpoint approval and
+multi-entry continuation fail closed. No new checkpoint scheduler is introduced.

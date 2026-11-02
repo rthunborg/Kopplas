@@ -497,5 +497,118 @@ class ParallelCli(unittest.TestCase):
         self.assertEqual(assignment['generation'], 2)
 
 
+class StoriesPrCli(unittest.TestCase):
+    """Real subprocess restart/serialization contracts over the v2 Git fixture."""
+
+    def setUp(self):
+        # Reuse source construction, never the in-process operation adapter.
+        import test_parallel_run as synthetic_contracts
+        self.fixture = synthetic_contracts.StoriesPrFixture()
+        self.fixture.assertEqual = self.assertEqual
+        self.fixture.call = self.cli
+        self.fixture.setUp()
+        self.addCleanup(self.fixture.tearDown)
+        self.fixture.check = self.executed_check
+
+    def executed_check(self, head, name='unit'):
+        # Inspect the exact immutable Git snapshot so worker and combined-main
+        # receipts both describe the command and case count actually executed.
+        code = ("import json,subprocess,sys; from pathlib import PurePosixPath; "
+                "repo,head=sys.argv[1:]; "
+                "paths=subprocess.check_output(['git','-C',repo,'ls-tree','-r',"
+                "'--name-only',head,'--','src/'],text=True).splitlines(); "
+                "files=[p for p in paths if p.endswith('/result.txt')]; assert files; "
+                "assert all(subprocess.check_output(['git','-C',repo,'show',head+':'+p],"
+                "text=True)==PurePosixPath(p).parent.name+' complete\\n' for p in files); "
+                "print(json.dumps({'executed':len(files)}))")
+        argv = [sys.executable, '-X', 'utf8', '-c', code, str(self.fixture.repo), head]
+        proc = subprocess.run(argv, capture_output=True, text=True,
+                              encoding='utf-8', timeout=30)
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        return {'name': name, 'argv': argv, 'result': 'passed',
+                'executed': json.loads(proc.stdout)['executed'], 'skipped': 0,
+                'commit': head}
+
+    def cli(self, command, **options):
+        fixture = self.fixture
+        proc = subprocess.run([sys.executable, '-X', 'utf8', str(SCRIPT),
+                               *fixture.args(command, **options)], capture_output=True,
+                              text=True, encoding='utf-8', timeout=60)
+        self.assertEqual(proc.stderr, '', proc.stderr)
+        self.assertEqual(len(proc.stdout.splitlines()), 1, proc.stdout)
+        result = json.loads(proc.stdout)
+        if not result['ok']:
+            import test_parallel_run as synthetic_contracts
+            self.assertEqual(proc.returncode, 1, proc.stdout)
+            raise synthetic_contracts.engine.Refusal(result['error'])
+        self.assertEqual(proc.returncode, 0, proc.stdout)
+        return result
+
+    def ready(self, *labels):
+        fixture = self.fixture
+        fixture.init()
+        result = {}
+        for label in labels:
+            fixture.claim(label)
+            evidence = fixture.evidence(label)
+            self.assertEqual(fixture.submit(label, evidence)['state'], 'pr-ready')
+            result[label] = evidence['result_sha']
+        return result
+
+    def test_source_plan_is_read_only_and_assigns_original_folder_identity(self):
+        f = self.fixture
+        common = Path(f.git(f.repo, 'rev-parse', '--path-format=absolute', '--git-common-dir'))
+        before = {str(p.relative_to(common)): p.read_bytes()
+                  for p in common.rglob('*') if p.is_file()}
+        report = self.cli('plan')
+        self.assertEqual(report['ready_pairs'], [['spec-alpha-1', 'spec-beta-1']])
+        after = {str(p.relative_to(common)): p.read_bytes()
+                 for p in common.rglob('*') if p.is_file()}
+        self.assertEqual(before, after)
+        self.assertFalse((common / 'auto-bmad-parallel.sqlite3').exists())
+        f.init(); assignment = f.claim('a')
+        self.assertEqual(assignment['story']['source']['spec_folder'], f.folders['a'])
+        self.assertEqual(assignment['story']['source']['story_id'], '1')
+        self.assertEqual(assignment['story']['id'], 'spec-alpha-1')
+
+    def test_restart_after_provider_success_observes_existing_custody_and_verifies_main(self):
+        f = self.fixture
+        candidate = self.ready('a')['a']
+        f.prepare('a', candidate)
+        merged = f.main_merge(candidate)
+        # The process that prepared custody has exited; no command repeats a
+        # provider mutation. A fresh executable observes the already landed merge.
+        status = self.cli('status')
+        self.assertNotEqual(status['claims'][0]['state'], 'integrated')
+        f.observe('a', f.observation('a', candidate, merged))
+        self.assertEqual(self.cli('status')['claims'][0]['state'], 'awaiting-verification')
+        f.verify('a')
+        status = self.cli('status')
+        self.assertEqual(status['claims'][0]['state'], 'integrated')
+        self.assertEqual(f.git(f.repo, 'rev-parse', 'refs/remotes/origin/main'), merged)
+        self.assertEqual(f.git(f.repo, 'rev-parse', 'HEAD'), f.base)
+
+    def test_concurrent_merge_preparations_have_one_durable_winner(self):
+        f = self.fixture
+        results = self.ready('a', 'b')
+        processes = []
+        for label in ['a', 'b']:
+            args = f.args('prepare-pr-merge', story=f.item(label)['id'],
+                          expected_head=results[label], expected_main=f.base,
+                          evidence=f.file('concurrent-prepare-' + label,
+                                          f.merge_evidence(label, results[label])))
+            processes.append(subprocess.Popen([sys.executable, '-X', 'utf8', str(SCRIPT), *args],
+                                              stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                              text=True, encoding='utf-8'))
+        outputs = [process.communicate(timeout=60) for process in processes]
+        self.assertEqual(sorted(p.returncode for p in processes), [0, 1], outputs)
+        self.assertTrue(all(not err for _, err in outputs), outputs)
+        self.assertEqual(sum(json.loads(out)['ok'] for out, _ in outputs), 1)
+        import test_parallel_run as synthetic_contracts
+        with synthetic_contracts.engine.database(f.repo) as db:
+            self.assertEqual(db.execute('SELECT COUNT(*) FROM story_pr_publications '
+                                        'WHERE intent_json IS NOT NULL').fetchone()[0], 1)
+
+
 if __name__ == '__main__':
     unittest.main()

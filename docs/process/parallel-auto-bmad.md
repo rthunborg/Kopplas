@@ -2,7 +2,10 @@
 
 The parallel workflow is opt-in. Ordinary `/auto-bmad epic --epic N` remains sequential.
 Use one coordinator chat and up to two worker chats in separate Git worktrees.
-This first version supports sprint stories, one computer and one shared Git repository.
+Schema 1 supports sprint stories and one epic PR. The restricted
+schema-2 route below supports explicit stories/story-PR plans; synthetic
+qualification is complete; operational/adoption gates remain. Both use one computer and one
+shared Git repository; ordinary sequential behavior is unchanged.
 
 ## Existing sessions
 
@@ -147,4 +150,75 @@ Implementation/synthetic verification alone does not apply this operation live.
 
 ## Development completion — owner decision 2026-10-19
 
-Coordinators and workers follow [development completion policy](development-completion-policy.md). Claims and ownership remain mandatory. Worker submissions identify passed development evidence separately from owned deferred release validation. Only the coordinator publishes the single final epic PR; separate prerequisite/split PR publication needs owner approval. Existing paused sessions are not resumed by this policy.
+Coordinators and workers follow [development completion policy](development-completion-policy.md). Claims and ownership remain mandatory. Worker submissions identify passed development evidence separately from owned deferred release validation. For schema 1, only the coordinator publishes the single final epic PR; separate prerequisite/split PR publication needs owner approval. The explicit schema-2 exception below reuses the existing per-story publication gates. Existing paused sessions are not resumed by this policy.
+
+## Restricted stories / story-PR route (schema 2)
+
+> **Synthetic qualification complete; operational/adoption gates remain.**
+> See the [verification record](spec-parallel-pr-verification-2026-11-02.md).
+> This is not a product run, source-adoption decision or admission authority;
+> current product qualification remains coordinator-owned. Schema 1 is unchanged.
+
+
+**IN:** explicitly reviewed stories-mode plans using original spec folders and
+source IDs, isolated main-based worker branches, and one main-target PR per story.
+The same SQLite owner/claim/generation authority reserves paths/domains and at most
+two slots across both protocol versions. Pending PRs, blockers and merge verification
+retain their reservations. The coordinator control branch is not the product base.
+**DEFERRED:** product enrollment, automatic scheduling/fixer machinery and active-run
+upgrades. This does not change existing sequential or schema-1 sessions.
+
+Preparation prompt for a fresh coordinator:
+
+> Prepare a read-only schema-2 parallel readiness plan for the explicitly approved
+> spec folders. Resolve their original folder+ID identities with story_plan.py;
+> pin committed SPEC.md, stories.yaml and individual story bytes on qualified main.
+> Preserve source order/checkpoints and actual dependencies. Inspect all live
+> ownership, reserve exact paths and report exclusions. Start no run or workers.
+
+After reviewed plan/source adoption and authorization to execute, the explicit
+route is `/auto-bmad epic --parallel --plan <absolute-plan.json>`. Workers still use
+`/auto-bmad worker --assignment <absolute-assignment.json>`. Do not add `--spec`
+auto-detection or invent sprint IDs for these assignments. Use the helper's current
+subcommand help and [schema-2 contract](parallel-auto-bmad-contract.md#restricted-schema-2-stories--story-pr-contract).
+
+A schema-2 worker reuses the existing per-story completion and checkpoint-PR route,
+including durable publication intent, required labels/screenshots, exact-head
+CI/review/visual wrappers and independent review. It owns only its own story
+spec/state/report and declared paths. The coordinator owns every aggregate output,
+ledger reconciliation and retrospective. A published PR-ready result is pending,
+not integrated. Real prerequisites must be verified merged on current qualified
+main before dependent work starts; disjoint files do not establish independence.
+
+Only the coordinator prepares durable serialized merge intent, then uses the
+existing authorized merge route and observes the same operation. It proves the
+exact two-parent merge from prepared main and candidate, refreshes qualified main,
+and obtains exact-main combined verification before releasing custody/reservations.
+Unknown provider outcomes retain custody; inspect the original operation rather
+than repeating it. Only all required verified main merges plus aggregate final
+gates complete the run. There is no final epic product PR on this route.
+
+### Product-pair qualification belongs to the coordinator
+
+At the tooling planning checkpoint, 35.6/35.7 were blocked for enrollment. The
+then-proposed mappings were `_bmad-output/specs/spec-design-35-6`, original ID
+`35-6`, parser key `spec-design-35-6-35-6`, and the corresponding 35-7 mapping;
+historical source tracking keys were `35-6-crm-record-journeys` and
+`35-7-settings-and-manual-pricing`. These are planning context, not current pins.
+Current product source qualification, approved amendments, checkpoint values,
+dependency interpretation and exact ownership belong to the coordinator. Inspect
+current approved sources rather than treating this historical snapshot as live
+readiness evidence. This guide creates no adapters and grants no product admission
+authority. Plain preparation requirements and green synthetic tooling tests do
+not replace current approved source and admission evidence.
+
+Manual setup: adopt reviewed tooling only in a fresh coordinator at a clean
+checkpoint; materialize/approve and qualify actual source artifacts separately;
+prepare exact plan/evidence outside tracked worker files. No global configuration,
+customize.toml setting or managed-service launch is required by this documentation.
+
+The bounded schema-2 source route accepts exactly one story entry per selected
+folder (up to two explicitly planned folders). Terminal done_checkpoint is
+preserved: stop after the own PR, retain pending status until verified main merge.
+Unfulfilled spec_checkpoint approval and multi-entry continuation fail closed;
+no new checkpoint scheduler or source flag rewrite is introduced.

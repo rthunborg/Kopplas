@@ -555,4 +555,527 @@ class Amendments(PilotFixture,unittest.TestCase):
         self.merge('a'); self.verify('a')
         self.assertTrue(engine.ancestor(self.repo,self.checkpoint,engine.sha(self.repo,'HEAD')))
 
+
+
+class StoriesPrFixture(PilotFixture):
+    """Independent native stories-source fixture; all custody is disposable."""
+    folders = {'a': '_bmad-output/specs/spec-alpha',
+               'b': '_bmad-output/specs/nested/spec-beta'}
+
+    def setUp(self):
+        super().setUp()
+        self.v1_plan = copy.deepcopy(self.plan)
+        stories = []
+        for label in ['a', 'b']:
+            folder = self.folders[label]
+            key = 'spec-' + ('alpha' if label == 'a' else 'beta') + '-1'
+            manifest = '- id: "1"\n  title: Fixture\n  description: Approved synthetic behavior.\n'
+            spec_text = '# Approved ' + label + ' source\n'
+            story_text = "---\ntitle: Fixture\ntype: feature\nstatus: ready-for-dev\n---\n\n## Tasks & Acceptance\n\n- Persist the synthetic result.\n"
+            self.write(self.repo, folder + '/SPEC.md', spec_text)
+            self.write(self.repo, folder + '/stories.yaml', manifest)
+            story_path = folder + '/stories/1-fixture.md'
+            self.write(self.repo, story_path, story_text)
+            item = self.story(label)
+            item.update(id=key, spec_path=story_path,
+                        independent_of_pending=True,
+                        concurrency_approval_ref='synthetic-reviewed-independent-stories',
+                        spec_revision=hashlib.sha256(story_text.encode()).hexdigest(),
+                        write_paths=['src/' + label + '/', story_path,
+                                     '_bmad-output/auto-bmad/state/' + key + '.yaml',
+                                     '_bmad-output/auto-bmad/reports/' + key + '.md'],
+                        source={'spec_folder': folder, 'story_id': '1',
+                                'story_key': key, 'position': 0,
+                                'spec_checkpoint': False, 'done_checkpoint': False,
+                                'files': [{'path': folder + '/SPEC.md',
+                                           'sha256': hashlib.sha256(spec_text.encode()).hexdigest()},
+                                          {'path': folder + '/stories.yaml',
+                                           'sha256': hashlib.sha256(manifest.encode()).hexdigest()}]})
+            stories.append(item)
+        self.base = self.commit(self.repo, 'approved native source fixtures')
+        self.git(self.repo, 'branch', 'main', self.base)
+        self.git(self.repo, 'update-ref', 'refs/remotes/origin/main', self.base)
+        for path in [self.a, self.b, self.c]:
+            self.git(path, 'merge', '--ff-only', self.base)
+        self.plan.update(schema_version=2, story_source='stories',
+                         publication_strategy='story-pr', repository='fixture/project',
+                         base_branch='main', base_sha=self.base, stories=stories)
+        self.save_plan()
+        self.assignments = {}
+
+    def item(self, label):
+        return self.plan['stories'][0 if label == 'a' else 1]
+
+    def claim(self, label, path=None, worker=None, **options):
+        assignment = self.call('claim', story=self.item(label)['id'],
+                               worker=worker or 'worker-' + label,
+                               branch='codex/worker-' + (path.name if path else label),
+                               worktree=path or getattr(self, label),
+                               expected_head=options.pop('expected_head', self.base), **options)
+        self.assignments[label] = assignment
+        return assignment
+
+    def publication(self, label, head):
+        number = 101 if label == 'a' else 102
+        return {'repository': 'fixture/project', 'pr_number': number,
+                'pr_url': 'https://github.com/fixture/project/pull/' + str(number),
+                'head_branch': 'codex/worker-' + label, 'base_branch': 'main',
+                'head': head, 'observation_ref': 'synthetic-provider-observation/' + head,
+                'qualified_main': True, 'exclusive_writer': True,
+                'scope_matches': True, 'actual_frontend': False,
+                'visible_ui': False, 'visual_na_reason': 'Synthetic backend-only text fixture'}
+
+    def evidence(self, label, extra=None):
+        path = getattr(self, label)
+        self.write(path, 'src/' + label + '/result.txt', label + ' complete\n')
+        if extra: self.write(path, extra, 'Unauthorized synthetic result\n')
+        result = self.commit(path, 'worker ' + label + ' reviewed result')
+        assignment = self.assignments[label]
+        return {'schema_version': 2, 'run_id': 'pilot',
+                'story_id': self.item(label)['id'], 'worker': 'worker-' + label,
+                'generation': assignment['generation'], 'base_sha': assignment['base_sha'],
+                'result_sha': result, 'workflow_version': self.plan['workflow_version'],
+                'spec_revision': self.item(label)['spec_revision'],
+                'changed_paths': engine.changed(self.repo, assignment['base_sha'], result),
+                'checks': [self.check(result)], 'review': self.review(result),
+                'routes': [{'phase': 'build', 'model': 'gpt-6.1-sol', 'effort': 'low',
+                            'risk_domains': ['ordinary'], 'reason': 'Synthetic ordinary fixture'}],
+                'publication': self.publication(label, result)}
+
+    def submit(self, label, evidence):
+        return self.call('submit', story=self.item(label)['id'], worker='worker-' + label,
+                         generation=self.assignments[label]['generation'],
+                         evidence=self.file('worker-' + label, evidence))
+
+    def merge_evidence(self, label, candidate, request_id=None):
+        publication = self.publication(label, candidate)
+        publication.update(merge_method='merge', retain_branch=True)
+        for gate in ['development', 'ci', 'coordinator_review', 'acceptance', 'merge_authorization']:
+            publication[gate] = {'revision': candidate, 'status': 'passed',
+                                 'evidence': 'synthetic-independent-' + gate + '/' + candidate}
+        return {'schema_version': 2, 'run_id': 'pilot', 'story_id': self.item(label)['id'],
+                'worker': 'worker-' + label, 'generation': self.assignments[label]['generation'],
+                'request_id': request_id or 'merge-intent-' + label, 'publication': publication,
+                'quiescence': {'complete_writer_inventory': True,
+                               'writers': [{'identity': 'worker-' + label, 'state': 'stopped',
+                                            'evidence_ref': 'synthetic-stopped-worker/' + label}]}}
+
+    def prepare(self, label, candidate, evidence=None, expected_main=None):
+        return self.call('prepare-pr-merge', story=self.item(label)['id'],
+                         expected_head=candidate,
+                         expected_main=expected_main or engine.sha(self.repo, 'refs/remotes/origin/main'),
+                         evidence=self.file('prepare-' + label, evidence or self.merge_evidence(label, candidate)))
+
+    def main_merge(self, candidate):
+        merge_worktree = self.root / 'qualified-main'
+        if not merge_worktree.exists():
+            self.git(self.repo, 'worktree', 'add', str(merge_worktree), 'main')
+        self.git(merge_worktree, 'merge', '--no-ff', '--no-edit', candidate)
+        merged = engine.sha(merge_worktree, 'HEAD')
+        self.git(self.repo, 'update-ref', 'refs/remotes/origin/main', merged)
+        return merged
+
+    def observation(self, label, candidate, merged):
+        pub = self.publication(label, candidate)
+        return {'schema_version': 2, 'request_id': 'merge-intent-' + label,
+                'run_id': 'pilot', 'story_id': self.item(label)['id'],
+                'generation': self.assignments[label]['generation'],
+                'repository': pub['repository'], 'pr_number': pub['pr_number'],
+                'pr_url': pub['pr_url'], 'head_branch': pub['head_branch'],
+                'base_branch': 'main', 'head_sha': candidate, 'merged': True,
+                'merge_sha': merged, 'observation_ref': 'synthetic-provider-merged/' + merged,
+                'qualified_main_sha': engine.sha(self.repo, 'refs/remotes/origin/main')}
+
+    def observe(self, label, observation):
+        return self.call('observe-pr-merge', story=self.item(label)['id'],
+                         request=self.file('observe-' + label, observation))
+
+    def combined(self, head, final=False):
+        evidence = super().combined(head, final)
+        evidence['schema_version'] = 2
+        return evidence
+
+    def verify(self, label):
+        head = engine.sha(self.repo, 'refs/remotes/origin/main')
+        return self.call('verify', story=self.item(label)['id'],
+                         evidence=self.file('verify-' + label, self.combined(head)))
+
+    def assert_clean_store(self, before):
+        self.assertEqual(self.git(self.repo, 'rev-parse', 'HEAD'), before)
+        self.assertEqual(self.git(self.repo, 'status', '--porcelain'), '')
+
+
+class StoriesPrAdmission(StoriesPrFixture, unittest.TestCase):
+    def test_two_folders_keep_full_namespace_original_id_and_key_read_only(self):
+        before = self.git(self.repo, 'rev-parse', 'HEAD')
+        report = self.call('plan')
+        self.assertEqual(report['ready_pairs'], [['spec-alpha-1', 'spec-beta-1']])
+        self.assertFalse((engine.common(self.repo) / 'auto-bmad-parallel.sqlite3').exists())
+        self.assert_clean_store(before)
+        self.init()
+        for label in ['a', 'b']:
+            assignment = self.claim(label)
+            self.assertEqual(assignment['schema_version'], 2)
+            self.assertEqual(assignment['story']['source'], self.item(label)['source'])
+            self.assertEqual(assignment['story']['source']['story_id'], '1')
+            self.assertEqual(assignment['story']['id'], self.item(label)['id'])
+            self.assertEqual(assignment['base_sha'], self.base)
+
+    def test_basename_alias_and_source_identity_forgery_fail_closed(self):
+        for field, value in [('spec_folder', '_bmad-output/specs/other/spec-alpha'),
+                             ('story_id', '2'), ('story_key', 'spec-beta-1'),
+                             ('position', 1)]:
+            bad = copy.deepcopy(self.plan)
+            bad['stories'][0]['source'][field] = value
+            with self.subTest(field=field), self.assertRaises(engine.Refusal):
+                engine.validate_plan(self.repo, bad)
+        # Two real folders with the same basename would collide in the existing
+        # key-derived state/report route even though their canonical sources differ.
+        folder = '_bmad-output/specs/other/spec-alpha'
+        for suffix in ['SPEC.md', 'stories.yaml', 'stories/1-fixture.md']:
+            self.write(self.repo, folder + '/' + suffix,
+                       (self.repo / (self.folders['a'] + '/' + suffix)).read_text(encoding='utf-8'))
+        duplicate = copy.deepcopy(self.item('a'))
+        duplicate['source']['spec_folder'] = folder
+        duplicate['source']['files'] = [dict(x, path=x['path'].replace(self.folders['a'], folder))
+                                         for x in duplicate['source']['files']]
+        duplicate['spec_path'] = folder + '/stories/1-fixture.md'
+        bad = copy.deepcopy(self.plan)
+        bad['stories'][1] = duplicate
+        with self.assertRaises(engine.Refusal):
+            engine.validate_plan(self.repo, bad)
+
+    def test_lf_equivalent_source_is_pinned_and_content_mutation_is_refused(self):
+        for suffix in ['SPEC.md', 'stories.yaml', 'stories/1-fixture.md']:
+            path = self.repo / (self.folders['a'] + '/' + suffix)
+            original = path.read_bytes()
+            path.write_bytes(original.replace(b'\r\n', b'\n').replace(b'\n', b'\r\n'))
+            engine.validate_plan(self.repo, self.plan)
+            path.write_bytes(original + b'Changed frozen source\n')
+            with self.subTest(suffix=suffix), self.assertRaises(engine.Refusal):
+                engine.validate_plan(self.repo, self.plan)
+            path.write_bytes(original)
+
+    def test_source_approval_checkpoint_and_manifest_coverage_are_not_invented(self):
+        for mutation in ['approval', 'checkpoint', 'missing-manifest-entry']:
+            bad = copy.deepcopy(self.plan)
+            if mutation == 'approval': bad['stories'][0]['approved'] = False
+            if mutation == 'checkpoint': bad['stories'][0]['source']['spec_checkpoint'] = True
+            if mutation == 'missing-manifest-entry': bad['stories'][0]['source']['files'] = bad['stories'][0]['source']['files'][:1]
+            with self.subTest(mutation=mutation), self.assertRaises(engine.Refusal):
+                engine.validate_plan(self.repo, bad)
+
+    def test_multi_entry_source_is_refused_and_terminal_done_checkpoint_is_preserved(self):
+        folder = self.folders['a']
+        manifest = self.repo / (folder + '/stories.yaml')
+        original = manifest.read_bytes()
+        multiple = original + b'- id: "2"\n  title: Second\n  description: Out of adapter scope.\n'
+        manifest.write_bytes(multiple)
+        bad = copy.deepcopy(self.plan)
+        bad['stories'][0]['source']['files'][1]['sha256'] = hashlib.sha256(multiple.replace(b'\r\n', b'\n')).hexdigest()
+        with self.assertRaises(engine.Refusal): engine.validate_plan(self.repo, bad)
+        terminal = original + b'  done_checkpoint: true\n'
+        manifest.write_bytes(terminal)
+        self.plan['stories'][0]['source']['done_checkpoint'] = True
+        self.plan['stories'][0]['source']['files'][1]['sha256'] = hashlib.sha256(terminal.replace(b'\r\n', b'\n')).hexdigest()
+        self.base = self.commit(self.repo, 'approved terminal per-story checkpoint')
+        self.plan['base_sha'] = self.base
+        self.git(self.repo, 'update-ref', 'refs/remotes/origin/main', self.base)
+        self.git(self.repo, 'update-ref', 'refs/heads/main', self.base)
+        for path in [self.a, self.b, self.c]: self.git(path, 'merge', '--ff-only', self.base)
+        self.init()
+        self.assertTrue(self.claim('a')['story']['source']['done_checkpoint'])
+
+    def test_native_spec_checkpoint_does_not_create_implicit_approval(self):
+        path = self.repo / (self.folders['a'] + '/stories.yaml')
+        content = path.read_bytes().replace(b'\r\n', b'\n') + b'  spec_checkpoint: true\n'
+        path.write_bytes(content)
+        self.plan['stories'][0]['source']['spec_checkpoint'] = True
+        self.plan['stories'][0]['source']['files'][1]['sha256'] = hashlib.sha256(content).hexdigest()
+        self.plan['base_sha'] = self.commit(self.repo, 'unapproved source checkpoint')
+        self.git(self.repo, 'update-ref', 'refs/remotes/origin/main', self.plan['base_sha'])
+        with self.assertRaises(engine.Refusal): engine.validate_plan(self.repo, self.plan)
+
+    def test_claim_uses_qualified_main_instead_of_control_checkout_head(self):
+        self.init()
+        self.write(self.repo, 'coordinator-note.txt', 'Control-only bookkeeping\n')
+        control_head = self.commit(self.repo, 'control bookkeeping after enrollment')
+        self.assertNotEqual(control_head, self.base)
+        self.assertEqual(self.claim('a')['base_sha'], self.base)
+        self.assertEqual(engine.sha(self.a, 'HEAD'), self.base)
+
+    def test_blocked_v2_and_active_v1_share_the_same_repository_cap(self):
+        self.init(); self.claim('a')
+        self.call('block', story=self.item('a')['id'], worker='worker-a',
+                  generation=1, reason='Stopped pending approved input')
+        legacy = copy.deepcopy(self.v1_plan)
+        legacy.update(run_id='legacy-pilot', epic='100', base_sha=self.base,
+                      integration_branch='codex/worker-c', integration_worktree=str(self.c))
+        legacy['stories'] = [self.story('b')]
+        legacy['stories'][0]['write_paths'] = ['src/legacy-b/', 'spec/b.md']
+        self.call('init', plan=self.file('legacy-plan', legacy))
+        worker = self.root / 'legacy-worker'
+        self.git(self.repo, 'worktree', 'add', '-b', 'codex/legacy-worker', str(worker), self.base)
+        self.call('claim', run='legacy-pilot', story='b', worker='legacy-worker',
+                  branch='codex/legacy-worker', worktree=worker)
+        with self.assertRaisesRegex(engine.Refusal, 'capacity'): self.claim('b')
+        with engine.database(self.repo) as db:
+            active = db.execute("SELECT COUNT(*) FROM claims WHERE state!='integrated'").fetchone()[0]
+        self.assertEqual(active, 2)
+
+    def test_unregistered_legacy_spec_anchor_blocks_related_source(self):
+        anchor = '_bmad-output/auto-bmad/state/epic/spec-alpha.yaml'
+        self.write(self.c, anchor, 'status: running\nstory_source: stories\nspec_folder: '
+                   + str(self.c / self.folders['a']) + '\n')
+        self.save_plan()
+        report = self.call('plan')
+        self.assertNotIn(self.item('a')['id'], report['ready'])
+        self.assertTrue(report['legacy_conflicts'])
+
+    def test_active_run_reserves_full_source_namespace_before_worker_dispatch(self):
+        self.init()
+        other = copy.deepcopy(self.plan)
+        other.update(run_id='other-run', integration_branch='codex/worker-c',
+                     integration_worktree=str(self.c))
+        with self.assertRaises(engine.Refusal):
+            self.call('init', plan=self.file('duplicate-source-plan', other))
+        with engine.database(self.repo) as db:
+            self.assertEqual(db.execute('SELECT COUNT(*) FROM runs').fetchone()[0], 1)
+
+    def test_main_base_worker_cleanliness_and_workflow_pin_are_enforced(self):
+        self.init()
+        with self.assertRaises(engine.Refusal): self.claim('a', expected_head='0' * 40)
+        self.write(self.a, 'dirty.txt', 'Uncommitted fixture\n')
+        with self.assertRaisesRegex(engine.Refusal, 'clean'): self.claim('a')
+        (self.a / 'dirty.txt').unlink()
+        self.git(self.a, 'checkout', '-b', 'codex/wrong-worker')
+        with self.assertRaises(engine.Refusal): self.claim('a')
+        self.git(self.a, 'checkout', 'codex/worker-a')
+        self.claim('a')
+        self.write(self.a, '.agents/skills/auto-bmad/SKILL.md', 'Changed workflow\n')
+        with self.assertRaises(engine.Refusal):
+            self.call('heartbeat', story=self.item('a')['id'], worker='worker-a', generation=1)
+
+    def test_worker_owner_generation_and_blocked_custody_remain_bound(self):
+        self.init(); self.claim('a')
+        for options in [{'owner': 'impostor'}, {'worker': 'impostor'}, {'generation': 2}]:
+            args = {'story': self.item('a')['id'], 'worker': 'worker-a', 'generation': 1}
+            args.update(options)
+            with self.subTest(options=options), self.assertRaises(engine.Refusal):
+                self.call('heartbeat', **args)
+        blocked = self.call('block', story=self.item('a')['id'], worker='worker-a',
+                            generation=1, reason='Waiting for approved continuation')
+        self.assertEqual(blocked['state'], 'blocked')
+        with self.assertRaises(engine.Refusal): self.claim('a', path=self.c, worker='replacement')
+        self.assertEqual(self.call('status')['claims'][0]['state'], 'blocked')
+
+    def test_path_and_semantic_independence_are_required(self):
+        for field, value in [('write_paths', ['src/a/']),
+                             ('conflict_domains', ['contract:shared'])]:
+            bad = copy.deepcopy(self.plan)
+            if field == 'write_paths': bad['stories'][1][field].append(value[0])
+            else:
+                bad['stories'][0][field] = value
+                bad['stories'][1][field] = value
+            with self.subTest(field=field):
+                self.assertEqual(engine.report(self.repo, engine.validate_plan(self.repo, bad))['ready_pairs'], [])
+        self.plan['stories'][0]['conflict_domains'] = ['contract:shared']
+        self.plan['stories'][1]['conflict_domains'] = ['contract:shared']
+        self.init(); self.claim('a')
+        with self.assertRaisesRegex(engine.Refusal, 'semantic conflict'): self.claim('b')
+
+    def test_source_and_sibling_bookkeeping_never_become_worker_ownership(self):
+        own = self.folders['a']
+        paths = [own + '/SPEC.md', own + '/stories.yaml', own + '/.memlog.md',
+                 own + '/RETROSPECTIVE.md',
+                 '_bmad-output/auto-bmad/reports/spec-alpha.md',
+                 '_bmad-output/auto-bmad/state/epic/spec-alpha.yaml',
+                 '_bmad-output/auto-bmad/state/spec-beta-1.yaml',
+                 '_bmad-output/auto-bmad/reports/spec-beta-1.md',
+                 self.item('b')['spec_path']]
+        for path in paths:
+            bad = copy.deepcopy(self.plan)
+            bad['stories'][0]['write_paths'].append(path)
+            with self.subTest(path=path), self.assertRaises(engine.Refusal):
+                engine.validate_plan(self.repo, bad)
+
+class StoriesPrCustody(StoriesPrFixture, unittest.TestCase):
+    def ready(self, *labels):
+        self.init()
+        results = {}
+        for label in labels:
+            self.claim(label)
+            evidence = self.evidence(label)
+            self.assertEqual(self.submit(label, evidence)['state'], 'pr-ready')
+            results[label] = evidence['result_sha']
+        return results
+
+    def test_pr_ready_keeps_custody_and_cannot_use_epic_integration(self):
+        result = self.ready('a')['a']
+        before = engine.sha(self.repo, 'HEAD')
+        self.assertEqual(self.call('status')['claims'][0]['state'], 'pr-ready')
+        self.assertFalse(engine.ancestor(self.repo, result,
+                                       engine.sha(self.repo, 'refs/remotes/origin/main')))
+        with self.assertRaises(engine.Refusal):
+            self.call('integrate', story=self.item('a')['id'], expected_head=before)
+        with self.assertRaises(engine.Refusal): self.claim('a', path=self.c, worker='replacement')
+        with self.assertRaises(engine.Refusal):
+            self.call('finalize', evidence=self.file('premature-final', self.combined(before, True)))
+        self.assert_clean_store(before)
+
+    def test_publication_identity_and_revision_bound_checks_are_required(self):
+        self.init(); self.claim('a'); evidence = self.evidence('a')
+        for field, value in [('repository', 'other/project'), ('head', self.base),
+                             ('head_branch', 'codex/worker-b'), ('base_branch', 'feature'),
+                             ('pr_number', 0), ('observation_ref', '')]:
+            bad = copy.deepcopy(evidence); bad['publication'][field] = value
+            with self.subTest(field=field), self.assertRaises(engine.Refusal): self.submit('a', bad)
+        self.submit('a', evidence)
+        original_number = evidence['publication']['pr_number']
+        self.write(self.a, 'src/a/revision.txt', 'Reviewed candidate fix\n')
+        fixed = self.evidence('a')
+        fixed['publication']['pr_number'] = original_number + 5
+        fixed['publication']['pr_url'] = 'https://github.com/fixture/project/pull/106'
+        with self.assertRaises(engine.Refusal): self.submit('a', fixed)
+        fixed['publication'] = self.publication('a', fixed['result_sha'])
+        self.assertEqual(self.submit('a', fixed)['state'], 'pr-ready')
+
+    def test_durable_repository_wide_merge_intent_freezes_workers_until_verified(self):
+        results = self.ready('a', 'b')
+        self.prepare('a', results['a'])
+        # The committed SQLite intent survives closing/reopening the connection.
+        with engine.database(self.repo) as db:
+            row = dict(db.execute('SELECT * FROM story_pr_publications WHERE story=?',
+                                  (self.item('a')['id'],)).fetchone())
+        self.assertIn('merge-intent-a', row['intent_json'])
+        with self.assertRaises(engine.Refusal): self.prepare('b', results['b'])
+        for command, options in [('heartbeat', {}), ('block', {'reason': 'late writer'}),
+                                 ('submit', {'evidence': self.root / 'worker-a.json'})]:
+            with self.subTest(command=command), self.assertRaises(engine.Refusal):
+                self.call(command, story=self.item('a')['id'], worker='worker-a', generation=1, **options)
+        merged = self.main_merge(results['a'])
+        self.observe('a', self.observation('a', results['a'], merged))
+        with self.assertRaises(engine.Refusal): self.prepare('b', results['b'])
+        self.verify('a')
+        self.assertEqual(self.call('status')['claims'][0]['state'], 'integrated')
+        self.prepare('b', results['b'])
+
+    def test_crash_after_preparation_commit_retains_one_recoverable_intent(self):
+        candidate = self.ready('a')['a']
+        with patch.object(engine, 'story_pr_merge_checkpoint',
+                          side_effect=RuntimeError('synthetic process death after durable intent')):
+            with self.assertRaisesRegex(RuntimeError, 'synthetic process death'):
+                self.prepare('a', candidate)
+        self.assertEqual(self.call('status')['claims'][0]['state'], 'merge-prepared')
+        with self.assertRaises(engine.Refusal): self.prepare('a', candidate)
+        with engine.database(self.repo) as db:
+            rows = list(db.execute('SELECT intent_json FROM story_pr_publications'))
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(json.loads(rows[0][0])['request_id'], 'merge-intent-a')
+        merged = self.main_merge(candidate)
+        self.observe('a', self.observation('a', candidate, merged))
+        self.verify('a')
+        self.assertEqual(self.call('status')['claims'][0]['state'], 'integrated')
+
+    def test_merge_gates_quiescence_and_exact_main_are_required(self):
+        candidate = self.ready('a')['a']
+        for mutation in ['head', 'main', 'authorization', 'quiescence', 'owner', 'generation']:
+            evidence = self.merge_evidence('a', candidate)
+            expected_main = self.base
+            if mutation == 'head': evidence['publication']['head'] = self.base
+            if mutation == 'main': expected_main = candidate
+            if mutation == 'authorization': evidence['publication']['merge_authorization']['status'] = 'pending'
+            if mutation == 'quiescence': evidence['quiescence']['writers'][0]['state'] = 'running'
+            if mutation == 'owner': evidence['worker'] = 'impostor'
+            if mutation == 'generation': evidence['generation'] = 2
+            with self.subTest(mutation=mutation), self.assertRaises(engine.Refusal):
+                self.prepare('a', candidate, evidence, expected_main=expected_main)
+        self.assertEqual(self.call('status')['claims'][0]['state'], 'pr-ready')
+        self.prepare('a', candidate)
+
+    def test_open_wrong_identity_and_arbitrary_ancestor_do_not_release_intent(self):
+        candidate = self.ready('a')['a']; self.prepare('a', candidate)
+        observation = self.observation('a', candidate, self.base)
+        for field, value in [('merged', False), ('repository', 'other/project'),
+                             ('pr_number', 999), ('head_sha', self.base),
+                             ('base_branch', 'feature'), ('request_id', 'wrong-intent'),
+                             ('generation', 2), ('merge_sha', self.base)]:
+            bad = copy.deepcopy(observation); bad[field] = value
+            with self.subTest(field=field), self.assertRaises(engine.Refusal): self.observe('a', bad)
+        with engine.database(self.repo) as db:
+            self.assertIsNotNone(db.execute('SELECT intent_json FROM story_pr_publications').fetchone()[0])
+        merged = self.main_merge(candidate)
+        self.observe('a', self.observation('a', candidate, merged))
+        self.assertEqual(self.call('status')['claims'][0]['state'], 'awaiting-verification')
+
+    def test_changed_main_parent_blocks_reconciliation_and_retains_custody(self):
+        candidate = self.ready('a')['a']; self.prepare('a', candidate)
+        merge_worktree = self.root / 'qualified-main'
+        self.git(self.repo, 'worktree', 'add', str(merge_worktree), 'main')
+        self.write(merge_worktree, 'main-change.txt', 'Concurrent qualified main change\n')
+        drift = self.commit(merge_worktree, 'unrelated main advance')
+        self.git(self.repo, 'update-ref', 'refs/remotes/origin/main', drift)
+        merged = self.main_merge(candidate)
+        with self.assertRaises(engine.Refusal): self.observe('a', self.observation('a', candidate, merged))
+        with self.assertRaises(engine.Refusal):
+            self.call('heartbeat', story=self.item('a')['id'], worker='worker-a', generation=1)
+
+    def test_actual_merge_and_current_main_verification_are_required(self):
+        candidate = self.ready('a')['a']; self.prepare('a', candidate)
+        merged = self.main_merge(candidate)
+        parents = self.git(self.repo, 'rev-list', '--parents', '-n', '1', merged).split()[1:]
+        self.assertEqual(parents, [self.base, candidate])
+        self.observe('a', self.observation('a', candidate, merged))
+        old = self.combined(merged)
+        main_worktree = self.root / 'qualified-main'
+        self.write(main_worktree, 'main-change.txt', 'Main advanced after merge\n')
+        current = self.commit(main_worktree, 'later main commit')
+        self.git(self.repo, 'update-ref', 'refs/remotes/origin/main', current)
+        with self.assertRaises(engine.Refusal):
+            self.call('verify', story=self.item('a')['id'], evidence=self.file('stale-main', old))
+        bad = self.combined(current); bad['checks'][0]['skipped'] = 1
+        with self.assertRaises(engine.Refusal):
+            self.call('verify', story=self.item('a')['id'], evidence=self.file('skipped-check', bad))
+        self.verify('a')
+        self.assertEqual(self.call('status')['claims'][0]['state'], 'integrated')
+        self.assertEqual(engine.sha(self.repo, 'HEAD'), self.base,
+                         'Main integration must not invent a coordinator-branch merge')
+
+    def test_finalization_requires_both_verified_main_merges_and_current_final_gates(self):
+        results = self.ready('a', 'b')
+        for label in ['a', 'b']:
+            self.prepare(label, results[label])
+            merged = self.main_merge(results[label])
+            self.observe(label, self.observation(label, results[label], merged))
+            if label == 'b':
+                with self.assertRaises(engine.Refusal):
+                    self.call('finalize', evidence=self.file('unverified-final', self.combined(merged, True)))
+            self.verify(label)
+        current = engine.sha(self.repo, 'refs/remotes/origin/main')
+        missing = self.combined(current, True)
+        missing['checks'] = missing['checks'][:-1]
+        with self.assertRaises(engine.Refusal):
+            self.call('finalize', evidence=self.file('missing-final-gate', missing))
+        final = self.call('finalize', evidence=self.file('final-main', self.combined(current, True)))
+        self.assertEqual(final['state'], 'finalized')
+        self.assertEqual(final['integration_sha'], current)
+        for candidate in results.values(): self.assertTrue(engine.ancestor(self.repo, candidate, current))
+
+    def test_prerequisite_requires_verified_main_ancestry_and_refreshed_worker_base(self):
+        self.item('b')['prerequisites'] = [self.item('a')['id']]
+        self.item('b')['requires_contracts'] = [{'story': self.item('a')['id'], 'contract': 'contract-a'}]
+        self.init(); self.claim('a')
+        evidence = self.evidence('a'); candidate = evidence['result_sha']
+        self.submit('a', evidence)
+        with self.assertRaises(engine.Refusal): self.claim('b')
+        self.prepare('a', candidate)
+        merged = self.main_merge(candidate)
+        self.observe('a', self.observation('a', candidate, merged))
+        with self.assertRaises(engine.Refusal): self.claim('b', expected_head=merged)
+        self.verify('a')
+        with self.assertRaises(engine.Refusal): self.claim('b', expected_head=merged)
+        self.git(self.b, 'merge', '--ff-only', merged)
+        self.assertEqual(self.claim('b', expected_head=merged)['base_sha'], merged)
+
+
 if __name__=='__main__': unittest.main()

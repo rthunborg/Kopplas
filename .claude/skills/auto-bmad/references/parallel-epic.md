@@ -4,8 +4,10 @@ This is an opt-in extension to Auto-BMAD. The normal sequential story/epic path 
 Read this file only for `epic --parallel --plan <absolute-json>` or
 `worker --assignment <absolute-json>`. These are skill invocation instructions;
 the deterministic helper is `scripts/parallel_run.py`, not an autonomous LLM launcher.
-Version 1 supports sprint stories on one host and one shared Git repository. Refuse
-spec-folder/stories mode, separate clones, remote hosts and speculative dependency chains.
+Version 1 supports sprint stories on one host and one shared Git repository. Its
+stories-mode refusal remains binding for schema 1. Only the explicit schema-2
+override below admits stories/story-pr. Both versions refuse separate clones,
+remote hosts and speculative dependency chains.
 
 ## Entry and ownership
 
@@ -232,3 +234,100 @@ Fallback stops admitting work, checkpoints active workers, and integrates verifi
 results serially. Run remaining assignments one at a time under the same ownership
 contract. Do not start the old sequential picker against an active parallel run.
 Preserve completed work, worktrees, volumes and logs.
+
+## Schema 2: restricted stories / individual main-target PR override
+
+> **Synthetic qualification complete; operational/adoption gates remain.**
+> See the [verification record](../../../../docs/process/spec-parallel-pr-verification-2026-11-02.md).
+> This is not a product run, source-adoption decision or admission authority;
+> current product qualification remains coordinator-owned. Schema 1 is unchanged.
+
+
+**IN:** explicit reviewed schema-2 plans with `story_source: stories`,
+`publication_strategy: story-pr`, repository identity and `base_branch: main`.
+Reuse this protocol's shared common-Git SQLite authority, explicit owner and claim
+generation, maximum two repository-wide reservations and existing required gates.
+Schema 1's sprint/integration-branch/epic-PR route above is unchanged.
+**DEFERRED:** cross-host scheduling, automatic fixer lifecycle, automatic claim
+expiry/transfer, active-run upgrades and product enrollment. **SEAM:** future
+source adapters require their own decision; this route makes no commitment to them.
+
+P0 delegates parser-qualified original source identities and source/spec pins as
+specified in `docs/process/spec-parallel-pr-plan-2026-11-02.md`. Each selected
+folder has one manifest entry, retaining its original position and checkpoints. Canonical full relative folder plus
+original ID is authority; keep original story_plan keys and reject artifact aliases.
+Sources/specs must already be committed on qualified main. Reviewed semantic
+independence and source permission are necessary before concurrent admission;
+true prerequisites must actually be verified merged on current main. Never invent
+independence from disjoint filenames or import unmerged prerequisite code.
+
+P1's integration branch/worktree is coordinator control only. Worker branches start
+from refreshed qualified origin/main, not control HEAD. Schema-2 claim supplies
+`--expected-head` equal to that exact main/clean worker HEAD, with plan-base
+ancestry and unchanged source/spec/workflow pins. Explicit assignments replace the
+bare picker. Runtime checkout-specific external-review resolution, route records,
+independent review, sensitive High escalation and resource isolation remain required.
+
+### Worker Phase 8/9 exception
+
+For schema 2 only, replace W's blanket Phase 8/9 prohibition with the existing
+per-story story-PR closeout/publication route in `sequential-pr-strategy.md`.
+Retain applicable canonical per-story completion, delivery, report and publication
+wrappers and exact-head CI/review/visual gates. The worker may commit/push and
+create/update only its own assigned main-target PR; preserve durable publication
+identity and operation intent. Required frontend `agent-fix`, revision-bound durable
+screenshots and operational acceptance remain. This permits checkpoint publication
+with honest pending state; it grants no acceptance or merge permission.
+
+Global deferred ledger harvest/reconcile/archive, aggregate trace/NFR/test-review,
+retrospective, epic reports/anchors and completion remain coordinator-only. Workers
+record deferred items in their own spec/result. Protect SPEC.md, stories.yaml,
+.memlog.md, RETROSPECTIVE.md, aggregate spec reports and sibling bookkeeping. No
+worker main merge/deployment is allowed. Do not import whole output directories.
+
+Submit exact-head checks/review and provider-observed immutable publication via
+the existing publish validator. Accepted submission is `pr-ready`, not integrated.
+It retains reservations and counts toward the two-worker cap. The same owner may
+resubmit a fixed head on the same PR identity before merge custody, invalidating
+old revision-specific receipts; no replacement PR or new fixer state machine.
+
+### Coordinator merge custody and verification
+
+Schema 2 replaces P2's local `integrate` route with `prepare-pr-merge`, the existing
+authorized provider merge route, then `observe-pr-merge`. Read subcommand help and
+the operator contract for exact payloads. Preparation durably serializes merge
+custody repository-wide before any provider mutation and requires quiescent
+worker/fixer ownership. Freeze writers until observation and verification resolve.
+Do not treat helper validation as authorization or bypass existing executable gates.
+
+Observation binds the original intent/token and immutable PR identity to actual
+provider-merged facts and exact Git merge parents `[prepared_main, candidate]`.
+Require that merge reachable on refreshed qualified main. An open PR, arbitrary
+ancestor, moved base/head or unknown provider outcome cannot integrate. Recover
+an interrupted provider success by observing the same intent, never by blindly
+merging again. Keep custody on uncertainty and retain branches.
+
+`verify` requires real combined checks and independent review at exact current
+qualified main Q, with the observed exact merge reachable and unchanged. New main
+HEAD invalidates Q evidence. Only successful verification marks integrated and
+releases reservations/custody. P3 retains coordinator aggregate gates and strict
+finalization against qualified current main after every required merge. No final
+epic product PR is created; closeout artifacts use separately gated publication.
+
+### Adoption boundary
+
+Auto-BMAD exposes no customize.toml surface for these step-logic changes. Preserve
+this existing project extension and exact .agents/.claude mirrors when reinstalling;
+no invented TOML, global skill/configuration edits or hot upgrade is authorized.
+At the tooling planning checkpoint, the 35.6/35.7 pair was blocked for enrollment
+and its operative source folders were proposed. Current product source qualification,
+approved amendments and dependency interpretation belong to the coordinator; this
+historical tooling assessment is not a current readiness verdict or admission
+authority. Require current reviewed source, dependency and ownership evidence
+before any product claim. Tooling tests do not establish product readiness.
+
+Schema-2 source boundary: each selected folder contains exactly one story entry;
+a reviewed run may pair two such folders. Preserve all source checkpoint values.
+A terminal done_checkpoint stops after that story's own PR, but does not establish
+landing before main merge/verification. Unfulfilled spec_checkpoint approval and
+multi-entry continuation fail closed. No new checkpoint scheduler is introduced.
