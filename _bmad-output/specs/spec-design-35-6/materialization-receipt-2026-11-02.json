@@ -1,0 +1,156 @@
+{
+  "kind": "read-only materialization proof; no runtime credit",
+  "date": "2026-11-02",
+  "story_key": "spec-design-35-6-35-6",
+  "parser_commands": [
+    {
+      "command": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "C:\\DEV\\K35-pair-preparation\\.agents\\skills\\auto-bmad\\scripts\\story_plan.py",
+        "--stories",
+        "--spec-folder",
+        "C:\\DEV\\K35-pair-preparation\\_bmad-output\\specs\\spec-design-35-6"
+      ],
+      "exit_code": 0,
+      "result": {
+        "story_source": "stories",
+        "spec_folder": "C:\\DEV\\K35-pair-preparation\\_bmad-output\\specs\\spec-design-35-6",
+        "spec_slug": "design-35-6",
+        "epic_num": null,
+        "epic_label": "spec-design-35-6",
+        "epic_status": "backlog",
+        "epic_title": "Design 35.6 — approved CRM record journeys",
+        "epic_story_count": 1,
+        "epic_stories": [
+          {
+            "key": "spec-design-35-6-35-6",
+            "story_id": "35-6",
+            "story_label": "story-design-35-6-35-6",
+            "slug": "crm-record-journeys",
+            "status": "backlog",
+            "story_file_status": "draft",
+            "draft_spec": true,
+            "title": "CRM Record Journeys",
+            "description": "Implement only existing individually approved Story 35.6 DT-2a under SPEC.md, the exact approved D1–D5 overlay and source-binding.json: five CRM presentation paths and the existing CRM E2E test. Preserve all seven AC and sixteen state/test identities, current authority and inherited regressions.",
+            "spec_checkpoint": false,
+            "done_checkpoint": true,
+            "invoke_dev_with": "Use the operative companions before frozen history; stop after this sole story. No other production/test writes, new recovery authority or child safety protocol; current implementation admission and evidence gates remain.",
+            "story_file": "C:\\DEV\\K35-pair-preparation\\_bmad-output\\specs\\spec-design-35-6\\stories\\35-6-crm-record-journeys.md",
+            "is_first_in_epic": true,
+            "is_last_in_epic": true,
+            "stories_after_in_epic": 0
+          }
+        ],
+        "retrospective_status": null,
+        "next_story_key": "spec-design-35-6-35-6",
+        "all_done": false,
+        "hard_stop": false,
+        "hard_stop_reason": null,
+        "error": null,
+        "warnings": []
+      }
+    },
+    {
+      "command": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "C:\\DEV\\K35-pair-preparation\\.agents\\skills\\auto-bmad\\scripts\\story_plan.py",
+        "--find-spec",
+        "--story-id",
+        "35-6",
+        "--spec-folder",
+        "C:\\DEV\\K35-pair-preparation\\_bmad-output\\specs\\spec-design-35-6"
+      ],
+      "exit_code": 0,
+      "result": {
+        "story_key": "spec-design-35-6-35-6",
+        "impl_dir": null,
+        "spec_folder": "C:\\DEV\\K35-pair-preparation\\_bmad-output\\specs\\spec-design-35-6",
+        "story_id": "35-6",
+        "candidates": [
+          {
+            "path": "C:\\DEV\\K35-pair-preparation\\_bmad-output\\specs\\spec-design-35-6\\stories\\35-6-crm-record-journeys.md",
+            "status": "draft",
+            "mtime": 1793617050.4718485
+          }
+        ],
+        "spec_path": "C:\\DEV\\K35-pair-preparation\\_bmad-output\\specs\\spec-design-35-6\\stories\\35-6-crm-record-journeys.md",
+        "status": "draft",
+        "found": true,
+        "ambiguous": false,
+        "siblings": [],
+        "hard_stop": false,
+        "hard_stop_reason": null,
+        "warnings": [],
+        "error": null
+      }
+    },
+    {
+      "command": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "C:\\DEV\\K35-pair-preparation\\.agents\\skills\\auto-bmad\\scripts\\story_plan.py",
+        "--resolve",
+        "35-6",
+        "--spec-folder",
+        "C:\\DEV\\K35-pair-preparation\\_bmad-output\\specs\\spec-design-35-6"
+      ],
+      "exit_code": 0,
+      "result": {
+        "ref": "35-6",
+        "story_key": "spec-design-35-6-35-6",
+        "epic_num": null,
+        "story_num": null,
+        "story_suffix": null,
+        "slug": "crm-record-journeys",
+        "current_status": "backlog",
+        "epic_status": "backlog",
+        "epic_story_count": 1,
+        "is_first_in_epic": true,
+        "is_last_in_epic": true,
+        "stories_after_in_epic": 0,
+        "retrospective_status": null,
+        "title": "CRM Record Journeys",
+        "epic_title": "Design 35.6 — approved CRM record journeys",
+        "candidates": [],
+        "hard_stop": false,
+        "hard_stop_reason": null,
+        "error": null,
+        "story_source": "stories",
+        "spec_folder": "C:\\DEV\\K35-pair-preparation\\_bmad-output\\specs\\spec-design-35-6",
+        "spec_slug": "design-35-6",
+        "story_id": "35-6",
+        "story_label": "story-design-35-6-35-6",
+        "epic_label": "spec-design-35-6",
+        "description": "Implement only existing individually approved Story 35.6 DT-2a under SPEC.md, the exact approved D1–D5 overlay and source-binding.json: five CRM presentation paths and the existing CRM E2E test. Preserve all seven AC and sixteen state/test identities, current authority and inherited regressions.",
+        "spec_checkpoint": false,
+        "done_checkpoint": true,
+        "invoke_dev_with": "Use the operative companions before frozen history; stop after this sole story. No other production/test writes, new recovery authority or child safety protocol; current implementation admission and evidence gates remain.",
+        "story_file": "C:\\DEV\\K35-pair-preparation\\_bmad-output\\specs\\spec-design-35-6\\stories\\35-6-crm-record-journeys.md",
+        "story_file_status": "draft",
+        "draft_spec": true,
+        "position": 0,
+        "warnings": []
+      }
+    }
+  ],
+  "frozen_source_sha256": "ba16bbcbcf1277c08cc1291c6e6df99d4ae958f03b8228e939490a520c9e906a",
+  "frozen_test_slice_sha256": "955e78a90f80000a8535641936e42debb844b20660ce4ae60aadfb097f271829",
+  "canonical_body_lf_sha256": "3cff2ff999218c40356593bdc235589ce9f3880c4880d8021fc70e7944e7f921",
+  "canonical_body_exact_lf_suffix": true,
+  "seven_ac_ids_preserved": true,
+  "sixteen_state_ids_preserved": true,
+  "rendered_files_lf": true,
+  "memlog_line_ending_note": "Shared canonical memlog.py uses native Windows line endings; append-only log was not rewritten.",
+  "release_ready": false,
+  "implementation_started": false,
+  "actual_human_approved": true,
+  "runtime_tests_executed": 0,
+  "runtime_evidence": "none",
+  "source_files": {
+    "_bmad-output/specs/spec-design-35-6/approved-operative-overlay-2026-11-02.md": "9c63111d811157e93f09924a6f65452c67e0f3e57fa335cbc2d50aa8caa393b3",
+    "_bmad-output/specs/spec-design-35-6/operative-test-design-2026-11-02.md": "37170439c4d1d4872c92f1ff437e2ea9b07f9b19d800f98d9fb9579f25c6d209",
+    "_bmad-output/specs/spec-design-35-6/source-binding.json": "7fb5b8ccbda3b8ac6e85c0361812d954b4f69ad2a67559b71e61299583f9a561",
+    "_bmad-output/specs/spec-design-35-6/SPEC.md": "f789868b6e08ec5595536dcfda01c6ad27dfa81228386384de2b618907107e1e",
+    "_bmad-output/specs/spec-design-35-6/stories.yaml": "f5f146d95a16d3aebda6065ecdfd105866ad0c5de7e1441a2e30735b27306787",
+    "_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md": "0473eca4ac63363a7bddd71ec6e9c65965821b30a48fe514e14deb31f3cb59d2"
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "kind": "approved additive operative admission and provenance; documentary only",
+  "date": "2026-11-02",
+  "approval": {
+    "source": "Actual human November 2 approval relayed by Coordinator after exact CRM D1-D5 and independently reviewed 35.7-P proposal",
+    "messageId": null,
+    "fabricatedDirectQuote": false,
+    "covers": [
+      "35.6 frontend with exact D1-D5",
+      "35.7 frontend retaining real producer prerequisite",
+      "dedicated ADR-backed task 35.7-P including fresh currently-unapproved approval precondition and historical exact replay"
+    ]
+  },
+  "preparationHead": "fc3f7f8f4ba34b3ee91c7f7b6841d070b55b3c4f",
+  "mainObservedByCoordinator": "9533e969c1981647e26c33774a9327f842ad299a",
+  "requirements": "docs/quality/story-35-6-35-7-approved-plan-requirements-2026-11-02.json",
+  "ordering": {
+    "removedOperativeEdge": "35.6 finish-to-start 35.7 only",
+    "basis": "Both High actual-consumer inspections find no technical dependency",
+    "frozenHistoryChanged": false,
+    "retainedRealPrerequisite": "35.7-P integrated and qualified before 35.7 presentation"
+  },
+  "readiness": {
+    "35.6": "source-ready subject to independent review, qualified tooling and current ownership",
+    "35.7": "blocked: real approved producer task prerequisite unearned",
+    "35.7-P": "approved dedicated ADR-backed task; implementation, review and evidence unearned",
+    "tooling": "Actual direct authorization/adoption and qualification UNKNOWN"
+  },
+  "launchOrder": "Prefer separate qualified ADR-backed 35.7-P task PR, qualified merge/migration evidence, refresh settings delta only, then qualified 35.6/35.7 pair; Coordinator can schedule disjoint qualified CRM without producer overlap. No launch here.",
+  "delivery": {
+    "maxWorkers": 2,
+    "separateAgentFixPRs": true,
+    "independentReview": true,
+    "exactHeadHumanVisual": true,
+    "serializedIntegration": true,
+    "exclusiveProducerFormsAndTestsUntilIntegration": true
+  },
+  "runtimeEvidence": {
+    "productChanges": false,
+    "testsExecuted": false,
+    "servicesStarted": false,
+    "claimsCreated": false,
+    "push": false,
+    "completionOrReleaseClaim": false
+  },
+  "mechanicalEvidence": {
+    "sources": {
+      "_bmad-output/specs/spec-design-35-6/SPEC.md": {
+        "sha256": "f789868b6e08ec5595536dcfda01c6ad27dfa81228386384de2b618907107e1e",
+        "lfSha256": "f789868b6e08ec5595536dcfda01c6ad27dfa81228386384de2b618907107e1e"
+      },
+      "_bmad-output/specs/spec-design-35-6/approved-operative-overlay-2026-11-02.md": {
+        "sha256": "9c63111d811157e93f09924a6f65452c67e0f3e57fa335cbc2d50aa8caa393b3",
+        "lfSha256": "9c63111d811157e93f09924a6f65452c67e0f3e57fa335cbc2d50aa8caa393b3"
+      },
+      "_bmad-output/specs/spec-design-35-6/materialization-receipt-2026-11-02.json": {
+        "sha256": "487b7a9e977452ccfedc4b9872b01f49a4ba4e195909a28a94baf42dc1ef361c",
+        "lfSha256": "487b7a9e977452ccfedc4b9872b01f49a4ba4e195909a28a94baf42dc1ef361c"
+      },
+      "_bmad-output/specs/spec-design-35-6/operative-test-design-2026-11-02.md": {
+        "sha256": "37170439c4d1d4872c92f1ff437e2ea9b07f9b19d800f98d9fb9579f25c6d209",
+        "lfSha256": "37170439c4d1d4872c92f1ff437e2ea9b07f9b19d800f98d9fb9579f25c6d209"
+      },
+      "_bmad-output/specs/spec-design-35-6/source-binding.json": {
+        "sha256": "7fb5b8ccbda3b8ac6e85c0361812d954b4f69ad2a67559b71e61299583f9a561",
+        "lfSha256": "7fb5b8ccbda3b8ac6e85c0361812d954b4f69ad2a67559b71e61299583f9a561"
+      },
+      "_bmad-output/specs/spec-design-35-6/stories.yaml": {
+        "sha256": "f5f146d95a16d3aebda6065ecdfd105866ad0c5de7e1441a2e30735b27306787",
+        "lfSha256": "f5f146d95a16d3aebda6065ecdfd105866ad0c5de7e1441a2e30735b27306787"
+      },
+      "_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md": {
+        "sha256": "0473eca4ac63363a7bddd71ec6e9c65965821b30a48fe514e14deb31f3cb59d2",
+        "lfSha256": "0473eca4ac63363a7bddd71ec6e9c65965821b30a48fe514e14deb31f3cb59d2"
+      },
+      "_bmad-output/specs/spec-design-35-7/SPEC.md": {
+        "sha256": "d1d7dd8cb03387e0cfc964cc878576b7e8575a0e8e602982e633f9a8841ae971",
+        "lfSha256": "d1d7dd8cb03387e0cfc964cc878576b7e8575a0e8e602982e633f9a8841ae971"
+      },
+      "_bmad-output/specs/spec-design-35-7/evidence/settings-bindings.json": {
+        "sha256": "3532324e66bbc16f25eeb442c9d9143c4dcf574979dfdc3f3ec64ba686677b23",
+        "lfSha256": "e0cfa41d6d8da224fb79f3b3fcd550a2944b89775ad7fb2fd164520303b2a1fd"
+      },
+      "_bmad-output/specs/spec-design-35-7/operative-contract.md": {
+        "sha256": "402a69823edf138ddd4ec170c4b7e824d657982217331503cb461535459925b1",
+        "lfSha256": "402a69823edf138ddd4ec170c4b7e824d657982217331503cb461535459925b1"
+      },
+      "_bmad-output/specs/spec-design-35-7/settings-presentation-contract.md": {
+        "sha256": "78d4c438f2490f54d58200040b4dc97173722b3d4b8ad1b4b593c8faf1fd5582",
+        "lfSha256": "78d4c438f2490f54d58200040b4dc97173722b3d4b8ad1b4b593c8faf1fd5582"
+      },
+      "_bmad-output/specs/spec-design-35-7/source-binding.json": {
+        "sha256": "aaaf8b6fcdf5b0d0cd76077727c34297fc4ea1ccfdf7e3d922cacade2025587e",
+        "lfSha256": "aaaf8b6fcdf5b0d0cd76077727c34297fc4ea1ccfdf7e3d922cacade2025587e"
+      },
+      "_bmad-output/specs/spec-design-35-7/stories.yaml": {
+        "sha256": "4ec5df73de73ff3465b5e5b2228a8fd9f69e94c9a8dfa521de99dcea680ee90f",
+        "lfSha256": "4ec5df73de73ff3465b5e5b2228a8fd9f69e94c9a8dfa521de99dcea680ee90f"
+      },
+      "_bmad-output/specs/spec-design-35-7/stories/35-7-settings-and-manual-pricing.md": {
+        "sha256": "1de45a796182f7d91dc04943c0f139952b6cc79797afe3de0006ee33b40d0f3d",
+        "lfSha256": "1de45a796182f7d91dc04943c0f139952b6cc79797afe3de0006ee33b40d0f3d"
+      },
+      "_bmad-output/specs/spec-design-35-7/test-design.md": {
+        "sha256": "fa9d56e7eb19a0db90987a6c5d8b359bf99e65fef4e456101b2f119579430f7d",
+        "lfSha256": "fa9d56e7eb19a0db90987a6c5d8b359bf99e65fef4e456101b2f119579430f7d"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/SPEC.md": {
+        "sha256": "24e384be5b2d3a3723fa61d1a76c6a090ef98dd0450626e3032ea62d200cdf74",
+        "lfSha256": "24e384be5b2d3a3723fa61d1a76c6a090ef98dd0450626e3032ea62d200cdf74"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/allocation-and-admission.md": {
+        "sha256": "ccf0ac78d7f4595218d145cc6d9d3b5351be368896df17f1933643fdf383845d",
+        "lfSha256": "ccf0ac78d7f4595218d145cc6d9d3b5351be368896df17f1933643fdf383845d"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-review.json": {
+        "sha256": "c0f7362346077f868f27cfdb36dab5495ef043b3386d279117fe15cef9386317",
+        "lfSha256": "c0f7362346077f868f27cfdb36dab5495ef043b3386d279117fe15cef9386317"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-review.md": {
+        "sha256": "a11c5cca98a8422492dab57888ea7a183062b331cc522b9560a656baff4ac203",
+        "lfSha256": "a11c5cca98a8422492dab57888ea7a183062b331cc522b9560a656baff4ac203"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-routing.json": {
+        "sha256": "3263c1e9ebcc158c363596211ccf1e44097ea0e721a9e970a3217d6a313df12c",
+        "lfSha256": "e6f42af0af279347ae6421cb11e15ad58fccf2c4d8b8e7f99316e797ec995f74"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.json": {
+        "sha256": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408",
+        "lfSha256": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md": {
+        "sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+        "lfSha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/source-binding.json": {
+        "sha256": "5e1d4dd2b3f45f4efb2ce0bfe7fa8619921da9ff7f6992c210fc06c6849c7677",
+        "lfSha256": "5e1d4dd2b3f45f4efb2ce0bfe7fa8619921da9ff7f6992c210fc06c6849c7677"
+      },
+      "docs/decisions/ADR-B014-settings-pricing-producer-contracts.md": {
+        "sha256": "0f47d8ef9a752b93506432d496fd170ff2a64b54e53755e0a9b1f401d534bd34",
+        "lfSha256": "0f47d8ef9a752b93506432d496fd170ff2a64b54e53755e0a9b1f401d534bd34"
+      }
+    },
+    "parserReceipts": {
+      "35-6": {
+        "path": "tmp/private/story35-pair/operative-materialization/parser-35-6.json",
+        "sha256": "9deba12d4cfd182cc158fb0d5079405d969a5af871932410c68a2b20fb04acbb"
+      },
+      "35-7": {
+        "path": "tmp/private/story35-pair/operative-materialization/parser-35-7.json",
+        "sha256": "6500df7841ee9ae2be2e6f5d6e9470274e494ad66443902213f64b30d717aaf8"
+      }
+    },
+    "savedClaims": {
+      "path": "tmp/private/story35-pair/operative-materialization/saved-claims-approved-union.json",
+      "sha256": "0c2a868d346dea069ff181fbc627c18179b6af23c8f06e766c6cb8c86f070cb3",
+      "conflictCount": 0,
+      "limits": [
+        "No claim or reservation. No universal clearance or absence of unregistered activity.",
+        "Future migration timestamp unresolved; conservative migration directory union included.",
+        "Refresh after allocation/base/ownership changes and before enrollment."
+      ]
+    },
+    "requirementsSha256": "c6c3324bc4b5c1c3ae723836c1d28f55bc52dc36eeb0ce04941850064bb6492c",
+    "preservation": {
+      "path": "tmp/private/story35-pair/operative-materialization/preservation.json",
+      "sha256": "c0dff3a510c380fd50f4c3210e961e8fe31a75e9652a2ea375ae7215068512af",
+      "allFourFrozenRawPinsMatch": true,
+      "existingTrackedSourceAndPacketUnchanged": true,
+      "gitattributes": "Exact new entries appended; no removed/replaced existing rules"
+    }
+  }
+}

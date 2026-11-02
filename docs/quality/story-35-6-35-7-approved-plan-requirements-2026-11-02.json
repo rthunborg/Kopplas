@@ -1,0 +1,267 @@
+{
+  "kind": "plain documentary requirements; not executable planner schema",
+  "status": "approved operative sources materialized; no enrollment",
+  "base": "9533e969c1981647e26c33774a9327f842ad299a",
+  "maxWorkers": 2,
+  "workers": [
+    {
+      "story": "35.6",
+      "proposedProductionPaths": [
+        "src/app/(app)/customers/[customerId]/page.tsx",
+        "src/components/crm/CustomerDetail.tsx",
+        "src/components/crm/FacilityDialog.tsx",
+        "src/components/crm/ContactDialog.tsx",
+        "src/components/crm/ArchiveButton.tsx"
+      ],
+      "proposedTestPaths": [
+        "tests/e2e/crm/customers.e2e.spec.ts"
+      ],
+      "exclusiveProcessOutputs": [
+        "_bmad-output/implementation-artifacts/35-6-crm-record-journeys.md",
+        "docs/quality/story-35-6-delivery.json",
+        "_bmad-output/test-artifacts/story-35-6/"
+      ],
+      "restriction": "Exact future assignment only after tooling qualification and fresh ownership reconciliation; no wildcard product claims or unreviewed helpers.",
+      "initiallyReadOnlyAdaptedInputs": [
+        "src/app/(app)/customers/page.tsx",
+        "src/components/crm/CustomerList.tsx",
+        "src/components/crm/CustomerDialog.tsx",
+        "src/components/crm/CustomerTypeBadge.tsx",
+        "src/components/crm/customer-presentation.ts"
+      ],
+      "operativeIdentity": {
+        "disposition": "REAL authored source; actual readonly parser receipt",
+        "folder": "_bmad-output/specs/spec-design-35-6",
+        "spec": "_bmad-output/specs/spec-design-35-6/SPEC.md",
+        "storiesYaml": "_bmad-output/specs/spec-design-35-6/stories.yaml",
+        "originalStoryId": "35-6",
+        "storyFile": "_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md",
+        "storyPlanKey": "spec-design-35-6-35-6",
+        "sourceTrackingKey": "35-6-crm-record-journeys",
+        "proof": "Existing story_plan.py spec_slug_for/story_key_for rules; read-only --stories against integrated spec-design-35-5 returned spec-design-35-5-35-5.",
+        "parserReceipt": "tmp/private/story35-pair/operative-materialization/parser-35-6.json",
+        "hashes": {
+          "_bmad-output/specs/spec-design-35-6/SPEC.md": {
+            "sha256": "f789868b6e08ec5595536dcfda01c6ad27dfa81228386384de2b618907107e1e",
+            "lfSha256": "f789868b6e08ec5595536dcfda01c6ad27dfa81228386384de2b618907107e1e",
+            "containsCRLF": false
+          },
+          "_bmad-output/specs/spec-design-35-6/stories.yaml": {
+            "sha256": "f5f146d95a16d3aebda6065ecdfd105866ad0c5de7e1441a2e30735b27306787",
+            "lfSha256": "f5f146d95a16d3aebda6065ecdfd105866ad0c5de7e1441a2e30735b27306787",
+            "containsCRLF": false
+          },
+          "_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md": {
+            "sha256": "0473eca4ac63363a7bddd71ec6e9c65965821b30a48fe514e14deb31f3cb59d2",
+            "lfSha256": "0473eca4ac63363a7bddd71ec6e9c65965821b30a48fe514e14deb31f3cb59d2",
+            "containsCRLF": false
+          }
+        }
+      },
+      "readiness": "source-ready subject to independent review/tooling/claims",
+      "checkpointIntent": {
+        "spec_checkpoint": false,
+        "done_checkpoint": true,
+        "qualification": "Sole terminal entry false/true; actual parser receipt required; stop after own PR, no continuation or approval API."
+      }
+    },
+    {
+      "story": "35.7",
+      "proposedProductionPaths": [
+        "src/app/(app)/settings/page.tsx",
+        "src/app/(app)/settings/company/page.tsx",
+        "src/app/(app)/settings/quote-terms/page.tsx",
+        "src/app/(app)/settings/pricing/page.tsx",
+        "src/components/settings/CompanySettingsForm.tsx",
+        "src/components/settings/QuoteTermsEditor.tsx",
+        "src/components/pricing/WorkRolesEditor.tsx",
+        "src/components/pricing/ArticlesEditor.tsx"
+      ],
+      "proposedTestPaths": [
+        "tests/e2e/settings/settings.e2e.spec.ts",
+        "tests/e2e/pricing/pricing.e2e.spec.ts"
+      ],
+      "exclusiveProcessOutputs": [
+        "_bmad-output/implementation-artifacts/35-7-settings-and-manual-pricing.md",
+        "docs/quality/story-35-7-delivery.json",
+        "_bmad-output/test-artifacts/story-35-7/"
+      ],
+      "restriction": "Exact future assignment only after tooling qualification and fresh ownership reconciliation; no wildcard product claims or unreviewed helpers.",
+      "conditionalNewProductionPaths": [
+        "src/components/settings/SettingsFormNavigationGuard.tsx"
+      ],
+      "conditionalNewTestPaths": [
+        "tests/integration/components/settings-pricing-presentation.test.ts"
+      ],
+      "conditionalPathRule": "Exact proposed additions only after admitted reuse audit; no separate filter helper or new harness.",
+      "sensitiveAssessment": "Seven ACs and fifteen owned states retained; approved dedicated producer task 35.7-P must earn unknown/stale contracts before presentation starts.",
+      "operativeIdentity": {
+        "disposition": "REAL authored source; actual readonly parser receipt",
+        "folder": "_bmad-output/specs/spec-design-35-7",
+        "spec": "_bmad-output/specs/spec-design-35-7/SPEC.md",
+        "storiesYaml": "_bmad-output/specs/spec-design-35-7/stories.yaml",
+        "originalStoryId": "35-7",
+        "storyFile": "_bmad-output/specs/spec-design-35-7/stories/35-7-settings-and-manual-pricing.md",
+        "storyPlanKey": "spec-design-35-7-35-7",
+        "sourceTrackingKey": "35-7-settings-and-manual-pricing",
+        "proof": "Existing story_plan.py spec_slug_for/story_key_for rules; read-only --stories against integrated spec-design-35-5 returned spec-design-35-5-35-5.",
+        "parserReceipt": "tmp/private/story35-pair/operative-materialization/parser-35-7.json",
+        "hashes": {
+          "_bmad-output/specs/spec-design-35-7/SPEC.md": {
+            "sha256": "d1d7dd8cb03387e0cfc964cc878576b7e8575a0e8e602982e633f9a8841ae971",
+            "lfSha256": "d1d7dd8cb03387e0cfc964cc878576b7e8575a0e8e602982e633f9a8841ae971",
+            "containsCRLF": false
+          },
+          "_bmad-output/specs/spec-design-35-7/stories.yaml": {
+            "sha256": "4ec5df73de73ff3465b5e5b2228a8fd9f69e94c9a8dfa521de99dcea680ee90f",
+            "lfSha256": "4ec5df73de73ff3465b5e5b2228a8fd9f69e94c9a8dfa521de99dcea680ee90f",
+            "containsCRLF": false
+          },
+          "_bmad-output/specs/spec-design-35-7/stories/35-7-settings-and-manual-pricing.md": {
+            "sha256": "1de45a796182f7d91dc04943c0f139952b6cc79797afe3de0006ee33b40d0f3d",
+            "lfSha256": "1de45a796182f7d91dc04943c0f139952b6cc79797afe3de0006ee33b40d0f3d",
+            "containsCRLF": false
+          }
+        }
+      },
+      "readiness": "blocked by real unearned 35.7-P prerequisite",
+      "checkpointIntent": {
+        "spec_checkpoint": false,
+        "done_checkpoint": true,
+        "qualification": "Sole terminal entry false/true; actual parser receipt required; stop after own PR, no continuation or approval API."
+      }
+    }
+  ],
+  "readOnlySharedContracts": [
+    "src/components/crm/Dialog.tsx",
+    "src/components/crm/FormField.tsx",
+    "AppShell/navigation/registry",
+    "src/features/crm/**",
+    "src/features/settings/**",
+    "src/features/pricing/**",
+    "src/server/**",
+    "src/lib/money/**",
+    "supabase/**",
+    "src/scope/manifest.ts",
+    "package.json",
+    "package-lock.json",
+    "global CSS/font/tokens",
+    "shared fixtures",
+    "scripts/skills/workflows/claims/schema/init/worker tooling",
+    "sprint/epic/global tracking and Coordinator ledger"
+  ],
+  "deliveryRequirements": [
+    "Separate isolated worktree and story claim per worker, maximum two.",
+    "Per-story agent-fix PR with exact-head human visual comments and independent review; no publication until adopted tooling supports that delivery model.",
+    "Coordinator alone owns aggregate tracking, current claim reconciliation and serialized integration; reassess second story against integrated first story.",
+    "Mutable DB and automation browser resources isolated per worker or explicitly exclusive schedule; no service launched by this preparation.",
+    "Actual direct authorization/adoption and qualification of tooling remains UNKNOWN. Separate tooling owner must deliver/review required spec-design and per-story-PR capability before enrollment; do not patch tooling here.",
+    "Exact-head CI, configured production-server browser checks and current required DB/RLS counts/skips remain future execution gates. No historical pass is current evidence.",
+    "Reviewed tooling must use restricted stories and story-pr delivery in the same common-Git SQLite claim store; PR-ready retains claims until qualified serialized integration closes them.",
+    "Canonical namespace must retain the full repository-relative SPEC folder and original folder/story IDs/keys; pin SPEC, stories.yaml and LF specification bytes. Adapter owner binds exact process/evidence filenames without a global wildcard. These are requirements, not a final schema."
+  ],
+  "openGates": [
+    "35.7-P independently reviewed implementation, producer contracts and tests must be integrated and qualified before 35.7 presentation starts.",
+    "Independent High source/materialization review.",
+    "Actual direct authorization/adoption and qualification of required tooling is UNKNOWN; fresh exact ownership reconciliation before enrollment."
+  ],
+  "toolingDirectionContext": {
+    "plan": "C:/DEV/kp-parallel-v2/docs/process/spec-parallel-pr-plan-2026-11-02.md",
+    "qualification": "Plan context only. Actual direct authorization/adoption and implementation qualification UNKNOWN. No runnable v2 schema asserted.",
+    "requirements": [
+      "Retain version-1 repository/base branch identity under reviewed stories/story-pr extension.",
+      "Per-story source retains full repository-relative spec_folder, original story_id, parser story_key, position, spec_checkpoint, done_checkpoint and pinned SPEC/stories.yaml/LF story bytes. Top-level story identity is parser key.",
+      "Integration custody revalidates fresh main, not merely PR base; prepare/observe PR merge requires strict ancestry."
+    ]
+  },
+  "highAssessments": [
+    {
+      "path": "tmp/private/story35-pair/crm-contracts.md",
+      "sha256": "e1305840c2f239c5e65441b6c902774f9ad2f4f7014fad0207826d95ddc0e28b"
+    },
+    {
+      "path": "tmp/private/story35-pair/crm-bindings.json",
+      "sha256": "db7f218ba00f69367e03d461b302f995fb8530e2fc86e203f833e3887c59aa10"
+    },
+    {
+      "path": "tmp/private/story35-pair/settings-contracts.md",
+      "sha256": "78d4c438f2490f54d58200040b4dc97173722b3d4b8ad1b4b593c8faf1fd5582"
+    },
+    {
+      "path": "tmp/private/story35-pair/settings-bindings.json",
+      "sha256": "3532324e66bbc16f25eeb442c9d9143c4dcf574979dfdc3f3ec64ba686677b23"
+    },
+    {
+      "path": "tmp/private/story35-pair/saved-claims-35-6-35-7.json",
+      "sha256": "8a23a0083e1c228e11395e1aab9f9b7ac33a32fa335a40329743fa1cd719ff09"
+    }
+  ],
+  "orderingDisposition": "Approved operative technical ordering amendment removes only 35.6 finish-to-start 35.7 edge. Frozen predecessor and historical packets remain unchanged. Real 35.7-P producer prerequisite remains unearned.",
+  "parentPacket": "fc3f7f8f4ba34b3ee91c7f7b6841d070b55b3c4f",
+  "approvalProvenance": "Actual November 2 human approval, relayed by Coordinator after exact CRM D1-D5 and reviewed 35.7-P proposal; no message identifier asserted.",
+  "producerTask": {
+    "identity": "35.7-P",
+    "folder": "_bmad-output/specs/spec-settings-pricing-producer-contracts",
+    "spec": "_bmad-output/specs/spec-settings-pricing-producer-contracts/SPEC.md",
+    "adr": "docs/decisions/ADR-B014-settings-pricing-producer-contracts.md",
+    "numericStoryId": null,
+    "storiesYaml": null,
+    "parserKey": null,
+    "state": "approved dedicated ADR-backed task; implementation and prerequisite evidence unearned",
+    "exclusiveActors": "Producer owns its consumer forms/tests until integrated; no overlapping presentation actor.",
+    "hashes": {
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/SPEC.md": {
+        "sha256": "24e384be5b2d3a3723fa61d1a76c6a090ef98dd0450626e3032ea62d200cdf74",
+        "lfSha256": "24e384be5b2d3a3723fa61d1a76c6a090ef98dd0450626e3032ea62d200cdf74"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/allocation-and-admission.md": {
+        "sha256": "ccf0ac78d7f4595218d145cc6d9d3b5351be368896df17f1933643fdf383845d",
+        "lfSha256": "ccf0ac78d7f4595218d145cc6d9d3b5351be368896df17f1933643fdf383845d"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-review.json": {
+        "sha256": "c0f7362346077f868f27cfdb36dab5495ef043b3386d279117fe15cef9386317",
+        "lfSha256": "c0f7362346077f868f27cfdb36dab5495ef043b3386d279117fe15cef9386317"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-review.md": {
+        "sha256": "a11c5cca98a8422492dab57888ea7a183062b331cc522b9560a656baff4ac203",
+        "lfSha256": "a11c5cca98a8422492dab57888ea7a183062b331cc522b9560a656baff4ac203"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-routing.json": {
+        "sha256": "3263c1e9ebcc158c363596211ccf1e44097ea0e721a9e970a3217d6a313df12c",
+        "lfSha256": "e6f42af0af279347ae6421cb11e15ad58fccf2c4d8b8e7f99316e797ec995f74"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.json": {
+        "sha256": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408",
+        "lfSha256": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md": {
+        "sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+        "lfSha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652"
+      },
+      "_bmad-output/specs/spec-settings-pricing-producer-contracts/source-binding.json": {
+        "sha256": "5e1d4dd2b3f45f4efb2ce0bfe7fa8619921da9ff7f6992c210fc06c6849c7677",
+        "lfSha256": "5e1d4dd2b3f45f4efb2ce0bfe7fa8619921da9ff7f6992c210fc06c6849c7677"
+      },
+      "docs/decisions/ADR-B014-settings-pricing-producer-contracts.md": {
+        "sha256": "0f47d8ef9a752b93506432d496fd170ff2a64b54e53755e0a9b1f401d534bd34",
+        "lfSha256": "0f47d8ef9a752b93506432d496fd170ff2a64b54e53755e0a9b1f401d534bd34"
+      }
+    }
+  },
+  "launchOrderRequirement": "Prefer separate qualified ADR-backed 35.7-P task PR, qualified merge/migration evidence, refresh settings delta only, then enroll qualified 35.6/35.7 pair, maximum two. Coordinator may schedule disjoint CRM earlier only after qualification/claims and without producer overlap. No launch authorized by this packet.",
+  "approvedCRMChoices": {
+    "D1": "Existing confirmation, soft archive and attributable audit; no reason field.",
+    "D2": "Documents source/safe entity return and Booking customer preconnection/reopen; no persisted CRM filters.",
+    "D3": "Preserve unknown replay block and payload-free unresolved hint; no new positive reconcile/reset/retry.",
+    "D4": "All state IDs bind actual Customer representatives; no child mutation authority extension.",
+    "D5": "Empty acceptance through CustomerList only; inherited child-read limitation explicitly disclosed."
+  },
+  "settingsProposalPins": {
+    "proposal.md": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+    "proposal.json": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408",
+    "review.md": "a11c5cca98a8422492dab57888ea7a183062b331cc522b9560a656baff4ac203",
+    "review.json": "c0f7362346077f868f27cfdb36dab5495ef043b3386d279117fe15cef9386317"
+  },
+  "readOnlySharedContractsAppliesTo": "Presentation workers 35.6/35.7. Dedicated approved 35.7-P has its separately exact producer allocation in its authored source-binding; no concurrent overlapping actors.",
+  "proposalPinsMeaning": "Private approved proposal/review raw bytes are preserved provenance; historical awaiting-approval strings do not override actual relayed approval. They do not prove implementation."
+}
