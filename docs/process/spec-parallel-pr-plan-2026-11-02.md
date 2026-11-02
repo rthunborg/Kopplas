@@ -224,6 +224,14 @@ synthetic tests do not resolve those decisions or authorize product claims.
    local propagation/preservation; actual hosted Windows execution remains a
    separate requirement. The exact approved block was applied without changing
    this plan's helper/test content or reclassifying the earlier zero-test failure.
+7. The separate, directly approved Windows job-budget adjustment is recorded in
+   `docs/process/spec-parallel-pr-windows-budget-proposal-2026-11-02.md`. The verified
+   stop is `.github/workflows/auto-bmad-parallel.yml:31`, literal
+   `timeout-minutes: ${{ matrix.os == 'windows-latest' && 30 || 15 }}`. Exact
+   reverse-delta hashing proves every other workflow byte is unchanged. This reuses
+   earned evidence for the unchanged helper/tests; the interrupted hosted Windows
+   finalization and unexecuted routing/process steps remain pending actual new-head
+   execution, with consequential applied-diff review retained.
 
 Final helper identity, independently reread after the test results: LF-normalized
 SHA256 `12fe516baf4a3a01453c875491950afbe1e78dd250fcbac60967d69dd9d1b67e`;
