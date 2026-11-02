@@ -1,0 +1,98 @@
+{
+  "preparation_head": "fc3f7f8f4ba34b3ee91c7f7b6841d070b55b3c4f",
+  "runtime_base": "9533e969c1981647e26c33774a9327f842ad299a",
+  "approval_provenance": "Actual owner 2026-11-02 approval relayed Coordinator after exact reviewed proposal; see docs/quality/story-35-6-35-7-approved-operative-admission-2026-11-02.md",
+  "implementation_started": false,
+  "runtime_pass": false,
+  "release_ready": false,
+  "task_id": "35.7-P",
+  "spec_id": "SPEC-settings-pricing-producer-contracts",
+  "task_namespace": "settings-pricing-producer-contracts",
+  "route": "Approved ADR-B014-backed task consumed as SPEC+companions by normal Build intent/spec route; no stories.yaml, sprint story, or story_plan task key",
+  "adr": "docs/decisions/ADR-B014-settings-pricing-producer-contracts.md",
+  "approved_contract": {
+    "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+    "sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652"
+  },
+  "approved_json": {
+    "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.json",
+    "sha256": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408"
+  },
+  "independent_source_review": {
+    "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-review.json",
+    "sha256": "c0f7362346077f868f27cfdb36dab5495ef043b3386d279117fe15cef9386317"
+  },
+  "future_production_write_paths": [
+    "src/features/settings/actions.ts",
+    "src/features/settings/read.ts",
+    "src/features/settings/form-parsing.ts",
+    "src/features/settings/action-state.ts",
+    "src/features/pricing/actions.ts",
+    "src/features/pricing/read.ts",
+    "src/features/pricing/form-parsing.ts",
+    "src/features/pricing/action-state.ts",
+    "src/server/commands/settings/validation.ts",
+    "src/server/commands/settings/company-settings.ts",
+    "src/server/commands/settings/quote-terms.ts",
+    "src/server/commands/settings/settings-db.ts",
+    "src/server/commands/pricing/validation.ts",
+    "src/server/commands/pricing/work-roles.ts",
+    "src/server/commands/pricing/articles.ts",
+    "src/server/commands/pricing/pricing-db.ts",
+    "src/features/settings/mutation-attempt.ts",
+    "src/server/commands/settings/operation-recovery.ts",
+    "src/server/commands/envelope.ts",
+    "src/scope/manifest.ts",
+    "src/components/settings/CompanySettingsForm.tsx",
+    "src/components/settings/QuoteTermsEditor.tsx",
+    "src/components/pricing/WorkRolesEditor.tsx",
+    "src/components/pricing/ArticlesEditor.tsx",
+    "src/app/(app)/settings/company/page.tsx",
+    "src/app/(app)/settings/quote-terms/page.tsx",
+    "src/app/(app)/settings/pricing/page.tsx"
+  ],
+  "future_test_write_paths": [
+    "tests/unit/features/settings/form-parsing.test.ts",
+    "tests/unit/features/settings/action-state.test.ts",
+    "tests/unit/features/settings/mutation-attempt.test.ts",
+    "tests/unit/features/pricing/form-parsing.test.ts",
+    "tests/unit/features/pricing/action-state.test.ts",
+    "tests/unit/server/commands/settings-validation.test.ts",
+    "tests/unit/server/commands/pricing-validation.test.ts",
+    "tests/integration/commands/settings-commands.int.test.ts",
+    "tests/integration/commands/pricing-commands.int.test.ts",
+    "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "tests/integration/rls/settings-rls.int.test.ts",
+    "tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+    "tests/integration/rls/tenant-table-inventory.ts",
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "tests/e2e/pricing/pricing.e2e.spec.ts"
+  ],
+  "future_migration": {
+    "count": 1,
+    "template": "supabase/migrations/<CLI-generated-timestamp>_settings_pricing_operation_contract.sql",
+    "forward_only": true
+  },
+  "exclusive_overlap_with_35_7": [
+    "src/components/settings/CompanySettingsForm.tsx",
+    "src/components/settings/QuoteTermsEditor.tsx",
+    "src/components/pricing/WorkRolesEditor.tsx",
+    "src/components/pricing/ArticlesEditor.tsx",
+    "src/app/(app)/settings/company/page.tsx",
+    "src/app/(app)/settings/quote-terms/page.tsx",
+    "src/app/(app)/settings/pricing/page.tsx",
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "tests/e2e/pricing/pricing.e2e.spec.ts"
+  ],
+  "prerequisite_state": "UNEARNED",
+  "dependent_story_key": "spec-design-35-7-35-7",
+  "capability_to_acceptance": {
+    "CAP-1": "P-AC1",
+    "CAP-2": "P-AC2",
+    "CAP-3": "P-AC3",
+    "CAP-4": "P-AC4",
+    "CAP-5": "P-AC5",
+    "CAP-6": "P-AC6",
+    "CAP-7": "P-AC7"
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "preparation_head": "fc3f7f8f4ba34b3ee91c7f7b6841d070b55b3c4f",
+  "runtime_base": "9533e969c1981647e26c33774a9327f842ad299a",
+  "approval_provenance": "Actual owner 2026-11-02 approval relayed Coordinator after exact reviewed proposal; see docs/quality/story-35-6-35-7-approved-operative-admission-2026-11-02.md",
+  "implementation_started": false,
+  "runtime_pass": false,
+  "release_ready": false,
+  "story_id": "35-7",
+  "spec_id": "SPEC-design-35-7",
+  "story_source": "stories",
+  "spec_slug": "design-35-7",
+  "story_key": "spec-design-35-7-35-7",
+  "canonical_spec": {
+    "path": "_bmad-output/implementation-artifacts/spec-35-7-settings-and-manual-pricing.md",
+    "sha256": "2997aeb4e3fbdaf99cd327f89662b90ec62a2909e06b022f3730833d158e7989"
+  },
+  "test_slice": {
+    "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-7.md",
+    "sha256": "af77f418904c00f1f1d9c592ae2fd19cbaad063aef6d1d5f9c97a2d52911ccd9"
+  },
+  "assessed_contract": {
+    "path": "_bmad-output/specs/spec-design-35-7/settings-presentation-contract.md",
+    "sha256": "78d4c438f2490f54d58200040b4dc97173722b3d4b8ad1b4b593c8faf1fd5582"
+  },
+  "assessed_json": {
+    "path": "_bmad-output/specs/spec-design-35-7/evidence/settings-bindings.json",
+    "sha256": "3532324e66bbc16f25eeb442c9d9143c4dcf574979dfdc3f3ec64ba686677b23"
+  },
+  "body_copy_method": "UTF-8 source frontmatter removed; frozen body wording copied verbatim after overlay, CRLF normalized to LF; resolve historical links from original source directory",
+  "production_write_paths": [
+    "src/app/(app)/settings/page.tsx",
+    "src/app/(app)/settings/company/page.tsx",
+    "src/app/(app)/settings/quote-terms/page.tsx",
+    "src/app/(app)/settings/pricing/page.tsx",
+    "src/components/settings/CompanySettingsForm.tsx",
+    "src/components/settings/QuoteTermsEditor.tsx",
+    "src/components/pricing/WorkRolesEditor.tsx",
+    "src/components/pricing/ArticlesEditor.tsx"
+  ],
+  "conditional_production_write_paths": [
+    "src/components/settings/SettingsFormNavigationGuard.tsx"
+  ],
+  "test_write_paths": [
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "tests/e2e/pricing/pricing.e2e.spec.ts"
+  ],
+  "conditional_test_write_paths": [
+    "tests/integration/components/settings-pricing-presentation.test.ts"
+  ],
+  "read_only_contract_sha256": {
+    "src/features/settings/actions.ts": "24f2621a11b724b80877f74dad42384292553101141f87ea651aa19e1e0cfa2a",
+    "src/features/settings/read.ts": "cb5fa1b255a2c28ccb27332c2d19fb200a9d2e6f59ca19f4bc0bc12744204355",
+    "src/features/settings/form-parsing.ts": "9be3063e96037b4a48c82ad43ef7067e1090422e681822aebe356aa8424e49b1",
+    "src/features/settings/action-state.ts": "f5954971d1c387d2f839ab2a69bc5dbaa8d3bb80335b34ca4c397c10e40da46e",
+    "src/features/pricing/actions.ts": "099b6e68f10ce0c309529adb18405906f61594425efa2680963b3fe83b6f9b5e",
+    "src/features/pricing/read.ts": "36549c0203e9c166144d81d90c0e62cad0b2612285c257e0df323b47898a0f44",
+    "src/features/pricing/form-parsing.ts": "3fad07478643d6b1d0271e93f021efcf74885df4f1699ea221d658d66ecb7dc5",
+    "src/features/pricing/action-state.ts": "c2f22c837d69b2a4025afa4195808d9daf424a41b670c96a7cfb70beff0909f7",
+    "src/features/pricing/money-display.ts": "b25eca73e84d27e80cc66dbc5aa35a8fb480dae8b72d73e0426d3289f3c77bc7",
+    "src/server/commands/settings/company-settings.ts": "03c5ab7e1fe9bdee2f66c001bf1e0899342cc725a2a83a0730e2ce3712f5aedc",
+    "src/server/commands/settings/quote-terms.ts": "ce3d6e53c2577145606d9810fedaeef382b23254ff792e69ca7268eb576e8dda",
+    "src/server/commands/pricing/articles.ts": "a3f1c27f7430605f1ac206d3da7e1ac01580a3a7913a169b4d1cdad86da7b1c0",
+    "src/server/commands/pricing/work-roles.ts": "26eb8676d38a4c980e65ec790e72439e49721e4d8c69f2fe7f70e160cd3b995b",
+    "src/components/crm/FormField.tsx": "6920a4a9c9c766d6effa0131a6fb0b4ee4dac6eef3e28181d4c9fa119a464fef",
+    "src/components/app-shell/RouteAccessBoundary.tsx": "2a099a26539b9d1dd331db969230f640a8d0e0e3551bd07fc9e4296021cf97e5",
+    "src/server/authz/phase-a-surface.ts": "a21b1b9008950deae7049fe8ab175503bc8e84271f1b03d63b4da0a69a34b11f",
+    "src/server/commands/envelope.ts": "718028b4d77799f99381f29e0e442e8148660e8b9357d758aea8caf5e8e4dd0a",
+    "supabase/migrations/20260907171252_role_aware_phase_a_policy_evolution.sql": "b5810404c92f469f3ab2bc48a7cb3ad1c8775b7a7647dede38caf118f4ab60da",
+    "supabase/migrations/20261006122441_booking_conflict_detection_integration.sql": "93670661af85f3372a92c8711bf13918b780abefcc524835c7b9a565ad84579e"
+  },
+  "presentation_base_sha256": {
+    "src/app/(app)/settings/page.tsx": "4266e284f7b10ee6e742e7cc60e8fecfe63000d0b7885861f7eb29fad94a128a",
+    "src/app/(app)/settings/company/page.tsx": "d7cb1b1a88435f3151f17ea0100153fd0764a3f29c0247167b87c0a856c9efe2",
+    "src/app/(app)/settings/quote-terms/page.tsx": "f1933c5cedaa9b3dcbe5bf2d0a0c6e2f649d6f9db01c97ff41b14e9be81c90cd",
+    "src/app/(app)/settings/pricing/page.tsx": "da7663f45727d8397d56604a4395de82c0cdb6b6c0940f3c26ff047e94d288b4",
+    "src/components/settings/CompanySettingsForm.tsx": "d86b827db1c9f7110a76089886ed1678b2eb9fc68e970ae9e3d371854fbd6b6c",
+    "src/components/settings/QuoteTermsEditor.tsx": "2a4510a3ff2c864c8d76c0b023a2ed93a857052dec2e4b7ef83c07f6d045b452",
+    "src/components/pricing/WorkRolesEditor.tsx": "1577784577702a580b6772dbab6193a82b9d5f349b9d8f3a0cfaf08ebd90582b",
+    "src/components/pricing/ArticlesEditor.tsx": "bbb05c35cfadb529b35bc83941ceb352b770e7d3da2a19ee833e36de1afc5ad5"
+  },
+  "acceptance_ids": [
+    "E35-7-AC1",
+    "E35-7-AC2",
+    "E35-7-AC3",
+    "E35-7-AC4",
+    "E35-7-AC5",
+    "E35-7-AC6",
+    "E35-7-AC7"
+  ],
+  "owned_states": [
+    {
+      "state_id": "E35-7-STATE-loading",
+      "test_id": "E35-7-T-loading",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-loaded",
+      "test_id": "E35-7-T-loaded",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-empty",
+      "test_id": "E35-7-T-empty",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-no-match",
+      "test_id": "E35-7-T-no-match",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-validation",
+      "test_id": "E35-7-T-validation",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-denied",
+      "test_id": "E35-7-T-denied",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-revoked",
+      "test_id": "E35-7-T-revoked",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-connection-required",
+      "test_id": "E35-7-T-connection-required",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-submitting",
+      "test_id": "E35-7-T-submitting",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-error-retry",
+      "test_id": "E35-7-T-error-retry",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-unknown",
+      "test_id": "E35-7-T-unknown",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-stale",
+      "test_id": "E35-7-T-stale",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-confirmed",
+      "test_id": "E35-7-T-confirmed",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-dirty-navigation",
+      "test_id": "E35-7-T-dirty-navigation",
+      "classification": "Applies",
+      "runtime_pass": false
+    },
+    {
+      "state_id": "E35-7-STATE-late-result",
+      "test_id": "E35-7-T-late-result",
+      "classification": "Applies",
+      "runtime_pass": false
+    }
+  ],
+  "inherited": [
+    "locked",
+    "focus-dialog"
+  ],
+  "na": [
+    "unavailable",
+    "new-file-operations"
+  ],
+  "prerequisite": {
+    "task_id": "35.7-P",
+    "spec": "_bmad-output/specs/spec-settings-pricing-producer-contracts/SPEC.md",
+    "adr": "docs/decisions/ADR-B014-settings-pricing-producer-contracts.md",
+    "state": "UNEARNED",
+    "blocks": [
+      "implementation admission",
+      "E35-7-T-unknown",
+      "E35-7-T-stale",
+      "full completion"
+    ],
+    "required": "Independent sensitive review, actual required isolated DB/RLS concurrency/rollback and essential browser evidence, qualified producer merge, refreshed consumer/base binding"
+  },
+  "crm_35_6_dependency": {
+    "frozen_source_preserved": true,
+    "operative_relation": "source-order-only",
+    "technical_finish_to_start": false,
+    "producer_dependency_waived": false
+  },
+  "exclusive_overlap": [
+    "src/components/settings/CompanySettingsForm.tsx",
+    "src/components/settings/QuoteTermsEditor.tsx",
+    "src/components/pricing/WorkRolesEditor.tsx",
+    "src/components/pricing/ArticlesEditor.tsx",
+    "src/app/(app)/settings/company/page.tsx",
+    "src/app/(app)/settings/quote-terms/page.tsx",
+    "src/app/(app)/settings/pricing/page.tsx",
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "tests/e2e/pricing/pricing.e2e.spec.ts"
+  ],
+  "checkpoint_policy": {
+    "spec_checkpoint": false,
+    "done_checkpoint": true
+  },
+  "claims_or_pipeline_started": false
+}

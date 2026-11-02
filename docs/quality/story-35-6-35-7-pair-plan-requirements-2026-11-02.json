@@ -1,0 +1,163 @@
+{
+  "kind": "plain documentary requirements, not an executable planner schema",
+  "status": "blocked-for-enrollment",
+  "base": "9533e969c1981647e26c33774a9327f842ad299a",
+  "maxWorkers": 2,
+  "workers": [
+    {
+      "story": "35.6",
+      "proposedProductionPaths": [
+        "src/app/(app)/customers/[customerId]/page.tsx",
+        "src/components/crm/CustomerDetail.tsx",
+        "src/components/crm/FacilityDialog.tsx",
+        "src/components/crm/ContactDialog.tsx",
+        "src/components/crm/ArchiveButton.tsx"
+      ],
+      "proposedTestPaths": [
+        "tests/e2e/crm/customers.e2e.spec.ts"
+      ],
+      "exclusiveProcessOutputs": [
+        "_bmad-output/implementation-artifacts/35-6-crm-record-journeys.md",
+        "docs/quality/story-35-6-delivery.json",
+        "_bmad-output/test-artifacts/story-35-6/"
+      ],
+      "restriction": "Exact future assignment only after full AC/state feasibility and reviewed amendments. No wildcard product claims or new helpers until exact filenames justified and reconciled.",
+      "proposedOperativeIdentity": {
+        "disposition": "PROPOSED; adapter does not exist",
+        "folder": "_bmad-output/specs/spec-design-35-6",
+        "spec": "_bmad-output/specs/spec-design-35-6/SPEC.md",
+        "storiesYaml": "_bmad-output/specs/spec-design-35-6/stories.yaml",
+        "originalStoryId": "35-6",
+        "storyFile": "_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md",
+        "storyPlanKey": "spec-design-35-6-35-6",
+        "sourceTrackingKey": "35-6-crm-record-journeys",
+        "proof": "Existing story_plan.py spec_slug_for/story_key_for rules; read-only --stories against integrated spec-design-35-5 returned spec-design-35-5-35-5."
+      },
+      "initiallyReadOnlyAdaptedInputs": [
+        "src/app/(app)/customers/page.tsx",
+        "src/components/crm/CustomerList.tsx",
+        "src/components/crm/CustomerDialog.tsx",
+        "src/components/crm/CustomerTypeBadge.tsx",
+        "src/components/crm/customer-presentation.ts"
+      ],
+      "proposedCheckpointIntent": {
+        "spec_checkpoint": false,
+        "done_checkpoint": true,
+        "qualification": "PROPOSED sole-terminal-entry stop, matching parsed integrated 35.5 precedent; no adapter exists. Frozen historical B-APPROVAL is provenance, not a generic repeat approval after Nov 2 authorization of concretely bound unchanged parity. Material choices, ordering, tooling and current ownership gates remain; independent review/completion evidence applies. Refuse multi-entry continuation/unfulfilled true spec checkpoint; stop after own PR, no advance; not an approval API."
+      }
+    },
+    {
+      "story": "35.7",
+      "proposedProductionPaths": [
+        "src/app/(app)/settings/page.tsx",
+        "src/app/(app)/settings/company/page.tsx",
+        "src/app/(app)/settings/quote-terms/page.tsx",
+        "src/app/(app)/settings/pricing/page.tsx",
+        "src/components/settings/CompanySettingsForm.tsx",
+        "src/components/settings/QuoteTermsEditor.tsx",
+        "src/components/pricing/WorkRolesEditor.tsx",
+        "src/components/pricing/ArticlesEditor.tsx"
+      ],
+      "proposedTestPaths": [
+        "tests/e2e/settings/settings.e2e.spec.ts",
+        "tests/e2e/pricing/pricing.e2e.spec.ts"
+      ],
+      "exclusiveProcessOutputs": [
+        "_bmad-output/implementation-artifacts/35-7-settings-and-manual-pricing.md",
+        "docs/quality/story-35-7-delivery.json",
+        "_bmad-output/test-artifacts/story-35-7/"
+      ],
+      "restriction": "Exact future assignment only after full AC/state feasibility and reviewed amendments. No wildcard product claims or new helpers until exact filenames justified and reconciled.",
+      "proposedOperativeIdentity": {
+        "disposition": "PROPOSED; adapter does not exist",
+        "folder": "_bmad-output/specs/spec-design-35-7",
+        "spec": "_bmad-output/specs/spec-design-35-7/SPEC.md",
+        "storiesYaml": "_bmad-output/specs/spec-design-35-7/stories.yaml",
+        "originalStoryId": "35-7",
+        "storyFile": "_bmad-output/specs/spec-design-35-7/stories/35-7-settings-and-manual-pricing.md",
+        "storyPlanKey": "spec-design-35-7-35-7",
+        "sourceTrackingKey": "35-7-settings-and-manual-pricing",
+        "proof": "Existing story_plan.py spec_slug_for/story_key_for rules; read-only --stories against integrated spec-design-35-5 returned spec-design-35-5-35-5."
+      },
+      "conditionalNewProductionPaths": [
+        "src/components/settings/SettingsFormNavigationGuard.tsx"
+      ],
+      "conditionalNewTestPaths": [
+        "tests/integration/components/settings-pricing-presentation.test.ts"
+      ],
+      "conditionalPathRule": "Exact proposed additions only after admitted reuse audit; no separate filter helper or new harness.",
+      "sensitiveAssessment": "tmp/private/story35-pair/settings-contracts.md; seven ACs and fifteen owned states bound; unknown/stale producer gaps block full admission.",
+      "proposedCheckpointIntent": {
+        "spec_checkpoint": false,
+        "done_checkpoint": true,
+        "qualification": "PROPOSED sole-terminal-entry stop, matching parsed integrated 35.5 precedent; no adapter exists. Frozen historical B-APPROVAL is provenance, not a generic repeat approval after Nov 2 authorization of concretely bound unchanged parity. Material choices, ordering, tooling and current ownership gates remain; independent review/completion evidence applies. Refuse multi-entry continuation/unfulfilled true spec checkpoint; stop after own PR, no advance; not an approval API."
+      }
+    }
+  ],
+  "readOnlySharedContracts": [
+    "src/components/crm/Dialog.tsx",
+    "src/components/crm/FormField.tsx",
+    "AppShell/navigation/registry",
+    "src/features/crm/**",
+    "src/features/settings/**",
+    "src/features/pricing/**",
+    "src/server/**",
+    "src/lib/money/**",
+    "supabase/**",
+    "src/scope/manifest.ts",
+    "package.json",
+    "package-lock.json",
+    "global CSS/font/tokens",
+    "shared fixtures",
+    "scripts/skills/workflows/claims/schema/init/worker tooling",
+    "sprint/epic/global tracking and Coordinator ledger"
+  ],
+  "deliveryRequirements": [
+    "Separate isolated worktree and story claim per worker, maximum two.",
+    "Per-story agent-fix PR with exact-head human visual comments and independent review; no publication until adopted tooling supports that delivery model.",
+    "Coordinator alone owns aggregate tracking, current claim reconciliation and serialized integration; reassess second story against integrated first story.",
+    "Mutable DB and automation browser resources isolated per worker or explicitly exclusive schedule; no service launched by this preparation.",
+    "Current tooling supports sprint stories and one epic PR; separate tooling owner must implement/review spec-design and per-story-PR support before enrollment. Do not patch tooling here.",
+    "Exact-head CI, configured production-server browser checks and current required DB/RLS counts/skips remain future execution gates. No historical pass is current evidence.",
+    "Reviewed tooling must use restricted stories and story-pr delivery in the same common-Git SQLite claim store; PR-ready retains claims until qualified serialized integration closes them.",
+    "Canonical namespace must retain the full repository-relative SPEC folder and original folder/story IDs/keys; pin SPEC, stories.yaml and LF specification bytes. Adapter owner binds exact process/evidence filenames without a global wildcard. These are requirements, not a final schema."
+  ],
+  "openGates": [
+    "Material CRM D1 archive reason, D2 return, D3 unknown recovery, D4 representative caller scope and D5 child-read limitation decisions; no frozen amendment applied.",
+    "Settings unknown/stale remain owned unresolved producer prerequisites blocking full admission.",
+    "Independent final documentary/High-map review and exact Coordinator ordering amendment if chosen.",
+    "Reviewed tooling implementation capability/adoption and fresh current ownership reconciliation before enrollment."
+  ],
+  "toolingDirectionContext": {
+    "plan": "C:/DEV/kp-parallel-v2/docs/process/spec-parallel-pr-plan-2026-11-02.md",
+    "qualification": "Independent High accepted plan; implementation not qualified. Context only, no runnable schema or asserted CLI behavior.",
+    "requirements": [
+      "Retain version-1 repository/base branch identity under reviewed stories/story-pr extension.",
+      "Per-story source retains full repository-relative spec_folder, original story_id, parser story_key, position, spec_checkpoint, done_checkpoint and pinned SPEC/stories.yaml/LF story bytes. Top-level story identity is parser key.",
+      "Integration custody revalidates fresh main, not merely PR base; prepare/observe PR merge requires strict ancestry."
+    ]
+  },
+  "highAssessments": [
+    {
+      "path": "tmp/private/story35-pair/crm-contracts.md",
+      "sha256": "e1305840c2f239c5e65441b6c902774f9ad2f4f7014fad0207826d95ddc0e28b"
+    },
+    {
+      "path": "tmp/private/story35-pair/crm-bindings.json",
+      "sha256": "db7f218ba00f69367e03d461b302f995fb8530e2fc86e203f833e3887c59aa10"
+    },
+    {
+      "path": "tmp/private/story35-pair/settings-contracts.md",
+      "sha256": "78d4c438f2490f54d58200040b4dc97173722b3d4b8ad1b4b593c8faf1fd5582"
+    },
+    {
+      "path": "tmp/private/story35-pair/settings-bindings.json",
+      "sha256": "3532324e66bbc16f25eeb442c9d9143c4dcf574979dfdc3f3ec64ba686677b23"
+    },
+    {
+      "path": "tmp/private/story35-pair/saved-claims-35-6-35-7.json",
+      "sha256": "8a23a0083e1c228e11395e1aab9f9b7ac33a32fa335a40329743fa1cd719ff09"
+    }
+  ],
+  "orderingDisposition": "Frozen 35.6 -> 35.7 edge retained. Both High actual-consumer inspections find no technical import/producer finish-to-start edge; propose explicit Coordinator amendment only after material source feasibility decisions. No current enrollment."
+}

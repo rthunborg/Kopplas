@@ -1,0 +1,45 @@
+{
+  "base": "9533e969c1981647e26c33774a9327f842ad299a",
+  "sourceRoot": "C:/DEV/Kopplas",
+  "authorization": "Coordinator explicitly confirmed all four exact raw pins before copy on 2026-11-02",
+  "algorithm": "raw-byte SHA-256",
+  "imports": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-6-crm-record-journeys.md",
+      "preimage": "absent",
+      "sourceBeforeSha256": "ba16bbcbcf1277c08cc1291c6e6df99d4ae958f03b8228e939490a520c9e906a",
+      "sourceAfterSha256": "ba16bbcbcf1277c08cc1291c6e6df99d4ae958f03b8228e939490a520c9e906a",
+      "destinationSha256": "ba16bbcbcf1277c08cc1291c6e6df99d4ae958f03b8228e939490a520c9e906a",
+      "bytes": 13573,
+      "indexSha256": "ba16bbcbcf1277c08cc1291c6e6df99d4ae958f03b8228e939490a520c9e906a"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-7-settings-and-manual-pricing.md",
+      "preimage": "absent",
+      "sourceBeforeSha256": "2997aeb4e3fbdaf99cd327f89662b90ec62a2909e06b022f3730833d158e7989",
+      "sourceAfterSha256": "2997aeb4e3fbdaf99cd327f89662b90ec62a2909e06b022f3730833d158e7989",
+      "destinationSha256": "2997aeb4e3fbdaf99cd327f89662b90ec62a2909e06b022f3730833d158e7989",
+      "bytes": 13659,
+      "indexSha256": "2997aeb4e3fbdaf99cd327f89662b90ec62a2909e06b022f3730833d158e7989"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-6.md",
+      "preimage": "absent",
+      "sourceBeforeSha256": "955e78a90f80000a8535641936e42debb844b20660ce4ae60aadfb097f271829",
+      "sourceAfterSha256": "955e78a90f80000a8535641936e42debb844b20660ce4ae60aadfb097f271829",
+      "destinationSha256": "955e78a90f80000a8535641936e42debb844b20660ce4ae60aadfb097f271829",
+      "bytes": 14106,
+      "indexSha256": "955e78a90f80000a8535641936e42debb844b20660ce4ae60aadfb097f271829"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-7.md",
+      "preimage": "absent",
+      "sourceBeforeSha256": "af77f418904c00f1f1d9c592ae2fd19cbaad063aef6d1d5f9c97a2d52911ccd9",
+      "sourceAfterSha256": "af77f418904c00f1f1d9c592ae2fd19cbaad063aef6d1d5f9c97a2d52911ccd9",
+      "destinationSha256": "af77f418904c00f1f1d9c592ae2fd19cbaad063aef6d1d5f9c97a2d52911ccd9",
+      "bytes": 13975,
+      "indexSha256": "af77f418904c00f1f1d9c592ae2fd19cbaad063aef6d1d5f9c97a2d52911ccd9"
+    }
+  ],
+  "scope": "Four absent destinations created; no source edits. Exact .gitattributes rules retain raw bytes. No product/runtime evidence."
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "private-35.7-producer-proposal-review-v1",
+  "verdict": "PASS_FOR_OWNER_DECISION",
+  "reviewer_route": {"model": "gpt-6.1-sol", "effort": "high", "record": "routing.json", "independent_from_author": true},
+  "scope": "Bounded 35.7-P producer proposal assessment only; final follow-up limited to consequential findings and their corrections",
+  "preparation_head": "fc3f7f8f4ba34b3ee91c7f7b6841d070b55b3c4f",
+  "runtime_base": "9533e969c1981647e26c33774a9327f842ad299a",
+  "reviewed_artifacts": [
+    {"path": "proposal.md", "sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652"},
+    {"path": "proposal.json", "sha256": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408"}
+  ],
+  "open_consequential_findings": [],
+  "resolved_findings": [
+    {"id": "R1", "priority": "P1", "issue": "A rejected later retry was not sufficient terminal proof for an already-unknown operation. An original held before authorization could commit after revoke, denied retry, and subsequent role restoration; a replacement ID could duplicate a create.", "resolution": "Retain captured identity, unconfirmed state and replacement/navigation guard after later per-call rejection. Added explicit delayed-original/revoke/denied-retry/restore/same-ID race with one target and one audit. Verified proposal.md lines 33,49,102,109 and matching JSON retry/assertion/approval fields."},
+    {"id": "R2", "priority": "P2", "issue": "Fresh already-approved no-op success and receipt changed existing deliberate reapproval/audit semantics while being described alongside preserved policy.", "resolution": "No-op removed. Fresh approval of an already-approved revision is an explicit proposed owner-approved tightening, with rejection/refresh and no receipt/audit. Existing distinct reapproval behavior is acknowledged; exact committed replay remains historical. Verified proposal.md lines 61,105,121 and matching JSON approval/test/approval-text fields."}
+  ],
+  "assessed_contracts": [
+    "Pre-dispatch immutable identity/payload/target/expected-facts capture for nine actions and all operation variants",
+    "Atomic business write, revision, fixed audit and globally unique receipt; same-operation concurrent/lost-create recovery",
+    "Current tenant/actor/capability checks before disclosure or replay; tenant advisory ordering plus membership locks",
+    "Exact committed replay precedes stale check, performs no mutation or duplicate audit, and never represents historical outcome as current facts",
+    "Expected absence for singleton creates; locked opaque revision checks for updates/lifecycle and exact reviewed terms approval",
+    "Four scoped DB-owned revision triggers covering alternate writers, with preserved money/logo/canonicalization boundaries",
+    "Seven explicit v2 checked RPCs, narrow reconciliation, old RPC bypass revocation, receipt ACL/RLS and manifest/H4 enrollment",
+    "Focused actual DB concurrency/rollback/authority tests and essential browser transport/recovery composition proposed without claiming execution",
+    "One forward migration with explicit fail-closed maintenance cutover, compatibility-premise verification and no permissive fallback"
+  ],
+  "qualification": "PASS means the concrete bounded task can be presented for owner decision. It is not approval to implement, apply migrations, claim story completion, merge, deploy, push or expand scope.",
+  "final_literal_check": "P-AC7 now correctly excludes production/demo databases from tests while allowing isolated CI databases; both consequential fixes remain present. No wider re-review.",
+  "explicit_owner_decisions_in_proposal": [
+    "35.7-P task and listed minimal product/SQL/governance/test allocation",
+    "Fresh approval must target an exact reviewed currently-unapproved revision; existing distinct reapproval policy is deliberately tightened",
+    "Mounted-form identity retention only, with no cross-restart recovery guarantee and potentially indefinite unconfirmed attempts",
+    "Short fail-closed maintenance cutover for single atomic migration and matching callers"
+  ],
+  "remaining_gates": [
+    "Owner approval of concrete task and explicit approval-precondition tightening",
+    "Approved isolated implementation with independently reviewed exact-head code and source/target migration-state verification",
+    "Required isolated DB/RLS executed/skipped counts, concurrency and audit/receipt rollback evidence",
+    "Essential configured production-server browser evidence; remaining 35.7 presentation/release work stays separate"
+  ],
+  "runtime_pass": false,
+  "tests_executed": false,
+  "database_queries_or_resources": false,
+  "implementation_authorized": false,
+  "full_35_7_admitted": false,
+  "release_ready": false,
+  "reviewer_write_scope": ["review.json", "review.md"],
+  "work_performed": "Read-only exact preparation-tree contract/source/SQL inspection; final md/json hash and JSON alignment verification; reviewer wrote only private review artifacts. No application, SQL migration, test, service, DB, CI, public-packet, claim, commit or push actions."
+}

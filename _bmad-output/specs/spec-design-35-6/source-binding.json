@@ -1,0 +1,245 @@
+{
+  "story_id": "35-6",
+  "story_plan_key": "spec-design-35-6-35-6",
+  "source_tracking_key": "35-6-crm-record-journeys",
+  "kind": "approved existing story operative materialization; process-only",
+  "approved_human": true,
+  "approval_date": "2026-11-02",
+  "approval_provenance": "Actual human approval after exact D1-D5 proposal, relayed by Coordinator; no message identifier invented.",
+  "approved_choices": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5"
+  ],
+  "supersession": "Only exact D1-D5 obligations in dated overlay; all seven AC and sixteen Applies identities retained.",
+  "base": "9533e969c1981647e26c33774a9327f842ad299a",
+  "materialization_head": "fc3f7f8f4ba34b3ee91c7f7b6841d070b55b3c4f",
+  "source_sha256": {
+    "_bmad-output/implementation-artifacts/spec-35-6-crm-record-journeys.md": "ba16bbcbcf1277c08cc1291c6e6df99d4ae958f03b8228e939490a520c9e906a",
+    "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-6.md": "955e78a90f80000a8535641936e42debb844b20660ce4ae60aadfb097f271829",
+    "tmp/private/story35-pair/crm-contracts.md": "e1305840c2f239c5e65441b6c902774f9ad2f4f7014fad0207826d95ddc0e28b",
+    "tmp/private/story35-pair/crm-bindings.json": "db7f218ba00f69367e03d461b302f995fb8530e2fc86e203f833e3887c59aa10",
+    "tmp/private/story35-pair/operative-materialization/routing.json": "81d9fc3851a2387d74e42ce809a23aa98d63d35569195c5b850e01c29915a14a"
+  },
+  "canonical_spec": {
+    "path": "_bmad-output/implementation-artifacts/spec-35-6-crm-record-journeys.md",
+    "sha256": "ba16bbcbcf1277c08cc1291c6e6df99d4ae958f03b8228e939490a520c9e906a"
+  },
+  "test_slice": {
+    "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-6.md",
+    "sha256": "955e78a90f80000a8535641936e42debb844b20660ce4ae60aadfb097f271829"
+  },
+  "production_write_paths": [
+    "src/app/(app)/customers/[customerId]/page.tsx",
+    "src/components/crm/CustomerDetail.tsx",
+    "src/components/crm/FacilityDialog.tsx",
+    "src/components/crm/ContactDialog.tsx",
+    "src/components/crm/ArchiveButton.tsx"
+  ],
+  "test_write_paths": [
+    "tests/e2e/crm/customers.e2e.spec.ts"
+  ],
+  "process_write_paths": [
+    "_bmad-output/specs/spec-design-35-6/"
+  ],
+  "read_only_authority": [
+    "src/features/crm/actions.ts",
+    "src/features/crm/read.ts",
+    "src/features/crm/action-state.ts",
+    "src/features/crm/form-parsing.ts",
+    "src/server/commands/crm/",
+    "src/server/read-models/document-context.ts",
+    "supabase/migrations/",
+    "src/components/crm/Dialog.tsx",
+    "src/components/crm/FormField.tsx",
+    "src/components/files/",
+    "src/components/resources/BookingEntry.tsx",
+    "src/components/app-shell/",
+    "src/scope/manifest.ts",
+    "src/app/(app)/customers/page.tsx",
+    "src/components/crm/CustomerList.tsx",
+    "src/components/crm/CustomerDialog.tsx",
+    "src/components/crm/CustomerTypeBadge.tsx",
+    "src/components/crm/customer-presentation.ts",
+    "src/app/globals.css"
+  ],
+  "new_helpers": false,
+  "body_copy_method": "UTF-8 source normalized CRLF to LF; original frontmatter removed; exact remaining source body appended after operative materialization. Historical relative links resolve against original canonical source directory.",
+  "canonical_body_lf_sha256": "3cff2ff999218c40356593bdc235589ce9f3880c4880d8021fc70e7944e7f921",
+  "ac_bindings": [
+    {
+      "id": "E35-6-AC1",
+      "test_id": "E35-6-T-AC1",
+      "caller_trigger_assertion": "Complete create/update/archive for customer, facility and contact through the nine existing actions; reread exact persisted IDs, parent/tenant relationships, archived_at and existing attributable audit. Preserve existing parent rules and reject cross-tenant target/parent without side effects; a contact optional facility follows current checked same-tenant rules, not an invented same-customer policy. D1 replaces archive-reason only.",
+      "existing_seam": "CRM E2E plus crm-customer-commands, crm-command-coverage and crm-parent-ownership integration."
+    },
+    {
+      "id": "E35-6-AC2",
+      "test_id": "E35-6-T-AC2",
+      "caller_trigger_assertion": "Open authorized EntityDocumentsLink for the exact customer/facility/contact tuple and return safely to the canonical entity path; preserve current Documents selected-source/filter/history behavior. Open BookingEntry with customerId and host=customer, save/reopen retaining preconnection and host. D2 creates no CRM filter/checkbox persistence or booking rule.",
+      "existing_seam": "documents-context-navigation owner parameter cases and booking-editor E2E-006 customer host."
+    },
+    {
+      "id": "E35-6-AC3",
+      "test_id": "E35-6-T-AC3",
+      "caller_trigger_assertion": "Distinguish authorized zero-customer list, filtered no-match and denied/not-found; retain suitable input after definite rejection and prevent delayed A from replacing selected B. For a possibly committed customer outcome observe preserved unknown replay block/hint across reopen/remount and no second dispatch; D3 adds no positive reconciliation/retry capability. D5 does not certify child failure arrays as successful empty reads.",
+      "existing_seam": "Existing CRM initial AC1/AC3, B06/B09; B05 lost response/B03 archive plus authoritative snapshots. Approved D3/D5 scope applies."
+    },
+    {
+      "id": "E35-6-AC4",
+      "test_id": "E35-6-T-AC4",
+      "caller_trigger_assertion": "Complete actual adapted detail/facility/contact/archive UI connected at 360×640 and representative desktop with Swedish content and record identity, keyboard/touch, >=44px phone targets and labeled overflow; enlarged text/keyboard occlusion cannot hide actions/errors. Assert real persistence separately from layout; preserve actual composite contrast and essential function/accessibility.",
+      "existing_seam": "Existing B08 phone pattern/capture/contrast seam; add only actual changed surfaces. Physical keyboard/device proof remains release scope; no rendered pass now."
+    },
+    {
+      "id": "E35-6-AC5",
+      "test_id": "E35-6-T-AC5",
+      "caller_trigger_assertion": "Exercise accessible name, visible trapped focus, Tab/Shift-Tab, Escape/close and restored invoker for actual adapted dialogs; retain existing customer dirty/late-navigation safeguards and pending exceptions. Existing motion alone follows DESIGN/reduced motion; no new editor or lifecycle protocol.",
+      "existing_seam": "B07 and B10 plus bounded adapted-dialog checks. Shared Dialog/FormField remain RO. Preserve only existing motion/reduced motion; no new modal/draft editor."
+    },
+    {
+      "id": "E35-6-AC6",
+      "test_id": "E35-6-T-AC6",
+      "caller_trigger_assertion": "Preserve all sixteen Applies state/test IDs through the explicit actual representative matrix below, with D3/D4/D5 semantics; retain affected locked/unavailable inherited regressions. Existing independently keyed file operations retain own outcomes, exact selected authority and signed access; no unified local receipt/new upload feature.",
+      "existing_seam": "Existing CRM B03–B10 and actual file/context suites; D3/D4 caller scope applies."
+    },
+    {
+      "id": "E35-6-AC7",
+      "test_id": "E35-6-T-AC7",
+      "caller_trigger_assertion": "Preserve checked commands, permissions/privacy, current expected_customer facts/stale/audit transaction contracts, exact file owner/selected link, booking and affected immutable money/tax/ADR-B008/file-lock semantics. Reuse original invariant IDs and provenance; absent money is not zero. Distinguish development execution from unearned release work; no pending/Phase C surface.",
+      "existing_seam": "CRM expected-facts/parent/coverage integration, existing Documents selected-tuple and booking contracts. No money/tax/PDF calculator in CRM; preserve supplied downstream values and regression provenance, never create a new CRM money feature. Delivery records distinguish actual development tests and deferred release work."
+    }
+  ],
+  "state_bindings": [
+    {
+      "state_id": "E35-6-STATE-loading",
+      "test_id": "E35-6-T-loading",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomerList.CustomerNavigationLabel(useLinkStatus) → hold actual non-prefetch RSC GET for company A while list remains → 'Laddar kund…', no empty/success; then current route selection wins.",
+      "existing_seam_and_scope": "CRM B06 loading/late-result 805 onward and file-local route hold. Feasible; client search itself is synchronous, not a fake loading source."
+    },
+    {
+      "state_id": "E35-6-STATE-loaded",
+      "test_id": "E35-6-T-loaded",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomersPage/CustomerDetailPage → successful request-bound read → correct ID/relationships; list excludes personnummer, detail initially masks it; absent values use placeholder.",
+      "existing_seam_and_scope": "CRM initial privacy/detail tests and fixture CRM company/private. Feasible; no asserted DTO version that does not exist."
+    },
+    {
+      "state_id": "E35-6-STATE-empty",
+      "test_id": "E35-6-T-empty",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomerList → successful zero-customer tenant read → 'Inga kunder ännu' and permitted create; failed/no-match absent.",
+      "existing_seam_and_scope": "B09 isolated createTwoTenantFixture empty tenant. Feasible. D5: list-empty acceptance only; child read failure remains disclosed and uncredited."
+    },
+    {
+      "state_id": "E35-6-STATE-no-match",
+      "test_id": "E35-6-T-no-match",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomerList → populated rows + nonmatching query/type filter → 'Inga träffar'; input/filter retained; reset restores rows.",
+      "existing_seam_and_scope": "Existing initial list search/filter tests, CustomerList local query/type state. Feasible; no false persistence across remount."
+    },
+    {
+      "state_id": "E35-6-STATE-validation",
+      "test_id": "E35-6-T-validation",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomerDialog or actual FacilityDialog/ContactDialog → existing invalid name/email → generic summary plus labeled field error; retain entered values; correction confirms actual target.",
+      "existing_seam_and_scope": "Existing AC3 and B10; crm form-parsing/validation unit tests. Customer summary links/focus exist; child summary currently only message, so adapt using existing FormField fieldErrors prop if required without editing primitive. Feasible presentation."
+    },
+    {
+      "state_id": "E35-6-STATE-denied",
+      "test_id": "E35-6-T-denied",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomersLayout RouteAccessBoundary / foreign detail / current action → non-entitled or other-tenant ID → generic denied/not-found, no foreign private fields, no write.",
+      "existing_seam_and_scope": "B09 and CRM parent/cross-tenant tests. Feasible using existing roles, never fabricated grant."
+    },
+    {
+      "state_id": "E35-6-STATE-revoked",
+      "test_id": "E35-6-T-revoked",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "Open CustomerDialog → disable its test-owned membership after render → submit → current server denies, no new customer/audit; stale page grants nothing.",
+      "existing_seam_and_scope": "B09 existing adminExec + isolated two-tenant fixture, CRM expected-facts role-denial integration. Feasible inherited authority."
+    },
+    {
+      "state_id": "E35-6-STATE-connection-required",
+      "test_id": "E35-6-T-connection-required",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomerDialog or customer ArchiveButton → known navigator offline before dispatch → persistent unsent explanation/input; zero attempts/hint changes; explicit reconnect action can submit once.",
+      "existing_seam_and_scope": "B05 R1 offline before dispatch 606 onward; existing context.setOffline control. Feasible. Facility/contact do not expose this branch (D4)."
+    },
+    {
+      "state_id": "E35-6-STATE-submitting",
+      "test_id": "E35-6-T-submitting",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomerDialog/customer archive → hold real action → busy/status and disabled duplicate/close controls; exactly one attempt, one real persisted result.",
+      "existing_seam_and_scope": "B04 pending test, B03 archive history/pending exclusion. Feasible. Plain child useActionState supplies pending but no generalized safety protocol."
+    },
+    {
+      "state_id": "E35-6-STATE-error-retry",
+      "test_id": "E35-6-T-error-retry",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomerDialog → definite validation rejection, correct field, explicit Spara → retain input, no failed-write audit, one later target. Separately list loadError → existing 'Försök igen' read link.",
+      "existing_seam_and_scope": "Initial AC3 + B04 actual command snapshots; list loadError props and checked read seam. Feasible for **definite** rejection only; SERVER_ERROR is unknown for customer, not proof of rollback. No synthetic success mock."
+    },
+    {
+      "state_id": "E35-6-STATE-unknown",
+      "test_id": "E35-6-T-unknown",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomerDialog/customer archive → real POST committed, response lost / returned SERVER_ERROR / target mismatch → 'obekräftat', original input, blocked replay across reopen/remount, no second attempt.",
+      "existing_seam_and_scope": "B05 lost response and B03 archive lost tests + customerSnapshot audits + hint unit tests. D3: assert preserved blocked behavior; positive reconciliation-before-retry obligation is superseded."
+    },
+    {
+      "state_id": "E35-6-STATE-stale",
+      "test_id": "E35-6-T-stale",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomerDialog edit A baseline → second entitled editor changes existing customer facts → first submits old expected_customer → COMMAND_CONFLICT/no overwrite/no audit; explicit consent discards and refreshes checked facts before new edits.",
+      "existing_seam_and_scope": "B06 two editors and crm-customer-commands expected-facts tests; actual RPC migration. Feasible solely customer.update; no invented facility/contact version/proof (D4)."
+    },
+    {
+      "state_id": "E35-6-STATE-confirmed",
+      "test_id": "E35-6-T-confirmed",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "CustomerDialog matching live result targetId, or customer archive matching current view/ID → actual successful action → close/refresh or intended list navigation; exact persisted ID/audit confirmed separately.",
+      "existing_seam_and_scope": "B04 and B03 customerSnapshot tests; child lifecycle integrations for ordinary current success. Unknown must never be made confirmed from local input. Feasible."
+    },
+    {
+      "state_id": "E35-6-STATE-dirty-navigation",
+      "test_id": "E35-6-T-dirty-navigation",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "Existing CustomerDialog → changed draft then Escape/link/Back/Forward → existing discard/save/cancel choice; cancel keeps URL/history/selection/input and trigger focus.",
+      "existing_seam_and_scope": "B07 traversal and focus tests. Feasible customer representative; child forms have no draft-navigation contract (D4)."
+    },
+    {
+      "state_id": "E35-6-STATE-late-result",
+      "test_id": "E35-6-T-late-result",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "Actual CustomerList select link A, then B, resolve A later → B URL/detail stays current; customer archive departing/remounting view → stale completion cannot navigate/mutate new view.",
+      "existing_seam_and_scope": "B06 delayed A/B GET and B03 archive history/view tests, liveAttemptRef/archive generation. Feasible existing caller, no invented async search."
+    },
+    {
+      "state_id": "E35-6-STATE-focus-dialog",
+      "test_id": "E35-6-T-focus-dialog",
+      "classification": "Applies",
+      "caller_trigger_observable_assertion": "Actual existing customer/facility/contact Dialog → open/error/Tab wrap/Escape/close → accessible Swedish title, visible trapped focus, restored invoker; customer pending/dirty exception preserved.",
+      "existing_seam_and_scope": "B07/B10 CRM existing dialog tests + shared Dialog. Feasible presentation-only. No motion means no new transition obligation."
+    }
+  ],
+  "checkpoints": {
+    "spec_checkpoint": false,
+    "done_checkpoint": true,
+    "authority": "Coordinator-relayed owner choice for existing single terminal story, not invented headless breakdown"
+  },
+  "pair_ordering": {
+    "35-6_to_35-7": "Approved documentary ordering-only edge removed from operative plan; frozen source remains unchanged.",
+    "technical_import_edge_found": false,
+    "shared_read_only": "src/components/crm/FormField.tsx",
+    "settings_producer_prerequisite": "35.7-P remains unearned; owned outside this folder"
+  },
+  "ownership": "Current claims/enrollment/workers not initialized; current exact-path and semantic ownership validation remains required at implementation admission.",
+  "release_ready": false,
+  "implementation_started": false,
+  "runtime_evidence": "none; no tests, service launches or pipeline execution",
+  "independent_actual_delta_review": "not yet earned by materialization"
+}
