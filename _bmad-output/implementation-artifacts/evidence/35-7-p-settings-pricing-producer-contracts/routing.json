@@ -498,6 +498,64 @@
       "dispatch_status": "actual both existing High reviewers completed FIX_CONFIRMED; no findings; source only, no runtime/visual credit",
       "no_tests_queries_resources_CI_or_writes": true,
       "no_runtime_or_visual_acceptance": true
+    },
+    {
+      "phase": "Independent targeted b8 consumer canonical-identity fix confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T18:49:23.365756Z",
+      "author_stopped": true,
+      "freeze": "author-b8-consumer-frozen-checkpoint.json",
+      "freeze_sha256": "21b830b9e05ad249d54e2d6efca3226ae95eb2c899e5c06e3984844387f9596f",
+      "source48_digest": "a05c86229a0b087a28e526038a5d1bf027ebd751331697ad34bcd90db8f46bf2",
+      "reviewers": [
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "Latest pricing-only Node script/canonical package owner and foreign consumer classifier security/regression confirmation; native argv limits and unchanged qualifier authority, no old broad source review"
+        },
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "Latest exact15 pure normalization example coverage/provenance plus unchanged capture/actions/privateproposal/evidence/SRO boundaries; no repeat image audit or privateproposal review"
+        }
+      ],
+      "dispatch_status": "recorded-before-existing-High-followups",
+      "broad_round_count": 1,
+      "no_tests_queries_resources_CI_writes": true,
+      "no_runtime_visual_policy_acceptance": true
+    },
+    {
+      "phase": "Same-author minimal known-family refusal fix and retained auditable pure-proof",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T18:52:03.6334499Z",
+      "scope": "Preserve original recognizable CLI family through identity failures in allocatedpricing only; first retain exact old inline harness/input/source snapshot privately; then bounded current-source auditable17case proof15old+missing-entry/symlink-outside regressions, no broad framework. Preserve all other guards/captures/effect budgets and privatecap packet.",
+      "review_receipt": "b8-consumer-targeted-review-results.json",
+      "dispatch_status": "recorded-before-existing-author-followup",
+      "no_resources_DB_CI_push_or_policy_changes": true
+    },
+    {
+      "phase": "Independent fix-only original-family refusal and retained proof confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T18:57:36.3991592Z",
+      "author_stopped": true,
+      "freeze": "author-b8-consumer-followup-checkpoint.json",
+      "freeze_sha256": "031b4dac9f43c57dccef71f8948b98ee965fd136e8047469b7d69f2311633a56",
+      "source48_digest": "f6b2d23c8cf734f833e7d2ebd304b4a50063f121807e47619f0dbd5b19b53eb9",
+      "reviewers": [
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "Only known-original family hint propagation on realpath/canonical/package failures and consequential latestfix regressions; no broad classifier/qualifier re-review"
+        },
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "Only retained historical harness/current17inputs/extraction source binding and unresolved pureproof provenance; unchanged captures/privatecap boundaries"
+        }
+      ],
+      "dispatch_status": "actual both existing High reviewers completed FIX_CONFIRMED; source and proof gaps resolved, no runtime credit",
+      "broad_round_count": 1,
+      "no_tests_queries_resources_CI_or_writes": true,
+      "no_runtime_visual_policy_acceptance": true
     }
   ],
   "implementation_author_dispatched": true,
