@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/specs/spec
 story_id: 35-6
 branch: codex/story-35-6-crm-record-journeys
 status: in-progress
-updated_at: "2026-11-02T14:02:25Z"
+updated_at: "2026-11-02T14:04:23Z"
 started_at: "2026-11-02T13:54:54Z"
 completed_at: null
-active_seconds: 443
-timing_anchor: 1793628145
+active_seconds: 551
+timing_anchor: 1793628263
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
