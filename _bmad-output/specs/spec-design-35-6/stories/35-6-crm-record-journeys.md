@@ -2,10 +2,11 @@
 title: "Story 35.6: CRM Record Journeys"
 type: feature
 created: 2026-11-02
-status: ready-for-dev
+status: in-progress
 review_loop_iteration: 0
+baseline_revision: 90c4c708c0cb87b16cb6bc10fd981ebd9978d76b
 release_ready: false
-implementation_started: false
+implementation_started: true
 context:
   - ../SPEC.md
   - ../approved-operative-overlay-2026-11-02.md
@@ -84,11 +85,11 @@ Execution order follows the composition boundary, then its consumers and asserti
 
 **Execution:**
 
-- [ ] `src/app/(app)/customers/[customerId]/page.tsx` — adapt generic failure/not-found and record-panel composition to accepted tokens, readable spacing, visible return actions and responsive width. Preserve every read/capability decision and exact file/Documents/Booking prop (AC2/3/4/6/7).
-- [ ] `src/components/crm/CustomerDetail.tsx` — finish existing identity, relationship, facilities/contacts and related-area composition using current record data, accepted card/section/connection treatment, wrapping, Swedish labels and >=44px phone controls. Keep default masking, edit facts, archive liveness and keyed panel ownership; do not invent destinations, counts, capabilities or child read states (AC1–7).
-- [ ] `src/components/crm/FacilityDialog.tsx` — adapt existing form spacing/grouping and usable actions; pass current fieldErrors to existing summary and retain field association/input. Keep Dialog/DialogActions, action/hidden identity/remount/success semantics and existing fields (AC1/3/4/5/6/7).
-- [ ] `src/components/crm/ContactDialog.tsx` — adapt existing contact form and error-summary composition as above, preserving optional facility selection, unchanged parent/target, primary convenience semantics and checked server results. No new uniqueness or child lifecycle protocol (AC1/3/4/5/6/7).
-- [ ] `src/components/crm/ArchiveButton.tsx` — align existing inline confirmation, error/status text and controls with surrounding responsive layout and accepted destructive tokens. Preserve distinct customer safety branch, matching target/view continuation, pending exclusion and child action semantics; no reason or recovery flow (AC1/3/4/5/6/7).
+- [x] `src/app/(app)/customers/[customerId]/page.tsx` — adapt generic failure/not-found and record-panel composition to accepted tokens, readable spacing, visible return actions and responsive width. Preserve every read/capability decision and exact file/Documents/Booking prop (AC2/3/4/6/7).
+- [x] `src/components/crm/CustomerDetail.tsx` — finish existing identity, relationship, facilities/contacts and related-area composition using current record data, accepted card/section/connection treatment, wrapping, Swedish labels and >=44px phone controls. Keep default masking, edit facts, archive liveness and keyed panel ownership; do not invent destinations, counts, capabilities or child read states (AC1–7).
+- [x] `src/components/crm/FacilityDialog.tsx` — adapt existing form spacing/grouping and usable actions; pass current fieldErrors to existing summary and retain field association/input. Keep Dialog/DialogActions, action/hidden identity/remount/success semantics and existing fields (AC1/3/4/5/6/7).
+- [x] `src/components/crm/ContactDialog.tsx` — adapt existing contact form and error-summary composition as above, preserving optional facility selection, unchanged parent/target, primary convenience semantics and checked server results. No new uniqueness or child lifecycle protocol (AC1/3/4/5/6/7).
+- [x] `src/components/crm/ArchiveButton.tsx` — align existing inline confirmation, error/status text and controls with surrounding responsive layout and accepted destructive tokens. Preserve distinct customer safety branch, matching target/view continuation, pending exclusion and child action semantics; no reason or recovery flow (AC1/3/4/5/6/7).
 - [ ] `tests/e2e/crm/customers.e2e.spec.ts` — add bounded E35-6-T-AC1–7 assertions for actual adapted journeys; reuse original B03–B10 for the sixteen state IDs under the exact operative matrix below. Exercise all nine real actions on unique test-owned records, observe exact persisted identity/parent/archived_at/audit, and test adapted UI at 360×640/desktop with labels, >=44px targets, keyboard focus/error visibility and masked detail. Reuse file-local gates and existing factory imports; never mock business-command success, mutate shared auth seeds or create a helper/suite (AC1–7).
 
 **Acceptance Criteria:**
@@ -136,7 +137,7 @@ Planning review trail: review the page/CustomerDetail user outcome first, then c
 
 ## Verification
 
-**Planning now:** Code/contract inspection and native read-only story parsing only. All execution tasks unchecked; all runtime/build/unit/integration/RLS/browser/visual/CI/delivery checks **UNRUN**. Independent review of this bounded plan delta is still required before publication. No resource or service is launched; release_ready=false and implementation_started=false.
+**Historical planning snapshot:** Code/contract inspection and native read-only story parsing only. All execution tasks unchecked; all runtime/build/unit/integration/RLS/browser/visual/CI/delivery checks **UNRUN**. Independent review of this bounded plan delta is still required before publication. No resource or service is launched; release_ready=false and implementation_started=false.
 
 **Later implementation commands and assertions:**
 
@@ -147,6 +148,75 @@ Planning review trail: review the page/CustomerDetail user outcome first, then c
 - Follow current `docs/quality/frontend-quality-gate.md` for actual candidate production captures and accepted visual evidence at 360×640/desktop, including finished/loading/error/empty with concrete applicability reasons and relevant focus/validation/selection states. Initial/reference replacement still requires existing owner acceptance. Future independent sensitive review, exact-head CI and completion/delivery wrapper remain required; this plan earns none.
 
 E35-6-REL-1 UI visual/device/composite contrast/reflow, REL-2 QA/accessibility manual/screen-reader/daylight and REL-3 Coordinator final Phase B consolidation retain their existing delivery/deferred-work ownership process. Exhaustive release work, named people/exact candidate and evidence remain unearned; preserve E16 14-item and E20 caveats. Current visual development acceptance is required at its actual completion phase and cannot be deferred as polish.
+
+## Implementation and verification checkpoint - 2026-11-02
+
+Implementation author: Sol High implementation delegate. Baseline: `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`; evidence below is the uncommitted assigned working tree, not the baseline commit alone. Status remains in-progress and release_ready=false. Checked product tasks above mean source adaptation only; runtime acceptance and the E2E execution task remain pending.
+
+Owner-authorized presentation choices use the accepted DESIGN/EXPERIENCE and existing tokens: stack child identity/actions on phone, wrap long Swedish values, use restrained section bands and bordered task cards, keep a visible canonical customer-list return, and show existing contact/facility relationship text without inventing a destination. Child forms retain shared Dialog/DialogActions and their action/remount/hidden identity semantics; fieldsets group current fields, and the existing summary now receives fieldErrors for focusable error links. The contact primary checkbox uses echoed rejected values so retained input survives form reset. Archive changes are presentation only; customer view/target checks, unknown block and child success branches are unchanged. Existing related-area content is retained; no new count, route or capability is inferred.
+
+Nine active E35-6 acceptance cases now exist: the eight committed ATDD cases are retained, with an additional retained-checkbox assertion and one source-owned screenshot/reflow case. The latter attaches actual production-server screenshots when executed at 360x640 and 1440x900: populated detail, facility/contact forms, validation/focus, archive confirmation, and controlled CSS enlargement/short-viewport proxies. No captures were executed or fabricated locally. Empty/loading/customer unknown/stale and inherited files/booking remain bound to their existing B03-B10/source-owner suites; screenshot scaffolding does not cover every required visual state or grant acceptance.
+
+| Check | Actual result in this working tree |
+| --- | --- |
+| Correct local dependencies | Parent installed worktree-local frozen lockfile dependencies; Next 16.4.1 resolves. package.json/pnpm-lock.yaml unchanged. Earlier ancestor Next 16.3.6 optimizer import mismatch is resolved. |
+| `pnpm typecheck` | Passed, exit 0; rerun after final source/test edits also passed. |
+| `pnpm lint` | Passed, exit 0, 0 errors/31 existing warnings. Focused final ESLint on the six allocated source/test files passed without warnings. |
+| `pnpm build` | Passed, Next 16.4.1 production build; later edits only formatted child JSX and strengthened unbundled E2E assertions. |
+| `pnpm verify:bundle-containment` | Passed after that production build. |
+| `pnpm verify:lockfiles`, `pnpm verify:service-role-containment`, `pnpm audit --audit-level=high` | Parent-executed passed checks in this worktree; audit reports 5 moderate, no high vulnerabilities. No later authority/dependency changes invalidate them. |
+| `pnpm test:unit` | Two equivalent runs: 3780 tests, 3776 passed, 3 failed, 1 skipped; exit 1. Not a passing gate. |
+| Focused CRM units | `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/crm/action-state.test.ts tests/unit/features/crm/form-parsing.test.ts tests/unit/components/crm/customer-presentation.test.ts tests/unit/server/commands/crm-validation.test.ts`: 126 passed, 0 failed, 0 skipped. |
+| Bounded unit diagnosis | Full-run failures in unchanged `with-calendar-feed-runtime.test.ts`: test at 1992 compares CRLF/LF SQL bodies; test at 2237 fails source extraction with undefined.split. The third failure, integration-test-partitions.test.ts:85, compares native/backslash TEMP with forward-slash TEMP. Focused native Windows TEMP run of that file passed 8/8, 0 skipped. Unowned tests/runtime/migrations have zero diff from baseline; no source rewrite or third broad retry. |
+| Browser discovery | `pnpm test:e2e tests/e2e/crm/customers.e2e.spec.ts --list` failed before discovery: missing tests/e2e/.auth/fixture.json. No discovered/executed coverage is credited. |
+| Integration/RLS, recovery/storage, browser and visual | UNRUN: 0 executed, 0 skipped. No trusted resourceGuardContext was available for managed launches; no DB/server/browser was started. Isolated hosted candidate execution remains the Coordinator's next action. |
+| Independent sensitive review, exact-head CI, frontend acceptance and completion wrapper | Pending. This checkpoint is not development-complete or review-ready under the visual acceptance gate. No status/delivery helper or completion wrapper was invoked. |
+
+Named blockers: **DEV-UNIT-WINDOWS** (Coordinator/CI owner): obtain exact-head isolated CI unit evidence for unchanged calendar-feed source-extraction failures; change no unowned fixture to hide them. **DEV-RUNTIME-VISUAL** (Coordinator/UI owner): publish the reviewed candidate through the authorized checkpoint route, run the supported isolated production-server integration/browser/capture lane, inspect actual counts/artifacts, and obtain current authenticated frontend acceptance. Resume completion only after applicable checks, independent review and the project completion wrapper pass. Physical-device/manual release checks remain E35-6-REL-1/2; final Phase B consolidation remains REL-3. Named release people/evidence are not invented; E16's 14-item and E20 caveats remain.
+
+D5 remains a disclosed limitation: child read failures flatten to arrays with error:null; no child-empty honesty coverage is awarded. Privacy remains list-personnummer absent/detail initially masked, with entitled detail payload intentional. No new customer reconciliation/reset, child expected-facts/dirty/unknown protocol, reason field, CRM filter persistence, helper, dependency, schema or Phase C surface was added.
+
+## Suggested Review Order
+
+Author: Sol High implementation delegate. Refreshed against the final uncommitted assigned worktree on baseline `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`; evidence limits are recorded in the checkpoint above.
+
+### Record identity and responsive composition
+
+The current record remains the composition boundary. Shipped tokens, stacked phone actions and wrapping preserve visible identity while retaining each independently keyed file consumer; the relationship label has no invented destination.
+
+- `src/app/(app)/customers/[customerId]/page.tsx:26` — `CustomerDetailPage`: read-bound entry and generic error/not-found composition.
+- `src/components/crm/CustomerDetail.tsx:168` — `Kunduppgifter`: masked identity and readable summary (AC3/4/7).
+- `src/components/crm/CustomerDetail.tsx:270` — `FacilitiesSection`: responsive record actions and keyed child panels.
+- `src/components/crm/CustomerDetail.tsx:367` — `ContactsSection`: current relationships and independently keyed contact panels.
+
+### Existing authority and archive outcomes
+
+D1-D4 retain the existing customer-only safety contract. Archive styling changes no dispatch, view-liveness or matching-target decision, and page-owned Documents/Booking tuples remain exact (AC1/2/3/6/7).
+
+- `src/components/crm/ArchiveButton.tsx:88` — `stillCurrent`: preserved originating-view continuation boundary.
+- `src/components/crm/ArchiveButton.tsx:132` — `<form`: wrapped confirmation/error/actions without a reason or recovery path.
+- `src/app/(app)/customers/[customerId]/page.tsx:117` — `parentCustomerId`: exact facility parent and suffix authority.
+- `src/app/(app)/customers/[customerId]/page.tsx:147` — `bookingPanel`: unchanged customer Booking host and preconnection.
+
+### Rejected child input and focus
+
+Existing FormErrorSummary owns links to current field errors; shared Dialog remains sole initial-focus owner. Grouping adds no child safety protocol, and echoed primary-checkbox state preserves suitable rejected input (AC3/4/5).
+
+- `src/components/crm/FacilityDialog.tsx:88` — `fieldErrors`: current facility errors enter the existing summary.
+- `src/components/crm/ContactDialog.tsx:110` — `fieldErrors`: current contact errors enter the existing summary.
+- `src/components/crm/ContactDialog.tsx:160` — `defaultChecked`: rejected primary convenience flag is retained.
+- `tests/e2e/crm/customers.e2e.spec.ts:1114` — `E35-6-T-AC3/AC4/AC5`: associated error links, focus, touch targets and real correction.
+
+### Persistence evidence and remaining gates
+
+The lifecycle cases observe real rows and attributable audits, while composition checks exact Documents tuples and current Booking preconnection. All sixteen state IDs remain bound to the operative matrix and original B03-B10 representatives; test source is not executed evidence.
+
+- `tests/e2e/crm/customers.e2e.spec.ts:1014` — `E35-6-T-AC1/AC7`: customer identity, soft archive and attributable audits.
+- `tests/e2e/crm/customers.e2e.spec.ts:1058` — `E35-6-T-AC1/AC7`: actual child parent/target identities and attributable audits.
+- `tests/e2e/crm/customers.e2e.spec.ts:1170` — `E35-6-T-AC2/AC6`: exact context tuples, independent panels and Booking reopen.
+- `tests/e2e/crm/customers.e2e.spec.ts:1208` — `E35-6-T-AC4/AC5`: real UI capture attachments and controlled reflow proxies.
+
+Evidence: typecheck/lint/build/bundle pass; focused CRM 126/126 pass; full units fail 3 with 1 skip as recorded above, and the native-TEMP targeted diagnostic passes 8/8. Runtime/integration/RLS/storage, visual capture/acceptance, independent review, exact-head CI and completion wrapper remain pending. Limits: synthetic test-owned fixtures and controlled transport/viewport faults; no business-success mock, no actual local browser or physical keyboard proof, no full Booking save/reopen claim from composition alone, no D5 child-read coverage. Release validation and approval remain separately owned; release_ready=false.
 
 ## Frozen canonical v1 source body — preserved LF
 

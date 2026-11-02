@@ -84,8 +84,8 @@ function FacilityDialogBody({
     state.values[field] ?? fallback ?? "";
 
   return (
-    <form action={formAction} className="flex flex-col gap-4" noValidate>
-      <FormErrorSummary message={state.formError} />
+    <form action={formAction} className="flex min-w-0 flex-col gap-6" aria-busy={pending} noValidate>
+      <FormErrorSummary message={state.formError} fieldErrors={state.fieldErrors} />
       {/* customer_id is required by createFacility; on edit it is forwarded for
           revalidation targeting (the command keys off the facility id). */}
       <input type="hidden" name="customer_id" value={customerId} />
@@ -93,30 +93,36 @@ function FacilityDialogBody({
         <input type="hidden" name="id" value={defaults.id} />
       )}
 
-      <TextField
-        name="name"
-        label="Namn"
-        required
-        defaultValue={v("name", defaults?.name)}
-        error={state.fieldErrors.name}
-      />
-      <TextField
-        name="address_line1"
-        label="Adress"
-        defaultValue={v("address_line1", defaults?.address_line1)}
-      />
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <fieldset className="min-w-0 space-y-4">
+        <legend className="mb-3 text-section font-medium text-text-primary">Anläggningsuppgifter</legend>
         <TextField
-          name="postal_code"
-          label="Postnummer"
-          defaultValue={v("postal_code", defaults?.postal_code)}
+          name="name"
+          label="Namn"
+          required
+          defaultValue={v("name", defaults?.name)}
+          error={state.fieldErrors.name}
         />
+      </fieldset>
+      <fieldset className="min-w-0 space-y-4 border-t border-border-subtle pt-4">
+        <legend className="text-section font-medium text-text-primary">Adress</legend>
         <TextField
-          name="city"
-          label="Ort"
-          defaultValue={v("city", defaults?.city)}
+          name="address_line1"
+          label="Adress"
+          defaultValue={v("address_line1", defaults?.address_line1)}
         />
-      </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <TextField
+            name="postal_code"
+            label="Postnummer"
+            defaultValue={v("postal_code", defaults?.postal_code)}
+          />
+          <TextField
+            name="city"
+            label="Ort"
+            defaultValue={v("city", defaults?.city)}
+          />
+        </div>
+      </fieldset>
 
       <DialogActions onClose={onClose} pending={pending} />
     </form>

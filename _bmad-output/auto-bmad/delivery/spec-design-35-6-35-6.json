@@ -1,0 +1,80 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "Current 2026-10-26 visual amendment remains mandatory for this frontend change. Approved seven ACs/sixteen states and exact D1-D5 supersession retained; immutable canonical suffix matches baseline Git bytes. This checkpoint is incomplete: full units failed; runtime/integration/RLS/recovery/storage, visual acceptance, independent review and exact-head CI are pending. Physical device/manual release validation remains separately deferred; no done or release claim.",
+  "evidence_revision": "Uncommitted assigned working tree on 90c4c708c0cb87b16cb6bc10fd981ebd9978d76b; source/test hashes recorded below; refresh after candidate commit",
+  "development_checks": [
+    {
+      "name": "typecheck",
+      "status": "passed",
+      "evidence": "pnpm typecheck exit0 with local Next16.4.1; final rerun exit0."
+    },
+    {
+      "name": "lint",
+      "status": "passed",
+      "evidence": "pnpm lint exit0,0errors31existing warnings; final six-file pnpm exec eslint exit0 no warnings."
+    },
+    {
+      "name": "build and bundle containment",
+      "status": "passed",
+      "evidence": "pnpm build Next16.4.1 production build exit0; pnpm verify:bundle-containment exit0. Subsequent JSX indentation and unbundled E2E assertions do not change production output."
+    },
+    {
+      "name": "lockfiles audit and service-role containment",
+      "status": "passed",
+      "evidence": "Parent build delegate ran pnpm verify:lockfiles, pnpm audit --audit-level=high (5moderate,no high), pnpm verify:service-role-containment exit0 in this worktree. No later dependency/authority change."
+    },
+    {
+      "name": "focused CRM units",
+      "status": "passed",
+      "evidence": "Four existing action-state/form-parsing/customer-presentation/crm-validation files via node --test:126executed126passed0failed0skipped."
+    },
+    {
+      "name": "full unit suite",
+      "status": "failed",
+      "evidence": "pnpm test:unit twice:3780tests3776passed3failed1skipped. Unchanged with-calendar-feed-runtime tests1992 CRLF-v-LF and2237 undefined.split; integration-test-partitions85 TEMP slash mismatch. Focused native Windows TEMP partition run8passed0failed0skipped. Relevant unowned files/runtime/migrations have zero diff from baseline. No third broad retry."
+    },
+    {
+      "name": "required integration RLS recovery storage browser",
+      "status": "pending",
+      "evidence": "UNRUN,0executed0skipped; no trusted resourceGuardContext and no managed launch. Browser --list exits1 before discovery because .auth/fixture.json absent. Coordinator isolated exact-candidate hosted lane next."
+    },
+    {
+      "name": "frontend visual acceptance and exact-head CI",
+      "status": "pending",
+      "evidence": "No runtime screenshots or authenticated acceptance; one owned test adds actual production-server screenshot attachments at360x640/1440x900 when executed. Other states remain B03-B10/source-owner duties. Candidate publication/execution/acceptance required before completion."
+    },
+    {
+      "name": "assigned source identity",
+      "status": "passed",
+      "evidence": "{\"src/app/(app)/customers/[customerId]/page.tsx\": \"34c6c88e55fdfe3b3b6e13193b5c81a5094662d969bd2fad84d427c195af45b3\", \"src/components/crm/ArchiveButton.tsx\": \"02fabf0a0b4e7a223c1c73e80e8355e5bd1a457b27d07019557e8599cde5575b\", \"src/components/crm/ContactDialog.tsx\": \"a3ad093e790185d4a118f17191fe73df91b37f488d6bb0b651ef3967d509d45f\", \"src/components/crm/CustomerDetail.tsx\": \"998c2c066e06fcc2d112d590c050d8215abbe7625f7ac23b9b372a4a8a566eec\", \"src/components/crm/FacilityDialog.tsx\": \"55f125b7946e5fceff7d22fc00889fac7c531d768dd7215d9d933ba260e30a1c\", \"tests/e2e/crm/customers.e2e.spec.ts\": \"9850530f31d088baaf2b69af16fc007edce1afc234e191e2bdbc827b2457a3f3\"}"
+    }
+  ],
+  "independent_review": {
+    "status": "pending",
+    "evidence": "Implementation checkpoint prepared for independent sensitive review; no approval claimed."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "E35-6-REL-1 exhaustive visual/device/composite contrast/reflow",
+      "owner": "UI owner; named person pending Coordinator assignment",
+      "status": "deferred",
+      "evidence": "No release evidence. Development visual acceptance remains separately mandatory and pending. E16 14-item and E20 caveats retained.",
+      "next_action": "Assign named owner and exact candidate; review actual application captures/devices after development gates."
+    },
+    {
+      "item": "E35-6-REL-2 manual accessibility/screen-reader/daylight",
+      "owner": "QA/accessibility owner; named person pending Coordinator assignment",
+      "status": "deferred",
+      "evidence": "No manual/physical device evidence; controlled CSS enlargement/viewport proxy source is not physical keyboard proof.",
+      "next_action": "Assign owner/scope/exact candidate and execute release checks with recorded results."
+    },
+    {
+      "item": "E35-6-REL-3 final Phase B consolidation",
+      "owner": "Coordinator",
+      "status": "deferred",
+      "evidence": "Final release checkpoint unearned; no merge/deployment/release approval.",
+      "next_action": "Consolidate existing deferred work and actual evidence at the Phase B release checkpoint."
+    }
+  ],
+  "release_ready": false
+}

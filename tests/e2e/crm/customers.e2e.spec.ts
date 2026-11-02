@@ -1132,15 +1132,17 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
           await expect(name).toBeFocused();
           const retained = dialog.getByLabel(kind === "facility" ? "Adress" : "Roll (valfritt)", { exact: true });
           await retained.fill("Lång svensk uppgift som ska behållas efter avvisat försök");
+          if (kind === "contact") await dialog.getByLabel("Primär kontakt", { exact: true }).check();
           await dialog.getByRole("button", { name: "Spara", exact: true }).click();
           await expect(name).toHaveAttribute("aria-invalid", "true");
           const errorId = await name.getAttribute("aria-describedby"); expect(errorId).toBeTruthy();
           await expect(dialog.locator(`[id="${errorId}"]`)).toBeVisible();
           const summary = dialog.getByTestId("form-error-summary");
           await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
-          // RED target: current child summaries omit fieldErrors/field links.
+          // The existing summary must connect actual rejected fields to focus.
           await summary.getByRole("link").first().click(); await expect(name).toBeFocused();
           await expect(retained).toHaveValue("Lång svensk uppgift som ska behållas efter avvisat försök");
+          if (kind === "contact") await expect(dialog.getByLabel("Primär kontakt", { exact: true })).toBeChecked();
           const table = kind === "facility" ? "facilities" : "contacts";
           expect(await adminQuery(`select id from public.${table} where customer_id = $1`, [customerId])).toEqual([]);
           expect(await adminQuery("select id from public.audit_events where tenant_id = $1 and target_type = $2", [isolated.tenantA.id, kind])).toEqual([]);
@@ -1200,6 +1202,61 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       // Full save/reopen and independent booking persistence remain E2E-006's duty.
       // File operation, selected-tuple, lock and signed-access outcomes remain in
       // their existing real producer suites; empty child arrays earn no read proof.
+    } finally { await cleanupFixture(isolated); }
+  });
+
+  test("[P1] E35-6-T-AC4/AC5 adapted record captures preserve phone and desktop reflow", async ({ page }, testInfo) => {
+    const isolated = await createTwoTenantFixture();
+    try {
+      const marker = `35.6 Örnsköldsviks elinstallationer och återkommande underhåll ${crypto.randomUUID()}`;
+      const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: marker, org_nr: "556677-8899" });
+      const facilityId = await adminInsertFacility({ tenant_id: isolated.tenantA.id, customer_id: customerId, name: "Serviceanläggningen med lång svensk benämning i Örnsköldsvik" });
+      await adminInsertContact({ tenant_id: isolated.tenantA.id, customer_id: customerId, facility_id: facilityId, name: "Kontaktperson för återkommande service och underhåll" });
+      await signIn(page, isolated.adminA.email, isolated.adminA.password);
+      for (const viewport of [{ width: 360, height: 640 }, { width: 1440, height: 900 }]) {
+        await page.setViewportSize(viewport);
+        await page.goto(`/customers/${customerId}`);
+        await expect(page.getByRole("heading", { name: marker, exact: true })).toBeVisible();
+        const edit = page.getByTestId("edit-customer-button"); await waitForHydrated(edit);
+        await expect(page.getByRole("link", { name: "Tillbaka till kunder", exact: true })).toBeVisible();
+        expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+        await testInfo.attach(`record-loaded-${viewport.width}`, { body: await page.screenshot({ fullPage: true, animations: "disabled" }), contentType: "image/png" });
+        for (const kind of ["facility", "contact"] as const) {
+          const trigger = page.getByTestId(`new-${kind}-button`);
+          await trigger.click();
+          const dialog = page.getByRole("dialog", { name: kind === "facility" ? "Ny anläggning" : "Ny kontakt", exact: true });
+          const name = dialog.getByRole("textbox", { name: "Namn", exact: true });
+          await expect(name).toBeFocused();
+          await testInfo.attach(`${kind}-form-${viewport.width}`, { body: await page.screenshot({ animations: "disabled" }), contentType: "image/png" });
+          await dialog.getByRole("button", { name: "Spara", exact: true }).click();
+          await expect(name).toHaveAttribute("aria-invalid", "true");
+          const summary = dialog.getByTestId("form-error-summary");
+          await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
+          await summary.getByRole("link").first().click(); await expect(name).toBeFocused();
+          await testInfo.attach(`${kind}-validation-focus-${viewport.width}`, { body: await page.screenshot({ animations: "disabled" }), contentType: "image/png" });
+          if (viewport.width === 360) {
+            // A bounded CSS enlargement + short viewport proxy; no physical keyboard claim.
+            await page.addStyleTag({ content: "body { zoom: 2; }" });
+            await page.setViewportSize({ width: 360, height: 400 });
+            const save = dialog.getByRole("button", { name: "Spara", exact: true });
+            await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
+            await testInfo.attach(`${kind}-controlled-enlargement-occlusion-${viewport.width}`, { body: await page.screenshot({ animations: "disabled" }), contentType: "image/png" });
+            // Navigation below restores the unmodified production stylesheet.
+            await page.goto(`/customers/${customerId}`);
+            await page.setViewportSize(viewport);
+          } else {
+            await page.keyboard.press("Escape"); await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
+          }
+        }
+        const archive = page.getByRole("button", { name: "Arkivera kund", exact: true });
+        await archive.click();
+        const confirmation = page.getByRole("status").filter({ hasText: "Arkivera den här kunden?" });
+        await confirmation.scrollIntoViewIfNeeded(); await expect(confirmation).toBeInViewport();
+        await testInfo.attach(`archive-confirmation-${viewport.width}`, { body: await page.screenshot({ animations: "disabled" }), contentType: "image/png" });
+        await page.getByRole("button", { name: "Avbryt", exact: true }).click();
+        expect(await adminQuery("select id from public.customers where id = $1 and archived_at is null", [customerId])).toEqual([{ id: customerId }]);
+        expect(await adminQuery("select id from public.audit_events where tenant_id = $1", [isolated.tenantA.id])).toEqual([]);
+      }
     } finally { await cleanupFixture(isolated); }
   });
 });

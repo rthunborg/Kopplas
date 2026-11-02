@@ -106,53 +106,60 @@ function ContactDialogBody({
   ];
 
   return (
-    <form action={formAction} className="flex flex-col gap-4" noValidate>
-      <FormErrorSummary message={state.formError} />
+    <form action={formAction} className="flex min-w-0 flex-col gap-6" aria-busy={pending} noValidate>
+      <FormErrorSummary message={state.formError} fieldErrors={state.fieldErrors} />
       <input type="hidden" name="customer_id" value={customerId} />
       {mode === "edit" && defaults && (
         <input type="hidden" name="id" value={defaults.id} />
       )}
 
-      <TextField
-        name="name"
-        label="Namn"
-        required
-        defaultValue={v("name", defaults?.name)}
-        error={state.fieldErrors.name}
-      />
-      {facilities.length > 0 && (
-        <SelectField
-          name="facility_id"
-          label="Anläggning (valfritt)"
-          options={facilityOptions}
-          defaultValue={v("facility_id", defaults?.facility_id)}
-        />
-      )}
-      <TextField
-        name="role_label"
-        label="Roll (valfritt)"
-        defaultValue={v("role_label", defaults?.role_label)}
-      />
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <fieldset className="min-w-0 space-y-4">
+        <legend className="mb-3 text-section font-medium text-text-primary">Kontaktuppgifter</legend>
         <TextField
-          name="email"
-          label="E-post"
-          type="email"
-          defaultValue={v("email", defaults?.email)}
-          error={state.fieldErrors.email}
+          name="name"
+          label="Namn"
+          required
+          defaultValue={v("name", defaults?.name)}
+          error={state.fieldErrors.name}
         />
         <TextField
-          name="phone"
-          label="Telefon"
-          defaultValue={v("phone", defaults?.phone)}
-          error={state.fieldErrors.phone}
+          name="role_label"
+          label="Roll (valfritt)"
+          defaultValue={v("role_label", defaults?.role_label)}
         />
-      </div>
-      <CheckboxField
-        name="is_primary"
-        label="Primär kontakt"
-        defaultChecked={defaults?.is_primary ?? false}
-      />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <TextField
+            name="email"
+            label="E-post"
+            type="email"
+            defaultValue={v("email", defaults?.email)}
+            error={state.fieldErrors.email}
+          />
+          <TextField
+            name="phone"
+            label="Telefon"
+            defaultValue={v("phone", defaults?.phone)}
+            error={state.fieldErrors.phone}
+          />
+        </div>
+      </fieldset>
+      <fieldset className="min-w-0 space-y-4 border-t border-border-subtle pt-4">
+        <legend className="text-section font-medium text-text-primary">Koppling och kontaktval</legend>
+        {facilities.length > 0 && (
+          <SelectField
+            name="facility_id"
+            label="Anläggning (valfritt)"
+            options={facilityOptions}
+            defaultValue={v("facility_id", defaults?.facility_id)}
+            error={state.fieldErrors.facility_id}
+          />
+        )}
+        <CheckboxField
+          name="is_primary"
+          label="Primär kontakt"
+          defaultChecked={state.status === "error" ? ["on", "true", "1"].includes(state.values.is_primary ?? "") : defaults?.is_primary ?? false}
+        />
+      </fieldset>
 
       <DialogActions onClose={onClose} pending={pending} />
     </form>
