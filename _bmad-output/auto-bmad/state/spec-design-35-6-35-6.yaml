@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/specs/spec
 story_id: 35-6
 branch: codex/story-35-6-crm-record-journeys
 status: in-progress
-updated_at: "2026-11-02T15:10:27Z"
+updated_at: "2026-11-02T15:26:10Z"
 started_at: "2026-11-02T13:54:54Z"
 completed_at: null
 active_seconds: 3723
-timing_anchor: null
+timing_anchor: 1793633170
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -81,10 +81,10 @@ branch_deleted: false
 open_questions: []
 deferred_work: []
 blockers:
-  - Required runtime and exact-head CI pending checkpoint publication
-  - Phase 6 shared automation-summary output requires coordinator allocation/reconciliation
-  - Frontend captures and authenticated owner acceptance pending
+  - "Required current-head full runtime and visual evidence pending; oldnative31unexpected includes10owned and21unowned failures"
+  - Phase6 automation-summary coordinator allocation/reconciliation required
   - Recommended follow-up review pending
+  - Authenticated current-head visual acceptance pending
 overrides:
   approved_plan_reused: true
   done_checkpoint: true
@@ -100,7 +100,7 @@ review_state: code-and-capture-delta-reviewed-pending-followup
 review_revision: 1a3a4a7ec8a09672d47d2dca44d6c8a9c408625b
 visual_state: pending
 merge_state: not-requested
-publication_operation_json: "{\"base\":\"main\",\"branch\":\"codex/story-35-6-crm-record-journeys\",\"run_id\":\"e35-6-20261102\",\"repository\":\"rthunborg/Kopplas\",\"pr_number\":127,\"story_key\":\"spec-design-35-6-35-6\",\"operation\":\"push\",\"head\":\"5a6263d45e139b4a0137b085e0014f23742f931e\",\"status\":\"confirmed\",\"evidence\":\"gh PR127 exacthead5a6263d4 confirmed; fullhostedrun41463404500 executing; verify native3780passed0failed0skipped\"}"
+publication_operation_json: "{\"evidence\":\"PR127 exact3eb observed; fullnative41469021274 executing; oldfull41463404500 terminal failure native473pass31fail22skip1flaky retained\",\"operation\":\"push\",\"status\":\"confirmed\",\"base\":\"main\",\"story_key\":\"spec-design-35-6-35-6\",\"run_id\":\"e35-6-20261102\",\"branch\":\"codex/story-35-6-crm-record-journeys\",\"head\":\"3eb9806cafb5531a81e8b947792610e00c08db9e\",\"pr_number\":127,\"repository\":\"rthunborg/Kopplas\"}"
 pr_number: 127
-candidate_revision: 5a6263d45e139b4a0137b085e0014f23742f931e
-ci_revision: 5a6263d45e139b4a0137b085e0014f23742f931e
+candidate_revision: 3eb9806cafb5531a81e8b947792610e00c08db9e
+ci_revision: 3eb9806cafb5531a81e8b947792610e00c08db9e
