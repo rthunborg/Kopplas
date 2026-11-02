@@ -2,7 +2,7 @@
 title: "Story 35.6: CRM Record Journeys"
 type: feature
 created: 2026-11-02
-status: draft
+status: ready-for-dev
 review_loop_iteration: 0
 release_ready: false
 implementation_started: false
@@ -11,18 +11,142 @@ context:
   - ../approved-operative-overlay-2026-11-02.md
   - ../operative-test-design-2026-11-02.md
   - ../source-binding.json
+  - ../ready-planning-receipt-2026-11-02.json
   - ../../../../docs/process/review-order.md
+  - ../../../../docs/process/development-completion-policy.md
+  - ../../../../docs/quality/frontend-quality-gate.md
   - ../../../implementation-artifacts/spec-35-6-crm-record-journeys.md
   - ../../../test-artifacts/dt-2026-10-23-test-design/slice-35-6.md
 ---
 
-## Operative materialization — 2026-11-02
+## Operative normal Build plan — 2026-11-02
 
-The owner actually approved the exact reviewed D1–D5 CRM correction choices through Coordinator. The dated operative overlay and test design govern their named supersession; frozen historical preparation-only wording below is provenance and does not request a repeat vote. This is the existing approved Story 35.6, not a headless invented story breakdown. The approved terminal checkpoints are spec_checkpoint:false and done_checkpoint:true.
+Phase B / Legacy Parity, DT-2a: this is the existing approved single CRM journey. Coordinator relayed actual owner approval of exact D1–D5 and authorization to complete normal Build planning in this source-admission PR. Step 02 planning is complete; stop before Step 03. `spec_checkpoint:false` and `done_checkpoint:true` remain the approved terminal choice. No new business decision or implementation authorization is inferred from this planning status.
 
-Future production edits are limited to src/app/(app)/customers/[customerId]/page.tsx and src/components/crm/{CustomerDetail,FacilityDialog,ContactDialog,ArchiveButton}.tsx; future test writes only tests/e2e/crm/customers.e2e.spec.ts. Shared CustomerList/CustomerDialog/FormField/Dialog/AppShell, actions, producers, read models, SQL, Documents/files and Booking remain read-only. Source-binding.json enumerates exact paths and concrete AC/state bindings. No new helper is justified.
+The operative sections and dated approved companions govern current execution. The exact canonical LF suffix below remains immutable historical provenance, including its old draft/blocker wording and generic task scaffold. SPEC.md/overlay statements that this adapter awaits normal planning describe its materialization stage; this completed operative plan and story frontmatter now supply that stage. Historical relative links resolve from `_bmad-output/implementation-artifacts/`. No frozen external file is changed.
 
-Normal story planning remains draft, with no implementation/runtime/release credit. Current exact base/ownership validation and independent actual-delta review are separate gates; generic reapproval of approved D1–D5 is not one. Review the operative companions first, preserve original seven AC/test and sixteen Applies IDs, then use the frozen body for remaining source obligations. Resolve historical relative links against _bmad-output/implementation-artifacts/. The implementation author later replaces the historical scaffold with the project-required final Suggested Review Order grounded in actual code/evidence; none is fabricated now.
+<frozen-after-approval reason="existing human-approved intent and exact D1–D5; no new scope">
+
+## Intent
+
+**Problem:** Entitled existing users need the accepted connected responsive CRM detail, facility, contact and archive composition while retaining the checked customer journeys and established server authority.
+
+**Approach:** Adapt only the five allocated presentation consumers to accepted DESIGN/EXPERIENCE and existing shared patterns; extend only the existing CRM E2E file for meaningful changed-flow assertions. Preserve all seven canonical AC/test IDs, sixteen Applies state/test IDs, file duties and relevant inherited regressions through `operative-test-design-2026-11-02.md` and `source-binding.json`, with only the approved D1–D5 supersession.
+
+## Boundaries & Constraints
+
+**Always:** Use existing nine CRM actions, request-bound reads and checked commands; preserve exact customer/facility/contact/parent/target identities, role/tenant checks, current facts, atomic audit and selected-file authority. Keep list personnummer absent and detail initially masked; detail payload intentionally contains entitled personnummer. Preserve existing unknown replay blocking, customer stale/dirty/late guards, independently keyed file outcomes, current Documents return and Booking preconnection. Apply only actual adapted UI/motion requirements, Swedish content and connected 360×640 plus desktop.
+
+**Ask First:** A necessary write outside the six exact allocated files, a domain/producer/authority change, or a material requirement ambiguity requires a bounded allocation/owner decision. Routine implementation admission, evidence and review remain their existing phase gates.
+
+**Never:** Add archive reasons (D1), CRM filter/checkbox persistence (D2), unknown reconciliation/reset/automatic recovery (D3), child expected-facts/dirty/unknown safety authority (D4), or child read-error producer changes (D5). No new helpers, dependencies, SQL, globals/primitives, auth/nav/manifest/module surface, Phase C flow or change to the separate 35.7-P producer. No destructive shared-fixture mutation.
+
+## I/O & Edge-Case Matrix
+
+| Scenario | Input / State | Expected Output / Behavior | Error Handling |
+| --- | --- | --- | --- |
+| Nine current lifecycle actions | Entitled user, exact parent and entity | Actual persisted target and existing attributable audit; soft archive | Checked rejection retains suitable input; no reason field |
+| Context links / booking | Authorized exact owner tuple / customer host | Existing safe Documents return; saved/reopened Booking customer preconnection | Existing selected-source/denial handling remains authoritative |
+| Customer uncertain outcome | Lost committed response, SERVER_ERROR, mismatched target, unsafe storage | Original unconfirmed input/hint; no second dispatch across reopen/remount | Block replay; no invented reconciliation or clearing hint on refresh |
+| Known customer conflict | Two editors, old expected_customer facts | No overwrite/audit; existing consented discard and checked refresh | Separate from unknown recovery; no child version contract |
+| Empty / no-match / denied | Successful zero-customer list / filter / foreign ID | Distinct honest list states and generic not-found | Child failed reads still flatten to arrays; disclose and award no empty-read proof |
+| Adapted dialogs / record panels | Long Swedish values, touch/keyboard, exact selected entity | Visible actions/errors, focus trap and restored invoker; correct independent file owner | Retain existing pending/dirty exceptions and file/booking outcomes |
+
+</frozen-after-approval>
+
+## Code Map
+
+Anchors verified read-only at `55bb593ffc6db8787bdcd4725a5add00d6146858`, descendant of qualified tooling base `3bbe7cb35a24662d0b9dadcd80b6f9f663b3e1cb`. The assessed CRM consumers/authority and CRM E2E have no delta from assessment base `9533e969c1981647e26c33774a9327f842ad299a`; exact current pins live in the planning receipt. Recheck drift and exact-path/semantic ownership at implementation admission, without initializing work here.
+
+**Allocated writes:**
+
+- `src/app/(app)/customers/[customerId]/page.tsx:26` — `CustomerDetailPage`; unchanged read at 32, generic failure at 59 and not-found at 82. File slots at 105/123 retain owner ID, purpose, parentCustomerId and testIdSuffix. At 147/150 preserve Booking customer host and customer Documents tuple.
+- `src/components/crm/CustomerDetail.tsx:50` — `CustomerDetail`; archive view generation/departure guards at 74–99, checked editDefaults at 104, masked/revealed detail at 166. `FacilitiesSection:266` and `ContactsSection:363` own record layout, existing action triggers and keyed child panels; relationship labels derive existing facilities at 380.
+- `src/components/crm/FacilityDialog.tsx:30` — `FacilityDialog`; keyed existing Dialog at 45, action/state at 74, success at 79, retained values at 83, summary at 88 and unchanged hidden parent/target at 91/93.
+- `src/components/crm/ContactDialog.tsx:44` — `ContactDialog`; action/state at 91, retained values at 100, summary at 110, hidden parent/target at 111/113, existing optional facility at 123 and primary convenience flag at 151.
+- `src/components/crm/ArchiveButton.tsx:38` — `ArchiveButton`; customer-only safety/dispatch at 63–103 and distinct child success at 110; presentation starts 114. Keep onArchived/target/view checks and id-only payload; unknown never becomes safe retry.
+- `tests/e2e/crm/customers.e2e.spec.ts:338` — `openCustomerEditor`; `customerSnapshot:358`, real POST gate at 380. Existing initial privacy/validation cases at 183/194/237; B03 archive at 475, B04 pending at 624, B05 lost-response at 643, B06 conflict at 670 and delayed read at 805, B07 focus at 842, B08 phone at 915, B09 isolated empty/revoked at 957, B10 child usability at 980. Retain original IDs/tests; new 35.6 IDs must describe actual assertions.
+
+**Read-only reuse and authority:**
+
+- `src/features/crm/read.ts:21` — `LIST_COLUMNS` excludes personnummer; detail projection at 71 includes it intentionally. `readCustomerDetail:109`, child failure branch at 144–152: no independent child outcome DTO exists (D5).
+- `src/features/crm/actions.ts:75` — `runCrm` uses request-bound client/runCommand at 93–94; nine action exports at 132–241. Form values/errors are returned; client hidden IDs do not grant authority.
+- `src/server/commands/crm/validation.ts:102` — `UpdateCustomerInput` owns expected_customer; `ArchiveInput:152` is id-only. `src/server/commands/crm/customers.ts:77` — update checked RPC/facts; archive at 116. Existing facilities/contacts commands and `20261029132339_customer_update_expected_facts.sql` retain checked tenant/parent/actor/transaction rules. Optional contact facility uses current same-tenant policy, not invented same-customer authority.
+- `src/components/crm/CustomerDialog.tsx:61` — existing customer representative; unknown dispatch checks at 224/247, conflict review at 277, expected facts at 289, `DialogActions:440`. `src/components/crm/customer-presentation.ts:165` — payload-free unresolved hint; acquire/finish at 172/180. No product reconciliation API exists.
+- `src/components/crm/CustomerList.tsx` and list route/CustomerTypeBadge remain inherited 35.3 inputs; loading is real navigation, search synchronous, filters/selection local. No edits or fake async search.
+- `src/components/crm/Dialog.tsx:22` — sole focus owner; busy dismissal, Tab/Escape and restoration at 54–129. `src/components/crm/FormField.tsx:166` — existing `FormErrorSummary` fieldErrors links/focus; reuse via child props, never patch primitive. AppShell, globals/font and framework stay read-only.
+- `src/server/read-models/document-context.ts:20` — exact live-source/parent check and canonical customer return at 45–53; adapter at 77. Existing `src/components/files/` and `src/components/resources/BookingEntry.tsx` remain read-only independent authority; retain exact page-supplied slots.
+- Accepted DESIGN component/touch/grouping rules are at `_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md` through SPEC.md's canonical companion path; use existing shipped tokens. EXPERIENCE supporting record work retains existing CRM contracts. Both full normative companions and the detailed Phase B annex remain binding; prototype concepts grant no new product scope.
+
+## Tasks & Acceptance
+
+Execution order follows the composition boundary, then its consumers and assertions. Before edits, validate actual admitted base and ownership of these same six paths; no claims/enrollment/workers or implementation starts in this planning run.
+
+**Execution:**
+
+- [ ] `src/app/(app)/customers/[customerId]/page.tsx` — adapt generic failure/not-found and record-panel composition to accepted tokens, readable spacing, visible return actions and responsive width. Preserve every read/capability decision and exact file/Documents/Booking prop (AC2/3/4/6/7).
+- [ ] `src/components/crm/CustomerDetail.tsx` — finish existing identity, relationship, facilities/contacts and related-area composition using current record data, accepted card/section/connection treatment, wrapping, Swedish labels and >=44px phone controls. Keep default masking, edit facts, archive liveness and keyed panel ownership; do not invent destinations, counts, capabilities or child read states (AC1–7).
+- [ ] `src/components/crm/FacilityDialog.tsx` — adapt existing form spacing/grouping and usable actions; pass current fieldErrors to existing summary and retain field association/input. Keep Dialog/DialogActions, action/hidden identity/remount/success semantics and existing fields (AC1/3/4/5/6/7).
+- [ ] `src/components/crm/ContactDialog.tsx` — adapt existing contact form and error-summary composition as above, preserving optional facility selection, unchanged parent/target, primary convenience semantics and checked server results. No new uniqueness or child lifecycle protocol (AC1/3/4/5/6/7).
+- [ ] `src/components/crm/ArchiveButton.tsx` — align existing inline confirmation, error/status text and controls with surrounding responsive layout and accepted destructive tokens. Preserve distinct customer safety branch, matching target/view continuation, pending exclusion and child action semantics; no reason or recovery flow (AC1/3/4/5/6/7).
+- [ ] `tests/e2e/crm/customers.e2e.spec.ts` — add bounded E35-6-T-AC1–7 assertions for actual adapted journeys; reuse original B03–B10 for the sixteen state IDs under the exact operative matrix below. Exercise all nine real actions on unique test-owned records, observe exact persisted identity/parent/archived_at/audit, and test adapted UI at 360×640/desktop with labels, >=44px targets, keyboard focus/error visibility and masked detail. Reuse file-local gates and existing factory imports; never mock business-command success, mutate shared auth seeds or create a helper/suite (AC1–7).
+
+**Acceptance Criteria:**
+
+1. **E35-6-AC1 / E35-6-T-AC1:** Given entitled existing users and owned unique records, when they create/edit/archive customer, facility and contact, then all nine checked actions preserve exact identity/parent scope, real persisted results, current soft archive and attributable audit; invalid/foreign targets have no side effects. D1 requires no archive reason.
+2. **E35-6-AC2 / E35-6-T-AC2:** Given a current exact entity context, when authorized Documents and customer Booking entry/return/reopen are used, then existing selected-source/filter/history authority, safe entity return and Booking preconnection remain. D2 adds no CRM filter/selection persistence or booking behavior.
+3. **E35-6-AC3 / E35-6-T-AC3:** Given successful empty, filtered, denied, rejected, delayed and uncertain customer cases, when current UI handles each result, then states remain distinct, suitable input survives rejection, B selection wins late A, and uncertain dispatch remains blocked with retained hint/input across remount. D3 adds no reconciliation; D5 awards no successful child-empty proof.
+4. **E35-6-AC4 / E35-6-T-AC4:** Given actual Swedish record content connected at 360×640 and representative desktop, when users operate adapted detail/forms/archive by touch or keyboard with enlarged text/keyboard occlusion, then record identity, >=44px targets, labeled overflow, readable contrast and actions/errors remain usable; success has independent real persistence evidence.
+5. **E35-6-AC5 / E35-6-T-AC5:** Given actual adapted dialogs and existing customer protections, when opened, tabbed, escaped, closed or navigated, then accessible name, visible trapped focus and invoker restoration hold with current pending/dirty/late exceptions. Only existing motion follows DESIGN/reduced motion; no new editor/lifecycle.
+6. **E35-6-AC6 / E35-6-T-AC6:** Given every Applies row in the operative matrix and an actual embedded file consumer, when its specified trigger occurs, then its independent outcome/selected authority remains honest. Preserve affected locked/unavailable regressions; absent money is not zero and retained input is unsent. D3/D4/D5 scope does not drop any ID or add uploads/common receipts.
+7. **E35-6-AC7 / E35-6-T-AC7:** Given unchanged checked commands/projections/current facts/file/booking contracts, when adapted journeys execute, then permissions/privacy, stale/transaction/audit and applicable money/tax/ADR-B008/proof/file-lock invariants remain intact. Development and release evidence remain separate; no pending or Phase C surface is added.
+
+Every `E35-6-STATE-<name>` below retains the matching `E35-6-T-<name>` and **Applies**. The full caller/trigger/assertion and fixture bindings in `operative-test-design-2026-11-02.md` and `source-binding.json` remain normative; this index identifies the future proof, never executed coverage:
+
+| Name | Future meaningful assertion / existing seam |
+| --- | --- |
+| loading | Hold real non-prefetch RSC GET; loading label, no empty/success; B06:805 |
+| loaded | Exact read identity/relationships; no list personnummer, masked detail; initial privacy tests |
+| empty | Successful isolated zero-customer list only; B09; no child-read honesty claim |
+| no-match | Nonmatching local query/type, retained controls, reset restores rows; initial/B01 |
+| validation | Rejected field summary/association, values retained, corrected target persists; B02/B10 plus adapted children |
+| denied | Foreign/non-entitled generic state, no PII/write; initial/B09 and parent negatives |
+| revoked | Revoke test-owned membership after open; server denies, zero row/audit; B09 |
+| connection-required | Offline before customer dispatch: zero attempts/no hint, explicit reconnect submits once; B05/B03 |
+| submitting | Hold real customer action; busy/duplicate/close protection, one persisted result; B04/B03 |
+| error-retry | Definite rejection only: no failed audit, corrected explicit save; separate list read retry; initial/B04 |
+| unknown | Lost committed response/SERVER_ERROR/mismatch: retained hint/input and blocked second dispatch across remount; B05/B03 |
+| stale | Two customer editors: old facts conflict/no overwrite/audit; consented discard/checked refresh; B06 |
+| confirmed | Matching live customer target/view yields correct close/refresh/navigation, independent ID/audit snapshot; B04/B03 |
+| dirty-navigation | Customer dirty Escape/link/Back/Forward cancel retains URL/history/selection/input/focus; B07 |
+| late-result | Resolve A after selected B; B stays; departed archive cannot continue into new view; B06/B03 |
+| focus-dialog | Actual customer/facility/contact name, Tab wrap, Escape/close, invoker; retain pending exceptions; B07/B10 |
+
+D4 binds common safety rows to actual customer representatives, not every child. Child dialogs retain current checked parent/validation/ordinary pending/success/denial/focus. Inherited locked/unavailable and existing file operation states retain only actual consumed reachability, exact owner tuple and independent outcomes. Normative existing file-state scope is not permission to add an operation.
+
+## Spec Change Log
+
+No bad_spec loopback or review round has occurred. The original materialization and canonical v1 source/history remain intact. This additive normal Step 02 execution plan resolves the prior draft planning gap using the same approved D1–D5, with no requirement or allocation change; receipt records current source pins and planning self-review.
+
+## Design Notes
+
+Use shipped CRM tokens/patterns and existing shared Dialog/FormField composition; no shared primitive or broad descendant CSS write is allocated. Presentation-only surrounding layout must not disturb read-only Documents/files/Booking selection or outcome boundaries. Default detail masking is presentation and never a security boundary. Preserve original seven AC/test and sixteen Applies identities rather than assigning new safety authority to children.
+
+Planning review trail: review the page/CustomerDetail user outcome first, then child forms/archive safety branches and unchanged producer boundaries, then concrete E2E assertions/persistence and limitations. The implementation/fix author later writes exactly one final project `## Suggested Review Order` with rationale and verified final code/test lines after execution, refreshes it after fixes, and runs the existing checker. This provisional map claims neither a completed trail nor review approval.
+
+## Verification
+
+**Planning now:** Code/contract inspection and native read-only story parsing only. All execution tasks unchecked; all runtime/build/unit/integration/RLS/browser/visual/CI/delivery checks **UNRUN**. Independent review of this bounded plan delta is still required before publication. No resource or service is launched; release_ready=false and implementation_started=false.
+
+**Later implementation commands and assertions:**
+
+- `pnpm typecheck`, `pnpm lint`, `pnpm verify:lockfiles`, `pnpm test:unit`, `pnpm audit --audit-level=high`, `pnpm verify:service-role-containment`, `pnpm build`, then `pnpm verify:bundle-containment` — existing required static/unit/build/dependency/containment gates; preserve scope and money/tax/calculation/quote/PDF goldens.
+- `SUPABASE_TEST_REQUIRED=1 pnpm test:int` — shell-appropriate environment assignment, local guard-owned stack only; required full DB/integration/RLS and recovery/storage evidence with executed/failed/skipped counts. Reuse `tests/integration/commands/crm-{customer-commands,command-coverage,parent-ownership}.int.test.ts` for checked facts/parent/atomic audit; do not claim UI snapshots alone prove transaction rollback.
+- `pnpm test:e2e tests/e2e/crm/customers.e2e.spec.ts` — configured production web server, real success/failure/definite retry/unknown block at phone and desktop; preserve original B03–B10 and add only actual changed-flow assertions from the operative matrix. No next dev or synthetic success response.
+- Reuse applicable read-only regression suites: `tests/e2e/files/{documents-context-navigation,documents-search-preview-lifecycle,entity-file-panel,entity-file-preview,file-lock-panel}.e2e.spec.ts` and `tests/e2e/booking-editor.e2e.spec.ts` (customer host E2E-006). Exact tuple/return/expiry/revocation/lock and Booking preconnection assertions retain their original identities; these suites receive no writes.
+- Follow current `docs/quality/frontend-quality-gate.md` for actual candidate production captures and accepted visual evidence at 360×640/desktop, including finished/loading/error/empty with concrete applicability reasons and relevant focus/validation/selection states. Initial/reference replacement still requires existing owner acceptance. Future independent sensitive review, exact-head CI and completion/delivery wrapper remain required; this plan earns none.
+
+E35-6-REL-1 UI visual/device/composite contrast/reflow, REL-2 QA/accessibility manual/screen-reader/daylight and REL-3 Coordinator final Phase B consolidation retain their existing delivery/deferred-work ownership process. Exhaustive release work, named people/exact candidate and evidence remain unearned; preserve E16 14-item and E20 caveats. Current visual development acceptance is required at its actual completion phase and cannot be deferred as polish.
 
 ## Frozen canonical v1 source body — preserved LF
 
