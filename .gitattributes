@@ -84,3 +84,9 @@ tests/fixtures/golden/**/*.json  text eol=lf
 # Exact unchanged35.5 preparation imports; no implementation admission.
 /_bmad-output/implementation-artifacts/spec-35-5-authorized-responsive-shell.md -text whitespace=cr-at-eol
 /_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-5.md -text whitespace=cr-at-eol
+
+# Exact unchanged 35.6/35.7 preparation imports; no implementation admission.
+/_bmad-output/implementation-artifacts/spec-35-6-crm-record-journeys.md -text whitespace=cr-at-eol
+/_bmad-output/implementation-artifacts/spec-35-7-settings-and-manual-pricing.md -text whitespace=cr-at-eol
+/_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-6.md -text whitespace=cr-at-eol
+/_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-7.md -text whitespace=cr-at-eol

@@ -1,0 +1,69 @@
+# Story 35.7: Settings And Manual Pricing — test-design preparation
+
+**Classification:** concrete plan (Lane A). Proposed test IDs below are plans, not executable tests or run evidence. No story approval or implementation admission.
+
+**Source identity:** [spec-35-7-settings-and-manual-pricing.md](../../implementation-artifacts/spec-35-7-settings-and-manual-pricing.md), SHA-256 `2997aeb4e3fbdaf99cd327f89662b90ec62a2909e06b022f3730833d158e7989`. Historical consumer base `99104d0ffa0360cf7d4ce4de174789c4a4605224` observed 2026-10-23. [Identity inspection](input-identity.json) records drift and exact consumer hashes; this is not today’s integrated main.
+
+**Actual consumer/caller:** Currently entitled settings/pricing actor → saveCompanySettingsAction/saveQuoteTermsAction/approveTermsAction; save/archive/reactivateWorkRole/ArticleAction.
+
+**Route disposition:** /settings; /settings/company; /settings/quote-terms; /settings/pricing.
+
+**Authoritative fixture family:** Existing valid and invalid Swedish money/unit fixtures, archived article/work role, edited versus approved terms; no new rate interpretation. Numeric/permission/lifecycle expectations come only from pinned assessed contracts and existing tests; examples do not create policy.
+
+| Pinned actual consumer | Export/caller binding | SHA-256 |
+| --- | --- | --- |
+| `src/features/pricing/actions.ts` | saveWorkRoleAction, archiveWorkRoleAction, reactivateWorkRoleAction, saveArticleAction, archiveArticleAction, reactivateArticleAction | `30959433149d8e2d2f34730195a4353eed0d5e989eaa107eaf8cb3657c5ec821` |
+| `src/features/settings/actions.ts` | saveCompanySettingsAction, saveQuoteTermsAction, approveTermsAction | `2a10ee991927d2934b2f455b64e8d3a97dd726a94e8d37dfb5917a76b5353dbc` |
+| `src/features/pricing/read.ts` | WorkRoleRow, WorkRolesReadResult, readWorkRoles, readArchivedWorkRoles, ArticleRow, ArticlesReadResult, readArticles, readArchivedArticles | `eaf6fdef35df6efa7f11d6e08dd351686cf02aa711d556a3ca6d3b81fc3dcb9b` |
+| `src/features/settings/read.ts` | CompanySettingsRow, CompanySettingsReadResult, readCompanySettings, COMPANY_SETTINGS_DEFAULT_VAT_RATE_BP, QuoteTermsRow, QuoteTermsReadResult, readQuoteTerms | `e845619feb93e69068d466efa32d9ddcb037de24f5b4ed7cf8b91c111d5e39cc` |
+
+**Existing regression/evidence reuse:** `tests/e2e/pricing/pricing.e2e.spec.ts`; `tests/integration/commands/pricing-commands.int.test.ts`. Source/test presence is not executed coverage; preserve original test IDs and original reviewed revision/counts/skips in delivery artifacts.
+
+**Missing dependency/decision/owner:** B-BASE exact candidate/ownership refresh; B-APPROVAL later story approval/allocation. Coordinator owns base/allocation; source owner owns shared reconciliation. For Lane C see [decision-to-assertion map](decision-gaps.md); owner/PM and Architect/High must resolve named material gates before final binding.
+
+## Numbered acceptance bindings
+
+P0/P1/P2 describe importance, not scheduling. Narrow unit/model checks own deterministic outputs; integration/DB checks own authority/atomicity; browser checks own essential usable composition. Reuse existing unchanged assertions instead of copying them into new suites.
+
+| AC → proposed test ID | Classification / level / priority | Scenario and meaningful assertion | Authoritative input / reuse | Gap / evidence owner |
+| --- | --- | --- | --- | --- |
+| `E35-7-AC1` → `E35-7-T-AC1` | concrete plan; focused integration / essential browser; model oracle reused; P1 | Save edited terms and observe not-yet-approved state; approve through existing action and reread readiness. Failed save cannot advance terms/company readiness. | Slice fixture family above; existing regression list | Plan now; runtime evidence later by implementation/QA owner |
+| `E35-7-AC2` → `E35-7-T-AC2` | concrete plan; focused integration / essential browser; model oracle reused; P1 | Save then archive/reactivate existing WorkRole/Article; reuse current unit/money validator outputs and preserve archived selection identity; invalid amount remains error, not zero. | Slice fixture family above; existing regression list | Plan now; runtime evidence later by implementation/QA owner |
+| `E35-7-AC3` → `E35-7-T-AC3` | concrete plan; focused integration / essential browser; model oracle reused; P0 | At phone width edit a real article/rate using Swedish decimal display; compare persisted integer öre with existing money fixture, associate invalid field and keep row action reachable. | Slice fixture family above; existing regression list | Plan now; runtime evidence later by implementation/QA owner |
+| `E35-7-AC4` → `E35-7-T-AC4` | concrete plan; essential browser + existing source regression; P1 | At connected 360×640 and desktop complete this real route journey with Swedish record identity, keyboard/touch, ≥44px phone actions; zoom/virtual keyboard cannot conceal errors or primary action. Assert persisted outcome separately from layout. | Slice fixture family above; existing regression list | Plan now; runtime evidence later by implementation/QA owner |
+| `E35-7-AC5` → `E35-7-T-AC5` | concrete plan; essential browser + existing source regression; P1 | Exercise only adapted dialogs/drafts/motion classified Applies; use focus-dialog/dirty-navigation/late-result rows below, including reduced motion. No new modal or editor. | Slice fixture family above; existing regression list | Plan now; runtime evidence later by implementation/QA owner |
+| `E35-7-AC6` → `E35-7-T-AC6` | concrete plan; essential browser + existing source regression; P1 | Use only owned state bindings below with this caller/fixture; keep independent outcome identity and selected-file scope. Inherited rows reuse source regression, N/A adds nothing. | Slice fixture family above; existing regression list | Plan now; runtime evidence later by implementation/QA owner |
+| `E35-7-AC7` → `E35-7-T-AC7` | concrete plan; essential browser + existing source regression; P0 | Preserve the applicable existing checked contracts and evidence links: Keep current checked commands, permissions/entitlement projections, integer-öre/tax, ADR-B008 provenance, transaction/facts/proof/stale and file-lock semantics. Distinguish essential development evidence from separately owned release obligations; no pending module or Phase C surface. Use existing invariant IDs; no new sensitive expectation is chosen here. | Slice fixture family above; existing regression list | Plan now; runtime evidence later by implementation/QA owner |
+
+## Common applicability bindings
+
+Every owned row below uses the actual caller and slice fixture family above; delays/failures are controlled at that existing seam. Denied/revoked cases reuse the admitted role harness, not an invented grant. For read-only consumers, command language applies only to the actual listed command (for example notification acknowledgement); no command is added.
+
+| State / proposed ID | Classification / test level | Input and assertion at this slice | Binding limitation |
+| --- | --- | --- | --- |
+| `E35-7-STATE-loading` / `E35-7-T-loading` | Applies; essential browser/state seam | Delay authoritative read using this slice fixture. Loading retains selected identity/structure; no successful empty state or invented amount before response. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-loaded` / `E35-7-T-loaded` | Applies; essential browser/state seam | Return existing authorized record fixture using this slice fixture. Record ID, entitled facts and freshness match read response; forbidden fields absent from browser payload. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-empty` / `E35-7-T-empty` | Applies; essential browser/state seam | Authorized successful zero-record read using this slice fixture. Meaningful empty and permitted next action only; denial/error must not use this branch. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-no-match` / `E35-7-T-no-match` | Applies; essential browser/state seam | Existing records plus nonmatching filter using this slice fixture. Filters retained; reset restores authorized records and origin, without recasting no-match as no records. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-validation` / `E35-7-T-validation` | Applies; essential browser/state seam | Invalid field from existing validator using this slice fixture. No persisted success; linked summary focuses invalid labeled field, suitable input retained; corrected write succeeds. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-denied` / `E35-7-T-denied` | Applies; essential browser; existing integration authority regression | Existing non-entitled or other-tenant caller using this slice fixture. Generic denial; no private record identity/fields in payload, no command side effect. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-revoked` / `E35-7-T-revoked` | Applies; essential browser; existing integration authority regression | Revoke existing role/member/source after render using this slice fixture. Previously rendered action/token cannot bypass current server authorization; stale data grants nothing. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-connection-required` / `E35-7-T-connection-required` | Applies; essential browser/state seam | Fail connected request before dispatch using this slice fixture. Persistent connection explanation and explicit retry; retained suitable input is unsent, no queue or saved claim. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-submitting` / `E35-7-T-submitting` | Applies; essential browser/state seam | Hold existing command response; click twice using this slice fixture. Operation identified and duplicate accidental submission suppressed; do not invent a new command identity protocol. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-error-retry` / `E35-7-T-error-retry` | Applies; essential browser/state seam | Existing definite rejection/proven rollback then corrected request using this slice fixture. No success/notification for failed operation; keep suitable input and explicit retry; reread confirmed persisted identity after success. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-unknown` / `E35-7-T-unknown` | Applies; essential browser; existing integration authority regression | Lose response after possible commit in existing command path using this slice fixture. Show unconfirmed; use existing authoritative reconciliation before consequential retry; do not duplicate side effect or call retained input saved. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-stale` / `E35-7-T-stale` | Applies; essential browser; existing integration authority regression | Change current version/facts/proof/source after read using this slice fixture. Old submission/review cannot overwrite latest facts; preserve draft and use existing refresh/review recovery. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-confirmed` / `E35-7-T-confirmed` | Applies; essential browser; existing integration authority regression | Return or reconcile real authoritative operation result using this slice fixture. Only matching identity/version becomes saved; independent neighboring command remains unsent or unknown. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-dirty-navigation` / `E35-7-T-dirty-navigation` | Applies; essential browser/state seam | Edit then try close/tab/child/route/Back/Forward using this slice fixture. Cancel abandonment preserves URL/history, selection and input; only existing save/discard/cancel semantics. | Concrete plan; admitted-candidate refresh before execution |
+| `E35-7-STATE-late-result` / `E35-7-T-late-result` | Applies; essential browser/state seam | Select A then B; resolve A after B using this slice fixture. A response cannot replace current B selection/draft/navigation; outcome remains attached to A. | Concrete plan; admitted-candidate refresh before execution |
+| locked | Inherited regression | Reuse source-owner obligation at the above actual consumer only when affected; retain original regression ID and reviewed revision. | Actual settings/pricing forms; no new upload or modal is required. |
+| focus-dialog | Inherited regression | Reuse source-owner obligation at the above actual consumer only when affected; retain original regression ID and reviewed revision. | Actual settings/pricing forms; no new upload or modal is required. |
+| unavailable | N/A | No proposed executable test. | Actual settings/pricing forms; no new upload or modal is required. |
+
+**Files:** {'classification': 'N/A', 'reason': 'No new branding or other upload is in this bounded settings/pricing scope.'}. [File scenarios](file-and-inheritance-bindings.md) select only actual operations; generic upload/camera states are not automatically instantiated.
+
+## Development evidence versus release ownership
+
+Later implementation owner/QA supplies applicable focused assertions, essential production-server 360×640/desktop success/failure/retry and accessibility/contrast, current full DB/RLS actual execution/skips and recovery/storage/money/PDF gates where consumed. No runtime evidence produced here.
+
+Broader visual/device/manual/accessibility release work remains with actual UI and QA/accessibility owners; Coordinator assigns named people/exact candidate and final Phase B checkpoint via existing delivery records/deferred ledger. 35.1/17.4 acquire no UI release work. E16’s 14 deferred checks and E20 caveats retain their original provenance. Next action is binding/allocation after the named prerequisites, not a tracking update.
