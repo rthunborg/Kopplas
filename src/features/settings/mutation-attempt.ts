@@ -87,3 +87,17 @@ export interface EditorOperationContext {
     readonly tenantId: string;
     readonly actorId: string;
 }
+
+/** A draft's expected facts belong to its displayed values, never refreshed props. */
+export function sameDraftBaseline(a: { readonly id: string | null; readonly write_revision: string | null }, b: { readonly id: string | null; readonly write_revision: string | null }): boolean {
+    return a.id === b.id && a.write_revision === b.write_revision;
+}
+/** Matches the existing terms parser/validator canonicalization. */
+export function canonicalTermsEqual(draft: string, saved: string): boolean { return draft.trim() === saved.trim(); }
+/** Failed reads never establish absence or a current revision, even after a receipt. */
+export function currentTargetStatus(hasCurrentRead: boolean, readError: boolean, rows: readonly { readonly id: string; readonly write_revision: string }[], targetId: string | null, committedRevision: string | null): "unavailable" | "pending" | "missing" | "newer" | "confirmed" {
+    if (readError) return "unavailable";
+    if (!hasCurrentRead) return "pending";
+    const row = rows.find(row => row.id === targetId);
+    return !row ? "missing" : row.write_revision === committedRevision ? "confirmed" : "newer";
+}

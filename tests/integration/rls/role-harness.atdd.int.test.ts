@@ -88,6 +88,12 @@ async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<
   const facility = await adminInsertFacility({ tenant_id: tenantId, customer_id: customer, name: "role-harness facility" });
   const contact = await adminInsertContact({ tenant_id: tenantId, customer_id: customer, facility_id: facility, name: "role-harness contact" });
   const companySettings = await adminInsertCompanySettings({ tenant_id: tenantId, company_name: `Role harness ${crypto.randomUUID()}` });
+  const settingsPricingOperationId = crypto.randomUUID();
+  const settingsPricingOperation = (await adminQuery<{ id: string }>(
+    "insert into public.settings_pricing_operations (id,tenant_id,actor_user_id,operation_kind,request_digest,target_id,committed_revision,committed_at,approved_at,correlation_id) select $1,$2,$3,'company.save',$4,id,write_revision,clock_timestamp(),null,$1 from public.company_settings where id=$5 and tenant_id=$2 returning id",
+    [settingsPricingOperationId, tenantId, actorId, "0".repeat(64), companySettings],
+  ))[0]?.id;
+  if (!settingsPricingOperation) throw new Error("role harness seed: settings/pricing receipt missing");
   const quoteTerms = await adminInsertQuoteTerms({ tenant_id: tenantId, terms_text: "Role harness terms" });
   const workRole = await adminInsertWorkRole({ tenant_id: tenantId, display_name: "Role harness work role" });
   const article = await adminInsertArticle({ tenant_id: tenantId, name: "Role harness article" });
@@ -183,7 +189,7 @@ async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<
     email_delivery_artifacts: emailDeliveryArtifact, email_delivery_recoveries: emailDeliveryRecovery, email_unsubscribe_tokens: emailUnsubscribeToken,
     email_unsubscribe_rate_limits: emailUnsubscribeRateLimit,
     customers: customer, facilities: facility, contacts: contact, company_settings: companySettings,
-    quote_terms: quoteTerms, work_roles: workRole, articles: article, calculations: calculation,
+    settings_pricing_operations: settingsPricingOperation, quote_terms: quoteTerms, work_roles: workRole, articles: article, calculations: calculation,
     calculation_sections: calculationSection, calculation_rows: calculationRow, files: file,
     file_links: fileLink, tenant_counters: counter, quotes: quote, quote_versions: quoteVersion,
     quote_version_lines: quoteVersionLine, quote_version_attachments: quoteVersionAttachment,

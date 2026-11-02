@@ -17,7 +17,7 @@
  * Two SEPARATE forms (one per action) so the text-save submit can never carry the
  * approve action and vice-versa — the separation is structural, not just intent.
  */
-import type { EditorOperationContext } from "@/features/settings/mutation-attempt";
+import { sameDraftBaseline, canonicalTermsEqual, type EditorOperationContext } from "@/features/settings/mutation-attempt";
 import { useState } from "react";
 import { AttemptRecovery, useMountedSettingsPricingAttempt } from "./CompanySettingsForm";
 import { FormErrorSummary } from "@/components/crm/FormField";
@@ -48,22 +48,35 @@ export function QuoteTermsEditor({ defaults, }: {
     readonly defaults: QuoteTermsDefaults;
 }) {
     const operation = useMountedSettingsPricingAttempt(SETTINGS_ACTION_INITIAL, defaults.operationContext, defaults.readToken);
+    const [baseline, setBaseline] = useState(defaults);
     const [draft, setDraft] = useState(defaults.terms_text);
-    const dirty = draft !== defaults.terms_text;
+    // Only our exact saved wording plus its exact committed reread may advance the
+    // draft automatically. Other refreshes require deliberate review/adoption.
+    const confirmsOwnWrite = (operation.kind === "terms.save" || operation.kind === "terms.approve") && operation.phase === "committed" && operation.hasCurrentRead && !defaults.readError && defaults.id === operation.state.targetId && defaults.write_revision === operation.state.committedRevision && canonicalTermsEqual(draft, defaults.terms_text);
+    if (confirmsOwnWrite && !sameDraftBaseline(baseline, defaults)) setBaseline(defaults);
+    const baselineChanged = !defaults.readError && (baseline.readError || !sameDraftBaseline(baseline, defaults)) && !confirmsOwnWrite;
+    const reviewed = confirmsOwnWrite ? defaults : baseline;
+    const dirty = !canonicalTermsEqual(draft, reviewed.terms_text);
     const saveState = operation.kind === "terms.save" ? operation.state : SETTINGS_ACTION_INITIAL;
     const approveState = operation.kind === "terms.approve" ? operation.state : SETTINGS_ACTION_INITIAL;
     const savePending = operation.pending && operation.kind === "terms.save";
     const approvePending = operation.pending && operation.kind === "terms.approve";
-    const termsId = defaults.id;
+    const termsId = reviewed.id;
     // A receipt proves historical completion only; current approval comes from an
     // independent authorized reread, never a lingering justApproved action flag.
-    const isApproved = !dirty && !operation.blocked && (operation.phase !== "committed" || operation.hasCurrentRead) && defaults.approved_at !== null;
+    const isApproved = !dirty && !baselineChanged && !defaults.readError && !operation.blocked && (operation.phase !== "committed" || operation.hasCurrentRead) && defaults.approved_at !== null;
     const justSavedText = saveState.status === "success";
     const justApproved = false;
-    const saveAction = (form: FormData) => operation.submit(saveQuoteTermsAction, "terms.save", form, defaults.id, defaults.write_revision, defaults.readError);
-    const approveAction = (form: FormData) => operation.submit(approveTermsAction, "terms.approve", form, defaults.id, defaults.write_revision, defaults.readError || dirty);
+    const saveAction = (form: FormData) => operation.submit(saveQuoteTermsAction, "terms.save", form, reviewed.id, reviewed.write_revision, defaults.readError || baselineChanged);
+    const approveAction = (form: FormData) => operation.submit(approveTermsAction, "terms.approve", form, reviewed.id, reviewed.write_revision, defaults.readError || dirty || baselineChanged || defaults.approved_at !== null);
     return (<div className="flex max-w-3xl flex-col gap-6">
       <AttemptRecovery operation={operation}/>
+      {baselineChanged && <div data-testid="terms-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-sm text-text-secondary">
+        <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade villkor:</p>
+        <p className="whitespace-pre-wrap">{defaults.id ? defaults.terms_text : "Ingen aktuell post finns."}</p>
+        <p>{defaults.approved_at ? "Aktuella villkor är godkända." : "Aktuella villkor är inte godkända."}</p>
+        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); setDraft(defaults.terms_text); }} className="self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
+      </div>}
       <fieldset disabled={operation.blocked || defaults.readError} className="contents">
       {/* SIGN-OFF STATUS / WARNING — always present, sourced from approval state. */}
       {isApproved ? (<div data-testid="quote-terms-approved-status" role="status" className="rounded-md border border-green-300 bg-green-50 px-4 py-3 text-sm text-green-900">
@@ -89,7 +102,7 @@ export function QuoteTermsEditor({ defaults, }: {
           </p>)}
         <TermsTextField defaultValue={draft} onChange={setDraft} error={saveState.fieldErrors.terms_text}/>
         <div className="flex justify-end">
-          <button type="submit" disabled={savePending} className="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60">
+          <button type="submit" disabled={savePending || baselineChanged} className="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60">
             {savePending ? "Sparar…" : "Spara villkor"}
           </button>
         </div>
@@ -99,9 +112,9 @@ export function QuoteTermsEditor({ defaults, }: {
       {!isApproved && termsId && (<form onSubmit={event => { event.preventDefault(); void approveAction(new FormData(event.currentTarget)); }} className="flex flex-col gap-2" noValidate>
           <FormErrorSummary message={approveState.formError}/>
           <input type="hidden" name="id" value={termsId}/>
-          <input type="hidden" name="terms_text" value={defaults.terms_text}/>
+          <input type="hidden" name="terms_text" value={reviewed.terms_text}/>
           <div className="flex justify-end">
-            <button type="submit" disabled={approvePending || dirty} className="rounded-md border border-amber-500 bg-amber-100 px-4 py-2 text-sm font-medium text-amber-900 hover:bg-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 disabled:opacity-60">
+            <button type="submit" disabled={approvePending || dirty || baselineChanged || defaults.approved_at !== null} className="rounded-md border border-amber-500 bg-amber-100 px-4 py-2 text-sm font-medium text-amber-900 hover:bg-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 disabled:opacity-60">
               {approvePending ? "Godkänner…" : "Markera som godkänd"}
             </button>
           </div>

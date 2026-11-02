@@ -1,5 +1,5 @@
 {
-  "captured_at_utc": "2026-11-02T11:59:15.985694+00:00",
+  "captured_at_utc": "2026-11-02T12:59:15.985694+01:00",
   "head": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
   "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
   "branch": "codex/35-7-p-settings-pricing-producer-contracts",
@@ -18,13 +18,76 @@
     {
       "path": "tests/support/booking-conflicts-atdd.ts",
       "sha256": "73fbfab981b62391cfa1c5a7543d4eda14086c61a55dfdecb9f4316d740525d0"
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "sha256": "75688b1a77bc851a764bbbc485f5be3ad3306fd55ff7f309c261d144eed0444a"
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "sha256": "23a1897cc8fb9cda711f5fc3c95d86f68680f7c7bcba41ac3d484e394fbf1dc9"
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "sha256": "471ec572624326090089b3d3afdcef3963f7f4a3844923037b93d50af9ad572f"
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "sha256": "4a516ad9d25a6effaa0e07156f9388491510640ac76f62c87249cf47cf114296"
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "sha256": "9a0a5e50e00cb6d6e254cd4c37e2f73850b55cd0e9725030a7faa9d7f364b870"
+    },
+    {
+      "path": "tests/unit/server/commands/pricing-validation-edges.test.ts",
+      "sha256": "02c9eb1fede410ff04c1bd10fe2bf77b634477c03bf65da21011ef87e117d9f6"
     }
   ],
   "latest_owner_approval": {
     "date": "2026-11-02",
-    "actual_reply": "Approval granted",
-    "source": "Actual direct human reply in Root chat responding to final pending exact sharedhelper3callallocationdecision; no message ID invented",
-    "bounds": "Only reviewed3helper protocolfixture/capture/readback/resultprojection sites. Preserve allconsumerassertions, readonlyfactories/globalsetup and normativecontract. Prior2file approval remains."
+    "actual_human_quote": "Approved.",
+    "source": "Actual human response in Coordinator to the sole pending consolidated six-file allocation question, relayed by Root to this workflow owner; no message ID invented.",
+    "scope": "Exactly the five receipt enrollment paths and one pricing validator unit fixture path, bounded by independently reviewed proposals. Prior three approved fixture/helper additions retained. Canonical contract/source-binding unchanged.",
+    "proposal_pins": {
+      "pricing-validation-fixture-extension-proposal.json": "32e613bdd61f4860b411f5cd984462ce4c00e00edf0b79ad1a0eb2917edfbb1c",
+      "receipt-enrollment-extension-proposal.json": "fe20e3449c43df5f2f102d02855c195bd8918f527109069aa0460f9b456954c3",
+      "receipt-enrollment-extension-proposal.md": "67169a4aac9ad305d51fe7eec26bce2177629eeabed303b33ccf98fb462194d9",
+      "pricing-validation-fixture-extension-proposal.md": "3aa6d997a2f15a10eada6976a644a242f3481aae10c07435f8a4fe7a6071154d"
+    },
+    "preimages": [
+      {
+        "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+        "sha256": "75688b1a77bc851a764bbbc485f5be3ad3306fd55ff7f309c261d144eed0444a"
+      },
+      {
+        "path": "tests/support/authz/role-harness.ts",
+        "sha256": "23a1897cc8fb9cda711f5fc3c95d86f68680f7c7bcba41ac3d484e394fbf1dc9"
+      },
+      {
+        "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+        "sha256": "471ec572624326090089b3d3afdcef3963f7f4a3844923037b93d50af9ad572f"
+      },
+      {
+        "path": "tests/unit/scope/manifest-shape.test.ts",
+        "sha256": "4a516ad9d25a6effaa0e07156f9388491510640ac76f62c87249cf47cf114296"
+      },
+      {
+        "path": "tests/unit/scope/manifest-derivations.test.ts",
+        "sha256": "9a0a5e50e00cb6d6e254cd4c37e2f73850b55cd0e9725030a7faa9d7f364b870"
+      },
+      {
+        "path": "tests/unit/server/commands/pricing-validation-edges.test.ts",
+        "sha256": "02c9eb1fede410ff04c1bd10fe2bf77b634477c03bf65da21011ef87e117d9f6"
+      }
+    ],
+    "independent_confirmations": [
+      "receipt-enrollment-independent-confirmation.json",
+      "pricing-validation-fixture-independent-confirmation.json"
+    ],
+    "write_admission": "Approval earned. Author must complete fresh read-only shared SQLite and full exact-writer/evidence/migration/manifest/envelope/test-resource inventory including all nine total added paths before writes; no current writer clearance invented.",
+    "implementation_or_runtime_pass": false,
+    "release_ready": false
   },
   "earlier_two_file_approval": {
     "date": "2026-11-02",
@@ -34,7 +97,9 @@
   },
   "independent_confirmation_records": [
     "allocation-extension-independent-confirmation.json",
-    "shared-helper-independent-confirmation.json"
+    "shared-helper-independent-confirmation.json",
+    "receipt-enrollment-independent-confirmation.json",
+    "pricing-validation-fixture-independent-confirmation.json"
   ],
   "allowed_paths": [
     "src/features/settings/actions.ts",
@@ -83,7 +148,13 @@
     "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
     "tests/integration/commands/non-admin-audit-authority.int.test.ts",
     "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
-    "tests/support/booking-conflicts-atdd.ts"
+    "tests/support/booking-conflicts-atdd.ts",
+    "tests/integration/rls/role-harness.atdd.int.test.ts",
+    "tests/support/authz/role-harness.ts",
+    "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/scope/manifest-derivations.test.ts",
+    "tests/unit/server/commands/pricing-validation-edges.test.ts"
   ],
   "generated_evidence_directory": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts",
   "semantic_exclusivity": [
@@ -409,7 +480,7 @@
       "identical_to_current": true,
       "head": "661dfd33a2f9992254a521ac71b64ef885eda862",
       "head_ancestor_origin_main": true,
-      "modified_utc": "2026-09-20T14:18:11.601108+00:00"
+      "modified_utc": "2026-09-20T16:18:11.601108+02:00"
     },
     {
       "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\epic-12-console-verification-20260920",
@@ -418,7 +489,7 @@
       "identical_to_current": true,
       "head": "661dfd33a2f9992254a521ac71b64ef885eda862",
       "head_ancestor_origin_main": true,
-      "modified_utc": "2026-09-20T15:45:15.643308+00:00"
+      "modified_utc": "2026-09-20T17:45:15.643308+02:00"
     },
     {
       "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\epic-12-console-verification-20260920",
@@ -427,7 +498,7 @@
       "identical_to_current": true,
       "head": "661dfd33a2f9992254a521ac71b64ef885eda862",
       "head_ancestor_origin_main": true,
-      "modified_utc": "2026-09-20T15:47:35.607205+00:00"
+      "modified_utc": "2026-09-20T17:47:35.607205+02:00"
     },
     {
       "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\epic-12-console-verification-20260920",
@@ -436,7 +507,7 @@
       "identical_to_current": true,
       "head": "661dfd33a2f9992254a521ac71b64ef885eda862",
       "head_ancestor_origin_main": true,
-      "modified_utc": "2026-09-20T18:58:25.982953+00:00"
+      "modified_utc": "2026-09-20T20:58:25.982953+02:00"
     },
     {
       "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\epic-12-console-verification-20260920",
@@ -445,7 +516,7 @@
       "identical_to_current": true,
       "head": "661dfd33a2f9992254a521ac71b64ef885eda862",
       "head_ancestor_origin_main": true,
-      "modified_utc": "2026-09-21T11:06:13.260406+00:00"
+      "modified_utc": "2026-09-21T13:06:13.260406+02:00"
     },
     {
       "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\epic-12-console-verification-20260920",
@@ -454,7 +525,7 @@
       "identical_to_current": true,
       "head": "661dfd33a2f9992254a521ac71b64ef885eda862",
       "head_ancestor_origin_main": true,
-      "modified_utc": "2026-09-21T17:18:44.159029+00:00"
+      "modified_utc": "2026-09-21T19:18:44.159029+02:00"
     },
     {
       "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\epic-12-console-verification-20260920",
@@ -463,7 +534,7 @@
       "identical_to_current": true,
       "head": "661dfd33a2f9992254a521ac71b64ef885eda862",
       "head_ancestor_origin_main": true,
-      "modified_utc": "2026-09-21T16:31:00.063140+00:00"
+      "modified_utc": "2026-09-21T18:31:00.06314+02:00"
     }
   ],
   "sqlite_readonly_snapshot": {
@@ -561,5 +632,50 @@
     "actual_quote": "Approval granted. Continue monitoring both stories now.",
     "source": "Actual human Coordinator-chat reply to exact sharedhelper proposal pins, relayed by Root after direct Root-chat Approval granted; no invented message ID",
     "limits": "Same reviewed3helper sites only, no new normative contract or broad allocation"
+  },
+  "six_file_owner_approval": {
+    "date": "2026-11-02",
+    "actual_human_quote": "Approved.",
+    "source": "Actual human response in Coordinator to the sole pending consolidated six-file allocation question, relayed by Root to this workflow owner; no message ID invented.",
+    "scope": "Exactly the five receipt enrollment paths and one pricing validator unit fixture path, bounded by independently reviewed proposals. Prior three approved fixture/helper additions retained. Canonical contract/source-binding unchanged.",
+    "proposal_pins": {
+      "pricing-validation-fixture-extension-proposal.json": "32e613bdd61f4860b411f5cd984462ce4c00e00edf0b79ad1a0eb2917edfbb1c",
+      "receipt-enrollment-extension-proposal.json": "fe20e3449c43df5f2f102d02855c195bd8918f527109069aa0460f9b456954c3",
+      "receipt-enrollment-extension-proposal.md": "67169a4aac9ad305d51fe7eec26bce2177629eeabed303b33ccf98fb462194d9",
+      "pricing-validation-fixture-extension-proposal.md": "3aa6d997a2f15a10eada6976a644a242f3481aae10c07435f8a4fe7a6071154d"
+    },
+    "preimages": [
+      {
+        "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+        "sha256": "75688b1a77bc851a764bbbc485f5be3ad3306fd55ff7f309c261d144eed0444a"
+      },
+      {
+        "path": "tests/support/authz/role-harness.ts",
+        "sha256": "23a1897cc8fb9cda711f5fc3c95d86f68680f7c7bcba41ac3d484e394fbf1dc9"
+      },
+      {
+        "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+        "sha256": "471ec572624326090089b3d3afdcef3963f7f4a3844923037b93d50af9ad572f"
+      },
+      {
+        "path": "tests/unit/scope/manifest-shape.test.ts",
+        "sha256": "4a516ad9d25a6effaa0e07156f9388491510640ac76f62c87249cf47cf114296"
+      },
+      {
+        "path": "tests/unit/scope/manifest-derivations.test.ts",
+        "sha256": "9a0a5e50e00cb6d6e254cd4c37e2f73850b55cd0e9725030a7faa9d7f364b870"
+      },
+      {
+        "path": "tests/unit/server/commands/pricing-validation-edges.test.ts",
+        "sha256": "02c9eb1fede410ff04c1bd10fe2bf77b634477c03bf65da21011ef87e117d9f6"
+      }
+    ],
+    "independent_confirmations": [
+      "receipt-enrollment-independent-confirmation.json",
+      "pricing-validation-fixture-independent-confirmation.json"
+    ],
+    "write_admission": "Approval earned. Author must complete fresh read-only shared SQLite and full exact-writer/evidence/migration/manifest/envelope/test-resource inventory including all nine total added paths before writes; no current writer clearance invented.",
+    "implementation_or_runtime_pass": false,
+    "release_ready": false
   }
 }

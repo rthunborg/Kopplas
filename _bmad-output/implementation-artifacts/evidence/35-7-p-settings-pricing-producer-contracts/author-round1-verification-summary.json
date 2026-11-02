@@ -1,0 +1,114 @@
+{
+  "task_id": "35.7-P",
+  "captured_at_utc": "2026-11-02T13:23:45.178815+00:00",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "review_checkpoint_commit": "cad737c4399bb453ad3eb624911f3ce9218433c5",
+  "source_digest_sha256": "dc010cb2f9cba6dd67d51d03b46738f7629f650383bfd0bfe6d2f1355856d4c0",
+  "checks": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test [10 focused files]",
+      "native_exit": 0,
+      "tests": 155,
+      "pass": 155,
+      "fail": 0,
+      "skip": 0,
+      "log": "author-round1-focused-current.log"
+    },
+    {
+      "command": "pnpm exec tsc --noEmit",
+      "native_exit": 0,
+      "log": "author-round1-typecheck-frozen.log"
+    },
+    {
+      "command": "pnpm build",
+      "native_exit": 0,
+      "log": "author-round1-build-current.log",
+      "scope": "Final production source and new SSR tests; final integration-only cleanup subsequently checked by typecheck and collection."
+    },
+    {
+      "command": "pnpm lint",
+      "native_exit": 0,
+      "errors": 0,
+      "warnings": 31,
+      "log": "author-round1-lint.log",
+      "latest_delta_lint": [
+        "author-round1-lint-latest-tests.log",
+        "author-round1-lint-frozen-delta.log"
+      ]
+    },
+    {
+      "command": "pnpm test",
+      "native_exit": 1,
+      "tests": 3808,
+      "pass": 3805,
+      "fail": 2,
+      "skip": "versioned file-backend restore preserves the DB-owned identity and refuses overwrite; Linux xattrs required; not coverage",
+      "log": "author-round1-full-unit-current.log",
+      "scope": "Final functional units including4 actual-page/editor SSR tests; subsequent company VAT label display and integration-only finally cleanup covered by production build/static/collection.",
+      "failures": [
+        "new atomic migration cross-validates exact original bodies and eight substitutions without widening historical SQL",
+        "actual native regression construction uses reversible bootstrap exact predecessor commands and actual owner fragment only"
+      ],
+      "baseline_provenance": "baseline-calendar-provenance.json actual clean baseline2fail/0pass with8 identical raw inputs; not waiver/PASS"
+    },
+    {
+      "command": "pnpm exec vitest list [two protocol suites] --json",
+      "native_exit": 0,
+      "collected": 82,
+      "executed": 0,
+      "log": "author-round1-integration-collection-current.json"
+    },
+    {
+      "command": "pnpm run verify:lockfiles / verify:service-role-containment / verify:bundle-containment / git diff --check",
+      "native_exit": 0,
+      "evidence": "Actual tool output reported all3 guard successes and whitespace check passed; built artifact from current production build."
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs [spec]",
+      "native_exit": 0,
+      "refs": 20,
+      "errors": 0,
+      "log": "author-round1-review-order-check.json"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/quality/frontend-controller.mjs",
+        "local",
+        "--base",
+        "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657"
+      ],
+      "native_exit": 1,
+      "log": "author-round1-frontend-gate.log"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/quality/completion-gate.mjs",
+        "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+        "delivery_gate.py",
+        "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json"
+      ],
+      "native_exit": 1,
+      "log": "author-round1-completion-gate.log"
+    }
+  ],
+  "SSR_executed": 4,
+  "SSR_boundary_limits": "Actual page and actual pricing editor markup execute; authorized read results, historical committed receipt hook, actions, resolver and Link are mocked. No hydration/real DB/browser refresh evidence.",
+  "runtime_tests_executed": 0,
+  "browser_tests_executed": 0,
+  "captures_created": 0,
+  "independent_implementation_review_rounds_completed": 1,
+  "fix_confirmation": "pending targeted independent four-fix/six-actual-delta review",
+  "resources_started_this_batch": 0,
+  "task_migration_applied": false,
+  "development_complete": false,
+  "release_ready": false,
+  "skipped_recovery_case": {
+    "path": "tests/unit/ops/isolated-recovery-storage.test.ts:17",
+    "name": "versioned file-backend restore preserves the DB-owned identity and refuses overwrite",
+    "executed_locally": 0,
+    "status": "skipped; not coverage",
+    "required_next_action": "Exact-candidate Ubuntu CI and required recovery-storage-loader lane must execute; no waiver or source modification."
+  }
+}

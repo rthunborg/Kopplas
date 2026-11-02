@@ -333,3 +333,68 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await cleanupFixture(own);
         }
     });
+
+test("R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success", async ({ page }) => {
+    test.setTimeout(120_000);
+    const own = await createTwoTenantFixture();
+    let other: Page | undefined;
+    const specs = [
+        { id: "work-roles-editor", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", label: "Pinned role" },
+        { id: "articles-editor", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", label: "Pinned article" },
+    ];
+    try {
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings/pricing");
+        await waitForHydrated(page.getByLabel("Benämning"));
+        for (const spec of specs) {
+            const editor = page.getByTestId(spec.id);
+            await editor.getByLabel(spec.name).fill(spec.label);
+            await editor.getByLabel(spec.price).fill("10,00");
+            await editor.getByRole("button", { name: spec.save }).click();
+            await expect(editor.getByRole("listitem").filter({ hasText: spec.label })).toHaveCount(1);
+        }
+        other = await page.context().newPage();
+        await other.goto("/settings/pricing");
+        await waitForHydrated(other.getByLabel("Benämning"));
+        for (const [index, spec] of specs.entries()) {
+            const editor = page.getByTestId(spec.id), remote = other.getByTestId(spec.id);
+            const row = editor.getByRole("listitem").filter({ hasText: spec.label });
+            const remoteRow = remote.getByRole("listitem").filter({ hasText: spec.label });
+            await row.getByRole("button", { name: "Redigera" }).click();
+            await editor.getByLabel(spec.price).fill("11,00");
+            await remoteRow.getByRole("button", { name: "Redigera" }).click();
+            await remote.getByLabel(spec.price).fill("20,00");
+            await remote.getByRole("button", { name: spec.save }).click();
+            await expect(remoteRow).toContainText("20,00");
+            await editor.getByRole("button", { name: spec.save }).click();
+            await expect(editor.getByRole("button", { name: "Uppdatera och granska" })).toBeVisible();
+            await expect(editor.getByTestId("pricing-current-facts")).toContainText("20,00");
+            await expect(editor.getByLabel(spec.price)).toHaveValue("11,00");
+            await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
+            await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+            await expect(editor.getByLabel(spec.price)).toHaveValue("20,00");
+            await editor.getByLabel(spec.price).fill("21,00");
+            await remoteRow.getByRole("button", { name: "Redigera" }).click();
+            await remote.getByLabel(spec.price).fill("30,00");
+            await remote.getByRole("button", { name: spec.save }).click();
+            await expect(remoteRow).toContainText("30,00");
+            const neighborSpec = specs[1-index], neighbor = page.getByTestId(neighborSpec.id);
+            await neighbor.getByRole("button", { name: "Ny post" }).click();
+            await neighbor.getByLabel(neighborSpec.name).fill(`Neighbor refresh ${index}`);
+            await neighbor.getByLabel(neighborSpec.price).fill("99,00");
+            await neighbor.getByRole("button", { name: neighborSpec.save }).click();
+            await expect(neighbor.getByRole("listitem").filter({ hasText: `Neighbor refresh ${index}` })).toHaveCount(1);
+            await expect(editor.getByTestId("pricing-current-facts")).toContainText("30,00");
+            await expect(editor.getByLabel(spec.price)).toHaveValue("21,00");
+            await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
+            await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+            await expect(editor.getByLabel(spec.price)).toHaveValue("30,00");
+            await editor.getByLabel(spec.price).fill("31,00");
+            await editor.getByRole("button", { name: spec.save }).click();
+            await expect(row).toContainText("31,00");
+        }
+    } finally {
+        await other?.close();
+        await cleanupFixture(own);
+    }
+});

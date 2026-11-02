@@ -75,12 +75,14 @@ export default async function PricingSettingsPage() {
       )}
 
       <WorkRolesEditor
+        readError={Boolean(workRolesError || archivedWorkRolesError)}
         readToken={readToken}
         operationContext={operationContext}
         workRoles={workRoles}
         archivedWorkRoles={archivedWorkRoles}
       />
       <ArticlesEditor
+        readError={Boolean(articlesError || archivedArticlesError)}
         readToken={readToken}
         operationContext={operationContext}
         articles={articles}

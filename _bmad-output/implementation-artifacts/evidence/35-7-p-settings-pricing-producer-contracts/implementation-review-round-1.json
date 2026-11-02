@@ -3,7 +3,7 @@
   "phase": "frozen source checkpoint implementation review",
   "round": 1,
   "round_cap": 3,
-  "status": "pre-dispatch",
+  "status": "completed-four-approved-scope-patches-required",
   "model": "gpt-6.1-sol",
   "effort": "high",
   "independent_from_author": true,
@@ -22,5 +22,329 @@
   "project_overrides": "Only concrete introduced productionreachable defects; check downstreamvalidators/constraints/locks before missingguard report; no forced10findings/no5loops; deterministicCIshape checks not findings; source/runtimeevidence limits explicit.",
   "local_wip_commit_authorized_by": "Explicit Root taskinstruction before readonly source review; no push/PR/merge/deploy",
   "runtime_resources_required_for_review": false,
-  "created_at_utc": "2026-11-02T12:53:36.484937+00:00"
+  "created_at_utc": "2026-11-02T13:53:36.484937+01:00",
+  "review_commit": "cad737c4399bb453ad3eb624911f3ce9218433c5",
+  "full_committed_changed_files": [
+    "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/allocation-extension-decision.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/allocation-extension-decision.md",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/allocation-extension-fixtures-integrity.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/allocation-extension-fixtures.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/allocation-extension-fixtures.md",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/allocation-extension-independent-confirmation.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/allocation-extension-independent-confirmation.md",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-approved-fixture-preservation.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-final-gate-results.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-frozen-checkpoint.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-integration-collection.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-resource-stop.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-runtime-disposition.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-source-manifest.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-target-preflight.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-verification-summary.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/baseline-calendar-provenance.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/baseline-calendar-unit-result.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/baseline-unit-assignment.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/blocked-gate-results.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/current-admission-disposition.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/dependency-install.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/effective-allocation-admission.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/handoff.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/implementation-review-round-1.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/implementation-review-round-1.md",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/legacy-caller-compatibility-inventory.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/ownership-preflight.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/ownership-reconciliation.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/prewrite-integrity.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/pricing-validation-fixture-extension-proposal.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/pricing-validation-fixture-extension-proposal.md",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/pricing-validation-fixture-independent-confirmation.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/pricing-validation-fixture-independent-confirmation.md",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/protocol-consumer-scan.txt",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/public-protocol-consumer-scan-assessment.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/public-protocol-consumer-scan.txt",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/receipt-consumer-scan.txt",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/receipt-enrollment-extension-proposal.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/receipt-enrollment-extension-proposal.md",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/receipt-enrollment-independent-confirmation.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/receipt-enrollment-independent-confirmation.md",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/runtime-admission.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/runtime-baseline-acl-diagnosis-status.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/runtime-preapplication-target.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/runtime-progress.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/runtime-stop-allocation-hold.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/runtime-verification-route.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/shared-helper-compatibility-proposal.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/shared-helper-compatibility-proposal.md",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/shared-helper-independent-confirmation.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/shared-helper-independent-confirmation.md",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/shared-helper-proposal-integrity.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/source-migration-inventory.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/step3-admission.json",
+    "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+    "src/app/(app)/settings/company/page.tsx",
+    "src/app/(app)/settings/pricing/page.tsx",
+    "src/app/(app)/settings/quote-terms/page.tsx",
+    "src/components/pricing/ArticlesEditor.tsx",
+    "src/components/pricing/WorkRolesEditor.tsx",
+    "src/components/settings/CompanySettingsForm.tsx",
+    "src/components/settings/QuoteTermsEditor.tsx",
+    "src/features/pricing/action-state.ts",
+    "src/features/pricing/actions.ts",
+    "src/features/pricing/form-parsing.ts",
+    "src/features/pricing/read.ts",
+    "src/features/settings/action-state.ts",
+    "src/features/settings/actions.ts",
+    "src/features/settings/form-parsing.ts",
+    "src/features/settings/mutation-attempt.ts",
+    "src/features/settings/read.ts",
+    "src/scope/manifest.ts",
+    "src/server/commands/envelope.ts",
+    "src/server/commands/pricing/articles.ts",
+    "src/server/commands/pricing/pricing-db.ts",
+    "src/server/commands/pricing/validation.ts",
+    "src/server/commands/pricing/work-roles.ts",
+    "src/server/commands/settings/company-settings.ts",
+    "src/server/commands/settings/operation-recovery.ts",
+    "src/server/commands/settings/quote-terms.ts",
+    "src/server/commands/settings/settings-db.ts",
+    "src/server/commands/settings/validation.ts",
+    "supabase/migrations/20261102121057_settings_pricing_operation_contract.sql",
+    "tests/e2e/pricing/pricing.e2e.spec.ts",
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+    "tests/integration/commands/pricing-commands.int.test.ts",
+    "tests/integration/commands/settings-commands.int.test.ts",
+    "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+    "tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+    "tests/integration/rls/tenant-table-inventory.ts",
+    "tests/support/booking-conflicts-atdd.ts",
+    "tests/unit/features/settings/mutation-attempt.test.ts",
+    "tests/unit/server/commands/pricing-validation.test.ts",
+    "tests/unit/server/commands/settings-validation.test.ts"
+  ],
+  "full_diff": {
+    "path": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\implementation-review-round-1-full.diff",
+    "sha256": "249f61ae55fc53e0be41f930c1c614f839044b1f99338219ef188f31527d7df5",
+    "bytes": 1085551
+  },
+  "source_focused_diff": {
+    "path": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\implementation-review-round-1-source.diff",
+    "sha256": "f6d23e9be5a02849a79c343e3e67e97652ff9e682a5d020d06233cb962e15113",
+    "bytes": 368384,
+    "included_frozen_files": [
+      {
+        "path": "src/app/(app)/settings/company/page.tsx",
+        "sha256": "11087b2bb0bd4c09207849058b9598e05bfda371be0da186b2a2a4bff075b58a"
+      },
+      {
+        "path": "src/app/(app)/settings/pricing/page.tsx",
+        "sha256": "6effd7514182d217c136b6e7d6918a6118bdd7bfdcd2cb0da9660cebdb83b4a4"
+      },
+      {
+        "path": "src/app/(app)/settings/quote-terms/page.tsx",
+        "sha256": "2e4b02ac87a47b76e1ca3bb0e36d7e4dc0df0cd8e4d26ce56ae2ac7bea7473d4"
+      },
+      {
+        "path": "src/components/pricing/ArticlesEditor.tsx",
+        "sha256": "81863ea3e2445877494678cfd2548e8e8de7724689cc76955ddde5a1c7fafaac"
+      },
+      {
+        "path": "src/components/pricing/WorkRolesEditor.tsx",
+        "sha256": "58dea8f7db46e08b39a34a116e8d7f6a3e3859cef06df4ea8ed0d6c98b7ddd5c"
+      },
+      {
+        "path": "src/components/settings/CompanySettingsForm.tsx",
+        "sha256": "5551a2569869135191047b2228345fa5baa73cc08891d83dfbec6b2d03b09672"
+      },
+      {
+        "path": "src/components/settings/QuoteTermsEditor.tsx",
+        "sha256": "a142718201faf0ee1d7d7b5a8ad451600c4da9011110200a40fe47c00aa3ac57"
+      },
+      {
+        "path": "src/features/pricing/action-state.ts",
+        "sha256": "fbd741d75460bd33247ee3aed9da7fdb84800844636da2e513bfb4b72244655c"
+      },
+      {
+        "path": "src/features/pricing/actions.ts",
+        "sha256": "cb7d115ea49cfaaa24464c66a52fd126e67d836edb9936125a1999f4388eb529"
+      },
+      {
+        "path": "src/features/pricing/form-parsing.ts",
+        "sha256": "3719ae06f871fe73c256f287a6ec5ef72c1a3ad03d47ad123283b94078a45a9c"
+      },
+      {
+        "path": "src/features/pricing/read.ts",
+        "sha256": "cd7a04cf1503076e8a6eb696fd94182bd5360cb8f0f811ee90689044b5d4f9d8"
+      },
+      {
+        "path": "src/features/settings/action-state.ts",
+        "sha256": "e6f36ce75bf441fe3e7fab3eda974ffcf0ff6ce65c8c9d31e799488a9bb67477"
+      },
+      {
+        "path": "src/features/settings/actions.ts",
+        "sha256": "d62f86a5ae2f946c2871e71af654dfb1b744fa403fcb4532f6ef96d39bb4415f"
+      },
+      {
+        "path": "src/features/settings/form-parsing.ts",
+        "sha256": "c65df864d6466a9eaafad1bcdd1d8db1950a849a02b1804db60917b1615f75d8"
+      },
+      {
+        "path": "src/features/settings/mutation-attempt.ts",
+        "sha256": "7d33e283bbc7e958522de2ae994786988cc684c03acee1c26d2adc5cd7a3c1a9"
+      },
+      {
+        "path": "src/features/settings/read.ts",
+        "sha256": "e74b7fba575426e4dad33c1e011cc7b6ee66449a8492fd42f9d778ce43152c46"
+      },
+      {
+        "path": "src/scope/manifest.ts",
+        "sha256": "a773473789c83d5074ce3e86efb21f748774f471c58b189ae72ae3142cb7ff62"
+      },
+      {
+        "path": "src/server/commands/envelope.ts",
+        "sha256": "d6186842b73c983e02aec387e8058cc2d4b91149908f27a390eff10cd953a79a"
+      },
+      {
+        "path": "src/server/commands/pricing/articles.ts",
+        "sha256": "4b75cf42175c900540abae70f6e186807033e6693d79243cfbdea085932c02e1"
+      },
+      {
+        "path": "src/server/commands/pricing/pricing-db.ts",
+        "sha256": "3685765993515b2bfef373cf282124f4839f42e609f27e7150478c1789c4fc47"
+      },
+      {
+        "path": "src/server/commands/pricing/validation.ts",
+        "sha256": "39084403ed9aa0f5011fab4504f0f8264a80ccc3a303bae4fa926e9e8ac8ed2c"
+      },
+      {
+        "path": "src/server/commands/pricing/work-roles.ts",
+        "sha256": "740b6711cad49071f60b34c62497bb39858b3593254a83d175dc74b6942433ad"
+      },
+      {
+        "path": "src/server/commands/settings/company-settings.ts",
+        "sha256": "1e144a7618e45b207c33d990204fd66e1ca53a72d599f8f1700e9f5aa28ae84f"
+      },
+      {
+        "path": "src/server/commands/settings/operation-recovery.ts",
+        "sha256": "5a76decb31059f7e9572e120dfa3b74e76ea25d8a00e8a554805de9bc4e1e848"
+      },
+      {
+        "path": "src/server/commands/settings/quote-terms.ts",
+        "sha256": "07aeeacfb8d2300acad75c75127090bec2f31e1f21b022dd80f41c2103a9f005"
+      },
+      {
+        "path": "src/server/commands/settings/settings-db.ts",
+        "sha256": "2365f40cc1d064fb0ed4cfbb43221e6499c0ed518bfb345b172202c393b540ea"
+      },
+      {
+        "path": "src/server/commands/settings/validation.ts",
+        "sha256": "0859642e57b2fb45935b29c2f57ee0b23ee990b9255f3234a514d59f4f02afc4"
+      },
+      {
+        "path": "supabase/migrations/20261102121057_settings_pricing_operation_contract.sql",
+        "sha256": "7f02c36c4ac03a7c6de9e2b4e34048c80e617ac42067398f6fa06d9ae0a299df"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "sha256": "6c554200d88ed063d640838e970dde9f1d60049f576e303d537afdd3ee3cf2a2"
+      },
+      {
+        "path": "tests/e2e/settings/settings.e2e.spec.ts",
+        "sha256": "159ad1bc9dbd6d5b08b03f3e5e5bb85c5b8f4ac6e86c4db3b960e01f633a6942"
+      },
+      {
+        "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+        "sha256": "fed58b73ba50b51d4f577b2b418fc17a771e0001ada794325003b6a93f1e58c4"
+      },
+      {
+        "path": "tests/integration/commands/pricing-commands.int.test.ts",
+        "sha256": "4f334d16deb7f93fbb3c74e5ebf3c221ad30a7b510fd2d026f13d763c3cf1291"
+      },
+      {
+        "path": "tests/integration/commands/settings-commands.int.test.ts",
+        "sha256": "4bf2f70a50a3419e5e3fd550ad9042e1c656eb0c5c1eca413aedf1968ecd3fd5"
+      },
+      {
+        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+        "sha256": "ecb3693ac3291d7a39f52744e00d59b5bd2abd89fdb95f3dc28391adbfeb8330"
+      },
+      {
+        "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+        "sha256": "f1851ec2e178f8550105a0383e60da5ea986f3560c62877535e6b221229a5cdb"
+      },
+      {
+        "path": "tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+        "sha256": "96082dc1c0ee2954ca6d8d2f2084c966b33bd3826324a87ebb3889ee3a389aa7"
+      },
+      {
+        "path": "tests/integration/rls/tenant-table-inventory.ts",
+        "sha256": "04626c68d6dde8c408fa68e309d4ff3b7533301cf3f5254ab8da9a4d8caa1f2c"
+      },
+      {
+        "path": "tests/support/booking-conflicts-atdd.ts",
+        "sha256": "bf5b5ad1efa3b7ecd347494daf990a8224dc67c3a2e2e97eea0157fd3538b5f1"
+      },
+      {
+        "path": "tests/unit/features/settings/mutation-attempt.test.ts",
+        "sha256": "4a9d735e375ee344b60891e20a70dfa64798c56779d36fa6815a87eb27d5ac00"
+      },
+      {
+        "path": "tests/unit/server/commands/pricing-validation.test.ts",
+        "sha256": "3adbb57055dd632003da7f0d319e9afae30724cfdfc061b27b0e7f094333b949"
+      },
+      {
+        "path": "tests/unit/server/commands/settings-validation.test.ts",
+        "sha256": "a3ac0538a21faa93193a007462c573192781cf01f09df3125d40202c6defa6b7"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+        "sha256": "eb2b46dfb6343a4b7bd8ffcab4404c43f71d3a11e5b3b606d370fa6f48371eb7"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+        "sha256": "ec73c228be22378855ce6339e4fb83040806291a2e4fddeb90b6b3ad71910b29"
+      }
+    ]
+  },
+  "raw_vs_git_blob_note": "All43authorworkingfiles matchrawfreeze; Gittextnormalization yields41committedsourcefiles LF-equivalent, rawSHAlineendingreconciliation in review-checkpoint-commit.json. Review exactGitblobs at review_commit for authoritativebytes; no productionworkingwrites.",
+  "baseline_calendar_provenance": "Root cleanbaseline exact2cases fail2/native1 with8byteidentical dependencies; retained in baseline-calendar-provenance.json. No waiver/currentcandidatePASS.",
+  "layers": [
+    "blind-hunter",
+    "edge-case-hunter",
+    "verification-gap"
+  ],
+  "review_round_record": "**Round 1 of 3**; allocationreviews excluded.",
+  "source_author_writes_stopped": true,
+  "actual_dispatch": [
+    {
+      "task": "/root/producer_build/review_r1_blind",
+      "layer": "blind-hunter",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "fork": "none",
+      "write_scope": "none"
+    },
+    {
+      "task": "/root/producer_build/review_r1_edges",
+      "layer": "edge-case-hunter",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "fork": "none",
+      "write_scope": "none"
+    },
+    {
+      "task": "/root/producer_build/review_r1_verification",
+      "layer": "verification-gap",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "fork": "none",
+      "write_scope": "none"
+    }
+  ],
+  "actual_dispatched_at_utc": "2026-11-02T12:59:24.5048475Z",
+  "triage_record": "implementation-review-round-1-triage.json",
+  "reviewer_receipts": "implementation-review-round-1-layer-receipts.json"
 }

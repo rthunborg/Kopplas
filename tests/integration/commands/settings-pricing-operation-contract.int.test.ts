@@ -334,8 +334,8 @@ for (const kind of ["company.save", "work_role.update"] as const)
             const [member] = await adminQuery<{
                 id: string;
             }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [fx.tenantA.id, fx.adminA.id]);
-            let writer: ReturnType<typeof call> | undefined;
-            let revoker: ReturnType<typeof call> | undefined;
+            let writer: Promise<Awaited<ReturnType<typeof call>>> | undefined;
+            let revoker: Promise<Awaited<ReturnType<typeof call>>> | undefined;
             const manage = (name: string, roles: string[]) => b.rpc("admin_manage_membership", { p_tenant_id: fx.tenantA.id, p_membership_id: member.id, p_action: name, p_roles: roles, p_reason: "Authority lock test", p_operation_id: crypto.randomUUID() });
             await adminSession(async ({ query }) => {
                 await query("begin");
@@ -344,7 +344,8 @@ for (const kind of ["company.save", "work_role.update"] as const)
                         pid: number;
                     }>("select pg_backend_pid() pid");
                     await query(`select id from public.${table(kind)} where id=$1 for update`, [op.args.p_target_id]);
-                    writer = call(op);
+                    // RPC builders are lazy: start executing before observing blockers.
+                    writer = Promise.resolve(call(op));
                     const wait = async (count: number) => { for (let i = 0; i < 100; i++) {
                         const [r] = await adminQuery<{
                             n: number;
@@ -354,7 +355,7 @@ for (const kind of ["company.save", "work_role.update"] as const)
                         await new Promise(r => setTimeout(r, 20));
                     } throw new Error("Actual authority lock barrier was not observed"); };
                     await wait(1);
-                    revoker = manage(action, action === "re_role" ? ["saljare"] : []);
+                    revoker = Promise.resolve(manage(action, action === "re_role" ? ["saljare"] : []));
                     await wait(2);
                     expect((await snapshot(op)).audit).toHaveLength(0);
                     await query("commit");
@@ -365,9 +366,11 @@ for (const kind of ["company.save", "work_role.update"] as const)
                     expect((await snapshot(op)).audit).toHaveLength(1);
                 }
                 finally {
-                    await query("rollback");
-                    await Promise.allSettled([writer, revoker]);
-                    await manage(action === "disable" ? "reactivate" : "re_role", action === "disable" ? [] : ["tenant_admin"]);
+                    try { await query("rollback"); }
+                    finally {
+                        await Promise.allSettled([writer, revoker]);
+                        await manage(action === "disable" ? "reactivate" : "re_role", action === "disable" ? [] : ["tenant_admin"]);
+                    }
                 }
             });
         });

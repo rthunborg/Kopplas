@@ -527,6 +527,7 @@ describe("Cross-tenant RLS isolation — data-driven over the shared inventory (
   // but they are platform-command internals: normal tenant roles receive no direct
   // SELECT privilege, so denial occurs before RLS row filtering.
   const directReadRevokedTables = new Set([
+    "settings_pricing_operations",
     "calendar_feed_tokens",
     "tenant_provisioning_requests",
     "tenant_provisioning_invites",

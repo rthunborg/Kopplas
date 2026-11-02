@@ -22,7 +22,7 @@ import { validateUpdateCompanySettings, validateUpdateQuoteTerms, validateApprov
 import { validateUpsertWorkRole, validateUpsertArticle, validateArchive } from "@/server/commands/pricing/validation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { attemptBlocksReplacement, attemptForm, captureAttempt, settleAttempt, type MutationAttempt, type OperationKind, type EditorOperationContext } from "@/features/settings/mutation-attempt";
+import { attemptBlocksReplacement, attemptForm, captureAttempt, settleAttempt, type MutationAttempt, type OperationKind, type EditorOperationContext, sameDraftBaseline } from "@/features/settings/mutation-attempt";
 import type { SettingsActionState } from "@/features/settings/action-state";
 import { FormErrorSummary, SelectField, TextField, } from "@/components/crm/FormField";
 import { saveCompanySettingsAction } from "@/features/settings/actions";
@@ -52,11 +52,19 @@ export function CompanySettingsForm({ defaults, }: {
 }) {
     const operation = useMountedSettingsPricingAttempt(SETTINGS_ACTION_INITIAL, defaults.operationContext, defaults.readToken);
     const { state, pending } = operation;
-    const formAction = (form: FormData) => operation.submit(saveCompanySettingsAction, "company.save", form, defaults.id, defaults.write_revision, defaults.readError);
+    const [baseline, setBaseline] = useState(defaults);
+    const baselineChanged = !defaults.readError && (baseline.readError || !sameDraftBaseline(baseline, defaults));
+    const formAction = (form: FormData) => operation.submit(saveCompanySettingsAction, "company.save", form, baseline.id, baseline.write_revision, defaults.readError || baselineChanged);
     // Echo-back values from a failed submit take precedence over the initial defaults.
     const v = (field: string, fallback: string | null | undefined): string => state.values[field] ?? fallback ?? "";
-    return (<form onSubmit={event => { event.preventDefault(); void formAction(new FormData(event.currentTarget)); }} className="flex max-w-2xl flex-col gap-4" noValidate>
+    return (<form key={`${baseline.id ?? "absent"}:${baseline.write_revision ?? "absent"}`} onSubmit={event => { event.preventDefault(); void formAction(new FormData(event.currentTarget)); }} className="flex max-w-2xl flex-col gap-4" noValidate>
       <AttemptRecovery operation={operation}/>
+      {baselineChanged && <div data-testid="company-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-sm text-text-secondary">
+        <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
+        <dl>{Object.entries(defaults).filter(([key]) => ["company_name", "org_nr", "address_line1", "address_line2", "postal_code", "city", "email", "phone", "default_vat_display", "vat_rate_percent"].includes(key)).map(([key, value]) => <div key={key}><dt className="font-medium">{({company_name:"Företagsnamn",org_nr:"Organisationsnummer",address_line1:"Adress",address_line2:"Adressrad 2",postal_code:"Postnummer",city:"Ort",email:"E-post",phone:"Telefon",default_vat_display:"Standardvisning av moms",vat_rate_percent:"Momssats"} as Record<string,string>)[key]}</dt><dd>{key === "default_vat_display" ? VAT_DISPLAY_OPTIONS.find(option => option.value === value)?.label ?? "—" : String(value ?? "—")}</dd></div>)}</dl>
+        {!defaults.id && <p>Ingen aktuell post finns.</p>}
+        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); }} className="self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
+      </div>}
       <fieldset disabled={operation.blocked || defaults.readError} className="contents">
       <FormErrorSummary message={state.formError}/>
 
@@ -65,22 +73,22 @@ export function CompanySettingsForm({ defaults, }: {
           {operation.hasCurrentRead && !defaults.readError ? !defaults.id ? " Posten finns inte längre i aktuella uppgifter." : defaults.write_revision !== state.committedRevision ? " Nyare ändringar finns. Granska aktuella uppgifter före nästa sparande." : " Aktuella uppgifter är bekräftade." : " Aktuella uppgifter hämtas separat."}
         </p>)}
 
-      <TextField name="company_name" label="Företagsnamn" required defaultValue={v("company_name", defaults.company_name)} error={state.fieldErrors.company_name}/>
-      <TextField name="org_nr" label="Organisationsnummer" defaultValue={v("org_nr", defaults.org_nr)}/>
-      <TextField name="address_line1" label="Adress" defaultValue={v("address_line1", defaults.address_line1)}/>
+      <TextField name="company_name" label="Företagsnamn" required defaultValue={v("company_name", baseline.company_name)} error={state.fieldErrors.company_name}/>
+      <TextField name="org_nr" label="Organisationsnummer" defaultValue={v("org_nr", baseline.org_nr)}/>
+      <TextField name="address_line1" label="Adress" defaultValue={v("address_line1", baseline.address_line1)}/>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <TextField name="postal_code" label="Postnummer" defaultValue={v("postal_code", defaults.postal_code)}/>
-        <TextField name="city" label="Ort" defaultValue={v("city", defaults.city)}/>
+        <TextField name="postal_code" label="Postnummer" defaultValue={v("postal_code", baseline.postal_code)}/>
+        <TextField name="city" label="Ort" defaultValue={v("city", baseline.city)}/>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <TextField name="email" label="E-post" type="email" defaultValue={v("email", defaults.email)} error={state.fieldErrors.email}/>
-        <TextField name="phone" label="Telefon" defaultValue={v("phone", defaults.phone)} error={state.fieldErrors.phone}/>
+        <TextField name="email" label="E-post" type="email" defaultValue={v("email", baseline.email)} error={state.fieldErrors.email}/>
+        <TextField name="phone" label="Telefon" defaultValue={v("phone", baseline.phone)} error={state.fieldErrors.phone}/>
       </div>
 
-      <SelectField name="default_vat_display" label="Standardvisning av moms" options={VAT_DISPLAY_OPTIONS} defaultValue={v("default_vat_display", defaults.default_vat_display)} error={state.fieldErrors.default_vat_display}/>
+      <SelectField name="default_vat_display" label="Standardvisning av moms" options={VAT_DISPLAY_OPTIONS} defaultValue={v("default_vat_display", baseline.default_vat_display)} error={state.fieldErrors.default_vat_display}/>
 
       <div className="flex flex-col gap-1">
-        <TextField name="vat_rate_percent" label="Momssats" defaultValue={v("vat_rate_percent", defaults.vat_rate_percent)} error={state.fieldErrors.vat_rate_percent}/>
+        <TextField name="vat_rate_percent" label="Momssats" defaultValue={v("vat_rate_percent", baseline.vat_rate_percent)} error={state.fieldErrors.vat_rate_percent}/>
         <p className="text-xs text-zinc-500">
           Anges i procent (t.ex. 25 för 25 %). Lagras som heltal i baspunkter. Ingen
           momsberäkning görs här – endast standardvärdet sparas.
@@ -88,7 +96,7 @@ export function CompanySettingsForm({ defaults, }: {
       </div>
 
       <div className="mt-2 flex justify-end">
-        <button type="submit" disabled={pending} className="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60">
+        <button type="submit" disabled={pending || baselineChanged} className="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60">
           {pending ? "Sparar…" : "Spara"}
         </button>
       </div>

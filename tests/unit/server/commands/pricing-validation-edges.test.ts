@@ -9,11 +9,22 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  validateUpsertArticle,
-  validateUpsertWorkRole,
+  validateUpsertArticle as actualValidateUpsertArticle,
+  validateUpsertWorkRole as actualValidateUpsertWorkRole,
 } from "@/server/commands/pricing/validation";
 
+import { isOperationUuid } from "@/features/settings/mutation-attempt";
+
 const UUID = "33333333-3333-4333-8333-333333333333";
+
+// Business-edge fixtures reach their intended validator branch with real protocol facts.
+function protocolFixture(raw: unknown): unknown {
+  if (raw === null || typeof raw !== "object" || Array.isArray(raw)) return raw;
+  const value = raw as Record<string, unknown>;
+  return { ...value, operationId: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa", targetId: isOperationUuid(value.id) ? value.id : UUID, expectedRevision: value.id !== undefined ? "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb" : null };
+}
+const validateUpsertArticle = (raw: unknown) => actualValidateUpsertArticle(protocolFixture(raw));
+const validateUpsertWorkRole = (raw: unknown) => actualValidateUpsertWorkRole(protocolFixture(raw));
 
 function assertRejected(result: { ok: boolean }, label: string): void {
   assert.equal(result.ok, false, `expected VALIDATION_FAILED: ${label}`);
@@ -114,7 +125,7 @@ test("workRole UPDATE: a valid id-bearing update carries the id and strips tenan
     // Only the validated fields survive.
     assert.deepEqual(
       Object.keys(r.data).sort(),
-      ["cost_rate_ore", "display_name", "id", "sell_rate_ore"],
+      ["cost_rate_ore", "display_name", "expectedRevision", "id", "operationId", "sell_rate_ore", "targetId"],
     );
   }
 });

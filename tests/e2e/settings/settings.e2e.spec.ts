@@ -319,6 +319,13 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await expect(page.getByRole("button", { name: "Uppdatera och granska" })).toBeVisible();
             await expect(page.getByLabel("Företagsnamn")).toHaveValue("Retained stale draft");
             await producerCapture(page, info, "company", "stale");
+            await expect(page.getByTestId("company-current-facts")).toContainText("Newer current company");
+            await expect(page.getByRole("button", { name: "Spara", exact: true })).toBeDisabled();
+            await page.getByRole("button", { name: "Uppdatera och granska" }).click();
+            await expect(page.getByLabel("Företagsnamn")).toHaveValue("Retained stale draft");
+            await page.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+            await expect(page.getByLabel("Företagsnamn")).toHaveValue("Newer current company");
+            await expect(page.getByRole("button", { name: "Spara", exact: true })).toBeEnabled();
             await other.close();
             await page.goto("/settings/quote-terms");
             await waitForHydrated(page.getByLabel("Offertvillkor"));
@@ -326,7 +333,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await page.getByRole("button", { name: "Spara villkor" }).click();
             await expect(page.getByLabel("Offertvillkor")).toHaveAttribute("aria-invalid", "true");
             await producerCapture(page, info, "terms", "error");
-            await page.getByLabel("Offertvillkor").fill("Exact reviewed synthetic wording");
+            await page.getByLabel("Offertvillkor").fill(" \nExact reviewed synthetic wording\n ");
             const saveLoss = await loseCommittedReply(page, "/settings/quote-terms");
             await page.getByRole("button", { name: "Spara villkor" }).click();
             await saveLoss.seen;
@@ -352,6 +359,23 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             expect(new Set(approveLoss.identities).size).toBe(1);
             await approveLoss.clear();
             await producerCapture(page, info, "terms", "finished");
+            const newerTerms = await page.context().newPage();
+            try {
+                await newerTerms.goto("/settings/quote-terms");
+                await waitForHydrated(newerTerms.getByLabel("Offertvillkor"));
+                await newerTerms.getByLabel("Offertvillkor").fill("Newer current terms");
+                await newerTerms.getByRole("button", { name: "Spara villkor" }).click();
+                await expect(newerTerms.getByTestId("settings-saved")).toBeVisible();
+                await page.getByLabel("Offertvillkor").fill("Retained stale terms draft");
+                await page.getByRole("button", { name: "Spara villkor" }).click();
+                await expect(page.getByRole("button", { name: "Uppdatera och granska" })).toBeVisible();
+                await expect(page.getByTestId("terms-current-facts")).toContainText("Newer current terms");
+                await expect(page.getByLabel("Offertvillkor")).toHaveValue("Retained stale terms draft");
+                await expect(page.getByRole("button", { name: "Spara villkor" })).toBeDisabled();
+                await page.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+                await expect(page.getByLabel("Offertvillkor")).toHaveValue("Newer current terms");
+                await expect(page.getByRole("button", { name: "Markera som godkänd" })).toBeEnabled();
+            } finally { await newerTerms.close(); }
         }
         finally {
             await page.context().setOffline(false);

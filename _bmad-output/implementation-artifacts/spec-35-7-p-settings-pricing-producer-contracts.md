@@ -127,54 +127,66 @@ Current final evidence-only handoff: independent SolHigh related-delta confirmat
 
 ## Author implementation checkpoint — incomplete
 
-The admitted product/test implementation now exists as an uncommitted source checkpoint. Canonical nine source hashes and the frozen intent remain unchanged. `evidence/35-7-p-settings-pricing-producer-contracts/author-source-manifest.json` identifies every owned source/test/migration byte; original full baseline remains `ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657`.
+The first frozen implementation checkpoint was committed by Root as `cad737c4399bb453ad3eb624911f3ce9218433c5`. Three independent context-free Sol High layers completed broad implementation Round1 (one of three); four deduplicated patch findings were returned. This same author applied one consolidated fix batch plus the six exact fixture/metadata additions actually approved by the owner. `author-round1-resume-integrity.json` records the fresh read-only SQLite/full writer inventory; `six-file-owner-approval.json` and `author-round1-approved-delta-preservation.json` retain scope and preservation provenance. No pending allocation hold remains. This is still an incomplete source checkpoint, not development completion.
 
-The isolated baseline push committed115 of120 original migrations and then atomically refused the existing calendar ACL comparison. Root explicitly assigned actual DB/RLS/recovery/browser proof to the existing exact-candidate checkpoint CI and permitted authoring the single generated task migration after this verified state. No calendar ACL/history change, reset or task-migration application occurred. The own guard usage was Stop-requested successfully with retained data; confirmed shutdown is not claimed. Details and exact logs are in `author-runtime-disposition.json`.
+R1-1 pins company/terms/pricing draft values to the ID/revision originally displayed. An unrelated refresh or stale rejection preserves the draft and independently shows current facts; explicit adoption replaces the draft and its baseline together. Pending/unknown attempt identity remains immutable. The terms exception advances only an exact matching committed write after a successful current reread with canonical-equivalent wording. R1-2 uses existing trim semantics for terms dirtiness, preserving meaningful unsaved edits and currently-unapproved approval guards. R1-3 propagates each pricing domain's active-or-archived read failure; unavailable reads disable writes and never prove deletion or current revision. R1-4 starts real RPC promises before lock observation and settles in-flight requests in cleanup. No SQL/contract/business-scope change was needed.
 
-Executed evidence: focused units118 passed,0 failed,0 skipped; full lint native0 with0errors/31warnings; lockfile/service-role/built-bundle containment and whitespace checks passed. Latest full-unit progress run (before final owned edge fixes and one added focused test) native1:3794 tests,3781 passed,12 failed,1 skipped. Five failures depend on the pending receipt enrollment, five positive supplementary pricing-validator fixtures need mandatory protocol input, and two calendar-source tests remain unresolved local failures; no baseline execution PASS is inferred. The skipped Linux-xattr recovery unit is not coverage. Earlier production bundling compiled in24.9s, but the build failed native1 at the missing exhaustive role-harness entry; final typecheck native2 has that same sole TS2741. The new75 protocol integration tests plus7 role/ACL/RLS tests were collected (82), never executed locally. Essential browser and visual acceptance executed0. No independent implementation review has run. Both required local frontend-controller and supported completion-wrapper invocations used the original full baseline and returned native1 because the candidate is uncommitted; no helper/status transition or acceptance occurred.
+Canonical nine raw source hashes, the sole generated migration and the original full baseline `ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657` remain unchanged. The local baseline push remains at115/120 with the existing calendar migration's atomic SOURCE_ACL_NOT_COMPARABLE refusal; the task migration was never applied locally. Root's existing exact-candidate CI must earn DB/RLS/recovery/browser proof. No runtime resource was launched or DB mutation executed in this fix batch; the earlier own Stop acknowledgment remains historical evidence, not confirmed shutdown.
 
-Six exact additional test metadata/fixture paths remain read-only pending actual owner disposition, with proposal pins and independent allocation-decision confirmations retained separately. This checkpoint is explicitly available for independent source review; it is not development-complete, visual-accepted, release-ready, merged or deployed. The required runtime, full-unit/static and exact-candidate frontend/completion gates must be earned before completion. All originally normative P-AC permutations remain obligations.
+Executed Round1 evidence: focused units155 passed/0 failed/0 skipped; typecheck native0; production build native0; full lint native0 (0errors/31warnings), plus latest changed-test/source lint native0. Full units native1:3808 tests/3805 passed/2 failed/1 skipped. The exact two calendar failures were also actually reproduced by Root at the clean original baseline with eight identical raw dependency inputs (`baseline-calendar-provenance.json`); that is provenance, never a waiver or candidate full-unit PASS. The Linux-xattr recovery skip is not coverage. Four R1-3 regressions execute the actual pricing page and actual editor SSR markup with synthetic read results and a synthetic historical receipt hook; they cover both domains' active/archived failures, unavailable copy, no false deletion/confirmed claim and disabled writes. Hydration, actual authorized DB reads and browser refresh are outside that mocked-boundary evidence. Browser stale/adoption/neighbor-refresh and whitespace save-to-approve regressions are authored, not executed. The75 protocol integration plus7 RLS/ACL tests collect82, execute0 locally. Essential browser captures and authenticated frontend acceptance remain0. Current exact source/test/migration bytes are in `author-round1-source-manifest.json`; command/native/count details are in `author-round1-verification-summary.json`.
+
+The author refreshed this one review trail after the batch. Targeted independent follow-up must confirm the four fixes and six actual fixture diffs; broad unchanged SQL/source review is not repeated. Local frontend-controller and supported completion-wrapper gates continue to use the original full baseline, fail on the uncommitted candidate and reach no status transition. Current runtime/CI/visual gates remain unearned; Build stays in progress, Step5 stays not done and release_ready=false.
 
 ## Suggested Review Order
 
-Author: `/root/producer_build/implementation_author` (implementation author).
-Refreshed against the uncommitted source checkpoint in `evidence/35-7-p-settings-pricing-producer-contracts/author-source-manifest.json`; baseline `ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657`. This is a source-review checkpoint with the explicit verification limits above.
+Author: `/root/producer_build/implementation_author` (same implementation/fix author).
+Refreshed against the uncommitted consolidated Round1 batch over `cad737c4399bb453ad3eb624911f3ce9218433c5`, pinned by `author-round1-source-manifest.json`; original baseline `ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657`.
 
-### Keep the mounted attempt independent of later edits and replies
+### Keep displayed drafts bound to their reviewed facts
 
-The four editors share one bounded controller, while the pure module freezes candidate/identity and makes ambiguity sticky. Offline submission sends nothing; pending/unknown states retain the same retry/reconcile payload and owned navigation/selection guards. A successful receipt is historical; a fresh read after observing it supplies current facts.
+R1-1 preserves the baseline that belongs to the displayed draft across stale rejection and neighboring refresh. Current facts are shown separately and adopted explicitly; only the exact matching terms receipt plus successful canonical-equivalent reread can advance that same saved wording automatically (R1-2). Pending/unknown attempts cannot be replaced.
 
-- `src/components/settings/CompanySettingsForm.tsx:190` — `const submit = async`: captures validated form and context before dispatch.
-- `src/features/settings/mutation-attempt.ts:68` — `export function settleAttempt`: retains unknown after later rejection and ignores neighboring identity.
-- `src/components/settings/QuoteTermsEditor.tsx:60` — `const isApproved =`: derives approval from current saved facts and clean wording.
-- `src/components/settings/CompanySettingsForm.tsx:172` — `setCapturedReadToken(latestReadToken.current)`: requires a read after observing historical completion.
+- `src/components/settings/CompanySettingsForm.tsx:55` — `const [baseline, setBaseline]`: pins company fields and expected facts together.
+- `src/components/settings/QuoteTermsEditor.tsx:55` — `const confirmsOwnWrite =`: limits automatic adoption to exact saved canonical wording.
+- `src/components/pricing/WorkRolesEditor.tsx:36` — `const [selected, setSelected]`: retains the selected role draft revision.
+- `src/components/pricing/ArticlesEditor.tsx:37` — `const [selected, setSelected]`: retains the selected article draft revision.
 
-### Bind the captured request to current server authority
+### Bind immutable capture and recovery to current authority
 
-The existing envelope resolves current tenant/capability. Local validators require operation/target/revision facts, and adapters compare any captured UI context with that resolved context. Reconciliation revalidates the same canonical candidate through two explicit capability entries and has no target ownership precheck that could hide deleted-target history.
+The shared controller validates before capture, retains one retry/reconcile payload and requires a reread after observing completion. The envelope remains authoritative for tenant/capability; local adapters compare captured context and exact correlation. Reconciliation revalidates the same closed candidate without hiding deleted-target history.
 
-- `src/features/settings/actions.ts:22` — `const result = formData.get`: uses original operation correlation for mutation or reconciliation.
-- `src/server/commands/settings/settings-db.ts:27` — `export function operationRpcArguments`: binds context, correlation and exact checked RPC arguments.
-- `src/server/commands/settings/operation-recovery.ts:16` — `function validateRecovery`: closes recovery to approved operation kinds and canonical fields.
+- `src/components/settings/CompanySettingsForm.tsx:198` — `const submit = async`: captures validated form and context before dispatch.
+- `src/features/settings/mutation-attempt.ts:68` — `export function settleAttempt`: retains unknown after denial and ignores neighboring identity.
+- `src/server/commands/settings/settings-db.ts:27` — `export function operationRpcArguments`: binds resolved authority, correlation and checked RPC arguments.
+- `src/server/commands/settings/operation-recovery.ts:16` — `function validateRecovery`: closes recovery to approved kinds and canonical fields.
 
-### Protect current authority and atomically retain historical completion
+### Preserve the atomic database contract
 
-ADR-B014 requires one coordinated fail-closed migration. The tenant gate and ordered membership locks precede receipt lookup; exact replay precedes current stale checks. Every new effect, database-owned revision, fixed audit and durable receipt shares one transaction; old ordinary write grants close in that same migration.
+The unchanged ADR-B014 migration locks current authority before receipt lookup and returns exact replay before current stale checks. Mutation, renewed revision, fixed audit and receipt share one transaction; the seven ordinary legacy write grants close atomically. Round1 changes no SQL or canonical contract.
 
-- `supabase/migrations/20261102121057_settings_pricing_operation_contract.sql:92` — `create function public.settings_pricing_request_internal`: locks authority and checks immutable request binding.
-- `supabase/migrations/20261102121057_settings_pricing_operation_contract.sql:139` — `-- Historical replay MUST precede`: returns exact historical result before target comparison.
-- `supabase/migrations/20261102121057_settings_pricing_operation_contract.sql:123` — `create function public.settings_pricing_finish_internal`: appends the minimal receipt in the mutation transaction.
-- `supabase/migrations/20261102121057_settings_pricing_operation_contract.sql:300` — `-- Close every old signature atomically`: revokes all seven legacy fresh-write bypasses.
+- `supabase/migrations/20261102121057_settings_pricing_operation_contract.sql:92` — `create function public.settings_pricing_request_internal`: locks authority and validates immutable request binding.
+- `supabase/migrations/20261102121057_settings_pricing_operation_contract.sql:139` — `-- Historical replay MUST precede`: returns historical completion before target comparison.
+- `supabase/migrations/20261102121057_settings_pricing_operation_contract.sql:123` — `create function public.settings_pricing_finish_internal`: records the minimal receipt inside the write transaction.
+- `supabase/migrations/20261102121057_settings_pricing_operation_contract.sql:300` — `-- Close every old signature atomically`: revokes the seven legacy fresh-write bypasses.
 
-### Verify consequential behavior without overstating pending evidence
+### Exercise the actual fixes at their meaningful boundaries
 
-P-AC1/2 map to immutable pure transitions, all operation-form replay/rollback cases and controlled production-browser loss tests. P-AC3/4/5/6 map to real two-actor stale checks, singleton races, same-value/ABA revisions, terms ordering, revoked/delayed-original races and audit/receipt fault rollback. P-AC7 maps to ACL/RLS/legacy-cutover assertions and manifest/H4 enrollment; the six pending exact test extensions remain blocked rather than weakened.
+P-AC1/2 still map to all-kind immutable/sticky-unknown units and replay/loss tests. R1-1/R1-2 browser assertions exercise stale draft retention, explicit adoption, both neighboring pricing refreshes and whitespace save-to-approval; execution awaits CI. R1-3 executes actual page-to-editor SSR error wiring with mocked read/receipt boundaries. R1-4 preserves real lock/current-authority/audit/receipt assertions and now dispatches the promises before observation (P-AC3/4/5/6).
 
-- `tests/unit/features/settings/mutation-attempt.test.ts:7` — `for (const kind of OPERATION_KINDS)`: exercises every operation identity and sticky unknown transition.
-- `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:78` — `test(`P-I1/P-I2`: registers all thirteen singleton/collection replay variants.
-- `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:243` — `test("P-I2/P-I3 delayed original`: covers real revoke, denial, restoration and exactly one commit.
-- `tests/integration/rls/settings-pricing-operation-contract.rls.test.ts:16` — `test("P-R1/P-R3`: asserts private table, helper and checked/legacy ACL boundaries.
+- `tests/unit/features/settings/mutation-attempt.test.ts:146` — `test(`R1-3 actual pricing page/editor:`: checks both domain/error pairs and rendered write blocking.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:337` — `test("R1-1 pricing drafts`: asserts stale and neighboring-refresh adoption for both editors.
+- `tests/e2e/settings/settings.e2e.spec.ts:322` — `await expect(page.getByTestId("company-current-facts"))`: asserts retained stale draft and independent current facts.
+- `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:348` — `writer = Promise.resolve(call(op))`: starts the real writer before authority-lock observation.
 
-Evidence: actual commands/counts and failures are in the Author implementation checkpoint and author-prefixed evidence logs. The named review-order checker verifies these source stops only.
+### Retain private receipt enrollment and honest gate evidence
 
-Limits: DB/RLS/recovery and browser tests are authored/collected, not locally executed; local baseline migration failed as recorded. Build/typecheck and full units remain failed with named pending-fixture and calendar limitations. No screenshot or authenticated frontend acceptance exists yet. In-memory retention has no reload/crash reconstruction or polling; a missing or denied reconciliation remains unconfirmed. Independent source review, exact-candidate CI and owner visual acceptance remain required; release_ready=false.
+P-AC7/P-R1/P-R3 map to the existing private ACL/RLS assertions, all-role raw-read denial, exact59-table scope equality and validator money/supplier assertions with valid protocol preconditions. The six now-approved edits add fixture/metadata facts; they neither grant receipt reads nor weaken complete-set assertions. All other canonical P-I/P-R permutations remain required.
+
+- `tests/integration/rls/role-harness.atdd.int.test.ts:91` — `const settingsPricingOperationId`: seeds one synthetic schema-valid receipt per tenant.
+- `tests/support/authz/role-harness.ts:41` — `settings_pricing_operations: []`: keeps direct receipt reads denied for every role.
+- `tests/unit/server/commands/pricing-validation-edges.test.ts:21` — `function protocolFixture`: reaches positive and negative business branches nonvacuously.
+- `tests/integration/rls/settings-pricing-operation-contract.rls.test.ts:16` — `test("P-R1/P-R3`: asserts private table, helpers and checked/legacy ACL boundaries.
+
+Evidence: `author-round1-verification-summary.json` records actual commands/native exits and155 focused passes, full-unit3805pass/2fail/1skip, successful build/typecheck/lint and82 collected integration cases. `author-round1-approved-delta-preservation.json` proves the six bounded changes and original browser assertions retain full equality semantics. The named review-order checker validates source stops only.
+
+Limits: required DB/RLS/recovery and production browser tests execute0 locally; SSR read/receipt boundaries are synthetic and do not prove authorization, hydration or refresh behavior. The two clean-baseline-reproduced calendar failures and recovery skip remain candidate full-lane failures/gaps pending exact CI. No screenshot or authenticated frontend acceptance exists. Broad Round1 completed; targeted fix confirmation, exact-candidate CI and frontend/completion acceptance remain required. In-memory attempts have no reload/crash reconstruction or polling; missing/denied reconciliation remains unconfirmed. release_ready=false.

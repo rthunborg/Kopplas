@@ -1,7 +1,7 @@
 {
-  "captured_at_utc": "2026-11-02T12:35:37.926368+00:00",
+  "captured_at_utc": "2026-11-02T13:08:47.5630939Z",
   "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
-  "head": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "head": "cad737c4399bb453ad3eb624911f3ce9218433c5",
   "effective_initial_allocation": "Canonical source-binding unchanged",
   "approved_additional_paths": [
     {
@@ -11,6 +11,34 @@
     {
       "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
       "sha256": "f26efe671b07aef0050faa5d8cc51bb75345748e4a7b132b03877284e6c0dbb9"
+    },
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "sha256": "73fbfab981b62391cfa1c5a7543d4eda14086c61a55dfdecb9f4316d740525d0"
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "sha256": "75688b1a77bc851a764bbbc485f5be3ad3306fd55ff7f309c261d144eed0444a"
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "sha256": "23a1897cc8fb9cda711f5fc3c95d86f68680f7c7bcba41ac3d484e394fbf1dc9"
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "sha256": "471ec572624326090089b3d3afdcef3963f7f4a3844923037b93d50af9ad572f"
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "sha256": "4a516ad9d25a6effaa0e07156f9388491510640ac76f62c87249cf47cf114296"
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "sha256": "9a0a5e50e00cb6d6e254cd4c37e2f73850b55cd0e9725030a7faa9d7f364b870"
+    },
+    {
+      "path": "tests/unit/server/commands/pricing-validation-edges.test.ts",
+      "sha256": "02c9eb1fede410ff04c1bd10fe2bf77b634477c03bf65da21011ef87e117d9f6"
     }
   ],
   "actual_two_file_owner_approval": {
@@ -53,7 +81,7 @@
   "pending_additional_path": null,
   "pending_sites": [],
   "pending_proposal": "shared-helper-compatibility-proposal.md/json",
-  "reason": "Originalfullproducer+3approvedextra paths remain admitted/authoractive. Consolidated6newtest fixture/metadata/pinnedset paths now independentlyconfirmed but await ONE explicitownerdecision throughCoordinator. No pendingpath edits/typeweakening; continue ownedwork. Fullunit currentFAILED3794total3781pass12fail1skip;2calendarfailures unresolvedlocal, no baselinewaiver; hostedCIactualruntimeproof required.",
+  "reason": "Actual human Approved. at Coordinator granted exact six proposal paths; all nine total added test paths now approved. Same High author re-engaged for four independent Round1 patches plus exact six fixture enrollments after fresh read-only ownership/SQLite refresh. No canonical contract or business intent change. Candidate full checks, actual hosted DB/RLS/recovery/browser evidence and authenticated visual acceptance remain unearned; historical failed unit run is not a pass.",
   "runtime": {
     "owner": "Root workflow actor, not this delegate",
     "resourceId": "6b824236-803a-48ce-8871-f4145ca6f325",
@@ -97,8 +125,8 @@
   },
   "prior_zero_resource_statements": "Historical records before Root runtime start remain unchanged, superseded by this current disposition only.",
   "implementation_author_dispatched": true,
-  "product_test_writes": 0,
-  "build_state": "Step3 active author; incomplete with5pendingtest-enrollment allocation paths and hostedruntime proof still required",
+  "product_test_writes": "Admitted only effective approved allocation, including exact nine total approved added test paths; preserve others and canonical source bytes.",
+  "build_state": "in-progress; broad implementation review Round1 completed with four patches; no Step5 done",
   "release_ready": false,
   "completed_shared_helper_independent_confirmation": {
     "reviewer_task": "/root/fixture_extension_review",
@@ -144,17 +172,22 @@
     "source": "Actual human Coordinator-chat reply to exact sharedhelper proposal pins, relayed by Root after direct Root-chat Approval granted; no invented message ID",
     "limits": "Same reviewed3helper sites only, no new normative contract or broad allocation"
   },
-  "admission_status": "approved-for-sequential-implementation",
+  "admission_status": "All known allocation decisions approved; actual author read-only ownership/SQLite refresh completed before resumed writes",
   "implementation_author_task": "/root/producer_build/implementation_author",
-  "pending_additional_paths": [
-    "tests/integration/rls/role-harness.atdd.int.test.ts",
-    "tests/support/authz/role-harness.ts",
-    "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
-    "tests/unit/scope/manifest-shape.test.ts",
-    "tests/unit/scope/manifest-derivations.test.ts",
-    "tests/unit/server/commands/pricing-validation-edges.test.ts"
-  ],
+  "pending_additional_paths": [],
   "completed_receipt_enrollment_independent_confirmation": "receipt-enrollment-independent-confirmation.json",
   "author_reported_unit_milestone": "14newpureprotocol tests pass;103focusedexisting pass. Author-reported partialunit milestone only, not fullstatic/build/runtimegate; no failed/skipped counts invented.",
-  "completed_supplemental_validator_independent_confirmation": "pricing-validation-fixture-independent-confirmation.json"
+  "completed_supplemental_validator_independent_confirmation": "pricing-validation-fixture-independent-confirmation.json",
+  "actual_six_file_owner_approval_record": "six-file-owner-approval.json",
+  "latest_author_ownership_refresh": {
+    "record": "author-round1-resume-integrity.json",
+    "source": "Actual implementation_author milestone",
+    "sqlite_mode": "ro",
+    "integrated_claims": 3,
+    "registered_worktrees": 50,
+    "approved_additional_paths": 9,
+    "canonical_raw_files_unchanged": 9,
+    "admitted_six_preimages_verified": true,
+    "disposition": "Only historical E12 retained overlaps and this task current writer; prior named exclusive assignment retained. No new claims invented."
+  }
 }
