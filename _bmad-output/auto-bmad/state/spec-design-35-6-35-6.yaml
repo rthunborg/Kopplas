@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/specs/spec
 story_id: 35-6
 branch: codex/story-35-6-crm-record-journeys
 status: in-progress
-updated_at: "2026-11-02T14:04:23Z"
+updated_at: "2026-11-02T14:34:18Z"
 started_at: "2026-11-02T13:54:54Z"
 completed_at: null
-active_seconds: 551
-timing_anchor: 1793628263
+active_seconds: 2296
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -39,15 +39,15 @@ completed_phases: [0, 1, 2, 3, 4]
 spec_path: "C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md"
 spec_approved: true
 build:
-  status: ready-for-dev
-  blocking_condition: null
-  followup_review_recommended: false
+  status: blocked
+  blocking_condition: One published PR at this exact candidate revision is required for authenticated visual acceptance.
+  followup_review_recommended: true
   review_loop_iteration: 0
   deferred_count: 0
   warnings: []
 followup_passes: 0
 hitl_halt: null
-review_unverified: false
+review_unverified: true
 story_trace: null
 legacy_review_resume: false
 legacy_review_iteration: null
@@ -55,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [82ce018d]
+commits: [82ce018d, 5abe9dcb, 90c4c708, d42d66f2, 9bbf276c, eb64f6f5, 23c2962c]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -80,7 +80,11 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers: []
+blockers:
+  - Required runtime and exact-head CI pending checkpoint publication
+  - Phase 6 shared automation-summary output requires coordinator allocation/reconciliation
+  - Frontend captures and authenticated owner acceptance pending
+  - Recommended follow-up review pending
 overrides:
   approved_plan_reused: true
   done_checkpoint: true
@@ -90,3 +94,9 @@ overrides:
 constraints: []
 parallel_run_id: e35-6-20261102
 publication_identity_json: "{\"base_branch\": \"main\", \"base_revision\": \"824bed4a92eb388db669ffb60492a7b1dd9fc038\", \"branch\": \"codex/story-35-6-crm-record-journeys\", \"repository\": \"rthunborg/Kopplas\", \"run_id\": \"e35-6-20261102\", \"story_key\": \"spec-design-35-6-35-6\", \"worktree\": \"C:/DEV/Kopplas/tmp/private/e35-worker-35-6\"}"
+development_state: checkpoint_pending
+publication_state: unpublished
+review_state: code-reviewed-pending-followup
+review_revision: 9bbf276cf695a0e127a864e442dbeb2e3a79eab6
+visual_state: pending
+merge_state: not-requested
