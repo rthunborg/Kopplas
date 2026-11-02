@@ -1,0 +1,40 @@
+{
+  "dimension": "determinism",
+  "score": 90,
+  "max_score": 100,
+  "grade": "A",
+  "violations": [
+    {
+      "file": "C:/DEV/K35-5-shell/tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "line": 234,
+      "row": "H3",
+      "severity": "HIGH",
+      "description": "Control flow selects Montör calendar href assertion vs Säljare absence; similar scenario-selected assertion822–823. Enumerated variants are deterministic, but pinned Absolute H3 includes conditional assertion selection; one finding with representative site.",
+      "suggestion": "When separately authorized, use separately declared cases with unconditional outcomes while preserving every role/destination variant; no edit authorized by this review.",
+      "code_snippet": "if (role === \"montor\") await expect(calendar).toHaveAttribute(\"href\", \"/settings/calendar\");\nelse await expect(calendar).toHaveCount(0);"
+    }
+  ],
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 1,
+    "MEDIUM": 0,
+    "LOW": 0
+  },
+  "row_observations": {
+    "C1_C2": "No disabled/focused tests.",
+    "C3_C4_C6": "Reachable actualassertions/explicitfailure; ownedcallbacks awaited, nottautological.",
+    "H1": "No bareorderingwait; hydrationconditionrAF and expect.poll.",
+    "H2": "Publicationwatchdog632/716 not generatedexpiryfixture; logical_period864 not showngoverningexpiryTTL/scheduling.",
+    "H3_error_handling": "Ownedcapturecatch failsclosed/throws722; no swallowedassertion.",
+    "H3_loops": "Notificationdelivereditems genuinelyoptional +unconditionalVisaallatarget. Drawerloop hasmandatoryKunder/navigation. Fixedscenarioarraysnonempty.",
+    "Pact_Maestro": "N/A"
+  },
+  "recommendations": [
+    "Preserve distinction between deterministic scenario-branch H3 rubric finding and production nondeterminism; do not classify failclosedcleanup as swallowedfailure.",
+    "Keep all identity/session/denial/retry/custody gates when any future restructuring is authorized."
+  ],
+  "bonus_eligibility_observations": {
+    "awarded_points": 0
+  },
+  "summary": "One pinnedHIGH H3/informationalscore90. No criticalassertiondefect/hardwait/qualifyingwallclockfixture; advisoryqualityreview, no runtime/sourcewrites."
+}

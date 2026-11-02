@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1.0",
+  "evaluated_at": "2026-11-02T08:01:32.143Z",
+  "repo": "Kopplas",
+  "target": {
+    "type": "epic",
+    "id": "spec-design-35-5",
+    "label": "Story35.5 one-story epic"
+  },
+  "collection_status": "COLLECTED",
+  "gate_basis": "priority_thresholds",
+  "gate_status": "CONCERNS",
+  "rationale": "Seven product ACs are FULL at accepted clean37b (100%); a separately named mandatory final-candidate condition remains PARTIAL. Combined epic-gate P0=2/2 (100%), P1=5/6 (83%; target90%, minimum80%), overall7/8 (88%; minimum80%) yields CONCERNS by deterministic rule5. This is not an introduced product-test gap or a waiver: final metadata-head CI/captures/package/digest/authenticated acceptance/clean controller and mandatory completion wrapper remain blocking before any complete return. Historical37b acceptance never transfers.",
+  "p0_status": "MET",
+  "p1_status": "PARTIAL",
+  "overall_status": "MET",
+  "critical_open": 0,
+  "links": {
+    "trace_report_path": "C:/DEV/K35-5-shell/_bmad-output/test-artifacts/35-5-closeout-traceability.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  },
+  "product_ac_coverage": {
+    "covered": 7,
+    "total": 7,
+    "pct": 100
+  },
+  "uncovered_requirements": [],
+  "partial_requirements": [
+    "E35-5-GATE-FINAL"
+  ],
+  "final_candidate_verification": "PENDING/BLOCKING; current37b HEAD with provisional uncommitted metadata, not accepted final batch head",
+  "release_ready": false
+}

@@ -1,0 +1,298 @@
+{
+  "workflow": "bmad-testarch-automate",
+  "phase": "P6",
+  "status": "completed-bounded-existing-coverage-assessment",
+  "author": "/root/build/sensitive_author",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "skillPath": "C:/DEV/Kopplas/.agents/skills/bmad-testarch-automate/SKILL.md",
+  "mode": "BMad-integrated bounded existing-coverage assessment",
+  "scopeOverride": "Explicit run allocation permits metadata assessment only; no generated tests, fixtures, infrastructure, browser launch, new runtime, status or Git changes. Skill generation/aggregation targets are evaluated as reuse/no-op when existing coverage suffices, not falsely reported as newly generated. This named35.5artifact replaces generic shared automation-summary.md/temp worker outputs to preserve unrelated work.",
+  "stepsCompleted": [
+    "step-01-preflight-and-context",
+    "step-02-identify-targets",
+    "step-03-assessed-no-generation-required",
+    "step-03c-no-generated-output-to-aggregate",
+    "step-04-validate-and-summarize"
+  ],
+  "lastStep": "step-04-validate-and-summarize",
+  "lastSaved": "2026-11-02",
+  "inputDocuments": [
+    "_bmad-output/specs/spec-design-35-5/stories/35-5-authorized-responsive-shell.md",
+    "_bmad-output/specs/spec-design-35-5/SPEC.md",
+    "_bmad-output/test-artifacts/test-design-spec-design-35-5.md",
+    "_bmad-output/test-artifacts/atdd-checklist-35-5-authorized-responsive-shell.md",
+    "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+    "playwright.config.ts",
+    "tests/e2e/dashboard/playwright.ci.config.ts",
+    "_bmad/tea/config.yaml"
+  ],
+  "preflight": {
+    "framework": "existing @playwright/test1.61.1/TypeScript and Vitest integration; Next/React responsive web, not native mobile",
+    "stack": "frontend with server/DB integration coverage",
+    "config": "tea_use_playwright_utils=true; tea_use_pactjs_utils=true; browser/execute auto; capability_probe=true",
+    "libraryGates": "Playwright-utils and pactjs-utils packages absent from package.json; flag alone does not bind installed-library mandate. No dependency/setup expansion authorized. Future adoption belongs to separately authorized framework work, not a required current defect.",
+    "workflowResolution": "resolve_customization.py native0: no prepend/append/facts/on_complete overrides",
+    "runtimeThisAssessment": {
+      "testsRun": 0,
+      "browsersStarted": 0,
+      "servicesStarted": 0,
+      "newTestsGenerated": 0
+    }
+  },
+  "evidenceRevision": "37b31f875fd9ce273642807c41a18010be6aa3c7",
+  "currentMetadataStatus": "Story done markers are provisional under owner-approved one-run metadata batch; final changed metadata head is NOT accepted. No P8 trace/NFR/test-review/gate or aggregate completion is performed here.",
+  "executionMode": {
+    "requested": "auto",
+    "capabilityProbe": "runtime advertises collaboration subagents; no dedicated agent-team tool and no SmartBear/Pact tool namespace; broker not contacted",
+    "resolved": "bounded sequential assessment/no generation targets",
+    "workerDispatch": "Not applicable under explicit metadata-only allocation; no API/E2E worker generation or new helper/fixture/temp-schema files. Not represented as a fresh generated-suite workflow."
+  },
+  "knowledgeBasis": {
+    "principles": [
+      "test-levels-framework",
+      "test-priorities-matrix",
+      "data-factories",
+      "selective-testing",
+      "ci-burn-in",
+      "test-quality",
+      "fixture-architecture",
+      "network-first",
+      "library-integration-mandate",
+      "playwright-utils-mandate",
+      "pact-mcp"
+    ],
+    "scope": "Apply level/risk/isolation/network-first/evidence/checklist principles to existing suites. Package-dependent mechanism examples, generation infrastructure and new worker outputs do not authorize task-scope expansion."
+  },
+  "coverageStrategy": "Selective reuse: browser checks actual composition, focus/reflow and authoritative session/navigation outcomes; existing integration owns exhaustive catalog/role/RLS/negative-path behavior; unit/required CI retains unchanged pure projection/domain integrity. No new product logic needs duplicated API/component/unit suites.",
+  "coveragePlan": [
+    {
+      "ids": [
+        "E35-5-T-AC1",
+        "E35-5-T-loaded"
+      ],
+      "priority": "P1",
+      "level": "E2E plus inherited integration",
+      "binding": "Four real Säljare/Montör desktop/phone loaded journeys at line202 compare complete supplied href sequence, active route, identity, ordinary destinations/Bell/profile; seven role-aware integration cases retain all seeded-role catalog/projection/RLS authority.",
+      "outcome": "passed37b; no inferred browser journey for unlisted roles"
+    },
+    {
+      "ids": [
+        "E35-5-T-AC2",
+        "E35-5-T-AC5",
+        "E35-5-T-focus-dialog"
+      ],
+      "priority": "P1",
+      "level": "E2E",
+      "binding": "Lines286/302:248px sidebar/56px topbar/24px gutters; actual360x640 named modal, trap/wrap/Escape/close/focus restore, resize scroll and reduced motion. Existing16.5-E03–E05 retain dirty-navigation/selected-child/late-result source-owner outcomes.",
+      "outcome": "passed37b; no fabricated new editor or async shell lifecycle"
+    },
+    {
+      "ids": [
+        "E35-5-T-AC3",
+        "E35-5-T-revoked",
+        "E35-5-T-denied"
+      ],
+      "priority": "P0",
+      "level": "E2E plus integration/RLS",
+      "binding": "Original generic-denial/no-data role case and line415 isolated stale renderedhref captured before/after real role mutation, fresh same-cookie protected document/server denial and fresh reduced projection; owned actual-revocation images at line962. Native popup creation/same-tab prefetch not claimed. Seven integration cases include real role projection, direct-read/write negatives, cross-tenant/missing targets, inactive/malformed contexts and relationship loss.",
+      "outcome": "passed37b; original authority5 unchanged"
+    },
+    {
+      "ids": [
+        "E35-5-T-AC4"
+      ],
+      "priority": "P1",
+      "level": "E2E and selected visual",
+      "binding": "Lines202/360/469:visible identity, actual phone action/link44px targets incl Visaalla, actual computed-text2x synthetic enlargement/reflow, failure actions reachable.31 originals contain seven minimum real consumers and desktop/phone states.",
+      "outcome": "passed37b; synthetic text enlargement is not native zoom/virtual-keyboard/AT proof; exhaustive device/manual scope deferred"
+    },
+    {
+      "ids": [
+        "E35-5-T-AC6",
+        "E35-5-T-error-retry"
+      ],
+      "priority": "P1 with P0 denial/revocation enforcement",
+      "level": "E2E",
+      "binding": "Line469 actual mounted SignOutButton rejects controlled undispatched local POST/auth/v1/logout500 with actual observed local origin/query; persistent exact alert/sameURL/tenant/user/enabledSAMEcommand; fresh protected server identity; fault removed and explicit real retry→login/protectedredirect. Capture line895 duplicates only visual-state/custody aspect, not a replacement assertion. Five operative owned rows loaded/denied/revoked/error-retry/focus-dialog are meaningful.",
+      "outcome": "passed37b; no real-provider failure, response-loss, fake success or SQL identity proof"
+    },
+    {
+      "ids": [
+        "E35-5-T-AC7"
+      ],
+      "priority": "P0",
+      "level": "existing unit/integration plus essential E2E",
+      "binding": "Required native five-job CI,3780units,2163integrationpassed/52pending, recovery1,80ordinarybrowser and79dashboard. Existing role matrix, cost/margin/monetary withholding, commands/transactions/files remain inherited; no product authority paths changed.",
+      "outcome": "passed applicable37b evidence; no blanket coverage claim for every deferred state/command"
+    }
+  ],
+  "nativeEvidence": {
+    "requiredPR": {
+      "run": 41334064672,
+      "status": "success",
+      "jobs": [
+        "verify",
+        "db",
+        "e2e",
+        "recovery-storage-loader",
+        "entry-ui-feedback"
+      ],
+      "provenance": "Root nativeAPI/Git verifies testmerge5f593c8f26be6393fd46edb1cb295251bee88580 has candidate-identical treea122ddf3d0adb823794bc4eff055ecb2b29bfdd2; not source-native37b assertion for ordinary JSON."
+    },
+    "dashboard": {
+      "run": 41334071796,
+      "job": 124930569023,
+      "passed": 79,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "roleCases": 27,
+      "originalAuthorityCases": 5,
+      "originalFunctionalCases": 15,
+      "newOwnedCaptureCases": 12,
+      "rolePriorityCounts": {
+        "P0": 7,
+        "P1": 20
+      },
+      "allRoleSinglePassedRetry0": true,
+      "maxRoleDurationMs": 3899,
+      "originalPngBuffers": 31,
+      "oldMaskedExcluded": 6,
+      "browserStop": "success",
+      "localSupabaseStop": "success"
+    },
+    "ordinary": {
+      "passed": 80,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "nativeCommit": "5f593c8f26be6393fd46edb1cb295251bee88580",
+      "inheritedJobs": [
+        {
+          "id": "16.5-E01",
+          "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+          "line": 217,
+          "status": "passed",
+          "retry": 0
+        },
+        {
+          "id": "16.5-E02",
+          "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+          "line": 349,
+          "status": "passed",
+          "retry": 0
+        },
+        {
+          "id": "16.5-E03",
+          "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+          "line": 418,
+          "status": "passed",
+          "retry": 0
+        },
+        {
+          "id": "16.5-E04",
+          "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+          "line": 564,
+          "status": "passed",
+          "retry": 0
+        },
+        {
+          "id": "16.5-E05",
+          "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+          "line": 661,
+          "status": "passed",
+          "retry": 0
+        }
+      ]
+    },
+    "integration": {
+      "passed": 2163,
+      "failed": 0,
+      "pending": 52,
+      "total": 2215,
+      "roleAwareRLS": {
+        "file": "tests/integration/rls/role-aware-phase-a-surface.atdd.int.test.ts",
+        "passed": 7,
+        "failed": 0,
+        "pending": 0
+      },
+      "pendingDisposition": "No pending test counted as coverage; existing scaffold/storageopt-in qualifications retained. Required CI SUPABASE_TEST_REQUIRED=1; no local service or new rerun."
+    },
+    "unit": {
+      "passed": 3780,
+      "failed": 0,
+      "skipped": 0
+    },
+    "recovery": {
+      "passed": 1,
+      "failed": 0,
+      "pending": 0
+    },
+    "proofPaths": {
+      "dashboard": "C:\\DEV\\Kopplas\\tmp\\private\\story35-5-ci\\37b31f87\\dashboard\\dashboard-browser.json",
+      "ordinary": "C:\\DEV\\Kopplas\\tmp\\private\\story35-5-ci\\37b31f87\\pr-native-general\\general-browser.json",
+      "integration": "C:\\DEV\\Kopplas\\tmp\\private\\story35-5-ci\\37b31f87\\integration\\full-integration.json",
+      "rootSummary": "C:\\DEV\\Kopplas\\tmp\\private\\story35-5-ci\\37b31f87\\final-native-summary.json"
+    }
+  },
+  "fixtureAndPrivacyAssessment": {
+    "sourceSHA256": "171ab9d9bb4fc76cae268f212abe532d1d26bd4692d5781e5dc8c0b7f243816e",
+    "original15ExactBytePrefixSHA256": "6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd",
+    "originals": "12newcases own10uniqueAuthIDs each; retries0 scopes onlynewdescribe. Close owncontext→ONLYregistered ownprofile deletion in2connectedcases→attemptALL10strictredactedAuthdeletes→pairedcleanup→allassertion/error/deadlinegates→onlyBufferattachment. Any failedgate discards frames. No shareduserrevoke/globalusers/newquerydesign. No independent Auth-recordrequery/JWTinvalidity or stronger best-effort tenant-erasure claim.",
+    "profileQueries": "Exact existing approved membership/profileinsert/scopeddelete patterns; actual missing-profile54ce failure repaired fixture admission, not DENIED→empty relabel. Healthyempty/zeroalert assertions retained.",
+    "controlledFailures": "Local undispatched500 seams only; noproviderassertion or raw error/credential/header/token/nativebody export in this report."
+  },
+  "captureInventory": {
+    "families": {
+      "owned-shell": 5,
+      "owned-record-context": 6,
+      "owned-connected-context": 6,
+      "owned-bell": 6,
+      "owned-signout": 4,
+      "owned-revoked": 4
+    },
+    "total": 31,
+    "geometry": {
+      "1280x800": 14,
+      "1440x900": 1,
+      "360x640": 16
+    },
+    "authDesktopOnly": "Actual signed-out blank Login1440x900; allotherdesktop1280x800. No rescale/mask/crop originals.",
+    "manifestSHA256": "7ca369d8f69494f290064d215989b7a0eda056e02eeac3d8492479ed00952047"
+  },
+  "coverageGaps": {
+    "newRequiredTestExpansion": [],
+    "reason": "No unaddressed introduced P0/P1 gap established by this bounded existing-coverage assessment. No speculative new tests or fixture expansion.",
+    "inheritedNotClaimed": [
+      "loading: no exact affected positive source-binding demonstrated",
+      "connection-required: generic failure is not positive persistent connection explanation",
+      "unavailable: source-owned16.2-AUTHZ-004 seam, no new shell browser failure trigger claimed"
+    ],
+    "inheritedExecuted": [
+      "dirty-navigation/selectedchild/late-result: actual16.5-E03/E04/E05 passed attempt0"
+    ],
+    "retiredOwnedDuties": "Approved operative-v2 retirement is preserved, not N/A relabel or newpositivecoverage."
+  },
+  "Playwright Utils deviations": "None generated. tea_use_playwright_utils=true but required package is absent; two-gate mandate inactive. Reuse existing directPlaywright fixture/network mechanisms; no library migration/dependency/harness authorized. Framework adoption is an optional separately scoped follow-up, not a new required coverage gap.",
+  "Pact.js Utils deviations": "N/A: no separate provider contract added/changed, no Pact dependency/contract artifacts generated. SmartBear/Pact tool namespace absent from enabled tool inventory; broker not contacted and no broker data inferred.",
+  "validation": {
+    "checklistDisposition": "Framework/config/ACprioritymapping/actualassertions/fixtureisolation/cleanup/executedcounts/evidenceprovenance checked; generation-only helper/files/workeraggregation sections N/A under explicit assessment-only allocation. No fresh testreview score or P8 gate.",
+    "noNewRuntime": true,
+    "noBrowserSessionsStarted": true,
+    "newTests": 0,
+    "newFixtures": 0,
+    "newDependencies": 0,
+    "sourceTestStatusGitChanges": 0,
+    "reportOnly": true
+  },
+  "assumptionsAndLimits": [
+    "Accepted37b ownercomment6571422748 and digest e997b6de5a9a06099ef093116f36248360bff9b0040ddcefab38ef27cc410fd6 bind only clean37b, not this metadatahead.",
+    "NotificationPreferences no-gap inline caption and Bell cold GETerror+emptycopy are inherited disclosed limitations, not fixed/waived; Bellerror captures do not prove healthyempty.",
+    "Exhaustive device/contrast/reflow/manual/AT/daylight/virtualkeyboard work deferred REL1/UI,REL2/QAaccessibility; REL3/Coordinator finalPhaseB consolidation.",
+    "Single successful retry0 run is not repeated burn-in/stress or quantified performance/SLO proof.",
+    "Optional remainder of release run cancelled, not executed coverage;52integrationpending not coverage."
+  ],
+  "nextWorkflow": "Root owns phase/state; later authorized P8 trace/NFR/test-review uses this assessment and exactnativeproof. Final changedhead freshCI/captures/package/owneracceptance/cleancontroller remain required. P6 report is not finalacceptance/merge/release; release_ready=false.",
+  "release_ready": false
+}

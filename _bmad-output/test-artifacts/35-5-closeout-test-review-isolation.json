@@ -1,0 +1,49 @@
+{
+  "dimension": "isolation",
+  "score": 100,
+  "max_score": 100,
+  "grade": "A",
+  "violations": [],
+  "passed_checks": 3,
+  "failed_checks": 0,
+  "total_checks": 3,
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 0,
+    "LOW": 0
+  },
+  "checks": [
+    {
+      "row": "C5",
+      "status": "PASS",
+      "evidence": "Configured response seams drive mounted application and actual server/navigation/retry assertions, not mock-only selfassertion."
+    },
+    {
+      "row": "H4",
+      "status": "PASS",
+      "evidence": "Global fixture data read-only; revocation uses fresh isolated fixture+finally. New capture invocation owns contexts/profile/users/buffers; allcleanupgates beforeattach, no unresetsharedstate."
+    },
+    {
+      "row": "M4",
+      "status": "PASS",
+      "evidence": "Describes58/199/732."
+    }
+  ],
+  "recommendations": [],
+  "bonus_eligibility": {
+    "perfectIsolation": true,
+    "other_bonuses": "NOT_ASSESSED"
+  },
+  "scope": {
+    "file": "C:/DEV/K35-5-shell/tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+    "sha256": "171ab9d9bb4fc76cae268f212abe532d1d26bd4692d5781e5dc8c0b7f243816e",
+    "full_file_read": true,
+    "assigned_rows": [
+      "C5",
+      "H4",
+      "M4"
+    ]
+  },
+  "summary": "No C5/H4/M4 finding; static scopedisolation100. No independent cleanuphelper correctness/tenant-erasure/JWT invalidation claim; runtime0/writes0."
+}

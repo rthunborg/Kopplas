@@ -1,0 +1,57 @@
+{
+  "dimension": "performance",
+  "score": 85,
+  "max_score": 100,
+  "grade": "B",
+  "violations": [
+    {
+      "file": "C:/DEV/K35-5-shell/tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "line": 782,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "Recordcontext loop navigates then asserts destinationemptydata without data-specific readiness preregistered. domcontentloaded+later identity/heading aregeneric. Pinnedpredicate only; no SSRdefect/observedrace established.",
+      "suggestion": "In separately authorized testwork, preregister/await explicitdestinationdata signal without weakeningrealserverauthority; no edit authorized now.",
+      "code_snippet": "await page.goto(destination.href, { waitUntil: \"domcontentloaded\" });\nawait expect(page.getByTestId(destination.marker)).toBeVisible();"
+    },
+    {
+      "file": "C:/DEV/K35-5-shell/tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "line": 1001,
+      "row": "H5",
+      "severity": "HIGH",
+      "category": "oversize-test-file",
+      "description": "1016contentlines/1017splitentries exceed Absolute1000; file-level finding deduped with maintainability.",
+      "suggestion": "Only separately authorized scope may restructure; no bytechange/refactorauthorized here.",
+      "code_snippet": "const fresh = await context.newPage();"
+    }
+  ],
+  "passed_checks": 1,
+  "failed_checks": 2,
+  "total_checks": 3,
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 1,
+    "MEDIUM": 1,
+    "LOW": 0
+  },
+  "checks": {
+    "M1": "WARN at782, notblanketabsence; preferences807–813/Bell838/868/884preregisterreadiness",
+    "M6": "PASS; storedpromiseslaterawaited",
+    "H5": "FAIL threshold/filededup"
+  },
+  "performance_metrics": {
+    "native_role_max_duration_ms": 3899,
+    "basis": "Earned37b notnewmeasurement",
+    "application_latency": "NOT_MEASURED",
+    "parallelization_capacity": "NOT_ASSESSED"
+  },
+  "bonus_eligibility": {
+    "networkFirst": false
+  },
+  "recommendations": [
+    "Keep readiness/oversize recommendations advisory.",
+    "No H1duplicate: otherworkerowns.",
+    "No runtime/app latency/capacity defect inferred."
+  ],
+  "summary": "Pinned M1/M6/H5 scoped staticreview85; no writes/runtime/resources/broadinspection."
+}
