@@ -340,3 +340,32 @@ Pending publication is resumable, not status done. Legacy anchors without the
 field retain legacy semantics. Aggregate anchor state belongs to the coordinator
 control context; never copy pending sibling anchor/sprint snapshots into story
 branches. Import only exact immutable per-story receipts into aggregate state.
+
+## Schema-2 parallel pending publication and resume
+
+> **Synthetic qualification complete; operational/adoption gates remain.**
+> See the [verification record](../../../../docs/process/spec-parallel-pr-verification-2026-11-02.md).
+> This is not a product run, source-adoption decision or admission authority;
+> current product qualification remains coordinator-owned. Schema 1 is unchanged.
+
+
+Only explicit registered schema-2 stories/story-pr runs use this adapter. The
+common-Git SQLite store remains claim/owner/generation authority across both
+versions; no copied YAML or parallel_run_id marker creates authority. Keep normal
+story state/report writers and immutable publication_identity_json and
+publication_operation_json. Workers own only their assigned story's artifacts;
+the coordinator alone owns aggregate state, reports and global ledger.
+
+PR-ready, blocked, pending acceptance and merge verification retain their paths,
+domains, branches, worktrees and slots under the repository-wide cap of two.
+PR-ready never means integrated or epic done. Resume validates the same run,
+assignment generation, original folder+ID, source/workflow pins and actual PR
+identity; changed candidates invalidate revision-specific evidence. Same-PR fixes
+before merge custody retain immutable PR/branch/worktree/base identity.
+
+During merge custody freeze writers. Resume an interrupted provider success by
+observing the original durable intent, then verify combined evidence at current
+qualified main. Never clear custody because an RPC timed out. Only verified main
+integration may enter coordinator aggregate landed state. Finalization needs all
+required merges and exact-main final/trace/reconcile/retro/delivery evidence; it
+creates no final epic product PR. Legacy resume and schema-1 journals remain unchanged.
