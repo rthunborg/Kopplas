@@ -103,3 +103,41 @@
 3. Currenthead realcaptures and authenticated visualacceptance still required; no stale/manual acceptance request made.
 
 **Next:** Push samePR nativefix checkpoint, obtain actual exacthead requiredPRchecks and retain second fullrun41469021274 artifacts; no blind repeat of known failing full lane.
+
+## Report — 2026-11-02T16:52:51Z (halted — required runtime allocation)
+
+**Story:** `spec-design-35-6-35-6` (spec design-35-6, story 35-6) — first-and-last-in-epic.
+**Spec:** `C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md`
+**Branch:** `codex/story-35-6-crm-record-journeys` (HEAD `a19ad2f`).
+**Pipeline status:** BLOCKED checkpoint. Authorized implementation and fixes are committed/reviewed; required P6 list-error/retry proof exceeds current runtime allocation. No development-complete, PR-ready, integration or release claim.
+**Continues:** Only after Coordinator chooses a supported allocation for playwright.config.ts; preserve same source identity and actual prior evidence.
+
+**Timing:** started 2026-11-02T13:54:54Z; completed in progress — elapsed 2h 57m (≈1h 50m AI-run, ≈1h 07m human/idle wait); resumed 3×.
+
+**Phases run:** 0 preflight/High triage; earned2-3 reused;4ATDD;5implementation/six-layer High review/targeted native fixes; Coordinator historicalP6 stoppedStep03
+**Skipped:** P6aggregation/validation NOT_RUN; Phase7 follow-up pending; aggregatePhase8 Coordinator-only; no done flip or merge
+
+**Overrides:** Schema2 story-PR checkpoint route; exact11ownedpaths; SolHigh sensitive author/reviews; no additional source/seam/config/claim edits
+
+**TEA:** 11E35sourcecases;16state identities retained;98plannedPNGs/72selectednames. Current repair runtime0/images0. Actual CoordinatorP6 BLOCKED772/b143: APItrue/E2Efalse/zero generated. Summary SHA256 D2080582DC7345596BABB84EE4E1C044E7287EE1FDDB2FFEE6F52D14A8892ACF.
+
+**Build:** Five existing CRM presentation consumers implemented; contact checkbox/facility retention and child sheet overflow fixed. Native-proven test timestamp/navigation/proxy/semantic-target corrections retain all original assertions. Type/focusedlint/test review121e passed; production build/bundle sourceb143 passed. Frozen historical suffix exact; SRO16references0errors.
+
+**Review:** One full six-layer High round, followed by scoped High confirmations; final test revision121e94445eef918c289f2126fdece3268170c640. Follow-up recommended=true, review deferrals0. Unchanged review reused; no broad follow-up claimed.
+
+**Retrospective:** (none)
+
+**Open questions:**
+1. Actual same-path NextLink must cause a held fresh downstream read and genuine success; a forced reload cannot count.
+
+**Deferred work:**
+1. Existing three release items retain original owners/status. Required P6/runtime/visual gaps are DEVELOPMENT BLOCKERS, not new release deferrals.
+
+**⚠️ Needs human:**
+1. Coordinator allocation: playwright.config.ts is outside the assignment. Reuse existing dashboard server-read proxy first, production build/start second through proxy, preserving runtime guards. No new production seam/framework proposed. Pinned helper line1031 rejects schema2 amend-blocked; no maintenance mutation attempted.
+2. Historical772 ordinaryCI41473808206: units3780passed0skip; integration2163passed0failed52skip; isolatedrecovery1passed; essentialbrowser79passed1failed0skip (unowned My-day15.6-E09 aborted-v-finished lateRSC).
+3. Historical3eb fullrun41469021274:478passed28failed22skip. OwnedCRM37passed7failed; all7causes subsequently patched but unexecuted. 21unowned full failures remain distinct. Browser19serialscheduling+3explicitquote skips earn no coverage.
+4. Coordinator P6 result: C:/DEV/Kopplas/tmp/private/e35-control/tmp/private/e35-p6/p6-result-2026-11-02T16-03-48-528Z.json; standard summary remains control-owned. No copy-back or successor pass.
+5. Current-head images/acceptance, repaired CRM execution and follow-up review remain outstanding.
+
+**Next:** Draft PR127 receives this final checkpoint. Retain clean local blocked checkpoint and shared reservation; Coordinator resumes through a valid allocation route. No blind full-suite rerun, waiver, self-merge or deployment.
