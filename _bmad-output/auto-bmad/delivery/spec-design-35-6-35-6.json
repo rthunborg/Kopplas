@@ -1,7 +1,7 @@
 {
   "policy_version": "2026-10-19",
-  "contract_reconciliation": "Current 2026-10-26 frontend visual amendment remains mandatory. Seven ACs/sixteen states and D1-D5 retained; frozen canonical suffix exactly matches original baseline Git bytes. Frontmatter in-review is workflow metadata only; completion result remains blocked/pending because full units, runtime/integration/RLS/recovery/storage, visual acceptance, final independent review/exact-head CI and completion wrapper are unearned. Three medium Round 1 patches applied in one batch; no done/release claim.",
-  "evidence_revision": "Reviewed candidate d42d66f247e6027a82c6d0d3da76f6e85b38efc2 plus final uncommitted Round 1 patch worktree; original baseline90c4c708c0cb87b16cb6bc10fd981ebd9978d76b; refresh after patch commit",
+  "contract_reconciliation": "Current 2026-10-26 frontend visual amendment remains mandatory. Seven ACs/sixteen states and D1-D5 retained; frozen canonical suffix exactly matches original baseline Git bytes. Source/test evidence_revision is code/fix head9bbf276cf695a0e127a864e442dbeb2e3a79eab6; forthcoming author reconciliation commit is documentation only. Story status blocked records actual incomplete checkpoint/HALT. Independent code review passed after six SolHigh Round1 layers and clean targeted High delta/trail review; full units, runtime/integration/RLS/recovery/storage, actual frontend visual acceptance, exact-head CI and successful completion wrapper remain failed/pending. No done/release claim.",
+  "evidence_revision": "9bbf276cf695a0e127a864e442dbeb2e3a79eab6",
   "development_checks": [
     {
       "name": "typecheck",
@@ -36,12 +36,12 @@
     {
       "name": "required integration RLS recovery storage browser",
       "status": "pending",
-      "evidence": "UNRUN,0executed0skipped; no trusted resourceGuardContext and no managed launch. Browser --list exits1 before discovery because .auth/fixture.json absent. Coordinator isolated exact-candidate hosted lane next."
+      "evidence": "UNRUN,0executed0skipped; no trusted local resourceGuardContext/managed launch. Prior --list failed before discovery on missing.auth fixture. Root must publish checkpoint PR then supported exact-head isolated hosted full lane with release_validation=true, required int/RLS/recovery/storage and actual counts. No skip credited."
     },
     {
       "name": "frontend visual acceptance and exact-head CI",
       "status": "pending",
-      "evidence": "Pending no actual captures/acceptance. Screenshot source now uses fixed fullPage:false populated record and scrolled child identity captures at360x640/1440x900;360x400CSSzoomproxy supplemental only. Added real768x640 facility-option/rejected-contact chrome/field/action reachability source regression. Ten active source cases,0executed0skipped runtime; exact-candidate execution required."
+      "evidence": "Actual clean9bb frontend-controller local --base90c4c708c0cb87b16cb6bc10fd981ebd9978d76b and completion-gate baseline delivery_gate.py assignedrecord both exit1: One published PR at this exact candidate revision is required for authenticated visual acceptance. Arguments were separate. Delivery helper never invoked; no completion/status writes. Root next: authorized checkpoint PR then scripts/ci/checkpoint-dispatch.mjs release_validation=true exact-head isolated hosted full, actual authenticated visual acceptance. No screenshots/runtime executed;10active sourcecases only."
     },
     {
       "name": "assigned source identity",
@@ -50,8 +50,8 @@
     }
   ],
   "independent_review": {
-    "status": "pending",
-    "evidence": "Six Round1 routes SolHigh on d42d66f247e6027a82c6d0d3da76f6e85b38efc2: nativeedge findings[], security nofindings, blind no concreteintroduceddefect, intent alignedD1-D5 but runtimeunearned, verificationgap2mediumaccepted, externalCLI executed1mediumshortviewport finding. Final cmdTYPE display failed; nativepath read recovered retained external result, not unavailable. Three accepted patches applied; native consequential delta review pending. Score9 followup recommended;deferred[]. No complete independent review pass."
+    "status": "passed",
+    "evidence": "Primary review d42d66f247e6027a82c6d0d3da76f6e85b38efc2: all six SolHigh layers completed (nativeedge[],security nofindings,blind no concrete introduced defect,intent alignedD1-D5/runtimeunearned,verification-gap2medium,externalCLI executed1medium). All3medium patches committed at9bbf276cf695a0e127a864e442dbeb2e3a79eab6. Targeted independent SolHigh consequential delta+author trail review at9bb returned exactly No findings. Final cmdTYPE failure was display-only and recovered by nativepath read. Code review passed; no runtime/visual/development-complete/release proof. Author trail16references checked and reviewer confirmed at9bb."
   },
   "deferred_release_validation": [
     {

@@ -2,7 +2,7 @@
 title: "Story 35.6: CRM Record Journeys"
 type: feature
 created: 2026-11-02
-status: in-review
+status: blocked
 review_loop_iteration: 0
 baseline_revision: 90c4c708c0cb87b16cb6bc10fd981ebd9978d76b
 release_ready: false
@@ -151,7 +151,7 @@ E35-6-REL-1 UI visual/device/composite contrast/reflow, REL-2 QA/accessibility m
 
 ## Implementation and verification checkpoint - 2026-11-02
 
-Implementation author: Sol High implementation delegate. Baseline: `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`; initial evidence below concerns the assigned implementation working tree. Round 1 reviewed candidate `d42d66f247e6027a82c6d0d3da76f6e85b38efc2`; the current uncommitted patch worktree follows that candidate. Frontmatter status in-review is workflow metadata only; the completion result remains blocked/pending because runtime, visual, full-unit and final review/CI gates are unearned. release_ready=false. Checked product tasks above mean source adaptation only; runtime acceptance and the E2E execution task remain pending.
+Implementation author: Sol High implementation delegate. Baseline: `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`; initial evidence below concerns the assigned implementation working tree. Round 1 reviewed candidate `d42d66f247e6027a82c6d0d3da76f6e85b38efc2`; the fixes are committed at `9bbf276cf695a0e127a864e442dbeb2e3a79eab6`. Targeted independent Sol High delta and trail review returned exactly No findings at that fix head. Frontmatter status blocked now records the actual incomplete checkpoint/HALT result: runtime, visual, full-unit and exact-head CI/completion gates remain unearned. release_ready=false. Checked product tasks above mean source adaptation only; runtime acceptance and the E2E execution task remain pending.
 
 Owner-authorized presentation choices use the accepted DESIGN/EXPERIENCE and existing tokens: stack child identity/actions on phone, wrap long Swedish values, use restrained section bands and bordered task cards, keep a visible canonical customer-list return, and show existing contact/facility relationship text without inventing a destination. Child forms retain shared Dialog/DialogActions and their action/remount/hidden identity semantics; fieldsets group current fields, and the existing summary now receives fieldErrors for focusable error links. The contact primary checkbox uses echoed rejected values so retained input survives form reset. Round 1 adds a trailing hidden false fallback: checked on remains the first FormData value, while an unchecked field explicitly reaches the existing parser/update command as false. Both child dialogs use the existing Dialog sheet variant so its viewport-bound flex layout keeps the title/close chrome outside scrolling form content; this reuses the accepted SideSheet composition without changing shared focus or ordinary child pending semantics. Archive changes are presentation only; customer view/target checks, unknown block and child success branches are unchanged. Existing related-area content is retained; no new count, route or capability is inferred.
 
@@ -170,7 +170,7 @@ Ten active E35-6 acceptance cases now exist in source: the eight committed ATDD 
 | Bounded unit diagnosis | Full-run failures in unchanged `with-calendar-feed-runtime.test.ts`: test at 1992 compares CRLF/LF SQL bodies; test at 2237 fails source extraction with undefined.split. The third failure, integration-test-partitions.test.ts:85, compares native/backslash TEMP with forward-slash TEMP. Focused native Windows TEMP run of that file passed 8/8, 0 skipped. Unowned tests/runtime/migrations have zero diff from baseline; no source rewrite or third broad retry. |
 | Browser discovery | `pnpm test:e2e tests/e2e/crm/customers.e2e.spec.ts --list` failed before discovery: missing tests/e2e/.auth/fixture.json. No discovered/executed coverage is credited. |
 | Integration/RLS, recovery/storage, browser and visual | UNRUN: 0 executed, 0 skipped. No trusted resourceGuardContext was available for managed launches; no DB/server/browser was started. Isolated hosted candidate execution remains the Coordinator's next action. |
-| Independent sensitive review, exact-head CI, frontend acceptance and completion wrapper | Six Sol High Round 1 routes returned the findings/dispositions recorded below. Three accepted medium patches are applied; native consequential delta review is pending. External CLI review executed and its finding is addressed, but no final independent review pass is claimed. Other gates remain pending; no status/delivery helper or completion wrapper was invoked. |
+| Independent sensitive review, exact-head CI, frontend acceptance and completion wrapper | Independent code review passed: all six Sol High Round 1 routes completed at d42, three medium fixes committed at 9bb, and targeted independent Sol High delta/trail review at 9bb returned exactly No findings. Runtime/visual readiness is not inferred. Both actual clean-candidate gate commands exited 1 before the delivery helper: one published PR at the exact revision is required. No completion/status writes occurred. |
 
 Named blockers: **DEV-UNIT-WINDOWS** (Coordinator/CI owner): obtain exact-head isolated CI unit evidence for unchanged calendar-feed source-extraction failures; change no unowned fixture to hide them. **DEV-RUNTIME-VISUAL** (Coordinator/UI owner): publish the reviewed candidate through the authorized checkpoint route, run the supported isolated production-server integration/browser/capture lane, inspect actual counts/artifacts, and obtain current authenticated frontend acceptance. Resume completion only after applicable checks, independent review and the project completion wrapper pass. Physical-device/manual release checks remain E35-6-REL-1/2; final Phase B consolidation remains REL-3. Named release people/evidence are not invented; E16's 14-item and E20 caveats remain.
 
@@ -180,7 +180,7 @@ D5 remains a disclosed limitation: child read failures flatten to arrays with er
 
 ### Round 1 - reviewed candidate d42d66f247e6027a82c6d0d3da76f6e85b38efc2
 
-All six routes used gpt-6.1-sol / high, as recorded by the parent review handoff. Original round findings concern the reviewed candidate; current fixes still need native consequential delta review.
+All six routes used gpt-6.1-sol / high, as recorded by the parent review handoff. Original round findings concern the reviewed d42 candidate; the three fixes are committed at `9bbf276cf695a0e127a864e442dbeb2e3a79eab6`. Targeted independent Sol High consequential delta and trail review at that fix head returned exactly No findings. Independent code review passed with runtime/visual evidence limits retained.
 
 | Route | Actual returned result |
 | --- | --- |
@@ -199,15 +199,36 @@ Addressed:
 2. Replaced the populated-record full-page capture with fullPage:false and added fixed-viewport scrolled child identity captures after in-viewport assertions. Primary dimensions remain 360x640 and 1440x900; 360x400 CSS enlargement/occlusion stays explicitly supplemental.
 3. Reused existing Dialog variant=sheet in both allocated child consumers; its bounded scrolling body keeps chrome reachable. Added one real 768x640 source regression with an actual facility option and rejected contact, plus the equivalent facility rejection: title/close remain in viewport while error links, fields and save are reached, and close restores the invoker. No shared Dialog/style or child safety contract was changed.
 
-Round 1 patch verification: pnpm typecheck passed; focused ESLint on six allocated source/test files passed; pnpm build and pnpm verify:bundle-containment passed again after product changes. Four direct pure FormData/parser probes (checked/unchecked x valid/invalid name) passed through the unchanged parser. These are not UI/DB persistence proof. Full units were not broadly repeated; prior failed/skip evidence is retained. Runtime/integration/browser/visual remain UNRUN, 0 executed, 0 skipped. Exact-head CI, authenticated frontend acceptance, native consequential delta review and the completion wrapper remain pending. No development-complete/done/release claim.
+Round 1 patch verification: pnpm typecheck passed; focused ESLint on six allocated source/test files passed; pnpm build and pnpm verify:bundle-containment passed again after product changes. Four direct pure FormData/parser probes (checked/unchecked x valid/invalid name) passed through the unchanged parser. These are not UI/DB persistence proof. Full units were not broadly repeated; prior failed/skip evidence is retained. Runtime/integration/browser/visual remain UNRUN, 0 executed, 0 skipped. Targeted independent Sol High delta/trail review at 9bb returned exactly No findings; code review passed. Exact-head CI, authenticated frontend acceptance and successful completion-wrapper admission remain pending; the actual pre-helper gate refusal is recorded below. No development-complete/done/release claim.
 
 ```json
 {"round":1,"intent_gap":0,"bad_spec":0,"patch":3,"medium":3,"defer":0,"reject":0,"score":9,"followup_review_recommended":true,"deferred":[]}
 ```
 
+## Auto Run Result
+
+Result: **blocked / incomplete checkpoint**. Product and tested source are committed at `9bbf276cf695a0e127a864e442dbeb2e3a79eab6`; this final author reconciliation is documentation only. Primary independent review covered `d42d66f247e6027a82c6d0d3da76f6e85b38efc2`; all six Sol High routes completed, three medium patches were fixed, and targeted independent Sol High delta/trail review through 9bb returned exactly No findings. Independent code review passed. This does not grant development completion, runtime/visual acceptance, release approval or deployment authority.
+
+Final source evidence: typecheck, focused six-file lint, production build and bundle containment passed on source committed at 9bb. Retained full-unit evidence is 3776 passed, 3 failed and 1 skipped (3780 total); focused CRM 126 passed, native Windows TEMP diagnostic 8 passed, and four direct pure FormData/parser probes passed. Broad units were not repeated after two equivalent failed approaches. Required integration/RLS/recovery/storage, browser and visual execution remain UNRUN, 0 executed and 0 skipped. Ten E35-6 source cases are declared active; no local runtime coverage is inferred.
+
+Both actual clean-9bb commands returned exit 1 with the same exact message: `One published PR at this exact candidate revision is required for authenticated visual acceptance.`
+
+```text
+node C:/DEV/Kopplas/tmp/private/e35-worker-35-6/scripts/quality/frontend-controller.mjs local --base 90c4c708c0cb87b16cb6bc10fd981ebd9978d76b
+node C:/DEV/Kopplas/tmp/private/e35-worker-35-6/scripts/quality/completion-gate.mjs 90c4c708c0cb87b16cb6bc10fd981ebd9978d76b delivery_gate.py C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/auto-bmad/delivery/spec-design-35-6-35-6.json
+```
+
+The wrapper stopped at its frontend precheck: delivery_gate.py was never invoked and no completion/status writes occurred. No gate retry is needed before a concrete state change. Parent authorized checkpoint publication; the root must publish the checkpoint PR, then use the supported `scripts/ci/checkpoint-dispatch.mjs` route with release_validation=true for exact-head isolated hosted full verification. Obtain actual authenticated visual acceptance, verify full units on Linux and required integration/RLS/recovery/storage evidence, inspect executed/skipped counts and only then rerun the completion wrapper. These are named **DEV-RUNTIME-VISUAL** (root/Coordinator/UI owner) and **DEV-UNIT-WINDOWS** (Coordinator/CI owner) resume conditions, not a new business-approval request.
+
+E35-6-REL-1 remains deferred to the UI owner, REL-2 to QA/accessibility, and REL-3 to the Coordinator; named people and release evidence are still unearned. The three deferred release records and their concrete next actions remain in the assigned delivery JSON. D1-D5, all seven ACs/sixteen states, the exact frozen historical suffix, E16's 14-item and E20 caveats are unchanged. release_ready=false.
+
+```json
+{"status":"blocked","code_fix_head":"9bbf276cf695a0e127a864e442dbeb2e3a79eab6","independent_code_review":"passed","followup_review_recommended":true,"score":9,"deferred":[],"runtime_executed":0,"runtime_skipped":0,"release_ready":false}
+```
+
 ## Suggested Review Order
 
-Author: Sol High implementation/fix delegate. Refreshed against reviewed candidate `d42d66f247e6027a82c6d0d3da76f6e85b38efc2` plus the final uncommitted Round 1 patch worktree; original baseline is `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`. Verification and pending gates are recorded above.
+Author: Sol High implementation/fix delegate. Refreshed against code/fix head `9bbf276cf695a0e127a864e442dbeb2e3a79eab6`, reviewed as primary d42 plus targeted delta to 9bb; original baseline is `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`. The independent Sol High reviewer confirmed this trail and returned exactly No findings at 9bb. Author reference validation passes 16 stops at the same source/test revision; this final reconciliation changes documentation only. Verification and blocked gates are recorded above.
 
 ### Record identity and responsive composition
 
@@ -245,7 +266,7 @@ The existing lifecycle case now exercises primary=true to rejected-unchecked to 
 - `tests/e2e/crm/customers.e2e.spec.ts:1231` — `E35-6-T-AC2/AC6`: exact context tuples, independent panels and Booking reopen.
 - `tests/e2e/crm/customers.e2e.spec.ts:1269` — `E35-6-T-AC4/AC5`: fixed-viewport UI attachments and supplemental reflow proxies.
 
-Evidence: post-fix typecheck/focused lint/production build/bundle pass; four focused pure parser probes pass. Prior focused CRM 126/126 and native-TEMP 8/8 evidence is retained for unchanged seams; full units still have 3 failures/1 skip and were not broadly repeated. Ten E35-6 source cases are active, none executed locally. Runtime/integration/RLS/storage, visual capture/acceptance, native consequential delta review, exact-head CI and completion wrapper remain pending. Limits: synthetic test-owned fixtures and controlled transport/viewport faults; no business-success mock, no physical keyboard proof, no full Booking save/reopen claim from composition alone, no D5 child-read proof. Six Sol High Round 1 route outcomes are recorded above; no complete independent approval is inferred. release_ready=false.
+Evidence: post-fix typecheck/focused lint/production build/bundle pass; four focused pure parser probes pass. Prior focused CRM 126/126 and native-TEMP 8/8 evidence is retained for unchanged seams; full units still have 3 failures/1 skip and were not broadly repeated. Ten E35-6 source cases are active, none executed locally. Independent code and targeted delta/trail review passed at 9bb. Runtime/integration/RLS/storage, visual capture/acceptance and exact-head CI remain pending; the actual completion-wrapper attempt refused before invoking its helper because the exact candidate has no published PR. Limits: synthetic test-owned fixtures and controlled transport/viewport faults; no business-success mock, no physical keyboard proof, no full Booking save/reopen claim from composition alone, no D5 child-read proof. Six Sol High Round 1 route outcomes plus the clean targeted delta/trail verdict are recorded above; code-review approval does not establish runtime, visual, development-complete or release approval. release_ready=false.
 
 ## Frozen canonical v1 source body — preserved LF
 
