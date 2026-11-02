@@ -1,0 +1,50 @@
+{
+  "recorded_at_utc": "2026-11-02T19:30:22.9220154Z",
+  "branch": "codex/35-7-p-settings-pricing-producer-contracts",
+  "current_local_head": "8cbdb4cac44d444121669d708f36f5a1f9232981",
+  "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "freeze": "author-8cb-cwd-checkpoint.json",
+  "source48_digest": "81b6d13ee378d53aab54296247237ce1eb430e7df66b9fa8c0dbc553c4c5fd79",
+  "matched_source48": 48,
+  "matched_canonical9": 9,
+  "mismatches": [],
+  "production27_other47_package_unchanged": true,
+  "only_source_change": "tests/e2e/pricing/pricing.e2e.spec.ts",
+  "staging_paths": [
+    "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-publication-handoff.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-evidence.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-only.patch",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
+    "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+    "tests/e2e/pricing/pricing.e2e.spec.ts"
+  ],
+  "nonpatch_tracked_diff_check_native_exit": 0,
+  "patch_context": "Preserve exact unifieddiffsyntax; no fullstaged whitespaceclaim",
+  "owned_JSON_parse": "successful, notschema/evidenceauth",
+  "private_artifacts_NOT_staged": [
+    "tmp/private/35-7-p-consumer-cwd-proof",
+    "tmp/private/35-7-p-visual-cap-admission",
+    "tmp/private/35-7-p-visual-cap-90-admission",
+    "tmp/private/35-7-p-visual-map-preparation"
+  ],
+  "private_caps_unapplied_human_held": true,
+  "author_checks": "tsc0/lint0/SRO0-37stops/pure25P0F",
+  "definitions": {
+    "owned": 24,
+    "producer": 7,
+    "raw_captures": 103,
+    "new_PNGs": 0,
+    "new_effects": 0
+  },
+  "late_DB_supplement": "8cb-cwd-targeted-review-results.json preserves exact9468nativeSHA/currentwholeDBFAIL/producer82P0skip/setupfailurelimits, noauthorpostfreezeedit",
+  "all_child_writes_stopped": true,
+  "no_active_guard_refs": true,
+  "build_status": "in-progress",
+  "step5_done": false,
+  "release_ready": false,
+  "pending": "Parent checkpoint/push/fresh exacthead normalCI/fullDB/method23actualimages/qualifiedpackage/owneradmission+visual/completion. No childcommit/push/CI/merge/deploy."
+}

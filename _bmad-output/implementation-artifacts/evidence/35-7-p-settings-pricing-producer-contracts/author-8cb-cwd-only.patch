@@ -1,0 +1,70 @@
+diff --git a/tests/e2e/pricing/pricing.e2e.spec.ts b/tests/e2e/pricing/pricing.e2e.spec.ts
+index be0b0e45..e986fab6 100644
+--- a/tests/e2e/pricing/pricing.e2e.spec.ts
++++ b/tests/e2e/pricing/pricing.e2e.spec.ts
+@@ -584,7 +584,21 @@ function producerPlaywrightEntry(script: string): ProducerPlaywrightEntry | unde
+     if (binCanonical !== canonical) throw new Error("P-E5 family=playwright reason=package-bin-mismatch");
+     return { family: pkg.name, canonical };
+ }
+-function producerPlaywrightInvocation(args: readonly string[], cwd: string, identify: (script: string) => ProducerPlaywrightEntry | undefined): ProducerPlaywrightEntry | undefined {
++function producerPlaywrightInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined): ProducerPlaywrightEntry | undefined {
++    // Absolute scripts and proven non-test commands do not require another
++    // process's cwd. An unresolved relative test/ambiguous launch still refuses.
++    const resolveScript = (script: string, subcommand: "test" | "unresolved") => {
++        if (path.isAbsolute(script)) return path.normalize(script);
++        try { return path.resolve(typeof cwd === "string" ? cwd : cwd(), script); }
++        catch (error) {
++            const code = (error as NodeJS.ErrnoException).code;
++            throw Object.assign(new Error("P-E5 family=node reason=consumer-cwd-unavailable"), {
++                producerErrorCategory: ["EACCES", "EPERM", "ENOENT", "ESRCH"].includes(code ?? "") ? code : "other",
++                producerScriptFamily: /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(path.normalize(script)) ? "playwright-hint" : "unclassified",
++                producerSubcommandCategory: subcommand,
++            });
++        }
++    };
+     let index = 1;
+     while (args[index]?.startsWith("-")) {
+         const option = args[index];
+@@ -595,12 +609,11 @@ function producerPlaywrightInvocation(args: readonly string[], cwd: string, iden
+         // Never accept an arbitrary argv payload just because it contains test.
+         // An unsupported Node launch with a real Playwright CLI is a refusal,
+         // including foreign projects, not an ignored consumer.
+-        if (args.slice(index + 1).some(arg => identify(path.resolve(cwd, arg)))) throw new Error("P-E5 family=playwright reason=unsupported-node-launch");
++        if (args.slice(index + 1).some(arg => identify(resolveScript(arg, "unresolved")))) throw new Error("P-E5 family=playwright reason=unsupported-node-launch");
+         return;
+     }
+-    if (!args[index]) return;
+-    const entry = identify(path.resolve(cwd, args[index]));
+-    return entry && args[index + 1] === "test" ? entry : undefined;
++    if (!args[index] || args[index + 1] !== "test") return;
++    return identify(resolveScript(args[index], "test"));
+ }
+ async function qualifyProducerBoundedEffects(info: TestInfo) {
+     const runtime = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
+@@ -666,14 +679,20 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
+     if (!installedCli) throw new Error("P-E5 family=playwright reason=installed-cli-unverified");
+     const consumers: number[] = [];
+     for (const entry of readdirSync("/proc").filter(value => /^\d+$/.test(value))) {
+-        let args: string[], cwd: string;
++        let args: string[];
+         try { args = readFileSync(`/proc/${entry}/cmdline`, "utf8").split("\0"); } catch { continue; }
+-        try { cwd = readlinkSync(`/proc/${entry}/cwd`); }
+-        catch {
+-            if (Number(entry) === boot.ownerPid || args.some(arg => /(?:^|\/)(?:cli\.js|\.bin\/playwright)$/.test(arg)) || producerPlaywrightInvocation(args, "/", producerPlaywrightEntry)) throw new Error("P-E5 family=playwright reason=consumer-cwd-unavailable");
+-            continue;
++        let invocation: ProducerPlaywrightEntry | undefined;
++        try { invocation = producerPlaywrightInvocation(args, () => readlinkSync(`/proc/${entry}/cwd`), producerPlaywrightEntry); }
++        catch (error) {
++            const detail = error as { message?: string; producerErrorCategory?: string; producerScriptFamily?: string; producerSubcommandCategory?: string };
++            const refusal = /^P-E5 family=(playwright|node) reason=([a-z-]+)$/.exec(detail.message ?? "");
++            // No argv, environment, cwd or package payload enters diagnostics.
++            const family = refusal?.[1] ?? "node", reason = refusal?.[2] ?? "consumer-inspection-failed";
++            const category = ["EACCES", "EPERM", "ENOENT", "ESRCH", "other"].includes(detail.producerErrorCategory ?? "") ? detail.producerErrorCategory : "none";
++            const scriptFamily = detail.producerScriptFamily === "playwright-hint" ? "playwright-hint" : refusal?.[1] === "playwright" ? "playwright" : "unclassified";
++            const subcommand = detail.producerSubcommandCategory === "test" ? "test" : "unresolved";
++            throw new Error(`P-E5 family=${family} reason=${reason} pid=${entry} errorCategory=${category} scriptFamily=${scriptFamily} subcommandCategory=${subcommand}`);
+         }
+-        const invocation = producerPlaywrightInvocation(args, cwd, producerPlaywrightEntry);
+         if (!invocation) {
+             if (Number(entry) === boot.ownerPid) throw new Error("P-E5 family=playwright reason=owner-entrypoint-unclassified");
+             continue;

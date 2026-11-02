@@ -263,21 +263,21 @@ The package addition uses the existing normal production-server lane. State-awar
 
 The human admission is limited to this disposable exclusive job method. The durable claim prevents damaged-baseline retries and repeated deletion. Every released GET must reach bounded terminal settlement before restoration, or fail with retained errors while exact recovery is still attempted. Exact ACL restoration plus the same ordinary read is mandatory; raw95 definitions grant no coverage or automatic80-frame selection. Review these new consequential boundaries before Root executes CI.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:605` — `async function qualifyProducerBoundedEffects`: reuses actual GitHub/stack authority, binds runner/server/consumer and durably consumes job admission before effects.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:714` — `async function producerAclSnapshot`: captures complete semantic ACLs and alternative/inherited/dependent privilege paths before narrowing one grant.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:738` — `test("P-E5 CI-only bounded`: keeps all four table faults sequential and both viewports within each exact cycle.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:876` — `state: "revoke-intent"`: persists intent before revoke and reaches registered exact cleanup on every scenario outcome.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:973` — `state: "ONE-delete-intent-budget-consumed"`: durably consumes the sole exact fresh target deletion after receipt/reference guards.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:618` — `async function qualifyProducerBoundedEffects`: reuses actual GitHub/stack authority, binds runner/server/consumer and durably consumes job admission before effects.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:733` — `async function producerAclSnapshot`: captures complete semantic ACLs and alternative/inherited/dependent privilege paths before narrowing one grant.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:757` — `test("P-E5 CI-only bounded`: keeps all four table faults sequential and both viewports within each exact cycle.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:895` — `state: "revoke-intent"`: persists intent before revoke and reaches registered exact cleanup on every scenario outcome.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:992` — `state: "ONE-delete-intent-budget-consumed"`: durably consumes the sole exact fresh target deletion after receipt/reference guards.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:794` — `const releaseAndSettleRead =`: settles the exact released GET on every exit before ACL recovery; failure remains visible and does not skip exact recovery.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:813` — `const releaseAndSettleRead =`: settles the exact released GET on every exit before ACL recovery; failure remains visible and does not skip exact recovery.
 
 ### Trace actual native failures and pixel corrections
 
 The ordinary browser admission failure and integration suite-hook failure are required gates, despite103 browser cases and all75 producer integration cases passing. Exact lock-cycle causality remains unproven. Framing guards require actual pixels in view; source97 and the conditional publication map grant no image/provider/human acceptance.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:635` — `const startupBinding =`: binds to actual production-server launch fields rather than worker-reconstructed config, without exposing its other environment.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:648` — `const startupBinding =`: binds to actual production-server launch fields rather than worker-reconstructed config, without exposing its other environment.
 - `tests/e2e/settings/settings.e2e.spec.ts:431` — `const busySubmit =`: captures the actual pending submit on phone while preserving stable unknown controls separately.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:836` — `const pendingReceipt =`: observes the already-held real current reread after receipt proof without another business action or effect.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:855` — `const pendingReceipt =`: observes the already-held real current reread after receipt proof without another business action or effect.
 - `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:73` — `await adminQuery("drop trigger test_settings_pricing_receipt_failure`: releases the receipt-table DDL lock before separate function/table drops; exact native deadlock cycle is not claimed.
 
 ### Identify actual and foreign runner scripts canonically
@@ -285,7 +285,7 @@ The ordinary browser admission failure and integration suite-hook failure are re
 The native failure shows an empty classifier, not the terminated argv spelling. Installed shim/source and pure examples demonstrate the normalization defect. Targeted review additionally identified a consequential foreign-consumer bypass if realpath failed or a recognizable original family symlink escaped the named package; the original family hint now survives those failures and refuses entry. This review finding is not claimed as the historical CI cause. Script position and package/bin identity distinguish a CLI from an arbitrary keyword payload; foreign same-family paths stay in the exclusivity inventory, while only the expected canonical installed CLI can be the owner.
 
 - `tests/e2e/pricing/pricing.e2e.spec.ts:561` — `function producerPlaywrightEntry`: retains recognizable original family through missing entrypoint, canonical and package identity failures; refusal diagnostics contain only fixed family/reason.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:587` — `function producerPlaywrightInvocation`: binds the real script/subcommand and refuses ambiguous known-family launches, instead of searching for test anywhere.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:587` — `function producerPlaywrightInvocation`: parses real script/subcommand before lazy cwd; absolute tests need no cwd, proven non-test commands are not test consumers, relative unresolved test/launch ambiguity still refuses.
 
 ### Retain private receipt enrollment and honest gate evidence
 
@@ -305,3 +305,5 @@ Current evidence: `author-ci473-runner-owner-failure.json`, `author-ci473-db-lif
 Latest evidence: `author-b8-consumer-native-evidence.json` separates b8browser refusal, earned DB/pilot and targeted six-image confirmation from unexecuted new-head results. `author-b8-consumer-normalization-examples.json` is15pure model examples only; old nativeargv remains unavailable. The globalcap privateproposal is not applied or approved.
 
 Latest targeted follow-up: `author-b8-consumer-followup-evidence.json` records the original-family refusal fix and exact private harness/source/extraction retention. One current-source pure run passed17/17: original15 inputs plus missing-entrypoint and outside-package-symlink regressions; unrelated nonfamily controls remain ignored. Historical c80159 script/source/declared output were retained before edits, without rerunning or retroactively claiming verification. Current compiler and pricing ESLint native0; current source/runtime/visual acceptance still unearned. Original103 captures/24 owned/7 producer cases and all effect guards remain unchanged.
+
+Latest8cb correction: `author-8cb-cwd-evidence.json` retains actual41505978207 browser104/103expected/1unexpected/0flaky/0skip and two pre-effect cwd refusals. The old catch requested cwd before script/subcommand parsing and matched arbitrary CLI argv payload; the offending PID/errno/argv is unknown. Parse-first/lazy cwd now preserves absolute owner/foreign identification and refuses relative test ambiguity, with bounded PID/category-only diagnostics. The retained private source-extracted25case run preserves17prior inputs/outcomes plus8cwd regressions; non-test lookup short-circuit semantics deliberately change. Typecheck/ESLint native0. Current8cbDB is FAILED2305/2251pass/2fail/52skip/4failedsuites per Root; unallocated auth-fixture diagnosis belongs to assigned High, no causal/flake/baseline claim. Historicalb8DB/pilot success is not current proof.103raw/24-7/effect/capture flows unchanged;23method frames absent. Both private cap packets remain unapplied/allocation review only. Newhead runtime/visual gates remain blocking; Step5false/releasefalse.
