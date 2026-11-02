@@ -31,20 +31,50 @@ import { expectActiveAdminNavigation } from "../support/active-admin-navigation"
 import { adminExec, adminQuery, closeAdminPool } from "../../factories/admin-sql";
 import { createTwoTenantFixture, cleanupFixture, adminInsertCustomer, adminInsertFacility, adminInsertContact } from "../../factories/tenants";
 
-async function captureRecordState(page: Page, state: string) {
+async function captureRecordState(page: Page, state: string, stateIds: readonly string[] = [], currentViewportOnly = false) {
   const folder = process.env.E35_CAPTURE_DIR;
-  if (!folder) return;
-  mkdirSync(folder, {recursive:true});
-  const viewport = page.viewportSize();
-  const filename = `${state}-${viewport?.width}x${viewport?.height}.png`;
-  const fullPage=process.env.E35_CAPTURE_VIEWPORT_ONLY!=="1";
-  await page.bringToFront();
-  await page.screenshot({animations:"disabled",path:path.join(folder,filename),fullPage});
-  appendFileSync(path.join(folder,"captures.jsonl"),JSON.stringify({file:filename,state,viewport,fullPage,
-    candidate:process.env.E35_CAPTURE_REVISION ?? "uncommitted working tree",
-    source:state==="controlled-checked-read-503-document-fallback"?"controlled synthetic503document, not application error UI":"implemented production-server UI",
-    classification:state.startsWith("controlled-")?"controlled fault or enlargement/occlusion proxy; no physical-device proof":"actual rendered UI; transport faults remain test-controlled where named",
-    url:new URL(page.url()).pathname})+"\n");
+  if (folder) mkdirSync(folder, {recursive:true});
+  const originalViewport = page.viewportSize();
+  const supplemental = state.startsWith("controlled-") || state.startsWith("supplemental-");
+  // Keep the same asserted phase: resizing never redispatches an action or reloads.
+  const restoration = await page.evaluateHandle(() => ({
+    active: document.activeElement,
+    scrolls: [...new Set([document.scrollingElement, ...document.querySelectorAll("*")])]
+      .filter((node): node is Element => node !== null && (node.scrollHeight > node.clientHeight || node.scrollWidth > node.clientWidth))
+      .map(node => ({ node, top: node.scrollTop, left: node.scrollLeft })),
+  }));
+  try {
+    for (const viewport of currentViewportOnly || supplemental || !originalViewport ? [originalViewport] : [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+      if (viewport) await page.setViewportSize(viewport);
+      await page.bringToFront();
+      const actualViewport = page.viewportSize();
+      const filename = `${state}-${actualViewport?.width}x${actualViewport?.height}.png`;
+      const png = await page.screenshot({ animations: "disabled", fullPage: false, scale: "css", ...(folder ? { path: path.join(folder, filename) } : {}) });
+      const metadata = {
+        file: filename, state, stateIds: stateIds.map(id => `E35-6-STATE-${id}`), viewport: actualViewport, fullPage: false,
+        pngBytes: png.byteLength, pngDimensions: { width: png.readUInt32BE(16), height: png.readUInt32BE(20) },
+        qualifyingViewport: !supplemental && !!actualViewport && (actualViewport.width === 1440 && actualViewport.height === 900 || actualViewport.width === 360 && actualViewport.height === 640),
+        candidate: process.env.E35_CAPTURE_REVISION ?? process.env.GITHUB_SHA ?? "uncommitted working tree",
+        provenanceLimit: "Environment candidate is an author assertion; root must verify GitHub run/head and actual bytes. No visual acceptance inferred.",
+        source: state === "controlled-checked-read-503-document-fallback" ? "controlled synthetic 503 document, NOT application error UI" : "implemented production-server UI",
+        classification: supplemental ? "supplemental actual dimensions; controlled fault/enlargement/occlusion or short viewport; not qualifying phone/desktop evidence or physical-device proof" : "actual full viewport UI; transport faults remain test-controlled where named",
+        phase: state === "customer-archive-unresolved-hint-fresh-form" ? "actual unresolved payload-free hint/replay block after archive remount; newly opened server-read editor, NOT restored original unsent payload"
+          : state.includes("unresolved-hint-fresh-form") ? "actual unresolved payload-free hint and replay block after remount; fresh create form refilled by test, NOT restored original payload" : state,
+        url: new URL(page.url()).pathname,
+      };
+      // Native JSON reporter retains real PNG bytes even without an explicit capture directory.
+      await test.info().attach(filename, { body: png, contentType: "image/png" });
+      await test.info().attach(`${filename}.metadata.json`, { body: Buffer.from(JSON.stringify(metadata)), contentType: "application/json" });
+      if (folder) appendFileSync(path.join(folder, "captures.jsonl"), JSON.stringify(metadata) + "\n");
+    }
+  } finally {
+    if (originalViewport) await page.setViewportSize(originalViewport);
+    await restoration.evaluate(({ active, scrolls }) => {
+      if (active instanceof HTMLElement && active.isConnected) active.focus({ preventScroll: true });
+      for (const { node, top, left } of scrolls) if (node.isConnected) { node.scrollTop = top; node.scrollLeft = left; }
+    });
+    await restoration.dispose();
+  }
 }
 
 /** Computed solid-color composites, including ancestor alpha; no token-only contrast claim. */
@@ -65,7 +95,10 @@ async function renderedContrast(page: Page, locator: Locator, state: string, out
   if(outline) expect(parseFloat(measured.outlineWidth)).toBeGreaterThan(0);
   if(!disabled) expect(measured.ratio,`${state} rendered composite`).toBeGreaterThanOrEqual(outline?3:4.5);
   const file=path.resolve("tmp/private/story35-3/round1-rendered-contrast.jsonl");
-  appendFileSync(file,JSON.stringify({state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??"uncommitted Round1 source",kind:outline?"nontext focus":"text",disabled,threshold:disabled?"inactive control exempt":outline?3:4.5,...measured,limits:"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit"})+"\n");
+  const measurement={state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??process.env.GITHUB_SHA??"uncommitted Round1 source",kind:outline?"nontext focus":"text",disabled,threshold:disabled?"inactive control exempt":outline?3:4.5,...measured,limits:"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit; candidate environment is not authenticated provenance"};
+  await test.info().attach(`rendered-contrast-${state.replace(/[^a-z0-9]+/gi,"-")}.json`, {body:Buffer.from(JSON.stringify(measurement)),contentType:"application/json"});
+  mkdirSync(path.dirname(file),{recursive:true});
+  appendFileSync(file,JSON.stringify(measurement)+"\n");
 }
 
 interface CrmFixture {
@@ -189,6 +222,7 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     expect(body).not.toContain(fixture.crm.private.personnummer);
     const html = await page.content();
     expect(html).not.toContain(fixture.crm.private.personnummer);
+    await captureRecordState(page, "customers-list-private-value-absent", ["loaded"]);
   });
 
   test("P0/AC2: the private customer DETAIL shows the personnummer MASKED (not clear-text by default)", async ({
@@ -204,6 +238,7 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     // Masked by default: the clear-text value is NOT shown, but the last 4 digits are.
     await expect(pnr).not.toHaveText(fixture.crm.private.personnummer);
     await expect(pnr).toContainText(fixture.crm.private.personnummer.slice(-4));
+    await captureRecordState(page, "customer-private-detail-masked", ["loaded"]);
     // Reveal-on-click surfaces the full value (the access-controlled detail surface).
     const reveal = page.getByRole("button", { name: "Visa" });
     await waitForHydrated(reveal);
@@ -328,6 +363,21 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     await page.goto("/customers/00000000-0000-0000-0000-000000000000");
     await expect(page.getByTestId("customer-not-found")).toBeVisible();
   });
+
+  test("[P1] E35-6-T-AC3/AC4 malformed customer identity reaches the actual detail read-error branch", async ({ page }) => {
+    await signIn(page, fixture.adminA.email, fixture.adminA.password);
+    // Current route forwards this value into the request-bound UUID equality read.
+    // Only the real application's asserted failed branch earns capture credit.
+    await page.goto("/customers/not-a-customer-uuid");
+    const failure = page.getByTestId("customer-detail-failed");
+    await expect(failure).toBeVisible();
+    await expect(failure).toContainText("Kunden kunde inte läsas in.");
+    await expect(page.getByTestId("customer-not-found")).toHaveCount(0);
+    await expect(page.getByTestId("facilities-empty")).toHaveCount(0);
+    await expect(failure.getByRole("link", { name: "Tillbaka till kunder", exact: true })).toHaveAttribute("href", "/customers");
+    expect(await page.content()).not.toContain(fixture.crm.private.personnummer);
+    await captureRecordState(page, "customer-detail-real-read-error");
+  });
 });
 
 // Story 35.3 active ATDD RED. Existing vanilla runner retained: playwright-utils
@@ -418,7 +468,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.goto("/customers");
     const table = page.getByRole("table", { name: "Kundlista" });
     await expect(table.getByRole("columnheader", { name: "Kund", exact: true })).toBeVisible();
-    await captureRecordState(page,"customers-loaded");
+    await captureRecordState(page,"customers-loaded", ["loaded"]);
     const selectCompany = table.getByRole("checkbox", { name: `Välj ${fixture.crm.company.displayName}`, exact: true });
     await selectCompany.focus(); await page.keyboard.press("Space");
     await expect(selectCompany).toBeChecked();
@@ -442,12 +492,13 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await expect(selectCompany).toBeChecked();
     await page.getByLabel("Sök kund").fill("35.3-no-match");
     await expect(page.getByTestId("customers-no-results")).toBeVisible();
-    await captureRecordState(page,"customers-no-match");
+    await expect(page.getByLabel("Sök kund")).toHaveValue("35.3-no-match");
+    await captureRecordState(page,"customers-no-match", ["no-match"]);
     await page.getByRole("button", { name: /återställ/i }).click();
     await expect(selectCompany).toBeChecked();
     await table.getByRole("link", { name: fixture.crm.company.displayName, exact: true }).click();
     await expect(page).toHaveURL(new RegExp(`/customers/${fixture.crm.company.id}$`));
-    await captureRecordState(page,"customer-detail-loaded");
+    await captureRecordState(page,"customer-detail-loaded", ["loaded"]);
   });
 
   test("B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input", async ({ page }) => {
@@ -461,8 +512,8 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await dialog.getByTestId("form-error-summary").getByRole("link").first().click();
     await expect(dialog.getByLabel("E-post")).toBeFocused();
     await expect(dialog.getByLabel("Ort")).toHaveValue("Västerås");
-    await captureRecordState(page,"customer-validation");
     expect(await customerSnapshot(marker)).toEqual([]);
+    await captureRecordState(page,"customer-validation", ["validation", "error-retry"]);
     await dialog.getByLabel("E-post").fill("record@example.test");
     await dialog.getByRole("button", { name: "Spara", exact: true }).click();
     await expect(dialog).toHaveCount(0);
@@ -470,6 +521,8 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     expect(rows).toHaveLength(1); expect(rows[0].city).toBe("Västerås"); expect(rows[0].audits).toBe(1);
     await page.reload();
     await expect(page.getByRole("link", { name: marker, exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: marker, exact: true })).toHaveAttribute("href", `/customers/${rows[0].id}`);
+    await captureRecordState(page, "customer-confirmed-after-validation", ["confirmed", "error-retry"]);
   });
 
   test("B03 E35-3-T-error-retry AC3/AC7: archive cancel and confirm retain customer identity and soft archive", async ({ page }) => {
@@ -507,7 +560,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(page.getByRole("alert").filter({hasText:"Anslutning krävs."})).toHaveText("Anslutning krävs. Arkiveringen är inte skickad. Försök igen med Arkivera när du är ansluten.");
       expect(attempts).toBe(0); expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
       expect(await customerSnapshot(marker)).toEqual(before);
-      await captureRecordState(page,"customer-archive-connection-required");
+      await captureRecordState(page,"customer-archive-connection-required", ["connection-required"]);
       await context.setOffline(false); expect(await page.evaluate(()=>navigator.onLine)).toBe(true);
       await expect(page.getByRole("button",{name:"Arkivera kund",exact:true})).toBeEnabled();
       expect(attempts).toBe(0); expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
@@ -588,6 +641,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(reopened.getByRole("button",{name:"Spara",exact:true})).toBeDisabled();
       expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hint);
       expect(gate.attempts()).toBe(1); const row=(await customerSnapshot(marker))[0]; expect(row.archived_at).not.toBeNull(); expect(row.audits).toBe(2);
+      await captureRecordState(page, "customer-archive-unresolved-hint-fresh-form", ["unknown"]);
     } finally {await context.setOffline(false); await gate.dispose();}
   });
 
@@ -630,7 +684,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await page.keyboard.press("Enter"); await page.keyboard.press("Escape");
       await expect(dialog).toBeVisible(); await expect(dialog.getByLabel("Visningsnamn")).toHaveValue(marker);
       expect(gate.attempts()).toBe(1);
-      await captureRecordState(page,"customer-pending");
+      await captureRecordState(page,"customer-pending", ["submitting"]);
       await expect(dialog.getByRole("button", { name: "Avbryt", exact: true })).toBeDisabled();
       await expect(dialog.getByLabel("Visningsnamn")).toBeDisabled();
       await renderedContrast(page,dialog.getByRole("button",{name:"Sparar…",exact:true}),"disabled pending save",false,true);
@@ -650,7 +704,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         await expect(dialog.getByText(/obekräft|inte.*bekräft|okänt/i).first()).toBeVisible();
         await expect(dialog.getByRole("button", { name: "Spara", exact: true })).toBeDisabled();
         expect(gate.attempts()).toBe(1);
-        await captureRecordState(page,`customer-unknown-${mode}`);
+        await captureRecordState(page,`customer-unknown-${mode}`, ["unknown"]);
         const rows = await customerSnapshot(marker);
         expect(rows).toHaveLength(mode === "before-forward" ? 0 : 1);
         // Test knowledge of undispatched transport is not a production rollback receipt.
@@ -663,6 +717,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         expect(storage.join(" ")).not.toContain(marker);
         expect(storage.join(" ")).not.toContain(fixture.crm.private.personnummer);
         expect(storage.join(" ")).not.toContain(fixture.crm.company.id);
+        await captureRecordState(page, `customer-unresolved-hint-fresh-form-${mode}`, ["unknown"]);
       } finally { await gate.dispose(); }
     });
   }
@@ -693,7 +748,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       ].sort());
       await expect(first).toBeVisible(); await expect(first.getByText(/ändrats|aktuell.*uppgift/i).first()).toBeVisible();
       await expect(first.getByLabel("Ort")).toHaveValue("Malmö");
-      await captureRecordState(page,"customer-conflict");
+      await captureRecordState(page,"customer-conflict", ["stale"]);
       const afterB = await customerSnapshot(marker); expect(afterB[0].phone).toBe("+46706666666"); expect(afterB[0].city).toBeNull();
       const priorBaseline=await first.locator('input[name="expected_customer"]').inputValue();
       let reads=0,release!:()=>void,observed!:()=>void,delivered!:()=>void;
@@ -829,13 +884,17 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(selected).toBeChecked();
       await expect(page.getByTestId("customers-empty")).toHaveCount(0);
       await expect(page.getByRole("status").filter({ hasText: /laddar|hämtar/i }).first()).toBeVisible();
-      await captureRecordState(page,"customer-loading");
+      await captureRecordState(page,"customer-loading", ["loading"]);
       await page.getByRole("link", { name: fixture.crm.private.displayName, exact: true }).click();
       await expect(page.getByRole("heading", { name: fixture.crm.private.displayName, exact: true })).toBeVisible();
       release();
       await delivered;
       await expect(page).toHaveURL(new RegExp(`/customers/${fixture.crm.private.id}$`));
       await expect(page.getByRole("heading", { name: fixture.crm.private.displayName, exact: true })).toBeVisible();
+      const masked = page.getByTestId("customer-personnummer");
+      await expect(masked).not.toHaveText(fixture.crm.private.personnummer);
+      await expect(masked).toContainText(fixture.crm.private.personnummer.slice(-4));
+      await captureRecordState(page, "customer-late-final-B-private-masked", ["late-result", "loaded"]);
     } finally { release(); await page.unroute("**/*", handler); }
   });
 
@@ -859,7 +918,8 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     expect(await customerSnapshot(marker)).toEqual([]);
     await page.keyboard.press("Escape");
     await expect(decision).toBeVisible();
-    await captureRecordState(page,"customer-dirty-decision");
+    await expect(decision.getByRole("button", { name: "Fortsätt redigera", exact: true })).toBeFocused();
+    await captureRecordState(page,"customer-dirty-decision", ["dirty-navigation", "focus-dialog"]);
     await decision.getByRole("button",{name:"Kasta ändringar"}).click();
     await expect(dialog).toHaveCount(0);
     expect(await customerSnapshot(marker)).toEqual([]);
@@ -925,7 +985,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await dialog.getByLabel("E-post").fill("invalid");
     const save = dialog.getByRole("button", { name: "Spara", exact: true }); await save.scrollIntoViewIfNeeded(); await save.click();
     await expect(dialog.getByTestId("form-error-summary")).toBeVisible();
-    await captureRecordState(page,"customer-phone-validation");
+    await captureRecordState(page,"customer-phone-validation", ["validation"]);
     const email=dialog.getByLabel("E-post"); await email.focus();
     await renderedContrast(page,email,"invalid field text");
     await renderedContrast(page,email,"invalid field focus against field",true);
@@ -960,13 +1020,14 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await signIn(page, isolated.adminA.email, isolated.adminA.password);
       await page.goto("/customers");
       await expect(page.getByTestId("customers-empty")).toBeVisible();
-      await captureRecordState(page,"customers-empty");
       await expect(page.getByTestId("customers-failed")).toHaveCount(0);
       await expect(page.getByTestId("customers-no-results")).toHaveCount(0);
+      await captureRecordState(page,"customers-empty", ["empty"]);
       await page.goto(`/customers/${fixture.crm.private.id}`);
       await expect(page.getByTestId("customer-not-found")).toBeVisible();
       expect(await page.content()).not.toContain(fixture.crm.private.personnummer);
       expect(await page.content()).not.toContain(fixture.crm.private.displayName);
+      await captureRecordState(page, "customer-foreign-identity-denied", ["denied"]);
       const marker = `35.3 revoked ${crypto.randomUUID()}`, dialog = await openCustomerCreate(page, marker);
       await adminExec("update public.tenant_memberships set status = 'disabled' where tenant_id = $1 and user_id = $2", [isolated.tenantA.id, isolated.adminA.id]);
       await dialog.getByRole("button", { name: "Spara", exact: true }).click();
@@ -974,6 +1035,8 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(dialog.getByLabel("Visningsnamn")).toHaveValue(marker);
       await expect(dialog.getByRole("button",{name:"Spara",exact:true})).toBeDisabled();
       expect(await customerSnapshot(marker)).toEqual([]);
+      expect(await adminQuery("select id from public.audit_events where tenant_id = $1 and target_type = 'customer'", [isolated.tenantA.id])).toEqual([]);
+      await captureRecordState(page, "customer-revoked-membership-rejected", ["revoked"]);
     } finally { await cleanupFixture(isolated); }
   });
 
@@ -1220,6 +1283,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         if (kind === "contact") await expect(dialog.getByLabel("Anläggning (valfritt)")).toHaveValue(facilityId);
         await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
         await expect(heading).toBeInViewport(); await expect(close).toBeInViewport();
+        if (kind === "contact") await captureRecordState(page, "supplemental-short-768-contact-rejected");
         await close.click(); await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
       }
       expect(await adminQuery("select id from public.contacts where customer_id = $1", [customerId])).toEqual([]);
@@ -1245,6 +1309,9 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         const panel = page.getByTestId(`entity-file-panel${suffix}`);
         await expect(panel).toBeVisible();
         await expect(panel.getByTestId(`file-panel-owner${suffix}`)).toHaveText(ownerLabel);
+        await panel.getByTestId(`file-panel-owner${suffix}`).scrollIntoViewIfNeeded();
+        await expect(panel.getByTestId(`file-panel-owner${suffix}`)).toBeInViewport();
+        await captureRecordState(page, `context-${ownerType}-exact-file-panel`);
         const expectedHref = "/files?" + new URLSearchParams({ module: "crm", ownerType, ownerId });
         const entry = page.getByRole("link", { name: "Visa i Dokument", exact: true }).and(page.locator(`[href="${expectedHref}"]`));
         await expect(entry).toHaveCount(1); await entry.click();
@@ -1253,20 +1320,26 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         expect(Object.fromEntries(url.searchParams)).toMatchObject({ module: "crm", ownerType, ownerId });
         const back = page.getByTestId("documents-context-return");
         await expect(back).toHaveAttribute("href", `/customers/${customerId}`);
+        await back.scrollIntoViewIfNeeded(); await expect(back).toBeInViewport();
+        await captureRecordState(page, `context-${ownerType}-documents-safe-return`);
         await back.click(); await expect(page).toHaveURL(new RegExp(`/customers/${customerId}$`));
         await expect(page.getByRole("heading", { name: marker, exact: true })).toBeVisible();
       }
       const booking = page.getByTestId("booking-entry-customer"); await waitForHydrated(booking); await booking.click();
       await expect(page.getByTestId("booking-customer")).toHaveValue(customerId);
+      await page.getByTestId("booking-customer").scrollIntoViewIfNeeded(); await expect(page.getByTestId("booking-customer")).toBeInViewport();
+      await captureRecordState(page, "customer-booking-preconnection");
       await page.getByTestId("booking-close").click(); await booking.click();
       await expect(page.getByTestId("booking-customer")).toHaveValue(customerId);
+      await page.getByTestId("booking-customer").scrollIntoViewIfNeeded(); await expect(page.getByTestId("booking-customer")).toBeInViewport();
+      await captureRecordState(page, "customer-booking-reopened-preconnection");
       // Full save/reopen and independent booking persistence remain E2E-006's duty.
       // File operation, selected-tuple, lock and signed-access outcomes remain in
       // their existing real producer suites; empty child arrays earn no read proof.
     } finally { await cleanupFixture(isolated); }
   });
 
-  test("[P1] E35-6-T-AC4/AC5 adapted record captures preserve phone and desktop reflow", async ({ page }, testInfo) => {
+  test("[P1] E35-6-T-AC4/AC5 adapted record captures preserve phone and desktop reflow", async ({ page }) => {
     const isolated = await createTwoTenantFixture();
     try {
       const marker = `35.6 Örnsköldsviks elinstallationer och återkommande underhåll ${crypto.randomUUID()}`;
@@ -1283,30 +1356,30 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
         await page.evaluate(() => window.scrollTo(0, 0));
         await expect(page.getByRole("heading", { name: marker, exact: true })).toBeInViewport();
-        await testInfo.attach(`record-loaded-${viewport.width}`, { body: await page.screenshot({ fullPage: false, animations: "disabled" }), contentType: "image/png" });
+        await captureRecordState(page, "record-loaded", [], true);
         for (const kind of ["facility", "contact"] as const) {
           const recordHeading = page.getByRole("heading", { name: kind === "facility" ? "Serviceanläggningen med lång svensk benämning i Örnsköldsvik" : "Kontaktperson för återkommande service och underhåll", exact: true });
           await recordHeading.scrollIntoViewIfNeeded(); await expect(recordHeading).toBeInViewport();
-          await testInfo.attach(`${kind}-record-${viewport.width}`, { body: await page.screenshot({ fullPage: false, animations: "disabled" }), contentType: "image/png" });
+          await captureRecordState(page, `${kind}-record`, [], true);
           const trigger = page.getByTestId(`new-${kind}-button`);
           await trigger.click();
           const dialog = page.getByRole("dialog", { name: kind === "facility" ? "Ny anläggning" : "Ny kontakt", exact: true });
           const name = dialog.getByRole("textbox", { name: "Namn", exact: true });
           await expect(name).toBeFocused();
-          await testInfo.attach(`${kind}-form-${viewport.width}`, { body: await page.screenshot({ animations: "disabled" }), contentType: "image/png" });
+          await captureRecordState(page, `${kind}-form`, [], true);
           await dialog.getByRole("button", { name: "Spara", exact: true }).click();
           await expect(name).toHaveAttribute("aria-invalid", "true");
           const summary = dialog.getByTestId("form-error-summary");
           await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
           await summary.getByRole("link").first().click(); await expect(name).toBeFocused();
-          await testInfo.attach(`${kind}-validation-focus-${viewport.width}`, { body: await page.screenshot({ animations: "disabled" }), contentType: "image/png" });
+          await captureRecordState(page, `${kind}-validation-focus`, [], true);
           if (viewport.width === 360) {
             // A bounded CSS enlargement + short viewport proxy; no physical keyboard claim.
             await page.addStyleTag({ content: "body { zoom: 2; }" });
             await page.setViewportSize({ width: 360, height: 400 });
             const save = dialog.getByRole("button", { name: "Spara", exact: true });
             await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
-            await testInfo.attach(`${kind}-controlled-enlargement-occlusion-${viewport.width}`, { body: await page.screenshot({ animations: "disabled" }), contentType: "image/png" });
+            await captureRecordState(page, `controlled-${kind}-enlargement-occlusion`, [], true);
             // Navigation below restores the unmodified production stylesheet.
             await page.goto(`/customers/${customerId}`);
             await page.setViewportSize(viewport);
@@ -1318,7 +1391,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         await archive.click();
         const confirmation = page.getByRole("status").filter({ hasText: "Arkivera den här kunden?" });
         await confirmation.scrollIntoViewIfNeeded(); await expect(confirmation).toBeInViewport();
-        await testInfo.attach(`archive-confirmation-${viewport.width}`, { body: await page.screenshot({ animations: "disabled" }), contentType: "image/png" });
+        await captureRecordState(page, "archive-confirmation", [], true);
         await page.getByRole("button", { name: "Avbryt", exact: true }).click();
         expect(await adminQuery("select id from public.customers where id = $1 and archived_at is null", [customerId])).toEqual([{ id: customerId }]);
         expect(await adminQuery("select id from public.audit_events where tenant_id = $1", [isolated.tenantA.id])).toEqual([]);

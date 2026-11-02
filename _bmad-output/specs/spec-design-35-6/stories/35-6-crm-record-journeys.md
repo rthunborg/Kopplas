@@ -157,7 +157,7 @@ Implementation author: Sol High implementation delegate. Baseline: `90c4c708c0cb
 
 Owner-authorized presentation choices use the accepted DESIGN/EXPERIENCE and existing tokens: stack child identity/actions on phone, wrap long Swedish values, use restrained section bands and bordered task cards, keep a visible canonical customer-list return, and show existing contact/facility relationship text without inventing a destination. Child forms retain shared Dialog/DialogActions and their action/remount/hidden identity semantics; fieldsets group current fields, and the existing summary now receives fieldErrors for focusable error links. The contact primary checkbox uses echoed rejected values so retained input survives form reset. Round 1 adds a trailing hidden false fallback: checked on remains the first FormData value, while an unchecked field explicitly reaches the existing parser/update command as false. Both child dialogs use the existing Dialog sheet variant so its viewport-bound flex layout keeps the title/close chrome outside scrolling form content; this reuses the accepted SideSheet composition without changing shared focus or ordinary child pending semantics. Archive changes are presentation only; customer view/target checks, unknown block and child success branches are unchanged. Existing related-area content is retained; no new count, route or capability is inferred.
 
-Ten active E35-6 acceptance cases now exist in source: the eight committed ATDD cases are retained, with stronger primary-checkbox assertions, one source-owned screenshot/reflow case and one short-viewport child-dialog regression. Source case count is not executed coverage. The screenshot case attaches fixed-viewport actual production-server captures when executed at 360x640 and 1440x900: populated detail, scrolled facility/contact identity, forms, validation/focus and archive confirmation. Its separate 360x400 CSS enlargement/short-viewport captures are supplemental proxies, not qualifying visual-gate viewport captures or physical keyboard proof. No captures were executed or fabricated locally. Empty/loading/customer unknown/stale and inherited files/booking remain bound to their existing B03-B10/source-owner suites; screenshot scaffolding does not cover every required visual state or grant acceptance.
+At 9bb, ten active E35-6 acceptance cases existed in source (current focused repair has eleven): the eight committed ATDD cases are retained, with stronger primary-checkbox assertions, one source-owned screenshot/reflow case and one short-viewport child-dialog regression. Source case count is not executed coverage. The screenshot case attaches fixed-viewport actual production-server captures when executed at 360x640 and 1440x900: populated detail, scrolled facility/contact identity, forms, validation/focus and archive confirmation. Its separate 360x400 CSS enlargement/short-viewport captures are supplemental proxies, not qualifying visual-gate viewport captures or physical keyboard proof. No captures were executed or fabricated locally. Empty/loading/customer unknown/stale and inherited files/booking remain bound to their existing B03-B10/source-owner suites; screenshot scaffolding does not cover every required visual state or grant acceptance.
 
 | Check | Actual result in this working tree |
 | --- | --- |
@@ -211,9 +211,9 @@ Round 1 patch verification: pnpm typecheck passed; focused ESLint on six allocat
 
 ## Auto Run Result
 
-Result: **blocked / incomplete checkpoint**. Product and tested source are committed at `9bbf276cf695a0e127a864e442dbeb2e3a79eab6`; this final author reconciliation is documentation only. Primary independent review covered `d42d66f247e6027a82c6d0d3da76f6e85b38efc2`; all six Sol High routes completed, three medium patches were fixed, and targeted independent Sol High delta/trail review through 9bb returned exactly No findings. Independent code review passed. This does not grant development completion, runtime/visual acceptance, release approval or deployment authority.
+Result: **blocked / incomplete checkpoint**. Production code remains the reviewed 9bb content; the current focused capture-test/evidence repair is an uncommitted delta on d369. The historical 9bb completion-gate observations below are retained, not rerun; the new repair evidence/map and genuine gaps follow in their dated section. Primary independent review covered `d42d66f247e6027a82c6d0d3da76f6e85b38efc2`; all six Sol High routes completed, three medium patches were fixed, and targeted independent Sol High delta/trail review through 9bb returned exactly No findings. Independent code review passed. This does not grant development completion, runtime/visual acceptance, release approval or deployment authority.
 
-Final source evidence: typecheck, focused six-file lint, production build and bundle containment passed on source committed at 9bb. Retained full-unit evidence is 3776 passed, 3 failed and 1 skipped (3780 total); focused CRM 126 passed, native Windows TEMP diagnostic 8 passed, and four direct pure FormData/parser probes passed. Broad units were not repeated after two equivalent failed approaches. Required integration/RLS/recovery/storage, browser and visual execution remain UNRUN, 0 executed and 0 skipped. Ten E35-6 source cases are declared active; no local runtime coverage is inferred.
+Final source evidence: typecheck, focused six-file lint, production build and bundle containment passed on source committed at 9bb. Retained full-unit evidence is 3776 passed, 3 failed and 1 skipped (3780 total); focused CRM 126 passed, native Windows TEMP diagnostic 8 passed, and four direct pure FormData/parser probes passed. Broad units were not repeated after two equivalent failed approaches. Required integration/RLS/recovery/storage, browser and visual execution remain UNRUN, 0 executed and 0 skipped. Ten E35-6 source cases were declared at 9bb; the current focused repair declares eleven. No local runtime coverage is inferred.
 
 Both actual clean-9bb commands returned exit 1 with the same exact message: `One published PR at this exact candidate revision is required for authenticated visual acceptance.`
 
@@ -230,9 +230,142 @@ E35-6-REL-1 remains deferred to the UI owner, REL-2 to QA/accessibility, and REL
 {"status":"blocked","code_fix_head":"9bbf276cf695a0e127a864e442dbeb2e3a79eab6","independent_code_review":"passed","followup_review_recommended":true,"score":9,"deferred":[],"runtime_executed":0,"runtime_skipped":0,"release_ready":false}
 ```
 
+## Focused capture verification repair - 2026-11-02
+
+Authorized continuation of the same blocked checkpoint, not a new broad review/P6. Sol High test-integrity/privacy/evidence route; no model change or delegation. Current repair is the uncommitted CRM E2E/checklist/story/delivery delta on `d369489bc85d5ff22b624214db851b003a3fca44`. All production, shared primitive/style, authority, fixture, workflow, dependency and root tracking files remain read-only. Prior six-layer review and clean 9bb targeted review remain historical evidence for their reviewed sources; this new test/evidence delta needs targeted independent High review.
+
+The existing captureRecordState helper now always attaches real PNG Buffer bytes and companion JSON to the native Playwright reporter without E35_CAPTURE_DIR. It captures full CSS-pixel viewports at 1440x900 and 360x640 at the already asserted phase, without redispatch or reload, and restores original viewport, focused element and scroll positions. Optional explicit-directory PNG/JSONL output remains separate from the required native attachments. Metadata includes actual viewport, PNG dimensions/byte count, state IDs, phase, source/proxy classification and E35_CAPTURE_REVISION/GITHUB_SHA candidate claim; that environment claim is not authenticated provenance. The root must independently verify run/head/bytes before any visual acceptance. Rendered contrast assertions are unchanged; their measured JSON now attaches natively and the existing optional file's parent directory is created before writing, avoiding a fresh-checkout artifact-path failure.
+
+Only one new case was added: authenticated malformed customer ID, requiring the real customer-detail-failed branch, generic message, canonical return and absence of not-found/child-empty before capture. It is source-supported by the current request-bound UUID equality read, not runtime proof. Existing cases supply the additional privacy/denied/revoked/unknown-after-remount/confirmed/late-final-B captures and exact owner file-panel, Documents and Booking captures. Documents PNGs occur on real /files after exact query tuple and safe-return href assertions, before clicking Back. File panels assert exact owner labels in viewport; Booking captures assert actual selected customer on open/reopen. No upload or Booking save is added. Existing adapted capture case retains 16 qualifying frames plus 2 phone proxies; the 768x640 rejected-contact regression now emits one supplemental frame. Eleven E35-6 source cases are active; no assertion, timeout, skip or command success was weakened.
+
+Unknown phases are deliberately separate: pre-remount screenshots follow retained unconfirmed input; post-remount create screenshots show an actual payload-free unresolved hint/replay block in a fresh form refilled by the test, never restored original payload. The archive remount screenshot is a freshly opened server-read editor with the block. No reconciliation, retry/reset, child safety authority or storage payload was introduced (D3/D4).
+
+### Sixteen state IDs and real capture phases
+
+Every row retains its E35-6-T-<state> identity and both qualifying viewports. Shared names across rows are allowed only for the same asserted phase, as shown here; no child state is substituted for customer authority.
+
+| Applies state | Stable capture state name / actual assertion phase |
+| --- | --- |
+| E35-6-STATE-loading | customer-loading |
+| E35-6-STATE-loaded | customers-list-private-value-absent; customer-private-detail-masked |
+| E35-6-STATE-empty | customers-empty (successful isolated CustomerList only) |
+| E35-6-STATE-no-match | customers-no-match |
+| E35-6-STATE-validation | customer-validation |
+| E35-6-STATE-denied | customer-foreign-identity-denied |
+| E35-6-STATE-revoked | customer-revoked-membership-rejected |
+| E35-6-STATE-connection-required | customer-archive-connection-required |
+| E35-6-STATE-submitting | customer-pending |
+| E35-6-STATE-error-retry | customer-validation; customer-confirmed-after-validation (definite rejection/correction) |
+| E35-6-STATE-unknown | customer-unknown-{before-forward,lose-response}; customer-unresolved-hint-fresh-form-{before-forward,lose-response}; customer-archive-unresolved-hint-fresh-form |
+| E35-6-STATE-stale | customer-conflict |
+| E35-6-STATE-confirmed | customer-confirmed-after-validation (independent identity/row/audit + exact link) |
+| E35-6-STATE-dirty-navigation | customer-dirty-decision |
+| E35-6-STATE-late-result | customer-late-final-B-private-masked (after delayed A delivered) |
+| E35-6-STATE-focus-dialog | customer-dirty-decision (actual trapped decision focus) |
+
+### Bounded candidate package selection
+
+Expected source emission if every CRM case completes once: **98 PNGs = 92 qualifying viewport frames + 6 supplemental frames**, plus companion JSON/contrast JSON. These are source-derived expectations, not runtime artifacts. Test retries can add attempts/duplicates; root must select verified actual frames from one exact candidate with actual pass/phase provenance, never manufacture a missing image.
+
+The explicit selection below is **72 qualifying attachment names**, below the 80-capture package cap: 32 state/privacy frames + 4 pre-remount unknown frames + 2 archive unresolved frames + 2 actual detail read-error frames + 16 adapted composition frames + 16 exact file/Documents/Booking frames. Do not infer acceptance until every selected actual image/assertion exists and required surface coverage is independently accepted.
+
+Excluded duplicates/inherited qualifying frames: customers-loaded, customers-selected and customer-detail-loaded (6); customer-create-draft (2); customer-edit-loaded (2); customer-phone-validation (2); inherited-new-facility-button, inherited-new-contact-button, inherited-calculation-field and inherited-file-index-select (8). Total 20. Their real source assertions/emissions remain intact. Excluded supplemental frames: controlled-checked-read-503-document-fallback (synthetic 503 document, NEVER app UI error); controlled-css-zoom-200percent at 600x1280; controlled-visible-viewport-occlusion at 360x320; supplemental-short-768-contact-rejected at 768x640; controlled-facility-enlargement-occlusion and controlled-contact-enlargement-occlusion at 360x400. These 6 retain actual dimensions/classifications and remain useful supplementary artifacts, not qualifying phone/desktop evidence or physical keyboard proof.
+
+```json
+{
+  "plannedAttachmentNames": [
+    "customers-list-private-value-absent-1440x900.png",
+    "customers-list-private-value-absent-360x640.png",
+    "customer-private-detail-masked-1440x900.png",
+    "customer-private-detail-masked-360x640.png",
+    "customers-no-match-1440x900.png",
+    "customers-no-match-360x640.png",
+    "customers-empty-1440x900.png",
+    "customers-empty-360x640.png",
+    "customer-validation-1440x900.png",
+    "customer-validation-360x640.png",
+    "customer-confirmed-after-validation-1440x900.png",
+    "customer-confirmed-after-validation-360x640.png",
+    "customer-archive-connection-required-1440x900.png",
+    "customer-archive-connection-required-360x640.png",
+    "customer-pending-1440x900.png",
+    "customer-pending-360x640.png",
+    "customer-unresolved-hint-fresh-form-before-forward-1440x900.png",
+    "customer-unresolved-hint-fresh-form-before-forward-360x640.png",
+    "customer-unresolved-hint-fresh-form-lose-response-1440x900.png",
+    "customer-unresolved-hint-fresh-form-lose-response-360x640.png",
+    "customer-conflict-1440x900.png",
+    "customer-conflict-360x640.png",
+    "customer-loading-1440x900.png",
+    "customer-loading-360x640.png",
+    "customer-late-final-B-private-masked-1440x900.png",
+    "customer-late-final-B-private-masked-360x640.png",
+    "customer-dirty-decision-1440x900.png",
+    "customer-dirty-decision-360x640.png",
+    "customer-foreign-identity-denied-1440x900.png",
+    "customer-foreign-identity-denied-360x640.png",
+    "customer-revoked-membership-rejected-1440x900.png",
+    "customer-revoked-membership-rejected-360x640.png",
+    "customer-unknown-before-forward-1440x900.png",
+    "customer-unknown-before-forward-360x640.png",
+    "customer-unknown-lose-response-1440x900.png",
+    "customer-unknown-lose-response-360x640.png",
+    "customer-archive-unresolved-hint-fresh-form-1440x900.png",
+    "customer-archive-unresolved-hint-fresh-form-360x640.png",
+    "customer-detail-real-read-error-1440x900.png",
+    "customer-detail-real-read-error-360x640.png",
+    "record-loaded-1440x900.png",
+    "record-loaded-360x640.png",
+    "facility-record-1440x900.png",
+    "facility-record-360x640.png",
+    "facility-form-1440x900.png",
+    "facility-form-360x640.png",
+    "facility-validation-focus-1440x900.png",
+    "facility-validation-focus-360x640.png",
+    "contact-record-1440x900.png",
+    "contact-record-360x640.png",
+    "contact-form-1440x900.png",
+    "contact-form-360x640.png",
+    "contact-validation-focus-1440x900.png",
+    "contact-validation-focus-360x640.png",
+    "archive-confirmation-1440x900.png",
+    "archive-confirmation-360x640.png",
+    "context-customer-exact-file-panel-1440x900.png",
+    "context-customer-exact-file-panel-360x640.png",
+    "context-customer-documents-safe-return-1440x900.png",
+    "context-customer-documents-safe-return-360x640.png",
+    "context-facility-exact-file-panel-1440x900.png",
+    "context-facility-exact-file-panel-360x640.png",
+    "context-facility-documents-safe-return-1440x900.png",
+    "context-facility-documents-safe-return-360x640.png",
+    "context-contact-exact-file-panel-1440x900.png",
+    "context-contact-exact-file-panel-360x640.png",
+    "context-contact-documents-safe-return-1440x900.png",
+    "context-contact-documents-safe-return-360x640.png",
+    "customer-booking-preconnection-1440x900.png",
+    "customer-booking-preconnection-360x640.png",
+    "customer-booking-reopened-preconnection-1440x900.png",
+    "customer-booking-reopened-preconnection-360x640.png"
+  ],
+  "captureCount": 72,
+  "packageCap": 80,
+  "actualLocalCaptureCount": 0
+}
+```
+
+### Evidence and genuine gaps
+
+Current repair: pnpm typecheck and focused CRM E2E ESLint passed, exit 0. Review-order checker and diff/frozen-suffix checks are recorded at handoff. Browser discovery is unavailable because this worktree has no existing correct .auth/fixture.json; no fake fixture was created and no discovery/runtime pass is credited. No build/unit repeat or managed resource launch occurred. Current task runtime/capture evidence remains 0 executed, 0 skipped and 0 actual PNGs until root collects real hosted artifacts.
+
+Historical hosted observation relayed by root: Linux verify at head `5a6263d45e139b4a0137b085e0014f23742f931e`, root-owned run `41463404500`, reports 3780/3780 unit tests passed, 0 skipped. This resolves the prior Windows-only unit failures at that observed head; it is not a new local run, current capture proof or blanket runtime pass. Root owns that running CI job and its exact-head/provenance reconciliation; this delegate did not poll, cancel or adopt it. Earlier Windows 3776 passed/3 failed/1 skipped, CRM 126 pass, native-TEMP 8 pass and 4 parser probes remain historical evidence, not relabeled.
+
+Named remaining gaps: **CRM-LIST-READ-ERROR-CAPTURE** (Coordinator/source-owner verification): list read-error/retry has no existing browser fault seam; no producer change is allocated, and neither a child-empty array nor synthetic 503 can satisfy it. Obtain real source-owner error evidence or an authorized bounded verification route before claiming that surface complete. **CRM-DETAIL-READ-ERROR-ASSERTION** (root/hosted lane): the malformed-ID case must actually reach customer-detail-failed and pass on the real server before its two PNGs can enter the package; if it does not, retain the genuine gap rather than substituting HTML/503. **DEV-RUNTIME-VISUAL** (root/Coordinator/UI owner): publish the repaired checkpoint, collect exact-head isolated production-server assertions/PNG/metadata and required integration/RLS/recovery/storage counts, verify source/run provenance and obtain actual authenticated visual acceptance. D5 remains list-successful-zero only; child read failures flatten to arrays and earn no honesty coverage. No pending or Phase C surface is added.
+
+Status remains blocked, followup_review_recommended=true, prior score=9, deferred review items=[]; three release obligations remain deferred to UI owner, QA/accessibility and Coordinator. No done flip, completion helper, visual-gate retry, release-ready claim or business approval request.
+
 ## Suggested Review Order
 
-Author: Sol High implementation/fix delegate. Refreshed against code/fix head `9bbf276cf695a0e127a864e442dbeb2e3a79eab6`, reviewed as primary d42 plus targeted delta to 9bb; original baseline is `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`. The independent Sol High reviewer confirmed this trail and returned exactly No findings at 9bb. Author reference validation passes 16 stops at the same source/test revision; this final reconciliation changes documentation only. Verification and blocked gates are recorded above.
+Author: Sol High implementation/fix delegate. Refreshed against the final uncommitted focused capture-verification repair on `d369489bc85d5ff22b624214db851b003a3fca44`; original baseline is `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`. Production code remains reviewed d42 plus clean targeted delta at 9bb. That reviewer confirmed the earlier trail; this new test/evidence delta requires targeted independent High review. The same 16 stops are refreshed below; current checks, capture map and limits are in the repair section above.
 
 ### Record identity and responsive composition
 
@@ -259,18 +392,18 @@ The accepted SideSheet composition reuses shared Dialog's viewport-bound scrolli
 - `src/components/crm/FacilityDialog.tsx:51` — `variant="sheet"`: existing viewport-bounded child presentation.
 - `src/components/crm/ContactDialog.tsx:65` — `variant="sheet"`: fixed chrome with scrollable rejected contact form.
 - `src/components/crm/ContactDialog.tsx:164` — `name="is_primary"`: checked-first explicit-false submission fallback.
-- `tests/e2e/crm/customers.e2e.spec.ts:1190` — `short viewport`: real 768x640 chrome, error/field/action reachability regression.
+- `tests/e2e/crm/customers.e2e.spec.ts:1253` — `short viewport`: real 768x640 chrome, error/field/action reachability regression.
 
-### Persistence evidence and remaining gates
+### Capture provenance and honest evidence boundaries
 
-The existing lifecycle case now exercises primary=true to rejected-unchecked to saved-false on the same contact, with independent row/audit observations. Fixed-viewport captures include actual scrolled child identities; all sixteen state IDs remain bound to the operative matrix and original B03-B10 representatives, with D5 still uncredited.
+The current helper retains actual PNG bytes and companion state/viewport/provenance metadata in the native reporter while preserving the asserted UI phase. The explicit 72-frame selection covers all sixteen states and adapted/context surfaces; genuine list-error and unexecuted malformed-detail evidence stay visible.
 
-- `tests/e2e/crm/customers.e2e.spec.ts:1058` — `E35-6-T-AC1/AC7`: exact child identity, rejected uncheck, persisted false and audits.
-- `tests/e2e/crm/customers.e2e.spec.ts:1134` — `E35-6-T-AC3/AC4/AC5`: error links, focus, touch targets and retained checked create.
-- `tests/e2e/crm/customers.e2e.spec.ts:1231` — `E35-6-T-AC2/AC6`: exact context tuples, independent panels and Booking reopen.
-- `tests/e2e/crm/customers.e2e.spec.ts:1269` — `E35-6-T-AC4/AC5`: fixed-viewport UI attachments and supplemental reflow proxies.
+- `tests/e2e/crm/customers.e2e.spec.ts:34` — `captureRecordState`: actual PNG/metadata attachments, qualifying pairs and restoration.
+- `tests/e2e/crm/customers.e2e.spec.ts:367` — `malformed customer identity`: genuine detail read-error assertion precedes capture credit.
+- `tests/e2e/crm/customers.e2e.spec.ts:1017` — `B09`: isolated successful empty, foreign denial and real membership revocation.
+- `tests/e2e/crm/customers.e2e.spec.ts:1295` — `E35-6-T-AC2/AC6`: exact panel owner, real Documents return and Booking preconnection captures.
 
-Evidence: post-fix typecheck/focused lint/production build/bundle pass; four focused pure parser probes pass. Prior focused CRM 126/126 and native-TEMP 8/8 evidence is retained for unchanged seams; full units still have 3 failures/1 skip and were not broadly repeated. Ten E35-6 source cases are active, none executed locally. Independent code and targeted delta/trail review passed at 9bb. Runtime/integration/RLS/storage, visual capture/acceptance and exact-head CI remain pending; the actual completion-wrapper attempt refused before invoking its helper because the exact candidate has no published PR. Limits: synthetic test-owned fixtures and controlled transport/viewport faults; no business-success mock, no physical keyboard proof, no full Booking save/reopen claim from composition alone, no D5 child-read proof. Six Sol High Round 1 route outcomes plus the clean targeted delta/trail verdict are recorded above; code-review approval does not establish runtime, visual, development-complete or release approval. release_ready=false.
+Evidence: focused repair typecheck and E2E lint passed; no local runtime/capture/build/unit repeat. Root-relayed Linux unit observation at 5a reports 3780 passed/0 skipped, not new capture evidence. Eleven E35-6 source cases are active; expected 98 source PNGs and explicit 72-frame package names are plans until actual hosted execution. Prior production build/bundle and six-layer/9bb delta review remain provenance-bound historical evidence; new targeted High test/trail review, actual image/source/run verification, integration/RLS/storage, frontend acceptance, exact-head CI and completion wrapper remain pending. Limits: synthetic owned fixtures/transport and viewport faults; post-remount create form is test-refilled, no payload restoration/reconciliation claim; controlled 503 is not application error UI; no D5 child-read or full Booking-save proof. release_ready=false.
 
 ## Frozen canonical v1 source body — preserved LF
 

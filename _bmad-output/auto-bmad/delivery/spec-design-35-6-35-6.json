@@ -1,22 +1,22 @@
 {
   "policy_version": "2026-10-19",
-  "contract_reconciliation": "Current 2026-10-26 frontend visual amendment remains mandatory. Seven ACs/sixteen states and D1-D5 retained; frozen canonical suffix exactly matches original baseline Git bytes. Source/test evidence_revision is code/fix head9bbf276cf695a0e127a864e442dbeb2e3a79eab6; forthcoming author reconciliation commit is documentation only. Story status blocked records actual incomplete checkpoint/HALT. Independent code review passed after six SolHigh Round1 layers and clean targeted High delta/trail review; full units, runtime/integration/RLS/recovery/storage, actual frontend visual acceptance, exact-head CI and successful completion wrapper remain failed/pending. No done/release claim.",
-  "evidence_revision": "9bbf276cf695a0e127a864e442dbeb2e3a79eab6",
+  "contract_reconciliation": "Same authorized blocked checkpoint, focused test/privacy/evidence repair only, not new broad review/P6. Seven ACs/sixteen state IDs/D1-D5 and frozen suffix preserved. All production/authority/shared/workflow/dependency/root-state sources read-only. Eleven active E35-6 source cases; expected98PNGs(92qualifying6supplemental), explicit72qualifying native attachment selection in current story <=80. No actual local captures/runtime(0executed0skipped), no done/helper/gate retry. Current targeted independent High review and actual exact-head authenticated runtime/visual/integration/RLS/recovery/storage evidence remain pending. Three release obligations deferred.",
+  "evidence_revision": "d369489bc85d5ff22b624214db851b003a3fca44 plus final uncommitted focused CRM capture-verification test/docs repair; production source remains reviewed9bb; source hashes recorded below",
   "development_checks": [
     {
       "name": "typecheck",
       "status": "passed",
-      "evidence": "Post-Round1-patch pnpm typecheck exit0 using local Next16.4.1."
+      "evidence": "Focused capture-repair pnpm typecheck exit0 on d369 plus final uncommitted test delta."
     },
     {
       "name": "lint",
       "status": "passed",
-      "evidence": "Post-Round1-patch focused six-file pnpm exec eslint exit0 no warnings. Prior full pnpm lint exit0,0errors31existing warnings."
+      "evidence": "Focused capture-repair pnpm exec eslint tests/e2e/crm/customers.e2e.spec.ts exit0 no warnings; prior full lint31warnings retained historically."
     },
     {
       "name": "build and bundle containment",
       "status": "passed",
-      "evidence": "Post-Round1-patch pnpm build Next16.4.1 production build exit0 and pnpm verify:bundle-containment exit0, after both sheet-variant/explicit-false product changes."
+      "evidence": "Prior production build/bundle containment passed at source committed9bb. Production files unchanged through current test/docs-only repair, so evidence retained; no new build repeat."
     },
     {
       "name": "lockfiles audit and service-role containment",
@@ -30,28 +30,28 @@
     },
     {
       "name": "full unit suite",
-      "status": "failed",
-      "evidence": "pnpm test:unit twice:3780tests3776passed3failed1skipped. Unchanged with-calendar-feed-runtime tests1992 CRLF-v-LF and2237 undefined.split; integration-test-partitions85 TEMP slash mismatch. Focused native Windows TEMP partition run8passed0failed0skipped. Relevant unowned files/runtime/migrations have zero diff from baseline. No third broad retry."
+      "status": "pending",
+      "evidence": "Root historical hosted observation: Linux verify3780/3780pass0skip at5a6263d45e139b4a0137b085e0014f23742f931e, root-owned run41463404500, resolving prior Windows-only3776pass3fail1skip there. No new local fullunit repeat or current capture/runtime pass; root reconciles actual exact-head artifacts. Delegate did not poll/adopt runningCI."
     },
     {
       "name": "required integration RLS recovery storage browser",
       "status": "pending",
-      "evidence": "UNRUN,0executed0skipped; no trusted local resourceGuardContext/managed launch. Prior --list failed before discovery on missing.auth fixture. Root must publish checkpoint PR then supported exact-head isolated hosted full lane with release_validation=true, required int/RLS/recovery/storage and actual counts. No skip credited."
+      "evidence": "Current repair UNRUN0executed0skipped; no managed launch/trustedcontext. Existing worktree .auth/fixture.json absent, no fake discovery fixture/run. Malformed-ID app-failed branch requires actual hosted assertion; list read-error has no existing fault seam, explicit inherited gap. D5 successfulzeroCustomerList only; no child failure-array proof. Root owns exact-head isolated fullverification/artifacts."
     },
     {
       "name": "frontend visual acceptance and exact-head CI",
       "status": "pending",
-      "evidence": "Actual clean9bb frontend-controller local --base90c4c708c0cb87b16cb6bc10fd981ebd9978d76b and completion-gate baseline delivery_gate.py assignedrecord both exit1: One published PR at this exact candidate revision is required for authenticated visual acceptance. Arguments were separate. Delivery helper never invoked; no completion/status writes. Root next: authorized checkpoint PR then scripts/ci/checkpoint-dispatch.mjs release_validation=true exact-head isolated hosted full, actual authenticated visual acceptance. No screenshots/runtime executed;10active sourcecases only."
+      "evidence": "Pending. Actual PNGBuffer+state/viewport/bytecount/dimension/provenance JSON now always native-attached withoutE35_CAPTURE_DIR. Expected successful once-through source98PNGs92qualifying6supplemental; explicit72planned stable attachment names in story covers all16states+adapted/context surfaces <=80; retries extra. No images collected locally. GITHUB_SHA/E35candidateclaim is author assertion pending root GitHub/run/bytes verification; no authenticated acceptance. Prior9bbgate refusal historical, no rerun."
     },
     {
       "name": "assigned source identity",
       "status": "passed",
-      "evidence": "{\"src/app/(app)/customers/[customerId]/page.tsx\": \"34c6c88e55fdfe3b3b6e13193b5c81a5094662d969bd2fad84d427c195af45b3\", \"src/components/crm/ArchiveButton.tsx\": \"02fabf0a0b4e7a223c1c73e80e8355e5bd1a457b27d07019557e8599cde5575b\", \"src/components/crm/ContactDialog.tsx\": \"4adc0e8921f79e3d0a7d08776b99d58afe8f11f446a57cf11c3b0d2166a38110\", \"src/components/crm/CustomerDetail.tsx\": \"998c2c066e06fcc2d112d590c050d8215abbe7625f7ac23b9b372a4a8a566eec\", \"src/components/crm/FacilityDialog.tsx\": \"3a52fbb181079d294bdabc4e0092eb7da6d1770673d7f2d48021d7ce56bb4d24\", \"tests/e2e/crm/customers.e2e.spec.ts\": \"15817af76a768a806d855dd095ce2e8dc9470c87f3f02f180f29d650672b282a\"}"
+      "evidence": "{\"src/app/(app)/customers/[customerId]/page.tsx\": \"34c6c88e55fdfe3b3b6e13193b5c81a5094662d969bd2fad84d427c195af45b3\", \"src/components/crm/ArchiveButton.tsx\": \"02fabf0a0b4e7a223c1c73e80e8355e5bd1a457b27d07019557e8599cde5575b\", \"src/components/crm/ContactDialog.tsx\": \"4adc0e8921f79e3d0a7d08776b99d58afe8f11f446a57cf11c3b0d2166a38110\", \"src/components/crm/CustomerDetail.tsx\": \"998c2c066e06fcc2d112d590c050d8215abbe7625f7ac23b9b372a4a8a566eec\", \"src/components/crm/FacilityDialog.tsx\": \"3a52fbb181079d294bdabc4e0092eb7da6d1770673d7f2d48021d7ce56bb4d24\", \"tests/e2e/crm/customers.e2e.spec.ts\": \"2fb0641c7bc618847b63a5a2af2f12ec95c520412359856d6ed7146aec55bbd7\"}"
     }
   ],
   "independent_review": {
-    "status": "passed",
-    "evidence": "Primary review d42d66f247e6027a82c6d0d3da76f6e85b38efc2: all six SolHigh layers completed (nativeedge[],security nofindings,blind no concrete introduced defect,intent alignedD1-D5/runtimeunearned,verification-gap1medium unchecked-primary edit,externalCLI executed1medium overflow; build verifier separately identified1medium fixed-viewport capture). All3medium patches committed at9bbf276cf695a0e127a864e442dbeb2e3a79eab6. Targeted independent SolHigh consequential delta+author trail review at9bb returned exactly No findings. Final cmdTYPE failure was display-only and recovered by nativepath read. Code review passed; no runtime/visual/development-complete/release proof. Author trail16references checked and reviewer confirmed at9bb."
+    "status": "pending",
+    "evidence": "Prior six SolHigh Round1 routes at d42 and clean targeted independent High delta/trail review at9bb passed for their reviewed code (3mediumfixed,score9,deferred[]). Current focused capture-test/metadata/privacy/evidence delta on d369 requires targeted independent SolHigh review; no new broad review/P6. Production unchanged. Prior approval is not new test-delta review or runtime/visual acceptance."
   },
   "deferred_release_validation": [
     {
