@@ -6,12 +6,16 @@ on:
       - ".agents/skills/auto-bmad/**"
       - ".claude/skills/auto-bmad/**"
       - ".github/workflows/auto-bmad-parallel.yml"
+      - "scripts/maintenance/admit_story35_6_runtime.py"
+      - "tests/maintenance/test_admit_story35_6_runtime.py"
   push:
     branches: [main]
     paths:
       - ".agents/skills/auto-bmad/**"
       - ".claude/skills/auto-bmad/**"
       - ".github/workflows/auto-bmad-parallel.yml"
+      - "scripts/maintenance/admit_story35_6_runtime.py"
+      - "tests/maintenance/test_admit_story35_6_runtime.py"
   workflow_dispatch:
 
 permissions:
@@ -60,6 +64,8 @@ jobs:
           python-version: "3.12"
       - name: Claims, recovery and integration
         run: python -X utf8 .agents/skills/auto-bmad/scripts/tests/test_parallel_run.py -v
+      - name: Exact Story 35.6 blocked runtime admission
+        run: python -X utf8 tests/maintenance/test_admit_story35_6_runtime.py -v
       - name: Actual CLI two-worker lifecycle
         run: python -X utf8 .agents/skills/auto-bmad/scripts/tests/test_parallel_cli.py -v
       - name: Quiesced inherited-skip finalization
