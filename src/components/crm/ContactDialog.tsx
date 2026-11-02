@@ -62,6 +62,7 @@ export function ContactDialog({
       open={open}
       onClose={onClose}
       title={mode === "create" ? "Ny kontakt" : "Redigera kontakt"}
+      variant="sheet"
     >
       <ContactDialogBody
         key={bodyKey}
@@ -159,6 +160,8 @@ function ContactDialogBody({
           label="Primär kontakt"
           defaultChecked={state.status === "error" ? ["on", "true", "1"].includes(state.values.is_primary ?? "") : defaults?.is_primary ?? false}
         />
+        {/* Checked value comes first; an unchecked field still submits an explicit false. */}
+        <input type="hidden" name="is_primary" value="false" />
       </fieldset>
 
       <DialogActions onClose={onClose} pending={pending} />

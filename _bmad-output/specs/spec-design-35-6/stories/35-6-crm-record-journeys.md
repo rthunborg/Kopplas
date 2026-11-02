@@ -2,7 +2,7 @@
 title: "Story 35.6: CRM Record Journeys"
 type: feature
 created: 2026-11-02
-status: in-progress
+status: in-review
 review_loop_iteration: 0
 baseline_revision: 90c4c708c0cb87b16cb6bc10fd981ebd9978d76b
 release_ready: false
@@ -151,34 +151,63 @@ E35-6-REL-1 UI visual/device/composite contrast/reflow, REL-2 QA/accessibility m
 
 ## Implementation and verification checkpoint - 2026-11-02
 
-Implementation author: Sol High implementation delegate. Baseline: `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`; evidence below is the uncommitted assigned working tree, not the baseline commit alone. Status remains in-progress and release_ready=false. Checked product tasks above mean source adaptation only; runtime acceptance and the E2E execution task remain pending.
+Implementation author: Sol High implementation delegate. Baseline: `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`; initial evidence below concerns the assigned implementation working tree. Round 1 reviewed candidate `d42d66f247e6027a82c6d0d3da76f6e85b38efc2`; the current uncommitted patch worktree follows that candidate. Frontmatter status in-review is workflow metadata only; the completion result remains blocked/pending because runtime, visual, full-unit and final review/CI gates are unearned. release_ready=false. Checked product tasks above mean source adaptation only; runtime acceptance and the E2E execution task remain pending.
 
-Owner-authorized presentation choices use the accepted DESIGN/EXPERIENCE and existing tokens: stack child identity/actions on phone, wrap long Swedish values, use restrained section bands and bordered task cards, keep a visible canonical customer-list return, and show existing contact/facility relationship text without inventing a destination. Child forms retain shared Dialog/DialogActions and their action/remount/hidden identity semantics; fieldsets group current fields, and the existing summary now receives fieldErrors for focusable error links. The contact primary checkbox uses echoed rejected values so retained input survives form reset. Archive changes are presentation only; customer view/target checks, unknown block and child success branches are unchanged. Existing related-area content is retained; no new count, route or capability is inferred.
+Owner-authorized presentation choices use the accepted DESIGN/EXPERIENCE and existing tokens: stack child identity/actions on phone, wrap long Swedish values, use restrained section bands and bordered task cards, keep a visible canonical customer-list return, and show existing contact/facility relationship text without inventing a destination. Child forms retain shared Dialog/DialogActions and their action/remount/hidden identity semantics; fieldsets group current fields, and the existing summary now receives fieldErrors for focusable error links. The contact primary checkbox uses echoed rejected values so retained input survives form reset. Round 1 adds a trailing hidden false fallback: checked on remains the first FormData value, while an unchecked field explicitly reaches the existing parser/update command as false. Both child dialogs use the existing Dialog sheet variant so its viewport-bound flex layout keeps the title/close chrome outside scrolling form content; this reuses the accepted SideSheet composition without changing shared focus or ordinary child pending semantics. Archive changes are presentation only; customer view/target checks, unknown block and child success branches are unchanged. Existing related-area content is retained; no new count, route or capability is inferred.
 
-Nine active E35-6 acceptance cases now exist: the eight committed ATDD cases are retained, with an additional retained-checkbox assertion and one source-owned screenshot/reflow case. The latter attaches actual production-server screenshots when executed at 360x640 and 1440x900: populated detail, facility/contact forms, validation/focus, archive confirmation, and controlled CSS enlargement/short-viewport proxies. No captures were executed or fabricated locally. Empty/loading/customer unknown/stale and inherited files/booking remain bound to their existing B03-B10/source-owner suites; screenshot scaffolding does not cover every required visual state or grant acceptance.
+Ten active E35-6 acceptance cases now exist in source: the eight committed ATDD cases are retained, with stronger primary-checkbox assertions, one source-owned screenshot/reflow case and one short-viewport child-dialog regression. Source case count is not executed coverage. The screenshot case attaches fixed-viewport actual production-server captures when executed at 360x640 and 1440x900: populated detail, scrolled facility/contact identity, forms, validation/focus and archive confirmation. Its separate 360x400 CSS enlargement/short-viewport captures are supplemental proxies, not qualifying visual-gate viewport captures or physical keyboard proof. No captures were executed or fabricated locally. Empty/loading/customer unknown/stale and inherited files/booking remain bound to their existing B03-B10/source-owner suites; screenshot scaffolding does not cover every required visual state or grant acceptance.
 
 | Check | Actual result in this working tree |
 | --- | --- |
 | Correct local dependencies | Parent installed worktree-local frozen lockfile dependencies; Next 16.4.1 resolves. package.json/pnpm-lock.yaml unchanged. Earlier ancestor Next 16.3.6 optimizer import mismatch is resolved. |
 | `pnpm typecheck` | Passed, exit 0; rerun after final source/test edits also passed. |
 | `pnpm lint` | Passed, exit 0, 0 errors/31 existing warnings. Focused final ESLint on the six allocated source/test files passed without warnings. |
-| `pnpm build` | Passed, Next 16.4.1 production build; later edits only formatted child JSX and strengthened unbundled E2E assertions. |
-| `pnpm verify:bundle-containment` | Passed after that production build. |
+| `pnpm build` | Passed again after the Round 1 sheet-variant and explicit-false product changes, Next 16.4.1 production build, exit 0. |
+| `pnpm verify:bundle-containment` | Passed again after the Round 1 production build, exit 0. |
 | `pnpm verify:lockfiles`, `pnpm verify:service-role-containment`, `pnpm audit --audit-level=high` | Parent-executed passed checks in this worktree; audit reports 5 moderate, no high vulnerabilities. No later authority/dependency changes invalidate them. |
 | `pnpm test:unit` | Two equivalent runs: 3780 tests, 3776 passed, 3 failed, 1 skipped; exit 1. Not a passing gate. |
 | Focused CRM units | `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/crm/action-state.test.ts tests/unit/features/crm/form-parsing.test.ts tests/unit/components/crm/customer-presentation.test.ts tests/unit/server/commands/crm-validation.test.ts`: 126 passed, 0 failed, 0 skipped. |
 | Bounded unit diagnosis | Full-run failures in unchanged `with-calendar-feed-runtime.test.ts`: test at 1992 compares CRLF/LF SQL bodies; test at 2237 fails source extraction with undefined.split. The third failure, integration-test-partitions.test.ts:85, compares native/backslash TEMP with forward-slash TEMP. Focused native Windows TEMP run of that file passed 8/8, 0 skipped. Unowned tests/runtime/migrations have zero diff from baseline; no source rewrite or third broad retry. |
 | Browser discovery | `pnpm test:e2e tests/e2e/crm/customers.e2e.spec.ts --list` failed before discovery: missing tests/e2e/.auth/fixture.json. No discovered/executed coverage is credited. |
 | Integration/RLS, recovery/storage, browser and visual | UNRUN: 0 executed, 0 skipped. No trusted resourceGuardContext was available for managed launches; no DB/server/browser was started. Isolated hosted candidate execution remains the Coordinator's next action. |
-| Independent sensitive review, exact-head CI, frontend acceptance and completion wrapper | Pending. This checkpoint is not development-complete or review-ready under the visual acceptance gate. No status/delivery helper or completion wrapper was invoked. |
+| Independent sensitive review, exact-head CI, frontend acceptance and completion wrapper | Six Sol High Round 1 routes returned the findings/dispositions recorded below. Three accepted medium patches are applied; native consequential delta review is pending. External CLI review executed and its finding is addressed, but no final independent review pass is claimed. Other gates remain pending; no status/delivery helper or completion wrapper was invoked. |
 
 Named blockers: **DEV-UNIT-WINDOWS** (Coordinator/CI owner): obtain exact-head isolated CI unit evidence for unchanged calendar-feed source-extraction failures; change no unowned fixture to hide them. **DEV-RUNTIME-VISUAL** (Coordinator/UI owner): publish the reviewed candidate through the authorized checkpoint route, run the supported isolated production-server integration/browser/capture lane, inspect actual counts/artifacts, and obtain current authenticated frontend acceptance. Resume completion only after applicable checks, independent review and the project completion wrapper pass. Physical-device/manual release checks remain E35-6-REL-1/2; final Phase B consolidation remains REL-3. Named release people/evidence are not invented; E16's 14-item and E20 caveats remain.
 
 D5 remains a disclosed limitation: child read failures flatten to arrays with error:null; no child-empty honesty coverage is awarded. Privacy remains list-personnummer absent/detail initially masked, with entitled detail payload intentional. No new customer reconciliation/reset, child expected-facts/dirty/unknown protocol, reason field, CRM filter persistence, helper, dependency, schema or Phase C surface was added.
 
+## Review Triage Log
+
+### Round 1 - reviewed candidate d42d66f247e6027a82c6d0d3da76f6e85b38efc2
+
+All six routes used gpt-6.1-sol / high, as recorded by the parent review handoff. Original round findings concern the reviewed candidate; current fixes still need native consequential delta review.
+
+| Route | Actual returned result |
+| --- | --- |
+| Native edge-case | Empty findings array. |
+| Security | No findings. |
+| Blind | No concrete introduced defect reported. |
+| Intent | Aligned with D1-D5; broad journey/runtime evidence remains unearned. |
+| Verification-gap | Accepted medium checkbox-edit regression and fixed-viewport capture patches. |
+| External CLI | Executed review returned the medium short-viewport contact-dialog finding. Final cmd TYPE display failed with system-cannot-find-file; native-path PowerShell read recovered the retained review. This is not an unavailable review or a pass for the patched candidate. |
+
+Classification: intent_gap=0, bad_spec=0, patch=3 (all medium), defer=0, reject=0. All accepted patches were handled in one bounded batch, without a new broad review or protected-boundary change.
+
+Addressed:
+
+1. Extended the existing unique contact lifecycle case: create primary=true, open that exact contact, uncheck primary, reject blank name, retain unchecked state with unchanged true DB value and only the creation audit, then correct and save primary=false on the same ID/parent/facility with the original final attributable audit checks. The owned form's trailing false fallback is necessary because absent optional is_primary means no update under the unchanged parser/command contract.
+2. Replaced the populated-record full-page capture with fullPage:false and added fixed-viewport scrolled child identity captures after in-viewport assertions. Primary dimensions remain 360x640 and 1440x900; 360x400 CSS enlargement/occlusion stays explicitly supplemental.
+3. Reused existing Dialog variant=sheet in both allocated child consumers; its bounded scrolling body keeps chrome reachable. Added one real 768x640 source regression with an actual facility option and rejected contact, plus the equivalent facility rejection: title/close remain in viewport while error links, fields and save are reached, and close restores the invoker. No shared Dialog/style or child safety contract was changed.
+
+Round 1 patch verification: pnpm typecheck passed; focused ESLint on six allocated source/test files passed; pnpm build and pnpm verify:bundle-containment passed again after product changes. Four direct pure FormData/parser probes (checked/unchecked x valid/invalid name) passed through the unchanged parser. These are not UI/DB persistence proof. Full units were not broadly repeated; prior failed/skip evidence is retained. Runtime/integration/browser/visual remain UNRUN, 0 executed, 0 skipped. Exact-head CI, authenticated frontend acceptance, native consequential delta review and the completion wrapper remain pending. No development-complete/done/release claim.
+
+```json
+{"round":1,"intent_gap":0,"bad_spec":0,"patch":3,"medium":3,"defer":0,"reject":0,"score":9,"followup_review_recommended":true,"deferred":[]}
+```
+
 ## Suggested Review Order
 
-Author: Sol High implementation delegate. Refreshed against the final uncommitted assigned worktree on baseline `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`; evidence limits are recorded in the checkpoint above.
+Author: Sol High implementation/fix delegate. Refreshed against reviewed candidate `d42d66f247e6027a82c6d0d3da76f6e85b38efc2` plus the final uncommitted Round 1 patch worktree; original baseline is `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`. Verification and pending gates are recorded above.
 
 ### Record identity and responsive composition
 
@@ -198,25 +227,25 @@ D1-D4 retain the existing customer-only safety contract. Archive styling changes
 - `src/app/(app)/customers/[customerId]/page.tsx:117` — `parentCustomerId`: exact facility parent and suffix authority.
 - `src/app/(app)/customers/[customerId]/page.tsx:147` — `bookingPanel`: unchanged customer Booking host and preconnection.
 
-### Rejected child input and focus
+### Reachable child chrome and rejected input
 
-Existing FormErrorSummary owns links to current field errors; shared Dialog remains sole initial-focus owner. Grouping adds no child safety protocol, and echoed primary-checkbox state preserves suitable rejected input (AC3/4/5).
+The accepted SideSheet composition reuses shared Dialog's viewport-bound scrolling body so larger grouped forms cannot center their chrome above the scroll origin. Existing field-error summary links remain; a trailing false fallback keeps unchecked updates explicit under the unchanged first-value parser, while echoed rejected state preserves the checkbox (AC1/3/4/5).
 
-- `src/components/crm/FacilityDialog.tsx:88` — `fieldErrors`: current facility errors enter the existing summary.
-- `src/components/crm/ContactDialog.tsx:110` — `fieldErrors`: current contact errors enter the existing summary.
-- `src/components/crm/ContactDialog.tsx:160` — `defaultChecked`: rejected primary convenience flag is retained.
-- `tests/e2e/crm/customers.e2e.spec.ts:1114` — `E35-6-T-AC3/AC4/AC5`: associated error links, focus, touch targets and real correction.
+- `src/components/crm/FacilityDialog.tsx:51` — `variant="sheet"`: existing viewport-bounded child presentation.
+- `src/components/crm/ContactDialog.tsx:65` — `variant="sheet"`: fixed chrome with scrollable rejected contact form.
+- `src/components/crm/ContactDialog.tsx:164` — `name="is_primary"`: checked-first explicit-false submission fallback.
+- `tests/e2e/crm/customers.e2e.spec.ts:1190` — `short viewport`: real 768x640 chrome, error/field/action reachability regression.
 
 ### Persistence evidence and remaining gates
 
-The lifecycle cases observe real rows and attributable audits, while composition checks exact Documents tuples and current Booking preconnection. All sixteen state IDs remain bound to the operative matrix and original B03-B10 representatives; test source is not executed evidence.
+The existing lifecycle case now exercises primary=true to rejected-unchecked to saved-false on the same contact, with independent row/audit observations. Fixed-viewport captures include actual scrolled child identities; all sixteen state IDs remain bound to the operative matrix and original B03-B10 representatives, with D5 still uncredited.
 
-- `tests/e2e/crm/customers.e2e.spec.ts:1014` — `E35-6-T-AC1/AC7`: customer identity, soft archive and attributable audits.
-- `tests/e2e/crm/customers.e2e.spec.ts:1058` — `E35-6-T-AC1/AC7`: actual child parent/target identities and attributable audits.
-- `tests/e2e/crm/customers.e2e.spec.ts:1170` — `E35-6-T-AC2/AC6`: exact context tuples, independent panels and Booking reopen.
-- `tests/e2e/crm/customers.e2e.spec.ts:1208` — `E35-6-T-AC4/AC5`: real UI capture attachments and controlled reflow proxies.
+- `tests/e2e/crm/customers.e2e.spec.ts:1058` — `E35-6-T-AC1/AC7`: exact child identity, rejected uncheck, persisted false and audits.
+- `tests/e2e/crm/customers.e2e.spec.ts:1134` — `E35-6-T-AC3/AC4/AC5`: error links, focus, touch targets and retained checked create.
+- `tests/e2e/crm/customers.e2e.spec.ts:1231` — `E35-6-T-AC2/AC6`: exact context tuples, independent panels and Booking reopen.
+- `tests/e2e/crm/customers.e2e.spec.ts:1269` — `E35-6-T-AC4/AC5`: fixed-viewport UI attachments and supplemental reflow proxies.
 
-Evidence: typecheck/lint/build/bundle pass; focused CRM 126/126 pass; full units fail 3 with 1 skip as recorded above, and the native-TEMP targeted diagnostic passes 8/8. Runtime/integration/RLS/storage, visual capture/acceptance, independent review, exact-head CI and completion wrapper remain pending. Limits: synthetic test-owned fixtures and controlled transport/viewport faults; no business-success mock, no actual local browser or physical keyboard proof, no full Booking save/reopen claim from composition alone, no D5 child-read coverage. Release validation and approval remain separately owned; release_ready=false.
+Evidence: post-fix typecheck/focused lint/production build/bundle pass; four focused pure parser probes pass. Prior focused CRM 126/126 and native-TEMP 8/8 evidence is retained for unchanged seams; full units still have 3 failures/1 skip and were not broadly repeated. Ten E35-6 source cases are active, none executed locally. Runtime/integration/RLS/storage, visual capture/acceptance, native consequential delta review, exact-head CI and completion wrapper remain pending. Limits: synthetic test-owned fixtures and controlled transport/viewport faults; no business-success mock, no physical keyboard proof, no full Booking save/reopen claim from composition alone, no D5 child-read proof. Six Sol High Round 1 route outcomes are recorded above; no complete independent approval is inferred. release_ready=false.
 
 ## Frozen canonical v1 source body — preserved LF
 

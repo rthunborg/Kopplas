@@ -1070,7 +1070,10 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         const trigger = page.getByTestId(`new-${kind}-button`); await waitForHydrated(trigger); await trigger.click();
         const create = page.getByRole("dialog", { name: title, exact: true });
         await create.getByRole("textbox", { name: "Namn", exact: true }).fill(marker);
-        if (kind === "contact") await create.getByLabel("Anläggning (valfritt)").selectOption(facilityId);
+        if (kind === "contact") {
+          await create.getByLabel("Anläggning (valfritt)").selectOption(facilityId);
+          await create.getByLabel("Primär kontakt", { exact: true }).check();
+        }
         await create.getByRole("button", { name: "Spara", exact: true }).click();
         await expect(create).toHaveCount(0);
         const created = await adminQuery<{ id: string; tenant_id: string; customer_id: string; archived_at: string | null }>(
@@ -1083,6 +1086,21 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         await expect(record).toHaveCount(1);
         await record.getByRole("button", { name: "Redigera", exact: true }).click();
         const edit = page.getByRole("dialog", { name: editTitle, exact: true });
+        if (kind === "contact") {
+          expect(await adminQuery("select id, is_primary from public.contacts where id = $1", [id])).toEqual([{ id, is_primary: true }]);
+          const primary = edit.getByLabel("Primär kontakt", { exact: true });
+          await expect(primary).toBeChecked();
+          await primary.uncheck();
+          const name = edit.getByRole("textbox", { name: "Namn", exact: true });
+          await name.fill("");
+          await edit.getByRole("button", { name: "Spara", exact: true }).click();
+          await expect(name).toHaveAttribute("aria-invalid", "true");
+          await expect(primary).not.toBeChecked();
+          expect(await adminQuery("select id, customer_id, is_primary from public.contacts where id = $1", [id]))
+            .toEqual([{ id, customer_id: customerId, is_primary: true }]);
+          expect(await adminQuery("select command, actor_user_id, target_id from public.audit_events where target_id = $1", [id]))
+            .toEqual([{ command: "contact.create", actor_user_id: isolated.adminA.id, target_id: id }]);
+        }
         await edit.getByRole("textbox", { name: "Namn", exact: true }).fill(editedName);
         await edit.getByRole("button", { name: "Spara", exact: true }).click();
         await expect(edit).toHaveCount(0);
@@ -1091,7 +1109,9 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         );
         expect(updated).toEqual([{ id, tenant_id: isolated.tenantA.id, customer_id: customerId, name: editedName, archived_at: null }]);
         if (kind === "contact") {
-          expect(await adminQuery<{ facility_id: string }>("select facility_id from public.contacts where id = $1", [id])).toEqual([{ facility_id: facilityId }]);
+          await expect(page.getByText("Primär", { exact: true })).toHaveCount(0);
+          expect(await adminQuery<{ id: string; facility_id: string; is_primary: boolean }>("select id, facility_id, is_primary from public.contacts where id = $1", [id]))
+            .toEqual([{ id, facility_id: facilityId, is_primary: false }]);
         }
         const archive = page.getByRole("button", { name: archiveName, exact: true });
         await archive.click();
@@ -1167,6 +1187,47 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     }
   }
 
+  test("[P1] E35-6-T-AC4/AC5 short viewport keeps child dialog chrome and rejected contact fields reachable", async ({ page }) => {
+    const isolated = await createTwoTenantFixture();
+    try {
+      const marker = `35.6 kort vy ${crypto.randomUUID()}`;
+      const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: marker, org_nr: "556677-8899" });
+      const facilityId = await adminInsertFacility({ tenant_id: isolated.tenantA.id, customer_id: customerId, name: `${marker} anläggning` });
+      await page.setViewportSize({ width: 768, height: 640 });
+      await signIn(page, isolated.adminA.email, isolated.adminA.password);
+      await page.goto(`/customers/${customerId}`);
+      for (const kind of ["facility", "contact"] as const) {
+        const trigger = page.getByTestId(`new-${kind}-button`); await waitForHydrated(trigger); await trigger.click();
+        const title = kind === "facility" ? "Ny anläggning" : "Ny kontakt";
+        const dialog = page.getByRole("dialog", { name: title, exact: true });
+        const heading = dialog.getByRole("heading", { name: title, exact: true });
+        const close = dialog.getByRole("button", { name: "Stäng", exact: true });
+        await expect(heading).toBeInViewport(); await expect(close).toBeInViewport();
+        const name = dialog.getByRole("textbox", { name: "Namn", exact: true });
+        await expect(name).toBeFocused();
+        if (kind === "contact") {
+          const facility = dialog.getByLabel("Anläggning (valfritt)");
+          await facility.selectOption(facilityId); await expect(facility).toHaveValue(facilityId);
+          await dialog.getByLabel("Roll (valfritt)").fill("Samordnare för återkommande service och underhåll");
+        }
+        const save = dialog.getByRole("button", { name: "Spara", exact: true });
+        await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport(); await save.click();
+        await expect(name).toHaveAttribute("aria-invalid", "true");
+        await expect(heading).toBeInViewport(); await expect(close).toBeInViewport();
+        const summary = dialog.getByTestId("form-error-summary");
+        await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
+        await summary.getByRole("link").first().click(); await expect(name).toBeFocused(); await expect(name).toBeInViewport();
+        if (kind === "contact") await expect(dialog.getByLabel("Anläggning (valfritt)")).toHaveValue(facilityId);
+        await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
+        await expect(heading).toBeInViewport(); await expect(close).toBeInViewport();
+        await close.click(); await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
+      }
+      expect(await adminQuery("select id from public.contacts where customer_id = $1", [customerId])).toEqual([]);
+      expect(await adminQuery("select id from public.facilities where customer_id = $1", [customerId])).toEqual([{ id: facilityId }]);
+      expect(await adminQuery("select id from public.audit_events where tenant_id = $1", [isolated.tenantA.id])).toEqual([]);
+    } finally { await cleanupFixture(isolated); }
+  });
+
   test("[P0] E35-6-T-AC2/AC6 adapted composition keeps exact Documents tuples, independent panels and customer Booking preconnection", async ({ page }) => {
     const isolated = await createTwoTenantFixture();
     try {
@@ -1220,8 +1281,13 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         const edit = page.getByTestId("edit-customer-button"); await waitForHydrated(edit);
         await expect(page.getByRole("link", { name: "Tillbaka till kunder", exact: true })).toBeVisible();
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-        await testInfo.attach(`record-loaded-${viewport.width}`, { body: await page.screenshot({ fullPage: true, animations: "disabled" }), contentType: "image/png" });
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await expect(page.getByRole("heading", { name: marker, exact: true })).toBeInViewport();
+        await testInfo.attach(`record-loaded-${viewport.width}`, { body: await page.screenshot({ fullPage: false, animations: "disabled" }), contentType: "image/png" });
         for (const kind of ["facility", "contact"] as const) {
+          const recordHeading = page.getByRole("heading", { name: kind === "facility" ? "Serviceanläggningen med lång svensk benämning i Örnsköldsvik" : "Kontaktperson för återkommande service och underhåll", exact: true });
+          await recordHeading.scrollIntoViewIfNeeded(); await expect(recordHeading).toBeInViewport();
+          await testInfo.attach(`${kind}-record-${viewport.width}`, { body: await page.screenshot({ fullPage: false, animations: "disabled" }), contentType: "image/png" });
           const trigger = page.getByTestId(`new-${kind}-button`);
           await trigger.click();
           const dialog = page.getByRole("dialog", { name: kind === "facility" ? "Ny anläggning" : "Ny kontakt", exact: true });

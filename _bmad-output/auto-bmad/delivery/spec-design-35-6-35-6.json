@@ -1,22 +1,22 @@
 {
   "policy_version": "2026-10-19",
-  "contract_reconciliation": "Current 2026-10-26 visual amendment remains mandatory for this frontend change. Approved seven ACs/sixteen states and exact D1-D5 supersession retained; immutable canonical suffix matches baseline Git bytes. This checkpoint is incomplete: full units failed; runtime/integration/RLS/recovery/storage, visual acceptance, independent review and exact-head CI are pending. Physical device/manual release validation remains separately deferred; no done or release claim.",
-  "evidence_revision": "Uncommitted assigned working tree on 90c4c708c0cb87b16cb6bc10fd981ebd9978d76b; source/test hashes recorded below; refresh after candidate commit",
+  "contract_reconciliation": "Current 2026-10-26 frontend visual amendment remains mandatory. Seven ACs/sixteen states and D1-D5 retained; frozen canonical suffix exactly matches original baseline Git bytes. Frontmatter in-review is workflow metadata only; completion result remains blocked/pending because full units, runtime/integration/RLS/recovery/storage, visual acceptance, final independent review/exact-head CI and completion wrapper are unearned. Three medium Round 1 patches applied in one batch; no done/release claim.",
+  "evidence_revision": "Reviewed candidate d42d66f247e6027a82c6d0d3da76f6e85b38efc2 plus final uncommitted Round 1 patch worktree; original baseline90c4c708c0cb87b16cb6bc10fd981ebd9978d76b; refresh after patch commit",
   "development_checks": [
     {
       "name": "typecheck",
       "status": "passed",
-      "evidence": "pnpm typecheck exit0 with local Next16.4.1; final rerun exit0."
+      "evidence": "Post-Round1-patch pnpm typecheck exit0 using local Next16.4.1."
     },
     {
       "name": "lint",
       "status": "passed",
-      "evidence": "pnpm lint exit0,0errors31existing warnings; final six-file pnpm exec eslint exit0 no warnings."
+      "evidence": "Post-Round1-patch focused six-file pnpm exec eslint exit0 no warnings. Prior full pnpm lint exit0,0errors31existing warnings."
     },
     {
       "name": "build and bundle containment",
       "status": "passed",
-      "evidence": "pnpm build Next16.4.1 production build exit0; pnpm verify:bundle-containment exit0. Subsequent JSX indentation and unbundled E2E assertions do not change production output."
+      "evidence": "Post-Round1-patch pnpm build Next16.4.1 production build exit0 and pnpm verify:bundle-containment exit0, after both sheet-variant/explicit-false product changes."
     },
     {
       "name": "lockfiles audit and service-role containment",
@@ -26,7 +26,7 @@
     {
       "name": "focused CRM units",
       "status": "passed",
-      "evidence": "Four existing action-state/form-parsing/customer-presentation/crm-validation files via node --test:126executed126passed0failed0skipped."
+      "evidence": "Prior unchanged four-module CRM seam units126passed0failed0skipped retained; post-patch four direct checked/unchecked x valid/invalid FormData/parser probes passed. Pure seam checks are not UI/DB persistence proof."
     },
     {
       "name": "full unit suite",
@@ -41,17 +41,17 @@
     {
       "name": "frontend visual acceptance and exact-head CI",
       "status": "pending",
-      "evidence": "No runtime screenshots or authenticated acceptance; one owned test adds actual production-server screenshot attachments at360x640/1440x900 when executed. Other states remain B03-B10/source-owner duties. Candidate publication/execution/acceptance required before completion."
+      "evidence": "Pending no actual captures/acceptance. Screenshot source now uses fixed fullPage:false populated record and scrolled child identity captures at360x640/1440x900;360x400CSSzoomproxy supplemental only. Added real768x640 facility-option/rejected-contact chrome/field/action reachability source regression. Ten active source cases,0executed0skipped runtime; exact-candidate execution required."
     },
     {
       "name": "assigned source identity",
       "status": "passed",
-      "evidence": "{\"src/app/(app)/customers/[customerId]/page.tsx\": \"34c6c88e55fdfe3b3b6e13193b5c81a5094662d969bd2fad84d427c195af45b3\", \"src/components/crm/ArchiveButton.tsx\": \"02fabf0a0b4e7a223c1c73e80e8355e5bd1a457b27d07019557e8599cde5575b\", \"src/components/crm/ContactDialog.tsx\": \"a3ad093e790185d4a118f17191fe73df91b37f488d6bb0b651ef3967d509d45f\", \"src/components/crm/CustomerDetail.tsx\": \"998c2c066e06fcc2d112d590c050d8215abbe7625f7ac23b9b372a4a8a566eec\", \"src/components/crm/FacilityDialog.tsx\": \"55f125b7946e5fceff7d22fc00889fac7c531d768dd7215d9d933ba260e30a1c\", \"tests/e2e/crm/customers.e2e.spec.ts\": \"9850530f31d088baaf2b69af16fc007edce1afc234e191e2bdbc827b2457a3f3\"}"
+      "evidence": "{\"src/app/(app)/customers/[customerId]/page.tsx\": \"34c6c88e55fdfe3b3b6e13193b5c81a5094662d969bd2fad84d427c195af45b3\", \"src/components/crm/ArchiveButton.tsx\": \"02fabf0a0b4e7a223c1c73e80e8355e5bd1a457b27d07019557e8599cde5575b\", \"src/components/crm/ContactDialog.tsx\": \"4adc0e8921f79e3d0a7d08776b99d58afe8f11f446a57cf11c3b0d2166a38110\", \"src/components/crm/CustomerDetail.tsx\": \"998c2c066e06fcc2d112d590c050d8215abbe7625f7ac23b9b372a4a8a566eec\", \"src/components/crm/FacilityDialog.tsx\": \"3a52fbb181079d294bdabc4e0092eb7da6d1770673d7f2d48021d7ce56bb4d24\", \"tests/e2e/crm/customers.e2e.spec.ts\": \"15817af76a768a806d855dd095ce2e8dc9470c87f3f02f180f29d650672b282a\"}"
     }
   ],
   "independent_review": {
     "status": "pending",
-    "evidence": "Implementation checkpoint prepared for independent sensitive review; no approval claimed."
+    "evidence": "Six Round1 routes SolHigh on d42d66f247e6027a82c6d0d3da76f6e85b38efc2: nativeedge findings[], security nofindings, blind no concreteintroduceddefect, intent alignedD1-D5 but runtimeunearned, verificationgap2mediumaccepted, externalCLI executed1mediumshortviewport finding. Final cmdTYPE display failed; nativepath read recovered retained external result, not unavailable. Three accepted patches applied; native consequential delta review pending. Score9 followup recommended;deferred[]. No complete independent review pass."
   },
   "deferred_release_validation": [
     {

@@ -48,6 +48,7 @@ export function FacilityDialog({
       open={open}
       onClose={onClose}
       title={mode === "create" ? "Ny anläggning" : "Redigera anläggning"}
+      variant="sheet"
     >
       <FacilityDialogBody
         key={bodyKey}
