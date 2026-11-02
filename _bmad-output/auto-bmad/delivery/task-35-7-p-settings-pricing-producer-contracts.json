@@ -1,12 +1,12 @@
 {
   "policy_version": "2026-10-19",
-  "contract_reconciliation": "Approved full ADR-B014 task35.7-P and nine immutable canonical hashes preserved. Root committed reviewed WIP cad737; same author applied four Round1 patches plus six actual owner-approved bounded fixture deltas after fresh ownership/SQLite inventory. All nine additional paths admitted; no allocation hold. Local target remains baseline115/120 atomic existing SOURCE_ACL_NOT_COMPARABLE; task migration not applied. Required actual runtime uses existing exact-candidate CI. Frontend acceptance remains development-blocking, never deferred.",
-  "evidence_revision": "cad737c4399bb453ad3eb624911f3ce9218433c5 + uncommitted Round1 source digest dc010cb2f9cba6dd67d51d03b46738f7629f650383bfd0bfe6d2f1355856d4c0",
+  "contract_reconciliation": "Approved full ADR-B014 task35.7-P and nine immutable canonical hashes preserved. Source-reviewed candidate 7f6a7be9e0544844b43842b46d498f7539602dde includes the four Round1 patches and six actually approved bounded fixture deltas. All three independent SolHigh targeted follow-ups FIX_CONFIRMED, no remaining consequential finding; one broad round plus targeted follow-up only. All47 production/test/migration effective Git blobs remain equal that candidate, evidenced by author-publication-source-equality.json. This publication batch changes execution/review/evidence/delivery bookkeeping only. No task migration application or runtime approval. Qualified exact-final-head CI/browser/recovery and authenticated frontend acceptance remain development-blocking; Build in progress, Step5 not done, release_ready=false.",
+  "evidence_revision": "Source Git blobs reviewed at 7f6a7be9e0544844b43842b46d498f7539602dde; 47-blob inventory SHA256 71463c560099227967b8814fe12393bd733377c9cdde410ce3fc4f221d934aca; final publication bookkeeping commit not yet created. Workflow owner must bind and run qualified checks at that final full head against original baseline ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657.",
   "development_checks": [
     {
       "name": "canonical and approved fixture preservation",
       "status": "passed",
-      "evidence": "author-round1-resume-integrity.json nine unchanged canonical hashes; unchanged single migration; author-round1-approved-delta-preservation.json exact six bounded deltas and original E2E LF prefixes; original approved fixture pin evidence retained."
+      "evidence": "author-round1-resume-integrity.json nine unchanged canonical hashes; unchanged single migration; author-round1-approved-delta-preservation.json exact six bounded deltas and original E2E LF prefixes; original approved fixture pin evidence retained. Publication reconciliation: author-publication-source-equality.json verifies47 unchanged effective Git blobs at 7f6a7be9e0544844b43842b46d498f7539602dde and9 unchanged canonical raw hashes."
     },
     {
       "name": "focused units",
@@ -21,7 +21,7 @@
     {
       "name": "full unit lane",
       "status": "failed",
-      "evidence": "author-round1-full-unit-current.log native1;3808 tests/pass3805/fail2/skip1. Exact2 calendar failures actually reproduced by Root at clean original baseline; baseline-calendar-provenance.json has8 identical raw dependencies. Provenance is not waiver/current full-lane PASS. Linux-xattr recovery skip is not coverage. Final following changes are company current-VAT label display and integration finally cleanup; focused SSR/unit and static checks retained; required exact-candidate full CI remains unearned."
+      "evidence": "author-round1-full-unit-current.log native1;3808 tests/pass3805/fail2/skip1. Exact2 calendar failures actually reproduced by Root at clean original baseline; baseline-calendar-provenance.json has8 identical raw dependencies. Provenance is not waiver/current full-lane PASS. Linux-xattr recovery skip is not coverage. Final following changes are company current-VAT label display and integration finally cleanup; focused SSR/unit and static checks retained; required exact-candidate full CI remains unearned. The skip is tests/unit/ops/isolated-recovery-storage.test.ts:17, zero local body coverage; qualified Ubuntu CI plus recovery-loader must execute. Existing logs are reused, not rerun or waived."
     },
     {
       "name": "typecheck and production build",
@@ -36,12 +36,12 @@
     {
       "name": "frontend exact-candidate authenticated acceptance",
       "status": "failed",
-      "evidence": "author-round1-gate-results.json: local frontend-controller and supported completion-wrapper use original full baseline; native1 uncommitted candidate blocks revision-bound authenticated acceptance. No helper/status transition or captures/acceptance."
+      "evidence": "Historical author-round1-gate-results.json retains native1 dirty-candidate frontend/completion failures, not current acceptance. This doc-only bookkeeping does not rerun dirty gates. Workflow owner must invoke clean frontend-controller and supported completion-wrapper after the final bookkeeping commit, with original full baseline ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657. Exact-head CI/browser/captures/authenticated visual acceptance remain pending; no helper/status transition."
     }
   ],
   "independent_review": {
-    "status": "changes-required",
-    "evidence": "implementation-review-round-1-triage.json:3 context-free independent SolHigh layers completed broad Round1 at cad737,4 deduplicated patches required. Same author applied consolidated batch; targeted independent fix/six-fixture confirmation pending. Allocation-only reviews remain scope provenance, not implementation PASS."
+    "status": "passed",
+    "evidence": "Source review only: implementation-review-round-1-fix-results.json and implementation-review-round-1-fix-confirmation.json retain actual three independent non-author SolHigh FIX_CONFIRMED finals at 7f6a7be9e0544844b43842b46d498f7539602dde, no remaining consequential finding. Broad Round1 completed once; follow-up was targeted four-fix/six-fixture confirmation. author-publication-source-equality.json proves all47 source blobs unchanged. No runtime/browser/visual acceptance or development-complete claim is inferred."
   },
   "deferred_release_validation": [
     {

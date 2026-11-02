@@ -242,6 +242,44 @@
       "actual_task": "/root/producer_build/implementation_author",
       "dispatch_status": "same author already re-engaged for four patches; supplementary actual six-file approval now carried, fresh ownership required before writes",
       "review_round": "Broad Round1 completed, next review targets latest fixes plus six enrollment paths."
+    },
+    {
+      "phase": "Targeted independent Round1 four-fix plus six-actual-fixture confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T14:26:10.081244+01:00",
+      "review_commit": "7f6a7be9e0544844b43842b46d498f7539602dde",
+      "review_parent": "cad737c4399bb453ad3eb624911f3ce9218433c5",
+      "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+      "layers": [
+        {
+          "task": "/root/producer_build/review_r1_blind",
+          "scope": "R1-1 pinned draft baseline/current-facts explicit adoption across all4editors, R1-2 canonical terms whitespace, changed regressions; no broadrepeat"
+        },
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "R1-3 pricing active/archived read success/error wiring and current-claim/write gates; cross-regressions in only latestchangedlines, no broadrepeat"
+        },
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "R1-4 executing promises and actual lockbarriers/cleanup; six actual approved fixture metadata/validator deltas against reviewedproposal; actual source/render regression validity; no broadrepeat"
+        }
+      ],
+      "scope": "Only latestfixdelta/regressions and applied six reviewed fixture changes; reuse unchanged broadsource/design reviews; no broadsecondround",
+      "dispatch_status": "completed allthreeFIX_CONFIRMED",
+      "route_record": "implementation-review-round-1-fix-confirmation.json",
+      "results_record": "implementation-review-round-1-fix-results.json"
+    },
+    {
+      "phase": "Final author publication bookkeeping reconciliation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T13:30:27.4042168Z",
+      "scope": "Same author updates only own execution spec SRO/evidence/delivery to actual3targetedFIX_CONFIRMED and truthful incompleteCIvisualstate. All47sourceGitblobs must remain equal reviewed7f6a7be9e0544844b43842b46d498f7539602dde; sourcechange STOP.",
+      "dispatch_status": "completed actual same High author; evidence-only, all47sourceblobs unchanged, author stopped",
+      "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+      "no_done": true,
+      "release_ready": false
     }
   ],
   "implementation_author_dispatched": true,
