@@ -1,0 +1,92 @@
+{
+  "kind": "bounded normal Build Step 02 planning receipt; no implementation or runtime evidence",
+  "story_plan_key": "spec-design-35-6-35-6",
+  "story_file": "_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md",
+  "date": "2026-11-02",
+  "planning_baseline_revision": "55bb593ffc6db8787bdcd4725a5add00d6146858",
+  "qualified_tooling_base_revision": "3bbe7cb35a24662d0b9dadcd80b6f9f663b3e1cb",
+  "qualified_tooling_base_is_ancestor": true,
+  "assessment_revision": "9533e969c1981647e26c33774a9327f842ad299a",
+  "assessed_CRM_source_delta_to_planning_baseline": "none for CRM route/components/features/commands/document-context and CRM E2E; native git diff --exit-code returned 0",
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "record": "tmp/private/source-admission/ready-planning-routing.json",
+    "reason": "CRM privacy, unknown-outcome/customer-only authority and test-integrity planning; no authority changes"
+  },
+  "workflow": {
+    "wrapper": ".agents/skills/bmad-build/SKILL.md",
+    "render_skill_invocations": 1,
+    "rendered_snapshot": "_bmad/render/bmad-build/k35-source-publication-004b3304777c/b8854052c4e0817974d9",
+    "completed": "Step 02 plan and self-review",
+    "stopped_before": "Step 03 implementation",
+    "step_03_executed": false
+  },
+  "approval_reconciliation": {
+    "actual_human_approved": true,
+    "provenance": "Coordinator-relayed existing approval of exact five-production/one-test scope and D1-D5; explicit same-PR normal planning authorization",
+    "new_business_scope": false,
+    "repeat_A_K_prompt_required": false,
+    "length_guidance": "Owner explicitly retained this cohesive approved scope and full canonical LF history; 1600-token guidance does not split or truncate normative obligations. Full companion references are retained."
+  },
+  "self_review": {
+    "actionable": "six exact file tasks with concrete actions and rationale, all unchecked",
+    "logical": "composition, detail, child forms, archive, existing E2E assertions",
+    "testable": "seven Given/When/Then ACs plus all sixteen Applies IDs mapped to actual caller/trigger/assertion companions",
+    "complete": "no new unresolved intent or allocation gap; normal current ownership/admitted-base/evidence checks remain implementation-phase gates",
+    "coherent": "D1-D5 governs exact conflicting historical wording; origin provenance retained",
+    "result": "PASS"
+  },
+  "production_write_paths": [
+    "src/app/(app)/customers/[customerId]/page.tsx",
+    "src/components/crm/CustomerDetail.tsx",
+    "src/components/crm/FacilityDialog.tsx",
+    "src/components/crm/ContactDialog.tsx",
+    "src/components/crm/ArchiveButton.tsx"
+  ],
+  "test_write_paths": [
+    "tests/e2e/crm/customers.e2e.spec.ts"
+  ],
+  "source_binding_sha256_unchanged": "7fb5b8ccbda3b8ac6e85c0361812d954b4f69ad2a67559b71e61299583f9a561",
+  "source_binding_origin_pins_preserved": true,
+  "canonical_suffix_sha256": "34fc26e4e564d08d896e3144289e2f98bf1f2710e38ebe0a960103569dd0a9dd",
+  "canonical_suffix_exact_match_to_planning_baseline": true,
+  "canonical_body_lf_sha256": "3cff2ff999218c40356593bdc235589ce9f3880c4880d8021fc70e7944e7f921",
+  "operative_story_sha256": "98d8bf33ae6e5d719738089f5abd7153c3b34d3e8eb3ac4b277ccdc71112f3b7",
+  "current_inspected_file_sha256": {
+    "src/app/(app)/customers/[customerId]/page.tsx": "86097031a275da39b9c5f9ccdb7e1b9b5ec1d1cf6de5d31800ac39ad6366108d",
+    "src/components/crm/CustomerDetail.tsx": "a9af5efb2be72ef100202a92cd70d3bd7cc6d9a996e54981795a203cffcd6426",
+    "src/components/crm/FacilityDialog.tsx": "76351d4c76f011ac74b12de768d7a28759e10bb243f11536c10085f364940d97",
+    "src/components/crm/ContactDialog.tsx": "56622b46788d66dc59ec4b663d582e8969748fcecc8a0f26121f874cb428879f",
+    "src/components/crm/ArchiveButton.tsx": "3f8091d7ca4f11c3dc8ca55ce3d07cde127d794c2dfbebbf12a7326da558668a",
+    "tests/e2e/crm/customers.e2e.spec.ts": "8e34b146921c9ab3ac765c1b216a50b0fe8b7552079be7b71d1ea4c0d60a7c75",
+    "src/features/crm/actions.ts": "2f6f26e675faee9be04a8809c39c24d0bcf489f91dd1329f26c6633b84c649ef",
+    "src/features/crm/read.ts": "aabfc8f8725ee2cdf32840d412e5702891a27305a8219e15a13c83290c9e8f71",
+    "src/features/crm/form-parsing.ts": "f70c75154ac2404076471b2b999d213ac3efc9f647adb694f76038a83d2cd090",
+    "src/server/commands/crm/validation.ts": "7e51f29b4b037d5aaa3bada70ea60b3428f89a066fc7f489b2efe6cb92962e89",
+    "src/server/commands/crm/customers.ts": "a4cf06db6fe8a21d3b19f5dca06d5523a7b3448f43341bd259a0a78e4d190de3",
+    "src/components/crm/CustomerDialog.tsx": "43744b54d72fa3c568641064a98a0e90a61d980bc043272058c42f3ae2747929",
+    "src/components/crm/CustomerList.tsx": "97a36a71e23f3d220acdfaceaf2dc4404f39616e9e8d4bba5514e529dd076eb2",
+    "src/components/crm/customer-presentation.ts": "87401e5638a6a0b838ff72321e4b7847a2ce9a5e81cbebfa4e2c76fe353001a9",
+    "src/components/crm/Dialog.tsx": "83d0e5cfd8874734f72669f7ba2beb6656da662e4fe73618ccb482e1c523a33c",
+    "src/components/crm/FormField.tsx": "6920a4a9c9c766d6effa0131a6fb0b4ee4dac6eef3e28181d4c9fa119a464fef",
+    "src/server/read-models/document-context.ts": "b5215c98e78a495b8f3fec1aa3ed1375c055eb1b52c0bed6c225fc5fa937b2fe"
+  },
+  "immutable_companion_sha256": {
+    "SPEC.md": "f789868b6e08ec5595536dcfda01c6ad27dfa81228386384de2b618907107e1e",
+    "stories.yaml": "f5f146d95a16d3aebda6065ecdfd105866ad0c5de7e1441a2e30735b27306787",
+    ".memlog.md": "3c4c555629283ee178d4f79be05273be2fb70fb1c548462777fc015dc793eac6",
+    "approved-operative-overlay-2026-11-02.md": "9c63111d811157e93f09924a6f65452c67e0f3e57fa335cbc2d50aa8caa393b3",
+    "operative-test-design-2026-11-02.md": "37170439c4d1d4872c92f1ff437e2ea9b07f9b19d800f98d9fb9579f25c6d209",
+    "source-binding.json": "7fb5b8ccbda3b8ac6e85c0361812d954b4f69ad2a67559b71e61299583f9a561"
+  },
+  "story_file_status": "ready-for-dev",
+  "spec_checkpoint": false,
+  "done_checkpoint": true,
+  "implementation_started": false,
+  "release_ready": false,
+  "runtime_evidence": "UNRUN; no tests/build/unit/integration/RLS/browser/visual/CI/delivery/services",
+  "implementation_tasks_checked": 0,
+  "independent_plan_delta_review": "pending separate High reviewer; this self-review does not earn independent PASS",
+  "limits": "Read-only source and native parser checks establish planning identity/structure only. No production behavior, test execution, hosted acceptance or merge/deployment approval is claimed. No global tracking/claims/enrollment/workers or 35.7-P changes."
+}
