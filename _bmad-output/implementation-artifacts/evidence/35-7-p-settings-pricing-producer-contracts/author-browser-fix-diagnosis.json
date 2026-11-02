@@ -1,0 +1,78 @@
+{
+  "task_id": "35.7-P",
+  "native_run": 41455681949,
+  "native_job": 125313470420,
+  "candidate_before_fix": "a24060287cb9e3bbea236741e74315b72785e4a7",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "case_ids": [
+    "2d02792d0c4cd553df08-b531211a2bfbb889aff6",
+    "2d02792d0c4cd553df08-a2321ba1974a1f6f7f3e"
+  ],
+  "actual_failure": "Both viewport cases fail at settings E2E334 required terms aria-invalid assertion; retries0/1 fail identically. Native form noValidate disproves native-required hypothesis.",
+  "cause": "parseQuoteTermsForm emits terms_text error; shared submit validation branch previously set state then returned before setting kind; QuoteTermsEditor saveState filters by kind and therefore hides local save validation error. Enforced validator safely rejects invalid input, so defect is reachable feedback/state routing, not write validation bypass.",
+  "fix": "Set submitted kind within the local-validation rejection branch before state update. Keep busy/pending/unknown/read/offline guards before this branch. No capture/dispatch is created by invalid input. No E2E input/assertion or native validation change.",
+  "product_paths_changed": [
+    "src/components/pricing/ArticlesEditor.tsx",
+    "src/components/pricing/WorkRolesEditor.tsx",
+    "src/components/settings/CompanySettingsForm.tsx",
+    "src/components/settings/QuoteTermsEditor.tsx"
+  ],
+  "regression_path": "tests/unit/features/settings/mutation-attempt.test.ts",
+  "focused_regression": {
+    "RED": {
+      "native_exit": 1,
+      "log": "author-browser-fix-regression-red-observed.log",
+      "actual_failure": "Actual controller plus terms markup lacks textarea aria-invalid=true; matches native failure. No product patch applied yet."
+    },
+    "GREEN": {
+      "native_exit": 0,
+      "log": "author-browser-fix-regression-green.log",
+      "tests": 29,
+      "passed": 29,
+      "failed": 0,
+      "skipped": 0,
+      "new_test_internal_cases": 4,
+      "assertions": "Empty/whitespace terms, with/without previous invalid approval action: visible field error/summary and correct action kind, zero invalid dispatch, no success/approval. Then valid dispatched attempt becomes unknown; subsequent invalid approval cannot change kind/operation/target or dispatch again."
+    },
+    "limits": "Actual controller/parsers/validators and actual terms SSR markup execute; isolated hook-state/effect host, router/action/browser globals mocked. No hydration/server/DB/browser evidence. Initial harness syntax-construction failure retained in author-browser-fix-regression-red.log; not counted as product RED."
+  },
+  "static_checks": {
+    "typecheck_native": 0,
+    "typecheck_log": "author-browser-fix-touch-typecheck.log",
+    "eslint_native": 0,
+    "eslint_log": "author-browser-fix-touch-eslint.log"
+  },
+  "browser_after_fix_executed": 0,
+  "other_failure_audit": "author-browser-failure-audit.json",
+  "source_inventory_sha256": "be74b39bea7d48fc36c8c9df371a1a602e74ee89e4ecc73ef8dc3c6423da0644",
+  "independent_targeted_confirmation": "pending",
+  "completion_status": "Build in progress; Step5 not done; native exhaustive browser failed; no final-head acceptance",
+  "services_or_DB_access": 0,
+  "full_unit_or_build_rerun": false,
+  "release_ready": false,
+  "capture_only_E2E_paths": [
+    "tests/e2e/pricing/pricing.e2e.spec.ts",
+    "tests/e2e/settings/settings.e2e.spec.ts"
+  ],
+  "touch_fix": "Existing44px min-h-control-lg token applied only to7 producer-added recovery/retry/refresh/adopt controls. globals unchanged; native phone bounding assertions authored, actual new measurements0.",
+  "capture_definition_fix": "Terms stale capture added; existing R1 pricing test parameterized1440x900/360x640 with all assertions/120s retained; role/article stale and neighbor-stale captures added.",
+  "collection": {
+    "native_list_exit": 1,
+    "native_collected": 0,
+    "reason": "Existing .auth/fixture.json absent; no fixture/global setup created",
+    "source_registration_defined": 23,
+    "new_producer_defined": 6,
+    "source_registration_limit": "Mocked registration/fixture-read boundary, not native Playwright PASS",
+    "log": "author-browser-fix-e2e-collection.log",
+    "source_inventory": "author-browser-fix-definition-inventory.json"
+  },
+  "capture_plan": "author-browser-capture-plan.json;52nominal definitions,0newPNGs and explicit applicability/qualification gaps",
+  "task_migration_application": {
+    "candidate_A_disposable_fresh_CI": true,
+    "producer_tests_actual_passed": 82,
+    "known_partial_local_target": false,
+    "demo_or_production_claim": false,
+    "source": "Root actual CI_DB native qualification; no DB operation by fix author",
+    "SQL_server_table_authority_unchanged_this_batch": true
+  }
+}

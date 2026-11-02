@@ -1,47 +1,47 @@
 {
   "policy_version": "2026-10-19",
-  "contract_reconciliation": "Approved full ADR-B014 task35.7-P and nine immutable canonical hashes preserved. Source-reviewed candidate 7f6a7be9e0544844b43842b46d498f7539602dde includes the four Round1 patches and six actually approved bounded fixture deltas. All three independent SolHigh targeted follow-ups FIX_CONFIRMED, no remaining consequential finding; one broad round plus targeted follow-up only. All47 production/test/migration effective Git blobs remain equal that candidate, evidenced by author-publication-source-equality.json. This publication batch changes execution/review/evidence/delivery bookkeeping only. No task migration application or runtime approval. Qualified exact-final-head CI/browser/recovery and authenticated frontend acceptance remain development-blocking; Build in progress, Step5 not done, release_ready=false.",
-  "evidence_revision": "Source Git blobs reviewed at 7f6a7be9e0544844b43842b46d498f7539602dde; 47-blob inventory SHA256 71463c560099227967b8814fe12393bd733377c9cdde410ce3fc4f221d934aca; final publication bookkeeping commit not yet created. Workflow owner must bind and run qualified checks at that final full head against original baseline ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657.",
+  "contract_reconciliation": "Approved ADR-B014 scope, canonical9, sole migration and original baseline preserved. Native exhaustive candidate A a24060287cb9e3bbea236741e74315b72785e4a7 failed29 cases, including2 producer terms cases from one proven introduced local-validation feedback bug. Actual noValidate disproves native-required hypothesis. Author made minimal kind-routing fix plus focused owned regression, explicit44px-token producer recovery/adoption control fix and capture-only both-viewport stale/phone assertion additions. No original E2E assertion/invalid input/foreign source/global-style change. author-browser-fix-source-manifest.json records40 unchanged and7 exactly authorized changed source blobs; author-browser-failure-audit.json classifies every29failure/1flaky/3explicit skip/19not-run with scoped fixture/first-caller provenance. Other27 unexpected cases remain unproven/unowned, not automatically baseline. Prior independent source review is retained; new narrow delta needs targeted High confirmation. Build in progress, Step5 not done, final-head CI/browser/visual gates required, release_ready=false. Actual candidate-A fresh-reset disposable GitHub CI applied the task migration and passed82 producer tests. No local partial-target/demo/production application is claimed; SQL/server/table-authority blobs are unchanged by this seven-file UI/test batch.",
+  "evidence_revision": "a24060287cb9e3bbea236741e74315b72785e4a7 plus uncommitted bounded7-file validation/touch/capture batch; source inventory be74b39bea7d48fc36c8c9df371a1a602e74ee89e4ecc73ef8dc3c6423da0644. Native exhaustive failures refer to A; focused29-file regression verifies the kind fix, final static checks cover all7. Final qualified head not created.",
   "development_checks": [
     {
       "name": "canonical and approved fixture preservation",
       "status": "passed",
-      "evidence": "author-round1-resume-integrity.json nine unchanged canonical hashes; unchanged single migration; author-round1-approved-delta-preservation.json exact six bounded deltas and original E2E LF prefixes; original approved fixture pin evidence retained. Publication reconciliation: author-publication-source-equality.json verifies47 unchanged effective Git blobs at 7f6a7be9e0544844b43842b46d498f7539602dde and9 unchanged canonical raw hashes."
+      "evidence": "author-browser-fix-source-manifest.json: canonical9/migration/globals unchanged,40 source blobs equalA, only7 authorized paths changed. Original E2E literal expect statements retained (settings67→70/pricing62→65) and invalid empty terms assertion preserved; new captures/two-viewports/touch checks authored only."
     },
     {
       "name": "focused units",
       "status": "passed",
-      "evidence": "author-round1-focused-current.log native0;155 tests/pass155/fail0/skip0. Includes4 actual pricing-page/editor SSR read-error combinations with mocked read and historical-receipt boundaries; no DB/browser proof."
+      "evidence": "author-browser-fix-regression-red-observed.log native1 reproduces missing terms aria-invalid with actual controller/markup before patch. author-browser-fix-regression-green.log native0,29tests/pass29/fail0/skip0;4 internal regression scenarios and unknown identity protection. Hook-state/effects/router/actions/globals mocked; no browser proof. First harness-construction syntax failure separately retained, not product RED."
     },
     {
       "name": "lint and containment",
       "status": "passed",
-      "evidence": "author-round1-lint.log full native0 errors0/warnings31; latest test/source lint native0. Lockfile/service-role/built-bundle containment and git diff --check passed. Current production source build passed."
+      "evidence": "Current author-browser-fix-touch-eslint.log7paths native0 and author-browser-fix-touch-typecheck.log native0. Historical containment source retained; new production bundle/native44px measurements remain final-CI obligations."
     },
     {
       "name": "full unit lane",
-      "status": "failed",
-      "evidence": "author-round1-full-unit-current.log native1;3808 tests/pass3805/fail2/skip1. Exact2 calendar failures actually reproduced by Root at clean original baseline; baseline-calendar-provenance.json has8 identical raw dependencies. Provenance is not waiver/current full-lane PASS. Linux-xattr recovery skip is not coverage. Final following changes are company current-VAT label display and integration finally cleanup; focused SSR/unit and static checks retained; required exact-candidate full CI remains unearned. The skip is tests/unit/ops/isolated-recovery-storage.test.ts:17, zero local body coverage; qualified Ubuntu CI plus recovery-loader must execute. Existing logs are reused, not rerun or waived."
+      "status": "not-run",
+      "evidence": "Current two-file patch: no broad full-unit rerun. Root-qualified candidate A Ubuntu native3808/3808passed/0skip; historical Windows3808/3805pass/2calendarfail/1xattrskip remains preserved separately with zero skipped body coverage. No old result is relabeled current patch PASS. Final exact-head Ubuntu full unit/recovery lane required."
     },
     {
       "name": "typecheck and production build",
-      "status": "passed",
-      "evidence": "author-round1-typecheck-frozen.log native0; author-round1-build-current.log native0 production build. Build includes new SSR tests and final product source; final integration-only cleanup was checked with subsequent typecheck and collection."
+      "status": "not-run",
+      "evidence": "Current final typecheck author-browser-fix-touch-typecheck.log native0. Current build not rerun locally; previousA provenance retained and final exact-head build required."
     },
     {
       "name": "required DB/RLS/recovery-storage and essential browser",
-      "status": "not-run",
-      "evidence": "Executed0 locally. author-round1-integration-collection-current.json collects82 only. Checkpoint CI must execute SUPABASE_TEST_REQUIRED=1 full DB/RLS/recovery and production browser/captures at1440x900/360x640. Changed browser regressions authored only."
+      "status": "failed",
+      "evidence": "Actual exhaustive run41455681949/job125313470420 at A:470expected/29unexpected/1flaky/22skipped=3explicit+19serialnot-run; producer3passed/2failed, pricing12expected/settings8expected2unexpected. Task DB82actuallypassed0skip, full DB2253passed0fail52skip (no skipped coverage), recovery1passed and dashboard79passed are separate root-qualified A evidence. Narrow fix unexecuted in browser. author-browser-failure-audit.json retains all nonpassing case IDs/attempts and1proven introduced cause; unowned27failures remain unproven. No full-run PASS or blanket deferral. Added definitions are52 nominalPNG paths and6 new producer source-registration cases. Real --list native1/0collected because existing auth fixture absent; no global setup/fixture/runtime created. Source-only model23defined, not native coverage. author-browser-capture-plan.json names remaining qualification gaps; no falseN/A or new-head relabel."
     },
     {
       "name": "frontend exact-candidate authenticated acceptance",
       "status": "failed",
-      "evidence": "Historical author-round1-gate-results.json retains native1 dirty-candidate frontend/completion failures, not current acceptance. This doc-only bookkeeping does not rerun dirty gates. Workflow owner must invoke clean frontend-controller and supported completion-wrapper after the final bookkeeping commit, with original full baseline ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657. Exact-head CI/browser/captures/authenticated visual acceptance remain pending; no helper/status transition."
+      "evidence": "Only34partial A captures; terms empty2 only, settingscasesfailbeforeterms error/loading/unknown/finished. No complete current/future-head package, authenticated acceptance or gate PASS. No gates/resources launched by this fix author; workflow owner must bind final exact head and original full baseline."
     }
   ],
   "independent_review": {
-    "status": "passed",
-    "evidence": "Source review only: implementation-review-round-1-fix-results.json and implementation-review-round-1-fix-confirmation.json retain actual three independent non-author SolHigh FIX_CONFIRMED finals at 7f6a7be9e0544844b43842b46d498f7539602dde, no remaining consequential finding. Broad Round1 completed once; follow-up was targeted four-fix/six-fixture confirmation. author-publication-source-equality.json proves all47 source blobs unchanged. No runtime/browser/visual acceptance or development-complete claim is inferred."
+    "status": "changes-required",
+    "evidence": "All3 prior Round1 targeted fixes FIX_CONFIRMED retained at7f6. NativeA proves local-feedback regression and actual phone artifact exposes producer touch-target gap. Bounded seven-file bug/touch/capture batch awaits separate independent SolHigh targeted confirmation; no new broad pass or future PASS."
   },
   "deferred_release_validation": [
     {

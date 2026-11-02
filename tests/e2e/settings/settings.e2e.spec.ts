@@ -201,6 +201,15 @@ import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
 import { createTwoTenantFixture, cleanupFixture } from "../../factories/tenants";
+async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
+    for (const name of names) {
+        const control = scope.getByRole("button", { name, exact: true });
+        await expect(control).toBeVisible();
+        const box = await control.boundingBox();
+        expect(box, `${name} has an actual visible hit target`).not.toBeNull();
+        expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
+    }
+}
 async function producerCapture(page: Page, info: TestInfo, surface: string, state: string) {
     const anchor = surface === "company" ? page.locator("form").filter({ has: page.getByLabel("Företagsnamn") }) : surface === "terms" ? page.getByRole("heading", { name: "Offertvillkor", level: 1 }) : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
     await anchor.evaluate(el => el.scrollIntoView({ block: "start" }));
@@ -284,6 +293,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await producerCapture(page, info, "company", "loading");
             loss.release();
             await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
+            if (viewport.width === 360) await assertProducerTouchTargets(page, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
             await producerCapture(page, info, "company", "unknown");
             await expect(page.getByLabel("Företagsnamn")).toBeDisabled();
             await page.getByRole("link", { name: "← Inställningar" }).click();
@@ -318,9 +328,10 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await page.getByRole("button", { name: "Spara", exact: true }).click();
             await expect(page.getByRole("button", { name: "Uppdatera och granska" })).toBeVisible();
             await expect(page.getByLabel("Företagsnamn")).toHaveValue("Retained stale draft");
-            await producerCapture(page, info, "company", "stale");
             await expect(page.getByTestId("company-current-facts")).toContainText("Newer current company");
             await expect(page.getByRole("button", { name: "Spara", exact: true })).toBeDisabled();
+            if (viewport.width === 360) await assertProducerTouchTargets(page, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
+            await producerCapture(page, info, "company", "stale");
             await page.getByRole("button", { name: "Uppdatera och granska" }).click();
             await expect(page.getByLabel("Företagsnamn")).toHaveValue("Retained stale draft");
             await page.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
@@ -340,6 +351,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await producerCapture(page, info, "terms", "loading");
             saveLoss.release();
             await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
+            if (viewport.width === 360) await assertProducerTouchTargets(page, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
             await producerCapture(page, info, "terms", "unknown");
             await page.getByRole("button", { name: "Försök igen med samma uppgifter" }).click();
             await expect(page.getByTestId("settings-saved")).toBeVisible();
@@ -372,6 +384,8 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await expect(page.getByTestId("terms-current-facts")).toContainText("Newer current terms");
                 await expect(page.getByLabel("Offertvillkor")).toHaveValue("Retained stale terms draft");
                 await expect(page.getByRole("button", { name: "Spara villkor" })).toBeDisabled();
+                if (viewport.width === 360) await assertProducerTouchTargets(page, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
+                await producerCapture(page, info, "terms", "stale");
                 await page.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
                 await expect(page.getByLabel("Offertvillkor")).toHaveValue("Newer current terms");
                 await expect(page.getByRole("button", { name: "Markera som godkänd" })).toBeEnabled();

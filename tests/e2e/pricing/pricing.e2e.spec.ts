@@ -208,6 +208,15 @@ import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
 import { createTwoTenantFixture, cleanupFixture } from "../../factories/tenants";
+async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
+    for (const name of names) {
+        const control = scope.getByRole("button", { name, exact: true });
+        await expect(control).toBeVisible();
+        const box = await control.boundingBox();
+        expect(box, `${name} has an actual visible hit target`).not.toBeNull();
+        expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
+    }
+}
 async function producerCapture(page: Page, info: TestInfo, surface: string, state: string) {
     const anchor = surface === "company" ? page.locator("form").filter({ has: page.getByLabel("Företagsnamn") }) : surface === "terms" ? page.getByRole("heading", { name: "Offertvillkor", level: 1 }) : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
     await anchor.evaluate(el => el.scrollIntoView({ block: "start" }));
@@ -286,6 +295,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 createLoss.release();
                 await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
                 await expect(editor.getByRole("button", { name: "Ny post" })).toBeDisabled();
+                if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
                 await producerCapture(page, info, spec.surface, "unknown");
                 await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
                 await expect(editor.getByTestId("settings-saved")).toBeVisible();
@@ -334,15 +344,17 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
         }
     });
 
-test("R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success", async ({ page }) => {
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }])
+test(`R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
     test.setTimeout(120_000);
     const own = await createTwoTenantFixture();
     let other: Page | undefined;
     const specs = [
-        { id: "work-roles-editor", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", label: "Pinned role" },
-        { id: "articles-editor", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", label: "Pinned article" },
+        { id: "work-roles-editor", surface: "work-role", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", label: "Pinned role" },
+        { id: "articles-editor", surface: "article", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", label: "Pinned article" },
     ];
     try {
+        await page.setViewportSize(viewport);
         await signIn(page, own.adminA.email, own.adminA.password);
         await page.goto("/settings/pricing");
         await waitForHydrated(page.getByLabel("Benämning"));
@@ -371,6 +383,8 @@ test("R1-1 pricing drafts retain their revision across stale rejection and neigh
             await expect(editor.getByTestId("pricing-current-facts")).toContainText("20,00");
             await expect(editor.getByLabel(spec.price)).toHaveValue("11,00");
             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
+            if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
+            await producerCapture(page, info, spec.surface, "stale");
             await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
             await expect(editor.getByLabel(spec.price)).toHaveValue("20,00");
             await editor.getByLabel(spec.price).fill("21,00");
@@ -387,6 +401,8 @@ test("R1-1 pricing drafts retain their revision across stale rejection and neigh
             await expect(editor.getByTestId("pricing-current-facts")).toContainText("30,00");
             await expect(editor.getByLabel(spec.price)).toHaveValue("21,00");
             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
+            if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Använd aktuella uppgifter"]);
+            await producerCapture(page, info, spec.surface, "neighbor-stale");
             await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
             await expect(editor.getByLabel(spec.price)).toHaveValue("30,00");
             await editor.getByLabel(spec.price).fill("31,00");

@@ -171,3 +171,66 @@ for (const domain of ["work_role", "article"] as const)
                 assert.equal((html.match(/data-testid="pricing-current-unavailable"/g) ?? []).length, 1);
             } finally { delete renderFixtureGlobal.__producerR1Pricing; }
         });
+
+// Isolated hook-state host executes the actual shared controller and actual terms
+// markup. React state/effects, router and actions are test boundaries; no browser,
+// hydration, server action, database or durable storage is involved.
+import { execFileSync } from "node:child_process";
+test("P-E local terms validation belongs to the submitted action before any dispatched attempt", () => {
+    const script = String.raw`
+import assert from "node:assert/strict";
+import { createRequire, register } from "node:module";
+import { pathToFileURL } from "node:url";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+const require=createRequire(import.meta.url), compiler=pathToFileURL(require.resolve("typescript")).href;
+const hooksSource=[
+ 'const host=()=>globalThis.__producerTermsHookHost;',
+ 'export function useState(initial){const h=host(),i=h.cursor++;if(!(i in h.slots))h.slots[i]=typeof initial==="function"?initial():initial;return [h.slots[i],v=>{h.slots[i]=typeof v==="function"?v(h.slots[i]):v;}];}',
+ 'export function useRef(initial){const h=host(),i=h.cursor++;if(!(i in h.slots))h.slots[i]={current:initial};return h.slots[i];}',
+ 'export function useEffect(){}',
+ 'export function useCallback(fn){return fn;}'
+].join("\n");
+const sources={
+ 'producer-terms:hooks':hooksSource,
+ 'next/navigation':'export function useRouter(){return {refresh(){globalThis.__producerTermsHookHost.refreshes++;}};}',
+ '@/features/settings/actions':'export async function saveCompanySettingsAction(){throw new Error("Unexpected action dispatch");} export async function saveQuoteTermsAction(){throw new Error("Unexpected action dispatch");} export async function approveTermsAction(){throw new Error("Unexpected action dispatch");}'
+};
+const loader=[
+ 'import {readFile} from "node:fs/promises";',
+ 'import ts from '+JSON.stringify(compiler)+';',
+ 'const sources='+JSON.stringify(sources)+';',
+ 'export async function resolve(specifier,context,next){if(specifier==="react"&&context.parentURL?.endsWith("/CompanySettingsForm.tsx"))return {url:"producer-terms:hooks",shortCircuit:true};if(specifier in sources)return {url:specifier.startsWith("producer-terms:")?specifier:"producer-terms:mock:"+specifier,shortCircuit:true};return next(specifier,context);}',
+ 'export async function load(url,context,next){if(url.startsWith("producer-terms:")){const key=url.startsWith("producer-terms:mock:")?url.slice(20):url;return {format:"module",source:sources[key],shortCircuit:true};}if(!url.endsWith(".tsx"))return next(url,context);return {format:"module",source:ts.transpileModule(await readFile(new URL(url),"utf8"),{fileName:new URL(url).pathname,compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText,shortCircuit:true};}'
+].join("\n");
+register("data:text/javascript,"+encodeURIComponent(loader),import.meta.url);
+Object.defineProperty(globalThis,"navigator",{value:{onLine:true},configurable:true});
+globalThis.window={location:{pathname:"/settings/quote-terms"}};
+const {SETTINGS_ACTION_INITIAL:initial}=await import("@/features/settings/action-state");
+const {useMountedSettingsPricingAttempt:controller}=await import("@/components/settings/CompanySettingsForm");
+const {QuoteTermsEditor}=await import("@/components/settings/QuoteTermsEditor");
+const context={tenantId:"bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",actorId:"cccccccc-cccc-4ccc-8ccc-cccccccccccc"};
+let cases=0;
+for(const scenario of [{text:"",priorApprove:false},{text:" \n ",priorApprove:false},{text:"",priorApprove:true},{text:" ",priorApprove:true}]){
+ const host=globalThis.__producerTermsHookHost={cursor:0,slots:[],refreshes:0};let calls=0;
+ const get=()=>{host.cursor=0;return controller(initial,context,"read-token");};
+ const never=async()=>{calls++;throw new Error("Invalid input must not dispatch");};
+ if(scenario.priorApprove)await get().submit(never,"terms.approve",new FormData(),null,null,false);
+ const form=new FormData();form.set("terms_text",scenario.text);
+ await get().submit(never,"terms.save",form,null,null,false);
+ const operation=get();assert.equal(operation.state.code,"VALIDATION_FAILED");assert.equal(operation.phase,"idle");assert.equal(operation.blocked,false);assert.equal(calls,0);assert.equal(host.refreshes,0);
+ const defaults={...context,operationContext:context,readToken:"read-token",id:null,write_revision:null,terms_text:scenario.text,approved_at:null,approved_by:null,readError:false};
+ host.cursor=0;const html=renderToStaticMarkup(createElement(QuoteTermsEditor,{defaults}));
+ assert.match(html,/<textarea[^>]*aria-invalid="true"/);assert.match(html,/aria-describedby="quote-terms-text-error"/);assert.match(html,/id="quote-terms-text-error"/);assert.match(html,/Kontrollera uppgifterna innan du sparar/);assert.doesNotMatch(html,/data-testid="settings-saved"|data-testid="quote-terms-approved-status"/);assert.equal(operation.kind,"terms.save");
+ // A subsequent real capture can become ambiguous; local errors cannot replace it.
+ const valid=new FormData();valid.set("terms_text","Reviewed valid wording");let identity;
+ await get().submit(async(_state,body)=>{calls++;identity={operationId:body.get("operationId"),targetId:body.get("targetId")};return {...initial,...identity,status:"unconfirmed"};},"terms.save",valid,null,null,false);
+ const unknown=get();assert.equal(unknown.phase,"unknown");assert.equal(unknown.blocked,true);assert.equal(calls,1);
+ await get().submit(never,"terms.approve",new FormData(),null,null,false);
+ const retained=get();assert.equal(retained.phase,"unknown");assert.equal(retained.kind,"terms.save");assert.equal(retained.state.operationId,identity.operationId);assert.equal(retained.state.targetId,identity.targetId);assert.equal(calls,1);cases++;
+}
+console.log(JSON.stringify({cases,actualControllerAndTermsMarkup:true,invalidDispatches:0}));
+`;
+    const output = execFileSync(process.execPath, ["--experimental-strip-types", "--import", "./tests/support/register.mjs", "--input-type=module", "--eval", script], { cwd: process.cwd(), encoding: "utf8", windowsHide: true });
+    assert.deepEqual(JSON.parse(output.trim()), { cases: 4, actualControllerAndTermsMarkup: true, invalidDispatches: 0 });
+});

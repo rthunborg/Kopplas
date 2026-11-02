@@ -75,7 +75,7 @@ export function QuoteTermsEditor({ defaults, }: {
         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade villkor:</p>
         <p className="whitespace-pre-wrap">{defaults.id ? defaults.terms_text : "Ingen aktuell post finns."}</p>
         <p>{defaults.approved_at ? "Aktuella villkor är godkända." : "Aktuella villkor är inte godkända."}</p>
-        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); setDraft(defaults.terms_text); }} className="self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
+        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); setDraft(defaults.terms_text); }} className="min-h-control-lg self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
       </div>}
       <fieldset disabled={operation.blocked || defaults.readError} className="contents">
       {/* SIGN-OFF STATUS / WARNING — always present, sourced from approval state. */}

@@ -280,6 +280,63 @@
       "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
       "no_done": true,
       "release_ready": false
+    },
+    {
+      "phase": "Actual exhaustive settings invalid-input failure diagnosis and minimal approved-scope repair",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T14:35:12.7713974Z",
+      "actual_ci_run": "41455681949",
+      "actual_ci_job": "125313470420",
+      "candidate": "a24060287cb9e3bbea236741e74315b72785e4a7",
+      "scope": "Same author suspends read-only visualmapping; trace2owned settings P-E failures at334 aria-invalid missing in desktop+phone. Verify actual noValidate/localvalidation/state visibility before accepting native required-validation hypothesis. Fix only confirmed allocated test issue or report concrete actual product defect before any broader change. Preserve all assertions/business/protocol; no unallocated changes/mainintegration yet.",
+      "dispatch_status": "recorded-before-same-author-diagnosis",
+      "no_broad_review": true,
+      "release_ready": false
+    },
+    {
+      "phase": "Bounded required stale-state capture coverage completion",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T14:50:08.7733994Z",
+      "scope": "Same author only existing settings/pricing E2E paths: terms stale capture at already asserted phase in existing desktop+phone loop; parameterize existing R1 pricing stale/neighbor case at1440x900 and360x640 retaining all assertions/120s timeout and capture both domain stale views. Reconcile actual relevant states and applicability; no fake screenshots/new design/policy/workflow/allocation.",
+      "dispatch_status": "recorded-before-supplementary-author-handoff",
+      "actual_runtime_evidence": "None from new capture definitions until next qualified production run",
+      "independent_review": "Same targeted High confirmation will include capture-only deltas plus confirmed controller kind/error fix; no broad review."
+    },
+    {
+      "phase": "Actual phone screenshot producer recovery-control minimum target verification and fix",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T14:55:00.5791684Z",
+      "actual_evidence": "Root opened real a240 phone unknown PNG; producer-added recovery buttons about40px, current py-2 no minheight; existing DESIGN/EXPERIENCE44px contract.",
+      "scope": "Same author verifies downstream styles/token; if gap confirmed apply existing44px token ONLY producer-added recovery/refresh/adopt-current buttons in already allocated four consumers, add actual phone boundingBox assertions at unknown/stale captures in existing2E2Efiles. No inherited control restyle/global token/policy/frozen authority change.",
+      "dispatch_status": "recorded-before-supplementary-author-handoff",
+      "independent_review": "Existing targeted High batch includes exact geometry fix/source resolution/phone assertions; no broad redesign",
+      "new_runtime_credit": 0
+    },
+    {
+      "phase": "Independent targeted actual-browser defect/touch/capture and all52classification confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T16:05:29.398658+01:00",
+      "immutable_parent": "a24060287cb9e3bbea236741e74315b72785e4a7",
+      "fixed_source_inventory_sha256": "be74b39bea7d48fc36c8c9df371a1a602e74ee89e4ecc73ef8dc3c6423da0644",
+      "diff_sha256": "eb48b3a04105d290b77761e58d80eff2cb46f9996112580f5c749c5887b02e30",
+      "scope": [
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "Only seven latestsource files: kind/error routing actualregression; 7producer44px controls/token/phonebbox; required stale/neighbor capturetwo-viewports/mapstateapplicability, retainassertions/immutableunknown. No broaddesign/SQL."
+        },
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "All52native nonpassingcaseaudit firstcaller/attempts/reachability/fixturechronology and no fabricatedbaseline causes; essentialvsreleasecoverage counts/provenance; changedverificationclaims/sourcepreservation. No unownedfix/broadsourceaudit."
+        }
+      ],
+      "dispatch_status": "completedbothactualFIX_CONFIRMED",
+      "author_stopped": true,
+      "broad_round_count": 1,
+      "results_record": "browser-fix-targeted-results.json"
     }
   ],
   "implementation_author_dispatched": true,

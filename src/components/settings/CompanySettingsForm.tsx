@@ -63,7 +63,7 @@ export function CompanySettingsForm({ defaults, }: {
         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
         <dl>{Object.entries(defaults).filter(([key]) => ["company_name", "org_nr", "address_line1", "address_line2", "postal_code", "city", "email", "phone", "default_vat_display", "vat_rate_percent"].includes(key)).map(([key, value]) => <div key={key}><dt className="font-medium">{({company_name:"Företagsnamn",org_nr:"Organisationsnummer",address_line1:"Adress",address_line2:"Adressrad 2",postal_code:"Postnummer",city:"Ort",email:"E-post",phone:"Telefon",default_vat_display:"Standardvisning av moms",vat_rate_percent:"Momssats"} as Record<string,string>)[key]}</dt><dd>{key === "default_vat_display" ? VAT_DISPLAY_OPTIONS.find(option => option.value === value)?.label ?? "—" : String(value ?? "—")}</dd></div>)}</dl>
         {!defaults.id && <p>Ingen aktuell post finns.</p>}
-        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); }} className="self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
+        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); }} className="min-h-control-lg self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
       </div>}
       <fieldset disabled={operation.blocked || defaults.readError} className="contents">
       <FormErrorSummary message={state.formError}/>
@@ -215,6 +215,8 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
         const parsed = kind === "company.save" ? parseCompanySettingsForm(form) : kind === "terms.save" ? parseQuoteTermsForm(form) : kind === "terms.approve" ? parseApproveTermsForm(form) : kind === "work_role.create" || kind === "work_role.update" ? parseWorkRoleForm(form) : kind === "article.create" || kind === "article.update" ? parseArticleForm(form) : parseArchiveForm(form);
         const checked = kind === "company.save" ? validateUpdateCompanySettings(parsed.input) : kind === "terms.save" ? validateUpdateQuoteTerms(parsed.input) : kind === "terms.approve" ? validateApproveQuoteTerms(parsed.input) : kind === "work_role.create" || kind === "work_role.update" ? validateUpsertWorkRole(parsed.input) : kind === "article.create" || kind === "article.update" ? validateUpsertArticle(parsed.input) : validateArchive(parsed.input);
         if (!checked.ok || Object.keys(parsed.fieldErrors).length) {
+            // Local validation belongs to this form even though no attempt is dispatched.
+            setAttemptKind(kind);
             setState({ ...initial, ...("form" in initial ? { form: kind.startsWith("work_role") ? "work_role" : "article" } : {}), status: "error", code: "VALIDATION_FAILED", formError: "Kontrollera uppgifterna innan du sparar.", fieldErrors: parsed.fieldErrors, values: parsed.values });
             return;
         }
@@ -243,7 +245,7 @@ export function AttemptRecovery({ operation }: {
 }) {
     return <div aria-live="polite" className="flex flex-wrap gap-2">
   {operation.notice && <p role="status" className="w-full text-sm text-text-secondary">{operation.notice}</p>}
-  {operation.phase === "unknown" && <><p role="alert" data-testid="operation-unconfirmed" className="w-full text-sm text-warn-text">Resultatet är inte bekräftat. Samma försök behålls. Omladdning eller stängning kan förlora möjligheten att kontrollera det.</p><button type="button" disabled={operation.pending} onClick={() => void operation.reconcile()} className="rounded-control border border-border-default px-3 py-2">Kontrollera resultat</button><button type="button" disabled={operation.pending} onClick={() => void operation.retry()} className="rounded-control border border-border-default px-3 py-2">Försök igen med samma uppgifter</button></>}
-  {operation.needsRefresh && <button type="button" onClick={operation.refresh} className="rounded-control border border-border-default px-3 py-2">Uppdatera och granska</button>}
+  {operation.phase === "unknown" && <><p role="alert" data-testid="operation-unconfirmed" className="w-full text-sm text-warn-text">Resultatet är inte bekräftat. Samma försök behålls. Omladdning eller stängning kan förlora möjligheten att kontrollera det.</p><button type="button" disabled={operation.pending} onClick={() => void operation.reconcile()} className="min-h-control-lg rounded-control border border-border-default px-3 py-2">Kontrollera resultat</button><button type="button" disabled={operation.pending} onClick={() => void operation.retry()} className="min-h-control-lg rounded-control border border-border-default px-3 py-2">Försök igen med samma uppgifter</button></>}
+  {operation.needsRefresh && <button type="button" onClick={operation.refresh} className="min-h-control-lg rounded-control border border-border-default px-3 py-2">Uppdatera och granska</button>}
  </div>;
 }

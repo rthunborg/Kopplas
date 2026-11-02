@@ -68,7 +68,7 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
       {baselineChanged && <div data-testid="pricing-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-sm text-text-secondary">
         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
         <p>{currentSelected ? `${currentSelected.display_name}: ${oreToKronorString(currentSelected.sell_rate_ore)} kr/tim; kostnad ${oreToKronorString(currentSelected.cost_rate_ore)} kr/tim` : "Ingen aktuell post finns."}</p>
-        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setSelected(currentSelected ?? null); }} className="self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
+        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setSelected(currentSelected ?? null); }} className="min-h-control-lg self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
       </div>}
       <fieldset disabled={operation.blocked || readError} className="contents">
       {lifecycleError && (<p data-testid="work-role-archive-error" role="alert" className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800">
