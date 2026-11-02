@@ -1,0 +1,4 @@
+- id: "35-5"
+  title: "Authorized Responsive Shell"
+  description: "Implement only individually approved Story 35.5 DT-1d under SPEC.md and source-binding.json: AppShell presentation over existing server-filtered DTO and the allocated existing role-aware browser test. Preserve canonical AC/state/test identities and authority/navigation/session contracts."
+  done_checkpoint: true

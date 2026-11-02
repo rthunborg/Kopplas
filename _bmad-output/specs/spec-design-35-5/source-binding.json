@@ -1,0 +1,36 @@
+{
+  "story_id": "35-5",
+  "approved_base": "ebb1311e",
+  "branch": "codex/story-35-5-responsive-shell",
+  "worktree": "C:/DEV/K35-5-shell",
+  "approval_provenance": "Individual owner approval and exact two-path allocation explicitly relayed by root assignment; no approval quote or message ID invented.",
+  "canonical_spec": {
+    "path": "_bmad-output/implementation-artifacts/spec-35-5-authorized-responsive-shell.md",
+    "sha256": "90c20699b840d864f62769b6d4f51dce6ac7a77ee460571531ef0eb4ed31988b"
+  },
+  "test_slice": {
+    "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-5.md",
+    "sha256": "80578a8d8522ba2987b9963e6d2a7197b9c1ec9f5787635bfae944f8f6c65a03"
+  },
+  "production_write_paths": [
+    "src/components/app-shell/AppShell.tsx"
+  ],
+  "test_write_paths": [
+    "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts"
+  ],
+  "process_write_paths": [
+    "_bmad-output/specs/spec-design-35-5/"
+  ],
+  "body_copy_method": "UTF-8 canonical source normalized CRLF to LF, frontmatter removed, remaining body copied verbatim after operative admission.",
+  "ownership_clearance": {
+    "registration": "Sequential documentary exact allocation follows 35.4 precedent. Existing parallel protocol schema is sprint-only; no parallel run or claim fabricated.",
+    "registry": "Fresh SQLite mode=ro/query_only transaction: one finalized E20 run, three integrated claims, no exact allocated/shared/legacy E15 path overlap.",
+    "limits": "Bounded registered/worktree checks and coordinator inventory; not omniscient proof about unregistered writers. No broad census or owner resume.",
+    "independent_review": "C:/DEV/K35-5-preparation/tmp/private/story35-5/delta-independent-review-2026-11-01.json",
+    "root_current_checks": "Root reports successful native read-only git status of both allocated paths across all registered worktrees, no dirty target paths. Coordinator current inventory only coordinator active, 35.4/preparation/reviewers idle; source assignment expressly clears E15/E16 done.",
+    "date": "2026-11-01",
+    "saved_proof": "C:/DEV/K35-5-preparation/tmp/private/story35-5/delta-evidence-2026-11-01.json"
+  },
+  "release_ready": false,
+  "implementation_started": false
+}

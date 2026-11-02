@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "status": "preparation-only-individual-approval-pending",
+  "base": "783ab53f5de35c252f8264b56cda8d686068efa4",
+  "imports": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-5-authorized-responsive-shell.md",
+      "source": "C:/DEV/Kopplas/_bmad-output/implementation-artifacts/spec-35-5-authorized-responsive-shell.md",
+      "destination": "C:/DEV/K35-5-preparation/_bmad-output/implementation-artifacts/spec-35-5-authorized-responsive-shell.md",
+      "sourceRawSHA256": "90c20699b840d864f62769b6d4f51dce6ac7a77ee460571531ef0eb4ed31988b",
+      "destinationRawSHA256": "90c20699b840d864f62769b6d4f51dce6ac7a77ee460571531ef0eb4ed31988b",
+      "sourceUnchangedAfterCopy": true,
+      "authorization": "Coordinator independently verified exact2pins and authorized byte-preserving imports 2026-10-30"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-5.md",
+      "source": "C:/DEV/Kopplas/_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-5.md",
+      "destination": "C:/DEV/K35-5-preparation/_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-5.md",
+      "sourceRawSHA256": "80578a8d8522ba2987b9963e6d2a7197b9c1ec9f5787635bfae944f8f6c65a03",
+      "destinationRawSHA256": "80578a8d8522ba2987b9963e6d2a7197b9c1ec9f5787635bfae944f8f6c65a03",
+      "sourceUnchangedAfterCopy": true,
+      "authorization": "Coordinator independently verified exact2pins and authorized byte-preserving imports 2026-10-30"
+    }
+  ],
+  "sharedClosure": "35.4 preparation sources and contracts pending actual integration; no overlay or duplicate copy authority",
+  "gitByteVerification": "Imported destination hash-object --no-filters equals staged index blob",
+  "primaryWrites": false,
+  "runtimeEvidence": false,
+  "adapterCreated": false
+}

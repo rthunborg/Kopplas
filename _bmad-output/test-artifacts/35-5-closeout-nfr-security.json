@@ -1,0 +1,93 @@
+{
+  "domain": "security",
+  "risk_level": "MEDIUM",
+  "findings": [
+    {
+      "category": "Server authorization and tenant isolation",
+      "status": "PASS",
+      "description": "Scoped37b evidence meets server authority, role projection, denial and tenant-isolation story criteria; no introduced vulnerability established.",
+      "evidence": [
+        "P6 AC3/AC7",
+        "Seven roleRLS cases include cross-tenant/missing-target/malformed-context/relationship-loss negatives",
+        "27role cases passed retry0"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Session authority and revocation",
+      "status": "PASS",
+      "description": "Fresh protected-document denial after real role mutation and session authority during controlled signout failure/explicit retry demonstrated; not every provider/token lifecycle property.",
+      "evidence": [
+        "P6 revoked and error-retry mappings"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Sensitive payload and evidence handling",
+      "status": "PASS",
+      "description": "Unentitled payload withholding and failclosed ownfixturecleanup before PNGattachment supported; no comprehensive tenant-erasure or independentAuthrecordrequery claim.",
+      "evidence": [
+        "P6 AC7/fixtureAndPrivacyAssessment",
+        "Contextclose→registeredownprofiledelete→ALL10strict redactedAuthdeletes→pairedcleanup→allgates→Bufferattach"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Authentication hardening",
+      "status": "CONCERNS",
+      "description": "MFA/comprehensiveOAuthJWT/broader sessionhardening not assessed; no missingcontrol or introduceddefect established.",
+      "evidence": [
+        "NFR steps2–3 scoped exclusions"
+      ],
+      "recommendations": [
+        "Coordinator/security owner obtains separately authorized platform assurance when required; retain limits."
+      ]
+    },
+    {
+      "category": "Encryption and key management",
+      "status": "CONCERNS",
+      "description": "TLS/atrest/databaseencryption/keyrotation controls not verified by suppliedevidence.",
+      "evidence": [
+        "NFR steps2–3"
+      ],
+      "recommendations": [
+        "Security/release owner does not claim compliance without operational/config evidence."
+      ]
+    },
+    {
+      "category": "Input validation and API hardening",
+      "status": "CONCERNS",
+      "description": "No independent SQLinjection/XSS/CSRF/CORS/securityheader/ratelimit assurance; no bypass/vulnerability identified.",
+      "evidence": [
+        "ScopedRLSnegatives/P6; no comprehensivepenetrationtest supplied"
+      ],
+      "recommendations": [
+        "Security owner limits claims to demonstrated controls and separately authorized scope."
+      ]
+    },
+    {
+      "category": "Secrets management and security scanning",
+      "status": "CONCERNS",
+      "description": "Redaction/custody does not prove repositorywide secretabsence/rotation/fullscaninventory/vulnerabilitycounts.",
+      "evidence": [
+        "P6 controlledFailures; NFR step3 missingcompleteinventory"
+      ],
+      "recommendations": [
+        "Security owner records scan/rotation assurance unverified; successfulfunctionalCI does not mean0vulnerabilities."
+      ]
+    }
+  ],
+  "compliance": {
+    "SOC2": "NOT_ASSESSED",
+    "GDPR": "NOT_ASSESSED",
+    "HIPAA": "APPLICABILITY_NOT_ESTABLISHED",
+    "PCI-DSS": "APPLICABILITY_NOT_ESTABLISHED",
+    "ISO 27001": "NOT_ASSESSED"
+  },
+  "priority_actions": [
+    "Root preserves final-candidate CI/captures/digest/acceptance/controller/wrapper gate.",
+    "Retain strictownfixturecleanup andfailclosedattachments.",
+    "Coordinator/security owner tracks unverified assurance without inventing vulnerabilities/scope."
+  ],
+  "summary": "Scoped storysecurity controls PASS at37b; broadersecurityassurance CONCERNS/MEDIUM for missingevidence, not an exploit or regulatorycertification.37bacceptance doesnottransfer."
+}

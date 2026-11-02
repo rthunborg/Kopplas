@@ -1,0 +1,156 @@
+{
+  "workflow": "bmad-testarch-test-review",
+  "headless": true,
+  "context_basis": "pr_diff",
+  "context_waivers_applied": 0,
+  "review_files": [
+    "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts"
+  ],
+  "context_files": [
+    "_bmad-output/specs/spec-design-35-5/stories/35-5-authorized-responsive-shell.md"
+  ],
+  "output_file_override": "_bmad-output/test-artifacts/35-5-closeout-test-review.md",
+  "generate_inline_comments": false,
+  "overall_score": 92,
+  "overall_grade": "A",
+  "recommendation": "Request Changes",
+  "advisory": true,
+  "dimension_scores": {
+    "determinism": 90,
+    "isolation": 100,
+    "maintainability": 88,
+    "performance": 85
+  },
+  "dimension_grades": {
+    "determinism": "A",
+    "isolation": "A",
+    "maintainability": "B",
+    "performance": "B"
+  },
+  "violations_summary": {
+    "total": 4,
+    "CRITICAL": 0,
+    "HIGH": 2,
+    "MEDIUM": 1,
+    "LOW": 1
+  },
+  "all_violations": [
+    {
+      "file": "C:/DEV/K35-5-shell/tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "line": 234,
+      "row": "H3",
+      "severity": "HIGH",
+      "description": "Control flow selects Montör calendar href assertion vs Säljare absence; similar scenario-selected assertion822–823. Enumerated variants are deterministic, but pinned Absolute H3 includes conditional assertion selection; one finding with representative site.",
+      "suggestion": "When separately authorized, use separately declared cases with unconditional outcomes while preserving every role/destination variant; no edit authorized by this review.",
+      "code_snippet": "if (role === \"montor\") await expect(calendar).toHaveAttribute(\"href\", \"/settings/calendar\");\nelse await expect(calendar).toHaveCount(0);",
+      "dimension": "determinism"
+    },
+    {
+      "file": "C:/DEV/K35-5-shell/tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "line": 1,
+      "row": "H5",
+      "severity": "HIGH",
+      "category": "oversize-test-file",
+      "description": "1016contentlines exceed Absolute1000line threshold; file-levelqualityheuristic, notruntime/productiondefect.",
+      "suggestion": "Separately authorized work may splitcohesivegroups preservingoriginalcases/custody; no refactorauthorized here.",
+      "code_snippet": "/** Story 11.2 browser ATDD against the real server-derived navigation and local role fixture. */",
+      "dimension": "maintainability"
+    },
+    {
+      "file": "C:/DEV/K35-5-shell/tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "line": 745,
+      "row": "L1",
+      "severity": "LOW",
+      "category": "fragile-selector",
+      "description": "CSS #main-content scopesheading although getByRole('main') alreadyavailable; equivalentselectoroccurrences representedonce.",
+      "suggestion": "In separately authorized testwork use semanticmainlocator.",
+      "code_snippet": "await expect(page.locator(\"#main-content\").getByRole(\"heading\", { name: \"Dashboard\", exact: true, level: 1 })).toBeVisible();",
+      "dimension": "maintainability"
+    },
+    {
+      "file": "C:/DEV/K35-5-shell/tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "line": 782,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "category": "network-first-violated",
+      "description": "Recordcontext loop navigates then asserts destinationemptydata without data-specific readiness preregistered. domcontentloaded+later identity/heading aregeneric. Pinnedpredicate only; no SSRdefect/observedrace established.",
+      "suggestion": "In separately authorized testwork, preregister/await explicitdestinationdata signal without weakeningrealserverauthority; no edit authorized now.",
+      "code_snippet": "await page.goto(destination.href, { waitUntil: \"domcontentloaded\" });\nawait expect(page.getByTestId(destination.marker)).toBeVisible();",
+      "dimension": "performance"
+    }
+  ],
+  "deductions": 13,
+  "bonuses": {
+    "excellentBdd": 0,
+    "comprehensiveFixtures": 0,
+    "dataFactories": 0,
+    "networkFirst": 0,
+    "perfectIsolation": 5,
+    "allTestIds": 0
+  },
+  "bonus_total": 5,
+  "convention_baseline": {
+    "baselineUnavailable": true,
+    "reason": "Explicitonefile/no unrelatedcorpus scope; actualcorpusSize unmeasured, neverinferredfromreviewedfile",
+    "corpusSize": null,
+    "sampled": 0,
+    "conventions": {
+      "priorityMarkers": {
+        "adopted": null,
+        "sampled": 0,
+        "status": "unknown",
+        "form": "notmeasured"
+      },
+      "testIds": {
+        "adopted": null,
+        "sampled": 0,
+        "status": "unknown",
+        "form": "notmeasured"
+      },
+      "bddNaming": {
+        "adopted": null,
+        "sampled": 0,
+        "status": "unknown",
+        "form": "notmeasured"
+      },
+      "networkFirst": {
+        "adopted": null,
+        "sampled": 0,
+        "status": "unknown",
+        "form": "notmeasured"
+      },
+      "playwrightUtils": {
+        "adopted": null,
+        "sampled": 0,
+        "status": "unknown",
+        "form": "notmeasured"
+      },
+      "dataFactories": {
+        "adopted": null,
+        "sampled": 0,
+        "status": "unknown",
+        "form": "notmeasured"
+      },
+      "fixtures": {
+        "adopted": null,
+        "sampled": 0,
+        "status": "unknown",
+        "form": "notmeasured"
+      },
+      "assertionStyle": {
+        "adopted": null,
+        "sampled": 0,
+        "status": "unknown",
+        "form": "notmeasured"
+      }
+    }
+  },
+  "subagent_execution": "SUBAGENT4dimensions/2capacitywaves",
+  "performance_gain": "notmeasured",
+  "evidence_revision": "37b31f875fd9ce273642807c41a18010be6aa3c7",
+  "test_sha256": "171ab9d9bb4fc76cae268f212abe532d1d26bd4692d5781e5dc8c0b7f243816e",
+  "sourceTestSpecStatusGitChanges": 0,
+  "newRuntime": 0,
+  "final_candidate_verified": false,
+  "release_ready": false
+}

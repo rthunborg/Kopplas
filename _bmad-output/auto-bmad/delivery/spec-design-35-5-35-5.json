@@ -1,0 +1,55 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "Approved AC1–AC7 and operative-v2 Applies/Inherited/N/A distinctions remain intact. Four former owned positive duties are retired only by the separately approved operative-v2 amendment; unbound inherited states earn no coverage. The October26 candidate visual gate is earned for clean37b, not deferred. Historical failed/rejected/pending checkpoints remain historical. Authenticated owner INITIAL reference-basis adoption and complete-package acceptance bind exactly37b and digeste997b6de5a9a06099ef093116f36248360bff9b0040ddcefab38ef27cc410fd6. PR121 actual Documents references mean common AppShell chrome only; PR115 blank Login references mean idle auth appearance only, with written35.5 targets governing current states. No historical acceptance transfer or redesign of unchanged children. This record is provisional development evidence disposition within the approved one-run metadata batch, not final-head acceptance, aggregate completion, merge, deployment or release approval. Two inherited visible child limitations remain disclosed: NotificationPreferences places its inline Obligatorisk notis caption adjacent to its label without a gap (unchanged blob e77cc8f559fbc2591b67adfe6a1d2d642325f107); NotificationBell cold failed GET renders its error alert together with empty/unread copy (unchanged blob c7b3d1a825aacc2fc3ffab20e8d72fec9b5e1a0e). Root High comparison proves both identical at084/fd95/37b. The Bell error capture is a controlled undispatched local GET500, not healthy backend-empty knowledge. These are inherited disclosed limitations, not fixes, waivers or a generic no-issues claim; established nonwaivable defects remain blocking. Earned metadata snapshot2026-11-02: P6 _bmad-output/test-artifacts/35-5-automate-assessment.json completed bounded existing-coverage reuse with zero new tests/runtime. P8 _bmad-output/test-artifacts/35-5-closeout-gate-decision.json is trace CONCERNS: product7/7 FULL, E35-5-GATE-FINAL PARTIAL (combined7/8;P0 2/2,P1 5/6). _bmad-output/test-artifacts/35-5-closeout-nfr-summary.json is CONCERNS/MEDIUM:7 PASS,16 CONCERNS,0 FAIL; unknown measurements are not passes. _bmad-output/test-artifacts/35-5-closeout-test-review-summary.json is ADVISORY Request Changes92/A,2 HIGH/1 MEDIUM/1 LOW, not qualityPASS or an established introduced production defect; no refactor authorized. _bmad-output/specs/spec-design-35-5/RETROSPECTIVE.md formal verdict REJECTED with5remaining actions is time-bound to unresolved future final-candidate acceptance, not failure of37b productACs/reversal of owner acceptance. Owner-approved one-run metadata batch permits provisional terminal markers after canonicalvalidation, never acceptance transfer. Fresh final-head requiredCI/captures/exactpackage+digest/authenticatedowneracceptance/cleancontroller and applicable completionadmission remain mandatory before completionreturn. Existing _bmad-output/implementation-artifacts/deferred-work.md owns OPEN REL1–3 IDs198–200; prior198historical entries preserved, noarchive/resolve.",
+  "evidence_revision": "37b31f875fd9ce273642807c41a18010be6aa3c7",
+  "development_checks": [
+    {
+      "name": "static/unit/production-build and containment",
+      "status": "passed",
+      "evidence": "Required PRrun41334064672 terminalSUCCESS, five native jobs verify/db/e2e/recovery-storage-loader/entry-ui-feedback PASS. Root source/API proof qualifies native test-merge5f593c8f26be6393fd46edb1cb295251bee88580 as candidate-identical treea122ddf3d0adb823794bc4eff055ecb2b29bfdd2. Units3780passed/0failed/0skipped. Existing configured verify lane covers lockfiles/audit/containment/typecheck/lint/production build; no invented per-command counts. Source test171ab9d9bb4fc76cae268f212abe532d1d26bd4692d5781e5dc8c0b7f243816e; AppShell3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df."
+    },
+    {
+      "name": "required integration/RLS and recovery-storage integrity",
+      "status": "passed",
+      "evidence": "Same qualified required PRrun: integration2163passed/0failed/52pending of2215; pending is not coverage. Required isolated CI uses SUPABASE_TEST_REQUIRED=1. Dedicated recovery-storage-loader1passed/0failed/0pending. No exhaustive recovery-program claim."
+    },
+    {
+      "name": "essential browser and owned capture custody",
+      "status": "passed",
+      "evidence": "Qualified required PRrun ordinary browser80passed/0failed/skipped/flaky. Direct candidate dashboardrun41334071796/job124930569023 terminalSUCCESS:79passed/0failed/skipped/flaky, original15 and new12 all passed retry0;31 originals. Owned browser/local Supabase stop steps SUCCESS. Source custody closes OWNcontexts, removes ONLYregistered own profiles in two connected cases, attempts ALL10 strict redacted own Auth deletes per case, then paired cleanup and all gates before original Buffer attachments. No shared users, independent Auth-record requery, universal JWT invalidation or stronger best-effort tenant erasure claim. Private manifest7ca369d8f69494f290064d215989b7a0eda056e02eeac3d8492479ed00952047 binds31 byte/CRC/geometry-validated originals; old6masked excluded."
+    },
+    {
+      "name": "candidate visual gate and authenticated owner initial acceptance",
+      "status": "passed",
+      "evidence": "Clean37b local controller native0 statusaccepted owner-manual/comment6571422748; root authenticated user53317458 at2026-11-02T07:18:44Z. Digeste997b6de5a9a06099ef093116f36248360bff9b0040ddcefab38ef27cc410fd6; evidence commit9f47c7c8e6e167cf5cc128b0e42943c1f11f94a2. Controller issue_commentrun41405484613 SUCCESS; feedbackrun41405484614 SUCCESS. Complete31 originals/four pinned references and explicit limited INITIAL reference basis plus both inherited limitations were presented. Owner receipt is candidate-specific; no changed-head acceptance inferred."
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "evidence": "Reuse earned independent implementation/fix reviews, distinct Sol High auth/privacy/test-integrity and actual custody/package/schema/digest confirmation, and Low actual-image review, as confirmed by current root/build handoff. This metadata closeout adds no product/test/capture changes or broad review. Actual current independent verdict passed; this metadata refresh and future changed metadata head still require targeted protocol/provenance confirmation. Source/profile query equality and original15 byte-prefix preservation remain bound to171ab9 source. Independent implementation/custody/package verdict status is distinct from P8 traceCONCERNS, NFRCONCERNS, advisorytestreviewRequestChanges92/A(2H1M1L) and retrospectiveREJECTED5actions; none is recast as passed. Distinct targeted metadata confirmation remains root-owned before one reviewed commit."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "E35-5-REL-1 exhaustive visual/device/composite contrast/reflow",
+      "owner": "UI implementation owner; Coordinator assigns named release owner",
+      "status": "deferred",
+      "evidence": "Selected current desktop/connected360x640 and explicit initial owner acceptance passed; exhaustive nonselected device/visual matrix not performed. Two inherited visible child limitations remain disclosed: NotificationPreferences places its inline Obligatorisk notis caption adjacent to its label without a gap (unchanged blob e77cc8f559fbc2591b67adfe6a1d2d642325f107); NotificationBell cold failed GET renders its error alert together with empty/unread copy (unchanged blob c7b3d1a825aacc2fc3ffab20e8d72fec9b5e1a0e). Root High comparison proves both identical at084/fd95/37b. The Bell error capture is a controlled undispatched local GET500, not healthy backend-empty knowledge. These are inherited disclosed limitations, not fixes, waivers or a generic no-issues claim; established nonwaivable defects remain blocking. Existing deferred-work.md ID198 remains OPEN; prior198historical entries preserved, noarchive/resolve.",
+      "next_action": "Retain in existing deferred-work ledger, assign named owner/exact release candidate and execute remaining matrix; do not transfer37b acceptance. Keep OPEN until actual owned release outcome; mandatory final-head development acceptance is not deferred here."
+    },
+    {
+      "item": "E35-5-REL-2 manual keyboard/screen-reader/daylight qualification",
+      "owner": "QA/accessibility owner; Coordinator assigns named person",
+      "status": "deferred",
+      "evidence": "Automated actual drawer focus/target/reflow assertions and selected images do not prove exhaustive assistive-technology/daylight/manual qualification. No pending/optional lane counted as executed coverage. Existing deferred-work.md ID199 remains OPEN; prior198historical entries preserved, noarchive/resolve.",
+      "next_action": "Execute and record supported-device/manual/accessibility matrix for the release candidate, resolve consequential failures before release. Keep OPEN until actual owned release outcome; mandatory final-head development acceptance is not deferred here."
+    },
+    {
+      "item": "E35-5-REL-3 final Phase B consolidation",
+      "owner": "Coordinator",
+      "status": "deferred",
+      "evidence": "Final Phase B validation/stabilization and release approval remain separate. Preserve existing E16 fourteen-item and E20 caveats; optional remaining release-run work cancelled/no coverage credit. Existing deferred-work.md ID200 remains OPEN; prior198historical entries preserved, noarchive/resolve. P8 NFRCONCERNS7PASS16CONCERNS0FAIL and advisoryqualityRequestChanges92/A(2H1M1L) retain literal outcomes. FormalretroREJECTED5actions is this final-candidate snapshot, not37bproductfailure.",
+      "next_action": "Consolidate existing ledgers and inherited limitations, obtain required final release evidence and explicit approval; no merge or deployment granted by this record. Keep OPEN until actual owned release outcome; mandatory final-head development acceptance is not deferred here."
+    }
+  ],
+  "release_ready": false
+}

@@ -1,0 +1,58 @@
+{
+  "dimension": "maintainability",
+  "score": 88,
+  "max_score": 100,
+  "grade": "B",
+  "violations": [
+    {
+      "file": "C:/DEV/K35-5-shell/tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "line": 1,
+      "row": "H5",
+      "severity": "HIGH",
+      "category": "oversize-test-file",
+      "description": "1016contentlines exceed Absolute1000line threshold; file-levelqualityheuristic, notruntime/productiondefect.",
+      "suggestion": "Separately authorized work may splitcohesivegroups preservingoriginalcases/custody; no refactorauthorized here.",
+      "code_snippet": "/** Story 11.2 browser ATDD against the real server-derived navigation and local role fixture. */"
+    },
+    {
+      "file": "C:/DEV/K35-5-shell/tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "line": 745,
+      "row": "L1",
+      "severity": "LOW",
+      "category": "fragile-selector",
+      "description": "CSS #main-content scopesheading although getByRole('main') alreadyavailable; equivalentselectoroccurrences representedonce.",
+      "suggestion": "In separately authorized testwork use semanticmainlocator.",
+      "code_snippet": "await expect(page.locator(\"#main-content\").getByRole(\"heading\", { name: \"Dashboard\", exact: true, level: 1 })).toBeVisible();"
+    }
+  ],
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 1,
+    "MEDIUM": 0,
+    "LOW": 1
+  },
+  "row_observations": {
+    "M2": "No samepayloadshape3x or availablefactorybypass established.",
+    "M3": "Sameauthenticatedshellcomposition subjectsrelated, not3unrelated.",
+    "M4": "Describegroupingexists.",
+    "M5": "Noqualifyinglowleveldispatch.",
+    "M7": "No>3testbodycontrolnesting established; cleanuphelpernot substituted.",
+    "L6": "No unexplaineddomainliteral.",
+    "L3_L5_L7": "Conventionbaselineunknown/nodeductions."
+  },
+  "run_preconditions": {
+    "M9_M10_L9": "Inactive flagsOn/packagesAbsent",
+    "convention_baseline": "8unknown/no corpusinspected"
+  },
+  "bonus_eligibility_observations": {
+    "excellentBdd": false,
+    "comprehensiveFixtures": "notestablishedforALLsetup",
+    "dataFactories": "factoryusepresentbutnotALLpayloads",
+    "allTestIds": false,
+    "awarded_points": 0
+  },
+  "recommendations": [
+    "KeepH5/L1advisory; no productiondefect/failedCI/refactorauthority inferred."
+  ],
+  "summary": "Two findingsHIGHH5/LOWL1, informational88; no runtime/sourcewrites."
+}

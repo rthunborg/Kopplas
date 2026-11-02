@@ -1,0 +1,241 @@
+{
+  "success": true,
+  "subagent": "atdd-e2e-tests",
+  "story": "35-5",
+  "tdd_phase": "RED",
+  "status": "scaffolds_generated_unexecuted",
+  "release_ready": false,
+  "tests": [
+    {
+      "file": "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "content": "/** Story 11.2 browser ATDD against the real server-derived navigation and local role fixture. */\r\nimport { expect, test } from \"../dashboard/guarded-test\";\r\nimport type { Locator, Page, Request, Route } from \"@playwright/test\";\r\nimport { readFileSync } from \"node:fs\";\r\nimport path from \"node:path\";\r\nimport { LOCAL_SUPABASE_URL } from \"../../support/test-env\";\r\n\r\ntype RoleFixture = {\r\n  readonly email: string;\r\n  readonly password: string;\r\n};\r\ntype Fixture = {\r\n  readonly tenantA: { readonly id: string; readonly name: string };\r\n  readonly roleAware: {\r\n    readonly saljare: RoleFixture;\r\n    readonly montor: RoleFixture;\r\n  };\r\n};\r\n\r\nconst fixture: Fixture = JSON.parse(\r\n  readFileSync(path.join(process.cwd(), \"tests\", \"e2e\", \".auth\", \"fixture.json\"), \"utf8\"),\r\n);\r\n\r\nconst SALJARE_GRANTED_NAV = [\"/dashboard\", \"/customers\", \"/quotes\"];\r\n\r\n// Login credentials must never enter a trace, video or automatic failure image.\r\n// Candidate screenshots belong after authenticated assertions, outside this scaffold.\r\ntest.use({ trace: \"off\", video: \"off\", screenshot: \"off\" });\r\n\r\nasync function waitForHydrated(locator: Locator): Promise<void> {\r\n  await locator.waitFor({ state: \"visible\" });\r\n  await locator.evaluate(\r\n    (element) =>\r\n      new Promise<void>((resolve) => {\r\n        const ready = () => Object.keys(element).some((key) => key.startsWith(\"__react\"));\r\n        const tick = () => (ready() ? resolve() : requestAnimationFrame(tick));\r\n        tick();\r\n      }),\r\n  );\r\n}\r\n\r\nasync function logIn(\r\n  page: Page,\r\n  credentials: RoleFixture,\r\n  expectedLanding: \"/dashboard\" | \"/my-day\",\r\n): Promise<void> {\r\n  await page.goto(\"/login\");\r\n  const submit = page.getByRole(\"button\", { name: \"Logga in\" });\r\n  await waitForHydrated(submit);\r\n  await page.getByLabel(\"E-post\").fill(credentials.email);\r\n  await page.getByLabel(\"Lösenord\").fill(credentials.password);\r\n  await submit.click();\r\n  // Login writes the cookie in the client-side callback before routing. Wait for\r\n  // the server-confirmed landing before a test performs a direct navigation, or\r\n  // that navigation can race the cookie write and be redirected back to /login.\r\n  await expect(page).toHaveURL((url) => url.pathname === expectedLanding);\r\n}\r\n\r\ntest.describe(\"Story 11.2 rollstyrda Phase A-ytor\", () => {\r\n  test(\"[P0] Säljare receives only matrix-granted server navigation and lands on dashboard\", async ({ page }) => {\r\n    await logIn(page, fixture.roleAware.saljare, \"/dashboard\");\r\n\r\n    await expect(page).toHaveURL(/\\/dashboard$/);\r\n    const nav = page.getByRole(\"navigation\", { name: \"Huvudnavigation\" }).first();\r\n    await expect(nav).toBeVisible();\r\n    await expect(nav.getByRole(\"link\")).toHaveCount(SALJARE_GRANTED_NAV.length);\r\n    await expect(\r\n      nav.getByRole(\"link\").evaluateAll((links) => links.map((link) => link.getAttribute(\"href\"))),\r\n    ).resolves.toEqual(SALJARE_GRANTED_NAV);\r\n  });\r\n\r\n  test(\"[P0] Montör direct navigation to active but ungranted settings has one generic denial and no data\", async ({ page }) => {\r\n    await logIn(page, fixture.roleAware.montor, \"/my-day\");\r\n    await expect(page).toHaveURL((url) => url.pathname === \"/my-day\");\r\n    await page.goto(\"/settings\");\r\n\r\n    const denial = page.getByRole(\"heading\", { name: \"Ingen åtkomst\" });\r\n    await expect(denial).toBeVisible();\r\n    await expect(page.getByRole(\"alert\").filter({ hasText: \"Ingen åtkomst\" })).toBeVisible();\r\n    const nav = page.getByRole(\"navigation\", { name: \"Huvudnavigation\" }).first();\r\n    await expect(nav.getByRole(\"link\", { name: \"Inställningar\" })).toHaveCount(0);\r\n    const main = page.getByRole(\"main\");\r\n    await expect(main.getByRole(\"table\")).toHaveCount(0);\r\n    await expect(main.getByRole(\"textbox\")).toHaveCount(0);\r\n  });\r\n\r\n  test(\"[P0] Montör lands on Min dag with monetary values withheld\", async ({ page }) => {\r\n    await logIn(page, fixture.roleAware.montor, \"/my-day\");\r\n\r\n    await expect(page).toHaveURL((url) => url.pathname === \"/my-day\");\r\n    const main = page.getByRole(\"main\");\r\n    await expect(main).toBeVisible();\r\n    await expect(main.getByText(/SEK|kr/)).toHaveCount(0);\r\n    await expect(main.getByText(/omsättning|marginal|intäkt/i)).toHaveCount(0);\r\n  });\r\n\r\n  test(\"[P1] Säljare can open its matrix-granted customers route without receiving cost or margin\", async ({ page }) => {\r\n    await logIn(page, fixture.roleAware.saljare, \"/dashboard\");\r\n    await page.goto(\"/customers\");\r\n\r\n    await expect(page).toHaveURL(/\\/customers$/);\r\n    const main = page.getByRole(\"main\");\r\n    await expect(main).toBeVisible();\r\n    await expect(main.getByText(/självkostnad|täckningsbidrag|marginal/i)).toHaveCount(0);\r\n  });\r\n\r\n  test(\"[P0] Säljare is never offered calculation-origin quote creation\", async ({ page }) => {\r\n    await logIn(page, fixture.roleAware.saljare, \"/dashboard\");\r\n    await page.goto(\"/quotes\");\r\n\r\n    await expect(page).toHaveURL(/\\/quotes$/);\r\n    await expect(page.getByTestId(\"new-quote-button\")).toHaveCount(0);\r\n    // The existing quote detail keeps the approved customer-visible successor flow;\r\n    // this only removes the forbidden calculation-route affordance.\r\n    await expect(page.getByRole(\"link\", { name: /kalkyler/i })).toHaveCount(0);\r\n  });\r\n});\r\n\r\n/**\r\n * Story 35.5 RED scaffolds. Source-derived selectors only; no browser validation yet.\r\n * Implementation author: activate these skips for this task, earn actual evidence,\r\n * and retain the original five Story 11.2 assertions above unchanged.\r\n * playwright-utils two-gate mandate is inactive: configured true, package absent.\r\n * Keep the existing guarded test import and local factories; add no harness/dependency.\r\n */\r\nconst MONTOR_GRANTED_NAV = [\"/dashboard\", \"/jobs\", \"/scheduling\", \"/my-day\", \"/time-reports\"];\r\nconst SHELL_VIEWPORTS = [\r\n  { name: \"desktop\", size: { width: 1280, height: 800 } },\r\n  { name: \"phone\", size: { width: 360, height: 640 } },\r\n] as const;\r\nconst RED = {\r\n  annotation: [{\r\n    type: \"atdd-red\",\r\n    description: \"Unexecuted source-bound RED scaffold; activate in Story 35.5 implementation and verify against the real local production server.\",\r\n  }],\r\n};\r\n\r\nasync function assertNavOrder(nav: Locator, expected: readonly string[], current: string): Promise<void> {\r\n  await expect(nav).toBeVisible();\r\n  await expect(nav.getByRole(\"link\")).toHaveCount(expected.length);\r\n  await expect(nav.getByRole(\"link\").evaluateAll(links => links.map(link => link.getAttribute(\"href\"))))\r\n    .resolves.toEqual(expected);\r\n  await expect(nav.getByRole(\"link\", { current: \"page\" })).toHaveCount(1);\r\n  await expect(nav.getByRole(\"link\", { current: \"page\" })).toHaveAttribute(\"href\", current);\r\n  // Exact complete href equality also denies extra pending/unbuilt destinations.\r\n  expect(await nav.getByRole(\"link\").evaluateAll(links => links.every(link =>\r\n    link.tagName === \"A\" && Boolean(link.getAttribute(\"href\")) && link.getAttribute(\"role\") !== \"button\",\r\n  ))).toBe(true);\r\n}\r\n\r\nasync function assertShellIdentity(page: Page, email: string): Promise<void> {\r\n  await expect(page.getByTestId(\"tenant-context\")).toBeVisible();\r\n  await expect(page.getByTestId(\"tenant-context\")).toHaveText(fixture.tenantA.name);\r\n  // The existing phone design hides this secondary line; exact text is still checked.\r\n  await expect(page.getByTestId(\"current-user\")).toHaveText(email);\r\n}\r\n\r\nasync function assertPhoneTarget(control: Locator): Promise<void> {\r\n  await expect(control).toBeVisible();\r\n  const box = await control.boundingBox();\r\n  expect(box).not.toBeNull();\r\n  expect(box!.width).toBeGreaterThanOrEqual(44);\r\n  expect(box!.height).toBeGreaterThanOrEqual(44);\r\n}\r\n\r\nasync function assertNoHorizontalOverflow(page: Page): Promise<void> {\r\n  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);\r\n}\r\n\r\ntest.describe(\"Story 35.5 authorized responsive shell — RED\", () => {\r\n  for (const viewport of SHELL_VIEWPORTS) {\r\n    for (const role of [\"saljare\", \"montor\"] as const) {\r\n      test.skip(`[P1] E35-5-T-AC1 E35-5-T-AC3 E35-5-T-AC6 E35-5-T-AC7 E35-5-T-loaded ${role} ${viewport.name} retains supplied order, identity and real utility destinations`, RED, async ({ page }) => {\r\n        await page.setViewportSize(viewport.size);\r\n        const credentials = fixture.roleAware[role];\r\n        const landing = role === \"montor\" ? \"/my-day\" : \"/dashboard\";\r\n        const expected = role === \"montor\" ? MONTOR_GRANTED_NAV : SALJARE_GRANTED_NAV;\r\n        await logIn(page, credentials, landing);\r\n        await assertShellIdentity(page, credentials.email);\r\n\r\n        // Existing consumers, ordinary supplied destinations; no invented shell API.\r\n        const bell = page.getByRole(\"button\", { name: /^Notiser(?:,|$)/ });\r\n        await waitForHydrated(bell);\r\n        await bell.click();\r\n        const notifications = page.getByRole(\"dialog\", { name: \"Notiser\", exact: true });\r\n        await expect(notifications).toBeVisible();\r\n        await expect(notifications.getByRole(\"link\", { name: \"Visa alla\" })).toHaveAttribute(\"href\", \"/notifications\");\r\n        await notifications.getByRole(\"link\", { name: \"Visa alla\" }).click();\r\n        await expect(page).toHaveURL(url => url.pathname === \"/notifications\");\r\n        await expect(page.getByRole(\"main\").getByRole(\"heading\", { name: \"Notiser\", exact: true })).toBeVisible();\r\n\r\n        await page.getByRole(\"button\", { name: \"Profil\", exact: true }).click();\r\n        const preferences = page.getByRole(\"link\", { name: \"Notisinställningar\", exact: true });\r\n        await expect(preferences).toHaveAttribute(\"href\", \"/settings/notifications\");\r\n        const calendar = page.getByRole(\"link\", { name: \"Min kalender\", exact: true });\r\n        if (role === \"montor\") await expect(calendar).toHaveAttribute(\"href\", \"/settings/calendar\");\r\n        else await expect(calendar).toHaveCount(0);\r\n        await preferences.click();\r\n        await expect(page).toHaveURL(url => url.pathname === \"/settings/notifications\");\r\n        await expect(page.getByRole(\"heading\", { name: \"Notisinställningar\", exact: true })).toBeVisible();\r\n\r\n        await page.goto(landing);\r\n        if (viewport.name === \"phone\") {\r\n          const trigger = page.getByRole(\"button\", { name: \"Öppna meny\", exact: true });\r\n          await waitForHydrated(trigger);\r\n          await trigger.click();\r\n          const drawer = page.getByRole(\"dialog\", { name: \"Huvudmeny\", exact: true });\r\n          await expect(drawer).toHaveAttribute(\"aria-modal\", \"true\");\r\n          await assertNavOrder(drawer.getByRole(\"navigation\", { name: \"Huvudnavigation\" }), expected, landing);\r\n          // A real ordinary anchor performs navigation; no router/history shim.\r\n          await drawer.getByRole(\"link\", { name: role === \"montor\" ? \"Dashboard\" : \"Kunder\", exact: true }).click();\r\n          await expect(drawer).toHaveCount(0);\r\n        } else {\r\n          await assertNavOrder(page.getByRole(\"navigation\", { name: \"Huvudnavigation\" }), expected, landing);\r\n          await page.getByRole(\"navigation\", { name: \"Huvudnavigation\" })\r\n            .getByRole(\"link\", { name: role === \"montor\" ? \"Dashboard\" : \"Kunder\", exact: true }).click();\r\n        }\r\n        const destination = role === \"montor\" ? \"/dashboard\" : \"/customers\";\r\n        await expect(page).toHaveURL(url => url.pathname === destination);\r\n        await assertShellIdentity(page, credentials.email);\r\n        await expect(page.getByRole(\"main\")).toBeVisible();\r\n        // Return to the same menu and verify the new current-page projection.\r\n        if (viewport.name === \"phone\") {\r\n          await page.getByRole(\"button\", { name: \"Öppna meny\", exact: true }).click();\r\n          await assertNavOrder(page.getByRole(\"dialog\", { name: \"Huvudmeny\" }).getByRole(\"navigation\", { name: \"Huvudnavigation\" }), expected, destination);\r\n        } else await assertNavOrder(page.getByRole(\"navigation\", { name: \"Huvudnavigation\" }), expected, destination);\r\n      });\r\n    }\r\n  }\r\n\r\n  test.skip(\"[P1] E35-5-T-AC2 E35-5-T-AC4 desktop has 248px sidebar, 56px topbar and 24px content gutters\", RED, async ({ page }) => {\r\n    await page.setViewportSize({ width: 1280, height: 800 });\r\n    await logIn(page, fixture.roleAware.saljare, \"/dashboard\");\r\n    await assertShellIdentity(page, fixture.roleAware.saljare.email);\r\n    const sidebar = page.getByRole(\"complementary\");\r\n    const header = page.getByRole(\"banner\");\r\n    await expect(sidebar).toBeVisible();\r\n    await expect(header).toBeVisible();\r\n    expect((await sidebar.boundingBox())!.width).toBeCloseTo(248, 0);\r\n    expect((await header.boundingBox())!.height).toBeCloseTo(56, 0);\r\n    await expect(page.getByRole(\"main\")).toHaveCSS(\"padding-left\", \"24px\");\r\n    await expect(page.getByRole(\"main\")).toHaveCSS(\"padding-right\", \"24px\");\r\n    await expect(page.getByRole(\"button\", { name: \"Öppna meny\" })).toBeHidden();\r\n    await assertNoHorizontalOverflow(page);\r\n  });\r\n\r\n  test.skip(\"[P1] E35-5-T-AC2 E35-5-T-AC5 E35-5-T-AC6 E35-5-T-focus-dialog phone drawer traps visible focus, restores trigger, cleans resize scroll and reduces actual motion\", RED, async ({ page }) => {\r\n    await page.setViewportSize({ width: 360, height: 640 });\r\n    await page.emulateMedia({ reducedMotion: \"reduce\" });\r\n    await logIn(page, fixture.roleAware.saljare, \"/dashboard\");\r\n    const previousOverflow = await page.evaluate(() => document.body.style.overflow);\r\n    const trigger = page.getByRole(\"button\", { name: \"Öppna meny\", exact: true });\r\n    await waitForHydrated(trigger);\r\n    await trigger.focus();\r\n    await trigger.press(\"Enter\");\r\n    const drawer = page.getByRole(\"dialog\", { name: \"Huvudmeny\", exact: true });\r\n    const close = drawer.getByRole(\"button\", { name: \"Stäng meny\", exact: true });\r\n    await expect(drawer).toHaveAttribute(\"aria-modal\", \"true\");\r\n    await expect(close).toBeFocused();\r\n    expect(await close.evaluate(element => {\r\n      const style = getComputedStyle(element);\r\n      return (style.outlineStyle !== \"none\" && parseFloat(style.outlineWidth) > 0) || style.boxShadow !== \"none\";\r\n    })).toBe(true);\r\n    await close.press(\"Shift+Tab\");\r\n    await expect(drawer.getByRole(\"link\").last()).toBeFocused();\r\n    await drawer.getByRole(\"link\").last().press(\"Tab\");\r\n    await expect(close).toBeFocused();\r\n    await close.press(\"Tab\");\r\n    await expect(drawer.getByRole(\"link\").first()).toBeFocused();\r\n    // Inspect actual drawer/descendant motion only, including CSS transitions.\r\n    expect(await drawer.evaluate(panel => [panel, ...panel.querySelectorAll(\"*\")].every(element => {\r\n      const style = getComputedStyle(element);\r\n      return [style.transitionDuration, style.animationDuration].every(value =>\r\n        value.split(\",\").every(duration => parseFloat(duration) === 0),\r\n      );\r\n    }))).toBe(true);\r\n    await expect.poll(() => page.evaluate(() => document.body.style.overflow)).toBe(\"hidden\");\r\n    await drawer.press(\"Escape\");\r\n    await expect(drawer).toHaveCount(0);\r\n    await expect(trigger).toBeFocused();\r\n    await expect.poll(() => page.evaluate(() => document.body.style.overflow)).toBe(previousOverflow);\r\n    await trigger.click();\r\n    await close.click();\r\n    await expect(trigger).toBeFocused();\r\n    await expect(drawer).toHaveCount(0);\r\n    await trigger.click();\r\n    await expect(drawer).toBeVisible();\r\n    await page.setViewportSize({ width: 1280, height: 800 });\r\n    await expect(drawer).toHaveCount(0);\r\n    await expect.poll(() => page.evaluate(() => document.body.style.overflow)).toBe(previousOverflow);\r\n    await expect(trigger).not.toBeFocused();\r\n    await expect(page.getByRole(\"navigation\", { name: \"Huvudnavigation\" })).toBeVisible();\r\n    await page.setViewportSize({ width: 360, height: 640 });\r\n    await expect(trigger).toHaveAttribute(\"aria-expanded\", \"false\");\r\n    await trigger.click();\r\n    await expect(close).toBeFocused();\r\n    await close.click();\r\n    await expect(trigger).toBeFocused();\r\n    await expect.poll(() => page.evaluate(() => document.body.style.overflow)).toBe(previousOverflow);\r\n  });\r\n\r\n  test.skip(\"[P1] E35-5-T-AC4 phone shell reflows enlarged Swedish text and retains reachable 44px owned targets\", RED, async ({ page }) => {\r\n    await page.setViewportSize({ width: 360, height: 640 });\r\n    await logIn(page, fixture.roleAware.saljare, \"/dashboard\");\r\n    await waitForHydrated(page.getByRole(\"button\", { name: \"Öppna meny\", exact: true }));\r\n    for (const textSize of [\"100%\", \"200%\"]) {\r\n      // Controlled root text enlargement; not native browser zoom or an OS keyboard claim.\r\n      await page.evaluate(size => { document.documentElement.style.fontSize = size; }, textSize);\r\n      await assertShellIdentity(page, fixture.roleAware.saljare.email);\r\n      await assertNoHorizontalOverflow(page);\r\n      if (textSize === \"100%\") {\r\n        await expect(page.getByRole(\"main\")).toHaveCSS(\"padding-left\", \"16px\");\r\n        await expect(page.getByRole(\"main\")).toHaveCSS(\"padding-right\", \"16px\");\r\n      }\r\n      for (const control of [\r\n        page.getByRole(\"button\", { name: \"Öppna meny\", exact: true }),\r\n        page.getByRole(\"button\", { name: /^Notiser(?:,|$)/ }),\r\n        page.getByRole(\"button\", { name: \"Profil\", exact: true }),\r\n        page.getByRole(\"button\", { name: \"Logga ut\", exact: true }),\r\n      ]) {\r\n        await control.scrollIntoViewIfNeeded();\r\n        await assertPhoneTarget(control);\r\n        await expect(control).toBeInViewport();\r\n      }\r\n      await page.getByRole(\"button\", { name: \"Öppna meny\", exact: true }).click();\r\n      const drawer = page.getByRole(\"dialog\", { name: \"Huvudmeny\", exact: true });\r\n      await assertPhoneTarget(drawer.getByRole(\"button\", { name: \"Stäng meny\", exact: true }));\r\n      for (const link of await drawer.getByRole(\"link\").all()) {\r\n        await link.scrollIntoViewIfNeeded();\r\n        await assertPhoneTarget(link);\r\n        await expect(link).toBeInViewport();\r\n        await expect(link).toHaveAccessibleName(/\\S/);\r\n      }\r\n      await drawer.getByRole(\"link\", { name: \"Kunder\", exact: true }).click();\r\n      await expect(page).toHaveURL(url => url.pathname === \"/customers\");\r\n      await assertShellIdentity(page, fixture.roleAware.saljare.email);\r\n      await assertNoHorizontalOverflow(page);\r\n    }\r\n    // Labeled overflow of wide destination data is owned by that consumer, not certified here.\r\n  });\r\n\r\n  test.skip(\"[P0] E35-5-T-AC3 E35-5-T-AC6 E35-5-T-AC7 E35-5-T-revoked rendered Säljare link cannot override current isolated Montör authority\", RED, async ({ page, context }) => {\r\n    // Dynamic imports avoid introducing factory/service work into skipped collection.\r\n    const { createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture } = await import(\"../../factories/tenants/core\");\r\n    const { setRoles } = await import(\"../../support/time-reports-atdd\");\r\n    const isolated = await createRoleAwarePhaseAFixture();\r\n    let deniedPage: Page | undefined;\r\n    let fresh: Page | undefined;\r\n    try {\r\n      const user = isolated.users.saljare;\r\n      await page.setViewportSize({ width: 1280, height: 800 });\r\n      await logIn(page, user, \"/dashboard\");\r\n      await expect(page.getByTestId(\"tenant-context\")).toHaveText(isolated.base.tenantA.name);\r\n      await expect(page.getByTestId(\"current-user\")).toHaveText(user.email);\r\n      const staleLink = page.getByRole(\"navigation\", { name: \"Huvudnavigation\" }).getByRole(\"link\", { name: \"Kunder\", exact: true });\r\n      await expect(staleLink).toHaveAttribute(\"href\", \"/customers\");\r\n      await setRoles(isolated.base.tenantA.id, user.id, \"montor\");\r\n      // Native modified anchor opens a fresh server request, avoiding prefetched RSC\r\n      // becoming false authority evidence. No synthetic denial or shared user mutation.\r\n      const opened = page.waitForEvent(\"popup\");\r\n      await staleLink.click({ modifiers: [\"ControlOrMeta\"] });\r\n      deniedPage = await opened;\r\n      await expect(deniedPage).toHaveURL(url => url.pathname === \"/customers\");\r\n      await expect(deniedPage.getByRole(\"heading\", { name: \"Ingen åtkomst\", exact: true })).toBeVisible();\r\n      await expect(deniedPage.getByRole(\"alert\").filter({ hasText: \"Ingen åtkomst\" })).toHaveCount(1);\r\n      await expect(deniedPage.getByRole(\"main\").getByRole(\"table\")).toHaveCount(0);\r\n      await expect(deniedPage.getByRole(\"main\").getByRole(\"textbox\")).toHaveCount(0);\r\n      await expect(deniedPage.getByRole(\"navigation\", { name: \"Huvudnavigation\" }).getByRole(\"link\", { name: \"Kunder\", exact: true })).toHaveCount(0);\r\n\r\n      // Fresh server projection independently keeps identity but removes old grants.\r\n      fresh = await context.newPage();\r\n      await fresh.goto(\"/my-day\", { waitUntil: \"domcontentloaded\" });\r\n      await expect(fresh).toHaveURL(url => url.pathname === \"/my-day\");\r\n      await expect(fresh.getByTestId(\"tenant-context\")).toHaveText(isolated.base.tenantA.name);\r\n      await expect(fresh.getByTestId(\"current-user\")).toHaveText(user.email);\r\n      await assertNavOrder(fresh.getByRole(\"navigation\", { name: \"Huvudnavigation\" }), MONTOR_GRANTED_NAV, \"/my-day\");\r\n      await expect(fresh.getByRole(\"main\").getByText(/självkostnad|täckningsbidrag|marginal/i)).toHaveCount(0);\r\n    } finally {\r\n      await deniedPage?.close();\r\n      await fresh?.close();\r\n      await cleanupRoleAwarePhaseAFixture(isolated);\r\n    }\r\n  });\r\n\r\n  for (const viewport of SHELL_VIEWPORTS) {\r\n    test.skip(`[P1] E35-5-T-AC3 E35-5-T-AC4 E35-5-T-AC6 E35-5-T-error-retry ${viewport.name} actual sign-out rejection retains server identity and same-command real retry logs out`, RED, async ({ page, context }, testInfo) => {\r\n      await page.setViewportSize(viewport.size);\r\n      await logIn(page, fixture.roleAware.saljare, \"/dashboard\");\r\n      await assertShellIdentity(page, fixture.roleAware.saljare.email);\r\n      const originalUrl = page.url();\r\n      const auth = new URL(LOCAL_SUPABASE_URL);\r\n      expect([\"127.0.0.1\", \"localhost\", \"[::1]\"]).toContain(auth.hostname);\r\n      expect([\"http:\", \"https:\"]).toContain(auth.protocol);\r\n      const isLogoutUrl = (url: URL) => url.origin === auth.origin && url.pathname === \"/auth/v1/logout\";\r\n      const isLogoutRequest = (request: Request) => request.method() === \"POST\" && isLogoutUrl(new URL(request.url()));\r\n      const matched: { method: string; origin: string; pathname: string; query: string }[] = [];\r\n      const failBeforeDispatch = async (route: Route) => {\r\n        const request = route.request();\r\n        if (!isLogoutRequest(request)) { await route.continue(); return; }\r\n        const url = new URL(request.url());\r\n        matched.push({ method: request.method(), origin: url.origin, pathname: url.pathname, query: url.search });\r\n        // Definite controlled rejection BEFORE any forwarding; not provider rejection,\r\n        // response loss, a cleared session, or synthetic success. Never 401/403/404.\r\n        await route.fulfill({ status: 500, contentType: \"application/json\", body: JSON.stringify({ code: \"unexpected_failure\", msg: \"Controlled local ATDD rejection\" }) });\r\n      };\r\n      // playwright-utils inactive (package absent): network-first native interception.\r\n      await page.route(isLogoutUrl, failBeforeDispatch);\r\n      let confirmation: Page | undefined;\r\n      try {\r\n        const signOut = page.getByRole(\"button\", { name: \"Logga ut\", exact: true });\r\n        await waitForHydrated(signOut);\r\n        const failure = page.waitForResponse(response => isLogoutRequest(response.request()));\r\n        await signOut.click();\r\n        const rejected = await failure;\r\n        expect(rejected.status()).toBe(500); // Playwright HTTP Response, not APIResponse/toBeOK.\r\n        expect(rejected.headers()[\"content-type\"]).toContain(\"application/json\");\r\n        expect(isLogoutRequest(rejected.request())).toBe(true);\r\n        expect(matched.length).toBeGreaterThan(0);\r\n        const error = page.getByRole(\"alert\").filter({ hasText: \"Utloggningen misslyckades. Försök igen.\" });\r\n        await expect(error).toHaveText(\"Utloggningen misslyckades. Försök igen.\");\r\n        await expect(error).toBeVisible();\r\n        await error.scrollIntoViewIfNeeded();\r\n        await expect(error).toBeInViewport();\r\n        await expect(page).toHaveURL(originalUrl);\r\n        await assertShellIdentity(page, fixture.roleAware.saljare.email);\r\n        await expect(signOut).toBeEnabled();\r\n        await signOut.scrollIntoViewIfNeeded();\r\n        await expect(signOut).toBeInViewport();\r\n        if (viewport.name === \"phone\") await assertPhoneTarget(signOut);\r\n\r\n        // A new real document in the SAME cookie context independently resolves\r\n        // server authority while the failed page stays mounted and visibly failed.\r\n        confirmation = await context.newPage();\r\n        await confirmation.setViewportSize({ width: 1280, height: 800 });\r\n        const confirmed = await confirmation.goto(\"/dashboard\", { waitUntil: \"domcontentloaded\" });\r\n        expect(confirmed?.status()).toBe(200);\r\n        await expect(confirmation).toHaveURL(url => url.pathname === \"/dashboard\");\r\n        await assertShellIdentity(confirmation, fixture.roleAware.saljare.email);\r\n        await expect(error).toBeVisible();\r\n        await expect(page).toHaveURL(originalUrl);\r\n        await expect(signOut).toBeEnabled();\r\n\r\n        await page.unroute(isLogoutUrl, failBeforeDispatch);\r\n        const realRetry = page.waitForResponse(response => isLogoutRequest(response.request()));\r\n        await signOut.click(); // Explicit SAME command retries against real local Auth.\r\n        const accepted = await realRetry;\r\n        expect(accepted.status()).toBeGreaterThanOrEqual(200);\r\n        expect(accepted.status()).toBeLessThan(300);\r\n        await expect(page).toHaveURL(url => url.pathname === \"/login\");\r\n        await confirmation.goto(\"/dashboard\", { waitUntil: \"domcontentloaded\" });\r\n        await expect(confirmation).toHaveURL(url => url.pathname === \"/login\");\r\n        await expect(confirmation.getByTestId(\"tenant-context\")).toHaveCount(0);\r\n        const retryUrl = new URL(accepted.url());\r\n        // Preserve actual query verbatim without inventing an expected scope query.\r\n        // No headers, request bodies, cookies or credentials are captured.\r\n        await testInfo.attach(\"local-auth-outcome\", { contentType: \"application/json\", body: JSON.stringify({ controlledFailure: { requests: matched, status: rejected.status() }, realRetry: { method: accepted.request().method(), origin: retryUrl.origin, pathname: retryUrl.pathname, query: retryUrl.search, status: accepted.status() } }) });\r\n      } finally {\r\n        await page.unroute(isLogoutUrl, failBeforeDispatch);\r\n        await confirmation?.close();\r\n      }\r\n      // No response.finished()/RSC EOF, fabricated logout success or client-only\r\n      // session inference. Matcher/installed SDK/runtime remain UNVERIFIED until run.\r\n    });\r\n  }\r\n});\n",
+      "description": "Ten source-bound skipped shell browser scaffolds; all five original active Story 11.2 tests and assertions retained unchanged.",
+      "expected_to_fail": true,
+      "expected_to_fail_note": "New cases are test.skip RED scaffolds, not observed runtime failures. Existing active base cases are not classified RED.",
+      "acceptance_criteria_covered": [
+        "E35-5-T-AC1",
+        "E35-5-T-AC2",
+        "E35-5-T-AC3",
+        "E35-5-T-AC4",
+        "E35-5-T-AC5",
+        "E35-5-T-AC6",
+        "E35-5-T-AC7"
+      ],
+      "acceptance_note": "IDs trace bounded assertions and inherited obligations; no full AC contract or runtime PASS is claimed.",
+      "priority_coverage": {
+        "P3": 0,
+        "P1": 9,
+        "P2": 0,
+        "P0": 1
+      },
+      "preserved_active_priority_coverage": {
+        "P3": 0,
+        "P1": 1,
+        "P2": 0,
+        "P0": 4
+      },
+      "scenarios": [
+        {
+          "ids": [
+            "E35-5-T-AC1",
+            "E35-5-T-AC3",
+            "E35-5-T-AC6",
+            "E35-5-T-AC7",
+            "E35-5-T-loaded"
+          ],
+          "count": 4,
+          "description": "Säljare and Montör exact authorized desktop/phone order, ordinary anchors, active-route updates, tenant/user identity, actual notification and profile navigation",
+          "priority": "P1"
+        },
+        {
+          "ids": [
+            "E35-5-T-AC2",
+            "E35-5-T-AC4"
+          ],
+          "count": 1,
+          "description": "1280x800 desktop 248px sidebar, 56px header, 24px gutters",
+          "priority": "P1"
+        },
+        {
+          "ids": [
+            "E35-5-T-AC2",
+            "E35-5-T-AC5",
+            "E35-5-T-AC6",
+            "E35-5-T-focus-dialog"
+          ],
+          "count": 1,
+          "description": "360x640 named drawer opening focus/ring, Tab wrap both directions, Escape/explicit-close return, body-scroll restore, resize cleanup and actual reduced-motion durations",
+          "priority": "P1"
+        },
+        {
+          "ids": [
+            "E35-5-T-AC4"
+          ],
+          "count": 1,
+          "description": "360x640 normal and 200% root text, 16px normal gutters, horizontal reflow, reachable 44px toolbar/drawer controls and actual Kunder navigation",
+          "priority": "P1"
+        },
+        {
+          "ids": [
+            "E35-5-T-AC3",
+            "E35-5-T-AC6",
+            "E35-5-T-AC7",
+            "E35-5-T-revoked"
+          ],
+          "count": 1,
+          "description": "Isolated fixture Säljare-to-Montör change via existing setRoles; stale actual Kunder anchor fresh-server denial and independently fresh authorized Montör projection",
+          "priority": "P0"
+        },
+        {
+          "ids": [
+            "E35-5-T-AC3",
+            "E35-5-T-AC4",
+            "E35-5-T-AC6",
+            "E35-5-T-error-retry"
+          ],
+          "count": 2,
+          "description": "Actual mounted SignOutButton on desktop and phone: exact local Auth POST/logout undispatched 500 JSON failure, persistent error/same enabled command/current URL and identity, independently server-confirmed same session, explicit real retry, login and fresh protected redirect",
+          "priority": "P1"
+        }
+      ]
+    }
+  ],
+  "test_count": 10,
+  "preserved_active_test_count": 5,
+  "expected_expanded_total_count": 15,
+  "count_basis": "Source loop expansion only: 4 role/viewport + geometry + drawer + reflow + revocation + 2 error-retry. Not runtime collection.",
+  "activation": "Implementation author removes current-task test.skip markers after binding/assertion review, executes against configured production Playwright server and local isolated stack, and records actual counts/skips/candidate.",
+  "fixture_needs": [
+    "Existing tests/e2e/.auth/fixture.json with serialized tenantA and roleAware.saljare/montor; generated only by existing global setup, no credentials stored in this artifact",
+    "Existing tests/e2e/dashboard/guarded-test.ts; no new merged fixtures or CDP launch",
+    "Existing tests/factories/tenants/core.ts createRoleAwarePhaseAFixture/cleanupRoleAwarePhaseAFixture, imported inside skipped revocation body",
+    "Existing tests/support/time-reports-atdd.ts setRoles, imported inside skipped revocation body; no added SQL or shared fixture authority mutation",
+    "Existing tests/support/test-env.ts LOCAL_SUPABASE_URL and configured real local production-server session; no new endpoint or success mock"
+  ],
+  "fixture_creation": "None. Existing isolated fixture will be created and paired cleanup called only when the skipped revocation case is explicitly activated and executed.",
+  "confidence": {
+    "authority": "Source-read nav-items.ts, phase-a-surface.ts, permission-matrix.ts, manifest.ts, RouteAccessBoundary.tsx, layout.tsx, tenant resolver and existing unit/source regressions. Fresh authority runtime evidence absent.",
+    "fixtures": "Source-read current serialized base and roleAware shape, actual isolated exports, existing setRoles implementation; runtime creation/import resolution unknown.",
+    "auth": "Configured local origin + POST + pathname /auth/v1/logout matcher only; actual query captured at runtime verbatim. Matcher, installed SDK failure/session handling and retry outcome UNVERIFIED.",
+    "environment": "Worktree node_modules and .auth/fixture.json absent per parent. No services launched, dependencies bootstrapped, browser opened, collection or runtime executed by this worker.",
+    "selectors": "Source-read only: AppShell.tsx, SignOutButton.tsx, NotificationBell.tsx, NotificationPreferences.tsx, NotificationsCenter.tsx. Runtime locator validation absent."
+  },
+  "state_bindings": {
+    "late-result": {
+      "binding": "Read-only tests/e2e/jobs/job-workspace.e2e.spec.ts / 16.5-E04, 16.5-E05 only if affected; not executed or copied here.",
+      "state_id": "E35-5-STATE-late-result",
+      "test_id": "E35-5-T-late-result",
+      "classification": "Inherited regression"
+    },
+    "loaded": {
+      "binding": "Four real-role desktop/phone navigation/identity scaffolds; full forbidden browser payload and domain freshness inherited, not newly proven.",
+      "state_id": "E35-5-STATE-loaded",
+      "test_id": "E35-5-T-loaded",
+      "classification": "Applies"
+    },
+    "error-retry": {
+      "binding": "Two actual mounted SignOutButton.handleSignOut scaffolds using existing shared Säljare fixture; no route.fetch before 500 rejection; no synthetic success.",
+      "state_id": "E35-5-STATE-error-retry",
+      "test_id": "E35-5-T-error-retry",
+      "classification": "Applies"
+    },
+    "connection-required": {
+      "binding": "Unbound; generic sign-out error is not positive connection explanation coverage.",
+      "state_id": "E35-5-STATE-connection-required",
+      "test_id": "E35-5-T-connection-required",
+      "classification": "Inherited regression"
+    },
+    "denied": {
+      "binding": "Preserved active Story 11.2 Montör settings generic denial/no tables/textboxes; existing assertion identity unchanged.",
+      "state_id": "E35-5-STATE-denied",
+      "test_id": "E35-5-T-denied",
+      "classification": "Applies"
+    },
+    "revoked": {
+      "binding": "Isolated Säljare rendered Kunder anchor, setRoles to Montör, real destination denial, independent fresh Montör projection.",
+      "state_id": "E35-5-STATE-revoked",
+      "test_id": "E35-5-T-revoked",
+      "classification": "Applies"
+    },
+    "focus-dialog": {
+      "binding": "Existing named Huvudmeny drawer, focus, close, resize, scroll and actual reduced-motion scaffold.",
+      "state_id": "E35-5-STATE-focus-dialog",
+      "test_id": "E35-5-T-focus-dialog",
+      "classification": "Applies"
+    },
+    "loading": {
+      "binding": "Unbound; no coverage claim and no new shell loading duty.",
+      "state_id": "E35-5-STATE-loading",
+      "test_id": "E35-5-T-loading",
+      "classification": "Inherited regression"
+    },
+    "unavailable": {
+      "binding": "Read-only source tests/unit/server/authz/job-access.test.ts / 16.2-AUTHZ-004 only if affected; not executed here.",
+      "state_id": "E35-5-STATE-unavailable",
+      "test_id": "E35-5-T-unavailable",
+      "classification": "Inherited regression"
+    }
+  },
+  "inherited_regressions": [
+    {
+      "disposition": "Preserve original source-owner dirty-navigation/selected-child/late-result identities, qualify exact revision and actual counts at execution. No new editor or copied assertions.",
+      "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+      "ids": [
+        "16.5-E03",
+        "16.5-E04",
+        "16.5-E05"
+      ]
+    },
+    {
+      "disposition": "Unavailable source seam only if affected; source presence is not proof.",
+      "file": "tests/unit/server/authz/job-access.test.ts",
+      "ids": [
+        "16.2-AUTHZ-004"
+      ]
+    },
+    {
+      "disposition": "Inherited real authority/projection regression, unchanged and unexecuted by this worker.",
+      "file": "tests/integration/rls/role-aware-phase-a-surface.atdd.int.test.ts"
+    }
+  ],
+  "coverage_limits": [
+    "Ten skipped scenarios are neither passing coverage nor observed red failures; five original active tests retained without running.",
+    "Visible labeled grouping has no pinned label/ARIA vocabulary in accepted DESIGN AppShell row. Exact flattened order preserves authority; final visible/semantic grouping verification remains implementation/review/visual evidence, so AC1 is partial scaffold.",
+    "Revocation uses native modified anchor to force new server document and avoid prefetched RSC false authority proof. Does not certify same-tab prefetched cache behavior or immediate stale-link push removal.",
+    "No new browser payload audit, domain mutation persistence, money/tax/provenance/transaction/file-lock assertion is claimed; AC7 inherits original checked source regressions and required gates.",
+    "Role matrix scaffold bounds Säljare/Montör; no invented roleAware administrator/project-manager/finance fields.",
+    "Root text enlargement is controlled CSS 200% sizing, not native browser zoom/OS virtual keyboard, full WCAG, exhaustive accessibility, contrast or device certification.",
+    "Phone toolbar/drawer 44px targets and root horizontal overflow checked; destination wide-data overflow labeling, calendar-profile navigation runtime, nested-detail active marker and selected-child return remain source-owner/build evidence.",
+    "No retired loading/unavailable/connection-required/late-result positive shell obligations recreated; unbound inherited states get zero coverage.",
+    "Full local DB/RLS, unchanged downstream Jobs guards, candidate visual acceptance and release checks remain pending; release_ready=false."
+  ],
+  "capture_plan": {
+    "auto_trace": "off",
+    "captures_created": 0,
+    "auto_screenshot": "off",
+    "constraints": "No login/credential captures, request headers/bodies/cookies/storage dumps or raw network traces. Capture plan only, no screenshot API emitted.",
+    "auto_video": "off",
+    "safe_capture_points": [
+      "After authenticated tenant/current-user/role-nav assertions: desktop1280x800 loaded shell",
+      "After authenticated assertions plus actual named drawer/focus checks: phone360x640 drawer",
+      "After actual 500 response, persistent exact error and independent protected same-identity confirmation: failed sign-out page on desktop and phone"
+    ]
+  },
+  "playwright_utils": {
+    "package_installed_in_manifest": false,
+    "config_flag": true,
+    "mechanism": "Existing guarded-test + native Playwright. Future framework adoption is outside this allocation.",
+    "mandate_active": false
+  },
+  "playwright_utils_deviations": [
+    "Two-gate mandate inactive because package absent: retained existing login and guarded-test; native page.route/waitForResponse only for exact controlled local Auth error/retry; no new dependency/import/harness."
+  ],
+  "knowledge_fragments_used": [
+    "playwright-utils-mandate",
+    "library-integration-mandate",
+    "network-first",
+    "fixture-architecture",
+    "selector-resilience"
+  ],
+  "summary": "Generated 10 skipped RED browser scaffolds and preserved 5 active base tests; zero runtime executions or captures. Exact bounded source bindings and unverified limits recorded."
+}

@@ -1,0 +1,22 @@
+{
+  "storyId": "35.5",
+  "date": "2026-11-01",
+  "phase": "RED_SCAFFOLD_GENERATION_COMPLETE_RUNTIME_NOT_RUN",
+  "syntaxDiagnostics": 0,
+  "syntaxInstrument": "Existing C:/DEV/Kopplas/node_modules/typescript/lib/typescript.js transpileModule; no dependency install",
+  "semanticTypecheckPerformed": false,
+  "originalFiveDescribePreserved": true,
+  "originalComparison": "Git HEAD describe block unchanged after CRLF normalization",
+  "generated": { "api": 0, "e2e": 10, "component": 0, "contract": 0, "newSkipped": 10, "P0": 1, "P1": 9 },
+  "existingActiveCases": 5,
+  "expandedSourceInventory": 15,
+  "collection": { "command": "pnpm exec playwright test tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts --list", "exitCode": 1, "error": "ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL: Command playwright not found", "collectedCount": null },
+  "runtime": { "executed": 0, "passed": null, "failed": null, "skipped": null, "status": "NOT_RUN", "observedRed": false },
+  "matcherSDKRuntime": "UNVERIFIED",
+  "captures": 0,
+  "servicesStarted": false,
+  "gitMutations": false,
+  "productOrSpecEdits": false,
+  "workersFinalized": ["api_red", "e2e_red"],
+  "release_ready": false
+}

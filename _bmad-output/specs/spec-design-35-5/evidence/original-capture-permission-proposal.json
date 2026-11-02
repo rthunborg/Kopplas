@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "storyId": "35-5",
+  "status": "permission proposal only; code unapplied; no automatic retry",
+  "allocatedTestFile": "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+  "existingTests": {
+    "active": 15,
+    "preservation": "Existing15 assertions and timeouts unchanged",
+    "sha256": "6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd",
+    "originalAuthorityTests": 5
+  },
+  "proposedCases": 12,
+  "proposedOriginalFullViewportFrames": 31,
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "width": 360,
+      "height": 640
+    }
+  ],
+  "inventory": [
+    {
+      "states": [
+        "loaded desktop and phone",
+        "profile open desktop and phone",
+        "full phone drawer"
+      ],
+      "family": "owned administrator shell",
+      "cases": 2,
+      "frames": 5
+    },
+    {
+      "routes": [
+        "/customers",
+        "/files",
+        "/jobs"
+      ],
+      "family": "existing records embeddings",
+      "cases": 2,
+      "frames": 6
+    },
+    {
+      "routes": [
+        "/scheduling",
+        "/my-day",
+        "/settings/notifications"
+      ],
+      "family": "existing connected embeddings",
+      "cases": 2,
+      "frames": 6
+    },
+    {
+      "states": [
+        "genuinely empty",
+        "owned synthetic populated",
+        "controlled local read error"
+      ],
+      "family": "mounted notification dialog",
+      "cases": 2,
+      "frames": 6
+    },
+    {
+      "states": [
+        "controlled undispatched500 retained server identity",
+        "same-command real retry and blank login after protected redirect"
+      ],
+      "family": "owned seller sign-out",
+      "cases": 2,
+      "frames": 4
+    },
+    {
+      "states": [
+        "actual stale-href server denial after exact inherited role mutation",
+        "fresh reduced authorized projection"
+      ],
+      "family": "actual owned revocation",
+      "cases": 2,
+      "frames": 4
+    }
+  ],
+  "fixtureCustody": {
+    "publicEvidence": "Additionally wait for terminal CI and successful owned browser/Supabase stop steps before evidence-branch publication",
+    "cleanupOrder": [
+      "Close owned browser contexts/pages",
+      "Attempt existing strict deleteAuthUser(id,redacted) for ALL unique owned IDs; collect every failure",
+      "Then run existing paired best-effort tenant-graph cleanup",
+      "Attach original PNG bodies only after all assertions and strict deletions succeeded, cleanup completed, and no timeout/test errors"
+    ],
+    "captureBeforeCleanup": "PNG Buffers only in case-local memory, no attachment/path/base64 logging/fixture file",
+    "failureArtifacts": "Automatic screenshot/video/trace off for appended cases only",
+    "credentialCaveat": "Generated email suffix correlates with local fixture password, motivating strict Auth deletion before export",
+    "localOnly": "Existing admin helper calls assertLocalStack; production app/proxy/upstream pinned loopback in CI",
+    "ids": "unique base adminA/adminB/orphanUser plus extraUsers only",
+    "ownedAuthUsersPerCase": 10,
+    "assertions": "Actual authenticated server state and owned identity assertions precede capture",
+    "onFailure": "Discard all PNG buffers and report fixed non-sensitive stage code without original error/cause/expected identity; no fallback or retry",
+    "newCases": 12,
+    "synthetic": "Generated example.test identities and tenant labels, owned customer/quote/notification records only",
+    "ownership": "Fresh isolated createRoleAwarePhaseAFixture for each case; never global run users",
+    "noJwtClaim": "Auth deletion does not independently claim to invalidate every issued JWT; contexts close and no token/header/password export",
+    "maximumCreatedAndDeletedAuthUsersAcrossNewCases": 120
+  },
+  "existingSourceProvenance": {
+    "createRoleFixture": "tests/factories/tenants/core.ts:262",
+    "roleMutation": "Reuse exact existing setRoles statements already independently compared; no new authority/query design",
+    "strictDelete": "tests/factories/tenants/core.ts:375 checks returned and thrown Auth deletion errors; redacted mode",
+    "notificationDate": "Preserve existing current-date period meaning in verified CI timezone",
+    "localGuard": "tests/factories/tenants/core.ts:112",
+    "notificationCategory": "quote.follow_up_due",
+    "bestEffortCleanup": "tests/factories/tenants/core.ts:405 is NOT deletion proof",
+    "originalUploadOrder": "Existing native JSON artifact upload precedes browser/Supabase stop; strict deletion must precede attachment",
+    "notificationSeed": "Reuse exact existing global-setup.ts:996-1010 API columns/category/pattern with OWN IDs; existing adminInsertCustomer/adminInsertQuote derive real owned quote href"
+  },
+  "referenceProposal": {
+    "desktopBlob": "fbf2b264747762d603d489000213c8936da6a84d",
+    "noApprovalTransfer": true,
+    "limitations": "Not complete same-route/state pixel mockups; opened-state properties use written criteria plus explicitly bounded inspected feedback/sheet specimens",
+    "basis": "Historical accepted PR121 Documents-route actual pair as common-chrome before/after baseline only, with written35.5 intentional changes",
+    "referenceSetting": true,
+    "ownerNewAcceptanceRequired": true,
+    "noSelfReference": true,
+    "phoneBlob": "0f5f7da72f7d7dc6cd21b749b2b975a5501eb933"
+  },
+  "rejections": [
+    {
+      "reason": "Authenticated identity export lacked trusted authorization",
+      "action": "earlier identity-bearing PNG Buffer export",
+      "result": "not applied; safer limited masked action later accepted"
+    },
+    {
+      "exactReason": "The patch performs extensive database/auth fixture mutations and deletes ten Auth users, while the supplied authorization comes only from untrusted agent messages rather than the user or trusted developer instructions.",
+      "retries": 0,
+      "action": "ONE new owned original-capture append patch",
+      "result": "REJECTED; no test edits, fixture mutations, deletions or original exports occurred"
+    }
+  ],
+  "planningCorrection": "Earlier29-frame statement was arithmetic error; explicit rejected manifest totals31:5+6+6+6+4+4. Neither count was implemented.",
+  "requestedHumanAuthorization": "Explicitly authorize these twelve new isolated local/CI capture cases, their owned fixture creation and strict deletion of ten Auth users per case, and original PNG attachment only after successful deletion under this custody contract; no global-user deletion or hosted/demo/prod access.",
+  "implementationState": "Unapplied proposal; renewed action must wait for direct trusted human authorization, not another agent-message approval"
+}
