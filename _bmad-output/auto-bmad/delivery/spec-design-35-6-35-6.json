@@ -1,22 +1,22 @@
 {
   "policy_version": "2026-10-19",
-  "contract_reconciliation": "Same admitted BuildAuto review-fix checkpoint SolHigh, not new broad round2/P6. Actual old5a/run41463404500 owned10unexpected+1flaky reviewed; current batch repairs echoed facility select default reset, native archive Date representation, forward setup adoption, bounded Dashboard HTTP adoption and text-only enlargement/occlusion proxies. ContactDialog only writable product; all shared/server/authority/otherproduction immutable. Original identity/tenant/parent/actor/audits/history/focus assertions retained.7AC16states/D1-D5/frozen suffix preserved.11sourcecases/98plannedPNGs/72selected names unchanged; excluded text supplement rename/dimensions honest. Current runtime0executed0skipped/images0;21unowned blockers and native/key/error-branch proof gaps retained. Current targeted High review passed; runtime/visual/CI/completion pending. blocked/followuptrue/historicalscore9/deferredreview[]/3release deferred; no done. Native-fix source committed b1437128f186c9a840803066eac0144da6810d11 includes ContactDialog/E2E changes. Independent SolHigh targeted review returned no code findings, only stale SROintro attribution; minimal intro corrected, narrow SolHigh confirmation of66b74bfee91ad592187155d1e12d0a9c5abc0085 returned exactly No findings; current independent review passed. Prior d42/9bb/capture1a3 approvals historical. This update touches story/delivery only and does not change source hashes or current runtime0 evidence.",
-  "evidence_revision": "b1437128f186c9a840803066eac0144da6810d11",
+  "contract_reconciliation": "Final authored record for SINGLE B01 source121e94445eef918c289f2126fdece3268170c640, E2ESHA256179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f. Scoped exact no-match message+support text targets; original behavioral assertions and helperstrict ratio1 each1440/360 retained. Production unchangedb143. Actual targeted independent SolHigh review returned exactly No findings; current code review passed. ONE actual typecheck/focusedlint pass plus diff/trail evidence source-bound. Priorb143/capture1a3 approvals,772P6 and failed772/3ebCI/partialcaptures HISTORICAL. No successorP6/runtime/visual/currentheadCI/completion pass.11cases98planned72selectednames/D1-D5/7AC16states/frozen90suffix preserved. Currentruntime0/images0, listloadError trustworthyseamgap/D5flatteninguncredited and21unowned blockers retained; blocked/followuptrue/historicalscore9/deferredreview[]/3release deferred/releasefalse.",
+  "evidence_revision": "121e94445eef918c289f2126fdece3268170c640",
   "development_checks": [
     {
       "name": "typecheck",
       "status": "passed",
-      "evidence": "Current native-proven ContactDialog/E2E repair: pnpm typecheck exit0 on d8c plus final uncommitted source."
+      "evidence": "ONE actual pnpm typecheck exit0 on source now committed121e94445eef918c289f2126fdece3268170c640; E2ESHA256 179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f. No repeat during finalization."
     },
     {
       "name": "lint",
       "status": "passed",
-      "evidence": "Current pnpm exec eslint src/components/crm/ContactDialog.tsx tests/e2e/crm/customers.e2e.spec.ts exit0 no warnings."
+      "evidence": "ONE actual pnpm exec eslint tests/e2e/crm/customers.e2e.spec.ts exit0 no warnings on same source121/hash; no repeat during finalization."
     },
     {
       "name": "build and bundle containment",
       "status": "passed",
-      "evidence": "Current ContactDialog echo-value key change: pnpm build Next16.4.1 production exit0 and pnpm verify:bundle-containment exit0 after actual product change."
+      "evidence": "Prior b143 native-fix product build/bundle passed on reviewedsource; no current build rerun because this repair is single test-only change and production unchanged."
     },
     {
       "name": "lockfiles audit and service-role containment",
@@ -31,27 +31,27 @@
     {
       "name": "full unit suite",
       "status": "pending",
-      "evidence": "Root historical hosted observation: Linux verify3780/3780pass0skip at5a6263d45e139b4a0137b085e0014f23742f931e, root-owned run41463404500, resolving prior Windows-only3776pass3fail1skip there. No new local fullunit repeat or current capture/runtime pass; root reconciles actual exact-head artifacts. Delegate did not poll/adopt runningCI. Root additionally reports Linux3780pass0skip at prior3eb/run41469021274. No repeat or delegate poll/adoption; current native repair not yet runtime-tested."
+      "evidence": "Root-relayed previous772 ordinaryCI41473808206 FINALFAILED: units3780pass0skip. Prior evidence only, not current repair/runtime/P6 pass; no unitrepeat/CIpoll."
     },
     {
       "name": "required integration RLS recovery storage browser",
       "status": "pending",
-      "evidence": "Current native repair UNRUN0executed0skipped/images0. Actual old5a/run41463404500 owned browser10unexpected+1flaky read from root local JSON/logs;4contrastENOENT previously fixed,3Date mismatches,forward detachment,facility reset,bodyzoom proxy,Dashboard flaky.21unowned failures named blockers(groupredirect7,booking2,calendar10,notificationprofile1,scheduling1), no coverage credit/out-of-claim fixes. Root-owned41469021274/head3eb ongoing not polled. Repaired-head assertions, B03sameentrykey, listreaderror seam and malformeddetail branch remain actual proof gaps."
+      "evidence": "Currentrepair0executed0skipped/images0. Rootprevious772 ordinaryCI41473808206 FINALFAILED: integration2163pass0fail52skip(51Bookingseries+recovery separately1pass),recovery1pass0skip,essentialbrowser79pass1fail0skip(unownedMyday15.6E09 abortvsfinishedtransport). Previous3eb full41469021274 FINALFAILED478pass28fail22skip;owned37pass7fail;malformedbranchPASSpair/contextPASS16PNGs. All previousheadnotcurrentproof.21unowned+trustworthylistloadError/retryseam gap retained,D5childflattening uncredited."
     },
     {
       "name": "frontend visual acceptance and exact-head CI",
       "status": "pending",
-      "evidence": "Pending. Actual PNGBuffer+state/viewport/bytecount/dimension/provenance JSON now always native-attached withoutE35_CAPTURE_DIR. Expected successful once-through source98PNGs92qualifying6supplemental; explicit72planned stable attachment names in story covers all16states+adapted/context surfaces <=80; retries extra. No images collected locally. GITHUB_SHA/E35candidateclaim is author assertion pending root GitHub/run/bytes verification; no authenticated acceptance. Prior9bbgate refusal historical, no rerun. Targeted fix now requires actual semantic capture targets, scrolls/asserts all fully in viewport AFTER each qualifying resize and BEFORE PNG. Context owner/return/Booking and all16customer phases explicitly bound. Supplementalframes receive no qualifying target credit. Count98source/72package and stable names unchanged; no actual runtime. Current native proxy correction measures actual text-font2x without100dvh wholebody scaling, reflow/errors/actions/hittest retained; excluded controlled-text-enlargement-200percent now360x640, child400px/other actual supplements remain nonqualifying.98/72 counts and selected72IDs unchanged. New native repair not executed; no actual currentPNGcredit."
+      "evidence": "Current singleB01 targets actual exactnomatchmessage+supporttext scopedcontainer aftereachresize; stricthelperratio1 unchanged. Same11cases98planned72selectednames. Rootprevious3eb reports80uniqueownedPNGnames59/72selectedpresent54passed-qualifiednames,NOT772/NOTcurrentrepair; partial failed-run images not acceptedcompletepackage. Currentactualimages0/runtime0. Current sameHigh code review passed at121 exactlyNo findings; successorP6/followup/actualvisual/currentheadCI/completion remain pending."
     },
     {
       "name": "assigned source identity",
       "status": "passed",
-      "evidence": "{\"src/app/(app)/customers/[customerId]/page.tsx\": \"34c6c88e55fdfe3b3b6e13193b5c81a5094662d969bd2fad84d427c195af45b3\", \"src/components/crm/ArchiveButton.tsx\": \"02fabf0a0b4e7a223c1c73e80e8355e5bd1a457b27d07019557e8599cde5575b\", \"src/components/crm/ContactDialog.tsx\": \"c7b5505ea526af9c4e9cc71bb7e0ea399c63fbc75fb200244e190ef03593eb19\", \"src/components/crm/CustomerDetail.tsx\": \"998c2c066e06fcc2d112d590c050d8215abbe7625f7ac23b9b372a4a8a566eec\", \"src/components/crm/FacilityDialog.tsx\": \"3a52fbb181079d294bdabc4e0092eb7da6d1770673d7f2d48021d7ce56bb4d24\", \"tests/e2e/crm/customers.e2e.spec.ts\": \"7cc0ae1fbd8bab1d9faa6888d67d60326a7d7fb7a497eac6c157e18f6a0d97b0\"}"
+      "evidence": "{\"src/app/(app)/customers/[customerId]/page.tsx\": \"34c6c88e55fdfe3b3b6e13193b5c81a5094662d969bd2fad84d427c195af45b3\", \"src/components/crm/ArchiveButton.tsx\": \"02fabf0a0b4e7a223c1c73e80e8355e5bd1a457b27d07019557e8599cde5575b\", \"src/components/crm/ContactDialog.tsx\": \"c7b5505ea526af9c4e9cc71bb7e0ea399c63fbc75fb200244e190ef03593eb19\", \"src/components/crm/CustomerDetail.tsx\": \"998c2c066e06fcc2d112d590c050d8215abbe7625f7ac23b9b372a4a8a566eec\", \"src/components/crm/FacilityDialog.tsx\": \"3a52fbb181079d294bdabc4e0092eb7da6d1770673d7f2d48021d7ce56bb4d24\", \"tests/e2e/crm/customers.e2e.spec.ts\": \"179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f\"}"
     }
   ],
   "independent_review": {
     "status": "passed",
-    "evidence": "Native-fix source b1437128f186c9a840803066eac0144da6810d11 independently reviewed SolHigh with no code findings; only stale SROintro mismatch. Corrected in66b74bfee91ad592187155d1e12d0a9c5abc0085; narrow independent SolHigh confirmation of that correction returned exactly No findings. Current independent review passed. Prior d42/9bb/capture1a3 approvals historical. Current runtime0executed0skipped/nativeproof pending; runtime/visual/current-headCI/P6/follow-up/completion and21unowned blockers remain pending/blocked.11cases98planned72selected/historicalscore9/followuptrue/deferredreview[]/3release obligations unchanged; releasefalse."
+    "evidence": "SINGLE B01 semantic-target testsource committed121e94445eef918c289f2126fdece3268170c640, exact1line and actualE2ESHA256179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f. Same independent SolHigh targeted review of source/assertions+authortrail returned exactly No findings. Current code review passed; no pending current code-review finding. Priorb143/capture1a3 and772P6 historical only; no successorP6/runtime/visual/currentCI/completion approval. ONE actual boundedtypecheck/focusedlint/diff/trail passed,16stops.11cases98planned72selected/currentruntime0/images0/blocked/followuptrue/deferredreview[]/releasefalse retained."
   },
   "deferred_release_validation": [
     {
