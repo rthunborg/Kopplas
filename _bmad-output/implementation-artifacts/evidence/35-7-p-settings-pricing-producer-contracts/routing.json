@@ -350,6 +350,39 @@
       "dispatch_status": "completed actual same High author; metadata-only stopped, SRO20native0, source47/canonical9/main35.6 unchanged",
       "build_status": "in-progress",
       "release_ready": false
+    },
+    {
+      "phase": "Approved one-line smoke enrollment and allocated nonprivileged capture repairs",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T16:34:19.7114067Z",
+      "scope": "Same author only package.test:smoke exact approved private proposal and existing two E2E nonprivileged capture fixes; prod27 EXACTdeb14. DCL/newphysicaltargetdelete HOLD. No helper/globalsetup/workflow/config/dependency/secret/canonical write. Fresh ownership before package write.",
+      "approval_record": "smoke-line-owner-approval.json",
+      "dispatch_status": "recorded-before-same-author-handoff",
+      "original_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+      "source_baseline": "deb14ba0f9250c4e02f6d43011acc79ab475f613",
+      "no_child_CI_or_push": true
+    },
+    {
+      "phase": "Independent targeted implemented smoke line and nonprivileged capture fixes",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T17:48:04.00967+01:00",
+      "source_inventory_sha256": "c9538e142264aa5ec7d12b570af4783128e9ebb1a0959ed7d8d7b1d1cf4444bd",
+      "diff_sha256": "6d1f1d5924ecaf40785e9e1c6785268ab0f81c5bd84ad797bb58d576c7425e4d",
+      "scope": [
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "Only2E2E current nonprivcapture/wait/frame fixes against actual52findings; truepending/livecapture, active-currentfinished, phone scroll/VAT/draft/price, approval/restore/pending states, allneighborframes preserved; no DCL/delete/prodchanges. Honest74budget/remaininggaps."
+        },
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "Exactimplementedapprovedpackageone-line beforeafter/preimage/all80oldargs/report/helper preserved; source48/prod27/claims/135assertpreservation/nonprivscope/no phantomruntime; no broadsource or fault audit."
+        }
+      ],
+      "dispatch_status": "completedbothactualFIX_CONFIRMED",
+      "author_stopped": true,
+      "holds": "DCL/newphysicaltargetdelete HOLD;prod27unchanged"
     }
   ],
   "implementation_author_dispatched": true,

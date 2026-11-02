@@ -1,0 +1,710 @@
+{
+  "kind": "Capture definitions only; no new runtime/PNG/package acceptance",
+  "candidate_before": "deb14ba0f9250c4e02f6d43011acc79ab475f613",
+  "baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "nominal_count": 74,
+  "package_cap": 80,
+  "new_png_count": 0,
+  "source_defined_tests": 23,
+  "source_defined_producer_tests": 6,
+  "native_collection": "Not run; existing tests/e2e/.auth/fixture.json absent. No replacement fixture/setup/runtime.",
+  "prior_actual_runtime": "Parent-qualified deb14 owned23/23 first-attempt passes incl6 producer; prior52 images have actual coverage defects. Neither result credits these changed tests/new head.",
+  "capture_inventory": [
+    {
+      "surface": "company",
+      "state": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/empty.png"
+    },
+    {
+      "surface": "company",
+      "state": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/error.png"
+    },
+    {
+      "surface": "company",
+      "state": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/loading.png"
+    },
+    {
+      "surface": "company",
+      "state": "unknown",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/unknown.png"
+    },
+    {
+      "surface": "company",
+      "state": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/finished.png"
+    },
+    {
+      "surface": "company",
+      "state": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/stale.png"
+    },
+    {
+      "surface": "company",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/reconcile-pending.png"
+    },
+    {
+      "surface": "company",
+      "state": "refresh-notice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/refresh-notice.png"
+    },
+    {
+      "surface": "company",
+      "state": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/empty.png"
+    },
+    {
+      "surface": "company",
+      "state": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/error.png"
+    },
+    {
+      "surface": "company",
+      "state": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/loading.png"
+    },
+    {
+      "surface": "company",
+      "state": "unknown",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/unknown.png"
+    },
+    {
+      "surface": "company",
+      "state": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/finished.png"
+    },
+    {
+      "surface": "company",
+      "state": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/stale.png"
+    },
+    {
+      "surface": "company",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/reconcile-pending.png"
+    },
+    {
+      "surface": "company",
+      "state": "refresh-notice",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/refresh-notice.png"
+    },
+    {
+      "surface": "company",
+      "state": "stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/stale-draft.png"
+    },
+    {
+      "surface": "terms",
+      "state": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/empty.png"
+    },
+    {
+      "surface": "terms",
+      "state": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/error.png"
+    },
+    {
+      "surface": "terms",
+      "state": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/loading.png"
+    },
+    {
+      "surface": "terms",
+      "state": "unknown",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/unknown.png"
+    },
+    {
+      "surface": "terms",
+      "state": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/finished.png"
+    },
+    {
+      "surface": "terms",
+      "state": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/stale.png"
+    },
+    {
+      "surface": "terms",
+      "state": "retry-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/retry-pending.png"
+    },
+    {
+      "surface": "terms",
+      "state": "saved-unapproved",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/saved-unapproved.png"
+    },
+    {
+      "surface": "terms",
+      "state": "dirty-approval-disabled",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/dirty-approval-disabled.png"
+    },
+    {
+      "surface": "terms",
+      "state": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/empty.png"
+    },
+    {
+      "surface": "terms",
+      "state": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/error.png"
+    },
+    {
+      "surface": "terms",
+      "state": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/loading.png"
+    },
+    {
+      "surface": "terms",
+      "state": "unknown",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/unknown.png"
+    },
+    {
+      "surface": "terms",
+      "state": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/finished.png"
+    },
+    {
+      "surface": "terms",
+      "state": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/stale.png"
+    },
+    {
+      "surface": "terms",
+      "state": "retry-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/retry-pending.png"
+    },
+    {
+      "surface": "terms",
+      "state": "saved-unapproved",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/saved-unapproved.png"
+    },
+    {
+      "surface": "terms",
+      "state": "dirty-approval-disabled",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/dirty-approval-disabled.png"
+    },
+    {
+      "surface": "terms",
+      "state": "stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/stale-draft.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/empty.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/error.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/loading.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "unknown",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/unknown.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/finished.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/stale.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "neighbor-stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/neighbor-stale.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/reconcile-pending.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "archived-restore",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/archived-restore.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/empty.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/error.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/loading.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "unknown",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/unknown.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/finished.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/stale.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "neighbor-stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/neighbor-stale.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/reconcile-pending.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "archived-restore",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/archived-restore.png"
+    },
+    {
+      "surface": "article",
+      "state": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/empty.png"
+    },
+    {
+      "surface": "article",
+      "state": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/error.png"
+    },
+    {
+      "surface": "article",
+      "state": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/loading.png"
+    },
+    {
+      "surface": "article",
+      "state": "unknown",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/unknown.png"
+    },
+    {
+      "surface": "article",
+      "state": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/finished.png"
+    },
+    {
+      "surface": "article",
+      "state": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/stale.png"
+    },
+    {
+      "surface": "article",
+      "state": "neighbor-stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/neighbor-stale.png"
+    },
+    {
+      "surface": "article",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/reconcile-pending.png"
+    },
+    {
+      "surface": "article",
+      "state": "archived-restore",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/archived-restore.png"
+    },
+    {
+      "surface": "article",
+      "state": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/empty.png"
+    },
+    {
+      "surface": "article",
+      "state": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/error.png"
+    },
+    {
+      "surface": "article",
+      "state": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/loading.png"
+    },
+    {
+      "surface": "article",
+      "state": "unknown",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/unknown.png"
+    },
+    {
+      "surface": "article",
+      "state": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/finished.png"
+    },
+    {
+      "surface": "article",
+      "state": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/stale.png"
+    },
+    {
+      "surface": "article",
+      "state": "neighbor-stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/neighbor-stale.png"
+    },
+    {
+      "surface": "article",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/reconcile-pending.png"
+    },
+    {
+      "surface": "article",
+      "state": "archived-restore",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/archived-restore.png"
+    },
+    {
+      "surface": "article",
+      "state": "stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/stale-draft.png"
+    },
+    {
+      "surface": "article",
+      "state": "neighbor-stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/neighbor-stale-draft.png"
+    }
+  ],
+  "changes": [
+    "Hold actual Next action POST until real pending/disabled UI is asserted and captured; release in finally.",
+    "Hold a real recovery/retry request before fallback to unchanged existing route/network; disabled same-attempt controls asserted.",
+    "Hold a real pathname-scoped GET with observed RSC header for explicit refresh notice; release/settle/unroute in finally.",
+    "Require actual active row (Redigera control), restored price25, absent archived row, enabled archive and current-confirmed receipt sentence before finished frame.",
+    "Keep original stale/neighbor overview frames and add phone retained-value frames.",
+    "Capture saved-unapproved/dirty-disabled approval and archived restore controls without new business-state seams."
+  ],
+  "mapping_limits": {
+    "supported_gate_states": [
+      "finished",
+      "loading",
+      "error",
+      "empty"
+    ],
+    "additional_surfaces": "Raw sidecars keep actual business state. Unknown/stale/neighbor/archive/saved-unapproved/dirty frames need accurately named additional surfaces with supported finished meaning rendered scenario, never mutation success. reconcile-pending/retry-pending map unknown surface loading; refresh-notice maps review surface loading. Phone *-draft is an additional scrolled full-viewport frame of the same stated scenario.",
+    "representative_reason": "Company reconcile, terms retry and both pricing reconcile captures observe the shared immutable controller pending branch; no separate approval pending capture definition, mapped to same controller while approval functional loss/reconcile assertions remain. Neighbor-stale is distinct pre-dispatch neighboring-success guard and all four overview frames are retained.",
+    "genuine_NA": [
+      "Unknown empty: absent receipt remains unknown; empty target is not a replacement success state.",
+      "Unknown separate terminal-error: denied/rejected recovery remains sticky unknown; native visible denial is not a terminal permission-to-replace state.",
+      "Archive/reactivate/edit/approve empty action forms: no actionable target exists in empty editor; base empty frame covers absence, not receipt-current-missing."
+    ],
+    "remaining_gaps": [
+      "Real authorized-read-unavailable/disabled-read form and historical receipt unavailable: DCL/fault method HOLD; no new code or privilege mutation.",
+      "Historical receipt-current-missing/stale missing-current empty: new physical target deletion HOLD; no code or deletion.",
+      "Historical receipt-current-newer: not added by this nonprivileged capture-only patch; existing stale/neighbor frames do not substitute for a historical receipt on a changed same target.",
+      "No final-head runtime, rendered visibility, complete qualified package, authenticated visual acceptance or completion gate earned by static definitions."
+    ]
+  },
+  "fault_authority": "Package approval is exact scripts.test:smoke admission only; all DCL/new physical target deletion remain HOLD."
+}

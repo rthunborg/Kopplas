@@ -157,10 +157,18 @@ Root integrated source checkpoint `36d75438b9b3f484373666970dbc5ee0e5fcf278` wit
 
 Current fix evidence remains29 local owned-file passes, typecheck/lint0 with disclosed mocked boundaries; there is no fresh full-unit/build/browser result for this integrated head. Native Playwright listing1/0 remains blocked by absent existing auth fixture; source registration23defined/6producer is not native PASS. The52 nominal capture definitions produced0 new PNGs; the five capture-plan qualification limits remain with the workflow owner. Historical failed local Windows evidence is preserved. This metadata-only reconciliation invokes no wrapper/tests/build/review/new audit or source change. Current exact-final-head CI, images and authenticated visual acceptance remain unearned. Build in progress; Step5 not done; producer prerequisite unearned; release_ready=false.
 
+## Approved smoke and capture remediation checkpoint — incomplete
+
+At parent-qualified `deb14ba0f9250c4e02f6d43011acc79ab475f613`, all23 owned browser cases (6 producer) passed on first attempt, but the52 actual images exposed pending/offscreen/current-confirmation coverage gaps. Those actual passes and deficient frames stay at their original head. The human's “Approve the one-line addition” authorizes exactly `package.json` `scripts.test:smoke`: retain the12 existing files/reporter and append the2 allocated settings/pricing files. Its pinned private proposal and approval are retained in `smoke-line-owner-approval.json`; no other package key changes.
+
+Only the2 E2Es change in this source batch. They hold real browser requests, wait for actual pending UI before capture/release, assert active restored/current-confirmed pricing facts, and add scrolled phone retained drafts, saved-unapproved/dirty-disabled approval, archived restore and retry/reconcile/refresh states. All135 prior literal expect statements are retained (settings70→93; pricing65→85). Source registration stays23 cases/6 producer;74 nominal frames are definitions, with0 new PNGs. All27 production files and canonical9 remain exact unchanged. DCL/read-fault and new physical target-deletion methods remain HOLD. Missing/unavailable/newer historical-current coverage gaps stay explicit in `author-smoke-capture-plan.json`, not N/A or simulated evidence.
+
+Bounded static typecheck and E2E ESLint pass native0; the initial helper type error is retained separately. Native collection is not rerun because the existing `tests/e2e/.auth/fixture.json` is absent; no fake fixture or local services are created. Targeted independent review and final exact-head normal expanded CI/current images/authenticated visual gates are pending. Build in progress, Step5 not done, prerequisite unearned, release_ready=false.
+
 ## Suggested Review Order
 
 Author: `/root/producer_build/implementation_author` (same implementation/fix author).
-Refreshed against integrated `e7429112380ea398dffcea8e550a3a91639d8c2f`; all47 source/test/migration Git blobs equal reviewed source checkpoint `36d75438b9b3f484373666970dbc5ee0e5fcf278`. `browser-fix-targeted-results.json` records both actual targeted High FIX_CONFIRMED results. This is metadata reconciliation only; original full baseline remains `ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657`, and the workflow owner must qualify the final metadata commit/head independently.
+Refreshed for the bounded approved package/two-E2E capture delta from `deb14ba0f9250c4e02f6d43011acc79ab475f613`. Production27 and canonical9 remain exact unchanged; the other45 source/test/migration blobs remain unchanged. Earlier FIX_CONFIRMED reviews remain historical; this capture delta awaits targeted independent confirmation. Original full baseline remains `ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657`; the workflow owner qualifies the final committed head independently.
 
 ### Keep displayed drafts bound to their reviewed facts
 
@@ -191,12 +199,21 @@ The unchanged ADR-B014 migration locks current authority before receipt lookup a
 
 ### Exercise the actual fixes at their meaningful boundaries
 
-P-AC1/2 map to immutable/sticky-unknown units and replay/loss tests. Candidate-A pricing cases passed, but terms cases failed before later terms phases; post-fix both-viewport stale/phone captures and whitespace save-to-approval still require actual final-head browser proof. R1-3 executes actual page-to-editor SSR error wiring with mocked read/receipt boundaries. R1-4 preserves real lock/current-authority/audit/receipt assertions and now dispatches the promises before observation (P-AC3/4/5/6).
+P-AC1/2 map to immutable/sticky-unknown units and replay/loss tests. Parent-qualified deb14 owned23/23 cases (6 producer) passed, including both-viewport stale/phone and whitespace save-to-approval behavior; its52 images have actual visual coverage gaps. New capture definitions require actual final-head browser/image proof. R1-3 executes actual page-to-editor SSR error wiring with mocked read/receipt boundaries. R1-4 preserves real lock/current-authority/audit/receipt assertions and now dispatches the promises before observation (P-AC3/4/5/6).
 
 - `tests/unit/features/settings/mutation-attempt.test.ts:146` — `test(`R1-3 actual pricing page/editor:`: checks both domain/error pairs and rendered write blocking.
 - `tests/e2e/pricing/pricing.e2e.spec.ts:348` — `test(`R1-1 pricing drafts`: captures both viewports at asserted stale/neighbor review and phone controls.
 - `tests/unit/features/settings/mutation-attempt.test.ts:179` — `test("P-E local terms validation`: verifies real local-feedback routing and immutable unknown identity.
 - `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:348` — `writer = Promise.resolve(call(op))`: starts the real writer before authority-lock observation.
+
+### Make each capture show its asserted state
+
+The package addition uses the existing normal production-server lane. State-aware anchors and viewport assertions keep pending/error/control evidence on screen; pending request barriers release and settle in finally. Pricing finished waits for a real active/restored target and current-confirmed text. Original stale/neighbor views remain alongside extra phone draft frames. These are test/capture changes, not rendered proof.
+
+- `package.json:26` — `"test:smoke":`: adds only the two approved existing files before unchanged reporter arguments.
+- `tests/e2e/settings/settings.e2e.spec.ts:213` — `async function producerCapture`: selects real state anchors and full viewport capture with actual run provenance.
+- `tests/e2e/settings/settings.e2e.spec.ts:237` — `async function holdNextProducerTransport`: holds observed action/RSC transport and releases without a fabricated response.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:342` — `const activeRow = editor.locator`: identifies active rows by the actual edit control rather than archived list order.
 
 ### Retain private receipt enrollment and honest gate evidence
 
@@ -207,6 +224,6 @@ P-AC7/P-R1/P-R3 map to the existing private ACL/RLS assertions, all-role raw-rea
 - `tests/unit/server/commands/pricing-validation-edges.test.ts:21` — `function protocolFixture`: reaches positive and negative business branches nonvacuously.
 - `tests/integration/rls/settings-pricing-operation-contract.rls.test.ts:16` — `test("P-R1/P-R3`: asserts private table, helpers and checked/legacy ACL boundaries.
 
-Evidence: `author-integrated-execution-evidence.json` gives exact candidate-A CI counts, the failed exhaustive matrix, current29 focused passes/static0 and both High FIX_CONFIRMED results. `author-browser-failure-audit.json` retains every52 nonpassing native record and ownership/causal limits; `browser-fix-targeted-results.json` confirms that audit without a new broad review. Prior execution is reused with its original revision and mocked-boundary limits. The named review-order checker validates current stops only.
+Evidence: `author-smoke-capture-plan.json` and `author-smoke-capture-definition-inventory.json` distinguish74 definitions/23 source-registered cases from0 new runtime/PNGs, preserve every original assertion and state remaining coverage gaps. Current tsc/ESLint logs are native0; prior29 focused unit passes are historical. `author-integrated-execution-evidence.json` retains exact candidate-A CI counts, failed exhaustive matrix and earlier High FIX_CONFIRMED results. `author-browser-failure-audit.json` retains every52 nonpassing native record and ownership/causal limits; `browser-fix-targeted-results.json` confirms that audit without a new broad review. Prior execution is reused with its original revision and mocked-boundary limits. The named review-order checker validates current stops only.
 
-Limits: no CI/build/browser/image/visual PASS exists for this integrated/final metadata head. Candidate-A ordinary browser excludes new producer; optional exhaustive remains failed, with unowned/unproven findings assigned to release/Coordinator disposition. DB skips are not coverage; recovery has separate actual execution. Source-only registration23/6 and52 nominal captures are definitions, not runtime proof. Historical failed local Windows evidence remains preserved. Workflow owner must qualify actual final-head CI/browser/frames, the five capture-plan limitations and authenticated frontend acceptance. Build in progress; Step5 not done; producer prerequisite unearned; release_ready=false.
+Limits: no CI/build/browser/image/visual PASS exists for this changed final head. Candidate-A ordinary browser excludes new producer; optional exhaustive remains failed, with unowned/unproven findings assigned to release/Coordinator disposition. DB skips are not coverage; recovery has separate actual execution. Current source-only registration23/6 and74 nominal captures are definitions, not runtime proof; actual deb14 owned23/6 passes and52 deficient images stay historical. Historical failed local Windows evidence remains preserved. Workflow owner must qualify final-head expanded CI/browser/frames, explicit remaining method/coverage gaps and authenticated frontend acceptance. Build in progress; Step5 not done; producer prerequisite unearned; release_ready=false.

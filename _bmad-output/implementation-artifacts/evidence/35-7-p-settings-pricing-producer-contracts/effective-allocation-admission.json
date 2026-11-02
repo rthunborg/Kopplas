@@ -42,6 +42,12 @@
     {
       "path": "tests/unit/server/commands/pricing-validation-edges.test.ts",
       "sha256": "02c9eb1fede410ff04c1bd10fe2bf77b634477c03bf65da21011ef87e117d9f6"
+    },
+    {
+      "path": "package.json",
+      "sha256": "e3af9ff0fd9b23336337fad233ef0fd9b9d1c71ffc0c302d8ec7381fabb544fc",
+      "scope": "ONLY scripts.test:smoke exact one-line approved proposal; append settings/settings.e2e.spec.ts then pricing/pricing.e2e.spec.ts before unchanged reporter suffix",
+      "approval_record": "smoke-line-owner-approval.json"
     }
   ],
   "latest_owner_approval": {
@@ -154,7 +160,8 @@
     "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
     "tests/unit/scope/manifest-shape.test.ts",
     "tests/unit/scope/manifest-derivations.test.ts",
-    "tests/unit/server/commands/pricing-validation-edges.test.ts"
+    "tests/unit/server/commands/pricing-validation-edges.test.ts",
+    "package.json"
   ],
   "generated_evidence_directory": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts",
   "semantic_exclusivity": [
@@ -677,5 +684,6 @@
     "write_admission": "Approval earned. Author must complete fresh read-only shared SQLite and full exact-writer/evidence/migration/manifest/envelope/test-resource inventory including all nine total added paths before writes; no current writer clearance invented.",
     "implementation_or_runtime_pass": false,
     "release_ready": false
-  }
+  },
+  "smoke_line_owner_approval": "smoke-line-owner-approval.json"
 }

@@ -210,9 +210,18 @@ async function assertProducerTouchTargets(scope: Page | Locator, names: readonly
         expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
     }
 }
-async function producerCapture(page: Page, info: TestInfo, surface: string, state: string) {
-    const anchor = surface === "company" ? page.locator("form").filter({ has: page.getByLabel("Företagsnamn") }) : surface === "terms" ? page.getByRole("heading", { name: "Offertvillkor", level: 1 }) : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
-    await anchor.evaluate(el => el.scrollIntoView({ block: "start" }));
+async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator) {
+    const scope = surface === "company" || surface === "terms" ? page.locator("body") : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
+    const anchor = explicitAnchor ?? (state === "loading" ? scope.getByRole("button", { name: "Sparar…", exact: true })
+        : state === "unknown" || state.endsWith("-pending") ? scope.getByTestId("operation-unconfirmed")
+        : state === "stale" || state === "neighbor-stale" ? scope.getByTestId(surface === "company" ? "company-current-facts" : surface === "terms" ? "terms-current-facts" : "pricing-current-facts")
+        : state === "error" ? scope.locator('[aria-invalid="true"]').first().locator("..")
+        : state === "finished" ? scope.getByTestId(surface === "terms" ? "quote-terms-approved-status" : "settings-saved")
+        : surface === "company" ? page.getByLabel("Företagsnamn") : surface === "terms" ? page.getByLabel("Offertvillkor") : scope);
+    await expect(anchor).toBeVisible();
+    await anchor.evaluate(el => el.scrollIntoView({ block: "center" }));
+    await expect(anchor).toBeInViewport();
+    if (state === "loading") await expect(anchor).toBeDisabled();
     const boot = JSON.parse(readFileSync(path.join(process.cwd(), "test-results/private/job-events-fetch-fault.json.startup.json"), "utf8"));
     expect(boot.runId).toBe(process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID);
     expect(boot.applicationUrl).toBe(new URL(page.url()).origin);
@@ -223,7 +232,26 @@ async function producerCapture(page: Page, info: TestInfo, surface: string, stat
     const file = path.join(dir, `${state}.png`);
     const png = await page.screenshot({ path: file, fullPage: false });
     const candidate = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-    await writeFile(path.join(dir, `${state}.json`), JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading", configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state, viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt: new Date().toISOString() }, null, 2));
+    await writeFile(path.join(dir, `${state}.json`), JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading" || state.endsWith("-pending") || state === "refresh-notice", captureAnchor: await anchor.evaluate(el => ({ tag: el.tagName, id: el.id, text: el.textContent?.trim().slice(0, 160) })), configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state, viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt: new Date().toISOString() }, null, 2));
+}
+async function holdNextProducerTransport(page: Page, routePath: string, transport: "action" | "refresh") {
+    let release!: () => void, arrived!: () => void, settled!: () => void;
+    const gate = new Promise<void>(r => { release = r; });
+    const seen = new Promise<void>(r => { arrived = r; });
+    const done = new Promise<void>(r => { settled = r; });
+    let held = false;
+    const matcher = (url: URL) => url.pathname === routePath;
+    const handler = async (route: import("@playwright/test").Route) => {
+        const request = route.request();
+        const matches = transport === "action" ? request.method() === "POST" && Boolean(request.headers()["next-action"])
+            : request.method() === "GET" && request.headers()["rsc"] === "1";
+        if (held || !matches) { await route.fallback(); return; }
+        held = true;
+        arrived();
+        try { await gate; await route.fallback(); } finally { settled(); }
+    };
+    await page.route(matcher, handler);
+    return { seen, release, clear: async () => { release(); if (held) await done; await page.unroute(matcher, handler); } };
 }
 async function operationIdOf(request: BrowserRequest) {
     const body = request.postDataBuffer();
@@ -276,7 +304,12 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await page.getByLabel("Momssats").fill("250");
             await page.getByRole("button", { name: "Spara", exact: true }).click();
             await expect(page.getByLabel("Momssats")).toHaveAttribute("aria-invalid", "true");
-            await producerCapture(page, info, "company", "error");
+            const vatErrorId = await page.getByLabel("Momssats").getAttribute("aria-describedby");
+            expect(vatErrorId).toBeTruthy();
+            const vatError = page.locator(`[id="${vatErrorId}"]`);
+            await expect(vatError).toBeVisible();
+            await producerCapture(page, info, "company", "error", page.getByLabel("Momssats").locator(".."));
+            await expect(vatError).toBeInViewport();
             await page.getByLabel("Momssats").fill("25");
             let sent = 0;
             page.on("request", request => { if (request.method() === "POST" && request.headers()["next-action"])
@@ -290,19 +323,30 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await page.getByRole("button", { name: "Spara", exact: true }).dblclick();
             await loss.seen;
             expect(loss.identities).toHaveLength(1);
-            await producerCapture(page, info, "company", "loading");
-            loss.release();
+            try {
+                await expect(page.getByRole("button", { name: "Sparar…", exact: true })).toBeDisabled();
+                await expect(page.getByLabel("Företagsnamn")).toBeDisabled();
+                await producerCapture(page, info, "company", "loading");
+            } finally { loss.release(); }
             await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
             if (viewport.width === 360) await assertProducerTouchTargets(page, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
             await producerCapture(page, info, "company", "unknown");
             await expect(page.getByLabel("Företagsnamn")).toBeDisabled();
             await page.getByRole("link", { name: "← Inställningar" }).click();
             await expect(page).toHaveURL(/settings\/company$/);
-            await page.getByRole("button", { name: "Kontrollera resultat" }).click();
+            const reconcileHold = await holdNextProducerTransport(page, "/settings/company", "action");
+            try {
+                await page.getByRole("button", { name: "Kontrollera resultat" }).click();
+                await reconcileHold.seen;
+                await expect(page.getByRole("button", { name: "Kontrollera resultat" })).toBeDisabled();
+                await expect(page.getByRole("button", { name: "Försök igen med samma uppgifter" })).toBeDisabled();
+                await producerCapture(page, info, "company", "reconcile-pending");
+            } finally { await reconcileHold.clear(); }
             await expect(page.getByTestId("settings-saved")).toBeVisible();
             expect(loss.identities.length).toBeGreaterThanOrEqual(2);
             expect(new Set(loss.identities).size).toBe(1);
             await loss.clear();
+            await expect(page.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
             await producerCapture(page, info, "company", "finished");
             await page.reload();
             await page.getByLabel("Företagsnamn").fill("Retry before original reached server");
@@ -332,7 +376,19 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await expect(page.getByRole("button", { name: "Spara", exact: true })).toBeDisabled();
             if (viewport.width === 360) await assertProducerTouchTargets(page, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
             await producerCapture(page, info, "company", "stale");
-            await page.getByRole("button", { name: "Uppdatera och granska" }).click();
+            if (viewport.width === 360) {
+                await producerCapture(page, info, "company", "stale-draft", page.getByLabel("Företagsnamn"));
+                await expect(page.getByLabel("Företagsnamn")).toBeInViewport();
+            }
+            const refreshHold = await holdNextProducerTransport(page, "/settings/company", "refresh");
+            try {
+                await page.getByRole("button", { name: "Uppdatera och granska" }).click();
+                await refreshHold.seen;
+                const refreshNotice = page.getByText("Aktuella uppgifter hämtas. Granska dem innan ett nytt medvetet försök.", { exact: true });
+                await expect(refreshNotice).toBeVisible();
+                await expect(page.getByLabel("Företagsnamn")).toHaveValue("Retained stale draft");
+                await producerCapture(page, info, "company", "refresh-notice", refreshNotice);
+            } finally { await refreshHold.clear(); }
             await expect(page.getByLabel("Företagsnamn")).toHaveValue("Retained stale draft");
             await page.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
             await expect(page.getByLabel("Företagsnamn")).toHaveValue("Newer current company");
@@ -348,18 +404,34 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             const saveLoss = await loseCommittedReply(page, "/settings/quote-terms");
             await page.getByRole("button", { name: "Spara villkor" }).click();
             await saveLoss.seen;
-            await producerCapture(page, info, "terms", "loading");
-            saveLoss.release();
+            try {
+                await expect(page.getByRole("button", { name: "Sparar…", exact: true })).toBeDisabled();
+                await expect(page.getByLabel("Offertvillkor")).toBeDisabled();
+                await producerCapture(page, info, "terms", "loading");
+            } finally { saveLoss.release(); }
             await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
             if (viewport.width === 360) await assertProducerTouchTargets(page, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
             await producerCapture(page, info, "terms", "unknown");
-            await page.getByRole("button", { name: "Försök igen med samma uppgifter" }).click();
+            const retryHold = await holdNextProducerTransport(page, "/settings/quote-terms", "action");
+            try {
+                await page.getByRole("button", { name: "Försök igen med samma uppgifter" }).click();
+                await retryHold.seen;
+                await expect(page.getByRole("button", { name: "Kontrollera resultat" })).toBeDisabled();
+                await expect(page.getByRole("button", { name: "Försök igen med samma uppgifter" })).toBeDisabled();
+                await producerCapture(page, info, "terms", "retry-pending");
+            } finally { await retryHold.clear(); }
             await expect(page.getByTestId("settings-saved")).toBeVisible();
             expect(new Set(saveLoss.identities).size).toBe(1);
             await saveLoss.clear();
             await expect(page.getByRole("button", { name: "Markera som godkänd" })).toBeEnabled();
+            await expect(page.getByTestId("quote-terms-signoff-warning")).toBeVisible();
+            await expect(page.getByTestId("quote-terms-approved-status")).toHaveCount(0);
+            await producerCapture(page, info, "terms", "saved-unapproved", page.getByLabel("Offertvillkor").locator(".."));
+            await expect(page.getByRole("button", { name: "Markera som godkänd" })).toBeInViewport();
             await page.getByLabel("Offertvillkor").fill("Unsaved dirty wording");
             await expect(page.getByRole("button", { name: "Markera som godkänd" })).toBeDisabled();
+            await producerCapture(page, info, "terms", "dirty-approval-disabled", page.getByLabel("Offertvillkor").locator(".."));
+            await expect(page.getByRole("button", { name: "Markera som godkänd" })).toBeInViewport();
             await page.getByLabel("Offertvillkor").fill("Exact reviewed synthetic wording");
             const approveLoss = await loseCommittedReply(page, "/settings/quote-terms");
             await page.getByRole("button", { name: "Markera som godkänd" }).click();
@@ -386,6 +458,10 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await expect(page.getByRole("button", { name: "Spara villkor" })).toBeDisabled();
                 if (viewport.width === 360) await assertProducerTouchTargets(page, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
                 await producerCapture(page, info, "terms", "stale");
+                if (viewport.width === 360) {
+                    await producerCapture(page, info, "terms", "stale-draft", page.getByLabel("Offertvillkor"));
+                    await expect(page.getByLabel("Offertvillkor")).toBeInViewport();
+                }
                 await page.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
                 await expect(page.getByLabel("Offertvillkor")).toHaveValue("Newer current terms");
                 await expect(page.getByRole("button", { name: "Markera som godkänd" })).toBeEnabled();

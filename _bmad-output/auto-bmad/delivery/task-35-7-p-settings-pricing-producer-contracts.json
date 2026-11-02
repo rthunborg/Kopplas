@@ -1,12 +1,12 @@
 {
   "policy_version": "2026-10-19",
-  "contract_reconciliation": "Approved ADR-B014 scope/canonical9 preserved. Integrated head e7429112380ea398dffcea8e550a3a91639d8c2f retains all47 source Git blobs from FIX_CONFIRMED checkpoint 36d75438b9b3f484373666970dbc5ee0e5fcf278; only2 genuine35.6 main story/receipt paths inherited. Both targeted High fixes/audit confirmations actually passed, no consequential findings; one broadRound1 plus targeted follow-ups only. Actual CI_A results belong exclusively to a24060287cb9e3bbea236741e74315b72785e4a7: producerDB82pass and fresh disposable task-migration application, Ubuntu3808pass0skip, recovery1pass, dashboard79clean; DB2253pass0fail52skip, no skipped coverage. Ordinary five successful jobs exclude producer browser and include1my-day flaky; optional exhaustive470expected29unexpected1CRMflaky3explicitSkip19notRun remains FAILED, not baseline PASS. Only2 terms introduced failures proven/source-fixed; other27 unproven/unowned retain release/Coordinator next actions. Current final-headCI/browser/images/authenticatedvisual UNearned. Keep record nonterminal; Build in progress, Step5 notdone, producer prerequisite unearned, release_readyfalse. No helper/gate bypass or future PASS.",
-  "evidence_revision": "Source/integration head e7429112380ea398dffcea8e550a3a91639d8c2f; all47 reviewed source blobs equal 36d75438b9b3f484373666970dbc5ee0e5fcf278 (root-qualified blob digest afa64fc36b2be0952e03beb07604b84df338697dc692fbe8fa588c352ab32576; source inventory be74b39bea7d48fc36c8c9df371a1a602e74ee89e4ecc73ef8dc3c6423da0644). Final metadata commit not yet created; no new-head runtime/image evidence. author-integrated-execution-evidence.json separates actualA and current local proof.",
+  "contract_reconciliation": "Approved ADR-B014 scope/canonical9 preserved. Integrated head e7429112380ea398dffcea8e550a3a91639d8c2f retains all47 source Git blobs from FIX_CONFIRMED checkpoint 36d75438b9b3f484373666970dbc5ee0e5fcf278; only2 genuine35.6 main story/receipt paths inherited. Both targeted High fixes/audit confirmations actually passed, no consequential findings; one broadRound1 plus targeted follow-ups only. Actual CI_A results belong exclusively to a24060287cb9e3bbea236741e74315b72785e4a7: producerDB82pass and fresh disposable task-migration application, Ubuntu3808pass0skip, recovery1pass, dashboard79clean; DB2253pass0fail52skip, no skipped coverage. Ordinary five successful jobs exclude producer browser and include1my-day flaky; optional exhaustive470expected29unexpected1CRMflaky3explicitSkip19notRun remains FAILED, not baseline PASS. Only2 terms introduced failures proven/source-fixed; other27 unproven/unowned retain release/Coordinator next actions. Current final-headCI/browser/images/authenticatedvisual UNearned. Keep record nonterminal; Build in progress, Step5 notdone, producer prerequisite unearned, release_readyfalse. No helper/gate bypass or future PASS. Current bounded human-approved smoke addition plus two-E2E capture remediation from deb14: production27/canonical9 unchanged;74 intended frames,0newPNG,23/6 source registrations. Actual deb14 owned23/23 first-attempt cases include6producer but52images have coverage gaps. Fault/deletion methods HOLD; historical-current missing/unavailable/newer coverage remains explicit. This changed head has no new CI/image/visual credit; Build in progress/Step5 notdone/release_readyfalse.",
+  "evidence_revision": "Current uncommitted bounded package/two-E2E delta from deb14ba0f9250c4e02f6d43011acc79ab475f613; author-smoke-capture-frozen-checkpoint.json pins source47+package and canonical9. No new-head runtime/image claim.",
   "development_checks": [
     {
       "name": "canonical and approved fixture preservation",
       "status": "passed",
-      "evidence": "author-integrated-metadata-checkpoint.json pins47 source Git blobs equal36d754 checkpoint, canonical9 unchanged and2 exact inherited35.6 story/receipt blobs. Original assertion preservation and approved fixture provenance retained."
+      "evidence": "author-smoke-capture-frozen-checkpoint.json pins production27 and45of47 task source blobs unchanged from deb14, canonical9 unchanged; only approved package line/twoE2Es change. All135 prior literal expects retained."
     },
     {
       "name": "focused units",
@@ -16,7 +16,7 @@
     {
       "name": "lint and containment",
       "status": "passed",
-      "evidence": "Existing author-browser-fix-touch-eslint.log7paths native0/typechecklog native0 reused because all47 source blobs unchanged. Previous containment evidence retains original revision; no new integrated-head bundle claim."
+      "evidence": "author-smoke-capture-eslint.log native0 for two changed E2Es. Production27 unchanged; prior containment retains its own revision, no fresh bundle claim."
     },
     {
       "name": "full unit lane",
@@ -26,22 +26,22 @@
     {
       "name": "typecheck and production build",
       "status": "not-run",
-      "evidence": "Existing local typecheck0 for unchanged47 source retained. No fresh integrated/final-head production build; historicalA build/native CI not relabeled current. Final exact-head build remains required."
+      "evidence": "author-smoke-capture-typecheck-final.log native0; initial helper type failure preserved in author-smoke-capture-typecheck.log. No fresh production build for this changed head; current build remains required."
     },
     {
       "name": "required DB/RLS/recovery-storage and essential browser",
       "status": "failed",
-      "evidence": "Actual A DB2305total/2253pass/0fail/52skip:51 unchanged BookingSeries RED notcoverage,1 recovery separately actual1pass. Producer82pass0skip; taskmigration applied isolated disposableCI_A only, no local115partial/demo/prod claim. Dashboard79clean. OrdinaryPR41455530933 all5jobs success but browser79expected1mydayflaky0unexpected0skip excludes newproducer. Exhaustive41455681949 failed470expected29unexpected1CRMflaky3explicitSkip19notrun; newproducer3pass2fail. All52 audit records retained, only2terms proven introduced/fixed;27unproven/unowned remain release/Coordinator nextactions. No new-head runtime proof."
+      "evidence": "Actual A DB2305total/2253pass/0fail/52skip:51 unchanged BookingSeries RED notcoverage,1 recovery separately actual1pass. Producer82pass0skip; taskmigration applied isolated disposableCI_A only, no local115partial/demo/prod claim. Dashboard79clean. OrdinaryPR41455530933 all5jobs success but browser79expected1mydayflaky0unexpected0skip excludes newproducer. Exhaustive41455681949 failed470expected29unexpected1CRMflaky3explicitSkip19notrun; newproducer3pass2fail. All52 audit records retained, only2terms proven introduced/fixed;27unproven/unowned remain release/Coordinator nextactions. No new-head runtime proof. Parent-qualified deb14 owned23/23first-attemptPASS including6producer; current expanded normal script expected103cases by prior arithmetic only. New changed tests have0nativeexecution; current exact-head normalCI required."
     },
     {
       "name": "frontend exact-candidate authenticated acceptance",
       "status": "failed",
-      "evidence": "ActualA34partial images only; no new integrated/final-head PNG/package/authenticated acceptance.52 nominal definitions and23/6 source-only registration are not runtime. Real PWlist native1/0missingexisting.authfixture. author-browser-capture-plan.json five qualifications remain workflow-owner work. No wrapper/gate invoked in metadata reconciliation; required final-head gates remain blocking."
+      "evidence": "Actual deb14 all52 images inspected by independent reviewer have coverage defects; not accepted visual evidence. author-smoke-capture-plan.json defines74 frames/0newPNG and explicit historical-current/readfault gaps. No current native listing because existing authfixture absent. Final-head qualified images/authenticated visual/controller/completion gates remain required and blocking."
     }
   ],
   "independent_review": {
-    "status": "passed",
-    "evidence": "Source/fix review only: browser-fix-targeted-results.json both actual independent non-author SolHigh FIX_CONFIRMED results over seven-file delta, no consequential finding; prior three Round1 confirmations retained. All47 source blobs unchanged from source checkpoint36d754 through integratede742. One broadRound1 plus targeted follow-ups, not duplicate review. This grants no runtime/visual/development completion."
+    "status": "not-run",
+    "evidence": "Source/fix review only: browser-fix-targeted-results.json both actual independent non-author SolHigh FIX_CONFIRMED results over seven-file delta, no consequential finding; prior three Round1 confirmations retained. All47 source blobs unchanged from source checkpoint36d754 through integratede742. One broadRound1 plus targeted follow-ups, not duplicate review. This grants no runtime/visual/development completion. Current package/twoE2E capture delta awaits separately targeted non-author High confirmation; prior source reviews not relabeled current."
   },
   "deferred_release_validation": [
     {

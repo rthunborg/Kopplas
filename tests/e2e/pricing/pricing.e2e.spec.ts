@@ -217,9 +217,18 @@ async function assertProducerTouchTargets(scope: Page | Locator, names: readonly
         expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
     }
 }
-async function producerCapture(page: Page, info: TestInfo, surface: string, state: string) {
-    const anchor = surface === "company" ? page.locator("form").filter({ has: page.getByLabel("Företagsnamn") }) : surface === "terms" ? page.getByRole("heading", { name: "Offertvillkor", level: 1 }) : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
-    await anchor.evaluate(el => el.scrollIntoView({ block: "start" }));
+async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator) {
+    const scope = surface === "company" || surface === "terms" ? page.locator("body") : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
+    const anchor = explicitAnchor ?? (state === "loading" ? scope.getByRole("button", { name: "Sparar…", exact: true })
+        : state === "unknown" || state.endsWith("-pending") ? scope.getByTestId("operation-unconfirmed")
+        : state === "stale" || state === "neighbor-stale" ? scope.getByTestId(surface === "company" ? "company-current-facts" : surface === "terms" ? "terms-current-facts" : "pricing-current-facts")
+        : state === "error" ? scope.locator('[aria-invalid="true"]').first().locator("..")
+        : state === "finished" ? scope.getByTestId(surface === "terms" ? "quote-terms-approved-status" : "settings-saved")
+        : surface === "company" ? page.getByLabel("Företagsnamn") : surface === "terms" ? page.getByLabel("Offertvillkor") : scope);
+    await expect(anchor).toBeVisible();
+    await anchor.evaluate(el => el.scrollIntoView({ block: "center" }));
+    await expect(anchor).toBeInViewport();
+    if (state === "loading") await expect(anchor).toBeDisabled();
     const boot = JSON.parse(readFileSync(path.join(process.cwd(), "test-results/private/job-events-fetch-fault.json.startup.json"), "utf8"));
     expect(boot.runId).toBe(process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID);
     expect(boot.applicationUrl).toBe(new URL(page.url()).origin);
@@ -230,7 +239,26 @@ async function producerCapture(page: Page, info: TestInfo, surface: string, stat
     const file = path.join(dir, `${state}.png`);
     const png = await page.screenshot({ path: file, fullPage: false });
     const candidate = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-    await writeFile(path.join(dir, `${state}.json`), JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading", configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state, viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt: new Date().toISOString() }, null, 2));
+    await writeFile(path.join(dir, `${state}.json`), JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading" || state.endsWith("-pending") || state === "refresh-notice", captureAnchor: await anchor.evaluate(el => ({ tag: el.tagName, id: el.id, text: el.textContent?.trim().slice(0, 160) })), configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state, viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt: new Date().toISOString() }, null, 2));
+}
+async function holdNextProducerTransport(page: Page, routePath: string, transport: "action" | "refresh") {
+    let release!: () => void, arrived!: () => void, settled!: () => void;
+    const gate = new Promise<void>(r => { release = r; });
+    const seen = new Promise<void>(r => { arrived = r; });
+    const done = new Promise<void>(r => { settled = r; });
+    let held = false;
+    const matcher = (url: URL) => url.pathname === routePath;
+    const handler = async (route: import("@playwright/test").Route) => {
+        const request = route.request();
+        const matches = transport === "action" ? request.method() === "POST" && Boolean(request.headers()["next-action"])
+            : request.method() === "GET" && request.headers()["rsc"] === "1";
+        if (held || !matches) { await route.fallback(); return; }
+        held = true;
+        arrived();
+        try { await gate; await route.fallback(); } finally { settled(); }
+    };
+    await page.route(matcher, handler);
+    return { seen, release, clear: async () => { release(); if (held) await done; await page.unroute(matcher, handler); } };
 }
 async function operationIdOf(request: BrowserRequest) {
     const body = request.postDataBuffer();
@@ -291,17 +319,28 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await editor.getByRole("button", { name: spec.save }).dblclick();
                 await createLoss.seen;
                 expect(createLoss.identities).toHaveLength(1);
-                await producerCapture(page, info, spec.surface, "loading");
-                createLoss.release();
+                try {
+                    await expect(editor.getByRole("button", { name: "Sparar…", exact: true })).toBeDisabled();
+                    await expect(editor.getByLabel(spec.name)).toBeDisabled();
+                    await producerCapture(page, info, spec.surface, "loading");
+                } finally { createLoss.release(); }
                 await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
                 await expect(editor.getByRole("button", { name: "Ny post" })).toBeDisabled();
                 if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
                 await producerCapture(page, info, spec.surface, "unknown");
-                await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
+                const reconcileHold = await holdNextProducerTransport(page, "/settings/pricing", "action");
+                try {
+                    await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
+                    await reconcileHold.seen;
+                    await expect(editor.getByRole("button", { name: "Kontrollera resultat" })).toBeDisabled();
+                    await expect(editor.getByRole("button", { name: "Försök igen med samma uppgifter" })).toBeDisabled();
+                    await producerCapture(page, info, spec.surface, "reconcile-pending");
+                } finally { await reconcileHold.clear(); }
                 await expect(editor.getByTestId("settings-saved")).toBeVisible();
                 expect(new Set(createLoss.identities).size).toBe(1);
                 await createLoss.clear();
-                let row = editor.getByRole("listitem").filter({ hasText: `Synthetic ${spec.surface}` });
+                const activeRow = editor.locator("li").filter({ hasText: `Synthetic ${spec.surface}` }).filter({ has: page.getByRole("button", { name: "Redigera", exact: true }) });
+                let row = activeRow;
                 await expect(row).toHaveCount(1);
                 await row.getByRole("button", { name: "Redigera" }).click();
                 await editor.getByLabel(spec.price).fill("25,00");
@@ -326,6 +365,11 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await archiveLoss.clear();
                 await editor.getByRole("button", { name: /Visa arkiverade/ }).click();
                 row = editor.getByTestId(spec.archived).getByRole("listitem").filter({ hasText: `Synthetic ${spec.surface}` });
+                await expect(row).toHaveCount(1);
+                await expect(activeRow).toHaveCount(0);
+                await expect(row.getByRole("button", { name: "Återaktivera" })).toBeEnabled();
+                await producerCapture(page, info, spec.surface, "archived-restore", row);
+                await expect(row.getByRole("button", { name: "Återaktivera" })).toBeInViewport();
                 const restoreLoss = await loseCommittedReply(page, "/settings/pricing");
                 await row.getByRole("button", { name: "Återaktivera" }).click();
                 await restoreLoss.seen;
@@ -336,7 +380,14 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 expect(new Set(restoreLoss.identities).size).toBe(1);
                 await restoreLoss.clear();
                 await expect(editor.getByRole("list").first()).toContainText(`Synthetic ${spec.surface}`);
-                await producerCapture(page, info, spec.surface, "finished");
+                await expect(activeRow).toHaveCount(1);
+                await expect(activeRow).toContainText("25,00");
+                await expect(activeRow.getByRole("button", { name: "Arkivera" })).toBeEnabled();
+                await expect(row).toHaveCount(0);
+                await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+                await producerCapture(page, info, spec.surface, "finished", activeRow);
+                await expect(activeRow.getByRole("button", { name: "Arkivera" })).toBeInViewport();
+                await expect(editor.getByTestId("settings-saved")).toBeInViewport();
             }
         }
         finally {
@@ -385,6 +436,10 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
             if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
             await producerCapture(page, info, spec.surface, "stale");
+            if (viewport.width === 360 && spec.surface === "article") {
+                await producerCapture(page, info, spec.surface, "stale-draft", editor.getByLabel(spec.price));
+                await expect(editor.getByLabel(spec.price)).toBeInViewport();
+            }
             await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
             await expect(editor.getByLabel(spec.price)).toHaveValue("20,00");
             await editor.getByLabel(spec.price).fill("21,00");
@@ -403,6 +458,10 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
             if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Använd aktuella uppgifter"]);
             await producerCapture(page, info, spec.surface, "neighbor-stale");
+            if (viewport.width === 360 && spec.surface === "article") {
+                await producerCapture(page, info, spec.surface, "neighbor-stale-draft", editor.getByLabel(spec.price));
+                await expect(editor.getByLabel(spec.price)).toBeInViewport();
+            }
             await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
             await expect(editor.getByLabel(spec.price)).toHaveValue("30,00");
             await editor.getByLabel(spec.price).fill("31,00");

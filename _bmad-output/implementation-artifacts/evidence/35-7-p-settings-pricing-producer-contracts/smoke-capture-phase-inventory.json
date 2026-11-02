@@ -1,0 +1,730 @@
+{
+  "task": "35.7-P",
+  "kind": "source-defined capture inventory only; no actual PNG/runtime credit",
+  "source_head_before_checkpoint": "deb14ba0f9250c4e02f6d43011acc79ab475f613",
+  "source_inventory_sha256": "c9538e142264aa5ec7d12b570af4783128e9ebb1a0959ed7d8d7b1d1cf4444bd",
+  "total_defined": 74,
+  "counts_by_phase": {
+    "archived-restore": 4,
+    "dirty-approval-disabled": 2,
+    "empty": 8,
+    "error": 8,
+    "finished": 8,
+    "loading": 8,
+    "neighbor-stale": 4,
+    "neighbor-stale-draft": 1,
+    "reconcile-pending": 6,
+    "refresh-notice": 2,
+    "retry-pending": 2,
+    "saved-unapproved": 2,
+    "stale": 8,
+    "stale-draft": 3,
+    "unknown": 8
+  },
+  "counts_by_surface": {
+    "article": 20,
+    "company": 17,
+    "terms": 19,
+    "work-role": 18
+  },
+  "captures_by_phase": {
+    "archived-restore": [
+      {
+        "surface": "article",
+        "state": "archived-restore",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/article-1440x900/archived-restore.png"
+      },
+      {
+        "surface": "article",
+        "state": "archived-restore",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/article-360x640/archived-restore.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "archived-restore",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/work-role-1440x900/archived-restore.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "archived-restore",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/work-role-360x640/archived-restore.png"
+      }
+    ],
+    "dirty-approval-disabled": [
+      {
+        "surface": "terms",
+        "state": "dirty-approval-disabled",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/terms-1440x900/dirty-approval-disabled.png"
+      },
+      {
+        "surface": "terms",
+        "state": "dirty-approval-disabled",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/terms-360x640/dirty-approval-disabled.png"
+      }
+    ],
+    "empty": [
+      {
+        "surface": "article",
+        "state": "empty",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/article-1440x900/empty.png"
+      },
+      {
+        "surface": "article",
+        "state": "empty",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/article-360x640/empty.png"
+      },
+      {
+        "surface": "company",
+        "state": "empty",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/company-1440x900/empty.png"
+      },
+      {
+        "surface": "company",
+        "state": "empty",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/company-360x640/empty.png"
+      },
+      {
+        "surface": "terms",
+        "state": "empty",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/terms-1440x900/empty.png"
+      },
+      {
+        "surface": "terms",
+        "state": "empty",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/terms-360x640/empty.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "empty",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/work-role-1440x900/empty.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "empty",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/work-role-360x640/empty.png"
+      }
+    ],
+    "error": [
+      {
+        "surface": "article",
+        "state": "error",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/article-1440x900/error.png"
+      },
+      {
+        "surface": "article",
+        "state": "error",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/article-360x640/error.png"
+      },
+      {
+        "surface": "company",
+        "state": "error",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/company-1440x900/error.png"
+      },
+      {
+        "surface": "company",
+        "state": "error",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/company-360x640/error.png"
+      },
+      {
+        "surface": "terms",
+        "state": "error",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/terms-1440x900/error.png"
+      },
+      {
+        "surface": "terms",
+        "state": "error",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/terms-360x640/error.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "error",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/work-role-1440x900/error.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "error",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/work-role-360x640/error.png"
+      }
+    ],
+    "finished": [
+      {
+        "surface": "article",
+        "state": "finished",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/article-1440x900/finished.png"
+      },
+      {
+        "surface": "article",
+        "state": "finished",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/article-360x640/finished.png"
+      },
+      {
+        "surface": "company",
+        "state": "finished",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/company-1440x900/finished.png"
+      },
+      {
+        "surface": "company",
+        "state": "finished",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/company-360x640/finished.png"
+      },
+      {
+        "surface": "terms",
+        "state": "finished",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/terms-1440x900/finished.png"
+      },
+      {
+        "surface": "terms",
+        "state": "finished",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/terms-360x640/finished.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "finished",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/work-role-1440x900/finished.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "finished",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/work-role-360x640/finished.png"
+      }
+    ],
+    "loading": [
+      {
+        "surface": "article",
+        "state": "loading",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/article-1440x900/loading.png"
+      },
+      {
+        "surface": "article",
+        "state": "loading",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/article-360x640/loading.png"
+      },
+      {
+        "surface": "company",
+        "state": "loading",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/company-1440x900/loading.png"
+      },
+      {
+        "surface": "company",
+        "state": "loading",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/company-360x640/loading.png"
+      },
+      {
+        "surface": "terms",
+        "state": "loading",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/terms-1440x900/loading.png"
+      },
+      {
+        "surface": "terms",
+        "state": "loading",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/terms-360x640/loading.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "loading",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/work-role-1440x900/loading.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "loading",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/work-role-360x640/loading.png"
+      }
+    ],
+    "neighbor-stale": [
+      {
+        "surface": "article",
+        "state": "neighbor-stale",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/article-1440x900/neighbor-stale.png"
+      },
+      {
+        "surface": "article",
+        "state": "neighbor-stale",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/article-360x640/neighbor-stale.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "neighbor-stale",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/work-role-1440x900/neighbor-stale.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "neighbor-stale",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/work-role-360x640/neighbor-stale.png"
+      }
+    ],
+    "neighbor-stale-draft": [
+      {
+        "surface": "article",
+        "state": "neighbor-stale-draft",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/article-360x640/neighbor-stale-draft.png"
+      }
+    ],
+    "reconcile-pending": [
+      {
+        "surface": "article",
+        "state": "reconcile-pending",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/article-1440x900/reconcile-pending.png"
+      },
+      {
+        "surface": "article",
+        "state": "reconcile-pending",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/article-360x640/reconcile-pending.png"
+      },
+      {
+        "surface": "company",
+        "state": "reconcile-pending",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/company-1440x900/reconcile-pending.png"
+      },
+      {
+        "surface": "company",
+        "state": "reconcile-pending",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/company-360x640/reconcile-pending.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "reconcile-pending",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/work-role-1440x900/reconcile-pending.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "reconcile-pending",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/work-role-360x640/reconcile-pending.png"
+      }
+    ],
+    "refresh-notice": [
+      {
+        "surface": "company",
+        "state": "refresh-notice",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/company-1440x900/refresh-notice.png"
+      },
+      {
+        "surface": "company",
+        "state": "refresh-notice",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/company-360x640/refresh-notice.png"
+      }
+    ],
+    "retry-pending": [
+      {
+        "surface": "terms",
+        "state": "retry-pending",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/terms-1440x900/retry-pending.png"
+      },
+      {
+        "surface": "terms",
+        "state": "retry-pending",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/terms-360x640/retry-pending.png"
+      }
+    ],
+    "saved-unapproved": [
+      {
+        "surface": "terms",
+        "state": "saved-unapproved",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/terms-1440x900/saved-unapproved.png"
+      },
+      {
+        "surface": "terms",
+        "state": "saved-unapproved",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/terms-360x640/saved-unapproved.png"
+      }
+    ],
+    "stale": [
+      {
+        "surface": "article",
+        "state": "stale",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/article-1440x900/stale.png"
+      },
+      {
+        "surface": "article",
+        "state": "stale",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/article-360x640/stale.png"
+      },
+      {
+        "surface": "company",
+        "state": "stale",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/company-1440x900/stale.png"
+      },
+      {
+        "surface": "company",
+        "state": "stale",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/company-360x640/stale.png"
+      },
+      {
+        "surface": "terms",
+        "state": "stale",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/terms-1440x900/stale.png"
+      },
+      {
+        "surface": "terms",
+        "state": "stale",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/terms-360x640/stale.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "stale",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/work-role-1440x900/stale.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "stale",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/work-role-360x640/stale.png"
+      }
+    ],
+    "stale-draft": [
+      {
+        "surface": "article",
+        "state": "stale-draft",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/article-360x640/stale-draft.png"
+      },
+      {
+        "surface": "company",
+        "state": "stale-draft",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/company-360x640/stale-draft.png"
+      },
+      {
+        "surface": "terms",
+        "state": "stale-draft",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/terms-360x640/stale-draft.png"
+      }
+    ],
+    "unknown": [
+      {
+        "surface": "article",
+        "state": "unknown",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/article-1440x900/unknown.png"
+      },
+      {
+        "surface": "article",
+        "state": "unknown",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/article-360x640/unknown.png"
+      },
+      {
+        "surface": "company",
+        "state": "unknown",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/company-1440x900/unknown.png"
+      },
+      {
+        "surface": "company",
+        "state": "unknown",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/company-360x640/unknown.png"
+      },
+      {
+        "surface": "terms",
+        "state": "unknown",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/terms-1440x900/unknown.png"
+      },
+      {
+        "surface": "terms",
+        "state": "unknown",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/terms-360x640/unknown.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "unknown",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "path": "playwright-report/35-7-p/work-role-1440x900/unknown.png"
+      },
+      {
+        "surface": "work-role",
+        "state": "unknown",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "path": "playwright-report/35-7-p/work-role-360x640/unknown.png"
+      }
+    ]
+  },
+  "selection_limit": "All genuine raw artifacts may be retained; final package <=80 requires independently justified exact equivalence/coverage. Four neighbor frames retained. No fakeNAs/historycleanup.",
+  "held": "DCL/newphysicaltargetdelete not admitted. ONEjob targetdelete/two-viewports constraint is planning only, no execution authorization."
+}
