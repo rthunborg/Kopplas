@@ -60,11 +60,17 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
         self.save_state()
         self.checkpoint_sha = self.commit(self.a, 'synthetic reviewed blocked checkpoint')
         self.call('block', run=adapter.RUN, story=adapter.STORY, worker='worker-a', reason='runtime file not yet admitted')
-        self.patches = [patch.object(adapter, 'ROOT', self.c), patch.object(adapter, '__file__', str(self.c / 'scripts/maintenance/admit_story35_6_runtime.py'))]
+        self.patches = self.tooling_identity_patches(self.c)
         for item_patch in self.patches:
             item_patch.start()
             self.addCleanup(item_patch.stop)
         self.request = self.make_request()
+
+    def tooling_identity_patches(self, root):
+        # Match production ROOT = Path(__file__).resolve().parents[2], including
+        # Windows short-name/reparse aliases returned by the tempfile parent.
+        return [patch.object(adapter, 'ROOT', root.resolve()),
+                patch.object(adapter, '__file__', str(root / 'scripts/maintenance/admit_story35_6_runtime.py'))]
 
     def save_state(self):
         self.write(self.a, adapter.OWN_STATE, '\n'.join(key + ': ' + json.dumps(value) for key, value in self.state.items()) + '\n')
@@ -136,6 +142,43 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
         with self.assertRaisesRegex(adapter.engine.Refusal, message or '.'):
             self.admit()
         self.assertEqual(self.snapshot(), before)
+
+    def test_fixture_canonicalizes_tooling_alias_without_weakening_identity_guards(self):
+        # A lexical parent traversal provides the same noncanonical input on
+        # every OS, even where native Windows short-name creation is disabled.
+        alias = self.c / '..' / 'c'
+        canonical = engine.top(alias)
+        self.assertNotEqual(alias, canonical)
+        self.assertEqual(alias.resolve(), canonical)
+        self.assertIn(canonical, engine.worktrees(self.repo))
+        self.assertEqual(engine.common(canonical), engine.common(self.repo))
+        # Preserve the original exact-root refusal; canonicalize the fixture
+        # input rather than accepting a lexical alias inside the qualifier.
+        with patch.object(adapter, 'ROOT', alias):
+            self.refused('Tooling must be its registered same-repository checkout')
+        other = self.root / 'unrelated-repository'
+        other.mkdir()
+        self.git(other, 'init', '-b', 'codex/unrelated')
+        self.git(other, 'config', 'user.name', 'Synthetic identity regression')
+        self.git(other, 'config', 'user.email', 'identity@example.invalid')
+        self.write(other, 'fixture.txt', 'unrelated common Git directory\n')
+        self.commit(other, 'synthetic unrelated repository')
+        self.assertNotIn(other.resolve(), engine.worktrees(self.repo))
+        self.assertNotEqual(engine.common(other), engine.common(self.repo))
+        for root, message in [(self.c / 'scripts', 'registered same-repository checkout'),
+                              (other.resolve(), 'registered same-repository checkout'),
+                              (self.repo.resolve(), 'separate from live checkouts')]:
+            with self.subTest(root=str(root)), patch.object(adapter, 'ROOT', root):
+                self.refused(message)
+        patches = self.tooling_identity_patches(alias)
+        for identity_patch in patches:
+            identity_patch.start()
+        try:
+            self.assertEqual(adapter.ROOT, canonical)
+            self.assertEqual(self.admit()['generation'], 2)
+        finally:
+            for identity_patch in reversed(patches):
+                identity_patch.stop()
 
     def test_tooling_lands_on_main_after_unchanged_blocked_checkpoints(self):
         heads = [engine.sha(path, 'HEAD') for path in [self.repo, self.a]]

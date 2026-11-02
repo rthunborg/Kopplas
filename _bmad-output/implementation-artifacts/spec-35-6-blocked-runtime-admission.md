@@ -70,6 +70,10 @@ context:
   each foreign plan's own registered authoritative checkout. Corrected masked
   refusal tests and added direct review, byte-preservation, foreign-source and
   later-main continuation regressions. Frozen intent and helpers remain unchanged.
+- 2026-11-02, PR128 Windows CI follow-up: reproduced a noncanonical tempfile
+  root rejected by the unchanged qualifier. Corrected only fixture injection to
+  mirror production's resolved root, with real identity-refusal regression
+  cases. Production adapter, workflow, helpers and frozen intent are unchanged.
 
 ## Design Notes
 
@@ -145,11 +149,59 @@ The raw coordinator-attested ownership inventory binds the actual registered wor
 - Refreshed review-order checker: native exit 0, exactly one author section,
   **17 verified path/line/literal stops, zero errors**. `git diff --check` passed.
 
+**PR128 Windows fixture follow-up, executed by the same author:**
+
+- Preserved the original CI failure: run `41496309269`, Windows job
+  `125452082150`, Python **3.12.10**, focused **23 tests: 5 failures, 8 errors,
+  0 skips**, 395.839s. All consequential traces converge on the unchanged
+  `qualify_tooling` identity refusal. Archived native log:
+  `C:/DEV/Kopplas/tmp/private/e35-runtime-recovery/tmp/private/admission-review/pr128-windows-job-125452082150.log`,
+  raw SHA256 `e178c3e776f1529ed58a06746275465ca96e64ba62928bb9f6662ef6510ceba7`.
+- Before fixing, reproduced the exact refusal on available native Windows
+  Python **3.14.7**, using `GetShortPathNameW` for an owned temporary directory.
+  The fixture injected `E35-AD~1/.../c`, while Git/top resolution returned
+  `e35-admission-test-temp/.../c`: root equality was false, registered checkout
+  and common-Git checks were both true. Production already derives `ROOT`
+  through `Path(__file__).resolve()`; its constructor contract was missing from
+  the fixture injection. The CI log does not print its TEMP/root paths, so its
+  exact remote alias spelling remains unobserved; the native reproduction
+  isolates the matching failed predicate and mechanism.
+- Fixed `tooling_identity_patches` to resolve its input. The production adapter,
+  its equality/registration/common-Git/separation/cleanliness/exact-SHA guards,
+  and every pinned helper byte remain unchanged. The new portable regression
+  also proves raw aliases, nested non-root inputs, a real unrelated Git common
+  directory, and live control checkout inputs still refuse.
+- Targeted alias regression plus unchanged-helper continuation: **2 passed,
+  0 failed, 0 skipped**, native exit 0, 63.907s. Log:
+  `C:/DEV/Kopplas/tmp/private/e35-admission-windows-alias-targeted.log`.
+- Final full focused command above: **24 passed, 0 failed, 0 skipped**, native
+  exit 0, 626.974s. Ran once after the fixture fix, with process TEMP/TMP set to
+  the real native `E35-AD~1` alias. Log:
+  `C:/DEV/Kopplas/tmp/private/e35-admission-windows-alias-final.log`;
+  native interpreter/temp context:
+  `C:/DEV/Kopplas/tmp/private/e35-admission-windows-alias-context.json`.
+  This exercises every focused case under the previously mismatched input shape.
+- Retained the archived Windows helper phase's actual **70 passed, 0 failed,
+  0 skipped**, 573.425s, native `OK`; no helper rerun. No CI/provider polling,
+  rerun, workflow timeout adjustment, system setting or test skip was used.
+- Unchanged adapter raw SHA256:
+  `b75613d101bb9a03308a1545945ec8099a9c97a8f9d0be4a70b5995c66d5b22e`;
+  updated test raw SHA256:
+  `0c64de8815bef7d9a08de6f7ecf41ec366973e3ad50880be60edc07f65437e9d`.
+  Execution used the fixture-fix working tree based on committed
+  `08c320f693633b02a57a3962328d44142a66b007`. No author commit/push or live
+  admission was performed; targeted High fix review and subsequent CI remain
+  parent-owned gates.
+- Follow-up author-trail checker: native exit 0, exactly one author section,
+  **18 verified references, zero errors**. `git diff --check` passed.
+
 Limits: disposable Git/SQLite fixtures exercise the real unchanged helper
 validators, with synthetic CI/provider/reviewer/status records. Tooling checkout
 location is redirected only inside the fixture; crash, request-read and final-evidence-race
-hooks are synthetic. This is Windows local qualification, not either native
-GitHub OS job. Independent Sol High tooling review, exact-tooling-SHA CI, main
+hooks are synthetic. Passing focused proof is local Windows qualification;
+the original failed CI receipt remains distinct. The new Windows Python 3.12
+job and both exact-tooling-SHA contract jobs must still qualify through the
+parent's CI observation. Independent Sol High tooling review, main
 ancestry, current live inventory/admission review, live root admission, fresh
 heartbeat, and all product runtime/list-read/retry/CI gates remain separate.
 External status/CI authenticity and continued writer silence remain coordinator
@@ -163,9 +215,9 @@ unchanged; this patch adds no replacement publication authority or PR128 gate.
 
 Author: `/root/crm_runtime_route/runtime_admission_author`, implementation author
 at Sol High for claim ownership and transactional integrity.
-Refreshed after the round-1 bounded patch against the uncommitted five-file
-working tree at verified HEAD
-`824bed4a92eb388db669ffb60492a7b1dd9fc038`, with the execution evidence above.
+Refreshed after the PR128 Windows fixture follow-up against its working tree
+based on `08c320f693633b02a57a3962328d44142a66b007`. Earlier execution against
+baseline `824bed4a92eb388db669ffb60492a7b1dd9fc038` remains historical evidence above.
 
 ### Admit only the approved operator request
 
@@ -173,10 +225,13 @@ The frozen intent requires a separate exact-story exception while preserving
 the installed schema-2 refusal. I fixed the approved run/source/PR and eleven
 original paths in this adapter, leaving transient checkpoints and current
 owner/worker identities bound to inspected store facts and the reviewed request.
+The Windows follow-up corrects the fixture to mirror production's resolved-root
+constructor; the production identity guard is unchanged.
 
 - `docs/process/parallel-auto-bmad-contract.md:233` — `## Exact Story 35.6 schema-2 runtime admission`: defines operator custody and the exact exception.
 - `scripts/maintenance/admit_story35_6_runtime.py:273` — `def admit(a):`: checks the strict reviewed payload and exact assignment.
 - `scripts/maintenance/admit_story35_6_runtime.py:40` — `OLD_PATHS = [`: fixes the original eleven-path ownership boundary.
+- `tests/maintenance/test_admit_story35_6_runtime.py:69` — `def tooling_identity_patches`: supplies the same resolved root contract as production.
 
 ### Bind tooling, publication and concurrent ownership facts
 
@@ -222,13 +277,17 @@ reservation conflicts and uncertain writer/status checks. Rollback and replay
 assertions protect the transaction and immutable historical receipt; AC4 is
 the explicit operational/evidence limit above. Round-1 negative cases use fresh
 bound evidence and named guard refusals, avoiding stale-evidence masking.
+The Windows follow-up reproduces noncanonical identity input and tests real
+registration/common-Git/separation refusals before accepting the resolved fixture.
 
-- `tests/maintenance/test_admit_story35_6_runtime.py:140` — `test_tooling_lands_on_main_after_unchanged_blocked_checkpoints`: exercises later-main AC1/AC2 through unchanged-helper continuation.
-- `tests/maintenance/test_admit_story35_6_runtime.py:313` — `test_admission_review_rejects_every_writer_and_invalid_review_field`: isolates review independence and every required review field.
-- `tests/maintenance/test_admit_story35_6_runtime.py:153` — `test_all_raw_audit_artifacts_reconstruct_exact_bytes_including_bom`: reconstructs all raw hashes, including stopped-writer source.
-- `tests/maintenance/test_admit_story35_6_runtime.py:442` — `test_foreign_schema2_source_uses_its_authoritative_checkout_and_independence`: proves foreign-source acceptance and retained independence refusal.
+- `tests/maintenance/test_admit_story35_6_runtime.py:146` — `test_fixture_canonicalizes_tooling_alias_without_weakening_identity_guards`: proves alias normalization and retained real identity refusals.
+- `tests/maintenance/test_admit_story35_6_runtime.py:356` — `test_admission_review_rejects_every_writer_and_invalid_review_field`: isolates review independence and every required review field.
+- `tests/maintenance/test_admit_story35_6_runtime.py:196` — `test_all_raw_audit_artifacts_reconstruct_exact_bytes_including_bom`: reconstructs all raw hashes, including stopped-writer source.
+- `tests/maintenance/test_admit_story35_6_runtime.py:485` — `test_foreign_schema2_source_uses_its_authoritative_checkout_and_independence`: proves foreign-source acceptance and retained independence refusal.
 
-Evidence: round-1 final focused 23/23 and reused unchanged helper 70/70 passed with zero skips;
+Evidence: current native Windows alias-focused 24/24 and targeted 2/2 passed;
+the unchanged helper's archived Windows 70/70 pass is retained, all with zero skips.
+The original PR128 Windows 23-test CI failure remains recorded separately;
 see Verification for commands, native counts, revision and retained log. CI
 records, provider observations and reviewer/status identities in fixtures are
 synthetic. No live admission, product/P6 proof or remote CI result is implied.

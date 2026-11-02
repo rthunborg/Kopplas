@@ -244,6 +244,10 @@ not authorize a different story, further files or product behavior.
 The adapter loads only the unchanged helpers in its own checkout. Its registered
 same-repository tooling checkout must be clean, on a `codex/` branch at the exact
 reviewed tooling SHA, already an ancestor of refreshed qualified `origin/main`.
+The executable derives its root from its resolved file path; synthetic fixture
+injection follows that same contract for Windows short-name/reparse aliases.
+Registration, common Git identity, separation and clean exact-SHA checks remain
+required; a lexical path alias does not create authority.
 Both existing `Auto-BMAD parallel contracts` jobs, `contracts (ubuntu-latest)` and
 `contracts (windows-latest)`, must pass at that SHA, with zero skipped checks.
 The pinned workflow digest must remain unchanged in tooling, main, coordinator
