@@ -337,6 +337,19 @@
       "author_stopped": true,
       "broad_round_count": 1,
       "results_record": "browser-fix-targeted-results.json"
+    },
+    {
+      "phase": "One integrated-tree final earned-evidence metadata reconciliation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T15:14:09.7480402Z",
+      "integrated_head": "e7429112380ea398dffcea8e550a3a91639d8c2f",
+      "source_checkpoint": "36d75438b9b3f484373666970dbc5ee0e5fcf278",
+      "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+      "scope": "Same author metadata-only execution spec/own evidence/descriptive delivery: actualA CI and52caseaudit, currentfix/review source47equivalence, CI-only migration application, single SRO, finalheadCI/images/visual pending. No source/tests/migration/policy/canonical/globalaggregate writes, no tests/wrapper/reviews/newaudits.",
+      "dispatch_status": "completed actual same High author; metadata-only stopped, SRO20native0, source47/canonical9/main35.6 unchanged",
+      "build_status": "in-progress",
+      "release_ready": false
     }
   ],
   "implementation_author_dispatched": true,
