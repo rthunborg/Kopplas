@@ -1,0 +1,6 @@
+- id: "35-6"
+  title: "CRM Record Journeys"
+  description: "Implement only existing individually approved Story 35.6 DT-2a under SPEC.md, the exact approved D1–D5 overlay and source-binding.json: five CRM presentation paths and the existing CRM E2E test. Preserve all seven AC and sixteen state/test identities, current authority and inherited regressions."
+  spec_checkpoint: false
+  done_checkpoint: true
+  invoke_dev_with: "Use the operative companions before frozen history; stop after this sole story. No other production/test writes, new recovery authority or child safety protocol; current implementation admission and evidence gates remain."

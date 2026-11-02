@@ -1,0 +1,280 @@
+{
+  "story": "35.7",
+  "assessment": "bounded-sensitive-feasibility-only",
+  "candidate": "9533e969c1981647e26c33774a9327f842ad299a",
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "record": "tmp/private/story35-pair/routing.json"
+  },
+  "source_spec": "C:/DEV/Kopplas/_bmad-output/implementation-artifacts/spec-35-7-settings-and-manual-pricing.md",
+  "source_slice": "C:/DEV/Kopplas/_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-7.md",
+  "full_admission": false,
+  "runtime_pass": false,
+  "owned_state_count": 15,
+  "write_paths_proposed_existing": [
+    "src/app/(app)/settings/page.tsx",
+    "src/app/(app)/settings/company/page.tsx",
+    "src/app/(app)/settings/quote-terms/page.tsx",
+    "src/app/(app)/settings/pricing/page.tsx",
+    "src/components/settings/CompanySettingsForm.tsx",
+    "src/components/settings/QuoteTermsEditor.tsx",
+    "src/components/pricing/WorkRolesEditor.tsx",
+    "src/components/pricing/ArticlesEditor.tsx"
+  ],
+  "write_paths_proposed_conditional_new": [
+    "src/components/settings/SettingsFormNavigationGuard.tsx"
+  ],
+  "test_write_paths_existing": [
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "tests/e2e/pricing/pricing.e2e.spec.ts"
+  ],
+  "test_write_paths_conditional_new": [
+    "tests/integration/components/settings-pricing-presentation.test.ts"
+  ],
+  "read_only_contract_sha256": {
+    "src/features/settings/actions.ts": "24f2621a11b724b80877f74dad42384292553101141f87ea651aa19e1e0cfa2a",
+    "src/features/settings/read.ts": "cb5fa1b255a2c28ccb27332c2d19fb200a9d2e6f59ca19f4bc0bc12744204355",
+    "src/features/settings/form-parsing.ts": "9be3063e96037b4a48c82ad43ef7067e1090422e681822aebe356aa8424e49b1",
+    "src/features/settings/action-state.ts": "f5954971d1c387d2f839ab2a69bc5dbaa8d3bb80335b34ca4c397c10e40da46e",
+    "src/features/pricing/actions.ts": "099b6e68f10ce0c309529adb18405906f61594425efa2680963b3fe83b6f9b5e",
+    "src/features/pricing/read.ts": "36549c0203e9c166144d81d90c0e62cad0b2612285c257e0df323b47898a0f44",
+    "src/features/pricing/form-parsing.ts": "3fad07478643d6b1d0271e93f021efcf74885df4f1699ea221d658d66ecb7dc5",
+    "src/features/pricing/action-state.ts": "c2f22c837d69b2a4025afa4195808d9daf424a41b670c96a7cfb70beff0909f7",
+    "src/features/pricing/money-display.ts": "b25eca73e84d27e80cc66dbc5aa35a8fb480dae8b72d73e0426d3289f3c77bc7",
+    "src/server/commands/settings/company-settings.ts": "03c5ab7e1fe9bdee2f66c001bf1e0899342cc725a2a83a0730e2ce3712f5aedc",
+    "src/server/commands/settings/quote-terms.ts": "ce3d6e53c2577145606d9810fedaeef382b23254ff792e69ca7268eb576e8dda",
+    "src/server/commands/pricing/articles.ts": "a3f1c27f7430605f1ac206d3da7e1ac01580a3a7913a169b4d1cdad86da7b1c0",
+    "src/server/commands/pricing/work-roles.ts": "26eb8676d38a4c980e65ec790e72439e49721e4d8c69f2fe7f70e160cd3b995b",
+    "src/components/crm/FormField.tsx": "6920a4a9c9c766d6effa0131a6fb0b4ee4dac6eef3e28181d4c9fa119a464fef",
+    "src/components/app-shell/RouteAccessBoundary.tsx": "2a099a26539b9d1dd331db969230f640a8d0e0e3551bd07fc9e4296021cf97e5",
+    "src/server/authz/phase-a-surface.ts": "a21b1b9008950deae7049fe8ab175503bc8e84271f1b03d63b4da0a69a34b11f",
+    "src/server/commands/envelope.ts": "718028b4d77799f99381f29e0e442e8148660e8b9357d758aea8caf5e8e4dd0a",
+    "supabase/migrations/20260907171252_role_aware_phase_a_policy_evolution.sql": "b5810404c92f469f3ab2bc48a7cb3ad1c8775b7a7647dede38caf118f4ab60da",
+    "supabase/migrations/20261006122441_booking_conflict_detection_integration.sql": "93670661af85f3372a92c8711bf13918b780abefcc524835c7b9a565ad84579e"
+  },
+  "existing_production_sha256": {
+    "src/app/(app)/settings/page.tsx": "4266e284f7b10ee6e742e7cc60e8fecfe63000d0b7885861f7eb29fad94a128a",
+    "src/app/(app)/settings/company/page.tsx": "d7cb1b1a88435f3151f17ea0100153fd0764a3f29c0247167b87c0a856c9efe2",
+    "src/app/(app)/settings/quote-terms/page.tsx": "f1933c5cedaa9b3dcbe5bf2d0a0c6e2f649d6f9db01c97ff41b14e9be81c90cd",
+    "src/app/(app)/settings/pricing/page.tsx": "da7663f45727d8397d56604a4395de82c0cdb6b6c0940f3c26ff047e94d288b4",
+    "src/components/settings/CompanySettingsForm.tsx": "d86b827db1c9f7110a76089886ed1678b2eb9fc68e970ae9e3d371854fbd6b6c",
+    "src/components/settings/QuoteTermsEditor.tsx": "2a4510a3ff2c864c8d76c0b023a2ed93a857052dec2e4b7ef83c07f6d045b452",
+    "src/components/pricing/WorkRolesEditor.tsx": "1577784577702a580b6772dbab6193a82b9d5f349b9d8f3a0cfaf08ebd90582b",
+    "src/components/pricing/ArticlesEditor.tsx": "bbb05c35cfadb529b35bc83941ceb352b770e7d3da2a19ee833e36de1afc5ad5"
+  },
+  "acs": [
+    {
+      "ac_id": "E35-7-AC1",
+      "test_id": "E35-7-T-AC1",
+      "exact_caller_trigger_assertion_fixture_feasibility": "CompanySettingsForm → saveCompanySettingsAction → updateCompanySettings; QuoteTermsEditor save/approve forms → saveQuoteTermsAction/approveTermsAction → updateQuoteTerms/approveQuoteTerms. Admin saves current Swedish company fields and 25 percent; reread same tenant singleton with 2500 bp. Save terms → approved_at/by NULL; deliberately approve actual returned ID → approval, then edit/save again → not approved. Retained unsent text is not saved/approved. Current UI uses independent persistent success booleans; implement presentation sequencing/dirty indication so a later save or unsent edit cannot reuse an earlier approval badge. Do not change producer approval policy. Reuse settings.e2e.spec.ts tests at lines 89/113/146/163 and settings-commands.int.test.ts at 149/178/341/358/388/425/448. These files exist; no runtime result is claimed. Feasible presentation; cross-tab stale approval remains the stale gap below.",
+      "runtime_pass": false
+    },
+    {
+      "ac_id": "E35-7-AC2",
+      "test_id": "E35-7-T-AC2",
+      "exact_caller_trigger_assertion_fixture_feasibility": "WorkRolesEditor and ArticlesEditor use save/archive/reactivate actions and current four reads. Bind row ID into existing parser's optional id field for edit; no ID creates, ID updates. Create → edit same ID → archive false → reactivate same ID, with row count and stored integer öre assertions; archived toggle never creates a replacement. Unit/SKU remain optional plain manual labels. Invalid `-5`, `850,005`, missing required sell and required article price keep associated errors and raw input. Fixtures: createTwoTenantFixture/adminInsertWorkRole/adminInsertArticle in tests/factories/tenants.ts; pricing commands tests 129/193/221/246/351/398/422 and parser tests 50/69/80/106/149/155/221. Feasible via current producers; real UI row edit currently absent and must be implemented.",
+      "runtime_pass": false
+    },
+    {
+      "ac_id": "E35-7-AC3",
+      "test_id": "E35-7-T-AC3",
+      "exact_caller_trigger_assertion_fixture_feasibility": "Same two editors at 360x640: select actual row edit, display `850,00 kr/tim` and `12,50 kr`/existing unit, submit via existing action and reread same ID/integer öre; malformed input is never converted to zero. Price text uses tabular numerals. Existing pricing.e2e tests 80/106/117/137 plus money-display/parser unit fixtures supply current oracle, not complete row-edit/phone coverage. Feasible.",
+      "runtime_pass": false
+    },
+    {
+      "ac_id": "E35-7-AC4",
+      "test_id": "E35-7-T-AC4",
+      "exact_caller_trigger_assertion_fixture_feasibility": "Admin traverses hub → company → terms → pricing using existing route links, real record names/IDs, at 360x640 and representative desktop. Assert completion separately from control dimensions, >=44px targets, keyboard, enlarged text and visible primary/error under virtual-keyboard/reflow conditions. Existing settings/pricing browser login/fixture pattern reused, not copied into a new framework or login implementation. Feasible; essential browser evidence remains required, exhaustive device work remains release-owned.",
+      "runtime_pass": false
+    },
+    {
+      "ac_id": "E35-7-AC5",
+      "test_id": "E35-7-T-AC5",
+      "exact_caller_trigger_assertion_fixture_feasibility": "Existing settings/pricing forms contain no dialog or animation. Do not create one merely for focus-dialog. Keep shared Dialog RO; if the local dirty guard uses a confirmation dialog, use existing primitive with accessible name/trap/Escape/trigger restoration and test the actual adapted instance. Dirty/late assertions are the rows below. No motion means no invented animation; any adapted existing motion uses accepted tokens/reduced motion. Feasible bounded local work, not satisfied today.",
+      "runtime_pass": false
+    },
+    {
+      "ac_id": "E35-7-AC6",
+      "test_id": "E35-7-T-AC6",
+      "exact_caller_trigger_assertion_fixture_feasibility": "All fifteen rows below preserve classification and have actual caller/trigger/assertion. Read errors must not fall through to default empty editors/25%-as-success. No new file command. Unknown/stale prevent complete admission until exact scope/producer decision; no mocked receipt, delay-only test or unconditional refresh is financial reconciliation proof.",
+      "runtime_pass": false
+    },
+    {
+      "ac_id": "E35-7-AC7",
+      "test_id": "E35-7-T-AC7",
+      "exact_caller_trigger_assertion_fixture_feasibility": "Existing nine actions stay sole write paths; command capability/current membership, checked RPC atomic audit, integer öre/bp and snapshots/provenance remain RO. Use settings/pricing command suites, settings-rls.int.test.ts, role-aware-phase-a-surface.atdd.int.test.ts, current money golden tests and existing scope gates at original IDs. No new pending module, tier/import/config policy, approval policy, upload or service-role client. Existing tests are sources, not execution evidence. Development essential usable assertions/DB-RLS counts and exact-head checks remain separate from REL-1/2/3 named-owner release work. Feasible preservation; full AC cannot erase two source gaps.",
+      "runtime_pass": false
+    }
+  ],
+  "states": [
+    {
+      "state_id": "E35-7-STATE-loading",
+      "test_id": "E35-7-T-loading",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "CompanySettingsPage/readCompanySettings, QuoteTermsPage/readQuoteTerms, PricingSettingsPage/four read promises held outstanding",
+      "observable_assertion_and_existing_fixture": "Loading label/structure, no empty success/default amount before response; delay real navigation read response with existing authenticated admin/tenant fixture",
+      "feasibility_and_coverage_limit": "Feasible local page Suspense/fallback composition in owned pages; no loading.tsx or new async endpoint required. Existing page currently awaits reads without local loading UI.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-loaded",
+      "test_id": "E35-7-T-loaded",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "Same pages receive authorized rows",
+      "observable_assertion_and_existing_fixture": "Current Swedish identity/rates/units/approval from checked read; article/work-role IDs stay bound to actions; no withheld-field surrogate",
+      "feasibility_and_coverage_limit": "Feasible; real adminA + existing test-created price records; existing settings/pricing browser roundtrips reused. Read models have no version/freshness DTO; don't invent one.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-empty",
+      "test_id": "E35-7-T-empty",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "readCompanySettings/readQuoteTerms return null without error; four pricing reads return [] without error for authorized new tenant",
+      "observable_assertion_and_existing_fixture": "Empty form/list and supported create only; visible initial defaults disclosed as defaults, not persisted data",
+      "feasibility_and_coverage_limit": "Feasible local rendering. Use test-owned fresh tenant from createTwoTenantFixture. Null/[] accompanied by error must not enter this branch; current pages render editors with error and need branch correction.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-no-match",
+      "test_id": "E35-7-T-no-match",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "WorkRolesEditor/ArticlesEditor local query over already read authorized rows; unmatched name/SKU/unit text",
+      "observable_assertion_and_existing_fixture": "Query retained, explicit no matches distinct from no rows; reset shows same original authorized IDs and archived toggle context",
+      "feasibility_and_coverage_limit": "Feasible local UI; current filter absent. Crosswalk artikel Unit/search/validation supports it. Reuse test-created articles/roles, no supplier/import search.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-validation",
+      "test_id": "E35-7-T-validation",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "Four owned forms → existing action/parser on invalid name/VAT/terms/rates",
+      "observable_assertion_and_existing_fixture": "Field aria-invalid/describedby, raw suitable value retained, summary link focuses named field, no saved result; corrected submission roundtrips",
+      "feasibility_and_coverage_limit": "Feasible: pass state.fieldErrors to current shared FormErrorSummary, which already supports links. Reuse settings/pricing parser and browser invalid fixtures. Shared primitive stays RO.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-denied",
+      "test_id": "E35-7-T-denied",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "Initial settings/layout RouteAccessBoundary with existing Montor; direct action with wrong role or foreign row ID",
+      "observable_assertion_and_existing_fixture": "Generic no access; no form/private fields on route; no data/audit side effect on command",
+      "feasibility_and_coverage_limit": "Existing server authority and role-aware e2e Montor settings test/role-aware RLS matrix plus foreign-ID pricing commands; preserve RO. No new read entitlement projection or role grants.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-revoked",
+      "test_id": "E35-7-T-revoked",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "Previously rendered admin-owned form; test-owned membership deactivated/role removed before same action dispatch",
+      "observable_assertion_and_existing_fixture": "Existing per-request envelope/RPC denies, local UI removes stale saved/privileged affordance and surfaces denial; no mutation/audit; refresh gets generic gate",
+      "feasibility_and_coverage_limit": "Producer authority exists, new focused test assertion needed. Reuse createRoleAwarePhaseAFixture/makeAuthedServerClient and isolated user, not shared adminA mutation. Mere code inspection or initial denied test is not revocation coverage. No live push revocation promise.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-connection-required",
+      "test_id": "E35-7-T-connection-required",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "Four owned forms detect offline before dispatch; read failure without response remains separate",
+      "observable_assertion_and_existing_fixture": "Persistent connected explanation, suitable input unsent, explicit retry only when connected; action call count 0 before dispatch, no queue/saved status",
+      "feasibility_and_coverage_limit": "Feasible local guarded form submission; no new server error code. navigator.onLine false proves pre-dispatch branch only; any failure after attempted dispatch is unknown, not automatically this state. Existing suite lacks this exact assertion.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-submitting",
+      "test_id": "E35-7-T-submitting",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "Any of nine actions held in flight for actual target",
+      "observable_assertion_and_existing_fixture": "Label actual operation, disable/synchronously latch duplicate clicks for save/archive/reactivate/approve; one dispatch, independent neighboring command state",
+      "feasibility_and_coverage_limit": "Feasible local pending/latch; current lifecycle hooks discard pending and need binding. Existing useActionState pending for save is partial source, not full coverage. Delay existing action response; assert dispatch count + real resulting row separately.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-error-retry",
+      "test_id": "E35-7-T-error-retry",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "Definite validator/permission rejection or proven RPC rollback; correct input then explicit action",
+      "observable_assertion_and_existing_fixture": "No saved result, input retained; corrected request succeeds/reloads same expected row; failure has no DB/audit mutation",
+      "feasibility_and_coverage_limit": "Feasible for known rejection/rollback cases. settings command test at 448 proves audit failure rollback; invalid fixtures prove precommit rejection. SERVER_ERROR alone does not prove rollback and must not be used as unknown-free retry oracle.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-unknown",
+      "test_id": "E35-7-T-unknown",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "saveWorkRoleAction/saveArticleAction create submitted without ID; possible commit then reply lost; also terms/company/lifecycle writes",
+      "observable_assertion_and_existing_fixture": "Frozen requirement: unconfirmed; authoritative operation/record reconciliation before retry; no duplicate create/audit/approval",
+      "feasibility_and_coverage_limit": "**BLOCKED under RO producers**. State only idle/success/error, targetId only on success, no operation receipt/reconcile/idempotent-create key exposed. Read lists cannot prove which identical manual row belongs to lost attempt; audit correlation server-generated and not exposed as caller recovery identity. Reload/value equality is not proof or stale-safe retry.",
+      "runtime_pass": false,
+      "blocked": true
+    },
+    {
+      "state_id": "E35-7-STATE-stale",
+      "test_id": "E35-7-T-stale",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "Two admins read same company/terms/role/article; B saves; A submits old values or approves old-read terms",
+      "observable_assertion_and_existing_fixture": "Frozen requirement: A cannot overwrite B's facts or approve obsolete reviewed wording; retained draft + checked refresh/review",
+      "feasibility_and_coverage_limit": "**BLOCKED under RO producers**. Reads expose no expected version, parsers/commands/RPCs accept no expected-facts token. SQL updates match tenant/id or singleton tenant and are unconditional; WorkRole advisory lock serializes but does not compare stale facts. Client-only reread has TOCTOU.",
+      "runtime_pass": false,
+      "blocked": true
+    },
+    {
+      "state_id": "E35-7-STATE-confirmed",
+      "test_id": "E35-7-T-confirmed",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "Existing nine actions return success/targetId and page revalidates",
+      "observable_assertion_and_existing_fixture": "Saved only for matching form + submitted target/generation; work role result cannot mark article saved; save terms resets badge and approval action separate; raw draft edits clear local saved status",
+      "feasibility_and_coverage_limit": "Feasible for returned definitive result/current read only, not unknown or version proof. Use existing targetId/form discriminator and authoritative roundtrip fixtures. Current UI persistent success booleans need presentation sequencing; do not alter read/command contracts.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-dirty-navigation",
+      "test_id": "E35-7-T-dirty-navigation",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "Edit company/terms/pricing row then choose another row/tab, hub/route link or Back/Forward",
+      "observable_assertion_and_existing_fixture": "Cancel preserves current URL/history/input/selection; discard explicit; pending action cannot depart into misleading success",
+      "feasibility_and_coverage_limit": "Feasible bounded SettingsFormNavigationGuard + form-local draft tracking; no protected draft currently exists here. Existing current CRM CustomerDialog and JobCardForm provide RO local guard patterns, not a dependency on future 35.6. Navigation API can cancel traverse before commit; legacy popstate cannot prove untouched history. If target browser lacks cancellable traversal, record failure/contract limit rather than claim all-browser completion or patch AppShell. No global router framework.",
+      "runtime_pass": false,
+      "blocked": false
+    },
+    {
+      "state_id": "E35-7-STATE-late-result",
+      "test_id": "E35-7-T-late-result",
+      "classification_frozen": "Applies",
+      "caller_and_trigger": "After ID-bound price edit selection A, begin action A; switch to B only where guard permits; resolve A late",
+      "observable_assertion_and_existing_fixture": "B fields/selection/URL never replaced, A outcome remains A, no B saved badge; unmount/route departure also ignores stale completion",
+      "feasibility_and_coverage_limit": "Feasible form-local generation + captured target identity or block selection during pending; use real selected record IDs and controlled existing action result. No selection-read endpoint/version protocol. Action still reaches current producer; delayed test proves UI ownership only, not receipt/stale guarantee.",
+      "runtime_pass": false,
+      "blocked": false
+    }
+  ],
+  "inherited": [
+    "locked",
+    "focus-dialog"
+  ],
+  "na": [
+    "unavailable",
+    "new-file-operations"
+  ],
+  "prerequisite_correction": "Keep frozen v1 spec/slice and their history unchanged. Recommended one reviewable v2 contract amendment: retain all fifteen rows and AC identities, but explicitly mark unknown/stale as **unresolved producer prerequisites blocking full 35.7 admission**. Source-owner task must supply operation recovery identity/nonduplicating reconciliation and expected-facts update/approval semantics before those rows can become executable full-path assertions. This is a real authority/transaction decision at Sol High; no receiving presentation worker may invent it.\n\nExact before (spec): `Common state IDs | ... unknown, stale, ...` under Applies; slice unknown says `use existing authoritative reconciliation before consequential retry`; stale says `Old submission/review cannot overwrite latest facts`.\n\nExact proposed after/addendum: `E35-7 unknown and stale remain owned acceptance obligations. At candidate 9533e969c1981647e26c33774a9327f842ad299a the settings/manual-pricing producer contracts provide neither recoverable operation identity for a lost create response nor an expected-facts precondition for update/terms approval. Full story admission is blocked until a separately owner-approved producer task defines and supplies these contracts. A presentation-only implementation may not claim E35-7-T-unknown or E35-7-T-stale passed, downgrade either to N/A/inherited coverage, retry an ambiguous create, or present client reread as overwrite prevention. Frozen v1 evidence is preserved.`\n\nNo extra broad design survey is needed. If the owner instead wants a smaller presentation-only story delivered before those prerequisites, that is an explicit scope decision changing completion expectations, not an engineering assumption; do not silently make that change under this report.",
+  "dependency_35_6": {
+    "source_order_still_authoritative": true,
+    "technical_finish_to_start_edge_found": false,
+    "proof": "Owned settings/pricing consumers import current feature contracts and existing read-only components/crm/FormField; no CustomerList/Detail/Dialog/Facility/Contact/ArchiveButton import. CRM delegate reports no reverse settings/pricing edge. Existing shared main FormField is not a future 35.6 output.",
+    "coordinator_action": "Record explicit pair-specific source-order amendment; revalidate claims and base; do not silently remove frozen edge.",
+    "producer_gap_solved_by_35_6": false
+  },
+  "claims": "Sole fresh saved-claim query delegated to CRM agent; no claim/reservation/general clearance asserted here.",
+  "report_sha256": "78d4c438f2490f54d58200040b4dc97173722b3d4b8ad1b4b593c8faf1fd5582"
+}
