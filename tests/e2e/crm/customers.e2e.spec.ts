@@ -414,7 +414,7 @@ async function openCustomerCreate(page: Page, marker: string) {
   return dialog;
 }
 async function customerSnapshot(marker: string) {
-  return adminQuery<{ id: string; display_name: string; phone: string | null; city: string | null; archived_at: string | null; audits: number }>(
+  return adminQuery<{ id: string; display_name: string; phone: string | null; city: string | null; archived_at: Date | null; audits: number }>(
     `select c.id, c.display_name, c.phone, c.city, c.archived_at,
        (select count(*)::integer from public.audit_events a where a.target_id = c.id and a.target_type = 'customer') as audits
      from public.customers c where c.display_name = $1 order by c.id`, [marker],
@@ -609,6 +609,10 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hint);
       await gate.dispose();
       await expect(page).toHaveURL(/\/dashboard$/);
+      expect(await historyState()).toEqual(requested);
+      // Adopt the requested HTTP destination after the held archive completes.
+      // This is explicit recovery, not evidence that automatic CSR adoption finished.
+      await page.reload({waitUntil:"commit"});
       await expect(page.getByRole("heading",{name:"Dashboard",exact:true})).toBeVisible();
       expect(await historyState()).toEqual(requested);
       expect(gate.attempts()).toBe(1);
@@ -838,7 +842,16 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(page).toHaveURL(new RegExp(`/customers/${fixture.crm.company.id}$`));
       if (traversal === "forward") {
         await openPhoneNavigation(page);
-        await page.getByRole("link", {name:"Kunder",exact:true}).click(); await page.goBack();
+        await page.getByRole("link", {name:"Kunder",exact:true}).click();
+        await expect(page).toHaveURL(/\/customers$/);
+        await expect(page.getByRole("heading", {name:"Kunder",exact:true})).toBeVisible();
+        await expect(page.getByRole("heading", {name:fixture.crm.company.displayName,exact:true})).toHaveCount(0);
+        await waitForHydrated(page.getByTestId("new-customer-button"));
+        await page.goBack();
+        await expect(page).toHaveURL(new RegExp(`/customers/${fixture.crm.company.id}$`));
+        await expect(page.getByRole("heading", {name:fixture.crm.company.displayName,exact:true})).toBeVisible();
+        await expect(page.getByRole("heading", {name:"Kunder",exact:true})).toHaveCount(0);
+        await waitForHydrated(page.getByTestId("edit-customer-button"));
       }
       const editor = await openCustomerEditor(page, fixture.crm.company.id, false);
       await editor.getByLabel("Ort").fill("Unsent 35.3 draft");
@@ -998,18 +1011,24 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await renderedContrast(page,email,"invalid field text");
     await renderedContrast(page,email,"invalid field focus against field",true);
     await renderedContrast(page,dialog.getByTestId("form-error-summary").getByRole("alert"),"validation summary text");
-    const baselineHeight=(await email.boundingBox())!.height;
-    // Controlled CSS zoom is an enlargement/reflow proxy, not physical device/browser-menu zoom.
-    await page.setViewportSize({width:600,height:1280});
-    await page.evaluate(()=>{document.documentElement.style.zoom="2";});
+    const baselineFont=await email.evaluate(node=>parseFloat(getComputedStyle(node).fontSize));
+    // Enlarge text only: scaling the whole 100dvh sheet invents an unreachable layout.
+    const originalFonts=await dialog.evaluateHandle(node=>{
+      const sizes=[node,...node.querySelectorAll("*")].filter((element):element is HTMLElement=>element instanceof HTMLElement)
+        .map(element=>({element,fontSize:element.style.fontSize,pixels:parseFloat(getComputedStyle(element).fontSize)}));
+      for(const {element,pixels} of sizes) element.style.fontSize=`${pixels*2}px`;
+      return sizes;
+    });
     await email.scrollIntoViewIfNeeded();
-    const enlarged=(await email.boundingBox())!; expect(enlarged.height).toBeGreaterThanOrEqual(baselineHeight*1.9);
-    expect(enlarged.x).toBeGreaterThanOrEqual(0); expect(enlarged.x+enlarged.width).toBeLessThanOrEqual(601);
-    // Own form reflows at 300px effective width; global AppShell/table overflow is unowned.
+    expect(await email.evaluate(node=>parseFloat(getComputedStyle(node).fontSize))).toBeGreaterThanOrEqual(baselineFont*1.9);
+    const enlarged=(await email.boundingBox())!; expect(enlarged.height).toBeGreaterThanOrEqual(44);
+    expect(enlarged.x).toBeGreaterThanOrEqual(0); expect(enlarged.x+enlarged.width).toBeLessThanOrEqual(361);
+    // Own form reflows with measured 200% text; global AppShell/table is unowned.
     expect(await dialog.locator("form").evaluate((form)=>form.scrollWidth<=form.clientWidth+1)).toBe(true);
     await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
-    await captureRecordState(page,"controlled-css-zoom-200percent", [save]);
-    await page.evaluate(()=>{document.documentElement.style.zoom="1";});
+    await captureRecordState(page,"controlled-text-enlargement-200percent", [save]);
+    await originalFonts.evaluate(sizes=>{for(const {element,fontSize} of sizes) element.style.fontSize=fontSize;});
+    await originalFonts.dispose();
     // A 320px visible viewport models occlusion; it does not summon or prove an OS keyboard.
     await page.setViewportSize({width:360,height:320});
     const summary=dialog.getByTestId("form-error-summary"); await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
@@ -1091,7 +1110,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       const create = await openCustomerCreate(page, marker);
       await create.getByRole("button", { name: "Spara", exact: true }).click();
       await expect(create).toHaveCount(0);
-      const created = await adminQuery<{ id: string; tenant_id: string; archived_at: string | null }>(
+      const created = await adminQuery<{ id: string; tenant_id: string; archived_at: Date | null }>(
         "select id, tenant_id, archived_at from public.customers where tenant_id = $1 and display_name = $2",
         [isolated.tenantA.id, marker],
       );
@@ -1115,7 +1134,8 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(page).toHaveURL(/\/customers$/);
       const archived = await customerSnapshot(marker);
       expect(archived).toHaveLength(1);
-      expect(archived[0]).toMatchObject({ id, city: "Örnsköldsvik", archived_at: expect.any(String), audits: 3 });
+      expect(archived[0]).toMatchObject({ id, city: "Örnsköldsvik", archived_at: expect.any(Date), audits: 3 });
+      expect(archived[0].archived_at instanceof Date && Number.isFinite(archived[0].archived_at.getTime())).toBe(true);
       const audit = await adminQuery<{ command: string; tenant_id: string; actor_user_id: string; target_type: string; target_id: string }>(
         "select command, tenant_id, actor_user_id, target_type, target_id from public.audit_events where target_id = $1 order by command", [id],
       );
@@ -1147,7 +1167,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         }
         await create.getByRole("button", { name: "Spara", exact: true }).click();
         await expect(create).toHaveCount(0);
-        const created = await adminQuery<{ id: string; tenant_id: string; customer_id: string; archived_at: string | null }>(
+        const created = await adminQuery<{ id: string; tenant_id: string; customer_id: string; archived_at: Date | null }>(
           `select id, tenant_id, customer_id, archived_at from public.${table} where tenant_id = $1 and name = $2`, [isolated.tenantA.id, marker],
         );
         expect(created).toHaveLength(1);
@@ -1175,7 +1195,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         await edit.getByRole("textbox", { name: "Namn", exact: true }).fill(editedName);
         await edit.getByRole("button", { name: "Spara", exact: true }).click();
         await expect(edit).toHaveCount(0);
-        const updated = await adminQuery<{ id: string; tenant_id: string; customer_id: string; name: string; archived_at: string | null }>(
+        const updated = await adminQuery<{ id: string; tenant_id: string; customer_id: string; name: string; archived_at: Date | null }>(
           `select id, tenant_id, customer_id, name, archived_at from public.${table} where id = $1`, [id],
         );
         expect(updated).toEqual([{ id, tenant_id: isolated.tenantA.id, customer_id: customerId, name: editedName, archived_at: null }]);
@@ -1191,8 +1211,11 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         expect(await adminQuery(`select id from public.${table} where id = $1 and archived_at is null`, [id])).toHaveLength(1);
         await archive.click(); await archive.click();
         await expect(page.getByText(editedName, { exact: true })).toHaveCount(0);
-        expect(await adminQuery(`select id, tenant_id, customer_id, name, archived_at from public.${table} where id = $1`, [id]))
-          .toEqual([{ id, tenant_id: isolated.tenantA.id, customer_id: customerId, name: editedName, archived_at: expect.any(String) }]);
+        const archived = await adminQuery<{ id: string; tenant_id: string; customer_id: string; name: string; archived_at: Date | null }>(
+          `select id, tenant_id, customer_id, name, archived_at from public.${table} where id = $1`, [id],
+        );
+        expect(archived).toEqual([{ id, tenant_id: isolated.tenantA.id, customer_id: customerId, name: editedName, archived_at: expect.any(Date) }]);
+        expect(archived[0].archived_at instanceof Date && Number.isFinite(archived[0].archived_at.getTime())).toBe(true);
         expect(await adminQuery("select command, tenant_id, actor_user_id, target_type, target_id from public.audit_events where target_id = $1 order by command", [id]))
           .toEqual(["archive", "create", "update"].map(action => ({ command: `${kind}.${action}`, tenant_id: isolated.tenantA.id,
             actor_user_id: isolated.adminA.id, target_type: kind, target_id: id })));
@@ -1382,11 +1405,31 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
           await summary.getByRole("link").first().click(); await expect(name).toBeFocused();
           await captureRecordState(page, `${kind}-validation-focus`, [name], [], true);
           if (viewport.width === 360) {
-            // A bounded CSS enlargement + short viewport proxy; no physical keyboard claim.
-            await page.addStyleTag({ content: "body { zoom: 2; }" });
-            await page.setViewportSize({ width: 360, height: 400 });
+            // Measure text enlargement separately before a short-viewport proxy.
+            // Never scale the 100dvh sheet geometry with whole-body CSS zoom.
+            const baselineFont = await name.evaluate(node => parseFloat(getComputedStyle(node).fontSize));
+            await dialog.evaluate(node => {
+              const sizes = [node, ...node.querySelectorAll("*")].filter((element): element is HTMLElement => element instanceof HTMLElement)
+                .map(element => ({ element, pixels: parseFloat(getComputedStyle(element).fontSize) }));
+              for (const { element, pixels } of sizes) element.style.fontSize = `${pixels * 2}px`;
+            });
+            expect(await name.evaluate(node => parseFloat(getComputedStyle(node).fontSize))).toBeGreaterThanOrEqual(baselineFont * 1.9);
+            expect(await dialog.locator("form").evaluate(form => form.scrollWidth <= form.clientWidth + 1)).toBe(true);
+            await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
+            await name.scrollIntoViewIfNeeded(); await expect(name).toBeInViewport();
+            const enlarged = (await name.boundingBox())!;
+            expect(enlarged.x).toBeGreaterThanOrEqual(0); expect(enlarged.x + enlarged.width).toBeLessThanOrEqual(361);
             const save = dialog.getByRole("button", { name: "Spara", exact: true });
             await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
+            await page.setViewportSize({ width: 360, height: 400 });
+            await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
+            await summary.getByRole("link").first().click(); await expect(name).toBeFocused(); await expect(name).toBeInViewport();
+            await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
+            const hit = await save.evaluate(button => {
+              const box = button.getBoundingClientRect();
+              return { top: box.top, bottom: box.bottom, reachable: button.contains(document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2)) };
+            });
+            expect(hit.top).toBeGreaterThanOrEqual(0); expect(hit.bottom).toBeLessThanOrEqual(400); expect(hit.reachable).toBe(true);
             await captureRecordState(page, `controlled-${kind}-enlargement-occlusion`, [save], [], true);
             // Navigation below restores the unmodified production stylesheet.
             await page.goto(`/customers/${customerId}`);

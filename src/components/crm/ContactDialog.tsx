@@ -148,6 +148,7 @@ function ContactDialogBody({
         <legend className="text-section font-medium text-text-primary">Koppling och kontaktval</legend>
         {facilities.length > 0 && (
           <SelectField
+            key={v("facility_id", defaults?.facility_id)}
             name="facility_id"
             label="Anläggning (valfritt)"
             options={facilityOptions}
