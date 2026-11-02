@@ -33,3 +33,38 @@
 2. After actual current-head images are published, authenticated owner visual acceptance is required.
 
 **Next:** Publish own pending PR, dispatch supported exact-head full hosted validation and preserve all failures. No self-merge.
+
+## Report — 2026-11-02T15:10:27Z (capture repair checkpoint)
+
+**Story:** `spec-design-35-6-35-6` (spec design-35-6, story 35-6) — first-and-last-in-epic.
+**Spec:** `C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md`
+**Branch:** `codex/story-35-6-crm-record-journeys` (HEAD `be4e1b6`).
+**Pipeline status:** Pending: owned capture source repaired and independently reviewed; real capture execution and acceptance remain unearned.
+**Continues:** Same assigned PR127; no integration or aggregate work.
+
+**Timing:** started 2026-11-02T13:54:54Z; completed in progress — elapsed 1h 15m (≈1h 02m AI-run, ≈13m human/idle wait); resumed 1×.
+
+**Phases run:** Bounded Phase5 verification repair and targeted High review
+**Skipped:** Phase6 awaiting coordinator shared-output route; aggregate Phase8 coordinator-only
+
+**Overrides:** Keep blocked checkpoint and release_ready=false
+
+**TEA:** 11E35sourcecases; 98plannedPNGsource outputs with72exactqualifyingselection; actualnewheadruntime0
+
+**Build:** Test-only capture helper attaches realviewportPNGbuffers to nativeJSON, verifiessemanticvisibility after reflow and restoresviewport. Production unchanged. Typecheck/focusedlint/trail16refs passed; historical suffix preserved.
+
+**Review:** Targeted High capture review identified and fixed reflow visibility issue; High consequentialdelta review no findings at1a3a4a7e. Prior six-layer code review retained; follow-up still pending.
+
+**Retrospective:** (none)
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Priorhead5a nativeproof: units3780passed0skip; dashboard79passed0skip; recovery1passed; integration2163passed0failed52skipped (51Bookingseries+1recoveryseparatelypassed). Fullbrowser still executing. No priorheadproof credited to newcapturecandidate.
+
+**⚠️ Needs human:**
+1. Coordinator Phase6 automation-summary allocation/reconciliation remains required.
+2. Genuine CustomerList read-failure capture lacks current safe browser seam; no child-read honesty credit.
+3. Authenticated current-head visual acceptance remains pending actual images.
+
+**Next:** Push samePR checkpoint and dispatch isolated exacthead full validation. Preserve oldrun41463404500 and nativeartifacts.

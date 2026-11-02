@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/specs/spec
 story_id: 35-6
 branch: codex/story-35-6-crm-record-journeys
 status: in-progress
-updated_at: "2026-11-02T14:46:39Z"
+updated_at: "2026-11-02T15:10:27Z"
 started_at: "2026-11-02T13:54:54Z"
 completed_at: null
-active_seconds: 2296
-timing_anchor: 1793630799
+active_seconds: 3723
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -55,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [82ce018d, 5abe9dcb, 90c4c708, d42d66f2, 9bbf276c, eb64f6f5, 23c2962c]
+commits: [82ce018d, 5abe9dcb, 90c4c708, d42d66f2, 9bbf276c, eb64f6f5, 23c2962c, 114c8772, d369489b, 0c1a78e3, 1a3a4a7e, be4e1b64]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -96,8 +96,8 @@ parallel_run_id: e35-6-20261102
 publication_identity_json: "{\"base_branch\": \"main\", \"base_revision\": \"824bed4a92eb388db669ffb60492a7b1dd9fc038\", \"branch\": \"codex/story-35-6-crm-record-journeys\", \"repository\": \"rthunborg/Kopplas\", \"run_id\": \"e35-6-20261102\", \"story_key\": \"spec-design-35-6-35-6\", \"worktree\": \"C:/DEV/Kopplas/tmp/private/e35-worker-35-6\"}"
 development_state: checkpoint_pending
 publication_state: checkpoint-open-evidence-pending
-review_state: code-reviewed-pending-followup
-review_revision: 9bbf276cf695a0e127a864e442dbeb2e3a79eab6
+review_state: code-and-capture-delta-reviewed-pending-followup
+review_revision: 1a3a4a7ec8a09672d47d2dca44d6c8a9c408625b
 visual_state: pending
 merge_state: not-requested
 publication_operation_json: "{\"base\":\"main\",\"branch\":\"codex/story-35-6-crm-record-journeys\",\"run_id\":\"e35-6-20261102\",\"repository\":\"rthunborg/Kopplas\",\"pr_number\":127,\"story_key\":\"spec-design-35-6-35-6\",\"operation\":\"push\",\"head\":\"5a6263d45e139b4a0137b085e0014f23742f931e\",\"status\":\"confirmed\",\"evidence\":\"gh PR127 exacthead5a6263d4 confirmed; fullhostedrun41463404500 executing; verify native3780passed0failed0skipped\"}"
