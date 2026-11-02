@@ -399,7 +399,7 @@ Unowned unexpected native failures remain named blockers, not dismissed or credi
 
 ## Suggested Review Order
 
-Author: Sol High implementation/fix delegate. Refreshed against the final uncommitted native-proven ContactDialog/test repair on `d8c202ef5b026343690f8e71d68873b6b61c3fbf`; prior capture repair lineage d369 to0c1a finding to clean1a3 remains historical; original baseline is `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`. Production code remains reviewed d42 plus clean targeted delta at 9bb. That reviewer confirmed the earlier trail; the same independent Sol High reviewer also returned exactly No findings for the current consequential capture-test delta/trail at 1a3. This reconciliation is documentation only; final source typecheck/lint and 16-stop trail evidence remain applicable. The same 16 stops are refreshed below; current checks, capture map and limits are in the repair section above.
+Author: Sol High implementation/fix delegate. Current native-fix source is `b1437128f186c9a840803066eac0144da6810d11` and includes ContactDialog and CRM E2E changes; original baseline is `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`. Prior d42/9bb and capture1a3 approvals are historical and apply only to their reviewed sources. Independent Sol High review of b143 returned no code findings and identified only this stale introduction, now corrected; narrow introduction confirmation remains pending. Current final-source static checks and the same16 verified stops remain applicable; current runtime is0executed0skipped and repaired-head native proof remains pending. Status stays blocked with the existing21unowned blockers,11sourcecases/98plannedPNGs/72selected names and release limits recorded above.
 
 ### Record identity and responsive composition
 
