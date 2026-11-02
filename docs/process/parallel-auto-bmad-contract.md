@@ -230,6 +230,151 @@ transfer, automatic worker expiry or automatic workflow adoption operation.
 
 See [the operator guide](parallel-auto-bmad.md) for user-facing session prompts.
 
+## Exact Story 35.6 schema-2 runtime admission
+
+The ordinary schema-2 helper still refuses `amend-blocked` and other legacy
+maintenance APIs. The separately reviewed adapter
+`scripts/maintenance/admit_story35_6_runtime.py` is an exact-story exception:
+run `e35-6-20261102`, key `spec-design-35-6-35-6`, source
+`_bmad-output/specs/spec-design-35-6` / original ID `35-6`, repository
+`rthunborg/Kopplas`, existing PR127. It adds exactly `playwright.config.ts` and
+`test:general-browser-runtime` to the original eleven-path assignment. It does
+not authorize a different story, further files or product behavior.
+
+The adapter loads only the unchanged helpers in its own checkout. Its registered
+same-repository tooling checkout must be clean, on a `codex/` branch at the exact
+reviewed tooling SHA, already an ancestor of refreshed qualified `origin/main`.
+Both existing `Auto-BMAD parallel contracts` jobs, `contracts (ubuntu-latest)` and
+`contracts (windows-latest)`, must pass at that SHA, with zero skipped checks.
+The pinned workflow digest must remain unchanged in tooling, main, coordinator
+and worker. Never install/copy the adapter into either live checkout.
+
+All arguments are required; read `--help` before root performs the live operation:
+
+```text
+python -X utf8 <qualified-tooling>/scripts/maintenance/admit_story35_6_runtime.py --repo <existing-control-root> --run e35-6-20261102 --owner <existing-coordinator> --story spec-design-35-6-35-6 --worker <existing-worker> --generation <current-generation> --request <absolute-reviewed-request.json>
+```
+
+This template is documentation, not an instruction to perform admission. Root
+retains live mutation/publication custody. The implementation and its synthetic
+fixtures do not establish tooling CI, live admission or product runtime/P6 proof.
+
+### Strict request and raw evidence
+
+The request accepts exactly the following fields. Raw artifact references use
+`{"path":"<absolute-file>","sha256":"<raw-bytes-SHA256>"}`; store evidence outside
+the clean tracked checkouts. Hash raw bytes before review; do not normalize them.
+
+| Fields | Required evidence |
+| --- | --- |
+| `schema_version`, `request_id` | Integer 1 and once-created 1–128 ASCII identifier token. |
+| `run_id`, `story_id`, `owner`, `worker`, `expected_generation` | Exact admitted identities/current positive integer generation, matching CLI. |
+| `expected_plan_hash`, `expected_integration_sha`, `checkpoint_sha`, `qualified_main_sha`, `workflow_version` | Current canonical stored-plan SHA256, exact clean coordinator/worker HEADs, refreshed qualified origin/main SHA, unchanged workflow pin. Historical recorded hashes are not current authority. |
+| `add_write_paths`, `add_conflict_domains` | Exactly `["playwright.config.ts"]`, `["test:general-browser-runtime"]`. |
+| `reason`, `scope_approval_ref` | Concrete frozen-scope necessity and real owner authorization reference. |
+| `reviewed_tooling_sha`, `tool_sha256`, `tooling_author`, `tooling_review` | Exact tooling HEAD, LF-normalized adapter SHA256, author identity, existing independent Sol High `review` object at tooling SHA. Reviewer differs from tooling author, coordinator and every writer in the stopped-writer receipt, including nested fixers. |
+| `tooling_ci` | Raw artifact described below, with both existing OS jobs at tooling SHA. |
+| `quiescence` | Existing stopped-writer attestation schema from additive recovery above, bound to current worker/generation/branch/worktree/checkpoint. Inventory every write-capable worker/fixer; all stopped. |
+| `ownership_inventory` | Raw coordinator-attested repository-wide snapshot and reservation inventory below. |
+| `own_state` | Raw reference to the actual worker's `_bmad-output/auto-bmad/state/spec-design-35-6-35-6.yaml`. |
+| `publication` | Raw provider observation below, bound to PR127 and confirmed durable operation. |
+| `admission_review` | Exactly `review` (independent Sol High at checkpoint SHA) and `request_digest` (canonical SHA256 of the entire request excluding `admission_review`). Reviewer differs from tooling author, coordinator and every writer in the stopped-writer receipt, including nested fixers. The digest binds all raw artifact hashes and identities. |
+
+The request is parsed exactly once from its initially captured raw bytes, using
+duplicate-key rejection. The same byte sequence is rechecked before mutation;
+the request file is never reopened as a separate parsing input.
+
+Tooling CI JSON has exactly `schema_version: 1`, `repository`,
+`workflow: ".github/workflows/auto-bmad-parallel.yml"`, `commit`, `result: "passed"`,
+`checks`, and nonempty `source_ref` to native provider evidence. `checks` contains
+exactly the two job names above, using the existing check schema (actual argv,
+positive executed count, zero skipped, exact tooling commit). These are observed
+facts inspected by the coordinator and independent reviewer, never manufactured
+receipts or commands for the adapter to execute.
+
+Provider JSON has exactly `repository`, integer `pr_number: 127`, `pr_url`,
+`head_branch`, `base_branch: "main"`, `head_sha`, `state: "open"`, `merged: false`,
+and nonempty `observation_ref`. The adapter parses own state through existing
+`state_update.load_state`; immutable `publication_identity_json` must match the
+original run/source/branch/worktree/plan base. `publication_operation_json` must
+be durably `confirmed`, operation `create` or `push`, with matching PR127,
+repository, branch, main, head and identity. Published head must descend from
+the claim base and be an ancestor of the exact blocked checkpoint. Unknown,
+in-flight, mismatched or ambiguous outcomes refuse; reconcile them first through
+the existing publication process. No provider operation is performed here.
+
+Ownership JSON has exactly `schema_version: 1`, `coordinator`, `attested: true`,
+`complete: true`, `snapshot`, and `reservations`. `snapshot` equals the adapter's
+read-only `store_snapshot(connection, control_root)` projection: actual common Git
+directory; all stored runs, claims, journals, verifications, story publications
+and amendment audit rows; every registered worktree's path, branch, HEAD, raw
+porcelain status and raw hashes of state/epic anchors. To capture it, use SQLite
+URI `mode=ro` with `row_factory=sqlite3.Row` and a consistent read transaction.
+Never use the helper's write-capable `database` context to inspect the live store.
+The adapter recomputes this projection within its admission transaction. Each
+active plan is validated through its registered authoritative integration
+checkout, so a foreign source already on qualified main need not exist in the
+older target control checkout. Existing concurrent-source independence and
+path/domain ownership checks still apply.
+
+Each reservation entry has exactly `reservation` (existing six-field legacy
+reservation shape), `head` (actual current checkout HEAD), `source_status`
+(`active` or `stopped`), `evidence_ref` (actual current session status),
+`independent: true`, `independence_ref` (reviewed scope/source independence), and
+`anchors` (exact relative anchor paths the reservation covers). Include every
+declared live reservation and any additional nonterminal legacy anchor not
+recognized by its actual stored claim. An active nonconflicting producer is
+allowed; uncertain status or any path/domain/source collision refuses while
+preserving its reservation. Pending planned ownership remains governed by the
+ordinary helper. Existing claim independence requirements are retained.
+
+### Custody, transaction and continuation
+
+1. Root reconciles existing identities/provider operation, obtains qualified
+   tooling review and both exact-SHA CI jobs, and refreshes qualified main. No
+   live admission is implied by a synthetic test pass or a tooling PR.
+2. Keep claim writers stopped and registered coordinator/worker checkouts clean.
+   Capture the exact deliberately blocked claim with null evidence/result/
+   integration fields. Any target submission/publication, journal or verification,
+   prepared repository integration or unresolved PR merge custody refuses.
+3. Capture current inventory, raw own state, provider facts and writer statuses.
+   Have an independent Sol High reviewer inspect the complete strict request and
+   raw hashes; retain native source evidence and the full reviewed payload.
+4. Root invokes the separately qualified adapter once. It validates the complete
+   old-base-to-checkpoint diff against the original eleven paths first. Legacy
+   anchor recognition uses the authoritative old plan; revised ownership is
+   checked separately against all claims/shared paths/reservations. Immediately
+   before CAS it rechecks the inventory/store, Git heads, stopped writers and
+   every bound byte sequence.
+5. One existing `BEGIN IMMEDIATE` transaction updates only effective plan scope,
+   increments claim generation once, reanchors submission base to the checkpoint,
+   returns state to `claimed`, and appends complete before/after plan/claim,
+   request, raw-evidence snapshots and response to `claim_amendments`. Every raw
+   artifact, including the stopped-writer source, is retained as its reference
+   plus lossless base64 bytes; decoding must reproduce its exact raw SHA256,
+   including any UTF-8 BOM. Existing
+   append-only triggers protect this audit. A failure rolls all three back. The
+   adapter performs no Git mutation, claim transfer/release or writer restart.
+6. Save the full schema-2 response as a new assignment outside tracked files.
+   Obtain a fresh heartbeat using the original pinned helper and new generation
+   before root restarts writers. Old-generation heartbeat/block/submit refuse.
+   Preserve review history and run every ordinary exact-final-result gate; no
+   runtime, list-read/retry, product CI or readiness result is waived here.
+
+Continuation remains behind the existing durable publication/`pr_strategy`
+wrapper, which preserves the original PR identity before normal helper
+submission. This adapter does not change the original helper's direct-submit
+publication boundary or add a new publication authority.
+
+An identical token/payload retry returns only its immutable historical response
+with `replayed: true`, without new mutation or fresh qualification. Changed
+payloads and competing stale plan/generation requests refuse. Always heartbeat
+the receipt generation before treating it as current authority. SQLite cannot
+lock external agents, provider state or Git: continued silence, complete session
+inventory and authenticity of external status/CI/review observations remain
+coordinator responsibilities. The adapter hashes/rechecks data; it cannot prove
+the truth of a fabricated or incomplete external attestation.
+
 
 ## Quiesced inherited-skip finalization (maintenance only)
 
