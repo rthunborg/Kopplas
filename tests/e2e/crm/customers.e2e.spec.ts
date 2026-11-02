@@ -29,7 +29,7 @@ import { readFileSync, mkdirSync, appendFileSync } from "node:fs";
 import path from "node:path";
 import { expectActiveAdminNavigation } from "../support/active-admin-navigation";
 import { adminExec, adminQuery, closeAdminPool } from "../../factories/admin-sql";
-import { createTwoTenantFixture, cleanupFixture } from "../../factories/tenants";
+import { createTwoTenantFixture, cleanupFixture, adminInsertCustomer, adminInsertFacility, adminInsertContact } from "../../factories/tenants";
 
 async function captureRecordState(page: Page, state: string) {
   const folder = process.env.E35_CAPTURE_DIR;
@@ -1005,5 +1005,201 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.getByTestId("file-index-upload-owner").selectOption(inheritedFixture.calc.id);
     await expect(page.getByTestId("file-index-upload-form").locator('input[name="purpose"]')).toHaveValue("calculation_attachment");
     await captureRecordState(page,"inherited-file-index-select");
+  });
+
+  // Story 35.6 active ATDD: no skipped tests or fabricated successful commands.
+  // Confidence 8: selectors and identities come from CustomerDetail, both child
+  // dialogs, ArchiveButton and existing factories. Runtime baseline is UNRUN.
+  // D1-D5 apply; the sixteen customer-state bindings are retained in the checklist.
+  test("[P0] E35-6-T-AC1/AC7 customer lifecycle keeps one identity and three attributable audits", async ({ page }) => {
+    const isolated = await createTwoTenantFixture();
+    try {
+      // Given a disposable tenant, never a shared auth-fixture customer.
+      const marker = `35.6 kund ${crypto.randomUUID()}`;
+      await signIn(page, isolated.adminA.email, isolated.adminA.password);
+      const create = await openCustomerCreate(page, marker);
+      await create.getByRole("button", { name: "Spara", exact: true }).click();
+      await expect(create).toHaveCount(0);
+      const created = await adminQuery<{ id: string; tenant_id: string; archived_at: string | null }>(
+        "select id, tenant_id, archived_at from public.customers where tenant_id = $1 and display_name = $2",
+        [isolated.tenantA.id, marker],
+      );
+      expect(created).toHaveLength(1);
+      expect(created[0]).toMatchObject({ tenant_id: isolated.tenantA.id, archived_at: null });
+      const id = created[0].id;
+      const edit = await openCustomerEditor(page, id);
+      await edit.getByLabel("Ort", { exact: true }).fill("Örnsköldsvik");
+      await edit.getByRole("button", { name: "Spara", exact: true }).click();
+      await expect(edit).toHaveCount(0);
+      expect(await customerSnapshot(marker)).toEqual([expect.objectContaining({ id, city: "Örnsköldsvik", archived_at: null, audits: 2 })]);
+
+      // D1: confirmation is the existing id-only archive, with no reason policy.
+      const archive = page.getByRole("button", { name: "Arkivera kund", exact: true });
+      await archive.click();
+      await expect(page.getByRole("status").filter({ hasText: "Arkivera den här kunden?" })).toBeVisible();
+      await expect(page.getByLabel(/arkiv.*orsak|anledning/i)).toHaveCount(0);
+      await page.getByRole("button", { name: "Avbryt", exact: true }).click();
+      expect((await customerSnapshot(marker))[0]).toMatchObject({ id, archived_at: null, audits: 2 });
+      await archive.click(); await archive.click();
+      await expect(page).toHaveURL(/\/customers$/);
+      const archived = await customerSnapshot(marker);
+      expect(archived).toHaveLength(1);
+      expect(archived[0]).toMatchObject({ id, city: "Örnsköldsvik", archived_at: expect.any(String), audits: 3 });
+      const audit = await adminQuery<{ command: string; tenant_id: string; actor_user_id: string; target_type: string; target_id: string }>(
+        "select command, tenant_id, actor_user_id, target_type, target_id from public.audit_events where target_id = $1 order by command", [id],
+      );
+      expect(audit).toEqual(["customer.archive", "customer.create", "customer.update"].map(command => ({
+        command, tenant_id: isolated.tenantA.id, actor_user_id: isolated.adminA.id, target_type: "customer", target_id: id,
+      })));
+    } finally { await cleanupFixture(isolated); }
+  });
+
+  for (const kind of ["facility", "contact"] as const) {
+    test(`[P0] E35-6-T-AC1/AC7 ${kind} create/edit/archive preserves exact parent and attributable audit`, async ({ page }) => {
+      const isolated = await createTwoTenantFixture();
+      try {
+        const marker = `35.6 ${kind} ${crypto.randomUUID()}`, editedName = `${marker} ändrad`;
+        const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: `${marker} kund`, org_nr: "556677-8899" });
+        const facilityId = await adminInsertFacility({ tenant_id: isolated.tenantA.id, customer_id: customerId, name: `${marker} anläggning` });
+        const table = kind === "facility" ? "facilities" : "contacts";
+        const title = kind === "facility" ? "Ny anläggning" : "Ny kontakt";
+        const editTitle = kind === "facility" ? "Redigera anläggning" : "Redigera kontakt";
+        const archiveName = `Arkivera ${kind === "facility" ? "anläggning" : "kontakt"} ${editedName}`;
+        await signIn(page, isolated.adminA.email, isolated.adminA.password);
+        await page.goto(`/customers/${customerId}`);
+        const trigger = page.getByTestId(`new-${kind}-button`); await waitForHydrated(trigger); await trigger.click();
+        const create = page.getByRole("dialog", { name: title, exact: true });
+        await create.getByRole("textbox", { name: "Namn", exact: true }).fill(marker);
+        if (kind === "contact") await create.getByLabel("Anläggning (valfritt)").selectOption(facilityId);
+        await create.getByRole("button", { name: "Spara", exact: true }).click();
+        await expect(create).toHaveCount(0);
+        const created = await adminQuery<{ id: string; tenant_id: string; customer_id: string; archived_at: string | null }>(
+          `select id, tenant_id, customer_id, archived_at from public.${table} where tenant_id = $1 and name = $2`, [isolated.tenantA.id, marker],
+        );
+        expect(created).toHaveLength(1);
+        expect(created[0]).toMatchObject({ tenant_id: isolated.tenantA.id, customer_id: customerId, archived_at: null });
+        const id = created[0].id;
+        const record = page.getByRole("listitem").filter({ has: page.getByText(marker, { exact: true }) });
+        await expect(record).toHaveCount(1);
+        await record.getByRole("button", { name: "Redigera", exact: true }).click();
+        const edit = page.getByRole("dialog", { name: editTitle, exact: true });
+        await edit.getByRole("textbox", { name: "Namn", exact: true }).fill(editedName);
+        await edit.getByRole("button", { name: "Spara", exact: true }).click();
+        await expect(edit).toHaveCount(0);
+        const updated = await adminQuery<{ id: string; tenant_id: string; customer_id: string; name: string; archived_at: string | null }>(
+          `select id, tenant_id, customer_id, name, archived_at from public.${table} where id = $1`, [id],
+        );
+        expect(updated).toEqual([{ id, tenant_id: isolated.tenantA.id, customer_id: customerId, name: editedName, archived_at: null }]);
+        if (kind === "contact") {
+          expect(await adminQuery<{ facility_id: string }>("select facility_id from public.contacts where id = $1", [id])).toEqual([{ facility_id: facilityId }]);
+        }
+        const archive = page.getByRole("button", { name: archiveName, exact: true });
+        await archive.click();
+        await expect(page.getByLabel(/arkiv.*orsak|anledning/i)).toHaveCount(0);
+        await page.getByRole("button", { name: "Avbryt", exact: true }).click();
+        expect(await adminQuery(`select id from public.${table} where id = $1 and archived_at is null`, [id])).toHaveLength(1);
+        await archive.click(); await archive.click();
+        await expect(page.getByText(editedName, { exact: true })).toHaveCount(0);
+        expect(await adminQuery(`select id, tenant_id, customer_id, name, archived_at from public.${table} where id = $1`, [id]))
+          .toEqual([{ id, tenant_id: isolated.tenantA.id, customer_id: customerId, name: editedName, archived_at: expect.any(String) }]);
+        expect(await adminQuery("select command, tenant_id, actor_user_id, target_type, target_id from public.audit_events where target_id = $1 order by command", [id]))
+          .toEqual(["archive", "create", "update"].map(action => ({ command: `${kind}.${action}`, tenant_id: isolated.tenantA.id,
+            actor_user_id: isolated.adminA.id, target_type: kind, target_id: id })));
+      } finally { await cleanupFixture(isolated); }
+    });
+  }
+
+  for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 }]) {
+    for (const kind of ["facility", "contact"] as const) {
+      test(`[P1] E35-6-T-AC3/AC4/AC5 ${kind} field summary, focus and corrected persistence at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+        const isolated = await createTwoTenantFixture();
+        try {
+          // E35-6-STATE-validation / E35-6-T-validation and
+          // E35-6-STATE-focus-dialog / E35-6-T-focus-dialog: actual child callers only.
+          const marker = `35.6 ${kind} Återkommande service ${crypto.randomUUID()}`;
+          const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: `${marker} kund`, org_nr: "556677-8899" });
+          await page.setViewportSize(viewport);
+          await signIn(page, isolated.adminA.email, isolated.adminA.password);
+          await page.goto(`/customers/${customerId}`);
+          await expect(page.getByRole("heading", { name: `${marker} kund`, exact: true })).toBeVisible();
+          const trigger = page.getByTestId(`new-${kind}-button`); await waitForHydrated(trigger);
+          await trigger.scrollIntoViewIfNeeded();
+          expect((await trigger.boundingBox())?.height, "record action touch target").toBeGreaterThanOrEqual(44);
+          await trigger.click();
+          const title = kind === "facility" ? "Ny anläggning" : "Ny kontakt";
+          const dialog = page.getByRole("dialog", { name: title, exact: true });
+          const name = dialog.getByRole("textbox", { name: "Namn", exact: true });
+          await expect(name).toBeFocused();
+          const retained = dialog.getByLabel(kind === "facility" ? "Adress" : "Roll (valfritt)", { exact: true });
+          await retained.fill("Lång svensk uppgift som ska behållas efter avvisat försök");
+          await dialog.getByRole("button", { name: "Spara", exact: true }).click();
+          await expect(name).toHaveAttribute("aria-invalid", "true");
+          const errorId = await name.getAttribute("aria-describedby"); expect(errorId).toBeTruthy();
+          await expect(dialog.locator(`[id="${errorId}"]`)).toBeVisible();
+          const summary = dialog.getByTestId("form-error-summary");
+          await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
+          // RED target: current child summaries omit fieldErrors/field links.
+          await summary.getByRole("link").first().click(); await expect(name).toBeFocused();
+          await expect(retained).toHaveValue("Lång svensk uppgift som ska behållas efter avvisat försök");
+          const table = kind === "facility" ? "facilities" : "contacts";
+          expect(await adminQuery(`select id from public.${table} where customer_id = $1`, [customerId])).toEqual([]);
+          expect(await adminQuery("select id from public.audit_events where tenant_id = $1 and target_type = $2", [isolated.tenantA.id, kind])).toEqual([]);
+          const save = dialog.getByRole("button", { name: "Spara", exact: true });
+          await save.focus(); await page.keyboard.press("Tab");
+          await expect(dialog.getByRole("button", { name: "Stäng", exact: true })).toBeFocused();
+          await page.keyboard.press("Shift+Tab"); await expect(save).toBeFocused();
+          await page.keyboard.press("Escape"); await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
+          await trigger.click(); await expect(name).toBeFocused();
+          await name.fill(marker);
+          await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
+          expect((await save.boundingBox())?.height).toBeGreaterThanOrEqual(44);
+          await save.click(); await expect(dialog).toHaveCount(0);
+          const rows = await adminQuery<{ id: string; tenant_id: string; customer_id: string; name: string }>(
+            `select id, tenant_id, customer_id, name from public.${table} where customer_id = $1`, [customerId],
+          );
+          expect(rows).toHaveLength(1); expect(rows[0]).toMatchObject({ tenant_id: isolated.tenantA.id, customer_id: customerId, name: marker });
+          expect(await adminQuery("select command, actor_user_id, target_id from public.audit_events where tenant_id = $1 and target_type = $2", [isolated.tenantA.id, kind]))
+            .toEqual([{ command: `${kind}.create`, actor_user_id: isolated.adminA.id, target_id: rows[0].id }]);
+        } finally { await cleanupFixture(isolated); }
+      });
+    }
+  }
+
+  test("[P0] E35-6-T-AC2/AC6 adapted composition keeps exact Documents tuples, independent panels and customer Booking preconnection", async ({ page }) => {
+    const isolated = await createTwoTenantFixture();
+    try {
+      const marker = `35.6 relation ${crypto.randomUUID()}`;
+      const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: marker, org_nr: "556677-8899" });
+      const facilityId = await adminInsertFacility({ tenant_id: isolated.tenantA.id, customer_id: customerId, name: `${marker} anläggning` });
+      const contactId = await adminInsertContact({ tenant_id: isolated.tenantA.id, customer_id: customerId, facility_id: facilityId, name: `${marker} kontakt` });
+      await signIn(page, isolated.adminA.email, isolated.adminA.password);
+      for (const [ownerType, ownerId, ownerLabel, suffix] of [
+        ["customer", customerId, marker, ""],
+        ["facility", facilityId, `${marker} anläggning`, `-facility-${facilityId}`],
+        ["contact", contactId, `${marker} kontakt`, `-contact-${contactId}`],
+      ]) {
+        await page.goto(`/customers/${customerId}`);
+        const panel = page.getByTestId(`entity-file-panel${suffix}`);
+        await expect(panel).toBeVisible();
+        await expect(panel.getByTestId(`file-panel-owner${suffix}`)).toHaveText(ownerLabel);
+        const expectedHref = "/files?" + new URLSearchParams({ module: "crm", ownerType, ownerId });
+        const entry = page.getByRole("link", { name: "Visa i Dokument", exact: true }).and(page.locator(`[href="${expectedHref}"]`));
+        await expect(entry).toHaveCount(1); await entry.click();
+        const url = new URL(page.url());
+        expect(url.pathname).toBe("/files");
+        expect(Object.fromEntries(url.searchParams)).toMatchObject({ module: "crm", ownerType, ownerId });
+        const back = page.getByTestId("documents-context-return");
+        await expect(back).toHaveAttribute("href", `/customers/${customerId}`);
+        await back.click(); await expect(page).toHaveURL(new RegExp(`/customers/${customerId}$`));
+        await expect(page.getByRole("heading", { name: marker, exact: true })).toBeVisible();
+      }
+      const booking = page.getByTestId("booking-entry-customer"); await waitForHydrated(booking); await booking.click();
+      await expect(page.getByTestId("booking-customer")).toHaveValue(customerId);
+      await page.getByTestId("booking-close").click(); await booking.click();
+      await expect(page.getByTestId("booking-customer")).toHaveValue(customerId);
+      // Full save/reopen and independent booking persistence remain E2E-006's duty.
+      // File operation, selected-tuple, lock and signed-access outcomes remain in
+      // their existing real producer suites; empty child arrays earn no read proof.
+    } finally { await cleanupFixture(isolated); }
   });
 });
