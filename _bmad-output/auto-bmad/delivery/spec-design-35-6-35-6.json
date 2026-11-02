@@ -1,17 +1,17 @@
 {
   "policy_version": "2026-10-19",
-  "contract_reconciliation": "Same authorized blocked checkpoint, focused test/privacy/evidence repair only, not new broad review/P6. Seven ACs/sixteen state IDs/D1-D5 and frozen suffix preserved. All production/authority/shared/workflow/dependency/root-state sources read-only. Eleven active E35-6 source cases; expected98PNGs(92qualifying6supplemental), explicit72qualifying native attachment selection in current story <=80. No actual local captures/runtime(0executed0skipped), no done/helper/gate retry. Current targeted independent High review and actual exact-head authenticated runtime/visual/integration/RLS/recovery/storage evidence remain pending. Three release obligations deferred.",
-  "evidence_revision": "d369489bc85d5ff22b624214db851b003a3fca44 plus final uncommitted focused CRM capture-verification test/docs repair; production source remains reviewed9bb; source hashes recorded below",
+  "contract_reconciliation": "Same authorized blocked checkpoint, focused test/privacy/evidence repair only, not new broad review/P6. Seven ACs/sixteen state IDs/D1-D5 and frozen suffix preserved. All production/authority/shared/workflow/dependency/root-state sources read-only. Eleven active E35-6 source cases; expected98PNGs(92qualifying6supplemental), explicit72qualifying native attachment selection in current story <=80. No actual local captures/runtime(0executed0skipped), no done/helper/gate retry. Current targeted independent High review and actual exact-head authenticated runtime/visual/integration/RLS/recovery/storage evidence remain pending. Three release obligations deferred. Targeted High review of0c1a identified1medium missing post-resize target validation; fixed within existing helper/calls by explicitsemantic Locator targets and full per-qualifying-viewport in-view assertions. Not a new broad round2; historicalscore9/followuptrue/deferredreview[] retained. Expected98/selected72attachment names unchanged; same reviewer consequentialdelta pending.",
+  "evidence_revision": "0c1a78e31fd6bb2b245d3088e9e30fd82edbdedc plus final uncommitted targeted capture-repair fix; production source unchanged; current source/test hashes recorded below",
   "development_checks": [
     {
       "name": "typecheck",
       "status": "passed",
-      "evidence": "Focused capture-repair pnpm typecheck exit0 on d369 plus final uncommitted test delta."
+      "evidence": "Post-target-binding-fix pnpm typecheck exit0 on0c1a plus final uncommitted test delta."
     },
     {
       "name": "lint",
       "status": "passed",
-      "evidence": "Focused capture-repair pnpm exec eslint tests/e2e/crm/customers.e2e.spec.ts exit0 no warnings; prior full lint31warnings retained historically."
+      "evidence": "Post-target-binding-fix pnpm exec eslint tests/e2e/crm/customers.e2e.spec.ts exit0 no warnings."
     },
     {
       "name": "build and bundle containment",
@@ -41,17 +41,17 @@
     {
       "name": "frontend visual acceptance and exact-head CI",
       "status": "pending",
-      "evidence": "Pending. Actual PNGBuffer+state/viewport/bytecount/dimension/provenance JSON now always native-attached withoutE35_CAPTURE_DIR. Expected successful once-through source98PNGs92qualifying6supplemental; explicit72planned stable attachment names in story covers all16states+adapted/context surfaces <=80; retries extra. No images collected locally. GITHUB_SHA/E35candidateclaim is author assertion pending root GitHub/run/bytes verification; no authenticated acceptance. Prior9bbgate refusal historical, no rerun."
+      "evidence": "Pending. Actual PNGBuffer+state/viewport/bytecount/dimension/provenance JSON now always native-attached withoutE35_CAPTURE_DIR. Expected successful once-through source98PNGs92qualifying6supplemental; explicit72planned stable attachment names in story covers all16states+adapted/context surfaces <=80; retries extra. No images collected locally. GITHUB_SHA/E35candidateclaim is author assertion pending root GitHub/run/bytes verification; no authenticated acceptance. Prior9bbgate refusal historical, no rerun. Targeted fix now requires actual semantic capture targets, scrolls/asserts all fully in viewport AFTER each qualifying resize and BEFORE PNG. Context owner/return/Booking and all16customer phases explicitly bound. Supplementalframes receive no qualifying target credit. Count98source/72package and stable names unchanged; no actual runtime."
     },
     {
       "name": "assigned source identity",
       "status": "passed",
-      "evidence": "{\"src/app/(app)/customers/[customerId]/page.tsx\": \"34c6c88e55fdfe3b3b6e13193b5c81a5094662d969bd2fad84d427c195af45b3\", \"src/components/crm/ArchiveButton.tsx\": \"02fabf0a0b4e7a223c1c73e80e8355e5bd1a457b27d07019557e8599cde5575b\", \"src/components/crm/ContactDialog.tsx\": \"4adc0e8921f79e3d0a7d08776b99d58afe8f11f446a57cf11c3b0d2166a38110\", \"src/components/crm/CustomerDetail.tsx\": \"998c2c066e06fcc2d112d590c050d8215abbe7625f7ac23b9b372a4a8a566eec\", \"src/components/crm/FacilityDialog.tsx\": \"3a52fbb181079d294bdabc4e0092eb7da6d1770673d7f2d48021d7ce56bb4d24\", \"tests/e2e/crm/customers.e2e.spec.ts\": \"2fb0641c7bc618847b63a5a2af2f12ec95c520412359856d6ed7146aec55bbd7\"}"
+      "evidence": "{\"src/app/(app)/customers/[customerId]/page.tsx\": \"34c6c88e55fdfe3b3b6e13193b5c81a5094662d969bd2fad84d427c195af45b3\", \"src/components/crm/ArchiveButton.tsx\": \"02fabf0a0b4e7a223c1c73e80e8355e5bd1a457b27d07019557e8599cde5575b\", \"src/components/crm/ContactDialog.tsx\": \"4adc0e8921f79e3d0a7d08776b99d58afe8f11f446a57cf11c3b0d2166a38110\", \"src/components/crm/CustomerDetail.tsx\": \"998c2c066e06fcc2d112d590c050d8215abbe7625f7ac23b9b372a4a8a566eec\", \"src/components/crm/FacilityDialog.tsx\": \"3a52fbb181079d294bdabc4e0092eb7da6d1770673d7f2d48021d7ce56bb4d24\", \"tests/e2e/crm/customers.e2e.spec.ts\": \"92304b2d5c59fefd3cfa61ea0b5d50970af9118650ea44e19f70f0773ea141c6\"}"
     }
   ],
   "independent_review": {
     "status": "pending",
-    "evidence": "Prior six SolHigh Round1 routes at d42 and clean targeted independent High delta/trail review at9bb passed for their reviewed code (3mediumfixed,score9,deferred[]). Current focused capture-test/metadata/privacy/evidence delta on d369 requires targeted independent SolHigh review; no new broad review/P6. Production unchanged. Prior approval is not new test-delta review or runtime/visual acceptance."
+    "evidence": "Prior six SolHigh Round1 routes at d42 and clean targeted independent High delta/trail review at9bb passed for their reviewed code (3mediumfixed,score9,deferred[]). Current focused capture-test/metadata/privacy/evidence delta on d369 requires targeted independent SolHigh review; no new broad review/P6. Production unchanged. Prior approval is not new test-delta review or runtime/visual acceptance. TargetedHigh0c1a capture review accepted1medium post-resize off-screen target finding; helper/call fix applied, consequential delta+trail pending same High reviewer. Not a new broad review round2."
   },
   "deferred_release_validation": [
     {

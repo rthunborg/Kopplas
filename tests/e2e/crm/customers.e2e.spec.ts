@@ -31,7 +31,7 @@ import { expectActiveAdminNavigation } from "../support/active-admin-navigation"
 import { adminExec, adminQuery, closeAdminPool } from "../../factories/admin-sql";
 import { createTwoTenantFixture, cleanupFixture, adminInsertCustomer, adminInsertFacility, adminInsertContact } from "../../factories/tenants";
 
-async function captureRecordState(page: Page, state: string, stateIds: readonly string[] = [], currentViewportOnly = false) {
+async function captureRecordState(page: Page, state: string, captureTargets: readonly Locator[], stateIds: readonly string[] = [], currentViewportOnly = false) {
   const folder = process.env.E35_CAPTURE_DIR;
   if (folder) mkdirSync(folder, {recursive:true});
   const originalViewport = page.viewportSize();
@@ -47,6 +47,13 @@ async function captureRecordState(page: Page, state: string, stateIds: readonly 
     for (const viewport of currentViewportOnly || supplemental || !originalViewport ? [originalViewport] : [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
       if (viewport) await page.setViewportSize(viewport);
       await page.bringToFront();
+      if (!supplemental) {
+        expect(captureTargets.length, "a qualifying capture requires an actual phase target").toBeGreaterThan(0);
+        await captureTargets[0].scrollIntoViewIfNeeded();
+        // Reflow can move identity/status off screen: verify every named target now,
+        // never infer it remains visible from an assertion at the original size.
+        for (const target of captureTargets) await expect(target).toBeInViewport({ ratio: 1 });
+      }
       const actualViewport = page.viewportSize();
       const filename = `${state}-${actualViewport?.width}x${actualViewport?.height}.png`;
       const png = await page.screenshot({ animations: "disabled", fullPage: false, scale: "css", ...(folder ? { path: path.join(folder, filename) } : {}) });
@@ -54,6 +61,7 @@ async function captureRecordState(page: Page, state: string, stateIds: readonly 
         file: filename, state, stateIds: stateIds.map(id => `E35-6-STATE-${id}`), viewport: actualViewport, fullPage: false,
         pngBytes: png.byteLength, pngDimensions: { width: png.readUInt32BE(16), height: png.readUInt32BE(20) },
         qualifyingViewport: !supplemental && !!actualViewport && (actualViewport.width === 1440 && actualViewport.height === 900 || actualViewport.width === 360 && actualViewport.height === 640),
+        captureTargetCount: captureTargets.length, captureTargetsVerifiedInViewport: !supplemental,
         candidate: process.env.E35_CAPTURE_REVISION ?? process.env.GITHUB_SHA ?? "uncommitted working tree",
         provenanceLimit: "Environment candidate is an author assertion; root must verify GitHub run/head and actual bytes. No visual acceptance inferred.",
         source: state === "controlled-checked-read-503-document-fallback" ? "controlled synthetic 503 document, NOT application error UI" : "implemented production-server UI",
@@ -222,7 +230,7 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     expect(body).not.toContain(fixture.crm.private.personnummer);
     const html = await page.content();
     expect(html).not.toContain(fixture.crm.private.personnummer);
-    await captureRecordState(page, "customers-list-private-value-absent", ["loaded"]);
+    await captureRecordState(page, "customers-list-private-value-absent", [page.getByRole("link", { name: fixture.crm.private.displayName, exact: true })], ["loaded"]);
   });
 
   test("P0/AC2: the private customer DETAIL shows the personnummer MASKED (not clear-text by default)", async ({
@@ -238,7 +246,7 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     // Masked by default: the clear-text value is NOT shown, but the last 4 digits are.
     await expect(pnr).not.toHaveText(fixture.crm.private.personnummer);
     await expect(pnr).toContainText(fixture.crm.private.personnummer.slice(-4));
-    await captureRecordState(page, "customer-private-detail-masked", ["loaded"]);
+    await captureRecordState(page, "customer-private-detail-masked", [pnr], ["loaded"]);
     // Reveal-on-click surfaces the full value (the access-controlled detail surface).
     const reveal = page.getByRole("button", { name: "Visa" });
     await waitForHydrated(reveal);
@@ -376,7 +384,7 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     await expect(page.getByTestId("facilities-empty")).toHaveCount(0);
     await expect(failure.getByRole("link", { name: "Tillbaka till kunder", exact: true })).toHaveAttribute("href", "/customers");
     expect(await page.content()).not.toContain(fixture.crm.private.personnummer);
-    await captureRecordState(page, "customer-detail-real-read-error");
+    await captureRecordState(page, "customer-detail-real-read-error", [failure.getByRole("heading")]);
   });
 });
 
@@ -468,12 +476,12 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.goto("/customers");
     const table = page.getByRole("table", { name: "Kundlista" });
     await expect(table.getByRole("columnheader", { name: "Kund", exact: true })).toBeVisible();
-    await captureRecordState(page,"customers-loaded", ["loaded"]);
+    await captureRecordState(page,"customers-loaded", [table.getByRole("columnheader", { name: "Kund", exact: true })], ["loaded"]);
     const selectCompany = table.getByRole("checkbox", { name: `Välj ${fixture.crm.company.displayName}`, exact: true });
     await selectCompany.focus(); await page.keyboard.press("Space");
     await expect(selectCompany).toBeChecked();
     await renderedContrast(page,table.getByRole("link",{name:fixture.crm.company.displayName,exact:true}),"selected row text");
-    await captureRecordState(page,"customers-selected");
+    await captureRecordState(page,"customers-selected", [selectCompany]);
     await expect(page).toHaveURL(/\/customers$/);
     const sort = page.getByRole("combobox", { name: /sortera/i });
     const descending = await sort.getByRole("option", { name: /fallande/i }).getAttribute("value");
@@ -493,18 +501,18 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.getByLabel("Sök kund").fill("35.3-no-match");
     await expect(page.getByTestId("customers-no-results")).toBeVisible();
     await expect(page.getByLabel("Sök kund")).toHaveValue("35.3-no-match");
-    await captureRecordState(page,"customers-no-match", ["no-match"]);
+    await captureRecordState(page,"customers-no-match", [page.getByTestId("customers-no-results")], ["no-match"]);
     await page.getByRole("button", { name: /återställ/i }).click();
     await expect(selectCompany).toBeChecked();
     await table.getByRole("link", { name: fixture.crm.company.displayName, exact: true }).click();
     await expect(page).toHaveURL(new RegExp(`/customers/${fixture.crm.company.id}$`));
-    await captureRecordState(page,"customer-detail-loaded", ["loaded"]);
+    await captureRecordState(page,"customer-detail-loaded", [page.getByRole("heading", { name: fixture.crm.company.displayName, exact: true })], ["loaded"]);
   });
 
   test("B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input", async ({ page }) => {
     await signIn(page, fixture.adminA.email, fixture.adminA.password);
     const marker = `35.3 validated ${crypto.randomUUID()}`, dialog = await openCustomerCreate(page, marker);
-    await captureRecordState(page,"customer-create-draft");
+    await captureRecordState(page,"customer-create-draft", [dialog.getByLabel("Visningsnamn")]);
     await dialog.getByLabel("E-post").fill("invalid");
     await dialog.getByLabel("Ort").fill("Västerås");
     await dialog.getByRole("button", { name: "Spara", exact: true }).click();
@@ -513,7 +521,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await expect(dialog.getByLabel("E-post")).toBeFocused();
     await expect(dialog.getByLabel("Ort")).toHaveValue("Västerås");
     expect(await customerSnapshot(marker)).toEqual([]);
-    await captureRecordState(page,"customer-validation", ["validation", "error-retry"]);
+    await captureRecordState(page,"customer-validation", [dialog.getByLabel("E-post")], ["validation", "error-retry"]);
     await dialog.getByLabel("E-post").fill("record@example.test");
     await dialog.getByRole("button", { name: "Spara", exact: true }).click();
     await expect(dialog).toHaveCount(0);
@@ -522,7 +530,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.reload();
     await expect(page.getByRole("link", { name: marker, exact: true })).toBeVisible();
     await expect(page.getByRole("link", { name: marker, exact: true })).toHaveAttribute("href", `/customers/${rows[0].id}`);
-    await captureRecordState(page, "customer-confirmed-after-validation", ["confirmed", "error-retry"]);
+    await captureRecordState(page, "customer-confirmed-after-validation", [page.getByRole("link", { name: marker, exact: true })], ["confirmed", "error-retry"]);
   });
 
   test("B03 E35-3-T-error-retry AC3/AC7: archive cancel and confirm retain customer identity and soft archive", async ({ page }) => {
@@ -560,7 +568,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(page.getByRole("alert").filter({hasText:"Anslutning krävs."})).toHaveText("Anslutning krävs. Arkiveringen är inte skickad. Försök igen med Arkivera när du är ansluten.");
       expect(attempts).toBe(0); expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
       expect(await customerSnapshot(marker)).toEqual(before);
-      await captureRecordState(page,"customer-archive-connection-required", ["connection-required"]);
+      await captureRecordState(page,"customer-archive-connection-required", [page.getByRole("alert").filter({ hasText: "Anslutning" })], ["connection-required"]);
       await context.setOffline(false); expect(await page.evaluate(()=>navigator.onLine)).toBe(true);
       await expect(page.getByRole("button",{name:"Arkivera kund",exact:true})).toBeEnabled();
       expect(attempts).toBe(0); expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
@@ -641,7 +649,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(reopened.getByRole("button",{name:"Spara",exact:true})).toBeDisabled();
       expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hint);
       expect(gate.attempts()).toBe(1); const row=(await customerSnapshot(marker))[0]; expect(row.archived_at).not.toBeNull(); expect(row.audits).toBe(2);
-      await captureRecordState(page, "customer-archive-unresolved-hint-fresh-form", ["unknown"]);
+      await captureRecordState(page, "customer-archive-unresolved-hint-fresh-form", [reopened.getByRole("alert").filter({ hasText: /obekr/ }).first()], ["unknown"]);
     } finally {await context.setOffline(false); await gate.dispose();}
   });
 
@@ -684,7 +692,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await page.keyboard.press("Enter"); await page.keyboard.press("Escape");
       await expect(dialog).toBeVisible(); await expect(dialog.getByLabel("Visningsnamn")).toHaveValue(marker);
       expect(gate.attempts()).toBe(1);
-      await captureRecordState(page,"customer-pending", ["submitting"]);
+      await captureRecordState(page,"customer-pending", [dialog.getByRole("button", { name: "Sparar…", exact: true })], ["submitting"]);
       await expect(dialog.getByRole("button", { name: "Avbryt", exact: true })).toBeDisabled();
       await expect(dialog.getByLabel("Visningsnamn")).toBeDisabled();
       await renderedContrast(page,dialog.getByRole("button",{name:"Sparar…",exact:true}),"disabled pending save",false,true);
@@ -704,7 +712,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         await expect(dialog.getByText(/obekräft|inte.*bekräft|okänt/i).first()).toBeVisible();
         await expect(dialog.getByRole("button", { name: "Spara", exact: true })).toBeDisabled();
         expect(gate.attempts()).toBe(1);
-        await captureRecordState(page,`customer-unknown-${mode}`, ["unknown"]);
+        await captureRecordState(page,`customer-unknown-${mode}`, [dialog.getByRole("alert").filter({ hasText: /obekr/ }).first()], ["unknown"]);
         const rows = await customerSnapshot(marker);
         expect(rows).toHaveLength(mode === "before-forward" ? 0 : 1);
         // Test knowledge of undispatched transport is not a production rollback receipt.
@@ -717,7 +725,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         expect(storage.join(" ")).not.toContain(marker);
         expect(storage.join(" ")).not.toContain(fixture.crm.private.personnummer);
         expect(storage.join(" ")).not.toContain(fixture.crm.company.id);
-        await captureRecordState(page, `customer-unresolved-hint-fresh-form-${mode}`, ["unknown"]);
+        await captureRecordState(page, `customer-unresolved-hint-fresh-form-${mode}`, [reopened.getByRole("alert").filter({ hasText: /obekr/ }).first()], ["unknown"]);
       } finally { await gate.dispose(); }
     });
   }
@@ -728,7 +736,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await created.getByRole("button", { name: "Spara", exact: true }).click(); await expect(created).toHaveCount(0);
     const id = (await customerSnapshot(marker))[0].id;
     const first = await openCustomerEditor(page, id), secondPage = await context.newPage();
-    await captureRecordState(page,"customer-edit-loaded");
+    await captureRecordState(page,"customer-edit-loaded", [first.getByLabel("Telefon")]);
     try {
       // Independent browser page/action-state instance; same entitled tenant actor.
       const second = await openCustomerEditor(secondPage, id);
@@ -748,7 +756,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       ].sort());
       await expect(first).toBeVisible(); await expect(first.getByText(/ändrats|aktuell.*uppgift/i).first()).toBeVisible();
       await expect(first.getByLabel("Ort")).toHaveValue("Malmö");
-      await captureRecordState(page,"customer-conflict", ["stale"]);
+      await captureRecordState(page,"customer-conflict", [first.getByText(/aktuell.*uppgift|kund.*ndrats/i).first()], ["stale"]);
       const afterB = await customerSnapshot(marker); expect(afterB[0].phone).toBe("+46706666666"); expect(afterB[0].city).toBeNull();
       const priorBaseline=await first.locator('input[name="expected_customer"]').inputValue();
       let reads=0,release!:()=>void,observed!:()=>void,delivered!:()=>void;
@@ -817,7 +825,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
         await expect(page.getByRole("dialog")).toHaveCount(0);
         await expect(page.getByText(/Kunden sparades|Sparat/, {exact:false})).toHaveCount(0);
-        await captureRecordState(page,"controlled-checked-read-503-document-fallback");
+        await captureRecordState(page,"controlled-checked-read-503-document-fallback", [page.getByText(/misslyckades.*webbl/).first()]);
       } finally {await page.unroute("**/*",failureHandler);}
     } finally { await secondPage.close(); }
   });
@@ -884,7 +892,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(selected).toBeChecked();
       await expect(page.getByTestId("customers-empty")).toHaveCount(0);
       await expect(page.getByRole("status").filter({ hasText: /laddar|hämtar/i }).first()).toBeVisible();
-      await captureRecordState(page,"customer-loading", ["loading"]);
+      await captureRecordState(page,"customer-loading", [page.getByRole("status").filter({ hasText: /laddar|hämtar/i }).first()], ["loading"]);
       await page.getByRole("link", { name: fixture.crm.private.displayName, exact: true }).click();
       await expect(page.getByRole("heading", { name: fixture.crm.private.displayName, exact: true })).toBeVisible();
       release();
@@ -894,7 +902,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       const masked = page.getByTestId("customer-personnummer");
       await expect(masked).not.toHaveText(fixture.crm.private.personnummer);
       await expect(masked).toContainText(fixture.crm.private.personnummer.slice(-4));
-      await captureRecordState(page, "customer-late-final-B-private-masked", ["late-result", "loaded"]);
+      await captureRecordState(page, "customer-late-final-B-private-masked", [masked, page.getByRole("heading", { name: fixture.crm.private.displayName, exact: true })], ["late-result", "loaded"]);
     } finally { release(); await page.unroute("**/*", handler); }
   });
 
@@ -919,7 +927,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.keyboard.press("Escape");
     await expect(decision).toBeVisible();
     await expect(decision.getByRole("button", { name: "Fortsätt redigera", exact: true })).toBeFocused();
-    await captureRecordState(page,"customer-dirty-decision", ["dirty-navigation", "focus-dialog"]);
+    await captureRecordState(page,"customer-dirty-decision", [decision.getByRole("button", { name: /Fortsätt redigera/, exact: true })], ["dirty-navigation", "focus-dialog"]);
     await decision.getByRole("button",{name:"Kasta ändringar"}).click();
     await expect(dialog).toHaveCount(0);
     expect(await customerSnapshot(marker)).toEqual([]);
@@ -985,7 +993,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await dialog.getByLabel("E-post").fill("invalid");
     const save = dialog.getByRole("button", { name: "Spara", exact: true }); await save.scrollIntoViewIfNeeded(); await save.click();
     await expect(dialog.getByTestId("form-error-summary")).toBeVisible();
-    await captureRecordState(page,"customer-phone-validation", ["validation"]);
+    await captureRecordState(page,"customer-phone-validation", [dialog.getByTestId("form-error-summary").getByRole("alert")], ["validation"]);
     const email=dialog.getByLabel("E-post"); await email.focus();
     await renderedContrast(page,email,"invalid field text");
     await renderedContrast(page,email,"invalid field focus against field",true);
@@ -1000,7 +1008,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     // Own form reflows at 300px effective width; global AppShell/table overflow is unowned.
     expect(await dialog.locator("form").evaluate((form)=>form.scrollWidth<=form.clientWidth+1)).toBe(true);
     await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
-    await captureRecordState(page,"controlled-css-zoom-200percent");
+    await captureRecordState(page,"controlled-css-zoom-200percent", [save]);
     await page.evaluate(()=>{document.documentElement.style.zoom="1";});
     // A 320px visible viewport models occlusion; it does not summon or prove an OS keyboard.
     await page.setViewportSize({width:360,height:320});
@@ -1011,7 +1019,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     const hit=await save.evaluate((button)=>{const box=button.getBoundingClientRect();return {top:box.top,bottom:box.bottom,reachable:button.contains(document.elementFromPoint(box.x+box.width/2,box.y+box.height/2))};});
     expect(hit.top).toBeGreaterThanOrEqual(0); expect(hit.bottom).toBeLessThanOrEqual(320); expect(hit.reachable).toBe(true);
     await save.click(); await expect(email).toHaveValue("invalid"); expect(await customerSnapshot(marker)).toEqual([]);
-    await captureRecordState(page,"controlled-visible-viewport-occlusion");
+    await captureRecordState(page,"controlled-visible-viewport-occlusion", [save]);
   });
 
   test("B09 E35-3-T-empty/denied/revoked AC6: successful empty differs from foreign denial and live revocation", async ({ page }) => {
@@ -1022,12 +1030,12 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(page.getByTestId("customers-empty")).toBeVisible();
       await expect(page.getByTestId("customers-failed")).toHaveCount(0);
       await expect(page.getByTestId("customers-no-results")).toHaveCount(0);
-      await captureRecordState(page,"customers-empty", ["empty"]);
+      await captureRecordState(page,"customers-empty", [page.getByTestId("customers-empty")], ["empty"]);
       await page.goto(`/customers/${fixture.crm.private.id}`);
       await expect(page.getByTestId("customer-not-found")).toBeVisible();
       expect(await page.content()).not.toContain(fixture.crm.private.personnummer);
       expect(await page.content()).not.toContain(fixture.crm.private.displayName);
-      await captureRecordState(page, "customer-foreign-identity-denied", ["denied"]);
+      await captureRecordState(page, "customer-foreign-identity-denied", [page.getByTestId("customer-not-found").getByRole("heading")], ["denied"]);
       const marker = `35.3 revoked ${crypto.randomUUID()}`, dialog = await openCustomerCreate(page, marker);
       await adminExec("update public.tenant_memberships set status = 'disabled' where tenant_id = $1 and user_id = $2", [isolated.tenantA.id, isolated.adminA.id]);
       await dialog.getByRole("button", { name: "Spara", exact: true }).click();
@@ -1036,7 +1044,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(dialog.getByRole("button",{name:"Spara",exact:true})).toBeDisabled();
       expect(await customerSnapshot(marker)).toEqual([]);
       expect(await adminQuery("select id from public.audit_events where tenant_id = $1 and target_type = 'customer'", [isolated.tenantA.id])).toEqual([]);
-      await captureRecordState(page, "customer-revoked-membership-rejected", ["revoked"]);
+      await captureRecordState(page, "customer-revoked-membership-rejected", [dialog.getByRole("alert")], ["revoked"]);
     } finally { await cleanupFixture(isolated); }
   });
 
@@ -1053,7 +1061,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       const errorId = await name.getAttribute("aria-describedby"); expect(errorId).toBeTruthy();
       await expect(dialog.locator(`[id="${errorId}"]`)).toBeVisible();
       await expect(dialog.getByTestId("form-error-summary")).toContainText(/.+/);
-      await captureRecordState(page,`inherited-${triggerId}`);
+      await captureRecordState(page,`inherited-${triggerId}`, [name]);
       await dialog.getByRole("button", { name: "Avbryt", exact: true }).click();
       await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
     }
@@ -1061,13 +1069,13 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.goto(`/calculations/${inheritedFixture.calc.id}`);
     await expect(page.getByTestId("calculation-editor")).toBeVisible();
     await expect(page.getByLabel("Titel",{exact:true})).toHaveValue(inheritedFixture.calc.title);
-    await captureRecordState(page,"inherited-calculation-field");
+    await captureRecordState(page,"inherited-calculation-field", [page.getByLabel("Titel", { exact: true })]);
     await page.goto("/files");
     const uploadTrigger=page.getByTestId("upload-file-button"); await waitForHydrated(uploadTrigger); await uploadTrigger.click();
     await page.getByTestId("file-index-upload-owner-type").selectOption("calculation");
     await page.getByTestId("file-index-upload-owner").selectOption(inheritedFixture.calc.id);
     await expect(page.getByTestId("file-index-upload-form").locator('input[name="purpose"]')).toHaveValue("calculation_attachment");
-    await captureRecordState(page,"inherited-file-index-select");
+    await captureRecordState(page,"inherited-file-index-select", [page.getByTestId("file-index-upload-owner")]);
   });
 
   // Story 35.6 active ATDD: no skipped tests or fabricated successful commands.
@@ -1283,7 +1291,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         if (kind === "contact") await expect(dialog.getByLabel("Anläggning (valfritt)")).toHaveValue(facilityId);
         await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
         await expect(heading).toBeInViewport(); await expect(close).toBeInViewport();
-        if (kind === "contact") await captureRecordState(page, "supplemental-short-768-contact-rejected");
+        if (kind === "contact") await captureRecordState(page, "supplemental-short-768-contact-rejected", [heading, close]);
         await close.click(); await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
       }
       expect(await adminQuery("select id from public.contacts where customer_id = $1", [customerId])).toEqual([]);
@@ -1311,7 +1319,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         await expect(panel.getByTestId(`file-panel-owner${suffix}`)).toHaveText(ownerLabel);
         await panel.getByTestId(`file-panel-owner${suffix}`).scrollIntoViewIfNeeded();
         await expect(panel.getByTestId(`file-panel-owner${suffix}`)).toBeInViewport();
-        await captureRecordState(page, `context-${ownerType}-exact-file-panel`);
+        await captureRecordState(page, `context-${ownerType}-exact-file-panel`, [panel.getByTestId(`file-panel-owner${suffix}`)]);
         const expectedHref = "/files?" + new URLSearchParams({ module: "crm", ownerType, ownerId });
         const entry = page.getByRole("link", { name: "Visa i Dokument", exact: true }).and(page.locator(`[href="${expectedHref}"]`));
         await expect(entry).toHaveCount(1); await entry.click();
@@ -1321,18 +1329,18 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         const back = page.getByTestId("documents-context-return");
         await expect(back).toHaveAttribute("href", `/customers/${customerId}`);
         await back.scrollIntoViewIfNeeded(); await expect(back).toBeInViewport();
-        await captureRecordState(page, `context-${ownerType}-documents-safe-return`);
+        await captureRecordState(page, `context-${ownerType}-documents-safe-return`, [back]);
         await back.click(); await expect(page).toHaveURL(new RegExp(`/customers/${customerId}$`));
         await expect(page.getByRole("heading", { name: marker, exact: true })).toBeVisible();
       }
       const booking = page.getByTestId("booking-entry-customer"); await waitForHydrated(booking); await booking.click();
       await expect(page.getByTestId("booking-customer")).toHaveValue(customerId);
       await page.getByTestId("booking-customer").scrollIntoViewIfNeeded(); await expect(page.getByTestId("booking-customer")).toBeInViewport();
-      await captureRecordState(page, "customer-booking-preconnection");
+      await captureRecordState(page, "customer-booking-preconnection", [page.getByTestId("booking-customer")]);
       await page.getByTestId("booking-close").click(); await booking.click();
       await expect(page.getByTestId("booking-customer")).toHaveValue(customerId);
       await page.getByTestId("booking-customer").scrollIntoViewIfNeeded(); await expect(page.getByTestId("booking-customer")).toBeInViewport();
-      await captureRecordState(page, "customer-booking-reopened-preconnection");
+      await captureRecordState(page, "customer-booking-reopened-preconnection", [page.getByTestId("booking-customer")]);
       // Full save/reopen and independent booking persistence remain E2E-006's duty.
       // File operation, selected-tuple, lock and signed-access outcomes remain in
       // their existing real producer suites; empty child arrays earn no read proof.
@@ -1356,30 +1364,30 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
         await page.evaluate(() => window.scrollTo(0, 0));
         await expect(page.getByRole("heading", { name: marker, exact: true })).toBeInViewport();
-        await captureRecordState(page, "record-loaded", [], true);
+        await captureRecordState(page, "record-loaded", [page.getByRole("heading", { name: marker, exact: true })], [], true);
         for (const kind of ["facility", "contact"] as const) {
           const recordHeading = page.getByRole("heading", { name: kind === "facility" ? "Serviceanläggningen med lång svensk benämning i Örnsköldsvik" : "Kontaktperson för återkommande service och underhåll", exact: true });
           await recordHeading.scrollIntoViewIfNeeded(); await expect(recordHeading).toBeInViewport();
-          await captureRecordState(page, `${kind}-record`, [], true);
+          await captureRecordState(page, `${kind}-record`, [recordHeading], [], true);
           const trigger = page.getByTestId(`new-${kind}-button`);
           await trigger.click();
           const dialog = page.getByRole("dialog", { name: kind === "facility" ? "Ny anläggning" : "Ny kontakt", exact: true });
           const name = dialog.getByRole("textbox", { name: "Namn", exact: true });
           await expect(name).toBeFocused();
-          await captureRecordState(page, `${kind}-form`, [], true);
+          await captureRecordState(page, `${kind}-form`, [name], [], true);
           await dialog.getByRole("button", { name: "Spara", exact: true }).click();
           await expect(name).toHaveAttribute("aria-invalid", "true");
           const summary = dialog.getByTestId("form-error-summary");
           await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
           await summary.getByRole("link").first().click(); await expect(name).toBeFocused();
-          await captureRecordState(page, `${kind}-validation-focus`, [], true);
+          await captureRecordState(page, `${kind}-validation-focus`, [name], [], true);
           if (viewport.width === 360) {
             // A bounded CSS enlargement + short viewport proxy; no physical keyboard claim.
             await page.addStyleTag({ content: "body { zoom: 2; }" });
             await page.setViewportSize({ width: 360, height: 400 });
             const save = dialog.getByRole("button", { name: "Spara", exact: true });
             await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
-            await captureRecordState(page, `controlled-${kind}-enlargement-occlusion`, [], true);
+            await captureRecordState(page, `controlled-${kind}-enlargement-occlusion`, [save], [], true);
             // Navigation below restores the unmodified production stylesheet.
             await page.goto(`/customers/${customerId}`);
             await page.setViewportSize(viewport);
@@ -1391,7 +1399,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         await archive.click();
         const confirmation = page.getByRole("status").filter({ hasText: "Arkivera den här kunden?" });
         await confirmation.scrollIntoViewIfNeeded(); await expect(confirmation).toBeInViewport();
-        await captureRecordState(page, "archive-confirmation", [], true);
+        await captureRecordState(page, "archive-confirmation", [confirmation], [], true);
         await page.getByRole("button", { name: "Avbryt", exact: true }).click();
         expect(await adminQuery("select id from public.customers where id = $1 and archived_at is null", [customerId])).toEqual([{ id: customerId }]);
         expect(await adminQuery("select id from public.audit_events where tenant_id = $1", [isolated.tenantA.id])).toEqual([]);

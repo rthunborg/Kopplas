@@ -363,9 +363,17 @@ Named remaining gaps: **CRM-LIST-READ-ERROR-CAPTURE** (Coordinator/source-owner 
 
 Status remains blocked, followup_review_recommended=true, prior score=9, deferred review items=[]; three release obligations remain deferred to UI owner, QA/accessibility and Coordinator. No done flip, completion helper, visual-gate retry, release-ready claim or business approval request.
 
+### Targeted capture review fix - 0c1a
+
+Targeted independent Sol High review of `0c1a78e31fd6bb2b245d3088e9e30fd82edbdedc` identified one consequential medium capture-integrity defect: viewport resize could move the asserted subject out of the resulting image. This is a focused capture-repair finding/fix, not a new broad review round 2; historical Round 1 followup=true, score=9 and deferred review=[] remain unchanged.
+
+The existing helper now requires explicit real semantic Locator targets at every call. In EACH qualifying viewport, after resize it scrolls the first target into view and asserts every requested target fully in viewport (ratio=1) immediately before screenshot bytes are produced. No original-size assertion, page body or full-page image substitutes for the target. File-panel captures bind the exact owner label, Documents captures bind the actual safe-return link on /files, Booking captures bind the selected customer control, and every one of the sixteen customer phases binds its actual field, alert, loading label, selected identity, rejection/decision or confirmed record link. Late-final-B binds both the masked detail value and private record heading. Supplemental captures keep actual dimensions/classification and do not gain qualifying target-validation credit; synthetic 503 remains non-application UI.
+
+Original viewport/focus/scroll restoration, no redispatch/reload, existing assertions and authority are retained. Attachment names and frame counts are unchanged: expected98 source PNGs=92 qualifying+6 supplemental per successful once-through run; the exact72 planned package names above remain valid under the80 cap, subject to actual successful target assertions/bytes and retries adding duplicates. No new case or product/server/shared helper/suite was added; eleven E35-6 source cases remain. Typecheck and focused CRM E2E lint passed, exit0, after the target-binding change. Diff/review-trail/frozen-suffix checks are recorded at handoff; runtime remains0executed0skipped and0local PNGs. The same independent High reviewer must inspect the consequential delta and refreshed trail before this focused repair earns review completion; actual hosted assertions/image provenance and existing genuine gaps remain pending.
+
 ## Suggested Review Order
 
-Author: Sol High implementation/fix delegate. Refreshed against the final uncommitted focused capture-verification repair on `d369489bc85d5ff22b624214db851b003a3fca44`; original baseline is `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`. Production code remains reviewed d42 plus clean targeted delta at 9bb. That reviewer confirmed the earlier trail; this new test/evidence delta requires targeted independent High review. The same 16 stops are refreshed below; current checks, capture map and limits are in the repair section above.
+Author: Sol High implementation/fix delegate. Refreshed against the final uncommitted targeted capture-repair fix on `0c1a78e31fd6bb2b245d3088e9e30fd82edbdedc`; original baseline is `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`. Production code remains reviewed d42 plus clean targeted delta at 9bb. That reviewer confirmed the earlier trail; this new test/evidence delta requires targeted independent High review. The same 16 stops are refreshed below; current checks, capture map and limits are in the repair section above.
 
 ### Record identity and responsive composition
 
@@ -392,18 +400,18 @@ The accepted SideSheet composition reuses shared Dialog's viewport-bound scrolli
 - `src/components/crm/FacilityDialog.tsx:51` — `variant="sheet"`: existing viewport-bounded child presentation.
 - `src/components/crm/ContactDialog.tsx:65` — `variant="sheet"`: fixed chrome with scrollable rejected contact form.
 - `src/components/crm/ContactDialog.tsx:164` — `name="is_primary"`: checked-first explicit-false submission fallback.
-- `tests/e2e/crm/customers.e2e.spec.ts:1253` — `short viewport`: real 768x640 chrome, error/field/action reachability regression.
+- `tests/e2e/crm/customers.e2e.spec.ts:1261` — `short viewport`: real 768x640 chrome, error/field/action reachability regression.
 
 ### Capture provenance and honest evidence boundaries
 
-The current helper retains actual PNG bytes and companion state/viewport/provenance metadata in the native reporter while preserving the asserted UI phase. The explicit 72-frame selection covers all sixteen states and adapted/context surfaces; genuine list-error and unexecuted malformed-detail evidence stay visible.
+The current helper retains actual PNG bytes and companion state/viewport/provenance metadata in the native reporter. Each qualifying viewport now scrolls and fully verifies the explicit semantic phase target after resize, then restores the original viewport/focus/scroll without redispatch. The explicit 72-frame selection covers all sixteen states and adapted/context surfaces; genuine list-error and unexecuted malformed-detail evidence stay visible.
 
-- `tests/e2e/crm/customers.e2e.spec.ts:34` — `captureRecordState`: actual PNG/metadata attachments, qualifying pairs and restoration.
-- `tests/e2e/crm/customers.e2e.spec.ts:367` — `malformed customer identity`: genuine detail read-error assertion precedes capture credit.
-- `tests/e2e/crm/customers.e2e.spec.ts:1017` — `B09`: isolated successful empty, foreign denial and real membership revocation.
-- `tests/e2e/crm/customers.e2e.spec.ts:1295` — `E35-6-T-AC2/AC6`: exact panel owner, real Documents return and Booking preconnection captures.
+- `tests/e2e/crm/customers.e2e.spec.ts:34` — `captureRecordState`: per-viewport semantic target checks, real bytes and restoration.
+- `tests/e2e/crm/customers.e2e.spec.ts:375` — `malformed customer identity`: genuine detail read-error assertion precedes capture credit.
+- `tests/e2e/crm/customers.e2e.spec.ts:1025` — `B09`: isolated successful empty, foreign denial and real membership revocation.
+- `tests/e2e/crm/customers.e2e.spec.ts:1303` — `E35-6-T-AC2/AC6`: exact panel owner, real Documents return and Booking preconnection captures.
 
-Evidence: focused repair typecheck and E2E lint passed; no local runtime/capture/build/unit repeat. Root-relayed Linux unit observation at 5a reports 3780 passed/0 skipped, not new capture evidence. Eleven E35-6 source cases are active; expected 98 source PNGs and explicit 72-frame package names are plans until actual hosted execution. Prior production build/bundle and six-layer/9bb delta review remain provenance-bound historical evidence; new targeted High test/trail review, actual image/source/run verification, integration/RLS/storage, frontend acceptance, exact-head CI and completion wrapper remain pending. Limits: synthetic owned fixtures/transport and viewport faults; post-remount create form is test-refilled, no payload restoration/reconciliation claim; controlled 503 is not application error UI; no D5 child-read or full Booking-save proof. release_ready=false.
+Evidence: focused repair and targeted target-binding fix typecheck and E2E lint passed; no local runtime/capture/build/unit repeat. Root-relayed Linux unit observation at 5a reports 3780 passed/0 skipped, not new capture evidence. Eleven E35-6 source cases are active; expected 98 source PNGs and explicit 72-frame package names are plans until actual hosted execution. Prior production build/bundle and six-layer/9bb delta review remain provenance-bound historical evidence; new targeted High test/trail review, actual image/source/run verification, integration/RLS/storage, frontend acceptance, exact-head CI and completion wrapper remain pending. Limits: synthetic owned fixtures/transport and viewport faults; post-remount create form is test-refilled, no payload restoration/reconciliation claim; controlled 503 is not application error UI; no D5 child-read or full Booking-save proof. release_ready=false.
 
 ## Frozen canonical v1 source body — preserved LF
 
