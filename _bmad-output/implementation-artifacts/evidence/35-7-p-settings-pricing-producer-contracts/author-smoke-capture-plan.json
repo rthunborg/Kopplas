@@ -2,7 +2,7 @@
   "kind": "Capture definitions only; no new runtime/PNG/package acceptance",
   "candidate_before": "deb14ba0f9250c4e02f6d43011acc79ab475f613",
   "baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
-  "nominal_count": 95,
+  "nominal_count": 103,
   "package_cap": 80,
   "new_png_count": 0,
   "source_defined_tests": 24,
@@ -864,6 +864,78 @@
         "height": 640
       },
       "path": "playwright-report/35-7-p/article-360x640/current-missing-draft.png"
+    },
+    {
+      "surface": "company",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/receipt-read-pending.png"
+    },
+    {
+      "surface": "company",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/receipt-read-pending.png"
+    },
+    {
+      "surface": "terms",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/receipt-read-pending.png"
+    },
+    {
+      "surface": "terms",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/receipt-read-pending.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/receipt-read-pending.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/receipt-read-pending.png"
+    },
+    {
+      "surface": "article",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/receipt-read-pending.png"
+    },
+    {
+      "surface": "article",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/receipt-read-pending.png"
     }
   ],
   "changes": [
@@ -889,9 +961,10 @@
       "Archive/reactivate/edit/approve empty action forms: no actionable target exists in empty editor; base empty frame covers absence, not receipt-current-missing."
     ],
     "remaining_gaps": [
-      "All95 current definitions require actual final-head native execution, qualified PNGs and authenticated visual acceptance.",
-      "Bounded method code requires targeted independent High safety review BEFORE authorized isolated CI execution; any admission/ACL/restore/budget refusal provides0coverage.",
-      "No automatically qualified<=80 selection; provisional source equivalence must be independently validated against actual opened images."
+      "All103 source definitions require actual next-head native execution/qualified PNGs; old473 had80actual originals and6concrete pixel defects.",
+      "All15method+8domainpending originals absent at473 because P-E5 failed beforeeffects;0currentfault/restore/delete/currentpending-image credit.",
+      "<=80 publication cap unresolved: current preserving-source candidate88 is not accepted; no shared-hook-only collapse of distinct inline busy widgets/oldrefreshnotice or false routeNAs.",
+      "Current3testfile batch requires independent transactional High confirmation and all final exact-head CI/visual/completion gates."
     ]
   },
   "fault_authority": "Actual human Authorize both bounded effects, ci-bounded-method-owner-approval.json SHA4a15723d65685e38dd4534df47cd56cced831f9a5ba2a683b405bde83c59b681, source-only implementation pending independent High risk review BEFORE CI. No local effect authority/runtime proof.",
@@ -917,128 +990,27 @@
     "failure_transport_fix": "The exact intercepted GET is retained. Every success/failure exit calls one cached release-and-terminal-settlement promise, bounded10s, waiting response.finished or actual request failure. Release errors do not skip terminal-wait attempt. Exact ACL recovery still runs if settlement fails, errors aggregate, fixtures retained under disposable-job custody on unverified settlement. No runtime claim."
   },
   "provisional_publication_selection": {
-    "source": "Both targeted High reviewers; bounded-method-targeted-review-results.json",
-    "raw_retained": 95,
-    "candidate_selected": 79,
-    "status": "SOURCE PROVISIONAL ONLY; no actual-image qualification/accepted package",
-    "selected_paths": [
-      "playwright-report/35-7-p/company-1440x900/empty.png",
-      "playwright-report/35-7-p/company-1440x900/error.png",
-      "playwright-report/35-7-p/company-1440x900/loading.png",
-      "playwright-report/35-7-p/company-1440x900/unknown.png",
-      "playwright-report/35-7-p/company-1440x900/finished.png",
-      "playwright-report/35-7-p/company-1440x900/stale.png",
-      "playwright-report/35-7-p/company-1440x900/reconcile-pending.png",
-      "playwright-report/35-7-p/company-1440x900/refresh-notice.png",
-      "playwright-report/35-7-p/company-360x640/empty.png",
-      "playwright-report/35-7-p/company-360x640/error.png",
-      "playwright-report/35-7-p/company-360x640/loading.png",
-      "playwright-report/35-7-p/company-360x640/unknown.png",
-      "playwright-report/35-7-p/company-360x640/finished.png",
-      "playwright-report/35-7-p/company-360x640/stale.png",
-      "playwright-report/35-7-p/company-360x640/reconcile-pending.png",
-      "playwright-report/35-7-p/company-360x640/refresh-notice.png",
-      "playwright-report/35-7-p/company-360x640/stale-draft.png",
-      "playwright-report/35-7-p/terms-1440x900/empty.png",
-      "playwright-report/35-7-p/terms-1440x900/error.png",
-      "playwright-report/35-7-p/terms-1440x900/finished.png",
-      "playwright-report/35-7-p/terms-1440x900/stale.png",
-      "playwright-report/35-7-p/terms-1440x900/retry-pending.png",
-      "playwright-report/35-7-p/terms-1440x900/saved-unapproved.png",
-      "playwright-report/35-7-p/terms-1440x900/dirty-approval-disabled.png",
-      "playwright-report/35-7-p/terms-360x640/empty.png",
-      "playwright-report/35-7-p/terms-360x640/error.png",
-      "playwright-report/35-7-p/terms-360x640/finished.png",
-      "playwright-report/35-7-p/terms-360x640/stale.png",
-      "playwright-report/35-7-p/terms-360x640/retry-pending.png",
-      "playwright-report/35-7-p/terms-360x640/saved-unapproved.png",
-      "playwright-report/35-7-p/terms-360x640/dirty-approval-disabled.png",
-      "playwright-report/35-7-p/terms-360x640/stale-draft.png",
-      "playwright-report/35-7-p/work-role-1440x900/empty.png",
-      "playwright-report/35-7-p/work-role-1440x900/error.png",
-      "playwright-report/35-7-p/work-role-1440x900/finished.png",
-      "playwright-report/35-7-p/work-role-1440x900/stale.png",
-      "playwright-report/35-7-p/work-role-1440x900/neighbor-stale.png",
-      "playwright-report/35-7-p/work-role-1440x900/archived-restore.png",
-      "playwright-report/35-7-p/work-role-360x640/empty.png",
-      "playwright-report/35-7-p/work-role-360x640/error.png",
-      "playwright-report/35-7-p/work-role-360x640/finished.png",
-      "playwright-report/35-7-p/work-role-360x640/stale.png",
-      "playwright-report/35-7-p/work-role-360x640/neighbor-stale.png",
-      "playwright-report/35-7-p/work-role-360x640/archived-restore.png",
-      "playwright-report/35-7-p/article-1440x900/empty.png",
-      "playwright-report/35-7-p/article-1440x900/error.png",
-      "playwright-report/35-7-p/article-1440x900/finished.png",
-      "playwright-report/35-7-p/article-1440x900/stale.png",
-      "playwright-report/35-7-p/article-1440x900/neighbor-stale.png",
-      "playwright-report/35-7-p/article-1440x900/archived-restore.png",
-      "playwright-report/35-7-p/article-360x640/empty.png",
-      "playwright-report/35-7-p/article-360x640/error.png",
-      "playwright-report/35-7-p/article-360x640/finished.png",
-      "playwright-report/35-7-p/article-360x640/stale.png",
-      "playwright-report/35-7-p/article-360x640/neighbor-stale.png",
-      "playwright-report/35-7-p/article-360x640/archived-restore.png",
-      "playwright-report/35-7-p/article-360x640/stale-draft.png",
-      "playwright-report/35-7-p/article-360x640/neighbor-stale-draft.png",
-      "playwright-report/35-7-p/work-role-1440x900/current-newer.png",
-      "playwright-report/35-7-p/work-role-360x640/current-newer.png",
-      "playwright-report/35-7-p/article-1440x900/current-newer.png",
-      "playwright-report/35-7-p/article-360x640/current-newer.png",
-      "playwright-report/35-7-p/work-role-360x640/current-newer-draft.png",
-      "playwright-report/35-7-p/article-360x640/current-newer-draft.png",
-      "playwright-report/35-7-p/company-1440x900/read-unavailable.png",
-      "playwright-report/35-7-p/company-360x640/read-unavailable.png",
-      "playwright-report/35-7-p/company-360x640/read-unavailable-draft.png",
-      "playwright-report/35-7-p/terms-1440x900/read-unavailable.png",
-      "playwright-report/35-7-p/terms-360x640/read-unavailable.png",
-      "playwright-report/35-7-p/terms-360x640/read-unavailable-draft.png",
-      "playwright-report/35-7-p/work-role-1440x900/read-unavailable.png",
-      "playwright-report/35-7-p/work-role-360x640/read-unavailable.png",
-      "playwright-report/35-7-p/work-role-360x640/read-unavailable-draft.png",
-      "playwright-report/35-7-p/article-1440x900/read-unavailable.png",
-      "playwright-report/35-7-p/article-360x640/read-unavailable.png",
-      "playwright-report/35-7-p/article-360x640/read-unavailable-draft.png",
-      "playwright-report/35-7-p/article-1440x900/current-missing-empty.png",
-      "playwright-report/35-7-p/article-360x640/current-missing-empty.png",
-      "playwright-report/35-7-p/article-360x640/current-missing-draft.png"
+    "source": "Latest completed reviewer/root handoff after provisional-surface-map-473067d4.json",
+    "raw_retained": 103,
+    "provisional_preserving_source_candidate": 88,
+    "accepted_selected": null,
+    "cap80_supported": false,
+    "unresolved": "Distinct company/terms/role/article inline save-busy renderers cannot be represented by terms alone just from shared hook/classes. Old stale refresh notice is a distinct widget notice, not the new receipt-pending copy. Retain all103raw/allasserts; <=80 remains unresolved pending legitimate actual source/image qualification. No new framework/productrefactor or forced cuts.",
+    "historical_map_path": "provisional-surface-map-473067d4.json",
+    "status": "PROVISIONAL ONLY; root owns actual package after runtime."
+  },
+  "current_batch": "Actual473native failure + all80 image assessment only: actual server launch-owner binding, six deficient existing frames corrected without newbusinessaction, source-derived three-autocommit teardown; prospective unavailable/missing notice+receipt+controls guards and exactly2already-held company GET receipt/current-read-pending originals.",
+  "receipt_read_pending": {
+    "new_frames": 8,
+    "domains": [
+      "company",
+      "terms",
+      "work-role",
+      "article"
     ],
-    "omitted_from_candidate_only": [
-      "playwright-report/35-7-p/terms-1440x900/loading.png",
-      "playwright-report/35-7-p/terms-1440x900/unknown.png",
-      "playwright-report/35-7-p/terms-360x640/loading.png",
-      "playwright-report/35-7-p/terms-360x640/unknown.png",
-      "playwright-report/35-7-p/work-role-1440x900/loading.png",
-      "playwright-report/35-7-p/work-role-1440x900/unknown.png",
-      "playwright-report/35-7-p/work-role-1440x900/reconcile-pending.png",
-      "playwright-report/35-7-p/work-role-360x640/loading.png",
-      "playwright-report/35-7-p/work-role-360x640/unknown.png",
-      "playwright-report/35-7-p/work-role-360x640/reconcile-pending.png",
-      "playwright-report/35-7-p/article-1440x900/loading.png",
-      "playwright-report/35-7-p/article-1440x900/unknown.png",
-      "playwright-report/35-7-p/article-1440x900/reconcile-pending.png",
-      "playwright-report/35-7-p/article-360x640/loading.png",
-      "playwright-report/35-7-p/article-360x640/unknown.png",
-      "playwright-report/35-7-p/article-360x640/reconcile-pending.png"
-    ],
-    "representatives": {
-      "playwright-report/35-7-p/terms-1440x900/loading.png": "playwright-report/35-7-p/company-1440x900/loading.png",
-      "playwright-report/35-7-p/terms-1440x900/unknown.png": "playwright-report/35-7-p/company-1440x900/unknown.png",
-      "playwright-report/35-7-p/terms-360x640/loading.png": "playwright-report/35-7-p/company-360x640/loading.png",
-      "playwright-report/35-7-p/terms-360x640/unknown.png": "playwright-report/35-7-p/company-360x640/unknown.png",
-      "playwright-report/35-7-p/work-role-1440x900/loading.png": "playwright-report/35-7-p/company-1440x900/loading.png",
-      "playwright-report/35-7-p/work-role-1440x900/unknown.png": "playwright-report/35-7-p/company-1440x900/unknown.png",
-      "playwright-report/35-7-p/work-role-1440x900/reconcile-pending.png": "playwright-report/35-7-p/company-1440x900/reconcile-pending.png",
-      "playwright-report/35-7-p/work-role-360x640/loading.png": "playwright-report/35-7-p/company-360x640/loading.png",
-      "playwright-report/35-7-p/work-role-360x640/unknown.png": "playwright-report/35-7-p/company-360x640/unknown.png",
-      "playwright-report/35-7-p/work-role-360x640/reconcile-pending.png": "playwright-report/35-7-p/company-360x640/reconcile-pending.png",
-      "playwright-report/35-7-p/article-1440x900/loading.png": "playwright-report/35-7-p/company-1440x900/loading.png",
-      "playwright-report/35-7-p/article-1440x900/unknown.png": "playwright-report/35-7-p/company-1440x900/unknown.png",
-      "playwright-report/35-7-p/article-1440x900/reconcile-pending.png": "playwright-report/35-7-p/company-1440x900/reconcile-pending.png",
-      "playwright-report/35-7-p/article-360x640/loading.png": "playwright-report/35-7-p/company-360x640/loading.png",
-      "playwright-report/35-7-p/article-360x640/unknown.png": "playwright-report/35-7-p/company-360x640/unknown.png",
-      "playwright-report/35-7-p/article-360x640/reconcile-pending.png": "playwright-report/35-7-p/company-360x640/reconcile-pending.png"
-    },
-    "rationale": "Shared mounted controller/AttemptRecovery initial pending, stable unknown and reconcile-pending states represented by company both viewports. This is render/component equivalence proposed by reviewers, not route/state N/A. All domain errors/restores/read-unavailable drafts, neighbor/current-newer/current-missing and terms retry pending remain selected. All95raw files/assertions retained.",
-    "qualification": "Independently open actual originals and confirm equivalence before final package; reject candidate if route-specific meaningful presentation is lost. Earlier cross-domain error/restore/draft cuts are rejected."
-  }
+    "point": "Each existing P-E5 cycle after exact committed receipt proof, BEFORE same held accept(committed) RSC GET release/revoke. Both original viewports on same mounted receipt/page; no extra mutation/fault/delete cycle or timeout.",
+    "proof": "Company/pricing success receipt+appropriate separate-current-read copy+no actual error UI selects hasCurrentRead=false. Terms copy also occurs on matching confirmation, so additionally exact saved wording current-facts panel must exist and approval form must be absent: confirmsOwnWrite would adopt matching defaults/hide panel; newer changes copy. These conservative guards run before/after PNG while exact Request remains nonterminal, receipt/adopt full viewport. No later manual refresh/cached-confirmed/unavailable/savebusy inference.",
+    "actual_runtime_or_images": 0
+  },
+  "prospective_method_framing": "Actual unavailable notice and historicalreceipt full in primary with no unknown/conflict controls in that committed-readerror branch; missing currentfacts/absence+receipt+actualadopt full in primary. Existing retained-draft supplements unchanged. These17 originals still unexecuted; guards fail closed, no imagecredit."
 }

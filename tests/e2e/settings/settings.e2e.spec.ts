@@ -210,7 +210,7 @@ async function assertProducerTouchTargets(scope: Page | Locator, names: readonly
         expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
     }
 }
-async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator) {
+async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" = "center") {
     const scope = surface === "company" || surface === "terms" ? page.locator("body") : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
     const anchor = explicitAnchor ?? (state === "loading" ? scope.getByRole("button", { name: "Sparar…", exact: true })
         : state === "unknown" || state.endsWith("-pending") ? scope.getByTestId("operation-unconfirmed")
@@ -219,7 +219,7 @@ async function producerCapture(page: Page, info: TestInfo, surface: string, stat
         : state === "finished" ? scope.getByTestId(surface === "terms" ? "quote-terms-approved-status" : "settings-saved")
         : surface === "company" ? page.getByLabel("Företagsnamn") : surface === "terms" ? page.getByLabel("Offertvillkor") : scope);
     await expect(anchor).toBeVisible();
-    await anchor.evaluate(el => el.scrollIntoView({ block: "center" }));
+    await anchor.evaluate((el, block) => el.scrollIntoView({ block }), anchorBlock);
     await expect(anchor).toBeInViewport();
     if (state === "loading") await expect(anchor).toBeDisabled();
     const boot = JSON.parse(readFileSync(path.join(process.cwd(), "test-results/private/job-events-fetch-fault.json.startup.json"), "utf8"));
@@ -375,7 +375,16 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await expect(page.getByTestId("company-current-facts")).toContainText("Newer current company");
             await expect(page.getByRole("button", { name: "Spara", exact: true })).toBeDisabled();
             if (viewport.width === 360) await assertProducerTouchTargets(page, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
-            await producerCapture(page, info, "company", "stale");
+            if (viewport.width === 360) {
+                const refresh = page.getByRole("button", { name: "Uppdatera och granska", exact: true });
+                const adopt = page.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
+                await refresh.evaluate(element => element.scrollIntoView({ block: "start" }));
+                await expect(refresh).toBeInViewport({ ratio: 1 });
+                await expect(adopt).toBeInViewport({ ratio: 1 });
+                await producerCapture(page, info, "company", "stale", refresh, "start");
+                await expect(refresh).toBeInViewport({ ratio: 1 });
+                await expect(adopt).toBeInViewport({ ratio: 1 });
+            } else await producerCapture(page, info, "company", "stale");
             if (viewport.width === 360) {
                 await producerCapture(page, info, "company", "stale-draft", page.getByLabel("Företagsnamn"));
                 await expect(page.getByLabel("Företagsnamn")).toBeInViewport();
@@ -418,7 +427,14 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await retryHold.seen;
                 await expect(page.getByRole("button", { name: "Kontrollera resultat" })).toBeDisabled();
                 await expect(page.getByRole("button", { name: "Försök igen med samma uppgifter" })).toBeDisabled();
-                await producerCapture(page, info, "terms", "retry-pending");
+                if (viewport.width === 360) {
+                    const busySubmit = page.getByRole("button", { name: "Sparar…", exact: true });
+                    await expect(busySubmit).toBeDisabled();
+                    await busySubmit.evaluate(element => element.scrollIntoView({ block: "center" }));
+                    await expect(busySubmit).toBeInViewport({ ratio: 1 });
+                    await producerCapture(page, info, "terms", "retry-pending", busySubmit);
+                    await expect(busySubmit).toBeInViewport({ ratio: 1 });
+                } else await producerCapture(page, info, "terms", "retry-pending");
             } finally { await retryHold.clear(); }
             await expect(page.getByTestId("settings-saved")).toBeVisible();
             expect(new Set(saveLoss.identities).size).toBe(1);

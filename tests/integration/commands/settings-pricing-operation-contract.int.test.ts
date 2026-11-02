@@ -68,7 +68,11 @@ beforeEach(async () => { if (!up)
     await adminQuery(`delete from public.${t} where tenant_id=$1`, [fx.tenantA.id]); });
 afterAll(async () => { if (!up)
     return; try {
-    await adminQuery("drop trigger test_settings_pricing_receipt_failure on public.settings_pricing_operations; drop function test_support.reject_settings_pricing_receipt(); drop table test_support.settings_pricing_receipt_failures");
+    // Release the global receipt relation lock before tearing down the private
+    // function/table; a compound simple query retains all DDL locks until its end.
+    await adminQuery("drop trigger test_settings_pricing_receipt_failure on public.settings_pricing_operations");
+    await adminQuery("drop function test_support.reject_settings_pricing_receipt()");
+    await adminQuery("drop table test_support.settings_pricing_receipt_failures");
 }
 finally {
     await cleanupFixture(fx);
