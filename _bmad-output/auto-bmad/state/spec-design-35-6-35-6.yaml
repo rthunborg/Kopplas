@@ -9,7 +9,7 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/specs/spec
 story_id: 35-6
 branch: codex/story-35-6-crm-record-journeys
 status: in-progress
-updated_at: "2026-11-02T14:34:18Z"
+updated_at: "2026-11-02T14:35:10Z"
 started_at: "2026-11-02T13:54:54Z"
 completed_at: null
 active_seconds: 2296
@@ -71,7 +71,7 @@ retro:
   verdict: null
   open_action_items: 0
 bmad_status_flipped_at: null
-pr_url: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/127"
 ci_run_url: null
 ci_status: unknown
 pr_merged: false
@@ -95,8 +95,11 @@ constraints: []
 parallel_run_id: e35-6-20261102
 publication_identity_json: "{\"base_branch\": \"main\", \"base_revision\": \"824bed4a92eb388db669ffb60492a7b1dd9fc038\", \"branch\": \"codex/story-35-6-crm-record-journeys\", \"repository\": \"rthunborg/Kopplas\", \"run_id\": \"e35-6-20261102\", \"story_key\": \"spec-design-35-6-35-6\", \"worktree\": \"C:/DEV/Kopplas/tmp/private/e35-worker-35-6\"}"
 development_state: checkpoint_pending
-publication_state: unpublished
+publication_state: checkpoint-open-evidence-pending
 review_state: code-reviewed-pending-followup
 review_revision: 9bbf276cf695a0e127a864e442dbeb2e3a79eab6
 visual_state: pending
 merge_state: not-requested
+publication_operation_json: "{\"story_key\":\"spec-design-35-6-35-6\",\"branch\":\"codex/story-35-6-crm-record-journeys\",\"evidence\":\"gh pr view immutable number/base/head observed; draft with agent-fix label\",\"pr_number\":127,\"head\":\"435da9d800487c50c0976995ffcfbd37f1dd3c31\",\"base\":\"main\",\"pr_url\":\"https://github.com/rthunborg/Kopplas/pull/127\",\"status\":\"confirmed\",\"expected_remote_head\":\"435da9d800487c50c0976995ffcfbd37f1dd3c31\",\"run_id\":\"e35-6-20261102\",\"operation\":\"create-pr\",\"repository\":\"rthunborg/Kopplas\"}"
+pr_number: 127
+candidate_revision: 435da9d800487c50c0976995ffcfbd37f1dd3c31
