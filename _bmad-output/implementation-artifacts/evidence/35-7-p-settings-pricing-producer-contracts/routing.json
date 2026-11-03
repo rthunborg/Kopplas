@@ -743,6 +743,68 @@
       "no_runtime_visual_or_completion_acceptance": true,
       "review_receipt": "8cb-cwd-targeted-review-results.json#current_566_terminal_lifecycle_followup",
       "proof_precision": "Responsefinished throwing trap,modeledheaders/injectedclock;no nativecause/transport credit;unchanged132 notrerun"
+    },
+    {
+      "phase": "Independent targeted f4c deferred disposal fixed diagnostics and26-case confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-03T09:41:47.555325+00:00",
+      "author_stopped": true,
+      "author_route_provenance": "Same High author route message-recorded before dispatch after independent proposal support and explicit parent proceed. File record follows stopped freeze,not a fabricated earlier timestamp.",
+      "freeze": "author-8cb-cwd-checkpoint.json",
+      "freeze_sha256": "981353a9179859561c6aced02f837cdebb267c3b34e3ec93140ebafba341c0f3",
+      "source48_digest": "2fb5f802763bc1c6e0d26d700e73c85b3c3a3b0e24326150e410e29db9baaec6",
+      "reviewers": [
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "Only release/terminal/unroute sequencing,single10s deadline,all-exit disposal,error aggregation and bounded categorical diagnostic privacy; selector/deliveredread/ACLrecovery/failstop/budgets preserved, no nativecause attribution or broad review"
+        },
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "Only retained26 actual-function event/clock/order/deadline/privacy cases,source extraction and unchanged14admission/prior132/assertion/capture/privatecap boundaries; no runtime/image audit"
+        }
+      ],
+      "dispatch_status": "both actual finals complete:verificationCHANGES_REQUIRED singleprefetchsemantics;edgesFIX_CONFIRMEDproofbindingsONLY",
+      "broad_round_count": 1,
+      "no_tests_queries_resources_CI_or_writes": true,
+      "no_runtime_visual_or_completion_acceptance": true,
+      "review_receipt": "8cb-cwd-targeted-review-results.json#initial_f4c_disposal_review"
+    },
+    {
+      "phase": "Same-author bounded f4c prefetch marker semantics correction",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-03T09:45:48.707522+00:00",
+      "scope": "Only marker1/2/3/absentfixedclassification labels/counters and meaningful current-source regressions;selector/lifecycle/ACL/budgets/admission unchanged. Preserve981freeze/source/proof history privately before edits.",
+      "dispatch_status": "actual same High author completed bounded fix and stopped;new freeze requiresfix-only confirmation",
+      "broad_round_count": 1,
+      "no_runtime_resources_CI_or_new_tracked_paths": true
+    },
+    {
+      "phase": "Independent fix-only f4c marker semantics and32-case confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-03T09:49:43.750437+00:00",
+      "author_stopped": true,
+      "freeze": "author-8cb-cwd-checkpoint.json",
+      "freeze_sha256": "711919f54be0e310b324002fe0fb37904cb92f6690b4df2c7de51ed738bdbf88",
+      "source48_digest": "9a85bdc99b58bd88f19e010341a8a0bcbbc10b2879a769ce32ac3254742c9b42",
+      "reviewers": [
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "Only marker1/2/3/absent/unexpected diagnostic certainty correction and consequential regressions;selector,lifecycle,deadline,ACL,budgets unchanged;priorordering confirmation reused"
+        },
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "Only six marker/privacy cases/current32proofbindings,prior26record and981history retention;no unchanged admission132 or broad source/image audit"
+        }
+      ],
+      "dispatch_status": "actual both existing Sol High reviewers completed FIX_CONFIRMED;singlemarkerfindingresolved",
+      "broad_round_count": 1,
+      "no_tests_queries_resources_CI_or_writes": true,
+      "no_runtime_visual_or_completion_acceptance": true,
+      "review_receipt": "8cb-cwd-targeted-review-results.json#current_f4c_disposal_marker_fix_followup",
+      "canonical_note": "reviewerprimaryCWDnormalizationnote retracted;actualproductraw/path/HEAD/index93147match,noexception"
     }
   ],
   "implementation_author_dispatched": true,

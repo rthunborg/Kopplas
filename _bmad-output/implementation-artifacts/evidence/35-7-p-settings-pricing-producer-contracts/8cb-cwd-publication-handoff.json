@@ -1,25 +1,34 @@
 {
-  "recorded_at_utc": "2026-11-03T09:08:59.166487+00:00",
+  "recorded_at_utc": "2026-11-03T09:54:57.386342+00:00",
   "branch": "codex/35-7-p-settings-pricing-producer-contracts",
-  "current_local_head": "566bb80428a7af75cfee62ff42cef65a6ae40a9c",
+  "current_local_head": "f4c2b8da6521af0a99ffbd33debc42086fda2445",
   "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
   "prior_handoff_retained_in_Git": {
-    "commit": "566bb80428a7af75cfee62ff42cef65a6ae40a9c",
-    "git_blob_oid": "a8eb0bd09eacbaa3166f8f83d547da0c7d41de08",
-    "raw_git_bytes_sha256": "a7108a8e2095631a019a4c3c0091a3299520379802920bd6fda06186f12dcb1b"
+    "commit": "f4c2b8da6521af0a99ffbd33debc42086fda2445",
+    "git_blob_oid": "78110222b387c06f721a6dd85b17d356c1dce57d",
+    "raw_git_bytes_sha256": "ecc40a986262a8162b4b08081b8bd76de4a4bed1769dd3d0a222184a0cd0f454"
   },
   "freeze": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json",
-  "freeze_sha256": "947496cace10d10e8198242862decd9ddab63432c5d410b7313aaa90e568489c",
-  "source48_digest": "2fcf1c05ce5b27bc94dcf0464396df0469a4fdd6275f6550e277cfcf31fb0cea",
+  "freeze_sha256": "711919f54be0e310b324002fe0fb37904cb92f6690b4df2c7de51ed738bdbf88",
+  "source48_digest": "9a85bdc99b58bd88f19e010341a8a0bcbbc10b2879a769ce32ac3254742c9b42",
   "matched_source48": 48,
-  "matched_canonical9": 9,
+  "matched_canonical9_raw_and_effective": 9,
   "matched_author_artifact_pins": 6,
   "mismatches": [],
+  "canonical_context_reconciliation": {
+    "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-routing.json",
+    "raw_sha256": "3263c1e9ebcc158c363596211ccf1e44097ea0e721a9e970a3217d6a313df12c",
+    "raw_path_filtered_HEAD_index_oid": "93147e887c180739cfe6ff53300d3fce86991d82",
+    "product_CWD": "C:/DEV/K35-7-P-producer",
+    "attributes": "text unset;whitespace cr-at-eol",
+    "result": "All9canonical raw/effectivepins match;no normalizationexception.",
+    "reviewer_amendment": "Initial d287LF observation used primaryCWD withgit-dir/work-tree but noexplicitCWD;reviewer retracted product-normalization characterization. ManualLFhypothetical isnotactualproduct filteredOID. No bytes/config changed."
+  },
   "production27_other47_package_unchanged": true,
-  "only_source_change": "Exact-held-Request terminal lifecycle in tests/e2e/pricing/pricing.e2e.spec.ts",
-  "pricing_sha256": "3a18c8d2795051854a4b0fe45b995f94952d66044debf74501812815e16d8a4d",
-  "pricing_git_blob": "0a472dc059d946897cb88608b548874e1361f7be",
-  "patch_sha256": "657a26b13272711d9215b582c557ac757b2c4aec6d1e98db24499727685b4323",
+  "only_source_change": "PricingE2E reviewedrelease/terminal/disposal sequencing,fixedsafe diagnostics+correctmarkersemantics",
+  "pricing_sha256": "5fb942222b62acf9c8fd9d5adb13473d6aee97b1054ba03229b63a4f80714fa7",
+  "pricing_git_blob": "9443180940f34ad14728bbf1696ea68dc854cc99",
+  "patch_sha256": "fc9b0d09b072ae44e23177e3b18b8093991df39be18ecfce84a7c5ff098b542a",
   "staging_paths": [
     "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-publication-handoff.json",
@@ -27,30 +36,32 @@
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json",
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-evidence.json",
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-only.patch",
-    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json",
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
     "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
     "tests/e2e/pricing/pricing.e2e.spec.ts"
   ],
-  "pinned_but_unchanged_not_staged": [],
+  "pinned_but_unchanged_not_staged": [
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json"
+  ],
   "new_tracked_paths_added": 0,
   "nonpatch_tracked_diff_check_native_exit": 0,
-  "patch_context": "Exactreviewed unified-diff bytes preserved;blank context syntax not full staged diff-check-zero claim.",
+  "patch_context": "Exactreviewed unified-diff bytes preserved;blankcontextsyntax notfullstageddiff-check-zero claim.",
   "owned_JSON_parse": "successful,not schema/evidence authorization",
   "author_checks": {
     "typecheck": 0,
     "pricing_eslint": 0,
     "SRO": 0,
     "SRO_stops": 49,
-    "lifecycle_saved_proof": "22passed0failed mockedsource event/clock cases",
-    "unchanged_admission132": "14bodies exact,retained priorreview/proof without rerun."
+    "model_proof": "32passed0failed,prior26records unchanged+6marker/privacyfixtures;synthetic only.",
+    "unchanged_admission132": "14bodies exact;retained priorproof/review without rerun."
   },
-  "review_receipt": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json#current_566_terminal_lifecycle_followup",
+  "review_receipt": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json#current_f4c_disposal_marker_fix_followup",
   "review_verdicts": {
     "verification": "FIX_CONFIRMED",
     "edges": "FIX_CONFIRMED"
   },
-  "review_limits": "Responsefinished throwing trap/modeledheaders/injectedclock only. Native566substage/causeUNKNOWN;freshtransport/read/imagequalification unearned.",
+  "initial_981_review": "CHANGES_REQUIREDhistoryretained;no retroactivePASS.",
+  "review_limits": "Nativef4ccancellationcause/classUNKNOWN;fixeddiagnostics/Requesteventsclockmodels notruntimeproof.",
   "definitions": {
     "owned": 24,
     "producer": 7,
@@ -58,17 +69,22 @@
     "new_candidate_PNGs": 0,
     "new_effects": 0
   },
-  "actual_566_browser": {
-    "head": "566bb80428a7af75cfee62ff42cef65a6ae40a9c",
-    "run": "41604657072",
-    "browser_native_sha256": "2ac35f7ddf3307c422ce3321aafba599bdafa077e5ecc934a54030c089f51797",
+  "actual_f4c_browser": {
+    "head": "f4c2b8da6521af0a99ffbd33debc42086fda2445",
+    "run": "41608859578",
+    "browser_native_sha256": "063372d841457a5621d0d8216c1d869816f234de314e086c4890d36a43910a59",
+    "browser_full_log_bytes": 107371,
+    "browser_full_log_sha256": "6f029319ced594b9fd9eca822c25bc1f94decedba9df2816fd783c38dc444215",
     "total": 104,
     "expected": 103,
     "unexpected": 1,
     "flaky": 0,
     "skipped": 0,
     "prior_owned23_producer6_first_attempt_pass": true,
-    "earned": "Admission,snapshot,first company_settings revoke and exact full-ACL/ordinary-read restoration passed at566 only.",
+    "first_attempt_ms": 4288,
+    "failure": "ExactheldRequest terminalFAILED,required completed response absent. Cancellationcause/requestclass UNKNOWN.",
+    "retry_ms": 2480,
+    "retry": "EEXIST correctlyrefuseddurableclaim",
     "journal_records": 4,
     "journal_stages": [
       "claimed-no-effects",
@@ -76,40 +92,44 @@
       "revoke-committed(company_settings)",
       "restore-verified(company_settings)"
     ],
-    "journal_binding": "Matching566 head/run per native evidence;no other fault table or deletion intent.",
-    "first_attempt_ms": 14376,
-    "failure": "Released read terminal settlement timed out; duplicated via same memoized rejection in scenario/cleanup aggregates. Actual hung substage/cause UNKNOWN.",
-    "retry_ms": 2576,
-    "retry": "EEXIST correctly refused durable claim",
+    "ACL_restoration": "Complete semanticACL andsameordinaryread match before;f4conly earned.",
+    "other_fault_tables": 0,
+    "delete_intents": 0,
     "historical_PNGs": 82,
     "normal_PNGs": 80,
     "method_PNGs": 2,
-    "method_PNG_scope": "Company receipt/current-read-pending,desktop andphone;validated by root.",
     "method_frames_missing": 21,
-    "deletion_intents": 0
+    "root_capture_validation": "82PNG hash/CRC/dimensions/Gitblob/head/build/config/runner11278/server11638 match;0issues",
+    "limits": "No firstattempttrace;retryEEXIST beforepage. Do notinfernativecause/class fromsourceor models."
   },
-  "actual_566_DB": {
-    "native_json_sha256": "d411c48732e698170bfd19a3916ca4b1a8dac8130e36479b48414621d2a96d2a",
+  "actual_f4c_DB": {
+    "job": "125826898997",
+    "native_json_sha256": "527e9fc71486f158d13161e357b463ccbf1262ef3c634a222c9e49bba05c4886",
     "total": 2305,
-    "passed": 2252,
-    "failed": 1,
+    "passed": 2253,
+    "failed": 0,
     "explicit_skipped": 52,
-    "success": false,
-    "failed_suites": 2,
-    "failed_files": 1,
+    "success": true,
     "producer_commands_passed": 75,
     "producer_RLS_passed": 7,
     "producer_skipped": 0,
-    "sole_failure": "16.4-INT-C08 earliest_date in job-scheduling-consumers.int.test.ts",
-    "first_caller": "fixture Auth creation role-ekonomi{} at core.ts135 -> Promise.all index3 -> seedRoleAwarePhaseAUsers278 -> createJobsDepthFixture112 -> withJobsDepthFixture237",
-    "business_callback_entered": false,
-    "partial_fixture_setup_possible": true,
-    "status_code_cause": "Unreported/UNKNOWN;no baseline,flake or causation claim.",
-    "ownership": "Unallocated global fixture unchanged;root owns retained native diagnostics.",
-    "whole566_CI": "DB and browser FAILURE;terminal, no overlap."
+    "wrapper_child_exit_codes": [
+      0,
+      0
+    ],
+    "key_deleted": true,
+    "db_closed": true,
+    "key_outcome": "deleted-confirmed",
+    "wrapper_failures": [],
+    "pilot_step": "PASS",
+    "full_log_bytes": 101358,
+    "full_log_sha256": "a4589ed204d9f906af3c568d0c729977ab51e5b6ade26a5e42169413b4e7345f",
+    "whole_f4c_CI": "Terminalbrowser-onlyFAIL;noactiveCIoverlap.",
+    "limits": "f4conly earned,notnewcandidateDBqualification."
   },
   "private_artifacts_NOT_staged": [
-    "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-566",
+    "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c",
+    "tmp/private/35-7-p-consumer-closed-service-proof/history-981-disposal",
     "tmp/private/35-7-p-consumer-closed-service-proof",
     "tmp/private/35-7-p-visual-cap-admission",
     "tmp/private/35-7-p-visual-cap-90-admission",
@@ -121,5 +141,5 @@
   "build_status": "in-progress",
   "step5_done": false,
   "release_ready": false,
-  "pending": "Parent-only successorpublication/fresh exactheadtransport+DB+browser/methods,all103images/completepackage/admission/authenticatedvisual/completion. Current566CI terminalDB+browserFAIL,nooverlap. Nochildcommit/push/CI/repair/adoption/merge/deploy."
+  "pending": "Parent-only successorpublication/fresh exactheadDB/browser/transport/methods,all103images/completepackage/admission/authenticatedvisual/completion.Currentf4cCIterminalbrowser-onlyFAIL,nooverlap.Nochildcommit/push/CI/repair/adoption/merge/deploy."
 }
