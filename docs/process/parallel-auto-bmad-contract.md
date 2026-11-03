@@ -443,6 +443,66 @@ raw sources. Rollback and historical replay semantics are unchanged. No proof
 overrides live/reopened ownership or custody, and no operational packet, live
 admission, tooling CI or product/runtime success follows from synthetic tests.
 
+#### Exact E15 current-custody alternative
+
+`legacy-main-current-custody` is a separate strict discriminator for only the
+existing `epic-15` owner, sprint source, six story keys and
+`codex/epic-15-scheduling-time-calendar` task branch. It reuses full actual
+allocation/amendment/bookkeeping scope, pins, integrated main/publication/ordered
+ancestry and exact registered anchor checks. Current native claims, legacy
+reservations and prepared integration/publication custody still refuse first.
+Original `legacy-main` terminal proof and `finalized-run` behavior are unchanged.
+
+Only `terminal_scope` is replaced with `current_custody`: exactly `coordinator`,
+`subject_digest`, `scope_digest`, `attested: true`,
+`complete_writer_inventory: true`, `no_reopen_attested: true`, and `evidence_ref`.
+These are Coordinator attestations, never provider-native completeness flags.
+The raw evidence object binds schema1, Coordinator/repository/common-Git,
+qualified main, request/run/story/worker/generation/checkpoint, subject/scope,
+complete current snapshot and exact anchors by digest. It retains an operator
+capture time `observed_at`, `valid_until`, and
+`no_new_overlapping_work_through_cas: true`; the interval is at most 900 seconds
+and must still be valid immediately before CAS. Native last activity/failed-turn
+timestamps are not query freshness and need no new actor turn.
+
+The evidence contains `operators`, `records`, `historical_refs` and an empty
+`uncertainties` array. Each actual record identifies actor/execution/external
+writer, owner, host, state, full current paths/domains, queued/background flags,
+existing allocation digest and actor `native_ref`. State is `non-writing` only
+with no assignment/queued/background work; otherwise `live-reserved` must match
+the entire existing nonconflicting allocation. Native allocation digests bind
+`{kind: "native-claim", claim: <exact snapshot row>}`; legacy digests bind
+`{kind: "legacy-reservation", reservation: <entire reservation>}`. Every other
+live allocation and every known relevant actor is covered. Legitimate active
+nonconflicting producers may continue with their full approved reservation;
+their scope is not reduced to recent changed files. Identified unknown state,
+scope, queued work, execution owner or custody refuses.
+
+Each operator has `identity`, `host`, `observation_ref`. The referenced
+`coordinator.host-operator-custody-observation` contains operator/host/capture
+time, concrete `knowledge`, matching per-record `facts`, checked sources and no
+uncertainties. Checked source purposes are exactly assignments, executions and
+external-writers. Their strict
+`coordinator.current-custody-inventory-projection` objects identify purpose,
+operator/host/capture time, matching records, nonempty original `raw_refs` and no
+uncertainties. These explicitly authored projections preserve actual existing
+host/task/operational observations; they are not new native APIs or a formal
+global process census. Relevant actor observations retain actual bounded
+`codex_app.read_thread` metadata separately. Failed/notLoaded metadata, a root
+boolean or empty host evidence alone cannot establish current custody.
+
+Historical failed records, known graph and unreadable old pages remain raw audit
+facts. The mode asserts only that the integrated marker confers no current live
+ownership; it asserts no historical success, no historical writes, task completion
+or actor closure. The Coordinator and actual host operator remain responsible
+for truthful complete actual writer/queued/background/known-external custody,
+source authenticity and the no-new-overlapping-assignment interval through CAS.
+Unchanged files prove integrity, not a fresh provider query. Independent High
+request review binds all these facts and remains independent of relevant actors,
+owners and operators. Final snapshot/raw-byte/window rechecks, the existing
+two-row CAS, rollback and lossless append-only audit remain mandatory; no marker,
+store schema, pinned helper, source pin or product configuration is changed.
+
 ### Custody, transaction and continuation
 
 1. Root reconciles existing identities/provider operation, obtains qualified

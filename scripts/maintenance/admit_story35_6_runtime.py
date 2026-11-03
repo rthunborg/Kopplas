@@ -361,13 +361,159 @@ def finalized_closure(db, repo, entry, authorities, main, snapshots):
             'external_legacy_reservations': copy.deepcopy(plan['legacy_reservations'])}
 
 
+def custody_window(attestation):
+    now = time.time()
+    start, end = attestation['observed_at'], attestation['valid_until']
+    require(type(start) in {int, float} and type(end) in {int, float} and
+            start <= now <= end and 0 < end - start <= 900 and
+            attestation['no_new_overlapping_work_through_cas'] is True,
+            'Current custody observation/quiet interval is stale or uncertain')
+
+
+def current_custody(repo, entry, inventory, p, r, snapshots):
+    """Exact E15 alternative: operator facts, not a historical-success proxy."""
+    subject, scope = entry['subject'], entry['scope']
+    proof = entry['proof']['current_custody']
+    keys(proof, ['coordinator', 'subject_digest', 'scope_digest', 'attested',
+                 'complete_writer_inventory', 'no_reopen_attested', 'evidence_ref'])
+    require(subject['key'] == 'epic-15' and subject['branch'] == 'codex/epic-15-scheduling-time-calendar' and
+            proof['coordinator'] == p['coordinator'] and
+            proof['subject_digest'] == engine.digest(subject) and proof['scope_digest'] == engine.digest(scope) and
+            proof['attested'] is True and proof['complete_writer_inventory'] is True and
+            proof['no_reopen_attested'] is True, 'Exact E15 current custody attestation required')
+    attestation = artifact_json(proof['evidence_ref'], snapshots, repo)
+    keys(attestation, ['schema_version', 'coordinator', 'repository', 'common_git', 'qualified_main_sha',
+                      'request_id', 'run_id', 'story_id', 'worker', 'generation', 'checkpoint_sha',
+                      'subject_digest', 'scope_digest', 'inventory_digest', 'anchors_digest',
+                      'observed_at', 'valid_until', 'no_new_overlapping_work_through_cas',
+                      'operators', 'records', 'historical_refs', 'uncertainties'])
+    require(type(attestation['schema_version']) is int and attestation['schema_version'] == 1 and
+            attestation['coordinator'] == p['coordinator'] and attestation['repository'] == REPOSITORY and
+            attestation['common_git'] == str(engine.common(repo)) and
+            all(attestation[k] == r[k] for k in ['qualified_main_sha', 'request_id', 'run_id', 'story_id', 'worker', 'checkpoint_sha']) and
+            type(attestation['generation']) is int and attestation['generation'] == r['expected_generation'] and
+            attestation['subject_digest'] == engine.digest(subject) and attestation['scope_digest'] == engine.digest(scope) and
+            attestation['inventory_digest'] == engine.digest(inventory['snapshot']) and
+            attestation['anchors_digest'] == engine.digest(entry['anchors']), 'Current custody identity/scope/inventory mismatch')
+    custody_window(attestation)
+    require(attestation['uncertainties'] == [] and isinstance(attestation['records'], list) and
+            attestation['records'] and isinstance(attestation['operators'], list) and attestation['operators'] and
+            isinstance(attestation['historical_refs'], list) and attestation['historical_refs'],
+            'Complete actual current custody records and preserved history required')
+    known = {subject['owner']}
+    for ref in attestation['historical_refs']:
+        data = capture(repo, ref, snapshots)
+        value = artifact_json(ref, snapshots, repo) if data.lstrip(b'\xef\xbb\xbf \r\n\t').startswith(b'{') else None
+        if isinstance(value, dict) and text(value.get('threadId')):
+            known.add(value['threadId'])
+    # These are existing live allocations, not new reservations created by proof.
+    allocations = {}
+    for row in inventory['snapshot']['store']['claims']:
+        if row['state'] == 'integrated' or (row['run'], row['story']) == (RUN, STORY):
+            continue
+        run = next(x for x in inventory['snapshot']['store']['runs'] if x['run'] == row['run'])
+        story = engine.story(parse_raw_json(run['plan'].encode()), row['story'])
+        allocations[engine.digest({'kind': 'native-claim', 'claim': row})] = (story, row['worker'])
+    for reservation in inventory['reservations']:
+        allocations[engine.digest({'kind': 'legacy-reservation', 'reservation': reservation['reservation']})] = (reservation['reservation'], None)
+    records, covered = {}, set()
+    record_fields = ['identity', 'kind', 'owner', 'host', 'state', 'write_paths', 'conflict_domains',
+                     'queued', 'background', 'allocation', 'native_ref']
+    for record in attestation['records']:
+        keys(record, record_fields)
+        identity = record['identity']
+        require(text(identity) and identity not in records and text(record['host']) and text(record['owner']) and
+                record['kind'] in {'actor', 'execution', 'external-writer'} and
+                record['state'] in {'non-writing', 'live-reserved'} and
+                type(record['queued']) is bool and type(record['background']) is bool,
+                'Actual current writer/execution identity or state is unknown')
+        paths = engine.strings(record['write_paths'], 'actual current write paths')
+        domains = engine.strings(record['conflict_domains'], 'actual current domains')
+        for path in paths:
+            engine.path_token(path)
+        if record['kind'] == 'actor':
+            require(record['owner'] == identity, 'Current actor owner mismatch')
+            native = artifact_json(record['native_ref'], snapshots, repo)
+            require(isinstance(native, dict) and native.get('source') == 'codex_app.read_thread' and
+                    native.get('threadId') == identity and isinstance(native.get('turns'), list) and
+                    native.get('thread_status') is not None, 'Actual bounded current actor observation required')
+        else:
+            require(record['native_ref'] is None, 'Execution/external custody uses operator observations')
+        if record['state'] == 'non-writing':
+            require(not paths and not domains and not record['queued'] and not record['background'] and
+                    record['allocation'] is None, 'Non-writing custody has assignment/queued/background work')
+        else:
+            allocation = allocations.get(record['allocation'])
+            require(allocation is not None and paths and set(paths) == set(allocation[0]['write_paths']) and
+                    set(domains) == set(allocation[0]['conflict_domains']) and
+                    (allocation[1] is None or record['owner'] == allocation[1]),
+                    'Current writing/queued execution lacks complete live reservation')
+            target = copy.deepcopy(engine.story(p, STORY))
+            target['write_paths'] += r['add_write_paths']; target['conflict_domains'] += r['add_conflict_domains']
+            require(not engine.conflicts(target, allocation[0]), 'Current custody overlaps admission scope')
+            covered.add(record['allocation'])
+        records[identity] = record
+    require(known <= {identity for identity, record in records.items() if record['kind'] == 'actor'} and
+            covered == set(allocations), 'Current custody omitted known actor or live allocation')
+    require(all(record['kind'] != 'execution' or
+                record['owner'] in records and records[record['owner']]['kind'] == 'actor'
+                for record in records.values()), 'Current execution owner omitted')
+    operators, witnessed = set(), set()
+    for operator in attestation['operators']:
+        keys(operator, ['identity', 'host', 'observation_ref'])
+        require(text(operator['identity']) and text(operator['host']) and operator['identity'] not in operators,
+                'Actual current host operator required')
+        observed = artifact_json(operator['observation_ref'], snapshots, repo)
+        keys(observed, ['source', 'operator', 'host', 'observed_at', 'knowledge', 'checked_sources', 'facts', 'uncertainties'])
+        require(observed['source'] == 'coordinator.host-operator-custody-observation' and
+                observed['operator'] == operator['identity'] and observed['host'] == operator['host'] and
+                observed['observed_at'] == attestation['observed_at'] and text(observed['knowledge']) and
+                observed['uncertainties'] == [] and isinstance(observed['facts'], list) and
+                isinstance(observed['checked_sources'], list), 'Actual host custody facts/knowledge required')
+        purposes = set()
+        for checked in observed['checked_sources']:
+            keys(checked, ['purpose', 'ref'])
+            require(checked['purpose'] in {'assignments', 'executions', 'external-writers'} and
+                    checked['purpose'] not in purposes, 'Concrete host inventory source purpose required')
+            source = artifact_json(checked['ref'], snapshots, repo)
+            keys(source, ['source', 'purpose', 'operator', 'host', 'observed_at', 'raw_refs', 'records', 'uncertainties'])
+            require(source['source'] == 'coordinator.current-custody-inventory-projection' and
+                    source['purpose'] == checked['purpose'] and source['operator'] == operator['identity'] and
+                    source['host'] == operator['host'] and source['observed_at'] == attestation['observed_at'] and
+                    source['uncertainties'] == [] and isinstance(source['raw_refs'], list) and source['raw_refs'] and
+                    isinstance(source['records'], list), 'Concrete raw-backed host inventory projection required')
+            for raw_ref in source['raw_refs']:
+                require(capture(repo, raw_ref, snapshots).strip(), 'Empty actual host inventory observation')
+            expected_kind = {'assignments': 'actor', 'executions': 'execution', 'external-writers': 'external-writer'}[checked['purpose']]
+            expected = [{key: val for key, val in record.items() if key != 'native_ref'}
+                        for record in records.values() if record['host'] == operator['host'] and record['kind'] == expected_kind]
+            require(source['records'] == expected, 'Actual host inventory has omitted/unknown/queued custody')
+            purposes.add(checked['purpose'])
+        require(purposes == {'assignments', 'executions', 'external-writers'}, 'Host assignment/execution/external inventory coverage required')
+        for fact in observed['facts']:
+            keys(fact, [field for field in record_fields if field != 'native_ref'])
+            record = records.get(fact['identity'])
+            require(record is not None and record['host'] == operator['host'] and
+                    fact == {key: val for key, val in record.items() if key != 'native_ref'} and
+                    fact['identity'] not in witnessed, 'Host operational facts do not corroborate current custody')
+            witnessed.add(fact['identity'])
+        operators.add(operator['identity'])
+    require(witnessed == set(records), 'Actual current writer/execution lacks host corroboration')
+    require(r['admission_review']['review']['reviewer'] not in operators | set(records) |
+            {record['owner'] for record in records.values()}, 'Admission reviewer owns current custody evidence')
+    return {'attestation': attestation, 'known_current_identities': sorted(records),
+            'meaning': 'Integrated historical marker has no current live ownership; no historical task success or actor closure asserted.'}
+
+
 def legacy_closure(repo, entry, authorities, p, r, snapshots):
     subject, proof, scope = entry['subject'], entry['proof'], entry['scope']
     require(subject['key'] in LEGACY, 'Unsupported historical legacy subject')
     kind, folder, story_keys, number = LEGACY[subject['key']]
     require(subject['source_kind'] == kind and subject['source_folder'] == folder and subject['story_keys'] == story_keys,
             'Legacy source identity mismatch')
-    keys(proof, ['main_sha', 'terminal_states', 'source_bindings', 'publications', 'terminal_scope'])
+    mode = 'current_custody' if entry['kind'] == 'legacy-main-current-custody' else 'terminal_scope'
+    require(mode != 'current_custody' or subject['key'] == 'epic-15', 'Current custody mode is exact E15 only')
+    keys(proof, ['main_sha', 'terminal_states', 'source_bindings', 'publications', mode])
     require(proof['main_sha'] == r['qualified_main_sha'], 'Legacy closure main changed')
     parts = story_keys + (['epic-15'] if kind == 'sprint' else [])
     require(isinstance(proof['terminal_states'], list) and len(proof['terminal_states']) == len(parts), 'Complete terminal main counterparts required')
@@ -475,6 +621,8 @@ def legacy_closure(repo, entry, authorities, p, r, snapshots):
         if branch_name == subject['branch'] and folder:
             require(states[subject['key']].get('pr_merged') is True and
                     states[subject['key']].get('merge_commit') == publication['merge_sha'], 'Legacy merged state fields mismatch')
+    if mode == 'current_custody':
+        return {'terminal_states': states, 'source_locations': sorted(locations)}
     writers = terminal_scope(repo, proof['terminal_scope'], subject, scope, owners, p, r, snapshots)
     return {'terminal_states': states, 'source_locations': sorted(locations), 'historical_writers': writers}
 
@@ -529,8 +677,10 @@ def closed_classifications(db, repo, inventory, p, r, snapshots):
                         'Finalized subject has outstanding/reopened epic claim')
             require(not any(str(res['reservation']['epic']) == str(decision['plan']['epic'])
                             for res in inventory['reservations']), 'Finalized subject has live legacy reservation')
-        elif entry['kind'] == 'legacy-main':
+        elif entry['kind'] in {'legacy-main', 'legacy-main-current-custody'}:
             decision = legacy_closure(repo, entry, authorities, p, r, snapshots)
+            if entry['kind'] == 'legacy-main-current-custody':
+                decision['current_custody'] = current_custody(repo, entry, inventory, p, r, snapshots)
         else:
             raise engine.Refusal('Unsupported closed classification kind')
         require(isinstance(entry['anchors'], list) and entry['anchors'], 'Exact historical anchor references required')
@@ -788,6 +938,9 @@ def admit(a):
         require(request_path.read_bytes() == raw_request, 'Request changed during admission')
         for ref, data in snapshots:
             require(source_bytes(repo, ref) == data, 'Bound evidence changed immediately before CAS')
+        for decision in classifications:
+            if decision['kind'] == 'legacy-main-current-custody':
+                custody_window(decision['proof']['current_custody']['attestation'])
         now = time.time()
         revised_hash = engine.digest(revised)
         updated = db.execute('UPDATE runs SET plan=?,plan_hash=? WHERE run=? AND owner=? AND state=\'active\' AND plan_hash=?',

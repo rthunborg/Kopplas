@@ -340,6 +340,77 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
         self.request['ownership_inventory'] = self.raw('inventory', inventory)
         return inventory
 
+    def custody_fixture(self):
+        entry = self.legacy_fixture('epic-15')
+        entry['kind'] = 'legacy-main-current-custody'
+        del entry['proof']['terminal_scope']
+        entry['proof']['current_custody'] = {}
+        return entry
+
+    def bind_custody(self, entry, transform=None, reservations=None):
+        inventory = self.bind_closed([entry])
+        inventory['reservations'] = reservations or []
+        now = adapter.time.time()
+        identities = [entry['subject']['owner'], 'known-failed-e15-writer']
+        records = []
+        for identity in identities:
+            native = {'source': 'codex_app.read_thread', 'threadId': identity, 'thread_status': 'notLoaded',
+                      'turns': [{'id': 'old-failed', 'status': 'failed', 'completedAt': 1, 'finals': []}]}
+            records.append({'identity': identity, 'kind': 'actor', 'owner': identity, 'host': 'fixture-host',
+                            'state': 'non-writing', 'write_paths': [], 'conflict_domains': [], 'queued': False,
+                            'background': False, 'allocation': None, 'native_ref': self.raw('current-' + identity, native)})
+        for i, reservation in enumerate(inventory['reservations']):
+            identity = 'current-producer-' + str(i)
+            res = reservation['reservation']
+            native = {'source': 'codex_app.read_thread', 'threadId': identity, 'thread_status': 'running',
+                      'turns': [{'id': 'actual-current-producer', 'status': 'inProgress', 'finals': []}]}
+            records.append({'identity': identity, 'kind': 'actor', 'owner': identity, 'host': 'fixture-host',
+                            'state': 'live-reserved', 'write_paths': res['write_paths'], 'conflict_domains': res['conflict_domains'],
+                            'queued': False, 'background': True,
+                            'allocation': engine.digest({'kind': 'legacy-reservation', 'reservation': res}),
+                            'native_ref': self.raw('current-' + identity, native)})
+        # Actual stopped execution, accounted for separately from actor metadata.
+        records.append({'identity': 'known-old-execution', 'kind': 'execution', 'owner': identities[1],
+                        'host': 'fixture-host', 'state': 'non-writing', 'write_paths': [], 'conflict_domains': [],
+                        'queued': False, 'background': False, 'allocation': None, 'native_ref': None})
+        historical = [self.raw('failed-history', {'source': 'codex_app.read_thread', 'threadId': identities[1],
+                       'turns': [{'id': 'actual-historical-failure', 'status': 'failed', 'finals': [],
+                                  'observation': 'Historical writes are possible; failure is not a no-write proof.'}]}),
+                      self.raw('unreadable-history', {'source': 'historical-page-error', 'cursor': '71750',
+                                'result': 'unreadable; not repaired or relabeled'})]
+        facts = [{k: v for k, v in record.items() if k != 'native_ref'} for record in records]
+        checked = []
+        for purpose, kind in [('assignments', 'actor'), ('executions', 'execution'), ('external-writers', 'external-writer')]:
+            observed_rows = [fact for fact in facts if fact['kind'] == kind]
+            raw = self.raw('actual-host-' + purpose, {'source': 'synthetic-existing-host-task-records',
+                           'purpose': purpose, 'host': 'fixture-host', 'rows': observed_rows})
+            projection = {'source': 'coordinator.current-custody-inventory-projection', 'purpose': purpose,
+                          'operator': 'actual-host-operator', 'host': 'fixture-host', 'observed_at': now,
+                          'raw_refs': [raw], 'records': observed_rows, 'uncertainties': []}
+            checked.append({'purpose': purpose, 'ref': self.raw('host-projection-' + purpose, projection)})
+        host = {'source': 'coordinator.host-operator-custody-observation', 'operator': 'actual-host-operator',
+                'host': 'fixture-host', 'observed_at': now,
+                'knowledge': 'Synthetic operator checked actual assignments, tracked executions and known external writers; no unaccounted source task.',
+                'checked_sources': checked, 'facts': facts, 'uncertainties': []}
+        attestation = {'schema_version': 1, 'coordinator': self.plan['coordinator'], 'repository': adapter.REPOSITORY,
+                       'common_git': str(engine.common(self.repo)), 'qualified_main_sha': self.request['qualified_main_sha'],
+                       'request_id': self.request['request_id'], 'run_id': adapter.RUN, 'story_id': adapter.STORY,
+                       'worker': 'worker-a', 'generation': 1, 'checkpoint_sha': self.checkpoint_sha,
+                       'subject_digest': engine.digest(entry['subject']), 'scope_digest': engine.digest(entry['scope']),
+                       'inventory_digest': engine.digest(inventory['snapshot']), 'anchors_digest': engine.digest(entry['anchors']),
+                       'observed_at': now, 'valid_until': now + 900, 'no_new_overlapping_work_through_cas': True,
+                       'operators': [{'identity': 'actual-host-operator', 'host': 'fixture-host', 'observation_ref': self.raw('host-facts', host)}],
+                       'records': records, 'historical_refs': historical, 'uncertainties': []}
+        if transform:
+            transform(attestation)
+        entry['proof']['current_custody'] = {'coordinator': self.plan['coordinator'],
+            'subject_digest': engine.digest(entry['subject']), 'scope_digest': engine.digest(entry['scope']),
+            'attested': True, 'complete_writer_inventory': True, 'no_reopen_attested': True,
+            'evidence_ref': self.raw('current-custody-attestation', attestation)}
+        inventory['closed_anchors'] = [entry]
+        self.request['ownership_inventory'] = self.raw('inventory', inventory)
+        return attestation
+
     def validate_closed(self, entry):
         inventory = self.bind_closed([entry])
         self.refresh_review()
@@ -437,6 +508,154 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
         with engine.database(self.repo) as db:
             receipt = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])
         self.assertTrue(all(s['pr_merged'] is False for s in receipt['closed_classifications'][0]['proof']['terminal_states'].values()))
+
+    def test_current_custody_preserves_failed_history_and_active_full_producer(self):
+        entry = self.custody_fixture()
+        res = {'epic': 'actual-producer', 'stories': ['known-task'], 'reason': 'full allocated producer task',
+               'worktree': str(self.c), 'write_paths': ['src/producer/', 'package.json', 'tests/e2e/producer-a.ts',
+                                                      'tests/e2e/producer-b.ts'], 'conflict_domains': ['producer:full']}
+        reservation = {'reservation': res, 'head': engine.sha(self.c, 'HEAD'), 'source_status': 'active',
+                       'evidence_ref': 'actual-producer-state', 'independent': True,
+                       'independence_ref': 'actual-current-source-independence', 'anchors': []}
+        attestation = self.bind_custody(entry, reservations=[reservation])
+        self.assertEqual(self.admit()['generation'], 2)
+        with engine.database(self.repo) as db:
+            receipt = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])
+        decision = receipt['closed_classifications'][0]
+        self.assertEqual(decision['kind'], 'legacy-main-current-custody')
+        self.assertNotIn('historical_writers', decision['proof'])
+        self.assertEqual(decision['proof']['current_custody']['attestation'], attestation)
+        self.assertEqual(receipt['ownership_inventory']['reservations'], [reservation])
+        self.assertIn(adapter.RUNTIME, decision['scope']['write_paths'])
+        for ref in attestation['historical_refs']:
+            item = next(x for x in receipt['raw_artifacts'] if x['reference'] == ref)
+            self.assertEqual(base64.b64decode(item['base64']), Path(ref['path']).read_bytes())
+        failed = json.loads(Path(attestation['historical_refs'][0]['path']).read_bytes())
+        self.assertEqual(failed['turns'][0]['status'], 'failed')
+        self.assertEqual(failed['turns'][0]['finals'], [])
+
+    def test_current_custody_unknown_queued_background_and_partial_coverage_refuse(self):
+        entry = self.custody_fixture()
+        variants = [
+            (lambda a: a['records'][1].update(state='unknown'), 'identity or state is unknown'),
+            (lambda a: a['records'][1].update(write_paths=None), 'actual current write paths'),
+            (lambda a: a['records'][1].update(queued=True), 'assignment/queued/background'),
+            (lambda a: a['records'][1].update(background=True), 'assignment/queued/background'),
+            (lambda a: a['records'].pop(1), 'omitted known actor'),
+            (lambda a: a.update(operators=[]), 'Complete actual current custody'),
+            (lambda a: a.update(uncertainties=['identified external writer has unknown assignment']), 'Complete actual current custody'),
+            (lambda a: a.update(historical_refs=[]), 'Complete actual current custody'),
+            (lambda a: a.update(no_new_overlapping_work_through_cas=False), 'quiet interval'),
+            (lambda a: a.update(observed_at=a['observed_at']-1000, valid_until=a['observed_at']-1), 'quiet interval'),
+            (lambda a: a.update(scope_digest='0'*64), 'identity/scope/inventory'),
+        ]
+        for transform, message in variants:
+            with self.subTest(message=message):
+                self.bind_custody(entry, transform)
+                self.refused(message)
+
+    def test_current_custody_refreshed_host_projection_and_metadata_alone_refuse(self):
+        entry = self.custody_fixture()
+        def change_host(a, mode):
+            operator = a['operators'][0]
+            host = json.loads(Path(operator['observation_ref']['path']).read_bytes())
+            if mode == 'metadata-alone':
+                host['checked_sources'] = []
+            elif mode == 'facts':
+                host['facts'][0]['queued'] = True
+            elif mode == 'queued-execution':
+                checked = host['checked_sources'][1]
+                projection = json.loads(Path(checked['ref']['path']).read_bytes())
+                projection['records'].append({'identity': 'identified-queued-task', 'queued': True})
+                checked['ref'] = self.raw('refreshed-queued-source', projection)
+            elif mode == 'reviewer':
+                operator['identity'] = host['operator'] = 'independent-admission-reviewer'
+                for checked in host['checked_sources']:
+                    projection = json.loads(Path(checked['ref']['path']).read_bytes())
+                    projection['operator'] = operator['identity']
+                    checked['ref'] = self.raw('reviewer-' + checked['purpose'], projection)
+            operator['observation_ref'] = self.raw('refreshed-host-facts', host)
+        for mode, message in [('metadata-alone', 'inventory coverage'), ('facts', 'operational facts'),
+                              ('queued-execution', 'omitted/unknown/queued custody'),
+                              ('reviewer', 'Admission reviewer owns current custody evidence')]:
+            with self.subTest(mode=mode):
+                self.bind_custody(entry, lambda a: change_host(a, mode))
+                self.refused(message)
+
+    def test_current_custody_identity_scope_anchor_pin_and_publication_guards(self):
+        entry = self.custody_fixture()
+        variants = []
+        item = copy.deepcopy(entry); item['scope']['write_paths'].remove(adapter.RUNTIME)
+        variants.append((item, 'scope arrays/bookkeeping were reduced'))
+        item = copy.deepcopy(entry); item['anchors'][0]['blob_sha256'] = '0'*64
+        variants.append((item, 'Raw source hash mismatch'))
+        item = copy.deepcopy(entry); item['subject']['owner'] = 'wrong-owner'
+        variants.append((item, 'Legacy authoritative binding identity mismatch'))
+        item = copy.deepcopy(entry); item['proof']['publications'][0]['head_sha'] = self.base
+        variants.append((item, 'publication observation mismatch'))
+        for item, message in variants:
+            with self.subTest(message=message):
+                self.bind_custody(item)
+                self.refused(message)
+        self.bind_custody(entry, lambda a: a.update(generation=2))
+        self.refused('identity/scope/inventory')
+
+    def test_current_custody_mode_is_exact_e15_not_another_legacy_profile(self):
+        entry = self.legacy_fixture()
+        entry['kind'] = 'legacy-main-current-custody'
+        del entry['proof']['terminal_scope']
+        entry['proof']['current_custody'] = {}
+        self.bind_closed([entry])
+        self.refused('Current custody mode is exact E15 only')
+
+    def test_current_custody_cannot_override_live_overlap_reopening_or_prepared_custody(self):
+        entry = self.custody_fixture()
+        def reservation(epic, path):
+            return {'reservation': {'epic': epic, 'stories': ['task'], 'reason': 'actual live allocation',
+                    'worktree': str(self.c), 'write_paths': [path], 'conflict_domains': []},
+                    'head': engine.sha(self.c, 'HEAD'), 'source_status': 'active', 'evidence_ref': 'actual-source',
+                    'independent': True, 'independence_ref': 'actual-independent', 'anchors': []}
+        self.bind_custody(entry, reservations=[reservation('actual-producer', adapter.RUNTIME)])
+        self.refused('Admission conflicts with legacy reservation')
+        self.bind_custody(entry, reservations=[reservation('15', 'src/unrelated/')])
+        self.refused('Closed subject has live legacy reservation')
+        with engine.database(self.repo) as db:
+            db.execute('INSERT INTO journal VALUES(?,?,?,?,?,?)', ('other', 'task', self.base, self.base, None, 'prepared'))
+        self.bind_custody(entry)
+        self.refused('repository integration custody')
+
+    def test_current_custody_last_recheck_and_atomic_rollback(self):
+        entry = self.custody_fixture()
+        self.bind_custody(entry)
+        before = self.snapshot()
+        with patch.object(adapter, 'checkpoint', side_effect=RuntimeError('synthetic custody crash')), self.assertRaises(RuntimeError):
+            self.admit()
+        self.assertEqual(self.snapshot(), before)
+        original = adapter.source_bytes
+        ref = entry['proof']['current_custody']['evidence_ref']
+        reads = 0
+        def change_final(repo, candidate):
+            nonlocal reads
+            data = original(repo, candidate)
+            if candidate == ref:
+                reads += 1
+                return data if reads == 1 else data + b' '
+            return data
+        with patch.object(adapter, 'source_bytes', side_effect=change_final):
+            self.refused('Bound evidence changed immediately before CAS')
+        self.assertEqual(reads, 2)
+        self.bind_custody(entry)
+        window, calls = adapter.custody_window, 0
+        def expire_at_cas(attestation):
+            nonlocal calls
+            calls += 1
+            if calls == 2:
+                with patch.object(adapter.time, 'time', return_value=attestation['valid_until'] + 1):
+                    return window(attestation)
+            return window(attestation)
+        with patch.object(adapter, 'custody_window', side_effect=expire_at_cas):
+            self.refused('quiet interval')
+        self.assertEqual(calls, 2)
 
     def test_closed_scope_graph_no_reopen_and_reviewer_checks_fail_closed(self):
         entry = self.legacy_fixture()

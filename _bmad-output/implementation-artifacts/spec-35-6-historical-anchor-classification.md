@@ -258,9 +258,9 @@ Implementation anchors (the final author trail follows execution evidence):
 - `scripts/maintenance/admit_story35_6_runtime.py:101` — `capture`: one initial raw source capture.
 - `scripts/maintenance/admit_story35_6_runtime.py:269` — `terminal_scope`: complete scoped writer roots/descendants and no-reopen flag.
 - `scripts/maintenance/admit_story35_6_runtime.py:317` — `finalized_closure`: full native plan, verified claims, pins and ancestry.
-- `scripts/maintenance/admit_story35_6_runtime.py:364` — `legacy_closure`: exact observed legacy profiles and main/publication/source proofs.
-- `scripts/maintenance/admit_story35_6_runtime.py:482` — `closed_classifications`: exact registered marker instances only.
-- `scripts/maintenance/admit_story35_6_runtime.py:575` — `ownership`: ordinary ownership first, strict inventory-version branch.
+- `scripts/maintenance/admit_story35_6_runtime.py:508` — `legacy_closure`: exact observed legacy profiles and main/publication/source proofs.
+- `scripts/maintenance/admit_story35_6_runtime.py:630` — `closed_classifications`: exact registered marker instances only.
+- `scripts/maintenance/admit_story35_6_runtime.py:725` — `ownership`: ordinary ownership first, strict inventory-version branch.
 - `docs/process/parallel-auto-bmad-contract.md:367` — evidence-bound historical anchor operator contract.
 
 | Synthetic case | Required result |
@@ -483,6 +483,107 @@ authorized or executed by this follow-up. Earlier 38-pass and helper70 evidence
 above remains historical. Fresh exact-successor tooling qualification and a
 complete current operational request remain separate parent-owned gates.
 
+## Approved exact E15 current-custody extension
+
+Root admitted independent Sol High revision2 design SHA256
+`9dd59807118df19c9635f211d83554b0c0098eeca873900f8d856227adc92b54`
+from `/root/crm_runtime_route/runtime_admission_design_review`. Author remains
+`/root/crm_runtime_route/runtime_admission_author`, Sol High. Route and complete
+design are retained under `tmp/private/current-custody-design/`; this is the same
+rendered Build maintenance lane, without a new broad review or story key.
+
+First, ordinary merge `9c26e76ae5f9bd376b9ad57adda272bc674dca1d` integrated qualified
+main `b5473835fffd710504c1aa9e90cd8381bbaa67c0` into source
+`5dc0dbc32e2832322dc96eb4b4a990098a78c7c8`, with those two ordered parents and tree
+`896e3bb5320a334affbc9e4e106c2753ee106302`. It had no conflicts and preserved all
+five incoming PR131 process blobs exactly; the previous four maintenance blobs
+were unchanged. `tmp/private/current-custody-implementation/merge-receipt.json`
+records their identities. No inherited process file is authored by this batch.
+
+This approved extension adds `legacy-main-current-custody`, **only** for the
+existing E15 key/owner/sprint/source/story set and exact task branch. The original
+strict contract above remains the terminal-mode contract. The new discriminator
+reuses legacy full allocation/amendment/bookkeeping/pin, main counterparts,
+publication/ordered ancestry and registered anchor validation. It replaces only
+`terminal_scope` with a separate current factual custody proof. Original
+`terminal_scope` and `finalized_closure` function ASTs are unchanged; current live
+claims/reservations/source aliases and prepared repository custody still run first.
+
+### Current proof and trust boundary
+
+`current_custody` has exactly `coordinator`, subject/scope digests,
+`attested: true`, `complete_writer_inventory: true`, `no_reopen_attested: true`,
+and `evidence_ref`. The raw attestation has schema1; Coordinator, repository and
+common-Git identity; qualified main, request/run/story/worker/generation/checkpoint;
+subject/scope, complete current snapshot and anchor digests; `observed_at`,
+`valid_until`, `no_new_overlapping_work_through_cas`; operators, actual records,
+preserved historical refs and no uncertainties. The at-most-900-second quiet
+interval is checked again immediately before the unchanged CAS.
+
+Records contain exact identity/kind/owner/host/state, full current paths/domains,
+queued/background flags, existing allocation digest and actor native ref.
+Non-writing requires no assignment/queued/background work. Otherwise a record
+must match the complete existing nonconflicting native claim or legacy reservation;
+every other live allocation is covered. Actual active nonconflicting producers
+can continue. No test or guard requires all repository actors idle or all historical
+E15 paths unused. Unknown actual writer state/scope/execution owner/custody refuses.
+
+Each actual operator supplies a labeled host observation with concrete direct
+knowledge, matching record facts, and assignment/execution/external-writer source
+projections linked to nonempty original raw observations. These are explicitly
+Coordinator/operator-authored factual projections, **not invented provider APIs,
+provider completeness flags or a formal global OS census**. Known relevant actors
+also have bounded actual current native read metadata. An old failed turn or
+notLoaded alone is insufficient; its last activity timestamp is not capture
+freshness. The operator's capture time and actual operational knowledge bind the
+current observation. Unrelated current work with a full nonconflicting allocation
+is allowed; specifically identified unknown or unreserved queued work is not.
+
+History remains data: failed turns, possible historical writes, the unreadable
+old page and known graph are captured without success/closure relabeling. This
+classification asserts only that an integrated historical marker confers no live
+ownership now. It does not claim historical task success, no historical writes,
+task completion or actor closure. No ancient71750 repair or successful own final
+is a proxy for the current invariant.
+
+Completeness, actual source authenticity and maintaining no overlapping new
+assignment/reopening through CAS remain the existing Coordinator/host-operator
+responsibility. Unchanged files prove byte integrity, not another native query.
+Independent High request review binds the full current proof and is independent
+of relevant actors, owners and operators. Source/store/anchor/current snapshot
+and raw proof rechecks, two-row CAS, append-only lossless audit, rollback and
+historical replay remain in the existing transaction. No table/helper/workflow,
+source pin, marker, product or runtime configuration is changed.
+
+### Affected verification and limits
+
+The original 41 test-method bodies are unchanged; seven new methods make static
+inventory48. The affected selection contains those seven and representative old
+E15 terminal/E20 finalized cases. It exercises real disposable Git/SQLite adapter
+admission, strict unknown/queued/coverage/identity/source/proof refusals with fresh
+bindings and unchanged store, complete active producer reservation, preserved
+failed/unreadable history, raw mutation, late quiet-window expiry and atomic
+rollback. Native execution passed **9 executed, 0 failures, 0 errors, 0 skipped,
+488.996s**, exit0, on Windows Python3.14.7/Git2.55.0.windows.3 with actual
+8.3 TEMP. The before/after raw source/test hashes match exactly; no intermediate
+native failure or rerun occurred in this selection.
+Exact argv, source/test hashes and durable output are under
+`tmp/private/current-custody-implementation/native-affected*`. The exact tested
+source SHA256 is `dc1a5eb488211bf66d52ab7aaff905faf3ec66e3ac0940f22f3a5ae3c676e4d7`;
+test SHA256 is `1100f7b9763fe47fbdc4774a82dd29c1e8debd13790ae065fccbc8fe997dd964`.
+
+Root separately reports all four direct native tooling jobs in run41612338314
+and applicable ordinary CI in41612317330 passed for **historical source5dc0 only**.
+This author polled no CI. Those results qualify neither integration9c26 nor this
+mode working tree. Earlier native4/38/helper70 results keep their exact historical
+scope. No full48/41/core/helper/CI run is performed here.
+
+Actual E15 current-custody facts, full actual scope reconciliation, qualified
+successor/Q, complete fresh ordinary inventory and exact independent request
+review remain operational prerequisites. Human coordination authorization does
+not cause this author to contact/resume an actor. No current-custody request,
+live admission or CRM/product/runtime success is prepared or claimed.
+
 ## Operational proof gaps and disposition
 
 The approved design is implemented for targeted review; **no operational packet
@@ -507,114 +608,84 @@ is ready**. Missing proof remains a refusal under this schema:
 ## Suggested Review Order
 
 Author: `/root/crm_runtime_route/runtime_admission_author` (Sol High).
-Refreshed for the bounded raw-pin correction working tree over frozen merge
-`6340010c11407b7b77f3c0e81699c7af71b65bb2`. Original baseline
-`d03a52ce014f60c8e279f016e8cdd5790ca0d596`, design approval and historical
-82f/c258 merge provenance remain unchanged. Only the original four introduced
-paths are modified; inherited CI spec/workflow and helper pins are unchanged.
-Current source SHA256 is
-`7c202f5e255f5967bf1b4d78fbaba96c0cbec9e20476e543b45e1bb6062b79b5`;
-current test SHA256 is
-`80c15f9da1c36a01b283c6b12c6161d08bc12a16e3ac15188ad3b09aa67e70cb`.
-The historical 38-test run qualified the prior pair, not this correction.
-Affected native selection passed four methods in 123.078s as recorded above;
-the static 41-method inventory is not a full-suite execution. Real operator proof
-and fresh exact-successor qualification remain separate required gates.
+Refreshed for the approved revision2 current-custody working tree over genuine
+merge `9c26e76ae5f9bd376b9ad57adda272bc674dca1d` (parents5dc0/b547). Original
+d03a intent/design, all prior failures and exact historical test provenance remain
+recorded above. Only the original four maintenance paths are authored; all five
+qualified PR131 process blobs and inherited helper/workflow are preserved.
+Current raw source SHA256 is
+`dc1a5eb488211bf66d52ab7aaff905faf3ec66e3ac0940f22f3a5ae3c676e4d7`;
+current raw test SHA256 is
+`1100f7b9763fe47fbdc4774a82dd29c1e8debd13790ae065fccbc8fe997dd964`.
 
-### Classify exact historical markers after ordinary ownership
+### Keep ordinary ownership ahead of historical classification
 
-The approved design adds an inventory classification to this exact adapter.
-It preserves ordinary claim/reservation/custody checks and the authoritative old
-plan used by the unchanged legacy validator; a historical annotation grants no
-new authority.
+The operator chooses an explicit mode only after existing current ownership,
+source aliases and repository custody checks. Actual active nonconflicting
+producers retain their complete allocation; no historical annotation overrides it.
 
-- `docs/process/parallel-auto-bmad-contract.md:367` — `Evidence-bound historical anchors`: operator schema and trust boundaries.
-- `scripts/maintenance/admit_story35_6_runtime.py:575` — `def ownership`: validates the complete inventory and current ownership first.
-- `scripts/maintenance/admit_story35_6_runtime.py:640` — `engine.story_pr_legacy_conflicts(repo, p, revised_story)`: retains authoritative old-plan recognition.
+- `docs/process/parallel-auto-bmad-contract.md:367` — `Evidence-bound historical anchors`: operator contract and explicit historical boundary.
+- `scripts/maintenance/admit_story35_6_runtime.py:725` — `def ownership`: checks current plans, reservations and sources first.
+- `scripts/maintenance/admit_story35_6_runtime.py:790` — `engine.story_pr_legacy_conflicts(repo, p, revised_story)`: retains the authoritative old plan.
+- `scripts/maintenance/admit_story35_6_runtime.py:630` — `def closed_classifications`: dispatches exact typed historical classifications.
 
-### Bind complete scope and real task closure
+### Preserve full scope, integration identity and original proof modes
 
-Native closure conserves the entire stored plan/shared scope and retains external
-reservations separately. The three approved legacy profiles require exact main,
-source and publication proofs plus every owner as a terminal writer-graph root;
-unrelated current actor work does not replace scoped closure/no-reopen evidence.
+The new kind is exact E15 and reuses legacy full-scope/main/publication/anchor
+gates. The original terminal and finalized validators are unchanged; the native
+selection exercises both old modes alongside the new one.
 
-- `scripts/maintenance/admit_story35_6_runtime.py:317` — `def finalized_closure`: verifies full native scope, pins, integrated backing and ancestry.
-- `scripts/maintenance/admit_story35_6_runtime.py:364` — `def legacy_closure`: binds observed profiles, allocations, main counterparts and publications.
-- `scripts/maintenance/admit_story35_6_runtime.py:269` — `def terminal_scope`: requires explicit no-reopen and complete recursively observed writers.
-- `tests/maintenance/test_admit_story35_6_runtime.py:432` — `test_closed_e15_legacy_defaults_all_six_and_unmerged_debug_head`: preserves all counterparts and legacy flags with archived diagnostics.
+- `scripts/maintenance/admit_story35_6_runtime.py:508` — `def legacy_closure`: shares identity and full-scope guards with exact E15 discrimination.
+- `scripts/maintenance/admit_story35_6_runtime.py:269` — `def terminal_scope`: retains original terminal writer roots and descendants.
+- `scripts/maintenance/admit_story35_6_runtime.py:317` — `def finalized_closure`: retains full native plan, verification and ancestry.
+- `tests/maintenance/test_admit_story35_6_runtime.py:503` — `test_closed_e15_legacy_defaults_all_six_and_unmerged_debug_head`: conserves old terminal mode and all counterparts.
 
-### Refuse reopened identities and divergent publication ancestry
+### Establish current facts without rewriting historical failure
 
-Independent review identified schema-1 short IDs as a reachable reconciliation
-gap. Known casefolded aliases and source paths now cover native claims as well
-as reservations; the negative fixtures refresh evidence and avoid ordinary path
-overlap so they reach the named identity or ordered-parent guard.
+Revision2 uses bounded current native metadata plus raw-backed operator facts at
+the existing Coordinator trust boundary. Old activity timestamps and failed or
+notLoaded metadata do not settle custody alone; actual unknown or unreserved
+queued/background work refuses.
 
-- `scripts/maintenance/admit_story35_6_runtime.py:496` — `aliases =`: shares known legacy identity reconciliation across claims and reservations.
-- `tests/maintenance/test_admit_story35_6_runtime.py:639` — `test_closed_legacy_reopened_source_casefold_is_the_only_matching_identity`: isolates differently cased source ownership.
-- `tests/maintenance/test_admit_story35_6_runtime.py:687` — `test_closed_legacy_reversed_publication_parents_with_matching_raw_observation_refuse`: rejects reversed parents with refreshed matching observation.
-- `tests/maintenance/test_admit_story35_6_runtime.py:695` — `test_closed_legacy_schema1_short_ids_and_source_spec_cannot_reopen`: rejects short IDs and historical source-spec identity without scope overlap.
+- `scripts/maintenance/admit_story35_6_runtime.py:373` — `def current_custody`: binds actual actors, host facts, full allocations and independent review.
+- `scripts/maintenance/admit_story35_6_runtime.py:364` — `def custody_window`: requires a current bounded quiet interval through CAS.
+- `tests/maintenance/test_admit_story35_6_runtime.py:512` — `test_current_custody_preserves_failed_history_and_active_full_producer`: preserves failed history and active full producer scope.
+- `tests/maintenance/test_admit_story35_6_runtime.py:537` — `test_current_custody_unknown_queued_background_and_partial_coverage_refuse`: refuses identified unknown or incomplete custody.
 
-### Honor the original raw allocation pin without rewriting authority
+### Recheck raw authority and preserve atomic custody transfer
 
-The recorded 35.2 allocation pin hashes CRLF bytes. This bounded fix accepts
-that exact raw hash or the existing LF hash against the same unchanged pin;
-full native regressions preserve raw audit bytes and reject refreshed altered
-bytes or a separate LF blob that does not match the raw pin.
+Captured bytes retain exact raw pins, including the earlier raw-or-LF correction.
+Current proof digests, raw observations and the quiet interval are rechecked before
+the existing two-row CAS; the actual native rollback test reaches the audit hook.
 
-- `scripts/maintenance/admit_story35_6_runtime.py:430` — `allocation_bytes =`: reuses captured bytes for the same immutable pin.
-- `tests/maintenance/test_admit_story35_6_runtime.py:388` — `test_closed_35_2_raw_crlf_pin_admission_preserves_exact_audit_bytes`: admits raw CRLF and preserves exact receipt bytes.
-- `tests/maintenance/test_admit_story35_6_runtime.py:403` — `test_closed_35_2_existing_lf_pin_accepts_crlf_source`: preserves the prior LF comparison branch.
-- `tests/maintenance/test_admit_story35_6_runtime.py:414` — `test_closed_35_2_raw_pin_rejects_refreshed_changed_bytes_and_lf_blob`: reaches pin refusal with fresh proof and unchanged store.
+- `scripts/maintenance/admit_story35_6_runtime.py:101` — `def capture`: captures each exact raw reference once.
+- `scripts/maintenance/admit_story35_6_runtime.py:576` — `allocation_bytes =`: retains the same immutable allocation pin.
+- `scripts/maintenance/admit_story35_6_runtime.py:940` — `source_bytes(repo, ref) == data`: refuses late proof mutation before CAS.
+- `tests/maintenance/test_admit_story35_6_runtime.py:627` — `test_current_custody_last_recheck_and_atomic_rollback`: proves raw mutation, late expiry and atomic rollback refusal.
 
-### Retain and recheck the exact proof bytes
+### Judge semantic refusals and execution limits
 
-The capture cache parses the initially hashed source, while the final independent
-read checks the same bytes immediately before the existing CAS. The unchanged
-transaction/audit stores complete classifications and lossless base64, including
-BOM/CRLF; changed evidence, rollback and historical replay remain explicit tests.
+Fresh negative proofs reach host/queued-record, owner/scope/raw-anchor/publication,
+mode and ordinary-overlap guards, with unchanged plan/claim/audit. The E20 native
+case in the selection conserves separate external E15 reservation provenance.
 
-- `scripts/maintenance/admit_story35_6_runtime.py:101` — `def capture`: captures each raw source reference once.
-- `scripts/maintenance/admit_story35_6_runtime.py:790` — `source_bytes(repo, ref) == data`: refuses changed proof before CAS.
-- `scripts/maintenance/admit_story35_6_runtime.py:804` — `raw_artifacts`: preserves exact file/Git proof bytes as base64.
+- `tests/maintenance/test_admit_story35_6_runtime.py:557` — `test_current_custody_refreshed_host_projection_and_metadata_alone_refuse`: refuses fresh contradictory facts and nonindependent reviewer.
+- `tests/maintenance/test_admit_story35_6_runtime.py:585` — `test_current_custody_identity_scope_anchor_pin_and_publication_guards`: preserves semantic identity and full-scope refusals.
+- `tests/maintenance/test_admit_story35_6_runtime.py:611` — `test_current_custody_cannot_override_live_overlap_reopening_or_prepared_custody`: keeps live producer and repository custody authoritative.
+- `tests/maintenance/test_admit_story35_6_runtime.py:443` — `test_closed_e20_all_integrated_copied_variants_preserve_external_reservation`: preserves original finalized mode and external scope.
 
-### Assess native fixture coverage and operational limits
+Evidence: the exact nine-selector native argv and before/after pair are in
+`tmp/private/current-custody-implementation/native-affected-metadata.json`;
+`native-affected.log` reports **9 executed, 0 failures/errors/skips, 488.996s**,
+exit0, using native Windows Python3.14.7/Git2.55.0 and actual8.3 TEMP. Original41
+test method ASTs are unchanged; static inventory48 is not a full-suite run.
+Earlier native4/38/helper70 and root-reported5dc0 CI keep their historical scope.
+No full48/41/core/helper/CI or current-mode live operation ran here.
 
-The 35.2 allocation test covers its binding without top-level paths; E15 covers
-all six plus epic; graph/native-observation tests reject missing scoped writers,
-active/unknown turns, missing no-reopen and nonindependent reviewers. The following
-cases cover full-scope 35.4 admission/unchanged-helper continuation, copied E20
-variants with separate external reservations, and strict incomplete/corrupt native
-proof refusals. Mutation/audit tests additionally assert unchanged store on refusal,
-exact reconstructed hashes, rollback and historical replay.
-
-- `tests/maintenance/test_admit_story35_6_runtime.py:357` — `test_closed_legacy_full_scope_audit_and_unchanged_helper_continuation`: exercises full-scope admission and original-helper generation checks.
-- `tests/maintenance/test_admit_story35_6_runtime.py:372` — `test_closed_e20_all_integrated_copied_variants_preserve_external_reservation`: conserves native scope and distinct external provenance.
-- `tests/maintenance/test_admit_story35_6_runtime.py:573` — `test_closed_finalized_missing_verification_claim_scope_and_provenance_refuse`: reaches incomplete, ancestry, scope and inherited-marker refusals.
-
-Historical pre-integration evidence: `python -X utf8 tests/maintenance/test_admit_story35_6_runtime.py -v`
-passed **38 executed, 0 failures/errors/skipped, 1048.100s**, exit 0, on the
-historical 349c10/48609a pair recorded in the verification section, in the original
-author snapshot with native Windows Python 3.14.7 and actual 8.3 TEMP.
-This does not qualify the current raw-pin correction pair. Durable log/metadata is
-`tmp/private/historical-anchor-verification/native-final38*`. The affected
-casefold selection also passed **1 test in 25.700s**, exit 0, on that historical pair.
-The earlier recovered **6-pass/247.212s** selection is pre-final-batch evidence;
-all earlier failures are retained in the verification record. Historical unchanged-
-helper Windows CI **70-pass/573.425s** is reused, without a new helper run.
-The earlier integration performed only source/hash/pin/blob/union/reference checks.
-The new raw-pin correction executed only its four affected methods (123.078s,
-zero failures/errors/skips), preserving all 38 prior method bodies. See integration
-provenance for the two distinct synthetic CI revisions and the still-required
-fresh exact-successor source-head result.
-
-Limits: synthetic Git/SQLite fixtures and external observation bodies; pure proof
-negatives call the production validator directly, while admission/continuation,
-custody, mutation and rollback execute the full adapter. No external actor,
-allocation completeness, closure statement intent, provider or CI authenticity is
-proved by these fixtures. All four direct-exact-tooling-SHA native job records
-(the two existing `contracts` gates plus both mandatory admission prerequisites), qualified main, fresh
-complete operator proof/request and independent High admission review remain
-required. Missing real legacy scope/closure/recursive evidence still refuses.
-No live admission, product runtime/P6 or CRM success is claimed.
+Limits: synthetic Git/SQLite/host/provider observations exercise production adapter
+control flow; they do not authenticate external status, scope completeness or
+operator knowledge. Current snapshots/raw bytes prove integrity, not a new query
+or OS fence. Actual unknown custody remains a refusal. Root must qualify the
+exact successor/mode and Q, bind complete actual scope and current facts, and obtain
+independent High exact request review before admission. No historical success,
+actor closure, live admission, CRM/runtime/P6 or product acceptance is claimed.
