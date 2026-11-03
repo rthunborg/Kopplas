@@ -587,7 +587,7 @@ function producerPlaywrightEntry(script: string): ProducerPlaywrightEntry | unde
 function producerPlaywrightInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, unclassified?: (role: "parsed" | "opaque") => void): ProducerPlaywrightEntry | undefined {
     // Absolute scripts and proven non-test commands do not require another
     // process's cwd. An unresolved relative test/ambiguous launch still refuses.
-    const resolveScript = (script: string, subcommand: "test" | "unresolved") => {
+    const resolveScript = (script: string, subcommand: "test" | "unresolved", resolutionBranch: "unsupported-option" | "non-test-script" | "test-script") => {
         if (path.isAbsolute(script)) return path.normalize(script);
         try { return path.resolve(typeof cwd === "string" ? cwd : cwd(), script); }
         catch (error) {
@@ -596,6 +596,7 @@ function producerPlaywrightInvocation(args: readonly string[], cwd: string | (()
                 producerErrorCategory: ["EACCES", "EPERM", "ENOENT", "ESRCH"].includes(code ?? "") ? code : "other",
                 producerScriptFamily: /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(path.normalize(script)) ? "playwright-hint" : "unclassified",
                 producerSubcommandCategory: subcommand,
+                producerResolutionBranch: resolutionBranch,
             });
         }
     };
@@ -609,7 +610,7 @@ function producerPlaywrightInvocation(args: readonly string[], cwd: string | (()
         // Never accept an arbitrary argv payload just because it contains test.
         // An unsupported Node launch with a real Playwright CLI is a refusal,
         // including foreign projects, not an ignored consumer.
-        if (args.slice(index + 1).some(arg => identify(resolveScript(arg, "unresolved")))) throw new Error("P-E5 family=playwright reason=unsupported-node-launch");
+        if (args.slice(index + 1).some(arg => identify(resolveScript(arg, "unresolved", "unsupported-option")))) throw new Error("P-E5 family=playwright reason=unsupported-node-launch");
         unclassified?.("opaque");
         return;
     }
@@ -618,19 +619,32 @@ function producerPlaywrightInvocation(args: readonly string[], cwd: string | (()
         // A confirmed Node with rewritten/opaque argv cannot be dismissed by
         // missing tokens. Normal inspectable non-test scripts remain distinct.
         if (unclassified) {
-            const script = resolveScript(args[index], "unresolved");
+            const script = resolveScript(args[index], "unresolved", "non-test-script");
             try { realpathSync(script); unclassified("parsed"); } catch { unclassified("opaque"); }
         }
         return;
     }
-    const script = resolveScript(args[index], "test"), result = identify(script);
+    const script = resolveScript(args[index], "test", "test-script"), result = identify(script);
     if (!result && unclassified) { try { realpathSync(script); unclassified("parsed"); } catch { unclassified("opaque"); } }
     return result;
 }
-function producerNodeInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, confirmedNode: boolean): ProducerPlaywrightEntry | undefined {
+function producerNodeInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, requireInspectable: boolean): ProducerPlaywrightEntry | undefined {
     let role: "parsed" | "opaque" = "opaque";
-    const invocation = producerPlaywrightInvocation(args, cwd, identify, confirmedNode ? value => { role = value; } : undefined);
-    if (confirmedNode && !invocation && role === "opaque") throw new Error("P-E5 family=node reason=opaque-node-consumer");
+    const invocation = producerPlaywrightInvocation(args, cwd, identify, requireInspectable ? value => { role = value; } : undefined);
+    if (requireInspectable && !invocation && role === "opaque") throw new Error("P-E5 family=node reason=opaque-node-consumer");
+    return invocation;
+}
+type ProducerExecutableKind = "node" | "non-node" | "unknown";
+function producerDriverInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined,
+    executable: ProducerExecutableKind, owner: boolean): ProducerPlaywrightEntry | undefined {
+    if (owner && executable !== "node") throw new Error(`P-E5 family=node reason=owner-executable-${executable === "non-node" ? "contradiction" : "unverified"}`);
+    if (executable === "non-node") return;
+    const nodeLaunch = /(?:^|\/)(?:node|nodejs|npm|npx|pnpm)(?:$|\s)/.test(args[0] ?? "");
+    const playwrightEvidence = args.some(arg => /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(path.normalize(arg))
+        || /^npm (?:exec|x) (?:playwright|@playwright\/test)(?:@[^\s]+)?(?:\s|$)/.test(arg));
+    if (executable === "unknown" && !nodeLaunch && !playwrightEvidence) return;
+    const invocation = producerNodeInvocation(args, cwd, identify, true);
+    if (owner && !invocation) throw new Error("P-E5 family=playwright reason=owner-entrypoint-unclassified");
     return invocation;
 }
 type ProducerBrowserInspection = {
@@ -754,27 +768,31 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
         let args: string[];
         try { args = readFileSync(`/proc/${entry}/cmdline`, "utf8").split("\0"); } catch { continue; }
         let invocation: ProducerPlaywrightEntry | undefined;
-        let confirmedNode = false;
-        try { confirmedNode = /^(?:node|nodejs)(?: \(deleted\))?$/.test(path.basename(readlinkSync(`/proc/${entry}/exe`))); } catch { /* Unreadable exe alone is not proof of Node or permission to ignore a candidate. */ }
+        let executable: ProducerExecutableKind = "unknown", executableError = "none";
+        try { executable = /^(?:node|nodejs)(?: \(deleted\))?$/.test(path.basename(readlinkSync(`/proc/${entry}/exe`))) ? "node" : "non-node"; }
+        catch (error) { const code = (error as NodeJS.ErrnoException).code; executableError = ["EACCES", "EPERM", "ENOENT", "ESRCH"].includes(code ?? "") ? code! : "other"; }
         try {
-            invocation = producerNodeInvocation(args, () => readlinkSync(`/proc/${entry}/cwd`), producerPlaywrightEntry, confirmedNode);
+            invocation = producerDriverInvocation(args, () => readlinkSync(`/proc/${entry}/cwd`), producerPlaywrightEntry, executable, Number(entry) === boot.ownerPid);
         }
         catch (error) {
-            const detail = error as { message?: string; producerErrorCategory?: string; producerScriptFamily?: string; producerSubcommandCategory?: string };
+            const detail = error as { message?: string; producerErrorCategory?: string; producerScriptFamily?: string; producerSubcommandCategory?: string; producerResolutionBranch?: string };
             const refusal = /^P-E5 family=(playwright|node) reason=([a-z-]+)$/.exec(detail.message ?? "");
             // An exact already-validated server or job-owned launcher is a
             // non-test role, never a general PID/container/title exemption.
-            if (["consumer-cwd-unavailable", "opaque-node-consumer"].includes(refusal?.[2] ?? "") && !args.some(arg => /(?:^|\s)test(?:\s|$)/.test(arg))) {
+            const testVeto = args.some(arg => /(?:^|\s)test(?:\s|$)/.test(arg));
+            let roleOutcome = "not-eligible";
+            if (["consumer-cwd-unavailable", "opaque-node-consumer"].includes(refusal?.[2] ?? "") && !testVeto) {
                 if (Number(entry) === boot.serverPid) continue;
-                try { if (exactBrowserLauncher(Number(entry), args)) continue; }
-                catch { throw new Error(`P-E5 family=node reason=browser-launcher-unverified pid=${entry} errorCategory=role-proof-unavailable scriptFamily=unclassified subcommandCategory=unresolved`); }
-            }
+                try { if (exactBrowserLauncher(Number(entry), args)) continue; roleOutcome = "validated-launcher-pid-mismatch"; }
+                catch { throw new Error(`P-E5 family=node reason=browser-launcher-unverified pid=${entry} errorCategory=role-proof-unavailable scriptFamily=unclassified subcommandCategory=unresolved executable=${executable} executableError=${executableError} resolutionBranch=role-proof testVeto=false roleOutcome=proof-unavailable`); }
+            } else if (["consumer-cwd-unavailable", "opaque-node-consumer"].includes(refusal?.[2] ?? "") && testVeto) roleOutcome = "test-veto";
             // No argv, environment, cwd or package payload enters diagnostics.
             const family = refusal?.[1] ?? "node", reason = refusal?.[2] ?? "consumer-inspection-failed";
             const category = ["EACCES", "EPERM", "ENOENT", "ESRCH", "other"].includes(detail.producerErrorCategory ?? "") ? detail.producerErrorCategory : "none";
             const scriptFamily = detail.producerScriptFamily === "playwright-hint" ? "playwright-hint" : refusal?.[1] === "playwright" ? "playwright" : "unclassified";
             const subcommand = detail.producerSubcommandCategory === "test" ? "test" : "unresolved";
-            throw new Error(`P-E5 family=${family} reason=${reason} pid=${entry} errorCategory=${category} scriptFamily=${scriptFamily} subcommandCategory=${subcommand}`);
+            const branch = ["unsupported-option", "non-test-script", "test-script"].includes(detail.producerResolutionBranch ?? "") ? detail.producerResolutionBranch : refusal?.[2] === "opaque-node-consumer" ? "opaque-node" : "dispatch";
+            throw new Error(`P-E5 family=${family} reason=${reason} pid=${entry} errorCategory=${category} scriptFamily=${scriptFamily} subcommandCategory=${subcommand} executable=${executable} executableError=${executableError} resolutionBranch=${branch} testVeto=${testVeto} roleOutcome=${roleOutcome}`);
         }
         if (!invocation) {
             if (Number(entry) === boot.ownerPid) throw new Error("P-E5 family=playwright reason=owner-entrypoint-unclassified");

@@ -100,5 +100,77 @@
     "remaining": "Fresh exact-head required CI, actual method runtime and all image inputs, truthful complete package within live bounds or separately approved trusted prerequisite, authenticated visual acceptance and completion gates remain unearned.",
     "step5_done": false,
     "release_ready": false
+  },
+  "current_fb6_tristate_followup": {
+    "recorded_at_utc": "2026-11-03T06:48:38.534280+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Only minimal executable-tristate parser dispatch/source risk and retained58-case proof. Broad implementation rounds remain1.",
+    "freeze_sha256": "10f46ee36aa34fc3a389cfb19d8a26b2e11ba7d461dc6f8fef884e5b06836fcc",
+    "source48_digest": "3c1b0daa59a36f8d9f5a83398f8ed62f4904713af90fe7f53dfa03d862cbb94c",
+    "pricing_sha256": "056080a0df3070372ac1ecc26a2d6cbcd436fa27ce404eee71000b0067a0da16",
+    "pricing_git_blob": "43ca04ad2846d30412cedcf117aaa049c91cf612",
+    "patch_sha256": "b9f23bb894a945a477c2107c92ae99c4ed263ff0f73c38771da42970dda0265f",
+    "findings": [],
+    "source_confirmation": "Owner executable contradictions refuse before exceptions. Confirmed non-Node bypasses Node grammar; unavailable executables enter only with affirmative Node/npm/npx/pnpm launch or structural Playwright evidence, never an exemption. Confirmed-Node opacity, known-family ambiguity, foreign consumers, test vetoes, exact role proof and sole-owner equality retained. Fixed diagnostics expose no argv/environment/cwd payloads. Controlled fresh-job boundary, not universal host attestation.",
+    "proof_confirmation": "All48 raw/effective source pins match. All16 proof files match; five extracted functions/transpilation match source. Seventeen new real-driver fixtures use cwd/identity spies; retained outcomes and lookup counts match. All41 previous input/result records value-identical. Saved final58 passed/0failed, no reviewer rerun.",
+    "proof_manifest_sha256": "1c6d2de78e8b767c232b7feaa833d9ee6f41fba4ab4cf6499c2a96ae93a93ce1",
+    "harness_sha256": "fdab26cf5c6c1a0478d9fb5772551b7e5c027263831993457b3926bb87fa448f",
+    "proof_limits": [
+      "Initial56 uses an earlier source snapshot and earns no final-source credit.",
+      "Negatives use fixed reason allowlists, not unique per-case expected-reason equality; actual reasons retained. New dispatch block has six reasons, prior role block three.",
+      "Explicit npm-title/npx argv fixtures exist; no dedicated pnpm-launch argv fixture. Filesystem .pnpm coverage is distinct.",
+      "Executable kinds are synthetic inputs; no actual /proc, oldPID1001/10067 attribution or universal host absence proved."
+    ],
+    "unchanged_boundaries": "103 raw captures,24 owned/7 producer declarations,business assertions/actions/timeouts/effect budget/ONE-delete/restoration unchanged. SRO40 stops. Production27/canonical9/other47 source/package/settings/integration/private88+90 unchanged.",
+    "actual_fb6_browser": {
+      "native_sha256": "49ccc7f40c70d5a2997732447e1fb2b035f4f54dfa9f52ff5cebbd50580ec5fe",
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "owned_failure": "P-E5 PID1001 EACCES consumer-cwd-unavailable1309/1287ms before DB client/fixtures/journal/effects; identity UNKNOWN",
+      "historical_PNGs": 80,
+      "method_journal": false,
+      "method_frames_absent": 23
+    },
+    "late_root_DB_supplement": {
+      "provenance": "Root supplied actual terminal native fb6 DB result after author freeze. Captured author PENDING history remains unchanged; this supplement gives no successor-head credit.",
+      "run": "41589760207",
+      "native_json_sha256": "c2193a2d17df407ae19fa48438191bf9be9119fca72588857fdb82f288ed7a07",
+      "total": 2305,
+      "passed": 2253,
+      "failed": 0,
+      "explicit_skipped": 52,
+      "success": true,
+      "failed_suites": 0,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "wrapper_child_exit_codes": [
+        0,
+        0
+      ],
+      "key_deleted": true,
+      "db_closed": true,
+      "wrapper_failures": [],
+      "pilot_step": "PASS",
+      "full_log_bytes": 103005,
+      "full_log_sha256": "1fbb120d96dbba58dbbdb91a7dc8d45589b85cf8fb4c0a4fd10b362648bc70fb",
+      "absent_failure_only_auth_cleanup_artifact": "Expected on success; no extra credit",
+      "whole_current_CI": "FAILED because browser P-E5 refused before effects"
+    },
+    "no_reviewer_tests_process_DB_queries_resources_writes_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Fresh successor-head required CI, genuine method effects and complete103 image inputs, truthful qualified package/live80 admission, authenticated visual acceptance and completion gates unearned.",
+    "step5_done": false,
+    "release_ready": false
   }
 }

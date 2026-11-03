@@ -606,6 +606,33 @@
       "no_runtime_visual_policy_acceptance": true,
       "review_receipt": "8cb-cwd-targeted-review-results.json#current_1ddb_exact_role_followup",
       "proof_reason_precision": "three-reason allowlist plus exact disappearance message; not unique per-case expected reasons"
+    },
+    {
+      "phase": "Independent targeted fb6 executable-tristate dispatch and58-case proof confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-03T06:46:21.192418+00:00",
+      "author_stopped": true,
+      "author_route_provenance": "Same High author route selected and sent to root BEFORE actual followup dispatch; parent independently confirmed proceed. This file records that message route after author freeze, not a fabricated earlier file timestamp.",
+      "freeze": "author-8cb-cwd-checkpoint.json",
+      "freeze_sha256": "10f46ee36aa34fc3a389cfb19d8a26b2e11ba7d461dc6f8fef884e5b06836fcc",
+      "source48_digest": "3c1b0daa59a36f8d9f5a83398f8ed62f4904713af90fe7f53dfa03d862cbb94c",
+      "reviewers": [
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "Only minimal executable-tristate parser dispatch, exact owner contradictions, relevant unknown-exe ambiguity/confirmed opacity/foreign veto and fixed diagnostics within controlled fresh-job boundary; no broad qualifier review or PID attribution"
+        },
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "Only retained58-case exact-source proof, all41 prior inputs/results preserved,17 new tri-state/owner/wrapper/foreign cases and unchanged source/capture/private-proposal boundaries; no image audit or runtime proof"
+        }
+      ],
+      "dispatch_status": "actual both existing Sol High reviewers completed FIX_CONFIRMED; no findings; source/proof only",
+      "broad_round_count": 1,
+      "no_tests_queries_resources_CI_or_writes": true,
+      "no_runtime_visual_or_completion_acceptance": true,
+      "review_receipt": "8cb-cwd-targeted-review-results.json#current_fb6_tristate_followup",
+      "proof_precision": "fixed reason allowlists; synthetic executable kinds; no pnpm-launch argv fixture or oldPID attribution; no runtime credit"
     }
   ],
   "implementation_author_dispatched": true,

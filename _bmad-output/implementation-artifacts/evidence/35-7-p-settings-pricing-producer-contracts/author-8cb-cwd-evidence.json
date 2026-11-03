@@ -157,5 +157,42 @@
     "step5_done": false,
     "release_ready": false
   },
-  "history_retention": "Original top-level8cb evidence retained verbatim in values; prior exact document in Git1ddb, current rolefollowup appended."
+  "history_retention": "Original top-level8cb evidence retained verbatim in values; prior exact document in Git1ddb, current rolefollowup appended.",
+  "current_fb6_tristate_followup": {
+    "candidate_before": "fb6e7e18f0381d1248299263325d9c8ee6f5e76e",
+    "run": "41589760207",
+    "native_path": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-fb6e7e18/browser-current/native-general-browser/general-browser.json",
+    "native_sha256": "49ccc7f40c70d5a2997732447e1fb2b035f4f54dfa9f52ff5cebbd50580ec5fe",
+    "browser": {
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skip": 0,
+      "old_owned23_producer6": "first-attemptPASS perRoot"
+    },
+    "owned_failure": "Both1309/1287ms preDB/fixtures/journal/effects:consumer-cwd-unavailable PID1001/EACCES/unclassified/unresolved at777; PID1001/10067 roles UNKNOWN. family=node did not prove kernelNode; oldexe/branch/veto/role-result not retained.",
+    "diagnosis": "Node/nonNode/unavailable executable evidence collapsedfalse then all entered Node optiongrammar. Supported correction dispatches true tri-state before grammar, not permission/title/membership exemption.",
+    "current_fix": "PositivekernelNode\u2192fullparser+opacityrefusal; positivekernelnonNode\u2192excludeNode-drivergrammar except strictownercontradiction; unknown\u2192only affirmative Node-familylaunch or structurally relevant Playwright evidence enters conservative inspectability/ambiguity handling. Ownerunknown/nonNode refuses; ownercanonicalCLI/strictsoleowner, foreign/test-veto/exactrole/originalfamily/durableeffects unchanged.",
+    "diagnostics": "Fixed executabletri-state/allowlistedexeerrno/resolutionbranch/testveto/exactroleoutcome added, noargv/env/cwd/pathpayload.",
+    "proof": {
+      "passed": 58,
+      "failed": 0,
+      "prior41_records_exactly_equal": true,
+      "new_cases": 17,
+      "manifest": "tmp/private/35-7-p-consumer-tristate-proof/proof-manifest.json",
+      "sha256": "1c6d2de78e8b767c232b7feaa833d9ee6f41fba4ab4cf6499c2a96ae93a93ce1",
+      "native_exit": 0,
+      "typecheck": 0,
+      "pricing_eslint": 0,
+      "scope": "Synthetic source-extracted model only; foreign entry remains in unchanged soleowner inventory, no nativeguard/methodPASS inferred."
+    },
+    "actual_fb6_DB": "PENDING: root soleobserver, job125764640418 running, integration start06:31:12Z; no nativeartifact/outcome supplied. Do not infer successor/current PASS or delay freeze.",
+    "historical_limits": "1ddbDBFAILED2257/2195P1F52skip/48plannedabsent;8cbDBfailed;b8DB/pilot successful at respective revisions only.",
+    "runtime_images": "Rootverified80fb6historicalPNGs0issues; no methodjournal/effects,23methodoriginalsABSENT; no newheadruntime/PNGs.103raw/24owned7producer/actions/timeouts/styles/effectbudget unchanged.",
+    "authority": "Independent High supported this bounded tri-state correction before implementation; exact current source awaits both targeted confirmations.",
+    "cap": "Both88/90packets+compactmap/PR204inventory untouched;live80/HUMANHELD/actualfitunearned.",
+    "step5_done": false,
+    "release_ready": false
+  }
 }

@@ -263,21 +263,21 @@ The package addition uses the existing normal production-server lane. State-awar
 
 The human admission is limited to this disposable exclusive job method. The durable claim prevents damaged-baseline retries and repeated deletion. Every released GET must reach bounded terminal settlement before restoration, or fail with retained errors while exact recovery is still attempted. Exact ACL restoration plus the same ordinary read is mandatory; raw95 definitions grant no coverage or automatic80-frame selection. Review these new consequential boundaries before Root executes CI.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:677` — `async function qualifyProducerBoundedEffects`: reuses actual GitHub/stack authority, binds runner/server/consumer and durably consumes job admission before effects.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:816` — `async function producerAclSnapshot`: captures complete semantic ACLs and alternative/inherited/dependent privilege paths before narrowing one grant.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:840` — `test("P-E5 CI-only bounded`: keeps all four table faults sequential and both viewports within each exact cycle.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:978` — `state: "revoke-intent"`: persists intent before revoke and reaches registered exact cleanup on every scenario outcome.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1075` — `state: "ONE-delete-intent-budget-consumed"`: durably consumes the sole exact fresh target deletion after receipt/reference guards.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:691` — `async function qualifyProducerBoundedEffects`: reuses actual GitHub/stack authority, binds runner/server/consumer and durably consumes job admission before effects.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:834` — `async function producerAclSnapshot`: captures complete semantic ACLs and alternative/inherited/dependent privilege paths before narrowing one grant.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:858` — `test("P-E5 CI-only bounded`: keeps all four table faults sequential and both viewports within each exact cycle.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:996` — `state: "revoke-intent"`: persists intent before revoke and reaches registered exact cleanup on every scenario outcome.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1093` — `state: "ONE-delete-intent-budget-consumed"`: durably consumes the sole exact fresh target deletion after receipt/reference guards.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:896` — `const releaseAndSettleRead =`: settles the exact released GET on every exit before ACL recovery; failure remains visible and does not skip exact recovery.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:914` — `const releaseAndSettleRead =`: settles the exact released GET on every exit before ACL recovery; failure remains visible and does not skip exact recovery.
 
 ### Trace actual native failures and pixel corrections
 
 The ordinary browser admission failure and integration suite-hook failure are required gates, despite103 browser cases and all75 producer integration cases passing. Exact lock-cycle causality remains unproven. Framing guards require actual pixels in view; source97 and the conditional publication map grant no image/provider/human acceptance.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:707` — `const startupBinding =`: binds to actual production-server launch fields rather than worker-reconstructed config, without exposing its other environment.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:721` — `const startupBinding =`: binds to actual production-server launch fields rather than worker-reconstructed config, without exposing its other environment.
 - `tests/e2e/settings/settings.e2e.spec.ts:431` — `const busySubmit =`: captures the actual pending submit on phone while preserving stable unknown controls separately.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:938` — `const pendingReceipt =`: observes the already-held real current reread after receipt proof without another business action or effect.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:956` — `const pendingReceipt =`: observes the already-held real current reread after receipt proof without another business action or effect.
 - `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:73` — `await adminQuery("drop trigger test_settings_pricing_receipt_failure`: releases the receipt-table DDL lock before separate function/table drops; exact native deadlock cycle is not claimed.
 
 ### Identify actual and foreign runner scripts canonically
@@ -287,8 +287,10 @@ The native failure shows an empty classifier, not the terminated argv spelling. 
 - `tests/e2e/pricing/pricing.e2e.spec.ts:561` — `function producerPlaywrightEntry`: retains recognizable original family through missing entrypoint, canonical and package identity failures; refusal diagnostics contain only fixed family/reason.
 - `tests/e2e/pricing/pricing.e2e.spec.ts:587` — `function producerPlaywrightInvocation`: parses real script/subcommand before lazy cwd; absolute tests need no cwd, proven non-test commands are not test consumers, relative unresolved test/launch ambiguity still refuses.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:630` — `function producerNodeInvocation`: refuses kernel-confirmed opaque Node while retaining inspectable ordinary scripts.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:640` — `function producerBrowserLauncherPid`: permits only the uniquely corroborated configured launcher; test commands, descendants, namespace/parent/instance ambiguity refuse.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:631` — `function producerNodeInvocation`: refuses kernel-confirmed opaque Node while retaining inspectable ordinary scripts.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:654` — `function producerBrowserLauncherPid`: permits only the uniquely corroborated configured launcher; test commands, descendants, namespace/parent/instance ambiguity refuse.
+
+- `tests/e2e/pricing/pricing.e2e.spec.ts:638` — `function producerDriverInvocation`: dispatches executable tri-state before Node grammar; owner contradictions and evidenced unknown ambiguity refuse.
 
 ### Retain private receipt enrollment and honest gate evidence
 
@@ -312,3 +314,5 @@ Latest targeted follow-up: `author-b8-consumer-followup-evidence.json` records t
 Latest8cb correction: `author-8cb-cwd-evidence.json` retains actual41505978207 browser104/103expected/1unexpected/0flaky/0skip and two pre-effect cwd refusals. The old catch requested cwd before script/subcommand parsing and matched arbitrary CLI argv payload; the offending PID/errno/argv is unknown. Parse-first/lazy cwd now preserves absolute owner/foreign identification and refuses relative test ambiguity, with bounded PID/category-only diagnostics. The retained private source-extracted25case run preserves17prior inputs/outcomes plus8cwd regressions; non-test lookup short-circuit semantics deliberately change. Typecheck/ESLint native0. Current8cbDB is FAILED2305/2251pass/2fail/52skip/4failedsuites per Root; unallocated auth-fixture diagnosis belongs to assigned High, no causal/flake/baseline claim. Historicalb8DB/pilot success is not current proof.103raw/24-7/effect/capture flows unchanged;23method frames absent. Both private cap packets remain unapplied/allocation review only. Newhead runtime/visual gates remain blocking; Step5false/releasefalse.
 
 Current1ddb role follow-up (existing `author-8cb-cwd-evidence.json` field `current_1ddb_exact_role_followup`): actual41510975397 browser104/103expected/1unexpected/0flaky/0skip; soleP-E5 twiceEACCES PID10067 preeffect, oldrole UNKNOWN. Adjacent-pair-only proposal was reverted/unqualified. Current conservative fallback plus confirmed opaque-Node refusal uses only exact already-validated server or prospective receipt/config/init/top/kernel namespace/starttick launcher proof, never a container/title/EACCES exemption; parsed/opaque test commands veto exceptions. Prior25 pure helper inputs/outcomes retained;16 new cases establish source41, initial run preserved and exact-negative-reason strengthening41pass/0fail; actual kernel/Docker/runtime not simulated into credit. Typecheck/ESLint0. Actual1ddbDB FAILED2257/2195P1F52skip/2failedsuites/48plannedcasesabsent; producer82pass0skip perRoot. Auth-cleanup masked-body success unknown, diagnostic SQL counts are not cause/coverage; no unallocated fixes. Current head CI/images/methods/authenticated acceptance remain UNEARNED;103/24-7 unchanged;23methodframesabsent. Private88/90 unchanged/unapproved/live80/fit unresolved. Step5false/releasefalse.
+
+Currentfb6 tri-state follow-up is appended in existing `author-8cb-cwd-evidence.json`: actual41589760207 browser104/103expected/1unexpected/0flaky/0skip, P-E5 twicePID1001/EACCES preeffect; roles of1001/10067 remain UNKNOWN. Node/nonNode/unknown dispatch now precedes Node grammar; owner contradictions and relevant unknown/confirmed opacity refuse, exact-role/foreign/soleowner/effect checks retained. Current private58case source proof preserves all41 prior input/result records exactly plus17tri-state cases; initial56run retained before launcher refinement. Final compiler/ESLint0; no nativeproc/method credit. fb6DB remains PENDING perRoot soleobserver/noartifact, historicalDB results stay revisionbound.103raw/24-7/captureactions unchanged;80fb6images rootvalidated0issues but23methodframesabsent/nojournal. Both privatecappackets unmodified/HUMANHELD/live80/fitunearned. Current-source dualHigh/CI/images/authenticatedacceptance remain required; Buildinprogress/Step5false/releasefalse.
