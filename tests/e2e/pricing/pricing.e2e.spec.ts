@@ -241,7 +241,53 @@ async function producerCapture(page: Page, info: TestInfo, surface: string, stat
     const candidate = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
     await writeFile(path.join(dir, `${state}.json`), JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading" || state.endsWith("-pending") || state === "refresh-notice", captureAnchor: await anchor.evaluate(el => ({ tag: el.tagName, id: el.id, text: el.textContent?.trim().slice(0, 160) })), configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state, viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt: new Date().toISOString() }, null, 2));
 }
-async function holdNextProducerTransport(page: Page, routePath: string, transport: "action" | "refresh") {
+type ProducerReadTerminal = { kind: "finished" | "failed"; request: BrowserRequest };
+function observeProducerReadTerminal(page: Page) {
+    let held: BrowserRequest | undefined, observed: ProducerReadTerminal | undefined;
+    let resolve!: (outcome: ProducerReadTerminal) => void;
+    const outcome = new Promise<ProducerReadTerminal>(done => { resolve = done; });
+    const record = (kind: ProducerReadTerminal["kind"], request: BrowserRequest) => {
+        if (request !== held || observed) return;
+        observed = { kind, request }; resolve(observed);
+    };
+    const finished = (request: BrowserRequest) => record("finished", request);
+    const failed = (request: BrowserRequest) => record("failed", request);
+    page.on("requestfinished", finished); page.on("requestfailed", failed);
+    return { outcome, bind: (request: BrowserRequest) => {
+        held = request; // Called synchronously in the route handler, before seen/release can run.
+        if (request.failure()) failed(request); // Preserve an already-observed cancellation.
+    }, dispose: () => { page.off("requestfinished", finished); page.off("requestfailed", failed); } };
+}
+function producerReadSettlement(hold: { clear: () => Promise<void>; request: () => BrowserRequest | undefined }, terminal: ReturnType<typeof observeProducerReadTerminal>) {
+    type Settlement = { kind: "not-held"; response: null } | (ProducerReadTerminal & { response: Awaited<ReturnType<BrowserRequest["response"]>> });
+    let cached: Promise<Settlement> | undefined;
+    return () => cached ??= (async () => {
+        let timer: ReturnType<typeof setTimeout> | undefined, phase = "release";
+        const releaseErrors: unknown[] = [];
+        try {
+            return await Promise.race([
+                (async (): Promise<Settlement> => {
+                    try { await hold.clear(); } catch (error) { releaseErrors.push(error); }
+                    phase = "terminal";
+                    const observed = hold.request() ? await terminal.outcome : undefined;
+                    phase = "completed-response";
+                    const response = observed?.kind === "finished" ? await observed.request.response() : null;
+                    if (releaseErrors.length) {
+                        if (observed?.kind === "failed") throw new Error("Released read failed after a release error");
+                        throw releaseErrors[0];
+                    }
+                    return observed ? { ...observed, response } : { kind: "not-held", response: null };
+                })(),
+                new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error(`Released read terminal settlement timed out: ${phase}`)), 10_000); }),
+            ]);
+        } catch (error) {
+            if (releaseErrors.length && error !== releaseErrors[0])
+                throw new AggregateError([...releaseErrors, error], "Released read release/terminal cleanup failed");
+            throw error;
+        } finally { if (timer) clearTimeout(timer); terminal.dispose(); }
+    })();
+}
+async function holdNextProducerTransport(page: Page, routePath: string, transport: "action" | "refresh", onHeld?: (request: BrowserRequest) => void) {
     let release!: () => void, arrived!: () => void, settled!: () => void;
     const gate = new Promise<void>(r => { release = r; });
     const seen = new Promise<void>(r => { arrived = r; });
@@ -255,6 +301,7 @@ async function holdNextProducerTransport(page: Page, routePath: string, transpor
         if (held || !matches) { await route.fallback(); return; }
         held = true;
         heldRequest = request; // Retain the exact intercepted transport, including failure exits.
+        onHeld?.(request);
         arrived();
         try { await gate; await route.fallback(); } finally { settled(); }
     };
@@ -1186,30 +1233,11 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
             expect(tuple.grantor).toBe(before.owner);
             expect(typeof tuple.grantable).toBe("boolean");
             const faultShape = { ...before, tableAcl: before.tableAcl.filter(entry => entry !== tuple), hasSelect: false, hasColumnSelect: false };
-            const hold = await holdNextProducerTransport(page, spec.route, "refresh");
-            let releasedReadSettlement: Promise<void> | undefined;
-            const releaseAndSettleRead = () => releasedReadSettlement ??= (async () => {
-                let timer: ReturnType<typeof setTimeout> | undefined;
-                try {
-                    await Promise.race([
-                        (async () => {
-                            const failures: unknown[] = [];
-                            try { await hold.clear(); } catch (error) { failures.push(error); }
-                            // Handler release errors must not skip the terminal-wait attempt.
-                            const request = hold.request();
-                            if (request) try {
-                                const response = await request.response();
-                                if (response) {
-                                    const failure = await response.finished();
-                                    if (failure && !request.failure()) throw failure;
-                                } else if (!request.failure()) throw new Error("Released read has no verified terminal response or request failure");
-                            } catch (error) { failures.push(error); }
-                            if (failures.length) throw new AggregateError(failures, "Released read cleanup failed");
-                        })(),
-                        new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error("Released read terminal settlement timed out")), 10_000); }),
-                    ]);
-                } finally { if (timer) clearTimeout(timer); }
-            })();
+            const readTerminal = observeProducerReadTerminal(page); // Arm before route registration or action dispatch.
+            let hold: Awaited<ReturnType<typeof holdNextProducerTransport>>;
+            try { hold = await holdNextProducerTransport(page, spec.route, "refresh", readTerminal.bind); }
+            catch (error) { readTerminal.dispose(); throw error; }
+            const releaseAndSettleRead = producerReadSettlement(hold, readTerminal);
             const actionRequest = page.waitForRequest(request => request.method() === "POST" && Boolean(request.headers()["next-action"]) && new URL(request.url()).pathname === spec.route);
             const reread = page.waitForRequest(request => request.method() === "GET" && request.headers()["rsc"] === "1" && new URL(request.url()).pathname === spec.route);
             void actionRequest.catch(() => undefined); void reread.catch(() => undefined);
@@ -1280,8 +1308,10 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                 await admission.record({ state: "revoke-committed", table: spec.table });
                 const denied = await predicate(); expect(denied.error?.code).toBe("42501");
                 const readRequest = await reread;
-                await releaseAndSettleRead();
-                const response = await readRequest.response(); expect(response).not.toBeNull(); await response!.finished();
+                const settledRead = await releaseAndSettleRead();
+                if (settledRead.kind !== "finished") throw new Error("Released read did not deliver the required completed response");
+                expect(settledRead.request).toBe(readRequest);
+                const response = settledRead.response; expect(response).not.toBeNull();
                 if (spec.price) {
                     await expect(scope.getByTestId("pricing-current-unavailable")).toBeVisible();
                     await expect(scope.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är inte tillgängliga.");

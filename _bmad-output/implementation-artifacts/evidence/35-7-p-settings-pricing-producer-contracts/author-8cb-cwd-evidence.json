@@ -1,45 +1,22 @@
 {
-  "current_followup": "fadc column ACL NULL/empty SQL correction",
-  "candidate_before": "fadc5da3aa2bf3989c7740d3865b98d7d32a130a",
+  "current_followup": "566 exact-request terminal lifecycle",
+  "candidate_before": "566bb80428a7af75cfee62ff42cef65a6ae40a9c",
   "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
   "prior_committed_history": {
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-evidence.json": {
-      "commit": "fadc5da3aa2bf3989c7740d3865b98d7d32a130a",
-      "git_blob_oid": "3b4d25df5a3b219a437c54117c47ceaa40b26c37",
-      "git_bytes_sha256": "84e0025fa622b4baea26ed9402757dd6b5251bb2ddddbef131f6ca2267132b58"
+      "commit": "566bb80428a7af75cfee62ff42cef65a6ae40a9c",
+      "git_blob_oid": "96f4531ea01a1ec07923f45a3393a4653796817d",
+      "git_bytes_sha256": "87a9caba1a6056e3e98669d15c0d55f04316bd9de6c1d93718a4b62d7ce1a7c6"
     },
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json": {
-      "commit": "fadc5da3aa2bf3989c7740d3865b98d7d32a130a",
-      "git_blob_oid": "a7cff3c21269acbcf2bfe25d183d65a73dc318b9",
-      "git_bytes_sha256": "6393cea4a8230dce0cdc6393b8a8027bc7a1b0d9ecc4a76bd9b597771658d6dc"
+      "commit": "566bb80428a7af75cfee62ff42cef65a6ae40a9c",
+      "git_blob_oid": "9465b8ecca68da65b5868bb0a9dc342ca7c3d421",
+      "git_bytes_sha256": "96a82131f33a35d51fa61402f93321adf0326e396e094f32e56259754e33942f"
     }
   },
-  "primary_PG17_sources": [
-    {
-      "url": "https://github.com/postgres/postgres/blob/REL_17_0/src/backend/utils/adt/acl.c",
-      "fact": "check_acl rejects ndim!=1; allocacl(0) creates 1D empty ACL; column defaults no extra privileges; aclexplode retains all grantor/grantee/privilege/grantable tuples"
-    },
-    {
-      "url": "https://github.com/postgres/postgres/blob/REL_17_0/src/include/catalog/pg_proc.dat",
-      "fact": "aclexplode entry leaves proisstrict at catalog default"
-    },
-    {
-      "url": "https://github.com/postgres/postgres/blob/REL_17_0/src/include/catalog/pg_proc.h",
-      "fact": "proisstrict BKI_DEFAULT(t)"
-    },
-    {
-      "url": "https://github.com/postgres/postgres/blob/REL_17_0/src/backend/utils/adt/arrayfuncs.c",
-      "fact": "construct_empty_array creates ndim=0; generic {} input is not a valid 1D ACL"
-    },
-    {
-      "url": "https://www.postgresql.org/docs/17/catalog-pg-attribute.html",
-      "fact": "attacl stores grants specifically made on the column"
-    }
-  ],
-  "diagnosis": "Three column callers synthesized zero-dimensional {} for NULL attacl, triggering strict ACL dimensionality validation. Remove only those coalesce wrappers; STRICT NULL gives no rows. Real 1D empty/nonempty values are passed unchanged; invalid non-NULL values still fail closed. Table NULL defaults remain acldefault(r,owner).",
-  "actual_fadc": {
-    "run": "41601429674",
-    "native_sha256": "c41a726be3d655b1f4a8838abdb0ead7c2f9190e73e6d0b711a72a6d1fec0dc7",
+  "actual_566": {
+    "run": "41604657072",
+    "native_sha256": "2ac35f7ddf3307c422ce3321aafba599bdafa077e5ecc934a54030c089f51797",
     "browser": {
       "total": 104,
       "expected": 103,
@@ -48,62 +25,95 @@
       "skip": 0
     },
     "P_E5_attempt_ms": [
-      5086,
-      3051
+      14376,
+      2576
     ],
-    "first": "Admission passed; DB/fixtures reached; first snapshot failed ACL arrays must be one-dimensional",
-    "retry": "Durable claim EEXIST correctly refused before effects",
-    "journal": {
-      "records": 1,
-      "state": "claimed-no-effects",
-      "nonce": "584da488-48dd-4371-b3a1-98fceeb00c90",
-      "runner": 11907,
-      "server": 12334,
-      "revoke_intents": 0,
-      "delete_intents": 0,
-      "DCL_effects": 0,
-      "delete_effects": 0
-    },
+    "first": "Combined settlement timer expired; native does not isolate release/response/finished or cancellation cause",
+    "retry": "Durable EEXIST correctly refused",
+    "journal": [
+      "claimed-no-effects",
+      "revoke-intent(company_settings)",
+      "revoke-committed(company_settings)",
+      "restore-verified(company_settings)"
+    ],
+    "earned": "Admission, ACL snapshot, first company revoke and full semantic ACL/same ordinary-read restoration at566 only",
+    "transport": "Terminal settlement NOT established by restore-verified",
+    "other_fault_or_delete_intents": 0,
     "prior23owned6producer": "first-attempt PASS",
-    "PNG": "80 normal originals; 0 method originals",
-    "verify": "Root-reported3809/recovery1/entry PASS at fadc only",
-    "DB": "PENDING per sole-observer Root; no outcome assumption"
+    "PNG": {
+      "normal": 80,
+      "company_receipt_readpending": 2,
+      "method_absent": 21
+    },
+    "verify": "Root3809/recovery1/entry PASS at566 only",
+    "DB": {
+      "terminal": "FAILURE",
+      "total": 2305,
+      "passed": 2252,
+      "failed": 1,
+      "explicit_skip": 52,
+      "success": false,
+      "failed_suites": 2,
+      "failed_files": 1,
+      "native_sha256": "d411c48732e698170bfd19a3916ca4b1a8dac8130e36479b48414621d2a96d2a",
+      "producer75_RLS7": "PASS0skip",
+      "sole_failure": "16.4-INT-C08 earliest_date; job-scheduling-consumers.int.test.ts; role-ekonomi Auth creation {} at core135 / Promise.all index3 / seedRoleAwarePhaseAUsers278 / createJobsDepthFixture112 / withJobsDepthFixture237 BEFORE business callback",
+      "limits": "HTTP status/code/cause UNKNOWN; partial setup possible. No causal/baseline/flake claim or unallocated fix. Root sole-observer facts;566 ONLY."
+    },
+    "whole_CI": "Terminal DB and browser FAILURE; no active CI per Root",
+    "PNG_validation": "Root validated82 originals/0issues; company pending pair actual, no other method coverage"
   },
-  "source_delta": "Exactly three aclexplode(coalesce(a.attacl,typed-empty)) -> aclexplode(a.attacl) substitutions; all other source bytes unchanged. No added case/actions/effects/SQL runtime checks.",
-  "snapshot_callers": [
-    "before fault",
-    "expected fault shape after revoke",
-    "cleanup current-state classification",
-    "restored exact equality"
+  "source_gap": "Pinned PW1.61.1 client response.finished waits a promise resolved on requestfinished, not requestfailed; checking failure after await misses that terminal path. This is source-proven, not established native cause.",
+  "primary_sources": [
+    "https://github.com/microsoft/playwright/blob/v1.61.1/packages/playwright-core/src/client/network.ts",
+    "https://github.com/microsoft/playwright/blob/v1.61.1/packages/playwright-core/src/client/browserContext.ts"
   ],
-  "preserved": "Table default expressions, raw aclNull flags, complete tuples/owner/order, alternative/inherited/PUBLIC/dependent checks, authority, durableclaim, all assertions/captures103/24owned7producer/timeouts/ONEdelete/restoration unchanged.",
+  "fix": "Observers armed before route registration/action; synchronous exact Request binding before seen/release; early outcome retained; one memoized tagged combined10s settlement including response acquisition; errors preserved, listeners/timer disposed; failed/not-held outcomes refuse delivered-read scenario. No repeated response.finished await.",
+  "preserved": "All prior response/UI/business assertions, authority/admission,103captures/24owned7producer/actions/timeouts/ACL snapshots/effect budget/ONEdelete/restore, unconditional recovery despite failure and damaged custody/fixture-cleanup suppression/fail-stop unchanged.",
+  "new_pure_proof": {
+    "harness": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-566/harness.cjs",
+    "results": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-566/results.json",
+    "native_exit": 0,
+    "passed": 22,
+    "failed": 0,
+    "source_sha256": "3a18c8d2795051854a4b0fe45b995f94952d66044debf74501812815e16d8a4d",
+    "extraction_sha256": "12536f5aa4cf8aa10f593ba1cdd2d70ecfc46a48d4864f540192f36159332d1b",
+    "limits": "Mock events/clock and Request objects only; no browser/network/DB/process/Docker/CI. Actual source functions and original delivered-read assertion block executed. No native-cause or runtime acceptance proof.",
+    "manifest": {
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-566/manifest.json",
+      "raw_sha256": "0952448a90c21f083bdaf5105645457b03af1a28a29550a05f8e182ca8188145",
+      "effective_git_blob_oid": "d4f465306092da108c36f04a49f825d8437b7d3d"
+    },
+    "admission_function_comparison": {
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-566/admission-function-equality.json",
+      "raw_sha256": "7ad8ae92a1785cd9457c9350c884fdde052aeaa2060a7bfa2a1ca506aa2d3eb1",
+      "effective_git_blob_oid": "04817c85cbb3ba5fd01f223a33589447b5db7549"
+    }
+  },
   "prior132_proof": {
     "manifest": "tmp/private/35-7-p-consumer-closed-service-proof/proof-manifest.json",
     "sha256": "1c8b82145b0bf709a0dbe09fd9743c19d38a84a17f2d36fba9881467e55d4b41",
-    "status": "Retained unchanged proof of unchanged admission functions; NOT rerun/current SQL/runtime coverage"
+    "status": "Retained unchanged;14 admission functions and qualifier body remain byte-identical; not rerun/current lifecycle/runtime proof"
   },
   "focused_static": {
     "typecheck": {
-      "command": "node node_modules/typescript/bin/tsc --noEmit",
       "native_exit": 0,
-      "log": "tmp/private/35-7-p-consumer-closed-service-proof/acl-fadc-typecheck.log"
+      "log": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-566/typecheck.log"
     },
     "pricing_eslint": {
-      "command": "node node_modules/eslint/bin/eslint.js tests/e2e/pricing/pricing.e2e.spec.ts",
       "native_exit": 0,
-      "log": "tmp/private/35-7-p-consumer-closed-service-proof/acl-fadc-eslint.log"
+      "log": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-566/eslint.log"
     }
   },
-  "runtime_limits": "No local SQL/process/Docker/DB/resources/CI executed; successor SQL/effects/methodimages/fit/authenticatedvisual/completion unearned. Existing actual P-E5 before/fault/current/restored checks must earn runtime proof in fresh CI.",
+  "runtime_limits": "Mock events/clock only; no local browser/network/process/Docker/DB/SQL/CI/resources. Newhead runtime/method images/complete fit/authenticatedvisual/completion unearned.",
   "build_status": "in-progress",
   "step5_done": false,
   "release_ready": false,
   "live_cap": 80,
-  "private88_90": "UNAPPLIED/HUMANHELD; unchanged",
+  "private88_90": "UNAPPLIED/HUMANHELD; untouched",
   "single_SRO": {
-    "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
     "native_exit": 0,
-    "verified_stops": 47,
+    "verified_stops": 49,
     "native_JSON": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json"
   }
 }

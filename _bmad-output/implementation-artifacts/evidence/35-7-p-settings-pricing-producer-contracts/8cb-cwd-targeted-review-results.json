@@ -415,5 +415,88 @@
       "whole_current_CI": "TERMINAL FAILURE,browser ACL snapshot failure only",
       "limits": "fadc-only earned result; no new-head SQL fix/method/visual qualification."
     }
+  },
+  "current_566_terminal_lifecycle_followup": {
+    "recorded_at_utc": "2026-11-03T09:08:59.166487+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Only exactRequest terminal lifecycle fix and retained22-case proof;unchanged14admission bodies/prior132 retained without rerun or broad review.",
+    "freeze_sha256": "947496cace10d10e8198242862decd9ddab63432c5d410b7313aaa90e568489c",
+    "source48_digest": "2fcf1c05ce5b27bc94dcf0464396df0469a4fdd6275f6550e277cfcf31fb0cea",
+    "pricing_sha256": "3a18c8d2795051854a4b0fe45b995f94952d66044debf74501812815e16d8a4d",
+    "pricing_git_blob": "0a472dc059d946897cb88608b548874e1361f7be",
+    "patch_sha256": "657a26b13272711d9215b582c557ac757b2c4aec6d1e98db24499727685b4323",
+    "findings": [],
+    "verification_confirmation": "Observer arms before routing/action and binds exact heldRequest,retains failure whileheld. Cachedtagged settlement keeps10s,observes terminal despite release errors,disposes listeners/timers. Scenario rejects failed/nonheld beforecaptures,preserves identity+nonnullresponseassertions,removes serialresponse.finished. Failed cleanupsettled only. Allerrors/exactACLrecovery/damagedcustody/failstop/durableclaim intact.",
+    "edges_confirmation": "All48source and10proof files match. Independent reconstruction matches threefunctions,transpilation,delivered-response assertion span,registration-disposal caller. Saved22passed0failed;exactRequestevents,cancellation/unrelated/races/cache/errors/aggregation/10s/disposal genuinely exercised. All14admission bodies exact;132notrerun.",
+    "proof_manifest_sha256": "0952448a90c21f083bdaf5105645457b03af1a28a29550a05f8e182ca8188145",
+    "harness_sha256": "4ca6d75aa045bd10ed387e3f307a53fb9d40810f75446938dbb99f569787d6fc",
+    "proof_limits": [
+      "Response.finished is a throwing must-not-be-used trap,not literally a never-resolving promise.",
+      "Headers are represented by a supplied response object;no native network behavior simulated.",
+      "Injectedclock validates configured10s bound/phases,not wall-clockbrowser behavior.",
+      "No tests/helpers executed during independent review;no actual566cause attribution."
+    ],
+    "unchanged_boundaries": "103capture definitions,24owned/7producer cases,businessactions/assertions/timeouts/effectbudgets/ACLrestore/ONEdelete/claim preserved. SRO49. Production27/canonical9/other47/package/workflow/config/privatecaps unchanged andcaps unapproved.",
+    "actual_566_browser": {
+      "head": "566bb80428a7af75cfee62ff42cef65a6ae40a9c",
+      "run": "41604657072",
+      "browser_native_sha256": "2ac35f7ddf3307c422ce3321aafba599bdafa077e5ecc934a54030c089f51797",
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "earned": "Admission,snapshot,first company_settings revoke and exact full-ACL/ordinary-read restoration passed at566 only.",
+      "journal_records": 4,
+      "journal_stages": [
+        "claimed-no-effects",
+        "revoke-intent(company_settings)",
+        "revoke-committed(company_settings)",
+        "restore-verified(company_settings)"
+      ],
+      "journal_binding": "Matching566 head/run per native evidence;no other fault table or deletion intent.",
+      "first_attempt_ms": 14376,
+      "failure": "Released read terminal settlement timed out; duplicated via same memoized rejection in scenario/cleanup aggregates. Actual hung substage/cause UNKNOWN.",
+      "retry_ms": 2576,
+      "retry": "EEXIST correctly refused durable claim",
+      "historical_PNGs": 82,
+      "normal_PNGs": 80,
+      "method_PNGs": 2,
+      "method_PNG_scope": "Company receipt/current-read-pending,desktop andphone;validated by root.",
+      "method_frames_missing": 21,
+      "deletion_intents": 0
+    },
+    "actual_566_DB": {
+      "native_json_sha256": "d411c48732e698170bfd19a3916ca4b1a8dac8130e36479b48414621d2a96d2a",
+      "total": 2305,
+      "passed": 2252,
+      "failed": 1,
+      "explicit_skipped": 52,
+      "success": false,
+      "failed_suites": 2,
+      "failed_files": 1,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "sole_failure": "16.4-INT-C08 earliest_date in job-scheduling-consumers.int.test.ts",
+      "first_caller": "fixture Auth creation role-ekonomi{} at core.ts135 -> Promise.all index3 -> seedRoleAwarePhaseAUsers278 -> createJobsDepthFixture112 -> withJobsDepthFixture237",
+      "business_callback_entered": false,
+      "partial_fixture_setup_possible": true,
+      "status_code_cause": "Unreported/UNKNOWN;no baseline,flake or causation claim.",
+      "ownership": "Unallocated global fixture unchanged;root owns retained native diagnostics.",
+      "whole566_CI": "DB and browser FAILURE;terminal, no overlap."
+    },
+    "no_reviewer_tests_runtime_queries_writes_resources_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Fresh candidate transport/DB/browser/method qualification;21missingmethodframes/all103freshimages;truthfulcompletepackage/live80admission;humanvisualacceptance/completion unearned.",
+    "step5_done": false,
+    "release_ready": false
   }
 }
