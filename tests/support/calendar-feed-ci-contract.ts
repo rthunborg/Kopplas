@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { projectCiPerformanceChanges } from "./ci-performance-contract";
 
 const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
-const wrapperSha256 = "adfea6fecf16a672983d70e627bc16bd869bf651148da3f3e3df1efaa27f6da7";
+const wrapperSha256 = "f4c7d9416ede3239157adab24cfade0a8db8a83d33e4885d916c7387c28ad914";
 const integrationArgs = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
 const browserArgs = ["run", "test:smoke"];
 const stackBinding = "          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}";
