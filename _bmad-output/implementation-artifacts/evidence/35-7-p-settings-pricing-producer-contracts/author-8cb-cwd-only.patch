@@ -1,109 +1,292 @@
 diff --git a/tests/e2e/pricing/pricing.e2e.spec.ts b/tests/e2e/pricing/pricing.e2e.spec.ts
-index b660eeed..43ca04ad 100644
+index 43ca04ad..59424235 100644
 --- a/tests/e2e/pricing/pricing.e2e.spec.ts
 +++ b/tests/e2e/pricing/pricing.e2e.spec.ts
-@@ -587,7 +587,7 @@ function producerPlaywrightEntry(script: string): ProducerPlaywrightEntry | unde
- function producerPlaywrightInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, unclassified?: (role: "parsed" | "opaque") => void): ProducerPlaywrightEntry | undefined {
+@@ -558,21 +558,21 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
+ // Human-authorized CI-only effects. No local invocation is admitted, and this
+ // append-only job claim deliberately refuses ALL worker/test retries after entry.
+ type ProducerPlaywrightEntry = { family: "@playwright/test" | "playwright"; canonical: string };
+-function producerPlaywrightEntry(script: string): ProducerPlaywrightEntry | undefined {
++function producerPlaywrightEntry(script: string, fsPath = path, resolveRealPath: (file: string) => string = realpathSync, read: (file: string, encoding: "utf8") => string = readFileSync): ProducerPlaywrightEntry | undefined {
+     // Preserve a recognizable original launcher even if its loaded entrypoint was
+     // unlinked or a conventional symlink resolves outside the named package.
+-    let knownFamily = /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(path.normalize(script));
++    let knownFamily = /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(fsPath.normalize(script));
+     let canonical: string;
+-    try { canonical = realpathSync(script); }
++    try { canonical = resolveRealPath(script); }
+     catch { if (knownFamily) throw new Error("P-E5 family=playwright reason=entrypoint-unavailable"); return; }
+     knownFamily ||= /node_modules\/(?:@playwright\/test|playwright)\/cli\.js$/.test(canonical);
+-    if (path.basename(canonical) !== "cli.js") {
++    if (fsPath.basename(canonical) !== "cli.js") {
+         if (knownFamily) throw new Error("P-E5 family=playwright reason=canonical-entrypoint-mismatch");
+         return;
+     }
+-    const directory = path.dirname(canonical);
++    const directory = fsPath.dirname(canonical);
+     let pkg;
+-    try { pkg = JSON.parse(readFileSync(path.join(directory, "package.json"), "utf8")); }
++    try { pkg = JSON.parse(read(fsPath.join(directory, "package.json"), "utf8")); }
+     catch { if (knownFamily) throw new Error("P-E5 family=playwright reason=package-identity-unavailable"); return; }
+     if (pkg.name !== "@playwright/test" && pkg.name !== "playwright") {
+         if (knownFamily) throw new Error("P-E5 family=playwright reason=package-identity-mismatch");
+@@ -580,21 +580,21 @@ function producerPlaywrightEntry(script: string): ProducerPlaywrightEntry | unde
+     }
+     const bin = typeof pkg.bin === "string" ? pkg.bin : pkg.bin?.playwright;
+     let binCanonical: string | undefined;
+-    try { if (typeof bin === "string") binCanonical = realpathSync(path.resolve(directory, bin)); } catch { /* Fixed reason only, no path payload. */ }
++    try { if (typeof bin === "string") binCanonical = resolveRealPath(fsPath.resolve(directory, bin)); } catch { /* Fixed reason only, no fsPath payload. */ }
+     if (binCanonical !== canonical) throw new Error("P-E5 family=playwright reason=package-bin-mismatch");
+     return { family: pkg.name, canonical };
+ }
+-function producerPlaywrightInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, unclassified?: (role: "parsed" | "opaque") => void): ProducerPlaywrightEntry | undefined {
++function producerPlaywrightInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, unclassified?: (role: "parsed" | "opaque") => void, inspectedScript?: (canonical: string) => void, fsPath = path, resolveRealPath: (file: string) => string = realpathSync): ProducerPlaywrightEntry | undefined {
      // Absolute scripts and proven non-test commands do not require another
      // process's cwd. An unresolved relative test/ambiguous launch still refuses.
--    const resolveScript = (script: string, subcommand: "test" | "unresolved") => {
-+    const resolveScript = (script: string, subcommand: "test" | "unresolved", resolutionBranch: "unsupported-option" | "non-test-script" | "test-script") => {
-         if (path.isAbsolute(script)) return path.normalize(script);
-         try { return path.resolve(typeof cwd === "string" ? cwd : cwd(), script); }
+     const resolveScript = (script: string, subcommand: "test" | "unresolved", resolutionBranch: "unsupported-option" | "non-test-script" | "test-script") => {
+-        if (path.isAbsolute(script)) return path.normalize(script);
+-        try { return path.resolve(typeof cwd === "string" ? cwd : cwd(), script); }
++        if (fsPath.isAbsolute(script)) return fsPath.normalize(script);
++        try { return fsPath.resolve(typeof cwd === "string" ? cwd : cwd(), script); }
          catch (error) {
-@@ -596,6 +596,7 @@ function producerPlaywrightInvocation(args: readonly string[], cwd: string | (()
+             const code = (error as NodeJS.ErrnoException).code;
+             throw Object.assign(new Error("P-E5 family=node reason=consumer-cwd-unavailable"), {
                  producerErrorCategory: ["EACCES", "EPERM", "ENOENT", "ESRCH"].includes(code ?? "") ? code : "other",
-                 producerScriptFamily: /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(path.normalize(script)) ? "playwright-hint" : "unclassified",
+-                producerScriptFamily: /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(path.normalize(script)) ? "playwright-hint" : "unclassified",
++                producerScriptFamily: /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(fsPath.normalize(script)) ? "playwright-hint" : "unclassified",
                  producerSubcommandCategory: subcommand,
-+                producerResolutionBranch: resolutionBranch,
+                 producerResolutionBranch: resolutionBranch,
              });
-         }
-     };
-@@ -609,7 +610,7 @@ function producerPlaywrightInvocation(args: readonly string[], cwd: string | (()
-         // Never accept an arbitrary argv payload just because it contains test.
-         // An unsupported Node launch with a real Playwright CLI is a refusal,
-         // including foreign projects, not an ignored consumer.
--        if (args.slice(index + 1).some(arg => identify(resolveScript(arg, "unresolved")))) throw new Error("P-E5 family=playwright reason=unsupported-node-launch");
-+        if (args.slice(index + 1).some(arg => identify(resolveScript(arg, "unresolved", "unsupported-option")))) throw new Error("P-E5 family=playwright reason=unsupported-node-launch");
-         unclassified?.("opaque");
-         return;
-     }
-@@ -618,19 +619,32 @@ function producerPlaywrightInvocation(args: readonly string[], cwd: string | (()
-         // A confirmed Node with rewritten/opaque argv cannot be dismissed by
+@@ -620,17 +620,17 @@ function producerPlaywrightInvocation(args: readonly string[], cwd: string | (()
          // missing tokens. Normal inspectable non-test scripts remain distinct.
          if (unclassified) {
--            const script = resolveScript(args[index], "unresolved");
-+            const script = resolveScript(args[index], "unresolved", "non-test-script");
-             try { realpathSync(script); unclassified("parsed"); } catch { unclassified("opaque"); }
+             const script = resolveScript(args[index], "unresolved", "non-test-script");
+-            try { realpathSync(script); unclassified("parsed"); } catch { unclassified("opaque"); }
++            try { const canonical = resolveRealPath(script); inspectedScript?.(canonical); unclassified("parsed"); } catch { unclassified("opaque"); }
          }
          return;
      }
--    const script = resolveScript(args[index], "test"), result = identify(script);
-+    const script = resolveScript(args[index], "test", "test-script"), result = identify(script);
-     if (!result && unclassified) { try { realpathSync(script); unclassified("parsed"); } catch { unclassified("opaque"); } }
+     const script = resolveScript(args[index], "test", "test-script"), result = identify(script);
+-    if (!result && unclassified) { try { realpathSync(script); unclassified("parsed"); } catch { unclassified("opaque"); } }
++    if (!result && unclassified) { try { const canonical = resolveRealPath(script); inspectedScript?.(canonical); unclassified("parsed"); } catch { unclassified("opaque"); } }
      return result;
  }
--function producerNodeInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, confirmedNode: boolean): ProducerPlaywrightEntry | undefined {
-+function producerNodeInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, requireInspectable: boolean): ProducerPlaywrightEntry | undefined {
+-function producerNodeInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, requireInspectable: boolean): ProducerPlaywrightEntry | undefined {
++function producerNodeInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, requireInspectable: boolean, inspectedScript?: (canonical: string) => void, fsPath = path, resolveRealPath: (file: string) => string = realpathSync): ProducerPlaywrightEntry | undefined {
      let role: "parsed" | "opaque" = "opaque";
--    const invocation = producerPlaywrightInvocation(args, cwd, identify, confirmedNode ? value => { role = value; } : undefined);
--    if (confirmedNode && !invocation && role === "opaque") throw new Error("P-E5 family=node reason=opaque-node-consumer");
-+    const invocation = producerPlaywrightInvocation(args, cwd, identify, requireInspectable ? value => { role = value; } : undefined);
-+    if (requireInspectable && !invocation && role === "opaque") throw new Error("P-E5 family=node reason=opaque-node-consumer");
-+    return invocation;
-+}
-+type ProducerExecutableKind = "node" | "non-node" | "unknown";
-+function producerDriverInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined,
-+    executable: ProducerExecutableKind, owner: boolean): ProducerPlaywrightEntry | undefined {
-+    if (owner && executable !== "node") throw new Error(`P-E5 family=node reason=owner-executable-${executable === "non-node" ? "contradiction" : "unverified"}`);
-+    if (executable === "non-node") return;
-+    const nodeLaunch = /(?:^|\/)(?:node|nodejs|npm|npx|pnpm)(?:$|\s)/.test(args[0] ?? "");
-+    const playwrightEvidence = args.some(arg => /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(path.normalize(arg))
-+        || /^npm (?:exec|x) (?:playwright|@playwright\/test)(?:@[^\s]+)?(?:\s|$)/.test(arg));
-+    if (executable === "unknown" && !nodeLaunch && !playwrightEvidence) return;
-+    const invocation = producerNodeInvocation(args, cwd, identify, true);
-+    if (owner && !invocation) throw new Error("P-E5 family=playwright reason=owner-entrypoint-unclassified");
+-    const invocation = producerPlaywrightInvocation(args, cwd, identify, requireInspectable ? value => { role = value; } : undefined);
++    const invocation = producerPlaywrightInvocation(args, cwd, identify, requireInspectable ? value => { role = value; } : undefined, inspectedScript, fsPath, resolveRealPath);
+     if (requireInspectable && !invocation && role === "opaque") throw new Error("P-E5 family=node reason=opaque-node-consumer");
      return invocation;
  }
+@@ -643,9 +643,11 @@ function producerDriverInvocation(args: readonly string[], cwd: string | (() =>
+     const playwrightEvidence = args.some(arg => /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(path.normalize(arg))
+         || /^npm (?:exec|x) (?:playwright|@playwright\/test)(?:@[^\s]+)?(?:\s|$)/.test(arg));
+     if (executable === "unknown" && !nodeLaunch && !playwrightEvidence) return;
+-    const invocation = producerNodeInvocation(args, cwd, identify, true);
+-    if (owner && !invocation) throw new Error("P-E5 family=playwright reason=owner-entrypoint-unclassified");
+-    return invocation;
++    try {
++        const invocation = producerNodeInvocation(args, cwd, identify, true);
++        if (owner && !invocation) throw new Error("P-E5 family=playwright reason=owner-entrypoint-unclassified");
++        return invocation;
++    } catch (error) { throw Object.assign(error as Error, { producerAffirmativeSignal: executable === "node" ? "kernel-node" : nodeLaunch && playwrightEvidence ? "both" : nodeLaunch ? "node-launch" : "playwright-entrypoint" }); }
+ }
  type ProducerBrowserInspection = {
-@@ -754,27 +768,31 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
-         let args: string[];
-         try { args = readFileSync(`/proc/${entry}/cmdline`, "utf8").split("\0"); } catch { continue; }
+     Config?: { Cmd?: unknown; Entrypoint?: unknown }; Path?: string; Args?: unknown;
+@@ -688,6 +690,124 @@ function producerBrowserLauncherPid(inspected: ProducerBrowserInspection, expect
+         || JSON.stringify(beforeInit) !== JSON.stringify(parseStat(init!)) || JSON.stringify(beforeLauncher) !== JSON.stringify(parseStat(launcher))) refuse();
+     return launcher;
+ }
++type ProducerNamespaceMapping = { hostPid: number; pid: number; parent: number; started: string; initStarted: string };
++type ProducerNamespaceInput = ProducerNamespaceMapping & { cmdlineSha256: string; version: string };
++type ProducerNamespaceOutput = { pid: number; parent: number; started: string; kind: "blocked" | "test" | "non-test" | "non-node"; executable: "unknown" | "node" | "non-node"; binding: "none" | "canonical-cli" | "pinned-cli" | "ordinary-script" | "non-node"; family: "none" | "playwright" | "@playwright/test"; reason: "none" | "identity-unavailable" | "opaque-node" };
++function producerBrowserMemberMapping(inspected: ProducerBrowserInspection, expected: readonly string[], top: string,
++    status: (pid: number) => string, processStat: (pid: number) => string, args: readonly string[], candidate: number): ProducerNamespaceMapping {
++    producerBrowserLauncherPid(inspected, expected, top, status, processStat, args);
++    const fail = (stage = "mapping-unverified") => { throw Object.assign(new Error("P-E5 family=node reason=namespace-membership-unverified"), { producerNamespaceStage: stage }); };
++    const rows = top.trim().split("\n").slice(1).map(line => { const m = /^\s*(\d+)\s+(\d+)\s*$/.exec(line); if (!m) return fail(); return { pid: Number(m[1]), parent: Number(m[2]) }; });
++    const row = rows.find(value => value.pid === candidate); if (!row) return fail("nonmember");
++    const identity = (pid: number) => {
++        const text = status(pid), raw = processStat(pid), fields = raw.slice(raw.lastIndexOf(")") + 2).trim().split(/\s+/);
++        const namespace = /^NSpid:\s+([\d\t ]+)$/m.exec(text)?.[1].trim().split(/\s+/).map(Number);
++        const parent = Number(/^PPid:\s+(\d+)$/m.exec(text)?.[1]);
++        if (Number(/^Pid:\s+(\d+)$/m.exec(text)?.[1]) !== pid || Number(raw.slice(0, raw.indexOf(" "))) !== pid
++            || !namespace || namespace.length < 2 || namespace[0] !== pid || !namespace.every(Number.isSafeInteger)
++            || parent !== Number(fields[1]) || !/^\d{1,24}$/.test(fields[19] ?? "")) return fail();
++        return { namespace, parent, started: fields[19] };
++    };
++    const init = identity(inspected.State!.Pid!), member = identity(candidate);
++    if (member.parent !== row.parent || member.namespace.length !== init.namespace.length
++        || JSON.stringify(member.namespace.slice(1, -1)) !== JSON.stringify(init.namespace.slice(1, -1))) return fail("parent-or-namespace-unverified");
++    let parent = 0;
++    if (candidate !== inspected.State!.Pid) {
++        if (!rows.some(value => value.pid === member.parent)) return fail("parent-unverified");
++        const parentIdentity = identity(member.parent);
++        if (parentIdentity.namespace.length !== member.namespace.length || JSON.stringify(parentIdentity.namespace.slice(1, -1)) !== JSON.stringify(member.namespace.slice(1, -1))) return fail();
++        parent = parentIdentity.namespace.at(-1)!;
++    }
++    if (JSON.stringify(init) !== JSON.stringify(identity(inspected.State!.Pid!)) || JSON.stringify(member) !== JSON.stringify(identity(candidate))) return fail("instance-changed");
++    return { hostPid: candidate, pid: member.namespace.at(-1)!, parent, started: member.started, initStarted: init.started };
++}
++function producerNamespaceClassify(input: ProducerNamespaceInput, fsPath = path, read: (file: string, encoding: "utf8") => string = readFileSync, link = readlinkSync, resolveRealPath: (file: string) => string = realpathSync, hash = createHash): ProducerNamespaceOutput {
++    const output: ProducerNamespaceOutput = { pid: input.pid, parent: input.parent, started: input.started, kind: "blocked", executable: "unknown", binding: "none", family: "none", reason: "identity-unavailable" };
++    try {
++        if (!Number.isSafeInteger(input.pid) || input.pid <= 0 || !Number.isSafeInteger(input.parent) || input.parent < 0
++            || !/^\d{1,24}$/.test(input.started) || !/^[a-f0-9]{64}$/.test(input.cmdlineSha256) || !/^\d+\.\d+\.\d+$/.test(input.version)) return output;
++        const snapshot = () => {
++            const base = `/proc/${input.pid}`, raw = read(`${base}/stat`, "utf8"), fields = raw.slice(raw.lastIndexOf(")") + 2).trim().split(/\s+/);
++            const status = read(`${base}/status`, "utf8"), cmdline = read(`${base}/cmdline`, "utf8");
++            const executable = link(`${base}/exe`), cwd = link(`${base}/cwd`);
++            if (Number(raw.slice(0, raw.indexOf(" "))) !== input.pid || Number(/^Pid:\s+(\d+)$/m.exec(status)?.[1]) !== input.pid
++                || Number(fields[1]) !== input.parent || Number(/^PPid:\s+(\d+)$/m.exec(status)?.[1]) !== input.parent || fields[19] !== input.started
++                || hash("sha256").update(cmdline).digest("hex") !== input.cmdlineSha256 || cmdline.length > 65536 || executable.length > 4096 || cwd.length > 4096) throw new Error("unstable");
++            return { executable, cwd, cmdline };
++        };
++        const packageSnapshots = new Map<string, string>(), canonicalSnapshots = new Map<string, string>();
++        const checkedRead = (file: string, encoding: "utf8") => {
++            const value = read(file, encoding);
++            if (fsPath.basename(file) === "package.json") { if (packageSnapshots.has(file) && packageSnapshots.get(file) !== value) throw new Error("package-changed"); packageSnapshots.set(file, value); }
++            return value;
++        };
++        const checkedRealPath = (file: string) => {
++            const value = resolveRealPath(file);
++            if (canonicalSnapshots.has(file) && canonicalSnapshots.get(file) !== value) throw new Error("entry-changed");
++            canonicalSnapshots.set(file, value); return value;
++        };
++        const before = snapshot(), args = before.cmdline.split("\0");
++        const node = /^(?:node|nodejs)(?: \(deleted\))?$/.test(fsPath.basename(before.executable));
++        output.executable = node ? "node" : "non-node";
++        if (!node) { output.kind = "non-node"; output.binding = "non-node"; }
++        else {
++            let inspected: string | undefined;
++            const entry = producerNodeInvocation(args, before.cwd, script => producerPlaywrightEntry(script, fsPath, checkedRealPath, checkedRead), true, canonical => { inspected = canonical; }, fsPath, checkedRealPath);
++            if (entry) {
++                const pkg = JSON.parse(checkedRead(fsPath.join(fsPath.dirname(entry.canonical), "package.json"), "utf8"));
++                output.kind = "test"; output.family = entry.family;
++                output.binding = pkg.version === input.version ? "pinned-cli" : "canonical-cli";
++            } else if (inspected) {
++                const cli = producerPlaywrightEntry(inspected, fsPath, checkedRealPath, checkedRead);
++                if (cli) {
++                    const pkg = JSON.parse(checkedRead(fsPath.join(fsPath.dirname(cli.canonical), "package.json"), "utf8"));
++                    if (pkg.version !== input.version) throw new Error("version");
++                    output.binding = "pinned-cli"; output.family = cli.family;
++                } else output.binding = "ordinary-script";
++                output.kind = "non-test";
++            } else { output.reason = "opaque-node"; return output; }
++        }
++        if (JSON.stringify(before) !== JSON.stringify(snapshot())) throw new Error("unstable");
++        for (const [file, value] of packageSnapshots) if (read(file, "utf8") !== value) throw new Error("package-changed");
++        for (const [file, value] of canonicalSnapshots) if (resolveRealPath(file) !== value) throw new Error("entry-changed");
++        output.reason = "none"; return output;
++    } catch (error) {
++        return { ...output, kind: "blocked", binding: "none", family: "none", reason: (error as Error).message === "P-E5 family=node reason=opaque-node-consumer" ? "opaque-node" : "identity-unavailable" };
++    }
++}
++function producerNamespaceProgram(): string {
++    // Trusted source only; the sole argument contains bounded numeric identity,
++    // a cmdline digest and the reviewed version, never argv/cwd/environment.
++    return `"use strict";const fs=require("node:fs"),path=require("node:path"),{createHash}=require("node:crypto");
++const deadline=Date.now()+3000;
++const readFileSync=(file,encoding)=>{if(Date.now()>deadline)throw Error("deadline");const fd=fs.openSync(file,"r");try{const bytes=Buffer.alloc(65537);let size=0,count;while((count=fs.readSync(fd,bytes,size,bytes.length-size,null))>0){size+=count;if(size>=bytes.length)throw Error("size");}return bytes.subarray(0,size).toString(encoding);}finally{fs.closeSync(fd);}};
++const realpathSync=fs.realpathSync,readlinkSync=fs.readlinkSync;
++${producerPlaywrightEntry.toString()}
++${producerPlaywrightInvocation.toString()}
++${producerNodeInvocation.toString()}
++${producerNamespaceClassify.toString()}
++try{const result=producerNamespaceClassify(JSON.parse(process.argv[1]),path,readFileSync,readlinkSync,realpathSync,createHash);process.stdout.write(JSON.stringify(result));}catch{process.stdout.write("{}");}`;
++}
++function producerNamespaceOutput(raw: string, input: ProducerNamespaceInput): ProducerNamespaceOutput {
++    const fail = () => { throw new Error("P-E5 family=node reason=namespace-output-unverified"); };
++    try {
++        if (Buffer.byteLength(raw, "utf8") > 2048) return fail();
++        const value = JSON.parse(raw);
++        if (!value || JSON.stringify(Object.keys(value).sort()) !== JSON.stringify(["binding", "executable", "family", "kind", "parent", "pid", "reason", "started"])) return fail();
++        if (value.pid !== input.pid || value.parent !== input.parent || value.started !== input.started
++            || !["blocked", "test", "non-test", "non-node"].includes(value.kind) || !["unknown", "node", "non-node"].includes(value.executable)
++            || !["none", "canonical-cli", "pinned-cli", "ordinary-script", "non-node"].includes(value.binding)
++            || !["none", "playwright", "@playwright/test"].includes(value.family) || !["none", "identity-unavailable", "opaque-node"].includes(value.reason)) return fail();
++        if (value.kind === "blocked" ? value.binding !== "none" || value.family !== "none" || value.reason === "none"
++            : value.reason !== "none" || value.kind === "non-node" && (value.executable !== "non-node" || value.binding !== "non-node" || value.family !== "none")
++                || value.kind !== "non-node" && value.executable !== "node"
++                || value.kind === "test" && (!["canonical-cli", "pinned-cli"].includes(value.binding) || value.family === "none")
++                || value.kind === "non-test" && (!["pinned-cli", "ordinary-script"].includes(value.binding)
++                    || value.binding === "ordinary-script" && value.family !== "none" || value.binding === "pinned-cli" && value.family === "none")) return fail();
++        return value;
++    } catch { return fail(); }
++}
++
+ async function qualifyProducerBoundedEffects(info: TestInfo) {
+     const runtime = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
+     runtime.validateAdmission("browser", process.env, process.platform);
+@@ -763,10 +883,36 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
+             pid => readFileSync(`/proc/${pid}/status`, "utf8"), pid => readFileSync(`/proc/${pid}/stat`, "utf8"), args);
+         return launcher === candidate;
+     };
++    const inspectBrowserMember = (candidate: number, args: readonly string[], cmdlineSha256: string): ProducerNamespaceOutput => {
++        let stage = "membership-unverified";
++        try {
++            const owner = browserRuntime.assertHostedRunner();
++            const receipt = JSON.parse(readFileSync(path.join(process.env.RUNNER_TEMP!, `browser-runtime-${process.env.GITHUB_JOB}.json`), "utf8"));
++            if (!/^[a-f0-9]{64}$/.test(receipt.containerId ?? "") || receipt.owner !== owner || receipt.image !== browserRuntime.PLAYWRIGHT_IMAGE) throw new Error("receipt");
++            const configured = browserRuntime.browserContainerArgs(owner), command = configured.slice(configured.indexOf(browserRuntime.PLAYWRIGHT_IMAGE) + 1);
++            const mapping = () => {
++                const inspected = JSON.parse(execFileSync("docker", ["inspect", receipt.containerId], { encoding: "utf8", timeout: 5000, maxBuffer: 1_000_000, stdio: ["ignore", "pipe", "ignore"] }))[0];
++                browserRuntime.validateBrowserReceipt(receipt, owner, inspected);
++                const top = execFileSync("docker", ["top", receipt.containerId, "-eo", "pid,ppid"], { encoding: "utf8", timeout: 5000, maxBuffer: 65536, stdio: ["ignore", "pipe", "ignore"] });
++                return producerBrowserMemberMapping(inspected, command, top, pid => readFileSync(`/proc/${pid}/status`, "utf8"), pid => readFileSync(`/proc/${pid}/stat`, "utf8"), args, candidate);
++            };
++            const before = mapping(), input: ProducerNamespaceInput = { ...before, cmdlineSha256, version: browserRuntime.PLAYWRIGHT_VERSION };
++            stage = "member-read-unavailable";
++            const raw = execFileSync("docker", ["exec", receipt.containerId, "node", "-e", producerNamespaceProgram(), JSON.stringify(input)], { encoding: "utf8", timeout: 5000, maxBuffer: 2048, stdio: ["ignore", "pipe", "ignore"] });
++            const result = producerNamespaceOutput(raw, input);
++            stage = "member-instance-changed";
++            if (JSON.stringify(before) !== JSON.stringify(mapping()) || createHash("sha256").update(readFileSync(`/proc/${candidate}/cmdline`)).digest("hex") !== cmdlineSha256) throw new Error("changed");
++            return result;
++        } catch (error) {
++            const reported = (error as { producerNamespaceStage?: string }).producerNamespaceStage;
++            const safeStage = ["nonmember", "parent-or-namespace-unverified", "parent-unverified", "instance-changed", "mapping-unverified"].includes(reported ?? "") ? reported : stage;
++            throw Object.assign(new Error("P-E5 family=node reason=namespace-inspection-unverified"), { producerNamespaceStage: safeStage });
++        } // Never expose Docker/helper stderr, argv or paths.
++    };
+     const consumers: number[] = [];
+     for (const entry of readdirSync("/proc").filter(value => /^\d+$/.test(value))) {
+-        let args: string[];
+-        try { args = readFileSync(`/proc/${entry}/cmdline`, "utf8").split("\0"); } catch { continue; }
++        let args: string[], cmdlineSha256: string;
++        try { const raw = readFileSync(`/proc/${entry}/cmdline`); args = raw.toString("utf8").split("\0"); cmdlineSha256 = createHash("sha256").update(raw).digest("hex"); } catch { continue; }
          let invocation: ProducerPlaywrightEntry | undefined;
--        let confirmedNode = false;
--        try { confirmedNode = /^(?:node|nodejs)(?: \(deleted\))?$/.test(path.basename(readlinkSync(`/proc/${entry}/exe`))); } catch { /* Unreadable exe alone is not proof of Node or permission to ignore a candidate. */ }
-+        let executable: ProducerExecutableKind = "unknown", executableError = "none";
-+        try { executable = /^(?:node|nodejs)(?: \(deleted\))?$/.test(path.basename(readlinkSync(`/proc/${entry}/exe`))) ? "node" : "non-node"; }
-+        catch (error) { const code = (error as NodeJS.ErrnoException).code; executableError = ["EACCES", "EPERM", "ENOENT", "ESRCH"].includes(code ?? "") ? code! : "other"; }
-         try {
--            invocation = producerNodeInvocation(args, () => readlinkSync(`/proc/${entry}/cwd`), producerPlaywrightEntry, confirmedNode);
-+            invocation = producerDriverInvocation(args, () => readlinkSync(`/proc/${entry}/cwd`), producerPlaywrightEntry, executable, Number(entry) === boot.ownerPid);
+         let executable: ProducerExecutableKind = "unknown", executableError = "none";
+         try { executable = /^(?:node|nodejs)(?: \(deleted\))?$/.test(path.basename(readlinkSync(`/proc/${entry}/exe`))) ? "node" : "non-node"; }
+@@ -775,7 +921,7 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
+             invocation = producerDriverInvocation(args, () => readlinkSync(`/proc/${entry}/cwd`), producerPlaywrightEntry, executable, Number(entry) === boot.ownerPid);
          }
          catch (error) {
--            const detail = error as { message?: string; producerErrorCategory?: string; producerScriptFamily?: string; producerSubcommandCategory?: string };
-+            const detail = error as { message?: string; producerErrorCategory?: string; producerScriptFamily?: string; producerSubcommandCategory?: string; producerResolutionBranch?: string };
+-            const detail = error as { message?: string; producerErrorCategory?: string; producerScriptFamily?: string; producerSubcommandCategory?: string; producerResolutionBranch?: string };
++            const detail = error as { message?: string; producerErrorCategory?: string; producerScriptFamily?: string; producerSubcommandCategory?: string; producerResolutionBranch?: string; producerAffirmativeSignal?: string };
              const refusal = /^P-E5 family=(playwright|node) reason=([a-z-]+)$/.exec(detail.message ?? "");
              // An exact already-validated server or job-owned launcher is a
              // non-test role, never a general PID/container/title exemption.
--            if (["consumer-cwd-unavailable", "opaque-node-consumer"].includes(refusal?.[2] ?? "") && !args.some(arg => /(?:^|\s)test(?:\s|$)/.test(arg))) {
-+            const testVeto = args.some(arg => /(?:^|\s)test(?:\s|$)/.test(arg));
-+            let roleOutcome = "not-eligible";
-+            if (["consumer-cwd-unavailable", "opaque-node-consumer"].includes(refusal?.[2] ?? "") && !testVeto) {
+@@ -783,8 +929,20 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
+             let roleOutcome = "not-eligible";
+             if (["consumer-cwd-unavailable", "opaque-node-consumer"].includes(refusal?.[2] ?? "") && !testVeto) {
                  if (Number(entry) === boot.serverPid) continue;
--                try { if (exactBrowserLauncher(Number(entry), args)) continue; }
--                catch { throw new Error(`P-E5 family=node reason=browser-launcher-unverified pid=${entry} errorCategory=role-proof-unavailable scriptFamily=unclassified subcommandCategory=unresolved`); }
--            }
-+                try { if (exactBrowserLauncher(Number(entry), args)) continue; roleOutcome = "validated-launcher-pid-mismatch"; }
-+                catch { throw new Error(`P-E5 family=node reason=browser-launcher-unverified pid=${entry} errorCategory=role-proof-unavailable scriptFamily=unclassified subcommandCategory=unresolved executable=${executable} executableError=${executableError} resolutionBranch=role-proof testVeto=false roleOutcome=proof-unavailable`); }
-+            } else if (["consumer-cwd-unavailable", "opaque-node-consumer"].includes(refusal?.[2] ?? "") && testVeto) roleOutcome = "test-veto";
+-                try { if (exactBrowserLauncher(Number(entry), args)) continue; roleOutcome = "validated-launcher-pid-mismatch"; }
+-                catch { throw new Error(`P-E5 family=node reason=browser-launcher-unverified pid=${entry} errorCategory=role-proof-unavailable scriptFamily=unclassified subcommandCategory=unresolved executable=${executable} executableError=${executableError} resolutionBranch=role-proof testVeto=false roleOutcome=proof-unavailable`); }
++                try {
++                    if (exactBrowserLauncher(Number(entry), args)) continue;
++                    roleOutcome = "validated-launcher-pid-mismatch";
++                    const inspected = inspectBrowserMember(Number(entry), args, cmdlineSha256);
++                    if (inspected.kind === "test") { consumers.push(Number(entry)); continue; }
++                    if (inspected.kind === "non-test" || inspected.kind === "non-node") continue;
++                    roleOutcome = "namespace-identity-blocked";
++                }
++                catch (error) {
++                    const value = (error as { producerNamespaceStage?: string }).producerNamespaceStage;
++                    const stage = ["nonmember", "parent-or-namespace-unverified", "parent-unverified", "instance-changed", "mapping-unverified", "membership-unverified", "member-read-unavailable", "member-instance-changed"].includes(value ?? "") ? value : "unverified";
++                    const signal = ["kernel-node", "both", "node-launch", "playwright-entrypoint"].includes(detail.producerAffirmativeSignal ?? "") ? detail.producerAffirmativeSignal : "unverified";
++                    throw new Error(`P-E5 family=node reason=browser-launcher-unverified pid=${entry} errorCategory=role-proof-unavailable scriptFamily=unclassified subcommandCategory=unresolved executable=${executable} executableError=${executableError} resolutionBranch=role-proof testVeto=false roleOutcome=namespace-${stage} affirmativeSignal=${signal}`);
++                }
+             } else if (["consumer-cwd-unavailable", "opaque-node-consumer"].includes(refusal?.[2] ?? "") && testVeto) roleOutcome = "test-veto";
              // No argv, environment, cwd or package payload enters diagnostics.
              const family = refusal?.[1] ?? "node", reason = refusal?.[2] ?? "consumer-inspection-failed";
-             const category = ["EACCES", "EPERM", "ENOENT", "ESRCH", "other"].includes(detail.producerErrorCategory ?? "") ? detail.producerErrorCategory : "none";
-             const scriptFamily = detail.producerScriptFamily === "playwright-hint" ? "playwright-hint" : refusal?.[1] === "playwright" ? "playwright" : "unclassified";
-             const subcommand = detail.producerSubcommandCategory === "test" ? "test" : "unresolved";
--            throw new Error(`P-E5 family=${family} reason=${reason} pid=${entry} errorCategory=${category} scriptFamily=${scriptFamily} subcommandCategory=${subcommand}`);
-+            const branch = ["unsupported-option", "non-test-script", "test-script"].includes(detail.producerResolutionBranch ?? "") ? detail.producerResolutionBranch : refusal?.[2] === "opaque-node-consumer" ? "opaque-node" : "dispatch";
-+            throw new Error(`P-E5 family=${family} reason=${reason} pid=${entry} errorCategory=${category} scriptFamily=${scriptFamily} subcommandCategory=${subcommand} executable=${executable} executableError=${executableError} resolutionBranch=${branch} testVeto=${testVeto} roleOutcome=${roleOutcome}`);
-         }
-         if (!invocation) {
-             if (Number(entry) === boot.ownerPid) throw new Error("P-E5 family=playwright reason=owner-entrypoint-unclassified");

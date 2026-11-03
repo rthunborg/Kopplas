@@ -1,25 +1,25 @@
 {
-  "recorded_at_utc": "2026-11-03T06:48:38.534280+00:00",
+  "recorded_at_utc": "2026-11-03T07:26:51.304924+00:00",
   "branch": "codex/35-7-p-settings-pricing-producer-contracts",
-  "current_local_head": "fb6e7e18f0381d1248299263325d9c8ee6f5e76e",
+  "current_local_head": "0ff224254d5fd96346d284aefeb794ea675ca02e",
   "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
   "prior_handoff_retained_in_Git": {
-    "commit": "fb6e7e18f0381d1248299263325d9c8ee6f5e76e",
-    "git_blob_oid": "e99a8f5d6105ab9e508cdacfea1efd0197d517b7",
-    "raw_git_bytes_sha256": "a1f1edeb64788ddc1ea2c1e041a8a7210bdc9357a844b33f748e33edd7e75281"
+    "commit": "0ff224254d5fd96346d284aefeb794ea675ca02e",
+    "git_blob_oid": "21d59e7b6551c7ce3fdfdaa9ef288f7525bec161",
+    "raw_git_bytes_sha256": "09642c1da07703ce04d08d2d35fbdf6259c1f0ee4a7d9ace2f952823035ea8de"
   },
   "freeze": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json",
-  "freeze_sha256": "10f46ee36aa34fc3a389cfb19d8a26b2e11ba7d461dc6f8fef884e5b06836fcc",
-  "source48_digest": "3c1b0daa59a36f8d9f5a83398f8ed62f4904713af90fe7f53dfa03d862cbb94c",
+  "freeze_sha256": "91fd0152bdd1ea2ee73514876f7e575a410dba89697ab471d1ea31db51f9ecbb",
+  "source48_digest": "3c1649a8084610bf472d7eff5388b867ec68fc1a018d0f72fcdc6894a0eae5a3",
   "matched_source48": 48,
   "matched_canonical9": 9,
   "matched_author_artifact_pins": 6,
   "mismatches": [],
   "production27_other47_package_unchanged": true,
   "only_source_change": "tests/e2e/pricing/pricing.e2e.spec.ts",
-  "pricing_sha256": "056080a0df3070372ac1ecc26a2d6cbcd436fa27ce404eee71000b0067a0da16",
-  "pricing_git_blob": "43ca04ad2846d30412cedcf117aaa049c91cf612",
-  "patch_sha256": "b9f23bb894a945a477c2107c92ae99c4ed263ff0f73c38771da42970dda0265f",
+  "pricing_sha256": "2ae286925ba74c705dc0b13e724ffc321e61719b2b6acfa2d92bad3d138766f0",
+  "pricing_git_blob": "594242358d27be6c338084a1dd287d50fd48a5ad",
+  "patch_sha256": "e2ef5c66bda7181da9b3a4c863aa06d35c3d87098759432a8bf6dc98857b649b",
   "staging_paths": [
     "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-publication-handoff.json",
@@ -34,21 +34,21 @@
   ],
   "new_tracked_paths_added": 0,
   "nonpatch_tracked_diff_check_native_exit": 0,
-  "patch_context": "Exact reviewed unified-diff context bytes preserved; no full staged diff-check-zero claim.",
-  "owned_JSON_parse": "successful, not schema or evidence authorization",
+  "patch_context": "Exact reviewed unified-diff bytes retained; blank context syntax is not a full staged diff-check-zero claim.",
+  "owned_JSON_parse": "successful, not schema/evidence authorization",
   "author_checks": {
     "typecheck": 0,
     "pricing_eslint": 0,
     "SRO": 0,
-    "SRO_stops": 40,
-    "pure_saved_final": "58passed/0failed;41prior records preserved,17new. Initial56 not final-source credit."
+    "SRO_stops": 44,
+    "pure_saved_final": "91passed0failed,58prior records exact,33new;17standalone probe fixtures+2host-delegated reuse,6hostclosure modes"
   },
-  "review_receipt": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json#current_fb6_tristate_followup",
+  "review_receipt": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json#current_0ff_namespace_followup",
   "review_verdicts": {
     "verification": "FIX_CONFIRMED",
     "edges": "FIX_CONFIRMED"
   },
-  "review_limits": "Controlled job/source/proof only. Fixed negative reason allowlists, synthetic executable kinds; npm/npx explicit but no pnpm argv fixture. PID1001/10067 UNKNOWN.",
+  "review_limits": "Controlled job/source+mockedproof only. Reason allowlists;17fixtures are19executions. PID11066/1001/10067 UNKNOWN. No actual namespace/method execution credit.",
   "definitions": {
     "owned": 24,
     "producer": 7,
@@ -56,11 +56,12 @@
     "new_PNGs": 0,
     "new_effects": 0
   },
-  "latest_fb6_CI": "Browser FAILED104/103expected1P-E5unexpected0flake/skip beforeeffects. WholeDB terminalSUCCESS2305/2253passed0failed52explicitSkip/0failedsuites,producer82pass; late supplement retained separately, no successor credit.",
-  "late_root_DB_supplement": {
-    "provenance": "Root supplied actual terminal native fb6 DB result after author freeze. Captured author PENDING history remains unchanged; this supplement gives no successor-head credit.",
-    "run": "41589760207",
-    "native_json_sha256": "c2193a2d17df407ae19fa48438191bf9be9119fca72588857fdb82f288ed7a07",
+  "latest_0ff_CI": "WholeCI browser-onlyFAIL:104/103expected1P-E5unexpected0flake/skip preeffects. WholeDB terminalSUCCESS2305/2253passed0failed52explicitSkip0failedsuites,producer82pass; no successorcredit.",
+  "actual_0ff_DB": {
+    "provenance": "Actual root-reported terminal0ff result only, not successor-head credit.",
+    "run": "41592311674",
+    "job": "125772646094",
+    "native_json_sha256": "ad6ef27ead5cfb8d33d72ba0d61b59145b19d91d115fcd6f9c9690f4453783da",
     "total": 2305,
     "passed": 2253,
     "failed": 0,
@@ -78,12 +79,13 @@
     "db_closed": true,
     "wrapper_failures": [],
     "pilot_step": "PASS",
-    "full_log_bytes": 103005,
-    "full_log_sha256": "1fbb120d96dbba58dbbdb91a7dc8d45589b85cf8fb4c0a4fd10b362648bc70fb",
-    "absent_failure_only_auth_cleanup_artifact": "Expected on success; no extra credit",
-    "whole_current_CI": "FAILED because browser P-E5 refused before effects"
+    "full_log_bytes": 102748,
+    "full_log_sha256": "6d5e720875b10431b643a73dd14fd53598367fb4b9290b0adf165a27fb1ba2c5",
+    "failure_only_auth_cleanup_artifact": "Absent as expected on success; no extra credit.",
+    "whole_0ff_CI": "FAILED, browser only"
   },
   "private_artifacts_NOT_staged": [
+    "tmp/private/35-7-p-consumer-namespace-proof",
     "tmp/private/35-7-p-consumer-tristate-proof",
     "tmp/private/35-7-p-consumer-role-proof",
     "tmp/private/35-7-p-visual-cap-admission",
@@ -96,5 +98,5 @@
   "build_status": "in-progress",
   "step5_done": false,
   "release_ready": false,
-  "pending": "Parent-only checkpoint/push/fresh exact-head required CI, actual method23 and103 frames, truthful complete qualified package/admission and authenticated visual acceptance/completion. No child commit/push/CI/merge/deploy."
+  "pending": "Parent-only checkpoint/push/fresh exact-head required CI, actual namespace+method23 and103 frames, qualified complete package/admission and authenticated visual acceptance/completion. No childcommit/push/CI/merge/deploy."
 }

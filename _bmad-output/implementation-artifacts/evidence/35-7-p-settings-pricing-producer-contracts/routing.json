@@ -633,6 +633,33 @@
       "no_runtime_visual_or_completion_acceptance": true,
       "review_receipt": "8cb-cwd-targeted-review-results.json#current_fb6_tristate_followup",
       "proof_precision": "fixed reason allowlists; synthetic executable kinds; no pnpm-launch argv fixture or oldPID attribution; no runtime credit"
+    },
+    {
+      "phase": "Independent targeted0ff membership-first namespace classifier and91-case proof confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-03T07:22:14.028828+00:00",
+      "author_stopped": true,
+      "author_route_provenance": "Same High author selected and message-recorded BEFORE dispatch after independent constrained design assessment; parent explicitly confirmed proceed. File record follows author freeze, not a fabricated earlier timestamp.",
+      "freeze": "author-8cb-cwd-checkpoint.json",
+      "freeze_sha256": "91fd0152bdd1ea2ee73514876f7e575a410dba89697ab471d1ea31db51f9ecbb",
+      "source48_digest": "3c1649a8084610bf472d7eff5388b867ec68fc1a018d0f72fcdc6894a0eae5a3",
+      "reviewers": [
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "Only fixed configured-user own-container namespace classifier after exact membership/currentinstance/PIDnamespace/starttick proof; same identity/test/opaque/foreign/owner rules, strict bounded sanitized output, race/error/authority regressions; no broad qualifier audit"
+        },
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "Only exact constructed probe and host-closure retained91 pure cases, all58 prior records preserved, serialization/dependency/mock provenance and unchanged source/capture/privateproposal boundaries; no runtime/image/cap audit"
+        }
+      ],
+      "dispatch_status": "actual both existing Sol High reviewers completed FIX_CONFIRMED; no findings, source/proof only",
+      "broad_round_count": 1,
+      "no_tests_queries_resources_CI_or_writes": true,
+      "no_runtime_visual_or_completion_acceptance": true,
+      "review_receipt": "8cb-cwd-targeted-review-results.json#current_0ff_namespace_followup",
+      "proof_precision": "17independent fixtures/19VMexecutions,priorreasonallowlists+two namespace reasons,synthetic inputs,no actualnamespace/PID/runtime credit"
     }
   ],
   "implementation_author_dispatched": true,

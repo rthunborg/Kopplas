@@ -172,5 +172,79 @@
     "remaining": "Fresh successor-head required CI, genuine method effects and complete103 image inputs, truthful qualified package/live80 admission, authenticated visual acceptance and completion gates unearned.",
     "step5_done": false,
     "release_ready": false
+  },
+  "current_0ff_namespace_followup": {
+    "recorded_at_utc": "2026-11-03T07:26:51.304924+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Only constrained membership-first namespace-correct identity inspection and exact retained91-case proof; broad implementation rounds remain1.",
+    "freeze_sha256": "91fd0152bdd1ea2ee73514876f7e575a410dba89697ab471d1ea31db51f9ecbb",
+    "source48_digest": "3c1649a8084610bf472d7eff5388b867ec68fc1a018d0f72fcdc6894a0eae5a3",
+    "pricing_sha256": "2ae286925ba74c705dc0b13e724ffc321e61719b2b6acfa2d92bad3d138766f0",
+    "pricing_git_blob": "594242358d27be6c338084a1dd287d50fd48a5ad",
+    "patch_sha256": "e2ef5c66bda7181da9b3a4c863aa06d35c3d87098759432a8bf6dc98857b649b",
+    "findings": [],
+    "verification_confirmation": "Exact validated container/command membership with host-to-namespace PID,parent,starttick proof precedes the fixed configured-user probe. Bounded input/output and sanitized failures; membership/cmdline rechecked afterward. Same identity classification within correct filesystem namespace, canonical package/bin checks and repeated reads. Tests count as consumers; opaque/blocked refuse. Membership grants no exemption. Installed-owner identity,sole-owner equality,effect budget,restoration/deletion guards unchanged.",
+    "edges_confirmation": "All48 source pins and all25 proof files match. Independent static reconstruction confirms nine functions,transpilation/import aliases,constructed probe bytes and exact nested host inspector. Prior58 input/result records exact. Saved final91passed0failed;33 additions exercise membership-before-exec,bounds/sanitization,permission/identity/package/version/races,foreignTEST and six host closure modes. Reviewers executed no tests.",
+    "proof_manifest_sha256": "d4b9172d58f3ef6e32b55dcaff826060ed8900049fb6959b6c780dbb36f86b86",
+    "harness_sha256": "3e4cd861a14ad850bab9bc4352d05ab719db2942dae86762b6d1ae14fd755603",
+    "constructed_probe_sha256": "4891cf42eb0e2342ddc363dad5e7187f280c3edc89e609dc8e4a191c6069ca55",
+    "proof_limits": [
+      "Seventeen standalone VM fixtures plus two host-delegated executions reusing fixture0;19 executions are not19 independent fixtures.",
+      "Earlier negatives retain three-/six-reason allowlists; namespace refusals use two reasons and exact host error/stage checks, not universally unique per-case expected reasons.",
+      "Kernel,engine and authority inputs are mocked; actual namespace execution and oldPID11066/1001/10067 roles remain unproven.",
+      "Source confirmation applies within controlled fresh-job scope, not universal host attestation."
+    ],
+    "unchanged_boundaries": "103 capture definitions,24 owned/7 producer statements,business assertions/actions/timeouts/effect budget/ONEdelete/restoration unchanged. SRO44 verified stops. Production27/canonical9/other47/package/settings/integration/private88+90 unchanged. Private caps unapplied and human approval held; live80 unresolved.",
+    "actual_0ff_browser": {
+      "native_sha256": "732a006ac81edd9e7ad3f9cb35e0c9883acbfa1b9f3dd62872d50a06e88cea1b",
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "owned_failure": "P-E5 PID11066 unknown-executable EACCES/non-test-script/testVeto=false/validated-launcher-pid-mismatch1791/1780ms, beforeDBclient/fixtures/journal/effects; role/membership UNKNOWN",
+      "historical_PNGs": 80,
+      "method_journal": false,
+      "method_frames_absent": 23
+    },
+    "actual_0ff_DB": {
+      "provenance": "Actual root-reported terminal0ff result only, not successor-head credit.",
+      "run": "41592311674",
+      "job": "125772646094",
+      "native_json_sha256": "ad6ef27ead5cfb8d33d72ba0d61b59145b19d91d115fcd6f9c9690f4453783da",
+      "total": 2305,
+      "passed": 2253,
+      "failed": 0,
+      "explicit_skipped": 52,
+      "success": true,
+      "failed_suites": 0,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "wrapper_child_exit_codes": [
+        0,
+        0
+      ],
+      "key_deleted": true,
+      "db_closed": true,
+      "wrapper_failures": [],
+      "pilot_step": "PASS",
+      "full_log_bytes": 102748,
+      "full_log_sha256": "6d5e720875b10431b643a73dd14fd53598367fb4b9290b0adf165a27fb1ba2c5",
+      "failure_only_auth_cleanup_artifact": "Absent as expected on success; no extra credit.",
+      "whole_0ff_CI": "FAILED, browser only"
+    },
+    "no_reviewer_tests_process_Docker_DB_queries_resources_writes_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Fresh successor-head required CI and actual namespace/method execution; all103 actual frames; truthful complete qualified package/live80 prerequisite; authenticated visual acceptance and completion unearned.",
+    "step5_done": false,
+    "release_ready": false
   }
 }
