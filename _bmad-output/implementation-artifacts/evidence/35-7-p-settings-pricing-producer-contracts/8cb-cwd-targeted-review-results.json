@@ -246,5 +246,86 @@
     "remaining": "Fresh successor-head required CI and actual namespace/method execution; all103 actual frames; truthful complete qualified package/live80 prerequisite; authenticated visual acceptance and completion unearned.",
     "step5_done": false,
     "release_ready": false
+  },
+  "current_b99_closed_service_followup": {
+    "recorded_at_utc": "2026-11-03T08:10:21.557135+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Only closed three-service ownership/default provenance, namespace-first identity classification, separately exact-main handoff fallback and retained132-case proof; broad implementation rounds remain1.",
+    "freeze_sha256": "77fe9601fedc87e0a8259421cc379c159af512c849b0852ec9b9d6f7c4f37a3b",
+    "source48_digest": "2a9374c4ee8d32d35e34083e577d29c8238826c7fa7a74d58839454c4ec97cba",
+    "pricing_sha256": "5eb024e2bfb77ced523ef42050c9f9152ca0f7f45cf59cc80227be805b0601e7",
+    "pricing_git_blob": "87654d16e491df1e40d3733a186ddf0a4eda1e28",
+    "patch_sha256": "79a0937f66ea52f8f22a6315b20de279819df84c052f14e1af858f3f4c14b069",
+    "findings": [],
+    "verification_confirmation": "Inspection restricted to configured Studio/Storage/PGMeta with exact references,immutable image/default bindings,freshness,project,network,endpoints and stable candidate membership/PIDmapping before fixed probe. Ordinary namespace classifier first. Opaque-main fallback requires exact service main,namespacePID1/parent0,kernelNode,stable identity,testveto and reviewed entrypoint hash. Descendants gain no exemption. Tests count; blocked refuse; existing owner/exclusivity/effect/restore/delete guards intact. Controlled-job boundary only.",
+    "edges_confirmation": "All48 source and25 proof files match. Independent reconstruction matches14functions,transpilation/import aliases,probe bytes,browser-host andclosed-host closures. Saved132passed0failed; all91 prior records exact;41additions cover policy/default contradictions,exactmain,TESTveto,handofftamper/races,sixclosedhost modes. Disabled/nonmember/usercontradictions zeroexec; errors sanitized. No review execution.",
+    "proof_manifest_sha256": "1c8b82145b0bf709a0dbe09fd9743c19d38a84a17f2d36fba9881467e55d4b41",
+    "harness_sha256": "ab359d11ffa3dea030d09a89893c19854ce53599eb762ced69dd4691c85f329a",
+    "constructed_probe_sha256": "c988aae22885000ff1ecdf7c882c7d794d6887efad73fa192906af292bdcae86",
+    "proof_limits": [
+      "33modeledprobeexecutions comprise29standalonefixtures+4delegatedruns,not33independentenvironments.",
+      "Negative cases use fixed reason allowlists and host stage/binding assertions,not unique per-case expected reasons.",
+      "Engine,authority,kernel,image-default fixtures are synthetic; neither actual image bytes nor PID10448/oldPID roles are proven.",
+      "Entrypoint bytes match reviewed immutable source pin,not actual live image qualification."
+    ],
+    "source_provenance": {
+      "CLI_commit": "18ae43a34a2257458197b62f74e2a97e2b5cf7f9",
+      "CLI_manifest_sha256": "a386c05c6b4f34c9b9553668cbe3b38d19bba72528d82758ff8ea2a39572be07",
+      "Node_entrypoint_commit": "3101ce6b5b3a0308b58d464eef141e0043c3bf5b",
+      "Node_entrypoint_sha256": "a15ac9589c04baf9da95b08e0e79b5cf1d75ab8dc64e06a5e68e4ceb0ad7c8ea",
+      "Node_installation_Dockerfiles_commit": "14b1d124e21d312c46b30db98985ab7e58a89594"
+    },
+    "unchanged_boundaries": "103captures,24owned/7producer,teststatements/assertions/actions/timeouts/effectbudget/ONEdelete/restoration unchanged. SRO47. Production27/canonical9/other47/package/settings/integration/workflow/config/private88+90 unchanged. Privatecaps unapplied/unapproved; live80 unresolved.",
+    "actual_b99_browser": {
+      "native_sha256": "850ecf8c62eb2a301fa28e1a7a525f4601f1a7c591080a8894f9e172123446bc",
+      "total": 104,
+      "expected": 102,
+      "unexpected": 1,
+      "flaky": 1,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "owned_failure": "P-E5 PID10448 unknown executableEACCES/node-launch/non-test-script/testVetofalse/namespace-nonmember1296/1310ms BEFOREDBfixturesjournal/effects; actual identity UNKNOWN. Browser nonmembership only proved.",
+      "unallocated_flaky": "MyDay15.6-E09 transportafterrelease abortedvsfinished2163ms/retry2762pass; no edits or causal claim.",
+      "historical_PNGs": 80,
+      "method_journal": false,
+      "method_frames_absent": 23
+    },
+    "actual_b99_DB": {
+      "provenance": "Root actual terminal b99 result only; no successor-head credit.",
+      "run": "41596462669",
+      "job": "125786035478",
+      "native_json_sha256": "d835dba39351e69655062adb01cfe9c0429841c7779cd0416c32e4ff00871044",
+      "total": 2305,
+      "passed": 2253,
+      "failed": 0,
+      "explicit_skipped": 52,
+      "success": true,
+      "failed_suites": 0,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "wrapper_child_exit_codes": [
+        0,
+        0
+      ],
+      "key_deleted": true,
+      "db_closed": true,
+      "wrapper_failures": [],
+      "pilot_step": "PASS",
+      "full_log_bytes": 101469,
+      "full_log_sha256": "563489249cacfd1b95d84e53a5a02c110a237b0990eb0520418ae4e668045dbd",
+      "whole_b99_CI": "FAILED, browser only"
+    },
+    "no_reviewer_tests_runtime_queries_writes_resources_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Fresh successor-head CI/service-image-handoff-probe/method execution,all103images,truthful complete qualifiedpackage/live80admission,authenticatedvisualacceptance/completion unearned.",
+    "step5_done": false,
+    "release_ready": false
   }
 }

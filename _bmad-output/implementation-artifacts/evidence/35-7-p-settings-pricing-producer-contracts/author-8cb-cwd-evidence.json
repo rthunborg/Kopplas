@@ -258,5 +258,84 @@
     "cap": "Both88/90privatepackets andcompactmap/PR204inventory untouched;live80/HUMANHELD/actualcompletefitunearned.",
     "step5_done": false,
     "release_ready": false
+  },
+  "current_b99_closed_service_followup": {
+    "candidate_before": "b99f2fbc3f9c4463dc43c76758d8233b67684a6c",
+    "run": "41596462669",
+    "browser_native_sha256": "850ecf8c62eb2a301fa28e1a7a525f4601f1a7c591080a8894f9e172123446bc",
+    "actual_browser": {
+      "total": 104,
+      "expected": 102,
+      "unexpected": 1,
+      "flaky": 1,
+      "skip": 0,
+      "prior23owned6producer": "firstattemptPASS",
+      "P_E5attempt_ms": [
+        1296,
+        1310
+      ]
+    },
+    "failure": "PID10448 unknownexe/EACCES/non-testscript/testVetofalse/namespace-nonmember/node-launch beforeDB/fixtures/journal/effects; oldPIDrole UNKNOWN, Studio/other services never attributed.",
+    "unallocated_flake": "MyDay15.6-E09 first2163ms aborted-vs-finished/retry2762pass; no cause/baseline claim/no author edit.",
+    "source_route": "CLOSED3 alreadyconfigured CLI-gated Studio/Storage/PGMeta only; exactCLI manifest tags +officialregistry refs, currentproject/service/creation/network/endpoint; source-backed expectedCmd and immutable expectedref\u2192imageID/defaultEntrypoint/User equality, mount/code-path protection. Unexpectedversionpin/customref rejects. THEN exactmember host\u2194inner PID/parent/startticks +sameconfigured-user fixednamespace classifier. Namespace classifier FIRST; foreignTEST remainsconsumer; opaque fallback ONLY exactState.Pid/NSpid1/kernelNode/testveto/stableinstance with actual reviewed Nodeentrypoint bytes and configured script binding, neverchildren.",
+    "immutable_provenance": {
+      "cli_commit": "18ae43a34a2257458197b62f74e2a97e2b5cf7f9",
+      "cli_version": "2.115.0",
+      "manifest_path": "apps/cli-go/pkg/config/templates/Dockerfile",
+      "manifest_sha256": "a386c05c6b4f34c9b9553668cbe3b38d19bba72528d82758ff8ea2a39572be07",
+      "entrypoint_commit": "3101ce6b5b3a0308b58d464eef141e0043c3bf5b",
+      "entrypoint_url": "https://raw.githubusercontent.com/nodejs/docker-node/3101ce6b5b3a0308b58d464eef141e0043c3bf5b/docker-entrypoint.sh",
+      "entrypoint_sha256": "a15ac9589c04baf9da95b08e0e79b5cf1d75ab8dc64e06a5e68e4ceb0ad7c8ea",
+      "official_installation_commit": "14b1d124e21d312c46b30db98985ab7e58a89594",
+      "installation_paths": [
+        "22/bookworm-slim/Dockerfile:98-99",
+        "24/alpine3.23/Dockerfile:108-109"
+      ],
+      "image_tags": [
+        "supabase/studio:2026.08.17-sha-0c1da8f",
+        "supabase/storage-api:v1.69.11",
+        "supabase/postgres-meta:v0.98.0"
+      ]
+    },
+    "proof": {
+      "passed": 132,
+      "failed": 0,
+      "prior91_records_exactly_equal": true,
+      "new_cases": 41,
+      "exact_probe_VM_executions": 33,
+      "closed_host_modes": 6,
+      "manifest": "tmp/private/35-7-p-consumer-closed-service-proof/proof-manifest.json",
+      "sha256": "1c8b82145b0bf709a0dbe09fd9743c19d38a84a17f2d36fba9881467e55d4b41",
+      "native_exit": 0,
+      "typecheck": 0,
+      "eslint": 0,
+      "no_actual_runtime": true
+    },
+    "actual_b99_DB_root_verified": {
+      "job": "125786035478",
+      "terminal": "SUCCESS",
+      "native_sha256": "d835dba39351e69655062adb01cfe9c0429841c7779cd0416c32e4ff00871044",
+      "total": 2305,
+      "passed": 2253,
+      "failed": 0,
+      "explicit_skip": 52,
+      "failed_suites": 0,
+      "producer75_RLS7": "PASS0skip",
+      "wrapper_children": [
+        0,
+        0
+      ],
+      "keyDeleted": true,
+      "dbClosed": true,
+      "failures": [],
+      "pilot": "PASS",
+      "log_bytes": 101469,
+      "log_sha256": "563489249cacfd1b95d84e53a5a02c110a237b0990eb0520418ae4e668045dbd",
+      "provenance": "Root soleobserver facts, b99ONLY/no successorcredit"
+    },
+    "actual_b99_runtime": "WholeCIterminalbrowser-onlyFAIL;80historicalPNG/no journal/effects/23methodframesabsent. No activeCI perRoot.",
+    "unchanged": "103raw/24owned7producer/captureactions/styles/businessassertions/timeouts/effectbudget/ONEdelete/restoration;prod27/canon9/package/globalhelpers/workflow/other47source/bothprivatecaps untouched.",
+    "authority_limit": "Independent specific design supported beforeimplementation; actual service/image handoff/namespace/runtime match unearned; same two current-source High confirmations required.",
+    "state": "Buildinprogress/Step5false/releasefalse/futureheadCI/images/actualfit/live80/HUMANvisual/completionunearned"
   }
 }

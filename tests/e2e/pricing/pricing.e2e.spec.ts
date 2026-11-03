@@ -691,11 +691,15 @@ function producerBrowserLauncherPid(inspected: ProducerBrowserInspection, expect
     return launcher;
 }
 type ProducerNamespaceMapping = { hostPid: number; pid: number; parent: number; started: string; initStarted: string };
-type ProducerNamespaceInput = ProducerNamespaceMapping & { cmdlineSha256: string; version: string };
-type ProducerNamespaceOutput = { pid: number; parent: number; started: string; kind: "blocked" | "test" | "non-test" | "non-node"; executable: "unknown" | "node" | "non-node"; binding: "none" | "canonical-cli" | "pinned-cli" | "ordinary-script" | "non-node"; family: "none" | "playwright" | "@playwright/test"; reason: "none" | "identity-unavailable" | "opaque-node" };
+type ProducerNamespaceInput = ProducerNamespaceMapping & { cmdlineSha256: string; version: string; service?: string; serviceMain?: boolean };
+type ProducerNamespaceOutput = { pid: number; parent: number; started: string; kind: "blocked" | "test" | "non-test" | "non-node"; executable: "unknown" | "node" | "non-node"; binding: "none" | "canonical-cli" | "pinned-cli" | "ordinary-script" | "service-main" | "non-node"; family: "none" | "playwright" | "@playwright/test"; reason: "none" | "identity-unavailable" | "opaque-node" };
 function producerBrowserMemberMapping(inspected: ProducerBrowserInspection, expected: readonly string[], top: string,
     status: (pid: number) => string, processStat: (pid: number) => string, args: readonly string[], candidate: number): ProducerNamespaceMapping {
     producerBrowserLauncherPid(inspected, expected, top, status, processStat, args);
+    return producerNamespaceMemberMapping(inspected, top, status, processStat, candidate);
+}
+function producerNamespaceMemberMapping(inspected: ProducerBrowserInspection, top: string, status: (pid: number) => string,
+    processStat: (pid: number) => string, candidate: number): ProducerNamespaceMapping {
     const fail = (stage = "mapping-unverified") => { throw Object.assign(new Error("P-E5 family=node reason=namespace-membership-unverified"), { producerNamespaceStage: stage }); };
     const rows = top.trim().split("\n").slice(1).map(line => { const m = /^\s*(\d+)\s+(\d+)\s*$/.exec(line); if (!m) return fail(); return { pid: Number(m[1]), parent: Number(m[2]) }; });
     const row = rows.find(value => value.pid === candidate); if (!row) return fail("nonmember");
@@ -709,6 +713,7 @@ function producerBrowserMemberMapping(inspected: ProducerBrowserInspection, expe
         return { namespace, parent, started: fields[19] };
     };
     const init = identity(inspected.State!.Pid!), member = identity(candidate);
+    if (init.namespace.at(-1) !== 1) return fail("parent-or-namespace-unverified");
     if (member.parent !== row.parent || member.namespace.length !== init.namespace.length
         || JSON.stringify(member.namespace.slice(1, -1)) !== JSON.stringify(init.namespace.slice(1, -1))) return fail("parent-or-namespace-unverified");
     let parent = 0;
@@ -775,6 +780,75 @@ function producerNamespaceClassify(input: ProducerNamespaceInput, fsPath = path,
         return { ...output, kind: "blocked", binding: "none", family: "none", reason: (error as Error).message === "P-E5 family=node reason=opaque-node-consumer" ? "opaque-node" : "identity-unavailable" };
     }
 }
+// CLI v2.115.0 commit18ae43a3 embedded manifest + exact builders: no Cmd,
+// Entrypoint/User override. Unexpected linked-version pins or custom registries
+// change the resolved reference and therefore fail this CLOSED reference set.
+function producerClosedStackServices() {
+    const handoff = "a15ac9589c04baf9da95b08e0e79b5cf1d75ab8dc64e06a5e68e4ceb0ad7c8ea";
+    return [
+        { key: "studio", section: "studio", name: "/supabase_studio_kopplas", repository: "studio", tag: "2026.08.17-sha-0c1da8f", script: "apps/studio/server.js", cwd: "/app", alias: "studio", port: "3000/tcp", hostPort: "54323", handoff },
+        { key: "storage", section: "storage", name: "/supabase_storage_kopplas", repository: "storage-api", tag: "v1.69.11", script: "dist/start/server.js", cwd: "/app", alias: "storage", port: "5000/tcp", hostPort: "", handoff },
+        { key: "pgmeta", section: "studio", name: "/supabase_pg_meta_kopplas", repository: "postgres-meta", tag: "v0.98.0", script: "dist/server/server.js", cwd: "/usr/src/app", alias: "pg_meta", port: "8080/tcp", hostPort: "", handoff },
+    ] as const;
+}
+type ProducerClosedService = ReturnType<typeof producerClosedStackServices>[number];
+type ProducerServiceContainer = ProducerBrowserInspection & { Id?: string; Image?: string; Name?: string; Created?: string; Mounts?: { Destination?: string }[];
+    Config?: NonNullable<ProducerBrowserInspection["Config"]> & { Image?: string; User?: string; WorkingDir?: string; Labels?: Record<string, string>; ExposedPorts?: Record<string, unknown> };
+    NetworkSettings?: { Networks?: Record<string, { NetworkID?: string; Aliases?: string[] }>; Ports?: Record<string, { HostIp?: string; HostPort?: string }[] | null> } };
+function producerClosedServiceEnabled(service: ProducerClosedService, config: string): boolean {
+    const section = config.split(new RegExp(`^\\[${service.section}\\]\\s*$`, "m"))[1]?.split(/^\[/m)[0];
+    return Boolean(section && /^enabled\s*=\s*true\s*(?:#.*)?$/m.test(section));
+}
+function producerValidateClosedService(service: ProducerClosedService, config: string, inspected: ProducerServiceContainer,
+    imageRef: { Id?: string; RepoTags?: string[]; Config?: ProducerServiceContainer["Config"] }, imageId: { Id?: string; Config?: ProducerServiceContainer["Config"] },
+    db: ProducerServiceContainer, gateway: ProducerServiceContainer, checkoutTime: number, now: number): void {
+    const fail = () => { throw new Error("P-E5 family=node reason=closed-service-unverified"); };
+    const section = config.split(new RegExp(`^\\[${service.section}\\]\\s*$`, "m"))[1]?.split(/^\[/m)[0];
+    if (!producerClosedServiceEnabled(service, config)) fail();
+    if (service.key === "studio" && (!/^port\s*=\s*54323\s*(?:#.*)?$/m.test(section!) || !/^api_url\s*=\s*"http:\/\/127\.0\.0\.1"\s*(?:#.*)?$/m.test(section!))) fail();
+    const refs = [`supabase/${service.repository}:${service.tag}`, `public.ecr.aws/supabase/${service.repository}:${service.tag}`, `ghcr.io/supabase/${service.repository}:${service.tag}`];
+    const created = Date.parse(inspected.Created ?? ""), expectedCmd = ["node", service.script], expectedEntry = ["docker-entrypoint.sh"];
+    if (!/^[a-f0-9]{64}$/.test(inspected.Id ?? "") || inspected.Name !== service.name || !inspected.State?.Running || !Number.isSafeInteger(inspected.State.Pid) || inspected.State.Pid! <= 1
+        || inspected.Config?.Labels?.["com.supabase.cli.project"] !== "kopplas" || !Number.isFinite(created) || created < checkoutTime || created > now
+        || !refs.includes(inspected.Config?.Image ?? "") || !/^sha256:[a-f0-9]{64}$/.test(inspected.Image ?? "") || imageRef.Id !== inspected.Image || imageId.Id !== inspected.Image
+        || !imageRef.RepoTags?.includes(inspected.Config!.Image!) || JSON.stringify(imageRef.Config) !== JSON.stringify(imageId.Config)) fail();
+    const defaults = imageId.Config;
+    if (!defaults || JSON.stringify(defaults.Cmd) !== JSON.stringify(expectedCmd) || JSON.stringify(defaults.Entrypoint) !== JSON.stringify(expectedEntry)
+        || typeof defaults.User !== "string" || defaults.User.length > 128 || defaults.WorkingDir !== service.cwd || !Object.hasOwn(defaults.ExposedPorts ?? {}, service.port)
+        || inspected.Config!.User !== defaults.User || inspected.Config!.WorkingDir !== defaults.WorkingDir || JSON.stringify(inspected.Config!.Cmd) !== JSON.stringify(defaults.Cmd)
+        || JSON.stringify(inspected.Config!.Entrypoint) !== JSON.stringify(defaults.Entrypoint) || inspected.Path !== expectedEntry[0] || JSON.stringify(inspected.Args) !== JSON.stringify(expectedCmd)
+        || inspected.HostConfig?.PidMode !== "" || inspected.HostConfig.Init === true) fail();
+    const common = Object.values(db.NetworkSettings?.Networks ?? {}).map(value => value.NetworkID).filter(id => /^[a-f0-9]{64}$/.test(id ?? "") && Object.values(gateway.NetworkSettings?.Networks ?? {}).some(value => value.NetworkID === id));
+    const networks = Object.values(inspected.NetworkSettings?.Networks ?? {});
+    if (networks.length !== 1 || !common.includes(networks[0].NetworkID) || !networks[0].Aliases?.includes(service.alias)) fail();
+    const ports = Object.values(inspected.NetworkSettings?.Ports ?? {}).flatMap(value => value ?? []);
+    if (service.hostPort ? !inspected.NetworkSettings?.Ports?.[service.port]?.some(value => value.HostPort === service.hostPort && ["127.0.0.1", "0.0.0.0"].includes(value.HostIp ?? "")) || ports.some(value => value.HostPort !== service.hostPort)
+        : ports.length !== 0) fail();
+    for (const mount of inspected.Mounts ?? []) {
+        const destination = mount.Destination?.replace(/\/$/, "");
+        if (!destination || [service.cwd, "/usr/local/bin/docker-entrypoint.sh"].some(file => file === destination || file.startsWith(destination + "/"))) fail();
+    }
+}
+function producerNamespaceOpaqueMain(input: ProducerNamespaceInput, prior: ProducerNamespaceOutput, fsPath = path,
+    read: (file: string, encoding: "utf8") => string = readFileSync, link = readlinkSync, resolveRealPath: (file: string) => string = realpathSync, hash = createHash): ProducerNamespaceOutput {
+    try {
+        const service = producerClosedStackServices().find(value => value.key === input.service);
+        if (prior.kind !== "blocked" || prior.reason !== "opaque-node" || !service || input.serviceMain !== true || input.pid !== 1 || input.parent !== 0) return prior;
+        const expectedScript = fsPath.posix.join(service.cwd, service.script), handoffPath = "/usr/local/bin/docker-entrypoint.sh";
+        const snapshot = () => {
+            const raw = read("/proc/1/stat", "utf8"), fields = raw.slice(raw.lastIndexOf(")") + 2).trim().split(/\s+/), status = read("/proc/1/status", "utf8");
+            const cmdline = read("/proc/1/cmdline", "utf8"), executable = link("/proc/1/exe"), cwd = link("/proc/1/cwd");
+            if (Number(raw.slice(0, raw.indexOf(" "))) !== 1 || Number(fields[1]) !== 0 || fields[19] !== input.started || Number(/^Pid:\s+(\d+)$/m.exec(status)?.[1]) !== 1
+                || Number(/^PPid:\s+(\d+)$/m.exec(status)?.[1]) !== 0 || !/^(?:node|nodejs)$/.test(fsPath.basename(executable)) || cmdline.split("\0").some(arg => /(?:^|\s)test(?:\s|$)/.test(arg))
+                || hash("sha256").update(cmdline).digest("hex") !== input.cmdlineSha256 || resolveRealPath(expectedScript) !== expectedScript
+                || hash("sha256").update(read(handoffPath, "utf8")).digest("hex") !== service.handoff) throw new Error("unverified");
+            return { executable, cwd, cmdline, scriptHash: hash("sha256").update(read(expectedScript, "utf8")).digest("hex"), handoff: hash("sha256").update(read(handoffPath, "utf8")).digest("hex") };
+        };
+        const before = snapshot(); if (JSON.stringify(before) !== JSON.stringify(snapshot())) throw new Error("changed");
+        return { ...prior, kind: "non-test", executable: "node", binding: "service-main", family: "none", reason: "none" };
+    } catch { return { ...prior, kind: "blocked", binding: "none", family: "none", reason: "identity-unavailable" }; }
+}
+
 function producerNamespaceProgram(): string {
     // Trusted source only; the sole argument contains bounded numeric identity,
     // a cmdline digest and the reviewed version, never argv/cwd/environment.
@@ -786,7 +860,9 @@ ${producerPlaywrightEntry.toString()}
 ${producerPlaywrightInvocation.toString()}
 ${producerNodeInvocation.toString()}
 ${producerNamespaceClassify.toString()}
-try{const result=producerNamespaceClassify(JSON.parse(process.argv[1]),path,readFileSync,readlinkSync,realpathSync,createHash);process.stdout.write(JSON.stringify(result));}catch{process.stdout.write("{}");}`;
+${producerClosedStackServices.toString()}
+${producerNamespaceOpaqueMain.toString()}
+try{const input=JSON.parse(process.argv[1]);const result=producerNamespaceClassify(input,path,readFileSync,readlinkSync,realpathSync,createHash);const final=producerNamespaceOpaqueMain(input,result,path,readFileSync,readlinkSync,realpathSync,createHash);process.stdout.write(JSON.stringify(final));}catch{process.stdout.write("{}");}`;
 }
 function producerNamespaceOutput(raw: string, input: ProducerNamespaceInput): ProducerNamespaceOutput {
     const fail = () => { throw new Error("P-E5 family=node reason=namespace-output-unverified"); };
@@ -796,14 +872,15 @@ function producerNamespaceOutput(raw: string, input: ProducerNamespaceInput): Pr
         if (!value || JSON.stringify(Object.keys(value).sort()) !== JSON.stringify(["binding", "executable", "family", "kind", "parent", "pid", "reason", "started"])) return fail();
         if (value.pid !== input.pid || value.parent !== input.parent || value.started !== input.started
             || !["blocked", "test", "non-test", "non-node"].includes(value.kind) || !["unknown", "node", "non-node"].includes(value.executable)
-            || !["none", "canonical-cli", "pinned-cli", "ordinary-script", "non-node"].includes(value.binding)
+            || !["none", "canonical-cli", "pinned-cli", "ordinary-script", "service-main", "non-node"].includes(value.binding)
             || !["none", "playwright", "@playwright/test"].includes(value.family) || !["none", "identity-unavailable", "opaque-node"].includes(value.reason)) return fail();
         if (value.kind === "blocked" ? value.binding !== "none" || value.family !== "none" || value.reason === "none"
             : value.reason !== "none" || value.kind === "non-node" && (value.executable !== "non-node" || value.binding !== "non-node" || value.family !== "none")
                 || value.kind !== "non-node" && value.executable !== "node"
                 || value.kind === "test" && (!["canonical-cli", "pinned-cli"].includes(value.binding) || value.family === "none")
-                || value.kind === "non-test" && (!["pinned-cli", "ordinary-script"].includes(value.binding)
-                    || value.binding === "ordinary-script" && value.family !== "none" || value.binding === "pinned-cli" && value.family === "none")) return fail();
+                || value.kind === "non-test" && (!["pinned-cli", "ordinary-script", "service-main"].includes(value.binding)
+                    || ["ordinary-script", "service-main"].includes(value.binding) && value.family !== "none" || value.binding === "pinned-cli" && value.family === "none"
+                    || value.binding === "service-main" && (input.serviceMain !== true || input.pid !== 1 || input.parent !== 0 || !producerClosedStackServices().some(service => service.key === input.service)))) return fail();
         return value;
     } catch { return fail(); }
 }
@@ -909,6 +986,43 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
             throw Object.assign(new Error("P-E5 family=node reason=namespace-inspection-unverified"), { producerNamespaceStage: safeStage });
         } // Never expose Docker/helper stderr, argv or paths.
     };
+    const inspectClosedStackMember = (candidate: number, args: readonly string[], cmdlineSha256: string): ProducerNamespaceOutput => {
+        let stage = "closed-service-unverified";
+        try {
+            const config = readFileSync("supabase/config.toml", "utf8");
+            const docker = (argv: readonly string[], limit = 1_000_000) => execFileSync("docker", [...argv], { encoding: "utf8", timeout: 5000, maxBuffer: limit, stdio: ["ignore", "pipe", "ignore"] });
+            for (const service of producerClosedStackServices()) {
+                if (!producerClosedServiceEnabled(service, config)) continue;
+                const mapping = () => {
+                    const [db, gateway] = JSON.parse(docker(["inspect", stack.db.Id, stack.gateway.Id]));
+                    runtime.validateStackIdentity({ ...stack, db, gateway, now: Date.now() });
+                    if (db.Id !== stack.db.Id || gateway.Id !== stack.gateway.Id) throw new Error("stack");
+                    const inspected = JSON.parse(docker(["inspect", service.name.slice(1)]))[0] as ProducerServiceContainer;
+                    const refs = [`supabase/${service.repository}:${service.tag}`, `public.ecr.aws/supabase/${service.repository}:${service.tag}`, `ghcr.io/supabase/${service.repository}:${service.tag}`];
+                    if (!refs.includes(inspected.Config?.Image ?? "")) throw new Error("reference");
+                    const byRef = JSON.parse(docker(["image", "inspect", inspected.Config!.Image!]))[0];
+                    if (!/^sha256:[a-f0-9]{64}$/.test(byRef.Id ?? "") || byRef.Id !== inspected.Image) throw new Error("image");
+                    const byId = JSON.parse(docker(["image", "inspect", byRef.Id]))[0];
+                    producerValidateClosedService(service, config, inspected, byRef, byId, db, gateway, stack.checkoutTime, Date.now());
+                    const top = docker(["top", inspected.Id!, "-eo", "pid,ppid"], 65536);
+                    const member = producerNamespaceMemberMapping(inspected, top, pid => readFileSync(`/proc/${pid}/status`, "utf8"), pid => readFileSync(`/proc/${pid}/stat`, "utf8"), candidate);
+                    return { container: inspected.Id!, image: inspected.Image!, mainPid: inspected.State!.Pid!, member };
+                };
+                let before: ReturnType<typeof mapping>;
+                try { before = mapping(); }
+                catch (error) { if ((error as { producerNamespaceStage?: string }).producerNamespaceStage === "nonmember") continue; throw error; }
+                const input: ProducerNamespaceInput = { ...before.member, cmdlineSha256, version: browserRuntime.PLAYWRIGHT_VERSION, service: service.key,
+                    serviceMain: before.mainPid === candidate && before.member.pid === 1 && before.member.parent === 0 };
+                stage = "closed-member-read-unavailable";
+                const raw = docker(["exec", before.container, "node", "-e", producerNamespaceProgram(), JSON.stringify(input)], 2048);
+                const result = producerNamespaceOutput(raw, input);
+                stage = "closed-member-instance-changed";
+                if (JSON.stringify(before) !== JSON.stringify(mapping()) || createHash("sha256").update(readFileSync(`/proc/${candidate}/cmdline`)).digest("hex") !== cmdlineSha256) throw new Error("changed");
+                return result;
+            }
+            stage = "closed-set-nonmember"; throw new Error("nonmember");
+        } catch { throw Object.assign(new Error("P-E5 family=node reason=closed-service-inspection-unverified"), { producerNamespaceStage: stage }); }
+    };
     const consumers: number[] = [];
     for (const entry of readdirSync("/proc").filter(value => /^\d+$/.test(value))) {
         let args: string[], cmdlineSha256: string;
@@ -932,14 +1046,19 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
                 try {
                     if (exactBrowserLauncher(Number(entry), args)) continue;
                     roleOutcome = "validated-launcher-pid-mismatch";
-                    const inspected = inspectBrowserMember(Number(entry), args, cmdlineSha256);
+                    let inspected: ProducerNamespaceOutput;
+                    try { inspected = inspectBrowserMember(Number(entry), args, cmdlineSha256); }
+                    catch (error) {
+                        if ((error as { producerNamespaceStage?: string }).producerNamespaceStage !== "nonmember") throw error;
+                        inspected = inspectClosedStackMember(Number(entry), args, cmdlineSha256);
+                    }
                     if (inspected.kind === "test") { consumers.push(Number(entry)); continue; }
                     if (inspected.kind === "non-test" || inspected.kind === "non-node") continue;
                     roleOutcome = "namespace-identity-blocked";
                 }
                 catch (error) {
                     const value = (error as { producerNamespaceStage?: string }).producerNamespaceStage;
-                    const stage = ["nonmember", "parent-or-namespace-unverified", "parent-unverified", "instance-changed", "mapping-unverified", "membership-unverified", "member-read-unavailable", "member-instance-changed"].includes(value ?? "") ? value : "unverified";
+                    const stage = ["nonmember", "parent-or-namespace-unverified", "parent-unverified", "instance-changed", "mapping-unverified", "membership-unverified", "member-read-unavailable", "member-instance-changed", "closed-service-unverified", "closed-set-nonmember", "closed-member-read-unavailable", "closed-member-instance-changed"].includes(value ?? "") ? value : "unverified";
                     const signal = ["kernel-node", "both", "node-launch", "playwright-entrypoint"].includes(detail.producerAffirmativeSignal ?? "") ? detail.producerAffirmativeSignal : "unverified";
                     throw new Error(`P-E5 family=node reason=browser-launcher-unverified pid=${entry} errorCategory=role-proof-unavailable scriptFamily=unclassified subcommandCategory=unresolved executable=${executable} executableError=${executableError} resolutionBranch=role-proof testVeto=false roleOutcome=namespace-${stage} affirmativeSignal=${signal}`);
                 }
