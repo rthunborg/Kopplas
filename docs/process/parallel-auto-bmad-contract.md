@@ -468,9 +468,16 @@ timestamps are not query freshness and need no new actor turn.
 The evidence contains `operators`, `records`, `historical_refs` and an empty
 `uncertainties` array. Each actual record identifies actor/execution/external
 writer, owner, host, state, full current paths/domains, queued/background flags,
-existing allocation digest and actor `native_ref`. State is `non-writing` only
-with no assignment/queued/background work; otherwise `live-reserved` must match
-the entire existing nonconflicting allocation. Native allocation digests bind
+`allocation` and actor `native_ref`. State is `non-writing` only with no
+assignment/queued/background work and `allocation: null`. For `live-reserved`,
+`allocation` is an existing digest string (compatible scalar form), or a
+nonempty array of unique existing digest strings. The writer's paths/domains
+must equal the exact set union of EVERY referenced full allocation; each native
+owner match and each conflict check still applies separately. References may
+have overlapping paths/domains: unique digests do not require disjoint grants.
+No missing supplement, reduced original grant, extra unallocated token, unknown
+reference, duplicate digest or invented second writer can satisfy this proof.
+Native allocation digests bind
 `{kind: "native-claim", claim: <exact snapshot row>}`; legacy digests bind
 `{kind: "legacy-reservation", reservation: <entire reservation>}`. Every other
 live allocation and every known relevant actor is covered. Legitimate active

@@ -258,9 +258,9 @@ Implementation anchors (the final author trail follows execution evidence):
 - `scripts/maintenance/admit_story35_6_runtime.py:101` — `capture`: one initial raw source capture.
 - `scripts/maintenance/admit_story35_6_runtime.py:269` — `terminal_scope`: complete scoped writer roots/descendants and no-reopen flag.
 - `scripts/maintenance/admit_story35_6_runtime.py:317` — `finalized_closure`: full native plan, verified claims, pins and ancestry.
-- `scripts/maintenance/admit_story35_6_runtime.py:508` — `legacy_closure`: exact observed legacy profiles and main/publication/source proofs.
-- `scripts/maintenance/admit_story35_6_runtime.py:630` — `closed_classifications`: exact registered marker instances only.
-- `scripts/maintenance/admit_story35_6_runtime.py:725` — `ownership`: ordinary ownership first, strict inventory-version branch.
+- `scripts/maintenance/admit_story35_6_runtime.py:514` — `legacy_closure`: exact observed legacy profiles and main/publication/source proofs.
+- `scripts/maintenance/admit_story35_6_runtime.py:636` — `closed_classifications`: exact registered marker instances only.
+- `scripts/maintenance/admit_story35_6_runtime.py:731` — `ownership`: ordinary ownership first, strict inventory-version branch.
 - `docs/process/parallel-auto-bmad-contract.md:367` — evidence-bound historical anchor operator contract.
 
 | Synthetic case | Required result |
@@ -584,6 +584,74 @@ review remain operational prerequisites. Human coordination authorization does
 not cause this author to contact/resume an actor. No current-custody request,
 live admission or CRM/product/runtime success is prepared or claimed.
 
+## Existing-allocation union correction — 2026-11-03
+
+Root authorized one bounded follow-up over local current-mode source
+`3b383285b323ad15fcabc948ff05521061365b06`, after the same independent Sol High
+assessor confirmed the scalar-only representation could not honestly describe
+one actual writer holding both existing grants. Route:
+`tmp/private/current-custody-implementation/allocation-union-fix-route.json`.
+The producer task remains active; neither its full original grant nor approved
+package supplement can be released, marked complete or replaced by a smaller
+recent diff.
+Root separately confirmed generated evidence-directory and actual semantic-domain
+coverage must survive the effective full union. This is an operator-reported
+production shape, not an operational custody proof or a new allocation authority.
+
+Keep `allocation` unchanged for non-writing records (`null`) and compatible live
+scalar digests. A live record may alternatively use a **nonempty unique array**
+of exact existing allocation digests. Its paths/domains must equal the exact set
+union of all referenced full grants. Overlap is valid; token counts are never hardcoded.
+For the synthetic overlap test, two54 grants sharing53 paths yield55 unique
+tokens. This is a test shape, not the actual producer grant count. Each referenced native claim's
+actual owner match and each existing allocation conflict check remain mandatory;
+every original allocation must still be covered globally. Unknown/duplicate IDs,
+omitted supplements, reduced grants, extra paths/domains or mixed native owners
+refuse. One real producer stays one writer, with its actual queued/background
+facts. No synthetic second actor/execution supplies the supplement.
+
+Only `current_custody` changes. Original `ownership`, closure validators, current
+source pins, raw capture/final checks, quiet window, CAS/audit/rollback, helper and
+workflow remain unchanged. The five inherited qualified PR131 process blobs stay
+exact. All prior48 test-method bodies are preserved. Appended tests exercise
+full disposable native admission, complete raw-backed host projections and
+unchanged store after exact named refusals; no adapter runs against a live store.
+
+The first affected native selection ran four methods: **4 executed, 1 assertion
+failure, 0 errors/skips, 223.262s**, exit1. Full54+package1 admission, mixed native
+owner refusal and the prior scalar positive passed. One matrix subtest expected
+only `must be an array` while the correct guard emitted `must be an array of
+nonempty strings`; the strict end anchor caused that test failure. The native
+log and its exact before/after pair remain unchanged as failure provenance at
+`tmp/private/current-custody-implementation/native-allocation-union*`.
+Its adapter SHA256 was
+`7d0b01cf700978c6e4e517941d6bc82c64b25caa6be310c54e8b4d103a6f7b36`;
+its test SHA256 was
+`4293be7510c7b4f5cd9160088fcd6e21d09db1b84ce3229a7aa00286b2da8c22`.
+
+The only test correction extends that expected message. An appended overlap
+method also proves complete generated-directory and semantic-domain union,
+with fresh reduction negatives. Source remains unchanged; the three passing
+method bodies remain identical, and all prior48 methods remain identical to3b383.
+Only the corrected matrix plus the new overlap method are selected for the final
+native run; no passing method is repeated. Static inventory52 is not a full run.
+Final affected selection passed **2 executed, 0 failures, 0 errors, 0 skipped,
+194.703s**, exit0. It ran only the corrected matrix and appended overlap method
+on Windows Python3.14.7/Git2.55.0.windows.3 with the actual8.3 TEMP alias.
+`native-allocation-union-final.log` and `native-allocation-union-final-metadata.json`
+in the same ignored directory retain exact argv, timestamps and matching
+before/after source/test hashes. The final test SHA256 is
+`9125ea04ae6d963c09e0913f907b4bbccf23fc616a197bfacfe5c8c37811216a`.
+Synthetic54+1/54+54 cases exercise the generic predicate; they neither rewrite
+nor authenticate actual native55/effective54 grant tokens or the actual union7
+domains confirmed separately to Root. Actual raw allocations and every domain
+must be conserved verbatim in the future request.
+Earlier9-pass mode evidence remains historical3b383 provenance, not execution of
+this new union predicate. No full52/48/core/helper/hosted CI run, provider/actor
+contact, resource launch, live admission or product/configuration change occurs.
+Exact successor qualification, current actual full scopes/custody facts and
+independent exact-request review remain separate Root-owned prerequisites.
+
 ## Operational proof gaps and disposition
 
 The approved design is implemented for targeted review; **no operational packet
@@ -608,84 +676,76 @@ is ready**. Missing proof remains a refusal under this schema:
 ## Suggested Review Order
 
 Author: `/root/crm_runtime_route/runtime_admission_author` (Sol High).
-Refreshed for the approved revision2 current-custody working tree over genuine
-merge `9c26e76ae5f9bd376b9ad57adda272bc674dca1d` (parents5dc0/b547). Original
-d03a intent/design, all prior failures and exact historical test provenance remain
-recorded above. Only the original four maintenance paths are authored; all five
-qualified PR131 process blobs and inherited helper/workflow are preserved.
-Current raw source SHA256 is
-`dc1a5eb488211bf66d52ab7aaff905faf3ec66e3ac0940f22f3a5ae3c676e4d7`;
-current raw test SHA256 is
-`1100f7b9763fe47fbdc4774a82dd29c1e8debd13790ae065fccbc8fe997dd964`.
+Refreshed for the approved allocation-union fix over
+`3b383285b323ad15fcabc948ff05521061365b06`; that commit preserves the genuine
+9c26 integration and qualified PR131 process blobs. Original d03a intent/design,
+previous failed receipts and historical qualification claims remain unchanged.
+Only the four allocated maintenance paths change. Raw adapter SHA256:
+`7d0b01cf700978c6e4e517941d6bc82c64b25caa6be310c54e8b4d103a6f7b36`;
+raw test SHA256:
+`9125ea04ae6d963c09e0913f907b4bbccf23fc616a197bfacfe5c8c37811216a`.
 
-### Keep ordinary ownership ahead of historical classification
+### Represent one writer's complete existing grants
 
-The operator chooses an explicit mode only after existing current ownership,
-source aliases and repository custody checks. Actual active nonconflicting
-producers retain their complete allocation; no historical annotation overrides it.
+The recorded scalar-only defect is corrected by accepting a unique existing-ID
+list in the same field while retaining scalar compatibility. Each referenced
+native owner still matches, and both paths and domains equal the full set union.
 
-- `docs/process/parallel-auto-bmad-contract.md:367` — `Evidence-bound historical anchors`: operator contract and explicit historical boundary.
-- `scripts/maintenance/admit_story35_6_runtime.py:725` — `def ownership`: checks current plans, reservations and sources first.
-- `scripts/maintenance/admit_story35_6_runtime.py:790` — `engine.story_pr_legacy_conflicts(repo, p, revised_story)`: retains the authoritative old plan.
-- `scripts/maintenance/admit_story35_6_runtime.py:630` — `def closed_classifications`: dispatches exact typed historical classifications.
+- `docs/process/parallel-auto-bmad-contract.md:446` — `Exact E15 current-custody alternative`: operator shape and unchanged trust boundary.
+- `scripts/maintenance/admit_story35_6_runtime.py:446` — `references =`: accepts compatible scalar or strict unique list.
+- `scripts/maintenance/admit_story35_6_runtime.py:451` — `record['owner'] == allocation[1]`: checks every referenced native owner.
+- `scripts/maintenance/admit_story35_6_runtime.py:453` — `require(paths and set(paths)`: conserves complete path and domain unions.
 
-### Preserve full scope, integration identity and original proof modes
+### Retain active original and supplemental allocations
 
-The new kind is exact E15 and reuses legacy full-scope/main/publication/anchor
-gates. The original terminal and finalized validators are unchanged; the native
-selection exercises both old modes alongside the new one.
+Allocation IDs are unique; their paths/domains may overlap. No grant is completed,
+shrunk or assigned to a fabricated second writer to make custody representable.
 
-- `scripts/maintenance/admit_story35_6_runtime.py:508` — `def legacy_closure`: shares identity and full-scope guards with exact E15 discrimination.
-- `scripts/maintenance/admit_story35_6_runtime.py:269` — `def terminal_scope`: retains original terminal writer roots and descendants.
-- `scripts/maintenance/admit_story35_6_runtime.py:317` — `def finalized_closure`: retains full native plan, verification and ancestry.
-- `tests/maintenance/test_admit_story35_6_runtime.py:503` — `test_closed_e15_legacy_defaults_all_six_and_unmerged_debug_head`: conserves old terminal mode and all counterparts.
+- `scripts/maintenance/admit_story35_6_runtime.py:460` — `covered.update(references)`: covers every referenced original allocation.
+- `scripts/maintenance/admit_story35_6_runtime.py:463` — `covered == set(allocations)`: rejects an omitted grant even with reduced scope.
+- `tests/maintenance/test_admit_story35_6_runtime.py:1411` — `test_current_custody_one_active_producer_full54_plus_package1`: audits one active producer and both full grants.
+- `tests/maintenance/test_admit_story35_6_runtime.py:1487` — `test_current_custody_overlapping_full54_grants_keep_generated_scope_and_domains`: conserves overlapping grants, generated directory and semantic domains.
 
-### Establish current facts without rewriting historical failure
+### Refuse partial or invented authority with fresh evidence
 
-Revision2 uses bounded current native metadata plus raw-backed operator facts at
-the existing Coordinator trust boundary. Old activity timestamps and failed or
-notLoaded metadata do not settle custody alone; actual unknown or unreserved
-queued/background work refuses.
+Each negative rebuilds host facts/projections/raw references so stale evidence
+cannot hide the guard. Original ordinary ownership still runs ahead of closure.
 
-- `scripts/maintenance/admit_story35_6_runtime.py:373` — `def current_custody`: binds actual actors, host facts, full allocations and independent review.
-- `scripts/maintenance/admit_story35_6_runtime.py:364` — `def custody_window`: requires a current bounded quiet interval through CAS.
-- `tests/maintenance/test_admit_story35_6_runtime.py:512` — `test_current_custody_preserves_failed_history_and_active_full_producer`: preserves failed history and active full producer scope.
-- `tests/maintenance/test_admit_story35_6_runtime.py:537` — `test_current_custody_unknown_queued_background_and_partial_coverage_refuse`: refuses identified unknown or incomplete custody.
+- `tests/maintenance/test_admit_story35_6_runtime.py:1376` — `def bind_union_custody`: binds one producer with fresh corroborating raw observations.
+- `tests/maintenance/test_admit_story35_6_runtime.py:1431` — `test_current_custody_allocation_union_refusals_preserve_store`: rejects missing/reduced/extra/unknown/duplicate authority without mutation.
+- `tests/maintenance/test_admit_story35_6_runtime.py:1457` — `test_current_custody_allocation_union_checks_each_native_owner`: refuses folding another native owner's claim into the union.
+- `scripts/maintenance/admit_story35_6_runtime.py:731` — `def ownership`: retains native/reservation/source checks unchanged.
 
-### Recheck raw authority and preserve atomic custody transfer
+### Preserve current quiet custody, raw audit and evidence limits
 
-Captured bytes retain exact raw pins, including the earlier raw-or-LF correction.
-Current proof digests, raw observations and the quiet interval are rechecked before
-the existing two-row CAS; the actual native rollback test reaches the audit hook.
+Only the current record's allocation comparison changes. Captures, raw pins,
+actual-unknown refusal, independent review, final quiet interval and CAS remain.
 
-- `scripts/maintenance/admit_story35_6_runtime.py:101` — `def capture`: captures each exact raw reference once.
-- `scripts/maintenance/admit_story35_6_runtime.py:576` — `allocation_bytes =`: retains the same immutable allocation pin.
-- `scripts/maintenance/admit_story35_6_runtime.py:940` — `source_bytes(repo, ref) == data`: refuses late proof mutation before CAS.
-- `tests/maintenance/test_admit_story35_6_runtime.py:627` — `test_current_custody_last_recheck_and_atomic_rollback`: proves raw mutation, late expiry and atomic rollback refusal.
+- `scripts/maintenance/admit_story35_6_runtime.py:101` — `def capture`: retains original raw bytes and source integrity.
+- `scripts/maintenance/admit_story35_6_runtime.py:364` — `def custody_window`: preserves bounded current no-new-overlap attestation.
+- `scripts/maintenance/admit_story35_6_runtime.py:946` — `source_bytes(repo, ref) == data`: rechecks every bound raw source before CAS.
 
-### Judge semantic refusals and execution limits
+Evidence: `native-allocation-union.log`/metadata retain the first **4-method,
+1 assertion failure, 0 errors/skips, 223.262s**, exit1 run. The positive union,
+mixed-native-owner refusal and scalar positive passed; their method bodies are
+unchanged. The matrix's incorrect expected-message suffix was corrected and
+only it plus the appended overlap case are selected in
+`native-allocation-union-final.log`/metadata: **2 executed, 0 failures, 0 errors,
+0 skipped, 194.703s**, exit0, native Windows Python3.14.7/Git2.55.0 and actual8.3
+TEMP. Adapter bytes are identical across both selections; metadata distinguishes
+exact test hashes. The three unchanged passing methods from the first selection
+and final two-method pass provide affected coverage across two runs, not a
+single five-pass run. The first run's failure remains failure provenance.
+All prior48 method ASTs remain unchanged; static52 is not a full native run.
+Reference checks resolve15 own and9 inherited CI stops with no errors; the final
+four-path diff passes `git diff --check`.
+Earlier9/4/38/helper70/source5dc0 CI retain their historical scope.
 
-Fresh negative proofs reach host/queued-record, owner/scope/raw-anchor/publication,
-mode and ordinary-overlap guards, with unchanged plan/claim/audit. The E20 native
-case in the selection conserves separate external E15 reservation provenance.
-
-- `tests/maintenance/test_admit_story35_6_runtime.py:557` — `test_current_custody_refreshed_host_projection_and_metadata_alone_refuse`: refuses fresh contradictory facts and nonindependent reviewer.
-- `tests/maintenance/test_admit_story35_6_runtime.py:585` — `test_current_custody_identity_scope_anchor_pin_and_publication_guards`: preserves semantic identity and full-scope refusals.
-- `tests/maintenance/test_admit_story35_6_runtime.py:611` — `test_current_custody_cannot_override_live_overlap_reopening_or_prepared_custody`: keeps live producer and repository custody authoritative.
-- `tests/maintenance/test_admit_story35_6_runtime.py:443` — `test_closed_e20_all_integrated_copied_variants_preserve_external_reservation`: preserves original finalized mode and external scope.
-
-Evidence: the exact nine-selector native argv and before/after pair are in
-`tmp/private/current-custody-implementation/native-affected-metadata.json`;
-`native-affected.log` reports **9 executed, 0 failures/errors/skips, 488.996s**,
-exit0, using native Windows Python3.14.7/Git2.55.0 and actual8.3 TEMP. Original41
-test method ASTs are unchanged; static inventory48 is not a full-suite run.
-Earlier native4/38/helper70 and root-reported5dc0 CI keep their historical scope.
-No full48/41/core/helper/CI or current-mode live operation ran here.
-
-Limits: synthetic Git/SQLite/host/provider observations exercise production adapter
-control flow; they do not authenticate external status, scope completeness or
-operator knowledge. Current snapshots/raw bytes prove integrity, not a new query
-or OS fence. Actual unknown custody remains a refusal. Root must qualify the
-exact successor/mode and Q, bind complete actual scope and current facts, and obtain
-independent High exact request review before admission. No historical success,
-actor closure, live admission, CRM/runtime/P6 or product acceptance is claimed.
+Limits: disposable Git/SQLite and synthetic host/provider observations exercise
+the real adapter, not external authenticity. Synthetic path counts are examples,
+not the actual producer allocation count. The future request must conserve exact
+actual native/effective grants, generated directory and every semantic domain.
+Root still needs exact-successor/Q qualification, complete actual current facts
+and independent High request review. No provider query, actor contact, resource,
+full suite, hosted CI, live claim/admission, config/product or runtime operation
+occurs here; no historical failure is relabeled successful or closed.

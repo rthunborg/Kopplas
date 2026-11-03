@@ -443,15 +443,21 @@ def current_custody(repo, entry, inventory, p, r, snapshots):
             require(not paths and not domains and not record['queued'] and not record['background'] and
                     record['allocation'] is None, 'Non-writing custody has assignment/queued/background work')
         else:
-            allocation = allocations.get(record['allocation'])
-            require(allocation is not None and paths and set(paths) == set(allocation[0]['write_paths']) and
-                    set(domains) == set(allocation[0]['conflict_domains']) and
-                    (allocation[1] is None or record['owner'] == allocation[1]),
+            references = ([record['allocation']] if isinstance(record['allocation'], str) else
+                          engine.strings(record['allocation'], 'current live allocation references'))
+            require(references, 'Current live allocation references cannot be empty')
+            assigned = [allocations.get(reference) for reference in references]
+            require(all(allocation is not None and
+                        (allocation[1] is None or record['owner'] == allocation[1]) for allocation in assigned),
+                    'Current writing/queued execution lacks complete live reservation')
+            require(paths and set(paths) == {path for allocation in assigned for path in allocation[0]['write_paths']} and
+                    set(domains) == {domain for allocation in assigned for domain in allocation[0]['conflict_domains']},
                     'Current writing/queued execution lacks complete live reservation')
             target = copy.deepcopy(engine.story(p, STORY))
             target['write_paths'] += r['add_write_paths']; target['conflict_domains'] += r['add_conflict_domains']
-            require(not engine.conflicts(target, allocation[0]), 'Current custody overlaps admission scope')
-            covered.add(record['allocation'])
+            require(all(not engine.conflicts(target, allocation[0]) for allocation in assigned),
+                    'Current custody overlaps admission scope')
+            covered.update(references)
         records[identity] = record
     require(known <= {identity for identity, record in records.items() if record['kind'] == 'actor'} and
             covered == set(allocations), 'Current custody omitted known actor or live allocation')

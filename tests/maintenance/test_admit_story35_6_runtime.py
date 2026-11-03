@@ -1358,5 +1358,165 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
                     db.execute('DELETE FROM ' + table)
 
 
+    def union_producer_reservations(self):
+        # Two actual grants for ONE active producer; original54 is never shrunk.
+        original = ['src/producer/file-' + str(i) + '.ts' for i in range(52)] + [
+                    'tests/e2e/producer-a.ts', 'tests/e2e/producer-b.ts']
+        reservations = []
+        for name, paths, domains in [('original54', original, ['producer:original']),
+                                     ('package1', ['package.json'], ['producer:package'])]:
+            res = {'epic': 'actual-producer-' + name, 'stories': ['same-active-task'],
+                   'reason': 'Synthetic full approved producer ' + name, 'worktree': str(self.c),
+                   'write_paths': paths, 'conflict_domains': domains}
+            reservations.append({'reservation': res, 'head': engine.sha(self.c, 'HEAD'),
+                'source_status': 'active', 'evidence_ref': 'approved-' + name,
+                'independent': True, 'independence_ref': 'reviewed-full-' + name, 'anchors': []})
+        return reservations
+
+    def bind_union_custody(self, entry, reservations, transform=None):
+        def one_actual_producer(a):
+            grants = [item['reservation'] for item in reservations]
+            producer = {'identity': 'one-active-producer', 'kind': 'actor', 'owner': 'one-active-producer',
+                'host': 'fixture-host', 'state': 'live-reserved',
+                'write_paths': sorted({path for grant in grants for path in grant['write_paths']}),
+                'conflict_domains': sorted({domain for grant in grants for domain in grant['conflict_domains']}),
+                'queued': False, 'background': True,
+                'allocation': [engine.digest({'kind': 'legacy-reservation', 'reservation': grant}) for grant in grants],
+                'native_ref': self.raw('one-active-producer', {'source': 'codex_app.read_thread',
+                    'threadId': 'one-active-producer', 'thread_status': 'running',
+                    'turns': [{'id': 'same-still-active-task', 'status': 'inProgress', 'finals': []}]})}
+            # Replace fixture scaffolding before evidence capture: no second
+            # writer or execution impersonates the actual producer's supplement.
+            a['records'] = [row for row in a['records'] if row['state'] != 'live-reserved'] + [producer]
+            if transform:
+                transform(a, producer)
+            # Every negative refreshes ALL host facts/projections/raw references;
+            # a stale corroboration digest cannot mask the union/owner guard.
+            facts = [{k: v for k, v in row.items() if k != 'native_ref'} for row in a['records']]
+            checked = []
+            for purpose, kind in [('assignments', 'actor'), ('executions', 'execution'), ('external-writers', 'external-writer')]:
+                rows = [fact for fact in facts if fact['kind'] == kind]
+                raw = self.raw('union-actual-' + purpose, {'source': 'synthetic-existing-host-task-records', 'rows': rows})
+                projection = {'source': 'coordinator.current-custody-inventory-projection', 'purpose': purpose,
+                    'operator': 'actual-host-operator', 'host': 'fixture-host', 'observed_at': a['observed_at'],
+                    'raw_refs': [raw], 'records': rows, 'uncertainties': []}
+                checked.append({'purpose': purpose, 'ref': self.raw('union-projection-' + purpose, projection)})
+            host = {'source': 'coordinator.host-operator-custody-observation', 'operator': 'actual-host-operator',
+                'host': 'fixture-host', 'observed_at': a['observed_at'],
+                'knowledge': 'Synthetic direct current facts preserve both full grants for one active producer.',
+                'checked_sources': checked, 'facts': facts, 'uncertainties': []}
+            a['operators'][0]['observation_ref'] = self.raw('union-host-facts', host)
+        return self.bind_custody(entry, one_actual_producer, reservations)
+
+    def test_current_custody_one_active_producer_full54_plus_package1(self):
+        entry = self.custody_fixture()
+        reservations = self.union_producer_reservations()
+        self.assertEqual([len(item['reservation']['write_paths']) for item in reservations], [54, 1])
+        a = self.bind_union_custody(entry, reservations)
+        producer = next(row for row in a['records'] if row['state'] == 'live-reserved')
+        self.assertEqual(len(producer['allocation']), 2)
+        self.assertEqual(len(producer['write_paths']), 55)
+        self.assertIn('package.json', producer['write_paths'])
+        self.assertTrue(producer['background'])
+        self.assertEqual([row['identity'] for row in a['records'] if row['state'] == 'live-reserved'], ['one-active-producer'])
+        self.assertEqual(self.admit()['generation'], 2)
+        with engine.database(self.repo) as db:
+            audit = db.execute('SELECT * FROM claim_amendments').fetchone()
+            receipt = json.loads(audit['stopped_writers'])
+        self.assertEqual(receipt['ownership_inventory']['reservations'], reservations)
+        self.assertEqual(receipt['closed_classifications'][0]['proof']['current_custody']['attestation'], a)
+        self.assertTrue(all(item['source_status'] == 'active' for item in receipt['ownership_inventory']['reservations']))
+        self.assertEqual(json.loads(audit['before_plan']), self.plan)
+
+    def test_current_custody_allocation_union_refusals_preserve_store(self):
+        entry = self.custody_fixture()
+        reservations = self.union_producer_reservations()
+        complete = 'Current writing/queued execution lacks complete live reservation'
+        def omit_supplement(a, producer):
+            producer['allocation'].pop()
+            producer['write_paths'].remove('package.json')
+            producer['conflict_domains'].remove('producer:package')
+        variants = [
+            ('missing-id-with-full-scope', lambda a, p: p['allocation'].pop(), complete),
+            ('omitted-supplement-entirely', omit_supplement, 'Current custody omitted known actor or live allocation'),
+            ('reduced-original', lambda a, p: p['write_paths'].pop(0), complete),
+            ('reduced-domain', lambda a, p: p['conflict_domains'].pop(), complete),
+            ('unknown-digest', lambda a, p: p['allocation'].__setitem__(1, '0'*64), complete),
+            ('extra-path', lambda a, p: p['write_paths'].append('src/unallocated.ts'), complete),
+            ('extra-domain', lambda a, p: p['conflict_domains'].append('unallocated:domain'), complete),
+            ('duplicate-digest', lambda a, p: p['allocation'].append(p['allocation'][0]), 'current live allocation references contains duplicates'),
+            ('empty-list', lambda a, p: p.update(allocation=[]), 'Current live allocation references cannot be empty'),
+            ('non-string-id', lambda a, p: p.update(allocation=[None]), 'current live allocation references must be an array of nonempty strings'),
+            ('duplicate-writer', lambda a, p: a['records'].append(copy.deepcopy(p)), 'Actual current writer/execution identity or state is unknown'),
+        ]
+        for name, transform, message in variants:
+            with self.subTest(name=name):
+                self.bind_union_custody(entry, reservations, transform)
+                self.refused('^' + message + '$')
+
+    def test_current_custody_allocation_union_checks_each_native_owner(self):
+        # The full legacy54+1 grants remain present; a distinct real native
+        # claim cannot be folded into the producer by merely extending its scope.
+        worker = self.root / 'different-native-owner'
+        self.git(self.repo, 'worktree', 'add', '-b', 'codex/different-native-owner', str(worker), self.base)
+        item = self.story('b')
+        item.update(id='native-other-task', write_paths=['src/other-native/', 'spec/b.md'],
+                    conflict_domains=['producer:native-other'])
+        plan = copy.deepcopy(self.v1_plan)
+        plan.update(run_id='native-other-allocation', epic='other-native', base_sha=self.base,
+                    integration_worktree=str(self.repo.resolve()), integration_branch=engine.branch(self.repo), stories=[item])
+        engine.validate_plan(self.repo, plan)
+        with engine.database(self.repo) as db:
+            db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?)', (plan['run_id'], plan['epic'], plan['coordinator'],
+                       engine.canonical(plan), engine.digest(plan), 'active', None))
+            db.execute('INSERT INTO claims VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                       (plan['run_id'], item['id'], 'different-native-owner', 1, 'codex/different-native-owner',
+                        str(worker), self.base, 0, 'claimed', None, None, None, None))
+            row = dict(db.execute('SELECT * FROM claims WHERE run=?', (plan['run_id'],)).fetchone())
+        entry = self.custody_fixture()
+        reservations = self.union_producer_reservations()
+        digest = engine.digest({'kind': 'native-claim', 'claim': row})
+        def mixed_owner(a, producer):
+            producer['allocation'].insert(0, digest)
+            producer['write_paths'] = sorted(set(producer['write_paths']) | set(item['write_paths']))
+            producer['conflict_domains'] = sorted(set(producer['conflict_domains']) | set(item['conflict_domains']))
+        self.bind_union_custody(entry, reservations, mixed_owner)
+        self.refused('^Current writing/queued execution lacks complete live reservation$')
+
+
+    def test_current_custody_overlapping_full54_grants_keep_generated_scope_and_domains(self):
+        entry = self.custody_fixture()
+        original = self.union_producer_reservations()[0]
+        generated = 'tmp/private/producer-generated-evidence/'
+        original['reservation']['write_paths'][0] = generated
+        original['reservation']['conflict_domains'] += ['schema:migrations']
+        effective = copy.deepcopy(original)
+        effective['reservation'].update(epic='actual-producer-effective54',
+            reason='Synthetic evidenced effective54 supplement; original54 remains active',
+            write_paths=original['reservation']['write_paths'][:1] + original['reservation']['write_paths'][2:] + ['package.json'],
+            conflict_domains=['registry:scope-manifest', 'auth:command-enrollment', 'tests:shared-fixtures-resources'])
+        effective.update(evidence_ref='approved-effective54', independence_ref='reviewed-full-effective54')
+        reservations = [original, effective]
+        left, right = (set(row['reservation']['write_paths']) for row in reservations)
+        self.assertEqual((len(left), len(right), len(left & right), len(left | right)), (54, 54, 53, 55))
+        for transform in [lambda a, p: p['write_paths'].remove(generated),
+                          lambda a, p: p['conflict_domains'].remove('auth:command-enrollment')]:
+            self.bind_union_custody(entry, reservations, transform)
+            self.refused('^Current writing/queued execution lacks complete live reservation$')
+        attestation = self.bind_union_custody(entry, reservations)
+        producer = next(row for row in attestation['records'] if row['state'] == 'live-reserved')
+        self.assertEqual(set(producer['write_paths']), left | right)
+        self.assertIn(generated, producer['write_paths'])
+        self.assertEqual(set(producer['conflict_domains']), {'producer:original', 'schema:migrations',
+            'registry:scope-manifest', 'auth:command-enrollment', 'tests:shared-fixtures-resources'})
+        self.assertEqual(len(producer['allocation']), 2)
+        self.assertEqual(sum(row['state'] == 'live-reserved' for row in attestation['records']), 1)
+        self.assertEqual(self.admit()['generation'], 2)
+        with engine.database(self.repo) as db:
+            receipt = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])
+        self.assertEqual(receipt['ownership_inventory']['reservations'], reservations)
+        self.assertEqual(receipt['closed_classifications'][0]['proof']['current_custody']['attestation'], attestation)
+
+
 if __name__ == '__main__':
     unittest.main()
