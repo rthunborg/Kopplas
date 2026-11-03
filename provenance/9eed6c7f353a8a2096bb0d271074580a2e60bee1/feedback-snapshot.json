@@ -1,0 +1,13 @@
+{
+  "observedAt": "2026-11-03T13:11:50.354Z",
+  "completeAtObservation": true,
+  "comments": 1,
+  "reviews": 0,
+  "reviewComments": 0,
+  "commits": 24,
+  "permissions": {
+    "rthunborg": "admin"
+  },
+  "feedback": [],
+  "head": "9eed6c7f353a8a2096bb0d271074580a2e60bee1"
+}

@@ -1,0 +1,32 @@
+{
+  "candidateSha": "9eed6c7f353a8a2096bb0d271074580a2e60bee1",
+  "buildSha": "9eed6c7f353a8a2096bb0d271074580a2e60bee1",
+  "server": "next start",
+  "serverPid": 12076,
+  "runnerPid": 11682,
+  "runId": "a4e5527b-a536-4c37-8eaf-5519595c8ef7",
+  "serverStartedAt": 1793709552041,
+  "controlledTransport": true,
+  "captureAnchor": {
+    "tag": "BUTTON",
+    "id": "",
+    "text": "Sparar…"
+  },
+  "configuredCommand": "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start",
+  "configurationSha256": "82d974a9810ab79fc0b841fe2d83c7d341eed129198fa06181d864b989f0ee4d",
+  "synthetic": true,
+  "fixture": "test-owned createTwoTenantFixture; no external data",
+  "route": "/settings/quote-terms",
+  "surface": "terms",
+  "state": "loading",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "fullViewport": true,
+  "pngSha256": "6ec79761eb071cbf209d0e15ef3226dbc1cf0ff1d0a460b2a5352821205da32f",
+  "test": "P-E1/E2/E3/E4 settings capture/recover/stale 1440x900",
+  "project": "chromium",
+  "result": "Actual configured production-server application capture after named state assertions",
+  "capturedAt": "2026-11-03T12:45:37.546Z"
+}

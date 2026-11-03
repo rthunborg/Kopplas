@@ -1,0 +1,1339 @@
+﻿2026-11-03T12:35:36.6611058Z Current runner version: '2.338.2'
+2026-11-03T12:35:36.6662985Z ##[group]Runner Image Provisioner
+2026-11-03T12:35:36.6664087Z Hosted Compute Agent
+2026-11-03T12:35:36.6664719Z Version: 20261021.618
+2026-11-03T12:35:36.6665427Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-11-03T12:35:36.6666199Z Build Date: 2026-10-21T00:45:21Z
+2026-11-03T12:35:36.6666942Z Worker ID: {5e2e6488-e60d-4de7-af23-b75a1f565c36}
+2026-11-03T12:35:36.6667807Z Region: westus
+2026-11-03T12:35:36.6668376Z Cloud: Azure
+2026-11-03T12:35:36.6669004Z ##[endgroup]
+2026-11-03T12:35:36.6670602Z ##[group]Operating System
+2026-11-03T12:35:36.6671336Z Ubuntu
+2026-11-03T12:35:36.6671973Z 24.04.5
+2026-11-03T12:35:36.6672785Z LTS
+2026-11-03T12:35:36.6673317Z ##[endgroup]
+2026-11-03T12:35:36.6673974Z ##[group]Runner Image
+2026-11-03T12:35:36.6674649Z Image: ubuntu-24.04
+2026-11-03T12:35:36.6675270Z Version: 20261025.353.1
+2026-11-03T12:35:36.6676641Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-03T12:35:36.6678299Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-11-03T12:35:36.6679322Z ##[endgroup]
+2026-11-03T12:35:36.6680548Z ##[group]GITHUB_TOKEN Permissions
+2026-11-03T12:35:36.6682990Z Contents: read
+2026-11-03T12:35:36.6683782Z Metadata: read
+2026-11-03T12:35:36.6684419Z ##[endgroup]
+2026-11-03T12:35:36.6686712Z Secret source: Actions
+2026-11-03T12:35:36.6687785Z Cache mode: write
+2026-11-03T12:35:36.6688533Z Prepare workflow directory
+2026-11-03T12:35:36.7127838Z Prepare all required actions
+2026-11-03T12:35:36.7178773Z Getting action download info
+2026-11-03T12:35:37.1186730Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-03T12:35:37.2604776Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+2026-11-03T12:35:37.7187993Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-03T12:35:37.8549054Z Download action repository 'supabase/setup-cli@v1' (SHA:1dedf2c611547ede7232d26866dd3c56ab903bbb)
+2026-11-03T12:35:38.4604973Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-03T12:35:38.6840332Z Complete job name: db
+2026-11-03T12:35:38.7837652Z ##[group]Run actions/checkout@v4
+2026-11-03T12:35:38.7838526Z with:
+2026-11-03T12:35:38.7838916Z   ref: 9eed6c7f353a8a2096bb0d271074580a2e60bee1
+2026-11-03T12:35:38.7839381Z   persist-credentials: false
+2026-11-03T12:35:38.7839786Z   repository: rthunborg/Kopplas
+2026-11-03T12:35:38.7842811Z   token: ***
+2026-11-03T12:35:38.7843167Z   ssh-strict: true
+2026-11-03T12:35:38.7843509Z   ssh-user: git
+2026-11-03T12:35:38.7873553Z   clean: true
+2026-11-03T12:35:38.7874083Z   sparse-checkout-cone-mode: true
+2026-11-03T12:35:38.7874837Z   fetch-depth: 1
+2026-11-03T12:35:38.7875360Z   fetch-tags: false
+2026-11-03T12:35:38.7875872Z   show-progress: true
+2026-11-03T12:35:38.7876410Z   lfs: false
+2026-11-03T12:35:38.7876942Z   submodules: false
+2026-11-03T12:35:38.7877445Z   set-safe-directory: true
+2026-11-03T12:35:38.7878070Z   allow-unsafe-pr-checkout: false
+2026-11-03T12:35:38.7879341Z env:
+2026-11-03T12:35:38.7879978Z   SUPABASE_TEST_REQUIRED: 1
+2026-11-03T12:35:38.7880569Z ##[endgroup]
+2026-11-03T12:35:39.0698264Z Syncing repository: rthunborg/Kopplas
+2026-11-03T12:35:39.0700719Z ##[group]Getting Git version info
+2026-11-03T12:35:39.0701666Z Working directory is '/home/runner/work/Kopplas/Kopplas'
+2026-11-03T12:35:39.0703329Z [command]/usr/bin/git version
+2026-11-03T12:35:39.0793185Z git version 2.56.0
+2026-11-03T12:35:39.0816678Z ##[endgroup]
+2026-11-03T12:35:39.0836184Z Temporarily overriding HOME='/home/runner/work/_temp/0834cb8c-8f2b-4cab-b07f-33d7d95f9d63' before making global git config changes
+2026-11-03T12:35:39.0837983Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-03T12:35:39.0842460Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Kopplas/Kopplas
+2026-11-03T12:35:39.0915385Z Deleting the contents of '/home/runner/work/Kopplas/Kopplas'
+2026-11-03T12:35:39.0921602Z ##[group]Initializing the repository
+2026-11-03T12:35:39.0928449Z [command]/usr/bin/git init /home/runner/work/Kopplas/Kopplas
+2026-11-03T12:35:39.1030334Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-03T12:35:39.1031792Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-03T12:35:39.1033372Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-03T12:35:39.1034110Z hint: call:
+2026-11-03T12:35:39.1034786Z hint:
+2026-11-03T12:35:39.1035549Z hint: 	git config --global init.defaultBranch <name>
+2026-11-03T12:35:39.1036129Z hint:
+2026-11-03T12:35:39.1036996Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-03T12:35:39.1038474Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-03T12:35:39.1039661Z hint:
+2026-11-03T12:35:39.1040315Z hint: 	git branch -m <name>
+2026-11-03T12:35:39.1041063Z hint:
+2026-11-03T12:35:39.1042363Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-03T12:35:39.1044048Z Initialized empty Git repository in /home/runner/work/Kopplas/Kopplas/.git/
+2026-11-03T12:35:39.1057589Z [command]/usr/bin/git remote add origin https://github.com/rthunborg/Kopplas
+2026-11-03T12:35:39.1124770Z ##[endgroup]
+2026-11-03T12:35:39.1126052Z ##[group]Disabling automatic garbage collection
+2026-11-03T12:35:39.1129165Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-03T12:35:39.1172476Z ##[endgroup]
+2026-11-03T12:35:39.1173984Z ##[group]Setting up auth
+2026-11-03T12:35:39.1182688Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-03T12:35:39.1231127Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-03T12:35:39.1728481Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-03T12:35:39.1777712Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-03T12:35:39.2033787Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-03T12:35:39.2083354Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-03T12:35:39.2347680Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-03T12:35:39.2413261Z ##[endgroup]
+2026-11-03T12:35:39.2414667Z ##[group]Fetching the repository
+2026-11-03T12:35:39.2430027Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 9eed6c7f353a8a2096bb0d271074580a2e60bee1
+2026-11-03T12:35:42.0046894Z From https://github.com/rthunborg/Kopplas
+2026-11-03T12:35:42.0048065Z  * branch            9eed6c7f353a8a2096bb0d271074580a2e60bee1 -> FETCH_HEAD
+2026-11-03T12:35:42.0053445Z ##[endgroup]
+2026-11-03T12:35:42.0056909Z ##[group]Determining the checkout info
+2026-11-03T12:35:42.0057911Z ##[endgroup]
+2026-11-03T12:35:42.0073604Z [command]/usr/bin/git sparse-checkout disable
+2026-11-03T12:35:42.0140126Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-03T12:35:42.0179278Z ##[group]Checking out the ref
+2026-11-03T12:35:42.0183420Z [command]/usr/bin/git checkout --progress --force 9eed6c7f353a8a2096bb0d271074580a2e60bee1
+2026-11-03T12:35:42.7718904Z Note: switching to '9eed6c7f353a8a2096bb0d271074580a2e60bee1'.
+2026-11-03T12:35:42.7719886Z 
+2026-11-03T12:35:42.7720312Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-03T12:35:42.7721319Z changes and commit them, and you can discard any commits you make in this
+2026-11-03T12:35:42.7723108Z state without impacting any branches by switching back to a branch.
+2026-11-03T12:35:42.7723723Z 
+2026-11-03T12:35:42.7724181Z If you want to create a new branch to retain commits you create, you may
+2026-11-03T12:35:42.7725156Z do so (now or later) by using -c with the switch command. Example:
+2026-11-03T12:35:42.7725722Z 
+2026-11-03T12:35:42.7725896Z   git switch -c <new-branch-name>
+2026-11-03T12:35:42.7726220Z 
+2026-11-03T12:35:42.7726436Z Or undo this operation with:
+2026-11-03T12:35:42.7726769Z 
+2026-11-03T12:35:42.7726986Z   git switch -
+2026-11-03T12:35:42.7727257Z 
+2026-11-03T12:35:42.7727655Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-03T12:35:42.7728297Z 
+2026-11-03T12:35:42.7728853Z HEAD is now at 9eed6c7 test: frame article phone evidence and observe denial response failures
+2026-11-03T12:35:42.7763921Z ##[endgroup]
+2026-11-03T12:35:42.7823887Z [command]/usr/bin/git log -1 --format=%H
+2026-11-03T12:35:42.7861280Z 9eed6c7f353a8a2096bb0d271074580a2e60bee1
+2026-11-03T12:35:42.7872345Z ##[group]Removing auth
+2026-11-03T12:35:42.7876778Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-03T12:35:42.7921359Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-03T12:35:42.8186739Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-03T12:35:42.8224461Z http.https://github.com/.extraheader
+2026-11-03T12:35:42.8233342Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-03T12:35:42.8277354Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-03T12:35:42.8542802Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-03T12:35:42.8588415Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-03T12:35:42.8847999Z ##[endgroup]
+2026-11-03T12:35:42.9104548Z ##[group]Run pnpm/action-setup@v4
+2026-11-03T12:35:42.9104872Z with:
+2026-11-03T12:35:42.9105078Z   dest: ~/setup-pnpm
+2026-11-03T12:35:42.9105301Z   run_install: null
+2026-11-03T12:35:42.9105511Z   cache: false
+2026-11-03T12:35:42.9105734Z   cache_dependency_path: pnpm-lock.yaml
+2026-11-03T12:35:42.9106036Z   package_json_file: package.json
+2026-11-03T12:35:42.9106296Z   standalone: false
+2026-11-03T12:35:42.9106499Z env:
+2026-11-03T12:35:42.9106692Z   SUPABASE_TEST_REQUIRED: 1
+2026-11-03T12:35:42.9106929Z ##[endgroup]
+2026-11-03T12:35:43.0684781Z ##[group]Running self-installer...
+2026-11-03T12:35:43.5345964Z (node:2393) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-03T12:35:43.5348028Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-03T12:35:43.6826319Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-11-03T12:35:43.6920759Z Packages: +1
+2026-11-03T12:35:43.6921652Z +
+2026-11-03T12:35:44.1022996Z Progress: resolved 1, reused 0, downloaded 1, added 1, done
+2026-11-03T12:35:44.1359281Z 
+2026-11-03T12:35:44.1359940Z dependencies:
+2026-11-03T12:35:44.1360455Z + pnpm 10.24.0 (12.16.1 is available)
+2026-11-03T12:35:44.1360817Z 
+2026-11-03T12:35:44.1387517Z Done in 878ms
+2026-11-03T12:35:44.1639944Z ##[endgroup]
+2026-11-03T12:35:44.1640552Z Installation Completed!
+2026-11-03T12:35:44.1835743Z ##[group]Run actions/setup-node@v4
+2026-11-03T12:35:44.1836038Z with:
+2026-11-03T12:35:44.1836245Z   node-version-file: .nvmrc
+2026-11-03T12:35:44.1836478Z   cache: pnpm
+2026-11-03T12:35:44.1836865Z   always-auth: false
+2026-11-03T12:35:44.1837087Z   check-latest: false
+2026-11-03T12:35:44.1839417Z   token: ***
+2026-11-03T12:35:44.1839621Z env:
+2026-11-03T12:35:44.1839813Z   SUPABASE_TEST_REQUIRED: 1
+2026-11-03T12:35:44.1840143Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-11-03T12:35:44.1840455Z ##[endgroup]
+2026-11-03T12:35:44.3335751Z Resolved .nvmrc as 22
+2026-11-03T12:35:44.3401092Z Found in cache @ /opt/hostedtoolcache/node/22.23.4/x64
+2026-11-03T12:35:44.3406680Z (node:2407) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-03T12:35:44.3407725Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-03T12:35:44.3409798Z ##[group]Environment details
+2026-11-03T12:35:44.7914971Z node: v22.23.4
+2026-11-03T12:35:44.7915402Z npm: 10.9.9
+2026-11-03T12:35:44.7915720Z yarn: 1.22.22
+2026-11-03T12:35:44.7916334Z ##[endgroup]
+2026-11-03T12:35:44.7944694Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+2026-11-03T12:35:45.2292551Z /home/runner/setup-pnpm/node_modules/.bin/store/v10
+2026-11-03T12:35:45.5048720Z Cache hit for: node-cache-Linux-x64-pnpm-35c2dd27af1f4a652b8c713a4e14cd3c20cb444db116602d7ccb29b17e1dc1a2
+2026-11-03T12:35:45.5160513Z (node:2407) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-03T12:35:46.7758539Z Received 4194304 of 227681685 (1.8%), 4.0 MBs/sec
+2026-11-03T12:35:47.7755576Z Received 134217728 of 227681685 (58.9%), 64.0 MBs/sec
+2026-11-03T12:35:48.4187205Z Received 227681685 of 227681685 (100.0%), 82.2 MBs/sec
+2026-11-03T12:35:48.4188484Z Cache Size: ~217 MB (227681685 B)
+2026-11-03T12:35:48.4266511Z [command]/usr/bin/tar -xf /home/runner/work/_temp/79d581c3-ddba-4e2c-a7f8-0ab748f208d1/cache.tzst -P -C /home/runner/work/Kopplas/Kopplas --use-compress-program unzstd
+2026-11-03T12:35:50.2404755Z Cache restored successfully
+2026-11-03T12:35:50.2509315Z Cache restored from key: node-cache-Linux-x64-pnpm-35c2dd27af1f4a652b8c713a4e14cd3c20cb444db116602d7ccb29b17e1dc1a2
+2026-11-03T12:35:50.2766509Z ##[group]Run pnpm install --frozen-lockfile
+2026-11-03T12:35:50.2766927Z [36;1mpnpm install --frozen-lockfile[0m
+2026-11-03T12:35:50.2797585Z shell: /usr/bin/bash -e {0}
+2026-11-03T12:35:50.2797869Z env:
+2026-11-03T12:35:50.2798074Z   SUPABASE_TEST_REQUIRED: 1
+2026-11-03T12:35:50.2798390Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-11-03T12:35:50.2798712Z ##[endgroup]
+2026-11-03T12:35:50.6625940Z Lockfile is up to date, resolution step is skipped
+2026-11-03T12:35:50.7045158Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-11-03T12:35:50.7787925Z Packages: +407
+2026-11-03T12:35:50.7789187Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-11-03T12:35:51.6667850Z Progress: resolved 407, reused 407, downloaded 0, added 407, done
+2026-11-03T12:35:52.0150995Z 
+2026-11-03T12:35:52.0151616Z dependencies:
+2026-11-03T12:35:52.0152329Z + @supabase/ssr 0.12.0
+2026-11-03T12:35:52.0152889Z + @supabase/supabase-js 2.108.2
+2026-11-03T12:35:52.0153439Z + next 16.4.1
+2026-11-03T12:35:52.0153795Z + pdf-lib 1.17.1
+2026-11-03T12:35:52.0154128Z + react 19.2.4
+2026-11-03T12:35:52.0154493Z + react-dom 19.2.4
+2026-11-03T12:35:52.0154700Z 
+2026-11-03T12:35:52.0154867Z devDependencies:
+2026-11-03T12:35:52.0155299Z + @playwright/test 1.61.1
+2026-11-03T12:35:52.0155808Z + @tailwindcss/postcss 4.3.1
+2026-11-03T12:35:52.0156281Z + @types/node 20.19.43
+2026-11-03T12:35:52.0156714Z + @types/pg 8.20.0
+2026-11-03T12:35:52.0157130Z + @types/react 19.2.17
+2026-11-03T12:35:52.0157662Z + @types/react-dom 19.2.3
+2026-11-03T12:35:52.0158172Z + eslint 9.39.4
+2026-11-03T12:35:52.0158625Z + eslint-config-next 16.3.8
+2026-11-03T12:35:52.0159144Z + pdfjs-dist 4.10.38
+2026-11-03T12:35:52.0159555Z + pg 8.22.0
+2026-11-03T12:35:52.0159952Z + tailwindcss 4.3.1
+2026-11-03T12:35:52.0160819Z + typescript 5.9.3
+2026-11-03T12:35:52.0161227Z + vite 8.1.6
+2026-11-03T12:35:52.0161653Z + vitest 4.1.9
+2026-11-03T12:35:52.0161897Z 
+2026-11-03T12:35:52.0450162Z Done in 1.7s using pnpm v10.24.0
+2026-11-03T12:35:52.0657069Z ##[group]Run supabase/setup-cli@v1
+2026-11-03T12:35:52.0657387Z with:
+2026-11-03T12:35:52.0657582Z   version: 2.115.0
+2026-11-03T12:35:52.0657797Z env:
+2026-11-03T12:35:52.0657994Z   SUPABASE_TEST_REQUIRED: 1
+2026-11-03T12:35:52.0658307Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-11-03T12:35:52.0658625Z ##[endgroup]
+2026-11-03T12:35:52.7544316Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/c000e2ae-b12c-4f3a-a62e-3465964bb374 -f /home/runner/work/_temp/4869b49f-b5f2-4534-966a-72e647cc2b2b
+2026-11-03T12:35:54.5248135Z ##[group]Run supabase start
+2026-11-03T12:35:54.5248661Z [36;1msupabase start[0m
+2026-11-03T12:35:54.5278601Z shell: /usr/bin/bash -e {0}
+2026-11-03T12:35:54.5279055Z env:
+2026-11-03T12:35:54.5279439Z   SUPABASE_TEST_REQUIRED: 1
+2026-11-03T12:35:54.5279991Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-11-03T12:35:54.5280634Z ##[endgroup]
+2026-11-03T12:35:56.3376029Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:35:56.3396290Z Retrying after 4s: public.ecr.aws/supabase/gotrue:v2.195.0
+2026-11-03T12:35:56.3518930Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:35:56.3538485Z Retrying after 4s: public.ecr.aws/supabase/vector:0.53.0-alpine
+2026-11-03T12:35:56.3595452Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:35:56.3614365Z Retrying after 4s: public.ecr.aws/supabase/studio:2026.08.17-sha-0c1da8f
+2026-11-03T12:35:56.4135706Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:35:56.4157720Z Retrying after 4s: public.ecr.aws/supabase/edge-runtime:v1.74.3
+2026-11-03T12:35:56.4188021Z 2.8.1: Pulling from supabase/kong
+2026-11-03T12:35:56.4274465Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:35:56.4283994Z 1.50.2: Pulling from supabase/logflare
+2026-11-03T12:35:56.4290648Z Retrying after 4s: public.ecr.aws/supabase/postgres-meta:v0.98.0
+2026-11-03T12:35:56.4411158Z 17.6.1.159: Pulling from supabase/postgres
+2026-11-03T12:35:56.4443933Z v1.30.2: Pulling from supabase/mailpit
+2026-11-03T12:35:56.4608395Z v16.1: Pulling from supabase/postgrest
+2026-11-03T12:35:56.4818727Z v1.69.11: Pulling from supabase/storage-api
+2026-11-03T12:35:56.6282542Z toomanyrequests: Rate exceeded
+2026-11-03T12:35:56.6304393Z Retrying after 4s: public.ecr.aws/supabase/logflare:1.50.2
+2026-11-03T12:35:56.6339294Z toomanyrequests: Rate exceeded
+2026-11-03T12:35:56.6354255Z Retrying after 4s: public.ecr.aws/supabase/postgres:17.6.1.159
+2026-11-03T12:35:56.6395215Z toomanyrequests: Rate exceeded
+2026-11-03T12:35:56.6411469Z Retrying after 4s: public.ecr.aws/supabase/mailpit:v1.30.2
+2026-11-03T12:35:56.6635326Z 213ec9aee27d: Pulling fs layer
+2026-11-03T12:35:56.6635743Z a70653f7a2d5: Pulling fs layer
+2026-11-03T12:35:56.6636359Z 531e3bd93090: Pulling fs layer
+2026-11-03T12:35:56.6636923Z 814dd06d26c7: Pulling fs layer
+2026-11-03T12:35:56.6637377Z 814dd06d26c7: Waiting
+2026-11-03T12:35:56.6735020Z v2.129.0: Pulling from supabase/realtime
+2026-11-03T12:35:56.7006755Z bcf274f2d0ac: Pulling fs layer
+2026-11-03T12:35:56.7007373Z bcf274f2d0ac: Waiting
+2026-11-03T12:35:56.7315564Z e6f31ffc071e: Pulling fs layer
+2026-11-03T12:35:56.7316224Z 5f05fbb94ac9: Pulling fs layer
+2026-11-03T12:35:56.7317090Z dbd229483e61: Pulling fs layer
+2026-11-03T12:35:56.7317685Z f4e2bfbd8bcd: Pulling fs layer
+2026-11-03T12:35:56.7318442Z e6f31ffc071e: Waiting
+2026-11-03T12:35:56.7318930Z 521c5280947c: Pulling fs layer
+2026-11-03T12:35:56.7319382Z 5f05fbb94ac9: Waiting
+2026-11-03T12:35:56.7319878Z 3f609ae12598: Pulling fs layer
+2026-11-03T12:35:56.7320348Z dbd229483e61: Waiting
+2026-11-03T12:35:56.7320761Z f4e2bfbd8bcd: Waiting
+2026-11-03T12:35:56.7321250Z c80645774acf: Pulling fs layer
+2026-11-03T12:35:56.7322393Z 521c5280947c: Waiting
+2026-11-03T12:35:56.7322878Z 5e731b050e43: Pulling fs layer
+2026-11-03T12:35:56.7323322Z 3f609ae12598: Waiting
+2026-11-03T12:35:56.7323769Z 0f248d4fdffd: Pulling fs layer
+2026-11-03T12:35:56.7324292Z 731b962a30ac: Pulling fs layer
+2026-11-03T12:35:56.7324684Z ad8cc52b5158: Pulling fs layer
+2026-11-03T12:35:56.7324950Z c80645774acf: Waiting
+2026-11-03T12:35:56.7325228Z 5fc99faf3b9a: Pulling fs layer
+2026-11-03T12:35:56.7325644Z 5e731b050e43: Waiting
+2026-11-03T12:35:56.7326119Z 70b9c97b39c0: Pulling fs layer
+2026-11-03T12:35:56.7326661Z 7be4889067d6: Pulling fs layer
+2026-11-03T12:35:56.7327224Z 5fc99faf3b9a: Waiting
+2026-11-03T12:35:56.7327659Z 0f248d4fdffd: Waiting
+2026-11-03T12:35:56.7328102Z 70b9c97b39c0: Waiting
+2026-11-03T12:35:56.7328492Z 731b962a30ac: Waiting
+2026-11-03T12:35:56.7329219Z 7be4889067d6: Waiting
+2026-11-03T12:35:56.7329505Z ad8cc52b5158: Waiting
+2026-11-03T12:35:56.8673149Z toomanyrequests: Rate exceeded
+2026-11-03T12:35:56.8697582Z Retrying after 4s: public.ecr.aws/supabase/realtime:v2.129.0
+2026-11-03T12:35:56.8796895Z a70653f7a2d5: Verifying Checksum
+2026-11-03T12:35:56.8798101Z a70653f7a2d5: Download complete
+2026-11-03T12:35:56.8883910Z 213ec9aee27d: Verifying Checksum
+2026-11-03T12:35:56.8886571Z 213ec9aee27d: Download complete
+2026-11-03T12:35:57.0134916Z 213ec9aee27d: Pull complete
+2026-11-03T12:35:57.0348182Z 531e3bd93090: Download complete
+2026-11-03T12:35:57.0841654Z 814dd06d26c7: Verifying Checksum
+2026-11-03T12:35:57.0842375Z 814dd06d26c7: Download complete
+2026-11-03T12:35:57.1264851Z bcf274f2d0ac: Verifying Checksum
+2026-11-03T12:35:57.1266006Z bcf274f2d0ac: Download complete
+2026-11-03T12:35:57.2533985Z e6f31ffc071e: Verifying Checksum
+2026-11-03T12:35:57.2534628Z e6f31ffc071e: Download complete
+2026-11-03T12:35:57.2666030Z bcf274f2d0ac: Pull complete
+2026-11-03T12:35:57.2757379Z Digest: sha256:5922bde07147b82b1c9d8f749e48c1e5b99ebb233f3888bb7ab65f07cf4ac82d
+2026-11-03T12:35:57.2798699Z Status: Downloaded newer image for public.ecr.aws/supabase/postgrest:v16.1
+2026-11-03T12:35:57.3123399Z public.ecr.aws/supabase/postgrest:v16.1
+2026-11-03T12:35:57.3499918Z dbd229483e61: Verifying Checksum
+2026-11-03T12:35:57.3500955Z dbd229483e61: Download complete
+2026-11-03T12:35:57.4301252Z e6f31ffc071e: Pull complete
+2026-11-03T12:35:57.4742907Z f4e2bfbd8bcd: Verifying Checksum
+2026-11-03T12:35:57.4743581Z f4e2bfbd8bcd: Download complete
+2026-11-03T12:35:57.4754080Z 5f05fbb94ac9: Verifying Checksum
+2026-11-03T12:35:57.4755177Z 5f05fbb94ac9: Download complete
+2026-11-03T12:35:57.6764797Z c80645774acf: Verifying Checksum
+2026-11-03T12:35:57.6765747Z c80645774acf: Download complete
+2026-11-03T12:35:57.6766506Z 3f609ae12598: Verifying Checksum
+2026-11-03T12:35:57.6767002Z 3f609ae12598: Download complete
+2026-11-03T12:35:57.8840779Z 5e731b050e43: Verifying Checksum
+2026-11-03T12:35:57.8841410Z 5e731b050e43: Download complete
+2026-11-03T12:35:57.9341496Z 521c5280947c: Verifying Checksum
+2026-11-03T12:35:57.9342797Z 521c5280947c: Download complete
+2026-11-03T12:35:57.9478301Z 0f248d4fdffd: Verifying Checksum
+2026-11-03T12:35:57.9480176Z 0f248d4fdffd: Download complete
+2026-11-03T12:35:58.0871796Z 731b962a30ac: Verifying Checksum
+2026-11-03T12:35:58.0873573Z 731b962a30ac: Download complete
+2026-11-03T12:35:58.1694149Z 5fc99faf3b9a: Verifying Checksum
+2026-11-03T12:35:58.1695116Z 5fc99faf3b9a: Download complete
+2026-11-03T12:35:58.2879980Z 70b9c97b39c0: Verifying Checksum
+2026-11-03T12:35:58.2880646Z 70b9c97b39c0: Download complete
+2026-11-03T12:35:58.3444534Z ad8cc52b5158: Verifying Checksum
+2026-11-03T12:35:58.3445201Z ad8cc52b5158: Download complete
+2026-11-03T12:35:58.3689687Z 7be4889067d6: Verifying Checksum
+2026-11-03T12:35:58.3691219Z 7be4889067d6: Download complete
+2026-11-03T12:36:00.6286899Z a70653f7a2d5: Pull complete
+2026-11-03T12:36:00.6804898Z 5f05fbb94ac9: Pull complete
+2026-11-03T12:36:00.7397907Z dbd229483e61: Pull complete
+2026-11-03T12:36:00.7551378Z f4e2bfbd8bcd: Pull complete
+2026-11-03T12:36:01.3888432Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:36:01.3912973Z Retrying after 8s: public.ecr.aws/supabase/gotrue:v2.195.0
+2026-11-03T12:36:01.4357242Z 2026.08.17-sha-0c1da8f: Pulling from supabase/studio
+2026-11-03T12:36:01.4663495Z 0.53.0-alpine: Pulling from supabase/vector
+2026-11-03T12:36:01.4968431Z v0.98.0: Pulling from supabase/postgres-meta
+2026-11-03T12:36:01.5127338Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:36:01.5180068Z Retrying after 8s: public.ecr.aws/supabase/postgres:17.6.1.159
+2026-11-03T12:36:01.5198856Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:36:01.5210547Z Retrying after 8s: public.ecr.aws/supabase/mailpit:v1.30.2
+2026-11-03T12:36:01.5662738Z 1.50.2: Pulling from supabase/logflare
+2026-11-03T12:36:01.5888873Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:36:01.5895152Z Retrying after 8s: public.ecr.aws/supabase/edge-runtime:v1.74.3
+2026-11-03T12:36:01.6391634Z 039e6f9f9752: Pulling fs layer
+2026-11-03T12:36:01.6393019Z 5404bc2cc13c: Pulling fs layer
+2026-11-03T12:36:01.6393581Z 555d35074583: Pulling fs layer
+2026-11-03T12:36:01.6394100Z 8f99eb9866f3: Pulling fs layer
+2026-11-03T12:36:01.6394591Z c0ed9f2d0e0e: Pulling fs layer
+2026-11-03T12:36:01.6395068Z b7d0efd3fc9c: Pulling fs layer
+2026-11-03T12:36:01.6395583Z c0c4dc518956: Pulling fs layer
+2026-11-03T12:36:01.6396086Z 512fd86e6200: Pulling fs layer
+2026-11-03T12:36:01.6396590Z 264588d8dd60: Pulling fs layer
+2026-11-03T12:36:01.6397067Z 8f99eb9866f3: Waiting
+2026-11-03T12:36:01.6397498Z c0ed9f2d0e0e: Waiting
+2026-11-03T12:36:01.6397937Z b7d0efd3fc9c: Waiting
+2026-11-03T12:36:01.6398349Z c0c4dc518956: Waiting
+2026-11-03T12:36:01.6398770Z 512fd86e6200: Waiting
+2026-11-03T12:36:01.6399164Z 264588d8dd60: Waiting
+2026-11-03T12:36:01.6595084Z toomanyrequests: Rate exceeded
+2026-11-03T12:36:01.6604975Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:36:01.6624799Z Retrying after 8s: public.ecr.aws/supabase/vector:0.53.0-alpine
+2026-11-03T12:36:01.6631669Z Retrying after 8s: public.ecr.aws/supabase/realtime:v2.129.0
+2026-11-03T12:36:01.6996869Z toomanyrequests: Rate exceeded
+2026-11-03T12:36:01.7021970Z Retrying after 8s: public.ecr.aws/supabase/postgres-meta:v0.98.0
+2026-11-03T12:36:01.8207308Z 119d43eec815: Pulling fs layer
+2026-11-03T12:36:01.8208448Z 3b8b2bcf7b64: Pulling fs layer
+2026-11-03T12:36:01.8209238Z bf2ccaf78c3e: Pulling fs layer
+2026-11-03T12:36:01.8209852Z 9f7916a93982: Pulling fs layer
+2026-11-03T12:36:01.8210447Z 735837a165d3: Pulling fs layer
+2026-11-03T12:36:01.8210984Z d9a971324fe3: Pulling fs layer
+2026-11-03T12:36:01.8211602Z ee3ac5104d09: Pulling fs layer
+2026-11-03T12:36:01.8212600Z 6fe15b76597f: Pulling fs layer
+2026-11-03T12:36:01.8213151Z 4f4fb700ef54: Pulling fs layer
+2026-11-03T12:36:01.8213681Z cd1b8186e775: Pulling fs layer
+2026-11-03T12:36:01.8214212Z 3b8b2bcf7b64: Waiting
+2026-11-03T12:36:01.8214652Z bf2ccaf78c3e: Waiting
+2026-11-03T12:36:01.8215087Z 9f7916a93982: Waiting
+2026-11-03T12:36:01.8215508Z 735837a165d3: Waiting
+2026-11-03T12:36:01.8215933Z d9a971324fe3: Waiting
+2026-11-03T12:36:01.8216349Z ee3ac5104d09: Waiting
+2026-11-03T12:36:01.8216780Z 6fe15b76597f: Waiting
+2026-11-03T12:36:01.8217192Z 4f4fb700ef54: Waiting
+2026-11-03T12:36:01.8217612Z cd1b8186e775: Waiting
+2026-11-03T12:36:01.8218032Z 119d43eec815: Waiting
+2026-11-03T12:36:01.8598647Z 5404bc2cc13c: Verifying Checksum
+2026-11-03T12:36:01.8601082Z 5404bc2cc13c: Download complete
+2026-11-03T12:36:01.9606356Z 039e6f9f9752: Verifying Checksum
+2026-11-03T12:36:01.9607218Z 039e6f9f9752: Download complete
+2026-11-03T12:36:02.0615691Z 555d35074583: Verifying Checksum
+2026-11-03T12:36:02.0616508Z 555d35074583: Download complete
+2026-11-03T12:36:02.0928406Z 8f99eb9866f3: Verifying Checksum
+2026-11-03T12:36:02.0929288Z 8f99eb9866f3: Download complete
+2026-11-03T12:36:02.1769588Z c0ed9f2d0e0e: Verifying Checksum
+2026-11-03T12:36:02.1770461Z c0ed9f2d0e0e: Download complete
+2026-11-03T12:36:02.3920433Z c0c4dc518956: Verifying Checksum
+2026-11-03T12:36:02.3921373Z c0c4dc518956: Download complete
+2026-11-03T12:36:02.4274032Z 512fd86e6200: Verifying Checksum
+2026-11-03T12:36:02.4275309Z 512fd86e6200: Download complete
+2026-11-03T12:36:02.7925512Z 119d43eec815: Verifying Checksum
+2026-11-03T12:36:02.7927218Z 119d43eec815: Download complete
+2026-11-03T12:36:02.8346315Z b7d0efd3fc9c: Verifying Checksum
+2026-11-03T12:36:02.8347469Z b7d0efd3fc9c: Download complete
+2026-11-03T12:36:02.9923592Z 264588d8dd60: Verifying Checksum
+2026-11-03T12:36:02.9927125Z 264588d8dd60: Download complete
+2026-11-03T12:36:03.0821765Z bf2ccaf78c3e: Verifying Checksum
+2026-11-03T12:36:03.0827810Z bf2ccaf78c3e: Download complete
+2026-11-03T12:36:03.1026639Z 3b8b2bcf7b64: Verifying Checksum
+2026-11-03T12:36:03.1028918Z 3b8b2bcf7b64: Download complete
+2026-11-03T12:36:03.3421610Z 735837a165d3: Verifying Checksum
+2026-11-03T12:36:03.3424375Z 735837a165d3: Download complete
+2026-11-03T12:36:03.5974280Z d9a971324fe3: Verifying Checksum
+2026-11-03T12:36:03.5996300Z d9a971324fe3: Download complete
+2026-11-03T12:36:03.8190961Z ee3ac5104d09: Verifying Checksum
+2026-11-03T12:36:03.8193853Z ee3ac5104d09: Download complete
+2026-11-03T12:36:03.8361228Z 6fe15b76597f: Verifying Checksum
+2026-11-03T12:36:03.8362340Z 6fe15b76597f: Download complete
+2026-11-03T12:36:03.9211488Z 9f7916a93982: Verifying Checksum
+2026-11-03T12:36:03.9212590Z 9f7916a93982: Download complete
+2026-11-03T12:36:04.0174484Z 4f4fb700ef54: Download complete
+2026-11-03T12:36:04.0443806Z cd1b8186e775: Verifying Checksum
+2026-11-03T12:36:04.0444891Z cd1b8186e775: Download complete
+2026-11-03T12:36:05.3213019Z 039e6f9f9752: Pull complete
+2026-11-03T12:36:05.3654431Z 5404bc2cc13c: Pull complete
+2026-11-03T12:36:05.5273795Z 119d43eec815: Pull complete
+2026-11-03T12:36:06.6222709Z 531e3bd93090: Pull complete
+2026-11-03T12:36:07.1830242Z 814dd06d26c7: Pull complete
+2026-11-03T12:36:07.1830863Z 521c5280947c: Pull complete
+2026-11-03T12:36:07.1882364Z Digest: sha256:1b53405d8680a09d6f44494b7990bf7da2ea43f84a258c59717d4539abf09f6d
+2026-11-03T12:36:07.1906865Z Status: Downloaded newer image for public.ecr.aws/supabase/kong:2.8.1
+2026-11-03T12:36:07.1928521Z public.ecr.aws/supabase/kong:2.8.1
+2026-11-03T12:36:07.2012634Z 3f609ae12598: Pull complete
+2026-11-03T12:36:07.2231543Z c80645774acf: Pull complete
+2026-11-03T12:36:07.2374180Z 5e731b050e43: Pull complete
+2026-11-03T12:36:07.2613492Z 3b8b2bcf7b64: Pull complete
+2026-11-03T12:36:07.2979752Z bf2ccaf78c3e: Pull complete
+2026-11-03T12:36:07.7804448Z 555d35074583: Pull complete
+2026-11-03T12:36:07.8647880Z 8f99eb9866f3: Pull complete
+2026-11-03T12:36:07.8758875Z c0ed9f2d0e0e: Pull complete
+2026-11-03T12:36:08.8417740Z 0f248d4fdffd: Pull complete
+2026-11-03T12:36:08.9034077Z 731b962a30ac: Pull complete
+2026-11-03T12:36:10.2387178Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:36:10.3596003Z v1.30.2: Pulling from supabase/mailpit
+2026-11-03T12:36:10.3751969Z 17.6.1.159: Pulling from supabase/postgres
+2026-11-03T12:36:10.4632978Z v1.74.3: Pulling from supabase/edge-runtime
+2026-11-03T12:36:10.5376151Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:36:10.5377396Z Error response from daemon: toomanyrequests: Rate exceeded
+2026-11-03T12:36:10.5535039Z toomanyrequests: Rate exceeded
+2026-11-03T12:36:10.6274204Z v0.98.0: Pulling from supabase/postgres-meta
+2026-11-03T12:36:10.6395386Z e6f31ffc071e: Already exists
+2026-11-03T12:36:10.6396002Z c331a95a3ded: Pulling fs layer
+2026-11-03T12:36:10.6396517Z 0de693b11719: Pulling fs layer
+2026-11-03T12:36:10.6397032Z ae2e3acb5669: Pulling fs layer
+2026-11-03T12:36:10.6397549Z 7455df3e077d: Pulling fs layer
+2026-11-03T12:36:10.6398063Z caa5116ed4b8: Pulling fs layer
+2026-11-03T12:36:10.6398563Z 4af8ac3da2f9: Pulling fs layer
+2026-11-03T12:36:10.6399046Z 60d9b26a23ef: Pulling fs layer
+2026-11-03T12:36:10.6399524Z 9f7b4105d9d2: Pulling fs layer
+2026-11-03T12:36:10.6400038Z bbcd8e2f47bd: Pulling fs layer
+2026-11-03T12:36:10.6400521Z e4c75db06451: Pulling fs layer
+2026-11-03T12:36:10.6400982Z e70bd6858950: Pulling fs layer
+2026-11-03T12:36:10.6401420Z 0f0f5d6c6a72: Pulling fs layer
+2026-11-03T12:36:10.6402712Z 439d07cca121: Pulling fs layer
+2026-11-03T12:36:10.6403257Z fa7f1f248d5e: Pulling fs layer
+2026-11-03T12:36:10.6403744Z a1bc17dd40b2: Pulling fs layer
+2026-11-03T12:36:10.6404272Z 67dbb4ddc3a7: Pulling fs layer
+2026-11-03T12:36:10.6404805Z c91442609c05: Pulling fs layer
+2026-11-03T12:36:10.6405305Z 30eceb95cc71: Pulling fs layer
+2026-11-03T12:36:10.6405787Z 319ec79ee793: Pulling fs layer
+2026-11-03T12:36:10.6406080Z ff48e91a05e9: Pulling fs layer
+2026-11-03T12:36:10.6406369Z a8c0be2aef64: Pulling fs layer
+2026-11-03T12:36:10.6406653Z 540d1d9604d2: Pulling fs layer
+2026-11-03T12:36:10.6407097Z d9ff237b3bdf: Pulling fs layer
+2026-11-03T12:36:10.6407607Z e4d9ec943689: Pulling fs layer
+2026-11-03T12:36:10.6408103Z 0f4863cd9c52: Pulling fs layer
+2026-11-03T12:36:10.6408878Z 92132f761160: Pulling fs layer
+2026-11-03T12:36:10.6409406Z d438d0655c04: Pulling fs layer
+2026-11-03T12:36:10.6409896Z 82cf28f3d1b5: Pulling fs layer
+2026-11-03T12:36:10.6430015Z 7455df3e077d: Waiting
+2026-11-03T12:36:10.6430958Z caa5116ed4b8: Waiting
+2026-11-03T12:36:10.6433079Z 4af8ac3da2f9: Waiting
+2026-11-03T12:36:10.6434189Z 60d9b26a23ef: Waiting
+2026-11-03T12:36:10.6434604Z 9f7b4105d9d2: Waiting
+2026-11-03T12:36:10.6434997Z bbcd8e2f47bd: Waiting
+2026-11-03T12:36:10.6435383Z e4c75db06451: Waiting
+2026-11-03T12:36:10.6435784Z e70bd6858950: Waiting
+2026-11-03T12:36:10.6436172Z 0f0f5d6c6a72: Waiting
+2026-11-03T12:36:10.6436551Z 439d07cca121: Waiting
+2026-11-03T12:36:10.6436936Z fa7f1f248d5e: Waiting
+2026-11-03T12:36:10.6437341Z a1bc17dd40b2: Waiting
+2026-11-03T12:36:10.6437737Z 67dbb4ddc3a7: Waiting
+2026-11-03T12:36:10.6438118Z c91442609c05: Waiting
+2026-11-03T12:36:10.6440563Z 30eceb95cc71: Waiting
+2026-11-03T12:36:10.6440874Z 319ec79ee793: Waiting
+2026-11-03T12:36:10.6441140Z ff48e91a05e9: Waiting
+2026-11-03T12:36:10.6441375Z 92132f761160: Waiting
+2026-11-03T12:36:10.6441594Z d438d0655c04: Waiting
+2026-11-03T12:36:10.6441810Z a8c0be2aef64: Waiting
+2026-11-03T12:36:10.6442029Z 540d1d9604d2: Waiting
+2026-11-03T12:36:10.6442872Z d9ff237b3bdf: Waiting
+2026-11-03T12:36:10.6443272Z e4d9ec943689: Waiting
+2026-11-03T12:36:10.6443648Z 82cf28f3d1b5: Waiting
+2026-11-03T12:36:10.6444038Z 0f4863cd9c52: Waiting
+2026-11-03T12:36:10.6648444Z toomanyrequests: Rate exceeded
+2026-11-03T12:36:10.8144821Z v2.195.0: Pulling from supabase/gotrue
+2026-11-03T12:36:10.8433878Z toomanyrequests: Rate exceeded
+2026-11-03T12:36:10.8906839Z c331a95a3ded: Verifying Checksum
+2026-11-03T12:36:10.8910298Z c331a95a3ded: Download complete
+2026-11-03T12:36:10.9175177Z 0de693b11719: Verifying Checksum
+2026-11-03T12:36:10.9176259Z 0de693b11719: Download complete
+2026-11-03T12:36:10.9613989Z 55afa1ecc21d: Pulling fs layer
+2026-11-03T12:36:10.9615015Z 565df2d910df: Pulling fs layer
+2026-11-03T12:36:10.9615807Z dc286a8aa197: Pulling fs layer
+2026-11-03T12:36:10.9616502Z 3b1d86731cf1: Pulling fs layer
+2026-11-03T12:36:10.9617176Z fd855b1da301: Pulling fs layer
+2026-11-03T12:36:10.9617895Z ad8aa6f5f9a9: Pulling fs layer
+2026-11-03T12:36:10.9618881Z 55afa1ecc21d: Waiting
+2026-11-03T12:36:10.9620639Z 565df2d910df: Waiting
+2026-11-03T12:36:10.9621086Z dc286a8aa197: Waiting
+2026-11-03T12:36:10.9621477Z 3b1d86731cf1: Waiting
+2026-11-03T12:36:10.9621855Z fd855b1da301: Waiting
+2026-11-03T12:36:10.9624353Z ad8aa6f5f9a9: Waiting
+2026-11-03T12:36:11.1411260Z 7455df3e077d: Verifying Checksum
+2026-11-03T12:36:11.1411868Z 7455df3e077d: Download complete
+2026-11-03T12:36:11.1686866Z caa5116ed4b8: Verifying Checksum
+2026-11-03T12:36:11.1691266Z caa5116ed4b8: Download complete
+2026-11-03T12:36:11.1730858Z 0.53.0-alpine: Pulling from supabase/vector
+2026-11-03T12:36:11.2137342Z v2.129.0: Pulling from supabase/realtime
+2026-11-03T12:36:11.2269532Z v1.30.2: Pulling from supabase/mailpit
+2026-11-03T12:36:11.3010899Z v1.74.3: Pulling from supabase/edge-runtime
+2026-11-03T12:36:11.3616451Z 1074353eec0d: Pulling fs layer
+2026-11-03T12:36:11.3617449Z cbf2f7f0a3ba: Pulling fs layer
+2026-11-03T12:36:11.3624648Z 7b95344fc011: Pulling fs layer
+2026-11-03T12:36:11.3625652Z 0179246107e3: Pulling fs layer
+2026-11-03T12:36:11.3627241Z c8a04bee2d5a: Pulling fs layer
+2026-11-03T12:36:11.3627778Z 4f4fb700ef54: Pulling fs layer
+2026-11-03T12:36:11.3628527Z 1074353eec0d: Waiting
+2026-11-03T12:36:11.3629088Z cbf2f7f0a3ba: Waiting
+2026-11-03T12:36:11.3629571Z 7b95344fc011: Waiting
+2026-11-03T12:36:11.3639105Z 0179246107e3: Waiting
+2026-11-03T12:36:11.3640164Z c8a04bee2d5a: Waiting
+2026-11-03T12:36:11.3640616Z 4f4fb700ef54: Waiting
+2026-11-03T12:36:11.4002064Z 062e450697fa: Pulling fs layer
+2026-11-03T12:36:11.4003838Z aadc1df55248: Pulling fs layer
+2026-11-03T12:36:11.4004711Z 24c83552f646: Pulling fs layer
+2026-11-03T12:36:11.4005615Z 95faff249800: Pulling fs layer
+2026-11-03T12:36:11.4006379Z 9e8e4081669a: Pulling fs layer
+2026-11-03T12:36:11.4007178Z 5bc6849ef973: Pulling fs layer
+2026-11-03T12:36:11.4008369Z 73adcb25feab: Pulling fs layer
+2026-11-03T12:36:11.4009282Z 777b5f4d3eb2: Pulling fs layer
+2026-11-03T12:36:11.4009916Z c350c088cde5: Pulling fs layer
+2026-11-03T12:36:11.4010381Z 4f4fb700ef54: Pulling fs layer
+2026-11-03T12:36:11.4010867Z 062e450697fa: Waiting
+2026-11-03T12:36:11.4011334Z aadc1df55248: Waiting
+2026-11-03T12:36:11.4011722Z 24c83552f646: Waiting
+2026-11-03T12:36:11.4012340Z 95faff249800: Waiting
+2026-11-03T12:36:11.4028678Z 9e8e4081669a: Waiting
+2026-11-03T12:36:11.4032627Z 5bc6849ef973: Waiting
+2026-11-03T12:36:11.4033329Z 73adcb25feab: Waiting
+2026-11-03T12:36:11.4034025Z 777b5f4d3eb2: Waiting
+2026-11-03T12:36:11.4034656Z c350c088cde5: Waiting
+2026-11-03T12:36:11.4035227Z 4f4fb700ef54: Waiting
+2026-11-03T12:36:11.4249692Z 4af8ac3da2f9: Verifying Checksum
+2026-11-03T12:36:11.4250954Z 4af8ac3da2f9: Download complete
+2026-11-03T12:36:11.4278790Z 60d9b26a23ef: Verifying Checksum
+2026-11-03T12:36:11.4280133Z 60d9b26a23ef: Download complete
+2026-11-03T12:36:11.4315822Z 55afa1ecc21d: Pulling fs layer
+2026-11-03T12:36:11.4316639Z 95403727e7d4: Pulling fs layer
+2026-11-03T12:36:11.4317695Z e326d083c2c9: Pulling fs layer
+2026-11-03T12:36:11.4318549Z 55afa1ecc21d: Waiting
+2026-11-03T12:36:11.4319305Z 95403727e7d4: Waiting
+2026-11-03T12:36:11.4319928Z e326d083c2c9: Waiting
+2026-11-03T12:36:11.5298991Z 597c6c618d36: Pulling fs layer
+2026-11-03T12:36:11.5303873Z c39190ba742d: Pulling fs layer
+2026-11-03T12:36:11.5305748Z 60414ed24b30: Pulling fs layer
+2026-11-03T12:36:11.5306597Z 0d29c829782d: Pulling fs layer
+2026-11-03T12:36:11.5307316Z 662b1f44f1ee: Pulling fs layer
+2026-11-03T12:36:11.5307863Z ba9e24d39072: Pulling fs layer
+2026-11-03T12:36:11.5308322Z 597c6c618d36: Waiting
+2026-11-03T12:36:11.5308722Z c39190ba742d: Waiting
+2026-11-03T12:36:11.5309148Z 60414ed24b30: Waiting
+2026-11-03T12:36:11.5310431Z 0d29c829782d: Waiting
+2026-11-03T12:36:11.5310829Z 662b1f44f1ee: Waiting
+2026-11-03T12:36:11.5311224Z ba9e24d39072: Waiting
+2026-11-03T12:36:11.5462764Z v0.98.0: Pulling from supabase/postgres-meta
+2026-11-03T12:36:11.6590674Z 9f7b4105d9d2: Verifying Checksum
+2026-11-03T12:36:11.6592629Z 9f7b4105d9d2: Download complete
+2026-11-03T12:36:11.6597071Z bbcd8e2f47bd: Verifying Checksum
+2026-11-03T12:36:11.6597948Z bbcd8e2f47bd: Download complete
+2026-11-03T12:36:11.7030582Z 039e6f9f9752: Already exists
+2026-11-03T12:36:11.7093150Z 5404bc2cc13c: Already exists
+2026-11-03T12:36:11.7209006Z 555d35074583: Already exists
+2026-11-03T12:36:11.7264023Z 8f99eb9866f3: Already exists
+2026-11-03T12:36:11.7436176Z c0ed9f2d0e0e: Already exists
+2026-11-03T12:36:11.7441139Z 4b118796ff6a: Pulling fs layer
+2026-11-03T12:36:11.7443123Z 23c96171f2fe: Pulling fs layer
+2026-11-03T12:36:11.7444539Z 753ab3b39a58: Pulling fs layer
+2026-11-03T12:36:11.7445500Z 4b118796ff6a: Waiting
+2026-11-03T12:36:11.7446880Z 23c96171f2fe: Waiting
+2026-11-03T12:36:11.7516500Z 5c18a8cdfd6b: Pulling fs layer
+2026-11-03T12:36:11.7518044Z 7505145a46ec: Pulling fs layer
+2026-11-03T12:36:11.7519060Z 753ab3b39a58: Waiting
+2026-11-03T12:36:11.7519726Z 5c18a8cdfd6b: Waiting
+2026-11-03T12:36:11.7520334Z 7505145a46ec: Waiting
+2026-11-03T12:36:11.8791931Z e4c75db06451: Verifying Checksum
+2026-11-03T12:36:11.8798172Z e4c75db06451: Download complete
+2026-11-03T12:36:11.8799657Z e70bd6858950: Verifying Checksum
+2026-11-03T12:36:11.8800368Z e70bd6858950: Download complete
+2026-11-03T12:36:12.0864923Z 439d07cca121: Verifying Checksum
+2026-11-03T12:36:12.0866454Z 439d07cca121: Download complete
+2026-11-03T12:36:12.1035630Z 0f0f5d6c6a72: Verifying Checksum
+2026-11-03T12:36:12.1036747Z 0f0f5d6c6a72: Download complete
+2026-11-03T12:36:12.3115789Z ae2e3acb5669: Verifying Checksum
+2026-11-03T12:36:12.3117096Z ae2e3acb5669: Download complete
+2026-11-03T12:36:12.3118149Z a1bc17dd40b2: Verifying Checksum
+2026-11-03T12:36:12.3118995Z a1bc17dd40b2: Download complete
+2026-11-03T12:36:12.3132857Z fa7f1f248d5e: Verifying Checksum
+2026-11-03T12:36:12.3134033Z fa7f1f248d5e: Download complete
+2026-11-03T12:36:12.5309339Z 67dbb4ddc3a7: Verifying Checksum
+2026-11-03T12:36:12.5312682Z 67dbb4ddc3a7: Download complete
+2026-11-03T12:36:12.5314566Z 30eceb95cc71: Verifying Checksum
+2026-11-03T12:36:12.5315686Z 30eceb95cc71: Download complete
+2026-11-03T12:36:12.5469675Z c91442609c05: Verifying Checksum
+2026-11-03T12:36:12.5471485Z c91442609c05: Download complete
+2026-11-03T12:36:12.7329993Z 319ec79ee793: Verifying Checksum
+2026-11-03T12:36:12.7331155Z 319ec79ee793: Download complete
+2026-11-03T12:36:12.7343121Z ff48e91a05e9: Verifying Checksum
+2026-11-03T12:36:12.7343760Z ff48e91a05e9: Download complete
+2026-11-03T12:36:12.7572339Z a8c0be2aef64: Verifying Checksum
+2026-11-03T12:36:12.7573109Z a8c0be2aef64: Download complete
+2026-11-03T12:36:12.9433510Z d9ff237b3bdf: Verifying Checksum
+2026-11-03T12:36:12.9434186Z d9ff237b3bdf: Download complete
+2026-11-03T12:36:12.9521288Z 540d1d9604d2: Verifying Checksum
+2026-11-03T12:36:12.9521746Z 540d1d9604d2: Download complete
+2026-11-03T12:36:12.9732513Z e4d9ec943689: Verifying Checksum
+2026-11-03T12:36:12.9733524Z e4d9ec943689: Download complete
+2026-11-03T12:36:13.1533699Z 0f4863cd9c52: Verifying Checksum
+2026-11-03T12:36:13.1534751Z 0f4863cd9c52: Download complete
+2026-11-03T12:36:13.1555294Z 92132f761160: Download complete
+2026-11-03T12:36:13.1928835Z d438d0655c04: Verifying Checksum
+2026-11-03T12:36:13.1929544Z d438d0655c04: Download complete
+2026-11-03T12:36:13.3193142Z 55afa1ecc21d: Download complete
+2026-11-03T12:36:13.3193876Z 55afa1ecc21d: Verifying Checksum
+2026-11-03T12:36:13.3194440Z 55afa1ecc21d: Download complete
+2026-11-03T12:36:13.3436239Z 565df2d910df: Verifying Checksum
+2026-11-03T12:36:13.3437760Z 565df2d910df: Download complete
+2026-11-03T12:36:13.3724122Z 82cf28f3d1b5: Verifying Checksum
+2026-11-03T12:36:13.3725107Z 82cf28f3d1b5: Download complete
+2026-11-03T12:36:13.4867432Z c331a95a3ded: Pull complete
+2026-11-03T12:36:13.5459677Z fd855b1da301: Verifying Checksum
+2026-11-03T12:36:13.5460799Z fd855b1da301: Download complete
+2026-11-03T12:36:13.6183383Z dc286a8aa197: Verifying Checksum
+2026-11-03T12:36:13.6184797Z dc286a8aa197: Download complete
+2026-11-03T12:36:13.6358544Z 0de693b11719: Pull complete
+2026-11-03T12:36:13.6396580Z 3b1d86731cf1: Verifying Checksum
+2026-11-03T12:36:13.6397216Z 3b1d86731cf1: Download complete
+2026-11-03T12:36:13.7398500Z ad8aa6f5f9a9: Verifying Checksum
+2026-11-03T12:36:13.7399197Z ad8aa6f5f9a9: Download complete
+2026-11-03T12:36:13.8519364Z 55afa1ecc21d: Pull complete
+2026-11-03T12:36:13.8519959Z 55afa1ecc21d: Pull complete
+2026-11-03T12:36:13.8852616Z cbf2f7f0a3ba: Verifying Checksum
+2026-11-03T12:36:13.8853656Z cbf2f7f0a3ba: Download complete
+2026-11-03T12:36:13.8988614Z 1074353eec0d: Verifying Checksum
+2026-11-03T12:36:13.8991358Z 1074353eec0d: Download complete
+2026-11-03T12:36:13.9218271Z 565df2d910df: Pull complete
+2026-11-03T12:36:14.0636542Z c8a04bee2d5a: Verifying Checksum
+2026-11-03T12:36:14.0639267Z c8a04bee2d5a: Download complete
+2026-11-03T12:36:14.0756363Z 0179246107e3: Verifying Checksum
+2026-11-03T12:36:14.0758728Z 0179246107e3: Download complete
+2026-11-03T12:36:14.1547729Z 7b95344fc011: Verifying Checksum
+2026-11-03T12:36:14.1550898Z 7b95344fc011: Download complete
+2026-11-03T12:36:14.1853778Z dc286a8aa197: Pull complete
+2026-11-03T12:36:14.2504160Z 4f4fb700ef54: Verifying Checksum
+2026-11-03T12:36:14.2507049Z 4f4fb700ef54: Download complete
+2026-11-03T12:36:14.2825643Z 1074353eec0d: Pull complete
+2026-11-03T12:36:14.3901399Z 062e450697fa: Verifying Checksum
+2026-11-03T12:36:14.3902746Z 062e450697fa: Download complete
+2026-11-03T12:36:14.6578619Z 95faff249800: Verifying Checksum
+2026-11-03T12:36:14.6579552Z 95faff249800: Download complete
+2026-11-03T12:36:14.7588855Z aadc1df55248: Verifying Checksum
+2026-11-03T12:36:14.7589750Z aadc1df55248: Download complete
+2026-11-03T12:36:14.9292981Z 9e8e4081669a: Verifying Checksum
+2026-11-03T12:36:14.9293829Z 9e8e4081669a: Download complete
+2026-11-03T12:36:15.0343898Z 5bc6849ef973: Verifying Checksum
+2026-11-03T12:36:15.0344872Z 5bc6849ef973: Download complete
+2026-11-03T12:36:15.0739674Z b7d0efd3fc9c: Pull complete
+2026-11-03T12:36:15.1519776Z 24c83552f646: Verifying Checksum
+2026-11-03T12:36:15.1520839Z 24c83552f646: Download complete
+2026-11-03T12:36:15.1559307Z 73adcb25feab: Verifying Checksum
+2026-11-03T12:36:15.1560091Z 73adcb25feab: Download complete
+2026-11-03T12:36:15.2236613Z cbf2f7f0a3ba: Pull complete
+2026-11-03T12:36:15.3450567Z 4f4fb700ef54: Verifying Checksum
+2026-11-03T12:36:15.3452475Z 4f4fb700ef54: Download complete
+2026-11-03T12:36:15.4115905Z c350c088cde5: Verifying Checksum
+2026-11-03T12:36:15.4117891Z c350c088cde5: Download complete
+2026-11-03T12:36:15.5836667Z e326d083c2c9: Verifying Checksum
+2026-11-03T12:36:15.5840443Z e326d083c2c9: Download complete
+2026-11-03T12:36:15.6451868Z 95403727e7d4: Verifying Checksum
+2026-11-03T12:36:15.6453895Z 95403727e7d4: Download complete
+2026-11-03T12:36:15.6789779Z 3b1d86731cf1: Pull complete
+2026-11-03T12:36:15.7517196Z 777b5f4d3eb2: Verifying Checksum
+2026-11-03T12:36:15.7518351Z 777b5f4d3eb2: Download complete
+2026-11-03T12:36:15.7737987Z fd855b1da301: Pull complete
+2026-11-03T12:36:15.8059101Z ad8aa6f5f9a9: Pull complete
+2026-11-03T12:36:15.8296642Z Digest: sha256:362659ca70eaa75ba05bbaf963caa84c1c5afe5e8fbf0777e17b830dd5f0f60a
+2026-11-03T12:36:15.8358122Z Status: Downloaded newer image for ghcr.io/supabase/gotrue:v2.195.0
+2026-11-03T12:36:15.8383789Z ghcr.io/supabase/gotrue:v2.195.0
+2026-11-03T12:36:15.9815301Z 597c6c618d36: Verifying Checksum
+2026-11-03T12:36:15.9816150Z 597c6c618d36: Download complete
+2026-11-03T12:36:15.9950423Z 60414ed24b30: Verifying Checksum
+2026-11-03T12:36:15.9951160Z 60414ed24b30: Download complete
+2026-11-03T12:36:16.5937567Z 0d29c829782d: Verifying Checksum
+2026-11-03T12:36:16.5938180Z 0d29c829782d: Download complete
+2026-11-03T12:36:16.8836100Z c39190ba742d: Verifying Checksum
+2026-11-03T12:36:16.8837578Z c39190ba742d: Download complete
+2026-11-03T12:36:16.8878179Z ba9e24d39072: Verifying Checksum
+2026-11-03T12:36:16.8884406Z ba9e24d39072: Download complete
+2026-11-03T12:36:17.1398395Z 23c96171f2fe: Verifying Checksum
+2026-11-03T12:36:17.1399143Z 23c96171f2fe: Download complete
+2026-11-03T12:36:17.2084964Z 4b118796ff6a: Verifying Checksum
+2026-11-03T12:36:17.2085712Z 4b118796ff6a: Download complete
+2026-11-03T12:36:17.4583277Z 5c18a8cdfd6b: Verifying Checksum
+2026-11-03T12:36:17.4583921Z 5c18a8cdfd6b: Download complete
+2026-11-03T12:36:17.5613139Z 95403727e7d4: Pull complete
+2026-11-03T12:36:17.7190549Z 7505145a46ec: Verifying Checksum
+2026-11-03T12:36:17.7191113Z 7505145a46ec: Download complete
+2026-11-03T12:36:17.8404990Z c0c4dc518956: Pull complete
+2026-11-03T12:36:17.9131187Z 512fd86e6200: Pull complete
+2026-11-03T12:36:17.9483199Z 4b118796ff6a: Pull complete
+2026-11-03T12:36:18.0058454Z 23c96171f2fe: Pull complete
+2026-11-03T12:36:18.0173710Z 753ab3b39a58: Download complete
+2026-11-03T12:36:18.0191233Z e326d083c2c9: Pull complete
+2026-11-03T12:36:18.0481009Z Digest: sha256:37a38e48e9338cd7e89dfeb487f37b02ebfcd9cb23111bed2d345e79d37d6dd6
+2026-11-03T12:36:18.0501036Z Status: Downloaded newer image for ghcr.io/supabase/mailpit:v1.30.2
+2026-11-03T12:36:18.0550017Z ghcr.io/supabase/mailpit:v1.30.2
+2026-11-03T12:36:18.8290026Z 062e450697fa: Pull complete
+2026-11-03T12:36:19.4731333Z 7b95344fc011: Pull complete
+2026-11-03T12:36:19.4927410Z 9f7916a93982: Pull complete
+2026-11-03T12:36:19.5610670Z 0179246107e3: Pull complete
+2026-11-03T12:36:19.5611401Z 735837a165d3: Pull complete
+2026-11-03T12:36:19.6096227Z c8a04bee2d5a: Pull complete
+2026-11-03T12:36:19.6539141Z 4f4fb700ef54: Pull complete
+2026-11-03T12:36:19.7017587Z Digest: sha256:ca92d617e905953c3f852e7e88061f7039460e733522e3f0c21bc6ae946b2558
+2026-11-03T12:36:19.7019803Z Status: Downloaded newer image for ghcr.io/supabase/vector:0.53.0-alpine
+2026-11-03T12:36:19.7081078Z ghcr.io/supabase/vector:0.53.0-alpine
+2026-11-03T12:36:20.8298728Z 597c6c618d36: Pull complete
+2026-11-03T12:36:21.3834537Z 662b1f44f1ee: Verifying Checksum
+2026-11-03T12:36:21.3835571Z 662b1f44f1ee: Download complete
+2026-11-03T12:36:25.8704098Z d9a971324fe3: Pull complete
+2026-11-03T12:36:26.0811602Z c39190ba742d: Pull complete
+2026-11-03T12:36:26.0901279Z 753ab3b39a58: Pull complete
+2026-11-03T12:36:26.1268775Z 60414ed24b30: Pull complete
+2026-11-03T12:36:26.3361361Z 5c18a8cdfd6b: Pull complete
+2026-11-03T12:36:26.3791649Z 7505145a46ec: Pull complete
+2026-11-03T12:36:26.3883988Z Digest: sha256:cef71ba901751dcc242cc685cf13786935ea8926820fb342f23bb0fbef77de5a
+2026-11-03T12:36:26.3938299Z Status: Downloaded newer image for ghcr.io/supabase/postgres-meta:v0.98.0
+2026-11-03T12:36:26.3971672Z ghcr.io/supabase/postgres-meta:v0.98.0
+2026-11-03T12:36:27.9244953Z ee3ac5104d09: Pull complete
+2026-11-03T12:36:28.0713043Z 6fe15b76597f: Pull complete
+2026-11-03T12:36:28.2287338Z 4f4fb700ef54: Pull complete
+2026-11-03T12:36:29.0248640Z cd1b8186e775: Pull complete
+2026-11-03T12:36:29.0386355Z Digest: sha256:7f42582ddda690e0ccc3f7f32defc7fca4d484e560a56e87155eea6cf11671a0
+2026-11-03T12:36:29.0448485Z Status: Downloaded newer image for public.ecr.aws/supabase/logflare:1.50.2
+2026-11-03T12:36:29.0485503Z public.ecr.aws/supabase/logflare:1.50.2
+2026-11-03T12:36:29.0720682Z 0d29c829782d: Pull complete
+2026-11-03T12:36:29.8984387Z aadc1df55248: Pull complete
+2026-11-03T12:36:30.2803423Z 24c83552f646: Pull complete
+2026-11-03T12:36:30.3145955Z 95faff249800: Pull complete
+2026-11-03T12:36:30.3685538Z 9e8e4081669a: Pull complete
+2026-11-03T12:36:30.3904082Z 5bc6849ef973: Pull complete
+2026-11-03T12:36:30.4112834Z 73adcb25feab: Pull complete
+2026-11-03T12:36:33.5822646Z 777b5f4d3eb2: Pull complete
+2026-11-03T12:36:33.6381681Z 662b1f44f1ee: Pull complete
+2026-11-03T12:36:33.6412623Z c350c088cde5: Pull complete
+2026-11-03T12:36:33.6756961Z 4f4fb700ef54: Pull complete
+2026-11-03T12:36:33.6881828Z Digest: sha256:48ee05253213f014006a20bb34d0639f936b36a78e1972ec16b1985ac951d917
+2026-11-03T12:36:33.6922690Z Status: Downloaded newer image for ghcr.io/supabase/realtime:v2.129.0
+2026-11-03T12:36:33.6942881Z ghcr.io/supabase/realtime:v2.129.0
+2026-11-03T12:36:34.1066872Z ba9e24d39072: Pull complete
+2026-11-03T12:36:34.1103959Z Digest: sha256:c52405002a890ca9fcf77978671c57f3a988e03174afb277f84ac65bc917013c
+2026-11-03T12:36:34.1106818Z Status: Downloaded newer image for ghcr.io/supabase/edge-runtime:v1.74.3
+2026-11-03T12:36:34.1110712Z ghcr.io/supabase/edge-runtime:v1.74.3
+2026-11-03T12:36:35.1668197Z 264588d8dd60: Pull complete
+2026-11-03T12:36:35.1714874Z Digest: sha256:08dc77f12e08faacc55960fef1dce37fa73d16acb52abeb216aa23dc5e70824b
+2026-11-03T12:36:35.1733441Z Status: Downloaded newer image for public.ecr.aws/supabase/studio:2026.08.17-sha-0c1da8f
+2026-11-03T12:36:35.1748693Z public.ecr.aws/supabase/studio:2026.08.17-sha-0c1da8f
+2026-11-03T12:36:41.6974151Z ae2e3acb5669: Pull complete
+2026-11-03T12:36:41.7208012Z 7455df3e077d: Pull complete
+2026-11-03T12:36:41.7450227Z caa5116ed4b8: Pull complete
+2026-11-03T12:36:41.7605635Z 4af8ac3da2f9: Pull complete
+2026-11-03T12:36:41.7959690Z 60d9b26a23ef: Pull complete
+2026-11-03T12:36:41.8198637Z 9f7b4105d9d2: Pull complete
+2026-11-03T12:36:41.8554861Z bbcd8e2f47bd: Pull complete
+2026-11-03T12:36:41.8648795Z e4c75db06451: Pull complete
+2026-11-03T12:36:41.8766676Z e70bd6858950: Pull complete
+2026-11-03T12:36:41.8861080Z 0f0f5d6c6a72: Pull complete
+2026-11-03T12:36:41.8977084Z 439d07cca121: Pull complete
+2026-11-03T12:36:41.9082739Z fa7f1f248d5e: Pull complete
+2026-11-03T12:36:41.9179965Z a1bc17dd40b2: Pull complete
+2026-11-03T12:36:41.9376749Z 67dbb4ddc3a7: Pull complete
+2026-11-03T12:36:41.9471248Z c91442609c05: Pull complete
+2026-11-03T12:36:41.9566739Z 30eceb95cc71: Pull complete
+2026-11-03T12:36:41.9665186Z 319ec79ee793: Pull complete
+2026-11-03T12:36:41.9764832Z ff48e91a05e9: Pull complete
+2026-11-03T12:36:41.9864244Z a8c0be2aef64: Pull complete
+2026-11-03T12:36:41.9972602Z 540d1d9604d2: Pull complete
+2026-11-03T12:36:42.0076549Z d9ff237b3bdf: Pull complete
+2026-11-03T12:36:42.0346474Z e4d9ec943689: Pull complete
+2026-11-03T12:36:42.0471796Z 0f4863cd9c52: Pull complete
+2026-11-03T12:36:42.0571245Z 92132f761160: Pull complete
+2026-11-03T12:36:42.0678578Z d438d0655c04: Pull complete
+2026-11-03T12:36:42.0789328Z 82cf28f3d1b5: Pull complete
+2026-11-03T12:36:42.0832793Z Digest: sha256:86a2e078779e5bdccda1f6f6c5063aa9779a322d1fface5fb408d051909b230f
+2026-11-03T12:36:42.0844778Z Status: Downloaded newer image for public.ecr.aws/supabase/postgres:17.6.1.159
+2026-11-03T12:36:42.0855478Z public.ecr.aws/supabase/postgres:17.6.1.159
+2026-11-03T12:36:46.7893935Z ad8cc52b5158: Pull complete
+2026-11-03T12:36:47.1264844Z 5fc99faf3b9a: Pull complete
+2026-11-03T12:36:47.1357018Z 70b9c97b39c0: Pull complete
+2026-11-03T12:36:47.1438194Z 7be4889067d6: Pull complete
+2026-11-03T12:36:47.1476213Z Digest: sha256:97ed68d33417d253a45fe0a70f84324d92250a3e239bf18aa6cf87269dbf6727
+2026-11-03T12:36:47.1488199Z Status: Downloaded newer image for public.ecr.aws/supabase/storage-api:v1.69.11
+2026-11-03T12:36:47.1498306Z public.ecr.aws/supabase/storage-api:v1.69.11
+2026-11-03T12:36:47.1804138Z Starting database...
+2026-11-03T12:36:58.0133774Z Initialising schema...
+2026-11-03T12:37:03.5528923Z Seeding globals from roles.sql...
+2026-11-03T12:37:03.5767606Z Applying migration 20260625122433_tenant_foundation.sql...
+2026-11-03T12:37:03.6068339Z Applying migration 20260629121136_audit_events.sql...
+2026-11-03T12:37:03.6256200Z Applying migration 20260629140000_audit_events_actor_null_exemption.sql...
+2026-11-03T12:37:03.6374028Z Applying migration 20260630120000_crm_data_model.sql...
+2026-11-03T12:37:03.6644722Z Applying migration 20260630130000_company_settings_and_quote_terms.sql...
+2026-11-03T12:37:03.6861929Z Applying migration 20260630140000_work_roles_and_articles.sql...
+2026-11-03T12:37:03.7025840Z Applying migration 20260702120000_calculation_data_model.sql...
+2026-11-03T12:37:03.7359556Z Applying migration 20260703120000_calculation_row_pricing_source.sql...
+2026-11-03T12:37:03.7435088Z Applying migration 20260704120000_file_storage_foundation.sql...
+2026-11-03T12:37:03.7684779Z Applying migration 20260705120000_quote_version_model.sql...
+2026-11-03T12:37:03.8660667Z Applying migration 20260706120000_quote_pdf_render_state.sql...
+2026-11-03T12:37:03.8737586Z Applying migration 20260707120000_quote_version_sent_lock.sql...
+2026-11-03T12:37:03.9289719Z Applying migration 20260708120000_quote_new_version.sql...
+2026-11-03T12:37:04.0157315Z Applying migration 20260709120000_acceptance_to_job_model.sql...
+2026-11-03T12:37:04.0464532Z Applying migration 20260710120000_accept_quote_and_create_job.sql...
+2026-11-03T12:37:04.0834998Z Applying migration 20260711120000_accepted_record_lock.sql...
+2026-11-03T12:37:04.1004379Z Applying migration 20260712120000_file_link_lock.sql...
+2026-11-03T12:37:04.1341462Z Applying migration 20260714095225_standalone_job_creation.sql...
+2026-11-03T12:37:04.1408803Z Applying migration 20260719120000_quote_lost_reasons_and_lost_status.sql...
+2026-11-03T12:37:04.1808985Z Applying migration 20260719130000_quote_follow_ups.sql...
+2026-11-03T12:37:04.1931737Z Applying migration 20260805120000_tax_answer_reconciliation.sql...
+2026-11-03T12:37:04.4329202Z Applying migration 20260831124310_story_10_8_quote_review_authorization.sql...
+2026-11-03T12:37:04.4857686Z Applying migration 20260831124312_story_10_9_quote_pdf_attachment_validity.sql...
+2026-11-03T12:37:04.5593560Z Applying migration 20260902120000_story_10_5_quote_table_hardening_and_pagination.sql...
+2026-11-03T12:37:04.5712902Z Applying migration 20260902123000_story_10_5_authorized_terminal_follow_up_closure.sql...
+2026-11-03T12:37:04.5788385Z Applying migration 20260904120000_role_storage_and_permission_matrix.sql...
+2026-11-03T12:37:04.5901159Z Applying migration 20260907161230_role_storage_explicit_grants.sql...
+2026-11-03T12:37:04.5982939Z Applying migration 20260907171252_role_aware_phase_a_policy_evolution.sql...
+2026-11-03T12:37:04.7425676Z Applying migration 20260910165124_admin_user_management.sql...
+2026-11-03T12:37:04.7648426Z Applying migration 20260914092606_admin_accept_membership_invitation_identity_binding.sql...
+2026-11-03T12:37:04.7742832Z Applying migration 20260914092850_story_11_3_invitation_lifecycle_remediation.sql...
+2026-11-03T12:37:04.7820254Z Applying migration 20260919090000_tenant_provisioning.sql...
+2026-11-03T12:37:04.8049854Z Applying migration 20260919100000_provisioning_dispatch_generation_rotation.sql...
+2026-11-03T12:37:04.8137169Z Applying migration 20260919100100_provisioning_previous_token_hash.sql...
+2026-11-03T12:37:04.8215799Z Applying migration 20260919120000_provisioning_decision_8a_authority.sql...
+2026-11-03T12:37:04.8463399Z Applying migration 20260919121000_provisioning_vault_reader_owner.sql...
+2026-11-03T12:37:04.8540627Z Applying migration 20260919122000_provisioning_owner_operator_helper_grant.sql...
+2026-11-03T12:37:04.8582470Z Applying migration 20260919123000_provisioning_owner_attestation_dependencies.sql...
+2026-11-03T12:37:04.8632534Z Applying migration 20260919124000_provisioning_owner_auth_schema_usage.sql...
+2026-11-03T12:37:04.8720691Z Applying migration 20260919125000_provisioning_owner_auth_usage_repair.sql...
+2026-11-03T12:37:04.8762950Z Applying migration 20260919175836_provisioning_actor_claim_repair.sql...
+2026-11-03T12:37:04.9015240Z Applying migration 20260919180249_provisioning_tenant_returning_id_grant.sql...
+2026-11-03T12:37:04.9055876Z Applying migration 20260919180337_provisioning_membership_returning_id_grant.sql...
+2026-11-03T12:37:04.9095942Z Applying migration 20260919180556_provisioning_actor_claims_json_repair.sql...
+2026-11-03T12:37:04.9174180Z Applying migration 20260919181436_provisioning_fourth_dispatch_renewal.sql...
+2026-11-03T12:37:04.9421442Z Applying migration 20260919182046_provisioning_reconcile_read.sql...
+2026-11-03T12:37:04.9494096Z Applying migration 20260919183425_provisioning_review_authority_fixes.sql...
+2026-11-03T12:37:04.9821334Z Applying migration 20260919183740_provisioning_membership_reservation_lock_grant.sql...
+2026-11-03T12:37:04.9862005Z Applying migration 20260919192439_provisioning_rpc_attestation_coherence.sql...
+2026-11-03T12:37:05.0014468Z Applying migration 20260919192619_provisioning_request_validation_persistence.sql...
+2026-11-03T12:37:05.0126397Z Applying migration 20260919193752_provisioning_rpc_coherence_execute_grants.sql...
+2026-11-03T12:37:05.0166762Z Applying migration 20260919193857_provisioning_company_settings_trigger_owner.sql...
+2026-11-03T12:37:05.0215799Z Applying migration 20260919194051_provisioning_company_settings_conflict_read.sql...
+2026-11-03T12:37:05.0261015Z Applying migration 20260920100000_operator_console_projection.sql...
+2026-11-03T12:37:05.0331114Z Applying migration 20260920101500_operator_console_resume_state.sql...
+2026-11-03T12:37:05.0385595Z Applying migration 20260920102000_operator_console_resume_target.sql...
+2026-11-03T12:37:05.0451596Z Applying migration 20260920110000_first_admin_onboarding_dismissal.sql...
+2026-11-03T12:37:05.0511434Z Applying migration 20260921090000_onboarding_dismissal_ready_gate.sql...
+2026-11-03T12:37:05.0564563Z Applying migration 20260921170545_repair_provisioning_idempotency_conflict.sql...
+2026-11-03T12:37:05.0678447Z Applying migration 20260922111215_provisioning_invite_recovery_approval.sql...
+2026-11-03T12:37:05.0780301Z Applying migration 20260922112830_provisioning_renewal_trigger_and_replay_guard.sql...
+2026-11-03T12:37:05.0853642Z Applying migration 20260922121240_epic_12_function_execute_acl.sql...
+2026-11-03T12:37:05.0892431Z Applying migration 20260923160000_authenticated_job_runner.sql...
+2026-11-03T12:37:05.1013687Z Applying migration 20260923161000_job_runs_authenticated_select_grant.sql...
+2026-11-03T12:37:05.1053508Z Applying migration 20260923162000_job_runs_lifecycle_constraints.sql...
+2026-11-03T12:37:05.1119710Z Applying migration 20260923170000_in_app_notifications.sql...
+2026-11-03T12:37:05.1277615Z Applying migration 20260923175035_email_outbox_pipeline.sql...
+2026-11-03T12:37:05.1492871Z Applying migration 20260923181728_email_outbox_transition_guard_fix.sql...
+2026-11-03T12:37:05.1537382Z Applying migration 20260923182954_email_outbox_security_and_state_fixes.sql...
+2026-11-03T12:37:05.1636054Z Applying migration 20260924090000_email_sending_activation.sql...
+2026-11-03T12:37:05.1784210Z Applying migration 20260924110000_quote_email_delivery_artifacts.sql...
+2026-11-03T12:37:05.1945460Z Applying migration 20260924120000_email_delivery_followup_fixes.sql...
+2026-11-03T12:37:05.2015964Z Applying migration 20260924130000_quote_delivery_recipient_correction.sql...
+2026-11-03T12:37:05.2194601Z Applying migration 20260925100000_quote_email_delivery_recovery.sql...
+2026-11-03T12:37:05.2317939Z Applying migration 20260927100000_remove_quote_delivery_preferences.sql...
+2026-11-03T12:37:05.2386087Z Applying migration 20260927110000_quote_delivery_recovery_sender_roles.sql...
+2026-11-03T12:37:05.2440102Z Applying migration 20260927120000_attest_quote_delivery_recoveries.sql...
+2026-11-03T12:37:05.2545220Z Applying migration 20260927130000_quote_delivery_pdf_send_roles.sql...
+2026-11-03T12:37:05.2623575Z Applying migration 20260927140000_preserve_failed_job_checkpoints.sql...
+2026-11-03T12:37:05.2667059Z Applying migration 20260928110819_epic_13_reviewbot_followup_atomic_job_run_audit_and_config_recovery.sql...
+2026-11-03T12:37:05.2771755Z Applying migration 20260929120000_resource_person_profiles_and_work_hours.sql...
+2026-11-03T12:37:05.3077526Z Applying migration 20261002113000_resource_profile_form_date_regex_fix.sql...
+2026-11-03T12:37:05.3154044Z Applying migration 20261002121425_quote_follow_ups_privilege_baseline.sql...
+2026-11-03T12:37:05.3192852Z Applying migration 20261002122535_crm_and_audit_privilege_baseline.sql...
+2026-11-03T12:37:05.3261753Z Applying migration 20261002141141_approved_inherited_public_acl_repair.sql...
+2026-11-03T12:37:05.3309418Z Applying migration 20261002150000_approved_successor_acl_and_rls_batch_repair.sql...
+2026-11-03T12:37:05.3353065Z Applying migration 20261002171427_resource_command_only_write_acl.sql...
+2026-11-03T12:37:05.3431576Z Applying migration 20261002171855_resource_explicit_clear_form_inputs.sql...
+2026-11-03T12:37:05.3502558Z Applying migration 20261002190000_resource_time_precision_preservation.sql...
+2026-11-03T12:37:05.3655692Z Applying migration 20261006101609_bookings_and_assignees.sql...
+2026-11-03T12:37:05.4085615Z Applying migration 20261006104143_booking_invariant_corrections.sql...
+2026-11-03T12:37:05.4214017Z Applying migration 20261006113212_booking_replay_current_authority.sql...
+2026-11-03T12:37:05.4527292Z Applying migration 20261006122441_booking_conflict_detection_integration.sql...
+2026-11-03T12:37:05.4973157Z Applying migration 20261006124954_booking_invitation_post_gate_expiry.sql...
+2026-11-03T12:37:05.5052933Z Applying migration 20261006144057_booking_conflict_review_integrity_fixes.sql...
+2026-11-03T12:37:05.5150334Z Applying migration 20261007120235_booking_editor_audited_override.sql...
+2026-11-03T12:37:05.5473079Z Applying migration 20261007121034_booking_editor_whole_group_validation.sql...
+2026-11-03T12:37:05.5610248Z Applying migration 20261007121724_booking_editor_group_alias_fix.sql...
+2026-11-03T12:37:05.5698421Z Applying migration 20261007131222_booking_editor_review_round1_fixes.sql...
+2026-11-03T12:37:05.5759488Z Applying migration 20261009091120_story_20_1_documents_selected_link_access.sql...
+2026-11-03T12:37:05.6126636Z Applying migration 20261009091121_story_20_2_documents_lifecycle_origin_and_restore.sql...
+2026-11-03T12:37:05.6487336Z Applying migration 20261013201515_story_15_1_booking_reassignment_flags.sql...
+2026-11-03T12:37:05.6550625Z Applying migration 20261019133151_e16_16_1_job_depth.sql...
+2026-11-03T12:37:05.6889734Z Applying migration 20261019133200_e16_16_1_job_booking_facts.sql...
+2026-11-03T12:37:05.7259975Z Applying migration 20261019180000_recurring_booking_series.sql...
+2026-11-03T12:37:05.7773786Z Applying migration 20261019191746_e16_16_2_job_members.sql...
+2026-11-03T12:37:05.8040805Z Applying migration 20261019220000_booking_series_integrity_followup.sql...
+2026-11-03T12:37:05.8435417Z Applying migration 20261020000000_booking_series_cancelled_role_retention.sql...
+2026-11-03T12:37:05.8499408Z Applying migration 20261020180000_conflict_resolver.sql...
+2026-11-03T12:37:05.9094666Z Applying migration 20261020190000_time_reports.sql...
+2026-11-03T12:37:05.9442063Z Applying migration 20261020200000_e16_16_3_work_orders.sql...
+2026-11-03T12:37:06.0787707Z Applying migration 20261020210000_e16_16_4_job_upgrade_and_scheduling.sql...
+2026-11-03T12:37:06.1149552Z Applying migration 20261020220000_personal_calendar_feed.sql...
+2026-11-03T12:37:06.1518681Z Applying migration 20261021061932_e16_card_revision_and_option_scope.sql...
+2026-11-03T12:37:06.1672790Z Applying migration 20261021102151_e16_job_read_tenant_and_source_quote_scope.sql...
+2026-11-03T12:37:06.1768457Z Applying migration 20261021102723_calendar_feed_preparsed_actor_identity.sql...
+2026-11-03T12:37:06.2975977Z Applying migration 20261022002335_booking_series_current_conflict_protocol.sql...
+2026-11-03T12:37:06.3387074Z Applying migration 20261022014027_job_card_shared_conflict_refresh.sql...
+2026-11-03T12:37:06.3624984Z Applying migration 20261025085310_story_15_6_my_day_projection.sql...
+2026-11-03T12:37:06.3717964Z Applying migration 20261029132339_customer_update_expected_facts.sql...
+2026-11-03T12:37:06.3935416Z Applying migration 20261102121057_settings_pricing_operation_contract.sql...
+2026-11-03T12:37:06.4600550Z Seeding data from supabase/seed.sql...
+2026-11-03T12:37:06.4946171Z Starting containers...
+2026-11-03T12:37:10.8001930Z Waiting for health checks...
+2026-11-03T12:37:27.4781859Z Bucket tenant-files already exists. Do you want to overwrite its properties? [Y/n] y
+2026-11-03T12:37:27.4783307Z Updating Storage bucket: tenant-files
+2026-11-03T12:37:27.4934034Z Started supabase local development setup.
+2026-11-03T12:37:27.4934512Z 
+2026-11-03T12:37:27.4963279Z Local dev security notice
+2026-11-03T12:37:27.4964120Z ╭──────────────────────────────────────╮
+2026-11-03T12:37:27.4964762Z │ 🔧 Development Tools                 │
+2026-11-03T12:37:27.4965361Z ├─────────┬────────────────────────────┤
+2026-11-03T12:37:27.4965977Z │ Studio  │ http://127.0.0.1:54323     │
+2026-11-03T12:37:27.4966551Z │ Mailpit │ http://127.0.0.1:54324     │
+2026-11-03T12:37:27.4967163Z │ MCP     │ http://127.0.0.1:54321/mcp │
+2026-11-03T12:37:27.4967753Z ╰─────────┴────────────────────────────╯
+2026-11-03T12:37:27.4968029Z 
+2026-11-03T12:37:27.4968454Z ╭──────────────────────────────────────────────────────╮
+2026-11-03T12:37:27.4969170Z │ 🌐 APIs                                              │
+2026-11-03T12:37:27.4969866Z ├────────────────┬─────────────────────────────────────┤
+2026-11-03T12:37:27.4970579Z │ Project URL    │ http://127.0.0.1:54321              │
+2026-11-03T12:37:27.4971281Z │ REST           │ http://127.0.0.1:54321/rest/v1      │
+2026-11-03T12:37:27.4971976Z │ GraphQL        │ http://127.0.0.1:54321/graphql/v1   │
+2026-11-03T12:37:27.4972960Z │ Edge Functions │ http://127.0.0.1:54321/functions/v1 │
+2026-11-03T12:37:27.4973702Z ╰────────────────┴─────────────────────────────────────╯
+2026-11-03T12:37:27.4974015Z 
+2026-11-03T12:37:27.4974455Z ╭───────────────────────────────────────────────────────────────╮
+2026-11-03T12:37:27.4975203Z │ ⛁ Database                                                    │
+2026-11-03T12:37:27.4976019Z ├─────┬─────────────────────────────────────────────────────────┤
+2026-11-03T12:37:27.4977513Z │ URL │ ***127.0.0.1:54322/postgres │
+2026-11-03T12:37:27.4978264Z ╰─────┴─────────────────────────────────────────────────────────╯
+2026-11-03T12:37:27.4979166Z 
+2026-11-03T12:37:27.4979625Z ╭──────────────────────────────────────────────────────────────╮
+2026-11-03T12:37:27.4980400Z │ 🔑 Authentication Keys                                       │
+2026-11-03T12:37:27.4981202Z ├─────────────┬────────────────────────────────────────────────┤
+2026-11-03T12:37:27.4982007Z │ Publishable │ sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH │
+2026-11-03T12:37:27.4983115Z │ Secret      │ [REDACTED LOCAL TEST-STACK SECRET]      │
+2026-11-03T12:37:27.4983938Z ╰─────────────┴────────────────────────────────────────────────╯
+2026-11-03T12:37:27.4984275Z 
+2026-11-03T12:37:27.4984831Z ╭───────────────────────────────────────────────────────────────────────────────╮
+2026-11-03T12:37:27.4986003Z │ 📦 Storage (S3)                                                               │
+2026-11-03T12:37:27.4986950Z ├────────────┬──────────────────────────────────────────────────────────────────┤
+2026-11-03T12:37:27.4987901Z │ URL        │ http://127.0.0.1:54321/storage/v1/s3                             │
+2026-11-03T12:37:27.4988885Z │ Access Key │ 625729a08b95bf1b7ff351a663f3a23c                                 │
+2026-11-03T12:37:27.4989950Z │ Secret Key │ 850181e4652dd023b7a98c58ae0d2d34bd487ee0cc3254aed6eda37307425907 │
+2026-11-03T12:37:27.4990928Z │ Region     │ local                                                            │
+2026-11-03T12:37:27.4991863Z ╰────────────┴──────────────────────────────────────────────────────────────────╯
+2026-11-03T12:37:27.5023537Z All services bind to 0.0.0.0 (network-accessible, not just localhost)
+2026-11-03T12:37:27.5035892Z API keys and JWT secrets are shared defaults. Do not use in production
+2026-11-03T12:37:27.5037402Z Studio, pgMeta (/pg/*), and analytics have no authentication
+2026-11-03T12:37:27.5038484Z 
+2026-11-03T12:37:28.1668246Z A new version of Supabase CLI is available: v3.0.0 (currently installed v2.115.0)
+2026-11-03T12:37:28.1670008Z We recommend updating regularly for new features and bug fixes: https://supabase.com/docs/guides/cli/getting-started#updating-the-supabase-cli
+2026-11-03T12:37:28.1871920Z ##[group]Run for attempt in 1 2 3; do
+2026-11-03T12:37:28.1872603Z [36;1mfor attempt in 1 2 3; do[0m
+2026-11-03T12:37:28.1872941Z [36;1m  echo "::group::supabase db reset (attempt $attempt/3)"[0m
+2026-11-03T12:37:28.1873310Z [36;1m  if supabase db reset; then[0m
+2026-11-03T12:37:28.1873589Z [36;1m    echo "::endgroup::"[0m
+2026-11-03T12:37:28.1873844Z [36;1m    exit 0[0m
+2026-11-03T12:37:28.1874156Z [36;1m  fi[0m
+2026-11-03T12:37:28.1874482Z [36;1m  echo "::endgroup::"[0m
+2026-11-03T12:37:28.1874981Z [36;1m  echo "db reset attempt $attempt failed"[0m
+2026-11-03T12:37:28.1875413Z [36;1m  if node scripts/verify/check-local-supabase-reset.mjs; then[0m
+2026-11-03T12:37:28.1875901Z [36;1m    echo "db reset completed; recovered from the CLI's final restart error"[0m
+2026-11-03T12:37:28.1876298Z [36;1m    exit 0[0m
+2026-11-03T12:37:28.1876506Z [36;1m  fi[0m
+2026-11-03T12:37:28.1876972Z [36;1m  if [ "$attempt" -lt 3 ]; then[0m
+2026-11-03T12:37:28.1877301Z [36;1m    sleep 15[0m
+2026-11-03T12:37:28.1877517Z [36;1m  fi[0m
+2026-11-03T12:37:28.1877706Z [36;1mdone[0m
+2026-11-03T12:37:28.1878056Z [36;1mecho "supabase db reset failed after 3 attempts — treating as a REAL failure"[0m
+2026-11-03T12:37:28.1878473Z [36;1mexit 1[0m
+2026-11-03T12:37:28.1900140Z shell: /usr/bin/bash -e {0}
+2026-11-03T12:37:28.1900397Z env:
+2026-11-03T12:37:28.1900602Z   SUPABASE_TEST_REQUIRED: 1
+2026-11-03T12:37:28.1900902Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-11-03T12:37:28.1901211Z ##[endgroup]
+2026-11-03T12:37:28.1948193Z ##[group]supabase db reset (attempt 1/3)
+2026-11-03T12:37:28.8449256Z Resetting local database...
+2026-11-03T12:37:29.3367284Z Recreating database...
+2026-11-03T12:37:39.9588687Z Initialising schema...
+2026-11-03T12:37:46.5788390Z Seeding globals from roles.sql...
+2026-11-03T12:37:46.6149799Z Applying migration 20260625122433_tenant_foundation.sql...
+2026-11-03T12:37:46.6783338Z Applying migration 20260629121136_audit_events.sql...
+2026-11-03T12:37:46.7148570Z Applying migration 20260629140000_audit_events_actor_null_exemption.sql...
+2026-11-03T12:37:46.7395143Z Applying migration 20260630120000_crm_data_model.sql...
+2026-11-03T12:37:46.8047148Z Applying migration 20260630130000_company_settings_and_quote_terms.sql...
+2026-11-03T12:37:46.8311178Z Applying migration 20260630140000_work_roles_and_articles.sql...
+2026-11-03T12:37:46.8652700Z Applying migration 20260702120000_calculation_data_model.sql...
+2026-11-03T12:37:46.9355442Z Applying migration 20260703120000_calculation_row_pricing_source.sql...
+2026-11-03T12:37:46.9482569Z Applying migration 20260704120000_file_storage_foundation.sql...
+2026-11-03T12:37:47.0096261Z Applying migration 20260705120000_quote_version_model.sql...
+2026-11-03T12:37:47.1438740Z Applying migration 20260706120000_quote_pdf_render_state.sql...
+2026-11-03T12:37:47.1574336Z Applying migration 20260707120000_quote_version_sent_lock.sql...
+2026-11-03T12:37:47.2346322Z Applying migration 20260708120000_quote_new_version.sql...
+2026-11-03T12:37:47.3205039Z Applying migration 20260709120000_acceptance_to_job_model.sql...
+2026-11-03T12:37:47.3618703Z Applying migration 20260710120000_accept_quote_and_create_job.sql...
+2026-11-03T12:37:47.4221359Z Applying migration 20260711120000_accepted_record_lock.sql...
+2026-11-03T12:37:47.4483817Z Applying migration 20260712120000_file_link_lock.sql...
+2026-11-03T12:37:47.5004965Z Applying migration 20260714095225_standalone_job_creation.sql...
+2026-11-03T12:37:47.5111587Z Applying migration 20260719120000_quote_lost_reasons_and_lost_status.sql...
+2026-11-03T12:37:47.5511670Z Applying migration 20260719130000_quote_follow_ups.sql...
+2026-11-03T12:37:47.5688114Z Applying migration 20260805120000_tax_answer_reconciliation.sql...
+2026-11-03T12:37:47.9474882Z Applying migration 20260831124310_story_10_8_quote_review_authorization.sql...
+2026-11-03T12:37:48.0292734Z Applying migration 20260831124312_story_10_9_quote_pdf_attachment_validity.sql...
+2026-11-03T12:37:48.1187716Z Applying migration 20260902120000_story_10_5_quote_table_hardening_and_pagination.sql...
+2026-11-03T12:37:48.1285683Z Applying migration 20260902123000_story_10_5_authorized_terminal_follow_up_closure.sql...
+2026-11-03T12:37:48.1366348Z Applying migration 20260904120000_role_storage_and_permission_matrix.sql...
+2026-11-03T12:37:48.1498354Z Applying migration 20260907161230_role_storage_explicit_grants.sql...
+2026-11-03T12:37:48.1546957Z Applying migration 20260907171252_role_aware_phase_a_policy_evolution.sql...
+2026-11-03T12:37:48.3297398Z Applying migration 20260910165124_admin_user_management.sql...
+2026-11-03T12:37:48.3545051Z Applying migration 20260914092606_admin_accept_membership_invitation_identity_binding.sql...
+2026-11-03T12:37:48.3631232Z Applying migration 20260914092850_story_11_3_invitation_lifecycle_remediation.sql...
+2026-11-03T12:37:48.3735971Z Applying migration 20260919090000_tenant_provisioning.sql...
+2026-11-03T12:37:48.3938103Z Applying migration 20260919100000_provisioning_dispatch_generation_rotation.sql...
+2026-11-03T12:37:48.4049274Z Applying migration 20260919100100_provisioning_previous_token_hash.sql...
+2026-11-03T12:37:48.4104284Z Applying migration 20260919120000_provisioning_decision_8a_authority.sql...
+2026-11-03T12:37:48.4411804Z Applying migration 20260919121000_provisioning_vault_reader_owner.sql...
+2026-11-03T12:37:48.4473097Z Applying migration 20260919122000_provisioning_owner_operator_helper_grant.sql...
+2026-11-03T12:37:48.4516106Z Applying migration 20260919123000_provisioning_owner_attestation_dependencies.sql...
+2026-11-03T12:37:48.4603957Z Applying migration 20260919124000_provisioning_owner_auth_schema_usage.sql...
+2026-11-03T12:37:48.4654623Z Applying migration 20260919125000_provisioning_owner_auth_usage_repair.sql...
+2026-11-03T12:37:48.4746623Z Applying migration 20260919175836_provisioning_actor_claim_repair.sql...
+2026-11-03T12:37:48.5034389Z Applying migration 20260919180249_provisioning_tenant_returning_id_grant.sql...
+2026-11-03T12:37:48.5080642Z Applying migration 20260919180337_provisioning_membership_returning_id_grant.sql...
+2026-11-03T12:37:48.5123685Z Applying migration 20260919180556_provisioning_actor_claims_json_repair.sql...
+2026-11-03T12:37:48.5244106Z Applying migration 20260919181436_provisioning_fourth_dispatch_renewal.sql...
+2026-11-03T12:37:48.5526983Z Applying migration 20260919182046_provisioning_reconcile_read.sql...
+2026-11-03T12:37:48.5602376Z Applying migration 20260919183425_provisioning_review_authority_fixes.sql...
+2026-11-03T12:37:48.6170008Z Applying migration 20260919183740_provisioning_membership_reservation_lock_grant.sql...
+2026-11-03T12:37:48.6213242Z Applying migration 20260919192439_provisioning_rpc_attestation_coherence.sql...
+2026-11-03T12:37:48.6363390Z Applying migration 20260919192619_provisioning_request_validation_persistence.sql...
+2026-11-03T12:37:48.6491420Z Applying migration 20260919193752_provisioning_rpc_coherence_execute_grants.sql...
+2026-11-03T12:37:48.6539938Z Applying migration 20260919193857_provisioning_company_settings_trigger_owner.sql...
+2026-11-03T12:37:48.6593835Z Applying migration 20260919194051_provisioning_company_settings_conflict_read.sql...
+2026-11-03T12:37:48.6674379Z Applying migration 20260920100000_operator_console_projection.sql...
+2026-11-03T12:37:48.6726963Z Applying migration 20260920101500_operator_console_resume_state.sql...
+2026-11-03T12:37:48.6822619Z Applying migration 20260920102000_operator_console_resume_target.sql...
+2026-11-03T12:37:48.6876098Z Applying migration 20260920110000_first_admin_onboarding_dismissal.sql...
+2026-11-03T12:37:48.6978194Z Applying migration 20260921090000_onboarding_dismissal_ready_gate.sql...
+2026-11-03T12:37:48.7036773Z Applying migration 20260921170545_repair_provisioning_idempotency_conflict.sql...
+2026-11-03T12:37:48.7138923Z Applying migration 20260922111215_provisioning_invite_recovery_approval.sql...
+2026-11-03T12:37:48.7299285Z Applying migration 20260922112830_provisioning_renewal_trigger_and_replay_guard.sql...
+2026-11-03T12:37:48.7388119Z Applying migration 20260922121240_epic_12_function_execute_acl.sql...
+2026-11-03T12:37:48.7483268Z Applying migration 20260923160000_authenticated_job_runner.sql...
+2026-11-03T12:37:48.7616477Z Applying migration 20260923161000_job_runs_authenticated_select_grant.sql...
+2026-11-03T12:37:48.7665217Z Applying migration 20260923162000_job_runs_lifecycle_constraints.sql...
+2026-11-03T12:37:48.7712617Z Applying migration 20260923170000_in_app_notifications.sql...
+2026-11-03T12:37:48.7889196Z Applying migration 20260923175035_email_outbox_pipeline.sql...
+2026-11-03T12:37:48.8130001Z Applying migration 20260923181728_email_outbox_transition_guard_fix.sql...
+2026-11-03T12:37:48.8175998Z Applying migration 20260923182954_email_outbox_security_and_state_fixes.sql...
+2026-11-03T12:37:48.8257902Z Applying migration 20260924090000_email_sending_activation.sql...
+2026-11-03T12:37:48.8417889Z Applying migration 20260924110000_quote_email_delivery_artifacts.sql...
+2026-11-03T12:37:48.8585236Z Applying migration 20260924120000_email_delivery_followup_fixes.sql...
+2026-11-03T12:37:48.8662816Z Applying migration 20260924130000_quote_delivery_recipient_correction.sql...
+2026-11-03T12:37:48.8839768Z Applying migration 20260925100000_quote_email_delivery_recovery.sql...
+2026-11-03T12:37:48.8960256Z Applying migration 20260927100000_remove_quote_delivery_preferences.sql...
+2026-11-03T12:37:48.9013447Z Applying migration 20260927110000_quote_delivery_recovery_sender_roles.sql...
+2026-11-03T12:37:48.9105540Z Applying migration 20260927120000_attest_quote_delivery_recoveries.sql...
+2026-11-03T12:37:48.9207344Z Applying migration 20260927130000_quote_delivery_pdf_send_roles.sql...
+2026-11-03T12:37:48.9358911Z Applying migration 20260927140000_preserve_failed_job_checkpoints.sql...
+2026-11-03T12:37:48.9463747Z Applying migration 20260928110819_epic_13_reviewbot_followup_atomic_job_run_audit_and_config_recovery.sql...
+2026-11-03T12:37:48.9641272Z Applying migration 20260929120000_resource_person_profiles_and_work_hours.sql...
+2026-11-03T12:37:49.0052778Z Applying migration 20261002113000_resource_profile_form_date_regex_fix.sql...
+2026-11-03T12:37:49.0169856Z Applying migration 20261002121425_quote_follow_ups_privilege_baseline.sql...
+2026-11-03T12:37:49.0258346Z Applying migration 20261002122535_crm_and_audit_privilege_baseline.sql...
+2026-11-03T12:37:49.0335571Z Applying migration 20261002141141_approved_inherited_public_acl_repair.sql...
+2026-11-03T12:37:49.0391620Z Applying migration 20261002150000_approved_successor_acl_and_rls_batch_repair.sql...
+2026-11-03T12:37:49.0436451Z Applying migration 20261002171427_resource_command_only_write_acl.sql...
+2026-11-03T12:37:49.0564651Z Applying migration 20261002171855_resource_explicit_clear_form_inputs.sql...
+2026-11-03T12:37:49.0710024Z Applying migration 20261002190000_resource_time_precision_preservation.sql...
+2026-11-03T12:37:49.0896264Z Applying migration 20261006101609_bookings_and_assignees.sql...
+2026-11-03T12:37:49.1259839Z Applying migration 20261006104143_booking_invariant_corrections.sql...
+2026-11-03T12:37:49.1380326Z Applying migration 20261006113212_booking_replay_current_authority.sql...
+2026-11-03T12:37:49.1624644Z Applying migration 20261006122441_booking_conflict_detection_integration.sql...
+2026-11-03T12:37:49.2172946Z Applying migration 20261006124954_booking_invitation_post_gate_expiry.sql...
+2026-11-03T12:37:49.2244008Z Applying migration 20261006144057_booking_conflict_review_integrity_fixes.sql...
+2026-11-03T12:37:49.2371474Z Applying migration 20261007120235_booking_editor_audited_override.sql...
+2026-11-03T12:37:49.2693744Z Applying migration 20261007121034_booking_editor_whole_group_validation.sql...
+2026-11-03T12:37:49.2877388Z Applying migration 20261007121724_booking_editor_group_alias_fix.sql...
+2026-11-03T12:37:49.2942425Z Applying migration 20261007131222_booking_editor_review_round1_fixes.sql...
+2026-11-03T12:37:49.3002985Z Applying migration 20261009091120_story_20_1_documents_selected_link_access.sql...
+2026-11-03T12:37:49.3673233Z Applying migration 20261009091121_story_20_2_documents_lifecycle_origin_and_restore.sql...
+2026-11-03T12:37:49.4051334Z Applying migration 20261013201515_story_15_1_booking_reassignment_flags.sql...
+2026-11-03T12:37:49.4118126Z Applying migration 20261019133151_e16_16_1_job_depth.sql...
+2026-11-03T12:37:49.4473570Z Applying migration 20261019133200_e16_16_1_job_booking_facts.sql...
+2026-11-03T12:37:49.4847291Z Applying migration 20261019180000_recurring_booking_series.sql...
+2026-11-03T12:37:49.5230730Z Applying migration 20261019191746_e16_16_2_job_members.sql...
+2026-11-03T12:37:49.5517028Z Applying migration 20261019220000_booking_series_integrity_followup.sql...
+2026-11-03T12:37:49.5857772Z Applying migration 20261020000000_booking_series_cancelled_role_retention.sql...
+2026-11-03T12:37:49.5924285Z Applying migration 20261020180000_conflict_resolver.sql...
+2026-11-03T12:37:49.6575284Z Applying migration 20261020190000_time_reports.sql...
+2026-11-03T12:37:49.6954830Z Applying migration 20261020200000_e16_16_3_work_orders.sql...
+2026-11-03T12:37:49.8271115Z Applying migration 20261020210000_e16_16_4_job_upgrade_and_scheduling.sql...
+2026-11-03T12:37:49.8607350Z Applying migration 20261020220000_personal_calendar_feed.sql...
+2026-11-03T12:37:49.9049162Z Applying migration 20261021061932_e16_card_revision_and_option_scope.sql...
+2026-11-03T12:37:49.9313527Z Applying migration 20261021102151_e16_job_read_tenant_and_source_quote_scope.sql...
+2026-11-03T12:37:49.9436118Z Applying migration 20261021102723_calendar_feed_preparsed_actor_identity.sql...
+2026-11-03T12:37:50.0976843Z Applying migration 20261022002335_booking_series_current_conflict_protocol.sql...
+2026-11-03T12:37:50.1403567Z Applying migration 20261022014027_job_card_shared_conflict_refresh.sql...
+2026-11-03T12:37:50.1698253Z Applying migration 20261025085310_story_15_6_my_day_projection.sql...
+2026-11-03T12:37:50.1824335Z Applying migration 20261029132339_customer_update_expected_facts.sql...
+2026-11-03T12:37:50.2080788Z Applying migration 20261102121057_settings_pricing_operation_contract.sql...
+2026-11-03T12:37:50.3037456Z Seeding data from supabase/seed.sql...
+2026-11-03T12:37:50.3463933Z Restarting containers...
+2026-11-03T12:38:01.8313347Z Bucket tenant-files already exists. Do you want to overwrite its properties? [Y/n] 
+2026-11-03T12:38:01.8314509Z Updating Storage bucket: tenant-files
+2026-11-03T12:38:01.8460065Z Finished supabase db reset on branch codex/35-7-p-settings-pricing-producer-contracts.
+2026-11-03T12:38:02.3390659Z A new version of Supabase CLI is available: v3.0.0 (currently installed v2.115.0)
+2026-11-03T12:38:02.3392657Z We recommend updating regularly for new features and bug fixes: https://supabase.com/docs/guides/cli/getting-started#updating-the-supabase-cli
+2026-11-03T12:38:02.3610489Z ##[endgroup]
+2026-11-03T12:38:02.3697817Z ##[group]Run node scripts/ci/with-calendar-feed-runtime.mjs db
+2026-11-03T12:38:02.3698349Z [36;1mnode scripts/ci/with-calendar-feed-runtime.mjs db[0m
+2026-11-03T12:38:02.3698742Z [36;1mpnpm run test:pilot-performance[0m
+2026-11-03T12:38:02.3720719Z shell: /usr/bin/bash -e {0}
+2026-11-03T12:38:02.3720986Z env:
+2026-11-03T12:38:02.3721194Z   SUPABASE_TEST_REQUIRED: 1
+2026-11-03T12:38:02.3721507Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-11-03T12:38:02.3721871Z   CALENDAR_FEED_CI_DISPOSABLE_STACK: 41636555971:1:db
+2026-11-03T12:38:02.3722589Z ##[endgroup]
+2026-11-03T12:52:49.2713459Z {"event":"calendar_feed.ci_lifecycle","mode":"db","ready":true,"launchAttempted":false,"childLaunchState":"not-attempted","childExitCodes":[0,0],"keyDeleted":true,"dbClosed":true,"failures":[],"diagnostics":[],"setupAuthority":{"session_is_setup_admin":true,"current_is_setup_admin":true,"same_identity":true,"session_login":true,"current_login":true,"session_superuser":true,"current_superuser":true},"privacyPreflight":{"controls":[{"name":"log_min_error_statement","context":"superuser","matchesRequired":true,"canSet":true},{"name":"log_parameter_max_length","context":"superuser","matchesRequired":true,"canSet":true},{"name":"log_parameter_max_length_on_error","context":"user","matchesRequired":true,"canSet":true},{"name":"log_statement","context":"superuser","matchesRequired":true,"canSet":true}],"principal":{"session_is_postgres":false,"current_is_postgres":false,"same_identity":true,"session_superuser":true,"current_superuser":true,"session_bypass_rls":true,"current_bypass_rls":true}},"keyOutcome":"deleted-confirmed","custody":null}
+2026-11-03T12:52:49.5743998Z 
+2026-11-03T12:52:49.5745223Z > kopplas@0.1.0 test:pilot-performance /home/runner/work/Kopplas/Kopplas
+2026-11-03T12:52:49.5746928Z > node --experimental-strip-types --import ./tests/support/register.mjs scripts/nfr/epic-11-r1108-baseline.ts
+2026-11-03T12:52:49.5750890Z 
+2026-11-03T12:52:49.7430805Z (node:152602) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/runner/work/Kopplas/Kopplas/scripts/nfr/epic-11-r1108-baseline.ts is not specified and it doesn't parse as CommonJS.
+2026-11-03T12:52:49.7444947Z Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+2026-11-03T12:52:49.7446417Z To eliminate this warning, add "type": "module" to /home/runner/work/Kopplas/Kopplas/package.json.
+2026-11-03T12:52:49.7447766Z (Use `node --trace-warnings ...` to show where the warning was created)
+2026-11-03T12:52:56.7345199Z {
+2026-11-03T12:52:56.7346168Z   "output": "/home/runner/work/Kopplas/Kopplas/tmp/private/epic-11-r1108-baseline.json",
+2026-11-03T12:52:56.7346979Z   "dataset": {
+2026-11-03T12:52:56.7347492Z     "tenantAActiveMemberships": 120,
+2026-11-03T12:52:56.7348079Z     "tenantBActiveMemberships": 24,
+2026-11-03T12:52:56.7349121Z     "tenantARoleDistribution": "five primary roles, every third membership also holds the next role",
+2026-11-03T12:52:56.7350501Z     "tenantBShape": "separate tenant rows for 23 of the same authenticated accounts plus its own admin"
+2026-11-03T12:52:56.7351337Z   },
+2026-11-03T12:52:56.7351642Z   "read": {
+2026-11-03T12:52:56.7352015Z     "warmupIterations": 5,
+2026-11-03T12:52:56.7352733Z     "measuredIterations": 25,
+2026-11-03T12:52:56.7353162Z     "readStats": {
+2026-11-03T12:52:56.7353581Z       "p50Ms": 15.013875999999982,
+2026-11-03T12:52:56.7354049Z       "p95Ms": 19.312568000000283,
+2026-11-03T12:52:56.7354501Z       "maxMs": 20.255027999999584,
+2026-11-03T12:52:56.7354935Z       "samplesMs": [
+2026-11-03T12:52:56.7355333Z         12.897490999999718,
+2026-11-03T12:52:56.7355828Z         13.189135999999962,
+2026-11-03T12:52:56.7356229Z         13.214904000000388,
+2026-11-03T12:52:56.7356621Z         13.503099999999904,
+2026-11-03T12:52:56.7357022Z         13.543249000000287,
+2026-11-03T12:52:56.7357428Z         13.63359599999967,
+2026-11-03T12:52:56.7357842Z         13.712827000000289,
+2026-11-03T12:52:56.7358253Z         13.719087999999829,
+2026-11-03T12:52:56.7359093Z         14.02566300000035,
+2026-11-03T12:52:56.7359562Z         14.316924000000654,
+2026-11-03T12:52:56.7359992Z         14.84230099999968,
+2026-11-03T12:52:56.7360434Z         14.999818000000232,
+2026-11-03T12:52:56.7360857Z         15.013875999999982,
+2026-11-03T12:52:56.7361279Z         15.197692000000643,
+2026-11-03T12:52:56.7361707Z         15.256395999999768,
+2026-11-03T12:52:56.7362395Z         15.350345000000743,
+2026-11-03T12:52:56.7362809Z         15.394014999999854,
+2026-11-03T12:52:56.7363230Z         15.589402999999947,
+2026-11-03T12:52:56.7363665Z         17.0922759999994,
+2026-11-03T12:52:56.7364074Z         17.426399000000856,
+2026-11-03T12:52:56.7364493Z         17.442175000000134,
+2026-11-03T12:52:56.7364877Z         17.918542999999772,
+2026-11-03T12:52:56.7365275Z         18.44144900000083,
+2026-11-03T12:52:56.7365697Z         19.312568000000283,
+2026-11-03T12:52:56.7366126Z         20.255027999999584
+2026-11-03T12:52:56.7366522Z       ]
+2026-11-03T12:52:56.7366821Z     },
+2026-11-03T12:52:56.7367298Z     "syntheticBulkEffectivePermissionsStats": {
+2026-11-03T12:52:56.7367915Z       "p50Ms": 3.0815240000001722,
+2026-11-03T12:52:56.7368408Z       "p95Ms": 4.583668000000216,
+2026-11-03T12:52:56.7368923Z       "maxMs": 10.077826000000641,
+2026-11-03T12:52:56.7369412Z       "samplesMs": [
+2026-11-03T12:52:56.7369798Z         2.6779599999999846,
+2026-11-03T12:52:56.7370202Z         2.7158110000000306,
+2026-11-03T12:52:56.7370599Z         2.720379000000321,
+2026-11-03T12:52:56.7370997Z         2.7238160000006246,
+2026-11-03T12:52:56.7371376Z         2.7289449999998396,
+2026-11-03T12:52:56.7371778Z         2.8106479999996736,
+2026-11-03T12:52:56.7372702Z         2.8460039999999935,
+2026-11-03T12:52:56.7373165Z         2.8651989999998477,
+2026-11-03T12:52:56.7373574Z         2.888231999999334,
+2026-11-03T12:52:56.7373997Z         2.9429950000003373,
+2026-11-03T12:52:56.7374403Z         2.9434459999993123,
+2026-11-03T12:52:56.7374816Z         3.0269619999999122,
+2026-11-03T12:52:56.7375286Z         3.0815240000001722,
+2026-11-03T12:52:56.7375727Z         3.265947999999298,
+2026-11-03T12:52:56.7376139Z         3.287808000000041,
+2026-11-03T12:52:56.7376545Z         3.301013000000239,
+2026-11-03T12:52:56.7377383Z         3.317544000000453,
+2026-11-03T12:52:56.7378033Z         3.4436900000000605,
+2026-11-03T12:52:56.7378576Z         3.446074000000408,
+2026-11-03T12:52:56.7378988Z         3.6460379999998622,
+2026-11-03T12:52:56.7418924Z         3.7115499999999884,
+2026-11-03T12:52:56.7419418Z         3.7852469999997993,
+2026-11-03T12:52:56.7419870Z         3.903096999999434,
+2026-11-03T12:52:56.7420324Z         4.583668000000216,
+2026-11-03T12:52:56.7420755Z         10.077826000000641
+2026-11-03T12:52:56.7421156Z       ]
+2026-11-03T12:52:56.7421460Z     },
+2026-11-03T12:52:56.7421803Z     "rlsRequestCount": {
+2026-11-03T12:52:56.7427900Z       "total": 50,
+2026-11-03T12:52:56.7428337Z       "perIteration": 2,
+2026-11-03T12:52:56.7429119Z       "membershipPages": 25,
+2026-11-03T12:52:56.7429577Z       "rolePages": 25
+2026-11-03T12:52:56.7430227Z     },
+2026-11-03T12:52:56.7430667Z     "effectivePermissionGrantCount": 3200
+2026-11-03T12:52:56.7431332Z   }
+2026-11-03T12:52:56.7431664Z }
+2026-11-03T12:53:00.0436628Z ##[group]Run actions/upload-artifact@v4
+2026-11-03T12:53:00.0436962Z with:
+2026-11-03T12:53:00.0437175Z   name: native-full-integration
+2026-11-03T12:53:00.0437465Z   path: test-results/full-integration.json
+2026-11-03T12:53:00.0437759Z   retention-days: 7
+2026-11-03T12:53:00.0437992Z   if-no-files-found: error
+2026-11-03T12:53:00.0438233Z   compression-level: 6
+2026-11-03T12:53:00.0438456Z   overwrite: false
+2026-11-03T12:53:00.0438674Z   include-hidden-files: false
+2026-11-03T12:53:00.0438911Z env:
+2026-11-03T12:53:00.0439112Z   SUPABASE_TEST_REQUIRED: 1
+2026-11-03T12:53:00.0439423Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-11-03T12:53:00.0439752Z ##[endgroup]
+2026-11-03T12:53:00.2292391Z (node:154626) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-03T12:53:00.2293430Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-03T12:53:00.2341838Z With the provided path, there will be 1 file uploaded
+2026-11-03T12:53:00.2347697Z Artifact name is valid!
+2026-11-03T12:53:00.2348845Z Root directory input is valid!
+2026-11-03T12:53:00.6313175Z Beginning upload of artifact content to blob storage
+2026-11-03T12:53:00.6683196Z (node:154626) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-03T12:53:01.1133980Z Uploaded bytes 117459
+2026-11-03T12:53:01.1876293Z Finished uploading artifact content to blob storage!
+2026-11-03T12:53:01.1877403Z SHA256 digest of uploaded artifact zip is 9c9af0018150a418b1812236a148a00c7ccd119a4374bfb493a7e9d6ae44c36e
+2026-11-03T12:53:01.1878642Z Finalizing artifact upload
+2026-11-03T12:53:01.7008249Z Artifact native-full-integration.zip successfully finalized. Artifact ID 13232520877
+2026-11-03T12:53:01.7010243Z Artifact native-full-integration has been successfully uploaded! Final size is 117459 bytes. Artifact ID is 13232520877
+2026-11-03T12:53:01.7017596Z Artifact download URL: https://github.com/rthunborg/Kopplas/actions/runs/41636555971/artifacts/13232520877
+2026-11-03T12:53:01.7194338Z ##[group]Run supabase stop
+2026-11-03T12:53:01.7194661Z [36;1msupabase stop[0m
+2026-11-03T12:53:01.7215393Z shell: /usr/bin/bash -e {0}
+2026-11-03T12:53:01.7215663Z env:
+2026-11-03T12:53:01.7215867Z   SUPABASE_TEST_REQUIRED: 1
+2026-11-03T12:53:01.7216182Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-11-03T12:53:01.7216502Z ##[endgroup]
+2026-11-03T12:53:02.3728368Z Stopping containers...
+2026-11-03T12:53:23.1233941Z Stopped supabase local development setup.
+2026-11-03T12:53:23.6787051Z A new version of Supabase CLI is available: v3.0.0 (currently installed v2.115.0)
+2026-11-03T12:53:23.6788066Z We recommend updating regularly for new features and bug fixes: https://supabase.com/docs/guides/cli/getting-started#updating-the-supabase-cli
+2026-11-03T12:53:23.6790974Z Local data are backed up to docker volume. Use docker to show them: docker volume ls --filter label=com.supabase.cli.project=kopplas
+2026-11-03T12:53:23.7026420Z Post job cleanup.
+2026-11-03T12:53:23.8312361Z (node:155458) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-03T12:53:23.8313481Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-03T12:53:23.8317057Z Cache hit occurred on the primary key node-cache-Linux-x64-pnpm-35c2dd27af1f4a652b8c713a4e14cd3c20cb444db116602d7ccb29b17e1dc1a2, not saving cache.
+2026-11-03T12:53:23.8439489Z Post job cleanup.
+2026-11-03T12:53:24.0033259Z Pruning is unnecessary.
+2026-11-03T12:53:24.0297793Z Post job cleanup.
+2026-11-03T12:53:24.1342022Z [command]/usr/bin/git version
+2026-11-03T12:53:24.1390868Z git version 2.56.0
+2026-11-03T12:53:24.1436762Z Temporarily overriding HOME='/home/runner/work/_temp/c457abbe-899f-4597-9ce6-f2169dccbecc' before making global git config changes
+2026-11-03T12:53:24.1437965Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-03T12:53:24.1442792Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Kopplas/Kopplas
+2026-11-03T12:53:24.1488108Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-03T12:53:24.1534569Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-03T12:53:24.1829408Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-03T12:53:24.1884009Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-03T12:53:24.2201302Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-03T12:53:24.2269771Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-03T12:53:24.2695253Z Cleaning up orphan processes
+2026-11-03T12:53:24.3189053Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4, pnpm/action-setup@v4, supabase/setup-cli@v1. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,32 @@
+{
+  "candidateSha": "9eed6c7f353a8a2096bb0d271074580a2e60bee1",
+  "buildSha": "9eed6c7f353a8a2096bb0d271074580a2e60bee1",
+  "server": "next start",
+  "serverPid": 12076,
+  "runnerPid": 11682,
+  "runId": "a4e5527b-a536-4c37-8eaf-5519595c8ef7",
+  "serverStartedAt": 1793709552041,
+  "controlledTransport": false,
+  "captureAnchor": {
+    "tag": "INPUT",
+    "id": "_R_1vav5ubtaivb_",
+    "text": ""
+  },
+  "configuredCommand": "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start",
+  "configurationSha256": "82d974a9810ab79fc0b841fe2d83c7d341eed129198fa06181d864b989f0ee4d",
+  "synthetic": true,
+  "fixture": "test-owned createTwoTenantFixture; no external data",
+  "route": "/settings/company",
+  "surface": "company",
+  "state": "empty",
+  "viewport": {
+    "width": 360,
+    "height": 640
+  },
+  "fullViewport": true,
+  "pngSha256": "57ec88427dab6fcd60cb1702a090baf59cba0b258c4a467dd2894f537d62f8b2",
+  "test": "P-E1/E2/E3/E4 settings capture/recover/stale 360x640",
+  "project": "chromium",
+  "result": "Actual configured production-server application capture after named state assertions",
+  "capturedAt": "2026-11-03T12:45:41.513Z"
+}

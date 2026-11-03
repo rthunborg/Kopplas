@@ -1,0 +1,1537 @@
+{
+  "candidate": "9eed6c7f353a8a2096bb0d271074580a2e60bee1",
+  "sourceFreeze": "8f11cab5bce1598c93b20dd38597ce8db0579febeb09339069b311cd43ade3b1",
+  "status": "Initial references proposed; human acceptance pending",
+  "selected": [
+    {
+      "originalCaptureId": "0",
+      "captureId": "0",
+      "nativePath": "playwright-report/35-7-p/article-1440x900/archived-restore.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/0.png",
+      "sha256": "41bd6431d75974fed3127e0690900ccc762a51a59368e0b57bffa47953d62c2b",
+      "gitBlob": "e561c7337baadb63669a430762677068a6e83d6a",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "archived-restore",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Archived row and restore control; not the restored active result."
+    },
+    {
+      "originalCaptureId": "1",
+      "captureId": "1",
+      "nativePath": "playwright-report/35-7-p/article-1440x900/current-missing-empty.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1.png",
+      "sha256": "255ff014bccf84561f3076ea82bf378d6445c9763b3a7bc51ba3859fcb600dd8",
+      "gitBlob": "4b0401412d3d6a40ae6758cbc9ce7fbb874fbc9f",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "empty",
+      "nativeScenario": "current-missing-empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Successful independent current read establishes target missing beside retained historical receipt; not a successful mutation result."
+    },
+    {
+      "originalCaptureId": "2",
+      "captureId": "2",
+      "nativePath": "playwright-report/35-7-p/article-1440x900/current-newer.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/2.png",
+      "sha256": "f6181706949671976a9eba6ba7fabfa6cab18db3c8f4a4bf2845b19d7ee9d430",
+      "gitBlob": "445d444c6af8663158f2b317fb92250b7961cc22",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "current-newer",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Historical receipt completed but current41 differs from retained local31; not current confirmation of own write."
+    },
+    {
+      "originalCaptureId": "3",
+      "captureId": "3",
+      "nativePath": "playwright-report/35-7-p/article-1440x900/empty.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/3.png",
+      "sha256": "8a69addec64cf9effa531f9bb50399649c9111da6896f080e502c8e361d58d32",
+      "gitBlob": "ddbfeac5aa1dbc0b549cf880bd3f6177f9eb0f70",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "empty",
+      "nativeScenario": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Successfully absent singleton/active list and its create form; not read failure."
+    },
+    {
+      "originalCaptureId": "4",
+      "captureId": "4",
+      "nativePath": "playwright-report/35-7-p/article-1440x900/error.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/4.png",
+      "sha256": "3a034529e749a27fa15e2ce3a3cafaea49d65889bca614b309f55853839b0b49",
+      "gitBlob": "7516c7994a16cb914f044370f9ac71e88eb6e117",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "error",
+      "nativeScenario": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Local field validation feedback; not current-read failure."
+    },
+    {
+      "originalCaptureId": "5",
+      "captureId": "5",
+      "nativePath": "playwright-report/35-7-p/article-1440x900/finished.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/5.png",
+      "sha256": "5c9a9ac3cab86a824856570210c17158d91ac703339f92b24b6d15ba006bc8be",
+      "gitBlob": "a907860b92849466e987dae3f2273387f27bedd9",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Settled rendered view; article/role require current-confirmed sentence and terms approved status. Finished label alone never proves mutation success."
+    },
+    {
+      "originalCaptureId": "6",
+      "captureId": "6",
+      "nativePath": "playwright-report/35-7-p/article-1440x900/loading.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/6.png",
+      "sha256": "db670a29b05d927ad0599ecd934b829a972845ef854a83095d5a5b20311609c5",
+      "gitBlob": "f41fd4fce4bde8162a3b19f238eb8d3a45861fd3",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "loading",
+      "nativeScenario": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Actual initial save transport pending; form save-busy renderer."
+    },
+    {
+      "originalCaptureId": "7",
+      "captureId": "7",
+      "nativePath": "playwright-report/35-7-p/article-1440x900/neighbor-stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/7.png",
+      "sha256": "c6f3fda0a758bae7f2d85834366f5948460bcef19d227aec1c0c1b5bb2f222ac",
+      "gitBlob": "5b3447e4821c734de30925bfd947968b14792412",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "neighbor-stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Neighbor success rereads facts without replacing original draft/revision."
+    },
+    {
+      "originalCaptureId": "8",
+      "captureId": "8",
+      "nativePath": "playwright-report/35-7-p/article-1440x900/read-unavailable.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/8.png",
+      "sha256": "af986738a5ad20e5bcb736ee4ad9d74fce465aa37df18943e3e8123aa96f3e9b",
+      "gitBlob": "8123117d07475ffbba9171be8cbeab6b4218220d",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "error",
+      "nativeScenario": "read-unavailable",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Current article read unavailable beside the historical unavailable receipt; retained price31 and save control are visible. No current-confirmed or empty-current claim; disabled behavior is established by native assertions."
+    },
+    {
+      "originalCaptureId": "9",
+      "captureId": "9",
+      "nativePath": "playwright-report/35-7-p/article-1440x900/receipt-read-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/9.png",
+      "sha256": "e8ae5ccae03aabbfb94d6ee3c297e6958bd5996507e99fc334dbf035d7d1843b",
+      "gitBlob": "79405a15511af2ce8ec824985b938cc25043b2c9",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "loading",
+      "nativeScenario": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Historical receipt plus separately pending current reread; exact controlled transport and source-derived pending guards, not mutation-busy."
+    },
+    {
+      "originalCaptureId": "a",
+      "captureId": "a",
+      "nativePath": "playwright-report/35-7-p/article-1440x900/stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/a.png",
+      "sha256": "64b116897345227e904cfa7cfd8b19f8b7da55dc9bd4034d4d9be08c06915318",
+      "gitBlob": "ae7192c5d97d281dadb9d7fa4ab6f3dad5d7f057",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Rejected stale draft retains old values beside independently newer facts; deliberate review/adoption required."
+    },
+    {
+      "originalCaptureId": "b",
+      "captureId": "b",
+      "nativePath": "playwright-report/35-7-p/article-360x640/archived-restore.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/b.png",
+      "sha256": "17da2cca5e5b42671e3d21e7dcc8b5a27afbaf26a464749bbae02699a1f926d5",
+      "gitBlob": "041f0dc1cb8fb23806a16147edccdad68f058c75",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "archived-restore",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Archived row and restore control; not the restored active result."
+    },
+    {
+      "originalCaptureId": "c",
+      "captureId": "c",
+      "nativePath": "playwright-report/35-7-p/article-360x640/current-missing-draft.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/c.png",
+      "sha256": "2db68358d760572fd8b6fcb3c26a85d9d1c5612ab6dfc2e75e9e035679efde6b",
+      "gitBlob": "05d58673a404c4a90a478661d1e0af939976a3a5",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "empty",
+      "nativeScenario": "current-missing-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Full viewport of retained local31 during independently established missing-current target."
+    },
+    {
+      "originalCaptureId": "d",
+      "captureId": "d",
+      "nativePath": "playwright-report/35-7-p/article-360x640/current-missing-empty.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/d.png",
+      "sha256": "ee1566ae92a854511f6182fef47a2a1f809b5edd7ff2e702fa102db36c3aaecf",
+      "gitBlob": "11a50b6af23018b0cc1f6191eded60c81441075f",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "empty",
+      "nativeScenario": "current-missing-empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Successful independent current read establishes target missing beside retained historical receipt; not a successful mutation result."
+    },
+    {
+      "originalCaptureId": "e",
+      "captureId": "e",
+      "nativePath": "playwright-report/35-7-p/article-360x640/current-newer-draft.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/e.png",
+      "sha256": "d19a876fb6b1e9840a2afb40992864beb278f400090396d3af27b1c03e67058b",
+      "gitBlob": "f42f7fecb12b79ccbf5bbfbb461f9e7d2f418b5b",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "current-newer-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Retained local31 supplement for the current-newer scenario; not proof of pixel identity with the overview."
+    },
+    {
+      "originalCaptureId": "f",
+      "captureId": "f",
+      "nativePath": "playwright-report/35-7-p/article-360x640/current-newer.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/f.png",
+      "sha256": "c1f91bb1cd1a1723b8f07242354739d8b4b2aaee81a38542a2638c5c1cd6bf06",
+      "gitBlob": "c49de8c337255b1bd6ed67f4fff371654b84c50e",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "current-newer",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Historical receipt completed but current41 differs from retained local31; not current confirmation of own write."
+    },
+    {
+      "originalCaptureId": "g",
+      "captureId": "g",
+      "nativePath": "playwright-report/35-7-p/article-360x640/empty.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/g.png",
+      "sha256": "a118627a2abd926cfef09f66d3db65b90ed39210c820ade4ab6455613fc8b13c",
+      "gitBlob": "c7a260c90e4e17d843a9feee5cfc9885cc409ae6",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "empty",
+      "nativeScenario": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Successfully absent singleton/active list and its create form; not read failure."
+    },
+    {
+      "originalCaptureId": "h",
+      "captureId": "h",
+      "nativePath": "playwright-report/35-7-p/article-360x640/error.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/h.png",
+      "sha256": "c66009bcc7c3a62e4a6473b1d0afd3652f918a1ab543943468511f7fc406d714",
+      "gitBlob": "16443d4e466060fd566a37b5662dfd13b0336fbb",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "error",
+      "nativeScenario": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Local field validation feedback; not current-read failure."
+    },
+    {
+      "originalCaptureId": "i",
+      "captureId": "i",
+      "nativePath": "playwright-report/35-7-p/article-360x640/finished.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/i.png",
+      "sha256": "d597306286175b447375b4c7c6c3c9ae938f81a96be9afe11b591a9e4d81bb5b",
+      "gitBlob": "fa03f475f9b5ff873870321cc18226d89e1f282d",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Settled rendered view; article/role require current-confirmed sentence and terms approved status. Finished label alone never proves mutation success."
+    },
+    {
+      "originalCaptureId": "j",
+      "captureId": "j",
+      "nativePath": "playwright-report/35-7-p/article-360x640/loading.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/j.png",
+      "sha256": "d3656a315f45d4c1fc1a86c6a36a87f90b0142934c0b5188f8b8eeff08138b8f",
+      "gitBlob": "3c918160c478af8f05b962d1160386ae9a716acd",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "loading",
+      "nativeScenario": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Actual initial save transport pending; form save-busy renderer."
+    },
+    {
+      "originalCaptureId": "k",
+      "captureId": "k",
+      "nativePath": "playwright-report/35-7-p/article-360x640/neighbor-stale-draft.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/k.png",
+      "sha256": "19338bfc1d890960b843ba7466abe60faf7cb2d246f1421c7e42a440d22d175f",
+      "gitBlob": "4f2f97fd4bf1cf317c2b1ddd4e2908dbc30b6ca5",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "neighbor-stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Additional full viewport of neighbor-refresh retained draft."
+    },
+    {
+      "originalCaptureId": "l",
+      "captureId": "l",
+      "nativePath": "playwright-report/35-7-p/article-360x640/neighbor-stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/l.png",
+      "sha256": "c8fe038edebf62e6df05fdb91ca6540d324b3ab993d5526b7515b29524232c17",
+      "gitBlob": "1c67ae81cbdc32d9d2d0a48167068a443588af0a",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "neighbor-stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Neighbor success rereads facts without replacing original draft/revision."
+    },
+    {
+      "originalCaptureId": "m",
+      "captureId": "m",
+      "nativePath": "playwright-report/35-7-p/article-360x640/read-unavailable-draft.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/m.png",
+      "sha256": "c2bc405a494a1911d97559a21cc7b83cbbf9ca4b02ae843b0c21224d65d9e6a0",
+      "gitBlob": "3cb142456a5eea9efe753ae0bea86e8c59c37ece",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "error",
+      "nativeScenario": "read-unavailable-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Phone article draft supplement: scoped unavailable alert, historical receipt and retained article price31 are visible. Spara artikel and New are below this viewport; no save-control pixel credit."
+    },
+    {
+      "originalCaptureId": "n",
+      "captureId": "n",
+      "nativePath": "playwright-report/35-7-p/article-360x640/read-unavailable.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/n.png",
+      "sha256": "d21f842e71690af027c72a50f74c1acf6c245bd1ea865ea6782f032fed88ab73",
+      "gitBlob": "2125099833fe7f03e2ddaf375fd955c696ffa84d",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "error",
+      "nativeScenario": "read-unavailable",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Phone article unavailable overview: scoped alert, historical unavailable receipt and retained article name are visible. Price31 is supplied by companion m; Spara artikel is below both phone unavailable frames."
+    },
+    {
+      "originalCaptureId": "o",
+      "captureId": "o",
+      "nativePath": "playwright-report/35-7-p/article-360x640/receipt-read-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/o.png",
+      "sha256": "f95242d1eb807f61af5bf5489f69d60d466e26410a74ac1b65ebc774954c1e30",
+      "gitBlob": "829511f9c6441dcb1dbd087e4212dae465ef9def",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "loading",
+      "nativeScenario": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Historical receipt plus separately pending current reread; exact controlled transport and source-derived pending guards, not mutation-busy."
+    },
+    {
+      "originalCaptureId": "p",
+      "captureId": "p",
+      "nativePath": "playwright-report/35-7-p/article-360x640/stale-draft.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/p.png",
+      "sha256": "4d82ab8a18363b191aabc7298fadf3d61fb02975f1c38f29c4bd8e14c88f9145",
+      "gitBlob": "555381895a506e4985b1b643c4b4282a7f410856",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Additional full viewport of retained stale draft, same scenario."
+    },
+    {
+      "originalCaptureId": "q",
+      "captureId": "q",
+      "nativePath": "playwright-report/35-7-p/article-360x640/stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/q.png",
+      "sha256": "5da7f823b95274f95935e5774e3f3fb3c5b2299ec8a45624d4e9349b3a4f40b9",
+      "gitBlob": "f0c229bf9147832a0a1161c4f55170774a7c09ba",
+      "route": "/settings/pricing",
+      "surface": "a",
+      "state": "finished",
+      "nativeScenario": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Rejected stale draft retains old values beside independently newer facts; deliberate review/adoption required."
+    },
+    {
+      "originalCaptureId": "r",
+      "captureId": "r",
+      "nativePath": "playwright-report/35-7-p/company-1440x900/empty.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/r.png",
+      "sha256": "6bb2d7728cdc0e1fffb61ccd797a65ac0a735ccce161a2e1f01c7aae8ebda151",
+      "gitBlob": "d9cf152626352b8aa6347e668f580d7873b52631",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "empty",
+      "nativeScenario": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Successfully absent singleton/active list and its create form; not read failure."
+    },
+    {
+      "originalCaptureId": "s",
+      "captureId": "s",
+      "nativePath": "playwright-report/35-7-p/company-1440x900/error.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/s.png",
+      "sha256": "fdda8d53cb2fa63fb3960012ee9635132741a99c6433d5c0251afdf055d00b09",
+      "gitBlob": "936b22ffa5b7da448508d06d503ee2efd5df953d",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "error",
+      "nativeScenario": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Local field validation feedback; not current-read failure."
+    },
+    {
+      "originalCaptureId": "t",
+      "captureId": "t",
+      "nativePath": "playwright-report/35-7-p/company-1440x900/finished.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/t.png",
+      "sha256": "63b2ce9fe5b44f8e99fadf3cbf3b3acde887681163ab4d67d22e2050200f8caa",
+      "gitBlob": "3c3eb571bf7e79f08623f9061cb18fd5c0597d0d",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "finished",
+      "nativeScenario": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Settled rendered view; article/role require current-confirmed sentence and terms approved status. Finished label alone never proves mutation success."
+    },
+    {
+      "originalCaptureId": "u",
+      "captureId": "u",
+      "nativePath": "playwright-report/35-7-p/company-1440x900/loading.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/u.png",
+      "sha256": "bf315de508130b2f3948d41d086c8f2077a3353131b7b23f944c1fa49eb0e896",
+      "gitBlob": "745cfa754cb1319d755679ef183cea8f1780c9be",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "loading",
+      "nativeScenario": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Actual initial save transport pending; form save-busy renderer."
+    },
+    {
+      "originalCaptureId": "v",
+      "captureId": "v",
+      "nativePath": "playwright-report/35-7-p/company-1440x900/read-unavailable.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/v.png",
+      "sha256": "fc8b01bbc6ada5d6d7a1d9f9dff20539e43dd6ca69250bb0dfc5c68d8e6153c6",
+      "gitBlob": "c7d676e1e6f37d826eb83e6611e1b6f2276a76d5",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "error",
+      "nativeScenario": "read-unavailable",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Current company-settings read unavailable: server-read error, historical receipt and retained company-name draft are visible. Neither empty nor missing is established; form disablement is native assertion evidence."
+    },
+    {
+      "originalCaptureId": "w",
+      "captureId": "w",
+      "nativePath": "playwright-report/35-7-p/company-1440x900/receipt-read-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/w.png",
+      "sha256": "991ca7de40af2931b05f8818db5297b8a40cbff59acbb3469045abec861225f8",
+      "gitBlob": "7374613b438266763be74d3790fae29b029cd8c3",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "loading",
+      "nativeScenario": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Historical receipt plus separately pending current reread; exact controlled transport and source-derived pending guards, not mutation-busy."
+    },
+    {
+      "originalCaptureId": "x",
+      "captureId": "x",
+      "nativePath": "playwright-report/35-7-p/company-1440x900/reconcile-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/x.png",
+      "sha256": "260068b172daa794630b71ef59ec1e3cf97f2519d5c930feb1a23178b34917e4",
+      "gitBlob": "ace9cdae73a801c71bc83477a2d0d693c2248b99",
+      "route": "/settings/company",
+      "surface": "u",
+      "state": "loading",
+      "nativeScenario": "reconcile-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Held reconciliation with native-disabled recovery controls; no visibly changed busy text/spinner is claimed. Not inline save-busy or current-read pending."
+    },
+    {
+      "originalCaptureId": "y",
+      "captureId": "y",
+      "nativePath": "playwright-report/35-7-p/company-1440x900/refresh-notice.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/y.png",
+      "sha256": "97d3a988df0d1336a9fa3847c695ebd4c4726fb393e9e49c47dc899223d4e242",
+      "gitBlob": "43097da6647cdafd43a06e5cb3fa84e251c00ceb",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "loading",
+      "nativeScenario": "refresh-notice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Actual stale-review GET refresh notice; not the committed receipt/current-read-pending phase."
+    },
+    {
+      "originalCaptureId": "z",
+      "captureId": "z",
+      "nativePath": "playwright-report/35-7-p/company-1440x900/stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/z.png",
+      "sha256": "417b4ec4e76fa9e81d034d5919c2f815a4ebe915221eb00eb9d929425193a122",
+      "gitBlob": "e6814a44991803b5b4886776681c498fbaf812ab",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "finished",
+      "nativeScenario": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Rejected stale draft retains old values beside independently newer facts; deliberate review/adoption required."
+    },
+    {
+      "originalCaptureId": "A",
+      "captureId": "10",
+      "nativePath": "playwright-report/35-7-p/company-1440x900/unknown.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/10.png",
+      "sha256": "260068b172daa794630b71ef59ec1e3cf97f2519d5c930feb1a23178b34917e4",
+      "gitBlob": "ace9cdae73a801c71bc83477a2d0d693c2248b99",
+      "route": "/settings/company",
+      "surface": "u",
+      "state": "finished",
+      "nativeScenario": "unknown",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Unconfirmed immutable attempt; rendered finished means settled view, never successful mutation. Shared recovery controls have no busy-text indicator."
+    },
+    {
+      "originalCaptureId": "B",
+      "captureId": "11",
+      "nativePath": "playwright-report/35-7-p/company-360x640/empty.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/11.png",
+      "sha256": "57ec88427dab6fcd60cb1702a090baf59cba0b258c4a467dd2894f537d62f8b2",
+      "gitBlob": "9fa296a2ff0856889929ade0cdb898995738a5c9",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "empty",
+      "nativeScenario": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Successfully absent singleton/active list and its create form; not read failure."
+    },
+    {
+      "originalCaptureId": "C",
+      "captureId": "12",
+      "nativePath": "playwright-report/35-7-p/company-360x640/error.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/12.png",
+      "sha256": "af3641d5a73deeb561efd5e21b657f64727c3cab2d0c394c809739cdf954c761",
+      "gitBlob": "48c57b6359d0369440f4c4b360e19edf87cec224",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "error",
+      "nativeScenario": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Local field validation feedback; not current-read failure."
+    },
+    {
+      "originalCaptureId": "D",
+      "captureId": "13",
+      "nativePath": "playwright-report/35-7-p/company-360x640/finished.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/13.png",
+      "sha256": "cf71ccfebf32f46fd89e56fefcd386c5956134ca9cef51a46fd8b84f0566eebf",
+      "gitBlob": "e89ca71b3149fd072181c68691f6dbcd4f946818",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "finished",
+      "nativeScenario": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Settled rendered view; article/role require current-confirmed sentence and terms approved status. Finished label alone never proves mutation success."
+    },
+    {
+      "originalCaptureId": "E",
+      "captureId": "14",
+      "nativePath": "playwright-report/35-7-p/company-360x640/loading.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/14.png",
+      "sha256": "d758a57ce86757f3ece6fbaf7e33bb2ce89b66f99be85eb6b4f4495cae95d0b7",
+      "gitBlob": "722ce11e157c57fff1cb0f9a61a6a1144e94264a",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "loading",
+      "nativeScenario": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Actual initial save transport pending; form save-busy renderer."
+    },
+    {
+      "originalCaptureId": "F",
+      "captureId": "15",
+      "nativePath": "playwright-report/35-7-p/company-360x640/read-unavailable-draft.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/15.png",
+      "sha256": "7933beaa84e30a57955f947d39b9ce075ed947df6adcb9a4f5bcd553417a9c07",
+      "gitBlob": "ee563d59be1dd30550088572158a0b53e239a620",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "error",
+      "nativeScenario": "read-unavailable-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Phone company-name draft remains beside the server-read error and historical receipt during unavailable settings read. Lower controls are outside this viewport; no article-price or save-control claim."
+    },
+    {
+      "originalCaptureId": "G",
+      "captureId": "16",
+      "nativePath": "playwright-report/35-7-p/company-360x640/read-unavailable.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/16.png",
+      "sha256": "bb73fd6387874223bf345ab4280eac53e9ed90fcc1ba4fe0dd7f613f8b6035f5",
+      "gitBlob": "a0e5f93b62485caf596c3ec3f1794cd225531b66",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "error",
+      "nativeScenario": "read-unavailable",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Phone company-settings unavailable overview retains the company-name draft, server-read error and historical receipt. Lower save control is outside the viewport; disabled behavior comes from native assertions."
+    },
+    {
+      "originalCaptureId": "H",
+      "captureId": "17",
+      "nativePath": "playwright-report/35-7-p/company-360x640/receipt-read-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/17.png",
+      "sha256": "1a279af7b09d72392a05cca67b241c00dc3344f8264314875e16bd50c2407065",
+      "gitBlob": "184854026bcbeeae51d413a6559db96c11f619fd",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "loading",
+      "nativeScenario": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Historical receipt plus separately pending current reread; exact controlled transport and source-derived pending guards, not mutation-busy."
+    },
+    {
+      "originalCaptureId": "I",
+      "captureId": "18",
+      "nativePath": "playwright-report/35-7-p/company-360x640/reconcile-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/18.png",
+      "sha256": "281c07afe8fe4dcfa1b56021924540fcf8717b24607b40542b2d3befddc615f8",
+      "gitBlob": "d611f03c35a7e147066626bce3f8a1c0b7b07cf4",
+      "route": "/settings/company",
+      "surface": "u",
+      "state": "loading",
+      "nativeScenario": "reconcile-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Held reconciliation with native-disabled recovery controls; no visibly changed busy text/spinner is claimed. Not inline save-busy or current-read pending."
+    },
+    {
+      "originalCaptureId": "J",
+      "captureId": "19",
+      "nativePath": "playwright-report/35-7-p/company-360x640/refresh-notice.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/19.png",
+      "sha256": "a5ec40b922ea97774526771bccac91cea1dc70d603e11c5cfaad33499a617172",
+      "gitBlob": "067710dd74e89ceec2aa2e787b3a7e4257a1c938",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "loading",
+      "nativeScenario": "refresh-notice",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Actual stale-review GET refresh notice; not the committed receipt/current-read-pending phase."
+    },
+    {
+      "originalCaptureId": "K",
+      "captureId": "1a",
+      "nativePath": "playwright-report/35-7-p/company-360x640/stale-draft.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1a.png",
+      "sha256": "b4527df6d1c9ce821e2532296f4c913be78a88eb24e7ea0d8135a60bcf2c2e04",
+      "gitBlob": "999a549401ebefe49499e6e30c7a192747d9f8e1",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "finished",
+      "nativeScenario": "stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Additional full viewport of retained stale draft, same scenario."
+    },
+    {
+      "originalCaptureId": "L",
+      "captureId": "1b",
+      "nativePath": "playwright-report/35-7-p/company-360x640/stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1b.png",
+      "sha256": "87d18b63de4cd1c96b3ff0540359d957b6127a42dff760527a5cb2b9b031df73",
+      "gitBlob": "4c03e1edf41f6e2b8d0913547d055dc57b10922a",
+      "route": "/settings/company",
+      "surface": "c",
+      "state": "finished",
+      "nativeScenario": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Rejected stale draft retains old values beside independently newer facts; deliberate review/adoption required."
+    },
+    {
+      "originalCaptureId": "M",
+      "captureId": "1c",
+      "nativePath": "playwright-report/35-7-p/company-360x640/unknown.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1c.png",
+      "sha256": "281c07afe8fe4dcfa1b56021924540fcf8717b24607b40542b2d3befddc615f8",
+      "gitBlob": "d611f03c35a7e147066626bce3f8a1c0b7b07cf4",
+      "route": "/settings/company",
+      "surface": "u",
+      "state": "finished",
+      "nativeScenario": "unknown",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Unconfirmed immutable attempt; rendered finished means settled view, never successful mutation. Shared recovery controls have no busy-text indicator."
+    },
+    {
+      "originalCaptureId": "N",
+      "captureId": "1d",
+      "nativePath": "playwright-report/35-7-p/terms-1440x900/dirty-approval-disabled.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1d.png",
+      "sha256": "971662132c42ee1f4a759a42b27bb9743f475ddc92275ca342de949b33a4b281",
+      "gitBlob": "36552714f6eb7faa03ee84b822526ea9faaaa8d1",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "finished",
+      "nativeScenario": "dirty-approval-disabled",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Unsaved wording remains; explicit approval disabled."
+    },
+    {
+      "originalCaptureId": "O",
+      "captureId": "1e",
+      "nativePath": "playwright-report/35-7-p/terms-1440x900/empty.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1e.png",
+      "sha256": "d0c420c195486e8ade62fd9bc6c95141a1722c0e06b66f25a8f8fa457db41d63",
+      "gitBlob": "cdbe3af5e65943137e0fe503faef6e4f5a5e9552",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "empty",
+      "nativeScenario": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Successfully absent singleton/active list and its create form; not read failure."
+    },
+    {
+      "originalCaptureId": "P",
+      "captureId": "1f",
+      "nativePath": "playwright-report/35-7-p/terms-1440x900/error.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1f.png",
+      "sha256": "caec8bbaa827dc979e84eedc139be338459456861cdec11a14a74150b8690a59",
+      "gitBlob": "79f4930283f387bac86636f3ed535aa724a782a7",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "error",
+      "nativeScenario": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Local field validation feedback; not current-read failure."
+    },
+    {
+      "originalCaptureId": "Q",
+      "captureId": "1g",
+      "nativePath": "playwright-report/35-7-p/terms-1440x900/finished.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1g.png",
+      "sha256": "10123fbf49feaad53d9552b3ea91e9b45b0420c82a108b8510980956c9f5a241",
+      "gitBlob": "9fa7382ff1b7a92dd911a985eaf545d7fe651354",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "finished",
+      "nativeScenario": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Settled rendered view; article/role require current-confirmed sentence and terms approved status. Finished label alone never proves mutation success."
+    },
+    {
+      "originalCaptureId": "R",
+      "captureId": "1h",
+      "nativePath": "playwright-report/35-7-p/terms-1440x900/read-unavailable.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1h.png",
+      "sha256": "afe5e39864da5994b3d283e7b417c0da4d2bb3fba8ffff9e1ab886ee6cdc0668",
+      "gitBlob": "ab3240184e026ecf3b478cb4339ea93a2d99e909",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "error",
+      "nativeScenario": "read-unavailable",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Current quote-terms read unavailable: server-read error, not-approved warning, historical terms-save receipt and retained wording are visible. Saving alone did not approve terms."
+    },
+    {
+      "originalCaptureId": "S",
+      "captureId": "1i",
+      "nativePath": "playwright-report/35-7-p/terms-1440x900/receipt-read-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1i.png",
+      "sha256": "67e62ae90cfea0da5dd2bcf5811823e6cd2ef82cc28a1cefc45b074fb5029fa1",
+      "gitBlob": "c31412b114de36c33f0e06c6b4041710c0df6b15",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "loading",
+      "nativeScenario": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Historical receipt plus separately pending current reread; exact controlled transport and source-derived pending guards, not mutation-busy."
+    },
+    {
+      "originalCaptureId": "T",
+      "captureId": "1j",
+      "nativePath": "playwright-report/35-7-p/terms-1440x900/retry-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1j.png",
+      "sha256": "3a9b74b150492ced99ff4cd7e35759de15898e764d22d397d0f98d6b5bcce402",
+      "gitBlob": "05025499fb1ffc3dd999f737d631ada277b3c600",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "loading",
+      "nativeScenario": "retry-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Actual held same-attempt terms save retry; own terms save-busy submit visible. Not initial request, not current reread."
+    },
+    {
+      "originalCaptureId": "U",
+      "captureId": "1k",
+      "nativePath": "playwright-report/35-7-p/terms-1440x900/saved-unapproved.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1k.png",
+      "sha256": "50589e0ad85516f984c522a87277e5529646740a0922b27d4bdb7dce9e56ddfe",
+      "gitBlob": "60b8365835cbeb345147fff96b88d3e80021a623",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "finished",
+      "nativeScenario": "saved-unapproved",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Historical terms-save receipt exists; saving did not approve terms."
+    },
+    {
+      "originalCaptureId": "V",
+      "captureId": "1l",
+      "nativePath": "playwright-report/35-7-p/terms-1440x900/stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1l.png",
+      "sha256": "e83c544361ca983449f3cf026359a6887fd7fa692641e81ceb6d2a1505faeb8c",
+      "gitBlob": "cd80851026fcdfee0ab02a10e7d3085e7b81bd08",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "finished",
+      "nativeScenario": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Rejected stale draft retains old values beside independently newer facts; deliberate review/adoption required."
+    },
+    {
+      "originalCaptureId": "W",
+      "captureId": "1m",
+      "nativePath": "playwright-report/35-7-p/terms-360x640/dirty-approval-disabled.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1m.png",
+      "sha256": "2d097d76eb857907c811b114895d7318f8b0910b33331f6ec615e132888fec67",
+      "gitBlob": "b27a8da11aefad617ae08627dda5032f5a301340",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "finished",
+      "nativeScenario": "dirty-approval-disabled",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Unsaved wording remains; explicit approval disabled."
+    },
+    {
+      "originalCaptureId": "X",
+      "captureId": "1n",
+      "nativePath": "playwright-report/35-7-p/terms-360x640/empty.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1n.png",
+      "sha256": "a90abfde99edef8c32c3736cc6fd22c1ee03013369f8c0a636bf7ff5f0c25012",
+      "gitBlob": "d8598461eb637fa525c1b5ff7d873c78fec7ef10",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "empty",
+      "nativeScenario": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Successfully absent singleton/active list and its create form; not read failure."
+    },
+    {
+      "originalCaptureId": "Y",
+      "captureId": "1o",
+      "nativePath": "playwright-report/35-7-p/terms-360x640/error.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1o.png",
+      "sha256": "aa9a35cef92242f917e914c8d9b4a2f136ad964b1984b6ee6961cf354eb6498a",
+      "gitBlob": "ae36ebffe681c2f1e473c7f5353de0775f435051",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "error",
+      "nativeScenario": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Local field validation feedback; not current-read failure."
+    },
+    {
+      "originalCaptureId": "Z",
+      "captureId": "1p",
+      "nativePath": "playwright-report/35-7-p/terms-360x640/finished.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1p.png",
+      "sha256": "c8d73dd9229e6037abc0cd9342e33ff64f2099e5108047f9ce77f8708aa0cc4c",
+      "gitBlob": "2e5f6f9a4fe26f5ed013b5eb52d51eddeca43e39",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "finished",
+      "nativeScenario": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Settled rendered view; article/role require current-confirmed sentence and terms approved status. Finished label alone never proves mutation success."
+    },
+    {
+      "originalCaptureId": "10",
+      "captureId": "1q",
+      "nativePath": "playwright-report/35-7-p/terms-360x640/read-unavailable-draft.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1q.png",
+      "sha256": "b1f9c623eb8ee32b4306bd61e74a48c0fe91d90c16d95fcd1a6bc7e7d4cd4d9c",
+      "gitBlob": "7a92f4bd34b2f1b932111748bb39c5b0e4b655aa",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "error",
+      "nativeScenario": "read-unavailable-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Phone terms draft supplement: retained quote-terms wording, historical receipt, not-approved warning and Spara villkor control are visible. The server-read alert is above this frame and supplied by primary1r; disabled semantics remain native proof."
+    },
+    {
+      "originalCaptureId": "11",
+      "captureId": "1r",
+      "nativePath": "playwright-report/35-7-p/terms-360x640/read-unavailable.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1r.png",
+      "sha256": "c75eebed7cd883c39365f7f194448208383f3b12ac881034bc5a03f738929a5a",
+      "gitBlob": "16b30a56035a5d17e46196dc41b4a1a1379efb2e",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "error",
+      "nativeScenario": "read-unavailable",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Phone quote-terms unavailable overview: server-read error, not-approved warning, historical receipt and retained terms wording are visible. Lower Save is outside this primary; companion1q shows it."
+    },
+    {
+      "originalCaptureId": "12",
+      "captureId": "1s",
+      "nativePath": "playwright-report/35-7-p/terms-360x640/receipt-read-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1s.png",
+      "sha256": "daf4670cf10c1bc7f3dead408b7deb0510c1559a916abb52d3f855f83e59aa89",
+      "gitBlob": "95a3d9441cad5a0adcd26b6cc7ebf38a6a45635d",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "loading",
+      "nativeScenario": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Historical receipt plus separately pending current reread; exact controlled transport and source-derived pending guards, not mutation-busy."
+    },
+    {
+      "originalCaptureId": "13",
+      "captureId": "1t",
+      "nativePath": "playwright-report/35-7-p/terms-360x640/retry-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1t.png",
+      "sha256": "e88390f188037b709109f262a6493a767e304c3204b3e4a92d0c98a63891d632",
+      "gitBlob": "9a846e9ed7c6cac9ef5e775884c3e49fe08b88af",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "loading",
+      "nativeScenario": "retry-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Actual held same-attempt terms save retry; own terms save-busy submit visible. Not initial request, not current reread."
+    },
+    {
+      "originalCaptureId": "14",
+      "captureId": "1u",
+      "nativePath": "playwright-report/35-7-p/terms-360x640/saved-unapproved.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1u.png",
+      "sha256": "47469f936916667bc56479ada0c199848c9ddd17392ad44924e832252e89defc",
+      "gitBlob": "4af03a5ba01c57a25f03fa715e42a733619e4b17",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "finished",
+      "nativeScenario": "saved-unapproved",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Historical terms-save receipt exists; saving did not approve terms."
+    },
+    {
+      "originalCaptureId": "15",
+      "captureId": "1v",
+      "nativePath": "playwright-report/35-7-p/terms-360x640/stale-draft.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1v.png",
+      "sha256": "4d187722e38aa5fea69ba3fc1c6ce97856bee2130b997112593196d19b5c21c1",
+      "gitBlob": "b65269e9a73d14b16b3039d5e028d36205b0fb14",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "finished",
+      "nativeScenario": "stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Additional full viewport of retained stale draft, same scenario."
+    },
+    {
+      "originalCaptureId": "16",
+      "captureId": "1w",
+      "nativePath": "playwright-report/35-7-p/terms-360x640/stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1w.png",
+      "sha256": "7cca72dd4fc506a6dc9d7d84cffd9bc864542ba34ccb98d60ed0852656d955d6",
+      "gitBlob": "e69f7b67448fd935e17450e9be524f7436db5281",
+      "route": "/settings/quote-terms",
+      "surface": "t",
+      "state": "finished",
+      "nativeScenario": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Rejected stale draft retains old values beside independently newer facts; deliberate review/adoption required."
+    },
+    {
+      "originalCaptureId": "17",
+      "captureId": "1x",
+      "nativePath": "playwright-report/35-7-p/work-role-1440x900/archived-restore.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1x.png",
+      "sha256": "0504e65cbecfecfadba6245f7df89fa486a7a2bec7828bcd32ac108d45b9c1ae",
+      "gitBlob": "efa2627cd00c7b15a74bf3fac58b554e214ceacb",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "finished",
+      "nativeScenario": "archived-restore",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Archived row and restore control; not the restored active result."
+    },
+    {
+      "originalCaptureId": "18",
+      "captureId": "1y",
+      "nativePath": "playwright-report/35-7-p/work-role-1440x900/current-newer.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1y.png",
+      "sha256": "4ce4163d155492a2992caeece43174aa3b35065add957d07ae84b3fffebcca7f",
+      "gitBlob": "feb7a5c9b1d807bc98821bf831922a23618f6c6c",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "finished",
+      "nativeScenario": "current-newer",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Historical receipt completed but current41 differs from retained local31; not current confirmation of own write."
+    },
+    {
+      "originalCaptureId": "19",
+      "captureId": "1z",
+      "nativePath": "playwright-report/35-7-p/work-role-1440x900/empty.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/1z.png",
+      "sha256": "a770445c480ac5d1a8b0fef8217c78f7354d4d93b8e76e20d1472f91c7140f20",
+      "gitBlob": "47f282e271ad8546ec35864ab63c92540b1fb8f1",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "empty",
+      "nativeScenario": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Successfully absent singleton/active list and its create form; not read failure."
+    },
+    {
+      "originalCaptureId": "1a",
+      "captureId": "20",
+      "nativePath": "playwright-report/35-7-p/work-role-1440x900/error.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/20.png",
+      "sha256": "362149ad8ac8edc1dc6f2782b83f92f0ebeebe5c9493f6f3579c83821887b07a",
+      "gitBlob": "30f7916e05cd76c11608c6f09275b15ed840b3f6",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "error",
+      "nativeScenario": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Local field validation feedback; not current-read failure."
+    },
+    {
+      "originalCaptureId": "1b",
+      "captureId": "21",
+      "nativePath": "playwright-report/35-7-p/work-role-1440x900/finished.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/21.png",
+      "sha256": "bbe9ba50accc85e78b5280632fe045227dfe9c7e18ed47e149fc6f45d7214422",
+      "gitBlob": "3bf5efcdbfcd9d934b631bd0db5d6658e542c544",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "finished",
+      "nativeScenario": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Settled rendered view; article/role require current-confirmed sentence and terms approved status. Finished label alone never proves mutation success."
+    },
+    {
+      "originalCaptureId": "1c",
+      "captureId": "22",
+      "nativePath": "playwright-report/35-7-p/work-role-1440x900/loading.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/22.png",
+      "sha256": "64e94f18e5168bbeb02461010bc22c53b818bb7e511f2c585da9638471a3a627",
+      "gitBlob": "fa28bb7020a85fb03a2bbe9908f3051aaa26cb47",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "loading",
+      "nativeScenario": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Actual initial save transport pending; form save-busy renderer."
+    },
+    {
+      "originalCaptureId": "1d",
+      "captureId": "23",
+      "nativePath": "playwright-report/35-7-p/work-role-1440x900/neighbor-stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/23.png",
+      "sha256": "399d810e769127857a6edf4ce269d8b4cb923280241548904f54d14369913a15",
+      "gitBlob": "bd8dda9776144ca83b5ae1837665f16023df7a76",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "finished",
+      "nativeScenario": "neighbor-stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Neighbor success rereads facts without replacing original draft/revision."
+    },
+    {
+      "originalCaptureId": "1e",
+      "captureId": "24",
+      "nativePath": "playwright-report/35-7-p/work-role-1440x900/read-unavailable.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/24.png",
+      "sha256": "39c82ad9a26c673e2ae13c72af7c00560ffc91309b0645933ca03338f25ea2aa",
+      "gitBlob": "2671a14fb3fcd3daa394412fb8c8ac93666a3a61",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "error",
+      "nativeScenario": "read-unavailable",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Work-role unavailable overview: scoped read-error alert, historical unavailable receipt, retained role price31 and save/new controls are visible. No current-confirmed or empty-current claim; native assertions establish disablement."
+    },
+    {
+      "originalCaptureId": "1f",
+      "captureId": "25",
+      "nativePath": "playwright-report/35-7-p/work-role-1440x900/receipt-read-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/25.png",
+      "sha256": "a83b866d8e0315ab8b66dc0f1241c446a705e78606cb932eb4144d72b82a0026",
+      "gitBlob": "de115d85228a9389a90a3105c9353c178eb227f1",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "loading",
+      "nativeScenario": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Historical receipt plus separately pending current reread; exact controlled transport and source-derived pending guards, not mutation-busy."
+    },
+    {
+      "originalCaptureId": "1g",
+      "captureId": "26",
+      "nativePath": "playwright-report/35-7-p/work-role-1440x900/stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/26.png",
+      "sha256": "55ea92c3be7402daa7bc8eecbb7a9c77bee43d5f491fcd74db63fd307fcd103f",
+      "gitBlob": "a51c56661c04cb882a0da9dadbba3a5057efafe8",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "finished",
+      "nativeScenario": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "namedView": "Rejected stale draft retains old values beside independently newer facts; deliberate review/adoption required."
+    },
+    {
+      "originalCaptureId": "1h",
+      "captureId": "27",
+      "nativePath": "playwright-report/35-7-p/work-role-360x640/archived-restore.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/27.png",
+      "sha256": "6240603a1ff7c697b2af168591045dcc526e9e81b77e3ddce27c9f9badfcc551",
+      "gitBlob": "ef22030e0b923e9235763e5f284e3fb9d2c8f877",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "finished",
+      "nativeScenario": "archived-restore",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Archived row and restore control; not the restored active result."
+    },
+    {
+      "originalCaptureId": "1i",
+      "captureId": "28",
+      "nativePath": "playwright-report/35-7-p/work-role-360x640/current-newer.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/28.png",
+      "sha256": "14b56c121b4f1d7464702c5dd6cd56d2ccdc02ea75f51956ffa7ff12ba6e8d90",
+      "gitBlob": "14f503b8b8a44beb5ae369fa2c446ab2a2b7ab97",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "finished",
+      "nativeScenario": "current-newer",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Historical receipt completed but current41 differs from retained local31; not current confirmation of own write."
+    },
+    {
+      "originalCaptureId": "1j",
+      "captureId": "29",
+      "nativePath": "playwright-report/35-7-p/work-role-360x640/empty.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/29.png",
+      "sha256": "5c64e480bbbc4cc5687e0137d564aa1df83a3e0a3e212620ebee2f1676697296",
+      "gitBlob": "c2044b8cdb8d413bfb5c6600d87b00e1ce9d9f3d",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "empty",
+      "nativeScenario": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Successfully absent singleton/active list and its create form; not read failure."
+    },
+    {
+      "originalCaptureId": "1k",
+      "captureId": "2a",
+      "nativePath": "playwright-report/35-7-p/work-role-360x640/error.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/2a.png",
+      "sha256": "3ceedb286318bc0a08bfc513ad289b76876f83480b8c431432f4a6c32a7bda39",
+      "gitBlob": "27e9f776180c77068896b4657dc5804b3cf8c371",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "error",
+      "nativeScenario": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Local field validation feedback; not current-read failure."
+    },
+    {
+      "originalCaptureId": "1l",
+      "captureId": "2b",
+      "nativePath": "playwright-report/35-7-p/work-role-360x640/finished.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/2b.png",
+      "sha256": "a0df602e72f61d61feca93ed9362fadf65597f23720c8aae6174cc39d78e7afd",
+      "gitBlob": "1fef03f31250c8135cc54c1ff5de200a0bc84ff5",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "finished",
+      "nativeScenario": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Settled rendered view; article/role require current-confirmed sentence and terms approved status. Finished label alone never proves mutation success."
+    },
+    {
+      "originalCaptureId": "1m",
+      "captureId": "2c",
+      "nativePath": "playwright-report/35-7-p/work-role-360x640/loading.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/2c.png",
+      "sha256": "15862480ebf85c7ee9fbc5e920c6c4a812abebce2c43f6d3740853eb21b516cd",
+      "gitBlob": "f5a6e526305fef3c2a649aafea66d6bc22d732a7",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "loading",
+      "nativeScenario": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Actual initial save transport pending; form save-busy renderer."
+    },
+    {
+      "originalCaptureId": "1n",
+      "captureId": "2d",
+      "nativePath": "playwright-report/35-7-p/work-role-360x640/neighbor-stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/2d.png",
+      "sha256": "191f098e9d562719024b27894bcdbacaec99f1430b2e482849d3a6a0a8c85adf",
+      "gitBlob": "2f9c2115ac845518791d6892aa1b82eb77148e1d",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "finished",
+      "nativeScenario": "neighbor-stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Neighbor success rereads facts without replacing original draft/revision."
+    },
+    {
+      "originalCaptureId": "1o",
+      "captureId": "2e",
+      "nativePath": "playwright-report/35-7-p/work-role-360x640/read-unavailable-draft.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/2e.png",
+      "sha256": "53593a18d9e7ef26345717059377b3f67ec537b674293c3b1c7c6470878efb02",
+      "gitBlob": "1d6ae034772352cfa404a4680835ee78e4a202bc",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "error",
+      "nativeScenario": "read-unavailable-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Phone work-role draft supplement: scoped read-error alert, historical receipt, retained role price31/cost0 and Spara roll control are visible. This is role data, and disabled semantics remain native assertion evidence."
+    },
+    {
+      "originalCaptureId": "1p",
+      "captureId": "2f",
+      "nativePath": "playwright-report/35-7-p/work-role-360x640/read-unavailable.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/2f.png",
+      "sha256": "82ff7e6f64a4c6506e5c3b7625f19560a8bba883f254dd9003e5436cfa419713",
+      "gitBlob": "85face6c3794b060c6ee09352b99fd25821369de",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "error",
+      "nativeScenario": "read-unavailable",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Phone work-role unavailable overview: scoped alert, historical unavailable receipt, retained role price31/cost0 and Save/New controls are visible. Native assertions separately establish disabled behavior."
+    },
+    {
+      "originalCaptureId": "1q",
+      "captureId": "2g",
+      "nativePath": "playwright-report/35-7-p/work-role-360x640/receipt-read-pending.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/2g.png",
+      "sha256": "9cdfc6d5f93a23bfbb1ac7fe0c612f971b96210de4e5f5bc6fd11ddde7f429c2",
+      "gitBlob": "0d0783c48fab4fbe29fc0336e8a7d38e8df2752a",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "loading",
+      "nativeScenario": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Historical receipt plus separately pending current reread; exact controlled transport and source-derived pending guards, not mutation-busy."
+    },
+    {
+      "originalCaptureId": "1r",
+      "captureId": "2h",
+      "nativePath": "playwright-report/35-7-p/work-role-360x640/stale.png",
+      "publicationPath": "screenshots/9eed6c7f353a8a2096bb0d271074580a2e60bee1/2h.png",
+      "sha256": "b012113c4c6e99579786891e80edb586ce661300b89877407836039da975c6f0",
+      "gitBlob": "99d3ced91bb38fe4194bffa47fd7eb61b806cd6f",
+      "route": "/settings/pricing",
+      "surface": "r",
+      "state": "finished",
+      "nativeScenario": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "namedView": "Rejected stale draft retains old values beside independently newer facts; deliberate review/adoption required."
+    }
+  ]
+}
