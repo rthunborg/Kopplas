@@ -208,6 +208,7 @@ import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
 import { createTwoTenantFixture, cleanupFixture, makeAuthedServerClient } from "../../factories/tenants";
+import { canonicalTermsEqual } from "@/features/settings/mutation-attempt";
 async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
     for (const name of names) {
         const control = scope.getByRole("button", { name, exact: true });
@@ -391,6 +392,50 @@ async function assertProducerDomainRead(releaseAndSettleRead: ReturnType<typeof 
     }
     // Failed is cleanup settlement only. Only the NEW server-derived UI conjunction can prove domain unavailability.
     await assertDomain();
+}
+
+type ProducerTermsBaseline = { id: string; write_revision: string; terms_text: string; approved_at: string | null } | null;
+async function assertProducerTermsBaseline(scope: Locator, baseline: ProducerTermsBaseline, candidate: string) {
+    await expect(scope.getByLabel("Offertvillkor")).toHaveValue(baseline?.terms_text ?? "");
+    expect(canonicalTermsEqual(candidate, baseline?.terms_text ?? "")).toBe(false);
+    await expect(scope.getByTestId("terms-current-facts")).toHaveCount(0);
+    const approve = scope.getByRole("button", { name: "Markera som godkänd", exact: true });
+    if (!baseline || baseline.approved_at !== null) await expect(approve).toHaveCount(0);
+    else {
+        await expect(approve).toBeEnabled();
+        await expect(scope.locator('input[name="id"]')).toHaveValue(baseline.id);
+    }
+    await expect(scope.getByTestId("quote-terms-approved-status")).toHaveCount(baseline?.approved_at ? 1 : 0);
+}
+async function assertProducerPendingRead(view: ProducerReadDomainView, historical: NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>>, draft: string, receiptText: string, termsBaseline: ProducerTermsBaseline | undefined) {
+    const { scope, unavailable, name, price, surface } = view;
+    const receipt = scope.getByTestId("settings-saved");
+    await expect(unavailable).toHaveCount(0);
+    await expect(receipt).toHaveCount(1); await expect(receipt).toBeVisible();
+    await expect(receipt).toHaveText(receiptText);
+    await expect(receipt).toContainText(surface === "terms" ? "Aktuella uppgifter läses separat." : "Aktuella uppgifter hämtas separat.");
+    for (const claim of ["Aktuella uppgifter är bekräftade.", "Nyare aktuella uppgifter", "Posten finns inte längre", "Aktuella uppgifter är inte tillgängliga."]) await expect(receipt).not.toContainText(claim);
+    await expect(scope.getByTestId("operation-unconfirmed")).toHaveCount(0);
+    await expect(scope.getByRole("button", { name: /^(Sparar…|Godkänner…|Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska)$/ })).toHaveCount(0);
+    await expect(scope.getByLabel(name)).toHaveValue(draft);
+    if (price) await expect(scope.getByLabel(price)).toHaveValue("31,00");
+    expect(await historical.evaluate(element => element.isConnected)).toBe(true);
+    if (surface === "terms") {
+        expect(termsBaseline).not.toBeUndefined();
+        expect(canonicalTermsEqual(draft, termsBaseline?.terms_text ?? "")).toBe(false);
+        const approve = scope.getByRole("button", { name: "Markera som godkänd", exact: true });
+        // Matching own-save confirmation adopts the new unapproved baseline and enables approval.
+        if (termsBaseline === null) await expect(approve).toHaveCount(0);
+        else { await expect(approve).toHaveCount(1); await expect(approve).toBeDisabled(); }
+        const panel = scope.getByTestId("terms-current-facts");
+        const panels = await panel.count(); expect(panels).toBeLessThanOrEqual(1);
+        if (panels) {
+            // The renderer exposes wording/approval, not current ID/revision; the bound DB proof verifies those.
+            await expect(panel.getByText(draft.trim(), { exact: true })).toBeVisible();
+            await expect(panel.getByText("Aktuella villkor är inte godkända.", { exact: true })).toBeVisible();
+            await expect(panel).not.toContainText("Ingen aktuell post finns.");
+        }
+    }
 }
 
 async function operationIdOf(request: BrowserRequest): Promise<string> {
@@ -1299,6 +1344,13 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
             const domainView = { scope, unavailable, name: spec.name, save: spec.save, price: spec.price, surface: spec.surface };
             await assertProducerReadBaseline(domainView); // Fail before any method effect if the target already has a read error.
             const label = `Bounded owned ${spec.surface}`;
+            let termsBaseline: ProducerTermsBaseline | undefined;
+            if (spec.table === "quote_terms") {
+                const baselineRead = await ordinary.from("quote_terms").select("id,write_revision,terms_text,approved_at").eq("tenant_id", fixture.tenantA.id).maybeSingle();
+                expect(baselineRead.error).toBeNull();
+                termsBaseline = baselineRead.data as ProducerTermsBaseline;
+                await assertProducerTermsBaseline(scope, termsBaseline, label);
+            }
             await scope.getByLabel(spec.name).fill(label);
             let creation: string | undefined;
             if (spec.price) {
@@ -1336,6 +1388,11 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                 await hold.seen;
                 const facts = await producerCapturedFacts(await actionRequest);
                 expect(facts.tenant).toBe(fixture.tenantA.id); expect(facts.actor).toBe(fixture.adminA.id);
+                if (spec.table === "quote_terms") {
+                    expect(facts.expectedRevision).toBe(termsBaseline?.write_revision ?? "absent");
+                    if (termsBaseline) expect(facts.target).toBe(termsBaseline.id);
+                    else expect(facts.target).toMatch(/^[0-9a-f-]{36}$/i);
+                }
                 const committedProof = () => db.query(`select p.committed_revision as revision,t.id from public.settings_pricing_operations p join public.${spec.table} t on t.id=p.target_id and t.tenant_id=p.tenant_id and t.write_revision=p.committed_revision where p.id=$1 and p.correlation_id=p.id and p.tenant_id=$2 and p.actor_user_id=$3 and p.target_id=$4 and p.operation_kind=$5`, [facts.operation, fixture.tenantA.id, fixture.adminA.id, facts.target, spec.kind]);
                 const proof = await committedProof();
                 expect(proof.rows).toHaveLength(1);
@@ -1348,27 +1405,19 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                 expect(ordinaryBefore.write_revision).toBe(proof.rows[0].revision);
                 {
                     const pendingReceipt = scope.getByTestId("settings-saved");
-                    const separateCopy = spec.table === "quote_terms" ? "Aktuella uppgifter läses separat." : "Aktuella uppgifter hämtas separat.";
-                    const readError = spec.price ? scope.getByTestId("pricing-current-unavailable") : page.getByRole("alert").filter({ hasText: "Ett tillfälligt fel inträffade. Försök igen om en stund." });
+                    const receiptText = await pendingReceipt.innerText();
+                    const heldRead = hold.request(); expect(heldRead).toBeDefined();
+                    expect(await reread).toBe(heldRead); // Original first matching GET; never substitute another request.
+                    let heldReadTerminal = false;
+                    void readTerminal.outcome.then(() => { heldReadTerminal = true; });
+                    void heldRead!.response().then(() => { heldReadTerminal = true; }, () => { heldReadTerminal = true; });
                     const assertPendingBranch = async () => {
-                        await expect(readError).toHaveCount(0);
-                        await expect(pendingReceipt).toContainText(separateCopy);
-                        await expect(pendingReceipt).not.toContainText("Aktuella uppgifter är bekräftade.");
-                        if (spec.table === "quote_terms") {
-                            // Terms separate-copy also renders after matching confirmation.
-                            // A fresh saved-current panel + no approval form excludes that:
-                            // confirmsOwnWrite would adopt matching defaults and hide the panel.
-                            await expect(scope.getByTestId("terms-current-facts").getByText(label, { exact: true })).toBeVisible();
-                            await expect(scope.getByRole("button", { name: "Markera som godkänd", exact: true })).toHaveCount(0);
-                        }
+                        expect(heldReadTerminal).toBe(false);
+                        expect(hold.request()).toBe(heldRead);
+                        await assertProducerPendingRead(domainView, historical!, label, receiptText, termsBaseline);
+                        expect(heldReadTerminal).toBe(false);
                     };
                     await assertPendingBranch();
-                    await expect(scope.getByTestId("operation-unconfirmed")).toHaveCount(0);
-                    await expect(scope.getByRole("button", { name: "Sparar…", exact: true })).toHaveCount(0); // Current reread pending, never save-busy.
-                    await expect(scope.getByRole("button", { name: "Uppdatera och granska", exact: true })).toHaveCount(0);
-                    const heldRead = hold.request(); expect(heldRead).toBeDefined();
-                    let heldReadTerminal = false;
-                    void heldRead!.response().then(() => { heldReadTerminal = true; }, () => { heldReadTerminal = true; });
                     const adopt = scope.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
                     const hasAdopt = await adopt.count(); expect(hasAdopt).toBeLessThanOrEqual(1);
                     for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {

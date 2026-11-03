@@ -1,5 +1,5 @@
 {
-  "current_followup": "b276 reviewed domain-unavailability/settled-transport proof",
+  "current_followup": "df063c19 sentinel-only fix after both combined-batch CHANGES_REQUIRED",
   "candidate_before": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
   "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
   "prior_committed_history": {
@@ -198,5 +198,128 @@
     "native_exit": 0,
     "verified_stops": 53,
     "native_JSON": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json"
+  },
+  "current_df063c19_terms_hook_followup": {
+    "authority": {
+      "disposition": "Parent+Coordinator explicit PROCEED for exact combined TERMS pending-branch correction and owned integration diagnostic/error-preservation batch after independent High assessment; same SolHigh author; route recorded before dispatch by parent. No invented receipt ID.",
+      "terms_anchors": [
+        "src/components/settings/QuoteTermsEditor.tsx:55",
+        "src/components/settings/QuoteTermsEditor.tsx:57",
+        "src/components/settings/QuoteTermsEditor.tsx:74",
+        "src/components/settings/QuoteTermsEditor.tsx:112",
+        "src/features/settings/mutation-attempt.ts:96",
+        "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md:53",
+        "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md:105"
+      ],
+      "original_method": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.md/json, original real-server-domain + settled controlled transports authority unchanged.",
+      "before_publication_HOLD": "Root returns exact STOPPED diff/pins plus original-method/canonical/High authority and current review receipts to Coordinator BEFORE commit/push/publication/CI. No author publication.",
+      "sentinel_fix_disposition": "Parent explicit PROCEED after both targeted CHANGES_REQUIRED, existing allocation, route before dispatch; source fix only absence sentinel. SAME verification sentinel-source + edges wire-proof/history confirmation and Coordinator stopped-diff assessment before commit/push/CI."
+    },
+    "source_change": "Current df063c19 combined batch: ordinary authorized pre-save terms absence/ID/revision/text is pinned to the initial display, candidate must differ under actual trim-only canonicalTermsEqual, and captured target/revision must match. Pending guards retain exact receipt text/DOM, draft, error absence, nonbusy/nonunknown and exact held nonterminal Request. Absent baseline requires absent approval; existing approved/unapproved baseline requires disabled approval. Matching confirmed/adopted/newer states fail; panel wording/unapproved facts are rechecked whenever present, not required when unchanged defaults legitimately omit it. ID/revision are not displayed by that panel; the captured/bound DB proof supplies their identity. Owned integration adds fixed awaited-phase/native-code-only diagnostics and original-error preservation; unchanged separate autocommit DROP order stops dependency removal on failure, independently attempts available fixture cleanup, and aggregates a distinct cleanup rejection. This is diagnostic/error-preservation work, NOT a deadlock cure. Shared cleanup returned is never verified cleanup; outer phase is not an inner failing-SQL claim.40 actual-source mocked cases PASS, final type/lint0; prior132/32/34 not rerun,22 protected helper bodies (14admission) byte-identical. Actual df browser and DB both FAILED: company domain/restoration earned, terms pre-DCL panel prerequisite failed;85actualPNG80normal5company/18missing. DB2305/2253ASSERTpass0ASSERTfail52skip/owned75assertspass BUT owned suite deadlock failed, RLS7P; native SQLSTATE/statement/lockcycle unknown. No retro/future runtime credit. Root returns stopped exact batch+authority+reviews to Coordinator BEFORE publication/CI. BuildinprogressStep5false/releasefalse; current High confirmation/fresh CI/method images/all103/fit/live80/authenticatedvisual/completion unearned.",
+    "actual_df063c19": {
+      "head": "df063c194a5abfbbb92705bca7ad05707603aef8",
+      "ci": 41620489004,
+      "browser": {
+        "status": "failed",
+        "native_cases": 104,
+        "expected": 103,
+        "unexpected": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "prior_owned_first_pass": 23,
+        "prior_producer_first_pass": 6,
+        "first_ms": 22343,
+        "retry_ms": 3154,
+        "retry": "EEXIST refused",
+        "failure": "Terms pending precondition required exact saved wording in terms-current-facts; failure before terms DCL. Native does not establish the actual pending/confirmed/panel branch.",
+        "native_json_sha256": "422e1cfab28b21859165a077b42a66b3b4fcb34dda2475bca2ddb7099c68467b",
+        "log_bytes": 109489,
+        "log_sha256": "b53296e3c2898045846ff13852b87d14c9049fba88dc916741b77b44b8729a0e",
+        "pngs": 85,
+        "normal_pngs": 80,
+        "company_method_pngs": 5,
+        "remaining_method_pngs": 18,
+        "image_validation": "Root validated all85,0issues,df-only",
+        "nonce": "318b87d9-b1ff-43af-b0cd-dd236a432041",
+        "runner": 12349,
+        "server": 12744,
+        "journal": [
+          "claimed-no-effects",
+          "company revoke-intent",
+          "company revoke-committed",
+          "company restore-verified"
+        ],
+        "authority": "Company domain-unavailable both views/draft and full ACL+same ordinary-read restore earned only at df; no terms/other fault/delete intent."
+      },
+      "db": {
+        "status": "failed",
+        "total": 2305,
+        "assertion_passed": 2253,
+        "assertion_failed": 0,
+        "explicit_skip": 52,
+        "failed_suites": 1,
+        "owned_command_assertions_passed": 75,
+        "owned_command_suite_status": "failed",
+        "owned_suite_message": "deadlock detected",
+        "producer_rls_passed": 7,
+        "native_json_sha256": "baf1f2e335530c1078598f11d46fbd3999401edd2107780f1866cf2752b4d9a3",
+        "log_bytes": 101243,
+        "log_sha256": "23270c5ff8e6d6c2c2a32ec14755466d592a9bfabc620ffab69ce64510b12bf2",
+        "unknown": [
+          "SQLSTATE",
+          "failing statement",
+          "hook/session substage",
+          "lock graph",
+          "exact cycle"
+        ],
+        "wrapper_children": [
+          0,
+          1
+        ],
+        "keyDeleted": false,
+        "dbClosed": true,
+        "keyOutcome": "unverified",
+        "diagnostic": "runtimeguard-refusal",
+        "pilot": "not-reached",
+        "Authdiag": "NOT_APPLICABLE;0credit",
+        "scope": "No global fixture/calendar investigation or fixes; no suite/whole-DB PASS claim."
+      }
+    },
+    "modeled_proof": {
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/terms-db-df063c19/results.json",
+      "passed": 40,
+      "failed": 0,
+      "limits": "Source-bound functions plus exact pending/baseline/identity caller spans. Locator/ordinary-read/capture/native-error mocks only: no actual React rendering, hasCurrentRead inspection, server/DB/browser behavior, deadlock cause or cleanup verification. Fresh CI must establish real domain construction; failing guards remain fatal.",
+      "status": "Historical initial40 wrong-wire-fixture proof,CHANGES_REQUIRED; history-f6 retained,not current approval."
+    },
+    "source_protected_equality": "unchanged-functions.json records22 identical bodies including14admission; prior132/32/34 retained/not rerun",
+    "current_confirmation": "PENDING sentinel source and new wire-proof/history confirmations; broadRound1 remains one",
+    "source_staging_count": 2,
+    "metadata_staging_count": 6,
+    "source48_other_unchanged": 46,
+    "status": "Build in progress; Step5false;releasefalse",
+    "initial_f6_review": "Both CHANGES_REQUIRED; existing8cb-cwd-targeted-review-results.json#initial_df063_terms_DB_review. Exact f6history preserved, not publishable.",
+    "sentinel_review_fix": {
+      "rationale": "Sentinel-only review fix: both initial df combined-batch reviews were CHANGES_REQUIRED; f6 was not publishable. Before edits all8author files/exact2filepatch and entire40proof were preserved in ignored history-f6 (29files; manifest5ad34bbfa270081a8c336fb64e5903bbef22a26f4ad7c0ff229e922104c60f53). Actual terms saveAction passes reviewed null revision to mounted submit, which writes absent; invoke uses actual attemptForm, which also serializes absent. Actual producerCapturedFacts preserves the multipart raw string. Only test expected absence changes from empty to absent; existing revision comparison/integration/otherguards/effects/captures exact. Current43models execute extracted terms saveAction/mounted submit+invoke/captureAttempt+attemptForm/native multipart/actual capture projection/identityguard. Prior40 intent retained but raw wire fixtures changed honestly; empty/mutated fail actual identity guard, missing fails capture cardinality. Old40native0 remains wrong-fixture historical CHANGES_REQUIRED, never retroPASS. React/lifecycle/local validation/DOM/server/native are mocked or unexecuted, no mounted/runtime credit. Tsc/two-filelint0; current same two targeted High confirmations and Coordinator assessment of stopped diff/pins/authority/reviews mandatory BEFORE commit/push/CI. Historicaldf browser+ownedDBsuiteFAIL/85PNG/18missing remain; no deadlock remedy/cause/futurecredit. BuildinprogressStep5false/releasefalse.",
+      "history_manifest": "tmp/private/35-7-p-consumer-closed-service-proof/history-f6/manifest.json",
+      "history_manifest_sha256": "5ad34bbfa270081a8c336fb64e5903bbef22a26f4ad7c0ff229e922104c60f53",
+      "source_delta_from_f6": "One test sentinel literal only; integrationraw35dbeb...exact,all22protected helpers unchanged.",
+      "actual_terms_wire_sources": [
+        "QuoteTermsEditor.tsx70 saveAction",
+        "CompanySettingsForm.tsx198 submit /214 serialization /165 invoke serialization",
+        "mutation-attempt.ts65 attemptForm",
+        "actual producerCapturedFacts and baseline identity guard"
+      ],
+      "current_proof": {
+        "path": "tmp/private/35-7-p-consumer-closed-service-proof/terms-db-df063c19-sentinel/results.json",
+        "passed": 43,
+        "failed": 0,
+        "prior40": "Intent retained, raw positive and identity-negative wire fixtures changed from fabricated values to actual canonical serialization. Old40 remains CHANGES_REQUIRED history; no unchanged-input or retroPASS claim.",
+        "wire": "Actual terms saveAction and mounted submit/invoke, captureAttempt/attemptForm, native FormData multipart and actual producerCapturedFacts plus actual identity guard; local parse/validate/state/React lifecycle remain mocked.",
+        "limits": "Source-bound functions plus exact pending/baseline/identity caller spans. Locator/ordinary-read/capture/native-error mocks only: no actual React rendering, hasCurrentRead inspection, server/DB/browser behavior, deadlock cause or cleanup verification. Fresh CI must establish real domain construction; failing guards remain fatal."
+      },
+      "private_output_directory_correction": "Copied harness initially retained its old output directory; intermediate43 outputs retained in new proof directory, all original history40 files restored byte-for-byte, final harness uses __dirname. No history deletion or altered archived pins.",
+      "current_review": "PENDING same two fix-only confirmations"
+    }
   }
 }

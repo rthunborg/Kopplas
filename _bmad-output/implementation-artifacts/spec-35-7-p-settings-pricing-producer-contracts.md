@@ -246,7 +246,7 @@ P-AC1/2 map to immutable/sticky-unknown units and replay/loss tests. Parent-qual
 - `tests/unit/features/settings/mutation-attempt.test.ts:146` — `test(`R1-3 actual pricing page/editor:`: checks both domain/error pairs and rendered write blocking.
 - `tests/e2e/pricing/pricing.e2e.spec.ts:435` — `test(`R1-1 pricing drafts`: captures both viewports at asserted stale/neighbor review and phone controls.
 - `tests/unit/features/settings/mutation-attempt.test.ts:179` — `test("P-E local terms validation`: verifies real local-feedback routing and immutable unknown identity.
-- `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:352` — `writer = Promise.resolve(call(op))`: starts the real writer before authority-lock observation.
+- `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:371` — `writer = Promise.resolve(call(op))`: starts the real writer before authority-lock observation.
 
 ### Make each capture show its asserted state
 
@@ -255,64 +255,84 @@ The package addition uses the existing normal production-server lane. State-awar
 - `package.json:26` — `"test:smoke":`: adds only the two approved existing files before unchanged reporter arguments.
 - `tests/e2e/settings/settings.e2e.spec.ts:213` — `async function producerCapture`: selects real state anchors and full viewport capture with actual run provenance.
 - `tests/e2e/settings/settings.e2e.spec.ts:237` — `async function holdNextProducerTransport`: holds observed action/RSC transport and releases without a fabricated response.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:475` — `const activeRow = editor.locator`: identifies active rows by the actual edit control rather than archived list order.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:520` — `const activeRow = editor.locator`: identifies active rows by the actual edit control rather than archived list order.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:629` — `const historicalReceipt = await editor.getByTestId`: retains the historical receipt DOM node while a normal same-target edit and neighboring success produce actual newer current facts.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:674` — `const historicalReceipt = await editor.getByTestId`: retains the historical receipt DOM node while a normal same-target edit and neighboring success produce actual newer current facts.
 
 ### Review admitted CI effects and terminal cleanup before any runtime
 
 The human admission is limited to this disposable exclusive job method. The durable claim prevents damaged-baseline retries and repeated deletion. Before routing or dispatch, exact-request finished/failed observers retain any terminal outcome while held. One cached tagged result uses the original single10s deadline for release, terminal proof, and all-exit unroute disposal; an expired budget never verifies disposal; finished or actual failed transport proves terminal cleanup only; a NEW server-derived unavailable/disabled conjunction under verified fault is mandatory separately. Pending/timeout/release/disposal uncertainty remains fatal. Exact recovery is still attempted after timeout/error, with damaged fixture custody and all errors retained. Exact ACL restoration plus the same ordinary read is mandatory; raw95 definitions grant no coverage or automatic80-frame selection. Review these new consequential boundaries before Root executes CI.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:249` — `function observeProducerReadTerminal`: arms both terminal signals before routing and synchronously binds the exact held Request; diagnostic markers1/2/3 are recognized, absence is unmarked/undetermined, and marker labels never select or rebind transport.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:294` — `function producerReadSettlement`: caches one tagged outcome, defers unroute until terminal observation, bounds every disposal attempt with the same deadline, and retains sanitized release/terminal/disposal errors; pending or expired disposal never passes.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:250` — `function observeProducerReadTerminal`: arms both terminal signals before routing and synchronously binds the exact held Request; diagnostic markers1/2/3 are recognized, absence is unmarked/undetermined, and marker labels never select or rebind transport.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:295` — `function producerReadSettlement`: caches one tagged outcome, defers unroute until terminal observation, bounds every disposal attempt with the same deadline, and retains sanitized release/terminal/disposal errors; pending or expired disposal never passes.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1020` — `async function qualifyProducerBoundedEffects`: reuses actual GitHub/stack authority, binds runner/server/consumer and durably consumes job admission before effects.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1243` — `async function producerAclSnapshot`: captures complete semantic ACLs and alternative/inherited/dependent privilege paths before narrowing one grant; STRICT column expansion preserves NULL as no extra grants without manufacturing a zero-dimensional array.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1267` — `test("P-E5 CI-only bounded`: keeps all four table faults sequential and both viewports within each exact cycle.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1391` — `state: "revoke-intent"`: persists intent before revoke and reaches registered exact cleanup on every scenario outcome.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1495` — `state: "ONE-delete-intent-budget-consumed"`: durably consumes the sole exact fresh target deletion after receipt/reference guards.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1065` — `async function qualifyProducerBoundedEffects`: reuses actual GitHub/stack authority, binds runner/server/consumer and durably consumes job admission before effects.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1288` — `async function producerAclSnapshot`: captures complete semantic ACLs and alternative/inherited/dependent privilege paths before narrowing one grant; STRICT column expansion preserves NULL as no extra grants without manufacturing a zero-dimensional array.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1312` — `test("P-E5 CI-only bounded`: keeps all four table faults sequential and both viewports within each exact cycle.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1440` — `state: "revoke-intent"`: persists intent before revoke and reaches registered exact cleanup on every scenario outcome.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1544` — `state: "ONE-delete-intent-budget-consumed"`: durably consumes the sole exact fresh target deletion after receipt/reference guards.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1328` — `const releaseAndSettleRead =`: consumes the cached exact-request outcome on scenario and cleanup exits; failed alone earns no domain proof; new server-derived state is mandatory, and recovery is still attempted.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1380` — `const releaseAndSettleRead =`: consumes the cached exact-request outcome on scenario and cleanup exits; failed alone earns no domain proof; new server-derived state is mandatory, and recovery is still attempted.
 
 
 ### Prove domain unavailability separately from settled transport
 
 Original method requires real server/page unavailable state and settled transports, not EOF; canonical producer-contract53 separates current facts and historical receipts. Normal baseline/error absence must precede revoke. After verified DCL, exact terminal cleanup plus the new server-error/disabled/retained-draft/nonbusy/nonunknown/no-current-or-adoption conjunction is mandatory while faultACTIVE. The same captured receipt query and historical DOM remain bound. Action-driven real server render may supply props; no claim says the failed GET delivered them or that abort is normal. Original UI checks remain and the full conjunction repeats around both viewport captures.34 actual-function models use mocked locators/events/DB; actual server-origin/RLS/DOM/runtime proof remains pending.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:359` — `async function assertProducerReadBaseline`: rejects preexisting read errors or disabled baseline before method effects.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:365` — `async function assertProducerReadUnavailable`: requires every server-error/receipt/disabled/draft/nonbusy/nonunknown/no-current/adoption conjunct.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:384` — `async function assertProducerDomainRead`: requires exact settled transport/provenance before mandatory domain assertions; failed alone cannot pass.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1300` — `await assertProducerReadBaseline(domainView)`: awaits the normal baseline before revoke or any method effect.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:360` — `async function assertProducerReadBaseline`: rejects preexisting read errors or disabled baseline before method effects.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:366` — `async function assertProducerReadUnavailable`: requires every server-error/receipt/disabled/draft/nonbusy/nonunknown/no-current/adoption conjunct.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:385` — `async function assertProducerDomainRead`: requires exact settled transport/provenance before mandatory domain assertions; failed alone cannot pass.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1345` — `await assertProducerReadBaseline(domainView)`: awaits the normal baseline before revoke or any method effect.
 
 ### Trace actual native failures and pixel corrections
 
 The ordinary browser admission failure and integration suite-hook failure are required gates, despite103 browser cases and all75 producer integration cases passing. Exact lock-cycle causality remains unproven. Framing guards require actual pixels in view; source97 and the conditional publication map grant no image/provider/human acceptance.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1050` — `const startupBinding =`: binds to actual production-server launch fields rather than worker-reconstructed config, without exposing its other environment.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1095` — `const startupBinding =`: binds to actual production-server launch fields rather than worker-reconstructed config, without exposing its other environment.
 - `tests/e2e/settings/settings.e2e.spec.ts:431` — `const busySubmit =`: captures the actual pending submit on phone while preserving stable unknown controls separately.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1350` — `const pendingReceipt =`: observes the already-held real current reread after receipt proof without another business action or effect.
-- `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:73` — `await adminQuery("drop trigger test_settings_pricing_receipt_failure`: releases the receipt-table DDL lock before separate function/table drops; exact native deadlock cycle is not claimed.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1407` — `const pendingReceipt =`: observes the already-held real current reread after receipt proof without another business action or effect.
+- `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:68` — `await producerHookPhase("drop-trigger"`: releases the receipt-table DDL lock before separate function/table drops; exact native deadlock cycle is not claimed.
 
 ### Identify actual and foreign runner scripts canonically
 
 The native failure shows an empty classifier, not the terminated argv spelling. Installed shim/source and pure examples demonstrate the normalization defect. Targeted review additionally identified a consequential foreign-consumer bypass if realpath failed or a recognizable original family symlink escaped the named package; the original family hint now survives those failures and refuses entry. This review finding is not claimed as the historical CI cause. Script position and package/bin identity distinguish a CLI from an arbitrary keyword payload; foreign same-family paths stay in the exclusivity inventory, while only the expected canonical installed CLI can be the owner.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:693` — `function producerPlaywrightEntry`: retains recognizable original family through missing entrypoint, canonical and package identity failures; refusal diagnostics contain only fixed family/reason.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:719` — `function producerPlaywrightInvocation`: parses real script/subcommand before lazy cwd; absolute tests need no cwd, proven non-test commands are not test consumers, relative unresolved test/launch ambiguity still refuses.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:738` — `function producerPlaywrightEntry`: retains recognizable original family through missing entrypoint, canonical and package identity failures; refusal diagnostics contain only fixed family/reason.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:764` — `function producerPlaywrightInvocation`: parses real script/subcommand before lazy cwd; absolute tests need no cwd, proven non-test commands are not test consumers, relative unresolved test/launch ambiguity still refuses.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:763` — `function producerNodeInvocation`: refuses kernel-confirmed opaque Node while retaining inspectable ordinary scripts.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:788` — `function producerBrowserLauncherPid`: permits only the uniquely corroborated configured launcher; test commands, descendants, namespace/parent/instance ambiguity refuse.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:808` — `function producerNodeInvocation`: refuses kernel-confirmed opaque Node while retaining inspectable ordinary scripts.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:833` — `function producerBrowserLauncherPid`: permits only the uniquely corroborated configured launcher; test commands, descendants, namespace/parent/instance ambiguity refuse.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:770` — `function producerDriverInvocation`: dispatches executable tri-state before Node grammar; owner contradictions and evidenced unknown ambiguity refuse.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:815` — `function producerDriverInvocation`: dispatches executable tri-state before Node grammar; owner contradictions and evidenced unknown ambiguity refuse.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:828` — `function producerBrowserMemberMapping`: proves exact current container membership and host→inner identity before the fixed read; descendants receive no role exemption.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:861` — `function producerNamespaceClassify`: repeats namespace-local executable/script/package/bin/version facts; foreign tests count and opaque Node refuses.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:984` — `function producerNamespaceProgram`: serializes trusted helpers with explicit namespace dependencies and bounded read-only built-ins, no argv/env/path payload transport.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1095` — `const inspectBrowserMember =`: orders membership→fixed configured-user probe→strict output→same-instance revalidation and sanitizes all helper errors.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:873` — `function producerBrowserMemberMapping`: proves exact current container membership and host→inner identity before the fixed read; descendants receive no role exemption.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:906` — `function producerNamespaceClassify`: repeats namespace-local executable/script/package/bin/version facts; foreign tests count and opaque Node refuses.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1029` — `function producerNamespaceProgram`: serializes trusted helpers with explicit namespace dependencies and bounded read-only built-ins, no argv/env/path payload transport.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1140` — `const inspectBrowserMember =`: orders membership→fixed configured-user probe→strict output→same-instance revalidation and sanitizes all helper errors.
 
-- `tests/e2e/pricing/pricing.e2e.spec.ts:934` — `function producerValidateClosedService`: limits inspection to three configured CLI-pinned services with immutable image-default/startup/project/network/endpoint identity; custom references and overrides refuse.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:964` — `function producerNamespaceOpaqueMain`: runs only after namespace opacity, and requires exact attested PID1/kernelNode/stable facts/testveto plus immutable-reviewed actual entrypoint hash and configured image script; children never qualify.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:1121` — `const inspectClosedStackMember =`: proves service ownership before candidate mapping/probe, revalidates afterward, and preserves foreign consumers and sanitized failure.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:979` — `function producerValidateClosedService`: limits inspection to three configured CLI-pinned services with immutable image-default/startup/project/network/endpoint identity; custom references and overrides refuse.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1009` — `function producerNamespaceOpaqueMain`: runs only after namespace opacity, and requires exact attested PID1/kernelNode/stable facts/testveto plus immutable-reviewed actual entrypoint hash and configured image script; children never qualify.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1166` — `const inspectClosedStackMember =`: proves service ownership before candidate mapping/probe, revalidates afterward, and preserves foreign consumers and sanitized failure.
+
+### Distinguish genuine terms pending from matching confirmation
+
+The terms panel is conditional on changed displayed facts, not a universal pending marker. Pin the ordinary pre-save baseline and trim-only changed candidate; approval-state guards reject matching confirmation, while every capture rechecks the full receipt/draft/held-request conjunction. Actual df branch remains unknown; source models are not browser proof.
+
+- `tests/e2e/pricing/pricing.e2e.spec.ts:398` — `async function assertProducerTermsBaseline`: pins authorized displayed wording and rejects canonically unchanged candidates.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:410` — `async function assertProducerPendingRead`: reevaluates conditional panel facts and baseline-specific disabled or absent approval.
+
+The follow-up corrects the test raw absence sentinel. Trace the actual terms caller through mounted submission and canonical serialization to raw multipart capture. Previous fabricated empty-field proof remains rejected history.
+
+- `src/components/settings/QuoteTermsEditor.tsx:70` — `operation.submit(saveQuoteTermsAction, "terms.save"`: forwards reviewed terms revision to mounted submission.
+- `src/features/settings/mutation-attempt.ts:65` — `form.set("expectedRevision", attempt.expectedRevision ?? "absent")`: serializes explicit absence canonically.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:1392` — `expect(facts.expectedRevision).toBe(termsBaseline?.write_revision ?? "absent")`: compares the actual raw field and retains existing revisions.
+
+### Preserve owned hook failure provenance without claiming a deadlock remedy
+
+The three DROP statements retain separate autocommit boundaries and dependency order. Fixed awaited-step diagnostics rethrow the original error; available fixture cleanup still runs, and distinct cleanup failure cannot overwrite the first error. Shared cleanup returning proves no internal verification; the native deadlock statement and cycle remain unknown.
+
+- `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:55` — `async function producerHookPhase`: reports fixed phase and allowlisted actual SQLSTATE only.
+- `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:64` — `async function producerOwnedTeardown`: preserves dependency fail-stop and original plus cleanup error identities.
 
 ### Retain private receipt enrollment and honest gate evidence
 
@@ -352,3 +372,9 @@ Currentf4c disposal follow-up: actual CI41608859578 browser104/103expected1unexp
 Marker-only review fix: verification initial f4c disposal review was CHANGES_REQUIRED for one diagnostic P2; edges confirmed source/proof bindings with that finding open, not overallPASS. BEFORE editing, the uncommitted981 freeze/seven author files and all19 actual proof files were copied byte-for-byte to ignored history-981-disposal with manifest75d33f9970e1415ca50fa11f4dd36a5b60ccaafcd8d4fdae52b547d73171e905. PinnedNext16.4.1 cache.ts2438–2450 uses markers1/2/3 and omits marker for Full prefetch. Diagnostic classes now recognize1/2/3, use unmarkedUndetermined for absence and fixed unexpectedMarker for other values; raw marker/segment values never retained. Only this block/counter labels changed; selector/lifecycle/deadline/effects/allother source bytes equal981. Current32purePASS retains every prior26 input/result record plus6marker/privacy regressions; tsc/ESLint0, admission132/14functions unchanged/not rerun. No actualf4c request classification/cause or successor runtime credit; initial review remains historical and new targeted confirmations pending. BuildinprogressStep5false/releasefalse/allfinalgates remain blocking.
 
 Currentb276 domain batch: original approved method proposal12/20 and canonicalproducercontract53 require real production server/page unavailable state plus settled transport, not HTTP EOF. The finished-only guard was our implementation choice; correcting it gives no retroactive b276 proof/cause/success. Baseline target readerror must be absent/normal before effects and immediately before revoke. Exact observer/selector/lifecycle/one10s/disposal unchanged; actual failed terminal is cleanup-only. New server-derived alert/readError-disabled fields+buttons/retained draft+price/nonbusy/nonunknown/same receipt/no-current-missing-adoption conjunction and same bound committed operation query must pass while faultACTIVE, repeated around bothviewport captures. OriginalUI/effects/103definitions/24owned7producer/canonical9 preserved.34 actual-function models PASS/tsc0/lint0; two mock-only crossrealm fixture REDs retained/corrected without sourcechange; no nativeproof. Actualb276CI41615029035 DB+BROWSERFAIL: browser104/103expected1unexpected0flake0skip;one exactunmarkedGET2xx/ERR_ABORTED beforeunroute,causeunknown;82PNG80normal2companypending21missing;companyexactrestore/0otherfault/delete. DB2292/2228P1F52skip11pending-notexecuted,producer82P0skip;unallocated15.5-API009 status/causeunreported,noauthorfix/diagnostic. Wrapper[0,1]/keyDeletedfalse/dbClosedtrue/keyOutcomeunverified/pilotnotreached. Root returns exact stopped diff+method/canonical/Highauthority to Coordinator BEFORE publication/CI. Currentconfirmations/freshCI/methodimages/fit/global90approval/authenticatedvisual/completion pending;BuildinprogressStep5false/releasefalse.
+
+
+Current df063c19 combined batch: ordinary authorized pre-save terms absence/ID/revision/text is pinned to the initial display, candidate must differ under actual trim-only canonicalTermsEqual, and captured target/revision must match. Pending guards retain exact receipt text/DOM, draft, error absence, nonbusy/nonunknown and exact held nonterminal Request. Absent baseline requires absent approval; existing approved/unapproved baseline requires disabled approval. Matching confirmed/adopted/newer states fail; panel wording/unapproved facts are rechecked whenever present, not required when unchanged defaults legitimately omit it. ID/revision are not displayed by that panel; the captured/bound DB proof supplies their identity. Owned integration adds fixed awaited-phase/native-code-only diagnostics and original-error preservation; unchanged separate autocommit DROP order stops dependency removal on failure, independently attempts available fixture cleanup, and aggregates a distinct cleanup rejection. This is diagnostic/error-preservation work, NOT a deadlock cure. Shared cleanup returned is never verified cleanup; outer phase is not an inner failing-SQL claim.40 actual-source mocked cases PASS, final type/lint0; prior132/32/34 not rerun,22 protected helper bodies (14admission) byte-identical. Actual df browser and DB both FAILED: company domain/restoration earned, terms pre-DCL panel prerequisite failed;85actualPNG80normal5company/18missing. DB2305/2253ASSERTpass0ASSERTfail52skip/owned75assertspass BUT owned suite deadlock failed, RLS7P; native SQLSTATE/statement/lockcycle unknown. No retro/future runtime credit. Root returns stopped exact batch+authority+reviews to Coordinator BEFORE publication/CI. BuildinprogressStep5false/releasefalse; current High confirmation/fresh CI/method images/all103/fit/live80/authenticatedvisual/completion unearned.
+
+
+Sentinel-only review fix: both initial df combined-batch reviews were CHANGES_REQUIRED; f6 was not publishable. Before edits all8author files/exact2filepatch and entire40proof were preserved in ignored history-f6 (29files; manifest5ad34bbfa270081a8c336fb64e5903bbef22a26f4ad7c0ff229e922104c60f53). Actual terms saveAction passes reviewed null revision to mounted submit, which writes absent; invoke uses actual attemptForm, which also serializes absent. Actual producerCapturedFacts preserves the multipart raw string. Only test expected absence changes from empty to absent; existing revision comparison/integration/otherguards/effects/captures exact. Current43models execute extracted terms saveAction/mounted submit+invoke/captureAttempt+attemptForm/native multipart/actual capture projection/identityguard. Prior40 intent retained but raw wire fixtures changed honestly; empty/mutated fail actual identity guard, missing fails capture cardinality. Old40native0 remains wrong-fixture historical CHANGES_REQUIRED, never retroPASS. React/lifecycle/local validation/DOM/server/native are mocked or unexecuted, no mounted/runtime credit. Tsc/two-filelint0; current same two targeted High confirmations and Coordinator assessment of stopped diff/pins/authority/reviews mandatory BEFORE commit/push/CI. Historicaldf browser+ownedDBsuiteFAIL/85PNG/18missing remain; no deadlock remedy/cause/futurecredit. BuildinprogressStep5false/releasefalse.

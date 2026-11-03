@@ -832,6 +832,74 @@
       "no_tests_queries_resources_CI_or_writes": true,
       "no_runtime_visual_or_completion_acceptance": true,
       "review_receipt": "8cb-cwd-targeted-review-results.json#current_b276_domain_proof_followup"
+    },
+    {
+      "phase": "Independent targeted df063 terms baseline branches and owned-hook40-case confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-03T11:13:40.357814+00:00",
+      "author_stopped": true,
+      "author_route_provenance": "Same High author route message-recorded before actual dispatch after independent terms/DB proposals and explicit parent/Coordinator proceed. File record follows stopped freeze,not a fabricated earlier timestamp.",
+      "freeze": "author-8cb-cwd-checkpoint.json",
+      "freeze_sha256": "f6c03218b79b1f77233414ada98b8a623f28d4354dc256e247f30ec325d24787",
+      "source48_digest": "d6e71bb0f2791b33817ddbb122324c52697cb13e6615448638b97c678268bac5",
+      "source_paths": [
+        "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "tests/integration/commands/settings-pricing-operation-contract.int.test.ts"
+      ],
+      "reviewers": [
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "Only terms ordinary pre-save baseline/trim canonical branch equivalence/confirmed-newer rejection and owned hook phases/dependencyfailstop/original+cleanup errorpreservation/privacy;authority/canonical/effect limits;notdeadlockcure orbroadaudit"
+        },
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "Only40 actual-source models/bindings/caller ordering/phaseprivacy,unchanged75assertions/22protectedhelpers/selector/lifecycle/domain/captures/priorproofs;no runtime/imageaudit"
+        }
+      ],
+      "dispatch_status": "actual both currentHighfinalsCHANGES_REQUIRED;oneabsence-sentinel/source-wirefixtureblocker",
+      "broad_round_count": 1,
+      "coordinator_assessment_required_before_commit_publication_CI": true,
+      "no_tests_queries_resources_CI_or_writes": true,
+      "no_runtime_visual_or_completion_acceptance": true,
+      "review_receipt": "8cb-cwd-targeted-review-results.json#initial_df063_terms_DB_review"
+    },
+    {
+      "phase": "Same-author bounded df063 absence-sentinel and mounted-wire proof fix",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-03T11:16:23.781107+00:00",
+      "scope": "Onlytestabsencemapping+actualserialization/captureboundmodelpositiveandempty/missing/mutatednegatives;preservef6source/proofhistory;integrationandallotherlogicunchanged.",
+      "dispatch_status": "actual same High author completed boundedfix,preservedrejectedhistory,andstopped",
+      "broad_round_count": 1,
+      "coordinator_assessment_required_before_commit_publication_CI": true,
+      "no_runtime_resources_CI_or_new_tracked_paths": true
+    },
+    {
+      "phase": "Independent fix-only df063 actual absence sentinel and43-case wire confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-03T11:22:10.310928+00:00",
+      "author_stopped": true,
+      "freeze": "author-8cb-cwd-checkpoint.json",
+      "freeze_sha256": "a786042c996073e9ba9a6d5d3b155fcc94c7350b01071d66c30959481162a8db",
+      "source48_digest": "b8c4f7d9c991d9c52644f592f921c68cadc7a3cd422401bd8b3a9e554b745e65",
+      "reviewers": [
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "Onlyactualserializedabsent comparison andsource-mount/captureprotocolregressions;reuseearnedterms/DBproposalcodeconfirmation;integrationunchanged"
+        },
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "Only43sourceboundmodels/actualsaveAction-submit-serialization-multipart-capture-guard chain/emptymissingmutatednegatives/rejectedf6history;no broadoldreview"
+        }
+      ],
+      "dispatch_status": "actual both existingSolHighreviewersFIX_CONFIRMED;sentinel/sourcewireblockerresolved,othertermsDBconfirmationreused",
+      "broad_round_count": 1,
+      "coordinator_assessment_required_before_commit_publication_CI": true,
+      "no_tests_queries_resources_CI_or_writes": true,
+      "no_runtime_visual_or_completion_acceptance": true,
+      "review_receipt": "8cb-cwd-targeted-review-results.json#current_df063_terms_DB_sentinel_fix_followup"
     }
   ],
   "implementation_author_dispatched": true,

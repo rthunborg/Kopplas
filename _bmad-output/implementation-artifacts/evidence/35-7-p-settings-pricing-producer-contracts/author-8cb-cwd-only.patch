@@ -1,133 +1,199 @@
 diff --git a/tests/e2e/pricing/pricing.e2e.spec.ts b/tests/e2e/pricing/pricing.e2e.spec.ts
-index 94431809..93a96d94 100644
+index 93a96d94..878d0647 100644
 --- a/tests/e2e/pricing/pricing.e2e.spec.ts
 +++ b/tests/e2e/pricing/pricing.e2e.spec.ts
-@@ -355,6 +355,44 @@ async function holdNextProducerTransport(page: Page, routePath: string, transpor
-     return { seen, release, request: () => heldRequest, releaseHeld, dispose, clear: async () => { release(); if (held) await done; await dispose(); } };
+@@ -208,6 +208,7 @@ import { createHash } from "node:crypto";
+ import { execFileSync } from "node:child_process";
+ import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
+ import { createTwoTenantFixture, cleanupFixture, makeAuthedServerClient } from "../../factories/tenants";
++import { canonicalTermsEqual } from "@/features/settings/mutation-attempt";
+ async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
+     for (const name of names) {
+         const control = scope.getByRole("button", { name, exact: true });
+@@ -393,6 +394,50 @@ async function assertProducerDomainRead(releaseAndSettleRead: ReturnType<typeof
+     await assertDomain();
  }
  
-+type ProducerReadDomainView = { scope: Locator; unavailable: Locator; name: string; save: string; price: string | null; surface: string };
-+async function assertProducerReadBaseline(view: ProducerReadDomainView) {
-+    await expect(view.unavailable).toHaveCount(0);
-+    await expect(view.scope.getByLabel(view.name)).toBeEnabled();
-+    await expect(view.scope.getByRole("button", { name: view.save, exact: true })).toBeEnabled();
-+    if (view.price) await expect(view.scope.getByLabel(view.price)).toBeEnabled();
++type ProducerTermsBaseline = { id: string; write_revision: string; terms_text: string; approved_at: string | null } | null;
++async function assertProducerTermsBaseline(scope: Locator, baseline: ProducerTermsBaseline, candidate: string) {
++    await expect(scope.getByLabel("Offertvillkor")).toHaveValue(baseline?.terms_text ?? "");
++    expect(canonicalTermsEqual(candidate, baseline?.terms_text ?? "")).toBe(false);
++    await expect(scope.getByTestId("terms-current-facts")).toHaveCount(0);
++    const approve = scope.getByRole("button", { name: "Markera som godkänd", exact: true });
++    if (!baseline || baseline.approved_at !== null) await expect(approve).toHaveCount(0);
++    else {
++        await expect(approve).toBeEnabled();
++        await expect(scope.locator('input[name="id"]')).toHaveValue(baseline.id);
++    }
++    await expect(scope.getByTestId("quote-terms-approved-status")).toHaveCount(baseline?.approved_at ? 1 : 0);
 +}
-+async function assertProducerReadUnavailable(view: ProducerReadDomainView, historical: NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>>, draft: string) {
-+    const { scope, unavailable, name, save, price, surface } = view;
++async function assertProducerPendingRead(view: ProducerReadDomainView, historical: NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>>, draft: string, receiptText: string, termsBaseline: ProducerTermsBaseline | undefined) {
++    const { scope, unavailable, name, price, surface } = view;
 +    const receipt = scope.getByTestId("settings-saved");
-+    await expect(unavailable).toBeVisible(); // Server reader/page props, never client transport-error copy.
++    await expect(unavailable).toHaveCount(0);
 +    await expect(receipt).toHaveCount(1); await expect(receipt).toBeVisible();
-+    await expect(receipt).not.toContainText("Aktuella uppgifter är bekräftade.");
-+    await expect(receipt).not.toContainText("Posten finns inte längre");
++    await expect(receipt).toHaveText(receiptText);
++    await expect(receipt).toContainText(surface === "terms" ? "Aktuella uppgifter läses separat." : "Aktuella uppgifter hämtas separat.");
++    for (const claim of ["Aktuella uppgifter är bekräftade.", "Nyare aktuella uppgifter", "Posten finns inte längre", "Aktuella uppgifter är inte tillgängliga."]) await expect(receipt).not.toContainText(claim);
 +    await expect(scope.getByTestId("operation-unconfirmed")).toHaveCount(0);
-+    await expect(scope.getByRole("button", { name: "Sparar…", exact: true })).toHaveCount(0);
-+    await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
-+    await expect(scope.getByLabel(name)).toBeDisabled(); await expect(scope.getByLabel(name)).toHaveValue(draft);
-+    await expect(scope.getByRole("button", { name: save, exact: true })).toBeDisabled();
-+    if (price) {
-+        await expect(receipt).toContainText("Aktuella uppgifter är inte tillgängliga.");
-+        await expect(scope.getByText(surface === "article" ? /Inga artiklar/ : /Inga arbetsroller/)).toHaveCount(0);
-+        await expect(scope.getByLabel(price)).toBeDisabled(); await expect(scope.getByLabel(price)).toHaveValue("31,00");
-+    }
++    await expect(scope.getByRole("button", { name: /^(Sparar…|Godkänner…|Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska)$/ })).toHaveCount(0);
++    await expect(scope.getByLabel(name)).toHaveValue(draft);
++    if (price) await expect(scope.getByLabel(price)).toHaveValue("31,00");
 +    expect(await historical.evaluate(element => element.isConnected)).toBe(true);
-+}
-+async function assertProducerDomainRead(releaseAndSettleRead: ReturnType<typeof producerReadSettlement>, readRequest: BrowserRequest, assertDomain: () => Promise<void>) {
-+    const settledRead = await releaseAndSettleRead(); // Any release/deadline/disposal error still rejects before domain proof.
-+    if (settledRead.kind !== "finished" && settledRead.kind !== "failed") throw new Error("Controlled read transport has no verified terminal outcome");
-+    expect(settledRead.request).toBe(readRequest);
-+    if (settledRead.kind === "finished") {
-+        const response = settledRead.response; expect(response).not.toBeNull();
-+        expect(response!.request()).toBe(readRequest);
++    if (surface === "terms") {
++        expect(termsBaseline).not.toBeUndefined();
++        expect(canonicalTermsEqual(draft, termsBaseline?.terms_text ?? "")).toBe(false);
++        const approve = scope.getByRole("button", { name: "Markera som godkänd", exact: true });
++        // Matching own-save confirmation adopts the new unapproved baseline and enables approval.
++        if (termsBaseline === null) await expect(approve).toHaveCount(0);
++        else { await expect(approve).toHaveCount(1); await expect(approve).toBeDisabled(); }
++        const panel = scope.getByTestId("terms-current-facts");
++        const panels = await panel.count(); expect(panels).toBeLessThanOrEqual(1);
++        if (panels) {
++            // The renderer exposes wording/approval, not current ID/revision; the bound DB proof verifies those.
++            await expect(panel.getByText(draft.trim(), { exact: true })).toBeVisible();
++            await expect(panel.getByText("Aktuella villkor är inte godkända.", { exact: true })).toBeVisible();
++            await expect(panel).not.toContainText("Ingen aktuell post finns.");
++        }
 +    }
-+    // Failed is cleanup settlement only. Only the NEW server-derived UI conjunction can prove domain unavailability.
-+    await assertDomain();
 +}
 +
  async function operationIdOf(request: BrowserRequest): Promise<string> {
      const body = request.postDataBuffer();
      if (!body)
-@@ -1257,6 +1295,9 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
-             await page.goto(spec.route);
-             const scope = spec.price ? page.getByTestId(spec.surface === "article" ? "articles-editor" : "work-roles-editor") : page.locator("body");
-             await waitForHydrated(scope.getByLabel(spec.name));
-+            const unavailable = spec.price ? scope.getByTestId("pricing-current-unavailable") : page.getByRole("alert").filter({ hasText: "Ett tillfälligt fel inträffade. Försök igen om en stund." });
-+            const domainView = { scope, unavailable, name: spec.name, save: spec.save, price: spec.price, surface: spec.surface };
-+            await assertProducerReadBaseline(domainView); // Fail before any method effect if the target already has a read error.
+@@ -1299,6 +1344,13 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
+             const domainView = { scope, unavailable, name: spec.name, save: spec.save, price: spec.price, surface: spec.surface };
+             await assertProducerReadBaseline(domainView); // Fail before any method effect if the target already has a read error.
              const label = `Bounded owned ${spec.surface}`;
++            let termsBaseline: ProducerTermsBaseline | undefined;
++            if (spec.table === "quote_terms") {
++                const baselineRead = await ordinary.from("quote_terms").select("id,write_revision,terms_text,approved_at").eq("tenant_id", fixture.tenantA.id).maybeSingle();
++                expect(baselineRead.error).toBeNull();
++                termsBaseline = baselineRead.data as ProducerTermsBaseline;
++                await assertProducerTermsBaseline(scope, termsBaseline, label);
++            }
              await scope.getByLabel(spec.name).fill(label);
              let creation: string | undefined;
-@@ -1288,14 +1329,15 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
-             const actionRequest = page.waitForRequest(request => request.method() === "POST" && Boolean(request.headers()["next-action"]) && new URL(request.url()).pathname === spec.route);
-             const reread = page.waitForRequest(request => request.method() === "GET" && request.headers()["rsc"] === "1" && new URL(request.url()).pathname === spec.route);
-             void actionRequest.catch(() => undefined); void reread.catch(() => undefined);
--            let revoked = false, transaction = false, scenarioError: unknown, cleanupError: unknown;
-+            let revoked = false, transaction = false, domainUnavailabilityVerified = false, scenarioError: unknown, cleanupError: unknown;
-             let ordinaryBefore: { id: string; write_revision: string } | undefined;
-             try {
-                 await scope.getByRole("button", { name: spec.save, exact: true }).click();
+             if (spec.price) {
+@@ -1336,6 +1388,11 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                  await hold.seen;
                  const facts = await producerCapturedFacts(await actionRequest);
                  expect(facts.tenant).toBe(fixture.tenantA.id); expect(facts.actor).toBe(fixture.adminA.id);
--                const proof = await db.query(`select p.committed_revision as revision,t.id from public.settings_pricing_operations p join public.${spec.table} t on t.id=p.target_id and t.tenant_id=p.tenant_id and t.write_revision=p.committed_revision where p.id=$1 and p.correlation_id=p.id and p.tenant_id=$2 and p.actor_user_id=$3 and p.target_id=$4 and p.operation_kind=$5`, [facts.operation, fixture.tenantA.id, fixture.adminA.id, facts.target, spec.kind]);
-+                const committedProof = () => db.query(`select p.committed_revision as revision,t.id from public.settings_pricing_operations p join public.${spec.table} t on t.id=p.target_id and t.tenant_id=p.tenant_id and t.write_revision=p.committed_revision where p.id=$1 and p.correlation_id=p.id and p.tenant_id=$2 and p.actor_user_id=$3 and p.target_id=$4 and p.operation_kind=$5`, [facts.operation, fixture.tenantA.id, fixture.adminA.id, facts.target, spec.kind]);
-+                const proof = await committedProof();
++                if (spec.table === "quote_terms") {
++                    expect(facts.expectedRevision).toBe(termsBaseline?.write_revision ?? "absent");
++                    if (termsBaseline) expect(facts.target).toBe(termsBaseline.id);
++                    else expect(facts.target).toMatch(/^[0-9a-f-]{36}$/i);
++                }
+                 const committedProof = () => db.query(`select p.committed_revision as revision,t.id from public.settings_pricing_operations p join public.${spec.table} t on t.id=p.target_id and t.tenant_id=p.tenant_id and t.write_revision=p.committed_revision where p.id=$1 and p.correlation_id=p.id and p.tenant_id=$2 and p.actor_user_id=$3 and p.target_id=$4 and p.operation_kind=$5`, [facts.operation, fixture.tenantA.id, fixture.adminA.id, facts.target, spec.kind]);
+                 const proof = await committedProof();
                  expect(proof.rows).toHaveLength(1);
-                 await expect(scope.getByTestId("settings-saved")).toBeVisible();
-                 const historical = await scope.getByTestId("settings-saved").elementHandle();
-@@ -1345,6 +1387,7 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
-                     }
-                 }
-                 // finally is armed BEFORE the committed revoke; fsync intent first.
-+                await expect(unavailable).toHaveCount(0); // Essential error-absence -> NEW server error transition while the fault is active.
-                 await admission.record({ state: "revoke-intent", table: spec.table, before });
-                 revoked = true;
-                 await db.query("begin"); transaction = true;
-@@ -1355,10 +1398,10 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
-                 await admission.record({ state: "revoke-committed", table: spec.table });
-                 const denied = await predicate(); expect(denied.error?.code).toBe("42501");
-                 const readRequest = await reread;
--                const settledRead = await releaseAndSettleRead();
--                if (settledRead.kind !== "finished") throw new Error("Released read did not deliver the required completed response");
--                expect(settledRead.request).toBe(readRequest);
--                const response = settledRead.response; expect(response).not.toBeNull();
-+                const assertDomain = () => assertProducerReadUnavailable(domainView, historical!, label);
-+                await assertProducerDomainRead(releaseAndSettleRead, readRequest, assertDomain);
-+                expect((await committedProof()).rows).toEqual(proof.rows); // Same captured operation/actor/tenant/target/revision while SELECT is still revoked.
-+                domainUnavailabilityVerified = true;
-                 if (spec.price) {
-                     await expect(scope.getByTestId("pricing-current-unavailable")).toBeVisible();
-                     await expect(scope.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är inte tillgängliga.");
-@@ -1369,7 +1412,6 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
-                 await expect(scope.getByLabel(spec.name)).toBeDisabled();
-                 await expect(scope.getByRole("button", { name: spec.save, exact: true })).toBeDisabled();
-                 expect(await historical!.evaluate(element => element.isConnected)).toBe(true);
--                const unavailable = spec.price ? scope.getByTestId("pricing-current-unavailable") : page.getByRole("alert").filter({ hasText: "Ett tillfälligt fel inträffade. Försök igen om en stund." });
-                 // A committed receipt with a failed read has no unknown/conflict recovery controls.
-                 await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
-                 for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
-@@ -1377,11 +1419,15 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
-                     await unavailable.evaluate(element => element.scrollIntoView({ block: "start" }));
-                     await expect(unavailable).toBeInViewport({ ratio: 1 });
-                     await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
-+                    await assertDomain();
-                     await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, "start");
-+                    await assertDomain();
-                     await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
-                     await expect(unavailable).toBeInViewport({ ratio: 1 });
-                     if (viewport.width === 360) {
-+                        await assertDomain();
-                         await producerCapture(page, info, spec.surface, "read-unavailable-draft", scope.getByLabel(spec.name));
-+                        await assertDomain();
-                         await expect(scope.getByLabel(spec.name)).toBeInViewport({ ratio: 1 });
-                         await expect(scope.getByLabel(spec.name)).toBeDisabled();
-                     }
-@@ -1409,7 +1455,7 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
-                         await admission.record({ state: "restore-verified", table: spec.table });
-                     } catch (error) { damaged = true; cleanupError = cleanupError ? new AggregateError([cleanupError, error], "Transport and ACL cleanup both failed") : error; }
-                 }
--                try { await writeFile(path.resolve("playwright-report/35-7-p/released-read-diagnostics.jsonl"), JSON.stringify({ table: spec.table, ...readTerminal.summary() }) + "\n", { flag: "a", mode: 0o600 }); }
-+                try { await writeFile(path.resolve("playwright-report/35-7-p/released-read-diagnostics.jsonl"), JSON.stringify({ table: spec.table, proof: "server-domain-unavailability-with-settled-transport", domainUnavailabilityVerified, ...readTerminal.summary() }) + "\n", { flag: "a", mode: 0o600 }); }
-                 catch { const diagnosticError = new Error("Released read categorical diagnostics could not be retained"); damaged = true; cleanupError = cleanupError ? new AggregateError([cleanupError, diagnosticError], "Read cleanup/diagnostics failed") : diagnosticError; }
-             }
-             if (scenarioError || cleanupError) throw new AggregateError([scenarioError, cleanupError].filter(error => error !== undefined), "Bounded read scenario/cleanup failed; no further fault or retry admitted");
+@@ -1348,27 +1405,19 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
+                 expect(ordinaryBefore.write_revision).toBe(proof.rows[0].revision);
+                 {
+                     const pendingReceipt = scope.getByTestId("settings-saved");
+-                    const separateCopy = spec.table === "quote_terms" ? "Aktuella uppgifter läses separat." : "Aktuella uppgifter hämtas separat.";
+-                    const readError = spec.price ? scope.getByTestId("pricing-current-unavailable") : page.getByRole("alert").filter({ hasText: "Ett tillfälligt fel inträffade. Försök igen om en stund." });
+-                    const assertPendingBranch = async () => {
+-                        await expect(readError).toHaveCount(0);
+-                        await expect(pendingReceipt).toContainText(separateCopy);
+-                        await expect(pendingReceipt).not.toContainText("Aktuella uppgifter är bekräftade.");
+-                        if (spec.table === "quote_terms") {
+-                            // Terms separate-copy also renders after matching confirmation.
+-                            // A fresh saved-current panel + no approval form excludes that:
+-                            // confirmsOwnWrite would adopt matching defaults and hide the panel.
+-                            await expect(scope.getByTestId("terms-current-facts").getByText(label, { exact: true })).toBeVisible();
+-                            await expect(scope.getByRole("button", { name: "Markera som godkänd", exact: true })).toHaveCount(0);
+-                        }
+-                    };
+-                    await assertPendingBranch();
+-                    await expect(scope.getByTestId("operation-unconfirmed")).toHaveCount(0);
+-                    await expect(scope.getByRole("button", { name: "Sparar…", exact: true })).toHaveCount(0); // Current reread pending, never save-busy.
+-                    await expect(scope.getByRole("button", { name: "Uppdatera och granska", exact: true })).toHaveCount(0);
++                    const receiptText = await pendingReceipt.innerText();
+                     const heldRead = hold.request(); expect(heldRead).toBeDefined();
++                    expect(await reread).toBe(heldRead); // Original first matching GET; never substitute another request.
+                     let heldReadTerminal = false;
++                    void readTerminal.outcome.then(() => { heldReadTerminal = true; });
+                     void heldRead!.response().then(() => { heldReadTerminal = true; }, () => { heldReadTerminal = true; });
++                    const assertPendingBranch = async () => {
++                        expect(heldReadTerminal).toBe(false);
++                        expect(hold.request()).toBe(heldRead);
++                        await assertProducerPendingRead(domainView, historical!, label, receiptText, termsBaseline);
++                        expect(heldReadTerminal).toBe(false);
++                    };
++                    await assertPendingBranch();
+                     const adopt = scope.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
+                     const hasAdopt = await adopt.count(); expect(hasAdopt).toBeLessThanOrEqual(1);
+                     for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+diff --git a/tests/integration/commands/settings-pricing-operation-contract.int.test.ts b/tests/integration/commands/settings-pricing-operation-contract.int.test.ts
+index c112e304..f9f59722 100644
+--- a/tests/integration/commands/settings-pricing-operation-contract.int.test.ts
++++ b/tests/integration/commands/settings-pricing-operation-contract.int.test.ts
+@@ -51,32 +51,51 @@ const forms: [
+     OperationKind,
+     boolean
+ ][] = [["company.save", false], ["company.save", true], ["terms.save", false], ["terms.save", true], ["terms.approve", true], ["work_role.create", false], ["work_role.update", true], ["work_role.archive", true], ["work_role.reactivate", true], ["article.create", false], ["article.update", true], ["article.archive", true], ["article.reactivate", true]];
++type ProducerHookPhase = "setup-fixture" | "setup-actor-a" | "setup-actor-b" | "setup-membership" | "setup-receipt-support" | "drop-trigger" | "drop-function" | "drop-table" | "fixture-cleanup";
++async function producerHookPhase<T>(phase: ProducerHookPhase, run: () => Promise<T>): Promise<T> {
++    try { const value = await run(); console.info(JSON.stringify({ producerHookPhase: phase, outcome: "returned", cleanupVerification: "not-established" })); return value; }
++    catch (error) {
++        let sqlstate = "unknown";
++        try { const code: unknown = (error as { code?: unknown } | null)?.code; if (typeof code === "string" && ["40P01", "40001", "55P03", "57014", "42501", "23503", "23505", "25P02", "08006", "08003", "57P01", "42P01", "42704"].includes(code)) sqlstate = code; } catch { /* Diagnostics never replace the original error. */ }
++        console.error(JSON.stringify({ producerHookPhase: phase, outcome: "rejected", sqlstate, category: sqlstate === "unknown" ? "unknown" : "native-sqlstate", cleanupVerification: "not-established" }));
++        throw error; // Preserve identity, native stack and any original error context for Vitest.
++    }
++}
++async function producerOwnedTeardown(available: TwoTenantFixture | undefined) {
++    const errors: unknown[] = [];
++    try {
++        // Separate autocommit DDL, in dependency order. A failed DROP stops later dependency removal.
++        await producerHookPhase("drop-trigger", () => adminQuery("drop trigger test_settings_pricing_receipt_failure on public.settings_pricing_operations"));
++        await producerHookPhase("drop-function", () => adminQuery("drop function test_support.reject_settings_pricing_receipt()"));
++        await producerHookPhase("drop-table", () => adminQuery("drop table test_support.settings_pricing_receipt_failures"));
++    } catch (error) { errors.push(error); }
++    finally {
++        if (available) {
++            try { await producerHookPhase("fixture-cleanup", () => cleanupFixture(available)); }
++            catch (error) { if (!errors.includes(error)) errors.push(error); }
++        }
++    }
++    if (errors.length === 1) throw errors[0];
++    if (errors.length > 1) throw new AggregateError(errors, "Owned producer teardown and fixture cleanup rejected");
++}
+ beforeAll(async () => {
+     up = await isLocalStackReachable();
+     if (!up)
+         return;
+-    fx = await createTwoTenantFixture();
+-    a = await makeAuthedServerClient(fx.adminA);
+-    b = await makeAuthedServerClient(fx.adminB);
+-    await adminInsertMembership({ tenant_id: fx.tenantA.id, user_id: fx.adminB.id, role: "tenant_admin", status: "active" });
+-    await adminQuery(`create table if not exists test_support.settings_pricing_receipt_failures(id uuid primary key);
++    fx = await producerHookPhase("setup-fixture", createTwoTenantFixture);
++    a = await producerHookPhase("setup-actor-a", () => makeAuthedServerClient(fx.adminA));
++    b = await producerHookPhase("setup-actor-b", () => makeAuthedServerClient(fx.adminB));
++    await producerHookPhase("setup-membership", () => adminInsertMembership({ tenant_id: fx.tenantA.id, user_id: fx.adminB.id, role: "tenant_admin", status: "active" }));
++    await producerHookPhase("setup-receipt-support", () => adminQuery(`create table if not exists test_support.settings_pricing_receipt_failures(id uuid primary key);
+  create or replace function test_support.reject_settings_pricing_receipt() returns trigger language plpgsql set search_path='' as $fault$ begin if exists(select 1 from test_support.settings_pricing_receipt_failures where id=new.id) then raise exception 'test-only receipt failure';end if;return new;end $fault$;
+- create trigger test_settings_pricing_receipt_failure before insert on public.settings_pricing_operations for each row execute function test_support.reject_settings_pricing_receipt()`);
++ create trigger test_settings_pricing_receipt_failure before insert on public.settings_pricing_operations for each row execute function test_support.reject_settings_pricing_receipt()`));
+ });
+ beforeEach(async () => { if (!up)
+     return; for (const t of ["company_settings", "quote_terms", "work_roles", "articles"])
+     await adminQuery(`delete from public.${t} where tenant_id=$1`, [fx.tenantA.id]); });
+ afterAll(async () => { if (!up)
+-    return; try {
+-    // Release the global receipt relation lock before tearing down the private
+-    // function/table; a compound simple query retains all DDL locks until its end.
+-    await adminQuery("drop trigger test_settings_pricing_receipt_failure on public.settings_pricing_operations");
+-    await adminQuery("drop function test_support.reject_settings_pricing_receipt()");
+-    await adminQuery("drop table test_support.settings_pricing_receipt_failures");
+-}
+-finally {
+-    await cleanupFixture(fx);
+-} });
++    return; await producerOwnedTeardown(fx);
++});
+ describe("35.7-P checked producer permutations", () => {
+     for (const [kind, existing] of forms) {
+         test(`P-I1/P-I2 ${kind}/${existing ? "existing" : "absent"}: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt`, async (ctx) => {

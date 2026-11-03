@@ -51,32 +51,51 @@ const forms: [
     OperationKind,
     boolean
 ][] = [["company.save", false], ["company.save", true], ["terms.save", false], ["terms.save", true], ["terms.approve", true], ["work_role.create", false], ["work_role.update", true], ["work_role.archive", true], ["work_role.reactivate", true], ["article.create", false], ["article.update", true], ["article.archive", true], ["article.reactivate", true]];
+type ProducerHookPhase = "setup-fixture" | "setup-actor-a" | "setup-actor-b" | "setup-membership" | "setup-receipt-support" | "drop-trigger" | "drop-function" | "drop-table" | "fixture-cleanup";
+async function producerHookPhase<T>(phase: ProducerHookPhase, run: () => Promise<T>): Promise<T> {
+    try { const value = await run(); console.info(JSON.stringify({ producerHookPhase: phase, outcome: "returned", cleanupVerification: "not-established" })); return value; }
+    catch (error) {
+        let sqlstate = "unknown";
+        try { const code: unknown = (error as { code?: unknown } | null)?.code; if (typeof code === "string" && ["40P01", "40001", "55P03", "57014", "42501", "23503", "23505", "25P02", "08006", "08003", "57P01", "42P01", "42704"].includes(code)) sqlstate = code; } catch { /* Diagnostics never replace the original error. */ }
+        console.error(JSON.stringify({ producerHookPhase: phase, outcome: "rejected", sqlstate, category: sqlstate === "unknown" ? "unknown" : "native-sqlstate", cleanupVerification: "not-established" }));
+        throw error; // Preserve identity, native stack and any original error context for Vitest.
+    }
+}
+async function producerOwnedTeardown(available: TwoTenantFixture | undefined) {
+    const errors: unknown[] = [];
+    try {
+        // Separate autocommit DDL, in dependency order. A failed DROP stops later dependency removal.
+        await producerHookPhase("drop-trigger", () => adminQuery("drop trigger test_settings_pricing_receipt_failure on public.settings_pricing_operations"));
+        await producerHookPhase("drop-function", () => adminQuery("drop function test_support.reject_settings_pricing_receipt()"));
+        await producerHookPhase("drop-table", () => adminQuery("drop table test_support.settings_pricing_receipt_failures"));
+    } catch (error) { errors.push(error); }
+    finally {
+        if (available) {
+            try { await producerHookPhase("fixture-cleanup", () => cleanupFixture(available)); }
+            catch (error) { if (!errors.includes(error)) errors.push(error); }
+        }
+    }
+    if (errors.length === 1) throw errors[0];
+    if (errors.length > 1) throw new AggregateError(errors, "Owned producer teardown and fixture cleanup rejected");
+}
 beforeAll(async () => {
     up = await isLocalStackReachable();
     if (!up)
         return;
-    fx = await createTwoTenantFixture();
-    a = await makeAuthedServerClient(fx.adminA);
-    b = await makeAuthedServerClient(fx.adminB);
-    await adminInsertMembership({ tenant_id: fx.tenantA.id, user_id: fx.adminB.id, role: "tenant_admin", status: "active" });
-    await adminQuery(`create table if not exists test_support.settings_pricing_receipt_failures(id uuid primary key);
+    fx = await producerHookPhase("setup-fixture", createTwoTenantFixture);
+    a = await producerHookPhase("setup-actor-a", () => makeAuthedServerClient(fx.adminA));
+    b = await producerHookPhase("setup-actor-b", () => makeAuthedServerClient(fx.adminB));
+    await producerHookPhase("setup-membership", () => adminInsertMembership({ tenant_id: fx.tenantA.id, user_id: fx.adminB.id, role: "tenant_admin", status: "active" }));
+    await producerHookPhase("setup-receipt-support", () => adminQuery(`create table if not exists test_support.settings_pricing_receipt_failures(id uuid primary key);
  create or replace function test_support.reject_settings_pricing_receipt() returns trigger language plpgsql set search_path='' as $fault$ begin if exists(select 1 from test_support.settings_pricing_receipt_failures where id=new.id) then raise exception 'test-only receipt failure';end if;return new;end $fault$;
- create trigger test_settings_pricing_receipt_failure before insert on public.settings_pricing_operations for each row execute function test_support.reject_settings_pricing_receipt()`);
+ create trigger test_settings_pricing_receipt_failure before insert on public.settings_pricing_operations for each row execute function test_support.reject_settings_pricing_receipt()`));
 });
 beforeEach(async () => { if (!up)
     return; for (const t of ["company_settings", "quote_terms", "work_roles", "articles"])
     await adminQuery(`delete from public.${t} where tenant_id=$1`, [fx.tenantA.id]); });
 afterAll(async () => { if (!up)
-    return; try {
-    // Release the global receipt relation lock before tearing down the private
-    // function/table; a compound simple query retains all DDL locks until its end.
-    await adminQuery("drop trigger test_settings_pricing_receipt_failure on public.settings_pricing_operations");
-    await adminQuery("drop function test_support.reject_settings_pricing_receipt()");
-    await adminQuery("drop table test_support.settings_pricing_receipt_failures");
-}
-finally {
-    await cleanupFixture(fx);
-} });
+    return; await producerOwnedTeardown(fx);
+});
 describe("35.7-P checked producer permutations", () => {
     for (const [kind, existing] of forms) {
         test(`P-I1/P-I2 ${kind}/${existing ? "existing" : "absent"}: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt`, async (ctx) => {
