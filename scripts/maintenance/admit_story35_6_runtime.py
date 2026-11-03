@@ -427,9 +427,12 @@ def legacy_closure(repo, entry, authorities, p, r, snapshots):
         allocation_path = 'docs/quality/story-35-2-approved-admission-2026-10-28.json'
         allocation = next(((source, value) for source, value in authorities if source['role'] == 'allocation' and
                            source['ref'].get('path', '').replace('\\', '/').endswith(allocation_path)), None)
+        allocation_bytes = capture(repo, allocation[0]['ref'], snapshots) if allocation is not None else b''
         require(allocation is not None and allocation[1].get('allocation', {}).get('ownerChat') == subject['owner'] and
                 allocation[1]['allocation'].get('branch') == subject['branch'] and
-                hashlib.sha256(capture(repo, allocation[0]['ref'], snapshots).replace(b'\r\n', b'\n')).hexdigest() == binding['sourceFiles'].get(allocation_path),
+                binding['sourceFiles'].get(allocation_path) in {
+                    hashlib.sha256(allocation_bytes).hexdigest(),
+                    hashlib.sha256(allocation_bytes.replace(b'\r\n', b'\n')).hexdigest()},
                 '35.2 full initial allocation authority missing or mismatched')
     elif number == 121:
         require(any(value.get('story_id') == '35-4' and value.get('owner_chat') == subject['owner'] and

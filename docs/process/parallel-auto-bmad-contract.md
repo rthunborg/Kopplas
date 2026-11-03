@@ -410,6 +410,13 @@ includes all six stories and epic and preserves legacy default publication flags
 35.2's source binding lacks a path array: its bound approved allocation plus
 later grants must supply the full scope. Missing evidence refuses.
 
+For that exact 35.2 allocation, compare the unchanged recorded pin with either
+the captured raw SHA256 or its existing LF-normalized SHA256. No JSON
+reserialization or pin replacement is allowed. A raw CRLF-pinned original
+FileRef remains primary; a separate LF Git blob alone cannot satisfy that raw
+pin. Raw reference integrity, full allocation/owner/branch checks and lossless
+audit/rechecks remain mandatory.
+
 `terminal_scope` binds current `coordinator`, `subject_digest`, `scope_digest`,
 `complete_writer_inventory: true`, **`no_reopen_attested: true`**, exact source
 `owners`, `writers`, and `raw_observations`. Every source owner is a root; every

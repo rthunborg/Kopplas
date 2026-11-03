@@ -191,7 +191,7 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
                'merged': True, 'merge_sha': merged}
         return {**pub, 'observation_ref': self.raw('historical-publication-' + str(number), pub)}
 
-    def legacy_fixture(self, key='spec-design-35-4-35-4'):
+    def legacy_fixture(self, key='spec-design-35-4-35-4', allocation_pin=None):
         kind, folder, stories, number = adapter.LEGACY[key]
         branch = ('codex/epic-15-scheduling-time-calendar' if number == 108 else
                   'codex/story-' + ('35-2-foundations-login' if number == 115 else '35-4-dialogs-feedback-files'))
@@ -214,10 +214,23 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
         allocation_file = self.root / allocation_path
         allocation_file.parent.mkdir(parents=True, exist_ok=True)
         allocation_file.write_text(json.dumps(allocation), encoding='utf-8')
+        if allocation_pin is not None:
+            self.assertEqual(number, 115)
+            self.assertIn(allocation_pin, ['raw', 'lf'])
+            allocation_bytes = (json.dumps(allocation, indent=2) + '\n').replace('\n', '\r\n').encode()
+            allocation_file.write_bytes(allocation_bytes)
+            # Separate committed LF provenance cannot impersonate the original
+            # raw-pinned CRLF FileRef, even though parsed values are identical.
+            blob_file = self.b / allocation_path
+            blob_file.parent.mkdir(parents=True, exist_ok=True)
+            blob_file.write_bytes(allocation_bytes.replace(b'\r\n', b'\n'))
         allocation_ref = {'path': str(allocation_file.resolve()), 'sha256': hashlib.sha256(allocation_file.read_bytes()).hexdigest()}
         if number == 115:
+            pinned_bytes = allocation_file.read_bytes()
+            if allocation_pin != 'raw':
+                pinned_bytes = pinned_bytes.replace(b'\r\n', b'\n')
             binding = {'executionId': '35-2', 'sourceFiles': {
-                allocation_path: hashlib.sha256(Path(allocation_ref['path']).read_bytes().replace(b'\r\n', b'\n')).hexdigest()}}
+                allocation_path: hashlib.sha256(pinned_bytes).hexdigest()}}
         else:
             binding = {'story_id': '35-4', 'owner_chat': owner, 'branch': branch,
                        'production_write_paths': ['src/historical/'], 'test_write_paths': [adapter.RUNTIME]}
@@ -371,6 +384,50 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
         entry = self.legacy_fixture('spec-design-35-2-35-2')
         self.bind_closed([entry])
         self.assertEqual(self.admit()['generation'], 2)
+
+    def test_closed_35_2_raw_crlf_pin_admission_preserves_exact_audit_bytes(self):
+        entry = self.legacy_fixture('spec-design-35-2-35-2', allocation_pin='raw')
+        allocation_ref = entry['scope']['authorities'][1]['ref']
+        original = Path(allocation_ref['path']).read_bytes()
+        self.assertIn(b'\r\n', original)
+        self.assertNotEqual(hashlib.sha256(original.replace(b'\r\n', b'\n')).hexdigest(), allocation_ref['sha256'])
+        binding = json.loads(adapter.source_bytes(self.repo, entry['proof']['source_bindings'][0]['ref']))
+        self.assertEqual(binding['sourceFiles']['docs/quality/story-35-2-approved-admission-2026-10-28.json'], allocation_ref['sha256'])
+        self.bind_closed([entry])
+        self.assertEqual(self.admit()['generation'], 2)
+        with engine.database(self.repo) as db:
+            receipt = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])
+        artifact = next(item for item in receipt['raw_artifacts'] if item['reference'] == allocation_ref)
+        self.assertEqual(base64.b64decode(artifact['base64'], validate=True), original)
+
+    def test_closed_35_2_existing_lf_pin_accepts_crlf_source(self):
+        entry = self.legacy_fixture('spec-design-35-2-35-2', allocation_pin='lf')
+        allocation_ref = entry['scope']['authorities'][1]['ref']
+        original = Path(allocation_ref['path']).read_bytes()
+        binding = json.loads(adapter.source_bytes(self.repo, entry['proof']['source_bindings'][0]['ref']))
+        pin = binding['sourceFiles']['docs/quality/story-35-2-approved-admission-2026-10-28.json']
+        self.assertNotEqual(pin, allocation_ref['sha256'])
+        self.assertEqual(pin, hashlib.sha256(original.replace(b'\r\n', b'\n')).hexdigest())
+        self.bind_closed([entry])
+        self.assertEqual(self.admit()['generation'], 2)
+
+    def test_closed_35_2_raw_pin_rejects_refreshed_changed_bytes_and_lf_blob(self):
+        entry = self.legacy_fixture('spec-design-35-2-35-2', allocation_pin='raw')
+        allocation_ref = entry['scope']['authorities'][1]['ref']
+        original = Path(allocation_ref['path']).read_bytes()
+        changed = original + b' '
+        self.assertEqual(json.loads(changed), json.loads(original))
+        Path(allocation_ref['path']).write_bytes(changed)
+        changed_ref = {**allocation_ref, 'sha256': hashlib.sha256(changed).hexdigest()}
+        lf_ref = self.blob_ref(entry['proof']['main_sha'], 'docs/quality/story-35-2-approved-admission-2026-10-28.json')
+        self.assertEqual(adapter.source_bytes(self.repo, lf_ref), original.replace(b'\r\n', b'\n'))
+        for ref in [changed_ref, lf_ref]:
+            with self.subTest(ref=ref):
+                item = copy.deepcopy(entry)
+                item['scope']['authorities'][1]['ref'] = ref
+                item['proof']['terminal_scope'] = self.scoped_graph(item['subject'], item['scope'])
+                self.bind_closed([item])
+                self.refused('35.2 full initial allocation authority missing or mismatched')
 
     def test_closed_e15_legacy_defaults_all_six_and_unmerged_debug_head(self):
         entry = self.legacy_fixture('epic-15')

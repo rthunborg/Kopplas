@@ -259,8 +259,8 @@ Implementation anchors (the final author trail follows execution evidence):
 - `scripts/maintenance/admit_story35_6_runtime.py:269` — `terminal_scope`: complete scoped writer roots/descendants and no-reopen flag.
 - `scripts/maintenance/admit_story35_6_runtime.py:317` — `finalized_closure`: full native plan, verified claims, pins and ancestry.
 - `scripts/maintenance/admit_story35_6_runtime.py:364` — `legacy_closure`: exact observed legacy profiles and main/publication/source proofs.
-- `scripts/maintenance/admit_story35_6_runtime.py:479` — `closed_classifications`: exact registered marker instances only.
-- `scripts/maintenance/admit_story35_6_runtime.py:572` — `ownership`: ordinary ownership first, strict inventory-version branch.
+- `scripts/maintenance/admit_story35_6_runtime.py:482` — `closed_classifications`: exact registered marker instances only.
+- `scripts/maintenance/admit_story35_6_runtime.py:575` — `ownership`: ordinary ownership first, strict inventory-version branch.
 - `docs/process/parallel-auto-bmad-contract.md:367` — evidence-bound historical anchor operator contract.
 
 | Synthetic case | Required result |
@@ -422,6 +422,67 @@ adapter, focused test, contract and this historical spec. No test execution,
 runtime/resource/CI action, live claim/config mutation or E09 change occurred.
 The merge is left uncommitted for independent targeted High review.
 
+## Raw allocation-pin correction — 2026-11-03
+
+Coordinator authorized one bounded follow-up batch over frozen source
+`6340010c11407b7b77f3c0e81699c7af71b65bb2`, preserving its historical merge,
+the original approved design/intent and all prior failed receipts. Author and
+distinct targeted reviewer remain Sol High. Independent High design assessment
+approved exact raw-or-existing-LF comparison against the **same unchanged pin**;
+the recorded route is the ignored
+`tmp/private/live-admission-634-preparation/raw-pin-correction-route.json`.
+
+Read-only operational preparation found the concrete mismatch: 35.2's main
+binding (3546 bytes, SHA256
+`6ede49bc8618e0763b16a17b863966d9484c2455b73fc1b31cbc01b9226f8605`)
+pins the original allocation's 1961 raw CRLF bytes as
+`e37effdc2cf7716baf0ae1504278d7b051b9695df1fe9598b443550e590b0515`.
+Its separate 1909-byte main LF blob, and LF-normalized original, hash to
+`41dfdddf0b9f91a16ef82b82eb59a9d4d8e159fcc6c4778d783054845a6823dc`.
+The old predicate at frozen-source line432 always normalized first, so neither
+honest reference satisfied that raw pin. Pure native hash proof is retained at
+`tmp/private/live-admission-634-preparation/scopes/35-2-native-predicate-proof.json`
+(SHA256 `90d1449715af434fdb083d1b348d3b544f0010d2ec17bad4370bb55818afdb88`);
+it executed no adapter, store operation or test.
+
+The correction compares the captured allocation's raw SHA256 or the previously
+accepted LF-normalized SHA256 with that same binding value. It performs no JSON
+reserialization, pin replacement, source reconstruction or general schema/helper
+change. The actual raw-pinned original FileRef remains primary; the separate LF
+blob cannot satisfy this raw pin. Raw ref integrity, owner/branch/path checks,
+complete scope, independent review, capture-once/final recheck and audit/CAS
+behavior stay in force.
+
+The existing 38 test-method ASTs are unchanged; three added methods make the
+static inventory 41. They exercise full native admission with a raw CRLF pin
+and exact audit bytes, preservation of an LF pin over CRLF source bytes, and
+two fully refreshed negative references: changed bytes with unchanged JSON
+meaning, and the separately committed LF blob against the raw pin. Each negative
+asserts the specific allocation-pin refusal and unchanged plan/claim/audit, so
+stale digests or raw-reference mismatch cannot mask the affected guard.
+
+Affected native selection passed **4 executed, 0 failures, 0 errors, 0 skipped,
+123.078s**, exit0, on Windows Python3.14.7/Git2.55.0.windows.3 with actual short
+TEMP `C:/DEV/Kopplas/tmp/private/E35-AD~1` (canonical
+`C:/DEV/Kopplas/tmp/private/e35-admission-test-temp`). Exact argv and matching
+before/after source/test hashes are retained in
+`tmp/private/raw-pin-correction/native-targeted-metadata.json`, with durable
+`native-targeted.log`. Adapter raw SHA256 is
+`7c202f5e255f5967bf1b4d78fbaba96c0cbec9e20476e543b45e1bb6062b79b5`;
+test raw SHA256 is
+`80c15f9da1c36a01b283c6b12c6161d08bc12a16e3ac15188ad3b09aa67e70cb`.
+Only the three new methods plus existing
+`test_closed_35_2_allocation_without_binding_paths` are selected. A private wrapper
+preflight first exited1 before launching a test because its own repo-parent index
+was wrong; `wrapper-preflight-failure.json` preserves that zero-execution failure.
+The wrapper-only correction did not change source/test bytes.
+
+No full 38/41-test suite, original helper/core suite, hosted CI, resource,
+live-store adapter invocation, source pin/configuration or product operation is
+authorized or executed by this follow-up. Earlier 38-pass and helper70 evidence
+above remains historical. Fresh exact-successor tooling qualification and a
+complete current operational request remain separate parent-owned gates.
+
 ## Operational proof gaps and disposition
 
 The approved design is implemented for targeted review; **no operational packet
@@ -446,15 +507,19 @@ is ready**. Missing proof remains a refusal under this schema:
 ## Suggested Review Order
 
 Author: `/root/crm_runtime_route/runtime_admission_author` (Sol High).
-Refreshed against original baseline `d03a52ce014f60c8e279f016e8cdd5790ca0d596` and
-the uncommitted ordinary merge of qualified c258 into pre-merge source 82f. The
-introduced diff relative to c258 remains the original four paths; inherited CI
-spec/workflow content is preserved. Source SHA256 is
-`349c10b261c6a287f7490560b6d066808778909d889d1984ac9faad7afe07992`;
-test SHA256 is `48609a22f2944e6dc6f429cbe105242993f0a83e4baec99d8baf928deff96b88`.
-The historical local 38-test run passed on that exact pair before this integration;
-it does not qualify the merged source. This guide is not admission authority;
-real operator proof and fresh direct-exact-head four-job qualification remain required.
+Refreshed for the bounded raw-pin correction working tree over frozen merge
+`6340010c11407b7b77f3c0e81699c7af71b65bb2`. Original baseline
+`d03a52ce014f60c8e279f016e8cdd5790ca0d596`, design approval and historical
+82f/c258 merge provenance remain unchanged. Only the original four introduced
+paths are modified; inherited CI spec/workflow and helper pins are unchanged.
+Current source SHA256 is
+`7c202f5e255f5967bf1b4d78fbaba96c0cbec9e20476e543b45e1bb6062b79b5`;
+current test SHA256 is
+`80c15f9da1c36a01b283c6b12c6161d08bc12a16e3ac15188ad3b09aa67e70cb`.
+The historical 38-test run qualified the prior pair, not this correction.
+Affected native selection passed four methods in 123.078s as recorded above;
+the static 41-method inventory is not a full-suite execution. Real operator proof
+and fresh exact-successor qualification remain separate required gates.
 
 ### Classify exact historical markers after ordinary ownership
 
@@ -464,8 +529,8 @@ plan used by the unchanged legacy validator; a historical annotation grants no
 new authority.
 
 - `docs/process/parallel-auto-bmad-contract.md:367` — `Evidence-bound historical anchors`: operator schema and trust boundaries.
-- `scripts/maintenance/admit_story35_6_runtime.py:572` — `def ownership`: validates the complete inventory and current ownership first.
-- `scripts/maintenance/admit_story35_6_runtime.py:637` — `engine.story_pr_legacy_conflicts(repo, p, revised_story)`: retains authoritative old-plan recognition.
+- `scripts/maintenance/admit_story35_6_runtime.py:575` — `def ownership`: validates the complete inventory and current ownership first.
+- `scripts/maintenance/admit_story35_6_runtime.py:640` — `engine.story_pr_legacy_conflicts(repo, p, revised_story)`: retains authoritative old-plan recognition.
 
 ### Bind complete scope and real task closure
 
@@ -477,7 +542,7 @@ unrelated current actor work does not replace scoped closure/no-reopen evidence.
 - `scripts/maintenance/admit_story35_6_runtime.py:317` — `def finalized_closure`: verifies full native scope, pins, integrated backing and ancestry.
 - `scripts/maintenance/admit_story35_6_runtime.py:364` — `def legacy_closure`: binds observed profiles, allocations, main counterparts and publications.
 - `scripts/maintenance/admit_story35_6_runtime.py:269` — `def terminal_scope`: requires explicit no-reopen and complete recursively observed writers.
-- `tests/maintenance/test_admit_story35_6_runtime.py:375` — `test_closed_e15_legacy_defaults_all_six_and_unmerged_debug_head`: preserves all counterparts and legacy flags with archived diagnostics.
+- `tests/maintenance/test_admit_story35_6_runtime.py:432` — `test_closed_e15_legacy_defaults_all_six_and_unmerged_debug_head`: preserves all counterparts and legacy flags with archived diagnostics.
 
 ### Refuse reopened identities and divergent publication ancestry
 
@@ -486,10 +551,22 @@ gap. Known casefolded aliases and source paths now cover native claims as well
 as reservations; the negative fixtures refresh evidence and avoid ordinary path
 overlap so they reach the named identity or ordered-parent guard.
 
-- `scripts/maintenance/admit_story35_6_runtime.py:493` — `aliases =`: shares known legacy identity reconciliation across claims and reservations.
-- `tests/maintenance/test_admit_story35_6_runtime.py:582` — `test_closed_legacy_reopened_source_casefold_is_the_only_matching_identity`: isolates differently cased source ownership.
-- `tests/maintenance/test_admit_story35_6_runtime.py:630` — `test_closed_legacy_reversed_publication_parents_with_matching_raw_observation_refuse`: rejects reversed parents with refreshed matching observation.
-- `tests/maintenance/test_admit_story35_6_runtime.py:638` — `test_closed_legacy_schema1_short_ids_and_source_spec_cannot_reopen`: rejects short IDs and historical source-spec identity without scope overlap.
+- `scripts/maintenance/admit_story35_6_runtime.py:496` — `aliases =`: shares known legacy identity reconciliation across claims and reservations.
+- `tests/maintenance/test_admit_story35_6_runtime.py:639` — `test_closed_legacy_reopened_source_casefold_is_the_only_matching_identity`: isolates differently cased source ownership.
+- `tests/maintenance/test_admit_story35_6_runtime.py:687` — `test_closed_legacy_reversed_publication_parents_with_matching_raw_observation_refuse`: rejects reversed parents with refreshed matching observation.
+- `tests/maintenance/test_admit_story35_6_runtime.py:695` — `test_closed_legacy_schema1_short_ids_and_source_spec_cannot_reopen`: rejects short IDs and historical source-spec identity without scope overlap.
+
+### Honor the original raw allocation pin without rewriting authority
+
+The recorded 35.2 allocation pin hashes CRLF bytes. This bounded fix accepts
+that exact raw hash or the existing LF hash against the same unchanged pin;
+full native regressions preserve raw audit bytes and reject refreshed altered
+bytes or a separate LF blob that does not match the raw pin.
+
+- `scripts/maintenance/admit_story35_6_runtime.py:430` — `allocation_bytes =`: reuses captured bytes for the same immutable pin.
+- `tests/maintenance/test_admit_story35_6_runtime.py:388` — `test_closed_35_2_raw_crlf_pin_admission_preserves_exact_audit_bytes`: admits raw CRLF and preserves exact receipt bytes.
+- `tests/maintenance/test_admit_story35_6_runtime.py:403` — `test_closed_35_2_existing_lf_pin_accepts_crlf_source`: preserves the prior LF comparison branch.
+- `tests/maintenance/test_admit_story35_6_runtime.py:414` — `test_closed_35_2_raw_pin_rejects_refreshed_changed_bytes_and_lf_blob`: reaches pin refusal with fresh proof and unchanged store.
 
 ### Retain and recheck the exact proof bytes
 
@@ -499,8 +576,8 @@ transaction/audit stores complete classifications and lossless base64, including
 BOM/CRLF; changed evidence, rollback and historical replay remain explicit tests.
 
 - `scripts/maintenance/admit_story35_6_runtime.py:101` — `def capture`: captures each raw source reference once.
-- `scripts/maintenance/admit_story35_6_runtime.py:787` — `source_bytes(repo, ref) == data`: refuses changed proof before CAS.
-- `scripts/maintenance/admit_story35_6_runtime.py:801` — `raw_artifacts`: preserves exact file/Git proof bytes as base64.
+- `scripts/maintenance/admit_story35_6_runtime.py:790` — `source_bytes(repo, ref) == data`: refuses changed proof before CAS.
+- `scripts/maintenance/admit_story35_6_runtime.py:804` — `raw_artifacts`: preserves exact file/Git proof bytes as base64.
 
 ### Assess native fixture coverage and operational limits
 
@@ -512,22 +589,25 @@ variants with separate external reservations, and strict incomplete/corrupt nati
 proof refusals. Mutation/audit tests additionally assert unchanged store on refusal,
 exact reconstructed hashes, rollback and historical replay.
 
-- `tests/maintenance/test_admit_story35_6_runtime.py:344` — `test_closed_legacy_full_scope_audit_and_unchanged_helper_continuation`: exercises full-scope admission and original-helper generation checks.
-- `tests/maintenance/test_admit_story35_6_runtime.py:359` — `test_closed_e20_all_integrated_copied_variants_preserve_external_reservation`: conserves native scope and distinct external provenance.
-- `tests/maintenance/test_admit_story35_6_runtime.py:516` — `test_closed_finalized_missing_verification_claim_scope_and_provenance_refuse`: reaches incomplete, ancestry, scope and inherited-marker refusals.
+- `tests/maintenance/test_admit_story35_6_runtime.py:357` — `test_closed_legacy_full_scope_audit_and_unchanged_helper_continuation`: exercises full-scope admission and original-helper generation checks.
+- `tests/maintenance/test_admit_story35_6_runtime.py:372` — `test_closed_e20_all_integrated_copied_variants_preserve_external_reservation`: conserves native scope and distinct external provenance.
+- `tests/maintenance/test_admit_story35_6_runtime.py:573` — `test_closed_finalized_missing_verification_claim_scope_and_provenance_refuse`: reaches incomplete, ancestry, scope and inherited-marker refusals.
 
 Historical pre-integration evidence: `python -X utf8 tests/maintenance/test_admit_story35_6_runtime.py -v`
 passed **38 executed, 0 failures/errors/skipped, 1048.100s**, exit 0, on the
-source/test pair above in the original author snapshot with native Windows Python 3.14.7 and actual 8.3
-TEMP. Durable log/metadata is
+historical 349c10/48609a pair recorded in the verification section, in the original
+author snapshot with native Windows Python 3.14.7 and actual 8.3 TEMP.
+This does not qualify the current raw-pin correction pair. Durable log/metadata is
 `tmp/private/historical-anchor-verification/native-final38*`. The affected
-casefold selection also passed **1 test in 25.700s**, exit 0, on this final pair.
+casefold selection also passed **1 test in 25.700s**, exit 0, on that historical pair.
 The earlier recovered **6-pass/247.212s** selection is pre-final-batch evidence;
 all earlier failures are retained in the verification record. Historical unchanged-
 helper Windows CI **70-pass/573.425s** is reused, without a new helper run.
-This integration performed only source/hash/pin/blob/union/reference checks;
-it executed no Python suite. See integration provenance for the two distinct
-synthetic CI revisions and the still-required fresh direct source-head result.
+The earlier integration performed only source/hash/pin/blob/union/reference checks.
+The new raw-pin correction executed only its four affected methods (123.078s,
+zero failures/errors/skips), preserving all 38 prior method bodies. See integration
+provenance for the two distinct synthetic CI revisions and the still-required
+fresh exact-successor source-head result.
 
 Limits: synthetic Git/SQLite fixtures and external observation bodies; pure proof
 negatives call the production validator directly, while admission/continuation,
