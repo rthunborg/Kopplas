@@ -364,6 +364,152 @@ allowed; uncertain status or any path/domain/source collision refuses while
 preserving its reservation. Pending planned ownership remains governed by the
 ordinary helper. Existing claim independence requirements are retained.
 
+### Evidence-bound historical anchors
+
+This exact adapter also accepts inventory schema 2: the same fields plus
+`closed_anchors`. Schema 1 remains unchanged. A closed entry covers only exact
+otherwise-unrecognized nonterminal markers; it does not release an allocation,
+close an actor, or change the pinned helper. Ordinary active claims, legacy
+reservations and repository custody are checked first and remain authoritative.
+The approved implementation contract is
+`_bmad-output/implementation-artifacts/spec-35-6-historical-anchor-classification.md`.
+
+Each entry contains exactly `id`, `kind`, `subject`, `scope`, `anchors`, `proof`.
+`subject` binds `key`, `owner`, `source_kind`, `source_folder`, complete
+`story_keys`, and the historical task `branch`. `scope` retains complete original
+`write_paths`, `conflict_domains`, `bookkeeping_paths`, unabridged `authorities`
+(`role`, `ref`), current `coordinator`, and `complete: true`. Authority roles are
+`plan`, `binding`, `allocation`, `amendment`, `spec`, `bookkeeping`. Full scope
+includes original test/process grants; a Git diff or marker-only scope cannot
+replace the allocation/amendment record. Native arrays are conserved, including
+35.4's test grant for `playwright.config.ts`.
+
+An anchor has exactly `worktree`, actual Git `branch`, `head`, `path`, raw
+`sha256`, `subject_part`, `blob_commit`, `blob_sha256`. Its registered same-common-
+Git checkout, current snapshot identity and raw marker must match; the same-path
+blob at observed HEAD must match after explicit LF normalization. Actual checkout
+branch/HEAD are distinct from the historical task branch. Unmerged diagnostic
+HEADs are allowed only with this committed-marker binding and full closure proof.
+
+`finalized-run` proof is exactly `run_id`, `plan_hash`, `final_sha`,
+`verification_sha`: the actual finalized store row, entire stored plan and pins,
+all planned claims integrated with matching verifications/ancestry, exact final
+verification, and no unresolved operations. Copied markers must match same-path
+blobs at that run's recorded base/result/integration/final commits. Full story
+and shared scope is derived exactly from the plan. Its external legacy
+reservations remain separately preserved and are never absorbed by run closure.
+
+`legacy-main` is limited to 35.2, 35.4 and E15. Proof contains exactly `main_sha`,
+complete `terminal_states` (`subject_part`, `ref`), `source_bindings` (`ref`,
+`source_folder`, exact absolute `locations`, `owner`), `publications`, and
+`terminal_scope`. Require exact done counterparts at current qualified main,
+original source/owner/branch identities, complete allocation/amendment scope,
+raw merged publication observations and exact ordered merge parents with main
+ancestry. 35.4 includes both product PR121 and recorded closeout PR122. E15
+includes all six stories and epic and preserves legacy default publication flags.
+35.2's source binding lacks a path array: its bound approved allocation plus
+later grants must supply the full scope. Missing evidence refuses.
+
+For that exact 35.2 allocation, compare the unchanged recorded pin with either
+the captured raw SHA256 or its existing LF-normalized SHA256. No JSON
+reserialization or pin replacement is allowed. A raw CRLF-pinned original
+FileRef remains primary; a separate LF Git blob alone cannot satisfy that raw
+pin. Raw reference integrity, full allocation/owner/branch checks and lossless
+audit/rechecks remain mandatory.
+
+`terminal_scope` binds current `coordinator`, `subject_digest`, `scope_digest`,
+`complete_writer_inventory: true`, **`no_reopen_attested: true`**, exact source
+`owners`, `writers`, and `raw_observations`. Every source owner is a root; every
+observed scoped descendant is a writer. Writers bind `identity`, `parent`,
+`role`, actual completed `closure_turn_id`, `observation_ref`, and
+`state: "terminal-for-scope"`. The complete graph is acyclic and raw-backed;
+the admission reviewer is independent of every historical owner/writer too.
+
+Each observation is a strict projection containing `schema_version: 1`,
+`identity`, both digests, `scoped_turn_ids`, and `native_ref` to retained native
+`codex_app.read_thread` data (`threadId`, newest-first `turns`, closure `finals`,
+complete `children`). Only explicit historical scoped turns contribute edges;
+unrelated current work by that actor may continue. `notLoaded`, an unrelated
+latest turn, incomplete descendants, or a missing no-reopen attestation cannot
+close the task. Statement scope, complete selection and external authenticity
+remain coordinator/independent High review responsibilities.
+
+References are raw absolute files `{path, sha256}` or exact Git blobs
+`{commit, path, sha256}`. Capture each once, parse JSON with duplicate-key
+rejection, retain lossless base64 including BOM/CRLF, and recheck all sources
+and the complete current store/worktree snapshot before CAS. The existing
+append-only receipt retains full classifications, scope, derived decisions and
+raw sources. Rollback and historical replay semantics are unchanged. No proof
+overrides live/reopened ownership or custody, and no operational packet, live
+admission, tooling CI or product/runtime success follows from synthetic tests.
+
+#### Exact E15 current-custody alternative
+
+`legacy-main-current-custody` is a separate strict discriminator for only the
+existing `epic-15` owner, sprint source, six story keys and
+`codex/epic-15-scheduling-time-calendar` task branch. It reuses full actual
+allocation/amendment/bookkeeping scope, pins, integrated main/publication/ordered
+ancestry and exact registered anchor checks. Current native claims, legacy
+reservations and prepared integration/publication custody still refuse first.
+Original `legacy-main` terminal proof and `finalized-run` behavior are unchanged.
+
+Only `terminal_scope` is replaced with `current_custody`: exactly `coordinator`,
+`subject_digest`, `scope_digest`, `attested: true`,
+`complete_writer_inventory: true`, `no_reopen_attested: true`, and `evidence_ref`.
+These are Coordinator attestations, never provider-native completeness flags.
+The raw evidence object binds schema1, Coordinator/repository/common-Git,
+qualified main, request/run/story/worker/generation/checkpoint, subject/scope,
+complete current snapshot and exact anchors by digest. It retains an operator
+capture time `observed_at`, `valid_until`, and
+`no_new_overlapping_work_through_cas: true`; the interval is at most 900 seconds
+and must still be valid immediately before CAS. Native last activity/failed-turn
+timestamps are not query freshness and need no new actor turn.
+
+The evidence contains `operators`, `records`, `historical_refs` and an empty
+`uncertainties` array. Each actual record identifies actor/execution/external
+writer, owner, host, state, full current paths/domains, queued/background flags,
+`allocation` and actor `native_ref`. State is `non-writing` only with no
+assignment/queued/background work and `allocation: null`. For `live-reserved`,
+`allocation` is an existing digest string (compatible scalar form), or a
+nonempty array of unique existing digest strings. The writer's paths/domains
+must equal the exact set union of EVERY referenced full allocation; each native
+owner match and each conflict check still applies separately. References may
+have overlapping paths/domains: unique digests do not require disjoint grants.
+No missing supplement, reduced original grant, extra unallocated token, unknown
+reference, duplicate digest or invented second writer can satisfy this proof.
+Native allocation digests bind
+`{kind: "native-claim", claim: <exact snapshot row>}`; legacy digests bind
+`{kind: "legacy-reservation", reservation: <entire reservation>}`. Every other
+live allocation and every known relevant actor is covered. Legitimate active
+nonconflicting producers may continue with their full approved reservation;
+their scope is not reduced to recent changed files. Identified unknown state,
+scope, queued work, execution owner or custody refuses.
+
+Each operator has `identity`, `host`, `observation_ref`. The referenced
+`coordinator.host-operator-custody-observation` contains operator/host/capture
+time, concrete `knowledge`, matching per-record `facts`, checked sources and no
+uncertainties. Checked source purposes are exactly assignments, executions and
+external-writers. Their strict
+`coordinator.current-custody-inventory-projection` objects identify purpose,
+operator/host/capture time, matching records, nonempty original `raw_refs` and no
+uncertainties. These explicitly authored projections preserve actual existing
+host/task/operational observations; they are not new native APIs or a formal
+global process census. Relevant actor observations retain actual bounded
+`codex_app.read_thread` metadata separately. Failed/notLoaded metadata, a root
+boolean or empty host evidence alone cannot establish current custody.
+
+Historical failed records, known graph and unreadable old pages remain raw audit
+facts. The mode asserts only that the integrated marker confers no current live
+ownership; it asserts no historical success, no historical writes, task completion
+or actor closure. The Coordinator and actual host operator remain responsible
+for truthful complete actual writer/queued/background/known-external custody,
+source authenticity and the no-new-overlapping-assignment interval through CAS.
+Unchanged files prove integrity, not a fresh provider query. Independent High
+request review binds all these facts and remains independent of relevant actors,
+owners and operators. Final snapshot/raw-byte/window rechecks, the existing
+two-row CAS, rollback and lossless append-only audit remain mandatory; no marker,
+store schema, pinned helper, source pin or product configuration is changed.
+
 ### Custody, transaction and continuation
 
 1. Root reconciles existing identities/provider operation, obtains qualified
