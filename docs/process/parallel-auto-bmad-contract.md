@@ -332,6 +332,78 @@ allowed; uncertain status or any path/domain/source collision refuses while
 preserving its reservation. Pending planned ownership remains governed by the
 ordinary helper. Existing claim independence requirements are retained.
 
+### Evidence-bound historical anchors
+
+This exact adapter also accepts inventory schema 2: the same fields plus
+`closed_anchors`. Schema 1 remains unchanged. A closed entry covers only exact
+otherwise-unrecognized nonterminal markers; it does not release an allocation,
+close an actor, or change the pinned helper. Ordinary active claims, legacy
+reservations and repository custody are checked first and remain authoritative.
+The approved implementation contract is
+`_bmad-output/implementation-artifacts/spec-35-6-historical-anchor-classification.md`.
+
+Each entry contains exactly `id`, `kind`, `subject`, `scope`, `anchors`, `proof`.
+`subject` binds `key`, `owner`, `source_kind`, `source_folder`, complete
+`story_keys`, and the historical task `branch`. `scope` retains complete original
+`write_paths`, `conflict_domains`, `bookkeeping_paths`, unabridged `authorities`
+(`role`, `ref`), current `coordinator`, and `complete: true`. Authority roles are
+`plan`, `binding`, `allocation`, `amendment`, `spec`, `bookkeeping`. Full scope
+includes original test/process grants; a Git diff or marker-only scope cannot
+replace the allocation/amendment record. Native arrays are conserved, including
+35.4's test grant for `playwright.config.ts`.
+
+An anchor has exactly `worktree`, actual Git `branch`, `head`, `path`, raw
+`sha256`, `subject_part`, `blob_commit`, `blob_sha256`. Its registered same-common-
+Git checkout, current snapshot identity and raw marker must match; the same-path
+blob at observed HEAD must match after explicit LF normalization. Actual checkout
+branch/HEAD are distinct from the historical task branch. Unmerged diagnostic
+HEADs are allowed only with this committed-marker binding and full closure proof.
+
+`finalized-run` proof is exactly `run_id`, `plan_hash`, `final_sha`,
+`verification_sha`: the actual finalized store row, entire stored plan and pins,
+all planned claims integrated with matching verifications/ancestry, exact final
+verification, and no unresolved operations. Copied markers must match same-path
+blobs at that run's recorded base/result/integration/final commits. Full story
+and shared scope is derived exactly from the plan. Its external legacy
+reservations remain separately preserved and are never absorbed by run closure.
+
+`legacy-main` is limited to 35.2, 35.4 and E15. Proof contains exactly `main_sha`,
+complete `terminal_states` (`subject_part`, `ref`), `source_bindings` (`ref`,
+`source_folder`, exact absolute `locations`, `owner`), `publications`, and
+`terminal_scope`. Require exact done counterparts at current qualified main,
+original source/owner/branch identities, complete allocation/amendment scope,
+raw merged publication observations and exact ordered merge parents with main
+ancestry. 35.4 includes both product PR121 and recorded closeout PR122. E15
+includes all six stories and epic and preserves legacy default publication flags.
+35.2's source binding lacks a path array: its bound approved allocation plus
+later grants must supply the full scope. Missing evidence refuses.
+
+`terminal_scope` binds current `coordinator`, `subject_digest`, `scope_digest`,
+`complete_writer_inventory: true`, **`no_reopen_attested: true`**, exact source
+`owners`, `writers`, and `raw_observations`. Every source owner is a root; every
+observed scoped descendant is a writer. Writers bind `identity`, `parent`,
+`role`, actual completed `closure_turn_id`, `observation_ref`, and
+`state: "terminal-for-scope"`. The complete graph is acyclic and raw-backed;
+the admission reviewer is independent of every historical owner/writer too.
+
+Each observation is a strict projection containing `schema_version: 1`,
+`identity`, both digests, `scoped_turn_ids`, and `native_ref` to retained native
+`codex_app.read_thread` data (`threadId`, newest-first `turns`, closure `finals`,
+complete `children`). Only explicit historical scoped turns contribute edges;
+unrelated current work by that actor may continue. `notLoaded`, an unrelated
+latest turn, incomplete descendants, or a missing no-reopen attestation cannot
+close the task. Statement scope, complete selection and external authenticity
+remain coordinator/independent High review responsibilities.
+
+References are raw absolute files `{path, sha256}` or exact Git blobs
+`{commit, path, sha256}`. Capture each once, parse JSON with duplicate-key
+rejection, retain lossless base64 including BOM/CRLF, and recheck all sources
+and the complete current store/worktree snapshot before CAS. The existing
+append-only receipt retains full classifications, scope, derived decisions and
+raw sources. Rollback and historical replay semantics are unchanged. No proof
+overrides live/reopened ownership or custody, and no operational packet, live
+admission, tooling CI or product/runtime success follows from synthetic tests.
+
 ### Custody, transaction and continuation
 
 1. Root reconciles existing identities/provider operation, obtains qualified

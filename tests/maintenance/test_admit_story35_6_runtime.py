@@ -143,6 +143,530 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
             self.admit()
         self.assertEqual(self.snapshot(), before)
 
+    def blob_ref(self, commit, path):
+        data = adapter.source_bytes(self.repo, {'commit': commit, 'path': path, 'sha256': '0' * 64})
+        return {'commit': commit, 'path': path, 'sha256': hashlib.sha256(data).hexdigest()}
+
+    def yaml(self, wt, path, state):
+        self.write(wt, path, '\n'.join(key + ': ' + json.dumps(value) for key, value in state.items()) + '\n')
+
+    def anchor_ref(self, wt, part):
+        path = adapter.state_path(part)
+        head = engine.sha(wt, 'HEAD')
+        return {'worktree': str(wt), 'branch': engine.branch(wt), 'head': head, 'path': path,
+                'sha256': hashlib.sha256((wt / path).read_bytes()).hexdigest(), 'subject_part': part,
+                'blob_commit': head, 'blob_sha256': self.blob_ref(head, path)['sha256']}
+
+    def scoped_graph(self, subject, scope):
+        # Native wrappers retain unrelated active work. Only bound historical
+        # turns form this task's recursive graph; the explicit no-reopen flag
+        # and independent request review attest complete scoped selection.
+        owners = [subject['owner']]
+        refs, writers = [], []
+        for identity, parent in [(owners[0], None), ('historical-fixer', owners[0])]:
+            closure = 'closed-' + identity
+            native = {'source': 'codex_app.read_thread', 'threadId': identity,
+                      'page': {'order': 'newest_first'}, 'turns': [
+                          {'id': 'unrelated-current', 'status': 'inProgress', 'finals': [], 'children': []},
+                          {'id': closure, 'status': 'completed',
+                           'finals': ['Synthetic exact task scope closed; no edits/claims/services remain.'],
+                           'children': ([{'type': 'subAgentActivity', 'agentThreadId': 'historical-fixer'}]
+                                        if parent is None else [])}]}
+            projection = {'schema_version': 1, 'identity': identity,
+                          'subject_digest': engine.digest(subject), 'scope_digest': engine.digest(scope),
+                          'scoped_turn_ids': [closure], 'native_ref': self.raw('native-' + identity, native)}
+            ref = self.raw('scoped-' + identity, projection)
+            refs.append(ref)
+            writers.append({'identity': identity, 'parent': parent, 'role': 'owner' if parent is None else 'fixer',
+                            'closure_turn_id': closure, 'observation_ref': ref, 'state': 'terminal-for-scope'})
+        return {'coordinator': self.plan['coordinator'], 'subject_digest': engine.digest(subject),
+                'scope_digest': engine.digest(scope), 'complete_writer_inventory': True,
+                'no_reopen_attested': True, 'owners': owners, 'writers': writers, 'raw_observations': refs}
+
+    def historical_publication(self, number, branch, merged):
+        parents = engine.git(self.repo, 'rev-list', '--parents', '-n', '1', merged).split()[1:]
+        pub = {'repository': adapter.REPOSITORY, 'pr_number': number,
+               'pr_url': 'https://github.com/' + adapter.REPOSITORY + '/pull/' + str(number),
+               'head_branch': branch, 'base_branch': 'main', 'base_sha': parents[0], 'head_sha': parents[1],
+               'merged': True, 'merge_sha': merged}
+        return {**pub, 'observation_ref': self.raw('historical-publication-' + str(number), pub)}
+
+    def legacy_fixture(self, key='spec-design-35-4-35-4'):
+        kind, folder, stories, number = adapter.LEGACY[key]
+        branch = ('codex/epic-15-scheduling-time-calendar' if number == 108 else
+                  'codex/story-' + ('35-2-foundations-login' if number == 115 else '35-4-dialogs-feedback-files'))
+        owner = '01a120bb-ec6d-7611-9dde-ca64bc8e280f' if number == 108 else 'historical-owner'
+        subject = {'key': key, 'owner': owner, 'source_kind': kind, 'source_folder': folder,
+                   'story_keys': stories.copy(), 'branch': branch}
+        parts = stories + (['epic-15'] if number == 108 else [])
+        books = [adapter.state_path(part) for part in parts]
+        if folder:
+            books.append(folder + '/source-binding.json')
+        # Preserve the original complete allocation, including diagnostic and
+        # test paths rather than deriving a minimum from changed Git paths.
+        allocation = {'write_paths': ['src/historical/', adapter.RUNTIME, 'diagnostic.txt'] + books,
+                      'bookkeeping_paths': books, 'conflict_domains': ['historical:full-scope']}
+        allocation_path = ('docs/quality/story-35-2-approved-admission-2026-10-28.json' if number == 115 else
+                           'historical-allocation.json')
+        if number == 115:
+            allocation['allocation'] = {'ownerChat': owner, 'branch': branch,
+                                        'paths': ['src/historical/', adapter.RUNTIME]}
+        allocation_file = self.root / allocation_path
+        allocation_file.parent.mkdir(parents=True, exist_ok=True)
+        allocation_file.write_text(json.dumps(allocation), encoding='utf-8')
+        allocation_ref = {'path': str(allocation_file.resolve()), 'sha256': hashlib.sha256(allocation_file.read_bytes()).hexdigest()}
+        if number == 115:
+            binding = {'executionId': '35-2', 'sourceFiles': {
+                allocation_path: hashlib.sha256(Path(allocation_ref['path']).read_bytes().replace(b'\r\n', b'\n')).hexdigest()}}
+        else:
+            binding = {'story_id': '35-4', 'owner_chat': owner, 'branch': branch,
+                       'production_write_paths': ['src/historical/'], 'test_write_paths': [adapter.RUNTIME]}
+        states = {}
+        for part in parts:
+            state = {'story_key': part, 'story_source': kind, 'branch': branch, 'status': 'in-progress',
+                     'pr_url': 'https://github.com/' + adapter.REPOSITORY + '/pull/' + str(number),
+                     'pr_merged': False, 'merge_commit': None}
+            if folder:
+                state.update(story_id='35-2' if number == 115 else '35-4', spec_folder=str(self.b.resolve() / folder))
+            else:
+                state['epic_num'] = '15'
+                if part == 'epic-15':
+                    state['ownership_reservation'] = {'shared_domains': ['historical:full-scope']}
+            states[part] = state
+            self.yaml(self.b, adapter.state_path(part), state)
+        if folder:
+            self.write(self.b, folder + '/source-binding.json', json.dumps(binding))
+        candidate = self.commit(self.b, 'synthetic legacy product checkpoint')
+        product = self.main_merge(candidate)
+        closeout = self.root / 'legacy-closeout'
+        self.git(self.repo, 'worktree', 'add', '-b', 'codex/legacy-process-closeout', str(closeout), product)
+        for part, state in states.items():
+            terminal = {**state, 'status': 'done'}
+            if folder:
+                terminal.update(spec_folder=str(closeout.resolve() / folder), pr_merged=True, merge_commit=product)
+            if number == 121:
+                terminal['overrides'] = {'process_closeout_branch': 'codex/legacy-process-closeout'}
+            self.yaml(closeout, adapter.state_path(part), terminal)
+        closed = self.commit(closeout, 'synthetic main terminal counterparts')
+        main = self.main_merge(closed)
+        # A copied marker can be committed on an unmerged debug HEAD. This
+        # actual Git identity is deliberately different from the task branch.
+        self.write(self.b, 'diagnostic.txt', 'unmerged diagnostic metadata\n')
+        self.commit(self.b, 'synthetic archived diagnostics')
+        self.assertFalse(engine.ancestor(self.repo, engine.sha(self.b, 'HEAD'), main))
+        binding_ref = self.blob_ref(main, folder + '/source-binding.json' if folder else adapter.state_path('epic-15'))
+        scope = {'write_paths': allocation['write_paths'], 'conflict_domains': allocation['conflict_domains'],
+                 'bookkeeping_paths': books, 'authorities': [{'role': 'binding', 'ref': binding_ref},
+                                                           {'role': 'allocation', 'ref': allocation_ref}],
+                 'coordinator': self.plan['coordinator'], 'complete': True}
+        publications = [self.historical_publication(number, branch, product)]
+        if number == 121:
+            publications.append(self.historical_publication(122, 'codex/legacy-process-closeout', main))
+        proof = {'main_sha': main, 'terminal_states': [{'subject_part': part, 'ref': self.blob_ref(main, adapter.state_path(part))}
+                                                      for part in parts],
+                 'source_bindings': [{'ref': binding_ref, 'source_folder': folder,
+                                      'locations': [str(wt.resolve() / folder) if folder else str(wt.resolve())
+                                                    for wt in [self.b, closeout]], 'owner': owner}],
+                 'publications': publications, 'terminal_scope': self.scoped_graph(subject, scope)}
+        return {'id': 'closed-legacy', 'kind': 'legacy-main', 'subject': subject, 'scope': scope,
+                'anchors': [self.anchor_ref(self.b, part) for part in parts], 'proof': proof}
+
+    def finalized_fixture(self):
+        plan = copy.deepcopy(self.v1_plan)
+        plan.update(run_id='documents-e20-readiness-2026-10-09', epic='20', base_sha=self.base,
+                    integration_branch='codex/historical-e20', integration_worktree=str(self.root / 'old-renamed-control'),
+                    shared_paths=['_bmad-output/e20-shared.md', '_bmad-output/e20-summary.md'])
+        # This external E15 reservation stays fully distinct from E20 closure.
+        plan['legacy_reservations'] = [{'epic': '15', 'stories': ['15-1'], 'reason': 'historical external allocation',
+                                       'worktree': str(self.root / 'external-e15'), 'write_paths': ['src/e15/'],
+                                       'conflict_domains': ['external:e15']}]
+        plan['stories'] = []
+        commits, previous = [], self.base
+        for i in range(1, 4):
+            story = self.story('a' if i != 2 else 'b')
+            story['id'] = '20.' + str(i)
+            path = adapter.state_path(story['id'])
+            story['write_paths'] = ['src/e20-' + str(i) + '/', path]
+            story['conflict_domains'] = ['historical:e20-' + str(i)]
+            plan['stories'].append(story)
+            self.yaml(self.b, path, {'status': 'in-progress', 'story_id': story['id'], 'parallel_run_id': plan['run_id']})
+            self.yaml(self.b, adapter.state_path('epic-20'), {'status': 'in-progress', 'epic_num': '20',
+                                                           'parallel_run_id': plan['run_id'], 'variant': i})
+            result = self.commit(self.b, 'synthetic integrated E20 story ' + str(i))
+            commits.append((previous, result)); previous = result
+        self.git(self.repo, 'update-ref', 'refs/remotes/origin/main', previous)
+        with engine.database(self.repo) as db:
+            db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?)', (plan['run_id'], '20', plan['coordinator'],
+                       engine.canonical(plan), engine.digest(plan), 'finalized', previous))
+            for story, (base, result) in zip(plan['stories'], commits):
+                db.execute('INSERT INTO claims VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                           (plan['run_id'], story['id'], 'old-' + story['id'], 1, 'codex/historical-' + story['id'],
+                            str(self.root / ('archived-' + story['id'])), base, 0, 'integrated', '{}', result, result, None))
+                db.execute('INSERT INTO verifications VALUES(?,?,?,?)', (plan['run_id'], story['id'], result, '{}'))
+                db.execute('INSERT INTO journal VALUES(?,?,?,?,?,?)', (plan['run_id'], story['id'], base, result, result, 'merged'))
+            db.execute('INSERT INTO verifications VALUES(?,?,?,?)', (plan['run_id'], '__final__', previous, '{}'))
+        copy_wt = self.root / 'e20-copy'
+        self.git(self.repo, 'worktree', 'add', '-b', 'codex/e20-copy', str(copy_wt), commits[0][1])
+        subject = {'key': plan['run_id'], 'owner': plan['coordinator'], 'source_kind': 'parallel-run',
+                   'source_folder': None, 'story_keys': [s['id'] for s in plan['stories']], 'branch': plan['integration_branch']}
+        paths = sorted(set(plan['shared_paths']) | {p for s in plan['stories'] for p in s['write_paths']})
+        scope = {'write_paths': paths, 'conflict_domains': sorted(d for s in plan['stories'] for d in s['conflict_domains']),
+                 'bookkeeping_paths': sorted(p for p in paths if p.startswith('_bmad-output/')),
+                 'authorities': [{'role': 'plan', 'ref': self.raw('historical-plan', plan)}],
+                 'coordinator': self.plan['coordinator'], 'complete': True}
+        return {'id': 'closed-e20', 'kind': 'finalized-run', 'subject': subject, 'scope': scope,
+                'anchors': [self.anchor_ref(self.b, part) for part in subject['story_keys'] + ['epic-20']] +
+                           [self.anchor_ref(copy_wt, part) for part in [subject['story_keys'][0], 'epic-20']],
+                'proof': {'run_id': plan['run_id'], 'plan_hash': engine.digest(plan),
+                          'final_sha': previous, 'verification_sha': previous}}
+
+    def bind_closed(self, entries):
+        self.request = self.make_request()
+        inventory = json.loads(Path(self.request['ownership_inventory']['path']).read_text(encoding='utf-8'))
+        inventory.update(schema_version=2, closed_anchors=entries)
+        self.request['ownership_inventory'] = self.raw('inventory', inventory)
+        return inventory
+
+    def validate_closed(self, entry):
+        inventory = self.bind_closed([entry])
+        self.refresh_review()
+        with engine.database(self.repo) as db:
+            return adapter.closed_classifications(db, self.repo, inventory, self.plan, self.request, adapter.Captures())
+
+    def closed_refused(self, entry, message):
+        # Pure proof-validation negatives use the same production validator;
+        # end-to-end success, custody, mutation and CAS rollback stay below.
+        before = self.snapshot()
+        with self.assertRaisesRegex(adapter.engine.Refusal, message):
+            self.validate_closed(entry)
+        self.assertEqual(self.snapshot(), before)
+
+    def test_closed_legacy_full_scope_audit_and_unchanged_helper_continuation(self):
+        entry = self.legacy_fixture()
+        self.assertIn(adapter.RUNTIME, entry['scope']['write_paths'])
+        self.assertNotEqual(entry['anchors'][0]['branch'], entry['subject']['branch'])
+        self.bind_closed([entry])
+        self.test_success_only_exact_additions_and_unchanged_helper_continuation()
+        with engine.database(self.repo) as db:
+            receipt = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])
+        self.assertEqual(receipt['closed_classifications'][0]['scope'], entry['scope'])
+        self.assertEqual(receipt['closed_classifications'][0]['proof']['historical_writers'], ['historical-fixer', 'historical-owner'])
+        for artifact in receipt['raw_artifacts']:
+            data = base64.b64decode(artifact['base64'], validate=True)
+            self.assertEqual(hashlib.sha256(data).hexdigest(), artifact['reference']['sha256'])
+            self.assertEqual(data, adapter.source_bytes(self.repo, artifact['reference']))
+
+    def test_closed_e20_all_integrated_copied_variants_preserve_external_reservation(self):
+        entry = self.finalized_fixture()
+        self.bind_closed([entry])
+        self.assertEqual(self.admit()['generation'], 2)
+        with engine.database(self.repo) as db:
+            receipt = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])
+        proof = receipt['closed_classifications'][0]['proof']
+        self.assertEqual(proof['external_legacy_reservations'], proof['plan']['legacy_reservations'])
+        self.assertNotIn('src/e15/', entry['scope']['write_paths'])
+        self.assertEqual(len(entry['anchors']), 6)
+
+    def test_closed_35_2_allocation_without_binding_paths(self):
+        entry = self.legacy_fixture('spec-design-35-2-35-2')
+        self.bind_closed([entry])
+        self.assertEqual(self.admit()['generation'], 2)
+
+    def test_closed_e15_legacy_defaults_all_six_and_unmerged_debug_head(self):
+        entry = self.legacy_fixture('epic-15')
+        self.bind_closed([entry])
+        self.assertEqual(self.admit()['generation'], 2)
+        self.assertEqual(len(entry['proof']['terminal_states']), 7)
+        with engine.database(self.repo) as db:
+            receipt = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])
+        self.assertTrue(all(s['pr_merged'] is False for s in receipt['closed_classifications'][0]['proof']['terminal_states'].values()))
+
+    def test_closed_scope_graph_no_reopen_and_reviewer_checks_fail_closed(self):
+        entry = self.legacy_fixture()
+        self.validate_closed(entry)
+        variants = []
+        for field in ['no_reopen_attested', 'complete_writer_inventory']:
+            item = copy.deepcopy(entry); item['proof']['terminal_scope'][field] = False
+            variants.append((item, 'no-reopen'))
+        item = copy.deepcopy(entry); item['proof']['terminal_scope']['writers'].pop()
+        item['proof']['terminal_scope']['raw_observations'].pop()
+        variants.append((item, 'descendant omitted'))
+        item = copy.deepcopy(entry); item['proof']['terminal_scope']['writers'][0]['parent'] = 'historical-fixer'
+        variants.append((item, 'graph root'))
+        item = copy.deepcopy(entry); item['scope']['write_paths'].remove(adapter.RUNTIME)
+        variants.append((item, 'scope arrays'))
+        item = copy.deepcopy(entry); item['proof']['publications'].pop()
+        variants.append((item, 'publications'))
+        item = copy.deepcopy(entry); item['proof']['source_bindings'][0]['locations'] = [str(self.b.resolve() / entry['subject']['source_folder'])]
+        variants.append((item, 'closeout source location'))
+        item = copy.deepcopy(entry); item['anchors'][0]['branch'] = entry['subject']['branch']
+        variants.append((item, 'checkout/anchor identity'))
+        item = copy.deepcopy(entry); item['proof']['main_sha'] = self.base
+        variants.append((item, 'closure main changed'))
+        item = copy.deepcopy(entry); item['proof']['publications'][0]['pr_number'] = 999
+        variants.append((item, 'publication identity'))
+        item = copy.deepcopy(entry); item['anchors'][0]['sha256'] = '0' * 64
+        variants.append((item, 'checkout/anchor identity'))
+        item = copy.deepcopy(entry); item['anchors'][0]['worktree'] = str(self.root / 'unregistered-copy')
+        variants.append((item, 'checkout/anchor identity'))
+        for item, message in variants:
+            with self.subTest(message=message):
+                self.closed_refused(item, message)
+        self.bind_closed([entry]); args = self.args_for_admit()
+        self.request['admission_review']['review']['reviewer'] = 'historical-fixer'
+        args.request = str(self.file('request', self.request))
+        before = self.snapshot()
+        with self.assertRaisesRegex(adapter.engine.Refusal, 'reviewer owns historical'):
+            adapter.admit(args)
+        self.assertEqual(self.snapshot(), before)
+
+    def test_closed_native_observations_require_actual_terminal_scoped_turns_and_children(self):
+        entry = self.legacy_fixture()
+        for change, message in [('active', 'nonterminal'), ('missing-child', 'descendant'), ('not-loaded', 'native actor'),
+                                ('wrong-turn', 'Missing or duplicate'), ('no-finals', 'closure turn')]:
+            item = copy.deepcopy(entry)
+            terminal = item['proof']['terminal_scope']
+            ref = terminal['raw_observations'][0]
+            projection = json.loads(Path(ref['path']).read_text())
+            native = json.loads(Path(projection['native_ref']['path']).read_text())
+            if change == 'active': native['turns'][1]['status'] = 'inProgress'
+            if change == 'missing-child': native['turns'][1]['children'].append({'agentThreadId': 'unlisted-nested-fixer'})
+            if change == 'not-loaded': native = {'status': 'notLoaded'}
+            if change == 'wrong-turn': projection['scoped_turn_ids'] = ['unrelated-missing-turn']
+            if change == 'no-finals': native['turns'][1]['finals'] = []
+            projection['native_ref'] = self.raw('changed-native', native)
+            changed_ref = self.raw('changed-projection', projection)
+            terminal['raw_observations'][0] = changed_ref
+            terminal['writers'][0]['observation_ref'] = changed_ref
+            with self.subTest(change=change):
+                self.closed_refused(item, message)
+
+    def test_closed_proofs_reject_mutation_duplicate_keys_and_rollback_replay(self):
+        entry = self.legacy_fixture()
+        allocation = entry['scope']['authorities'][1]['ref']
+        path = Path(allocation['path']); raw = path.read_bytes()
+        # BOM/CRLF raw proof bytes are preserved without a lossy JSON round-trip.
+        path.write_bytes(b'\xef\xbb\xbf' + raw.replace(b'\r\n', b'\n').replace(b'\n', b'\r\n') + b'\r\n')
+        allocation['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
+        entry['proof']['terminal_scope'] = self.scoped_graph(entry['subject'], entry['scope'])
+        self.bind_closed([entry]); before = self.snapshot()
+        projection_ref = entry['proof']['terminal_scope']['raw_observations'][0]
+        projection_path = Path(projection_ref['path'])
+        projection_raw = projection_path.read_bytes()
+        projection_path.write_bytes(projection_raw.replace(b'"schema_version": 1', b'"schema_version": 1, "schema_version": 1'))
+        duplicate_ref = {**projection_ref, 'sha256': hashlib.sha256(projection_path.read_bytes()).hexdigest()}
+        duplicate = copy.deepcopy(entry)
+        duplicate['proof']['terminal_scope']['raw_observations'][0] = duplicate_ref
+        duplicate['proof']['terminal_scope']['writers'][0]['observation_ref'] = duplicate_ref
+        self.bind_closed([duplicate]); self.refused('Duplicate JSON key: schema_version')
+        projection_path.write_bytes(projection_raw)
+        self.bind_closed([entry])
+        with patch.object(adapter, 'checkpoint', side_effect=RuntimeError('synthetic historical crash')), self.assertRaises(RuntimeError):
+            self.admit()
+        self.assertEqual(self.snapshot(), before)
+        original = adapter.source_bytes
+        reads = 0
+        def changed_final(repo, ref):
+            nonlocal reads
+            data = original(repo, ref)
+            if ref == allocation:
+                reads += 1
+                return data if reads == 1 else data + b' '
+            return data
+        with patch.object(adapter, 'source_bytes', side_effect=changed_final):
+            self.refused('Bound evidence changed')
+        self.assertEqual(reads, 2)
+        self.assertFalse(self.admit()['replayed'])
+        self.assertTrue(self.admit()['replayed'])
+        with engine.database(self.repo) as db:
+            receipt = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])
+        audited = next(x for x in receipt['raw_artifacts'] if x['reference'] == allocation)
+        self.assertEqual(base64.b64decode(audited['base64']), path.read_bytes())
+        self.assertTrue(path.read_bytes().startswith(b'\xef\xbb\xbf'))
+        self.assertIn(b'\r\n', path.read_bytes())
+
+    def test_closed_marker_mutation_and_reopened_legacy_reservation_refuse(self):
+        entry = self.legacy_fixture()
+        inventory = self.bind_closed([entry])
+        reservation = {'epic': '35.4', 'stories': ['35-4'], 'reason': 'reopened historical task',
+                       'worktree': str(self.b), 'write_paths': ['src/reopened/'], 'conflict_domains': []}
+        inventory['reservations'] = [{'reservation': reservation, 'head': engine.sha(self.b, 'HEAD'),
+                                     'source_status': 'active', 'evidence_ref': 'synthetic-reopened-owner', 'independent': True,
+                                     'independence_ref': 'synthetic-source-independence', 'anchors': []}]
+        self.request['ownership_inventory'] = self.raw('inventory', inventory)
+        self.refused('Closed subject has live legacy reservation')
+        self.bind_closed([entry])
+        original = adapter.qualify_tooling
+        calls = 0
+        anchor = self.b / entry['anchors'][0]['path']
+        raw = anchor.read_bytes()
+        def mutate_after_closed_validation(*args):
+            nonlocal calls
+            calls += 1
+            result = original(*args)
+            if calls == 2:
+                anchor.write_bytes(raw + b'# changed historical marker\n')
+            return result
+        try:
+            with patch.object(adapter, 'qualify_tooling', side_effect=mutate_after_closed_validation):
+                self.refused('Ownership changed immediately before CAS')
+        finally:
+            anchor.write_bytes(raw)
+
+    def test_closed_finalized_missing_verification_claim_scope_and_provenance_refuse(self):
+        entry = self.finalized_fixture()
+        with engine.database(self.repo) as db:
+            row = dict(db.execute('SELECT * FROM verifications WHERE run=? AND story=?', (entry['subject']['key'], '20.2')).fetchone())
+            db.execute('DELETE FROM verifications WHERE run=? AND story=?', (row['run'], row['story']))
+        self.bind_closed([entry]); self.refused('not integrated/verified')
+        with engine.database(self.repo) as db:
+            db.execute('INSERT INTO verifications VALUES(?,?,?,?)', tuple(row.values()))
+            claim = dict(db.execute("SELECT * FROM claims WHERE run=? AND story='20.2'", (entry['subject']['key'],)).fetchone())
+            db.execute("DELETE FROM claims WHERE run=? AND story='20.2'", (entry['subject']['key'],))
+        self.bind_closed([entry]); self.refused('Missing finalized claims')
+        with engine.database(self.repo) as db:
+            db.execute('INSERT INTO claims VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)', tuple(claim.values()))
+            db.execute("UPDATE claims SET result_sha=? WHERE run=? AND story='20.2'", (self.checkpoint_sha, entry['subject']['key']))
+        self.bind_closed([entry]); self.refused('claim ancestry mismatch')
+        with engine.database(self.repo) as db:
+            db.execute("UPDATE claims SET result_sha=? WHERE run=? AND story='20.2'", (claim['result_sha'], entry['subject']['key']))
+            db.execute("UPDATE journal SET result_sha=? WHERE run=? AND story='20.2'", (self.base, entry['subject']['key']))
+        self.bind_closed([entry]); self.refused('journal lacks integrated backing')
+        with engine.database(self.repo) as db:
+            db.execute("UPDATE journal SET result_sha=? WHERE run=? AND story='20.2'", (claim['result_sha'], entry['subject']['key']))
+        item = copy.deepcopy(entry); item['scope']['write_paths'].pop()
+        self.bind_closed([item]); self.refused('exactly conserve')
+        item = copy.deepcopy(entry); item['anchors'].append(copy.deepcopy(item['anchors'][0]))
+        self.bind_closed([item]); self.refused('Duplicate or live-reserved')
+        path = self.b / entry['anchors'][0]['path']
+        path.write_bytes(path.read_bytes() + b'# later marker not in finalized run provenance\n')
+        self.commit(self.b, 'synthetic unauthorized historical marker revision')
+        item = copy.deepcopy(entry)
+        item['anchors'][:4] = [self.anchor_ref(self.b, part) for part in entry['subject']['story_keys'] + ['epic-20']]
+        self.bind_closed([item]); self.refused('inherited marker provenance missing')
+        with engine.database(self.repo) as db:
+            db.execute("UPDATE claims SET state='blocked' WHERE run=? AND story='20.2'", (entry['subject']['key'],))
+        self.bind_closed([entry]); self.refused('Live claim has no active plan')
+
+    def test_closed_finalized_cannot_override_reopened_epic_in_another_run(self):
+        entry = self.finalized_fixture()
+        plan = copy.deepcopy(self.v1_plan)
+        plan.update(run_id='new-e20-task', epic='20', base_sha=self.base,
+                    integration_worktree=str(self.c.resolve()), integration_branch='codex/worker-c',
+                    stories=[self.story('a')], shared_paths=[])
+        plan['stories'][0].update(id='20.4', write_paths=['src/new-e20/'])
+        with engine.database(self.repo) as db:
+            db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?)', (plan['run_id'], '20', plan['coordinator'],
+                       engine.canonical(plan), engine.digest(plan), 'active', None))
+            db.execute('INSERT INTO claims VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                       (plan['run_id'], '20.4', 'reopened-worker', 1, 'codex/worker-b', str(self.b), self.base,
+                        0, 'claimed', None, None, None, None))
+        self.bind_closed([entry]); self.refused('Finalized subject has outstanding/reopened epic claim')
+
+    def test_closed_annotation_cannot_override_live_runtime_reservation_or_repository_custody(self):
+        entry = self.legacy_fixture()
+        # Current ownership validation executes before historical classification.
+        reservation = {'epic': 'unrelated-current', 'stories': ['current-task'], 'reason': 'current allocation',
+                       'worktree': str(self.b), 'write_paths': [adapter.RUNTIME], 'conflict_domains': []}
+        inventory = self.bind_closed([entry])
+        inventory['reservations'] = [{'reservation': reservation, 'head': engine.sha(self.b, 'HEAD'),
+                                     'source_status': 'active', 'evidence_ref': 'synthetic-current-owner', 'independent': True,
+                                     'independence_ref': 'synthetic-independent-source', 'anchors': []}]
+        self.request['ownership_inventory'] = self.raw('inventory', inventory)
+        self.refused('Admission conflicts with legacy reservation')
+        self.bind_closed([entry])
+        with engine.database(self.repo) as db:
+            db.execute('INSERT INTO journal VALUES(?,?,?,?,?,?)', ('unrelated-run', 'current-task', self.base, self.base, None, 'prepared'))
+        self.bind_closed([entry]); self.refused('repository integration custody')
+
+    def test_closed_legacy_reopened_source_casefold_is_the_only_matching_identity(self):
+        original_folder = Path(adapter.LEGACY['spec-design-35-4-35-4'][1])
+        folder = original_folder.parent.as_posix() + '/' + original_folder.name.upper()
+        control = self.root / 'reopened-control'
+        self.git(self.repo, 'worktree', 'add', '-b', 'codex/reopened-control', str(control), self.base)
+        story_path = folder + '/stories/2-fixture.md'
+        spec_text = '# Synthetic independently allocated reopened source\n'
+        manifest = '- id: "2"\n  title: Fixture\n  description: Approved synthetic behavior.\n'
+        story_text = '---\ntitle: Fixture\ntype: feature\nstatus: ready-for-dev\n---\n\n## Tasks & Acceptance\n\n- Persist synthetic result.\n'
+        for path, value in [(folder + '/SPEC.md', spec_text), (folder + '/stories.yaml', manifest), (story_path, story_text)]:
+            self.write(control, path, value)
+        source_head = self.commit(control, 'synthetic differently cased reopened legacy source')
+        main = self.main_merge(source_head)
+        resolved, code = engine.story_pr_module('story_plan').build_stories_resolve_result(str(control / folder), '2')
+        self.assertEqual(code, 0)
+        item = copy.deepcopy(self.foreign_template)
+        item.update(id=resolved['story_key'], spec_path=story_path, spec_revision=hashlib.sha256(story_text.encode()).hexdigest(),
+                    write_paths=['src/reopened/', story_path, adapter.state_path(resolved['story_key']),
+                                 '_bmad-output/auto-bmad/reports/' + resolved['story_key'] + '.md'])
+        item['source'].update({key: resolved[key] for key in ['story_id', 'story_key', 'position', 'spec_checkpoint', 'done_checkpoint']})
+        item['source'].update(spec_folder=folder, files=[
+            {'path': folder + '/SPEC.md', 'sha256': hashlib.sha256(spec_text.encode()).hexdigest()},
+            {'path': folder + '/stories.yaml', 'sha256': hashlib.sha256(manifest.encode()).hexdigest()}])
+        plan = copy.deepcopy(self.plan)
+        plan.update(run_id='reopened-legacy-source', epic='reopened-source', coordinator='reopened-coordinator',
+                    integration_branch='codex/reopened-control', integration_worktree=str(control.resolve()),
+                    base_sha=source_head, stories=[item])
+        engine.execute(engine.parser().parse_args(['--repo', str(control), 'init', '--owner', 'reopened-coordinator',
+                                                   '--plan', str(self.file('reopened-plan', plan))]))
+        worker = self.root / 'reopened-worker'
+        self.git(self.repo, 'worktree', 'add', '-b', 'codex/reopened-worker', str(worker), main)
+        engine.execute(engine.parser().parse_args(['--repo', str(control), 'claim', '--run', plan['run_id'],
+                                                   '--owner', plan['coordinator'], '--story', item['id'],
+                                                   '--worker', 'reopened-worker', '--branch', 'codex/reopened-worker',
+                                                   '--worktree', str(worker), '--expected-head', main]))
+        # Admit the current claim through the unchanged helper before old
+        # copied markers appear; then capture complete closure at the new M.
+        # No run/key/branch or ordinary runtime overlap masks casefold.
+        entry = self.legacy_fixture()
+        self.assertNotEqual(folder, entry['subject']['source_folder'])
+        self.assertEqual(folder.casefold(), entry['subject']['source_folder'].casefold())
+        self.assertNotIn(item['id'], entry['subject']['story_keys'])
+        self.assertNotEqual(plan['run_id'], entry['subject']['key'])
+        self.assertNotEqual('codex/reopened-worker', entry['subject']['branch'])
+        self.assertFalse(engine.conflicts({**self.item('a'), 'write_paths': adapter.OLD_PATHS + [adapter.RUNTIME],
+                                           'conflict_domains': self.item('a')['conflict_domains'] + [adapter.DOMAIN]}, item))
+        self.bind_closed([entry]); self.refused('^Closed subject has outstanding/reopened claim$')
+
+    def test_closed_legacy_reversed_publication_parents_with_matching_raw_observation_refuse(self):
+        entry = self.legacy_fixture()
+        publication = entry['proof']['publications'][0]
+        publication['base_sha'], publication['head_sha'] = publication['head_sha'], publication['base_sha']
+        publication['observation_ref'] = self.raw('reversed-historical-publication',
+                                                 {key: value for key, value in publication.items() if key != 'observation_ref'})
+        self.bind_closed([entry]); self.refused('^Historical publication merge ancestry mismatch$')
+
+    def test_closed_legacy_schema1_short_ids_and_source_spec_cannot_reopen(self):
+        entry = self.legacy_fixture()
+        worker = self.root / 'schema1-reopened-worker'
+        self.git(self.repo, 'worktree', 'add', '-b', 'codex/schema1-reopened-worker', str(worker), self.base)
+        for story_id, spec_path in [('35.4', 'spec/b.md'), ('35-4', 'spec/b.md'),
+                                    ('other-id', entry['subject']['source_folder'] + '/stories/old.md')]:
+            item = self.story('b')
+            base = self.base
+            if spec_path != 'spec/b.md':
+                body = 'Approved reopened legacy source\n'
+                self.write(self.b, spec_path, body)
+                base = self.commit(self.b, 'synthetic schema1 reopened source spec')
+                item['spec_revision'] = hashlib.sha256(body.encode()).hexdigest()
+                entry['anchors'] = [self.anchor_ref(self.b, entry['subject']['key'])]
+            item.update(id=story_id, write_paths=['src/reopened-schema1/', spec_path], spec_path=spec_path)
+            plan = copy.deepcopy(self.v1_plan)
+            plan.update(run_id='schema1-reopened-legacy', epic='other-epic', base_sha=base,
+                        integration_worktree=str(self.b.resolve()), integration_branch='codex/worker-b', stories=[item])
+            engine.validate_plan(self.b, plan)
+            with engine.database(self.repo) as db:
+                db.execute('INSERT OR REPLACE INTO runs VALUES(?,?,?,?,?,?,?)', (plan['run_id'], plan['epic'], plan['coordinator'],
+                           engine.canonical(plan), engine.digest(plan), 'active', None))
+                db.execute('DELETE FROM claims WHERE run=?', (plan['run_id'],))
+                db.execute('INSERT INTO claims VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                           (plan['run_id'], story_id, 'schema1-reopened-worker', 1, 'codex/schema1-reopened-worker',
+                            str(worker), base, 0, 'claimed', None, None, None, None))
+            self.assertNotEqual(plan['run_id'], entry['subject']['key'])
+            self.assertNotIn(story_id, entry['subject']['story_keys'])
+            self.assertFalse(engine.conflicts({**self.item('a'), 'write_paths': adapter.OLD_PATHS + [adapter.RUNTIME]}, item))
+            with self.subTest(story_id=story_id):
+                self.bind_closed([entry]); self.refused('^Closed subject has outstanding/reopened claim$')
+
     def test_fixture_canonicalizes_tooling_alias_without_weakening_identity_guards(self):
         # A lexical parent traversal provides the same noncanonical input on
         # every OS, even where native Windows short-name creation is disabled.
