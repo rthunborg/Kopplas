@@ -193,7 +193,7 @@ actual source object and actual commands/results. PNG blobs must already exist i
 the same repository's Git object store (for example a separately retained evidence
 commit/branch); upload under an authorized checkpoint. No upload is performed by
 the gate, and it cannot fetch arbitrary URLs. Keep screenshots synthetic: the repo
-is public. Caps: 60KB package comment, 40 surfaces, 80 captures, 8MiB per PNG,
+is public. Caps: 60KB package comment, 40 surfaces, 90 captures, 8MiB per PNG,
 2560px maximum PNG dimension; oversized work splits into reviewable candidates.
 
 Compute the evidence digest with `evidenceDigest` from
