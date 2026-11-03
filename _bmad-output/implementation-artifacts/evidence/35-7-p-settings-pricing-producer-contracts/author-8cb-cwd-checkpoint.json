@@ -1,378 +1,430 @@
 {
   "task_id": "35.7-P",
-  "captured_at_utc": "2026-11-03T09:49:13.844922+00:00",
-  "candidate_before": "f4c2b8da6521af0a99ffbd33debc42086fda2445",
+  "captured_at_utc": "2026-11-03T10:29:01.955582+00:00",
+  "candidate_before": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
   "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
-  "followup": "Marker-only diagnostic fix after initial CHANGES_REQUIRED:1/2/3 affirmative, absence unmarkedUndetermined, unexpected fixed category/no rawvalue. All other source bytes equal preserved uncommitted981 freeze.",
+  "followup": "Reviewed domain-proof distinction: exact terminal cleanup remains mandatory; NEW server-derived unavailable/disabled/retainedreceipt/draft conjunction under active verifiedDCL replaces our later EOF proxy. No failedGETdelivery or nativecause/retrocredit claim.",
   "prior_history_in_Git": {
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-evidence.json": {
-      "commit": "f4c2b8da6521af0a99ffbd33debc42086fda2445",
-      "git_blob_oid": "55d31cb8ad9a41bb8f665074baa94ba74c8f0b9b",
-      "git_bytes_sha256": "2e228604fd5bd28e10c80b045006f97e948e4e0ac077eed387283a97b376dfba"
+      "commit": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
+      "git_blob_oid": "de97fb8e10958cd476d7791e4e5696f0d1201bdb",
+      "git_bytes_sha256": "0e0cb57505959a2697ecf197ded0c15d6052af0250d4cfb92ec491bbf9cfb552"
     },
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json": {
-      "commit": "f4c2b8da6521af0a99ffbd33debc42086fda2445",
-      "git_blob_oid": "0a9a7aea31b3bb170bfd8524003a6515974892d1",
-      "git_bytes_sha256": "935a446518c437a0c472d7bd12e8822cf1b69d2746936d2b69fa34b42c1af51d"
+      "commit": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
+      "git_blob_oid": "779453f72bdfdba0d27278a1c0d539c6a94cf436",
+      "git_bytes_sha256": "6a94e135dce04ce8a5da2122a165d828bf3d0a529814da6bb322907dcf7c2b76"
     }
   },
-  "uncommitted_prior_freeze": {
-    "old_checkpoint_sha256": "981353a9179859561c6aced02f837cdebb267c3b34e3ec93140ebafba341c0f3",
-    "history_manifest": "tmp/private/35-7-p-consumer-closed-service-proof/history-981-disposal/history-manifest.json",
-    "history_manifest_sha256": "75d33f9970e1415ca50fa11f4dd36a5b60ccaafcd8d4fdae52b547d73171e905",
-    "old_source_sha256": "d38d40e5a50f62acc9080a744a7ed7a6535f1aabd52c93cac62f8ba454f6cb33",
-    "current_source_sha256": "5fb942222b62acf9c8fd9d5adb13473d6aee97b1054ba03229b63a4f80714fa7",
-    "exact_source_delta": "Only matchingGets counter keys and prefetchClass marker block",
-    "selector_lifecycle_all_other_source_bytes_equal_981": true,
-    "prior26_input_result_records_equal": true,
-    "current32": true,
-    "primary_source": "https://github.com/vercel/next.js/blob/v16.4.1/packages/next/src/client/components/segment-cache/cache.ts#L2438",
-    "semantics": "1/2/3 marked; missing marker unmarkedUndetermined compatible with Full prefetch; unexpected fixed category, no raw marker/segment values."
+  "authority_reconciliation": {
+    "original_method": {
+      "md": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.md",
+      "json": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.json",
+      "anchor": "Exact effects2; mandatory safety hold/release/settle",
+      "requirement": "Real production page/server read and actual unavailable/disabled UI; RSC abort alone is not proof. Settle every controlled transport; HTTP EOF not required."
+    },
+    "canonical": {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 53,
+      "requirement": "Historical receipt separate from independently authorized current facts; source unchanged."
+    },
+    "High_disposition": {
+      "source": "Parent /root/producer_build same-author DOMAIN-proof NEW_TASK",
+      "fact": "Parent+Coordinator explicit PROCEED after independent High supported domain route; route pre-recorded before dispatch. Root retains independent receipt and must return exact stopped diff+method/canonical/High refs to Coordinator BEFORE publication/CI. No fabricated receipt ID, no implementation/runtime PASS."
+    },
+    "server_mapping": [
+      {
+        "path": "src/features/settings/read.ts",
+        "anchor": "export async function readCompanySettings",
+        "binding": "Server query denial/throw becomes generic readerror",
+        "verified_lines": [
+          45
+        ]
+      },
+      {
+        "path": "src/app/(app)/settings/company/page.tsx",
+        "anchor": "readError: error !== null",
+        "binding": "Server page alert and readError props",
+        "verified_lines": [
+          35
+        ]
+      },
+      {
+        "path": "src/components/settings/CompanySettingsForm.tsx",
+        "anchor": "<fieldset disabled={operation.blocked || defaults.readError}",
+        "binding": "Server readError disables form; client transport reject cannot set it",
+        "verified_lines": [
+          68
+        ]
+      },
+      {
+        "path": "src/app/(app)/settings/quote-terms/page.tsx",
+        "anchor": "readQuoteTerms",
+        "binding": "Server terms page/readerror props",
+        "verified_lines": [
+          17,
+          24
+        ]
+      },
+      {
+        "path": "src/app/(app)/settings/pricing/page.tsx",
+        "anchor": "readError",
+        "binding": "Authorized active/archive failures govern domain props",
+        "verified_lines": [
+          78,
+          85
+        ]
+      },
+      {
+        "path": "src/components/pricing/ArticlesEditor.tsx",
+        "anchor": "data-testid=\"pricing-current-unavailable\"",
+        "binding": "Server readError marker/disabled fieldset; analogous WorkRoles",
+        "verified_lines": [
+          67
+        ]
+      }
+    ]
   },
-  "initial_disposal_review": {
-    "verification": "CHANGES_REQUIRED one marker P2",
-    "edges": "FIX_CONFIRMED source/proof bindings with semantic finding open; no overallPASS",
-    "receipt": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json#initial_f4c_disposal_review"
-  },
+  "before_publication_HOLD": "Root returns exact frozen diff+originalmethod/canonical/Highauthority refs to Coordinator BEFOREpublication/CI. No child publication.",
   "source47_plus_package": [
     {
       "path": "src/app/(app)/settings/company/page.tsx",
       "raw_sha256": "11087b2bb0bd4c09207849058b9598e05bfda371be0da186b2a2a4bff075b58a",
       "effective_git_blob_oid": "64042ec5a425040b11c5e4ccaeb63377de0674f8",
       "candidate_blob_oid": "64042ec5a425040b11c5e4ccaeb63377de0674f8",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/app/(app)/settings/pricing/page.tsx",
       "raw_sha256": "194198e1edc1ce67a5f7e5fc575ab7e6934933ee3da5871bfb7f3a1dbe7d4904",
       "effective_git_blob_oid": "acbdd4d419b1df2c60a8aa4c7efabc1f38c4a720",
       "candidate_blob_oid": "acbdd4d419b1df2c60a8aa4c7efabc1f38c4a720",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/app/(app)/settings/quote-terms/page.tsx",
       "raw_sha256": "2e4b02ac87a47b76e1ca3bb0e36d7e4dc0df0cd8e4d26ce56ae2ac7bea7473d4",
       "effective_git_blob_oid": "14b78a75804ef8c108d16efccb6c03d89aa88e01",
       "candidate_blob_oid": "14b78a75804ef8c108d16efccb6c03d89aa88e01",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/components/pricing/ArticlesEditor.tsx",
       "raw_sha256": "0708240a30a0364567026d130ed9d2ff5a9dc62ba4cc579030f39135a8fc1b44",
       "effective_git_blob_oid": "00a91118c9b4247d4c787cd21d03eef896636229",
       "candidate_blob_oid": "00a91118c9b4247d4c787cd21d03eef896636229",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/components/pricing/WorkRolesEditor.tsx",
       "raw_sha256": "7eafddf8eb185ddf971aec91095513585e0e967197bad6534db03ff54b7f384e",
       "effective_git_blob_oid": "15a007d0913fc48f2178a511ec1a24c612945a47",
       "candidate_blob_oid": "15a007d0913fc48f2178a511ec1a24c612945a47",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/components/settings/CompanySettingsForm.tsx",
       "raw_sha256": "1c3adbfd07e82843a6db078df89c034a606b39204090c75229573360573e424e",
       "effective_git_blob_oid": "294cf899d75a053a2bc73495fe2d7899ea02f908",
       "candidate_blob_oid": "294cf899d75a053a2bc73495fe2d7899ea02f908",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/components/settings/QuoteTermsEditor.tsx",
       "raw_sha256": "7f0b62cbfb11407588507c3c810264cadc7ee08096d163c6e8a3963af6a27e16",
       "effective_git_blob_oid": "94e42877a3f48bd32f3a4a4942dd90b5d6081e33",
       "candidate_blob_oid": "94e42877a3f48bd32f3a4a4942dd90b5d6081e33",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/features/pricing/action-state.ts",
       "raw_sha256": "fbd741d75460bd33247ee3aed9da7fdb84800844636da2e513bfb4b72244655c",
       "effective_git_blob_oid": "d082a040d8707f1f57787af505f22402bd53e6df",
       "candidate_blob_oid": "d082a040d8707f1f57787af505f22402bd53e6df",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/features/pricing/actions.ts",
       "raw_sha256": "cb7d115ea49cfaaa24464c66a52fd126e67d836edb9936125a1999f4388eb529",
       "effective_git_blob_oid": "2fd256ce4c38091f37c7249c9cab77f368429545",
       "candidate_blob_oid": "2fd256ce4c38091f37c7249c9cab77f368429545",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/features/pricing/form-parsing.ts",
       "raw_sha256": "3719ae06f871fe73c256f287a6ec5ef72c1a3ad03d47ad123283b94078a45a9c",
       "effective_git_blob_oid": "d113abf2315bf4256dd93c6d1dc9c9b2779b3fae",
       "candidate_blob_oid": "d113abf2315bf4256dd93c6d1dc9c9b2779b3fae",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/features/pricing/read.ts",
       "raw_sha256": "cd7a04cf1503076e8a6eb696fd94182bd5360cb8f0f811ee90689044b5d4f9d8",
       "effective_git_blob_oid": "ce2f4a51678247f64d243368c8e46c35cfb57b08",
       "candidate_blob_oid": "ce2f4a51678247f64d243368c8e46c35cfb57b08",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/features/settings/action-state.ts",
       "raw_sha256": "e6f36ce75bf441fe3e7fab3eda974ffcf0ff6ce65c8c9d31e799488a9bb67477",
       "effective_git_blob_oid": "0a58fecebf597d5dcb50937852e945d1583da2a4",
       "candidate_blob_oid": "0a58fecebf597d5dcb50937852e945d1583da2a4",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/features/settings/actions.ts",
       "raw_sha256": "d62f86a5ae2f946c2871e71af654dfb1b744fa403fcb4532f6ef96d39bb4415f",
       "effective_git_blob_oid": "e58e3e0292b6bc100a04963e954a8238cc4bb4fa",
       "candidate_blob_oid": "e58e3e0292b6bc100a04963e954a8238cc4bb4fa",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/features/settings/form-parsing.ts",
       "raw_sha256": "c65df864d6466a9eaafad1bcdd1d8db1950a849a02b1804db60917b1615f75d8",
       "effective_git_blob_oid": "6aac84e7adc7dba2957fba6c6bc03cdc300946ca",
       "candidate_blob_oid": "6aac84e7adc7dba2957fba6c6bc03cdc300946ca",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/features/settings/mutation-attempt.ts",
       "raw_sha256": "08cf728f179e5f46460ae25b0a2cff560911a26c558ce9393ca04b6038c5cb7a",
       "effective_git_blob_oid": "8e32a6e38da163332eb42500c47e8b1ced5331d6",
       "candidate_blob_oid": "8e32a6e38da163332eb42500c47e8b1ced5331d6",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/features/settings/read.ts",
       "raw_sha256": "e74b7fba575426e4dad33c1e011cc7b6ee66449a8492fd42f9d778ce43152c46",
       "effective_git_blob_oid": "ae769ecf10942f83da63497531db9e82bb90ee64",
       "candidate_blob_oid": "ae769ecf10942f83da63497531db9e82bb90ee64",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/scope/manifest.ts",
       "raw_sha256": "a773473789c83d5074ce3e86efb21f748774f471c58b189ae72ae3142cb7ff62",
       "effective_git_blob_oid": "fabc0d6fdc0f7348218380f17dc1e3a4d8c05767",
       "candidate_blob_oid": "fabc0d6fdc0f7348218380f17dc1e3a4d8c05767",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/server/commands/envelope.ts",
       "raw_sha256": "d6186842b73c983e02aec387e8058cc2d4b91149908f27a390eff10cd953a79a",
       "effective_git_blob_oid": "8370150ea5b632f63c601d1b5b90b40dce7ddb26",
       "candidate_blob_oid": "8370150ea5b632f63c601d1b5b90b40dce7ddb26",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/server/commands/pricing/articles.ts",
       "raw_sha256": "4b75cf42175c900540abae70f6e186807033e6693d79243cfbdea085932c02e1",
       "effective_git_blob_oid": "99f38f4cd12797def16766635a8698a68317731e",
       "candidate_blob_oid": "99f38f4cd12797def16766635a8698a68317731e",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/server/commands/pricing/pricing-db.ts",
       "raw_sha256": "3685765993515b2bfef373cf282124f4839f42e609f27e7150478c1789c4fc47",
       "effective_git_blob_oid": "0e7da0908d751c20391c30984e7df4aa26d840b9",
       "candidate_blob_oid": "0e7da0908d751c20391c30984e7df4aa26d840b9",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/server/commands/pricing/validation.ts",
       "raw_sha256": "39084403ed9aa0f5011fab4504f0f8264a80ccc3a303bae4fa926e9e8ac8ed2c",
       "effective_git_blob_oid": "cb798fb68c34b7baef308322e54044e6f0f426e1",
       "candidate_blob_oid": "cb798fb68c34b7baef308322e54044e6f0f426e1",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/server/commands/pricing/work-roles.ts",
       "raw_sha256": "740b6711cad49071f60b34c62497bb39858b3593254a83d175dc74b6942433ad",
       "effective_git_blob_oid": "d93e3230407957c18ade4d06888389bd30780c6b",
       "candidate_blob_oid": "d93e3230407957c18ade4d06888389bd30780c6b",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/server/commands/settings/company-settings.ts",
       "raw_sha256": "1e144a7618e45b207c33d990204fd66e1ca53a72d599f8f1700e9f5aa28ae84f",
       "effective_git_blob_oid": "585412dd9b5a96bffa5a7bcfc3a57eaaab5b685e",
       "candidate_blob_oid": "585412dd9b5a96bffa5a7bcfc3a57eaaab5b685e",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/server/commands/settings/operation-recovery.ts",
       "raw_sha256": "5a76decb31059f7e9572e120dfa3b74e76ea25d8a00e8a554805de9bc4e1e848",
       "effective_git_blob_oid": "e76d578631c380fdc856e76538ecbfdbd39e6c3f",
       "candidate_blob_oid": "e76d578631c380fdc856e76538ecbfdbd39e6c3f",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/server/commands/settings/quote-terms.ts",
       "raw_sha256": "07aeeacfb8d2300acad75c75127090bec2f31e1f21b022dd80f41c2103a9f005",
       "effective_git_blob_oid": "303f37644f8f3696f631a6c829d6d705c2928771",
       "candidate_blob_oid": "303f37644f8f3696f631a6c829d6d705c2928771",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/server/commands/settings/settings-db.ts",
       "raw_sha256": "2365f40cc1d064fb0ed4cfbb43221e6499c0ed518bfb345b172202c393b540ea",
       "effective_git_blob_oid": "964c1f3fe520f30c73038e8fa09bb7b7b2bfdcb0",
       "candidate_blob_oid": "964c1f3fe520f30c73038e8fa09bb7b7b2bfdcb0",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "src/server/commands/settings/validation.ts",
       "raw_sha256": "0859642e57b2fb45935b29c2f57ee0b23ee990b9255f3234a514d59f4f02afc4",
       "effective_git_blob_oid": "09961eea2be82781ccb443bf18bcd4759edef847",
       "candidate_blob_oid": "09961eea2be82781ccb443bf18bcd4759edef847",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "supabase/migrations/20261102121057_settings_pricing_operation_contract.sql",
       "raw_sha256": "7f02c36c4ac03a7c6de9e2b4e34048c80e617ac42067398f6fa06d9ae0a299df",
       "effective_git_blob_oid": "73f343a4724c1b55365c40fcebfce6095d92a580",
       "candidate_blob_oid": "73f343a4724c1b55365c40fcebfce6095d92a580",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
-      "raw_sha256": "5fb942222b62acf9c8fd9d5adb13473d6aee97b1054ba03229b63a4f80714fa7",
-      "effective_git_blob_oid": "9443180940f34ad14728bbf1696ea68dc854cc99",
-      "candidate_blob_oid": "0a472dc059d946897cb88608b548874e1361f7be",
-      "unchanged_from_f4c": false
+      "raw_sha256": "9f43405f539716a2f75aecacf4235b5060890ee0afa40193e9e06a8e73fe9f3e",
+      "effective_git_blob_oid": "93a96d94182482e0758832e527fedf0f9498a5b9",
+      "candidate_blob_oid": "9443180940f34ad14728bbf1696ea68dc854cc99",
+      "unchanged_from_b276": false
     },
     {
       "path": "tests/e2e/settings/settings.e2e.spec.ts",
       "raw_sha256": "d12401ccee3ac3cd3af428b33c3473b248226c9338eef37368c1c3277dfb17b2",
       "effective_git_blob_oid": "0b3b7430e2f2494b65a3f8ca985b6033d4e5bf12",
       "candidate_blob_oid": "0b3b7430e2f2494b65a3f8ca985b6033d4e5bf12",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
       "raw_sha256": "fed58b73ba50b51d4f577b2b418fc17a771e0001ada794325003b6a93f1e58c4",
       "effective_git_blob_oid": "e741247270a1402a5a811582c57cdecb5d1e992c",
       "candidate_blob_oid": "e741247270a1402a5a811582c57cdecb5d1e992c",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/integration/commands/pricing-commands.int.test.ts",
       "raw_sha256": "4f334d16deb7f93fbb3c74e5ebf3c221ad30a7b510fd2d026f13d763c3cf1291",
       "effective_git_blob_oid": "94dc92416bae43f503052fbc2fe6101b1e4eda65",
       "candidate_blob_oid": "94dc92416bae43f503052fbc2fe6101b1e4eda65",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/integration/commands/settings-commands.int.test.ts",
       "raw_sha256": "4bf2f70a50a3419e5e3fd550ad9042e1c656eb0c5c1eca413aedf1968ecd3fd5",
       "effective_git_blob_oid": "3b8e91e443af693bd9c853063cc31954271af6e0",
       "candidate_blob_oid": "3b8e91e443af693bd9c853063cc31954271af6e0",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
       "raw_sha256": "fb7ea0ce132042396951ce08403f96194573a202608f8b0f3a533242141339f6",
       "effective_git_blob_oid": "c112e304e4ced62d39a3d7349263d6ce2fa8ac88",
       "candidate_blob_oid": "c112e304e4ced62d39a3d7349263d6ce2fa8ac88",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
       "raw_sha256": "f1851ec2e178f8550105a0383e60da5ea986f3560c62877535e6b221229a5cdb",
       "effective_git_blob_oid": "2d8c3aabd7730c0228ce1ca7e5844a0a4805f9f2",
       "candidate_blob_oid": "2d8c3aabd7730c0228ce1ca7e5844a0a4805f9f2",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
       "raw_sha256": "38d81b9c53e908791f2bd89add3c7e715954bfd1b15ad2176aa8d188a5a98ffe",
       "effective_git_blob_oid": "9b00d5977a48880b78a535d6b94e32cecf97dfba",
       "candidate_blob_oid": "9b00d5977a48880b78a535d6b94e32cecf97dfba",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
       "raw_sha256": "8ad4e955267095a47d2ea7a1f124f3924f3f83e0e3dfd8a56a3b217efda78444",
       "effective_git_blob_oid": "0a568d85b2affbff3d6142420f78092da9d43342",
       "candidate_blob_oid": "0a568d85b2affbff3d6142420f78092da9d43342",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
       "raw_sha256": "96082dc1c0ee2954ca6d8d2f2084c966b33bd3826324a87ebb3889ee3a389aa7",
       "effective_git_blob_oid": "b0163a0674eb6c3cc379a4edb40be9e09f8b4413",
       "candidate_blob_oid": "b0163a0674eb6c3cc379a4edb40be9e09f8b4413",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/integration/rls/tenant-table-inventory.ts",
       "raw_sha256": "04626c68d6dde8c408fa68e309d4ff3b7533301cf3f5254ab8da9a4d8caa1f2c",
       "effective_git_blob_oid": "a5f042d566d55732ab53ccdd603b20847289aa90",
       "candidate_blob_oid": "a5f042d566d55732ab53ccdd603b20847289aa90",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/support/authz/role-harness.ts",
       "raw_sha256": "d5897875f3a2016bc5b3c0741773a42d88ee16c3c04a19083dc2e8244aa03741",
       "effective_git_blob_oid": "4416eb5966f1f392e92cdef2c1491bfc8bec6674",
       "candidate_blob_oid": "4416eb5966f1f392e92cdef2c1491bfc8bec6674",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/support/booking-conflicts-atdd.ts",
       "raw_sha256": "bf5b5ad1efa3b7ecd347494daf990a8224dc67c3a2e2e97eea0157fd3538b5f1",
       "effective_git_blob_oid": "e492f0829a462cc02ac14a493d21d3f61e2eff8d",
       "candidate_blob_oid": "e492f0829a462cc02ac14a493d21d3f61e2eff8d",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/unit/features/settings/mutation-attempt.test.ts",
       "raw_sha256": "2c9b584c0de6db6c1c0373bf3de88cf26c8b0e230e5aabf6713576da70875eeb",
       "effective_git_blob_oid": "06aff4b319960d71cc783c2bcd637086fc580059",
       "candidate_blob_oid": "06aff4b319960d71cc783c2bcd637086fc580059",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/unit/scope/manifest-derivations.test.ts",
       "raw_sha256": "2919ff514ee3a5943b5d5bcddb79b9d032bb654bbbab149db39f8238d6114bc6",
       "effective_git_blob_oid": "826e8ec62be471e42649ee51c376d84e7d360d9c",
       "candidate_blob_oid": "826e8ec62be471e42649ee51c376d84e7d360d9c",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/unit/scope/manifest-shape.test.ts",
       "raw_sha256": "f8b3a69d50a621896b9b5e96fc7da523472d9fd3732ef3a4fb9d3650f71d3a47",
       "effective_git_blob_oid": "66dcb7b732be1e54582bf5507d86c61786cea6ac",
       "candidate_blob_oid": "66dcb7b732be1e54582bf5507d86c61786cea6ac",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/unit/server/commands/pricing-validation-edges.test.ts",
       "raw_sha256": "0e2eb837a1bffb55914798f809072459b21cb816ac80aec1f407cbaa543272db",
       "effective_git_blob_oid": "75956d6c1d7b42ef581e498fdadf0612f8d77bf4",
       "candidate_blob_oid": "75956d6c1d7b42ef581e498fdadf0612f8d77bf4",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/unit/server/commands/pricing-validation.test.ts",
       "raw_sha256": "3adbb57055dd632003da7f0d319e9afae30724cfdfc061b27b0e7f094333b949",
       "effective_git_blob_oid": "6dc721deb057474cfce5f0eff7a7d2f7cc5bb513",
       "candidate_blob_oid": "6dc721deb057474cfce5f0eff7a7d2f7cc5bb513",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "tests/unit/server/commands/settings-validation.test.ts",
       "raw_sha256": "a3ac0538a21faa93193a007462c573192781cf01f09df3125d40202c6defa6b7",
       "effective_git_blob_oid": "2490ecade3ca127a45c887563cd6f4333d246d57",
       "candidate_blob_oid": "2490ecade3ca127a45c887563cd6f4333d246d57",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     },
     {
       "path": "package.json",
       "raw_sha256": "1d5892751389476587a49d1a2bec486ce0bb692d35186a087eb72fcd1cfc5472",
       "effective_git_blob_oid": "8cce451257420153c03bebbcdf58eb5744a6977e",
       "candidate_blob_oid": "8cce451257420153c03bebbcdf58eb5744a6977e",
-      "unchanged_from_f4c": true
+      "unchanged_from_b276": true
     }
   ],
-  "source48_digest": "9a85bdc99b58bd88f19e010341a8a0bcbbc10b2879a769ce32ac3254742c9b42",
+  "source48_digest": "d03a76f85d86a6af06b0bf8a2f06f324d76ffe36347f148c45cfa3aeb48733ab",
   "digest_scheme": "SHA256 compactUTF8 JSON array in recorded order/sorted object keys",
   "production27_raw_git_unchanged": true,
   "all_other47_source_raw_git_unchanged": true,
@@ -438,43 +490,45 @@
       "freeze-manifest.json": "251fa8bdc625d8eb1cd871688c78bffe956a544c724614b97b16c878f42990f3"
     }
   },
-  "retained132_proof": {
-    "manifest": "tmp/private/35-7-p-consumer-closed-service-proof/proof-manifest.json",
-    "sha256": "1c8b82145b0bf709a0dbe09fd9743c19d38a84a17f2d36fba9881467e55d4b41",
-    "status": "Retained unchanged/not rerun;14 functions and qualifier preservation separately compared"
+  "retained_prior_proofs": {
+    "admission132_manifest_sha256": "1c8b82145b0bf709a0dbe09fd9743c19d38a84a17f2d36fba9881467e55d4b41",
+    "lifecycle32_manifest_sha256": "56bc7aa33b5a80dad5634f36e06694a6a00b1e18179a658f8a72890012c3c459",
+    "status": "Retained unchanged/not rerun;14admission bodies exact"
   },
-  "current_marker_lifecycle_proof": {
-    "harness": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/harness.cjs",
-    "results": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/results.json",
+  "current_domain_model_proof": {
+    "harness": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/harness.cjs",
+    "results": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/results.json",
     "native_exit": 0,
-    "passed": 32,
+    "passed": 34,
     "failed": 0,
-    "source_sha256": "5fb942222b62acf9c8fd9d5adb13473d6aee97b1054ba03229b63a4f80714fa7",
-    "extraction_sha256": "2b200d07bbae995fd540ed2a2504845e1ec2a027394465a5aaeac23235ea4aed",
-    "limits": "Actual source functions/caller spans with mock event emitter/Request/clock only. No native browser/network/DB/process/Docker/CI; no proven cancellation cause or runtime acceptance. Previous22 proof retained in lifecycle-566; complete prior26 source/proof retained in history-981-disposal before marker-only correction. Six new marker cases; old26 inputs/outcomes unchanged.",
-    "history": "All19 previous26 proof files retained before source edit in history-981-disposal; old26 inputs/results exactly preserved,6 marker cases added; no lifecycle/admission change.",
+    "source_sha256": "9f43405f539716a2f75aecacf4235b5060890ee0afa40193e9e06a8e73fe9f3e",
+    "extraction_sha256": "b9bb4994c012fdc550b1d42da326d42e8e498c45b41cc6d06dc4b09fdb6bcf71",
+    "limits": "Actual assertion/settlement functions and exact committed-proof/domain call spans with mocked locator matchers, event emitter, clock and DB responses. This checks conjunction/ordering/refusal behavior, not real DOM/server-origin/RLS/SQL/browser evidence. Source authority mapping and fresh CI must prove actual server-derived UI. No live resources/network/process/Docker/SQL/CI.",
+    "history": "Two mock-only crossrealm RegExp/array fixture REDs retained/corrected; no projectsource change.",
     "manifest": {
-      "path": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/manifest.json",
-      "raw_sha256": "56bc7aa33b5a80dad5634f36e06694a6a00b1e18179a658f8a72890012c3c459",
-      "effective_git_blob_oid": "6ded2aa19b46c0c27715d8d81025c0c57ab51236"
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/manifest.json",
+      "raw_sha256": "3207fdc5fd336cca3c9a3e86d0533a9be6a6c05e7a72f11ab3314fa5b8e5dd52",
+      "effective_git_blob_oid": "5df8c4dc3f45f53d4f425fdfe73eae62f6a20264"
     },
     "admission_function_comparison": {
-      "path": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/admission-function-equality.json",
-      "raw_sha256": "783d317ddf6ad0359c7b49d8aa9ced9db26736507cd91678403173a22fa4de6f",
-      "effective_git_blob_oid": "00e827420b227a2b1864e25062ad2e93d41d9b1b"
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/admission-function-equality.json",
+      "raw_sha256": "c5e88b1624c157b75e667fc512f339b6f727943d8680ea1811d1f45d083c7159",
+      "effective_git_blob_oid": "81e6851d29a3e27a1cf30bdc3bb2638ba22e9792"
     },
     "preservation": {
-      "path": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/marker-preservation.json",
-      "raw_sha256": "62bc880da557e202214c29be396a237201ac2f3fa1bb7319a7af2cf4ff350ee5",
-      "effective_git_blob_oid": "fa1dd11c1872806b6295fb838196f1c3408d93a8"
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/preservation.json",
+      "raw_sha256": "b36d9ee688b49e2a927149997699aa53c0699dc0b8fb42bf1423c60edce69b4d",
+      "effective_git_blob_oid": "1383e0bdc3f1645828a34c2483a192816afecd62"
+    },
+    "authority_mapping": {
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/authority-mapping.json",
+      "raw_sha256": "8eb4b21dd22d738b093574cff2471ad862516074544e150ed5b4df571f84ea24",
+      "effective_git_blob_oid": "023c4b06180ca140afb802c5fa683671c6fd21a8"
     }
   },
-  "actual_f4c": {
-    "run": "41608859578",
-    "browser_job": "125826899014",
-    "browser_native_sha256": "063372d841457a5621d0d8216c1d869816f234de314e086c4890d36a43910a59",
-    "browser_log_bytes": 107371,
-    "browser_log_sha256": "6f029319ced594b9fd9eca822c25bc1f94decedba9df2816fd783c38dc444215",
+  "actual_b276": {
+    "run": "41615029035",
+    "browser_job": "125847225967",
     "browser": {
       "total": 104,
       "expected": 103,
@@ -483,66 +537,65 @@
       "skip": 0
     },
     "P_E5_attempt_ms": [
-      4288,
-      2480
+      4028,
+      2320
     ],
-    "first": "Exact held Request FAILED terminal; delivered-read assertion correctly refused",
-    "retry": "Durable EEXIST",
-    "cause_class": "UNKNOWN; no request-category/release-order native proof yet",
+    "exact_GET": "ONE matching/unmarked/2xx/ERR_ABORTED afterresponse BEFOREunroute;causeUNKNOWN",
+    "failure": "Old finished-only proxy failed; no retroactive domainproof",
+    "prior23owned6producer": "firstpass",
     "journal": [
       "claimed-no-effects",
       "revoke-intent(company_settings)",
       "revoke-committed(company_settings)",
       "restore-verified(company_settings)"
     ],
-    "earned": "Admission, snapshot, first company revoke/full semantic ACL and same ordinary-read restoration atf4c ONLY",
+    "company_restore": "FullACL+sameordinaryread verified",
     "other_fault_delete_intents": 0,
-    "runner": 11278,
-    "server": 11638,
     "PNG": {
-      "validated_originals": 82,
-      "issues": 0,
       "normal": 80,
       "company_pending": 2,
       "method_absent": 21
     },
-    "prior23owned6producer": "firstattemptPASS",
     "DB": {
-      "job": "125826898997",
-      "terminal": "SUCCESS",
-      "total": 2305,
-      "passed": 2253,
-      "failed": 0,
+      "terminal": "FAILURE",
+      "total": 2292,
+      "passed": 2228,
+      "failed": 1,
       "explicit_skip": 52,
+      "pending_not_executed": 11,
+      "failed_suites": 2,
+      "failed_files": 1,
       "producer75_RLS7": "PASS0skip",
-      "native_sha256": "527e9fc71486f158d13161e357b463ccbf1262ef3c634a222c9e49bba05c4886",
+      "sole_failure": "Unallocated15.5-API009 public-feed.int.ts204 intended429;actualstatus/causeunreported;scenario-assertion/unknown/sqlstateunavailable. No author investigation/fix/retry.",
+      "native_sha256": "0c34f7b73962b48915514066d27447cf1565a6d3da0e291a7ea813420169de51",
       "wrapper_children": [
         0,
-        0
+        1
       ],
-      "keyDeleted": true,
+      "keyDeleted": false,
       "dbClosed": true,
-      "keyOutcome": "deleted-confirmed",
-      "failures": [],
-      "pilot": "PASS",
-      "log_bytes": 101358,
-      "log_sha256": "a4589ed204d9f906af3c568d0c729977ab51e5b6ade26a5e42169413b4e7345f"
+      "keyOutcome": "unverified",
+      "diagnostic": "runtimeguard-refusal",
+      "pilot": "NOTREACHED",
+      "Authdiagnostic": "NOT_APPLICABLE/0credit",
+      "log_bytes": 101719,
+      "log_sha256": "e07b221c9c916a1790e3d7bc54c25fa8eeca8a8bde773086f0d2f397127e0929"
     },
-    "whole_CI": "Terminal browser-only FAILURE; no successor credit"
+    "whole_CI": "Terminal DB+BROWSERFAIL/no successorcredit"
   },
   "static_checks": {
     "typecheck": 0,
     "pricing_eslint": 0,
     "single_SRO": 0,
-    "verified_stops": 49,
+    "verified_stops": 53,
     "logs": [
       {
-        "path": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/typecheck.log",
+        "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/typecheck.log",
         "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "native_exit": 0
       },
       {
-        "path": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/eslint.log",
+        "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/eslint.log",
         "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "native_exit": 0
       }
@@ -560,47 +613,44 @@
   "author_file_pins_excluding_this_record": [
     {
       "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
-      "raw_sha256": "5fb942222b62acf9c8fd9d5adb13473d6aee97b1054ba03229b63a4f80714fa7",
-      "effective_git_blob_oid": "9443180940f34ad14728bbf1696ea68dc854cc99"
+      "raw_sha256": "9f43405f539716a2f75aecacf4235b5060890ee0afa40193e9e06a8e73fe9f3e",
+      "effective_git_blob_oid": "93a96d94182482e0758832e527fedf0f9498a5b9"
     },
     {
       "path": "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
-      "raw_sha256": "6feb20eb2eee458627a3d1c1efd986674cfb258041d9149c609a06bb5a61c38d",
-      "effective_git_blob_oid": "672a8db6a4995f54bd9ecfa4d7bc30d673ec0ccc"
+      "raw_sha256": "205ae0b37f11e7eb62521cb70da4dfbdb14300066c54cfb1adaaaef3bfaafffb",
+      "effective_git_blob_oid": "ffeac278c4d789cb2b29ece81cfa2fb186e6ea69"
     },
     {
       "path": "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
-      "raw_sha256": "70361aa194986c74052ce62826608a3fe5c87a987d2943a5fef7a20e5929e454",
-      "effective_git_blob_oid": "3d8d7e16e5b47f3bd4dc98b3222fd9466899b927"
+      "raw_sha256": "44b02167ece4c4439bbd96e6588ed1ecd49dc6792e321bd2136fda11a29b19e1",
+      "effective_git_blob_oid": "09039d172c50ad79aec65f228f34db547f00dbc8"
     },
     {
       "path": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-evidence.json",
-      "raw_sha256": "bd19a50c28278f16de0e405600d2d26bf416085315e27ae1b6f81095bf3b87cb",
-      "effective_git_blob_oid": "de97fb8e10958cd476d7791e4e5696f0d1201bdb"
+      "raw_sha256": "9c2144743453dd5231d346c8f46c8e94b79034c40dd7db8cbcdf156fb61e6ba4",
+      "effective_git_blob_oid": "1bb8c03dd42c30301d667d92de49064b199c082f"
     },
     {
       "path": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json",
-      "raw_sha256": "16f03f351800b07a88564248ef64f4e57f22f33df2bfe2a7a84767dc7422ea41",
-      "effective_git_blob_oid": "1abcdf7a5d78240b8fd00e2e5f459afbde5a2403"
+      "raw_sha256": "24d4ba6675c1e317bc6a41e01891d16236c128047259aa196f167d8feb6b3e6b",
+      "effective_git_blob_oid": "4cab9eebc4f6b4567858b7d5b0541dc96bba2b5e"
     },
     {
       "path": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-only.patch",
-      "raw_sha256": "fc9b0d09b072ae44e23177e3b18b8093991df39be18ecfce84a7c5ff098b542a",
-      "effective_git_blob_oid": "424ed9dfe4380bd0d055484eb52ada18bd7c8a92"
+      "raw_sha256": "aa54978ba0886a6f4d283926782b70ec731ed08f69ab6fd1bee4926b93f303f4",
+      "effective_git_blob_oid": "51819457b4eaab1b40b12ee7ac19535428cbe648"
     }
   ],
-  "other_writer_dirty_paths_preserved_not_for_author_staging": [
-    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
-    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json"
-  ],
+  "other_writer_dirty_paths_not_for_author_staging": [],
   "new_tracked_paths_added": 0,
-  "cases_captures_effects": "103raw/24owned7producer/selector/lifecycle/single10s/allerrors/ACLrestore/failstop/claim/budgets/Node14funcs/132/businessUIcaptures EXACT exceptdiagnostic marker semantics",
+  "cases_captures_effects": "103raw/24owned7producer/observer/selector/lifecycle/single10s/allerrors/ACLrestore/failstop/claim/budgets/Node14funcs/132/currentbusinessUIcapturecalls unchanged; only approved domain proof/readonly recheck/diagnostic semantics added.",
   "remaining_blockers": [
-    "SAME High targeted marker-regression source and newproof provenance confirmations; initial review not overallPASS",
-    "Fresh exact-head required DB/browser/P-E5 actualdelivery/effects/methodimages/authenticatedvisual/completion",
-    "Live80cap/actual complete fit;private88/90unapplied/HUMANHELD"
+    "SAME targeted High source/authority and proof confirmations",
+    "Coordinator receives stopped exact diff+originalmethod/canonical/Highrefs BEFOREpublication/CI",
+    "Fresh exact-head DB/browser/domain/method effects+images/actualcompletefit/global90approval/authenticatedvisual/completion"
   ],
-  "current_head_runtime": "UNEARNED; actualsource mocks/static only/no local browser/network/process/Docker/DB/SQL/resources/CI",
+  "current_head_runtime": "UNEARNED;34 actualsource models+static only/no localPW/network/process/Docker/DB/SQL/resources/CI",
   "build_status": "in-progress",
   "step5_done": false,
   "release_ready": false,

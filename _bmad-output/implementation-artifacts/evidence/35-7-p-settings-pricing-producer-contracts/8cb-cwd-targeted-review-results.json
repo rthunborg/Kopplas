@@ -622,5 +622,174 @@
     "remaining": "FreshcandidateDB/browser/transport/methodqualification;21missingmethodframes/all103freshimages;truthfulqualifiedcompletepackage/live80admission;humanvisualacceptance/completion unearned.",
     "step5_done": false,
     "release_ready": false
+  },
+  "current_b276_domain_proof_followup": {
+    "recorded_at_utc": "2026-11-03T10:33:03.598908+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Only original-authority/source DOMAIN-proof correction andretained34modelcases;no broadreview/unchangedproofreruns.",
+    "freeze_sha256": "3cf987ab7eb9a59c6fe3f16a156d73e34a9816f48b780444ea8ae585fb94ead8",
+    "source48_digest": "d03a76f85d86a6af06b0bf8a2f06f324d76ffe36347f148c45cfa3aeb48733ab",
+    "pricing_sha256": "9f43405f539716a2f75aecacf4235b5060890ee0afa40193e9e06a8e73fe9f3e",
+    "pricing_git_blob": "93a96d94182482e0758832e527fedf0f9498a5b9",
+    "patch_sha256": "aa54978ba0886a6f4d283926782b70ec731ed08f69ab6fd1bee4926b93f303f4",
+    "findings": [],
+    "authority_references": [
+      {
+        "path": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.md",
+        "sha256": "945d53b539013c51ab5f89f08a14a2ff539ecc97f992f56dd2951f9a1f67d995",
+        "verified_lines": [
+          12,
+          20
+        ],
+        "meaning": "Original realproductionserverread+actualunavailable/disabledUI;controlledtransports separatelysettled;noEOFmandate."
+      },
+      {
+        "path": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.json",
+        "sha256": "d44b50c3d04adb4326b901064fb6adc79df05316bc2c77787903efbd04c621f4",
+        "meaning": "Retained approved bounded-effect proposal;notmodified."
+      },
+      {
+        "path": "C:/DEV/K35-7-P-producer/_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+        "sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+        "verified_lines": [
+          53
+        ],
+        "meaning": "Historicalreceipt/currentauthorizedfacts distinction;no HTTP EOF requirement."
+      },
+      {
+        "path": "C:/DEV/K35-7-P-producer/tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/authority-mapping.json",
+        "sha256": "8eb4b21dd22d738b093574cff2471ad862516074544e150ed5b4df571f84ea24",
+        "meaning": "Source/approval/methodmapping;independentroot owns parent/Coordinator PROCEED receipt."
+      }
+    ],
+    "verified_source_guards": [
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 359,
+        "meaning": "Healthybaseline"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 1390,
+        "meaning": "Serverreaderrorabsence recheckedbeforeREVOKE"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 384,
+        "meaning": "ExactRequestidentity andactualterminalsettlement;failedsettlementnotdomaincredit"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 365,
+        "meaning": "Newserverunavailable/disabled/retainedreceipt+draft/negativeconjunction"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 1403,
+        "meaning": "Readonlyexactcommitted-operationproof underfault"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 1422,
+        "meaning": "Repeateddomainchecks arounddesktop/phonecaptures through1431"
+      }
+    ],
+    "verification_confirmation": "Originalmethod/canonical allowrealproductionserver-page read+actualserverderivedunavailableUI andseparatetransportsettlement;EOFwaslaterimplementationchoice. Healthybaseline/errorabsentbeforerevoke;verifiedfaultactive;exactRequestsettledfinishedORfailed(cleanupONLY);newservererror/disabled/committednonbusy/nonunknown/retainedreceipt+draft/no-current/missing/adoptionconjunction before/afterbothcaptures. Repeatedexistingreadonlycommittedreceiptproof. SourceonlyserverreadErrorprops across4surfaces;clientrejectioncannotmanufacturethem;genuineaction-drivenpagerenderpermitted. NoGETdelivery/causeclaim/proxy/buffering/selector/lifecycle/privilegeexpansion. ExactACLrecovery/failstop intact.",
+    "edges_confirmation": "All20proof hashes andsource48/canonical9effectivepins match inproductCWD.AST/transpilation/committed-proof+domaincallers reproduce.34savedpasses:eightfinished/failedsurfacecombos,onehealthybaseline,25refusals.14admission/observer/selector/settlement/holdlifecycle/captureexpressions/120stimeout andprior32manifestunchanged;no reruns.",
+    "proof_manifest_sha256": "3207fdc5fd336cca3c9a3e86d0533a9be6a6c05e7a72f11ab3314fa5b8e5dd52",
+    "harness_sha256": "3e198af143884f2ed70367fa830c8921f075d3bba7fc4fa9b6609b55dd93fc0c",
+    "proof_limits": [
+      "Mockspecs omittablenames;fakeDBreturnsfixturesindependentofSQL.Proofchecksboundargs/recheckcomparison/order/helperconjunction,notrealSQLtable-routing/serverprops/DOM/RLS/faults.",
+      "Negatives useisolatedstate mutations+genericassert.rejects,notexactfailuremessagepredicates;positivesuse sharedmodel.",
+      "Two retainedREDsarecrossrealmRegExp/arraymatchercorrections;extractedsourceunchanged.",
+      "Models donotestablish actualfreshserverUItransition,transportcause,GETcausation orruntimeacceptance."
+    ],
+    "method_clarification": "Failedterminalprovescleanupsettlementonly. GenuineproductionpagerenderedunavailableUI isseparatemandatorydomainproof,notEOF;abort/2xxaloneNOTproof.No retroactiveb276credit ornormalabort/exactGETdelivery/opsuccessclaim.",
+    "actual_b276_browser": {
+      "head": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
+      "run": "41615029035",
+      "browser_total": 104,
+      "browser_expected": 103,
+      "browser_unexpected": 1,
+      "browser_flaky": 0,
+      "browser_skipped": 0,
+      "observed": "ONEunmarkedmatchingGET;2xx→net::ERR_ABORTED BEFOREunroute;nocausalattribution.",
+      "order": [
+        "action-response",
+        "exact-held",
+        "release-start",
+        "fallback-complete",
+        "exact-response",
+        "terminal-failed",
+        "unroute-start",
+        "disposal-verified",
+        "observers-disposed"
+      ],
+      "journal_records": 4,
+      "journal_stages": [
+        "claimed-no-effects",
+        "revoke-intent(company_settings)",
+        "revoke-committed(company_settings)",
+        "restore-verified(company_settings)"
+      ],
+      "other_fault_tables": 0,
+      "delete_intents": 0,
+      "historical_PNGs": 82,
+      "normal_PNGs": 80,
+      "method_PNGs": 2,
+      "method_frames_missing": 21,
+      "limits": "Currentb276stillfailsitsfinished-onlyassertion;no actualunavailableDOM/domaincredit or retroactivePASS.",
+      "browser_native": {
+        "path": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-b276cab0/native-general-browser/general-browser.json",
+        "sha256": "31343998dc22c3c25e6e1d6a0703b86157b5940ae3abad7f1c5da3cc7ac9690b"
+      },
+      "released_read_diagnostics": {
+        "path": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-b276cab0/browser-current/playwright-report/35-7-p/released-read-diagnostics.jsonl",
+        "sha256": "e12321f9254024773023b20f1808a089bc2ec1cee1d3f8dca32df45d8d03a912"
+      }
+    },
+    "actual_b276_DB": {
+      "native_json_sha256": "0c34f7b73962b48915514066d27447cf1565a6d3da0e291a7ea813420169de51",
+      "total": 2292,
+      "passed": 2228,
+      "failed": 1,
+      "explicit_skipped": 52,
+      "pending_not_executed": 11,
+      "success": false,
+      "failed_suites": 2,
+      "failed_files": 1,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "sole_failure": "15.5-API009 AC4/AC5/AC7 public-feed.int.ts204 fx.http issuedURL+forwardedheader intended429",
+      "status_cause": "Unreported/UNKNOWN;unallocatedunchanged,nofix/diagnostic/retryhere.",
+      "first_caller": "calendarFixtureOrigin282->Proxy37->public-feed204->calendarFixtureStep342->workscope780->withOwnedUnknownWindow722->withCalendarFeedFixture377",
+      "wrapper_child_exit_codes": [
+        0,
+        1
+      ],
+      "key_deleted": false,
+      "db_closed": true,
+      "key_outcome": "unverified",
+      "diagnostic": "runtimeguard-refusal",
+      "pilot_step": "NOT_REACHED",
+      "Auth_diagnostic": "NOT_APPLICABLE,0credit",
+      "full_log_bytes": 101719,
+      "full_log_sha256": "e07b221c9c916a1790e3d7bc54c25fa8eeca8a8bde773086f0d2f397127e0929",
+      "whole_b276_CI": "DB+BROWSERFAIL;ended,nooldstateadoption."
+    },
+    "unchanged_boundaries": "Production27/other47/canonical9/package/workflow/config/privatecaps unchanged.103capturedefinitions,24owned7producer/businessactions/assertions/effectbudget/fullACL+ordinaryreadrestore/failstop/damagedcustody/claim/ONEdelete preserved.SRO53;prior132/32notrerun.",
+    "coordinator_assessment_required_before_publication_CI": true,
+    "no_reviewer_tests_runtime_queries_writes_resources_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Coordinatorassessmentofexactfrozendiff/authorityrefsBEFOREpublicationCI;freshnativeDB/browser/domain/methods/all103images/packagefit/live80admission/humanvisual/completionunearned.",
+    "step5_done": false,
+    "release_ready": false
   }
 }

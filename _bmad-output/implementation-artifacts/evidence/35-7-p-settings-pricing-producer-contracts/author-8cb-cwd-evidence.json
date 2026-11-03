@@ -1,25 +1,92 @@
 {
-  "current_followup": "f4c disposal marker-only diagnostic correction",
-  "candidate_before": "f4c2b8da6521af0a99ffbd33debc42086fda2445",
+  "current_followup": "b276 reviewed domain-unavailability/settled-transport proof",
+  "candidate_before": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
   "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
   "prior_committed_history": {
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-evidence.json": {
-      "commit": "f4c2b8da6521af0a99ffbd33debc42086fda2445",
-      "git_blob_oid": "55d31cb8ad9a41bb8f665074baa94ba74c8f0b9b",
-      "git_bytes_sha256": "2e228604fd5bd28e10c80b045006f97e948e4e0ac077eed387283a97b376dfba"
+      "commit": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
+      "git_blob_oid": "de97fb8e10958cd476d7791e4e5696f0d1201bdb",
+      "git_bytes_sha256": "0e0cb57505959a2697ecf197ded0c15d6052af0250d4cfb92ec491bbf9cfb552"
     },
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json": {
-      "commit": "f4c2b8da6521af0a99ffbd33debc42086fda2445",
-      "git_blob_oid": "0a9a7aea31b3bb170bfd8524003a6515974892d1",
-      "git_bytes_sha256": "935a446518c437a0c472d7bd12e8822cf1b69d2746936d2b69fa34b42c1af51d"
+      "commit": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
+      "git_blob_oid": "779453f72bdfdba0d27278a1c0d539c6a94cf436",
+      "git_bytes_sha256": "6a94e135dce04ce8a5da2122a165d828bf3d0a529814da6bb322907dcf7c2b76"
     }
   },
-  "actual_f4c": {
-    "run": "41608859578",
-    "browser_job": "125826899014",
-    "browser_native_sha256": "063372d841457a5621d0d8216c1d869816f234de314e086c4890d36a43910a59",
-    "browser_log_bytes": 107371,
-    "browser_log_sha256": "6f029319ced594b9fd9eca822c25bc1f94decedba9df2816fd783c38dc444215",
+  "authority_reconciliation": {
+    "original_method": {
+      "md": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.md",
+      "json": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.json",
+      "anchor": "Exact effects2; mandatory safety hold/release/settle",
+      "requirement": "Real production page/server read and actual unavailable/disabled UI; RSC abort alone is not proof. Settle every controlled transport; HTTP EOF not required."
+    },
+    "canonical": {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 53,
+      "requirement": "Historical receipt separate from independently authorized current facts; source unchanged."
+    },
+    "High_disposition": {
+      "source": "Parent /root/producer_build same-author DOMAIN-proof NEW_TASK",
+      "fact": "Parent+Coordinator explicit PROCEED after independent High supported domain route; route pre-recorded before dispatch. Root retains independent receipt and must return exact stopped diff+method/canonical/High refs to Coordinator BEFORE publication/CI. No fabricated receipt ID, no implementation/runtime PASS."
+    },
+    "server_mapping": [
+      {
+        "path": "src/features/settings/read.ts",
+        "anchor": "export async function readCompanySettings",
+        "binding": "Server query denial/throw becomes generic readerror",
+        "verified_lines": [
+          45
+        ]
+      },
+      {
+        "path": "src/app/(app)/settings/company/page.tsx",
+        "anchor": "readError: error !== null",
+        "binding": "Server page alert and readError props",
+        "verified_lines": [
+          35
+        ]
+      },
+      {
+        "path": "src/components/settings/CompanySettingsForm.tsx",
+        "anchor": "<fieldset disabled={operation.blocked || defaults.readError}",
+        "binding": "Server readError disables form; client transport reject cannot set it",
+        "verified_lines": [
+          68
+        ]
+      },
+      {
+        "path": "src/app/(app)/settings/quote-terms/page.tsx",
+        "anchor": "readQuoteTerms",
+        "binding": "Server terms page/readerror props",
+        "verified_lines": [
+          17,
+          24
+        ]
+      },
+      {
+        "path": "src/app/(app)/settings/pricing/page.tsx",
+        "anchor": "readError",
+        "binding": "Authorized active/archive failures govern domain props",
+        "verified_lines": [
+          78,
+          85
+        ]
+      },
+      {
+        "path": "src/components/pricing/ArticlesEditor.tsx",
+        "anchor": "data-testid=\"pricing-current-unavailable\"",
+        "binding": "Server readError marker/disabled fieldset; analogous WorkRoles",
+        "verified_lines": [
+          67
+        ]
+      }
+    ]
+  },
+  "required_before_publication": "Root returns exact frozen diff+originalmethod/canonical/Highauthority refs to Coordinator BEFOREpublication/CI. No child publication.",
+  "actual_b276": {
+    "run": "41615029035",
+    "browser_job": "125847225967",
     "browser": {
       "total": 104,
       "expected": 103,
@@ -28,125 +95,108 @@
       "skip": 0
     },
     "P_E5_attempt_ms": [
-      4288,
-      2480
+      4028,
+      2320
     ],
-    "first": "Exact held Request FAILED terminal; delivered-read assertion correctly refused",
-    "retry": "Durable EEXIST",
-    "cause_class": "UNKNOWN; no request-category/release-order native proof yet",
+    "exact_GET": "ONE matching/unmarked/2xx/ERR_ABORTED afterresponse BEFOREunroute;causeUNKNOWN",
+    "failure": "Old finished-only proxy failed; no retroactive domainproof",
+    "prior23owned6producer": "firstpass",
     "journal": [
       "claimed-no-effects",
       "revoke-intent(company_settings)",
       "revoke-committed(company_settings)",
       "restore-verified(company_settings)"
     ],
-    "earned": "Admission, snapshot, first company revoke/full semantic ACL and same ordinary-read restoration atf4c ONLY",
+    "company_restore": "FullACL+sameordinaryread verified",
     "other_fault_delete_intents": 0,
-    "runner": 11278,
-    "server": 11638,
     "PNG": {
-      "validated_originals": 82,
-      "issues": 0,
       "normal": 80,
       "company_pending": 2,
       "method_absent": 21
     },
-    "prior23owned6producer": "firstattemptPASS",
     "DB": {
-      "job": "125826898997",
-      "terminal": "SUCCESS",
-      "total": 2305,
-      "passed": 2253,
-      "failed": 0,
+      "terminal": "FAILURE",
+      "total": 2292,
+      "passed": 2228,
+      "failed": 1,
       "explicit_skip": 52,
+      "pending_not_executed": 11,
+      "failed_suites": 2,
+      "failed_files": 1,
       "producer75_RLS7": "PASS0skip",
-      "native_sha256": "527e9fc71486f158d13161e357b463ccbf1262ef3c634a222c9e49bba05c4886",
+      "sole_failure": "Unallocated15.5-API009 public-feed.int.ts204 intended429;actualstatus/causeunreported;scenario-assertion/unknown/sqlstateunavailable. No author investigation/fix/retry.",
+      "native_sha256": "0c34f7b73962b48915514066d27447cf1565a6d3da0e291a7ea813420169de51",
       "wrapper_children": [
         0,
-        0
+        1
       ],
-      "keyDeleted": true,
+      "keyDeleted": false,
       "dbClosed": true,
-      "keyOutcome": "deleted-confirmed",
-      "failures": [],
-      "pilot": "PASS",
-      "log_bytes": 101358,
-      "log_sha256": "a4589ed204d9f906af3c568d0c729977ab51e5b6ade26a5e42169413b4e7345f"
+      "keyOutcome": "unverified",
+      "diagnostic": "runtimeguard-refusal",
+      "pilot": "NOTREACHED",
+      "Authdiagnostic": "NOT_APPLICABLE/0credit",
+      "log_bytes": 101719,
+      "log_sha256": "e07b221c9c916a1790e3d7bc54c25fa8eeca8a8bde773086f0d2f397127e0929"
     },
-    "whole_CI": "Terminal browser-only FAILURE; no successor credit"
+    "whole_CI": "Terminal DB+BROWSERFAIL/no successorcredit"
   },
-  "source_fix": "Split releaseHeld from dispose. Exact terminal/response FIRST, then bounded unroute on EVERY exit with same single10000ms deadline; expired budget attempts disposal but cannot verify it. Release/terminal/disposal failures categorized/aggregated; failed/non-held remains fatal before delivered/UI/image credit.",
-  "selection": "Existing FIRST matching pathname GET/rsc=1 selector EXACTLY unchanged; diagnostics never filter/rebind/substitute it.",
-  "diagnostics": "Only derived marker classes1/2/3/segment/purpose, unmarkedUndetermined on absence, unexpectedMarker fixed category, unknown on unavailable headers; matchingGET count/classes/action-response/response-status/failure/phase. Never a request selector or proof of known nonprefetch. No raw values.",
-  "preserved": "All original exactRequest/nonnull/response/UI/business assertions,103captures/24owned7producer/actions120stimeouts, admission132/14functions, snapshots/claim/fault/deletebudget/ONEdelete, unconditional ACLrecovery/fullACL+ordinaryread/custody/failstop unchanged.",
+  "semantic_change": "Remove only EOF proxy. Finished or actualfailed is cleanupsettlement, not domainproof. Require new SERVER-derived error/disabled/draft/receipt/nonbusy/nonunknown/no current/missing/adoption conjunction after errorabsence and verifiedDCL while active; repeat bothviewports; same original bound readonly receipt query checked again. No failedGETdelivery or normal-abort claim.",
+  "preserved": "Observer/selector/lifecycle/disposal/single10s,originalUIassertions,103captures/24owned7producer/allactions/effects/budgets/ONEdelete/fullACL+ordinaryreadrestore/custody/failstop/canonical unchanged. No fetch/fulfill/buffer/seam.",
   "new_pure_proof": {
-    "harness": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/harness.cjs",
-    "results": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/results.json",
+    "harness": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/harness.cjs",
+    "results": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/results.json",
     "native_exit": 0,
-    "passed": 32,
+    "passed": 34,
     "failed": 0,
-    "source_sha256": "5fb942222b62acf9c8fd9d5adb13473d6aee97b1054ba03229b63a4f80714fa7",
-    "extraction_sha256": "2b200d07bbae995fd540ed2a2504845e1ec2a027394465a5aaeac23235ea4aed",
-    "limits": "Actual source functions/caller spans with mock event emitter/Request/clock only. No native browser/network/DB/process/Docker/CI; no proven cancellation cause or runtime acceptance. Previous22 proof retained in lifecycle-566; complete prior26 source/proof retained in history-981-disposal before marker-only correction. Six new marker cases; old26 inputs/outcomes unchanged.",
-    "history": "All19 previous26 proof files retained before source edit in history-981-disposal; old26 inputs/results exactly preserved,6 marker cases added; no lifecycle/admission change.",
+    "source_sha256": "9f43405f539716a2f75aecacf4235b5060890ee0afa40193e9e06a8e73fe9f3e",
+    "extraction_sha256": "b9bb4994c012fdc550b1d42da326d42e8e498c45b41cc6d06dc4b09fdb6bcf71",
+    "limits": "Actual assertion/settlement functions and exact committed-proof/domain call spans with mocked locator matchers, event emitter, clock and DB responses. This checks conjunction/ordering/refusal behavior, not real DOM/server-origin/RLS/SQL/browser evidence. Source authority mapping and fresh CI must prove actual server-derived UI. No live resources/network/process/Docker/SQL/CI.",
+    "history": "Two mock-only crossrealm RegExp/array fixture REDs retained/corrected; no projectsource change.",
     "manifest": {
-      "path": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/manifest.json",
-      "raw_sha256": "56bc7aa33b5a80dad5634f36e06694a6a00b1e18179a658f8a72890012c3c459",
-      "effective_git_blob_oid": "6ded2aa19b46c0c27715d8d81025c0c57ab51236"
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/manifest.json",
+      "raw_sha256": "3207fdc5fd336cca3c9a3e86d0533a9be6a6c05e7a72f11ab3314fa5b8e5dd52",
+      "effective_git_blob_oid": "5df8c4dc3f45f53d4f425fdfe73eae62f6a20264"
     },
     "admission_function_comparison": {
-      "path": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/admission-function-equality.json",
-      "raw_sha256": "783d317ddf6ad0359c7b49d8aa9ced9db26736507cd91678403173a22fa4de6f",
-      "effective_git_blob_oid": "00e827420b227a2b1864e25062ad2e93d41d9b1b"
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/admission-function-equality.json",
+      "raw_sha256": "c5e88b1624c157b75e667fc512f339b6f727943d8680ea1811d1f45d083c7159",
+      "effective_git_blob_oid": "81e6851d29a3e27a1cf30bdc3bb2638ba22e9792"
     },
     "preservation": {
-      "path": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/marker-preservation.json",
-      "raw_sha256": "62bc880da557e202214c29be396a237201ac2f3fa1bb7319a7af2cf4ff350ee5",
-      "effective_git_blob_oid": "fa1dd11c1872806b6295fb838196f1c3408d93a8"
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/preservation.json",
+      "raw_sha256": "b36d9ee688b49e2a927149997699aa53c0699dc0b8fb42bf1423c60edce69b4d",
+      "effective_git_blob_oid": "1383e0bdc3f1645828a34c2483a192816afecd62"
+    },
+    "authority_mapping": {
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/authority-mapping.json",
+      "raw_sha256": "8eb4b21dd22d738b093574cff2471ad862516074544e150ed5b4df571f84ea24",
+      "effective_git_blob_oid": "023c4b06180ca140afb802c5fa683671c6fd21a8"
     }
   },
-  "prior132_proof": {
-    "manifest": "tmp/private/35-7-p-consumer-closed-service-proof/proof-manifest.json",
-    "sha256": "1c8b82145b0bf709a0dbe09fd9743c19d38a84a17f2d36fba9881467e55d4b41",
-    "status": "Retained unchanged/not rerun;14 functions and qualifier preservation separately compared"
+  "prior_proofs": {
+    "admission132_manifest_sha256": "1c8b82145b0bf709a0dbe09fd9743c19d38a84a17f2d36fba9881467e55d4b41",
+    "lifecycle32_manifest_sha256": "56bc7aa33b5a80dad5634f36e06694a6a00b1e18179a658f8a72890012c3c459",
+    "status": "Retained unchanged/not rerun;14admission bodies exact"
   },
   "focused_static": {
     "typecheck": {
       "native_exit": 0,
-      "log": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/typecheck.log"
+      "log": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/typecheck.log"
     },
     "pricing_eslint": {
       "native_exit": 0,
-      "log": "tmp/private/35-7-p-consumer-closed-service-proof/lifecycle-f4c/eslint.log"
+      "log": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/eslint.log"
     }
   },
-  "runtime_limits": "Mocks/static only; no localPW/network/process/Docker/DB/SQL/resources/CI. Native cancellation cause and successor methods/images/fit/authenticatedvisual/completion remain unearned.",
+  "runtime_limits": "Modeled locators/events/clock/DB only; sourceauthoritymapping+freshCI must prove realserver/DOM/RLS/SQL/images. No local runtime/resources/network/process/Docker/SQL/CI. No retroactive b276 acceptance/cause/operationsuccess.",
   "build_status": "in-progress",
   "step5_done": false,
   "release_ready": false,
-  "live_cap": 80,
-  "private88_90": "UNAPPLIED/HUMANHELD; untouched",
+  "private_caps": "Global90proposal unapproved; actualcompletefit/images/acceptance remainblocking/no gatechange.",
   "single_SRO": {
     "native_exit": 0,
-    "verified_stops": 49,
+    "verified_stops": 53,
     "native_JSON": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json"
-  },
-  "initial_disposal_review": {
-    "verification": "CHANGES_REQUIRED one marker P2",
-    "edges": "FIX_CONFIRMED source/proof bindings with semantic finding open; no overallPASS",
-    "receipt": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json#initial_f4c_disposal_review"
-  },
-  "marker_history": {
-    "old_checkpoint_sha256": "981353a9179859561c6aced02f837cdebb267c3b34e3ec93140ebafba341c0f3",
-    "history_manifest": "tmp/private/35-7-p-consumer-closed-service-proof/history-981-disposal/history-manifest.json",
-    "history_manifest_sha256": "75d33f9970e1415ca50fa11f4dd36a5b60ccaafcd8d4fdae52b547d73171e905",
-    "old_source_sha256": "d38d40e5a50f62acc9080a744a7ed7a6535f1aabd52c93cac62f8ba454f6cb33",
-    "current_source_sha256": "5fb942222b62acf9c8fd9d5adb13473d6aee97b1054ba03229b63a4f80714fa7",
-    "exact_source_delta": "Only matchingGets counter keys and prefetchClass marker block",
-    "selector_lifecycle_all_other_source_bytes_equal_981": true,
-    "prior26_input_result_records_equal": true,
-    "current32": true,
-    "primary_source": "https://github.com/vercel/next.js/blob/v16.4.1/packages/next/src/client/components/segment-cache/cache.ts#L2438",
-    "semantics": "1/2/3 marked; missing marker unmarkedUndetermined compatible with Full prefetch; unexpected fixed category, no raw marker/segment values."
   }
 }

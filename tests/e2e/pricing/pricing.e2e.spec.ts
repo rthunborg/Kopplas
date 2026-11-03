@@ -355,6 +355,44 @@ async function holdNextProducerTransport(page: Page, routePath: string, transpor
     return { seen, release, request: () => heldRequest, releaseHeld, dispose, clear: async () => { release(); if (held) await done; await dispose(); } };
 }
 
+type ProducerReadDomainView = { scope: Locator; unavailable: Locator; name: string; save: string; price: string | null; surface: string };
+async function assertProducerReadBaseline(view: ProducerReadDomainView) {
+    await expect(view.unavailable).toHaveCount(0);
+    await expect(view.scope.getByLabel(view.name)).toBeEnabled();
+    await expect(view.scope.getByRole("button", { name: view.save, exact: true })).toBeEnabled();
+    if (view.price) await expect(view.scope.getByLabel(view.price)).toBeEnabled();
+}
+async function assertProducerReadUnavailable(view: ProducerReadDomainView, historical: NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>>, draft: string) {
+    const { scope, unavailable, name, save, price, surface } = view;
+    const receipt = scope.getByTestId("settings-saved");
+    await expect(unavailable).toBeVisible(); // Server reader/page props, never client transport-error copy.
+    await expect(receipt).toHaveCount(1); await expect(receipt).toBeVisible();
+    await expect(receipt).not.toContainText("Aktuella uppgifter är bekräftade.");
+    await expect(receipt).not.toContainText("Posten finns inte längre");
+    await expect(scope.getByTestId("operation-unconfirmed")).toHaveCount(0);
+    await expect(scope.getByRole("button", { name: "Sparar…", exact: true })).toHaveCount(0);
+    await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
+    await expect(scope.getByLabel(name)).toBeDisabled(); await expect(scope.getByLabel(name)).toHaveValue(draft);
+    await expect(scope.getByRole("button", { name: save, exact: true })).toBeDisabled();
+    if (price) {
+        await expect(receipt).toContainText("Aktuella uppgifter är inte tillgängliga.");
+        await expect(scope.getByText(surface === "article" ? /Inga artiklar/ : /Inga arbetsroller/)).toHaveCount(0);
+        await expect(scope.getByLabel(price)).toBeDisabled(); await expect(scope.getByLabel(price)).toHaveValue("31,00");
+    }
+    expect(await historical.evaluate(element => element.isConnected)).toBe(true);
+}
+async function assertProducerDomainRead(releaseAndSettleRead: ReturnType<typeof producerReadSettlement>, readRequest: BrowserRequest, assertDomain: () => Promise<void>) {
+    const settledRead = await releaseAndSettleRead(); // Any release/deadline/disposal error still rejects before domain proof.
+    if (settledRead.kind !== "finished" && settledRead.kind !== "failed") throw new Error("Controlled read transport has no verified terminal outcome");
+    expect(settledRead.request).toBe(readRequest);
+    if (settledRead.kind === "finished") {
+        const response = settledRead.response; expect(response).not.toBeNull();
+        expect(response!.request()).toBe(readRequest);
+    }
+    // Failed is cleanup settlement only. Only the NEW server-derived UI conjunction can prove domain unavailability.
+    await assertDomain();
+}
+
 async function operationIdOf(request: BrowserRequest): Promise<string> {
     const body = request.postDataBuffer();
     if (!body)
@@ -1257,6 +1295,9 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
             await page.goto(spec.route);
             const scope = spec.price ? page.getByTestId(spec.surface === "article" ? "articles-editor" : "work-roles-editor") : page.locator("body");
             await waitForHydrated(scope.getByLabel(spec.name));
+            const unavailable = spec.price ? scope.getByTestId("pricing-current-unavailable") : page.getByRole("alert").filter({ hasText: "Ett tillfälligt fel inträffade. Försök igen om en stund." });
+            const domainView = { scope, unavailable, name: spec.name, save: spec.save, price: spec.price, surface: spec.surface };
+            await assertProducerReadBaseline(domainView); // Fail before any method effect if the target already has a read error.
             const label = `Bounded owned ${spec.surface}`;
             await scope.getByLabel(spec.name).fill(label);
             let creation: string | undefined;
@@ -1288,14 +1329,15 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
             const actionRequest = page.waitForRequest(request => request.method() === "POST" && Boolean(request.headers()["next-action"]) && new URL(request.url()).pathname === spec.route);
             const reread = page.waitForRequest(request => request.method() === "GET" && request.headers()["rsc"] === "1" && new URL(request.url()).pathname === spec.route);
             void actionRequest.catch(() => undefined); void reread.catch(() => undefined);
-            let revoked = false, transaction = false, scenarioError: unknown, cleanupError: unknown;
+            let revoked = false, transaction = false, domainUnavailabilityVerified = false, scenarioError: unknown, cleanupError: unknown;
             let ordinaryBefore: { id: string; write_revision: string } | undefined;
             try {
                 await scope.getByRole("button", { name: spec.save, exact: true }).click();
                 await hold.seen;
                 const facts = await producerCapturedFacts(await actionRequest);
                 expect(facts.tenant).toBe(fixture.tenantA.id); expect(facts.actor).toBe(fixture.adminA.id);
-                const proof = await db.query(`select p.committed_revision as revision,t.id from public.settings_pricing_operations p join public.${spec.table} t on t.id=p.target_id and t.tenant_id=p.tenant_id and t.write_revision=p.committed_revision where p.id=$1 and p.correlation_id=p.id and p.tenant_id=$2 and p.actor_user_id=$3 and p.target_id=$4 and p.operation_kind=$5`, [facts.operation, fixture.tenantA.id, fixture.adminA.id, facts.target, spec.kind]);
+                const committedProof = () => db.query(`select p.committed_revision as revision,t.id from public.settings_pricing_operations p join public.${spec.table} t on t.id=p.target_id and t.tenant_id=p.tenant_id and t.write_revision=p.committed_revision where p.id=$1 and p.correlation_id=p.id and p.tenant_id=$2 and p.actor_user_id=$3 and p.target_id=$4 and p.operation_kind=$5`, [facts.operation, fixture.tenantA.id, fixture.adminA.id, facts.target, spec.kind]);
+                const proof = await committedProof();
                 expect(proof.rows).toHaveLength(1);
                 await expect(scope.getByTestId("settings-saved")).toBeVisible();
                 const historical = await scope.getByTestId("settings-saved").elementHandle();
@@ -1345,6 +1387,7 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                     }
                 }
                 // finally is armed BEFORE the committed revoke; fsync intent first.
+                await expect(unavailable).toHaveCount(0); // Essential error-absence -> NEW server error transition while the fault is active.
                 await admission.record({ state: "revoke-intent", table: spec.table, before });
                 revoked = true;
                 await db.query("begin"); transaction = true;
@@ -1355,10 +1398,10 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                 await admission.record({ state: "revoke-committed", table: spec.table });
                 const denied = await predicate(); expect(denied.error?.code).toBe("42501");
                 const readRequest = await reread;
-                const settledRead = await releaseAndSettleRead();
-                if (settledRead.kind !== "finished") throw new Error("Released read did not deliver the required completed response");
-                expect(settledRead.request).toBe(readRequest);
-                const response = settledRead.response; expect(response).not.toBeNull();
+                const assertDomain = () => assertProducerReadUnavailable(domainView, historical!, label);
+                await assertProducerDomainRead(releaseAndSettleRead, readRequest, assertDomain);
+                expect((await committedProof()).rows).toEqual(proof.rows); // Same captured operation/actor/tenant/target/revision while SELECT is still revoked.
+                domainUnavailabilityVerified = true;
                 if (spec.price) {
                     await expect(scope.getByTestId("pricing-current-unavailable")).toBeVisible();
                     await expect(scope.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är inte tillgängliga.");
@@ -1369,7 +1412,6 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                 await expect(scope.getByLabel(spec.name)).toBeDisabled();
                 await expect(scope.getByRole("button", { name: spec.save, exact: true })).toBeDisabled();
                 expect(await historical!.evaluate(element => element.isConnected)).toBe(true);
-                const unavailable = spec.price ? scope.getByTestId("pricing-current-unavailable") : page.getByRole("alert").filter({ hasText: "Ett tillfälligt fel inträffade. Försök igen om en stund." });
                 // A committed receipt with a failed read has no unknown/conflict recovery controls.
                 await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
                 for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
@@ -1377,11 +1419,15 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                     await unavailable.evaluate(element => element.scrollIntoView({ block: "start" }));
                     await expect(unavailable).toBeInViewport({ ratio: 1 });
                     await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
+                    await assertDomain();
                     await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, "start");
+                    await assertDomain();
                     await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
                     await expect(unavailable).toBeInViewport({ ratio: 1 });
                     if (viewport.width === 360) {
+                        await assertDomain();
                         await producerCapture(page, info, spec.surface, "read-unavailable-draft", scope.getByLabel(spec.name));
+                        await assertDomain();
                         await expect(scope.getByLabel(spec.name)).toBeInViewport({ ratio: 1 });
                         await expect(scope.getByLabel(spec.name)).toBeDisabled();
                     }
@@ -1409,7 +1455,7 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                         await admission.record({ state: "restore-verified", table: spec.table });
                     } catch (error) { damaged = true; cleanupError = cleanupError ? new AggregateError([cleanupError, error], "Transport and ACL cleanup both failed") : error; }
                 }
-                try { await writeFile(path.resolve("playwright-report/35-7-p/released-read-diagnostics.jsonl"), JSON.stringify({ table: spec.table, ...readTerminal.summary() }) + "\n", { flag: "a", mode: 0o600 }); }
+                try { await writeFile(path.resolve("playwright-report/35-7-p/released-read-diagnostics.jsonl"), JSON.stringify({ table: spec.table, proof: "server-domain-unavailability-with-settled-transport", domainUnavailabilityVerified, ...readTerminal.summary() }) + "\n", { flag: "a", mode: 0o600 }); }
                 catch { const diagnosticError = new Error("Released read categorical diagnostics could not be retained"); damaged = true; cleanupError = cleanupError ? new AggregateError([cleanupError, diagnosticError], "Read cleanup/diagnostics failed") : diagnosticError; }
             }
             if (scenarioError || cleanupError) throw new AggregateError([scenarioError, cleanupError].filter(error => error !== undefined), "Bounded read scenario/cleanup failed; no further fault or retry admitted");
