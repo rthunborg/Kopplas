@@ -1,0 +1,82 @@
+name: Merged main Preview
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/merged-main-preview.yml
+      - tests/maintenance/merged-main-preview.test.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: merged-main-preview-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Verify Preview synchronization boundaries
+        run: node --test tests/maintenance/merged-main-preview.test.mjs
+
+  sync:
+    needs: verify
+    if: github.repository == 'rthunborg/Kopplas' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fast-forward the dedicated Preview branch to merged main
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          github-token: ${{ github.token }}
+          retries: 0
+          script: |
+            const { owner, repo } = context.repo;
+            if (`${owner}/${repo}` !== 'rthunborg/Kopplas' ||
+                context.ref !== 'refs/heads/main' ||
+                !['push', 'workflow_dispatch'].includes(context.eventName)) {
+              throw new Error('Only the trusted repository main branch may synchronize Preview.');
+            }
+            const destination = 'heads/codex/merged-main-preview';
+            const read = async (ref) => (await github.rest.git.getRef({ owner, repo, ref })).data;
+            // Resolve live main, never a queued event's potentially older SHA.
+            const main = await read('heads/main');
+            const sha = main.object.sha;
+            if (main.object.type !== 'commit' || !/^[0-9a-f]{40}$/.test(sha)) {
+              throw new Error('Main did not resolve to a canonical commit SHA.');
+            }
+            let mirror;
+            try {
+              mirror = await read(destination);
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
+            if (!mirror) {
+              await github.rest.git.createRef({ owner, repo, ref: `refs/${destination}`, sha });
+            } else if (mirror.object.sha !== sha) {
+              // Divergence and stale concurrent writes fail; never rewrite branch history.
+              await github.rest.git.updateRef({ owner, repo, ref: destination, sha, force: false });
+            }
+            const verified = await read(destination);
+            if (verified.object.type !== 'commit' || verified.object.sha !== sha) {
+              throw new Error('Preview mirror readback did not match the selected main commit.');
+            }
+            await core.summary
+              .addHeading('Merged main Preview mirror')
+              .addTable([
+                [{ data: 'Branch', header: true }, { data: 'Verified commit', header: true }],
+                ['codex/merged-main-preview', sha],
+              ])
+              .addRaw('Git synchronization succeeded. Vercel Preview delivery and READY status require separate provider evidence.\n')
+              .write();
