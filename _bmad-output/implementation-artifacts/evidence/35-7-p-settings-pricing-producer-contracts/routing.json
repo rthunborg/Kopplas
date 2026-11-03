@@ -693,6 +693,29 @@
       "no_runtime_visual_or_completion_acceptance": true,
       "review_receipt": "8cb-cwd-targeted-review-results.json#current_b99_closed_service_followup",
       "proof_precision": "29standalonefixtures+4delegatedruns=33modeledexecutions;reasonallowlists;syntheticinputs;noactualimage/PID/runtimecredit"
+    },
+    {
+      "phase": "Independent targeted fadc three-column ACL snapshot SQL confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-03T08:31:57.650163+00:00",
+      "author_stopped": true,
+      "author_route_provenance": "Same High author selected and message-recorded before actual dispatch; parent/Coordinator confirmed exact3-site scope. This file record follows author freeze, not a fabricated earlier timestamp.",
+      "freeze": "author-8cb-cwd-checkpoint.json",
+      "freeze_sha256": "286aee6b9bb632f22d2486f8f23c791a97290dfc276771b62502406815bb5b09",
+      "source48_digest": "058cb006bc253b6a5da83df09404ed26d1bbcc5754330328bacf8d3d6f14f19f",
+      "reviewers": [
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "Only three column ACL aclexplode substitutions,PG17 STRICT/null/valid1D/malformed0D semantics,complete grant tuple/table-default/NULLflag/restoration equality preserved; no unchanged admission132 or broad source review"
+        }
+      ],
+      "dispatch_status": "actual existing Sol High reviewer completed FIX_CONFIRMED; exact3 SQL substitutions only",
+      "broad_round_count": 1,
+      "no_tests_queries_resources_CI_or_writes": true,
+      "no_runtime_visual_or_completion_acceptance": true,
+      "review_receipt": "8cb-cwd-targeted-review-results.json#current_fadc_column_ACL_SQL_followup",
+      "retained_132_scope": "unchanged admission proof retained without rerun; no new SQL/runtime credit"
     }
   ],
   "implementation_author_dispatched": true,

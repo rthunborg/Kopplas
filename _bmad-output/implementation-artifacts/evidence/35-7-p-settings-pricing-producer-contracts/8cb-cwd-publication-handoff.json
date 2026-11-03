@@ -1,25 +1,25 @@
 {
-  "recorded_at_utc": "2026-11-03T08:10:21.557135+00:00",
+  "recorded_at_utc": "2026-11-03T08:34:53.766375+00:00",
   "branch": "codex/35-7-p-settings-pricing-producer-contracts",
-  "current_local_head": "b99f2fbc3f9c4463dc43c76758d8233b67684a6c",
+  "current_local_head": "fadc5da3aa2bf3989c7740d3865b98d7d32a130a",
   "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
   "prior_handoff_retained_in_Git": {
-    "commit": "b99f2fbc3f9c4463dc43c76758d8233b67684a6c",
-    "git_blob_oid": "3095e650f568f04dea67a2b88004e031d2c3aeba",
-    "raw_git_bytes_sha256": "1925a52c45abd4c301d5b1fa2b78f443f334e0f6559b0fb13001a5a7fdf8ea4a"
+    "commit": "fadc5da3aa2bf3989c7740d3865b98d7d32a130a",
+    "git_blob_oid": "ebd0ddfd567423199ed36bcd9295c57f6e9aa101",
+    "raw_git_bytes_sha256": "24e231217176bc6653766900cff4873499f6ad68e3a2e19f618ba9cf20e88b32"
   },
   "freeze": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json",
-  "freeze_sha256": "77fe9601fedc87e0a8259421cc379c159af512c849b0852ec9b9d6f7c4f37a3b",
-  "source48_digest": "2a9374c4ee8d32d35e34083e577d29c8238826c7fa7a74d58839454c4ec97cba",
+  "freeze_sha256": "286aee6b9bb632f22d2486f8f23c791a97290dfc276771b62502406815bb5b09",
+  "source48_digest": "058cb006bc253b6a5da83df09404ed26d1bbcc5754330328bacf8d3d6f14f19f",
   "matched_source48": 48,
   "matched_canonical9": 9,
   "matched_author_artifact_pins": 6,
   "mismatches": [],
   "production27_other47_package_unchanged": true,
-  "only_source_change": "tests/e2e/pricing/pricing.e2e.spec.ts",
-  "pricing_sha256": "5eb024e2bfb77ced523ef42050c9f9152ca0f7f45cf59cc80227be805b0601e7",
-  "pricing_git_blob": "87654d16e491df1e40d3733a186ddf0a4eda1e28",
-  "patch_sha256": "79a0937f66ea52f8f22a6315b20de279819df84c052f14e1af858f3f4c14b069",
+  "only_source_change": "Exact three column ACL aclexplode substitutions in tests/e2e/pricing/pricing.e2e.spec.ts",
+  "pricing_sha256": "120e8141c6af080c7343611f6212ca179c8950b372031467d84d8df9416020c0",
+  "pricing_git_blob": "16e9210ca567d5130f483eda23ce3f242dd6a16f",
+  "patch_sha256": "2accdb9deedff217daee90f33583b7e14cf5313f4f1a9a3233c91348b95c970b",
   "staging_paths": [
     "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-publication-handoff.json",
@@ -27,10 +27,12 @@
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json",
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-evidence.json",
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-only.patch",
-    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json",
     "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
     "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
     "tests/e2e/pricing/pricing.e2e.spec.ts"
+  ],
+  "pinned_but_unchanged_not_staged": [
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json"
   ],
   "new_tracked_paths_added": 0,
   "nonpatch_tracked_diff_check_native_exit": 0,
@@ -41,14 +43,13 @@
     "pricing_eslint": 0,
     "SRO": 0,
     "SRO_stops": 47,
-    "pure_saved_final": "132passed0failed;91prior records exact;41new;29standalonefixtures+4delegatedprobeVMruns,sixclosedhost modes"
+    "unchanged_admission132": "Retained original source/proof and reviews,not rerun for3SQL substitutions. No localSQL/mirrorunits."
   },
-  "review_receipt": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json#current_b99_closed_service_followup",
+  "review_receipt": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json#current_fadc_column_ACL_SQL_followup",
   "review_verdicts": {
-    "verification": "FIX_CONFIRMED",
-    "edges": "FIX_CONFIRMED"
+    "verification": "FIX_CONFIRMED"
   },
-  "review_limits": "Controlledjob/source+syntheticproof only. Reasonallowlists;33executions not33environments. Actualimage/handoff/namespace/PID10448oroldroles unproven.",
+  "review_limits": "Source/PG17 semantics only;actualSQLfix/method/effect/image qualification remains unearned.",
   "definitions": {
     "owned": 24,
     "producer": 7,
@@ -56,12 +57,57 @@
     "new_PNGs": 0,
     "new_effects": 0
   },
-  "latest_b99_CI": "Browser-onlyFAIL104/102expected1P-E5unexpected1unallocatedflake0skip beforeeffects. WholeDB terminalSUCCESS2305/2253passed0failed52explicitSkip0failedsuites,producer82pass;no successorcredit.",
-  "actual_b99_DB": {
-    "provenance": "Root actual terminal b99 result only; no successor-head credit.",
-    "run": "41596462669",
-    "job": "125786035478",
-    "native_json_sha256": "d835dba39351e69655062adb01cfe9c0429841c7779cd0416c32e4ff00871044",
+  "actual_fadc_browser": {
+    "run": "41601429674",
+    "head": "fadc5da3aa2bf3989c7740d3865b98d7d32a130a",
+    "native_json_sha256": "c41a726be3d655b1f4a8838abdb0ead7c2f9190e73e6d0b711a72a6d1fec0dc7",
+    "total": 104,
+    "expected": 103,
+    "unexpected": 1,
+    "flaky": 0,
+    "skipped": 0,
+    "prior_owned23_producer6_first_attempt_pass": true,
+    "admission": "PASSED at fadc only",
+    "first_attempt_ms": 5086,
+    "first_failure": "First producerAclSnapshot: ACL arrays must be one-dimensional",
+    "retry_ms": 3051,
+    "retry": "EEXIST durable claim refused correctly",
+    "journal_records": 1,
+    "journal_stage": "claimed-no-effects",
+    "journal_binding": {
+      "head": "fadc5da3aa2bf3989c7740d3865b98d7d32a130a",
+      "run": "41601429674",
+      "nonce": "584da488-48dd-4371-b3a1-98fceeb00c90",
+      "runner": 11907,
+      "server": 12334
+    },
+    "revoke_intents": 0,
+    "delete_intents": 0,
+    "DCL_effects": 0,
+    "delete_effects": 0,
+    "normal_PNGs": 80,
+    "method_PNGs": 0,
+    "DB_status": "PENDING per last root report; no outcome inferred"
+  },
+  "private_artifacts_NOT_staged": [
+    "tmp/private/35-7-p-consumer-closed-service-proof",
+    "tmp/private/35-7-p-visual-cap-admission",
+    "tmp/private/35-7-p-visual-cap-90-admission",
+    "tmp/private/35-7-p-visual-map-preparation"
+  ],
+  "private_caps_unapplied_human_held": true,
+  "all_child_writes_stopped": true,
+  "no_active_guard_refs": true,
+  "build_status": "in-progress",
+  "step5_done": false,
+  "release_ready": false,
+  "pending": "CurrentfadcCI is terminal browser-only failure; no activeCI overlap. Parent-only successorpublication/fresh exactheadCI/SQL+method23/103images/completepackage/admission/authenticatedvisual/completion. Nochildcommit/push/CI/repair/adoption/merge/deploy.",
+  "late_root_DB_supplement": {
+    "recorded_at_utc": "2026-11-03T08:35:16.985909+00:00",
+    "provenance": "Root actual terminal fadc result arrived after stopped author freeze; author captured-PENDING bytes/pins remain unchanged.",
+    "head": "fadc5da3aa2bf3989c7740d3865b98d7d32a130a",
+    "run": "41601429674",
+    "native_json_sha256": "a80ce24597a5e3427deb7c99eafd867bfe07845eae8319bea14c82d15655141a",
     "total": 2305,
     "passed": 2253,
     "failed": 0,
@@ -79,24 +125,9 @@
     "db_closed": true,
     "wrapper_failures": [],
     "pilot_step": "PASS",
-    "full_log_bytes": 101469,
-    "full_log_sha256": "563489249cacfd1b95d84e53a5a02c110a237b0990eb0520418ae4e668045dbd",
-    "whole_b99_CI": "FAILED, browser only"
-  },
-  "private_artifacts_NOT_staged": [
-    "tmp/private/35-7-p-consumer-closed-service-proof",
-    "tmp/private/35-7-p-consumer-namespace-proof",
-    "tmp/private/35-7-p-consumer-tristate-proof",
-    "tmp/private/35-7-p-consumer-role-proof",
-    "tmp/private/35-7-p-visual-cap-admission",
-    "tmp/private/35-7-p-visual-cap-90-admission",
-    "tmp/private/35-7-p-visual-map-preparation"
-  ],
-  "private_caps_unapplied_human_held": true,
-  "all_child_writes_stopped": true,
-  "no_active_guard_refs": true,
-  "build_status": "in-progress",
-  "step5_done": false,
-  "release_ready": false,
-  "pending": "Parent-only checkpoint/push/fresh exactheadCI and service-image-handoff-probe/method23 execution;103actualframes/qualifiedcompletepackage/admission/authenticatedvisual/completion. Nochildcommit/push/CI/merge/deploy."
+    "full_log_bytes": 101509,
+    "full_log_sha256": "382c556e8f8f22a3f58c45c45b501c1b0aa4679f4496922c4e87af67e9e568d9",
+    "whole_current_CI": "TERMINAL FAILURE,browser ACL snapshot failure only",
+    "limits": "fadc-only earned result; no new-head SQL fix/method/visual qualification."
+  }
 }
