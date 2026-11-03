@@ -1,0 +1,32 @@
+{
+  "candidateSha": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "buildSha": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "server": "next start",
+  "serverPid": 12559,
+  "runnerPid": 12037,
+  "runId": "eff70a8e-2cb8-4a60-b49f-37ac84485e3c",
+  "serverStartedAt": 1793719522440,
+  "controlledTransport": false,
+  "captureAnchor": {
+    "tag": "P",
+    "id": "",
+    "text": "Aktuella uppgifter är inte tillgängliga. Uppdatera innan du sparar."
+  },
+  "configuredCommand": "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start",
+  "configurationSha256": "82d974a9810ab79fc0b841fe2d83c7d341eed129198fa06181d864b989f0ee4d",
+  "synthetic": true,
+  "fixture": "test-owned createTwoTenantFixture; no external data",
+  "route": "/settings/pricing",
+  "surface": "article",
+  "state": "read-unavailable",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "fullViewport": true,
+  "pngSha256": "af986738a5ad20e5bcb736ee4ad9d74fce465aa37df18943e3e8123aa96f3e9b",
+  "test": "P-E5 CI-only bounded real read-unavailable and one historical target-missing example",
+  "project": "chromium",
+  "result": "Actual configured production-server application capture after named state assertions",
+  "capturedAt": "2026-11-03T15:32:31.879Z"
+}

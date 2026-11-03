@@ -1,0 +1,22 @@
+{
+  "job": 126009162163,
+  "head": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "run": 41662506173,
+  "status": "success",
+  "passed": 3811,
+  "failed": 0,
+  "skipped": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "logBytes": 1894109,
+  "logSha256": "b07f74c949daaee7374756a2dae544527dd5b02ac5b9ac798c826bcc6fce8160",
+  "rawNative": true,
+  "pythonFocusedReportedTests": [
+    2,
+    26,
+    10,
+    5
+  ],
+  "scope": "Verify gate native evidence; no DB/browser/image credit",
+  "at": "2026-11-03T15:24:03.348Z"
+}

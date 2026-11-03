@@ -1,0 +1,1562 @@
+[
+  {
+    "title": "[P0] local Auth invitation establishes a session then activates the matching membership",
+    "file": "auth/auth-mail-callback.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1325,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] local Auth recovery email establishes a recovery session and persists the new password",
+    "file": "auth/auth-mail-callback.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1513,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC3: an anonymous visitor to a protected (app) route is redirected to /login",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 354,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC1: a tenant_admin can sign in with email + password and lands in the (app) shell",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1181,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC1/G-2: after sign-in, the top bar displays the resolved active tenant/company context and current user",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1291,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC2: an authenticated user WITHOUT active membership sees a user-safe no-access state and ZERO tenant data",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 719,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "login/logout loop: signing out returns to /login and a protected route again redirects (AC1 + AC3 round-trip)",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1517,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] E35-2-T-AC7; [P1] E35-2-T-AC3/4/6: invalid then corrected keyboard sign-in confirms current tenant/user at 360x640",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1307,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] E35-2-T-AC1/2/4/5: plain wordmark, local font, readable keyboard focus and enlarged reflow at 360x640",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 858,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] E35-2-T-loading/submitting/confirmed; E35-2-T-AC2/3/6: delayed real Auth rejects duplicate form submissions at 360x640",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1202,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] E35-2-T-connection-required/error-retry/unknown; E35-2-T-AC3/6: actual SDK transport failure retains input until explicit retry at 360x640",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1457,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] E35-2-T-AC7; [P1] E35-2-T-AC3/4/6: invalid then corrected keyboard sign-in confirms current tenant/user at 1440x900",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1423,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] E35-2-T-AC1/2/4/5: plain wordmark, local font, readable keyboard focus and enlarged reflow at 1440x900",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 818,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] E35-2-T-loading/submitting/confirmed; E35-2-T-AC2/3/6: delayed real Auth rejects duplicate form submissions at 1440x900",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1410,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] E35-2-T-connection-required/error-retry/unknown; E35-2-T-AC3/6: actual SDK transport failure retains input until explicit retry at 1440x900",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1430,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] E35-2-T-AC3/7: native submission uses POST without credentials in the URL",
+    "file": "auth/login-and-tenant-context.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 332,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.5-E2E-001 [AC1 AC3 AC4 AC6 AC7 AC9] Planering → own issue → anonymous feed → physical last-use → rotate/revoke",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 5688,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 15.5-E2E-002A [AC1 AC6] actual Egen agenda own-and-foreign exposes one keyboard subscription link",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3100,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 15.5-E2E-002B [AC1 AC6] actual Egen veckokalender own-and-foreign exposes one keyboard subscription link",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3690,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 15.5-E2E-002C [AC1 AC6] actual Egen agenda no-profile exposes one keyboard subscription link",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3246,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 15.5-E2E-003 [AC1 AC6] profile Min kalender entry reaches the same settings surface by keyboard",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4121,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 15.5-E2E-004 [AC1 AC6] never-used, clipboard denial selectable fallback and revisit never recover the one-time URL",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4393,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.5-E2E-005 [AC2 AC6] confirmation cancellation, pending persistence and failed rotation retry preserve old generation",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3634,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.5-E2E-006 [AC1 AC2 AC6] lost committed issuance reconciles sanitized metadata and needs separate explicit rotation",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3669,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.5-E2E-008 [AC1 AC5 AC6 AC9] manager self-service cannot read Admin aggregate or peer capability",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4551,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.5-E2E-009 [AC5 AC6 AC9] Admin sees only sanitized own-tenant abuse counters and separate own lifecycle",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4522,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.5-E2E-010-rotate [AC2 AC6] automatic refresh removes a superseded issuance and success announcement after concurrent rotate",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4280,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.5-E2E-010-revoke [AC2 AC6] automatic refresh removes a superseded issuance and success announcement after concurrent revoke",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4922,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.5-E2E-011 [AC2 AC6] automatic refresh retains the current issuance, copy control and success announcement",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3350,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 15.5-E2E-007 [AC1 AC6] 360×640 keyboard entry, touch issue and revoke confirmation remain usable",
+    "file": "calendar-feed.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3487,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "15.3-E2E-001 chip → complete detail → selective acceptance → reload/history/notification",
+    "file": "conflict-resolver.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 6144,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "15.3-E2E-002 common current-segment fix preserves stable exception and cancelled tombstone rows",
+    "file": "conflict-resolver.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 5441,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "15.3-E2E-003 connected 360×640 keyboard edit retains unknown outcome and explicitly replays one durable result",
+    "file": "conflict-resolver.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4971,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.2-E01 manager archives/reactivates the same project member and selects/replaces/clears one order lead with stale refetch",
+    "file": "jobs/job-members.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 7408,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.2-E02 phone lead manages ordinary crew/dates only; a lost real save response retries once, and stale dates require refetch",
+    "file": "jobs/job-members.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4521,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.2-E03 designated Sales user reaches own My Jobs/detail without money or unrelated reads, then loses access when removed",
+    "file": "jobs/job-members.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3518,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.2-E04 deliberate stale assignment retry uses the currently visible eligible person",
+    "file": "jobs/job-members.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4055,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.2-E05 cross-lane refetch synchronizes pristine lead and cannot silently authorize a dirty lead",
+    "file": "jobs/job-members.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4645,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.4-Consumer-E01 actual job entry defaults D120 elapsed; job changes refresh only untouched defaults, and explicit/edit intervals plus distinct hints persist",
+    "file": "jobs/job-scheduling-consumers.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3849,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.4-Consumer-E02 actual capacity advice counts candidate once; preview/save/reload stays advisory and stale responses retain the newer draft",
+    "file": "jobs/job-scheduling-consumers.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 6871,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.4-Consumer-E03 actual new defaults follow earliest and CRM clears; delayed options preserve newer job/interval edits",
+    "file": "jobs/job-scheduling-consumers.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 5129,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.4-Consumer-E04 untouched fold start and same-wall-time changed end retain canonical UTC defaults",
+    "file": "jobs/job-scheduling-consumers.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 6867,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.4-Consumer-E05 changing only actual end updates distinct date advice without rewriting or blocking the interval",
+    "file": "jobs/job-scheduling-consumers.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4650,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.4-Upgrade-E01 manager uses full card on both kinds; same-ID upgrade preserves accepted source and every child",
+    "file": "jobs/job-upgrade.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 9595,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.4-Upgrade-E02 current lead gains no manager grant; phone response-loss retry keeps state and commits once",
+    "file": "jobs/job-upgrade.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4164,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.4-Upgrade-E03 definitive refusal dismisses; failed/duplicate refetch retains confirmation and cannot overwrite a newer save",
+    "file": "jobs/job-upgrade.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4969,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.5-E01 manager desktop keeps real header/overview and all five consumers, shared job file and server-confirmed edit across reload",
+    "file": "jobs/job-workspace.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 9623,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.5-E02 phone current member reads own booking subset, denied files fall back, and private PL/money/event payloads stay absent",
+    "file": "jobs/job-workspace.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3378,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 16.5-E03 keyboard/Mer, back/refresh and old document return keep selection and drafts; exact real save failure offers honest retry",
+    "file": "jobs/job-workspace.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 8533,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.5-E04 two-child back restores identity and files; late real create retains current tab and query",
+    "file": "jobs/job-workspace.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 7321,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.5-E05 accepted child navigation wins over a late real create completion",
+    "file": "jobs/job-workspace.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4608,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1][E35-4-T-AC1,AC4,AC6,AC7] safe compact and full AuditTrail retain Swedish labels and exact Stockholm times at 1280x900",
+    "file": "jobs/job-workspace.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3603,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1][E35-4-T-AC1,AC4,AC6,AC7] defensive persisted standalone job renders genuine empty AuditTrail at 1280x900",
+    "file": "jobs/job-workspace.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3629,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1][E35-4-T-AC1,AC4,AC6,AC7] real safe-events transport failure persists through retry then recovers unchanged history at 1280x900",
+    "file": "jobs/job-workspace.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 26248,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1][E35-4-T-AC1,AC4,AC6,AC7] safe compact and full AuditTrail retain Swedish labels and exact Stockholm times at 360x640",
+    "file": "jobs/job-workspace.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3003,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1][E35-4-T-AC1,AC4,AC6,AC7] defensive persisted standalone job renders genuine empty AuditTrail at 360x640",
+    "file": "jobs/job-workspace.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 2999,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1][E35-4-T-AC1,AC4,AC6,AC7] real safe-events transport failure persists through retry then recovers unchanged history at 360x640",
+    "file": "jobs/job-workspace.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 25443,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] checkpoint stale full-card draft is refused, retained, and only replaced after explicit fresh-read consent",
+    "file": "jobs/jobs-depth.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 5079,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] external follow-up selected tenant scopes Mine/all/deep links and entitled source filters agree",
+    "file": "jobs/jobs-depth.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4298,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.1-E01 My Jobs is the actual duplicate-free member/assignee union; direct denial and money-safe assigned detail agree",
+    "file": "jobs/jobs-depth.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4357,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 16.1-E02 phone progressive identity, scheduling and child save retains unsent input after failure; explicit retry persists across reload",
+    "file": "jobs/jobs-depth.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4796,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.1-E03 actual job-bound booking preview/save consumes requirements and windows; changed job facts invalidate review before durable save",
+    "file": "jobs/jobs-depth.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 5115,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 16.1-E04 dependency dates display unknown, a linked violated-order warning, then clear only after a durable date correction",
+    "file": "jobs/jobs-depth.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 8051,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.3-E01 manager creates and edits own dates/plural assignees, reloads and opens an own shared file",
+    "file": "jobs/work-orders.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 6898,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 16.3-E02 phone lead progresses status; lost-response/stale retries retain newer draft and cannot reopen",
+    "file": "jobs/work-orders.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4497,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.3-E03 distinct same-parent work orders warn from their own dates, clear at equality and show unknown; scoped reads/writes remain bounded",
+    "file": "jobs/work-orders.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 6311,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.3-E04 lost create reconciles the original child after another mutation without a duplicate or newer-draft loss",
+    "file": "jobs/work-orders.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4575,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 16.3-E05 never-committed stale create retains draft until explicit refresh/consent and creates once",
+    "file": "jobs/work-orders.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4364,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.6-E01 pure Montör lands on today's phone agenda, ordered own cards, explicit map click and same-job workspace",
+    "file": "my-day.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3037,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.6-E02 exact inline prefill, unknown committed response, frozen same attempt and one durable own report",
+    "file": "my-day.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3152,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.6-E03 keyboard refresh failure clears lists, retries current date and a real pull fetches changed server facts",
+    "file": "my-day.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3980,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 15.6-E04 successful empty agenda differs from own-jobs empty; jobless card has no invented destination",
+    "file": "my-day.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3432,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 15.6-E05 active jobs render own current designation and preserve identity; pending jobs contribute no UI",
+    "file": "my-day.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3647,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 15.6-E06 own unread booking.changed is a safe generic banner with its existing route",
+    "file": "my-day.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 2968,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.6-E07 direct route requires login/current booking entitlement and office landing remains stable",
+    "file": "my-day.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3972,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.6-E08 manager's Min dag is still own-person and excludes other assignees' cards/actions",
+    "file": "my-day.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 2963,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.6-E09 a real tenant-switch RSC navigation discards the prior report owner and ignores its late read",
+    "file": "my-day.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3116,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "P-E1/E2/E3 pricing all eight operation forms 1440x900",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 8142,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "P-E1/E2/E3 pricing all eight operation forms 360x640",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 5959,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success 1440x900",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 15372,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success 360x640",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 11406,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "P-E5 CI-only bounded real read-unavailable and one historical target-missing example",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 15607,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC5: an anonymous visit to /settings/pricing redirects to /login",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 258,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC5: the Pricing screen renders (Prissättning) with work-role + article editors",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1495,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC2/AC5: a NEGATIVE work-role rate is rejected with a FIELD-ASSOCIATED error and input is preserved",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1692,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC2/AC5: a FLOAT-with-too-many-decimals rate is rejected (öre precision, field-associated)",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1576,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC5: a valid work role SAVES and round-trips (kronor display, öre stored)",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 2062,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC3/AC5: a valid article SAVES and round-trips; NO supplier control appears in the article editor",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1976,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC2/AC5: a work role can be ARCHIVED then REACTIVATED (archive is a reversible door, not one-way)",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 2414,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC5: the nav stays EXACTLY aligned with active manifest modules — pricing adds NO new top-nav item",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1559,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC5: the Inställningar hub links to /settings/pricing (Prissättning) — the 3.3 hub omitted it",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1344,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "P-E1/E2/E3/E4 settings capture/recover/stale 1440x900",
+    "file": "settings/settings.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 11735,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "P-E1/E2/E3/E4 settings capture/recover/stale 360x640",
+    "file": "settings/settings.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 8319,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC4: anonymous visits to /settings/company and /settings/quote-terms redirect to /login",
+    "file": "settings/settings.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 292,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC4: the Company settings screen renders (Företagsinställningar) with a VAT-rate field",
+    "file": "settings/settings.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1473,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC4/AC5: an out-of-range VAT rate is rejected with a FIELD-ASSOCIATED error and input is preserved",
+    "file": "settings/settings.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1675,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC4: a valid Company settings save round-trips (the rate persists as a percent display)",
+    "file": "settings/settings.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 2165,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC2: the Quote-terms screen shows the NOT-approved WARNING by default (sign-off status, non-color-only)",
+    "file": "settings/settings.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1580,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC2: saving the terms TEXT does NOT approve them — the WARNING persists after an edit-save",
+    "file": "settings/settings.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1820,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC2: the deliberate 'Markera som godkänd' action transitions to an APPROVED status (who + when)",
+    "file": "settings/settings.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 2086,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "AC4: the nav stays EXACTLY aligned with active manifest modules — no new settings nav item, no /settings/pricing",
+    "file": "settings/settings.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 1601,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.4-E2E-001 own booking editable prefill → filed report → persisted own week",
+    "file": "time-reports.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 4950,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P0] 15.4-E2E-002 no-profile standalone at 360×640 retains its attempt through lost commit, revoked denial and restored retry",
+    "file": "time-reports.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 3477,
+        "errorCategory": null
+      }
+    ]
+  },
+  {
+    "title": "[P1] 15.4-E2E-003 PL/Admin complete person/job/week review totals and attributed annotation survive reload",
+    "file": "time-reports.e2e.spec.ts",
+    "project": "chromium",
+    "status": "expected",
+    "expectedStatus": "passed",
+    "results": [
+      {
+        "status": "passed",
+        "retry": 0,
+        "duration": 8129,
+        "errorCategory": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "head": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "run": 41662506173,
+  "job": 126011124401,
+  "status": "success",
+  "expected": 104,
+  "unexpected": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "firstAttemptPassed": 104,
+  "ownedCases": 24,
+  "producerCases": 7,
+  "nativeJsonSha256": "c27e79a04f1a8269e3a34386a19ec1c9aebc070f29c01f1a6181fc3c8034fb58",
+  "nativeLogSha256": "829812565d26209171ef8607fc09d899d5db13e5cea3a51792094651bc267ba9",
+  "nativeLogBytes": 110600,
+  "captures": 103,
+  "validatedCaptures": 103,
+  "validationIssues": 0,
+  "framesOpened": 103,
+  "visualAcceptance": false,
+  "method": {
+    "records": 16,
+    "restorations": 4,
+    "deletions": 1,
+    "allEffectsAndRestorationVerified": true,
+    "readDiagnostics": "All4genuine server-domain unavailable conjunctions with2xxERR_ABORTED settledbeforeunroute; no delivery/cause claim"
+  },
+  "provenance": {
+    "runner": 12037,
+    "server": 12559,
+    "wrapper": 11969,
+    "nonce": "eff70a8e-2cb8-4a60-b49f-37ac84485e3c",
+    "configurationSha256": "82d974a9810ab79fc0b841fe2d83c7d341eed129198fa06181d864b989f0ee4d"
+  },
+  "at": "2026-11-03T15:36:23.028Z"
+}

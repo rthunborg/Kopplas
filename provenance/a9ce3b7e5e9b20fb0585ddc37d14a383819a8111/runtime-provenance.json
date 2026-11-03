@@ -1,0 +1,235 @@
+{
+  "candidate": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "runId": 41662506173,
+  "runUrl": "https://github.com/rthunborg/Kopplas/actions/runs/41662506173",
+  "browserJob": 126011124401,
+  "entrypoint": "node scripts/ci/with-calendar-feed-runtime.mjs browser",
+  "entrypointSource": {
+    "workflow": ".github/workflows/ci.yml",
+    "nativeLog": "native/browser.redacted.full.log",
+    "lines": [
+      1257,
+      1258
+    ]
+  },
+  "configuredServerCommand": "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start",
+  "server": "next start",
+  "runnerPid": 12037,
+  "serverPid": 12559,
+  "wrapperPid": 11969,
+  "captureRunNonce": "eff70a8e-2cb8-4a60-b49f-37ac84485e3c",
+  "configurationSha256": "82d974a9810ab79fc0b841fe2d83c7d341eed129198fa06181d864b989f0ee4d",
+  "all103Originals": "raw-originals.json",
+  "sidecars": [
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-archived-restore-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-current-missing-empty-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-current-newer-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-empty-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-error-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-finished-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-loading-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-neighbor-stale-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-read-unavailable-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-receipt-read-pending-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-reconcile-pending-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-stale-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-unknown-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-archived-restore-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-current-missing-draft-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-current-missing-empty-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-current-newer-draft-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-current-newer-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-empty-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-error-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-finished-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-loading-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-neighbor-stale-draft-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-neighbor-stale-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-read-unavailable-draft-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-read-unavailable-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-receipt-read-pending-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-reconcile-pending-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-stale-draft-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-stale-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-article-unknown-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-empty-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-error-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-finished-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-loading-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-read-unavailable-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-receipt-read-pending-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-reconcile-pending-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-refresh-notice-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-stale-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-unknown-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-empty-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-error-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-finished-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-loading-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-read-unavailable-draft-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-read-unavailable-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-receipt-read-pending-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-reconcile-pending-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-refresh-notice-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-stale-draft-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-stale-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-company-unknown-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-dirty-approval-disabled-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-empty-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-error-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-finished-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-loading-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-read-unavailable-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-receipt-read-pending-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-retry-pending-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-saved-unapproved-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-stale-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-unknown-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-dirty-approval-disabled-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-empty-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-error-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-finished-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-loading-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-read-unavailable-draft-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-read-unavailable-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-receipt-read-pending-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-retry-pending-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-saved-unapproved-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-stale-draft-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-stale-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-terms-unknown-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-archived-restore-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-current-newer-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-empty-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-error-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-finished-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-loading-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-neighbor-stale-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-read-unavailable-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-receipt-read-pending-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-reconcile-pending-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-stale-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-unknown-1440x900.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-archived-restore-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-current-newer-draft-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-current-newer-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-empty-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-error-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-finished-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-loading-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-neighbor-stale-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-read-unavailable-draft-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-read-unavailable-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-receipt-read-pending-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-reconcile-pending-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-stale-360x640.json",
+    "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/raw-work-role-unknown-360x640.json"
+  ],
+  "all104BrowserFirstAttemptPassed": true,
+  "logAndNativeDisclosure": [
+    {
+      "originalNativeName": "browser.full.log",
+      "publishedPath": "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/native/browser.redacted.full.log",
+      "originalBytes": 110600,
+      "originalSha256": "829812565d26209171ef8607fc09d899d5db13e5cea3a51792094651bc267ba9",
+      "publishedBytes": 110368,
+      "publishedSha256": "3ef175af6546281ccb75e3dbb8077150fd6b2816315d5cda2810c91dbc664d0c",
+      "prefixCredentialReplacements": 1,
+      "hmacCredentialReplacements": [
+        {
+          "field": "QUOTE_PDF_ATTESTATION_HMAC_SECRET",
+          "occurrences": 0
+        },
+        {
+          "field": "BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET",
+          "occurrences": 15
+        },
+        {
+          "field": "TENANT_PROVISIONING_ATTESTATION_HMAC_SECRET",
+          "occurrences": 0
+        }
+      ],
+      "totalReplacements": 16,
+      "fields": [],
+      "replacementMarkers": [
+        "[REDACTED LOCAL TEST-STACK SECRET]",
+        "[REDACTED LOCAL TEST-STACK HMAC SECRET]"
+      ],
+      "allNoncredentialBytesPreserved": true,
+      "rawOriginalPrivate": true,
+      "credentialActiveValidityNotClaimed": true
+    },
+    {
+      "originalNativeName": "db.full.log",
+      "publishedPath": "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/native/db.redacted.full.log",
+      "originalBytes": 101423,
+      "originalSha256": "7a3d8136c9f15193e5ded75ea7c87875afb48bfa4985151fbf34def925d53961",
+      "publishedBytes": 101416,
+      "publishedSha256": "b5a17a6cbdac1e1c2cf30748a6fb9690b7d5d1fc1a41878001f534fcc15f29f3",
+      "prefixCredentialReplacements": 1,
+      "hmacCredentialReplacements": [
+        {
+          "field": "QUOTE_PDF_ATTESTATION_HMAC_SECRET",
+          "occurrences": 0
+        },
+        {
+          "field": "BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET",
+          "occurrences": 0
+        },
+        {
+          "field": "TENANT_PROVISIONING_ATTESTATION_HMAC_SECRET",
+          "occurrences": 0
+        }
+      ],
+      "totalReplacements": 1,
+      "fields": [],
+      "replacementMarkers": [
+        "[REDACTED LOCAL TEST-STACK SECRET]"
+      ],
+      "allNoncredentialBytesPreserved": true,
+      "rawOriginalPrivate": true,
+      "credentialActiveValidityNotClaimed": true
+    },
+    {
+      "originalNativeName": "native-general-browser/general-browser.json",
+      "publishedPath": "provenance/a9ce3b7e5e9b20fb0585ddc37d14a383819a8111/native/general-browser.redacted.json",
+      "originalBytes": 1394114,
+      "originalSha256": "c27e79a04f1a8269e3a34386a19ec1c9aebc070f29c01f1a6181fc3c8034fb58",
+      "publishedBytes": 1393825,
+      "publishedSha256": "7f53b6b2c609520396e9212e0219176cb5cd7901222e801d63a4b214dcfe5878",
+      "prefixCredentialReplacements": 2,
+      "hmacCredentialReplacements": [
+        {
+          "field": "QUOTE_PDF_ATTESTATION_HMAC_SECRET",
+          "occurrences": 1
+        },
+        {
+          "field": "BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET",
+          "occurrences": 1
+        },
+        {
+          "field": "TENANT_PROVISIONING_ATTESTATION_HMAC_SECRET",
+          "occurrences": 1
+        }
+      ],
+      "totalReplacements": 5,
+      "fields": [
+        "config.webServer.env.NEXT_PUBLIC_SUPABASE_ANON_KEY",
+        "config.webServer.env.SUPABASE_SERVICE_ROLE_KEY",
+        "config.webServer.env.QUOTE_PDF_ATTESTATION_HMAC_SECRET",
+        "config.webServer.env.BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET",
+        "config.webServer.env.TENANT_PROVISIONING_ATTESTATION_HMAC_SECRET"
+      ],
+      "replacementMarkers": [
+        "[REDACTED LOCAL TEST-STACK JWT]",
+        "[REDACTED LOCAL TEST-STACK HMAC SECRET]"
+      ],
+      "allNoncredentialBytesPreserved": true,
+      "rawOriginalPrivate": true,
+      "credentialActiveValidityNotClaimed": true
+    }
+  ],
+  "independentCredentialDiagnosisSha256": "9bc545f635e926ab5d285a06b7ebef918a0ef8acdb7a4e4b5078f2c25b1ee9a9",
+  "referenceStatus": "Initial references equal freshactualcaptures as proposals; authenticatedhumanacceptancepending. No provider or fullvisualPASS.",
+  "confidentialityNote": "Prefix-only first scan missed3 HMACvalues; boundedHighdiagnosis requiredadditional15 log/3JSON replacements. Only finalindependentlyconfirmedderivatives maypublish; no rawcredentialvalues retainedhere."
+}

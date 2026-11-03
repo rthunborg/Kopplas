@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-03T15:49:10.111Z",
+  "head": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "base": "8573b86367aff959968175c5693231f2cd2d7d19",
+  "counts": {
+    "comments": 2,
+    "reviews": 0,
+    "inline": 0,
+    "commits": 25
+  },
+  "permissions": {
+    "rthunborg": "admin"
+  },
+  "feedback": [],
+  "complete": true
+}

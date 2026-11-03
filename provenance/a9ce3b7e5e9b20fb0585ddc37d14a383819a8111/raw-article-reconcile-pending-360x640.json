@@ -1,0 +1,32 @@
+{
+  "candidateSha": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "buildSha": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "server": "next start",
+  "serverPid": 12559,
+  "runnerPid": 12037,
+  "runId": "eff70a8e-2cb8-4a60-b49f-37ac84485e3c",
+  "serverStartedAt": 1793719522440,
+  "controlledTransport": true,
+  "captureAnchor": {
+    "tag": "P",
+    "id": "",
+    "text": "Resultatet är inte bekräftat. Samma försök behålls. Omladdning eller stängning kan förlora möjligheten att kontrollera det."
+  },
+  "configuredCommand": "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start",
+  "configurationSha256": "82d974a9810ab79fc0b841fe2d83c7d341eed129198fa06181d864b989f0ee4d",
+  "synthetic": true,
+  "fixture": "test-owned createTwoTenantFixture; no external data",
+  "route": "/settings/pricing",
+  "surface": "article",
+  "state": "reconcile-pending",
+  "viewport": {
+    "width": 360,
+    "height": 640
+  },
+  "fullViewport": true,
+  "pngSha256": "01f9776a85875fc0526e9cf519348070de85a3ab28f7198d06fa7e7dfa151872",
+  "test": "P-E1/E2/E3 pricing all eight operation forms 360x640",
+  "project": "chromium",
+  "result": "Actual configured production-server application capture after named state assertions",
+  "capturedAt": "2026-11-03T15:31:49.587Z"
+}

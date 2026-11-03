@@ -1,0 +1,45 @@
+{
+  "head": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "run": 41662506173,
+  "job": 126009303674,
+  "success": true,
+  "expected": 2,
+  "unexpected": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "allFirstAttemptPassed": true,
+  "tests": [
+    {
+      "file": "entry-ui.feedback.spec.ts",
+      "title": "production entry page hydrates, supports keyboard input and fits the viewport",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 1614
+        }
+      ]
+    },
+    {
+      "file": "entry-ui.feedback.spec.ts",
+      "title": "production entry page hydrates, supports keyboard input and fits the viewport",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 1512
+        }
+      ]
+    }
+  ],
+  "nativeJsonSha256": "3cc1bf34b4fef74bc2f8910151fb8a2bbc3a28f5b6f3698e9546235c9e0f0c0c",
+  "browserRuntimeOwner": "41662506173:1:entry-ui-feedback",
+  "scope": "data-free entryUI; no producer domain/capture qualification",
+  "observedAt": "2026-11-03T15:22:19.696Z"
+}

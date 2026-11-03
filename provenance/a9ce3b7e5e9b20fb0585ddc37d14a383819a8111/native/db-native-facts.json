@@ -1,0 +1,63 @@
+{
+  "head": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "job": 126011123988,
+  "run": 41662506173,
+  "status": "success",
+  "total": 2305,
+  "passed": 2253,
+  "failed": 0,
+  "explicitlySkipped": 52,
+  "failedSuites": 0,
+  "producer": [
+    {
+      "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+      "status": "passed",
+      "assertions": 75,
+      "passed": 75,
+      "failed": 0,
+      "skipped": 0,
+      "message": false
+    },
+    {
+      "file": "/home/runner/work/Kopplas/Kopplas/tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+      "status": "passed",
+      "assertions": 7,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "message": false
+    }
+  ],
+  "jsonSha256": "f8c7a8155911f54541489429f6a2e10a591edce042442ae79703f20963b8d437",
+  "logBytes": 101423,
+  "logSha256": "7a3d8136c9f15193e5ded75ea7c87875afb48bfa4985151fbf34def925d53961",
+  "wrapper": {
+    "childExitCodes": [
+      0,
+      0
+    ],
+    "keyDeleted": true,
+    "dbClosed": true,
+    "keyOutcome": "deleted-confirmed",
+    "failures": [],
+    "custody": null
+  },
+  "pilot": {
+    "commandStepSuccess": true,
+    "receiptType": "native successful baseline-command with dataset/latency JSON; no separate PASSfield",
+    "dataset": {
+      "tenantAActiveMemberships": 120,
+      "tenantBActiveMemberships": 24,
+      "tenantARoleDistribution": "five primary roles, every third membership also holds the next role",
+      "tenantBShape": "separate tenant rows for 23 of the same authenticated accounts plus its own admin"
+    },
+    "readP95Ms": 16.19607199999973,
+    "syntheticPermissionP95Ms": 6.12518799999998
+  },
+  "limits": [
+    "52explicitSkip is not coverage",
+    "Fixture cleanup helper return is not independent fixture teardown verification",
+    "No historical deadlock/TimeReport cure or broader resourcecustody claim"
+  ],
+  "at": "2026-11-03T15:42:56.621Z"
+}

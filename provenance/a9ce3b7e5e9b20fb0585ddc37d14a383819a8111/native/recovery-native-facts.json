@@ -1,0 +1,14 @@
+{
+  "head": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "run": 41662506173,
+  "job": 126011124296,
+  "status": "success",
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0,
+  "failedSuites": 0,
+  "nativeJsonSha256": "3122cbc13973894cd1dbcb45e3d6bcfeee1956c446730246c216eb70cbb93c30",
+  "retrieval": "Connectednativefile-reference transfer failed; authenticatedCLIartifact fallback",
+  "scope": "IsolatedStoragephysical-loader/immutability proof only",
+  "at": "2026-11-03T15:27:15.415Z"
+}

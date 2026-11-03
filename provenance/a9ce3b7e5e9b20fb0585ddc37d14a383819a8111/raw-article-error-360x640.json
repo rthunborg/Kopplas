@@ -1,0 +1,32 @@
+{
+  "candidateSha": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "buildSha": "a9ce3b7e5e9b20fb0585ddc37d14a383819a8111",
+  "server": "next start",
+  "serverPid": 12559,
+  "runnerPid": 12037,
+  "runId": "eff70a8e-2cb8-4a60-b49f-37ac84485e3c",
+  "serverStartedAt": 1793719522440,
+  "controlledTransport": false,
+  "captureAnchor": {
+    "tag": "DIV",
+    "id": "",
+    "text": "Enhetspris (kr)*Ange ett giltigt pris (t.ex. 850,00). Negativa eller ogiltiga värden tillåts inte."
+  },
+  "configuredCommand": "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start",
+  "configurationSha256": "82d974a9810ab79fc0b841fe2d83c7d341eed129198fa06181d864b989f0ee4d",
+  "synthetic": true,
+  "fixture": "test-owned createTwoTenantFixture; no external data",
+  "route": "/settings/pricing",
+  "surface": "article",
+  "state": "error",
+  "viewport": {
+    "width": 360,
+    "height": 640
+  },
+  "fullViewport": true,
+  "pngSha256": "c66009bcc7c3a62e4a6473b1d0afd3652f918a1ab543943468511f7fc406d714",
+  "test": "P-E1/E2/E3 pricing all eight operation forms 360x640",
+  "project": "chromium",
+  "result": "Actual configured production-server application capture after named state assertions",
+  "capturedAt": "2026-11-03T15:31:49.152Z"
+}
