@@ -250,6 +250,38 @@ Registration, common Git identity, separation and clean exact-SHA checks remain
 required; a lexical path alias does not create authority.
 Both existing `Auto-BMAD parallel contracts` jobs, `contracts (ubuntu-latest)` and
 `contracts (windows-latest)`, must pass at that SHA, with zero skipped checks.
+The `contracts` matrix has unconditional `needs: runtime-admission` and default
+success dependency semantics. Its two accepted check names therefore require
+**both** `runtime-admission (ubuntu-latest)` and
+`runtime-admission (windows-latest)` to succeed first. Admission runs its unchanged
+command in that prerequisite matrix; it is no longer physically inside the
+downstream jobs. Both matrices retain `fail-fast: false`, the same setup/action
+pins and Python 3.12, and the existing Ubuntu 15 / Windows 30 minute job budgets.
+No `always()`, continue-on-error, OS exclusion or skipped prerequisite can supply
+qualifying coverage. The adapter's two-name `CI_JOBS` and strict schema stay intact.
+
+Retain native source evidence for **all four jobs** under `tooling_ci.source_ref`:
+workflow/run identity, actual executed SHA, OS, terminal conclusion, exact command
+argv and actual executed/skipped counts. The two schema `checks` records describe
+the downstream jobs' real five-command argv/counts; do not relabel prerequisite
+execution or manufacture aggregate counts. Same-SHA DAG review and both native
+admission logs are mandatory. Missing, canceled, failed, skipped, mismatched or
+nonterminal prerequisite evidence refuses qualification even if a status summary
+looks successful. This task performs no hosted run or provider observation.
+
+For count provenance, the CI-topology baseline `d03a52ce...` has 140 core test
+methods across its five unchanged commands (70/13/21/26/10), plus **24** admission
+methods per OS when all commands actually execute. These source counts are not
+native pass evidence; always record actual terminal results and zero skips.
+The saved PR129 Windows run executed **38** admission tests at synthetic merge
+`7832cab2111e25522fc4751fc753a16472c3adde`, from source
+`82f9038f36f9f33f3965587e9bef359e321c547e` onto `d03a52ce...`; it was not direct
+execution of that source SHA and its overall job was canceled at the 30-minute
+budget. After real qualified CI integration, a genuine PR129 source descendant
+must contain the integrated workflow and 38-test source. Obtain fresh **direct
+exact-reviewed-tooling-SHA** native evidence for all four jobs before using it
+for tooling/admission qualification; no old/synthetic-source relabeling is allowed.
+
 The pinned workflow digest must remain unchanged in tooling, main, coordinator
 and worker. Never install/copy the adapter into either live checkout.
 
