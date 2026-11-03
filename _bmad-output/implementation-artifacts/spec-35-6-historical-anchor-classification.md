@@ -261,7 +261,7 @@ Implementation anchors (the final author trail follows execution evidence):
 - `scripts/maintenance/admit_story35_6_runtime.py:364` — `legacy_closure`: exact observed legacy profiles and main/publication/source proofs.
 - `scripts/maintenance/admit_story35_6_runtime.py:479` — `closed_classifications`: exact registered marker instances only.
 - `scripts/maintenance/admit_story35_6_runtime.py:572` — `ownership`: ordinary ownership first, strict inventory-version branch.
-- `docs/process/parallel-auto-bmad-contract.md:335` — evidence-bound historical anchor operator contract.
+- `docs/process/parallel-auto-bmad-contract.md:367` — evidence-bound historical anchor operator contract.
 
 | Synthetic case | Required result |
 | --- | --- |
@@ -285,9 +285,10 @@ existing exact-tooling-SHA contract OS jobs remain a later root publication gate
 
 Author: `/root/crm_runtime_route/runtime_admission_author`, Sol High. Independent
 design reviewer: `/root/crm_runtime_route/runtime_admission_design_review`, Sol
-High. Execution baseline is `d03a52ce014f60c8e279f016e8cdd5790ca0d596` in
-`C:/DEV/Kopplas/tmp/private/e35-historical-anchor-recovery`; the implementation
-is a four-path working-tree change, without a local commit or live operation.
+High. Historical execution baseline was `d03a52ce014f60c8e279f016e8cdd5790ca0d596`
+in `C:/DEV/Kopplas/tmp/private/e35-historical-anchor-recovery`, plus the original
+four-path author working-tree change before local commit `82f9038f...`.
+That execution performed no live operation.
 
 The adapter now captures raw file/Git sources once, rejects duplicate JSON keys,
 and validates strict schema-2 classifications after all ordinary ownership
@@ -354,10 +355,13 @@ production classification function directly; successful admission, live/custody
 conflicts, raw/marker mutation, CAS rollback and unchanged-helper continuation
 exercise the complete adapter path.
 
-Final native qualification on 2026-11-03: `python -X utf8
+Historical local native verification on 2026-11-03, before qualified-main
+integration: `python -X utf8
 tests/maintenance/test_admit_story35_6_runtime.py -v` passed **38 executed,
 0 failures, 0 errors, 0 skipped, 1048.100s**, exit 0. This is the one full focused
-run on the completed fix batch, including 24 original and 14 new test methods.
+run on the original completed fix batch, including 24 original and 14 new test
+methods, in the author working tree that produced `82f9038f...`. It is not a new
+run or qualification of the integrated source below.
 It ran from 07:30:03 to 07:47:31 +01:00 on the Windows/8.3 TEMP configuration
 above. Before/after raw hashes match exactly:
 
@@ -377,6 +381,46 @@ Original pinned-helper evidence is reused because its bytes and workflow were
 not changed: historical Windows CI run `41496309269`,
 job `125452082150`, **70 tests passed in 573.425s**. This is historical evidence,
 not a new run or qualification of the changed adapter.
+
+## Qualified-main integration provenance
+
+Root subsequently authorized the ordinary `--no-ff --no-commit` merge of
+owner-qualified main `c258b523a9d32278b9e9e75ef5f7f1c59058b682` into clean PR129
+source `82f9038f36f9f33f3965587e9bef359e321c547e`. No reset, rebase, force or fetch
+was used. Git auto-merged the contract cleanly; there was no unmerged conflict.
+Its union preserves the full historical classification and inherited CI wording.
+The inherited CI spec and workflow are byte-identical Git/index blobs to c258;
+their existing nine author references remain valid. The historical heading moved
+from line 335 to 367; this author's code map/review stop was refreshed accordingly.
+
+Qualification provenance is deliberately separate:
+
+- The local 38-pass/1048.100s evidence above belongs to the pre-integration author
+  snapshot that produced 82f, with unchanged adapter/test bytes. It was not rerun.
+- The old hosted 38-pass command used synthetic PR129 merge
+  `7832cab2111e25522fc4751fc753a16472c3adde`, not direct execution of 82f. Its shared
+  Windows job ultimately canceled; it is not complete tooling qualification.
+- Root reports c258 owner-qualified after all CI gates, with 24 admission and
+  140 core tests per OS. Its native CI checkout was synthetic `4b8ea4e` (reported
+  tree-equal candidate tree `e27f71ed`), **not direct 96385 or c258 execution**.
+  These are coordinator-reported qualification facts; this author fetched or
+  observed no CI/provider data during integration.
+- The uncommitted ordinary merge tree combines the inherited qualified topology
+  and 38-test source; its future merge commit will be the genuine PR129 source
+  descendant. **Fresh direct-exact-new-reviewed-HEAD native
+  qualification for all four jobs remains unrun and required.** Do not relabel
+  any historical/synthetic/main execution as that future source-head evidence.
+
+Integration checks only: adapter raw SHA256
+`349c10b261c6a287f7490560b6d066808778909d889d1984ac9faad7afe07992`, tests raw SHA256
+`48609a22f2944e6dc6f429cbe105242993f0a83e4baec99d8baf928deff96b88`, and static
+38-method inventory remain unchanged. The existing helper's read-only
+`workflow_version` gives
+`f2463d540f4c2d0829224eb48d619e772a8916334c9f80fa8704b1309e14b612` before/after;
+helper/mirror paths have no diff. Relative to c258, introduced paths remain exactly
+adapter, focused test, contract and this historical spec. No test execution,
+runtime/resource/CI action, live claim/config mutation or E09 change occurred.
+The merge is left uncommitted for independent targeted High review.
 
 ## Operational proof gaps and disposition
 
@@ -402,12 +446,15 @@ is ready**. Missing proof remains a refusal under this schema:
 ## Suggested Review Order
 
 Author: `/root/crm_runtime_route/runtime_admission_author` (Sol High).
-Refreshed against baseline `d03a52ce014f60c8e279f016e8cdd5790ca0d596` plus the
-four allocated working-tree changes. Source SHA256 is
+Refreshed against original baseline `d03a52ce014f60c8e279f016e8cdd5790ca0d596` and
+the uncommitted ordinary merge of qualified c258 into pre-merge source 82f. The
+introduced diff relative to c258 remains the original four paths; inherited CI
+spec/workflow content is preserved. Source SHA256 is
 `349c10b261c6a287f7490560b6d066808778909d889d1984ac9faad7afe07992`;
 test SHA256 is `48609a22f2944e6dc6f429cbe105242993f0a83e4baec99d8baf928deff96b88`.
-The focused 38-test run passed on that exact pair. This guide is not admission
-authority; real operator proof and tooling/main qualification remain required.
+The historical local 38-test run passed on that exact pair before this integration;
+it does not qualify the merged source. This guide is not admission authority;
+real operator proof and fresh direct-exact-head four-job qualification remain required.
 
 ### Classify exact historical markers after ordinary ownership
 
@@ -416,7 +463,7 @@ It preserves ordinary claim/reservation/custody checks and the authoritative old
 plan used by the unchanged legacy validator; a historical annotation grants no
 new authority.
 
-- `docs/process/parallel-auto-bmad-contract.md:335` — `Evidence-bound historical anchors`: operator schema and trust boundaries.
+- `docs/process/parallel-auto-bmad-contract.md:367` — `Evidence-bound historical anchors`: operator schema and trust boundaries.
 - `scripts/maintenance/admit_story35_6_runtime.py:572` — `def ownership`: validates the complete inventory and current ownership first.
 - `scripts/maintenance/admit_story35_6_runtime.py:637` — `engine.story_pr_legacy_conflicts(repo, p, revised_story)`: retains authoritative old-plan recognition.
 
@@ -469,21 +516,25 @@ exact reconstructed hashes, rollback and historical replay.
 - `tests/maintenance/test_admit_story35_6_runtime.py:359` — `test_closed_e20_all_integrated_copied_variants_preserve_external_reservation`: conserves native scope and distinct external provenance.
 - `tests/maintenance/test_admit_story35_6_runtime.py:516` — `test_closed_finalized_missing_verification_claim_scope_and_provenance_refuse`: reaches incomplete, ancestry, scope and inherited-marker refusals.
 
-Evidence: `python -X utf8 tests/maintenance/test_admit_story35_6_runtime.py -v`
-passed **38 executed, 0 failures/errors/skipped, 1048.100s**, exit 0, on the exact
-frozen source/test pair above with native Windows Python 3.14.7 and actual 8.3
+Historical pre-integration evidence: `python -X utf8 tests/maintenance/test_admit_story35_6_runtime.py -v`
+passed **38 executed, 0 failures/errors/skipped, 1048.100s**, exit 0, on the
+source/test pair above in the original author snapshot with native Windows Python 3.14.7 and actual 8.3
 TEMP. Durable log/metadata is
 `tmp/private/historical-anchor-verification/native-final38*`. The affected
 casefold selection also passed **1 test in 25.700s**, exit 0, on this final pair.
 The earlier recovered **6-pass/247.212s** selection is pre-final-batch evidence;
 all earlier failures are retained in the verification record. Historical unchanged-
 helper Windows CI **70-pass/573.425s** is reused, without a new helper run.
+This integration performed only source/hash/pin/blob/union/reference checks;
+it executed no Python suite. See integration provenance for the two distinct
+synthetic CI revisions and the still-required fresh direct source-head result.
 
 Limits: synthetic Git/SQLite fixtures and external observation bodies; pure proof
 negatives call the production validator directly, while admission/continuation,
 custody, mutation and rollback execute the full adapter. No external actor,
 allocation completeness, closure statement intent, provider or CI authenticity is
-proved by these fixtures. Both exact-tooling-SHA OS CI jobs, qualified main, fresh
+proved by these fixtures. All four direct-exact-tooling-SHA native job records
+(the two existing `contracts` gates plus both mandatory admission prerequisites), qualified main, fresh
 complete operator proof/request and independent High admission review remain
 required. Missing real legacy scope/closure/recursive evidence still refuses.
 No live admission, product runtime/P6 or CRM success is claimed.
