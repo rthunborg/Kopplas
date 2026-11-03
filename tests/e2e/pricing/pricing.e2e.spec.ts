@@ -584,7 +584,7 @@ function producerPlaywrightEntry(script: string): ProducerPlaywrightEntry | unde
     if (binCanonical !== canonical) throw new Error("P-E5 family=playwright reason=package-bin-mismatch");
     return { family: pkg.name, canonical };
 }
-function producerPlaywrightInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined): ProducerPlaywrightEntry | undefined {
+function producerPlaywrightInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, unclassified?: (role: "parsed" | "opaque") => void): ProducerPlaywrightEntry | undefined {
     // Absolute scripts and proven non-test commands do not require another
     // process's cwd. An unresolved relative test/ambiguous launch still refuses.
     const resolveScript = (script: string, subcommand: "test" | "unresolved") => {
@@ -603,17 +603,76 @@ function producerPlaywrightInvocation(args: readonly string[], cwd: string | (()
     while (args[index]?.startsWith("-")) {
         const option = args[index];
         if (option === "--") { index++; break; }
-        if (["-e", "--eval", "-p", "--print"].includes(option) || option.startsWith("--eval=") || option.startsWith("--print=")) return; // Inline program, not a CLI script argument.
+        if (["-e", "--eval", "-p", "--print"].includes(option) || option.startsWith("--eval=") || option.startsWith("--print=")) { unclassified?.("opaque"); return; } // Inline program, not an inspectable script.
         if (["-r", "--require", "--import", "--loader", "--experimental-loader", "--conditions", "-C"].includes(option)) { if (!args[index + 1]) throw new Error("P-E5 family=node reason=missing-startup-option-value"); index += 2; continue; }
         if (option.startsWith("--") && option.includes("=") || ["--no-warnings", "--enable-source-maps", "--experimental-strip-types", "--trace-warnings", "--inspect", "--inspect-brk"].includes(option)) { index++; continue; }
         // Never accept an arbitrary argv payload just because it contains test.
         // An unsupported Node launch with a real Playwright CLI is a refusal,
         // including foreign projects, not an ignored consumer.
         if (args.slice(index + 1).some(arg => identify(resolveScript(arg, "unresolved")))) throw new Error("P-E5 family=playwright reason=unsupported-node-launch");
+        unclassified?.("opaque");
         return;
     }
-    if (!args[index] || args[index + 1] !== "test") return;
-    return identify(resolveScript(args[index], "test"));
+    if (!args[index]) { unclassified?.("opaque"); return; }
+    if (args[index + 1] !== "test") {
+        // A confirmed Node with rewritten/opaque argv cannot be dismissed by
+        // missing tokens. Normal inspectable non-test scripts remain distinct.
+        if (unclassified) {
+            const script = resolveScript(args[index], "unresolved");
+            try { realpathSync(script); unclassified("parsed"); } catch { unclassified("opaque"); }
+        }
+        return;
+    }
+    const script = resolveScript(args[index], "test"), result = identify(script);
+    if (!result && unclassified) { try { realpathSync(script); unclassified("parsed"); } catch { unclassified("opaque"); } }
+    return result;
+}
+function producerNodeInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, confirmedNode: boolean): ProducerPlaywrightEntry | undefined {
+    let role: "parsed" | "opaque" = "opaque";
+    const invocation = producerPlaywrightInvocation(args, cwd, identify, confirmedNode ? value => { role = value; } : undefined);
+    if (confirmedNode && !invocation && role === "opaque") throw new Error("P-E5 family=node reason=opaque-node-consumer");
+    return invocation;
+}
+type ProducerBrowserInspection = {
+    Config?: { Cmd?: unknown; Entrypoint?: unknown }; Path?: string; Args?: unknown;
+    HostConfig?: { Init?: boolean; PidMode?: string }; State?: { Running?: boolean; Pid?: number };
+};
+function producerBrowserLauncherPid(inspected: ProducerBrowserInspection, expected: readonly string[], top: string,
+    status: (pid: number) => string, processStat: (pid: number) => string, args: readonly string[]): number {
+    const refuse = () => { throw new Error("P-E5 family=node reason=browser-launcher-unverified"); };
+    // Role evidence never exempts a parsed/opaque test command, even in this container.
+    if (args.some(arg => /(?:^|\s)test(?:\s|$)/.test(arg))) refuse();
+    const init = inspected.State?.Pid;
+    if (!Number.isSafeInteger(init) || init! <= 1 || !inspected.State?.Running || inspected.HostConfig?.Init !== true
+        || inspected.HostConfig.PidMode !== "" || JSON.stringify(inspected.Config?.Cmd) !== JSON.stringify(expected)
+        || inspected.Config?.Entrypoint != null && JSON.stringify(inspected.Config.Entrypoint) !== "[]"
+        || inspected.Path !== expected[0] || JSON.stringify(inspected.Args) !== JSON.stringify(expected.slice(1))) refuse();
+    const lines = top.trim().split("\n");
+    if (lines.shift()?.trim().replace(/\s+/g, " ") !== "PID PPID") refuse();
+    const rows = lines.map(line => { const match = /^\s*(\d+)\s+(\d+)\s*$/.exec(line); if (!match) return refuse(); return { pid: Number(match[1]), parent: Number(match[2]) }; });
+    if (new Set(rows.map(row => row.pid)).size !== rows.length || !rows.some(row => row.pid === init)) refuse();
+    const children = rows.filter(row => row.parent === init);
+    if (children.length !== 1) refuse(); // No descendant/container-wide allowance.
+    const launcher = children[0].pid;
+    const parseStat = (pid: number) => {
+        const raw = processStat(pid), end = raw.lastIndexOf(")"), fields = raw.slice(end + 2).trim().split(/\s+/);
+        if (Number(raw.slice(0, raw.indexOf(" "))) !== pid || end < 0 || !/^\d+$/.test(fields[19] ?? "")) return refuse();
+        return { parent: Number(fields[1]), started: fields[19] };
+    };
+    const beforeInit = parseStat(init!), beforeLauncher = parseStat(launcher);
+    const parseStatus = (pid: number) => {
+        const raw = status(pid), id = Number(/^Pid:\s+(\d+)$/m.exec(raw)?.[1]), parent = Number(/^PPid:\s+(\d+)$/m.exec(raw)?.[1]);
+        const namespace = /^NSpid:\s+([\d\t ]+)$/m.exec(raw)?.[1].trim().split(/\s+/).map(Number);
+        if (id !== pid || !namespace || namespace.length < 2 || namespace[0] !== pid || !namespace.every(Number.isSafeInteger)) return refuse();
+        return { parent, namespace };
+    };
+    const initStatus = parseStatus(init!), launcherStatus = parseStatus(launcher);
+    if (launcherStatus.parent !== init || beforeLauncher.parent !== init || initStatus.parent !== beforeInit.parent
+        || rows.find(row => row.pid === init)?.parent !== initStatus.parent || initStatus.namespace.at(-1) !== 1
+        || launcherStatus.namespace.at(-1)! <= 1 || initStatus.namespace.length !== launcherStatus.namespace.length
+        || JSON.stringify(initStatus.namespace.slice(1, -1)) !== JSON.stringify(launcherStatus.namespace.slice(1, -1))
+        || JSON.stringify(beforeInit) !== JSON.stringify(parseStat(init!)) || JSON.stringify(beforeLauncher) !== JSON.stringify(parseStat(launcher))) refuse();
+    return launcher;
 }
 async function qualifyProducerBoundedEffects(info: TestInfo) {
     const runtime = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
@@ -677,15 +736,39 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
     // to affect another runner: inspect actual host CLI consumers as well.
     const installedCli = producerPlaywrightEntry(path.resolve("node_modules/@playwright/test/cli.js"));
     if (!installedCli) throw new Error("P-E5 family=playwright reason=installed-cli-unverified");
+    const browserRuntime = await import("../../../scripts/ci/browser-runtime.mjs");
+    const exactBrowserLauncher = (candidate: number, args: readonly string[]) => {
+        const owner = browserRuntime.assertHostedRunner();
+        const receipt = JSON.parse(readFileSync(path.join(process.env.RUNNER_TEMP!, `browser-runtime-${process.env.GITHUB_JOB}.json`), "utf8"));
+        const inspected = JSON.parse(execFileSync("docker", ["inspect", receipt.containerId], { encoding: "utf8", timeout: 15_000, maxBuffer: 1_000_000 }))[0];
+        browserRuntime.validateBrowserReceipt(receipt, owner, inspected);
+        const configured = browserRuntime.browserContainerArgs(owner);
+        const command = configured.slice(configured.indexOf(browserRuntime.PLAYWRIGHT_IMAGE) + 1);
+        const top = execFileSync("docker", ["top", receipt.containerId, "-eo", "pid,ppid"], { encoding: "utf8", timeout: 15_000, maxBuffer: 1_000_000 });
+        const launcher = producerBrowserLauncherPid(inspected, command, top,
+            pid => readFileSync(`/proc/${pid}/status`, "utf8"), pid => readFileSync(`/proc/${pid}/stat`, "utf8"), args);
+        return launcher === candidate;
+    };
     const consumers: number[] = [];
     for (const entry of readdirSync("/proc").filter(value => /^\d+$/.test(value))) {
         let args: string[];
         try { args = readFileSync(`/proc/${entry}/cmdline`, "utf8").split("\0"); } catch { continue; }
         let invocation: ProducerPlaywrightEntry | undefined;
-        try { invocation = producerPlaywrightInvocation(args, () => readlinkSync(`/proc/${entry}/cwd`), producerPlaywrightEntry); }
+        let confirmedNode = false;
+        try { confirmedNode = /^(?:node|nodejs)(?: \(deleted\))?$/.test(path.basename(readlinkSync(`/proc/${entry}/exe`))); } catch { /* Unreadable exe alone is not proof of Node or permission to ignore a candidate. */ }
+        try {
+            invocation = producerNodeInvocation(args, () => readlinkSync(`/proc/${entry}/cwd`), producerPlaywrightEntry, confirmedNode);
+        }
         catch (error) {
             const detail = error as { message?: string; producerErrorCategory?: string; producerScriptFamily?: string; producerSubcommandCategory?: string };
             const refusal = /^P-E5 family=(playwright|node) reason=([a-z-]+)$/.exec(detail.message ?? "");
+            // An exact already-validated server or job-owned launcher is a
+            // non-test role, never a general PID/container/title exemption.
+            if (["consumer-cwd-unavailable", "opaque-node-consumer"].includes(refusal?.[2] ?? "") && !args.some(arg => /(?:^|\s)test(?:\s|$)/.test(arg))) {
+                if (Number(entry) === boot.serverPid) continue;
+                try { if (exactBrowserLauncher(Number(entry), args)) continue; }
+                catch { throw new Error(`P-E5 family=node reason=browser-launcher-unverified pid=${entry} errorCategory=role-proof-unavailable scriptFamily=unclassified subcommandCategory=unresolved`); }
+            }
             // No argv, environment, cwd or package payload enters diagnostics.
             const family = refusal?.[1] ?? "node", reason = refusal?.[2] ?? "consumer-inspection-failed";
             const category = ["EACCES", "EPERM", "ENOENT", "ESRCH", "other"].includes(detail.producerErrorCategory ?? "") ? detail.producerErrorCategory : "none";

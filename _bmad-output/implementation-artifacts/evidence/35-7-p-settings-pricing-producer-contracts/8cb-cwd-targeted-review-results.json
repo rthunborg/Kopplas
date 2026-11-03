@@ -45,5 +45,60 @@
   "broad_rounds_completed": 1,
   "no_reviewer_tests_writes_resources_CI": true,
   "step5_done": false,
-  "release_ready": false
+  "release_ready": false,
+  "current_1ddb_exact_role_followup": {
+    "recorded_at_utc": "2026-11-03T06:24:25.259978+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "restart_recovery": "Verification resent its previously completed final; edges completed only its interrupted bounded patch/pin check. No duplicated review or test execution.",
+    "scope": "Only exact-owned-role source-risk and retained 41-case proof confirmation; broad implementation rounds remain 1.",
+    "freeze_sha256": "b6a46e107ca8b08af7d24c5c50fa091aa850519b2943b84c524430addac9a22c",
+    "source48_digest": "d452dcf364cc5ad69e3c9d4e0e5e40c4bfb1af8904bf2f316170f3ea7c5ae68e",
+    "pricing_sha256": "bf605d727423f58315c69d3ebd2365994622697d26fd196fc6931fda83185a6d",
+    "pricing_git_blob": "b660eeed978e57910e521295edca8641a4377e41",
+    "patch_sha256": "fd36256b859dc47da8a29f7e1080c0a1da6e6e35557c38e0898a0e5f58fc3196",
+    "findings": [],
+    "verification_confirmation": "Confirmed Node with opaque argv refuses unless exact validated server or exact job-owned browser launcher. Parsed/opaque test-token veto precedes role exceptions. Launcher binds validated container/image/exact command to one init direct-child PID, with parent/namespace corroboration and unchanged start ticks. Exact installed-owner CLI and sole-owner equality remain enforced. Controlled fresh-job boundary only; no universal host attestation.",
+    "edges_confirmation": "All 48 raw/effective source pins and patch match; all 12 proof files match. Four extracted functions and transpilation independently match retained source. Prior 25 inputs, filesystem fixtures and helper outcomes unchanged; 16 concrete role/opacity/namespace/PID-instance/foreign cases added. Both saved runs record 41 passed, 0 failed; reviewers did not rerun.",
+    "negative_proof_precision": "Strengthened harness rejects unrelated exceptions through a three-reason allowlist plus exact synthetic-disappearance message; it does not assert a unique expected reason for each role case. Launcher-helper negatives use its single fixed refusal reason.",
+    "proof_manifest_sha256": "10a44f9ef5478873f7a82cb76454414128d02bd10d526579777819f52797825e",
+    "proof_limits": "Kernel executable confirmation is mocked true in relevant wrapper cases. Receipt authority, actual /proc, Docker state and old PID10067 identity are not proven by the model. Rejected provisional32 receives zero credit.",
+    "unchanged_boundaries": "103 capture definitions / 24 owned / 7 producer declarations; actions, registrations, timeouts, effect budget, restoration and ONE-delete limits unchanged. SRO 39 stops. Private88/90 packets unchanged and unapplied; human cap approval held.",
+    "actual_1ddb_browser": {
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "failure": "P-E5 EACCES / consumer-cwd-unavailable PID10067, 1418/1428ms, before DB client/fixtures/journal/effects; role remains UNKNOWN",
+      "historical_PNGs": 80,
+      "method_journal": false,
+      "method_frames_absent": 23
+    },
+    "actual_1ddb_DB": {
+      "native_sha256": "416a998a3928833698d41ddfa7dd382b748b7301fc4a65d10a5379671dc811b8",
+      "success": false,
+      "total": 2257,
+      "passed": 2195,
+      "failed": 1,
+      "explicit_skip": 52,
+      "failed_suites": 2,
+      "failed_files": 1,
+      "absent_planned": 48,
+      "producer75_RLS7": "PASS0skip",
+      "failure": "15.4-NUDGE-004 FixtureAuthCleanupError retryable-fetchHTTP500/codeunavailable; masked-bodyPASSunknown",
+      "diagnostics": "6741ms23503x12/53300x1/delete500x13 DIAGNOSTICONLY0credit/nocauseproof"
+    },
+    "no_new_tests_resources_DB_effects_CI_images": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Fresh exact-head required CI, actual method runtime and all image inputs, truthful complete package within live bounds or separately approved trusted prerequisite, authenticated visual acceptance and completion gates remain unearned.",
+    "step5_done": false,
+    "release_ready": false
+  }
 }

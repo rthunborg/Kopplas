@@ -580,6 +580,32 @@
       "broad_round_count": 1,
       "no_tests_queries_resources_CI_writes": true,
       "no_runtime_visual_policy_acceptance": true
+    },
+    {
+      "phase": "Independent targeted exact-owned-role and41-case proof confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T20:04:51.4442706Z",
+      "author_stopped": true,
+      "freeze": "author-8cb-cwd-checkpoint.json",
+      "freeze_sha256": "b6a46e107ca8b08af7d24c5c50fa091aa850519b2943b84c524430addac9a22c",
+      "source48_digest": "d452dcf364cc5ad69e3c9d4e0e5e40c4bfb1af8904bf2f316170f3ea7c5ae68e",
+      "reviewers": [
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "scope": "Exact validated server/browser launcher role linkage, init/top/kernel PID namespace/starttick proof and pre-role test veto; retained kernelNode opacity/foreign refusal and bounded diagnostics, controlled-job not universalhost model; no broad old source review"
+        },
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "scope": "Retained41-case proof/source extraction/old25preservation/16rolecases/exact negative reasons and unchanged captures/privatecap/history boundaries; no newimage/proposal/map audit"
+        }
+      ],
+      "dispatch_status": "actual both existing High reviewers completed FIX_CONFIRMED; verification recovered completed final, edges finished interrupted bounded pin/proof check; no duplicated review/tests",
+      "broad_round_count": 1,
+      "no_tests_queries_resources_CI_writes": true,
+      "no_runtime_visual_policy_acceptance": true,
+      "review_receipt": "8cb-cwd-targeted-review-results.json#current_1ddb_exact_role_followup",
+      "proof_reason_precision": "three-reason allowlist plus exact disappearance message; not unique per-case expected reasons"
     }
   ],
   "implementation_author_dispatched": true,

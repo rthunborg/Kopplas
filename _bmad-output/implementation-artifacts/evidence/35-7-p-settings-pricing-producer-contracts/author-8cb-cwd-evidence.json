@@ -80,5 +80,82 @@
   "state": "24owned/7producer/103raw definitions unchanged;0newPNG/effects;23method frames remain ABSENT. Both private88/90 proposals frozen, allocationPASSonly/nohumanapproval; actual cap80 remains.",
   "remaining": "Independent fix-only High confirmation, fresh exact-head requiredCI/methods/images/complete bytes/authenticatedvisual acceptance.",
   "step5_done": false,
-  "release_ready": false
+  "release_ready": false,
+  "current_1ddb_exact_role_followup": {
+    "candidate_before": "1ddb57be97cc2920930872469a2eef32d3a77ced",
+    "run": "41510975397",
+    "native_path": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-1ddb57be/browser-native-case-results.json",
+    "native_sha256": "b49dcc028d583637efd42c7a882c57e7c2f556b79171c159df2f93fa2a5c70c8",
+    "browser": {
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0,
+      "old_owned23_producer6_first_attempt_pass": "Rootverified"
+    },
+    "owned_failure": {
+      "file": "pricing/pricing.e2e.spec.ts",
+      "title": "pricing/pricing.e2e.spec.ts > P-E5 CI-only bounded real read-unavailable and one historical target-missing example",
+      "status": "unexpected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "duration": 1418,
+          "errors": [
+            "Error: P-E5 family=node reason=consumer-cwd-unavailable pid=10067 errorCategory=EACCES scriptFamily=unclassified subcommandCategory=unresolved\n\n  692 |             const scriptFamily = detail.producerScriptFamily === \"playwright-hint\" ? \"playwright-hint\" : refusal?.[1] === \"playwright\" ? \"playwright\" : \"unclassified\";\n  693 |             const subcommand = detail.producerSubcommandCategory === \"test\" ? \"test\" : \"unresolved\";\n> 694 |             throw new Error(`P-E5 family=${family} reason=${reason} pid=${entry} errorCategory=${category} scriptFamily=${scriptFamily} subcommandCategory=${subcommand}`);\n      |                   ^\n  695 |         }\n  696 |         if (!invocation) {\n  697 |             if (Number(entry) === boot.ownerPid) throw new Error(\"P-E5 family=playwright reason=owner-entrypoint-unclassified\");\n    at qualifyProducerBoundedEffects (/home/runner/work/Kopplas/Kopplas/tests/e2e/pricing/pricing.e2e.spec.ts:694:19)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/pricing/pricing.e2e.spec.ts:759:23"
+          ]
+        },
+        {
+          "status": "failed",
+          "retry": 1,
+          "duration": 1428,
+          "errors": [
+            "Error: P-E5 family=node reason=consumer-cwd-unavailable pid=10067 errorCategory=EACCES scriptFamily=unclassified subcommandCategory=unresolved\n\n  692 |             const scriptFamily = detail.producerScriptFamily === \"playwright-hint\" ? \"playwright-hint\" : refusal?.[1] === \"playwright\" ? \"playwright\" : \"unclassified\";\n  693 |             const subcommand = detail.producerSubcommandCategory === \"test\" ? \"test\" : \"unresolved\";\n> 694 |             throw new Error(`P-E5 family=${family} reason=${reason} pid=${entry} errorCategory=${category} scriptFamily=${scriptFamily} subcommandCategory=${subcommand}`);\n      |                   ^\n  695 |         }\n  696 |         if (!invocation) {\n  697 |             if (Number(entry) === boot.ownerPid) throw new Error(\"P-E5 family=playwright reason=owner-entrypoint-unclassified\");\n    at qualifyProducerBoundedEffects (/home/runner/work/Kopplas/Kopplas/tests/e2e/pricing/pricing.e2e.spec.ts:694:19)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/pricing/pricing.e2e.spec.ts:759:23"
+          ]
+        }
+      ]
+    },
+    "old_PID10067_role": "UNKNOWN; native records only EACCES/unclassified/unresolved. No argv/namespace/role attribution, no old-state queries/adoption.",
+    "source_diagnosis": "Conservative unsupported-launch fallback reaches arbitrary relative argv, so own opaque non-test infrastructure may refuse; exact offending old role unproven. Adjacent-pair-only omission discarded as insufficient for rewritten test drivers.",
+    "current_fix": "Keep fallback conservative. Kernel-confirmed Node with opaque script identity refuses even with readablecwd. Exact role exceptions only already-validated nonce/socket/serverPID or job-bound browser receipt+pinned image+exact exported npxrun-server Config.Cmd/Path/Args + unique init directchild Docker-tophostPID/PPid + kernelPPid/NSpid/starttick same-instance corroboration. Test-token veto precedes exceptions; samecontainer descendants/foreign/ambiguous/disappearing processes not exempt. Strict soleowner/canonical installedCLI/all original-family checks and durable effects unchanged.",
+    "authority_limit": "Parent relayed independently assessed specific roleproof design under existing admitted controlled freshGitHub/wrapper context; not universal arbitrary-root absence. No genericframework/sudo/privilege seam.",
+    "pure": {
+      "passed": 41,
+      "failed": 0,
+      "prior25": true,
+      "new_role_cases": 16,
+      "initial_run_retained": true,
+      "second_run_justification": "Strengthen exact-negative-reason assertions only",
+      "manifest": "tmp/private/35-7-p-consumer-role-proof/proof-manifest.json",
+      "sha256": "10a44f9ef5478873f7a82cb76454414128d02bd10d526579777819f52797825e",
+      "typecheck": 0,
+      "pricing_eslint": 0,
+      "actual_resources_effects": 0
+    },
+    "actual1ddb_DB_root_report": {
+      "native_sha256": "416a998a3928833698d41ddfa7dd382b748b7301fc4a65d10a5379671dc811b8",
+      "success": false,
+      "total": 2257,
+      "passed": 2195,
+      "failed": 1,
+      "explicit_skip": 52,
+      "failed_suites": 2,
+      "failed_files": 1,
+      "absent_planned_cases_vs2305": 48,
+      "failure": "15.4-NUDGE-004 FixtureAuthCleanupError retryable-fetch HTTP500/code unavailable; tenants/core384\u2192withNudgeRecipients271 Promise.allSettled index50",
+      "callback_PASS": "Not established if finally masked; remains unknown",
+      "producer75_RLS7": "PASS0skip perRoot",
+      "diagnostics": "6741ms:23503x12/53300x1/delete500x13 diagnostic-only0credit, no causeproof",
+      "ownership": "No global/unallocated fixture changes/retries; root soleobserver/triageowner"
+    },
+    "history": "8cbDB remains failed at8cb; b8fullDB/pilot/keycleanup success stays b8only; newhead runtime UNEARNED.",
+    "cases_captures": "24owned/7producer/103raw unchanged;80historicalPNGs,23methodframesabsent/no journal;0newruntime/PNGs/effects.",
+    "proposals": "Frozen88and90 ignored packets untouched; independent allocationPASSonly, HUMANHELD/live80/actual fit unearned; compact map andPR204inventory untouched.",
+    "step5_done": false,
+    "release_ready": false
+  },
+  "history_retention": "Original top-level8cb evidence retained verbatim in values; prior exact document in Git1ddb, current rolefollowup appended."
 }
