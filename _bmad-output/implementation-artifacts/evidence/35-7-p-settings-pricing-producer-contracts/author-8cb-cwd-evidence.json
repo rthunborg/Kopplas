@@ -1,5 +1,5 @@
 {
-  "current_followup": "df063c19 sentinel-only fix after both combined-batch CHANGES_REQUIRED",
+  "current_followup": "d99 admitted phone-only framing and additive TimeReport diagnostics plus authorized type-only compile correction",
   "candidate_before": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
   "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
   "prior_committed_history": {
@@ -321,5 +321,104 @@
       "private_output_directory_correction": "Copied harness initially retained its old output directory; intermediate43 outputs retained in new proof directory, all original history40 files restored byte-for-byte, final harness uses __dirname. No history deletion or altered archived pins.",
       "current_review": "PENDING same two fix-only confirmations"
     }
+  },
+  "current_d99_framing_time_report_followup": {
+    "authority_before_source_writes": {
+      "recorded_before_source_writes_utc": "2026-11-03T12:17:58.681418+00:00",
+      "receipt_path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-d99acbdc\\coordinator-additive-time-report-allocation-approval.json",
+      "receipt_sha256": "c0cfc0374950f83eef7631209a53332c6f9b8a0f6caca841540cb219f03b5365",
+      "authority": "Coordinator additive diagnostic-only approval under standing human authorization, parent relay; no new direct human quote.",
+      "direct_human_quote": null,
+      "historical_hold": "Receipt historical hold retained unedited; parent current implementation handoff explicitly relays Coordinator coordination hold RELEASED before this author resume.",
+      "existing_file_inventory55_retained": true,
+      "added_path": "tests/e2e/time-reports.e2e.spec.ts",
+      "new_file_count": 56,
+      "generated_evidence_token_retained": true,
+      "total_tokens": 57,
+      "semantic_domains_unchanged_from_authority": 7,
+      "approved_file_digest_from_receipt": "7cd272d1ec70e654c9d49b1850290abc6c8b079039110470b3a4bad12d6f0a45",
+      "no_releases": true,
+      "operative_writes": "Exact approved pricing framing and TimeReport diagnostics only plus existing author/admission metadata; this is not general write authority to the full inventory.",
+      "required_hold_after_freeze": "Root returns exact stopped batch/pins/authority/targeted review receipts to Coordinator BEFORE commit/push/CI."
+    },
+    "private_proposal_root": "tmp/private/35-7-p-framing-d99-proposal",
+    "private_freeze_sha256": "b18c94710642acbbca917d69fd9bccf0d4add278cbaa768c5f3a34b996b9a0ee",
+    "independent_proposal_review_sha256": "5432340a5b904c224e92ea4554236e7b71745f1ba8218706f562533271202874",
+    "status": "Exact admitted sources applied plus explicitly approved type-only callback correction; current stopped review pending, no runtime credit.",
+    "current_actual_d99": {
+      "head": "d99acbdcb1eb1aa99fa29594f6cbd7438325d5de",
+      "CI": 41627832529,
+      "browser": {
+        "status": "failed",
+        "native_total": 104,
+        "expected": 102,
+        "unexpected": 2,
+        "flaky": 0,
+        "skip": 0,
+        "P-E5_first_ms": 28540,
+        "retry_ms": 3236,
+        "retry": "EEXIST refused",
+        "actual4DomainUnavailabilityVerified": true,
+        "all4ExactAclAndSameOrdinaryReadRestores": true,
+        "journal_records": 13,
+        "delete_intents": 0,
+        "actual_pngs": 98,
+        "normal_pngs": 80,
+        "method_pngs": 18,
+        "method_pngs_absent": 5,
+        "native_json_sha256": "753ca2ab17bfd47fc3fe3ff2755f41f2c7b741515222f42ae8db3f564e830732",
+        "log_bytes": 106325,
+        "log_sha256": "33dc6ee3c9b7257b33fa6d42ce6928e40e79217915c930e4fa71ca4631a1dcb2",
+        "nonce": "59657cd4-6ea1-43b2-8330-a977ae1ca408",
+        "runner": 12194,
+        "server": 12666,
+        "trace_files_available": 0,
+        "indexHTML_available": false,
+        "trace_limitation": "Native JSON references retry ZIP path only; no embedded/local ZIP,trace,HTML. No artifact body/status reconstruction possible."
+      },
+      "DB": {
+        "status": "success",
+        "total": 2305,
+        "passed": 2253,
+        "failed": 0,
+        "explicit_skip": 52,
+        "failed_suites": 0,
+        "producer_command_suite": "75pass0skip",
+        "producer_RLS_suite": "7pass0skip",
+        "wrapper_children": [
+          0,
+          0
+        ],
+        "keyDeleted": true,
+        "dbClosed": true,
+        "keyOutcome": "deleted-confirmed",
+        "failures": [],
+        "custody": null,
+        "pilot": "PASS",
+        "native_json_sha256": "6bc7a9337c6df70b2b7c9100d073550d4dc0cc000a3acde2200f8edec76a549f",
+        "log_bytes": 102311,
+        "log_sha256": "f61b6379a7e42d914353e0a3b2fe8ca12ed9dbe8731e4226f81f127cb5c7733b",
+        "limits": "df deadlock history retained; current owned fixture cleanup helper RETURNED only, not independently verified cleanup or causal cure."
+      },
+      "whole_CI": "terminal browser-only failure; no successor/runtime/visual acceptance credit"
+    },
+    "implementation_summary": "Current d99 admitted batch: Coordinator approved additive TimeReport diagnostic allocation under standing human authority, receiptc0cfc0374950f83eef7631209a53332c6f9b8a0f6caca841540cb219f03b5365; historical hold explicitly released by parent Coordinator relay. Authority recorded in existing admission/evidence BEFORE source writes; old55files/evidence/semanticgrants retained,56file+generatedtoken57,receipt7domains/digest7cd272d1ec70e654c9d49b1850290abc6c8b079039110470b3a4bad12d6f0a45. Only article360x640 unavailable overview uses center at BOTH pre-guard scroll and capture; desktop/others start, strictjoint alert+receipt ratio1/fullviewport/draft/domain/capture103/effects retained. Exact approved copy had sole TS2322/native2; parent explicitly admitted only callback block:center|start annotation. Failedlog retained, private proposal unchanged, actual emittedJS matches approvedcopy byte-for-byte. TimeReport exact approved copy adds fixedphase/status/exactselectedRequest terminal categories around same wait/text/body/UI/snapshot assertions; no extra wait/retry/action/effect, unchanged originalerror rethrow, guarded privacy, all-exit listener disposal. Diagnostic is not cure/denialproof. Current source49=original48+TimeReport; producer24owned7producer unchanged, TimeReport3existing registrations/210assertion-expression nodes are adjacent coverage only.43/132 not rerun; proposed helper/caller equality and exact actual copies/type-erasure support reuse within modeled limits, not new runtime. Actuald99wholeDBPASS2305/2253P0F52skip/producer75suite+RLS7suitePASS0skip/wrapper[0,0]/keyDeleted+dbClosed/pilotPASS; helper cleanupRETURNEDONLY, no deadlockcure. Browser104/102expected2unexpected0flake0skip, all4domain+exactrestores13journal/0delete,98actualPNG18method5missing; phoneclippingdirection/BBox and TimeReportstatus/terminal/bodyfailurecause UNKNOWN. No successor geometry/denial/visual/fit/completion credit. Parent returns exact stopped batch+authority+targeted confirmations to Coordinator BEFOREcommit/push/CI. BuildinprogressStep5false/releasefalse/live80/private90unapproved; fresh native/methodimages/packagefit/humanvisual/completion remain blocking.",
+    "type_only_deviation": {
+      "authority": "Parent explicit PROCEED, callback annotation only after exact approved copy semantic TS2322. No new human quote.",
+      "priorTypecheckExit": 2,
+      "priorLintExit": 0,
+      "priorDiagnostic": "pricing1469:93 TS2322 string not assignable to ScrollLogicalPosition|undefined",
+      "approvedProposalSha256": "1fb6096be1895bc5f8d40746c382035867dffaac96d19e5e788c204340b100cd",
+      "actualPricingSha256": "39dbcac0e9eea2b8271da2d5a0f3ca849b5c26811eefc9b1770fbc067ab4af2a",
+      "difference": "Only callback parameter block: center|start annotation; erased by TypeScript",
+      "typeErasedRuntimeProjectionEqual": true,
+      "runtimeProjectionSha256": "66a39df511154e2179e3effbbf8fa6d531ea79ac844f276ae62c71a18a0de3c7",
+      "method": "Installed TypeScript transpileModule on actual/proposed copies using identical fileName/ES2022/CommonJS options; no browser/runtime test",
+      "privateApprovedPacketsUntouched": true
+    },
+    "retained43_132": "Not rerun; actual framing emittedJS equals reviewedproposal, TimeReport exactcopy; original43helpers/callers and14admission unaffected. Limits remain mocked, no geometry proof.",
+    "source_count": 49,
+    "producer_registration_scope": "24owned7producer unchanged;TimeReport3existing adjacent registrations/210assertion-expression nodes,notnewproducer cases",
+    "next_review": "SAME targeted High confirmations of stopped actualdiff/type-only deviation/allocation/privacy then Coordinator assessment BEFOREcommit/push/CI."
   }
 }

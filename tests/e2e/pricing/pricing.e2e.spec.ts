@@ -1465,11 +1465,12 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                 await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
                 for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
                     await page.setViewportSize(viewport);
-                    await unavailable.evaluate(element => element.scrollIntoView({ block: "start" }));
+                    const unavailableAlignment = spec.surface === "article" && viewport.width === 360 ? "center" : "start";
+                    await unavailable.evaluate((element, block: "center" | "start") => element.scrollIntoView({ block }), unavailableAlignment);
                     await expect(unavailable).toBeInViewport({ ratio: 1 });
                     await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
                     await assertDomain();
-                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, "start");
+                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, unavailableAlignment);
                     await assertDomain();
                     await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
                     await expect(unavailable).toBeInViewport({ ratio: 1 });

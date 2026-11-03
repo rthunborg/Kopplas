@@ -1,261 +1,216 @@
 {
-  "recorded_at_utc": "2026-11-03T11:26:12.432804+00:00",
+  "recorded_at_utc": "2026-11-03T12:25:01.706343+00:00",
   "branch": "codex/35-7-p-settings-pricing-producer-contracts",
-  "current_local_head": "df063c194a5abfbbb92705bca7ad05707603aef8",
+  "current_local_head": "d99acbdcb1eb1aa99fa29594f6cbd7438325d5de",
   "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
-  "prior_handoff_retained_in_Git": {
-    "commit": "df063c194a5abfbbb92705bca7ad05707603aef8",
-    "git_blob_oid": "4403d4768ac8a0fdbd1851ecd1b34cd9976c0261",
-    "raw_git_bytes_sha256": "c72c43feb60389e06d3b5862f54a4b0739afd4d697decee1add29714911114ab"
-  },
+  "prior_handoff_retained_in_Git": true,
   "freeze": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json",
-  "freeze_sha256": "a786042c996073e9ba9a6d5d3b155fcc94c7350b01071d66c30959481162a8db",
-  "source48_digest": "b8c4f7d9c991d9c52644f592f921c68cadc7a3cd422401bd8b3a9e554b745e65",
-  "matched_source48": 48,
+  "freeze_sha256": "6e8849d439da29966527e48b074f6237777d246426766a657a8f13d816293b66",
+  "source49_digest": "7f068e22f9291b8f51431cfc3a15f1ee893bfef834d772a436ebf113e4f63da6",
+  "matched_source49": 49,
   "matched_canonical9_raw_and_effective": 9,
-  "matched_author_artifact_pins": 7,
+  "matched_author_artifact_pins": 8,
   "mismatches": [],
-  "production27_other46_package_unchanged": true,
+  "production27_other47_integration_package_unchanged": true,
   "source_file_pins": [
     {
       "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
-      "raw_sha256": "eb3ff43ea5d00a27a7b7baee9066146608609d482a3733664a04d8c387dac567",
-      "effective_git_blob_oid": "878d0647cbb065f98590b1c8f54159d83a070334",
-      "candidate_blob_oid": "93a96d94182482e0758832e527fedf0f9498a5b9",
-      "unchanged_from_df063c19": false
+      "raw_sha256": "39dbcac0e9eea2b8271da2d5a0f3ca849b5c26811eefc9b1770fbc067ab4af2a",
+      "effective_git_blob_oid": "6ef8b0fe2203f5b2a5bbe4f1ea2bba5e8c9cf203",
+      "candidate_blob_oid": "878d0647cbb065f98590b1c8f54159d83a070334",
+      "unchanged_from_d99": false
     },
     {
-      "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
-      "raw_sha256": "35dbeb27fefa11cb011b263b55e0abc9b6ffd07094a94ea982bb2870e0173126",
-      "effective_git_blob_oid": "f9f59722654b7e753930476db2109f30e310442a",
-      "candidate_blob_oid": "c112e304e4ced62d39a3d7349263d6ce2fa8ac88",
-      "unchanged_from_df063c19": false
+      "path": "tests/e2e/time-reports.e2e.spec.ts",
+      "raw_sha256": "3b4b2db550426ebd40c04441e32ef249e4b197bcd098a3acdf704f1efb601b02",
+      "effective_git_blob_oid": "0e6e2c7cccdff223974da40256d923e056492b2d",
+      "candidate_blob_oid": "f58b55e7811f3cc54e3526df9e48ee5cb5acdc55",
+      "unchanged_from_d99": false
     }
   ],
   "only_source_changes": [
     "tests/e2e/pricing/pricing.e2e.spec.ts",
-    "tests/integration/commands/settings-pricing-operation-contract.int.test.ts"
+    "tests/e2e/time-reports.e2e.spec.ts"
   ],
-  "exact_patch": {
-    "path": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-only.patch",
-    "sha256": "89df4be682a7424d5a5c3b65d12d81645ad8a258aceadc2eab1e62b1961b8911",
-    "base": "df063c194a5abfbbb92705bca7ad05707603aef8"
-  },
+  "exact_patch": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-only.patch",
+  "patch_sha256": "7bd29375931abae49a0a8a4e5b297067b8859da3f9102def8d6faae451d4a285",
   "staging_paths": [
-    "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
-    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-publication-handoff.json",
-    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json",
-    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json",
-    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-evidence.json",
-    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-only.patch",
-    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json",
-    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
-    "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
     "tests/e2e/pricing/pricing.e2e.spec.ts",
+    "tests/e2e/time-reports.e2e.spec.ts",
+    "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+    "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/effective-allocation-admission.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-evidence.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-only.patch",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-publication-handoff.json"
+  ],
+  "staging_path_count": 12,
+  "pinned_but_unchanged_not_staged": [
     "tests/integration/commands/settings-pricing-operation-contract.int.test.ts"
   ],
-  "pinned_but_unchanged_not_staged": [],
   "new_tracked_paths_added": 0,
   "nonpatch_tracked_diff_check_native_exit": 0,
-  "patch_context": "Exactreviewedunifieddiffbytespreserved;blankcontextsyntaxnotfullstageddiff-check-zero claim.",
-  "owned_JSON_parse": "successful,not schema/evidenceauthorization",
-  "author_checks": {
-    "typecheck": 0,
-    "two_file_eslint": 0,
-    "SRO": 0,
-    "SRO_stops": 60,
-    "model_proof": "43retainedpasses,sourcechain+nativeNodemultipartinmockedReact/DOM/read context;NOactualruntimecredit.",
-    "unchanged_proofs": "Prior132/32/34notrerun;old40wrongfixtureCHANGES_REQUIREDhistoryretained."
+  "patch_context": "Retain exact reviewed patch bytes. Unified diff empty context lines may contain one syntax space; no source/metadata whitespace relaxation or full staged check claim.",
+  "owned_JSON_parse": {
+    "native_exit": 0,
+    "author_json_paths": [
+      "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+      "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/effective-allocation-admission.json",
+      "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-evidence.json",
+      "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json"
+    ],
+    "workflow_json_paths": [
+      "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
+      "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json"
+    ]
   },
-  "review_receipt": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json#current_df063_terms_DB_sentinel_fix_followup",
-  "review_verdicts": {
-    "verification": "FIX_CONFIRMED actualsentinel+reusedtermsDBsourceauthority",
-    "edges": "FIX_CONFIRMED selectedsource-wirecontrolflow/historymodel"
+  "author_checks": {
+    "typecheck": {
+      "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+      "native_exit": 0,
+      "log": "tmp/private/35-7-p-framing-d99-applied/typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "two_file_eslint": {
+      "command": "node node_modules/eslint/bin/eslint.js tests/e2e/pricing/pricing.e2e.spec.ts tests/e2e/time-reports.e2e.spec.ts",
+      "native_exit": 0,
+      "log": "tmp/private/35-7-p-framing-d99-applied/eslint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "SRO": {
+      "native_exit": 0,
+      "verified_stops": 65,
+      "single_heading": true
+    },
+    "initial_exact_copy": {
+      "tsc_native_exit": 2,
+      "sole": "TS2322 callback argument inferred string",
+      "retained_log": "tmp/private/35-7-p-framing-d99-applied/approved-copy-ts2322-native2.log",
+      "log_sha256": "ed2023b1065550db957b210ae6d8253458cde9334152b5787d536e3b8afc6732",
+      "lint_native_exit": 0
+    },
+    "proofs43_132": "Not rerun; exact proposed-copy/source binding plus admitted type-erased-runtime comparison only. No geometry/native tests."
+  },
+  "review_receipt": {
+    "path": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/8cb-cwd-targeted-review-results.json",
+    "sha256": "b09d2713f50e04190913d2e77282dddbd9e8a034070b88a8155036d128768947",
+    "entry": "current_d99_framing_TimeReport_followup"
+  },
+  "review_verdicts": [
+    {
+      "actor": "/root/producer_build/review_r1_edges",
+      "verdict": "FIX_CONFIRMED"
+    },
+    {
+      "actor": "/root/producer_build/review_r1_verification",
+      "verdict": "FIX_CONFIRMED"
+    }
+  ],
+  "routing": {
+    "path": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
+    "sha256": "d73af2ca492f2707656d02e4cb59a1e7b742886c61671e478c7b20d7950bc69e"
   },
   "coordinator_review_package": {
-    "assessment_required_before_commit_publication_CI": true,
-    "exact_frozen_diff": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-only.patch",
-    "exact_frozen_diff_sha256": "89df4be682a7424d5a5c3b65d12d81645ad8a258aceadc2eab1e62b1961b8911",
-    "authority_references": [
-      {
-        "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
-        "sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
-        "verified_lines": [
-          53,
-          105
-        ],
-        "meaning": "Independentcurrentfacts/termsapproval obligations;no refreshedpropsrequirementforpending."
-      },
-      {
-        "path": "src/components/settings/QuoteTermsEditor.tsx",
-        "sha256": "7f0b62cbfb11407588507c3c810264cadc7ee08096d163c6e8a3963af6a27e16",
-        "verified_lines": [
-          55,
-          57,
-          74,
-          112
-        ],
-        "meaning": "Baselinechangedpanelconditional;dirtyapprovalbranches;confirmedfreshunapprovedcontrolactionable."
-      },
-      {
-        "path": "src/features/settings/mutation-attempt.ts",
-        "sha256": "08cf728f179e5f46460ae25b0a2cff560911a26c558ce9393ca04b6038c5cb7a",
-        "verified_lines": [
-          65,
-          96
-        ],
-        "meaning": "Actualabsencefieldserializationandtrim-onlycanonicalequality."
-      },
-      {
-        "path": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.md",
-        "sha256": "945d53b539013c51ab5f89f08a14a2ff539ecc97f992f56dd2951f9a1f67d995",
-        "verified_lines": [
-          12,
-          20
-        ],
-        "meaning": "Originalbounded-effectmethod/realserverUI+separatetransportsettlementunchanged."
-      }
-    ],
-    "verified_guard_references": [
-      {
-        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
-        "line": 398,
-        "meaning": "Ordinaryauthorizedpre-savebaseline/display/differentdraft"
-      },
-      {
-        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
-        "line": 410,
-        "meaning": "Fullpendingreceipt/draft/error/nonbusy/nonunknown/nonterminal/approval/panelguards"
-      },
-      {
-        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
-        "line": 1306,
-        "meaning": "Rawactualmultipartfacts capture/cardinality"
-      },
-      {
-        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
-        "line": 1392,
-        "meaning": "Correctactualabsencesentinel/existingrevisionidentity"
-      },
-      {
-        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
-        "line": 1417,
-        "meaning": "Repeatedpendingguardaroundcaptures"
-      },
-      {
-        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
-        "line": 55,
-        "meaning": "Fixedownedhookphase/nativecodeprojection,preserveoriginalerror"
-      },
-      {
-        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
-        "line": 64,
-        "meaning": "Dependencyorderedteardown+independentavailablefixturecleanup/erroraggregation"
-      },
-      {
-        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
-        "line": 68,
-        "meaning": "ThreeunchangedseparateawaitedDROPsthrough70"
-      },
-      {
-        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
-        "line": 81,
-        "meaning": "Ownedsetupfixedphases"
-      },
-      {
-        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
-        "line": 96,
-        "meaning": "OwnedafterAllentry"
-      }
-    ],
-    "terms_change": "Pinnedordinarybaselineandcanonicaldirtydraft;sourceequivalentapprovalbranches/optionalpanel;rejectconfirmed/newer/nonterminal;actualabsentwiremapping—notstateweakening.",
-    "owned_DB_change": "Fixedownedphase/nativecodeprivacy+original/distinctcleanuperrorpreservation,dependencyordered3autocommitDROPunchanged;alwaysavailablefixturecleanup—NOTdeadlockremedyorcustodyverification.",
-    "initial_rejected_history": "f6bothCHANGES_REQUIREDpreserved;no old40 retroPASS."
+    "required_before_commit_push_CI": true,
+    "frozen_diff": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-only.patch",
+    "authority_path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-d99acbdc\\coordinator-additive-time-report-allocation-approval.json",
+    "authority_sha256": "c0cfc0374950f83eef7631209a53332c6f9b8a0f6caca841540cb219f03b5365",
+    "authority": "Coordinator-approved exact additive diagnostic scope under standing human necessary blocker-recovery authority; no fresh direct human quote invented",
+    "hold_release": "Parent relayed completed bounded Coordinator handoff and explicit resume",
+    "type_annotation": "Parent explicitly authorized sole block center|start callback annotation after exactcopyTS2322; emittedJS projection identical, original private packets unchanged",
+    "original_private_freeze_sha256": "b18c94710642acbbca917d69fd9bccf0d4add278cbaa768c5f3a34b996b9a0ee",
+    "original_private_reviews_sha256": "5432340a5b904c224e92ea4554236e7b71745f1ba8218706f562533271202874"
   },
-  "review_limits": "NativeDFtermsbranchandfailingDBstatement/lockgraphUNKNOWN;newmodeldoesnotproveactualpending/read/render/SQL/deadlockcure.",
+  "review_limits": [
+    "Targeted consequential latest-fix reviews only, not new broad rounds.",
+    "No reviewer source writes, tests, resources, SQL or CI.",
+    "Exact frozen batch still requires Coordinator assessment before commit/push/CI.",
+    "No successor runtime, denial, geometry, images, trusted visual acceptance, completion or release qualification."
+  ],
   "definitions": {
-    "owned": 24,
-    "producer": 7,
-    "raw_captures": 103,
-    "new_candidate_PNGs": 0,
-    "new_effects": 0
+    "source_pins": 49,
+    "settings_pricing_registered_cases": 24,
+    "producer_cases": 7,
+    "adjacent_TimeReport_existing_registrations": 3,
+    "adjacent_TimeReport_assertion_projection": 210,
+    "raw_capture_definitions": 103,
+    "no_new_registration_or_effect": true
   },
-  "actual_df_browser": {
-    "head": "df063c194a5abfbbb92705bca7ad05707603aef8",
-    "run": "41620489004",
-    "browser_native_sha256": "422e1cfab28b21859165a077b42a66b3b4fcb34dda2475bca2ddb7099c68467b",
-    "browser_total": 104,
-    "browser_expected": 103,
-    "browser_unexpected": 1,
-    "browser_flaky": 0,
-    "browser_skipped": 0,
-    "first_attempt_ms": 22343,
-    "failure": "TermsPENDINGpaneltextpreconditionbeforeTERMSDCL;nativepanelabsent/differenttext/alreadyconfirmedalternativesUNKNOWN.",
-    "retry_ms": 3154,
-    "retry": "EEXISTcorrect",
-    "company_domain_evidence": "dfONLYactualunavailablebothviewports+retaineddraft,fullACL+sameordinaryreadexactrestore.",
-    "journal_records": 4,
-    "journal_stages": [
-      "claimed-no-effects",
-      "revoke-intent(company_settings)",
-      "revoke-committed(company_settings)",
-      "restore-verified(company_settings)"
-    ],
-    "quote_terms_revoke_intents": 0,
-    "other_fault_tables": 0,
-    "delete_intents": 0,
-    "historical_PNGs": 85,
-    "normal_PNGs": 80,
-    "method_PNGs": 5,
-    "method_frames_missing": 18,
-    "root_capture_validation": "85originalPNGCRC/hash/Gitblob/head/build/configmatch0issues;nonce318b87d9-b1ff-43af-b0cd-dd236a432041/runner12349/server12744",
-    "browser_log_bytes": 109489,
-    "browser_log_sha256": "b53296e3c2898045846ff13852b87d14c9049fba88dc916741b77b44b8729a0e",
-    "limits": "No termsfault/pending successinferred,no retroactiveornewcandidatecredit."
+  "actual_d99_browser": {
+    "head": "d99acbdcb1eb1aa99fa29594f6cbd7438325d5de",
+    "run": 41627832529,
+    "job": 125890538453,
+    "total": 104,
+    "expected": 102,
+    "unexpected": 2,
+    "flaky": 0,
+    "skipped": 0,
+    "prior_settings_pricing23_and_producer6": "FIRST-attempt PASS",
+    "PE5": "FAILED article phone unavailable strict ratio1; all4 domain conjunctions and exactACL restores earned before framing failure; retry correctlyEEXIST",
+    "TimeReport": "Both attempts failed selected Response.text with unavailable body; status/terminal/cause unknown; no later denial/body/UI assertions credit",
+    "journal_records": 13,
+    "delete_intent": 0,
+    "delete_committed": 0,
+    "original_PNG": 98,
+    "method_PNG": 18,
+    "method_PNG_missing": 5,
+    "native_sha256": "753ca2ab17bfd47fc3fe3ff2755f41f2c7b741515222f42ae8db3f564e830732",
+    "no_successor_credit": true
   },
-  "actual_df_DB": {
-    "native_json_sha256": "baf1f2e335530c1078598f11d46fbd3999401edd2107780f1866cf2752b4d9a3",
+  "actual_d99_DB": {
+    "head": "d99acbdcb1eb1aa99fa29594f6cbd7438325d5de",
+    "job": 125890538381,
+    "terminal": "SUCCESS",
     "total": 2305,
-    "passed_assertions": 2253,
-    "failed_assertions": 0,
+    "passed": 2253,
+    "failed": 0,
     "explicit_skipped": 52,
-    "success": false,
-    "failed_suites": 1,
-    "failed_file": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
-    "failed_suite_message": "deadlock detected",
-    "owned_command_assertions_passed": 75,
-    "owned_command_SUITE_PASS": false,
-    "producer_RLS_passed": 7,
+    "failed_suites": 0,
+    "producer_command_suite_passed": 75,
+    "producer_RLS_suite_passed": 7,
     "producer_skipped": 0,
-    "actual_failing_SQL_state_statement_lock_graph": "UNKNOWN;notretainedinnative",
     "wrapper_child_exit_codes": [
       0,
-      1
+      0
     ],
-    "key_deleted": false,
-    "db_closed": true,
-    "key_outcome": "unverified",
-    "diagnostic": "runtimeguard-refusal",
-    "pilot": "NOT_REACHED",
-    "Auth_diagnostic": "NOT_APPLICABLE0credit",
-    "calendar": "assertionspassatdfONLY;historicalAPI009unresolved,nodiagnosticadmitted",
-    "log_bytes": 101243,
-    "log_sha256": "23270c5ff8e6d6c2c2a32ec14755466d592a9bfabc620ffab69ce64510b12bf2",
-    "whole_df_CI": "TERMINALDB+BROWSERFAIL,nooldjobadoption"
+    "keyDeleted": true,
+    "dbClosed": true,
+    "keyOutcome": "deleted-confirmed",
+    "failures": [],
+    "custody": null,
+    "pilot": "PASS",
+    "native_sha256": "6bc7a9337c6df70b2b7c9100d073550d4dc0cc000a3acde2200f8edec76a549f",
+    "cleanup_limit": "Owned/shared fixture cleanup helper returned only; no independent internal cleanup verification or deadlock-cure claim",
+    "no_successor_credit": true
   },
-  "reservation_status": "Full55paths+generatedevidencedirectory+semanticexclusivityretained,sameactualproducerowner/worktree;no grantrelease/completion.",
+  "reservation_status": {
+    "all_old_grants_retained": true,
+    "files": 56,
+    "generated_evidence_token": true,
+    "total_tokens": 57,
+    "domains_unchanged": 7,
+    "file_digest56": "7cd272d1ec70e654c9d49b1850290abc6c8b079039110470b3a4bad12d6f0a45",
+    "effective_allocation": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/effective-allocation-admission.json",
+    "no_release_or_transfer_or_terminal_claim": true
+  },
   "private_artifacts_NOT_staged": [
-    "tmp/private/35-7-p-consumer-closed-service-proof/terms-db-df063c19-sentinel",
-    "tmp/private/35-7-p-consumer-closed-service-proof",
-    "tmp/private/35-7-p-visual-cap-admission",
-    "tmp/private/35-7-p-visual-cap-90-admission",
-    "tmp/private/35-7-p-visual-map-preparation"
+    "tmp/private/35-7-p-framing-d99-proposal",
+    "tmp/private/35-7-p-framing-d99-applied"
   ],
   "private_caps_unapplied_human_held": true,
   "all_child_writes_stopped": true,
-  "no_active_guard_refs": true,
+  "external_resource_custody": "UNKNOWN; no launch, adoption, query, repair or cleanup of old job resources",
   "build_status": "in-progress",
   "step5_done": false,
   "release_ready": false,
-  "pending": "FIRSTrootreturnsstoppedexact2filediff+pins+authority+reviews toCoordinatorassessmentBEFOREcommit/push/publicationCI.ThenonlyactualdispositionmayadmitfreshnormalCI.All103images/packagefit/live80humanvisual/completionpending.Nochildcommit/push/CI/merge/deploy."
+  "pending": [
+    "Coordinator assessment of this exact frozen batch before commit/push/CI",
+    "Actual successor complete ordinary CI including required DB/RLS/recovery and essential104browser; no future native results inferred",
+    "Complete actual103 raw capture inputs and independently qualified <=trustedcap package, truthful <=60KB wire fit, separate approved cap prerequisite if needed; no oldhead reuse",
+    "Authenticated exact-candidate human visual acceptance and existing original-baseline completion gates before terminal Build status"
+  ]
 }
