@@ -4,7 +4,7 @@ Kopplas is a business operations platform being developed for electrical contrac
 
 The aim is to give office staff and field teams a shared view of the business, with connected workflows rather than information scattered across separate tools.
 
-Kopplas is an independent product initiative by Rasmus Alestig Thunborg. It is under active development and is not yet a finished, generally released product. The capabilities below describe the intended product direction; delivery status is tracked in the repository’s implementation and planning documents.
+This is an independent product initiative by Rasmus Alestig Thunborg. It is under active development and is not yet a finished, generally released product. The capabilities below describe the intended product direction; delivery status is tracked in the repository’s implementation and planning documents.
 
 ## Product vision
 
