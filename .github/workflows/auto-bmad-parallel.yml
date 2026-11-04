@@ -30,7 +30,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            group: all
+          - os: windows-latest
+            group: "0"
+          - os: windows-latest
+            group: "1"
     runs-on: ${{ matrix.os }}
     timeout-minutes: ${{ matrix.os == 'windows-latest' && 30 || 15 }}
     steps:
@@ -63,7 +69,150 @@ jobs:
         with:
           python-version: "3.12"
       - name: Exact Story 35.6 blocked runtime admission
-        run: python -X utf8 tests/maintenance/test_admit_story35_6_runtime.py -v
+        shell: python
+        env:
+          ADMISSION_OS: ${{ matrix.os }}
+          ADMISSION_GROUP: ${{ matrix.group }}
+        run: |
+          # ADMISSION_GUARD_BEGIN
+          import hashlib
+          import importlib.util
+          import json
+          import os
+          from pathlib import Path
+          import re
+          import subprocess
+          import sys
+          import unittest
+
+          MODULE = Path("tests/maintenance/test_admit_story35_6_runtime.py")
+          PREFIX = "admission_inventory."
+          CASE = r"[A-Za-z_][A-Za-z0-9_]*\.test[A-Za-z0-9_]*"
+
+          def require(value, message):
+              if not value:
+                  raise RuntimeError(message)
+
+          def git(*args):
+              return subprocess.check_output(["git", *args])
+
+          def binding(expected):
+              require(re.fullmatch(r"[0-9a-f]{40}", expected), "Missing immutable GitHub source SHA")
+              head = git("rev-parse", "HEAD").decode().strip()
+              require(head == expected, "Checkout differs from immutable GitHub source SHA")
+              require(subprocess.run(["git", "diff", "--quiet", head]).returncode == 0, "Tracked source changed")
+              committed = git("show", head + ":" + MODULE.as_posix()).replace(b"\r\n", b"\n")
+              require(MODULE.read_bytes().replace(b"\r\n", b"\n") == committed, "Admission module differs from committed source")
+              return {"commit": head, "tree": git("rev-parse", head + "^{tree}").decode().strip(),
+                      "module": MODULE.as_posix(), "module_sha256": hashlib.sha256(committed).hexdigest()}
+
+          def canonical(ids):
+              require(ids and all(isinstance(value, str) and re.fullmatch(CASE, value) for value in ids), "Empty or invalid case inventory")
+              require(len(ids) == len(set(ids)), "Duplicate case inventory")
+              return sorted(ids)
+
+          def inventory(path=MODULE):
+              spec = importlib.util.spec_from_file_location(PREFIX[:-1], path)
+              module = importlib.util.module_from_spec(spec)
+              sys.modules[spec.name] = module
+              spec.loader.exec_module(module)
+              loader = unittest.TestLoader()
+              suite = loader.loadTestsFromModule(module)
+              require(not loader.errors, "Unittest collection error")
+              def flatten(node):
+                  if isinstance(node, unittest.TestSuite):
+                      return [case for part in node for case in flatten(part)]
+                  require(isinstance(node, unittest.TestCase), "Unknown collected test type")
+                  value = node.id()
+                  require(value.startswith(PREFIX), "Unexpected collected module identity")
+                  return [value[len(PREFIX):]]
+              return canonical(flatten(suite))
+
+          def partition(ids):
+              require(ids == canonical(ids), "Inventory is not canonical")
+              groups = [ids[::2], ids[1::2]]
+              validate_partition(ids, groups)
+              return groups
+
+          def validate_partition(ids, groups):
+              require(len(groups) == 2 and all(groups), "Empty or missing Windows group")
+              require(all(group == canonical(group) for group in groups), "Invalid Windows group")
+              require(not set(groups[0]) & set(groups[1]), "Overlapping Windows groups")
+              require(sorted(groups[0] + groups[1]) == ids, "Incomplete or extra Windows group")
+              require(groups == [ids[::2], ids[1::2]], "Nondeterministic Windows partition")
+
+          def selection(ids, groups, runner, platform, group):
+              allowed = {("Linux", "ubuntu-latest", "all"), ("Windows", "windows-latest", "0"), ("Windows", "windows-latest", "1")}
+              require((runner, platform, group) in allowed, "Unknown admission cell")
+              return ids if group == "all" else groups[int(group)]
+
+          def command(group, selected):
+              return [sys.executable, "-X", "utf8", MODULE.as_posix(), "-v", *([] if group == "all" else selected)]
+
+          def native_child(argv):
+              child = subprocess.Popen(argv, stderr=subprocess.PIPE, bufsize=0)
+              captured, complete = bytearray(), True
+              while chunk := os.read(child.stderr.fileno(), 4096):
+                  sys.stderr.buffer.write(chunk); sys.stderr.buffer.flush()
+                  if len(captured) + len(chunk) <= 1_048_576:
+                      captured.extend(chunk)
+                  else:
+                      complete = False
+              child.stderr.close()
+              code = child.wait()
+              try:
+                  output = captured.decode("utf8")
+              except UnicodeDecodeError:
+                  output, complete = "", False
+              result = subprocess.CompletedProcess(argv, code, stderr=output)
+              result.capture_complete = complete
+              return result
+
+          def native_result(result, argv, selected):
+              require(result.args == argv and result.returncode == 0, "Native command or exit mismatch")
+              require(result.capture_complete and result.stderr.endswith("\n"), "Incomplete native output capture")
+              records = []
+              lines = result.stderr.splitlines()
+              for line in lines:
+                  if " ... " in line:
+                      match = re.fullmatch(r"(test[A-Za-z0-9_]*) \(__main__\.([A-Za-z_][A-Za-z0-9_]*)\.\1\) \.\.\. ok", line)
+                      require(match is not None, "Nonpassing or malformed native case result")
+                      records.append(match[2] + "." + match[1])
+              require(records == selected and len(set(records)) == len(records), "Actual native cases differ from selected group")
+              summaries = [line for line in lines if line.startswith("Ran ")]
+              require(len(summaries) == 1, "Missing or duplicate native terminal summary")
+              match = re.fullmatch(r"Ran ([0-9]+) tests? in [0-9]+(?:\.[0-9]+)?s", summaries[0])
+              require(match is not None and int(match[1]) == len(selected), "Native terminal count mismatch")
+              terminal = lines[lines.index(summaries[0]) + 1:]
+              require([line for line in terminal if line] == ["OK"], "Missing complete zero-skip success")
+              return {"executed_ids": records, "executed": len(records), "skipped": 0,
+                      "failures": 0, "errors": 0, "expected_failures": 0, "unexpected_successes": 0}
+
+          def emit(event, **facts):
+              print(json.dumps({"event": event, **facts}, sort_keys=True), flush=True)
+
+          def main():
+              expected = os.environ["GITHUB_SHA"]
+              before = binding(expected)
+              ids = inventory()
+              require(binding(expected) == before, "Source changed during collection")
+              groups = partition(ids)
+              group = os.environ["ADMISSION_GROUP"]
+              selected = selection(ids, groups, os.environ["RUNNER_OS"], os.environ["ADMISSION_OS"], group)
+              shared = {**before, "inventory_count": len(ids), "inventory_sha256": hashlib.sha256(json.dumps(ids, separators=(",", ":")).encode()).hexdigest()}
+              argv = command(group, selected)
+              emit("admission-before", **shared, group=group, windows_groups=groups, selected_ids=selected, argv=argv)
+              result = native_child(argv)
+              emit("admission-native", argv=result.args, native_exit=result.returncode)
+              after = binding(expected)
+              require(after == before and inventory() == ids, "Source or full inventory changed during execution")
+              emit("admission-after", **shared, group=group)
+              outcome = native_result(result, argv, selected)
+              emit("admission-complete", **shared, group=group, argv=argv, **outcome)
+
+          if __name__ == "__main__":
+              main()
+          # ADMISSION_GUARD_END
   contracts:
     needs: runtime-admission
     strategy:

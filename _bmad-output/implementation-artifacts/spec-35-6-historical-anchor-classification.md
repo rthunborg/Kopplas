@@ -798,7 +798,7 @@ raw test SHA256:
 The new CLI operation shares the actual envelope and complete pre-CAS predicate;
 it retains qualification/review/current-window gates and returns only an observation.
 
-- `docs/process/parallel-auto-bmad-contract.md:525` — `Strict read-only whole-request validation`: operator route and explicit qualification limits.
+- `docs/process/parallel-auto-bmad-contract.md:567` — `Strict read-only whole-request validation`: operator route and explicit qualification limits.
 - `scripts/maintenance/admit_story35_6_runtime.py:879` — `def read_request`: retains capture-once strict request/digest validation.
 - `scripts/maintenance/admit_story35_6_runtime.py:903` — `def validate_request`: shares complete candidate validation and final rechecks.
 - `scripts/maintenance/admit_story35_6_runtime.py:994` — `def validate_only`: returns no assignment, generation or mutation authority.
