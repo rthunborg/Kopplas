@@ -7,6 +7,7 @@ baseline_commit: 'd03a52ce014f60c8e279f016e8cdd5790ca0d596'
 continuation_baseline_commit: '2415964604d5b8d766883f0cbfcf6e6b5ca215a0'
 continuation_date: '2026-11-04'
 runner_observation_baseline_commit: '35ba03d20fc0f0b366b52b4205f539557247507d'
+comparator_correction_baseline_commit: 'b20375b4c605a7fda75c2b4408230107366f21da'
 context:
   - docs/process/parallel-auto-bmad-contract.md
   - docs/process/review-order.md
@@ -551,59 +552,129 @@ history; no cause or source/hosted qualification is inferred. Root must obtain
 independent High review, current source/base/synthetic bindings, its approved
 single automatic CI set and separately approved one manual observation attempt.
 
+## Windows3.12 comparator correction — approved 2026-11-04
+
+Owner explicitly approved the bounded comparator correction, proposal SHA256
+e77f81bfc7b1926d2e4ef6a0d7679bd80b7e3304cdbf8305e3578b7f1654d93f,
+independent High proposal receipt SHA256
+1e4da4bbff9d0a70033fb3e7da5720808c5a2c6a5a4f167236255677aab7fe45.
+The existing author and build snapshot1f5525134fd8b352f1e3 continue; no rerender,
+new author, helper/pin migration or live-plan change. Correction baseline is
+b20375b4c605a7fda75c2b4408230107366f21da, retaining integrated main4411 and
+reviewed877. Historical baselines and frozen intent remain unchanged.
+
+Native diagnostic run41875728902/attempt1, job126734486095 at b203 returned
+original Git0. Both reads were UNSTABLE, relations UNAVAILABLE and observation
+INCOMPLETE. The probe failed native1; safe artifact upload succeeded and terminal77
+was skipped. No877 refusal queries, admission or core tests ran. Retained payload
+SHA2560908a4714816e23d4a46941be9554d2a27d463899b15e11eb2f309fad1a7836a;
+native log1cda1ae3806179d99ca4d0ab898c8e70c5121308b609bb4c8f50cadb807deed5;
+terminal snapshot80f51ec704bfedcad933ad3792103da6f123a3cdaba8e645f112d092e31a8ff3.
+The retained independent evidence identifies hosted Python3.12.10. Neither this
+outcome nor the API flaw establishes index mutation, the actual UNSTABLE branch,
+or the cause of historical originalGit1. That cause remains UNKNOWN.
+
+Exact version-tagged CPython3.12.10 source shows win32_xstat overwrites lstat
+ctime with birthtime (Modules/posixmodule.c2008–2033), while _Py_fstat_noraise
+keeps FILE_BASIC_INFO.ChangeTime (Python/fileutils.c1026–1041,1147–1195).
+Common result conversion preserves those values and exposes birthtime separately
+(Modules/posixmodule.c2421–2474). Primary source pointers are retained in the
+approved private proposal/review, not inferred from a successful local model.
+
+Correction tasks and acceptance:
+- [x] Change only mixed lstat/fstat identity to integer dev/ino/mode/size/mtime_ns
+  plus required Windows birthtime_ns; missing/incompatible fields stay unavailable.
+- [x] Keep full fstat/fstat signature including ctime during reads and across
+  observations; preserve all original guard/native/privacy/late-writer limits.
+- [x] Append operator explanation and refresh this single author review trail.
+- [x] Re-extract actual YAML and execute retained48 controls plus targeted
+  timestamp/identity regressions, consumer rejection and terminal-native77.
+
+Given Windows path creation-time ctime differs from descriptor change-time ctime,
+when all common identity fields agree and descriptor signature stays stable,
+then the synthetic read is AVAILABLE. Given device/file/mode/size/mtime/birth
+identity mismatch, missing/incompatible birthtime or within-fd ctime drift,
+then it refuses or remains unavailable; byte-identical before/after observations
+with changed descriptor ctime still report stat DIFFERENT. Original nonzero
+remains fatal; successful observation remains intentionally nonqualifying.
+
+Current correction controls: actual extracted observer ran59 Python test methods
+(retained48 plus11 new regression methods),59 passed/0 failures/0 errors/0 skips,
+native0 in1.1196438s. Multi-field subtests additionally cover both cross-API edges.
+Actual parsed YAML passed1positive/28 weakening refusals/1duplicate-key refusal,
+native0; guard remainsab3068c8a096e61a4845019a796b6cdb2e720ee324c640f062368a87cca358c5,
+ordinary52/26/26 and core140 DAG unchanged. Native terminal subprocess exited77.
+Retained A.qualify_tooling/original engine.checks executed with other prerequisites
+mocked; diagnostic/missing/zero/skipped/extra receipts were rejected.
+
+New private controls/native logs/metadata are under tmp/private/comparator-correction/.
+Original tmp/private/runner-index-observation/ bytes and evidence remain frozen.
+Only installed Windows Python3.14.7 executed; launcher inventory lists no3.12,
+so no actual3.12 disposable-file API check was run or earned. Python3.12 grammar
+parsing is syntax-only. Stat/native/capture/thread facts remain injected; no actual
+Git experiment, live index read, service, hosted test or provider action occurred.
+Frontend remains explicitly inapplicable to these workflow/docs/spec paths.
+
+Independent High targeted source review is pending. Root alone may commit/publish
+using the separately approved new single automatic CI set, then dispatch one
+nonqualifying Windows observation. Budgets do not authorize retries or E09 work.
+Stop after that run on any result or transport uncertainty; reconcile rather than
+redispatch. No Git/config/latest-version repair, product/claim resume or waiver of
+failed historical source checks follows. Both products and workflow-pin stop remain.
+
 ## Suggested Review Order
 
-Author: `/root/diagnostic_receipts`, Sol High; new approved observation continuation.
-Current local baseline35ba03d20fc0f0b366b52b4205f539557247507d integrates
-reviewed877 with actual main4411cdc412f01ee023440525ff1e17bb824ef383.
-The preceding frozen intent/evidence remain historical; current facts below are
-local controls only, with independent/hosted qualification still pending.
+Author: `/root/diagnostic_receipts`, Sol High, existing correction author.
+Refreshed against the uncommitted three-path comparator correction from
+b20375b4c605a7fda75c2b4408230107366f21da. Historical35ba/main4411/877 and
+native incomplete observation remain preserved; no new hosted qualification exists.
 
-### Separate observation from qualification
+### Keep observation explicitly nonqualifying
 
-The default-false mode preserves the complete ordinary DAG. The manual-only
-Windows job omits all test bodies and must fail after capture even when the
-original Git result is0; a successful observation cannot become runtime evidence.
+The existing default-false entry and terminal are unchanged. Correcting a reader
+cannot convert a diagnostic cell into successful full-matrix qualification.
 
-- `.github/workflows/auto-bmad-parallel.yml:21` — `observe_index_only`: explicit boolean input with disabled default.
-- `.github/workflows/auto-bmad-parallel.yml:36` — `if:`: excludes the ordinary matrix only for the diagnostic dispatch.
-- `.github/workflows/auto-bmad-parallel.yml:501` — `original-index-observation`: one separate Windows job.
-- `.github/workflows/auto-bmad-parallel.yml:763` — `Diagnostic observation cannot qualify`: preserves original failure and forces native77 after successful probe/capture.
+- `.github/workflows/auto-bmad-parallel.yml:21` — `observe_index_only`: manual input remains disabled by default.
+- `.github/workflows/auto-bmad-parallel.yml:36` — `if:`: ordinary DAG exclusion remains diagnostic-only.
+- `.github/workflows/auto-bmad-parallel.yml:773` — `Diagnostic observation cannot qualify`: original0 still reaches intentional native77.
 
-### Observe bounded metadata without retaining index contents
+### Compare common identity while preserving descriptor consistency
 
-Each read owns its raw descriptor; closed, nonblocking publication and independent
-fallback prevent late results from becoming current. Only relation/availability
-enums leave transient digest/stat material; readers cannot establish atomicity.
+Windows3.12 lstat and fstat have incompatible ctime semantics. Use required common
+identity/birthtime across APIs; retain full descriptor ctime for both consistency
+and before/after relation. Missing identity never becomes a weaker comparison.
 
-- `.github/workflows/auto-bmad-parallel.yml:567` — `def index_read`: fixed literal metadata path, byte cap and descriptor/stat checks.
-- `.github/workflows/auto-bmad-parallel.yml:607` — `def observe_index`:250ms wait closes before selecting an immutable result.
-- `.github/workflows/auto-bmad-parallel.yml:644` — `def bounded_observation`: rejects unexpected states and shapes.
-- `.github/workflows/auto-bmad-parallel.yml:660` — `def capture_report`:2KiB payload, one raw write and bounded descriptor ownership.
+- `.github/workflows/auto-bmad-parallel.yml:567` — `def cross_api_identity`: common integers plus required Windows birthtime.
+- `.github/workflows/auto-bmad-parallel.yml:577` — `def index_read`: original bounded descriptor ownership remains.
+- `.github/workflows/auto-bmad-parallel.yml:601` — `signature(before) != signature(after)`: same-descriptor ctime remains checked.
+- `.github/workflows/auto-bmad-parallel.yml:606` — `signature(after)`: full descriptor signature remains the stat relation token.
+- `docs/process/parallel-auto-bmad-contract.md:1092` — `Mixed path/descriptor identity`: API semantics and unproven hosted attribution.
 
-### Preserve the first native predicate and its fatal result
+### Preserve original Git failure and private bounded capture
 
-The copied877 guard body is unchanged. The observer retains the original once-only
-Git argv/settings/inherited streams, then only nonzero enters its existing bounded
-refusal routine; all observer/capture/serializer failures leave that refusal fatal.
+The877 guard remains byte-identical. There is still one original quiet call with
+unchanged argv/settings/streams; later observation/capture failures never mask it.
 
-- `.github/workflows/auto-bmad-parallel.yml:701` — `def original_observation`: immutable source binding and separate observations.
-- `.github/workflows/auto-bmad-parallel.yml:709` — `subprocess.run`: exact original argv with no new keyword settings.
-- `.github/workflows/auto-bmad-parallel.yml:729` — `if code != 0`: unconditional static fatal fromNone after optional diagnostics.
-- `.github/workflows/auto-bmad-parallel.yml:736` — `def observation_main`: validates exact877 guard digest without running admission main.
+- `.github/workflows/auto-bmad-parallel.yml:719` — `subprocess.run`: original call has no added kwargs or timeout.
+- `.github/workflows/auto-bmad-parallel.yml:739` — `if code != 0`: static fatal precedence remains.
+- `.github/workflows/auto-bmad-parallel.yml:654` — `def bounded_observation`: closed result shape and unavailable fallback.
+- `.github/workflows/auto-bmad-parallel.yml:670` — `def capture_report`: original2KiB/single-write/250ms bounds remain.
 
-### Read the actual local evidence with its limits
+### Read actual correction evidence and its limits
 
-The parsed workflow controls preserve all existing default jobs and refuse28
-weakening mutations;48 injected Python controls exercise privacy/native/lifecycle
-boundaries and the unchanged consumer predicates. They do not execute a native Git
-experiment or establish GitHub expression evaluation, filesystem/OS teardown,
-provider authenticity or source qualification. The native terminal control exited77.
+Actual YAML conservation/refusal controls and59 Python methods passed, including
+the retained48 and11 comparator regression methods. Common identity mismatch,
+missing/incompatible birthtime and within-fd ctime drift refuse; stable mixed-API
+ctime differences accept, while before/after descriptor ctime still differs.
+Consumer prerequisites/stat/native I/O are injected; terminal subprocess77 is real.
+Only Windows Python3.14 ran; actual3.12 API behavior is unearned and hosted cause
+remains UNKNOWN. Prior frozen evidence is unchanged, not reclassified as success.
 
-- `.github/workflows/auto-bmad-parallel.yml:754` — `Preserve bounded non-qualification observation`: captures only one safe artifact, including after failure.
-- `docs/process/parallel-auto-bmad-contract.md:1048` — `Diagnostic-only original index observation`: operator limits and separate native non-qualification failure.
+- `_bmad-output/implementation-artifacts/spec-e35-contract-ci-topology.md:555` — `Windows3.12 comparator correction`: authority, native failure and current control provenance.
+- `.github/workflows/auto-bmad-parallel.yml:764` — `Preserve bounded non-qualification observation`: safe fixed artifact only.
 
-Root owns current provider source/base/synthetic checks, publication, the approved
-automatic CI set and one diagnostic dispatch. Original877 failure, PR13461 context,
-the four-case non-reproduction and independent workflow-pin stop remain. Both
-products are held; current source independent review/hosted execution are pending.
+Private current scripts/logs/hash manifest live under tmp/private/comparator-correction/;
+original runner-index-observation evidence stays frozen. Root owns independent High
+targeted review, commit/publication, one new automatic set and one nonqualifying run.
+No extra Git experiment, provider/service/claim action or E09 implementation ran.
+Both product holds, historical failures and workflow-pin stop remain.

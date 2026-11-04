@@ -564,6 +564,16 @@ jobs:
                       info.st_mtime_ns, info.st_ctime_ns)
 
 
+          def cross_api_identity(info):
+              # Windows3.12 lstat ctime is creation time; fstat ctime is change time.
+              fields = (info.st_dev, info.st_ino, info.st_mode, info.st_size, info.st_mtime_ns)
+              if os.name == "nt":
+                  fields += (info.st_birthtime_ns,)
+              if not all(type(part) is int for part in fields):
+                  raise ValueError("Index identity unavailable")
+              return fields
+
+
           def index_read():
               fd = None
               try:
@@ -576,7 +586,7 @@ jobs:
                       return "BYTE_LIMIT", None
                   fd = os.open(".git/index", os.O_RDONLY | getattr(os, "O_BINARY", 0))
                   before = os.fstat(fd)
-                  if not ordinary(before, stat.S_ISREG) or signature(before) != signature(initial):
+                  if not ordinary(before, stat.S_ISREG) or cross_api_identity(before) != cross_api_identity(initial):
                       return "UNSTABLE", None
                   digest, total = hashlib.sha256(), 0
                   while True:
@@ -590,7 +600,7 @@ jobs:
                   after = os.fstat(fd)
                   if (total != before.st_size or signature(before) != signature(after) or
                           not ordinary(os.lstat(".git"), stat.S_ISDIR) or
-                          signature(after) != signature(os.lstat(".git/index"))):
+                          cross_api_identity(after) != cross_api_identity(os.lstat(".git/index"))):
                       return "UNSTABLE", None
                   # Digests and raw stat fields remain transient; only relations can leave.
                   return "AVAILABLE", (digest.digest(), signature(after))

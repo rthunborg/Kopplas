@@ -1089,6 +1089,16 @@ observations. Each reader owns/closes its descriptor; no transferred/reused fd.
 Digests/stat tuples are transient comparison material only. They are neither
 emitted nor archived, along with raw index bytes or parsed/unknown path names.
 
+Mixed path/descriptor identity uses common-semantic device, file ID, mode, size
+and nanosecond mtime, plus required integer nanosecond birthtime on Windows.
+CPython3.12 Windows lstat exposes creation time as legacy ctime while fstat
+exposes metadata change time; comparing those ctime fields across APIs can
+falsely reject an unchanged file. Missing/incompatible identity fields remain
+UNAVAILABLE. Same-descriptor before/after consistency and the returned stat
+relation retain the full signature including ctime; no within-read race check
+or before/after relation is weakened. This comparator correction does not show
+which predicate produced a retained UNSTABLE result or explain original Git1.
+
 The only new artifact is `test-results/original-index-observation.json`, at most
 2KiB, containing fixed availability/byte/stat relation enums, immutable SHA/cell,
 original native code, diagnostic-only mode and cause UNKNOWN. Its dedicated raw
