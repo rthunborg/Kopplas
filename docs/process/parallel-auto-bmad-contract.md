@@ -1003,3 +1003,44 @@ folder (up to two explicitly planned folders). Terminal done_checkpoint is
 preserved: stop after the own PR, retain pending status until verified main merge.
 Unfulfilled spec_checkpoint approval and multi-entry continuation fail closed;
 no new checkpoint scheduler or source flag rewrite is introduced.
+
+
+## On-refusal admission source metadata
+
+The admission guard preserves its original once-only
+`git diff --quiet <captured-source-sha>` call, settings and inherited streams.
+A returned nonzero remains the SAME fatal `Tracked source changed` refusal;
+collection/native tests cannot continue. Code0 runs no diagnostics. The original
+native stderr is an unchanged legacy boundary, not retroactively sanitized.
+
+Only after nonzero, three fixed diagnostic Git plumbing reads may observe the
+immutable committed path allowlist, HEAD-index and index-worktree name/status.
+Diagnostic-only no-optional-locks/no pager/replacement/lazy-fetch/ext-diff/textconv/
+rename settings suppress optional index refresh and arbitrary new stderr.
+No source/index repair, refresh, retry, configuration or acceptance change occurs.
+
+One optional finite JSON record retains the exact original native Git code and
+fixed cell/phase. Rows require complete NUL grammar, exact committed byte-identity
+membership and safe ASCII paths; no casefold/Unicode normalization. Unsafe,
+unknown, malformed or truncated data withholds ALL comparison rows/counts. No
+patch/content/unknown-path hash/env/config/credentials/exception text is emitted.
+Allowlist is capped at2MiB/16384paths/512bytes; each diff256KiB/256records/16display;
+ASCII JSON32768bytes, independent UNKNOWN fallback2048bytes.
+
+The6s application deadline includes a0.1s freeze/output reserve; command1.5s,
+exact-owned kill/wait0.25s and EOF/emission-signal0.05s remain bounded. NEW workers
+use descriptor-only pipe reads and at most ONE raw stdout descriptor write,
+no buffered stdio/flush/logging/traceback. Nonblocking record locks select an
+independent fallback; no I/O/parse/spawn/cleanup is under lock. Freeze closes
+mutation separately from the sole main-scheduled pre-deadline output permit.
+Late callbacks cannot promote or start another command/output; main never
+closes/joins an unsettled reader. A begun raw write/owned child may remain
+unverified: no delivery, hard real-time OS teardown or shutdown claim follows.
+
+These are LATER NON-ATOMIC observations with cause UNKNOWN. Index-only/worktree-
+only/both/empty means only what those later complete reads reported; it cannot
+reconstruct the original failed check or prove a flake/EOL/stat theory. Diagnostic
+errors, unavailable data, timeout, truncation or partial output never waive the
+original refusal. An externally canceled job remains nonqualifying. Existing
+matrix/core140/pins/15–30 budgets and real-source qualification gates are unchanged.
+Local private controls/fixtures do not earn admission/native-suite/CI coverage.

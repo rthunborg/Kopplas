@@ -319,48 +319,211 @@ PR134 integration the actual inventory must be61, not this baseline52. Historica
 57 completion lines plus later results are never combined. No automatic release,
 claim, source-pin or two-check receipt-schema authority changes.
 
+## Source-refusal diagnostics continuation (2026-11-04)
+
+Root admitted SAME Sol6.1 High author/native01a19d45 on a NEW clean registered
+`C:/DEV/Kopplas/tmp/private/e35-source-refusal-diagnostics`, branch
+`codex/e35-6-source-refusal-diagnostics`, from qualified
+`4824c4c1a6acf3e10b4227604b13b2fa304d80e1`. Reuse root Build render a445;
+render project root remains C:/DEV/Kopplas, source/artifact root is this worktree.
+No story key/sprint/global bookkeeping. Fresh status checks found63 registered
+worktrees and zero exceptions on the three allocated paths. This records known
+source facts, not global process proof. All producer57/7/3IDs+cap3/fourth+diag4+
+PR1344+topology3 and current new3 holds remain; author is newly active.
+
+Approved original design SHA256 `deb4bd78808ae7af35cb63692ea45653c2a44d2eddb118d78a760609faf1c44b`
+PLUS binding R1 addendum `5d4798b8cd49123761a3fe0d7c562b4c4f7cd60c7d6a0c1ee85a500290f71104`
+were independently assessed by SAME Sol High reviewer
+`/root/crm_runtime_route/runtime_admission_blind_review`, final receipt
+`38d9e83972210855ac4bb4e98468b7e2acd6e02a95f6a099eec354706267819a`.
+These frozen private files remain under PR134's source-refusal-diagnostics-design
+folder. This extension preserves the original PR130 intent and prior partition
+history above. Qualified4824 contains52 methods; frozen PR13410cc contains61.
+Neither inventory is a native PASS or qualification of this new source.
+
+### Approved refusal-only intent and acceptance
+
+- Given original Git cleanliness code0, when binding checks source, then the
+  original call/settings/streams run once with no diagnostics and unchanged
+  acceptance. Given a returned nonzero, diagnostics can never permit collection,
+  execution or success: the SAME static fatal refusal is raised from None.
+- Given that nonzero, when metadata is available, then only three fixed Git
+  plumbing reads run sequentially with diagnostic-only no-optional-locks/pager/
+  replace/lazy-fetch/ext-diff/textconv/rename suppression. Retain exact original
+  native RC. Capture head-index/worktree facts as LATER NON-ATOMIC, cause UNKNOWN.
+  No refresh/repair/index/config change, retry or guessed original state.
+- Given new diagnostic bytes, when parsed/emitted, then complete NUL grammar,
+  exact immutable raw-path membership and safe ASCII display are required before
+  ANY row. Unknown/unsafe/malformed/overflow input withholds all rows/counts.
+  Capture limits: allowlist2MiB/16384paths/512bytes, diff256KiB/256rows/16display,
+  ASCII JSON32768bytes or fixed fallback2048bytes. No content/stderr/env/config/
+  credentials/exception text. Original inherited stderr is unchanged legacy I/O.
+- Given slow/failed/late workers, when the6s application deadline closes the
+  record, then nonblocking locks select independent UNKNOWN fallback, no I/O/
+  parse/spawn/cleanup occurs under lock, and new callbacks cannot promote/mutate/
+  emit/start another command. Command1.5s, owned kill/wait0.25s, EOF/emission
+  signal0.05s and0.1s reserve apply. Raw descriptor reads only, no main close/join
+  of unsettled readers; one main-scheduled pre-deadline os.write attempt only.
+  No buffered stdio/logging/traceback in new workers, delivery or verified-shutdown
+  claim. External cancellation remains nonqualification.
+- Given this exact three-path change, when qualifying locally, then private
+  controls use ACTUAL extracted YAML logic plus one disposable Git fixture.
+  Preserve entire core/matrix/pin/schema/trigger/concurrency/15–30 contracts and
+  append contract notes after existing sections. No admission bodies/core/CI/
+  runtime/resources/store/live actions. Fresh real-source gates remain Root's.
+
+### Refusal continuation Code Map
+
+- `.github/workflows/auto-bmad-parallel.yml`: existing binding cleanliness seam
+  gains local bounded parser/capture/refusal helpers and three fixed phase labels;
+  collection/partition/native result/core logic remains unchanged.
+- `docs/process/parallel-auto-bmad-contract.md`: append a refusal-metadata note
+  after all sections; preserve unrelated future PR134 SRO567 by retaining prefix.
+- This spec: preserve prior intent/history; refresh exactly ONE author SRO after
+  final native evidence. Private controls/evidence live under
+  `tmp/private/source-refusal-diagnostics/`, no new tracked helper/test paths.
+
+### Refusal continuation tasks
+
+- [x] Establish fresh identity/source allocation; record approved intent before code.
+- [x] Implement refusal-local diagnostics and append operator contract note.
+- [x] Run actual-extracted private native/privacy/lifecycle controls and Git fixture.
+- [x] Verify conserved source/pins, one author SRO and final exact three-path diff.
+
+### Refusal continuation verification
+
+The author completed these controls before the owner HOLD, and preserved them.
+Root's explicit repair-only release adopts the finite owner-approved tranche at
+`b6d5ae5b8475faeabaa8f8d134fc6532f35fce55`; both product35.6/35.7 holds remain.
+Full continuation envelope and parent-folder owner-approval.md were read. Fresh
+resumption confirmed the SAME native identity, allocated worktree/branch, baseline
+4824 and exactly three dirty paths, with no outstanding command. Full approved
+original/R1/independent-confirmation hashes matched before adoption. No source
+logic or successful control was replayed merely to resume. All reservations remain.
+
+Tested source: qualified4824 plus ONLY this workflow working-tree change. Final
+actual YAML-extracted guard SHA256 is
+`ab3068c8a096e61a4845019a796b6cdb2e720ee324c640f062368a87cca358c5`;
+workflow raw SHA256 is
+`3ddeada039565c306ab42dc705af20a92e26e4b918466791dd3c9f8ed4c0d46a`.
+The guard is362 lines versus139 at baseline. Four refusal-local helpers occupy
+215 lines including separating whitespace (initial draft202; strict UTF8 check
+and protected completion signaling account for the later13). The additional
+structure implements raw descriptor ownership, independent fallback/closure and
+caught daemon completion errors required by R1; no generic runner/framework,
+new dependency or tracked script/test was introduced. Collection, partition,
+existing native stream/result and core logic remain unchanged. The design's
+120–160 line estimate was exceeded; size is reported for targeted review,
+not treated as proof of correctness or a hidden scope expansion.
+
+Each final command used the private run-command.py recorder, retaining exact
+argv/cwd, elapsed seconds, native exit, log hash and guard hash. All four finished
+native0; their records/log hashes were rechecked on repair-only resumption:
+
+| Final private command | Actual result | Seconds |
+| --- | --- | --- |
+| node check-workflow.mjs |1 parsed positive;32 weakening mutations refused;1 duplicate-YAML refusal|0.175184|
+| python -B -X utf8 check-refusal.py |81 controls passed;0 failed|0.338098|
+| python -B -X utf8 check-lifecycle.py |20 controls passed;0 failed|6.207293|
+| python -B -X utf8 check-git-fixture.py |5 real Git observations passed;0 failed|2.318141|
+
+All paths above resolve under `tmp/private/source-refusal-diagnostics/`; these
+are controls/observations, not admission suite or product test counts. Python
+fixtures/native child results are injected except ONE retained disposable Git
+repository. No admission bodies/core suites/CI/browser/runtime/resources/store
+or live operations executed. The fixture's actual original Git probes returned1;
+its diagnostic fixed reads reported index-only, worktree-only, both, deliberately
+later-empty, and unknown-new-path refusal. Index raw hashes immediately AFTER
+original probes equal those AFTER diagnostics. Its non-ASCII committed member
+remains exact internal membership, never normalized. Original native Git emitted
+two LF/CRLF warnings in the retained log; that unchanged inherited stderr is
+explicitly outside the NEW diagnostic privacy boundary.
+
+AC native precedence maps to original0/1/128/negative/Windows-native code probes,
+once-only exact original argv/settings, zero-diagnostic success, fatal nonzero
+and suppressed secret exception chains. AC privacy maps to complete allowlist
+and status grammar, exact case/byte membership, unknown/new/unsafe/nonASCII/
+control/traversal paths, valid-before-invalid withholding, duplicate/unterminated/
+empty/parity errors and byte/path/record/display caps. No unsafe row/count leaks.
+AC lifecycle maps to raw pipe/error/timeout/overflow/EOF controls, contested
+nonblocking lock fallback, blocked/partial/throwing/late raw emission, late owned
+Popen cleanup and a REAL6s deadline followed by an inert late collector. AST
+checks prohibit new buffered stdio/flush/join/traceback and I/O/parse/spawn under
+the record lock. These are bounded injected boundaries, not OS teardown proof.
+AC conservation maps to unchanged preexisting function ASTs/main except three
+literal phase arguments, complete parsed baseline job/setup/core equality,
+mandatory whole-matrix gate and32 weakening refusals. Existing source-aware52
+baseline versus future61 remains unchanged, without reexecuting either suite.
+
+Retained failure: first refusal command native1 in0.265551s failed before any
+control with IndentationError in the newly added UTF8 check. The author corrected
+indentation; earlier31142a guard then passed81/20/5 controls before protecting
+all daemon-finally completion signaling. Those prior bytes/results are preserved
+as before-worker-signal-* and their original logs/metadata. The final ab3068
+commands above ran after that justified source change. No earlier pass was
+relabelled final; no failure was deleted or rerun blindly for green.
+
+Private packet enumerates specific scripts, native metadata/logs/results and
+source bindings; it does not recursively traverse the retained fixture. Exactly
+one author SRO below is checked with the bounded existing node reference checker.
+`git diff --check` and protected committed-blob/pin comparisons are recorded in
+the private freeze receipt. Neither local success nor the old synthetic/direct
+CI observations prove this new source's qualification or the old failure cause.
+Root retains current-source review/hosted gates, publication and hold release.
+
 ## Suggested Review Order
 
 Author: `/root/crm_runtime_route/runtime_admission_author`, gpt-6.1-sol High.
-Refreshed against the three-path continuation from qualified
-`2415964604d5b8d766883f0cbfcf6e6b5ca215a0`. Original PR130/d03 evidence above
-remains historical; this trail describes the actual new source and controls.
+Refreshed against the exact three-path source-refusal continuation from qualified
+`4824c4c1a6acf3e10b4227604b13b2fa304d80e1`. Prior PR130/partition evidence and
+intent remain historical. This guide describes new refusal metadata only.
 
-### Derive complete source-bound cells before execution
+### Observe refusal without changing source acceptance
 
-The new guard derives its expectation from the full actual source, so source52
-and source61 cannot borrow each other's count or historical partial completion.
-The canonical alternating partition keeps every original case in Windows coverage.
+The approved design retains the original once-only Git call and unchanged native
+streams. Every returned nonzero remains fatal; optional diagnostics cannot supply
+a passing source or permit collection/tests.
 
-- `.github/workflows/auto-bmad-parallel.yml:29` — `runtime-admission:`: enters the three-cell admission prerequisite.
-- `.github/workflows/auto-bmad-parallel.yml:99` — `def binding(expected)`: binds immutable GitHub SHA, tree and actual module source.
-- `.github/workflows/auto-bmad-parallel.yml:114` — `def inventory(path=MODULE)`: collects complete actual IDs without executing fixtures.
-- `.github/workflows/auto-bmad-parallel.yml:137` — `def validate_partition`: refuses empty, duplicate, overlapping or incomplete groups.
+- `.github/workflows/auto-bmad-parallel.yml:317` — `def binding`: retains immutable source checks and enters refusal only after nonzero.
+- `.github/workflows/auto-bmad-parallel.yml:326` — `from None`: keeps the static fatal error without diagnostic exception chains.
+- `.github/workflows/auto-bmad-parallel.yml:419` — `BEFORE_COLLECTION`: labels the first boundary before any inventory or child.
 
-### Preserve native progress, strict results and the whole-matrix gate
+### Admit only complete bounded path metadata
 
-Raw child progress remains visible during cancellation. Only complete exact native
-results can produce a cell success; neither core job can bypass any required cell.
+Fixed plumbing queries observe later NON-ATOMIC facts. Exact committed-byte
+membership and complete parsing precede every safe ASCII row; unknown/unsafe/
+truncated input withholds all comparison rows/counts rather than exposing it.
 
-- `.github/workflows/auto-bmad-parallel.yml:152` — `def native_child(argv)`: tees partial bytes immediately and bounds validation capture.
-- `.github/workflows/auto-bmad-parallel.yml:171` — `def native_result`: verifies exact actual IDs, count, terminal success and native exit.
-- `.github/workflows/auto-bmad-parallel.yml:209` — `emit("admission-after"`: records after-source/inventory consistency before success.
-- `.github/workflows/auto-bmad-parallel.yml:217` — `needs: runtime-admission`: preserves default-success whole-matrix gating.
+- `.github/workflows/auto-bmad-parallel.yml:106` — `def diagnostic_parse`: enforces entire-capture grammar, membership and display limits.
+- `.github/workflows/auto-bmad-parallel.yml:243` — `ls-tree`: obtains the immutable byte-identity allowlist with fixed read-only arguments.
+- `.github/workflows/auto-bmad-parallel.yml:254` — `--name-status`: uses bounded fixed diagnostic metadata commands.
+- `docs/process/parallel-auto-bmad-contract.md:1008` — `On-refusal admission source metadata`: records privacy limits and original-stream distinction.
 
-### Keep qualification provenance and existing core authority explicit
+### Close records independently of daemon I/O
 
-The adapter still accepts the same two core checks; Root separately retains and
-compares all three real prerequisite records. Local source collection and injected
-protocol controls establish guard behavior, without pretending to be native suite execution.
+R1 chose descriptor-only I/O to avoid new buffered-stdio shutdown-lock coupling.
+Main freezes or takes independent UNKNOWN fallback through nonblocking locks;
+one immutable pre-deadline emission permit cannot be reacquired by late workers.
 
-- `.github/workflows/auto-bmad-parallel.yml:268` — `exit $testExit`: preserves the existing core routing native failure propagation.
-- `docs/process/parallel-auto-bmad-contract.md:264` — `Every admission cell`: requires common immutable source/full-inventory bindings.
-- `docs/process/parallel-auto-bmad-contract.md:291` — `all five jobs`: requires all actual records without a fake combined Windows argv.
-- `docs/process/parallel-auto-bmad-contract.md:300` — `Current topology continuation`: distinguishes actual baseline52 from later integrated61.
+- `.github/workflows/auto-bmad-parallel.yml:146` — `def diagnostic_capture`: owns raw pipes and bounded exact-child settlement.
+- `.github/workflows/auto-bmad-parallel.yml:272` — `lock.acquire(blocking=False)`: publishes only while the record remains open.
+- `.github/workflows/auto-bmad-parallel.yml:288` — `os.write(1, payload)`: attempts one raw descriptor write without retry or echo.
+- `.github/workflows/auto-bmad-parallel.yml:300` — `closed.set()`: closes mutation before snapshot/emission scheduling.
 
-Evidence: Current continuation verification maps each AC to the actual collected
-source and60 extracted-guard controls, plus parsed conservation/32 refusal
-mutations. Admission bodies/core/CI executions here:0. Limits: synthetic child,
-pipe, result and clean-status fixtures do not prove hosted timing, Windows group
-completion, global provider truth, live custody or new tooling qualification.
-Root retains fresh direct-source matrix/ordinary gates and publication authority.
+### Preserve strict execution and qualification boundaries
+
+The81 refusal,20 lifecycle and5 real-Git observations map to the ACs in Refusal
+continuation verification above; parsed conservation adds1positive/32negative/
+1duplicate-key refusal. None executes admission bodies or authenticates hosted
+cause, delivery, shutdown, current custody or new-source CI qualification.
+
+- `.github/workflows/auto-bmad-parallel.yml:375` — `def native_child`: preserves existing immediate native progress output.
+- `.github/workflows/auto-bmad-parallel.yml:394` — `def native_result`: preserves exact selected IDs and complete native success requirements.
+- `.github/workflows/auto-bmad-parallel.yml:440` — `needs: runtime-admission`: keeps the entire matrix prerequisite without bypass.
+- `.github/workflows/auto-bmad-parallel.yml:491` — `exit $testExit`: preserves core routing's native failure propagation.
+
+Evidence: four preserved final native commands exited0 against extracted ab3068;
+initial compile failure/earlier passes remain distinct. Synthetic process/pipe/
+lock controls and one disposable Git fixture do not establish hard OS deadlines,
+future Windows/Linux success or the unknown original cause. Product holds remain;
+Root owns independent review, actual-source qualification and supported recovery.
