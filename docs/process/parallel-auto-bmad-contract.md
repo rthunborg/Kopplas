@@ -1044,3 +1044,68 @@ errors, unavailable data, timeout, truncation or partial output never waive the
 original refusal. An externally canceled job remains nonqualifying. Existing
 matrix/core140/pins/15–30 budgets and real-source qualification gates are unchanged.
 Local private controls/fixtures do not earn admission/native-suite/CI coverage.
+
+## Diagnostic-only original index observation
+
+The optional manual `observe_index_only` boolean defaults to false. Ordinary PR,
+push and default-dispatch execution retains the full 52-test inventory admission
+matrix (Ubuntu52, Windows26/26 here), both unchanged 140-test core jobs and their
+whole-matrix dependency. PR134's separate 61/31/30 source is not borrowed. The
+new observation job is skipped/non-applicable in ordinary qualification; it is
+never an additional qualifying core check.
+
+An explicitly authorized manual true dispatch runs only the separately named
+`original-index-observation` Windows0 job. The ordinary admission matrix and
+its dependent core jobs remain skipped. After bounded artifact capture, an
+otherwise successful probe deliberately exits 77 with the fixed
+`DIAGNOSTIC_OBSERVATION_NOT_QUALIFICATION` marker. Original nonzero keeps its
+original static fatal step. The diagnostic workflow cannot finish SUCCESS,
+including original 0/complete observations. Its result, job name, missing core
+jobs and zero test counts cannot qualify through existing consumers; no receipt
+schema, accepted check name, helper, pin or gate is changed.
+
+Root's approved budget is one exact reviewed-source diagnostic dispatch/cell,
+one original quiet invocation, and one separately authorized automatic CI set
+on publication. Transport uncertainty is reconciled through the original run
+identity, never blind redispatch. Mode, actual source/merge SHA/tree, native
+original code, observation availability and outcome remain distinct evidence.
+No local successful control or intentionally failed observation waives a failed
+automatic contract or provides product runtime coverage.
+
+The observer verifies exact immutable checkout SHA and loads the byte-identical
+877guard (ab3068c8a096e61a4845019a796b6cdb2e720ee324c640f062368a87cca358c5)
+with a non-main name. No inventory/test body runs. Its sole original
+`git diff --quiet <captured SHA>` retains argv, executable resolution,
+environment/settings and inherited streams with no new original timeout,
+configuration, optional-lock flag, Trace2, filter or refresh. The usual immutable
+HEAD read precedes observation; no extra status/config/discovery Git command is
+added. Read-only byte/stat observation can still perturb timing/cache behavior.
+
+Two dedicated daemon reads of literal non-reparse `.git/index` each have a 250ms
+application wait and 16MiB/64KiB raw capture limit. Descriptor/path stat checks
+mark detected instability; they do not establish atomicity. Closed publication,
+nonblocking locks and independent fallback prevent late results becoming current
+observations. Each reader owns/closes its descriptor; no transferred/reused fd.
+Digests/stat tuples are transient comparison material only. They are neither
+emitted nor archived, along with raw index bytes or parsed/unknown path names.
+
+The only new artifact is `test-results/original-index-observation.json`, at most
+2KiB, containing fixed availability/byte/stat relation enums, immutable SHA/cell,
+original native code, diagnostic-only mode and cause UNKNOWN. Its dedicated raw
+writer gets one pre-deadline write attempt and 250ms application wait, with no
+retry; a partial/error/unsettled capture never counts as complete. Upload has a
+2-minute step budget and missing artifact fails. Original0 with incomplete
+observation/capture fails the probe; original nonzero stays fatal regardless of
+observer/serializer/capture/refusal exceptions. The unchanged877 refusal routine
+alone may emit its existing bounded later metadata after nonzero; original 0
+runs none of those diagnostic Git commands. Inherited original stderr remains
+restricted and is not retroactively sanitized.
+
+OS I/O/creation/scheduling or an already-begun write are not hard real-time or
+verified-shutdown guarantees. Equal before/after observations exclude neither a
+transient write nor another writer; differing observations do not prove causality
+or identify the original changed path. Stop after the single run on 0,1,error or
+unavailable data. Return exact safe facts or an evidence limit. Any subsequent
+instrumentation, correction, workflow-pin migration or product resume requires
+its separate bounded disposition. Both products and all retained allocations
+remain held; no index repair, cleanup or source gate relaxation is implied.

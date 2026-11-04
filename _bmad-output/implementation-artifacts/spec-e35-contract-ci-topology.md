@@ -6,6 +6,7 @@ status: 'in-review'
 baseline_commit: 'd03a52ce014f60c8e279f016e8cdd5790ca0d596'
 continuation_baseline_commit: '2415964604d5b8d766883f0cbfcf6e6b5ca215a0'
 continuation_date: '2026-11-04'
+runner_observation_baseline_commit: '35ba03d20fc0f0b366b52b4205f539557247507d'
 context:
   - docs/process/parallel-auto-bmad-contract.md
   - docs/process/review-order.md
@@ -471,59 +472,138 @@ the private freeze receipt. Neither local success nor the old synthetic/direct
 CI observations prove this new source's qualification or the old failure cause.
 Root retains current-source review/hosted gates, publication and hold release.
 
+## Runner-native index observation continuation — approved 2026-11-04
+
+New author `/root/diagnostic_receipts`, Sol High, owns exactly the workflow,
+parallel contract and this existing execution artifact. Approved proposal r2
+SHA25673c2b3425376b145b0444ad1ec21e74da1ea08f98926c0ecac8897c7a4e5380a
+and direct owner approval are retained privately. Build renderer ran once,
+snapshot1f5525134fd8b352f1e3; headless preparation uses that exact approval.
+Historical frozen intent/baselines above remain unchanged. Current local baseline
+35ba03d20fc0f0b366b52b4205f539557247507d merges reviewed877 with actual main
+4411cdc412f01ee023440525ff1e17bb824ef383. Old731c PR metadata is historical.
+No product sprint/claim status is changed by this process continuation.
+
+Problem: hosted PR138 Windows0 retained original quiet1 but later empty comparisons;
+four approved private exact-version observations did not reproduce that pattern.
+Measure only bounded before/after index byte/stat relations on one actual runner.
+
+Execution plan (all within the explicit three-path allocation):
+- [x] Workflow: manual-only default-false mode, one Windows0 observation job;
+  original877guard byte-identical, default52/26/26 matrix/core140 unchanged.
+- [x] Inline observer: two250ms waits/16MiB reads, no raw index/digest/path/stat
+  output, original quiet once with unchanged args/settings/streams, fatal nonzero.
+- [x] Preserve bounded artifact then intentional non-qualification workflow failure
+  even original0; no accepted contract success or consumer schema/pin changes.
+- [x] Private actual-YAML/injected source controls plus current consumer refusal;
+  author trail maps actual results and limitations before independent High review.
+- [x] Append operator contract and refresh one SRO; freeze exactly3tracked paths.
+
+Acceptance: Given ordinary events/default dispatch, when parsed, then existing
+complete DAG/pins/native commands stay equal apart from mode exclusion. Given
+manual observation, when original0/complete capture, then terminal failure still
+prevents workflow SUCCESS. Given original nonzero or observer failures, when the
+job settles, then exact original code/static fatal precedence persists. Given
+unsafe/unstable/oversized/late index input, when summarized, then bounded fixed
+UNKNOWN/unavailable facts replace raw data and no late publication changes it.
+Given diagnostic/zero-test receipts, when existing qualification consumers run,
+then they refuse without new schemas. These local controls never execute a new
+actual Git experiment or qualify a hosted source.
+
+Scope stays process-only: no source repair, helper/workflow pin changes,
+dependencies, product/table/auth/app changes, resources, live store or provider
+calls. Root alone owns commits/publication, one approved automatic CI set and
+one later diagnostic dispatch. Both products remain held. Frontend acceptance is
+not applicable because only workflow/operator docs/execution evidence change.
+
+### Runner observation local verification and limits
+
+Actual parsed YAML conserved the complete ordinary baseline35ba DAG/pins/core
+commands and exact877guard ab3068. Native node command passed1positive,
+28weakening mutations and1duplicate-key refusal. Its mode truth table covers
+PR/push/manual false/manual true; GitHub evaluation itself remains hosted proof.
+Actual extracted observation source SHA256
+5e56faa4b79003d92911c1774dc832da165be3b5c561747811e7f7490703be48
+ran 48 Python controls:48 passed/0 failed/0 errors/0 skipped in1.080285s (native0).
+These exercise original0/1/128/signal/Windows result, exact once-only argv/no
+kwargs, static fatal/secret-chain precedence, fixed scalar schema, descriptor
+capture/close, reparse/missing/oversized/unstable index, read/start/serialization/
+artifact/partial-write failures, contested lock and real250ms late-reader/writer
+closure, exact guard extraction without main, and actual terminal child exit77.
+Existing strict A.qualify_tooling and original engine.checks rejected synthetic
+diagnostic failed/misnamed/missing/zero-count/skipped/extra-job receipts; a valid
+synthetic core receipt passed those consumers. Other Git/store/review prerequisites
+were mocked, not executed. This does not authenticate provider provenance.
+
+Author reference checker executed with native0,14 valid stops/0errors; local
+frontend-controller gate returned explicit not-applicable for exactly these three
+workflow/doc/spec paths. git diff --check passed. No frontend/build evidence is
+borrowed.
+
+Private scripts/logs/native metadata and counts live at
+`tmp/private/runner-index-observation/` in this worktree; source is actual parsed
+YAML, not a separately passing draft. Source reader/capture facts are injected;
+the only native terminal subprocess was the fixed failure script, not Git.
+No extra actual Git experiment, admission/core test body, build/application,
+DB/RLS/browser/runtime, hosted CI, provider, claim/store or resource action ran.
+The prior4local exact-version observations and failed hosted877 remain immutable
+history; no cause or source/hosted qualification is inferred. Root must obtain
+independent High review, current source/base/synthetic bindings, its approved
+single automatic CI set and separately approved one manual observation attempt.
+
 ## Suggested Review Order
 
-Author: `/root/crm_runtime_route/runtime_admission_author`, gpt-6.1-sol High.
-Refreshed against the exact three-path source-refusal continuation from qualified
-`4824c4c1a6acf3e10b4227604b13b2fa304d80e1`. Prior PR130/partition evidence and
-intent remain historical. This guide describes new refusal metadata only.
+Author: `/root/diagnostic_receipts`, Sol High; new approved observation continuation.
+Current local baseline35ba03d20fc0f0b366b52b4205f539557247507d integrates
+reviewed877 with actual main4411cdc412f01ee023440525ff1e17bb824ef383.
+The preceding frozen intent/evidence remain historical; current facts below are
+local controls only, with independent/hosted qualification still pending.
 
-### Observe refusal without changing source acceptance
+### Separate observation from qualification
 
-The approved design retains the original once-only Git call and unchanged native
-streams. Every returned nonzero remains fatal; optional diagnostics cannot supply
-a passing source or permit collection/tests.
+The default-false mode preserves the complete ordinary DAG. The manual-only
+Windows job omits all test bodies and must fail after capture even when the
+original Git result is0; a successful observation cannot become runtime evidence.
 
-- `.github/workflows/auto-bmad-parallel.yml:317` — `def binding`: retains immutable source checks and enters refusal only after nonzero.
-- `.github/workflows/auto-bmad-parallel.yml:326` — `from None`: keeps the static fatal error without diagnostic exception chains.
-- `.github/workflows/auto-bmad-parallel.yml:419` — `BEFORE_COLLECTION`: labels the first boundary before any inventory or child.
+- `.github/workflows/auto-bmad-parallel.yml:21` — `observe_index_only`: explicit boolean input with disabled default.
+- `.github/workflows/auto-bmad-parallel.yml:36` — `if:`: excludes the ordinary matrix only for the diagnostic dispatch.
+- `.github/workflows/auto-bmad-parallel.yml:501` — `original-index-observation`: one separate Windows job.
+- `.github/workflows/auto-bmad-parallel.yml:763` — `Diagnostic observation cannot qualify`: preserves original failure and forces native77 after successful probe/capture.
 
-### Admit only complete bounded path metadata
+### Observe bounded metadata without retaining index contents
 
-Fixed plumbing queries observe later NON-ATOMIC facts. Exact committed-byte
-membership and complete parsing precede every safe ASCII row; unknown/unsafe/
-truncated input withholds all comparison rows/counts rather than exposing it.
+Each read owns its raw descriptor; closed, nonblocking publication and independent
+fallback prevent late results from becoming current. Only relation/availability
+enums leave transient digest/stat material; readers cannot establish atomicity.
 
-- `.github/workflows/auto-bmad-parallel.yml:106` — `def diagnostic_parse`: enforces entire-capture grammar, membership and display limits.
-- `.github/workflows/auto-bmad-parallel.yml:243` — `ls-tree`: obtains the immutable byte-identity allowlist with fixed read-only arguments.
-- `.github/workflows/auto-bmad-parallel.yml:254` — `--name-status`: uses bounded fixed diagnostic metadata commands.
-- `docs/process/parallel-auto-bmad-contract.md:1008` — `On-refusal admission source metadata`: records privacy limits and original-stream distinction.
+- `.github/workflows/auto-bmad-parallel.yml:567` — `def index_read`: fixed literal metadata path, byte cap and descriptor/stat checks.
+- `.github/workflows/auto-bmad-parallel.yml:607` — `def observe_index`:250ms wait closes before selecting an immutable result.
+- `.github/workflows/auto-bmad-parallel.yml:644` — `def bounded_observation`: rejects unexpected states and shapes.
+- `.github/workflows/auto-bmad-parallel.yml:660` — `def capture_report`:2KiB payload, one raw write and bounded descriptor ownership.
 
-### Close records independently of daemon I/O
+### Preserve the first native predicate and its fatal result
 
-R1 chose descriptor-only I/O to avoid new buffered-stdio shutdown-lock coupling.
-Main freezes or takes independent UNKNOWN fallback through nonblocking locks;
-one immutable pre-deadline emission permit cannot be reacquired by late workers.
+The copied877 guard body is unchanged. The observer retains the original once-only
+Git argv/settings/inherited streams, then only nonzero enters its existing bounded
+refusal routine; all observer/capture/serializer failures leave that refusal fatal.
 
-- `.github/workflows/auto-bmad-parallel.yml:146` — `def diagnostic_capture`: owns raw pipes and bounded exact-child settlement.
-- `.github/workflows/auto-bmad-parallel.yml:272` — `lock.acquire(blocking=False)`: publishes only while the record remains open.
-- `.github/workflows/auto-bmad-parallel.yml:288` — `os.write(1, payload)`: attempts one raw descriptor write without retry or echo.
-- `.github/workflows/auto-bmad-parallel.yml:300` — `closed.set()`: closes mutation before snapshot/emission scheduling.
+- `.github/workflows/auto-bmad-parallel.yml:701` — `def original_observation`: immutable source binding and separate observations.
+- `.github/workflows/auto-bmad-parallel.yml:709` — `subprocess.run`: exact original argv with no new keyword settings.
+- `.github/workflows/auto-bmad-parallel.yml:729` — `if code != 0`: unconditional static fatal fromNone after optional diagnostics.
+- `.github/workflows/auto-bmad-parallel.yml:736` — `def observation_main`: validates exact877 guard digest without running admission main.
 
-### Preserve strict execution and qualification boundaries
+### Read the actual local evidence with its limits
 
-The81 refusal,20 lifecycle and5 real-Git observations map to the ACs in Refusal
-continuation verification above; parsed conservation adds1positive/32negative/
-1duplicate-key refusal. None executes admission bodies or authenticates hosted
-cause, delivery, shutdown, current custody or new-source CI qualification.
+The parsed workflow controls preserve all existing default jobs and refuse28
+weakening mutations;48 injected Python controls exercise privacy/native/lifecycle
+boundaries and the unchanged consumer predicates. They do not execute a native Git
+experiment or establish GitHub expression evaluation, filesystem/OS teardown,
+provider authenticity or source qualification. The native terminal control exited77.
 
-- `.github/workflows/auto-bmad-parallel.yml:375` — `def native_child`: preserves existing immediate native progress output.
-- `.github/workflows/auto-bmad-parallel.yml:394` — `def native_result`: preserves exact selected IDs and complete native success requirements.
-- `.github/workflows/auto-bmad-parallel.yml:440` — `needs: runtime-admission`: keeps the entire matrix prerequisite without bypass.
-- `.github/workflows/auto-bmad-parallel.yml:491` — `exit $testExit`: preserves core routing's native failure propagation.
+- `.github/workflows/auto-bmad-parallel.yml:754` — `Preserve bounded non-qualification observation`: captures only one safe artifact, including after failure.
+- `docs/process/parallel-auto-bmad-contract.md:1048` — `Diagnostic-only original index observation`: operator limits and separate native non-qualification failure.
 
-Evidence: four preserved final native commands exited0 against extracted ab3068;
-initial compile failure/earlier passes remain distinct. Synthetic process/pipe/
-lock controls and one disposable Git fixture do not establish hard OS deadlines,
-future Windows/Linux success or the unknown original cause. Product holds remain;
-Root owns independent review, actual-source qualification and supported recovery.
+Root owns current provider source/base/synthetic checks, publication, the approved
+automatic CI set and one diagnostic dispatch. Original877 failure, PR13461 context,
+the four-case non-reproduction and independent workflow-pin stop remain. Both
+products are held; current source independent review/hosted execution are pending.
