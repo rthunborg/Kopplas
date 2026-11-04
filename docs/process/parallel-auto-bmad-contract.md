@@ -251,23 +251,65 @@ required; a lexical path alias does not create authority.
 Both existing `Auto-BMAD parallel contracts` jobs, `contracts (ubuntu-latest)` and
 `contracts (windows-latest)`, must pass at that SHA, with zero skipped checks.
 The `contracts` matrix has unconditional `needs: runtime-admission` and default
-success dependency semantics. Its two accepted check names therefore require
-**both** `runtime-admission (ubuntu-latest)` and
-`runtime-admission (windows-latest)` to succeed first. Admission runs its unchanged
-command in that prerequisite matrix; it is no longer physically inside the
-downstream jobs. Both matrices retain `fail-fast: false`, the same setup/action
-pins and Python 3.12, and the existing Ubuntu 15 / Windows 30 minute job budgets.
-No `always()`, continue-on-error, OS exclusion or skipped prerequisite can supply
-qualifying coverage. The adapter's two-name `CI_JOBS` and strict schema stay intact.
+success dependency semantics. Both existing accepted core check names require
+ALL THREE admission cells first: Ubuntu/all, Windows/0 and Windows/1. Admission
+collects the complete actual unittest inventory without running fixtures/bodies,
+normalizes only its known module prefix to canonical `Class.test_method` IDs,
+rejects empty/duplicate/error inventories, sorts, and partitions by alternating
+index into two nonempty disjoint exhaustive Windows groups. No source/count
+allowlist or external reported inventory supplies the expectation. Ubuntu retains
+the full native script invocation; Windows invokes the SAME unchanged script
+with each group's exact positional selectors. No substring/negative-name filter.
 
-Retain native source evidence for **all four jobs** under `tooling_ci.source_ref`:
-workflow/run identity, actual executed SHA, OS, terminal conclusion, exact command
-argv and actual executed/skipped counts. The two schema `checks` records describe
-the downstream jobs' real five-command argv/counts; do not relabel prerequisite
-execution or manufacture aggregate counts. Same-SHA DAG review and both native
-admission logs are mandatory. Missing, canceled, failed, skipped, mismatched or
-nonterminal prerequisite evidence refuses qualification even if a status summary
-looks successful. This task performs no hosted run or provider observation.
+Every admission cell checks actual checkout HEAD against immutable `GITHUB_SHA`,
+tracked source cleanliness, commit/tree and committed/checkout LF-normalized
+module SHA256 before/after collection/execution. Its records bind the full
+inventory count/digest, both Windows groups, selected IDs, exact actual child
+argv, native exit and terminal actual executed IDs/count. All three cells must
+have IDENTICAL source/full-inventory bindings for Root qualification; their group,
+selected IDs and argv honestly differ. Raw checkout EOL bytes may differ by OS;
+the shared module hash normalizes only CRLF to LF against committed source.
+The guard provides per-cell proof; Root retains and compares all three records.
+There is no automatic cross-job proof or invented single combined Windows argv.
+
+Native stderr is immediately byte-teed/flushed, including partial method progress,
+while stdout is inherited. The1MiB in-memory validation capture fails closed on
+overflow/invalid UTF8 without hiding further native output. The finite protocol
+requires exact selected canonical success IDs, one matching complete `Ran`/`OK`
+terminal result, native exit0 and zero skip/failure/error/expected-failure/
+unexpected-success outcomes. Missing/truncated/extra/duplicate records refuse.
+Completion output does not establish a per-method start timestamp or a timing
+balance: alternating groups are count-balanced only, not proven time-balanced.
+
+Both matrices retain `fail-fast: false`, the same setup/action pins and Python3.12,
+and the existing Ubuntu15/Windows30 minute job budgets. All five core commands
+and native exits remain unchanged (140 source methods per core OS job).
+No `always()`, continue-on-error, OS/group omission or skipped prerequisite can
+supply qualifying coverage. The adapter's exact two-name `CI_JOBS` and strict
+schema stay intact; its two checks still describe the real core140 jobs.
+
+Retain native source evidence for **all five jobs** under `tooling_ci.source_ref`:
+workflow/run identity, actual executed SHA/tree, OS/cell, terminal conclusion,
+exact command argv, full and selected inventories/digests and actual native
+executed/skipped counts. The two schema `checks` records describe downstream
+jobs' real five-command argv/counts; do not fabricate prerequisite aggregates or
+a third core check. Same-SHA whole-DAG review and ALL THREE native admission
+records are mandatory. Failed/canceled/skipped/missing/mismatched/nonterminal
+cells refuse qualification even when another status summary looks successful.
+
+Current topology continuation baseline qualified241596 has52 admission methods,
+so its actual complete Windows groups are26/26; these are source/collection facts,
+not native coverage. Frozen PR134 source01e6 has61 (31/30); only after genuine
+integration must the new exact source derive and execute that full61 inventory.
+The saved Windows01e6 job exceeded30m after57 completed/58th interrupted/three
+unstarted; no terminal61 PASS was earned. Never add old57 to a later4, reuse
+cached records or force61 onto52. Fresh direct exact-source terminal Ubuntu/full,
+both Windows groups and both core140 jobs plus separately required ordinary
+checks remain necessary. Local guard controls do not establish hosted completion,
+source CI qualification, tooling/live admission or product runtime acceptance.
+
+The following original PR130 count/integration-order record is historical; its
+four-job requirement is superseded by the five-job requirement above.
 
 For count provenance, the CI-topology baseline `d03a52ce...` has 140 core test
 methods across its five unchanged commands (70/13/21/26/10), plus **24** admission
