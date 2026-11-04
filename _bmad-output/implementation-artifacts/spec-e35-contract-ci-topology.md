@@ -2,15 +2,23 @@
 title: 'Split runtime admission from core parallel contract CI'
 type: 'chore'
 created: '2026-11-03'
-status: 'done'
+status: 'in-review'
 baseline_commit: 'd03a52ce014f60c8e279f016e8cdd5790ca0d596'
+continuation_baseline_commit: '2415964604d5b8d766883f0cbfcf6e6b5ca215a0'
+continuation_date: '2026-11-04'
 context:
   - docs/process/parallel-auto-bmad-contract.md
   - docs/process/review-order.md
   - docs/process/agent-model-routing.md
 ---
 
-## Intent and authority
+This is an explicitly authorized continuation of the same author's completed
+PR130 task. Original sections through Verification preserve its d03 scope and
+earned history; Current Windows admission partition continuation below governs
+the new work. Neither historical result nor old four-job rule qualifies the
+new source. The original baseline is intentionally preserved.
+
+## Original PR130 intent and authority (historical)
 
 The saved Windows contract check exhausted its shared 30-minute job budget after
 three suites passed and finalization had begun. Move the unchanged admission
@@ -144,49 +152,215 @@ this spec only. No unchanged expensive suite was rerun merely to decorate the
 trail. Only root may observe subsequent provider execution; the saved canceled
 run, structural probes and source method inventory are not new CI qualification.
 
+## Windows admission partition continuation
+
+Root admitted the same author (gpt-6.1-sol High, native
+`01a19d45-2361-7400-994f-db87553edde5`) on the separate clean registered
+`C:/DEV/Kopplas/tmp/private/e35-windows-admission-topology`, branch
+`codex/e35-6-windows-admission-topology`, from qualified241596. The original
+PR130 intent, d03 baseline, earned structural evidence and old counts above
+remain historical; they are not new qualification. Reuse root's successful
+render a445 with render root C:/DEV/Kopplas and this worktree as source/artifact
+root. No story key or sprint/global-state update applies.
+
+Fresh known-writer preflight: 62 registered worktrees, zero allocated-three-path
+status exceptions. Root reports other known writers stopped/no overlapping new
+assignment; this is not global process proof. Producer57tokens/7domains/3IDs,
+cap3/fourth, diagnostic4 and PR1344 holds remain. This actual author assignment
+must appear in later custody facts; no release or old idle assertion is inferred.
+Private activation.json preserves exact identity, route and full path preflight.
+
+Saved diagnosis `cc50e9b04e5e77dff13d527efe9adad50b1998e3d1661e437127b0e7990c7b0f`
+proves Windows job126091631996/run41685956548 exceeded30m at source01e6:
+57 methods completed, the58th interrupted, three not started; no terminal61 PASS.
+It does not establish a hung Git process or method-specific performance defect.
+Independent source-aware refinement
+`ec71054649e93545fe06de2d917843881078c4114745c358970a856f20b6f5ed`
+replaces the initial expected61 assumption with actual complete source inventory.
+Qualified241 has52 methods (26/26); later genuine PR134 integration has61 (31/30).
+No source/count allowlist or historical partial-result aggregation is authorized.
+
+<frozen-after-approval>
+### Current intent and constraints
+
+Keep the complete Ubuntu admission invocation and split Windows admission into
+two deterministic exhaustive groups under the same15/30 budgets. Each existing
+core140 job still needs the ENTIRE admission matrix with default success.
+Exactly the original three tracked paths are allocated. Preserve all five core
+commands/exit handling, setup/action/Python pins, triggers, concurrency, helpers,
+adapter/schema/source pins and assertions. No product/config/dependency, live
+claim/store/resource/CI/provider operation or full local suite execution.
+If a reliable guard needs another tracked script/test, stop with the minimum
+path proposal before widening this allocation.
+
+The inline stdlib guard collects the full actual unittest module without running
+fixtures/bodies; canonical IDs must be nonempty and unique. Sort and alternate
+into two nonempty disjoint groups whose union equals the complete inventory.
+Validate exact actual native script argv/selectors and successful executed IDs,
+unique terminal count/OK, zero skips/failures/errors/expected failures/unexpected
+successes and native exit0. Tee native stderr bytes immediately with flush,
+including partial method progress, while stdout remains inherited. Validation
+capture is bounded to1MiB; overflow, invalid UTF8 or incomplete output refuses
+without hiding continued native output. No per-method start timing is inferred.
+Missing/truncated/extra/duplicate output refuses.
+Before and after collection/execution bind actual HEAD to immutable GITHUB_SHA,
+commit/tree, committed module/checkout LF hash, full inventory count/digest and
+both groups/selected IDs. No external reported metadata supplies expectations.
+Root must retain and compare identical source/inventory bindings across all
+three actual cells; there is no invented automatic cross-job proof/combined argv.
+
+### Continuation acceptance criteria
+
+- Given the actual complete52 or61 source inventory, when collected without
+  execution, then Ubuntu selects all and Windows partitions26/26 or31/30 from
+  that actual source; unknown/empty/duplicate/omitted/overlapping IDs refuse.
+- Given exact selected native execution, when every selected canonical ID has
+  one successful record and the matching complete terminal summary/exit0,
+  then that cell succeeds; any nonpassing/unknown/incomplete result refuses.
+- Given source or inventory changes or a checkout/GITHUB_SHA mismatch, when
+  any guard boundary is checked, then qualification refuses before completion.
+- Given a failed/canceled/skipped/missing admission cell, when downstream core
+  scheduling is assessed, then neither core job can qualify. All conserved
+  baseline settings/commands and two-check receipt schema remain intact.
+- Given only local resource-free guard controls, when reporting results, then
+  record their actual counts/source and limits; source qualification still needs
+  fresh same-source terminal three-cell evidence plus both core140 jobs and
+  separately required ordinary gates. Old57+later4 never becomes Windows61.
+</frozen-after-approval>
+
+### Continuation Code Map
+
+- .github/workflows/auto-bmad-parallel.yml: runtime-admission matrix29–35 and
+  existing native step65–66 gain the shared inline collection/selection/result
+  guard; contracts68 keeps unconditional needs and every existing core step.
+- tests/maintenance/test_admit_story35_6_runtime.py: RuntimeAdmission and final
+  unittest.main() are read-only collection/explicit-selector seams; no new flag.
+- docs/process/parallel-auto-bmad-contract.md: runtime admission qualification
+  at253–284 must describe the real three admission/two core records and source
+  provenance, preserving historical PR130 facts separately.
+- This spec: retain original historical sections and refresh the SAME author
+  Suggested Review Order after implementation/verification, not a second section.
+
+### Continuation tasks
+
+- [x] Verify identity/allocation, read exact design/refinement and record this
+  explicit continuation before editing the workflow.
+- [x] Implement the three-cell inline guard in the allocated workflow only.
+- [x] Reconcile current qualification contract without schema/pin changes.
+- [x] Run bounded controls against the extracted actual inline logic, actual52
+  and target61 collection without fixture execution, and parsed YAML conservation.
+- [x] Refresh exactly one author SRO, native evidence/limits and frozen hashes.
+
+### Current continuation verification
+
+Execution source is qualified241596 plus ONLY the three allocated uncommitted
+paths. The final actual YAML-extracted139-line guard SHA256 is
+`73313f16de80dc1528bd4a730f8acf55ffb290b09aa452d474edb298c9f6f28f`. Private guard-draft.py is an earlier draft and is NOT the tested final source.
+`python -B -X utf8 tmp/private/windows-admission-topology/run-final-controls.py`
+ran four bounded commands, all native exit0:
+
+| Actual command/control | Final native evidence | Limits |
+| --- | --- | --- |
+| node check-workflow.mjs | 1 positive parsed model;32 weakening mutations refused;1 duplicate-YAML refusal;0.178s | Existing installed js-yaml4.3.2; no scheduling emulation |
+| python collect-only.py actual241 module |52 full IDs;26/26;0.328s | Collection only; no fixture or body runs |
+| python collect-only.py private exact01e6 module |61 full IDs;31/30;0.362s | Read-only Git-source fixture; no native suite PASS |
+| python check-guard.py |60 controls passed;1.127s | Exact extracted functions; synthetic native/process/source fixtures |
+
+The final source-collection projection derives ONLY existing final733 logs and
+metadata. Original source-collection-summary.json/previous321 evidence remains
+historical, including its original times/hashes; no relabel or extra rerun.
+Both native collection records retain complete IDs/groups and exact commands.
+Actual admission fixtures/test bodies executed:0. Core suite executions:0.
+Hosted/CI/provider/runtime/store/resources/live operations:0.
+
+AC inventory/partition maps to actual52/61 full collection and empty/duplicate/
+unknown/omitted/overlapping/nondeterministic group refusals. AC native completeness
+maps to all three synthetic argv/result cells for BOTH actual inventories and
+nonzero/canceled exit, altered argv, missing/truncated/unterminated output,
+missing/extra/duplicate/wrong-order IDs, wrong/duplicate terminal count,
+skip/error/failure/expected-failure/unexpected-success and contradictory-footer
+refusals. The stream seam asserts raw partial bytes flush BEFORE next read/wait,
+all bytes still tee after bounded overflow, and overflow/invalid UTF8 refuses.
+AC source freshness maps to wrong/missing immutable SHA, actual dirty-candidate
+refusal, refreshed module-byte tamper and source/inventory changes before/after
+the injected native boundary. No injected clean-status fact is CI qualification.
+
+The parsed comparison preserves the ENTIRE baseline contracts job object and
+all non-admission changes, setup/action/Python/native-exit/trigger/concurrency/
+permission and15/30 budget invariants. Its32 weakening mutations exercise those
+boundaries and mandatory whole-matrix/no-bypass scheduling structure. This
+proves the declared DAG structure, not actual GitHub scheduling or completion.
+
+Retained failures/precision: the first parser command exited1/MODULE_NOT_FOUND
+before any control, using an absent top-level js-yaml link. Existing pnpm
+transitive js-yaml4.3.2 was then resolved explicitly; no install/dependency edit.
+Earlier321 controls passed before an author precision changed diff/tree lookup
+to the already checked immutable head, preventing a mixed HEAD/tree snapshot.
+Those earlier bytes/results remain in before-source-binding-precision. Final
+733 extraction/collection/controls ran once after that source change. No full
+admission/native test suite was repeated to decorate evidence.
+
+Durable private proof hashes (no recursive fixture/dependency traversal):
+
+- `tmp/private/windows-admission-topology/check-workflow.mjs` SHA256 `3e0cdb7176eeebde77c04dd2a3421abcd65c156382b852aafe96b653d74fa45d`.
+- `tmp/private/windows-admission-topology/check-guard.py` SHA256 `55f80d169a549a187c2e9350d4fd79eca427165c552dd4f8c6c33107abd67b9d`.
+- `tmp/private/windows-admission-topology/workflow-controls.json` SHA256 `4a030259db9885497c1ef1d3b543c3309918f7bd9b799d7adec0edd84a64427b`.
+- `tmp/private/windows-admission-topology/guard-controls.json` SHA256 `6bbd65883d8cf66cbc02ed5319a580aaf315cc875f9f7c399aa30ba11a4f4659`.
+- `tmp/private/windows-admission-topology/final-native-controls.json` SHA256 `8869fe32b3bfa83b8d717d68f8d9a7e3140df1b905481babbc1673b62904efad`.
+- `tmp/private/windows-admission-topology/final-source-collection-summary.json` SHA256 `25b88c2ad95d0bb8a3070c03a87a7cb4d73e53383b3bbc35b71a89afe855c6b9`.
+- `tmp/private/windows-admission-topology/first-parser-failure.json` SHA256 `8dcbd27975474f16663ba85e13a513b7b9775ba2ce4d04741620f5c8b8c9ccd6`.
+- `tmp/private/windows-admission-topology/source-binding-precision.json` SHA256 `0111e1b199ad711d4bf1aa3c80cedcd9d968b85bf1a6e331cb67204b409a5384`.
+
+No new OS timing, actual Windows group success, complete source CI qualification,
+live admission or product/runtime PASS is earned locally. Groups are only
+count-balanced. Root must qualify the real final source across all three cells
+with identical source/full-inventory bindings and both core140 jobs; after real
+PR134 integration the actual inventory must be61, not this baseline52. Historical
+57 completion lines plus later results are never combined. No automatic release,
+claim, source-pin or two-check receipt-schema authority changes.
+
 ## Suggested Review Order
 
 Author: `/root/crm_runtime_route/runtime_admission_author`, gpt-6.1-sol High.
-Refreshed against baseline `d03a52ce014f60c8e279f016e8cdd5790ca0d596` plus the
-three allocated working-tree changes and the verification record above.
+Refreshed against the three-path continuation from qualified
+`2415964604d5b8d766883f0cbfcf6e6b5ca215a0`. Original PR130/d03 evidence above
+remains historical; this trail describes the actual new source and controls.
 
-### Separate the observed cost while preserving the qualifying gate
+### Derive complete source-bound cells before execution
 
-The approved design separates the previously observed admission cost into its
-own unchanged-budget matrix. The mandatory whole-matrix dependency preserves the
-existing two qualifying check names; a failed/skipped admission cannot become
-successful downstream coverage.
+The new guard derives its expectation from the full actual source, so source52
+and source61 cannot borrow each other's count or historical partial completion.
+The canonical alternating partition keeps every original case in Windows coverage.
 
-- `.github/workflows/auto-bmad-parallel.yml:29` — `runtime-admission:`: isolates the unchanged admission suite.
-- `.github/workflows/auto-bmad-parallel.yml:66` — `python -X utf8 tests/maintenance/test_admit_story35_6_runtime.py -v`: preserves the exact native command.
-- `.github/workflows/auto-bmad-parallel.yml:68` — `needs: runtime-admission`: requires both prerequisite OS children to succeed.
+- `.github/workflows/auto-bmad-parallel.yml:29` — `runtime-admission:`: enters the three-cell admission prerequisite.
+- `.github/workflows/auto-bmad-parallel.yml:99` — `def binding(expected)`: binds immutable GitHub SHA, tree and actual module source.
+- `.github/workflows/auto-bmad-parallel.yml:114` — `def inventory(path=MODULE)`: collects complete actual IDs without executing fixtures.
+- `.github/workflows/auto-bmad-parallel.yml:137` — `def validate_partition`: refuses empty, duplicate, overlapping or incomplete groups.
 
-### Conserve execution authority and refusal behavior
+### Preserve native progress, strict results and the whole-matrix gate
 
-Both jobs reuse the original setup, OS strategy and 15/30 budgets. Parsed baseline
-comparison and targeted refusal mutations check that the split cannot omit a
-command, weaken an exit path, change credentials/pins, or mask a failed matrix.
+Raw child progress remains visible during cancellation. Only complete exact native
+results can produce a cell success; neither core job can bypass any required cell.
 
-- `.github/workflows/auto-bmad-parallel.yml:35` — `timeout-minutes:`: retains the admission OS budgets.
-- `.github/workflows/auto-bmad-parallel.yml:74` — `timeout-minutes:`: retains the core OS budgets.
-- `.github/workflows/auto-bmad-parallel.yml:119` — `exit $testExit`: propagates the original routing native exit.
+- `.github/workflows/auto-bmad-parallel.yml:152` — `def native_child(argv)`: tees partial bytes immediately and bounds validation capture.
+- `.github/workflows/auto-bmad-parallel.yml:171` — `def native_result`: verifies exact actual IDs, count, terminal success and native exit.
+- `.github/workflows/auto-bmad-parallel.yml:209` — `emit("admission-after"`: records after-source/inventory consistency before success.
+- `.github/workflows/auto-bmad-parallel.yml:217` — `needs: runtime-admission`: preserves default-success whole-matrix gating.
 
-### Qualify the actual revision and actual four-job evidence
+### Keep qualification provenance and existing core authority explicit
 
-The contract distinguishes physical job placement, static method inventory and
-native completed coverage. The baseline has 24 admission methods; the historical
-38-pass command ran at a synthetic merge and the shared Windows job still canceled.
-The approved integration route requires a genuine source descendant and fresh
-direct-exact-reviewed-SHA evidence, without changing the adapter's two-name schema.
+The adapter still accepts the same two core checks; Root separately retains and
+compares all three real prerequisite records. Local source collection and injected
+protocol controls establish guard behavior, without pretending to be native suite execution.
 
-- `docs/process/parallel-auto-bmad-contract.md:263` — `Retain native source evidence`: requires all four same-revision native job records.
-- `docs/process/parallel-auto-bmad-contract.md:272` — `For count provenance`: separates 140/24 source counts from native execution.
-- `docs/process/parallel-auto-bmad-contract.md:281` — `must contain the integrated workflow`: preserves honest descendant and direct-SHA qualification.
+- `.github/workflows/auto-bmad-parallel.yml:268` — `exit $testExit`: preserves the existing core routing native failure propagation.
+- `docs/process/parallel-auto-bmad-contract.md:264` — `Every admission cell`: requires common immutable source/full-inventory bindings.
+- `docs/process/parallel-auto-bmad-contract.md:291` — `all five jobs`: requires all actual records without a fake combined Windows argv.
+- `docs/process/parallel-auto-bmad-contract.md:300` — `Current topology continuation`: distinguishes actual baseline52 from later integrated61.
 
-Evidence: parsed candidate passed, 32 weakening mutations rejected and duplicate
-YAML refused; see Verification for commands/hashes and AC mapping. Native Python
-suites executed here: **0**; hosted runs observed/launched here: **0**. Limits:
-local static/refusal checks do not emulate GitHub scheduling or establish actual
-OS timing, suite completion, zero skips, provider truth or tooling/live admission.
-Retain the existing failed native evidence and obtain all four real terminal job
-logs at the intended exact executed revision through root's authorized route.
+Evidence: Current continuation verification maps each AC to the actual collected
+source and60 extracted-guard controls, plus parsed conservation/32 refusal
+mutations. Admission bodies/core/CI executions here:0. Limits: synthetic child,
+pipe, result and clean-status fixtures do not prove hosted timing, Windows group
+completion, global provider truth, live custody or new tooling qualification.
+Root retains fresh direct-source matrix/ordinary gates and publication authority.
