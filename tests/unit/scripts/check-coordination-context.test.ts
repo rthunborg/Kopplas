@@ -14,7 +14,7 @@ function fixture(run: (value: Omit<Fixture, 'invoke'> & { invoke: (extra?: strin
   const dir = mkdtempSync(join(tmpdir(), 'coordination-'));
   const m = join(dir, 'monitor.txt'), p = join(dir, 'packet.txt'), r = join(dir, 'readback.txt');
   writeFileSync(m, monitor); writeFileSync(p, packet); writeFileSync(r, monitor);
-  const invoke = (extra = [], args = ['--monitor', m, '--packet', p]) => {
+  const invoke = (extra: string[] = [], args: string[] = ['--monitor', m, '--packet', p]) => {
     const result = invokeCli([...args, ...extra]);
     assert.equal(result.stderr, '');
     return { ...result, data: JSON.parse(result.stdout) };

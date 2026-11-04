@@ -70,7 +70,7 @@ Approved intent source: immutable planning worktree `C:/DEV/Kopplas/tmp/private/
 
 ## Verification
 
-Run actual `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/check-coordination-context.test.ts` and `node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-workflow-operating-contract-2026-11-04.md`. Tests use sterile temporary files. Render project customizations through supported wrapper and inspect native success/policy reference; renderer failure cannot be bypassed with source invocation. No DB/browser/hosted gate coverage. Live app update/readback remains Root-owned outstanding work; do not claim final adoption complete.
+Run `pnpm typecheck` (the actual `tsc --noEmit` gate; Node strip-types alone does not check types), then actual `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/check-coordination-context.test.ts` and `node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-workflow-operating-contract-2026-11-04.md`. Tests use sterile temporary files. Render project customizations through supported wrapper and inspect native success/policy reference; renderer failure cannot be bypassed with source invocation. No DB/browser/hosted gate coverage. Live app update/readback remains Root-owned outstanding work; do not claim final adoption complete.
 
 ## Successor checkpoint — 2026-11-04
 
@@ -89,11 +89,11 @@ and keeps exact readback comparison separate from independent authority review.
 - `docs/process/bounded-workflow-operating-policy.md:1` — scope, escalation and retained authority, followed by compact context controls.
 - `docs/process/templates/current-work-packet.md:1` — mandatory projection fields; no secondary ownership authority.
 - `scripts/maintenance/check-coordination-context.mjs:12` — dependency-free file boundary, bounded reads, fixed safe output and exact readback.
-- `tests/unit/scripts/check-coordination-context.test.ts:68` — real subprocess boundary tests, Unicode caps, invalid input, readback, sentinel non-echo and unchanged files.
+- `tests/unit/scripts/check-coordination-context.test.ts:68` — real subprocess boundary tests, Unicode caps, invalid input, readback, sentinel non-echo and unchanged files. The fixture callback now explicitly types array parameters to satisfy actual tsc verification.
 - `_bmad/custom/bmad-build.toml:1` — persistent policy link only; existing handoff/hooks unchanged.
 - `_bmad/custom/bmad-build-auto.toml:1` — persistent policy link outside managed region; terminal semantics unchanged.
 
-Evidence: focused CLI13 executed/13passed/0failed/0skipped; private candidates
+Evidence: targeted type-only fix passed actual `pnpm typecheck`/`tsc --noEmit` native0 on d69 baseline plus fix; see owned qualification fix below. Historical focused CLI13 executed/13passed/0failed/0skipped; private candidates
 preflight monitor3134/packet8167scalars, actual readback not obtained. Six operating
 and five qualification tabletop cases recorded privately; these are walkthroughs,
 not automated ownership enforcement. Trail/render/frontend-N/A evidence is in
@@ -124,3 +124,20 @@ live monitor reconciliation/update/readback and hosted qualification remain
 outstanding; both products held. In-review status preserves this incomplete
 adoption/whole-tranche exit instead of an installed done claim. Local source
 commit authorized by Coordinator; no publication, integration or release here.
+
+## Owned qualification fix — targeted round 2 source PASS
+
+PR139 automatic CI41821564355 verify126545758052 failed native `pnpm typecheck`
+(`tsc --noEmit`, exit2), TS2322 at the test fixture callback: unannotated
+`extra=[]` inferred `never[]`, incompatible with declared `string[]`. Earlier
+13 passing Node strip-types tests did not typecheck and were insufficient for
+this boundary. Entry feedback126545859840 reported WebServer Failed to type
+check/exit1; preceding GitCommitInfo timeout is a warning, not an established
+separate cause. Downstream skipped DB/browser/recovery remain unearned.
+
+Smallest fix annotates invoke's extra and args parameters as string[]. No runtime
+logic or policy changed. Actual `pnpm typecheck`/`tsc --noEmit` passed native0 after
+frozen-lockfile installation in the own worktree; no dependency/lockfile change.
+No repeated Node test suite is offered as typecheck proof. Private
+round-2-owned-typecheck-fix.json preserves first-failure/native evidence pointers.
+Same independent blind reviewer targeted round2 PASS, returned by Coordinator: explicit string[] annotations resolve callback incompatibility without runtime behavior change; actual tsc versus historical strip-types and unearned hosted coverage remain explicit; no regressions. No hosted qualification/adoption claim.
