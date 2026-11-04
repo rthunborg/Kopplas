@@ -6,6 +6,8 @@ status: 'in-review'
 baseline_commit: 'd03a52ce014f60c8e279f016e8cdd5790ca0d596'
 continuation_baseline_commit: '2415964604d5b8d766883f0cbfcf6e6b5ca215a0'
 continuation_date: '2026-11-04'
+runner_observation_baseline_commit: '35ba03d20fc0f0b366b52b4205f539557247507d'
+comparator_correction_baseline_commit: 'b20375b4c605a7fda75c2b4408230107366f21da'
 context:
   - docs/process/parallel-auto-bmad-contract.md
   - docs/process/review-order.md
@@ -319,48 +321,360 @@ PR134 integration the actual inventory must be61, not this baseline52. Historica
 57 completion lines plus later results are never combined. No automatic release,
 claim, source-pin or two-check receipt-schema authority changes.
 
+## Source-refusal diagnostics continuation (2026-11-04)
+
+Root admitted SAME Sol6.1 High author/native01a19d45 on a NEW clean registered
+`C:/DEV/Kopplas/tmp/private/e35-source-refusal-diagnostics`, branch
+`codex/e35-6-source-refusal-diagnostics`, from qualified
+`4824c4c1a6acf3e10b4227604b13b2fa304d80e1`. Reuse root Build render a445;
+render project root remains C:/DEV/Kopplas, source/artifact root is this worktree.
+No story key/sprint/global bookkeeping. Fresh status checks found63 registered
+worktrees and zero exceptions on the three allocated paths. This records known
+source facts, not global process proof. All producer57/7/3IDs+cap3/fourth+diag4+
+PR1344+topology3 and current new3 holds remain; author is newly active.
+
+Approved original design SHA256 `deb4bd78808ae7af35cb63692ea45653c2a44d2eddb118d78a760609faf1c44b`
+PLUS binding R1 addendum `5d4798b8cd49123761a3fe0d7c562b4c4f7cd60c7d6a0c1ee85a500290f71104`
+were independently assessed by SAME Sol High reviewer
+`/root/crm_runtime_route/runtime_admission_blind_review`, final receipt
+`38d9e83972210855ac4bb4e98468b7e2acd6e02a95f6a099eec354706267819a`.
+These frozen private files remain under PR134's source-refusal-diagnostics-design
+folder. This extension preserves the original PR130 intent and prior partition
+history above. Qualified4824 contains52 methods; frozen PR13410cc contains61.
+Neither inventory is a native PASS or qualification of this new source.
+
+### Approved refusal-only intent and acceptance
+
+- Given original Git cleanliness code0, when binding checks source, then the
+  original call/settings/streams run once with no diagnostics and unchanged
+  acceptance. Given a returned nonzero, diagnostics can never permit collection,
+  execution or success: the SAME static fatal refusal is raised from None.
+- Given that nonzero, when metadata is available, then only three fixed Git
+  plumbing reads run sequentially with diagnostic-only no-optional-locks/pager/
+  replace/lazy-fetch/ext-diff/textconv/rename suppression. Retain exact original
+  native RC. Capture head-index/worktree facts as LATER NON-ATOMIC, cause UNKNOWN.
+  No refresh/repair/index/config change, retry or guessed original state.
+- Given new diagnostic bytes, when parsed/emitted, then complete NUL grammar,
+  exact immutable raw-path membership and safe ASCII display are required before
+  ANY row. Unknown/unsafe/malformed/overflow input withholds all rows/counts.
+  Capture limits: allowlist2MiB/16384paths/512bytes, diff256KiB/256rows/16display,
+  ASCII JSON32768bytes or fixed fallback2048bytes. No content/stderr/env/config/
+  credentials/exception text. Original inherited stderr is unchanged legacy I/O.
+- Given slow/failed/late workers, when the6s application deadline closes the
+  record, then nonblocking locks select independent UNKNOWN fallback, no I/O/
+  parse/spawn/cleanup occurs under lock, and new callbacks cannot promote/mutate/
+  emit/start another command. Command1.5s, owned kill/wait0.25s, EOF/emission
+  signal0.05s and0.1s reserve apply. Raw descriptor reads only, no main close/join
+  of unsettled readers; one main-scheduled pre-deadline os.write attempt only.
+  No buffered stdio/logging/traceback in new workers, delivery or verified-shutdown
+  claim. External cancellation remains nonqualification.
+- Given this exact three-path change, when qualifying locally, then private
+  controls use ACTUAL extracted YAML logic plus one disposable Git fixture.
+  Preserve entire core/matrix/pin/schema/trigger/concurrency/15–30 contracts and
+  append contract notes after existing sections. No admission bodies/core/CI/
+  runtime/resources/store/live actions. Fresh real-source gates remain Root's.
+
+### Refusal continuation Code Map
+
+- `.github/workflows/auto-bmad-parallel.yml`: existing binding cleanliness seam
+  gains local bounded parser/capture/refusal helpers and three fixed phase labels;
+  collection/partition/native result/core logic remains unchanged.
+- `docs/process/parallel-auto-bmad-contract.md`: append a refusal-metadata note
+  after all sections; preserve unrelated future PR134 SRO567 by retaining prefix.
+- This spec: preserve prior intent/history; refresh exactly ONE author SRO after
+  final native evidence. Private controls/evidence live under
+  `tmp/private/source-refusal-diagnostics/`, no new tracked helper/test paths.
+
+### Refusal continuation tasks
+
+- [x] Establish fresh identity/source allocation; record approved intent before code.
+- [x] Implement refusal-local diagnostics and append operator contract note.
+- [x] Run actual-extracted private native/privacy/lifecycle controls and Git fixture.
+- [x] Verify conserved source/pins, one author SRO and final exact three-path diff.
+
+### Refusal continuation verification
+
+The author completed these controls before the owner HOLD, and preserved them.
+Root's explicit repair-only release adopts the finite owner-approved tranche at
+`b6d5ae5b8475faeabaa8f8d134fc6532f35fce55`; both product35.6/35.7 holds remain.
+Full continuation envelope and parent-folder owner-approval.md were read. Fresh
+resumption confirmed the SAME native identity, allocated worktree/branch, baseline
+4824 and exactly three dirty paths, with no outstanding command. Full approved
+original/R1/independent-confirmation hashes matched before adoption. No source
+logic or successful control was replayed merely to resume. All reservations remain.
+
+Tested source: qualified4824 plus ONLY this workflow working-tree change. Final
+actual YAML-extracted guard SHA256 is
+`ab3068c8a096e61a4845019a796b6cdb2e720ee324c640f062368a87cca358c5`;
+workflow raw SHA256 is
+`3ddeada039565c306ab42dc705af20a92e26e4b918466791dd3c9f8ed4c0d46a`.
+The guard is362 lines versus139 at baseline. Four refusal-local helpers occupy
+215 lines including separating whitespace (initial draft202; strict UTF8 check
+and protected completion signaling account for the later13). The additional
+structure implements raw descriptor ownership, independent fallback/closure and
+caught daemon completion errors required by R1; no generic runner/framework,
+new dependency or tracked script/test was introduced. Collection, partition,
+existing native stream/result and core logic remain unchanged. The design's
+120–160 line estimate was exceeded; size is reported for targeted review,
+not treated as proof of correctness or a hidden scope expansion.
+
+Each final command used the private run-command.py recorder, retaining exact
+argv/cwd, elapsed seconds, native exit, log hash and guard hash. All four finished
+native0; their records/log hashes were rechecked on repair-only resumption:
+
+| Final private command | Actual result | Seconds |
+| --- | --- | --- |
+| node check-workflow.mjs |1 parsed positive;32 weakening mutations refused;1 duplicate-YAML refusal|0.175184|
+| python -B -X utf8 check-refusal.py |81 controls passed;0 failed|0.338098|
+| python -B -X utf8 check-lifecycle.py |20 controls passed;0 failed|6.207293|
+| python -B -X utf8 check-git-fixture.py |5 real Git observations passed;0 failed|2.318141|
+
+All paths above resolve under `tmp/private/source-refusal-diagnostics/`; these
+are controls/observations, not admission suite or product test counts. Python
+fixtures/native child results are injected except ONE retained disposable Git
+repository. No admission bodies/core suites/CI/browser/runtime/resources/store
+or live operations executed. The fixture's actual original Git probes returned1;
+its diagnostic fixed reads reported index-only, worktree-only, both, deliberately
+later-empty, and unknown-new-path refusal. Index raw hashes immediately AFTER
+original probes equal those AFTER diagnostics. Its non-ASCII committed member
+remains exact internal membership, never normalized. Original native Git emitted
+two LF/CRLF warnings in the retained log; that unchanged inherited stderr is
+explicitly outside the NEW diagnostic privacy boundary.
+
+AC native precedence maps to original0/1/128/negative/Windows-native code probes,
+once-only exact original argv/settings, zero-diagnostic success, fatal nonzero
+and suppressed secret exception chains. AC privacy maps to complete allowlist
+and status grammar, exact case/byte membership, unknown/new/unsafe/nonASCII/
+control/traversal paths, valid-before-invalid withholding, duplicate/unterminated/
+empty/parity errors and byte/path/record/display caps. No unsafe row/count leaks.
+AC lifecycle maps to raw pipe/error/timeout/overflow/EOF controls, contested
+nonblocking lock fallback, blocked/partial/throwing/late raw emission, late owned
+Popen cleanup and a REAL6s deadline followed by an inert late collector. AST
+checks prohibit new buffered stdio/flush/join/traceback and I/O/parse/spawn under
+the record lock. These are bounded injected boundaries, not OS teardown proof.
+AC conservation maps to unchanged preexisting function ASTs/main except three
+literal phase arguments, complete parsed baseline job/setup/core equality,
+mandatory whole-matrix gate and32 weakening refusals. Existing source-aware52
+baseline versus future61 remains unchanged, without reexecuting either suite.
+
+Retained failure: first refusal command native1 in0.265551s failed before any
+control with IndentationError in the newly added UTF8 check. The author corrected
+indentation; earlier31142a guard then passed81/20/5 controls before protecting
+all daemon-finally completion signaling. Those prior bytes/results are preserved
+as before-worker-signal-* and their original logs/metadata. The final ab3068
+commands above ran after that justified source change. No earlier pass was
+relabelled final; no failure was deleted or rerun blindly for green.
+
+Private packet enumerates specific scripts, native metadata/logs/results and
+source bindings; it does not recursively traverse the retained fixture. Exactly
+one author SRO below is checked with the bounded existing node reference checker.
+`git diff --check` and protected committed-blob/pin comparisons are recorded in
+the private freeze receipt. Neither local success nor the old synthetic/direct
+CI observations prove this new source's qualification or the old failure cause.
+Root retains current-source review/hosted gates, publication and hold release.
+
+## Runner-native index observation continuation — approved 2026-11-04
+
+New author `/root/diagnostic_receipts`, Sol High, owns exactly the workflow,
+parallel contract and this existing execution artifact. Approved proposal r2
+SHA25673c2b3425376b145b0444ad1ec21e74da1ea08f98926c0ecac8897c7a4e5380a
+and direct owner approval are retained privately. Build renderer ran once,
+snapshot1f5525134fd8b352f1e3; headless preparation uses that exact approval.
+Historical frozen intent/baselines above remain unchanged. Current local baseline
+35ba03d20fc0f0b366b52b4205f539557247507d merges reviewed877 with actual main
+4411cdc412f01ee023440525ff1e17bb824ef383. Old731c PR metadata is historical.
+No product sprint/claim status is changed by this process continuation.
+
+Problem: hosted PR138 Windows0 retained original quiet1 but later empty comparisons;
+four approved private exact-version observations did not reproduce that pattern.
+Measure only bounded before/after index byte/stat relations on one actual runner.
+
+Execution plan (all within the explicit three-path allocation):
+- [x] Workflow: manual-only default-false mode, one Windows0 observation job;
+  original877guard byte-identical, default52/26/26 matrix/core140 unchanged.
+- [x] Inline observer: two250ms waits/16MiB reads, no raw index/digest/path/stat
+  output, original quiet once with unchanged args/settings/streams, fatal nonzero.
+- [x] Preserve bounded artifact then intentional non-qualification workflow failure
+  even original0; no accepted contract success or consumer schema/pin changes.
+- [x] Private actual-YAML/injected source controls plus current consumer refusal;
+  author trail maps actual results and limitations before independent High review.
+- [x] Append operator contract and refresh one SRO; freeze exactly3tracked paths.
+
+Acceptance: Given ordinary events/default dispatch, when parsed, then existing
+complete DAG/pins/native commands stay equal apart from mode exclusion. Given
+manual observation, when original0/complete capture, then terminal failure still
+prevents workflow SUCCESS. Given original nonzero or observer failures, when the
+job settles, then exact original code/static fatal precedence persists. Given
+unsafe/unstable/oversized/late index input, when summarized, then bounded fixed
+UNKNOWN/unavailable facts replace raw data and no late publication changes it.
+Given diagnostic/zero-test receipts, when existing qualification consumers run,
+then they refuse without new schemas. These local controls never execute a new
+actual Git experiment or qualify a hosted source.
+
+Scope stays process-only: no source repair, helper/workflow pin changes,
+dependencies, product/table/auth/app changes, resources, live store or provider
+calls. Root alone owns commits/publication, one approved automatic CI set and
+one later diagnostic dispatch. Both products remain held. Frontend acceptance is
+not applicable because only workflow/operator docs/execution evidence change.
+
+### Runner observation local verification and limits
+
+Actual parsed YAML conserved the complete ordinary baseline35ba DAG/pins/core
+commands and exact877guard ab3068. Native node command passed1positive,
+28weakening mutations and1duplicate-key refusal. Its mode truth table covers
+PR/push/manual false/manual true; GitHub evaluation itself remains hosted proof.
+Actual extracted observation source SHA256
+5e56faa4b79003d92911c1774dc832da165be3b5c561747811e7f7490703be48
+ran 48 Python controls:48 passed/0 failed/0 errors/0 skipped in1.080285s (native0).
+These exercise original0/1/128/signal/Windows result, exact once-only argv/no
+kwargs, static fatal/secret-chain precedence, fixed scalar schema, descriptor
+capture/close, reparse/missing/oversized/unstable index, read/start/serialization/
+artifact/partial-write failures, contested lock and real250ms late-reader/writer
+closure, exact guard extraction without main, and actual terminal child exit77.
+Existing strict A.qualify_tooling and original engine.checks rejected synthetic
+diagnostic failed/misnamed/missing/zero-count/skipped/extra-job receipts; a valid
+synthetic core receipt passed those consumers. Other Git/store/review prerequisites
+were mocked, not executed. This does not authenticate provider provenance.
+
+Author reference checker executed with native0,14 valid stops/0errors; local
+frontend-controller gate returned explicit not-applicable for exactly these three
+workflow/doc/spec paths. git diff --check passed. No frontend/build evidence is
+borrowed.
+
+Private scripts/logs/native metadata and counts live at
+`tmp/private/runner-index-observation/` in this worktree; source is actual parsed
+YAML, not a separately passing draft. Source reader/capture facts are injected;
+the only native terminal subprocess was the fixed failure script, not Git.
+No extra actual Git experiment, admission/core test body, build/application,
+DB/RLS/browser/runtime, hosted CI, provider, claim/store or resource action ran.
+The prior4local exact-version observations and failed hosted877 remain immutable
+history; no cause or source/hosted qualification is inferred. Root must obtain
+independent High review, current source/base/synthetic bindings, its approved
+single automatic CI set and separately approved one manual observation attempt.
+
+## Windows3.12 comparator correction — approved 2026-11-04
+
+Owner explicitly approved the bounded comparator correction, proposal SHA256
+e77f81bfc7b1926d2e4ef6a0d7679bd80b7e3304cdbf8305e3578b7f1654d93f,
+independent High proposal receipt SHA256
+1e4da4bbff9d0a70033fb3e7da5720808c5a2c6a5a4f167236255677aab7fe45.
+The existing author and build snapshot1f5525134fd8b352f1e3 continue; no rerender,
+new author, helper/pin migration or live-plan change. Correction baseline is
+b20375b4c605a7fda75c2b4408230107366f21da, retaining integrated main4411 and
+reviewed877. Historical baselines and frozen intent remain unchanged.
+
+Native diagnostic run41875728902/attempt1, job126734486095 at b203 returned
+original Git0. Both reads were UNSTABLE, relations UNAVAILABLE and observation
+INCOMPLETE. The probe failed native1; safe artifact upload succeeded and terminal77
+was skipped. No877 refusal queries, admission or core tests ran. Retained payload
+SHA2560908a4714816e23d4a46941be9554d2a27d463899b15e11eb2f309fad1a7836a;
+native log1cda1ae3806179d99ca4d0ab898c8e70c5121308b609bb4c8f50cadb807deed5;
+terminal snapshot80f51ec704bfedcad933ad3792103da6f123a3cdaba8e645f112d092e31a8ff3.
+The retained independent evidence identifies hosted Python3.12.10. Neither this
+outcome nor the API flaw establishes index mutation, the actual UNSTABLE branch,
+or the cause of historical originalGit1. That cause remains UNKNOWN.
+
+Exact version-tagged CPython3.12.10 source shows win32_xstat overwrites lstat
+ctime with birthtime (Modules/posixmodule.c2008–2033), while _Py_fstat_noraise
+keeps FILE_BASIC_INFO.ChangeTime (Python/fileutils.c1026–1041,1147–1195).
+Common result conversion preserves those values and exposes birthtime separately
+(Modules/posixmodule.c2421–2474). Primary source pointers are retained in the
+approved private proposal/review, not inferred from a successful local model.
+
+Correction tasks and acceptance:
+- [x] Change only mixed lstat/fstat identity to integer dev/ino/mode/size/mtime_ns
+  plus required Windows birthtime_ns; missing/incompatible fields stay unavailable.
+- [x] Keep full fstat/fstat signature including ctime during reads and across
+  observations; preserve all original guard/native/privacy/late-writer limits.
+- [x] Append operator explanation and refresh this single author review trail.
+- [x] Re-extract actual YAML and execute retained48 controls plus targeted
+  timestamp/identity regressions, consumer rejection and terminal-native77.
+
+Given Windows path creation-time ctime differs from descriptor change-time ctime,
+when all common identity fields agree and descriptor signature stays stable,
+then the synthetic read is AVAILABLE. Given device/file/mode/size/mtime/birth
+identity mismatch, missing/incompatible birthtime or within-fd ctime drift,
+then it refuses or remains unavailable; byte-identical before/after observations
+with changed descriptor ctime still report stat DIFFERENT. Original nonzero
+remains fatal; successful observation remains intentionally nonqualifying.
+
+Current correction controls: actual extracted observer ran59 Python test methods
+(retained48 plus11 new regression methods),59 passed/0 failures/0 errors/0 skips,
+native0 in1.1196438s. Multi-field subtests additionally cover both cross-API edges.
+Actual parsed YAML passed1positive/28 weakening refusals/1duplicate-key refusal,
+native0; guard remainsab3068c8a096e61a4845019a796b6cdb2e720ee324c640f062368a87cca358c5,
+ordinary52/26/26 and core140 DAG unchanged. Native terminal subprocess exited77.
+Retained A.qualify_tooling/original engine.checks executed with other prerequisites
+mocked; diagnostic/missing/zero/skipped/extra receipts were rejected.
+
+New private controls/native logs/metadata are under tmp/private/comparator-correction/.
+Original tmp/private/runner-index-observation/ bytes and evidence remain frozen.
+Only installed Windows Python3.14.7 executed; launcher inventory lists no3.12,
+so no actual3.12 disposable-file API check was run or earned. Python3.12 grammar
+parsing is syntax-only. Stat/native/capture/thread facts remain injected; no actual
+Git experiment, live index read, service, hosted test or provider action occurred.
+Frontend remains explicitly inapplicable to these workflow/docs/spec paths.
+
+Independent High targeted source review is pending. Root alone may commit/publish
+using the separately approved new single automatic CI set, then dispatch one
+nonqualifying Windows observation. Budgets do not authorize retries or E09 work.
+Stop after that run on any result or transport uncertainty; reconcile rather than
+redispatch. No Git/config/latest-version repair, product/claim resume or waiver of
+failed historical source checks follows. Both products and workflow-pin stop remain.
+
 ## Suggested Review Order
 
-Author: `/root/crm_runtime_route/runtime_admission_author`, gpt-6.1-sol High.
-Refreshed against the three-path continuation from qualified
-`2415964604d5b8d766883f0cbfcf6e6b5ca215a0`. Original PR130/d03 evidence above
-remains historical; this trail describes the actual new source and controls.
+Author: `/root/diagnostic_receipts`, Sol High, existing correction author.
+Refreshed against the uncommitted three-path comparator correction from
+b20375b4c605a7fda75c2b4408230107366f21da. Historical35ba/main4411/877 and
+native incomplete observation remain preserved; no new hosted qualification exists.
 
-### Derive complete source-bound cells before execution
+### Keep observation explicitly nonqualifying
 
-The new guard derives its expectation from the full actual source, so source52
-and source61 cannot borrow each other's count or historical partial completion.
-The canonical alternating partition keeps every original case in Windows coverage.
+The existing default-false entry and terminal are unchanged. Correcting a reader
+cannot convert a diagnostic cell into successful full-matrix qualification.
 
-- `.github/workflows/auto-bmad-parallel.yml:29` — `runtime-admission:`: enters the three-cell admission prerequisite.
-- `.github/workflows/auto-bmad-parallel.yml:99` — `def binding(expected)`: binds immutable GitHub SHA, tree and actual module source.
-- `.github/workflows/auto-bmad-parallel.yml:114` — `def inventory(path=MODULE)`: collects complete actual IDs without executing fixtures.
-- `.github/workflows/auto-bmad-parallel.yml:137` — `def validate_partition`: refuses empty, duplicate, overlapping or incomplete groups.
+- `.github/workflows/auto-bmad-parallel.yml:21` — `observe_index_only`: manual input remains disabled by default.
+- `.github/workflows/auto-bmad-parallel.yml:36` — `if:`: ordinary DAG exclusion remains diagnostic-only.
+- `.github/workflows/auto-bmad-parallel.yml:773` — `Diagnostic observation cannot qualify`: original0 still reaches intentional native77.
 
-### Preserve native progress, strict results and the whole-matrix gate
+### Compare common identity while preserving descriptor consistency
 
-Raw child progress remains visible during cancellation. Only complete exact native
-results can produce a cell success; neither core job can bypass any required cell.
+Windows3.12 lstat and fstat have incompatible ctime semantics. Use required common
+identity/birthtime across APIs; retain full descriptor ctime for both consistency
+and before/after relation. Missing identity never becomes a weaker comparison.
 
-- `.github/workflows/auto-bmad-parallel.yml:152` — `def native_child(argv)`: tees partial bytes immediately and bounds validation capture.
-- `.github/workflows/auto-bmad-parallel.yml:171` — `def native_result`: verifies exact actual IDs, count, terminal success and native exit.
-- `.github/workflows/auto-bmad-parallel.yml:209` — `emit("admission-after"`: records after-source/inventory consistency before success.
-- `.github/workflows/auto-bmad-parallel.yml:217` — `needs: runtime-admission`: preserves default-success whole-matrix gating.
+- `.github/workflows/auto-bmad-parallel.yml:567` — `def cross_api_identity`: common integers plus required Windows birthtime.
+- `.github/workflows/auto-bmad-parallel.yml:577` — `def index_read`: original bounded descriptor ownership remains.
+- `.github/workflows/auto-bmad-parallel.yml:601` — `signature(before) != signature(after)`: same-descriptor ctime remains checked.
+- `.github/workflows/auto-bmad-parallel.yml:606` — `signature(after)`: full descriptor signature remains the stat relation token.
+- `docs/process/parallel-auto-bmad-contract.md:1092` — `Mixed path/descriptor identity`: API semantics and unproven hosted attribution.
 
-### Keep qualification provenance and existing core authority explicit
+### Preserve original Git failure and private bounded capture
 
-The adapter still accepts the same two core checks; Root separately retains and
-compares all three real prerequisite records. Local source collection and injected
-protocol controls establish guard behavior, without pretending to be native suite execution.
+The877 guard remains byte-identical. There is still one original quiet call with
+unchanged argv/settings/streams; later observation/capture failures never mask it.
 
-- `.github/workflows/auto-bmad-parallel.yml:268` — `exit $testExit`: preserves the existing core routing native failure propagation.
-- `docs/process/parallel-auto-bmad-contract.md:264` — `Every admission cell`: requires common immutable source/full-inventory bindings.
-- `docs/process/parallel-auto-bmad-contract.md:291` — `all five jobs`: requires all actual records without a fake combined Windows argv.
-- `docs/process/parallel-auto-bmad-contract.md:300` — `Current topology continuation`: distinguishes actual baseline52 from later integrated61.
+- `.github/workflows/auto-bmad-parallel.yml:719` — `subprocess.run`: original call has no added kwargs or timeout.
+- `.github/workflows/auto-bmad-parallel.yml:739` — `if code != 0`: static fatal precedence remains.
+- `.github/workflows/auto-bmad-parallel.yml:654` — `def bounded_observation`: closed result shape and unavailable fallback.
+- `.github/workflows/auto-bmad-parallel.yml:670` — `def capture_report`: original2KiB/single-write/250ms bounds remain.
 
-Evidence: Current continuation verification maps each AC to the actual collected
-source and60 extracted-guard controls, plus parsed conservation/32 refusal
-mutations. Admission bodies/core/CI executions here:0. Limits: synthetic child,
-pipe, result and clean-status fixtures do not prove hosted timing, Windows group
-completion, global provider truth, live custody or new tooling qualification.
-Root retains fresh direct-source matrix/ordinary gates and publication authority.
+### Read actual correction evidence and its limits
+
+Actual YAML conservation/refusal controls and59 Python methods passed, including
+the retained48 and11 comparator regression methods. Common identity mismatch,
+missing/incompatible birthtime and within-fd ctime drift refuse; stable mixed-API
+ctime differences accept, while before/after descriptor ctime still differs.
+Consumer prerequisites/stat/native I/O are injected; terminal subprocess77 is real.
+Only Windows Python3.14 ran; actual3.12 API behavior is unearned and hosted cause
+remains UNKNOWN. Prior frozen evidence is unchanged, not reclassified as success.
+
+- `_bmad-output/implementation-artifacts/spec-e35-contract-ci-topology.md:555` — `Windows3.12 comparator correction`: authority, native failure and current control provenance.
+- `.github/workflows/auto-bmad-parallel.yml:764` — `Preserve bounded non-qualification observation`: safe fixed artifact only.
+
+Private current scripts/logs/hash manifest live under tmp/private/comparator-correction/;
+original runner-index-observation evidence stays frozen. Root owns independent High
+targeted review, commit/publication, one new automatic set and one nonqualifying run.
+No extra Git experiment, provider/service/claim action or E09 implementation ran.
+Both product holds, historical failures and workflow-pin stop remain.

@@ -1003,3 +1003,119 @@ folder (up to two explicitly planned folders). Terminal done_checkpoint is
 preserved: stop after the own PR, retain pending status until verified main merge.
 Unfulfilled spec_checkpoint approval and multi-entry continuation fail closed;
 no new checkpoint scheduler or source flag rewrite is introduced.
+
+
+## On-refusal admission source metadata
+
+The admission guard preserves its original once-only
+`git diff --quiet <captured-source-sha>` call, settings and inherited streams.
+A returned nonzero remains the SAME fatal `Tracked source changed` refusal;
+collection/native tests cannot continue. Code0 runs no diagnostics. The original
+native stderr is an unchanged legacy boundary, not retroactively sanitized.
+
+Only after nonzero, three fixed diagnostic Git plumbing reads may observe the
+immutable committed path allowlist, HEAD-index and index-worktree name/status.
+Diagnostic-only no-optional-locks/no pager/replacement/lazy-fetch/ext-diff/textconv/
+rename settings suppress optional index refresh and arbitrary new stderr.
+No source/index repair, refresh, retry, configuration or acceptance change occurs.
+
+One optional finite JSON record retains the exact original native Git code and
+fixed cell/phase. Rows require complete NUL grammar, exact committed byte-identity
+membership and safe ASCII paths; no casefold/Unicode normalization. Unsafe,
+unknown, malformed or truncated data withholds ALL comparison rows/counts. No
+patch/content/unknown-path hash/env/config/credentials/exception text is emitted.
+Allowlist is capped at2MiB/16384paths/512bytes; each diff256KiB/256records/16display;
+ASCII JSON32768bytes, independent UNKNOWN fallback2048bytes.
+
+The6s application deadline includes a0.1s freeze/output reserve; command1.5s,
+exact-owned kill/wait0.25s and EOF/emission-signal0.05s remain bounded. NEW workers
+use descriptor-only pipe reads and at most ONE raw stdout descriptor write,
+no buffered stdio/flush/logging/traceback. Nonblocking record locks select an
+independent fallback; no I/O/parse/spawn/cleanup is under lock. Freeze closes
+mutation separately from the sole main-scheduled pre-deadline output permit.
+Late callbacks cannot promote or start another command/output; main never
+closes/joins an unsettled reader. A begun raw write/owned child may remain
+unverified: no delivery, hard real-time OS teardown or shutdown claim follows.
+
+These are LATER NON-ATOMIC observations with cause UNKNOWN. Index-only/worktree-
+only/both/empty means only what those later complete reads reported; it cannot
+reconstruct the original failed check or prove a flake/EOL/stat theory. Diagnostic
+errors, unavailable data, timeout, truncation or partial output never waive the
+original refusal. An externally canceled job remains nonqualifying. Existing
+matrix/core140/pins/15–30 budgets and real-source qualification gates are unchanged.
+Local private controls/fixtures do not earn admission/native-suite/CI coverage.
+
+## Diagnostic-only original index observation
+
+The optional manual `observe_index_only` boolean defaults to false. Ordinary PR,
+push and default-dispatch execution retains the full 52-test inventory admission
+matrix (Ubuntu52, Windows26/26 here), both unchanged 140-test core jobs and their
+whole-matrix dependency. PR134's separate 61/31/30 source is not borrowed. The
+new observation job is skipped/non-applicable in ordinary qualification; it is
+never an additional qualifying core check.
+
+An explicitly authorized manual true dispatch runs only the separately named
+`original-index-observation` Windows0 job. The ordinary admission matrix and
+its dependent core jobs remain skipped. After bounded artifact capture, an
+otherwise successful probe deliberately exits 77 with the fixed
+`DIAGNOSTIC_OBSERVATION_NOT_QUALIFICATION` marker. Original nonzero keeps its
+original static fatal step. The diagnostic workflow cannot finish SUCCESS,
+including original 0/complete observations. Its result, job name, missing core
+jobs and zero test counts cannot qualify through existing consumers; no receipt
+schema, accepted check name, helper, pin or gate is changed.
+
+Root's approved budget is one exact reviewed-source diagnostic dispatch/cell,
+one original quiet invocation, and one separately authorized automatic CI set
+on publication. Transport uncertainty is reconciled through the original run
+identity, never blind redispatch. Mode, actual source/merge SHA/tree, native
+original code, observation availability and outcome remain distinct evidence.
+No local successful control or intentionally failed observation waives a failed
+automatic contract or provides product runtime coverage.
+
+The observer verifies exact immutable checkout SHA and loads the byte-identical
+877guard (ab3068c8a096e61a4845019a796b6cdb2e720ee324c640f062368a87cca358c5)
+with a non-main name. No inventory/test body runs. Its sole original
+`git diff --quiet <captured SHA>` retains argv, executable resolution,
+environment/settings and inherited streams with no new original timeout,
+configuration, optional-lock flag, Trace2, filter or refresh. The usual immutable
+HEAD read precedes observation; no extra status/config/discovery Git command is
+added. Read-only byte/stat observation can still perturb timing/cache behavior.
+
+Two dedicated daemon reads of literal non-reparse `.git/index` each have a 250ms
+application wait and 16MiB/64KiB raw capture limit. Descriptor/path stat checks
+mark detected instability; they do not establish atomicity. Closed publication,
+nonblocking locks and independent fallback prevent late results becoming current
+observations. Each reader owns/closes its descriptor; no transferred/reused fd.
+Digests/stat tuples are transient comparison material only. They are neither
+emitted nor archived, along with raw index bytes or parsed/unknown path names.
+
+Mixed path/descriptor identity uses common-semantic device, file ID, mode, size
+and nanosecond mtime, plus required integer nanosecond birthtime on Windows.
+CPython3.12 Windows lstat exposes creation time as legacy ctime while fstat
+exposes metadata change time; comparing those ctime fields across APIs can
+falsely reject an unchanged file. Missing/incompatible identity fields remain
+UNAVAILABLE. Same-descriptor before/after consistency and the returned stat
+relation retain the full signature including ctime; no within-read race check
+or before/after relation is weakened. This comparator correction does not show
+which predicate produced a retained UNSTABLE result or explain original Git1.
+
+The only new artifact is `test-results/original-index-observation.json`, at most
+2KiB, containing fixed availability/byte/stat relation enums, immutable SHA/cell,
+original native code, diagnostic-only mode and cause UNKNOWN. Its dedicated raw
+writer gets one pre-deadline write attempt and 250ms application wait, with no
+retry; a partial/error/unsettled capture never counts as complete. Upload has a
+2-minute step budget and missing artifact fails. Original0 with incomplete
+observation/capture fails the probe; original nonzero stays fatal regardless of
+observer/serializer/capture/refusal exceptions. The unchanged877 refusal routine
+alone may emit its existing bounded later metadata after nonzero; original 0
+runs none of those diagnostic Git commands. Inherited original stderr remains
+restricted and is not retroactively sanitized.
+
+OS I/O/creation/scheduling or an already-begun write are not hard real-time or
+verified-shutdown guarantees. Equal before/after observations exclude neither a
+transient write nor another writer; differing observations do not prove causality
+or identify the original changed path. Stop after the single run on 0,1,error or
+unavailable data. Return exact safe facts or an evidence limit. Any subsequent
+instrumentation, correction, workflow-pin migration or product resume requires
+its separate bounded disposition. Both products and all retained allocations
+remain held; no index repair, cleanup or source gate relaxation is implied.
