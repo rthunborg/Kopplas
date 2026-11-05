@@ -1,5 +1,5 @@
 name: CI
-run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}
+run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.my_day_e09_observation && format('checkpoint:e09:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}
 
 # Phase A verification gates (architecture §19).
 # `verify` job — stages 1-5 + 10: install, lockfile guard, service-role containment
@@ -19,6 +19,11 @@ run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_
 on:
   workflow_dispatch:
     inputs:
+      my_day_e09_observation:
+        description: One nonqualifying E09 observation, maximum original and existing retry1
+        type: boolean
+        required: false
+        default: false
       calendar_feed_cause_proof:
         description: One diagnostic call and unmodified rollback-only baseline; zero acceptance
         type: boolean
@@ -48,7 +53,7 @@ on:
         type: string
         required: true
       checkpoint_id:
-        description: Unique UUID generated and persisted by checkpoint-dispatch.mjs
+        description: Unique persisted UUID; E09 native dispatch uses Root durable intent, other modes checkpoint-dispatch.mjs
         type: string
         required: true
       release_validation:
@@ -79,6 +84,7 @@ concurrency:
 
 jobs:
   checkpoint-admission:
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && 'e09-diagnostic-admission' || 'checkpoint-admission' }}
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
@@ -86,13 +92,21 @@ jobs:
         env:
           EXPECTED_SHA: ${{ inputs.expected_sha }}
           CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
+          E09_OBSERVATION: ${{ inputs.my_day_e09_observation || false }}
           CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}
           RELEASE_VALIDATION: ${{ inputs.release_validation || false }}
           OTHER_DIAGNOSTICS: ${{ inputs.native_stream_probe || inputs.fixed_chromium_paired_probe || inputs.fixed_chromium_application_verification || false }}
         shell: bash
         run: |
           set -euo pipefail
+          if [ "$E09_OBSERVATION" = true ]; then
+            test "$GITHUB_EVENT_NAME" = workflow_dispatch
+            test "$CAUSE_PROOF" = false
+            test "$RELEASE_VALIDATION" = false
+            test "$OTHER_DIAGNOSTICS" = false
+          fi
           if [ "$CAUSE_PROOF" = true ]; then
+            test "$E09_OBSERVATION" = false
             test "$GITHUB_EVENT_NAME" = workflow_dispatch
             test "$RELEASE_VALIDATION" = false
             test "$OTHER_DIAGNOSTICS" = false
@@ -105,6 +119,8 @@ jobs:
             test "$GITHUB_REF_TYPE" = branch
           fi
   verify:
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && 'e09-diagnostic-excluded-verify' || 'verify' }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation) }}
     needs: [checkpoint-admission]
     runs-on: ubuntu-latest
     # Bound the job so a hung step (networked install, or the `next build`
@@ -210,6 +226,8 @@ jobs:
   # can never silently false-green.
   # ──────────────────────────────────────────────────────────────────────────
   db:
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && 'e09-diagnostic-excluded-db' || 'db' }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     # Gate the expensive ~20-min Supabase boot behind the fast `verify` job: if a
@@ -339,7 +357,8 @@ jobs:
   # the local CI stack, restores it into a separate recovery volume, then proves
   # absent bytes can be materialized without changing protected logical rows.
   recovery-storage-loader:
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && 'e09-diagnostic-excluded-recovery-storage-loader' || 'recovery-storage-loader' }}
+    if: ${{ (!(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof)) && !(github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     needs: [verify]
@@ -504,7 +523,8 @@ jobs:
           rm -rf recovery/source recovery/synthetic-storage
           rm -f ops/recovery/.env ops/recovery/.private.db-bootstrap.compose.yaml ops/recovery/.private.runtime.compose.yaml
   e2e:
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && 'e09-diagnostic-excluded-e2e' || 'e2e' }}
+    if: ${{ (!(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof)) && !(github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     # Same gate as `db`: only spin up the stack + browser after the fast `verify` job
@@ -646,7 +666,8 @@ jobs:
   # Broad UI diagnostics are deferred from ordinary progression by owner decision.
   # Explicit release validation retains the dedicated fixtures and real read proxy.
   dashboard-e2e:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation }}
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && 'e09-diagnostic-excluded-dashboard-e2e' || 'dashboard-e2e' }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.release_validation) && !(github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     # Same gate as `db`: only spin up the stack + browser after the fast `verify` job
@@ -776,10 +797,11 @@ jobs:
 
   # Optional synthetic transport experiment; original E2E artifacts finish first.
   native-stream-probe:
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && 'e09-diagnostic-excluded-native-stream-probe' || 'native-stream-probe' }}
     runs-on: ubuntu-latest
     needs: [verify, e2e]
     timeout-minutes: 10
-    if: ${{ always() && !cancelled() && github.event_name == 'workflow_dispatch' && inputs.native_stream_probe && needs.verify.result == 'success' && (needs.e2e.result == 'success' || needs.e2e.result == 'failure') }}
+    if: ${{ (always() && !cancelled() && github.event_name == 'workflow_dispatch' && inputs.native_stream_probe && needs.verify.result == 'success' && (needs.e2e.result == 'success' || needs.e2e.result == 'failure')) && !(github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation) }}
     steps:
       - name: Checkout
         timeout-minutes: 1
@@ -822,10 +844,11 @@ jobs:
 
   # FIXED-CHROMIUM-JOB-BEGIN
   fixed-chromium-paired-probe:
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && 'e09-diagnostic-excluded-fixed-chromium-paired-probe' || 'fixed-chromium-paired-probe' }}
     runs-on: ubuntu-latest
     needs: [verify, e2e]
     timeout-minutes: 18
-    if: ${{ always() && !cancelled() && github.event_name == 'workflow_dispatch' && inputs.fixed_chromium_paired_probe && needs.verify.result == 'success' && (needs.e2e.result == 'success' || needs.e2e.result == 'failure') }}
+    if: ${{ (always() && !cancelled() && github.event_name == 'workflow_dispatch' && inputs.fixed_chromium_paired_probe && needs.verify.result == 'success' && (needs.e2e.result == 'success' || needs.e2e.result == 'failure')) && !(github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation) }}
     steps:
       - name: Checkout
         timeout-minutes: 1
@@ -896,12 +919,13 @@ jobs:
 
   # FIXED-APPLICATION-JOB-BEGIN
   fixed-chromium-application-verification:
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && 'e09-diagnostic-excluded-fixed-chromium-application-verification' || 'fixed-chromium-application-verification' }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     # Same gate as `db`: only spin up the stack + browser after the fast `verify` job
     # is green. Runs in parallel with `db` (each boots its own local stack).
     needs: [verify, e2e]
-    if: ${{ always() && !cancelled() && github.event_name == 'workflow_dispatch' && inputs.fixed_chromium_application_verification && needs.verify.result == 'success' && (needs.e2e.result == 'success' || needs.e2e.result == 'failure') }}
+    if: ${{ (always() && !cancelled() && github.event_name == 'workflow_dispatch' && inputs.fixed_chromium_application_verification && needs.verify.result == 'success' && (needs.e2e.result == 'success' || needs.e2e.result == 'failure')) && !(github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation) }}
     env:
       # ROOT-SERVICE-ENV-BEGIN: a dispatch flag is not native execution admission.
       FIXED_CHROMIUM_HOSTED_ADMISSION: ${{ vars.FIXED_CHROMIUM_HOSTED_ADMISSION }}
@@ -1596,8 +1620,9 @@ jobs:
   # Additive data-free entry UI feedback; required jobs below never consume its
   # classifier. A green result is not auth, affected-component or release acceptance.
   feedback-scope:
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && 'e09-diagnostic-excluded-feedback-scope' || 'feedback-scope' }}
     needs: [checkpoint-admission]
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+    if: ${{ (!(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof)) && !(github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation) }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     outputs:
@@ -1621,8 +1646,9 @@ jobs:
           if-no-files-found: error
 
   entry-ui-feedback:
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && 'e09-diagnostic-excluded-entry-ui-feedback' || 'entry-ui-feedback' }}
     needs: [checkpoint-admission, feedback-scope]
-    if: ${{ needs.feedback-scope.outputs.entry_ui == 'true' }}
+    if: ${{ (needs.feedback-scope.outputs.entry_ui == 'true') && !(github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation) }}
     runs-on: ubuntu-latest
     # Five minutes is a measured objective, not an execution acceptance cutoff.
     timeout-minutes: 12
@@ -1689,3 +1715,239 @@ jobs:
         if: always()
         timeout-minutes: 1
         run: node scripts/ci/browser-runtime.mjs stop
+
+  # Explicitly nonqualifying: even a passing E09 case must end this run in failure.
+  my-day-e09-observation:
+    name: e09-diagnostic-observation
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation }}
+    needs: [checkpoint-admission]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      SUPABASE_TEST_REQUIRED: "1"
+      BOOKING_CONFLICT_ATTESTATION_KEY_ID: "test_v1"
+      BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET: "local-test-only-booking-conflict-attestation-secret-v1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        id: node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Intermediates only: never restore a .next build, auth state or test data.
+      # Source-specific writes; restore only within the same toolchain/config/env.
+      - name: Cache Next build intermediates
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-${{ hashFiles('src/**') }}
+          restore-keys: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-
+
+      # Browser + Linux dependencies are preinstalled in the reviewed official
+      # image. Keep the host Node/Next/Supabase topology and use a loopback protocol.
+      - name: Start pinned Playwright browser service
+        timeout-minutes: 6
+        run: node scripts/ci/browser-runtime.mjs start
+
+      - name: Install Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          # Pin the same explicit version as the `db` job (see its note).
+          version: 2.115.0
+
+      - name: Start local Supabase stack
+        run: supabase start
+
+      - name: Migration reset (empty DB → migrate → seed)
+        # Bounded retry (added 2026-07-26): `supabase db reset` intermittently fails with
+        # "Error status 502: An invalid response was received from the upstream server" during its
+        # FINAL "Restarting containers..." step — i.e. AFTER every migration applied and seed.sql ran.
+        # The same exact-ledger + seed + auth verifier used by `db` distinguishes completed recovery
+        # from a real migration/seed failure before any retry or Playwright execution.
+        run: |
+          for attempt in 1 2 3; do
+            echo "::group::supabase db reset (attempt $attempt/3)"
+            if supabase db reset; then
+              echo "::endgroup::"
+              exit 0
+            fi
+            echo "::endgroup::"
+            echo "db reset attempt $attempt failed"
+            if node scripts/verify/check-local-supabase-reset.mjs; then
+              echo "db reset completed; recovered from the CLI's final restart error"
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              sleep 15
+            fi
+          done
+          echo "supabase db reset failed after 3 attempts — treating as a REAL failure"
+          exit 1
+
+      - name: Observe exactly the existing E09 case
+        id: e09_case
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/e09-native.json
+        shell: bash
+        run: |
+          set +e
+          pnpm exec playwright test tests/e2e/my-day.e2e.spec.ts --grep '15[.]6-E09' --project=chromium --workers=1 --retries=1 --reporter=list,json > "$RUNNER_TEMP/e09-native.stdout" 2> "$RUNNER_TEMP/e09-native.stderr"
+          native=$?
+          printf 'native_exit=%s\n' "$native" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$native" > "$RUNNER_TEMP/e09-native-exit"
+          printf 'E09_NATIVE_EXIT=%s\n' "$native"
+          exit "$native"
+
+      - name: Capture only bounded E09 enums and native counts
+        if: ${{ always() && !cancelled() && steps.e09_case.outcome != 'skipped' }}
+        timeout-minutes: 2
+        env:
+          E09_CAPTURE_RUN: "true"
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
+        shell: bash
+        run: |
+          node --input-type=module <<'E09_CAPTURE'
+          import * as fs from 'node:fs';
+          import path from 'node:path';
+
+          const TITLE = '[P0] 15.6-E09 a real tenant-switch RSC navigation discards the prior report owner and ignores its late read';
+          const EVENTS = ['attempt-start','held-selected','fetch-start','fetch-complete','body-validated','navigation-start',
+            'navigation-response','current-ui-verified','release','fulfill-start','fulfill-complete','fulfill-failed',
+            'request-finished','request-failed','cleanup-enter','listeners-removed','unroute-start','unroute-complete',
+            'unroute-failed','cleanup-start','cleanup-complete','cleanup-failed','scope-exit'];
+          const REQUIRED = EVENTS.filter(x => !['fulfill-failed','request-finished','request-failed','unroute-failed','cleanup-failed'].includes(x));
+          const fact = value => { if (!value) throw new Error('E09_CAPTURE_UNAVAILABLE'); };
+          const exact = (value, keys) => fact(value && typeof value === 'object' && !Array.isArray(value)
+            && Object.keys(value).sort().join('|') === [...keys].sort().join('|'));
+
+          export function safeObservation(value, attempt) {
+            exact(value,['version','attempt','state','reason','events']);
+            fact(value.version === 1 && value.attempt === attempt && ['COMPLETE','INCOMPLETE'].includes(value.state));
+            fact(['none','clock','overflow','record','retry','missing'].includes(value.reason));
+            fact(Array.isArray(value.events) && value.events.length <= 32 && Buffer.byteLength(JSON.stringify(value)) <= 4096);
+            let previous = 0;
+            for (const [index,row] of value.events.entries()) {
+              exact(row,['seq','ms','event','phase','category']);
+              fact(row.seq === index + 1 && Number.isSafeInteger(row.ms) && row.ms >= previous && row.ms <= 2700000);
+              fact(EVENTS.includes(row.event) && ['none','before-release','after-release'].includes(row.phase)
+                && ['none','aborted','content-length','decoding','connection','other'].includes(row.category));
+              previous = row.ms;
+            }
+            if (value.state === 'COMPLETE') fact(value.reason === 'none'
+              && REQUIRED.every(event => value.events.some(row => row.event === event))
+              && value.events.some(row => row.event === 'request-finished' || row.event === 'request-failed'));
+            else fact(value.reason !== 'none');
+            // Reconstruct fixed keys only, never propagate reporter objects/prototypes.
+            return {version:1,attempt,state:value.state,reason:value.reason,events:value.events.map(row =>
+              ({seq:row.seq,ms:row.ms,event:row.event,phase:row.phase,category:row.category}))};
+          }
+
+          export function parseSafeReport(report, native, source, checkpoint, runId) {
+            fact(/^[a-f0-9]{40}$/.test(source) && /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(checkpoint));
+            fact(/^[0-9]{1,20}$/.test(runId) && Number.isInteger(native) && native >= 0 && native <= 255);
+            fact(Array.isArray(report.errors) && report.errors.length === 0 && Array.isArray(report.suites));
+            const specs = []; let nodes = 0;
+            function visit(suites, depth) {
+              fact(depth <= 12 && Array.isArray(suites));
+              for (const suite of suites) {
+                fact(++nodes <= 256);
+                if (suite.specs !== undefined) { fact(Array.isArray(suite.specs)); specs.push(...suite.specs); fact(specs.length <= 1); }
+                if (suite.suites !== undefined) visit(suite.suites,depth + 1);
+              }
+            }
+            visit(report.suites,0); fact(specs.length === 1);
+            const spec = specs[0]; fact(spec.title === TITLE && ['my-day.e2e.spec.ts','tests/e2e/my-day.e2e.spec.ts'].includes(spec.file));
+            fact(Array.isArray(spec.tests) && spec.tests.length === 1);
+            const test = spec.tests[0]; fact(test.projectName === 'chromium' && ['expected','unexpected','flaky'].includes(test.status));
+            fact(Array.isArray(test.results) && test.results.length >= 1 && test.results.length <= 2);
+            if (test.results.length === 2) fact(test.results[0].status !== 'passed');
+            const observations = []; let passed = 0, failed = 0;
+            for (const [attempt,result] of test.results.entries()) {
+              fact(result.retry === attempt && ['passed','failed','timedOut','interrupted'].includes(result.status));
+              if (result.status === 'passed') passed++; else failed++;
+              fact(Array.isArray(result.attachments) && result.attachments.length <= 16);
+              const matches = result.attachments.filter(item => item.name === 'my-day-e09-observation-v1'); fact(matches.length === 1);
+              const attachment = matches[0];
+              fact(attachment.contentType === 'application/json' && typeof attachment.body === 'string' && attachment.path === undefined);
+              fact(attachment.body.length <= 5464 && /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(attachment.body));
+              const bytes = Buffer.from(attachment.body,'base64'); fact(bytes.length <= 4096 && bytes.toString('base64') === attachment.body);
+              observations.push(safeObservation(JSON.parse(bytes.toString('utf8')),attempt));
+            }
+            const lastPassed = test.results.at(-1).status === 'passed', flaky = test.status === 'flaky';
+            fact((native === 0) === lastPassed && (test.status === 'expected') === (lastPassed && failed === 0)
+              && flaky === (lastPassed && failed > 0) && (test.status === 'unexpected') === !lastPassed);
+            fact(report.stats && report.stats.expected === Number(test.status === 'expected') && report.stats.unexpected === Number(!lastPassed)
+              && report.stats.flaky === Number(flaky) && report.stats.skipped === 0);
+            fact(Buffer.byteLength(JSON.stringify(observations)) <= 8192);
+            const summary = {schema_version:1,mode:'DIAGNOSTIC_ONLY_NOT_QUALIFICATION',source,checkpoint,run_id:runId,run_attempt:1,
+              job:'my-day-e09-observation',case:'15.6-E09',cause:'UNKNOWN',native_exit:native,
+              counts:{cases:1,passed:Number(lastPassed),failed:Number(!lastPassed),skipped:0,flaky:Number(flaky),attempts:passed+failed,
+                passed_attempts:passed,failed_attempts:failed},
+              observation_state:observations.every(item => item.state === 'COMPLETE') ? 'COMPLETE' : 'INCOMPLETE',observations};
+            fact(Buffer.byteLength(JSON.stringify(summary)) <= 10240);
+            return summary;
+          }
+
+          function boundedRead(file,limit) {
+            let fd;
+            try {
+              fd = fs.openSync(file,fs.constants.O_RDONLY | fs.constants.O_NOFOLLOW);
+              const before = fs.fstatSync(fd); fact(before.isFile() && before.size >= 0 && before.size <= limit);
+              const buffer = Buffer.alloc(limit + 1), count = fs.readSync(fd,buffer,0,limit + 1,0), after = fs.fstatSync(fd);
+              fact(count === before.size && after.size === before.size && after.mtimeMs === before.mtimeMs && after.ctimeMs === before.ctimeMs);
+              return buffer.subarray(0,count).toString('utf8');
+            } finally { if (fd !== undefined) fs.closeSync(fd); }
+          }
+
+          export function capture() {
+            const env = process.env; fact(env.GITHUB_SHA === env.EXPECTED_SHA && env.GITHUB_RUN_ATTEMPT === '1');
+            const nativeText = boundedRead(path.join(env.RUNNER_TEMP,'e09-native-exit'),4); fact(/^(?:0|[1-9][0-9]{0,2})\n$/.test(nativeText));
+            const report = JSON.parse(boundedRead('test-results/e09-native.json',1048576));
+            const summary = parseSafeReport(report,Number(nativeText.trim()),env.EXPECTED_SHA,env.CHECKPOINT_ID,env.GITHUB_RUN_ID);
+            fs.writeFileSync(path.join(env.RUNNER_TEMP,'e09-safe-observation.json'),JSON.stringify(summary)+'\n',{encoding:'utf8',flag:'wx',mode:0o600});
+            if (summary.observation_state !== 'COMPLETE') throw new Error('E09_CAPTURE_INCOMPLETE');
+          }
+          if (process.env.E09_CAPTURE_RUN === 'true') {
+            try { capture(); } catch { console.error('E09_OBSERVATION_CAPTURE_UNAVAILABLE'); process.exitCode = 1; }
+          }
+          E09_CAPTURE
+
+      - name: Preserve only safe nonqualification evidence
+        if: ${{ always() && !cancelled() && steps.e09_case.outcome != 'skipped' }}
+        timeout-minutes: 2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-e09-observation
+          path: ${{ runner.temp }}/e09-safe-observation.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Stop owned Playwright browser service
+        if: always()
+        timeout-minutes: 1
+        run: node scripts/ci/browser-runtime.mjs stop
+
+      - name: Stop local Supabase stack
+        if: always()
+        run: supabase stop
+
+      - name: E09 observation cannot qualify
+        if: ${{ always() && !cancelled() && steps.e09_case.outcome == 'success' }}
+        shell: bash
+        run: |
+          printf 'E09_DIAGNOSTIC_NOT_QUALIFICATION\n'
+          exit 77
