@@ -100,6 +100,8 @@ jobs:
           import re
           import subprocess
           import sys
+          import threading
+          import time
           import unittest
 
           MODULE = Path("tests/maintenance/test_admit_story35_6_runtime.py")
@@ -113,11 +115,232 @@ jobs:
           def git(*args):
               return subprocess.check_output(["git", *args])
 
-          def binding(expected):
+          def diagnostic_empty(state="NOT_RUN", reason="NONE", code=None, settlement="NOT_STARTED"):
+              return {"state": state, "reason": reason, "native_returncode": code,
+                      "settlement": settlement, "count": None, "records": None}
+
+
+          def diagnostic_parse(raw, allowed=None):
+              # Validate the ENTIRE capture before returning any displayable row.
+              limit = 2_097_152 if allowed is None else 262_144
+              if len(raw) > limit:
+                  return None, "BYTE_LIMIT"
+              if raw and not raw.endswith(b"\0"):
+                  return None, "INVALID_NUL"
+              fields = raw[:-1].split(b"\0") if raw else []
+              if any(not field for field in fields) or (allowed is not None and len(fields) % 2):
+                  return None, "INVALID_NUL"
+              paths = fields if allowed is None else fields[1::2]
+              if len(paths) > (16_384 if allowed is None else 256):
+                  return None, "PATH_LIMIT" if allowed is None else "RECORD_LIMIT"
+              if len(paths) != len(set(paths)):
+                  return None, "DUPLICATE_PATH"
+              for path in paths:
+                  try:
+                      path.decode("utf8")
+                  except UnicodeDecodeError:
+                      return None, "UNSAFE_PATH"
+                  parts = path.split(b"/")
+                  if (not 1 <= len(path) <= 512 or len(parts) > 64 or
+                          any(not part or part in (b".", b"..") or len(part) > 255 or
+                              part.strip(b" ") != part for part in parts) or
+                          any(byte < 32 or byte == 127 or byte in (58, 92) for byte in path)):
+                      return None, "UNSAFE_PATH"
+                  if allowed is not None and path not in allowed:
+                      return None, "UNKNOWN_PATH"
+                  if allowed is not None and not re.fullmatch(rb"[A-Za-z0-9._/@+()\[\]{} -]+", path):
+                      return None, "UNSAFE_PATH"
+              if allowed is None:
+                  return set(paths), "NONE" if paths else "ALLOWLIST_UNAVAILABLE"
+              if any(status not in (b"A", b"D", b"M", b"T", b"U") for status in fields[::2]):
+                  return None, "INVALID_STATUS"
+              if len(paths) > 16:
+                  return None, "RECORD_LIMIT"
+              return [{"status": status.decode("ascii"), "path": path.decode("ascii")}
+                      for path, status in sorted(zip(paths, fields[::2]))], "NONE"
+
+
+          def diagnostic_capture(argv, limit, deadline, closed):
+              # Only the controller owns Popen; the raw reader owns its transferred fd.
+              read_fd = write_fd = child = None
+              transferred = False
+              done, overflow = threading.Event(), threading.Event()
+              output = [None]
+              def read_pipe(fd):
+                  try:
+                      data, complete = bytearray(), False
+                      while chunk := os.read(fd, 4096):
+                          if len(data) + len(chunk) > limit:
+                              overflow.set()
+                              break
+                          data.extend(chunk)
+                      else:
+                          complete = True
+                  except BaseException:
+                      pass
+                  finally:
+                      try:
+                          os.close(fd)
+                      except BaseException:
+                          pass
+                      try:
+                          output[0] = (bytes(data), complete)
+                          done.set()
+                      except BaseException:
+                          pass
+              try:
+                  if closed.is_set() or time.monotonic() >= deadline:
+                      return None, diagnostic_empty("TIMEOUT", "DEADLINE")
+                  read_fd, write_fd = os.pipe()
+                  child = subprocess.Popen(argv, stdin=subprocess.DEVNULL, stdout=write_fd,
+                                           stderr=subprocess.DEVNULL, shell=False, bufsize=0)
+                  os.close(write_fd)
+                  write_fd = None
+                  if closed.is_set() or time.monotonic() >= deadline:
+                      return None, diagnostic_empty("TIMEOUT", "DEADLINE", settlement="UNVERIFIED")
+                  reader = threading.Thread(target=read_pipe, args=(read_fd,), daemon=True)
+                  reader.start()
+                  transferred = True
+                  try:
+                      code = child.wait(timeout=max(0, min(1.5, deadline - time.monotonic())))
+                  except subprocess.TimeoutExpired:
+                      return None, diagnostic_empty("TIMEOUT", "DEADLINE", settlement="UNVERIFIED")
+                  if closed.is_set():
+                      return None, diagnostic_empty("UNAVAILABLE", "OUTPUT_UNSETTLED", settlement="UNVERIFIED")
+                  if not done.wait(max(0, min(0.05, deadline - time.monotonic()))):
+                      return None, diagnostic_empty("UNAVAILABLE", "OUTPUT_UNSETTLED", code, "UNVERIFIED")
+                  if overflow.is_set():
+                      return None, diagnostic_empty("TRUNCATED", "BYTE_LIMIT", code, "EXITED")
+                  if not output[0][1]:
+                      return None, diagnostic_empty("UNAVAILABLE", "OUTPUT_UNSETTLED", code, "UNVERIFIED")
+                  if code != 0:
+                      return None, diagnostic_empty("UNAVAILABLE", "COMMAND_ERROR", code, "EXITED")
+                  return output[0][0], diagnostic_empty("COMPLETE", code=code, settlement="EXITED")
+              except BaseException:
+                  return None, diagnostic_empty("UNAVAILABLE", "LAUNCH_ERROR", settlement="UNVERIFIED" if child else "NOT_STARTED")
+              finally:
+                  if child is not None and child.returncode is None:
+                      try:
+                          child.kill()
+                          child.wait(timeout=max(0, min(0.25, deadline + 0.25 - time.monotonic())))
+                      except BaseException:
+                          pass
+                  for fd in (write_fd, read_fd if not transferred else None):
+                      if fd is not None:
+                          try:
+                              os.close(fd)
+                          except BaseException:
+                              pass
+
+
+          def source_refusal(head, code, phase):
+              # Metadata only: a later observation can NEVER replace the original refusal.
+              deadline = time.monotonic() + 6.0
+              closed, finished, emitted = threading.Event(), threading.Event(), threading.Event()
+              lock, record = threading.Lock(), [None]
+              cell = {("Linux", "ubuntu-latest", "all"): "UBUNTU_ALL",
+                      ("Windows", "windows-latest", "0"): "WINDOWS_0",
+                      ("Windows", "windows-latest", "1"): "WINDOWS_1"}.get(
+                          tuple(os.environ.get(key) for key in ("RUNNER_OS", "ADMISSION_OS", "ADMISSION_GROUP")), "UNKNOWN")
+              def fallback():
+                  return {"event": "admission-source-refusal-diagnostic", "schema_version": 1,
+                          "captured_source_sha": head, "phase": phase if phase in
+                          ("BEFORE_COLLECTION", "AFTER_COLLECTION", "AFTER_EXECUTION") else "UNKNOWN",
+                          "cell": cell, "original_git_returncode": code, "original_nonzero": True,
+                          "original_refusal": "TRACKED_SOURCE_PREDICATE_NONZERO",
+                          "observation_relation": "AFTER_ORIGINAL_NONZERO_NON_ATOMIC", "cause": "UNKNOWN",
+                          "allowlist": {"state": "UNAVAILABLE", "count": None, "digest": None},
+                          "comparisons": {key: diagnostic_empty("UNAVAILABLE", "INTERNAL_ERROR", settlement="UNVERIFIED")
+                                          for key in ("HEAD_INDEX", "INDEX_WORKTREE")}, "later_pattern": "UNKNOWN"}
+              def collect():
+                  try:
+                      result = fallback()
+                      result["comparisons"] = {key: diagnostic_empty() for key in ("HEAD_INDEX", "INDEX_WORKTREE")}
+                      prefix = ["git", "--no-optional-locks", "--no-pager", "--no-replace-objects", "--no-lazy-fetch"]
+                      raw, status = diagnostic_capture(prefix + ["ls-tree", "-r", "--name-only", "-z", "--full-tree", head, "--"],
+                                                       2_097_152, deadline - 0.1, closed)
+                      allowed, reason = diagnostic_parse(raw) if raw is not None and not closed.is_set() else (None, "ALLOWLIST_UNAVAILABLE")
+                      if allowed is not None and reason == "NONE":
+                          result["allowlist"] = {"state": "COMPLETE", "count": len(allowed),
+                                                "digest": hashlib.sha256(raw).hexdigest()}
+                          commands = [("HEAD_INDEX", ["diff-index", "--cached"], [head, "--"]),
+                                      ("INDEX_WORKTREE", ["diff-files"], ["--"])]
+                          for key, command_args, tail in commands:
+                              if closed.is_set() or time.monotonic() >= deadline - 0.1:
+                                  break
+                              raw, status = diagnostic_capture(prefix + command_args + ["--name-status", "-z", "--no-ext-diff",
+                                                               "--no-textconv", "--no-renames"] + tail, 262_144, deadline - 0.1, closed)
+                              if closed.is_set():
+                                  return
+                              if raw is not None:
+                                  rows, reason = diagnostic_parse(raw, allowed)
+                                  if reason == "NONE":
+                                      status.update(count=len(rows), records=rows)
+                                  else:
+                                      status.update(state="TRUNCATED" if reason.endswith("LIMIT") else "UNAVAILABLE", reason=reason)
+                              result["comparisons"][key] = status
+                              if status["state"] != "COMPLETE":
+                                  break
+                          index, worktree = result["comparisons"].values()
+                          if all(item["state"] == "COMPLETE" for item in (index, worktree)):
+                              result["later_pattern"] = {(False, False): "NO_LATER_DIFFERENCES_REPORTED",
+                                  (True, False): "INDEX_REPORTED_ONLY", (False, True): "WORKTREE_REPORTED_ONLY",
+                                  (True, True): "BOTH_REPORTED"}[(bool(index["count"]), bool(worktree["count"]))]
+                      if not closed.is_set() and lock.acquire(blocking=False):
+                          try:
+                              if not closed.is_set():
+                                  record[0] = result
+                          finally:
+                              lock.release()
+                  except BaseException:
+                      pass
+                  finally:
+                      try:
+                          finished.set()
+                      except BaseException:
+                          pass
+              def write_once(payload):
+                  try:
+                      if time.monotonic() < deadline:
+                          os.write(1, payload)
+                  except BaseException:
+                      pass
+                  finally:
+                      try:
+                          emitted.set()
+                      except BaseException:
+                          pass
+              try:
+                  threading.Thread(target=collect, daemon=True).start()
+                  finished.wait(max(0, deadline - 0.1 - time.monotonic()))
+              finally:
+                  closed.set()
+              selected = None
+              if lock.acquire(blocking=False):
+                  try:
+                      selected = record[0]
+                  finally:
+                      lock.release()
+              try:
+                  payload = (json.dumps(selected or fallback(), ensure_ascii=True, separators=(",", ":")) + "\n").encode("ascii")
+                  if len(payload) > 32_768:
+                      payload = (json.dumps(fallback(), ensure_ascii=True, separators=(",", ":")) + "\n").encode("ascii")
+              except BaseException:
+                  payload = (json.dumps(fallback(), ensure_ascii=True, separators=(",", ":")) + "\n").encode("ascii")
+              if time.monotonic() < deadline:
+                  threading.Thread(target=write_once, args=(payload,), daemon=True).start()
+                  emitted.wait(max(0, min(0.05, deadline - time.monotonic())))
+
+          def binding(expected, phase="UNKNOWN"):
               require(re.fullmatch(r"[0-9a-f]{40}", expected), "Missing immutable GitHub source SHA")
               head = git("rev-parse", "HEAD").decode().strip()
               require(head == expected, "Checkout differs from immutable GitHub source SHA")
-              require(subprocess.run(["git", "diff", "--quiet", head]).returncode == 0, "Tracked source changed")
+              code = subprocess.run(["git", "diff", "--quiet", head]).returncode
+              if code != 0:
+                  try:
+                      source_refusal(head, code, phase)
+                  finally:
+                      raise RuntimeError("Tracked source changed") from None
               committed = git("show", head + ":" + MODULE.as_posix()).replace(b"\r\n", b"\n")
               require(MODULE.read_bytes().replace(b"\r\n", b"\n") == committed, "Admission module differs from committed source")
               return {"commit": head, "tree": git("rev-parse", head + "^{tree}").decode().strip(),
@@ -210,9 +433,9 @@ jobs:
 
           def main():
               expected = os.environ["GITHUB_SHA"]
-              before = binding(expected)
+              before = binding(expected, "BEFORE_COLLECTION")
               ids = inventory()
-              require(binding(expected) == before, "Source changed during collection")
+              require(binding(expected, "AFTER_COLLECTION") == before, "Source changed during collection")
               groups = partition(ids)
               group = os.environ["ADMISSION_GROUP"]
               selected = selection(ids, groups, os.environ["RUNNER_OS"], os.environ["ADMISSION_OS"], group)
@@ -221,7 +444,7 @@ jobs:
               emit("admission-before", **shared, group=group, windows_groups=groups, selected_ids=selected, argv=argv)
               result = native_child(argv)
               emit("admission-native", argv=result.args, native_exit=result.returncode)
-              after = binding(expected)
+              after = binding(expected, "AFTER_EXECUTION")
               require(after == before and inventory() == ids, "Source or full inventory changed during execution")
               emit("admission-after", **shared, group=group)
               outcome = native_result(result, argv, selected)

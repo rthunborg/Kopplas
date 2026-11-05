@@ -1003,3 +1003,65 @@ folder (up to two explicitly planned folders). Terminal done_checkpoint is
 preserved: stop after the own PR, retain pending status until verified main merge.
 Unfulfilled spec_checkpoint approval and multi-entry continuation fail closed;
 no new checkpoint scheduler or source flag rewrite is introduced.
+
+## Failure-only reporter integration on the f0 lineage (2026-11-05)
+
+Owner-approved process continuation selectively reuses the reviewed PR1388773
+failure reporter in the ordinary current admission guard. This is reusable
+observability for the NEXT instrumented refusal, not a Git fix, materially
+discriminating causal experiment or recovery of historical f0's unlogged code.
+Original f0 qualification failed Windows0 before test collection; Ubuntu52 and
+Windows1-26 successes do not qualify Windows coverage or either skipped core.
+
+At each of the three existing binding phases, keep exactly one original
+`git diff --quiet <captured HEAD>` with unchanged argv, environment, inherited
+streams, PATH executable resolution and no added timeout. No new diagnostic
+Git/index/stat/version/executable operation precedes that predicate. Only retain
+its integer returncode; on zero, no reporter query/read/output runs and original
+guards continue. On nonzero, reporting is failure-only and the static fatal
+refusal is unconditional. The exact Git returncode is a metadata fact, separate
+from the Python guard's fatal exit1; capture success/empty/exception/timeout cannot
+mask or replace it. Added imports/definitions do not prove timing equivalence.
+
+The reused reporter emits one bounded safe JSON line in native job logs, with
+immutable actual checkout SHA, fixed phase/cell, original integer code,
+allowlist state and bounded name/status comparisons. It uses only the fixed
+postfailure tracked ls-tree, cached HEAD/index and index/worktree queries with
+reviewed no-optional-locks/no-pager/no-replace-objects/no-lazy-fetch and comparison
+no-ext-diff/no-textconv/no-renames flags. Preserve the six-second total deadline,
+2MiB allowlist/256KiB comparison input caps,16 display rows,32KiB safe output cap,
+full-capture parser/path allowlist, bounded waits and daemon/descriptor ownership.
+No raw query stdout/stderr, payload, arbitrary path, configuration, URL or token
+is added to reporting. Native original streams stay inherited. Failure metadata
+is best effort; failed/late/partial capture is not complete evidence.
+
+Later observations are AFTER_ORIGINAL_NONZERO_NON_ATOMIC and cause remains
+UNKNOWN. They cannot reconstruct original changed paths atomically, recover its
+before-index state, attribute an actor or prove cause. No index-byte observer,
+Trace2, config/filter/pin change, cleanup, refresh or repeated quiet is introduced.
+Code other than1 or a different later pattern conditionally narrows only that
+future observation. Git1/later-empty repeats the already known PR138 pattern;
+no refusal provides zero causal information gain. Neither is a repair claim.
+
+Root binds reviewed source/tree to actual executor checkout/tree, base,
+run/job/attempt and fixed cell. Retain actual PR synthetic merge identity and
+identical-tree/ancestry proof separately from candidate source. Frozen routine
+and adaptation hashes bind observer-tool provenance; existing Python/checkout
+Git version logs do not attest original PATH-resolved binary bytes/hash/build.
+
+Only the reporter component, necessary threading/time imports and literal phase
+plumbing are consumed in one f0-descendant lineage. Root records consumed versus
+remaining frozen PR138 index-observer/comparator work. Preserve its branch,
+evidence and reservations; no wholesale import, duplicate later integration,
+automatic PR138 close, merge or claim transfer follows. New overlap/conflict or
+remaining-scope disposition needs fresh reconciliation.
+
+Validation order is bounded local targeted/source controls, independent High
+source review, then ONE newly approved publication/automatic set containing
+ordinary CI with full unchanged hosted unit plus3admission+2core when dependencies
+pass and all applicable existing required gates. No local full suite, manual
+diagnostic/E09 dispatch or rerun. Stop after that set regardless outcome; preserve
+first failures and all35.6/35.7/live-adoption/merge/deployment holds. Actual normal
+first-clean gates may earn exact-source evidence, never cause, historical repair
+or automatic hold release. Current E09 mode/jobs/observer, ci.yml, cold four,
+tests/readers/helpers, dependencies and PRIMARY remain unchanged.
