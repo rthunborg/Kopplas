@@ -6,6 +6,7 @@ status: 'in-review'
 baseline_commit: 'd03a52ce014f60c8e279f016e8cdd5790ca0d596'
 continuation_baseline_commit: '2415964604d5b8d766883f0cbfcf6e6b5ca215a0'
 continuation_date: '2026-11-04'
+reporter_baseline_commit: 'f0fc65e154d3ff7025bf7176f878b010a4f9af78'
 context:
   - docs/process/parallel-auto-bmad-contract.md
   - docs/process/review-order.md
@@ -319,48 +320,135 @@ PR134 integration the actual inventory must be61, not this baseline52. Historica
 57 completion lines plus later results are never combined. No automatic release,
 claim, source-pin or two-check receipt-schema authority changes.
 
+## Failure-only reporter integration (2026-11-05)
+
+Current author `/root/diagnostic_receipts`, gpt-6.1-sol High, continues the
+existing rendered BMAD repair activation cc5f1ec60df7a6aa3e63 without rerender,
+new author, product story activation or sprint-state write. The original
+baseline/frozen history above stays historical. Exact new base is
+f0fc65e154d3ff7025bf7176f878b010a4f9af78/tree5bc9782e6e85d1e42b26b22b314e79d3ee90e465
+with current main4411 at allocation. Owner approved proposal d3a6a9a78f1ce89bd5febdfb18bf521bb118a2d7b2feb794a17cc335a1533d99;
+independent High proposal review9fd94796991334b0927ac5d09d5b29134a4201ad626de6a177a9fa852777a33a;
+fresh exclusive allocation9506e8b5460bcb4feb37bd14aad4dda1cd9ab563916788f6aaf79ad6322198f1.
+
+Only this spec, the process contract and auto-bmad workflow are writable.
+Selected PR1388773 failure-reporter routines are reused byte-identically after
+LF extraction; required imports and three existing binding phases are explicit
+adaptations. No whole guard, manual mode, index observer or comparator is imported.
+The component/adaptation ledger is private at
+`tmp/private/windows-refusal-reporter-integration/component-ledger.json`.
+Root records canonical consumed reporter versus remaining frozen PR138 work;
+branch/evidence/reservations remain and no automatic close/double integration
+is authorized. ci.yml/E09 spec/observer/cold four/tests/readers/helpers/deps and
+PRIMARY remain protected. Root alone creates validation snapshots and commits,
+publishes and observes providers. Competing writer/drift/fourth path or reader
+change stops for disposition.
+
+### Current implementation and acceptance boundary
+
+Given original quiet0 at any existing binding phase, no reporter query/read/
+refusal output runs and the original binding/test path continues. Given any
+nonzero, retain its exact integer and invoke only bounded postfailure reporting,
+then preserve the unconditional static fatal refusal even if reporting fails.
+Exactly one original quiet call remains at each of the three original callers;
+no new pre-probe, added timeout, changed argv/env/streams/executable, retry or
+coalesced caller is permitted. Existing normal3admission/2core and E09 semantics
+remain intact. Later data is non-atomic, causeUNKNOWN, not original changed-path
+or actor attribution. Native original Git result and Pythonfatal1 stay separate.
+
+Reusable observability records only the next instrumented occurrence; historical
+f0's missing code cannot be recovered. Different futurecode/later pattern only
+narrows that observation. Git1/later-empty repeats known PR138 evidence; no
+refusal yields zero causal gain. No result proves a Git fix or grants release.
+
+### Verification plan and current unearned evidence
+
+Prepare exact source/control/argv/scenario inventory before final checks. Root
+must provide a new canonical-LF f0-bound validation-only snapshot with verified
+CWT dependencies; no old mirror/PRIMARY dependency substitution or mirror edits.
+The frozen existing8-file targeted invocation completed native0:521executed,
+521passed,0failed/canceled/skipped/todo. The single frozen private pass completed
+native0 with81refusal controls,20lifecycle controls,9actual native Python cases
+using injected original Git codes,13current-helper consumer tests (0failure/
+error/skip), parsed YAML1positive/19weakening refusals/1duplicate refusal and
+9mode rows. The actual source review-reference checker reported9refs/0errors.
+All six private steps exited0. Tests were source-bound to Root's7171-file mirror
+manifest4db07d4a6d291248f69901cc6a404b5b0dbe46cb64dc0486312eedab6021bbc7
+and preparation snapshot73818fe2bec42643f20bdb8c9864a2744a624ab4136d5d472b8f787a27a6d754.
+Exact argv/scenarios were frozen before execution in command inventory1385dd8904b865175f5fc959c7bce5b7df5032f65712d3509334aa9eed0959ec.
+
+Native Python3.14.7 and Nodev22.23.2 ran these local controls; hosted Python3.12
+behavior remains separate. Source/protected files and11retained dependency/
+provenance hashes were equal before/after the private pass. The literal junction
+used verified CWT dependencies, never PRIMARY; this is not whole-install proof.
+The retained81/20controls ran against actual new YAML extraction, not borrowed
+old PASS. Current native consumer methods ran with Git/store/clean/review/pin
+prerequisites mocked; nativePython fatal1 cases inject original Git integers,
+not actual Git. No new quiet experiment or actual admission/core suite ran.
+
+Private `tmp/private/windows-refusal-reporter-integration/native-summary.json`
+binds actual commands, counts, metadata/log hashes and proof limits. The source
+workflow/process-contract bytes remain exactly the tested snapshot. ONLY this
+spec's status/evidence/SRO prose is refreshed after tests; final spec bytes were
+not retested and are explicitly distinct from the tested mirror. Referenced
+workflow/document lines stay unchanged;9refs/0errors describes the pre-refresh
+mirror trail, not a rerun on final document bytes. Preserve tested spec privately.
+Historical PR138/four-case results remain provenance only. Fresh source High
+review and full hosted qualification remain UNEARNED.
+
+Full unchanged unit runs ONLY in the one new automatic hosted set from outset,
+after source High review and Root publication; no local whole-suite attempt or
+later gate-order amendment. That set also includes all3admission+2core and
+applicable existing required checks. Manual/E09/reruns0; old budgets do not
+transfer. Stop after the one set regardless outcome. Source review is not hosted
+qualification; both product, live-adoption, merge and deployment holds remain.
+
 ## Suggested Review Order
 
-Author: `/root/crm_runtime_route/runtime_admission_author`, gpt-6.1-sol High.
-Refreshed against the three-path continuation from qualified
-`2415964604d5b8d766883f0cbfcf6e6b5ca215a0`. Original PR130/d03 evidence above
-remains historical; this trail describes the actual new source and controls.
+Author: `/root/diagnostic_receipts`, gpt-6.1-sol High, reporter integration from
+exact f0 checkpoint. Historical prior author trail is preserved privately as
+`tmp/private/windows-refusal-reporter-integration/historical-sro-f0.md`.
 
-### Derive complete source-bound cells before execution
+### Preserve the original predicate and every caller
 
-The new guard derives its expectation from the full actual source, so source52
-and source61 cannot borrow each other's count or historical partial completion.
-The canonical alternating partition keeps every original case in Windows coverage.
+Reporting starts only after an original nonzero. Zero keeps the ordinary path;
+native metadata never replaces the static fatal result or original streams.
 
-- `.github/workflows/auto-bmad-parallel.yml:29` — `runtime-admission:`: enters the three-cell admission prerequisite.
-- `.github/workflows/auto-bmad-parallel.yml:99` — `def binding(expected)`: binds immutable GitHub SHA, tree and actual module source.
-- `.github/workflows/auto-bmad-parallel.yml:114` — `def inventory(path=MODULE)`: collects complete actual IDs without executing fixtures.
-- `.github/workflows/auto-bmad-parallel.yml:137` — `def validate_partition`: refuses empty, duplicate, overlapping or incomplete groups.
+- `.github/workflows/auto-bmad-parallel.yml:334` — `def binding`: retains original code and fatal precedence.
+- `.github/workflows/auto-bmad-parallel.yml:338` — `code = subprocess.run`: keeps original argv and inherited defaults.
+- `.github/workflows/auto-bmad-parallel.yml:436` — `before = binding`: labels the first unchanged caller.
 
-### Preserve native progress, strict results and the whole-matrix gate
+### Reuse the bounded safe reporter without importing the index observer
 
-Raw child progress remains visible during cancellation. Only complete exact native
-results can produce a cell success; neither core job can bypass any required cell.
+The four reviewed routines retain their privacy/lifecycle budgets. Observations
+are later and non-atomic; no cause or original before-state is reconstructed.
 
-- `.github/workflows/auto-bmad-parallel.yml:152` — `def native_child(argv)`: tees partial bytes immediately and bounds validation capture.
-- `.github/workflows/auto-bmad-parallel.yml:171` — `def native_result`: verifies exact actual IDs, count, terminal success and native exit.
-- `.github/workflows/auto-bmad-parallel.yml:209` — `emit("admission-after"`: records after-source/inventory consistency before success.
-- `.github/workflows/auto-bmad-parallel.yml:217` — `needs: runtime-admission`: preserves default-success whole-matrix gating.
+- `.github/workflows/auto-bmad-parallel.yml:123` — `def diagnostic_parse`: validates whole captures before displaying rows.
+- `.github/workflows/auto-bmad-parallel.yml:163` — `def diagnostic_capture`: bounds owned child and reader lifecycle.
+- `.github/workflows/auto-bmad-parallel.yml:236` — `def source_refusal`: limits postfailure collection and safe output.
+- `docs/process/parallel-auto-bmad-contract.md:1007` — `## Failure-only reporter integration`: records provenance, limits and finite budget.
 
-### Keep qualification provenance and existing core authority explicit
+### Keep normal qualification and remaining PR138 work separate
 
-The adapter still accepts the same two core checks; Root separately retains and
-compares all three real prerequisite records. Local source collection and injected
-protocol controls establish guard behavior, without pretending to be native suite execution.
+Conservation and injected controls must bind the actual candidate, not old PASS.
+Root's native set and independent High review remain required and unearned here.
 
-- `.github/workflows/auto-bmad-parallel.yml:268` — `exit $testExit`: preserves the existing core routing native failure propagation.
-- `docs/process/parallel-auto-bmad-contract.md:264` — `Every admission cell`: requires common immutable source/full-inventory bindings.
-- `docs/process/parallel-auto-bmad-contract.md:291` — `all five jobs`: requires all actual records without a fake combined Windows argv.
-- `docs/process/parallel-auto-bmad-contract.md:300` — `Current topology continuation`: distinguishes actual baseline52 from later integrated61.
+- `.github/workflows/auto-bmad-parallel.yml:458` — `needs: runtime-admission`: preserves the whole-matrix core prerequisite.
+- `.github/workflows/auto-bmad-parallel.yml:514` — `e09-admission:`: retains existing isolated E09 behavior untouched.
 
-Evidence: Current continuation verification maps each AC to the actual collected
-source and60 extracted-guard controls, plus parsed conservation/32 refusal
-mutations. Admission bodies/core/CI executions here:0. Limits: synthetic child,
-pipe, result and clean-status fixtures do not prove hosted timing, Windows group
-completion, global provider truth, live custody or new tooling qualification.
-Root retains fresh direct-source matrix/ordinary gates and publication authority.
+Evidence: actual521targeted tests passed with0failure/skip;81refusal,
+20lifecycle,9nativePython and13current-consumer controls passed, plus actual
+YAML1positive/19weakening/1duplicate refusals and9mode rows. Every private step
+native0; pre-refresh mirror SRO9refs/0errors. Zero-path/no-pre-probe and exact
+original-call conservation map to AST/argument/ordering controls; arbitrary
+original integer/fatal1/error suppression map to9native synthetic children;
+parser/path/byte/deadline/late writer/descriptor boundaries map to81+20retained
+controls. Entire normal/E09 job-object equality maps to parsed YAML comparison;
+failed/skipped/zero-test/wrong-source/diagnostic receipts map to actual unchanged
+consumer13. All mocked boundaries are disclosed in native-summary.json.
+
+Workflow/process contract stay at exact tested bytes; ONLY final spec evidence/
+SRO/status prose changes after tests, with tested spec preserved privately.
+No final-doc test rerun is claimed. Source High review and hosted full-unit/
+admission/core/first-clean qualification remain UNEARNED. No local whole unit,
+actual Git experiment, E09/browser/DB/runtime/provider/CI/store/claim action ran.
