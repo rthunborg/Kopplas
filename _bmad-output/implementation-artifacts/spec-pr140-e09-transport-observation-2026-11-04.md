@@ -5,6 +5,7 @@ created: '2026-11-05'
 status: 'in-review'
 baseline_commit: '4c44a539d2f220c3639775eca323c7837b6a0fd3'
 review_loop_iteration: 0
+ci_isolation_repair_baseline_commit: '04188d6cf63667235e797728d0f1c1c39ff026b4'
 context:
   - docs/process/review-order.md
   - docs/process/development-completion-policy.md
@@ -157,53 +158,162 @@ resource operation ran here. Computed frontend N/A and reference-check receipts
 bind the final source. Stable independent High review and Root hosted checks
 remain pending; both product/live holds and original4c44 failure remain.
 
+## CI compatibility and isolation repair — approved 2026-11-05
+
+The preceding R1 intent/evidence describe historical04188 and remain preserved.
+Its ordinary unit failure3677/3656P/21F0skip, skipped-name mismatch and diagnostic
+first-fail/retry-pass/native0/terminal77 remain failed/nonqualifying evidence.
+No abort initiator or Git refusal cause is inferred. The terminal audit pointer
+is coordinator-resume-2026-11-05/e09-terminal-native-evidence-review.json,
+SHA256d7be87a6b5ab73dc0b3c17591a4f09f9b6c1e2c5ba78e51e05304ea20a1624cf.
+
+Owner approved bounded repair proposal SHA256
+3f1cb0efa25fe60ff5c9f62cf1f414da2bca7bf341c0141925151e6a66148c60;
+independent High proposal review543af634 and exclusive allocation SHA256
+ab9ad272908785b2dac3d7c3aece6a73e097947238281111c3a990600106c15b
+govern the new batch. Same Sol High author and build snapshotcc5f1ec60df7a6aa3e63;
+no rerender or duplicate author. Root archived old04188 source, and every old
+private freeze remains unchanged. This explicit amendment replaces prior writable
+E09-test scope: the test/observer is now protected04188 blobeb977046 and no
+assertion/network/barrier/fixture/retry behavior changes. Cold four remain frozen.
+
+Current exact changes:
+- [x] Restore ci.yml byte-for-byte canonical4c44 blobcecfc6a1; do not alter its
+  finite inverse readers, first-occurrence mutation contracts or native callers.
+- [x] Add E09 mode to registered auto-bmad workflow377341096 from current-main
+ 4411 baseline blob8ecb6f06 only; normal two matrices, guard, pins, native commands,
+  dependencies, default names/manual mode and15/30-minute budgets stay identical.
+  Optional empty SHA/UUID fields preserve ordinary callers. Only manual E09 true
+  uses isolated UUID concurrency and excludes ordinary test bodies. Two new
+  diagnostic names are literal; original job IDs/names are never renamed.
+- [x] Move reviewed04188 case/capture job unchanged except new admission need;
+  immutable SHA/UUID/ref/attempt admission precedes it. Safe artifact/native
+  precedence/2-minute capture budgets and terminal77 remain unchanged.
+- [x] Execute actual-source route/admission/native-consumer/parser controls and
+  corrected eight-file validation; refresh this one SRO and bind source evidence.
+- [ ] Complete full pure-unit prepublication gate: UNEARNED. Both local timeout
+  attempts are spent and incomplete; source review readiness is not publication,
+  development completion, qualification or release approval.
+
+PR1388773 owns separate frozen auto-bmad changes and remains draft/unmerged with
+spent budgets. Root's new exclusive overlap fence preserves that work and keeps
+its author quiescent. This candidate imports none of its guard/index/comparator
+changes or qualification. Root serializes current-main/integration/review before
+the sole publication; actual drift/conflict beyond scope stops for disposition.
+
+### Current local controls and validation limits
+
+First author-worktree eight-file run:521 tests,515 passed,6 failed,0 skipped,
+native1. Four failures were literal missing node_modules paths; two were raw
+CRLF migration assertions. No test/reader/migration or dependency was changed.
+Root supplied canonical-LF fixed mirror with all7171 tracked raw files/modes and
+exact three-file overlay, bound by ready receipt SHA256
+0b8106a243642b40e0108b4a2b888ac0aff767c344e236fb5b5b5d10da1f80c6 and
+canonical manifest6aa2fb1d. Only frozen reviewed CWT dependencies were exposed;
+PRIMARY dependencies were ineligible and not used for this batch's controls.
+Before/after source overlays and8 dependency/metadata hashes matched.
+
+The original exact eight-file command in that corrected mirror passed521/521,
+0failed/0skipped/0cancelled, native0 in14.5804297s. No baseline rerun is credited.
+This proves that source-bound targeted set, not the full unit inventory. Its
+mirror includes the pre-final-SRO spec snapshot6117b99b; workflow runtime bytes
+remain identical to those tested, while this later documentation update is
+checked by the final reference/applicability checks rather than a repeated suite.
+
+Actual auto-bmad YAML passed normal-body/guard conservation,9 mode rows,
+21 weakening refusals and duplicate-key refusal. New names are static and disjoint
+from six main required contexts; permitted skipped names derive only from original
+runtime-admission/contracts IDs and matrices. Hosted skipped-label expansion is
+not inferred from a local evaluator; Root must still verify actual output.
+Native Git Bash ran10 E09 admission cases (1 accepted/9 refused), injected child
+codes0/1 unchanged and actual terminal77. The moved job is exactly04188 except
+its new admission need. Main guard SHA256
+73313f16de80dc1528bd4a730f8acf55ffb290b09aa452d474edb298c9f6f28f is preserved;
+it is not PR138's877guard. No normal guard/test body or actual Git probe ran.
+
+Current-main A.qualify_tooling and unchanged engine.checks ran13 controls:
+13 passed/0failure/0error/0skip, including failed workflow, diagnostic positive
+counts, missing/zero/skipped/cancelled accepted core names, main-context-only
+receipts and a synthetic ordinary positive. Other Git/store/review/pin prerequisites
+were mocked. Main-context disjointness alone cannot qualify tooling; actual
+passed exact-source native core evidence with positive counts/zero skips remains
+required. No live claim or provider authenticity is earned by those mocks.
+
+The actual moved safe parser passed39 pure checks and6 native synthetic-file
+captures using verified CWT dependencies. Its exact source remains SHA256
+1cb88be7477c0bc2ff4e01bf5f1e4e8d2f964b3539dc6bfb29b136541ccf02bc.
+The unchanged observer/factory and old evidence are bound by exact hashes, not
+relabelled as newly executed browser observations. No actual E09 or new browser,
+DB/service, install/build, provider/CI, commit/push or managed launch was performed
+by this author repair. Private controls/argv/cwd/native results live in
+tmp/private/e09-ci-isolation-repair/ with original failures retained.
+
+### Full-unit blocker and custody
+
+The author's first corrected full-unit command hit its private300s recorder
+limit; the buffered recorder lost partial TAP, so counts/native test terminal
+remain UNKNOWN. Blocker97b9e884 and the old recorder/trace remain preserved.
+The private streaming correction passed3 repository-independent seconds-long
+controls; it distinguishes native termination from wrapper timeout and retains
+partial output. Its direct-child handle cleanup does not claim tree containment.
+
+Root then owned the sole separately reviewed600s observability attempt under
+resourceccaabe5c-3d76-4f17-b1c1-512f039c37b2. Result SHA256
+82e0d086d0666b94198946e8f4471f10b0b7f4af66c656ae69596407e49ca326 records
+TIMEOUT/wrapper124 and child1 observed AFTER termination, not a natural test
+failure. Immutable prefix541400 bytes/SHA256
+7a87261399dab557ba8e503afd1f1546f4d5e4961868bb0c98e69a97f9b9af68 has no
+captured not-ok line but no completed whole-suite summary. Continuing cold
+recovery case completion does not prove PASS, a hang cause or a future duration.
+Root Stop was accepted native0/oktrue/verifiedfalse; no shutdown poll or blanket
+descendant shutdown proof follows. The author neither polls nor adopts it.
+
+Full-unit gate remains UNEARNED and blocks publication under current order.
+No further local suite/limit/concurrency change, protected cold-test change or
+manual diagnostic run follows. Root's one automatic publication set (ordinary CI
+plus3 admission cells+2 core jobs) and conditional one diagnostic/max2 attempts
+remain unused. A separately reviewed explicit gate-order disposition is needed
+before publication can earn exact-source full-unit proof in that existing set;
+no extra CI budget, gate waiver, release/merge/live/product authority is implied.
+
 ## Suggested Review Order
 
-Author: `/root/diagnostic_receipts`, Sol High, exclusive three-path author.
-Read the uncommitted candidate against4c44a539d2f220c3639775eca323c7837b6a0fd3;
-local controls establish source behavior only, not hosted qualification.
+Author: `/root/diagnostic_receipts`, same Sol High repair author.
+Review only the new three-path diff from04188d6cf63667235e797728d0f1c1c39ff026b4.
+Source is prepared for targeted independent High review; full-unit publication
+gate is blocked/UNEARNED. Old04188 intent and failures remain historical.
 
-### Keep diagnostic contexts outside ordinary required gates
+### Restore exact ordinary readers while retaining the normal native DAG
 
-Names are selected before admission outcome; skipped jobs cannot supply accepted
-ordinary contexts. Ordinary existing names remain exact with one explicit extra
-nonrequired diagnostic alias. The successful case must still end native77.
+ci.yml returns to its canonical baseline. The auto-bmad mode preserves existing
+normal matrices/commands/guard; no dynamic name or mandatory field breaks callers.
 
-- `.github/workflows/ci.yml:87` — `e09-diagnostic-admission`: names admission independently of its eventual result.
-- `.github/workflows/ci.yml:102` — `E09_OBSERVATION`: mutually excludes other diagnostic/release modes.
-- `.github/workflows/ci.yml:1720` — `my-day-e09-observation`: one isolated job after immutable admission.
-- `.github/workflows/ci.yml:1948` — `E09 observation cannot qualify`: intentional failure preserves nonqualification.
+- `.github/workflows/ci.yml:81` — `checkpoint-admission`: original immutable-dispatch caller is restored.
+- `.github/workflows/auto-bmad-parallel.yml:21` — `my_day_e09_observation`: disabled default with optional source/checkpoint fields.
+- `.github/workflows/auto-bmad-parallel.yml:45` — `runtime-admission`: unchanged matrix is excluded only in explicit E09 mode.
+- `.github/workflows/auto-bmad-parallel.yml:233` — `contracts`: original whole-matrix predecessor and native bodies remain.
 
-### Add bounded callback timing while preserving every original operation
+### Isolate admission and preserve native nonqualification
 
-Node-relative events stay local to each attempt. No request URL/header/native-ID
-join or extra browser session exists. Removing observations restores the original
-AST, including unchanged assertions, network arguments, barriers and cleanup.
+New fixed names avoid skipped-expression alias assumptions. Exact admission
+precedes the unchanged single-case job; successful case output still ends77.
 
-- `tests/e2e/my-day.e2e.spec.ts:631` — `createE09Observation`: fixed enums and private attempt clock.
-- `tests/e2e/my-day.e2e.spec.ts:644` — `function mark`:32-record cap and fail-closed clocks/enums.
-- `tests/e2e/my-day.e2e.spec.ts:657` — `async function finish`:4KiB snapshot and missing-event incompleteness.
-- `tests/e2e/my-day.e2e.spec.ts:851` — `observation.finish`: attachment runs after the fixture scope settles.
+- `.github/workflows/auto-bmad-parallel.yml:291` — `e09-admission`: new literal diagnostic identity.
+- `.github/workflows/auto-bmad-parallel.yml:297` — `Bind E09 dispatch`: source/UUID/branch/attempt checks are E09-only.
+- `.github/workflows/auto-bmad-parallel.yml:312` — `my-day-e09-observation`: moved job depends only on its new admission.
+- `.github/workflows/auto-bmad-parallel.yml:540` — `E09 observation cannot qualify`: unchanged intentional terminal failure.
 
-### Preserve native failure while publishing only safe evidence
+### Capture safe evidence and read local limits honestly
 
-Native output remains runner-private. The extractor checks one case/maximum2
-attempts and rebuilds exact safe keys; no arbitrary attachment path is followed.
-Incomplete data stays failure even when its safe partial artifact is retained.
+Moved parser/child bodies are exact04188 bytes; current native consumer tests
+retain positive-core/zero-skip rules. Targeted521 passed, full-unit did not finish.
 
-- `.github/workflows/ci.yml:1801` — `e09_case`: original/configured-retry execution preserves native status.
-- `.github/workflows/ci.yml:1837` — `safeObservation`: closed enum/time/size schema.
-- `.github/workflows/ci.yml:1859` — `parseSafeReport`: exact source/case/count bindings and safe reconstruction.
-- `.github/workflows/ci.yml:1930` — `always()`: bounded safe upload runs after failed case/capture.
+- `.github/workflows/auto-bmad-parallel.yml:393` — `e09_case`: exact selector/native status and existing retry1.
+- `.github/workflows/auto-bmad-parallel.yml:429` — `safeObservation`: bounded schema rejects raw payload fields.
+- `.github/workflows/auto-bmad-parallel.yml:451` — `parseSafeReport`: source/case/attempt/count reconstruction.
+- `.github/workflows/auto-bmad-parallel.yml:521` — `Preserve only safe`: only the fixed bounded artifact is uploaded.
 
-### Check evidence without borrowing old or hosted success
-
-Private source/workflow/capture/consumer controls map every matrix row above.
-Native synthetic shell/parser checks are real processes; page/stat/provenance
-facts remain injected. Frontend applicability and reference checks are process
-checks, never browser evidence. Root alone consumes the one automatic set and
-one dedicated job after independent review; no extra attempt follows uncertainty.
-
-The final freeze manifest names all source/private hashes and retained first
-failure. Hosted check names, actual checkout, test attempts and native conclusion
-still require Root observation. Source remains in-review and release_ready=false.
+Final manifest binds source/control/mirror provenance and excludes mutable Root
+live logs in favor of immutable timeout prefix/result digests. Root retains
+publication/provider custody and policy disposition. Independent High review,
+complete native qualification and both product/live holds remain pending.
