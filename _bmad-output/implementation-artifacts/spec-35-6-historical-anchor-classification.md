@@ -2,7 +2,7 @@
 title: '35.6 evidence-bound historical anchor classification'
 type: 'chore'
 created: '2026-11-02'
-status: 'done'
+status: 'in-review'
 baseline_commit: 'd03a52ce014f60c8e279f016e8cdd5790ca0d596'
 context:
   - docs/process/review-order.md
@@ -255,13 +255,19 @@ historical task/source association and scoped terminal proof remain mandatory.
 
 Implementation anchors (the final author trail follows execution evidence):
 
-- `scripts/maintenance/admit_story35_6_runtime.py:101` — `capture`: one initial raw source capture.
-- `scripts/maintenance/admit_story35_6_runtime.py:269` — `terminal_scope`: complete scoped writer roots/descendants and no-reopen flag.
-- `scripts/maintenance/admit_story35_6_runtime.py:317` — `finalized_closure`: full native plan, verified claims, pins and ancestry.
-- `scripts/maintenance/admit_story35_6_runtime.py:514` — `legacy_closure`: exact observed legacy profiles and main/publication/source proofs.
-- `scripts/maintenance/admit_story35_6_runtime.py:636` — `closed_classifications`: exact registered marker instances only.
-- `scripts/maintenance/admit_story35_6_runtime.py:731` — `ownership`: ordinary ownership first, strict inventory-version branch.
+- `scripts/maintenance/admit_story35_6_runtime.py:102` — `capture`: one initial raw source capture.
+- `scripts/maintenance/admit_story35_6_runtime.py:270` — `terminal_scope`: complete scoped writer roots/descendants and no-reopen flag.
+- `scripts/maintenance/admit_story35_6_runtime.py:318` — `finalized_closure`: full native plan, verified claims, pins and ancestry.
+- `scripts/maintenance/admit_story35_6_runtime.py:539` — `legacy_closure`: exact observed legacy profiles and main/publication/source proofs.
+- `scripts/maintenance/admit_story35_6_runtime.py:650` — `closed_classifications`: exact registered marker instances only.
+- `scripts/maintenance/admit_story35_6_runtime.py:745` — `ownership`: ordinary ownership first, strict inventory-version branch.
 - `docs/process/parallel-auto-bmad-contract.md:367` — evidence-bound historical anchor operator contract.
+
+Continuation anchors: `allocation_arrays` traverses the complete native state;
+`read_request` captures the strict envelope once; `validate_request` shares every
+pre-CAS/final recheck; `readonly_database`/`readonly_capability` establish the new
+limited RO route; `validate_only` returns observations and `admit` retains CAS.
+Final one-based stops are verified in the same author section below.
 
 | Synthetic case | Required result |
 | --- | --- |
@@ -652,6 +658,107 @@ contact, resource launch, live admission or product/configuration change occurs.
 Exact successor qualification, current actual full scopes/custody facts and
 independent exact-request review remain separate Root-owned prerequisites.
 
+## Approved checkpoint-count and read-only validation continuation
+
+This bounded continuation starts from qualified main
+`8573b86367aff959968175c5693231f2cd2d7d19` in the separately registered
+`codex/e35-6-checkpoint-count-validation` worktree. The original frontmatter d03a
+baseline and historical intent/evidence remain intact. Root read and admitted
+design SHA256 `8ded5fea0d5356659b4911707b7e1c5d6fd597f8331f7a66f4c315d153404248`
+after the same independent Sol High assessor's final receipt
+`0f654ed05af4c92ddd833893b50b7f74b83fba80b7473c168202af48c28e4114`.
+Author remains Sol High. Activation and the exclusive four-path check are retained
+under `tmp/private/checkpoint-count-recovery/`; no source is authored elsewhere.
+This is process/tooling work, with no frontend, app build, service/database-stack
+or browser applicability. No story_key applies; sprint synchronization skips.
+
+### Tasks & Acceptance
+
+- [x] Correct/extract the recursive allocation collector in the existing adapter.
+  Given an identity/hash-validated E15 epic main state, when the three exact
+  q_checkpoint/r_checkpoint/reviewed_ten_path_checkpoint bookkeeping_paths fields
+  are integer3 (not bool), then treat only those fields as count metadata.
+  Given lists there, conserve them normally; given wrong counts/types/pointers,
+  other authority contexts or malformed real allocation arrays, refuse unchanged.
+- [x] Extract the exact request envelope, complete pre-CAS validation and final
+  rechecks into shared functions. Given a supported complete request, when the
+  new explicit `--validate-only` operation runs, then apply the same qualification,
+  review, source, ownership, custody, raw-byte and quiet-window gates as admission.
+  Return validation-only/admitted:false without an assignment or mutation right.
+- [x] Add caller URI mode=ro/query_only/read-transaction custody. Given ANY actual
+  nonfinalized plan other than exact schema2, when read-only validation begins,
+  then refuse before shared validation/nested recognition. Finalized schema1
+  remains supported via caller SELECTs. No schema initialization, default-RW
+  nested connection, writes, helper/pin edit or recognition copy is allowed.
+  Live admission retains its schema1 support, replay and fresh transactional CAS.
+- [x] Append meaningful native regressions. Given the COMPLETE immutable553474B
+  E15 Git blob SHA256 b3cb9cbfc804b652777d9499a969cc98a3008fc80bec1dd2e523e6dabbfd2e11,
+  when parsed through the unchanged state reader and traversed ENTIRELY by the
+  same collector, then preserve all genuine arrays/domains without mistaking
+  its three integer summaries for path arrays. No three-map reconstruction.
+  Given disposable full requests, prove no store/schema/generation/audit mutation,
+  write rejection, nested URI-ro handles, capability refusal, stale qualification/
+  window/raw-source refusal, fresh subsequent admission, rollback and replay.
+- [x] Update the process contract and this same author trail after actual focused
+  execution; verify final path/line/literal stops and retain all failures/limits.
+
+Implementation map: `legacy_closure`'s nested `allocations` currently scans every
+matching key recursively; factor that exact collector into an adapter function
+with explicit E15 main-state context and pointer. `admit` currently contains the
+strict envelope, shared candidate validation, final external rechecks and CAS in
+one body. Extract those checks once, keeping mutating SQL/audit in admission;
+add a distinct read-only wrapper and CLI flag. `ownership` builds byrun only from
+nonfinalized plans; the new read-only-only actual-db guard prevents its pinned
+schema1 recognizer's default-RW connection. The pinned schema2 recognizer already
+uses URI mode=ro. Do not duplicate or monkeypatch either recognizer.
+
+The old actual b73/6de packet binds f3db/cb68 and an expired window: no hash/time/
+review substitution may make it a full PASS. Private pure-component diagnostics
+are not full validation or authority. After exact new tooling/source CI and main
+qualification, Root must rebind the ENTIRE actual packet to actual current main,
+complete real active-writer/reservation facts and a new quiet window, obtain exact
+independent request review, and run strict whole-request read-only validation
+before any later CAS. Admission independently revalidates under its fresh
+BEGIN IMMEDIATE. Read-only results are observations, never a cached seal against
+future writers. All PR133 three qualified blobs, workflow/helper/parser/source
+pins, request schema, product/configuration and the actual store remain untouched.
+
+### Current execution evidence and pending operational gates
+
+Native focused qualification passed **14 executed, 0 failures, 0 errors,
+0 skipped, 334.177s**, exit0, in one selection on 2026-11-03. It used Windows
+Python3.14.7/Git2.55.0.windows.3 and actual8.3 TEMP
+`C:/DEV/Kopplas/tmp/private/E35-AD~1` (canonical e35-admission-test-temp).
+The nine new methods and five selected prior continuation/replay/rollback/
+capture-once/active-union methods all executed. Complete native553474B data,
+strict metadata/array cases, shared complete CLI RO validation with all observed
+nested handles URI-ro, finalized schema1, capability refusal before shared path,
+no DML/DDL/schema/audit/generation mutation, actual stale qualification/window/
+raw-proof refusal and fresh admission after RO success are exercised. There was
+no native failure or rerun in this batch.
+
+Exact argv, terminal counts/timestamps and matching before/after hashes are in
+`tmp/private/checkpoint-count-recovery/native-focused-14-metadata.json`; durable
+native output is `native-focused-14.log` in that same directory. Raw adapter:
+`110caeafa739dcc9cf4c8da47b07540d430a4b6932d01d34b5c5b65f3727187c`;
+raw tests:
+`35bc9cb6ca3037d246016f63d674bfbc576d9dcd4e19578939549bb1de6cb0b4`.
+Static AST comparison proves the entire original request-envelope block,
+pre-CAS/final-recheck block and CAS/audit tail are preserved by extraction;
+all prior52 method bodies remain unchanged. Inventory61 is not full61 execution.
+The initial author reference check found two line offsets, corrected in the same
+section without source/test changes; its private repair record is retained.
+
+Same independent High source-stage review inspected the frozen pair and reported
+no consequential source finding; final targeted verdict remains pending this
+four-file/evidence handoff. Spec status is in-review. Historical helper70 and all
+prior native/CI evidence retain their original scope; no core/helper/full61/hosted
+CI is rerun here. The old b73/6de request was not validated or changed. Actual whole
+packet RO validation remains Root-owned AFTER exact new source qualification,
+current main, complete actual producer/writer facts, independent digest review
+and a new real quiet window. No live-store/claim/runtime/browser/resource/provider
+or actor operation occurred. Development/release/product acceptance is not claimed.
+
 ## Operational proof gaps and disposition
 
 The approved design is implemented for targeted review; **no operational packet
@@ -676,76 +783,76 @@ is ready**. Missing proof remains a refusal under this schema:
 ## Suggested Review Order
 
 Author: `/root/crm_runtime_route/runtime_admission_author` (Sol High).
-Refreshed for the approved allocation-union fix over
-`3b383285b323ad15fcabc948ff05521061365b06`; that commit preserves the genuine
-9c26 integration and qualified PR131 process blobs. Original d03a intent/design,
-previous failed receipts and historical qualification claims remain unchanged.
-Only the four allocated maintenance paths change. Raw adapter SHA256:
-`7d0b01cf700978c6e4e517941d6bc82c64b25caa6be310c54e8b4d103a6f7b36`;
+Refreshed for approved checkpoint-count/shared read-only validation over actual
+qualified baseline `8573b86367aff959968175c5693231f2cd2d7d19` in the separately
+registered recovery worktree. Original d03a intent, historical execution records
+and failures remain intact. The three inherited PR133 blobs, helpers/workflow,
+state parser, request schema, source pins and all prior52 test bodies are preserved.
+Current raw source SHA256:
+`110caeafa739dcc9cf4c8da47b07540d430a4b6932d01d34b5c5b65f3727187c`;
 raw test SHA256:
-`9125ea04ae6d963c09e0913f907b4bbccf23fc616a197bfacfe5c8c37811216a`.
+`35bc9cb6ca3037d246016f63d674bfbc576d9dcd4e19578939549bb1de6cb0b4`.
 
-### Represent one writer's complete existing grants
+### Select strict validation without granting mutation
 
-The recorded scalar-only defect is corrected by accepting a unique existing-ID
-list in the same field while retaining scalar compatibility. Each referenced
-native owner still matches, and both paths and domains equal the full set union.
+The new CLI operation shares the actual envelope and complete pre-CAS predicate;
+it retains qualification/review/current-window gates and returns only an observation.
 
-- `docs/process/parallel-auto-bmad-contract.md:446` — `Exact E15 current-custody alternative`: operator shape and unchanged trust boundary.
-- `scripts/maintenance/admit_story35_6_runtime.py:446` — `references =`: accepts compatible scalar or strict unique list.
-- `scripts/maintenance/admit_story35_6_runtime.py:451` — `record['owner'] == allocation[1]`: checks every referenced native owner.
-- `scripts/maintenance/admit_story35_6_runtime.py:453` — `require(paths and set(paths)`: conserves complete path and domain unions.
+- `docs/process/parallel-auto-bmad-contract.md:567` — `Strict read-only whole-request validation`: operator route and explicit qualification limits.
+- `scripts/maintenance/admit_story35_6_runtime.py:879` — `def read_request`: retains capture-once strict request/digest validation.
+- `scripts/maintenance/admit_story35_6_runtime.py:903` — `def validate_request`: shares complete candidate validation and final rechecks.
+- `scripts/maintenance/admit_story35_6_runtime.py:994` — `def validate_only`: returns no assignment, generation or mutation authority.
 
-### Retain active original and supplemental allocations
+### Establish read-only custody before nested recognition
 
-Allocation IDs are unique; their paths/domains may overlap. No grant is completed,
-shrunk or assigned to a fabricated second writer to make custody representable.
+The approved capability refusal avoids duplicating the pinned schema1 recognizer.
+Every actual nonfinalized plan must be exact schema2 before shared validation;
+finalized E20 remains readable through caller SELECTs.
 
-- `scripts/maintenance/admit_story35_6_runtime.py:460` — `covered.update(references)`: covers every referenced original allocation.
-- `scripts/maintenance/admit_story35_6_runtime.py:463` — `covered == set(allocations)`: rejects an omitted grant even with reduced scope.
-- `tests/maintenance/test_admit_story35_6_runtime.py:1411` — `test_current_custody_one_active_producer_full54_plus_package1`: audits one active producer and both full grants.
-- `tests/maintenance/test_admit_story35_6_runtime.py:1487` — `test_current_custody_overlapping_full54_grants_keep_generated_scope_and_domains`: conserves overlapping grants, generated directory and semantic domains.
+- `scripts/maintenance/admit_story35_6_runtime.py:969` — `def readonly_database`: opens existing URI-ro store with query_only and no schema initialization.
+- `scripts/maintenance/admit_story35_6_runtime.py:983` — `def readonly_capability`: rejects unsupported actual run rows before shared validation.
+- `tests/maintenance/test_admit_story35_6_runtime.py:1534` — `test_validate_only_complete_current_request_all_handles_ro_no_mutation`: exercises CLI, nested URI-ro handles and unchanged full store/schema.
+- `tests/maintenance/test_admit_story35_6_runtime.py:1579` — `test_validate_only_fresh_schema1_guard_precedes_shared_path_live_admit_preserved`: proves guard ordering and unchanged live schema1 coexistence.
 
-### Refuse partial or invented authority with fresh evidence
+### Distinguish exact native counts from complete allocation arrays
 
-Each negative rebuilds host facts/projections/raw references so stale evidence
-cannot hide the guard. Original ordinary ownership still runs ahead of closure.
+Only three integer3 fields in the validated E15 epic counterpart are count metadata.
+Full actual bytes pass through the unchanged reader and entire collector; malformed
+real arrays, wrong contexts/types/pointers and every genuine array/domain stay strict.
 
-- `tests/maintenance/test_admit_story35_6_runtime.py:1376` — `def bind_union_custody`: binds one producer with fresh corroborating raw observations.
-- `tests/maintenance/test_admit_story35_6_runtime.py:1431` — `test_current_custody_allocation_union_refusals_preserve_store`: rejects missing/reduced/extra/unknown/duplicate authority without mutation.
-- `tests/maintenance/test_admit_story35_6_runtime.py:1457` — `test_current_custody_allocation_union_checks_each_native_owner`: refuses folding another native owner's claim into the union.
-- `scripts/maintenance/admit_story35_6_runtime.py:731` — `def ownership`: retains native/reservation/source checks unchanged.
+- `scripts/maintenance/admit_story35_6_runtime.py:515` — `def allocation_arrays`: conserves arrays with the three narrow native count pointers.
+- `scripts/maintenance/admit_story35_6_runtime.py:608` — `allocation_arrays(states['epic-15'], e15_main=True)`: limits count context to validated E15 main state.
+- `tests/maintenance/test_admit_story35_6_runtime.py:1670` — `test_complete_immutable_e15_blob_is_parsed_and_entirely_collected`: hashes/parses/traverses complete553474B native Git blob.
+- `tests/maintenance/test_admit_story35_6_runtime.py:1694` — `test_count_context_pointer_types_and_real_arrays_remain_strict`: refuses malformed metadata/arrays and conserves genuine tokens/domains.
 
-### Preserve current quiet custody, raw audit and evidence limits
+### Preserve fresh qualification, final rechecks and CAS
 
-Only the current record's allocation comparison changes. Captures, raw pins,
-actual-unknown refusal, independent review, final quiet interval and CAS remain.
+Read-only success is not replay or a cached admission seal. Actual admission uses
+its own fresh write transaction and the original CAS/audit statements after the
+same final byte/window checks.
 
-- `scripts/maintenance/admit_story35_6_runtime.py:101` — `def capture`: retains original raw bytes and source integrity.
-- `scripts/maintenance/admit_story35_6_runtime.py:364` — `def custody_window`: preserves bounded current no-new-overlap attestation.
-- `scripts/maintenance/admit_story35_6_runtime.py:946` — `source_bytes(repo, ref) == data`: rechecks every bound raw source before CAS.
+- `scripts/maintenance/admit_story35_6_runtime.py:961` — `source_bytes(repo, ref) == data`: rechecks every captured raw source before returning validation.
+- `scripts/maintenance/admit_story35_6_runtime.py:1009` — `def admit`: preserves fresh validation, mutation, rollback hook and historical replay.
+- `tests/maintenance/test_admit_story35_6_runtime.py:1626` — `test_validate_only_final_raw_and_window_rechecks_remain_strict`: refuses final raw mutation and late quiet-window expiry.
+- `tests/maintenance/test_admit_story35_6_runtime.py:1654` — `test_validate_only_success_is_not_cached_admission_or_fresh_replay`: proves fresh admission reads and distinct replay semantics.
 
-Evidence: `native-allocation-union.log`/metadata retain the first **4-method,
-1 assertion failure, 0 errors/skips, 223.262s**, exit1 run. The positive union,
-mixed-native-owner refusal and scalar positive passed; their method bodies are
-unchanged. The matrix's incorrect expected-message suffix was corrected and
-only it plus the appended overlap case are selected in
-`native-allocation-union-final.log`/metadata: **2 executed, 0 failures, 0 errors,
-0 skipped, 194.703s**, exit0, native Windows Python3.14.7/Git2.55.0 and actual8.3
-TEMP. Adapter bytes are identical across both selections; metadata distinguishes
-exact test hashes. The three unchanged passing methods from the first selection
-and final two-method pass provide affected coverage across two runs, not a
-single five-pass run. The first run's failure remains failure provenance.
-All prior48 method ASTs remain unchanged; static52 is not a full native run.
-Reference checks resolve15 own and9 inherited CI stops with no errors; the final
-four-path diff passes `git diff --check`.
-Earlier9/4/38/helper70/source5dc0 CI retain their historical scope.
+Evidence: focused native selection passed **14 executed, 0 failures, 0 errors,
+0 skipped, 334.177s**, exit0, in one run. Exact argv, timestamps, Windows
+Python3.14.7/Git2.55.0/8.3 TEMP and identical before/after pair are retained under
+`tmp/private/checkpoint-count-recovery/native-focused-14*`. Nine new methods and
+five selected prior integrity methods executed; no native failure/rerun occurred. Static AST comparison confirms the original request
+envelope, complete pre-CAS/final-recheck statement block and mutating CAS/audit
+tail are unchanged by extraction; all prior52 test method bodies remain identical.
+Static inventory61 is not full-suite execution. The same author section has16
+verified stops; inherited CI9 stops remain valid, with no reference errors. Earlier native9/4/38/helper70,
+union4/1 then2 and reported source5dc0 CI keep their original historical scope.
 
-Limits: disposable Git/SQLite and synthetic host/provider observations exercise
-the real adapter, not external authenticity. Synthetic path counts are examples,
-not the actual producer allocation count. The future request must conserve exact
-actual native/effective grants, generated directory and every semantic domain.
-Root still needs exact-successor/Q qualification, complete actual current facts
-and independent High request review. No provider query, actor contact, resource,
-full suite, hosted CI, live claim/admission, config/product or runtime operation
-occurs here; no historical failure is relabeled successful or closed.
+Limits: full native state is real repository data; operational requests, host
+status and CI/provider evidence in the disposable Git/SQLite tests are synthetic.
+No actual315-reference packet/current store, runtime, service, browser, resource,
+actor, CI or product operation is invoked. Unsupported RO schema1 activity and
+actual stale/unknown evidence remain refusals. Root must freshly qualify the exact
+new source/main, bind complete actual active-writer/reservation facts and a current
+quiet window, obtain independent whole-request review, and run complete actual
+read-only validation before any future CAS. A read transaction grants no future
+writer exclusion or release/product readiness.

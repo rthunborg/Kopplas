@@ -1,11 +1,14 @@
 """Disposable Git/SQLite admission contracts; no live claims or provider calls."""
 import base64
 import copy
+import contextlib
+import io
 import hashlib
 import importlib.util
 import json
 from pathlib import Path
 import sqlite3
+import subprocess
 import sys
 import unittest
 from unittest.mock import patch
@@ -1516,6 +1519,197 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
             receipt = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])
         self.assertEqual(receipt['ownership_inventory']['reservations'], reservations)
         self.assertEqual(receipt['closed_classifications'][0]['proof']['current_custody']['attestation'], attestation)
+
+
+    def readonly_state(self):
+        with adapter.readonly_database(self.repo) as db:
+            return list(db.iterdump())
+
+    def readonly_refused(self, message):
+        before = self.readonly_state()
+        with self.assertRaisesRegex(adapter.engine.Refusal, message):
+            adapter.validate_only(self.args_for_admit())
+        self.assertEqual(self.readonly_state(), before)
+
+    def test_validate_only_complete_current_request_all_handles_ro_no_mutation(self):
+        entry = self.custody_fixture()
+        self.bind_custody(entry)
+        args = self.args_for_admit()
+        before = self.readonly_state()
+        original, connections, statements = sqlite3.connect, [], []
+        def observe(*values, **options):
+            self.assertTrue(options.get('uri'))
+            self.assertTrue(str(values[0]).endswith('?mode=ro'))
+            db = original(*values, **options)
+            db.set_trace_callback(statements.append)
+            connections.append(str(values[0]))
+            return db
+        argv = [value for name in ['repo', 'run', 'owner', 'story', 'worker', 'generation', 'request']
+                for value in ['--' + name, str(getattr(args, name))]] + ['--validate-only']
+        output = io.StringIO()
+        with (patch.object(adapter.engine, 'database', side_effect=AssertionError('No schema initializer')),
+              patch.object(adapter.engine, 'registered_parallel_anchor', side_effect=AssertionError('No default-RW recognizer')),
+              patch.object(sqlite3, 'connect', side_effect=observe), contextlib.redirect_stdout(output)):
+            exit_code = adapter.main(argv)
+        self.assertEqual(exit_code, 0, output.getvalue())
+        result = json.loads(output.getvalue())
+        self.assertTrue(result['ok'] and result['validated'])
+        self.assertFalse(result['admitted'] or result['replayed'])
+        self.assertEqual((result['mode'], result['writes']), ('validate-only', 0))
+        self.assertEqual(result['request_sha256'], hashlib.sha256(Path(args.request).read_bytes()).hexdigest())
+        self.assertEqual(result['reviewed_request_digest'], self.request['admission_review']['request_digest'])
+        self.assertGreater(result['captured_artifacts'], 10)
+        self.assertNotIn('generation', result)
+        self.assertNotIn('assignment', result)
+        self.assertGreater(len(connections), 1)  # Includes real pinned schema2 nested recognizers.
+        self.assertTrue(all(sql.lstrip().upper().startswith(('SELECT ', 'BEGIN', 'PRAGMA QUERY_ONLY=ON'))
+                            for sql in statements), statements)
+        self.assertEqual(self.readonly_state(), before)
+
+    def test_validate_only_finalized_schema1_e20_is_supported(self):
+        entry = self.finalized_fixture()
+        self.bind_closed([entry])
+        before = self.readonly_state()
+        with (patch.object(adapter.engine, 'database', side_effect=AssertionError('No schema initializer')),
+              patch.object(adapter.engine, 'registered_parallel_anchor', side_effect=AssertionError('No default-RW recognizer'))):
+            result = adapter.validate_only(self.args_for_admit())
+        self.assertTrue(result['validated'])
+        self.assertEqual(self.readonly_state(), before)
+
+    def test_validate_only_fresh_schema1_guard_precedes_shared_path_live_admit_preserved(self):
+        plan = copy.deepcopy(self.v1_plan)
+        plan.update(run_id='actual-other-schema1', base_sha=self.v1_plan['base_sha'])
+        for value, message in [(plan, 'does not support nonfinalized schema-1 runs'),
+                               ({**plan, 'schema_version': '2'}, 'does not support nonfinalized schema-1 runs'),
+                               ([], 'Other plan integrity failure')]:
+            with engine.database(self.repo) as db:
+                db.execute('INSERT OR REPLACE INTO runs VALUES(?,?,?,?,?,?,?)',
+                           (plan['run_id'], plan['epic'], plan['coordinator'], engine.canonical(value), engine.digest(value), 'active', None))
+            self.request = self.make_request()
+            with (patch.object(adapter, 'validate_request', side_effect=AssertionError('Capability must refuse first')),
+                  patch.object(adapter.engine, 'registered_parallel_anchor', side_effect=AssertionError('No default-RW recognizer'))):
+                self.readonly_refused(message)
+        with engine.database(self.repo) as db:
+            db.execute('UPDATE runs SET plan=?,plan_hash=? WHERE run=?',
+                       (engine.canonical(plan), engine.digest(plan), plan['run_id']))
+        self.request = self.make_request()
+        # The new RO-only capability restriction does not affect live admission.
+        self.assertEqual(self.admit()['generation'], 2)
+
+    def test_validate_only_uri_connection_rejects_dml_and_ddl(self):
+        before = self.readonly_state()
+        with adapter.readonly_database(self.repo) as db:
+            self.assertEqual(db.execute('PRAGMA query_only').fetchone()[0], 1)
+            for sql in ['UPDATE runs SET state=state', 'CREATE TABLE forbidden_fixture_table(value TEXT)']:
+                with self.assertRaises(sqlite3.OperationalError):
+                    db.execute(sql)
+            # URI mode, rather than query_only alone, still forbids writes.
+            db.execute('PRAGMA query_only=OFF')
+            with self.assertRaises(sqlite3.OperationalError):
+                db.execute('UPDATE runs SET state=state')
+        self.assertEqual(self.readonly_state(), before)
+
+    def test_validate_only_never_waives_qualification_or_current_window(self):
+        entry = self.custody_fixture()
+        self.bind_custody(entry)
+        self.request['tool_sha256'] = '0'*64
+        self.readonly_refused('Reviewed adapter hash mismatch')
+        self.bind_custody(entry)
+        self.request['tooling_review']['approved'] = False
+        self.readonly_refused('review')
+        self.bind_custody(entry)
+        self.request['qualified_main_sha'] = self.base
+        self.readonly_refused('Qualified main changed')
+        self.bind_custody(entry, lambda a: a.update(observed_at=a['observed_at']-1000, valid_until=a['observed_at']-1))
+        self.readonly_refused('quiet interval')
+
+    def test_validate_only_final_raw_and_window_rechecks_remain_strict(self):
+        entry = self.custody_fixture()
+        self.bind_custody(entry)
+        ref = entry['proof']['current_custody']['evidence_ref']
+        original, reads = adapter.source_bytes, 0
+        def changed(repo, candidate):
+            nonlocal reads
+            data = original(repo, candidate)
+            if candidate == ref:
+                reads += 1
+                return data if reads == 1 else data + b' '
+            return data
+        with patch.object(adapter, 'source_bytes', side_effect=changed):
+            self.readonly_refused('Bound evidence changed immediately before CAS')
+        self.assertEqual(reads, 2)
+        self.bind_custody(entry)
+        window, calls = adapter.custody_window, 0
+        def expire(a):
+            nonlocal calls
+            calls += 1
+            if calls == 2:
+                with patch.object(adapter.time, 'time', return_value=a['valid_until']+1):
+                    return window(a)
+            return window(a)
+        with patch.object(adapter, 'custody_window', side_effect=expire):
+            self.readonly_refused('quiet interval')
+        self.assertEqual(calls, 2)
+
+    def test_validate_only_success_is_not_cached_admission_or_fresh_replay(self):
+        self.assertTrue(adapter.validate_only(self.args_for_admit())['validated'])
+        ref = self.request['tooling_ci']
+        path = Path(ref['path']); before_bytes = path.read_bytes()
+        path.write_bytes(before_bytes + b' ')
+        self.refused('Raw source hash mismatch')  # Fresh admission re-reads exact evidence.
+        path.write_bytes(before_bytes)
+        self.assertEqual(self.admit()['generation'], 2)
+        before = self.readonly_state()
+        with self.assertRaisesRegex(adapter.engine.Refusal, 'Historical admission replay is not fresh'):
+            adapter.validate_only(self.args_for_admit())
+        self.assertEqual(self.readonly_state(), before)
+        self.assertTrue(self.admit()['replayed'])  # Existing historical replay stays operative.
+
+
+class NativeAllocationMetadata(unittest.TestCase):
+    def test_complete_immutable_e15_blob_is_parsed_and_entirely_collected(self):
+        # HEAD's existing tracked Git blob works in shallow CI checkouts too.
+        data = subprocess.check_output(['git', '-C', str(ROOT), 'show', 'HEAD:' + adapter.state_path('epic-15')])
+        self.assertEqual(len(data), 553474)
+        self.assertEqual(hashlib.sha256(data).hexdigest(), 'b3cb9cbfc804b652777d9499a969cc98a3008fc80bec1dd2e523e6dabbfd2e11')
+        state = adapter.state_bytes(data)  # Unchanged native reader, COMPLETE input.
+        pointers = ['q_checkpoint', 'r_checkpoint', 'reviewed_ten_path_checkpoint']
+        for name in pointers:
+            self.assertIs(type(state[name]['bookkeeping_paths']), int)
+            self.assertEqual(state[name]['bookkeeping_paths'], 3)
+        actual = adapter.allocation_arrays(state, e15_main=True)  # ENTIRE parsed state.
+        with self.assertRaisesRegex(adapter.engine.Refusal, 'original allocation paths'):
+            adapter.allocation_arrays(state)
+        # The complete state remains the comparison corpus: remove only the
+        # count metadata, then the original strict array traversal must agree.
+        arrays_only = copy.deepcopy(state)
+        for name in pointers:
+            del arrays_only[name]['bookkeeping_paths']
+        self.assertEqual(actual, adapter.allocation_arrays(arrays_only))
+        self.assertEqual(actual[0], set())  # Native state has domains/counts, not write grants.
+        self.assertEqual(actual[1], {'migrations', 'scope/nav registries', 'permission matrix',
+                                     'command enrollment', 'shared fixtures', 'sprint-status'})
+        self.assertEqual(hashlib.sha256(data).hexdigest(), 'b3cb9cbfc804b652777d9499a969cc98a3008fc80bec1dd2e523e6dabbfd2e11')
+
+    def test_count_context_pointer_types_and_real_arrays_remain_strict(self):
+        for name in ['q_checkpoint', 'r_checkpoint', 'reviewed_ten_path_checkpoint']:
+            for value in [4, True, False, '3', 3.0, None, {}]:
+                with self.subTest(name=name, value=value), self.assertRaisesRegex(adapter.engine.Refusal, 'original allocation paths'):
+                    adapter.allocation_arrays({name: {'bookkeeping_paths': value}}, e15_main=True)
+            with self.assertRaisesRegex(adapter.engine.Refusal, 'original allocation paths'):
+                adapter.allocation_arrays({name: {'bookkeeping_paths': 3}})
+            with self.assertRaisesRegex(adapter.engine.Refusal, 'original allocation paths'):
+                adapter.allocation_arrays({'nested': {name: {'bookkeeping_paths': 3}}}, e15_main=True)
+            paths, domains = adapter.allocation_arrays({name: {'bookkeeping_paths': ['actual/bookkeeping.md'],
+                'write_paths': ['actual/full/'], 'shared_domains': ['actual:scope']},
+                'allocation': {'paths': ['actual/amendment.ts']}}, e15_main=True)
+            self.assertEqual(paths, {'actual/bookkeeping.md', 'actual/full/', 'actual/amendment.ts'})
+            self.assertEqual(domains, {'actual:scope'})
+        for value in [{'write_paths': 3}, {'allocation': {'paths': 3}}, {'other': {'bookkeeping_paths': 3}},
+                      {'production_write_paths': ['valid.ts', 3]}, {'test_write_paths': 'valid.ts'},
+                      {'conflict_domains': 3}, {'shared_domains': [False]}]:
+            with self.subTest(value=value), self.assertRaises(adapter.engine.Refusal):
+                adapter.allocation_arrays(value, e15_main=True)
 
 
 if __name__ == '__main__':

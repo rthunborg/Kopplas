@@ -552,6 +552,65 @@ owners and operators. Final snapshot/raw-byte/window rechecks, the existing
 two-row CAS, rollback and lossless append-only audit remain mandatory; no marker,
 store schema, pinned helper, source pin or product configuration is changed.
 
+#### Native checkpoint count metadata
+
+The E15 main-state allocation traversal distinguishes three native count
+summaries from allocation arrays: exactly `q_checkpoint/bookkeeping_paths`,
+`r_checkpoint/bookkeeping_paths` and
+`reviewed_ten_path_checkpoint/bookkeeping_paths`, each exact integer3 (not bool).
+This applies only while traversing the already identity/hash-validated E15 epic
+main counterpart. Arrays at those pointers remain arrays and are conserved.
+Wrong counts/types/pointers, non-list real allocation fields and identically
+named metadata in other authority contexts refuse. No native blob, source pin,
+state parser or original grant is rewritten or globally ignored.
+
+### Strict read-only whole-request validation
+
+The adapter's explicit `--validate-only` flag performs the same complete request
+validation and immediate final rechecks as admission, without CAS or audit writes:
+
+```text
+python -X utf8 <qualified-tooling>/scripts/maintenance/admit_story35_6_runtime.py --repo <existing-control-root> --run e35-6-20261102 --owner <existing-coordinator> --story spec-design-35-6-35-6 --worker <existing-worker> --generation <current-generation> --request <absolute-reviewed-request.json> --validate-only
+```
+
+This is a newly supported adapter operation; neither invoking admission and
+rolling it back nor calling the pinned helper's `database` is a read-only route.
+It opens the existing caller store by SQLite URI `mode=ro`, sets connection-local
+`query_only`, and uses a read transaction with no schema initialization/DDL.
+Before shared validation, it queries ALL actual run rows on that connection and
+refuses any nonfinalized plan other than exact schema2. Malformed plans refuse.
+This explicit capability limit prevents reaching the pinned schema1 recognizer's
+default-RW nested connection. No run/claim/reservation is omitted, relabeled or
+released. Finalized schema1 proof uses caller SELECTs and remains supported;
+reachable schema2 recognizers already open their nested connections by URI ro.
+The restriction is read-only-only: normal admission retains schema1 coexistence
+and uses its original fresh write transaction. Neither recognizer is copied or
+monkeypatched; the helper/workflow pins remain unchanged.
+
+All tooling SHA/hash/CI, current-main/source, independent review, exact blocked
+claim/publication, full original scope/reservations, raw source and current quiet
+window gates still apply. Unsupported/stale/incomplete requests refuse with their
+actual error. There is no override for edited/unqualified tooling, old main,
+expired evidence, unsafe schema1 capability or an already admitted token.
+Historical replay remains admission-only and never becomes a fresh validation PASS.
+
+Success returns `mode: "validate-only"`, `validated: true`, `admitted: false`,
+`replayed: false`, `writes: 0`, exact request raw/canonical/review digest and
+qualified tooling/main bindings, plus a captured-artifact count. It returns no
+assignment/predicted generation and prints no full private proof payload. It
+adds no field or approval authority to the request. Failure emits the ordinary
+`ok: false` result and nonzero exit. Existing raw proof sources remain private;
+normal successful admission still retains their full lossless append-only audit.
+
+Before any later CAS, Root must obtain strict whole-request read-only validation
+of the ENTIRE actual freshly reviewed packet after exact new source qualification,
+actual current main, complete active-writer facts and a new quiet window are bound.
+Older f3db/cb68/expired packets cannot qualify new code. Private pure-component
+checks are diagnostic only. A read-only transaction is a consistent observation,
+not a lock against later writers; admission repeats the shared validation and
+final rechecks under its own fresh BEGIN IMMEDIATE and never consumes a cached
+read-only PASS. This command does not grant live mutation or product/runtime proof.
+
 ### Custody, transaction and continuation
 
 1. Root reconciles existing identities/provider operation, obtains qualified
