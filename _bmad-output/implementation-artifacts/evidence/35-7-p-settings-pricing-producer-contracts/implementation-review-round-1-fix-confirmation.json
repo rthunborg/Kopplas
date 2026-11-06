@@ -1,0 +1,62 @@
+{
+  "task_id": "35.7-P",
+  "kind": "targeted follow-up of four Round1 fixes and six actually approved fixture paths",
+  "broad_rounds_completed": 1,
+  "broad_round_cap": 3,
+  "review_commit": "7f6a7be9e0544844b43842b46d498f7539602dde",
+  "review_parent": "cad737c4399bb453ad3eb624911f3ce9218433c5",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "diff": {
+    "path": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\implementation-review-round-1-fix-delta.diff",
+    "sha256": "19f2fccaf7b184dbb26c1d8fb19491098cc1f8f08b136c477de7e33f037a9e93",
+    "bytes": 101139
+  },
+  "changed_author_files": [
+    "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+    "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+    "src/app/(app)/settings/pricing/page.tsx",
+    "src/components/pricing/ArticlesEditor.tsx",
+    "src/components/pricing/WorkRolesEditor.tsx",
+    "src/components/settings/CompanySettingsForm.tsx",
+    "src/components/settings/QuoteTermsEditor.tsx",
+    "src/features/settings/mutation-attempt.ts",
+    "tests/e2e/pricing/pricing.e2e.spec.ts",
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+    "tests/integration/rls/role-harness.atdd.int.test.ts",
+    "tests/support/authz/role-harness.ts",
+    "tests/unit/features/settings/mutation-attempt.test.ts",
+    "tests/unit/scope/manifest-derivations.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/server/commands/pricing-validation-edges.test.ts"
+  ],
+  "source_author_stopped": true,
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "independent_from_author": true,
+  "route_before_dispatch": true,
+  "layers": [
+    {
+      "task": "/root/producer_build/review_r1_blind",
+      "scope": "R1-1 pinned draft baseline/current-facts explicit adoption across all4editors, R1-2 canonical terms whitespace, changed regressions; no broadrepeat"
+    },
+    {
+      "task": "/root/producer_build/review_r1_edges",
+      "scope": "R1-3 pricing active/archived read success/error wiring and current-claim/write gates; cross-regressions in only latestchangedlines, no broadrepeat"
+    },
+    {
+      "task": "/root/producer_build/review_r1_verification",
+      "scope": "R1-4 executing promises and actual lockbarriers/cleanup; six actual approved fixture metadata/validator deltas against reviewedproposal; actual source/render regression validity; no broadrepeat"
+    }
+  ],
+  "known_evidence_limits": [
+    "Full unit local failed2cleanbaseline calendar cases and1WindowsLinuxxattrs skip, not waiver",
+    "DB82collected0executed/browser0/captures0",
+    "Actual qualified hostedCI/RLS/recovery/browser and exactcandidateauthenticatedvisualacceptance unearned"
+  ],
+  "status": "all-three-targeted-independent-SolHigh-FIX_CONFIRMED",
+  "actual_dispatched_at_utc": "2026-11-02T13:26:59.6191095Z",
+  "results_record": "implementation-review-round-1-fix-results.json",
+  "remaining_consequential_findings": []
+}

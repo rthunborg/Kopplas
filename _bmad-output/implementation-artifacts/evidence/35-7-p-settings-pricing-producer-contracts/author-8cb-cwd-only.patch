@@ -1,0 +1,75 @@
+diff --git a/tests/e2e/pricing/pricing.e2e.spec.ts b/tests/e2e/pricing/pricing.e2e.spec.ts
+index 878d0647..6ef8b0fe 100644
+--- a/tests/e2e/pricing/pricing.e2e.spec.ts
++++ b/tests/e2e/pricing/pricing.e2e.spec.ts
+@@ -1465,11 +1465,12 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
+                 await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
+                 for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+                     await page.setViewportSize(viewport);
+-                    await unavailable.evaluate(element => element.scrollIntoView({ block: "start" }));
++                    const unavailableAlignment = spec.surface === "article" && viewport.width === 360 ? "center" : "start";
++                    await unavailable.evaluate((element, block: "center" | "start") => element.scrollIntoView({ block }), unavailableAlignment);
+                     await expect(unavailable).toBeInViewport({ ratio: 1 });
+                     await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
+                     await assertDomain();
+-                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, "start");
++                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, unavailableAlignment);
+                     await assertDomain();
+                     await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
+                     await expect(unavailable).toBeInViewport({ ratio: 1 });
+diff --git a/tests/e2e/time-reports.e2e.spec.ts b/tests/e2e/time-reports.e2e.spec.ts
+index f58b55e7..0e6e2c7c 100644
+--- a/tests/e2e/time-reports.e2e.spec.ts
++++ b/tests/e2e/time-reports.e2e.spec.ts
+@@ -133,10 +133,34 @@ test.describe("15.4 essential production-host time reporting", () => {
+         expect(memberships).toHaveLength(1);
+         const membership=memberships[0];
+         await adminQuery("update public.tenant_memberships set status='disabled' where id=$1",[membership.id]);
++        const denialTerminals = new WeakMap<import("@playwright/test").Request, "finished" | "failed" | "conflicting">();
++        const recordDenialTerminal = (request: import("@playwright/test").Request, kind: "finished" | "failed") => {
++          const prior = denialTerminals.get(request);
++          denialTerminals.set(request, prior && prior !== kind ? "conflicting" : kind);
++        };
++        const denialFinished = (request: import("@playwright/test").Request) => recordDenialTerminal(request, "finished");
++        const denialFailed = (request: import("@playwright/test").Request) => recordDenialTerminal(request, "failed");
++        let selectedDenialResponse: import("@playwright/test").Response | undefined;
++        let denialPhase: "wait-for-response" | "body-read" | "denial-assertions" = "wait-for-response";
++        const emitDenialDiagnostic = (outcome: "returned" | "rejected", error?: unknown) => {
++          try {
++            const name = error instanceof Error ? error.name : "unknown";
++            console.info(JSON.stringify({ diagnostic: "time-report-denied-body", phase: denialPhase, outcome,
++              status: selectedDenialResponse ? selectedDenialResponse.status() : null,
++              terminal: selectedDenialResponse ? denialTerminals.get(selectedDenialResponse.request()) ?? "unobserved" : "unobserved",
++              errorCategory: outcome === "returned" ? "none" : ["Error", "TimeoutError", "TargetClosedError"].includes(name) ? name : "unknown" }));
++          } catch { /* Diagnostic failure must never replace the original scenario error. */ }
++        };
+         try {
+-          const deniedResponse=page.waitForResponse((reply)=>isFilingRequest(reply.request(),f.marker));
+-          await retry.focus();await page.keyboard.press("Enter");
+-          const deniedBody=await(await deniedResponse).text();
++          try {
++            // Observe before the original wait/click; only the exact selected Request is emitted.
++            page.on("requestfinished", denialFinished); page.on("requestfailed", denialFailed);
++            const deniedResponse=page.waitForResponse((reply)=>isFilingRequest(reply.request(),f.marker));
++            await retry.focus();await page.keyboard.press("Enter");
++            selectedDenialResponse = await deniedResponse;
++            denialPhase = "body-read";
++            const deniedBody=await selectedDenialResponse.text();
++            denialPhase = "denial-assertions";
+           expect(deniedBody).toContain('"status":"error"');
+           expect(deniedBody).toContain('"uncertain":false');
+           await expect(form.getByText("Osänd",{exact:true})).toBeVisible();
+@@ -145,6 +169,13 @@ test.describe("15.4 essential production-host time reporting", () => {
+           await expect(retry).toBeEnabled();
+           expect(fault.attempts).toHaveLength(3);expect(fault.attempts[2]).toEqual(fault.attempts[0]);
+           expect(await f.snapshot()).toEqual(committed);
++            emitDenialDiagnostic("returned");
++          } catch (error) {
++            emitDenialDiagnostic("rejected", error);
++            throw error; // Same original object; no body substitution, retry or changed denial assertions.
++          } finally {
++            page.off("requestfinished", denialFinished); page.off("requestfailed", denialFailed);
++          }
+         } finally {
+           await adminQuery("update public.tenant_memberships set status=$2 where id=$1",[membership.id,membership.status]);
+         }

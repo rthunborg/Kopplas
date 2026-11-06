@@ -1,3 +1,4 @@
+import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 /**
  * `/settings/quote-terms` (Offertvillkor) — the tenant-owned quote terms editor with
  * the owner/legal SIGN-OFF status/warning (Story 3.3, Task 4.1 / AC2).
@@ -18,9 +19,15 @@ import { readQuoteTerms } from "@/features/settings/read";
 export const dynamic = "force-dynamic";
 
 export default async function QuoteTermsPage() {
+  const contextResult = await resolveTenantContext();
+  const operationContext = contextResult.ok ? { tenantId: contextResult.data.tenantId, actorId: contextResult.data.userId } : null;
   const { terms, error } = await readQuoteTerms();
 
   const defaults = {
+    operationContext,
+    readToken: crypto.randomUUID(),
+    write_revision: terms?.write_revision ?? null,
+    readError: error !== null,
     id: terms?.id ?? null,
     terms_text: terms?.terms_text ?? "",
     approved_at: terms?.approved_at ?? null,

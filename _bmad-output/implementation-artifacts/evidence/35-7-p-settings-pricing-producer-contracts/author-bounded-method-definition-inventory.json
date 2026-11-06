@@ -1,0 +1,65 @@
+{
+  "kind": "Source-only registration/assertion-preservation; no callbacks/setup/browser/DB execution",
+  "candidateBefore": "4d46b29a87d29b5a31ec08cf2d65a164d3f640c7",
+  "files": [
+    {
+      "file": "tests/e2e/settings/settings.e2e.spec.ts",
+      "sha256": "69f30ac2c9e4c02781a41e945c24277ed87c7822090af3b99d66cd12a6719201",
+      "defined": 10,
+      "producerDefined": 2,
+      "allTitles": [
+        "AC4: anonymous visits to /settings/company and /settings/quote-terms redirect to /login",
+        "AC4: the Company settings screen renders (Företagsinställningar) with a VAT-rate field",
+        "AC4/AC5: an out-of-range VAT rate is rejected with a FIELD-ASSOCIATED error and input is preserved",
+        "AC4: a valid Company settings save round-trips (the rate persists as a percent display)",
+        "AC2: the Quote-terms screen shows the NOT-approved WARNING by default (sign-off status, non-color-only)",
+        "AC2: saving the terms TEXT does NOT approve them — the WARNING persists after an edit-save",
+        "AC2: the deliberate 'Markera som godkänd' action transitions to an APPROVED status (who + when)",
+        "AC4: the nav stays EXACTLY aligned with active manifest modules — no new settings nav item, no /settings/pricing",
+        "P-E1/E2/E3/E4 settings capture/recover/stale 1440x900",
+        "P-E1/E2/E3/E4 settings capture/recover/stale 360x640"
+      ],
+      "original178Contribution": 93,
+      "currentExpectStatements": 93,
+      "allOriginalLiteralExpectsRetained": true
+    },
+    {
+      "file": "tests/e2e/pricing/pricing.e2e.spec.ts",
+      "sha256": "62ceb901b91bbbf2f274e9cd170d73629f756bb7ec867e6c8410218d30ba9b2e",
+      "defined": 14,
+      "producerDefined": 5,
+      "allTitles": [
+        "AC5: an anonymous visit to /settings/pricing redirects to /login",
+        "AC5: the Pricing screen renders (Prissättning) with work-role + article editors",
+        "AC2/AC5: a NEGATIVE work-role rate is rejected with a FIELD-ASSOCIATED error and input is preserved",
+        "AC2/AC5: a FLOAT-with-too-many-decimals rate is rejected (öre precision, field-associated)",
+        "AC5: a valid work role SAVES and round-trips (kronor display, öre stored)",
+        "AC3/AC5: a valid article SAVES and round-trips; NO supplier control appears in the article editor",
+        "AC2/AC5: a work role can be ARCHIVED then REACTIVATED (archive is a reversible door, not one-way)",
+        "AC5: the nav stays EXACTLY aligned with active manifest modules — pricing adds NO new top-nav item",
+        "AC5: the Inställningar hub links to /settings/pricing (Prissättning) — the 3.3 hub omitted it",
+        "P-E1/E2/E3 pricing all eight operation forms 1440x900",
+        "P-E1/E2/E3 pricing all eight operation forms 360x640",
+        "R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success 1440x900",
+        "R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success 360x640",
+        "P-E5 CI-only bounded real read-unavailable and one historical target-missing example"
+      ],
+      "original178Contribution": 85,
+      "currentExpectStatements": 197,
+      "allOriginalLiteralExpectsRetained": true
+    }
+  ],
+  "runtimeExecuted": 0,
+  "newPNGs": 0,
+  "nominalCaptures": 95,
+  "previous203ExpectsAndAllOldFlowsBytePreservedExceptImports": true,
+  "previousPhoneRawSHA256": "c6c417bfa4d3465cc1966c4287679daf18afceed187e2d2a03ee69c96be786ec",
+  "defined": 24,
+  "producerDefined": 7,
+  "currentExpectTotal": 290,
+  "newCase": {
+    "name": "P-E5 CI-only bounded real read-unavailable and one historical target-missing example",
+    "timeoutMs": 120000
+  },
+  "nativeCollection": "Not invoked: existing authfixture absent; no runtime created.24/7 source registrations only;104 total normal-selection arithmetic from historical80+24, not native proof."
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 2,
+  "ok": true,
+  "changed": true,
+  "operation": "Stop",
+  "operationId": "991f7bae-6137-478c-accb-b864c70b0941",
+  "resourceId": "2ba7e47e-97d4-473c-b68a-054087248373",
+  "state": "stop_requested",
+  "verified": false,
+  "revision": 32,
+  "warnings": [],
+  "data": {},
+  "error": null
+}

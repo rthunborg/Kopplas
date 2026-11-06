@@ -1,0 +1,196 @@
+{
+  "recorded_at_utc": "2026-11-02T18:10:38.6415991Z",
+  "disposition": "PROVISIONAL_MAPPING_NOT_QUALIFIED",
+  "reviewer": "/root/producer_build/review_r1_edges",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "basis": "Completed actual80 original473 image assessment plus bounded current source definitions; no new image audit or effects",
+  "actual_input_evidence": "actual-image-assessment-473067d4.json",
+  "schema_limits": "Conceptual entries only, not new protocol fields: scalar surface route; canonical finished/loading/error/empty; every declared surface finished both viewports and every represented state both",
+  "finished_meaning": "Named rendered view is settled, not a claim that an ambiguous mutation succeeded or independently current facts confirmed own write",
+  "surfaces": [
+    {
+      "component": "Company settings form and receipt/current-data presentation",
+      "route": "/settings/company",
+      "finished": [
+        "finished",
+        "stale named review",
+        "unknown named unconfirmed result"
+      ],
+      "loading": [
+        "initial save",
+        "reconcile pending",
+        "stale refresh notice",
+        "future held receipt/current-read pending"
+      ],
+      "error": [
+        "VAT validation",
+        "future read-unavailable"
+      ],
+      "empty": "Successful singleton absence/default form"
+    },
+    {
+      "component": "Quote terms editor and save/approval controls",
+      "route": "/settings/quote-terms",
+      "finished": [
+        "approved finished",
+        "saved-unapproved",
+        "dirty approval-disabled",
+        "unknown named unconfirmed result",
+        "stale wording review"
+      ],
+      "loading": [
+        "initial save",
+        "same-attempt retry pending"
+      ],
+      "error": [
+        "required-text validation",
+        "future read-unavailable"
+      ],
+      "empty": "Successful terms absence/empty textarea/not-approved warning"
+    },
+    {
+      "component": "Work-role editor active/archived rows and selected draft",
+      "route": "/settings/pricing",
+      "finished": [
+        "restored active/current-confirmed",
+        "archived restore control",
+        "unknown named unconfirmed result",
+        "stale revision",
+        "neighbor-refresh stale revision",
+        "historical receipt/current-newer"
+      ],
+      "loading": [
+        "initial role save",
+        "role reconcile pending"
+      ],
+      "error": [
+        "negative rate",
+        "future read-unavailable"
+      ],
+      "empty": "No active roles/create form"
+    },
+    {
+      "component": "Article editor active/archived rows and selected draft",
+      "route": "/settings/pricing",
+      "finished": [
+        "restored active/current-confirmed",
+        "archived restore control",
+        "unknown named unconfirmed result",
+        "stale revision",
+        "neighbor-refresh stale revision",
+        "historical receipt/current-newer"
+      ],
+      "loading": [
+        "initial article save",
+        "article reconcile pending"
+      ],
+      "error": [
+        "negative price",
+        "future read-unavailable"
+      ],
+      "empty": "No active articles/create form; separately named future historical receipt/current-missing branch"
+    }
+  ],
+  "capture_classes": [
+    {
+      "raw": [
+        "unknown"
+      ],
+      "canonical": "finished",
+      "caption": "Unconfirmed result, same attempt retained; never save succeeded"
+    },
+    {
+      "raw": [
+        "stale",
+        "stale-draft",
+        "neighbor-stale",
+        "neighbor-stale-draft"
+      ],
+      "canonical": "finished",
+      "caption": "Current facts differ from retained original draft; neighbor success did not replace it; saving awaits deliberate review/adoption"
+    },
+    {
+      "raw": [
+        "archived-restore"
+      ],
+      "canonical": "finished",
+      "caption": "Archived row with restore control, not the restored active result"
+    },
+    {
+      "raw": [
+        "saved-unapproved",
+        "dirty-approval-disabled"
+      ],
+      "canonical": "finished",
+      "caption": "Receipt without approval; or unsaved wording with approval disabled, respectively"
+    },
+    {
+      "raw": [
+        "current-newer",
+        "current-newer-draft"
+      ],
+      "canonical": "finished",
+      "caption": "Historical attempt completed; current41 differs from local31, not confirmed own current write"
+    },
+    {
+      "raw": [
+        "loading",
+        "retry-pending",
+        "reconcile-pending",
+        "refresh-notice"
+      ],
+      "canonical": "loading",
+      "caption": "Actual named transport held; save/recovery/stale-read are distinct execution phases, not independent-current-read proof"
+    },
+    {
+      "raw": [
+        "future company receipt/current-read pending pair"
+      ],
+      "canonical": "loading",
+      "caption": "Semantic placeholder, exact source filenames to be pinned; historical receipt/current-data separate sentence while exact subsequent GET remains held; no save-busy or unknown recovery inferred"
+    },
+    {
+      "raw": [
+        "read-unavailable",
+        "read-unavailable-draft"
+      ],
+      "canonical": "error",
+      "caption": "Current read failed, history retained; no empty/deleted proof"
+    },
+    {
+      "raw": [
+        "current-missing-empty",
+        "current-missing-draft"
+      ],
+      "canonical": "empty",
+      "caption": "Historical receipt retained; successful independent current read establishes target absence, not mutation-success image"
+    }
+  ],
+  "narrow_NAs": [
+    "Approval empty action requires saved terms; base terms empty view represents absence",
+    "Update empty action requires a selected existing target; base create/empty view represents absence",
+    "Archive empty action has no active target/control; base empty list represents absence",
+    "Restore empty action has no archived row/form; not historical target-missing",
+    "Empty unknown is not confirmed absence; absent receipt remains ambiguous",
+    "Terminal recovery rejection replacing unknown is inapplicable because recovery denial remains sticky unknown, not because all visible error/notice branches are inapplicable"
+  ],
+  "applicable_not_NA": [
+    "Read unavailable",
+    "Historical current missing",
+    "Pending recovery",
+    "Pending current reads"
+  ],
+  "unresolved": "Independently current-read loading for terms/work-role/article: company pair cannot prove their routes/domains; initial save/reconcile cannot be relabeled. Need truthful actual component/consumer qualification, not artificial splitting or blanket NAs.",
+  "representative_conditions": "Shared AttemptRecovery stableunknown appearance only, not other-route page proof; same-route pricing pending representation only with truthful scope and domain layout/error/lifecycle retained; same-route terms retry must visibly show busy; rolephone newer supplement alone proved redundant, raw retained",
+  "arithmetic": {
+    "raw": 97,
+    "previous_conditional_omissions": 15,
+    "candidate": 82,
+    "verified_two_additional_cuts": 0,
+    "root_proposed_current_pending_for_stale_refresh_notice_replacement": "Conditional only; unseen actual component/render comparison needed, not accepted equivalence"
+  },
+  "unseen": "All15 method originals, new2pending originals and corrected captures require actual next-head execution and opening",
+  "no_cross_route_captions_false_NAs_new_schema_or_waiver": true,
+  "no_visual_provider_human_completion_acceptance": true
+}

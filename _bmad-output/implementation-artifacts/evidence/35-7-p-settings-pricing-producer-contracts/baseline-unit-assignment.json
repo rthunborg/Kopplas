@@ -1,0 +1,9 @@
+{
+  "task": "35.7-P",
+  "owner": "Root coordination, separate from implementation author",
+  "assignment": "Read-only baseline provenance for exactly two current failing pure unit cases; no product edits, DB, services, scope changes, waiver or gate credit",
+  "baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "worktree": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-unit-baseline",
+  "test_file": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+  "implementation_author_confirmed_no_duplicate": true
+}

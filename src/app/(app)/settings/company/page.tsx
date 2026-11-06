@@ -1,3 +1,4 @@
+import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 /**
  * `/settings/company` (Företagsinställningar) — company identity + VAT display/rate
  * defaults (Story 3.3, Task 4.1).
@@ -23,9 +24,16 @@ import { bpToPercentString } from "@/features/settings/vat-display";
 export const dynamic = "force-dynamic";
 
 export default async function CompanySettingsPage() {
+  const contextResult = await resolveTenantContext();
+  const operationContext = contextResult.ok ? { tenantId: contextResult.data.tenantId, actorId: contextResult.data.userId } : null;
   const { settings, error } = await readCompanySettings();
 
   const defaults = {
+    operationContext,
+    readToken: crypto.randomUUID(),
+    write_revision: settings?.write_revision ?? null,
+    readError: error !== null,
+    id: settings?.id ?? null,
     company_name: settings?.company_name ?? null,
     org_nr: settings?.org_nr ?? null,
     address_line1: settings?.address_line1 ?? null,

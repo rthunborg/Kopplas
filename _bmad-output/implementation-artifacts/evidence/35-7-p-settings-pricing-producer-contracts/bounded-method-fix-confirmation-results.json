@@ -1,0 +1,26 @@
+{
+  "recorded_at_utc": "2026-11-02T17:39:19.8263274Z",
+  "disposition": "FIX_CONFIRMED",
+  "reviewers": [
+    "/root/producer_build/review_r1_verification",
+    "/root/producer_build/review_r1_edges"
+  ],
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "scope": "Only latest retained Request terminal-settlement fix, current-facts overview anchor, unresolved consequential finding and latest-fix regressions",
+  "freeze_sha256": "02ec728024b7d0d12544e2b892be6ac6e8c2dc00fd36d5e0cc051949212fcf40",
+  "patch_sha256": "b856e1fa00a81248edf9b47b19cfbd46631e74306802ccfa3fd17e785102b516",
+  "source48_digest": "bce0ead5ca8d125e0fe00a97d87e91f9cd2761b309201e0bc40855c4fe980e8f",
+  "pricing_sha256": "e89255caeb8d83f4e161175805c8bfb6f4d2af04164061bb56c38115c46ffcf4",
+  "pricing_git_blob": "3d71fd052843b32610d9dd4c075a5e1cf8ccb252",
+  "findings": [],
+  "confirmed": [
+    "Exact intercepted Request retained; same cached bounded10s release/terminal wait success and finally",
+    "Release errors still attempt terminal wait; settlement failure retains fixture custody, still attempts exactACL recovery and stops effects",
+    "Scenario/settlement/ACL/fixture failures aggregated",
+    "Currentfacts top-aligned; current41/receipt fullvisibility and local31 supplement preserved",
+    "All290expects/24cases/95raw definitions retained; all48 raw/effective pins and canonical9 matched; production27 equaldeb14"
+  ],
+  "limits": "Source only. No tests, effects, resources, CI or images executed. Actual restoration, timing, phone fit, actual95 image qualification and79 selection/HUMAN visual acceptance/Step5/release remain unearned",
+  "broad_review_rounds_completed": 1
+}

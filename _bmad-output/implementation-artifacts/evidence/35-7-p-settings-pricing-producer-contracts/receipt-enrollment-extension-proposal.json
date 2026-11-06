@@ -1,0 +1,166 @@
+{
+  "task_id": "35.7-P",
+  "status": "PROPOSED_NOT_AUTHORIZED",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "reason": "Required private receipt manifest/H4 enrollment has five proven closed fixture/expectation consumers outside current allocation. No omission or type weakening is acceptable. This single proposal supersedes the preliminary two-file count; no file below has been edited.",
+  "sources": [
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "sha256": "75688b1a77bc851a764bbbc485f5be3ad3306fd55ff7f309c261d144eed0444a",
+      "before_semantics": "Existing source has no settings_pricing_operations enrollment; original source unchanged.",
+      "after_semantics": "In seedEveryTenantTable only, allocate one synthetic operation UUID; INSERT a schema-valid private receipt using existing companySettings real row ID/write_revision read from public.company_settings for tenantId, existing actorId, operation_kind company.save, fixed synthetic 64-hex digest, correlation_id equal operation UUID, current synthetic setup committed_at and approved_at null. Require one returned ID and return it as settings_pricing_operations. Existing role cases/expect outcomes unchanged; normal clients still perform both real own and foreign denial queries.",
+      "source_lines": [
+        {
+          "line": 55,
+          "literal": "  ownTableIds = await seedEveryTenantTable(fixture.base.tenantA.id, fixture.base.adminA.id);"
+        },
+        {
+          "line": 56,
+          "literal": "  foreignTableIds = await seedEveryTenantTable(fixture.base.tenantB.id, fixture.base.adminB.id);"
+        },
+        {
+          "line": 86,
+          "literal": "async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<Record<TenantTableName, string>> {"
+        },
+        {
+          "line": 172,
+          "literal": "  return {"
+        },
+        {
+          "line": 225,
+          "literal": "      if (adapter.directReadDenied) {"
+        }
+      ]
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "sha256": "23a1897cc8fb9cda711f5fc3c95d86f68680f7c7bcba41ac3d484e394fbf1dc9",
+      "before_semantics": "Existing source has no settings_pricing_operations enrollment; original source unchanged.",
+      "after_semantics": "Add only settings_pricing_operations metadata entries: TABLE_PROJECTION_CAPABILITIES=CompanySettings.Edit (existing capability metadata, no permission grant), TABLE_DIRECT_RLS_ALLOWED_ROLES=[] (no role has direct receipt read), TABLE_RLS_PROJECTION_ADAPTERS=keyProjection(settings_pricing_operations,id,true). Retain existing harness generation, command probes, casts, cases, and all consumer assertions.",
+      "source_lines": [
+        {
+          "line": 15,
+          "literal": "export const TABLE_PROJECTION_CAPABILITIES: Readonly<Record<string, string>> = {"
+        },
+        {
+          "line": 39,
+          "literal": "export const TABLE_DIRECT_RLS_ALLOWED_ROLES: Readonly<Partial<Record<TenantTableName, readonly TenantRole[]>>> = {"
+        },
+        {
+          "line": 87,
+          "literal": "  const projectionCapabilities = metadata.projectionCapabilities ?? TABLE_PROJECTION_CAPABILITIES;"
+        },
+        {
+          "line": 88,
+          "literal": "  const directRlsAllowedRoles = metadata.directRlsAllowedRoles ?? TABLE_DIRECT_RLS_ALLOWED_ROLES;"
+        },
+        {
+          "line": 89,
+          "literal": "  const rlsProjectionAdapters = metadata.rlsProjectionAdapters ?? TABLE_RLS_PROJECTION_ADAPTERS;"
+        },
+        {
+          "line": 122,
+          "literal": "      const capability = TABLE_PROJECTION_CAPABILITIES[table];"
+        },
+        {
+          "line": 129,
+          "literal": "        allowedRoles: TABLE_DIRECT_RLS_ALLOWED_ROLES[table as TenantTableName],"
+        },
+        {
+          "line": 151,
+          "literal": "    return { ...obligation, role, expected: allowed ? \"allowed\" : \"denied\" };"
+        },
+        {
+          "line": 198,
+          "literal": "  return {"
+        },
+        {
+          "line": 207,
+          "literal": "export const TABLE_RLS_PROJECTION_ADAPTERS: Readonly<Record<TenantTableName, TableRlsProjectionAdapter>> = {"
+        },
+        {
+          "line": 269,
+          "literal": "  const adapter = TABLE_RLS_PROJECTION_ADAPTERS[table as TenantTableName];"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "sha256": "471ec572624326090089b3d3afdcef3963f7f4a3844923037b93d50af9ad572f",
+      "before_semantics": "Existing source has no settings_pricing_operations enrollment; original source unchanged.",
+      "after_semantics": "Add only settings_pricing_operations to directReadRevokedTables. Existing SELECT denial branch then requires error.code 42501 and data null for the new private table. No assertion, fixture, seededMutationTargets, DML expectation, existing entry, or generic logic changes.",
+      "source_lines": [
+        {
+          "line": 529,
+          "literal": "  const directReadRevokedTables = new Set(["
+        },
+        {
+          "line": 547,
+          "literal": "        if (directReadRevokedTables.has(table)) {"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "sha256": "4a516ad9d25a6effaa0e07156f9388491510640ac76f62c87249cf47cf114296",
+      "before_semantics": "Existing source has no settings_pricing_operations enrollment; original source unchanged.",
+      "after_semantics": "Add only settings_pricing_operations string to PINNED_TENANT_TABLES beside settings entries; update exact total 58\u219259 and matching count diagnostic/title wording. Preserve fail-loud complete equality and length assertions with the new expected enrollment, all existing entries and every unrelated assertion/logic. These exact membership/count/title changes are explicit exceptions to source-byte preservation.",
+      "source_lines": [
+        {
+          "line": 48,
+          "literal": "const PINNED_TENANT_TABLES = ["
+        },
+        {
+          "line": 182,
+          "literal": "  assert.deepEqual(sortedUnique(tables), sortedUnique(PINNED_TENANT_TABLES));"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "sha256": "9a0a5e50e00cb6d6e254cd4c37e2f73850b55cd0e9725030a7faa9d7f364b870",
+      "before_semantics": "Existing source has no settings_pricing_operations enrollment; original source unchanged.",
+      "after_semantics": "Add only settings_pricing_operations string to PINNED_TENANT_TABLES beside settings entries; update exact total 58\u219259 and matching count diagnostic/title wording. Preserve fail-loud complete equality and length assertions with the new expected enrollment, all existing entries and every unrelated assertion/logic. These exact membership/count/title changes are explicit exceptions to source-byte preservation.",
+      "source_lines": [
+        {
+          "line": 43,
+          "literal": "const PINNED_TENANT_TABLES = ["
+        },
+        {
+          "line": 173,
+          "literal": "    sortedUnique(PINNED_TENANT_TABLES),"
+        }
+      ]
+    }
+  ],
+  "verified_failures": {
+    "typecheck": {
+      "native_exit": 2,
+      "evidence": "author-typecheck-progress.log",
+      "diagnostics": [
+        "Six TS2339 ParserError diagnostics in already allocated settings/pricing command regression fixture reads (three per file), being repaired within existing allocation.",
+        "One TS2741 settings_pricing_operations missing from exhaustive role-harness seed map, requiring this exact extension."
+      ],
+      "evidence_limit": "The cited progress log was overwritten by the later diagnostic run before proposal correction. It currently records the six owned TS2339 plus blocked TS2741; do not describe it as sole-error evidence. Preserve this log unchanged from correction onward."
+    },
+    "scope_units": {
+      "native_exit": 1,
+      "executed": 14,
+      "passed": 12,
+      "failed": 2,
+      "skipped": 0,
+      "evidence": "receipt-scope-compatibility.log"
+    }
+  },
+  "read_only_inventory": "receipt-consumer-scan.txt",
+  "scan_conclusion": "All TenantTableName/TENANT_TABLES/manifest consumers were searched. These five need new-table-specific metadata/fixtures/pins; anon path and inventory gates derive existing enrollment helpers and need no consumer edits. Other docs validators consume live table names. No shared factories/global setup/provisioning/permission/money/production helper changes.",
+  "contract_refs": [
+    "producer-contract.md SQL/API boundary: no direct receipt table access and manifest/H4 enrollment",
+    "producer-contract.md P-AC3/P-R1 direct receipt denial",
+    "producer-contract.md P-AC7/P-R3 ACL/RLS/H4 and existing guard preservation"
+  ],
+  "approval": null,
+  "runtime_tests_executed": 0,
+  "release_ready": false,
+  "preservation": "All existing security/business assertions and titles outside the two scope files remain byte-identical. Scope exceptions are exactly one expected membership plus58\u219259 exact length/count and matching diagnostic/title wording per file; full fail-loud equality remains. No generic assertion weakening."
+}

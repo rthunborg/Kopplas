@@ -63,6 +63,8 @@ export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> =
   "contact.create": { module: "crm", capability: "Customers.Create" },
   "contact.update": { module: "crm", capability: "Customers.Edit" },
   "contact.archive": { module: "crm", capability: "Customers.Delete" },
+  "settings.operation.reconcile": { module: "settings", capability: "CompanySettings.Edit" },
+  "pricing.operation.reconcile": { module: "settings", capability: "Pricing.Edit" },
   "company_settings.update": { module: "settings", capability: "CompanySettings.Edit" },
   "quote_terms.update": { module: "settings", capability: "CompanySettings.Edit" },
   "quote_terms.approve": { module: "settings", capability: "CompanySettings.Edit" },

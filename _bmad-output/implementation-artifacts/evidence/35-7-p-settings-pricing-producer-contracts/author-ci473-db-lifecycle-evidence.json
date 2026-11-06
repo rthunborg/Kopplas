@@ -1,0 +1,21 @@
+{
+  "candidate": "473067d47d5f883008d95bd426a3d8383f87395a",
+  "native_path": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-473067d4/db-native/native-full-integration/full-integration.json",
+  "native_sha256": "4143e708e2173b4ea0aaefa9f90480cc315ff749cee5e979c4e29e01abb8b77c",
+  "success": false,
+  "numTotalTests": 2305,
+  "numPassedTests": 2253,
+  "numFailedTests": 0,
+  "numPendingTests": 52,
+  "numFailedTestSuites": 1,
+  "producer_suite": {
+    "name": "/home/runner/work/Kopplas/Kopplas/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "status": "failed",
+    "message": "deadlock detected",
+    "native_cases": 75,
+    "all75passed": true
+  },
+  "diagnosis": "Source-derived afterAll lock-lifetime weakness: one uncaught compound simple-query DROP trigger/function/table retains public receipt relation locks across private-object teardown while integration-parallel files run. All75native cases passed; shared fixture cleanup catches its own DB/API failures. Native has no stack/lockgraph/SQLposition, so exact native cycle and which DROP are unproven; no production defect/genericflake claim.",
+  "fix": "Same exact DROP order/statements, three separately awaited autocommit adminQuery calls; unconditional fixture cleanup retained. No catches/retries/delay/skip/globalhelper/config change; all75native test declarations/source asserts preserved.",
+  "outcome": "Old integrationchildexit1: NOT DB PASS, pilotperformance not reached under shell-e. Current correction needs actual final-head CI."
+}

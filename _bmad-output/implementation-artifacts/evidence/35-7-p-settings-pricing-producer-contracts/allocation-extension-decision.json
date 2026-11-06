@@ -1,0 +1,47 @@
+{
+  "task_id": "35.7-P",
+  "status": "blocked-before-product-writes",
+  "captured_at_utc": "2026-11-02T11:22:14.678677+00:00",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "decision_owner": "Coordinator / owner",
+  "decision_requested": "Add exactly two existing enabled integration test files to the producer allocation, only to migrate six old command-input fixtures to the required operation identity/expected-facts protocol while retaining their existing business/security assertions.",
+  "reason": "The approved strict protocol forbids missing operation/revision compatibility writes. These enabled regression callers are not in source-binding future_test_write_paths. Leaving them unchanged breaks the required full integration lane; weakening validators or bypassing commands would violate approved P-AC1/3/4/7.",
+  "files": [
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "sha256": "db8bf110be77128ced37fa3cba52781f42336c9de7c9631720621af7ae75ebb2",
+      "invocation_lines": [
+        428,
+        454
+      ],
+      "enabled": true,
+      "edit_scope": "Protocol fixture inputs and necessary local readback/identity variables only; retain test expectations and assertions."
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "sha256": "f26efe671b07aef0050faa5d8cc51bb75345748e4a7b132b03877284e6c0dbb9",
+      "invocation_lines": [
+        60,
+        72,
+        84,
+        91
+      ],
+      "enabled": true,
+      "edit_scope": "Protocol fixture inputs and necessary local readback/identity variables only; retain test expectations and assertions."
+    }
+  ],
+  "permitted_if_approved": [
+    "Use unique captured operation and proposed target UUIDs for creates; provide explicit expected absence only from actual successful null reads where singleton semantics require it.",
+    "Read current authorized company ID/revision before existing provisioned-company updates; carry committed revision or independently reread before the second sequential VAT update.",
+    "Use the operation UUID as original audit correlation; retain existing tenant/actor/event/target/count/direct-DML denial assertions.",
+    "Keep existing first-admin working-state, role, VAT, terms, invitation and protected-existing-tenant assertions.",
+    "Use local per-test construction; do not change shared factories, global setup, app/provisioning/permission behavior or existing test outcomes."
+  ],
+  "not_authorized_yet": true,
+  "product_writes_started": false,
+  "implementation_author_dispatched": false,
+  "frozen_sources_unchanged": true,
+  "runtime_state": "No managed resources launched; no target DB/source-target migration comparison, CLI migration generation, migration application, test, production build or browser execution.",
+  "resume_condition": "Actual Coordinator/owner disposition approving this exact two-file extension, then refreshed allocation/ownership and source-target migration state before first admitted implementation/migration write.",
+  "rejected_message_boundary": "Root reports automatic review rejected external Coordinator follow-up; no message delivered. No alternate-tool retry or messaging bypass permitted. Parent will present concrete decision to owner."
+}

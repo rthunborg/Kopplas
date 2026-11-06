@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "state": "stop_requested",
+  "verified": false,
+  "resourceId": "6b824236-803a-48ce-8871-f4145ca6f325",
+  "native_exit": 0,
+  "error": null,
+  "reason": "Pre-application metadata captured; implementation admission paused by concrete additional helper allocation conflict. Saved test data/config retained for validated reuse."
+}

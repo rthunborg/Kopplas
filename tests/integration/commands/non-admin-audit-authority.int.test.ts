@@ -1,3 +1,4 @@
+import type { UpsertWorkRoleInput, UpsertArticleInput } from "@/server/commands/pricing/validation";
 /**
  * Story 11.2 recovery: a non-admin mutation may succeed only through a checked,
  * command-specific wrapper that owns its audit insert in the same transaction.
@@ -428,10 +429,11 @@ describe("Story 11.2 checked non-admin audit authority", () => {
       const workRole = await runCommand(upsertWorkRole, {
         client: seller as never,
         input: {
+          operationId: workRoleCorrelation, targetId: crypto.randomUUID(), expectedRevision: null,
           display_name: `11.2 PM role ${crypto.randomUUID()}`,
           cost_rate_ore: 45000,
           sell_rate_ore: 85000,
-        },
+        } satisfies UpsertWorkRoleInput,
         correlationId: workRoleCorrelation,
       });
       expect(workRole.ok).toBe(true);
@@ -453,7 +455,7 @@ describe("Story 11.2 checked non-admin audit authority", () => {
       const articleCorrelation = crypto.randomUUID();
       const article = await runCommand(upsertArticle, {
         client: seller as never,
-        input: { name: `11.2 PM article ${crypto.randomUUID()}`, unit_price_ore: 1250 },
+        input: { operationId:articleCorrelation,targetId:crypto.randomUUID(),expectedRevision:null,name: `11.2 PM article ${crypto.randomUUID()}`, unit_price_ore: 1250 } satisfies UpsertArticleInput,
         correlationId: articleCorrelation,
       });
       expect(article.ok).toBe(true);

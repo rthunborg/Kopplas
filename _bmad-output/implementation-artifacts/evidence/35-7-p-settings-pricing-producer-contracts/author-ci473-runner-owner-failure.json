@@ -1,0 +1,58 @@
+{
+  "candidate": "473067d47d5f883008d95bd426a3d8383f87395a",
+  "ordinary_CI_run": "41493424837",
+  "native_json": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-473067d4/browser-current/native-general-browser/general-browser.json",
+  "native_json_sha256": "dff0242c5b708c446a17c2bce7a8fc82ac9c0904fb14e3ea4e99ae4c71be29db",
+  "native_stats": {
+    "startTime": "2026-11-02T17:47:12.361Z",
+    "duration": 484392.77,
+    "expected": 103,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "native_cases": 104,
+  "expected_cases": 103,
+  "unexpected_cases": 1,
+  "flaky_cases": 0,
+  "skipped_cases": 0,
+  "single_failing_case": {
+    "title": "P-E5 CI-only bounded real read-unavailable and one historical target-missing example",
+    "id": "150afd692465fed18502-8cad54548ec9621c7664",
+    "file": "pricing/pricing.e2e.spec.ts",
+    "timeout": 120000,
+    "attempts": [
+      {
+        "retry": 0,
+        "workerIndex": 3,
+        "status": "failed",
+        "startTime": "2026-11-02T17:54:22.787Z",
+        "durationMs": 1650,
+        "errorLocation": {
+          "file": "/home/runner/work/Kopplas/Kopplas/tests/e2e/pricing/pricing.e2e.spec.ts",
+          "column": 67,
+          "line": 564
+        }
+      },
+      {
+        "retry": 1,
+        "workerIndex": 4,
+        "status": "failed",
+        "startTime": "2026-11-02T17:54:25.068Z",
+        "durationMs": 1765,
+        "errorLocation": {
+          "file": "/home/runner/work/Kopplas/Kopplas/tests/e2e/pricing/pricing.e2e.spec.ts",
+          "column": 67,
+          "line": 564
+        }
+      }
+    ]
+  },
+  "diagnosis": "Actual nonce runnerPID11987 compared to reconstructed worker-config23893/retry76799 at qualifier564. playwright.config.ts32 binds JOB_EVENTS_OWNER_PID=process.pid at module evaluation; worker reconstruction is not actual startup env evidence.",
+  "source_fix": "Replace only incorrect reconstructed-config ownership assertion with fixed OWNER_PID/STARTUP fields read from actual /proc/<nonceServerPid>/environ in memory. Actual runner ancestry/nonce/freshGitHubstack/configreusefalse/process/socket/exclusiveconsumer/wrapper guards retained.",
+  "before_effects": "Both attempts throw before qualification returns; dbclient construction, fixture creation, durable journal claim and all privileged effects are later and unexecuted. No method PASS/coverage.",
+  "preserved_earned_cases": "Parent native proof: old23owned/6oldproducer first-attemptPASS; no relabel of single failing new method case.",
+  "custody": "Parent reported failed helper child-failed/browser-server-teardown-unverified; old job finished and containers stopped/disposable custody ended. No adoption/retry/deletion of old state.",
+  "current_new_head_runtime": "UNEARNED; source fix/static checks only",
+  "images": "Parent owns actual80original PNG review; no new image audit/capture alteration by author."
+}

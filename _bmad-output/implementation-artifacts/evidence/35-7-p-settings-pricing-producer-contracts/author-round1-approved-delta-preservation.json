@@ -1,0 +1,49 @@
+{
+  "captured_at": "2026-11-02T13:19:42.418784+00:00",
+  "six_bounded_deltas": [
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "review_checkpoint_lf_sha256": "1f76e604e8db8938110ec8ae80ec4911f1bef2aa5c59984f120691ad88c17820",
+      "after_raw_sha256": "8ad4e955267095a47d2ea7a1f124f3924f3f83e0e3dfd8a56a3b217efda78444",
+      "after_lf_sha256": "8ad4e955267095a47d2ea7a1f124f3924f3f83e0e3dfd8a56a3b217efda78444",
+      "only_reviewed_delta": true
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "review_checkpoint_lf_sha256": "5166d5d86028c94ea675166f09f242e1de7475da9daf0ba8b8ec613d28b36bc7",
+      "after_raw_sha256": "d5897875f3a2016bc5b3c0741773a42d88ee16c3c04a19083dc2e8244aa03741",
+      "after_lf_sha256": "d5897875f3a2016bc5b3c0741773a42d88ee16c3c04a19083dc2e8244aa03741",
+      "only_reviewed_delta": true
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "review_checkpoint_lf_sha256": "7f3a319552e34ccb65d8c9132f54d2e1c7b5343e4c2dd846f30af5a23d629ef2",
+      "after_raw_sha256": "38d81b9c53e908791f2bd89add3c7e715954bfd1b15ad2176aa8d188a5a98ffe",
+      "after_lf_sha256": "38d81b9c53e908791f2bd89add3c7e715954bfd1b15ad2176aa8d188a5a98ffe",
+      "only_reviewed_delta": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "review_checkpoint_lf_sha256": "e8fed0d821b969ac953b5e8b5c20771fda29b51108dd4e94d0607f5020bc5666",
+      "after_raw_sha256": "f8b3a69d50a621896b9b5e96fc7da523472d9fd3732ef3a4fb9d3650f71d3a47",
+      "after_lf_sha256": "f8b3a69d50a621896b9b5e96fc7da523472d9fd3732ef3a4fb9d3650f71d3a47",
+      "only_reviewed_delta": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "review_checkpoint_lf_sha256": "b8ba5583be4cc82aefde3357365f3a66e103ec8c39a6b87954afd75a7d3ddd6a",
+      "after_raw_sha256": "2919ff514ee3a5943b5d5bcddb79b9d032bb654bbbab149db39f8238d6114bc6",
+      "after_lf_sha256": "2919ff514ee3a5943b5d5bcddb79b9d032bb654bbbab149db39f8238d6114bc6",
+      "only_reviewed_delta": true
+    },
+    {
+      "path": "tests/unit/server/commands/pricing-validation-edges.test.ts",
+      "review_checkpoint_lf_sha256": "ad5eef0fb9116eedbe56c039645774d6413094b7d9366836ec2eb28257caf5d6",
+      "after_raw_sha256": "0e2eb837a1bffb55914798f809072459b21cb816ac80aec1f407cbaa543272db",
+      "after_lf_sha256": "0e2eb837a1bffb55914798f809072459b21cb816ac80aec1f407cbaa543272db",
+      "only_reviewed_delta": true
+    }
+  ],
+  "original_e2e_source_prefix_lf_preserved": true,
+  "limits": "Windows raw line endings normalized to LF for structural assertion preservation. No baseline/source log rewritten; receipt fixture is synthetic construction, not runtime proof."
+}

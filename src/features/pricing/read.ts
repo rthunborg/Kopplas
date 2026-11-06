@@ -18,48 +18,45 @@
  * hidden from the editor; the row still exists in the DB — soft archive).
  */
 import { createSupabaseServerClient } from "@/server/db/supabase-server-client";
-
-const GENERIC_READ_ERROR =
-  "Ett tillfälligt fel inträffade. Försök igen om en stund.";
-
+const GENERIC_READ_ERROR = "Ett tillfälligt fel inträffade. Försök igen om en stund.";
 /** A work_roles row as the UI needs it (money in INTEGER ÖRE). */
 export interface WorkRoleRow {
-  readonly id: string;
-  readonly display_name: string;
-  readonly cost_rate_ore: number;
-  readonly sell_rate_ore: number;
-  readonly is_active: boolean;
+    readonly id: string;
+    readonly display_name: string;
+    readonly cost_rate_ore: number;
+    readonly sell_rate_ore: number;
+    readonly is_active: boolean;
 }
-
-const WORK_ROLE_COLUMNS =
-  "id, display_name, cost_rate_ore, sell_rate_ore, is_active";
-
+const WORK_ROLE_COLUMNS = "id, write_revision, display_name, cost_rate_ore, sell_rate_ore, is_active";
+export interface RevisionedWorkRoleRow extends WorkRoleRow {
+    readonly write_revision: string;
+}
 export interface WorkRolesReadResult {
-  readonly workRoles: readonly WorkRoleRow[];
-  readonly error: string | null;
+    readonly workRoles: readonly RevisionedWorkRoleRow[];
+    readonly error: string | null;
 }
-
 /**
  * Read the tenant's ACTIVE work roles (MANY rows per tenant; RLS-scoped, ordered by
  * name). Returns an empty list when the tenant has none yet. A query error returns the
  * generic FAILED message (never a leaked stack/SQL).
  */
 export async function readWorkRoles(): Promise<WorkRolesReadResult> {
-  try {
-    const client = await createSupabaseServerClient();
-    const { data, error } = await client
-      .from("work_roles")
-      .select(WORK_ROLE_COLUMNS)
-      .eq("is_active", true)
-      .order("display_name", { ascending: true });
-    if (error) return { workRoles: [], error: GENERIC_READ_ERROR };
-    const workRoles = (data ?? []) as WorkRoleRow[];
-    return { workRoles, error: null };
-  } catch {
-    return { workRoles: [], error: GENERIC_READ_ERROR };
-  }
+    try {
+        const client = await createSupabaseServerClient();
+        const { data, error } = await client
+            .from("work_roles")
+            .select(WORK_ROLE_COLUMNS)
+            .eq("is_active", true)
+            .order("display_name", { ascending: true });
+        if (error)
+            return { workRoles: [], error: GENERIC_READ_ERROR };
+        const workRoles = (data ?? []) as RevisionedWorkRoleRow[];
+        return { workRoles, error: null };
+    }
+    catch {
+        return { workRoles: [], error: GENERIC_READ_ERROR };
+    }
 }
-
 /**
  * Read the tenant's ARCHIVED work roles (is_active = false) — the rows hidden from the active
  * list, surfaced behind the "Visa arkiverade" affordance so an admin can REACTIVATE them
@@ -67,76 +64,80 @@ export async function readWorkRoles(): Promise<WorkRolesReadResult> {
  * archive is therefore a reversible door, not a one-way trap.
  */
 export async function readArchivedWorkRoles(): Promise<WorkRolesReadResult> {
-  try {
-    const client = await createSupabaseServerClient();
-    const { data, error } = await client
-      .from("work_roles")
-      .select(WORK_ROLE_COLUMNS)
-      .eq("is_active", false)
-      .order("display_name", { ascending: true });
-    if (error) return { workRoles: [], error: GENERIC_READ_ERROR };
-    const workRoles = (data ?? []) as WorkRoleRow[];
-    return { workRoles, error: null };
-  } catch {
-    return { workRoles: [], error: GENERIC_READ_ERROR };
-  }
+    try {
+        const client = await createSupabaseServerClient();
+        const { data, error } = await client
+            .from("work_roles")
+            .select(WORK_ROLE_COLUMNS)
+            .eq("is_active", false)
+            .order("display_name", { ascending: true });
+        if (error)
+            return { workRoles: [], error: GENERIC_READ_ERROR };
+        const workRoles = (data ?? []) as RevisionedWorkRoleRow[];
+        return { workRoles, error: null };
+    }
+    catch {
+        return { workRoles: [], error: GENERIC_READ_ERROR };
+    }
 }
-
 /** An articles row as the UI needs it (money in INTEGER ÖRE). */
 export interface ArticleRow {
-  readonly id: string;
-  readonly name: string;
-  readonly sku: string | null;
-  readonly unit: string | null;
-  readonly unit_price_ore: number;
-  readonly is_active: boolean;
+    readonly id: string;
+    readonly name: string;
+    readonly sku: string | null;
+    readonly unit: string | null;
+    readonly unit_price_ore: number;
+    readonly is_active: boolean;
 }
-
-const ARTICLE_COLUMNS = "id, name, sku, unit, unit_price_ore, is_active";
-
+const ARTICLE_COLUMNS = "id, write_revision, name, sku, unit, unit_price_ore, is_active";
+export interface RevisionedArticleRow extends ArticleRow {
+    readonly write_revision: string;
+}
 export interface ArticlesReadResult {
-  readonly articles: readonly ArticleRow[];
-  readonly error: string | null;
+    readonly articles: readonly RevisionedArticleRow[];
+    readonly error: string | null;
 }
-
 /**
  * Read the tenant's ACTIVE articles (MANY rows per tenant; RLS-scoped, ordered by name).
  * Returns an empty list when the tenant has none yet. A query error returns the generic
  * FAILED message.
  */
 export async function readArticles(): Promise<ArticlesReadResult> {
-  try {
-    const client = await createSupabaseServerClient();
-    const { data, error } = await client
-      .from("articles")
-      .select(ARTICLE_COLUMNS)
-      .eq("is_active", true)
-      .order("name", { ascending: true });
-    if (error) return { articles: [], error: GENERIC_READ_ERROR };
-    const articles = (data ?? []) as ArticleRow[];
-    return { articles, error: null };
-  } catch {
-    return { articles: [], error: GENERIC_READ_ERROR };
-  }
+    try {
+        const client = await createSupabaseServerClient();
+        const { data, error } = await client
+            .from("articles")
+            .select(ARTICLE_COLUMNS)
+            .eq("is_active", true)
+            .order("name", { ascending: true });
+        if (error)
+            return { articles: [], error: GENERIC_READ_ERROR };
+        const articles = (data ?? []) as RevisionedArticleRow[];
+        return { articles, error: null };
+    }
+    catch {
+        return { articles: [], error: GENERIC_READ_ERROR };
+    }
 }
-
 /**
  * Read the tenant's ARCHIVED articles (is_active = false) — the rows hidden from the active
  * list, surfaced behind the "Visa arkiverade" affordance so an admin can REACTIVATE them
  * (Story 3.4 AC3). Same RLS-scoped read as `readArticles`, only the lifecycle filter differs.
  */
 export async function readArchivedArticles(): Promise<ArticlesReadResult> {
-  try {
-    const client = await createSupabaseServerClient();
-    const { data, error } = await client
-      .from("articles")
-      .select(ARTICLE_COLUMNS)
-      .eq("is_active", false)
-      .order("name", { ascending: true });
-    if (error) return { articles: [], error: GENERIC_READ_ERROR };
-    const articles = (data ?? []) as ArticleRow[];
-    return { articles, error: null };
-  } catch {
-    return { articles: [], error: GENERIC_READ_ERROR };
-  }
+    try {
+        const client = await createSupabaseServerClient();
+        const { data, error } = await client
+            .from("articles")
+            .select(ARTICLE_COLUMNS)
+            .eq("is_active", false)
+            .order("name", { ascending: true });
+        if (error)
+            return { articles: [], error: GENERIC_READ_ERROR };
+        const articles = (data ?? []) as RevisionedArticleRow[];
+        return { articles, error: null };
+    }
+    catch {
+        return { articles: [], error: GENERIC_READ_ERROR };
+    }
 }

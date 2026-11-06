@@ -1,0 +1,142 @@
+diff --git a/tests/e2e/pricing/pricing.e2e.spec.ts b/tests/e2e/pricing/pricing.e2e.spec.ts
+index 3d71fd05..ca30211c 100644
+--- a/tests/e2e/pricing/pricing.e2e.spec.ts
++++ b/tests/e2e/pricing/pricing.e2e.spec.ts
+@@ -436,7 +436,19 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
+             await expect(editor.getByLabel(spec.price)).toHaveValue("11,00");
+             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
+             if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
+-            await producerCapture(page, info, spec.surface, "stale");
++            const staleAnchor = viewport.width === 360 && spec.surface === "work-role" ? editor.getByRole("button", { name: "Uppdatera och granska", exact: true }) : editor.getByTestId("pricing-current-facts");
++            const staleBlock = viewport.width === 1440 && spec.surface === "article" || viewport.width === 360 && spec.surface === "work-role" ? "start" : "center";
++            if (viewport.width === 1440 || spec.surface === "work-role") {
++                await staleAnchor.evaluate((element, block: "center" | "start") => element.scrollIntoView({ block }), staleBlock);
++                await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
++            }
++            await producerCapture(page, info, spec.surface, "stale", staleAnchor, staleBlock);
++            if (viewport.width === 1440 || spec.surface === "work-role") await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
++            if (viewport.width === 360 && spec.surface === "work-role") {
++                await expect(editor.getByTestId("pricing-current-facts").getByText(/20,00/)).toBeInViewport({ ratio: 1 });
++                await expect(editor.getByRole("button", { name: "Använd aktuella uppgifter", exact: true })).toBeInViewport({ ratio: 1 });
++                await expect(editor.getByRole("button", { name: "Uppdatera och granska", exact: true })).toBeInViewport({ ratio: 1 });
++            }
+             if (viewport.width === 360 && spec.surface === "article") {
+                 await producerCapture(page, info, spec.surface, "stale-draft", editor.getByLabel(spec.price));
+                 await expect(editor.getByLabel(spec.price)).toBeInViewport();
+@@ -458,7 +470,18 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
+             await expect(editor.getByLabel(spec.price)).toHaveValue("21,00");
+             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
+             if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Använd aktuella uppgifter"]);
+-            await producerCapture(page, info, spec.surface, "neighbor-stale");
++            const neighbor_staleAnchor = viewport.width === 360 && spec.surface === "work-role" ? editor.getByTestId("pricing-current-facts") : editor.getByTestId("pricing-current-facts");
++            const neighbor_staleBlock = viewport.width === 1440 && spec.surface === "article" || viewport.width === 360 && spec.surface === "work-role" ? "start" : "center";
++            if (viewport.width === 1440 || spec.surface === "work-role") {
++                await neighbor_staleAnchor.evaluate((element, block: "center" | "start") => element.scrollIntoView({ block }), neighbor_staleBlock);
++                await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
++            }
++            await producerCapture(page, info, spec.surface, "neighbor-stale", neighbor_staleAnchor, neighbor_staleBlock);
++            if (viewport.width === 1440 || spec.surface === "work-role") await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
++            if (viewport.width === 360 && spec.surface === "work-role") {
++                await expect(editor.getByTestId("pricing-current-facts").getByText(/30,00/)).toBeInViewport({ ratio: 1 });
++                await expect(editor.getByRole("button", { name: "Använd aktuella uppgifter", exact: true })).toBeInViewport({ ratio: 1 });
++            }
+             if (viewport.width === 360 && spec.surface === "article") {
+                 await producerCapture(page, info, spec.surface, "neighbor-stale-draft", editor.getByLabel(spec.price));
+                 await expect(editor.getByLabel(spec.price)).toBeInViewport();
+@@ -561,7 +584,12 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
+     const servers = Array.isArray(info.config.webServer) ? info.config.webServer : [info.config.webServer];
+     expect(servers).toHaveLength(1);
+     expect(servers[0]?.reuseExistingServer).toBe(false);
+-    expect(servers[0]?.env?.E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID).toBe(String(boot.ownerPid));
++    // Worker config re-evaluates process.pid; only the actual server's
++    // initial launch environment can corroborate the nonce-bound runner PID.
++    // Select fixed non-secret binding fields in memory; never dump environ.
++    const startupBinding = readFileSync(`/proc/${boot.serverPid}/environ`, "utf8").split("\0")
++        .filter(entry => entry.startsWith("E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID=") || entry.startsWith("E2E_JOB_EVENTS_FETCH_FAULT_STARTUP="));
++    expect(startupBinding.sort()).toEqual([`E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID=${boot.ownerPid}`, "E2E_JOB_EVENTS_FETCH_FAULT_STARTUP=true"].sort());
+     const ancestors = new Set<number>();
+     let pid = process.pid, wrapperPid: number | undefined;
+     for (let depth = 0; pid > 1 && depth < 32; depth++) {
+@@ -746,6 +774,46 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
+                 const initialRead = await predicate(); expect(initialRead.error).toBeNull();
+                 ordinaryBefore = initialRead.data as { id: string; write_revision: string };
+                 expect(ordinaryBefore.write_revision).toBe(proof.rows[0].revision);
++                {
++                    const pendingReceipt = scope.getByTestId("settings-saved");
++                    const separateCopy = spec.table === "quote_terms" ? "Aktuella uppgifter läses separat." : "Aktuella uppgifter hämtas separat.";
++                    const readError = spec.price ? scope.getByTestId("pricing-current-unavailable") : page.getByRole("alert").filter({ hasText: "Ett tillfälligt fel inträffade. Försök igen om en stund." });
++                    const assertPendingBranch = async () => {
++                        await expect(readError).toHaveCount(0);
++                        await expect(pendingReceipt).toContainText(separateCopy);
++                        await expect(pendingReceipt).not.toContainText("Aktuella uppgifter är bekräftade.");
++                        if (spec.table === "quote_terms") {
++                            // Terms separate-copy also renders after matching confirmation.
++                            // A fresh saved-current panel + no approval form excludes that:
++                            // confirmsOwnWrite would adopt matching defaults and hide the panel.
++                            await expect(scope.getByTestId("terms-current-facts").getByText(label, { exact: true })).toBeVisible();
++                            await expect(scope.getByRole("button", { name: "Markera som godkänd", exact: true })).toHaveCount(0);
++                        }
++                    };
++                    await assertPendingBranch();
++                    await expect(scope.getByTestId("operation-unconfirmed")).toHaveCount(0);
++                    await expect(scope.getByRole("button", { name: "Sparar…", exact: true })).toHaveCount(0); // Current reread pending, never save-busy.
++                    await expect(scope.getByRole("button", { name: "Uppdatera och granska", exact: true })).toHaveCount(0);
++                    const heldRead = hold.request(); expect(heldRead).toBeDefined();
++                    let heldReadTerminal = false;
++                    void heldRead!.response().then(() => { heldReadTerminal = true; }, () => { heldReadTerminal = true; });
++                    const adopt = scope.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
++                    const hasAdopt = await adopt.count(); expect(hasAdopt).toBeLessThanOrEqual(1);
++                    for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
++                        await page.setViewportSize(viewport);
++                        const pendingAnchor = hasAdopt ? adopt : pendingReceipt;
++                        await pendingAnchor.evaluate(element => element.scrollIntoView({ block: "start" }));
++                        await expect(pendingReceipt).toBeInViewport({ ratio: 1 });
++                        if (hasAdopt) await expect(adopt).toBeInViewport({ ratio: 1 });
++                        expect(heldReadTerminal).toBe(false);
++                        await assertPendingBranch();
++                        await producerCapture(page, info, spec.surface, "receipt-read-pending", pendingAnchor, "start");
++                        await expect(pendingReceipt).toBeInViewport({ ratio: 1 });
++                        if (hasAdopt) await expect(adopt).toBeInViewport({ ratio: 1 });
++                        expect(heldReadTerminal).toBe(false);
++                        await assertPendingBranch();
++                    }
++                }
+                 // finally is armed BEFORE the committed revoke; fsync intent first.
+                 await admission.record({ state: "revoke-intent", table: spec.table, before });
+                 revoked = true;
+@@ -769,11 +837,16 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
+                 await expect(scope.getByLabel(spec.name)).toBeDisabled();
+                 await expect(scope.getByRole("button", { name: spec.save, exact: true })).toBeDisabled();
+                 expect(await historical!.evaluate(element => element.isConnected)).toBe(true);
++                const unavailable = spec.price ? scope.getByTestId("pricing-current-unavailable") : page.getByRole("alert").filter({ hasText: "Ett tillfälligt fel inträffade. Försök igen om en stund." });
++                // A committed receipt with a failed read has no unknown/conflict recovery controls.
++                await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
+                 for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+                     await page.setViewportSize(viewport);
+-                    await producerCapture(page, info, spec.surface, "read-unavailable", scope.getByTestId("settings-saved"));
++                    await unavailable.evaluate(element => element.scrollIntoView({ block: "start" }));
++                    await expect(unavailable).toBeInViewport({ ratio: 1 });
++                    await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
++                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, "start");
+                     await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
+-                    const unavailable = spec.price ? scope.getByTestId("pricing-current-unavailable") : page.getByRole("alert").filter({ hasText: "Ett tillfälligt fel inträffade. Försök igen om en stund." });
+                     await expect(unavailable).toBeInViewport({ ratio: 1 });
+                     if (viewport.width === 360) {
+                         await producerCapture(page, info, spec.surface, "read-unavailable-draft", scope.getByLabel(spec.name));
+@@ -859,8 +932,15 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
+         expect(await retainedReceipt!.evaluate(element => element.isConnected)).toBe(true);
+         for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+             await page.setViewportSize(viewport);
+-            await producerCapture(page, info, "article", "current-missing-empty", article.getByTestId("settings-saved"));
++            const missingFacts = article.getByTestId("pricing-current-facts");
++            const adopt = article.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
++            await missingFacts.evaluate(element => element.scrollIntoView({ block: "start" }));
++            await expect(article.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
++            await expect(adopt).toBeInViewport({ ratio: 1 });
++            await expect(article.getByText("Ingen aktuell post finns.", { exact: true })).toBeInViewport({ ratio: 1 });
++            await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "start");
+             await expect(article.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
++            await expect(adopt).toBeInViewport({ ratio: 1 });
+             await expect(article.getByText("Ingen aktuell post finns.", { exact: true })).toBeInViewport({ ratio: 1 });
+             await expect(article.getByText(/Inga artiklar/)).toBeInViewport({ ratio: 1 });
+             if (viewport.width === 360) {

@@ -1,0 +1,46 @@
+[
+  {
+    "call": "EXT-1",
+    "sha256": "0ceb65029bb4b35fd90c933bc1b1dd2c546ceb1865a4e59dec407aa67ebb1939",
+    "exact_block_retained": true
+  },
+  {
+    "call": "EXT-2",
+    "sha256": "61cb4bec55beb22d448da837f420a6eea55e4e57e223e9dc81bb3374b540cef1",
+    "exact_block_retained": true
+  },
+  {
+    "call": "EXT-2",
+    "sha256": "030e0f18d86a2445200b4e9c28639226e23565d9cab7deb4dc3f29691219b8e6",
+    "exact_block_retained": true
+  },
+  {
+    "call": "EXT-3",
+    "sha256": "bf5e60e217b5f1812bb3b834d5740c27983129d20240cac67e5985ef0211b757",
+    "exact_block_retained": true
+  },
+  {
+    "call": "EXT-4",
+    "sha256": "aa7d26065374760f59b01f4e654e77ddba18537f767318ba4bdb2bba6f208955",
+    "exact_block_retained": true
+  },
+  {
+    "call": "EXT-5",
+    "sha256": "9fefa446e23d90f706397ca18bb02a6b794609e24b9c349c03001acc1f7d23ab",
+    "exact_block_retained": true
+  },
+  {
+    "call": "EXT-6",
+    "sha256": "873ed05a1ec49aa9b6aa0373621bb15003e6293e826192f4309258c5dce2ffb8",
+    "exact_block_retained": true
+  },
+  {
+    "call": "EXT-6",
+    "sha256": "b285a2b1d74d2dfde9d02e4094d55e3735c2dc4d78523ac183979c09a779c20a",
+    "exact_block_retained": true
+  },
+  {
+    "path": "tests/integration/commands/booking-conflicts.int.test.ts",
+    "raw_hash_unchanged": true
+  }
+]

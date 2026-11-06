@@ -1,0 +1,104 @@
+{
+  "task_id": "35.7-P",
+  "kind": "targeted independent confirmation after broad Round1",
+  "review_commit": "7f6a7be9e0544844b43842b46d498f7539602dde",
+  "review_parent": "cad737c4399bb453ad3eb624911f3ce9218433c5",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "broad_rounds_completed": 1,
+  "broad_round_cap": 3,
+  "verdict": "FIX_CONFIRMED",
+  "remaining_consequential_findings": [],
+  "provenance": "Actual completed collaboration follow-up finals from three independent non-author Sol High reviewers. Existing review contexts retained; only latest four-fix delta and six actually approved fixture changes reviewed. No fabricated message IDs or implementation/runtime PASS.",
+  "layers": [
+    {
+      "task": "/root/producer_build/review_r1_blind",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "verdict": "FIX_CONFIRMED",
+      "scope": [
+        "R1-1",
+        "R1-2"
+      ],
+      "basis": [
+        "All four editors retain draft-associated baseline facts. Refreshed revisions cannot silently replace them; divergent current facts block saving; explicit adoption replaces values and baseline together.",
+        "Pricing forms remount using adopted ID/revision, closing neighboring editor refresh bypass.",
+        "Terms advance only after exact matching committed revision successfully reread with canonically matching wording.",
+        "Existing trim semantics allow surrounding-whitespace save then approve while preserving meaningful edits and currently-unapproved guard.",
+        "Complete18-file fix diff and authoritative targeted commit source read; browser assertions cover stale retention/adoption/both neighbor directions/whitespace."
+      ],
+      "limits": "No tests/resources. Pure helper tests do not independently prove mounted browser behavior; unchanged SQL/design not re-audited."
+    },
+    {
+      "task": "/root/producer_build/review_r1_edges",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "verdict": "FIX_CONFIRMED",
+      "scope": [
+        "R1-3",
+        "changed form/controller cross-regressions"
+      ],
+      "basis": [
+        "Pricing page78,85 propagate each domain active-or-archived read failure.",
+        "Both editors gate fresh save/archive/reactivate and disable controls on read failure.",
+        "currentTargetStatus98-102 prioritizes unavailable over deletion/revision claims.",
+        "Four SSR regressions exercise actual page/editor markup with explicitly mocked read/receipt boundaries."
+      ],
+      "limits": "Read-only; no tests. SSR does not prove hydration, authorization or browser refresh. Qualified runtime/CI/visual remains unearned."
+    },
+    {
+      "task": "/root/producer_build/review_r1_verification",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "verdict": "FIX_CONFIRMED",
+      "scope": [
+        "R1-4",
+        "six actual approved fixture deltas",
+        "changed verification claims"
+      ],
+      "basis": [
+        "Protocol integration348,358 consume both lazy RPC builders as executing promises before blocker observation; cleanup releases rowtransaction, settles requests, restores membership. Existing authority/denial/audit assertions remain.",
+        "Six actual file deltas match four verified proposal hashes and ownerapproval. Privileged receipt fixtures use real company IDs/revisions and matching operation/correlation IDs.",
+        "Empty directroles/privateprojection/crosstenant42501null/fullpinned equality preserved; validator malformedbusinessID preserved and exactkeyset extends only3protocolkeys.",
+        "Four SSRcases execute actualpage/editors, unavailablecopy/disabledfieldsets/nofalsecurrentclaims; read/receipt mocks disclosed.",
+        "Latest spec/delivery truthfully separates155focusedpass/staticbuildpass/fullunitfailure/unexecutedruntimebrowser."
+      ],
+      "limits": "Complete1040-line fix diff, authoritative blobs/proposals/evidence read. No tests/edits/resources/DB. No new consequential defect in assigned changedlines."
+    }
+  ],
+  "current_evidence": {
+    "focused": {
+      "executed": 155,
+      "passed": 155,
+      "failed": 0,
+      "skipped": 0
+    },
+    "SSR": {
+      "executed": 4,
+      "passed": 4,
+      "boundaries": "mocked pricing read and historical receipt; actual page/editors executed"
+    },
+    "typecheck_native": 0,
+    "production_build_native": 0,
+    "lint_native": 0,
+    "lint_errors": 0,
+    "lint_warnings": 31,
+    "full_unit": {
+      "native": 1,
+      "total": 3808,
+      "passed": 3805,
+      "failed": 2,
+      "skipped": 1,
+      "disposition": "Two exact clean-baseline calendar failures remain failures; Windows/Linuxxattr recovery skip has zero local body coverage. Not a waiver."
+    },
+    "protocol_integration": {
+      "collected": 82,
+      "executed": 0
+    },
+    "browser_executed": 0,
+    "captures": 0,
+    "actual_qualified_CI": "unearned",
+    "authenticated_visual_acceptance": "unearned"
+  },
+  "development_complete": false,
+  "release_ready": false
+}

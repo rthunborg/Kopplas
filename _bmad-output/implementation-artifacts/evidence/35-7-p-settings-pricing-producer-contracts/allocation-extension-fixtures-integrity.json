@@ -1,0 +1,29 @@
+{
+  "captured_at_utc": "2026-11-02T11:32:09.193454+00:00",
+  "scope": "read-only JSON, exact source anchor, six BEFORE snippets and two-file hash validation; no runtime/broad tests",
+  "proposal_artifacts": [
+    {
+      "path": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\allocation-extension-fixtures.md",
+      "sha256": "8a2b4a446c07de246a8f468708bddc23dad9f502d073e928919459296552fd4d"
+    },
+    {
+      "path": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\allocation-extension-fixtures.json",
+      "sha256": "71ae1e0adabc4162c3979556ff4d5068312b73d4f77e881975d2db5f39ed619d"
+    }
+  ],
+  "source_test_hashes": [
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "sha256": "db8bf110be77128ced37fa3cba52781f42336c9de7c9631720621af7ae75ebb2"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "sha256": "f26efe671b07aef0050faa5d8cc51bb75345748e4a7b132b03877284e6c0dbb9"
+    }
+  ],
+  "calls": 6,
+  "all_test_preimages_unchanged": true,
+  "all_literal_anchors_verified": true,
+  "product_test_writes": 0,
+  "runtime_tests": 0
+}

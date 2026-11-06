@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "state": "starting",
+  "verified": false,
+  "resourceId": "6b824236-803a-48ce-8871-f4145ca6f325",
+  "native_exit": 0,
+  "operationId": "c8ed02ed-c506-46ac-8ad1-fef531113bec",
+  "warnings": [],
+  "error": null,
+  "data_keys": [
+    "admitted",
+    "requestReused"
+  ]
+}
