@@ -15,6 +15,7 @@
  */
 import { useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { CustomerDialog, type CustomerEditDefaults } from "./CustomerDialog";
 import { CustomerTypeBadge } from "./CustomerTypeBadge";
 import { FacilityDialog, type FacilityEditDefaults } from "./FacilityDialog";
@@ -123,11 +124,14 @@ export function CustomerDetail({
   }));
 
   return (
-    <section className="mx-auto max-w-4xl">
+    <section className="mx-auto min-w-0 max-w-4xl space-y-8">
+      <Link href="/customers" className="inline-flex min-h-control-lg items-center rounded-control text-label text-text-secondary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
+        Tillbaka till kunder
+      </Link>
       {/* Header: name + type badge + edit. */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between">
         <div className="flex min-w-0 flex-wrap items-center gap-3">
-          <h1 className="break-words text-title font-medium text-text-primary">
+          <h1 className="min-w-0 break-words text-title font-medium text-text-primary [overflow-wrap:anywhere]">
             {customer.display_name}
           </h1>
           <CustomerTypeBadge type={customer.customer_type} />
@@ -161,7 +165,7 @@ export function CustomerDetail({
       </div>
 
       {/* Summary card. */}
-      <dl className="mt-6 grid grid-cols-1 gap-4 rounded-card border border-border-subtle bg-card p-6 sm:grid-cols-2">
+      <dl aria-label="Kunduppgifter" className="grid grid-cols-1 gap-6 rounded-card border border-border-default bg-card p-4 sm:grid-cols-2 sm:p-6">
         {isPrivate ? (
           <Field label="Personnummer">
             <span className="flex flex-wrap items-center gap-2">
@@ -204,7 +208,7 @@ export function CustomerDetail({
         filePanels={facilityFilePanels}
       />
 
-      {bookingPanel ? <div className="mt-8">{bookingPanel}</div> : null}
+      {bookingPanel ? <div className="min-w-0">{bookingPanel}</div> : null}
 
       {/* Contacts (Kontakter). */}
       <ContactsSection
@@ -216,20 +220,20 @@ export function CustomerDetail({
       />
 
       {/* Files (Filer) — the Story 8.2 entity file panel (own-tenant upload + list). */}
-      {filesPanel ? <div className="mt-8">{filesPanel}</div> : null}
+      {filesPanel ? <div className="min-w-0 space-y-3">{filesPanel}</div> : null}
 
       {/* Honest "not yet built" related areas — never a deferred module. */}
-      <section className="mt-8">
-        <h2 className="text-lg font-semibold text-zinc-900">Relaterat</h2>
+      <section aria-labelledby="customer-related-heading">
+        <h2 id="customer-related-heading" className="border-t border-border-strong bg-active px-4 py-3 text-section font-medium text-text-primary">Relaterat</h2>
         <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {NOT_YET_BUILT_AREAS.map((area) => (
             <div
               key={area.label}
               data-testid="not-built-area"
-              className="rounded-lg border border-dashed border-zinc-300 bg-white p-4"
+              className="min-w-0 rounded-card border border-dashed border-border-default bg-card p-4"
             >
-              <p className="text-sm font-medium text-zinc-700">{area.label}</p>
-              <p className="mt-1 text-xs text-zinc-500">{area.note}</p>
+              <p className="text-body font-medium text-text-secondary">{area.label}</p>
+              <p className="mt-1 text-label text-text-tertiary">{area.note}</p>
             </div>
           ))}
         </div>
@@ -254,11 +258,11 @@ function Field({
   readonly children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="min-w-0">
       <dt className="text-label font-medium text-text-tertiary">
         {label}
       </dt>
-      <dd className="mt-1 break-words text-body text-text-primary">{children}</dd>
+      <dd className="mt-1 break-words text-body text-text-primary [overflow-wrap:anywhere]">{children}</dd>
     </div>
   );
 }
@@ -277,14 +281,14 @@ function FacilitiesSection({
   const [editing, setEditing] = useState<FacilityEditDefaults | null>(null);
 
   return (
-    <section className="mt-8">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-zinc-900">Anläggningar</h2>
+    <section aria-labelledby="customer-facilities-heading" className="min-w-0">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border-strong bg-active px-4 py-3">
+        <h2 id="customer-facilities-heading" className="text-section font-medium text-text-primary">Anläggningar</h2>
         <button
           type="button"
           onClick={() => setCreateOpen(true)}
           data-testid="new-facility-button"
-          className="rounded-md border border-zinc-300 px-3 py-1.5 text-sm font-medium text-zinc-700 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+          className="min-h-control-lg rounded-control border border-border-strong bg-card px-3 py-2 text-label font-medium text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
         >
           Ny anläggning
         </button>
@@ -293,23 +297,23 @@ function FacilitiesSection({
       {facilities.length === 0 ? (
         <p
           data-testid="facilities-empty"
-          className="mt-3 rounded-lg border border-dashed border-zinc-300 bg-white p-4 text-sm text-zinc-600"
+          className="mt-3 rounded-card border border-dashed border-border-default bg-card p-6 text-body text-text-secondary"
         >
           Inga anläggningar ännu. En kund kan ha noll eller flera anläggningar.
         </p>
       ) : (
-        <ul className="mt-3 divide-y divide-zinc-100 rounded-lg border border-zinc-200 bg-white">
+        <ul className="mt-3 space-y-4">
           {facilities.map((f) => (
-            <li key={f.id} className="flex flex-col gap-3 px-4 py-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-zinc-900">{f.name}</p>
-                  <p className="text-xs text-zinc-500">
+            <li key={f.id} className="min-w-0 space-y-4 rounded-card border border-border-default bg-card p-4 sm:p-6">
+              <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0 flex-1 [overflow-wrap:anywhere]">
+                  <h3 className="text-body font-medium text-text-primary">{f.name}</h3>
+                  <p className="mt-1 text-label text-text-tertiary">
                     {[f.address_line1, f.postal_code, f.city].filter(Boolean).join(" ") ||
                       "—"}
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex min-w-0 flex-wrap items-start gap-2 sm:max-w-1/2">
                   <button
                     type="button"
                     onClick={() =>
@@ -322,7 +326,7 @@ function FacilitiesSection({
                         city: f.city,
                       })
                     }
-                    className="text-sm font-medium text-blue-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                    className="min-h-control-lg rounded-control px-3 py-2 text-label font-medium text-text-primary underline underline-offset-4 hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                   >
                     Redigera
                   </button>
@@ -337,7 +341,7 @@ function FacilitiesSection({
                   />
                 </div>
               </div>
-              {filePanels?.[f.id] ? <div>{filePanels[f.id]}</div> : null}
+              {filePanels?.[f.id] ? <div className="min-w-0 space-y-3">{filePanels[f.id]}</div> : null}
             </li>
           ))}
         </ul>
@@ -383,14 +387,14 @@ function ContactsSection({
   };
 
   return (
-    <section className="mt-8">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-zinc-900">Kontakter</h2>
+    <section aria-labelledby="customer-contacts-heading" className="min-w-0">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border-strong bg-active px-4 py-3">
+        <h2 id="customer-contacts-heading" className="text-section font-medium text-text-primary">Kontakter</h2>
         <button
           type="button"
           onClick={() => setCreateOpen(true)}
           data-testid="new-contact-button"
-          className="rounded-md border border-zinc-300 px-3 py-1.5 text-sm font-medium text-zinc-700 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+          className="min-h-control-lg rounded-control border border-border-strong bg-card px-3 py-2 text-label font-medium text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
         >
           Ny kontakt
         </button>
@@ -399,31 +403,34 @@ function ContactsSection({
       {contacts.length === 0 ? (
         <p
           data-testid="contacts-empty"
-          className="mt-3 rounded-lg border border-dashed border-zinc-300 bg-white p-4 text-sm text-zinc-600"
+          className="mt-3 rounded-card border border-dashed border-border-default bg-card p-6 text-body text-text-secondary"
         >
           Inga kontakter ännu.
         </p>
       ) : (
-        <ul className="mt-3 divide-y divide-zinc-100 rounded-lg border border-zinc-200 bg-white">
+        <ul className="mt-3 space-y-4">
           {contacts.map((c) => (
-            <li key={c.id} className="flex flex-col gap-3 px-4 py-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="flex items-center gap-2 text-sm font-medium text-zinc-900">
+            <li key={c.id} className="min-w-0 space-y-4 rounded-card border border-border-default bg-card p-4 sm:p-6">
+              <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0 flex-1 [overflow-wrap:anywhere]">
+                  <h3 className="flex flex-wrap items-center gap-2 text-body font-medium text-text-primary">
                     {c.name}
                     {c.is_primary && (
-                      <span className="rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-800 ring-1 ring-inset ring-blue-200">
+                      <span className="rounded-chip bg-sunken px-2 py-1 text-label font-medium text-text-secondary">
                         Primär
                       </span>
                     )}
-                  </p>
-                  <p className="text-xs text-zinc-500">
-                    {[c.role_label, c.email, c.phone, facilityName(c.facility_id)]
+                  </h3>
+                  <p className="mt-1 text-label text-text-tertiary">
+                    {[c.role_label, c.email, c.phone]
                       .filter(Boolean)
                       .join(" · ") || "—"}
                   </p>
+                  {facilityName(c.facility_id) && <p className="mt-3 inline-flex min-h-control-lg max-w-full items-center rounded-chip bg-sunken px-3 py-2 text-label text-text-secondary">
+                    Anläggning: {facilityName(c.facility_id)}
+                  </p>}
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex min-w-0 flex-wrap items-start gap-2 sm:max-w-1/2">
                   <button
                     type="button"
                     onClick={() =>
@@ -437,7 +444,7 @@ function ContactsSection({
                         is_primary: c.is_primary,
                       })
                     }
-                    className="text-sm font-medium text-blue-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                    className="min-h-control-lg rounded-control px-3 py-2 text-label font-medium text-text-primary underline underline-offset-4 hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                   >
                     Redigera
                   </button>
@@ -452,7 +459,7 @@ function ContactsSection({
                   />
                 </div>
               </div>
-              {filePanels?.[c.id] ? <div>{filePanels[c.id]}</div> : null}
+              {filePanels?.[c.id] ? <div className="min-w-0 space-y-3">{filePanels[c.id]}</div> : null}
             </li>
           ))}
         </ul>

@@ -1,0 +1,85 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "Final three-document truthful closeout on docs baseline809ff2fd8dd0aaf8a762b6ff78b8608b6507abfc; no source/test/config change. evidence_revision121e94445eef918c289f2126fdece3268170c640 and E2E SHA256179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f unchanged; production unchangedb143. Independent Sol High targeted review exactly No findings reused, current code review passed. Actual historical772/b143 P6 BLOCKED at Step03: APItrue/genuine0duplicate/0generated,E2Efalse/P6-E2E-GAP-01/0generated,aggregation+validation NOT_RUN; no successor pass. Read-only existing-proxy capability found but actual list-read/retry proof and General CI runtime allocation remain REQUIRED DEVELOPMENT blockers, not release deferral. Minimum proposal only: allocate unowned playwright.config.ts to start existing proxy first/guarded production build-start second; no implementation. Historical failed772/3ebCI and partial3ebimages not current proof. Currentruntime0executed0skipped/images0;11cases98planned72selected/7AC16states/D1-D5/frozen90 preserved. blocked/followuptrue/historicalscore9/deferredreview[]/existing3release deferred/releasefalse.",
+  "evidence_revision": "121e94445eef918c289f2126fdece3268170c640",
+  "development_checks": [
+    {
+      "name": "typecheck",
+      "status": "passed",
+      "evidence": "ONE actual pnpm typecheck exit0 on source now committed121e94445eef918c289f2126fdece3268170c640; E2ESHA256 179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f. No repeat during finalization."
+    },
+    {
+      "name": "lint",
+      "status": "passed",
+      "evidence": "ONE actual pnpm exec eslint tests/e2e/crm/customers.e2e.spec.ts exit0 no warnings on same source121/hash; no repeat during finalization."
+    },
+    {
+      "name": "build and bundle containment",
+      "status": "passed",
+      "evidence": "Prior b143 native-fix product build/bundle passed on reviewedsource; no current build rerun because this repair is single test-only change and production unchanged."
+    },
+    {
+      "name": "lockfiles audit and service-role containment",
+      "status": "passed",
+      "evidence": "Parent build delegate ran pnpm verify:lockfiles, pnpm audit --audit-level=high (5moderate,no high), pnpm verify:service-role-containment exit0 in this worktree. No later dependency/authority change."
+    },
+    {
+      "name": "focused CRM units",
+      "status": "passed",
+      "evidence": "Prior unchanged four-module CRM seam units126passed0failed0skipped retained; post-patch four direct checked/unchecked x valid/invalid FormData/parser probes passed. Pure seam checks are not UI/DB persistence proof."
+    },
+    {
+      "name": "full unit suite",
+      "status": "pending",
+      "evidence": "Root-relayed previous772 ordinaryCI41473808206 FINALFAILED: units3780pass0skip. Prior evidence only, not current repair/runtime/P6 pass; no unitrepeat/CIpoll."
+    },
+    {
+      "name": "required integration RLS recovery storage browser",
+      "status": "pending",
+      "evidence": "Current repaired source0executed0skipped/images0. Root historical772 ordinaryCI41473808206 FINALFAILED: integration2163pass0fail52skip(51Bookingseries+recovery separately1pass),recovery1pass0skip,essential79pass1fail0skip(unowned My-day15.6E09 abort-vs-finished). Historical3eb full41469021274 FINALFAILED478pass28fail22skip(19serial scheduling+3explicit quote10.5);owned37pass7fail. Seven owned causes patched inclB01 but no repaired-head execution;21unowned groups remain redirects7/Booking2/calendar10/notificationprofile1/scheduling1. Genuine list loadError/retry proof and runtime allocation pending; existing proxy capability analysis is not coverage. D5childflattening uncredited."
+    },
+    {
+      "name": "frontend visual acceptance and exact-head CI",
+      "status": "pending",
+      "evidence": "Same11cases98plannedPNG72selected stable names; source121 exact no-match message+supporttext targets/strict ratio1 unchanged. Root historical3eb alone80uniqueownedPNGnames59/72selectedpresent54passedselected;malformedgenuinebranchPASSpair/contextcompositionPASS16PNGs. Not772/809/currentsource or complete acceptedpackage. Currentimages0/runtime0; independent code review passed at121 exactly No findings. SuccessorP6/followup/authenticatedvisual/currentheadCI/completion remain pending."
+    },
+    {
+      "name": "assigned source identity",
+      "status": "passed",
+      "evidence": "{\"src/app/(app)/customers/[customerId]/page.tsx\": \"34c6c88e55fdfe3b3b6e13193b5c81a5094662d969bd2fad84d427c195af45b3\", \"src/components/crm/ArchiveButton.tsx\": \"02fabf0a0b4e7a223c1c73e80e8355e5bd1a457b27d07019557e8599cde5575b\", \"src/components/crm/ContactDialog.tsx\": \"c7b5505ea526af9c4e9cc71bb7e0ea399c63fbc75fb200244e190ef03593eb19\", \"src/components/crm/CustomerDetail.tsx\": \"998c2c066e06fcc2d112d590c050d8215abbe7625f7ac23b9b372a4a8a566eec\", \"src/components/crm/FacilityDialog.tsx\": \"3a52fbb181079d294bdabc4e0092eb7da6d1770673d7f2d48021d7ce56bb4d24\", \"tests/e2e/crm/customers.e2e.spec.ts\": \"179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f\"}"
+    },
+    {
+      "name": "P6 automation and required customer-list read retry",
+      "status": "failed",
+      "evidence": "Actual C:/DEV/Kopplas/tmp/private/e35-control/tmp/private/e35-p6/p6-result-2026-11-02T16-03-48-528Z.json and tea-automate-e2e-tests companion read. HISTORICAL candidate772c5241b82dc3a9ea517282f4c138938a01edbf/reviewed sourceb1437128f186c9a840803066eac0144da6810d11: Create/BMad-integrated BLOCKED, APItrue/0duplicate/0generated,E2Efalse/0generated/P6-E2E-GAP-01; stoppedStep03,aggregation+validation NOT_RUN. Historical summarySHA256D2080582DC7345596BABB84EE4E1C044E7287EE1FDDB2FFEE6F52D14A8892ACF. Required actual CustomerList.loadError/customers-failed/NextLink Försök igen/fresh authorized successful server read unearned, separateD5. Existing dashboard read-plan+server-read-proxy can isolate subject/table genuine400 and forward real backend+headers; READONLY capability only, no new seam or executed proof. Same-path retry must issue fresh read, no forcedreloadcredit. MINIMUM PROPOSAL ONLY: allocate currently unowned playwright.config.ts existingproxy-first/guardedproduction-second; GeneralCI no proxy/includesCRM, Dashboardproxy testMatch excludesCRM. No case/skip/config/source/framework added. Current11-path schema2 claim cannot amend-blocked; pinned parallel_run.py1031: Schema 2 does not support legacy integration or maintenance APIs. Coordinator must choose valid allocation/protocol route before claim change, then owned case+managed runtime+actual candidate-bound retry and successorP6. REQUIRED DEVELOPMENT blocker, not new REL item."
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "evidence": "Unchanged testsource121e94445eef918c289f2126fdece3268170c640, E2E SHA256179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f; production unchangedb143. Independent Sol High targeted source/assertions+authortrail review returned exactly No findings; current code review passed and reused for this final three-document-only closeout. ONE prior bounded typecheck/focusedlint/diff/trail passed;16literal stops retained. Historicalb143/capture1a3 reviews and actual772/b143 P6 BLOCKED preserved, no new broad round/P6 approval. Current runtime0executed0skipped/images0;11cases98planned72selected; successorP6/followup/visual/currentCI/completion and required list-retry/runtime allocation remain blocked/pending.21historicalunowned blockers/followuptrue/historicalscore9/deferredreview[]/releasefalse unchanged."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "E35-6-REL-1 exhaustive visual/device/composite contrast/reflow",
+      "owner": "UI owner; named person pending Coordinator assignment",
+      "status": "deferred",
+      "evidence": "No release evidence. Development visual acceptance remains separately mandatory and pending. E16 14-item and E20 caveats retained.",
+      "next_action": "Assign named owner and exact candidate; review actual application captures/devices after development gates."
+    },
+    {
+      "item": "E35-6-REL-2 manual accessibility/screen-reader/daylight",
+      "owner": "QA/accessibility owner; named person pending Coordinator assignment",
+      "status": "deferred",
+      "evidence": "No manual/physical device evidence; controlled CSS enlargement/viewport proxy source is not physical keyboard proof.",
+      "next_action": "Assign owner/scope/exact candidate and execute release checks with recorded results."
+    },
+    {
+      "item": "E35-6-REL-3 final Phase B consolidation",
+      "owner": "Coordinator",
+      "status": "deferred",
+      "evidence": "Final release checkpoint unearned; no merge/deployment/release approval.",
+      "next_action": "Consolidate existing deferred work and actual evidence at the Phase B release checkpoint."
+    }
+  ],
+  "release_ready": false
+}

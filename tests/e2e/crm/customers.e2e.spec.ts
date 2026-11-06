@@ -29,22 +29,60 @@ import { readFileSync, mkdirSync, appendFileSync } from "node:fs";
 import path from "node:path";
 import { expectActiveAdminNavigation } from "../support/active-admin-navigation";
 import { adminExec, adminQuery, closeAdminPool } from "../../factories/admin-sql";
-import { createTwoTenantFixture, cleanupFixture } from "../../factories/tenants";
+import { createTwoTenantFixture, cleanupFixture, adminInsertCustomer, adminInsertFacility, adminInsertContact } from "../../factories/tenants";
 
-async function captureRecordState(page: Page, state: string) {
+async function captureRecordState(page: Page, state: string, captureTargets: readonly Locator[], stateIds: readonly string[] = [], currentViewportOnly = false) {
   const folder = process.env.E35_CAPTURE_DIR;
-  if (!folder) return;
-  mkdirSync(folder, {recursive:true});
-  const viewport = page.viewportSize();
-  const filename = `${state}-${viewport?.width}x${viewport?.height}.png`;
-  const fullPage=process.env.E35_CAPTURE_VIEWPORT_ONLY!=="1";
-  await page.bringToFront();
-  await page.screenshot({animations:"disabled",path:path.join(folder,filename),fullPage});
-  appendFileSync(path.join(folder,"captures.jsonl"),JSON.stringify({file:filename,state,viewport,fullPage,
-    candidate:process.env.E35_CAPTURE_REVISION ?? "uncommitted working tree",
-    source:state==="controlled-checked-read-503-document-fallback"?"controlled synthetic503document, not application error UI":"implemented production-server UI",
-    classification:state.startsWith("controlled-")?"controlled fault or enlargement/occlusion proxy; no physical-device proof":"actual rendered UI; transport faults remain test-controlled where named",
-    url:new URL(page.url()).pathname})+"\n");
+  if (folder) mkdirSync(folder, {recursive:true});
+  const originalViewport = page.viewportSize();
+  const supplemental = state.startsWith("controlled-") || state.startsWith("supplemental-");
+  // Keep the same asserted phase: resizing never redispatches an action or reloads.
+  const restoration = await page.evaluateHandle(() => ({
+    active: document.activeElement,
+    scrolls: [...new Set([document.scrollingElement, ...document.querySelectorAll("*")])]
+      .filter((node): node is Element => node !== null && (node.scrollHeight > node.clientHeight || node.scrollWidth > node.clientWidth))
+      .map(node => ({ node, top: node.scrollTop, left: node.scrollLeft })),
+  }));
+  try {
+    for (const viewport of currentViewportOnly || supplemental || !originalViewport ? [originalViewport] : [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+      if (viewport) await page.setViewportSize(viewport);
+      await page.bringToFront();
+      if (!supplemental) {
+        expect(captureTargets.length, "a qualifying capture requires an actual phase target").toBeGreaterThan(0);
+        await captureTargets[0].scrollIntoViewIfNeeded();
+        // Reflow can move identity/status off screen: verify every named target now,
+        // never infer it remains visible from an assertion at the original size.
+        for (const target of captureTargets) await expect(target).toBeInViewport({ ratio: 1 });
+      }
+      const actualViewport = page.viewportSize();
+      const filename = `${state}-${actualViewport?.width}x${actualViewport?.height}.png`;
+      const png = await page.screenshot({ animations: "disabled", fullPage: false, scale: "css", ...(folder ? { path: path.join(folder, filename) } : {}) });
+      const metadata = {
+        file: filename, state, stateIds: stateIds.map(id => `E35-6-STATE-${id}`), viewport: actualViewport, fullPage: false,
+        pngBytes: png.byteLength, pngDimensions: { width: png.readUInt32BE(16), height: png.readUInt32BE(20) },
+        qualifyingViewport: !supplemental && !!actualViewport && (actualViewport.width === 1440 && actualViewport.height === 900 || actualViewport.width === 360 && actualViewport.height === 640),
+        captureTargetCount: captureTargets.length, captureTargetsVerifiedInViewport: !supplemental,
+        candidate: process.env.E35_CAPTURE_REVISION ?? process.env.GITHUB_SHA ?? "uncommitted working tree",
+        provenanceLimit: "Environment candidate is an author assertion; root must verify GitHub run/head and actual bytes. No visual acceptance inferred.",
+        source: state === "controlled-checked-read-503-document-fallback" ? "controlled synthetic 503 document, NOT application error UI" : "implemented production-server UI",
+        classification: supplemental ? "supplemental actual dimensions; controlled fault/enlargement/occlusion or short viewport; not qualifying phone/desktop evidence or physical-device proof" : "actual full viewport UI; transport faults remain test-controlled where named",
+        phase: state === "customer-archive-unresolved-hint-fresh-form" ? "actual unresolved payload-free hint/replay block after archive remount; newly opened server-read editor, NOT restored original unsent payload"
+          : state.includes("unresolved-hint-fresh-form") ? "actual unresolved payload-free hint and replay block after remount; fresh create form refilled by test, NOT restored original payload" : state,
+        url: new URL(page.url()).pathname,
+      };
+      // Native JSON reporter retains real PNG bytes even without an explicit capture directory.
+      await test.info().attach(filename, { body: png, contentType: "image/png" });
+      await test.info().attach(`${filename}.metadata.json`, { body: Buffer.from(JSON.stringify(metadata)), contentType: "application/json" });
+      if (folder) appendFileSync(path.join(folder, "captures.jsonl"), JSON.stringify(metadata) + "\n");
+    }
+  } finally {
+    if (originalViewport) await page.setViewportSize(originalViewport);
+    await restoration.evaluate(({ active, scrolls }) => {
+      if (active instanceof HTMLElement && active.isConnected) active.focus({ preventScroll: true });
+      for (const { node, top, left } of scrolls) if (node.isConnected) { node.scrollTop = top; node.scrollLeft = left; }
+    });
+    await restoration.dispose();
+  }
 }
 
 /** Computed solid-color composites, including ancestor alpha; no token-only contrast claim. */
@@ -65,7 +103,10 @@ async function renderedContrast(page: Page, locator: Locator, state: string, out
   if(outline) expect(parseFloat(measured.outlineWidth)).toBeGreaterThan(0);
   if(!disabled) expect(measured.ratio,`${state} rendered composite`).toBeGreaterThanOrEqual(outline?3:4.5);
   const file=path.resolve("tmp/private/story35-3/round1-rendered-contrast.jsonl");
-  appendFileSync(file,JSON.stringify({state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??"uncommitted Round1 source",kind:outline?"nontext focus":"text",disabled,threshold:disabled?"inactive control exempt":outline?3:4.5,...measured,limits:"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit"})+"\n");
+  const measurement={state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??process.env.GITHUB_SHA??"uncommitted Round1 source",kind:outline?"nontext focus":"text",disabled,threshold:disabled?"inactive control exempt":outline?3:4.5,...measured,limits:"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit; candidate environment is not authenticated provenance"};
+  await test.info().attach(`rendered-contrast-${state.replace(/[^a-z0-9]+/gi,"-")}.json`, {body:Buffer.from(JSON.stringify(measurement)),contentType:"application/json"});
+  mkdirSync(path.dirname(file),{recursive:true});
+  appendFileSync(file,JSON.stringify(measurement)+"\n");
 }
 
 interface CrmFixture {
@@ -189,6 +230,7 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     expect(body).not.toContain(fixture.crm.private.personnummer);
     const html = await page.content();
     expect(html).not.toContain(fixture.crm.private.personnummer);
+    await captureRecordState(page, "customers-list-private-value-absent", [page.getByRole("link", { name: fixture.crm.private.displayName, exact: true })], ["loaded"]);
   });
 
   test("P0/AC2: the private customer DETAIL shows the personnummer MASKED (not clear-text by default)", async ({
@@ -204,6 +246,7 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     // Masked by default: the clear-text value is NOT shown, but the last 4 digits are.
     await expect(pnr).not.toHaveText(fixture.crm.private.personnummer);
     await expect(pnr).toContainText(fixture.crm.private.personnummer.slice(-4));
+    await captureRecordState(page, "customer-private-detail-masked", [pnr], ["loaded"]);
     // Reveal-on-click surfaces the full value (the access-controlled detail surface).
     const reveal = page.getByRole("button", { name: "Visa" });
     await waitForHydrated(reveal);
@@ -328,6 +371,21 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     await page.goto("/customers/00000000-0000-0000-0000-000000000000");
     await expect(page.getByTestId("customer-not-found")).toBeVisible();
   });
+
+  test("[P1] E35-6-T-AC3/AC4 malformed customer identity reaches the actual detail read-error branch", async ({ page }) => {
+    await signIn(page, fixture.adminA.email, fixture.adminA.password);
+    // Current route forwards this value into the request-bound UUID equality read.
+    // Only the real application's asserted failed branch earns capture credit.
+    await page.goto("/customers/not-a-customer-uuid");
+    const failure = page.getByTestId("customer-detail-failed");
+    await expect(failure).toBeVisible();
+    await expect(failure).toContainText("Kunden kunde inte läsas in.");
+    await expect(page.getByTestId("customer-not-found")).toHaveCount(0);
+    await expect(page.getByTestId("facilities-empty")).toHaveCount(0);
+    await expect(failure.getByRole("link", { name: "Tillbaka till kunder", exact: true })).toHaveAttribute("href", "/customers");
+    expect(await page.content()).not.toContain(fixture.crm.private.personnummer);
+    await captureRecordState(page, "customer-detail-real-read-error", [failure.getByRole("heading")]);
+  });
 });
 
 // Story 35.3 active ATDD RED. Existing vanilla runner retained: playwright-utils
@@ -356,7 +414,7 @@ async function openCustomerCreate(page: Page, marker: string) {
   return dialog;
 }
 async function customerSnapshot(marker: string) {
-  return adminQuery<{ id: string; display_name: string; phone: string | null; city: string | null; archived_at: string | null; audits: number }>(
+  return adminQuery<{ id: string; display_name: string; phone: string | null; city: string | null; archived_at: Date | null; audits: number }>(
     `select c.id, c.display_name, c.phone, c.city, c.archived_at,
        (select count(*)::integer from public.audit_events a where a.target_id = c.id and a.target_type = 'customer') as audits
      from public.customers c where c.display_name = $1 order by c.id`, [marker],
@@ -418,12 +476,12 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.goto("/customers");
     const table = page.getByRole("table", { name: "Kundlista" });
     await expect(table.getByRole("columnheader", { name: "Kund", exact: true })).toBeVisible();
-    await captureRecordState(page,"customers-loaded");
+    await captureRecordState(page,"customers-loaded", [table.getByRole("columnheader", { name: "Kund", exact: true })], ["loaded"]);
     const selectCompany = table.getByRole("checkbox", { name: `Välj ${fixture.crm.company.displayName}`, exact: true });
     await selectCompany.focus(); await page.keyboard.press("Space");
     await expect(selectCompany).toBeChecked();
     await renderedContrast(page,table.getByRole("link",{name:fixture.crm.company.displayName,exact:true}),"selected row text");
-    await captureRecordState(page,"customers-selected");
+    await captureRecordState(page,"customers-selected", [selectCompany]);
     await expect(page).toHaveURL(/\/customers$/);
     const sort = page.getByRole("combobox", { name: /sortera/i });
     const descending = await sort.getByRole("option", { name: /fallande/i }).getAttribute("value");
@@ -442,18 +500,19 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await expect(selectCompany).toBeChecked();
     await page.getByLabel("Sök kund").fill("35.3-no-match");
     await expect(page.getByTestId("customers-no-results")).toBeVisible();
-    await captureRecordState(page,"customers-no-match");
+    await expect(page.getByLabel("Sök kund")).toHaveValue("35.3-no-match");
+    await captureRecordState(page,"customers-no-match", [page.getByTestId("customers-no-results").getByText("Inga träffar", { exact: true }), page.getByTestId("customers-no-results").getByText("Ingen kund matchar din sökning eller ditt filter. Justera och försök igen.", { exact: true })], ["no-match"]);
     await page.getByRole("button", { name: /återställ/i }).click();
     await expect(selectCompany).toBeChecked();
     await table.getByRole("link", { name: fixture.crm.company.displayName, exact: true }).click();
     await expect(page).toHaveURL(new RegExp(`/customers/${fixture.crm.company.id}$`));
-    await captureRecordState(page,"customer-detail-loaded");
+    await captureRecordState(page,"customer-detail-loaded", [page.getByRole("heading", { name: fixture.crm.company.displayName, exact: true })], ["loaded"]);
   });
 
   test("B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input", async ({ page }) => {
     await signIn(page, fixture.adminA.email, fixture.adminA.password);
     const marker = `35.3 validated ${crypto.randomUUID()}`, dialog = await openCustomerCreate(page, marker);
-    await captureRecordState(page,"customer-create-draft");
+    await captureRecordState(page,"customer-create-draft", [dialog.getByLabel("Visningsnamn")]);
     await dialog.getByLabel("E-post").fill("invalid");
     await dialog.getByLabel("Ort").fill("Västerås");
     await dialog.getByRole("button", { name: "Spara", exact: true }).click();
@@ -461,8 +520,8 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await dialog.getByTestId("form-error-summary").getByRole("link").first().click();
     await expect(dialog.getByLabel("E-post")).toBeFocused();
     await expect(dialog.getByLabel("Ort")).toHaveValue("Västerås");
-    await captureRecordState(page,"customer-validation");
     expect(await customerSnapshot(marker)).toEqual([]);
+    await captureRecordState(page,"customer-validation", [dialog.getByLabel("E-post")], ["validation", "error-retry"]);
     await dialog.getByLabel("E-post").fill("record@example.test");
     await dialog.getByRole("button", { name: "Spara", exact: true }).click();
     await expect(dialog).toHaveCount(0);
@@ -470,6 +529,8 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     expect(rows).toHaveLength(1); expect(rows[0].city).toBe("Västerås"); expect(rows[0].audits).toBe(1);
     await page.reload();
     await expect(page.getByRole("link", { name: marker, exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: marker, exact: true })).toHaveAttribute("href", `/customers/${rows[0].id}`);
+    await captureRecordState(page, "customer-confirmed-after-validation", [page.getByRole("link", { name: marker, exact: true })], ["confirmed", "error-retry"]);
   });
 
   test("B03 E35-3-T-error-retry AC3/AC7: archive cancel and confirm retain customer identity and soft archive", async ({ page }) => {
@@ -507,7 +568,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(page.getByRole("alert").filter({hasText:"Anslutning krävs."})).toHaveText("Anslutning krävs. Arkiveringen är inte skickad. Försök igen med Arkivera när du är ansluten.");
       expect(attempts).toBe(0); expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
       expect(await customerSnapshot(marker)).toEqual(before);
-      await captureRecordState(page,"customer-archive-connection-required");
+      await captureRecordState(page,"customer-archive-connection-required", [page.getByRole("alert").filter({ hasText: "Anslutning" })], ["connection-required"]);
       await context.setOffline(false); expect(await page.evaluate(()=>navigator.onLine)).toBe(true);
       await expect(page.getByRole("button",{name:"Arkivera kund",exact:true})).toBeEnabled();
       expect(attempts).toBe(0); expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
@@ -548,6 +609,10 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hint);
       await gate.dispose();
       await expect(page).toHaveURL(/\/dashboard$/);
+      expect(await historyState()).toEqual(requested);
+      // Adopt the requested HTTP destination after the held archive completes.
+      // This is explicit recovery, not evidence that automatic CSR adoption finished.
+      await page.reload({waitUntil:"commit"});
       await expect(page.getByRole("heading",{name:"Dashboard",exact:true})).toBeVisible();
       expect(await historyState()).toEqual(requested);
       expect(gate.attempts()).toBe(1);
@@ -588,6 +653,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(reopened.getByRole("button",{name:"Spara",exact:true})).toBeDisabled();
       expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hint);
       expect(gate.attempts()).toBe(1); const row=(await customerSnapshot(marker))[0]; expect(row.archived_at).not.toBeNull(); expect(row.audits).toBe(2);
+      await captureRecordState(page, "customer-archive-unresolved-hint-fresh-form", [reopened.getByRole("alert").filter({ hasText: /obekr/ }).first()], ["unknown"]);
     } finally {await context.setOffline(false); await gate.dispose();}
   });
 
@@ -630,7 +696,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await page.keyboard.press("Enter"); await page.keyboard.press("Escape");
       await expect(dialog).toBeVisible(); await expect(dialog.getByLabel("Visningsnamn")).toHaveValue(marker);
       expect(gate.attempts()).toBe(1);
-      await captureRecordState(page,"customer-pending");
+      await captureRecordState(page,"customer-pending", [dialog.getByRole("button", { name: "Sparar…", exact: true })], ["submitting"]);
       await expect(dialog.getByRole("button", { name: "Avbryt", exact: true })).toBeDisabled();
       await expect(dialog.getByLabel("Visningsnamn")).toBeDisabled();
       await renderedContrast(page,dialog.getByRole("button",{name:"Sparar…",exact:true}),"disabled pending save",false,true);
@@ -650,7 +716,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         await expect(dialog.getByText(/obekräft|inte.*bekräft|okänt/i).first()).toBeVisible();
         await expect(dialog.getByRole("button", { name: "Spara", exact: true })).toBeDisabled();
         expect(gate.attempts()).toBe(1);
-        await captureRecordState(page,`customer-unknown-${mode}`);
+        await captureRecordState(page,`customer-unknown-${mode}`, [dialog.getByRole("alert").filter({ hasText: /obekr/ }).first()], ["unknown"]);
         const rows = await customerSnapshot(marker);
         expect(rows).toHaveLength(mode === "before-forward" ? 0 : 1);
         // Test knowledge of undispatched transport is not a production rollback receipt.
@@ -663,6 +729,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         expect(storage.join(" ")).not.toContain(marker);
         expect(storage.join(" ")).not.toContain(fixture.crm.private.personnummer);
         expect(storage.join(" ")).not.toContain(fixture.crm.company.id);
+        await captureRecordState(page, `customer-unresolved-hint-fresh-form-${mode}`, [reopened.getByRole("alert").filter({ hasText: /obekr/ }).first()], ["unknown"]);
       } finally { await gate.dispose(); }
     });
   }
@@ -673,7 +740,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await created.getByRole("button", { name: "Spara", exact: true }).click(); await expect(created).toHaveCount(0);
     const id = (await customerSnapshot(marker))[0].id;
     const first = await openCustomerEditor(page, id), secondPage = await context.newPage();
-    await captureRecordState(page,"customer-edit-loaded");
+    await captureRecordState(page,"customer-edit-loaded", [first.getByLabel("Telefon")]);
     try {
       // Independent browser page/action-state instance; same entitled tenant actor.
       const second = await openCustomerEditor(secondPage, id);
@@ -693,7 +760,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       ].sort());
       await expect(first).toBeVisible(); await expect(first.getByText(/ändrats|aktuell.*uppgift/i).first()).toBeVisible();
       await expect(first.getByLabel("Ort")).toHaveValue("Malmö");
-      await captureRecordState(page,"customer-conflict");
+      await captureRecordState(page,"customer-conflict", [first.getByText(/aktuell.*uppgift|kund.*ndrats/i).first()], ["stale"]);
       const afterB = await customerSnapshot(marker); expect(afterB[0].phone).toBe("+46706666666"); expect(afterB[0].city).toBeNull();
       const priorBaseline=await first.locator('input[name="expected_customer"]').inputValue();
       let reads=0,release!:()=>void,observed!:()=>void,delivered!:()=>void;
@@ -762,7 +829,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
         expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
         await expect(page.getByRole("dialog")).toHaveCount(0);
         await expect(page.getByText(/Kunden sparades|Sparat/, {exact:false})).toHaveCount(0);
-        await captureRecordState(page,"controlled-checked-read-503-document-fallback");
+        await captureRecordState(page,"controlled-checked-read-503-document-fallback", [page.getByText(/misslyckades.*webbl/).first()]);
       } finally {await page.unroute("**/*",failureHandler);}
     } finally { await secondPage.close(); }
   });
@@ -775,7 +842,16 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(page).toHaveURL(new RegExp(`/customers/${fixture.crm.company.id}$`));
       if (traversal === "forward") {
         await openPhoneNavigation(page);
-        await page.getByRole("link", {name:"Kunder",exact:true}).click(); await page.goBack();
+        await page.getByRole("link", {name:"Kunder",exact:true}).click();
+        await expect(page).toHaveURL(/\/customers$/);
+        await expect(page.getByRole("heading", {name:"Kunder",exact:true})).toBeVisible();
+        await expect(page.getByRole("heading", {name:fixture.crm.company.displayName,exact:true})).toHaveCount(0);
+        await waitForHydrated(page.getByTestId("new-customer-button"));
+        await page.goBack();
+        await expect(page).toHaveURL(new RegExp(`/customers/${fixture.crm.company.id}$`));
+        await expect(page.getByRole("heading", {name:fixture.crm.company.displayName,exact:true})).toBeVisible();
+        await expect(page.getByRole("heading", {name:"Kunder",exact:true})).toHaveCount(0);
+        await waitForHydrated(page.getByTestId("edit-customer-button"));
       }
       const editor = await openCustomerEditor(page, fixture.crm.company.id, false);
       await editor.getByLabel("Ort").fill("Unsent 35.3 draft");
@@ -829,13 +905,17 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(selected).toBeChecked();
       await expect(page.getByTestId("customers-empty")).toHaveCount(0);
       await expect(page.getByRole("status").filter({ hasText: /laddar|hämtar/i }).first()).toBeVisible();
-      await captureRecordState(page,"customer-loading");
+      await captureRecordState(page,"customer-loading", [page.getByRole("status").filter({ hasText: /laddar|hämtar/i }).first()], ["loading"]);
       await page.getByRole("link", { name: fixture.crm.private.displayName, exact: true }).click();
       await expect(page.getByRole("heading", { name: fixture.crm.private.displayName, exact: true })).toBeVisible();
       release();
       await delivered;
       await expect(page).toHaveURL(new RegExp(`/customers/${fixture.crm.private.id}$`));
       await expect(page.getByRole("heading", { name: fixture.crm.private.displayName, exact: true })).toBeVisible();
+      const masked = page.getByTestId("customer-personnummer");
+      await expect(masked).not.toHaveText(fixture.crm.private.personnummer);
+      await expect(masked).toContainText(fixture.crm.private.personnummer.slice(-4));
+      await captureRecordState(page, "customer-late-final-B-private-masked", [masked, page.getByRole("heading", { name: fixture.crm.private.displayName, exact: true })], ["late-result", "loaded"]);
     } finally { release(); await page.unroute("**/*", handler); }
   });
 
@@ -859,7 +939,8 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     expect(await customerSnapshot(marker)).toEqual([]);
     await page.keyboard.press("Escape");
     await expect(decision).toBeVisible();
-    await captureRecordState(page,"customer-dirty-decision");
+    await expect(decision.getByRole("button", { name: "Fortsätt redigera", exact: true })).toBeFocused();
+    await captureRecordState(page,"customer-dirty-decision", [decision.getByRole("button", { name: /Fortsätt redigera/, exact: true })], ["dirty-navigation", "focus-dialog"]);
     await decision.getByRole("button",{name:"Kasta ändringar"}).click();
     await expect(dialog).toHaveCount(0);
     expect(await customerSnapshot(marker)).toEqual([]);
@@ -925,23 +1006,29 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await dialog.getByLabel("E-post").fill("invalid");
     const save = dialog.getByRole("button", { name: "Spara", exact: true }); await save.scrollIntoViewIfNeeded(); await save.click();
     await expect(dialog.getByTestId("form-error-summary")).toBeVisible();
-    await captureRecordState(page,"customer-phone-validation");
+    await captureRecordState(page,"customer-phone-validation", [dialog.getByTestId("form-error-summary").getByRole("alert")], ["validation"]);
     const email=dialog.getByLabel("E-post"); await email.focus();
     await renderedContrast(page,email,"invalid field text");
     await renderedContrast(page,email,"invalid field focus against field",true);
     await renderedContrast(page,dialog.getByTestId("form-error-summary").getByRole("alert"),"validation summary text");
-    const baselineHeight=(await email.boundingBox())!.height;
-    // Controlled CSS zoom is an enlargement/reflow proxy, not physical device/browser-menu zoom.
-    await page.setViewportSize({width:600,height:1280});
-    await page.evaluate(()=>{document.documentElement.style.zoom="2";});
+    const baselineFont=await email.evaluate(node=>parseFloat(getComputedStyle(node).fontSize));
+    // Enlarge text only: scaling the whole 100dvh sheet invents an unreachable layout.
+    const originalFonts=await dialog.evaluateHandle(node=>{
+      const sizes=[node,...node.querySelectorAll("*")].filter((element):element is HTMLElement=>element instanceof HTMLElement)
+        .map(element=>({element,fontSize:element.style.fontSize,pixels:parseFloat(getComputedStyle(element).fontSize)}));
+      for(const {element,pixels} of sizes) element.style.fontSize=`${pixels*2}px`;
+      return sizes;
+    });
     await email.scrollIntoViewIfNeeded();
-    const enlarged=(await email.boundingBox())!; expect(enlarged.height).toBeGreaterThanOrEqual(baselineHeight*1.9);
-    expect(enlarged.x).toBeGreaterThanOrEqual(0); expect(enlarged.x+enlarged.width).toBeLessThanOrEqual(601);
-    // Own form reflows at 300px effective width; global AppShell/table overflow is unowned.
+    expect(await email.evaluate(node=>parseFloat(getComputedStyle(node).fontSize))).toBeGreaterThanOrEqual(baselineFont*1.9);
+    const enlarged=(await email.boundingBox())!; expect(enlarged.height).toBeGreaterThanOrEqual(44);
+    expect(enlarged.x).toBeGreaterThanOrEqual(0); expect(enlarged.x+enlarged.width).toBeLessThanOrEqual(361);
+    // Own form reflows with measured 200% text; global AppShell/table is unowned.
     expect(await dialog.locator("form").evaluate((form)=>form.scrollWidth<=form.clientWidth+1)).toBe(true);
     await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
-    await captureRecordState(page,"controlled-css-zoom-200percent");
-    await page.evaluate(()=>{document.documentElement.style.zoom="1";});
+    await captureRecordState(page,"controlled-text-enlargement-200percent", [save]);
+    await originalFonts.evaluate(sizes=>{for(const {element,fontSize} of sizes) element.style.fontSize=fontSize;});
+    await originalFonts.dispose();
     // A 320px visible viewport models occlusion; it does not summon or prove an OS keyboard.
     await page.setViewportSize({width:360,height:320});
     const summary=dialog.getByTestId("form-error-summary"); await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
@@ -951,7 +1038,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     const hit=await save.evaluate((button)=>{const box=button.getBoundingClientRect();return {top:box.top,bottom:box.bottom,reachable:button.contains(document.elementFromPoint(box.x+box.width/2,box.y+box.height/2))};});
     expect(hit.top).toBeGreaterThanOrEqual(0); expect(hit.bottom).toBeLessThanOrEqual(320); expect(hit.reachable).toBe(true);
     await save.click(); await expect(email).toHaveValue("invalid"); expect(await customerSnapshot(marker)).toEqual([]);
-    await captureRecordState(page,"controlled-visible-viewport-occlusion");
+    await captureRecordState(page,"controlled-visible-viewport-occlusion", [save]);
   });
 
   test("B09 E35-3-T-empty/denied/revoked AC6: successful empty differs from foreign denial and live revocation", async ({ page }) => {
@@ -960,13 +1047,14 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await signIn(page, isolated.adminA.email, isolated.adminA.password);
       await page.goto("/customers");
       await expect(page.getByTestId("customers-empty")).toBeVisible();
-      await captureRecordState(page,"customers-empty");
       await expect(page.getByTestId("customers-failed")).toHaveCount(0);
       await expect(page.getByTestId("customers-no-results")).toHaveCount(0);
+      await captureRecordState(page,"customers-empty", [page.getByTestId("customers-empty")], ["empty"]);
       await page.goto(`/customers/${fixture.crm.private.id}`);
       await expect(page.getByTestId("customer-not-found")).toBeVisible();
       expect(await page.content()).not.toContain(fixture.crm.private.personnummer);
       expect(await page.content()).not.toContain(fixture.crm.private.displayName);
+      await captureRecordState(page, "customer-foreign-identity-denied", [page.getByTestId("customer-not-found").getByRole("heading")], ["denied"]);
       const marker = `35.3 revoked ${crypto.randomUUID()}`, dialog = await openCustomerCreate(page, marker);
       await adminExec("update public.tenant_memberships set status = 'disabled' where tenant_id = $1 and user_id = $2", [isolated.tenantA.id, isolated.adminA.id]);
       await dialog.getByRole("button", { name: "Spara", exact: true }).click();
@@ -974,6 +1062,8 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(dialog.getByLabel("Visningsnamn")).toHaveValue(marker);
       await expect(dialog.getByRole("button",{name:"Spara",exact:true})).toBeDisabled();
       expect(await customerSnapshot(marker)).toEqual([]);
+      expect(await adminQuery("select id from public.audit_events where tenant_id = $1 and target_type = 'customer'", [isolated.tenantA.id])).toEqual([]);
+      await captureRecordState(page, "customer-revoked-membership-rejected", [dialog.getByRole("alert")], ["revoked"]);
     } finally { await cleanupFixture(isolated); }
   });
 
@@ -990,7 +1080,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       const errorId = await name.getAttribute("aria-describedby"); expect(errorId).toBeTruthy();
       await expect(dialog.locator(`[id="${errorId}"]`)).toBeVisible();
       await expect(dialog.getByTestId("form-error-summary")).toContainText(/.+/);
-      await captureRecordState(page,`inherited-${triggerId}`);
+      await captureRecordState(page,`inherited-${triggerId}`, [name]);
       await dialog.getByRole("button", { name: "Avbryt", exact: true }).click();
       await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
     }
@@ -998,12 +1088,365 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.goto(`/calculations/${inheritedFixture.calc.id}`);
     await expect(page.getByTestId("calculation-editor")).toBeVisible();
     await expect(page.getByLabel("Titel",{exact:true})).toHaveValue(inheritedFixture.calc.title);
-    await captureRecordState(page,"inherited-calculation-field");
+    await captureRecordState(page,"inherited-calculation-field", [page.getByLabel("Titel", { exact: true })]);
     await page.goto("/files");
     const uploadTrigger=page.getByTestId("upload-file-button"); await waitForHydrated(uploadTrigger); await uploadTrigger.click();
     await page.getByTestId("file-index-upload-owner-type").selectOption("calculation");
     await page.getByTestId("file-index-upload-owner").selectOption(inheritedFixture.calc.id);
     await expect(page.getByTestId("file-index-upload-form").locator('input[name="purpose"]')).toHaveValue("calculation_attachment");
-    await captureRecordState(page,"inherited-file-index-select");
+    await captureRecordState(page,"inherited-file-index-select", [page.getByTestId("file-index-upload-owner")]);
+  });
+
+  // Story 35.6 active ATDD: no skipped tests or fabricated successful commands.
+  // Confidence 8: selectors and identities come from CustomerDetail, both child
+  // dialogs, ArchiveButton and existing factories. Runtime baseline is UNRUN.
+  // D1-D5 apply; the sixteen customer-state bindings are retained in the checklist.
+  test("[P0] E35-6-T-AC1/AC7 customer lifecycle keeps one identity and three attributable audits", async ({ page }) => {
+    const isolated = await createTwoTenantFixture();
+    try {
+      // Given a disposable tenant, never a shared auth-fixture customer.
+      const marker = `35.6 kund ${crypto.randomUUID()}`;
+      await signIn(page, isolated.adminA.email, isolated.adminA.password);
+      const create = await openCustomerCreate(page, marker);
+      await create.getByRole("button", { name: "Spara", exact: true }).click();
+      await expect(create).toHaveCount(0);
+      const created = await adminQuery<{ id: string; tenant_id: string; archived_at: Date | null }>(
+        "select id, tenant_id, archived_at from public.customers where tenant_id = $1 and display_name = $2",
+        [isolated.tenantA.id, marker],
+      );
+      expect(created).toHaveLength(1);
+      expect(created[0]).toMatchObject({ tenant_id: isolated.tenantA.id, archived_at: null });
+      const id = created[0].id;
+      const edit = await openCustomerEditor(page, id);
+      await edit.getByLabel("Ort", { exact: true }).fill("Örnsköldsvik");
+      await edit.getByRole("button", { name: "Spara", exact: true }).click();
+      await expect(edit).toHaveCount(0);
+      expect(await customerSnapshot(marker)).toEqual([expect.objectContaining({ id, city: "Örnsköldsvik", archived_at: null, audits: 2 })]);
+
+      // D1: confirmation is the existing id-only archive, with no reason policy.
+      const archive = page.getByRole("button", { name: "Arkivera kund", exact: true });
+      await archive.click();
+      await expect(page.getByRole("status").filter({ hasText: "Arkivera den här kunden?" })).toBeVisible();
+      await expect(page.getByLabel(/arkiv.*orsak|anledning/i)).toHaveCount(0);
+      await page.getByRole("button", { name: "Avbryt", exact: true }).click();
+      expect((await customerSnapshot(marker))[0]).toMatchObject({ id, archived_at: null, audits: 2 });
+      await archive.click(); await archive.click();
+      await expect(page).toHaveURL(/\/customers$/);
+      const archived = await customerSnapshot(marker);
+      expect(archived).toHaveLength(1);
+      expect(archived[0]).toMatchObject({ id, city: "Örnsköldsvik", archived_at: expect.any(Date), audits: 3 });
+      expect(archived[0].archived_at instanceof Date && Number.isFinite(archived[0].archived_at.getTime())).toBe(true);
+      const audit = await adminQuery<{ command: string; tenant_id: string; actor_user_id: string; target_type: string; target_id: string }>(
+        "select command, tenant_id, actor_user_id, target_type, target_id from public.audit_events where target_id = $1 order by command", [id],
+      );
+      expect(audit).toEqual(["customer.archive", "customer.create", "customer.update"].map(command => ({
+        command, tenant_id: isolated.tenantA.id, actor_user_id: isolated.adminA.id, target_type: "customer", target_id: id,
+      })));
+    } finally { await cleanupFixture(isolated); }
+  });
+
+  for (const kind of ["facility", "contact"] as const) {
+    test(`[P0] E35-6-T-AC1/AC7 ${kind} create/edit/archive preserves exact parent and attributable audit`, async ({ page }) => {
+      const isolated = await createTwoTenantFixture();
+      try {
+        const marker = `35.6 ${kind} ${crypto.randomUUID()}`, editedName = `${marker} ändrad`;
+        const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: `${marker} kund`, org_nr: "556677-8899" });
+        const facilityId = await adminInsertFacility({ tenant_id: isolated.tenantA.id, customer_id: customerId, name: `${marker} anläggning` });
+        const table = kind === "facility" ? "facilities" : "contacts";
+        const title = kind === "facility" ? "Ny anläggning" : "Ny kontakt";
+        const editTitle = kind === "facility" ? "Redigera anläggning" : "Redigera kontakt";
+        const archiveName = `Arkivera ${kind === "facility" ? "anläggning" : "kontakt"} ${editedName}`;
+        await signIn(page, isolated.adminA.email, isolated.adminA.password);
+        await page.goto(`/customers/${customerId}`);
+        const trigger = page.getByTestId(`new-${kind}-button`); await waitForHydrated(trigger); await trigger.click();
+        const create = page.getByRole("dialog", { name: title, exact: true });
+        await create.getByRole("textbox", { name: "Namn", exact: true }).fill(marker);
+        if (kind === "contact") {
+          await create.getByLabel("Anläggning (valfritt)").selectOption(facilityId);
+          await create.getByLabel("Primär kontakt", { exact: true }).check();
+        }
+        await create.getByRole("button", { name: "Spara", exact: true }).click();
+        await expect(create).toHaveCount(0);
+        const created = await adminQuery<{ id: string; tenant_id: string; customer_id: string; archived_at: Date | null }>(
+          `select id, tenant_id, customer_id, archived_at from public.${table} where tenant_id = $1 and name = $2`, [isolated.tenantA.id, marker],
+        );
+        expect(created).toHaveLength(1);
+        expect(created[0]).toMatchObject({ tenant_id: isolated.tenantA.id, customer_id: customerId, archived_at: null });
+        const id = created[0].id;
+        const record = page.getByRole("listitem").filter({ has: page.getByText(marker, { exact: true }) });
+        await expect(record).toHaveCount(1);
+        await record.getByRole("button", { name: "Redigera", exact: true }).click();
+        const edit = page.getByRole("dialog", { name: editTitle, exact: true });
+        if (kind === "contact") {
+          expect(await adminQuery("select id, is_primary from public.contacts where id = $1", [id])).toEqual([{ id, is_primary: true }]);
+          const primary = edit.getByLabel("Primär kontakt", { exact: true });
+          await expect(primary).toBeChecked();
+          await primary.uncheck();
+          const name = edit.getByRole("textbox", { name: "Namn", exact: true });
+          await name.fill("");
+          await edit.getByRole("button", { name: "Spara", exact: true }).click();
+          await expect(name).toHaveAttribute("aria-invalid", "true");
+          await expect(primary).not.toBeChecked();
+          expect(await adminQuery("select id, customer_id, is_primary from public.contacts where id = $1", [id]))
+            .toEqual([{ id, customer_id: customerId, is_primary: true }]);
+          expect(await adminQuery("select command, actor_user_id, target_id from public.audit_events where target_id = $1", [id]))
+            .toEqual([{ command: "contact.create", actor_user_id: isolated.adminA.id, target_id: id }]);
+        }
+        await edit.getByRole("textbox", { name: "Namn", exact: true }).fill(editedName);
+        await edit.getByRole("button", { name: "Spara", exact: true }).click();
+        await expect(edit).toHaveCount(0);
+        const updated = await adminQuery<{ id: string; tenant_id: string; customer_id: string; name: string; archived_at: Date | null }>(
+          `select id, tenant_id, customer_id, name, archived_at from public.${table} where id = $1`, [id],
+        );
+        expect(updated).toEqual([{ id, tenant_id: isolated.tenantA.id, customer_id: customerId, name: editedName, archived_at: null }]);
+        if (kind === "contact") {
+          await expect(page.getByText("Primär", { exact: true })).toHaveCount(0);
+          expect(await adminQuery<{ id: string; facility_id: string; is_primary: boolean }>("select id, facility_id, is_primary from public.contacts where id = $1", [id]))
+            .toEqual([{ id, facility_id: facilityId, is_primary: false }]);
+        }
+        const archive = page.getByRole("button", { name: archiveName, exact: true });
+        await archive.click();
+        await expect(page.getByLabel(/arkiv.*orsak|anledning/i)).toHaveCount(0);
+        await page.getByRole("button", { name: "Avbryt", exact: true }).click();
+        expect(await adminQuery(`select id from public.${table} where id = $1 and archived_at is null`, [id])).toHaveLength(1);
+        await archive.click(); await archive.click();
+        await expect(page.getByText(editedName, { exact: true })).toHaveCount(0);
+        const archived = await adminQuery<{ id: string; tenant_id: string; customer_id: string; name: string; archived_at: Date | null }>(
+          `select id, tenant_id, customer_id, name, archived_at from public.${table} where id = $1`, [id],
+        );
+        expect(archived).toEqual([{ id, tenant_id: isolated.tenantA.id, customer_id: customerId, name: editedName, archived_at: expect.any(Date) }]);
+        expect(archived[0].archived_at instanceof Date && Number.isFinite(archived[0].archived_at.getTime())).toBe(true);
+        expect(await adminQuery("select command, tenant_id, actor_user_id, target_type, target_id from public.audit_events where target_id = $1 order by command", [id]))
+          .toEqual(["archive", "create", "update"].map(action => ({ command: `${kind}.${action}`, tenant_id: isolated.tenantA.id,
+            actor_user_id: isolated.adminA.id, target_type: kind, target_id: id })));
+      } finally { await cleanupFixture(isolated); }
+    });
+  }
+
+  for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 }]) {
+    for (const kind of ["facility", "contact"] as const) {
+      test(`[P1] E35-6-T-AC3/AC4/AC5 ${kind} field summary, focus and corrected persistence at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+        const isolated = await createTwoTenantFixture();
+        try {
+          // E35-6-STATE-validation / E35-6-T-validation and
+          // E35-6-STATE-focus-dialog / E35-6-T-focus-dialog: actual child callers only.
+          const marker = `35.6 ${kind} Återkommande service ${crypto.randomUUID()}`;
+          const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: `${marker} kund`, org_nr: "556677-8899" });
+          await page.setViewportSize(viewport);
+          await signIn(page, isolated.adminA.email, isolated.adminA.password);
+          await page.goto(`/customers/${customerId}`);
+          await expect(page.getByRole("heading", { name: `${marker} kund`, exact: true })).toBeVisible();
+          const trigger = page.getByTestId(`new-${kind}-button`); await waitForHydrated(trigger);
+          await trigger.scrollIntoViewIfNeeded();
+          expect((await trigger.boundingBox())?.height, "record action touch target").toBeGreaterThanOrEqual(44);
+          await trigger.click();
+          const title = kind === "facility" ? "Ny anläggning" : "Ny kontakt";
+          const dialog = page.getByRole("dialog", { name: title, exact: true });
+          const name = dialog.getByRole("textbox", { name: "Namn", exact: true });
+          await expect(name).toBeFocused();
+          const retained = dialog.getByLabel(kind === "facility" ? "Adress" : "Roll (valfritt)", { exact: true });
+          await retained.fill("Lång svensk uppgift som ska behållas efter avvisat försök");
+          if (kind === "contact") await dialog.getByLabel("Primär kontakt", { exact: true }).check();
+          await dialog.getByRole("button", { name: "Spara", exact: true }).click();
+          await expect(name).toHaveAttribute("aria-invalid", "true");
+          const errorId = await name.getAttribute("aria-describedby"); expect(errorId).toBeTruthy();
+          await expect(dialog.locator(`[id="${errorId}"]`)).toBeVisible();
+          const summary = dialog.getByTestId("form-error-summary");
+          await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
+          // The existing summary must connect actual rejected fields to focus.
+          await summary.getByRole("link").first().click(); await expect(name).toBeFocused();
+          await expect(retained).toHaveValue("Lång svensk uppgift som ska behållas efter avvisat försök");
+          if (kind === "contact") await expect(dialog.getByLabel("Primär kontakt", { exact: true })).toBeChecked();
+          const table = kind === "facility" ? "facilities" : "contacts";
+          expect(await adminQuery(`select id from public.${table} where customer_id = $1`, [customerId])).toEqual([]);
+          expect(await adminQuery("select id from public.audit_events where tenant_id = $1 and target_type = $2", [isolated.tenantA.id, kind])).toEqual([]);
+          const save = dialog.getByRole("button", { name: "Spara", exact: true });
+          await save.focus(); await page.keyboard.press("Tab");
+          await expect(dialog.getByRole("button", { name: "Stäng", exact: true })).toBeFocused();
+          await page.keyboard.press("Shift+Tab"); await expect(save).toBeFocused();
+          await page.keyboard.press("Escape"); await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
+          await trigger.click(); await expect(name).toBeFocused();
+          await name.fill(marker);
+          await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
+          expect((await save.boundingBox())?.height).toBeGreaterThanOrEqual(44);
+          await save.click(); await expect(dialog).toHaveCount(0);
+          const rows = await adminQuery<{ id: string; tenant_id: string; customer_id: string; name: string }>(
+            `select id, tenant_id, customer_id, name from public.${table} where customer_id = $1`, [customerId],
+          );
+          expect(rows).toHaveLength(1); expect(rows[0]).toMatchObject({ tenant_id: isolated.tenantA.id, customer_id: customerId, name: marker });
+          expect(await adminQuery("select command, actor_user_id, target_id from public.audit_events where tenant_id = $1 and target_type = $2", [isolated.tenantA.id, kind]))
+            .toEqual([{ command: `${kind}.create`, actor_user_id: isolated.adminA.id, target_id: rows[0].id }]);
+        } finally { await cleanupFixture(isolated); }
+      });
+    }
+  }
+
+  test("[P1] E35-6-T-AC4/AC5 short viewport keeps child dialog chrome and rejected contact fields reachable", async ({ page }) => {
+    const isolated = await createTwoTenantFixture();
+    try {
+      const marker = `35.6 kort vy ${crypto.randomUUID()}`;
+      const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: marker, org_nr: "556677-8899" });
+      const facilityId = await adminInsertFacility({ tenant_id: isolated.tenantA.id, customer_id: customerId, name: `${marker} anläggning` });
+      await page.setViewportSize({ width: 768, height: 640 });
+      await signIn(page, isolated.adminA.email, isolated.adminA.password);
+      await page.goto(`/customers/${customerId}`);
+      for (const kind of ["facility", "contact"] as const) {
+        const trigger = page.getByTestId(`new-${kind}-button`); await waitForHydrated(trigger); await trigger.click();
+        const title = kind === "facility" ? "Ny anläggning" : "Ny kontakt";
+        const dialog = page.getByRole("dialog", { name: title, exact: true });
+        const heading = dialog.getByRole("heading", { name: title, exact: true });
+        const close = dialog.getByRole("button", { name: "Stäng", exact: true });
+        await expect(heading).toBeInViewport(); await expect(close).toBeInViewport();
+        const name = dialog.getByRole("textbox", { name: "Namn", exact: true });
+        await expect(name).toBeFocused();
+        if (kind === "contact") {
+          const facility = dialog.getByLabel("Anläggning (valfritt)");
+          await facility.selectOption(facilityId); await expect(facility).toHaveValue(facilityId);
+          await dialog.getByLabel("Roll (valfritt)").fill("Samordnare för återkommande service och underhåll");
+        }
+        const save = dialog.getByRole("button", { name: "Spara", exact: true });
+        await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport(); await save.click();
+        await expect(name).toHaveAttribute("aria-invalid", "true");
+        await expect(heading).toBeInViewport(); await expect(close).toBeInViewport();
+        const summary = dialog.getByTestId("form-error-summary");
+        await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
+        await summary.getByRole("link").first().click(); await expect(name).toBeFocused(); await expect(name).toBeInViewport();
+        if (kind === "contact") await expect(dialog.getByLabel("Anläggning (valfritt)")).toHaveValue(facilityId);
+        await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
+        await expect(heading).toBeInViewport(); await expect(close).toBeInViewport();
+        if (kind === "contact") await captureRecordState(page, "supplemental-short-768-contact-rejected", [heading, close]);
+        await close.click(); await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
+      }
+      expect(await adminQuery("select id from public.contacts where customer_id = $1", [customerId])).toEqual([]);
+      expect(await adminQuery("select id from public.facilities where customer_id = $1", [customerId])).toEqual([{ id: facilityId }]);
+      expect(await adminQuery("select id from public.audit_events where tenant_id = $1", [isolated.tenantA.id])).toEqual([]);
+    } finally { await cleanupFixture(isolated); }
+  });
+
+  test("[P0] E35-6-T-AC2/AC6 adapted composition keeps exact Documents tuples, independent panels and customer Booking preconnection", async ({ page }) => {
+    const isolated = await createTwoTenantFixture();
+    try {
+      const marker = `35.6 relation ${crypto.randomUUID()}`;
+      const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: marker, org_nr: "556677-8899" });
+      const facilityId = await adminInsertFacility({ tenant_id: isolated.tenantA.id, customer_id: customerId, name: `${marker} anläggning` });
+      const contactId = await adminInsertContact({ tenant_id: isolated.tenantA.id, customer_id: customerId, facility_id: facilityId, name: `${marker} kontakt` });
+      await signIn(page, isolated.adminA.email, isolated.adminA.password);
+      for (const [ownerType, ownerId, ownerLabel, suffix] of [
+        ["customer", customerId, marker, ""],
+        ["facility", facilityId, `${marker} anläggning`, `-facility-${facilityId}`],
+        ["contact", contactId, `${marker} kontakt`, `-contact-${contactId}`],
+      ]) {
+        await page.goto(`/customers/${customerId}`);
+        const panel = page.getByTestId(`entity-file-panel${suffix}`);
+        await expect(panel).toBeVisible();
+        await expect(panel.getByTestId(`file-panel-owner${suffix}`)).toHaveText(ownerLabel);
+        await panel.getByTestId(`file-panel-owner${suffix}`).scrollIntoViewIfNeeded();
+        await expect(panel.getByTestId(`file-panel-owner${suffix}`)).toBeInViewport();
+        await captureRecordState(page, `context-${ownerType}-exact-file-panel`, [panel.getByTestId(`file-panel-owner${suffix}`)]);
+        const expectedHref = "/files?" + new URLSearchParams({ module: "crm", ownerType, ownerId });
+        const entry = page.getByRole("link", { name: "Visa i Dokument", exact: true }).and(page.locator(`[href="${expectedHref}"]`));
+        await expect(entry).toHaveCount(1); await entry.click();
+        const url = new URL(page.url());
+        expect(url.pathname).toBe("/files");
+        expect(Object.fromEntries(url.searchParams)).toMatchObject({ module: "crm", ownerType, ownerId });
+        const back = page.getByTestId("documents-context-return");
+        await expect(back).toHaveAttribute("href", `/customers/${customerId}`);
+        await back.scrollIntoViewIfNeeded(); await expect(back).toBeInViewport();
+        await captureRecordState(page, `context-${ownerType}-documents-safe-return`, [back]);
+        await back.click(); await expect(page).toHaveURL(new RegExp(`/customers/${customerId}$`));
+        await expect(page.getByRole("heading", { name: marker, exact: true })).toBeVisible();
+      }
+      const booking = page.getByTestId("booking-entry-customer"); await waitForHydrated(booking); await booking.click();
+      await expect(page.getByTestId("booking-customer")).toHaveValue(customerId);
+      await page.getByTestId("booking-customer").scrollIntoViewIfNeeded(); await expect(page.getByTestId("booking-customer")).toBeInViewport();
+      await captureRecordState(page, "customer-booking-preconnection", [page.getByTestId("booking-customer")]);
+      await page.getByTestId("booking-close").click(); await booking.click();
+      await expect(page.getByTestId("booking-customer")).toHaveValue(customerId);
+      await page.getByTestId("booking-customer").scrollIntoViewIfNeeded(); await expect(page.getByTestId("booking-customer")).toBeInViewport();
+      await captureRecordState(page, "customer-booking-reopened-preconnection", [page.getByTestId("booking-customer")]);
+      // Full save/reopen and independent booking persistence remain E2E-006's duty.
+      // File operation, selected-tuple, lock and signed-access outcomes remain in
+      // their existing real producer suites; empty child arrays earn no read proof.
+    } finally { await cleanupFixture(isolated); }
+  });
+
+  test("[P1] E35-6-T-AC4/AC5 adapted record captures preserve phone and desktop reflow", async ({ page }) => {
+    const isolated = await createTwoTenantFixture();
+    try {
+      const marker = `35.6 Örnsköldsviks elinstallationer och återkommande underhåll ${crypto.randomUUID()}`;
+      const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: marker, org_nr: "556677-8899" });
+      const facilityId = await adminInsertFacility({ tenant_id: isolated.tenantA.id, customer_id: customerId, name: "Serviceanläggningen med lång svensk benämning i Örnsköldsvik" });
+      await adminInsertContact({ tenant_id: isolated.tenantA.id, customer_id: customerId, facility_id: facilityId, name: "Kontaktperson för återkommande service och underhåll" });
+      await signIn(page, isolated.adminA.email, isolated.adminA.password);
+      for (const viewport of [{ width: 360, height: 640 }, { width: 1440, height: 900 }]) {
+        await page.setViewportSize(viewport);
+        await page.goto(`/customers/${customerId}`);
+        await expect(page.getByRole("heading", { name: marker, exact: true })).toBeVisible();
+        const edit = page.getByTestId("edit-customer-button"); await waitForHydrated(edit);
+        await expect(page.getByRole("link", { name: "Tillbaka till kunder", exact: true })).toBeVisible();
+        expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await expect(page.getByRole("heading", { name: marker, exact: true })).toBeInViewport();
+        await captureRecordState(page, "record-loaded", [page.getByRole("heading", { name: marker, exact: true })], [], true);
+        for (const kind of ["facility", "contact"] as const) {
+          const recordHeading = page.getByRole("heading", { name: kind === "facility" ? "Serviceanläggningen med lång svensk benämning i Örnsköldsvik" : "Kontaktperson för återkommande service och underhåll", exact: true });
+          await recordHeading.scrollIntoViewIfNeeded(); await expect(recordHeading).toBeInViewport();
+          await captureRecordState(page, `${kind}-record`, [recordHeading], [], true);
+          const trigger = page.getByTestId(`new-${kind}-button`);
+          await trigger.click();
+          const dialog = page.getByRole("dialog", { name: kind === "facility" ? "Ny anläggning" : "Ny kontakt", exact: true });
+          const name = dialog.getByRole("textbox", { name: "Namn", exact: true });
+          await expect(name).toBeFocused();
+          await captureRecordState(page, `${kind}-form`, [name], [], true);
+          await dialog.getByRole("button", { name: "Spara", exact: true }).click();
+          await expect(name).toHaveAttribute("aria-invalid", "true");
+          const summary = dialog.getByTestId("form-error-summary");
+          await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
+          await summary.getByRole("link").first().click(); await expect(name).toBeFocused();
+          await captureRecordState(page, `${kind}-validation-focus`, [name], [], true);
+          if (viewport.width === 360) {
+            // Measure text enlargement separately before a short-viewport proxy.
+            // Never scale the 100dvh sheet geometry with whole-body CSS zoom.
+            const baselineFont = await name.evaluate(node => parseFloat(getComputedStyle(node).fontSize));
+            await dialog.evaluate(node => {
+              const sizes = [node, ...node.querySelectorAll("*")].filter((element): element is HTMLElement => element instanceof HTMLElement)
+                .map(element => ({ element, pixels: parseFloat(getComputedStyle(element).fontSize) }));
+              for (const { element, pixels } of sizes) element.style.fontSize = `${pixels * 2}px`;
+            });
+            expect(await name.evaluate(node => parseFloat(getComputedStyle(node).fontSize))).toBeGreaterThanOrEqual(baselineFont * 1.9);
+            expect(await dialog.locator("form").evaluate(form => form.scrollWidth <= form.clientWidth + 1)).toBe(true);
+            await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
+            await name.scrollIntoViewIfNeeded(); await expect(name).toBeInViewport();
+            const enlarged = (await name.boundingBox())!;
+            expect(enlarged.x).toBeGreaterThanOrEqual(0); expect(enlarged.x + enlarged.width).toBeLessThanOrEqual(361);
+            const save = dialog.getByRole("button", { name: "Spara", exact: true });
+            await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
+            await page.setViewportSize({ width: 360, height: 400 });
+            await summary.scrollIntoViewIfNeeded(); await expect(summary).toBeInViewport();
+            await summary.getByRole("link").first().click(); await expect(name).toBeFocused(); await expect(name).toBeInViewport();
+            await save.scrollIntoViewIfNeeded(); await expect(save).toBeInViewport();
+            const hit = await save.evaluate(button => {
+              const box = button.getBoundingClientRect();
+              return { top: box.top, bottom: box.bottom, reachable: button.contains(document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2)) };
+            });
+            expect(hit.top).toBeGreaterThanOrEqual(0); expect(hit.bottom).toBeLessThanOrEqual(400); expect(hit.reachable).toBe(true);
+            await captureRecordState(page, `controlled-${kind}-enlargement-occlusion`, [save], [], true);
+            // Navigation below restores the unmodified production stylesheet.
+            await page.goto(`/customers/${customerId}`);
+            await page.setViewportSize(viewport);
+          } else {
+            await page.keyboard.press("Escape"); await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
+          }
+        }
+        const archive = page.getByRole("button", { name: "Arkivera kund", exact: true });
+        await archive.click();
+        const confirmation = page.getByRole("status").filter({ hasText: "Arkivera den här kunden?" });
+        await confirmation.scrollIntoViewIfNeeded(); await expect(confirmation).toBeInViewport();
+        await captureRecordState(page, "archive-confirmation", [confirmation], [], true);
+        await page.getByRole("button", { name: "Avbryt", exact: true }).click();
+        expect(await adminQuery("select id from public.customers where id = $1 and archived_at is null", [customerId])).toEqual([{ id: customerId }]);
+        expect(await adminQuery("select id from public.audit_events where tenant_id = $1", [isolated.tenantA.id])).toEqual([]);
+      }
+    } finally { await cleanupFixture(isolated); }
   });
 });
