@@ -12,6 +12,38 @@ generic state-update rule, workflow fingerprint path, product dependency or
 product schema. The additive audit table belongs to the local coordination
 SQLite store.
 
+## Fixed successor amendment — 2026-11-06
+
+The once-only target is the user-appointed Coordinator
+`01a1afde-34b5-7bb2-976e-de71b7f6a94c`. It replaces the superseded tool target
+`01a1a644-140e-7f83-bbf3-045a642e7ee1`, the outgoing manual Coordinator.
+The original native owner remains `01a1160d-b5b1-7623-a8e8-54ef3dc537ed`.
+There is no caller-selected successor field or second succession. Do not spend
+the one operation on the outgoing Coordinator as a workaround. Supported user
+appointment and session metadata establish the intended identity; private JSON
+assertions alone neither authenticate an actor nor transfer native ownership.
+
+The owner approved this four-file local amendment in a separate independent
+Git repository with its own metadata, objects, index and refs, no alternates,
+hardlinks, shared hooks, remotes, credential configuration or copied native store.
+The replacement local author is explicitly allocated; the original author's
+allocation and attribution remain history, with current stopped/queued custody
+**unresolved**. The owner accepted that risk only for this isolated local work.
+Protected refs/raw pins are checked at phase boundaries; old-author return,
+competing writes or drift stop work and preserve both copies. Hash checks and
+advisory locks do not fence arbitrary host writes or prove fresh live custody.
+
+Use an isolated LF tooling copy whose actual raw bytes equal its reviewed Git
+blob bytes. Both the running-file check and the exact tool-revision qualification
+bind the same `tool_sha256`. The retained CRLF tool's raw digest `d2f6365f…`
+differs from its original canonical Git digest `660a4798…`; that representation
+fails closed. Do not normalize hashes in the validator, rewrite retained
+checkouts, or reuse either old digest to qualify these amended bytes. Verified
+retained dependencies are read-only reuse only; no installation or rebuild.
+
+This local amendment and synthetic qualification grant no live operation,
+publication, CI, runtime or product release. All live prerequisites below remain.
+
 ## Qualification and trust
 
 Do not use a fixture request for live work. Synthetic fixture provenance is
@@ -238,3 +270,28 @@ The fixture's local `core.longpaths=true` accommodates the deep Windows tooling
 worktree and changes no host/global Git configuration. Hosted Ubuntu uses the
 existing test:unit route; do not claim hosted Windows evidence without its
 separately integrated route. The author spec records actual counts and gaps.
+
+### Local amendment evidence — 2026-11-06
+
+Root's one approved static set passed all eight native commands in 73.222s;
+the one complete focused-file run exited naturally with native0 in 2053.638s:
+60 tests passed, 0 failed/skipped/cancelled/todo, comprising 27 top-level and 33
+nested nodes. These are actual local Windows synthetic fixtures on the frozen
+amended tool/test bytes, not hosted Windows or live adoption qualification.
+Node 22.23.2, Python 3.14.7/SQLite 3.50.4 and Git 2.55.0.windows.3 were recorded.
+The tested raw LF tool digest is
+`2233e178e2d3aa5186b737d59c9b992c742e42ac5e6083e84f5b67a0b770d754`.
+
+Root retained complete TAP, native exits/configuration and 121 matching final
+conservation checks. Independent High changed-source review found no introduced
+defect; its final local-evidence/prose verdict remains pending at this author
+handoff. The static set's18-reference Suggested Review Order check passed on
+the tested spec before this prose-only update. It was not rerun afterward;
+final references/evidence require the bounded High manual delta audit. Both
+local budgets are spent, with no retry or source-fix epoch. No executable or
+test bytes changed after qualification. Guard Stop was accepted with
+`stop_requested`, `verified=false`; it proves no global/descendant shutdown.
+The focused capture parent's exit was not separately observed; the actual Node
+exit0 and complete TAP are the native evidence. All existing hosted,
+current-tool-revision, live custody/approval, runtime,
+publication and product gates remain separate and held.

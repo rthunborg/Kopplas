@@ -52,6 +52,92 @@ is explicitly distinct from live authority.
 
 </frozen-after-approval>
 
+## Approved local successor amendment — 2026-11-06
+
+The owner approved the exact four-file amendment and the separately reviewed
+local author handoff: fixed `NEW` becomes appointed Coordinator
+`01a1afde-34b5-7bb2-976e-de71b7f6a94c`. Original `OLD`, run/story/worker/producer,
+request shape, raw-byte checks, audit uniqueness, CAS, replay and all live gates
+remain unchanged. The superseded `NEW=01a1a644-140e-7f83-bbf3-045a642e7ee1`
+is retained as outgoing identity, never an intermediate adoption target.
+
+Current amendment author: `/root/binding_disposition`, gpt-6.1-sol High, under
+appointed Coordinator `01a1afde-34b5-7bb2-976e-de71b7f6a94c`. The original
+implementation and its verification below remain attributed to historical
+`/root/cold_adoption_author`; no old allocation or native claim was transferred.
+Its current stopped/queued custody is unresolved. Owner acceptance applies only
+to this additive isolated local amendment, not fresh live custody.
+
+Root created the independent LF repository on
+`codex/coordinator-successor-binding-2026-11-06` at exact source
+`189fe04ea4fc176864f9f039abc940533069959c`, tree
+`6c8365d58d009eb1958f2d602a3427f2203fb8dd`. It shares no Git metadata/objects/
+refs/index/hooks with retained checkouts and has no remotes, credential config
+or copied native store. Verified CWT dependencies are reused read-only; no
+install/rebuild or PRIMARY dependencies. Protected raw pins/refs are rechecked
+at finite phase boundaries. Old-author return, competing writes or drift stops
+work and preserves both copies; these checks do not fence arbitrary host writes.
+
+Given the exact synthetic request, validation must name this successor and the
+original owner with writes0/admittedfalse/blocked generation1. Given outgoing
+or another identity in custody, validation must refuse without physical mutation;
+a proposed caller successor key must also refuse. Successful synthetic adoption
+must conserve original ownership history, all unchanged claim/plan/native rows,
+worker/product/publication bytes and once-only/non-admitting behavior.
+
+Only one complete final frozen focused-file run <=3600s and one static set
+<=900s were approved, with zero source-fix epochs after frozen failure. Root
+collected both once after the freeze gate; actual local outcomes follow.
+No development-complete or release claim is made. Hosted
+Ubuntu/Windows, provider publication, native/live/runtime and both products stay
+held. Exact private allocation, render, source hashes and commands are retained
+in the Coordinator's `local-binding-qualification` evidence. Historical results
+below belong to their original source epochs and do not qualify this amendment.
+
+### Amendment local qualification evidence
+
+Root bound both actual invocations to frozen receipt
+`e7ece46c28a9924ff0c34d9649a29bd51e3e5b0af05de9d176a8a4a7340d5dc1`
+on source 189fe/tree6c8365. The raw LF tool
+`2233e178e2d3aa5186b737d59c9b992c742e42ac5e6083e84f5b67a0b770d754`
+and test
+`4a3794d351d2b51225224d042ce1615b00aea4c71e41a2b546c303d85f2ca8a5`
+remain byte-identical after qualification. No commit or qualified tool_revision
+exists for the uncommitted amendment.
+
+| Actual local observation | Native outcome | Scope/evidence |
+| --- | --- | --- |
+| Single static set | Eight NATURAL_EXIT/native0 commands; 73.222s<900s | Toolchain capture, typecheck with no incremental cache, focused ESLint, Python AST, review-order checker and selected diff check; `static-result.json` and eight raw logs retained. |
+| Single whole focused file | NATURAL_EXIT/native0; 2053.638s<3600s; 60 passed, 0 failed/skipped/cancelled/todo | Complete `focused-command-0.log` TAP has 27 top-level/33 nested nodes; `focused-result.json` retains actual invocation and terminal counts. |
+| Post-focused conservation | 121 checks matched, 0 failed | Root `phase-after-focused.json` binds exact frozen four files, protected CWT/EWT/OWT/PRIMARY and 66-worktree signatures, private evidence, isolation and retained 11 dependency checks. It is not fresh actor custody or a dirty-content census. |
+
+Actual toolchain: Node 22.23.2, Python 3.14.7/SQLite 3.50.4,
+Git 2.55.0.windows.3. Fixtures executed real local Git/Python/SQLite/unchanged
+helper operations under the isolated synthetic-fixture root. Fixed-successor
+positive/negative assertions and retained journal/CAS/race/kill/refusal/
+conservation families all ran; unsupported extra permutations and live/hosted
+authority were not fabricated. Native results, configs and complete raw logs
+remain separate from wrapper/lifecycle receipts. Static wrapper exit0 was
+observed; the focused capture parent's exit was not separately observed. The
+actual Node natural exit0 and complete TAP supply focused native evidence.
+
+Both selected local budgets are 1/1 spent; reruns0 and source-fix epochs0.
+The independently routed High source review reports no introduced defect;
+final local-evidence and this prose-only delta audit remain pending. The
+review-order checker passed sectionPresent/18 references/errors[] on tested
+spec 204bc037; log SHA256
+`36dc7dbc7b65fd6fa21217435a64baaabfc9396ce63849bf70e2eb1088b1629c`.
+This final spec/contract evidence update happened afterward, with unchanged
+source/test/reference anchors; no checker or executable check was rerun.
+Final references require the bounded independent High manual audit.
+
+Root's fixture resource Stop returned native0/ok/stop_requested/verifiedfalse.
+This is an accepted lifecycle request, not verified global/descendant shutdown;
+no shutdown polling or cleanup was performed by this author. Original-author
+custody remains unresolved and owner-accepted for this local copy only. Fresh
+exact live custody, current-main/tool qualification, approvals, hosted checks,
+publication, runtime and both product releases remain unearned/held.
+
 ## Code Map
 
 - `scripts/maintenance/adopt_stopped_coordinator_context.py` — new standalone CLI outside workflow fingerprint paths.
@@ -74,6 +160,15 @@ Given success, when the unchanged helper receives old-owner packets, then it ref
 
 ## Spec Change Log
 
+- 2026-11-06: Owner-approved fixed-successor and local author-handoff amendment
+  changes only the tool's `NEW` constant, focused expected/refusal/conservation
+  assertions, this spec and the cold contract. Preserve the frozen approval,
+  original author attribution, old source epochs, native OLD and once-only gates.
+  Independent repository and owner-accepted unresolved prior-author custody
+  replace the unavailable-author ACK for this local allocation only. The single
+  local qualification passed once on its frozen bytes. Subsequent changes only
+  record actual evidence in this spec/contract; independent final High delta
+  review remains pending, with no test/check rerun or new executable epoch.
 - 2026-11-04: Root clarified the addendum's future-main revalidation clause:
   4411 is the assessment ancestor, while the exact reviewed post-merge main must
   contain the qualified tool and retain F/source/policy identities. A permanent
@@ -150,9 +245,23 @@ release-ready claims remain withheld pending the named independent/hosted gates.
 
 ## Suggested Review Order
 
-Author: the sole Sol High implementation/fix delegate for this allocation.
-Refreshed against the final uncommitted four-file change on baseline
-`4411cdc412f01ee023440525ff1e17bb824ef383`.
+Amendment author: `/root/binding_disposition`, gpt-6.1-sol High.
+Refreshed for the uncommitted four-file amendment at source
+`189fe04ea4fc176864f9f039abc940533069959c`; original baseline/author/evidence
+remain recorded above. Root's one static set and focused 60/60 run passed on
+the tested freeze. This final evidence prose is later; 18 reference anchors
+passed before it, without a later checker rerun. Final High delta audit remains
+pending; source inspection and actual execution are distinguished below.
+
+### Bind one appointed successor without transferring historical authority
+
+Only the fixed target changes. Custody for the outgoing or another actor must
+refuse, while successful fixtures retain original OLD/history and blocked state.
+Local author isolation never discharges the separate live-custody requirement.
+
+- `scripts/maintenance/adopt_stopped_coordinator_context.py:25` — `NEW`: binds the appointed successor.
+- `docs/process/stopped-coordinator-context-adoption.md:15` — `## Fixed successor amendment`: explains identity and isolated local authority.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:131` — `V01 V02 V12 P01`: checks identity, physical RO and fixed-target refusals.
 
 ### Exact operator authority before any mutation
 
@@ -163,7 +272,7 @@ are not authentication and the frozen exclusion register is not current clearanc
 - `scripts/maintenance/adopt_stopped_coordinator_context.py:759` — `def main`: separates read-only validation from explicit mutation/recovery.
 - `scripts/maintenance/adopt_stopped_coordinator_context.py:325` — `def validate`: checks exact target, paths, ancestry and pins.
 - `scripts/maintenance/adopt_stopped_coordinator_context.py:458` — `def authorities`: binds approval, review, current custody and qualifications.
-- `docs/process/stopped-coordinator-context-adoption.md:15` — `## Qualification and trust`: states live prerequisites and trust limits.
+- `docs/process/stopped-coordinator-context-adoption.md:47` — `## Qualification and trust`: states live prerequisites and trust limits.
 
 ### Preserve product bytes and historical publication
 
@@ -173,7 +282,7 @@ state and ancestry remain history rather than relabelled current proof.
 
 - `scripts/maintenance/adopt_stopped_coordinator_context.py:289` — `def native`: invokes unchanged pinned validators in a real subprocess.
 - `scripts/maintenance/adopt_stopped_coordinator_context.py:317` — `def reassessed`: replaces only the publication-base SHA bytes.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:182` — conservation and old-helper packet assertions.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:199` — `V03 V05 V06 V07 V13`: conserves history and checks old-helper packets.
 
 ### Keep Git and SQLite failure boundaries explicit
 
@@ -183,21 +292,27 @@ committed ownership, and unexpected audit insertion effects roll back together.
 
 - `scripts/maintenance/adopt_stopped_coordinator_context.py:592` — `def recover_hot_store`: confines hot recovery to exact native-intent.
 - `scripts/maintenance/adopt_stopped_coordinator_context.py:659` — `def recover`: journals stages and checks native conservation.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:386` — real hot rollback journal and physical RO/recovery assertions.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:399` — real prevalidated-helper heartbeat race.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:407` — `V04 P06`: checks hot rollback journal and physical RO/recovery.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:420` — `V08 P07`: checks the real prevalidated-helper heartbeat race.
 
 ### Check evidence by source epoch and remaining gates
 
-The failed full run, successful targeted epochs and final controls remain
-separate. Current local type/lint pass does not supply the external adapter,
-same-PR provider phase, hosted Windows or live-use approval.
+The failed full run, successful targeted epochs and original final controls
+remain separate historical evidence. Root's actual amended-byte local static
+and 60-test results are recorded above; final High delta review remains pending.
+No local result supplies the external adapter, same-PR provider phase, hosted
+Windows or live-use approval.
 
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:438` — late main/clock checks inside native custody.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:461` — PREPARED stale-state refusal before Git stages.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:478` — post-INSERT side-effect rollback and exact recovery.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:502` — unchanged-helper old-base/branch/pin refusal after actual adoption.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:459` — late main/clock checks inside native custody.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:482` — `R1 D2`: refuses PREPARED stale-state before Git stages.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:499` — `R1 conservation`: rolls back post-INSERT side effects.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:523` — `V07 P05 P09`: checks unchanged-helper old-base/branch/pin refusal.
 
-Evidence: the Verification table and private hash manifest above. Synthetic
-approval/provider/custody records are explicitly restricted to disposable
+Evidence: original Verification table and source-epoch manifest above; current
+amendment freeze and exact approved commands are retained separately. The Root
+collector's single static set/native0 and complete 60/60 TAP/native0 passed on
+that freeze; no executable/test changes or reruns followed. This final prose
+requires only the independent High evidence/reference delta audit.
+Synthetic approval/provider/custody records are explicitly restricted to disposable
 fixture repositories. The author performed zero live-store operations, retained
 checkout writes, resource launches, CI/provider actions, commits or pushes.
