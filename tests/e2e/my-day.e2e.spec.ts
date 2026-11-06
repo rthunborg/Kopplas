@@ -404,7 +404,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
           await expect(bookingCard(page, f.missingBooking)).toContainText(changedDescription);
           expect(gestures).toHaveLength(2);
         } finally { page.off("request", observeGestureRead); }
-      } finally { releaseOld.resolve(undefined); releaseQueuedFailure.resolve(undefined); await page.unroute("**/*", handler); }
+      } finally { releaseOld.resolve(undefined); releaseQueuedFailure.resolve(undefined); await page.unrouteAll({ behavior: "wait" }); }
       } finally {
         try { await touch.send("Emulation.setTouchEmulationEnabled", { enabled: false }); }
         finally { await touch.detach(); }

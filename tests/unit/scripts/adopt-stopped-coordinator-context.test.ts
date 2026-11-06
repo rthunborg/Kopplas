@@ -103,7 +103,8 @@ function native(f: Fixture, operation: string, owner: string, more: string[] = [
     operation, "--run", "e35-6-20261102", "--owner", owner, ...more], { cwd: sourceRoot, encoding: "utf8", timeout: 180000 });
   return r;
 }
-const old = "01a1160d-b5b1-7623-a8e8-54ef3dc537ed", successor = "01a1a644-140e-7f83-bbf3-045a642e7ee1";
+const old = "01a1160d-b5b1-7623-a8e8-54ef3dc537ed", successor = "01a1afde-34b5-7bb2-976e-de71b7f6a94c";
+const outgoing = "01a1a644-140e-7f83-bbf3-045a642e7ee1";
 const worker = "01a19c88-3c36-76f1-918b-88a00e4d222f", story = "spec-design-35-6-35-6";
 function state(f: Fixture) {
   return py(`store=pathlib.Path(sys.argv[2])
@@ -132,6 +133,8 @@ test("V01 V02 V12 P01: physical RO validation, exact native refusals and strict 
   await t.test("valid dry-run creates no schema, file, lock, journal or native mutation", () => {
     const before = disk(f.root); const r = cli(f); assert.equal(r.code, 0, r.stdout);
     assert.equal(r.result.writes, 0); assert.equal(r.result.admitted, false); assert.deepEqual(disk(f.root), before);
+    assert.equal(r.result.old_owner, old); assert.equal(r.result.successor, successor);
+    assert.equal(r.result.worker, worker); assert.equal(r.result.generation, 1); assert.equal(r.result.state, "blocked");
     assert.equal(state(f).audit.length, 0);
     assert.equal(py(`with m.database(pathlib.Path(sys.argv[2])) as db:
  try: db.execute('CREATE TABLE forbidden(value)'); value=False
@@ -160,6 +163,7 @@ print(json.dumps(True))`, [f.request, f.store]), true);
   });
   for (const [label, mutate] of [
     ["unknown field", (q: Request) => { q.extra = "SENTINEL-SECRET"; }],
+    ["caller-selected successor", (q: Request) => { q.proposal.successor = outgoing; }],
     ["wrong type", (q: Request) => { q.schema_version = true; }],
     ["wrong after hash", (q: Request) => { q.proposal.after_plan_hash = "0".repeat(64); }],
     ["changed approval digest", (q: Request) => { q.owner_approval.proposal_digest = "0".repeat(64); }],
@@ -167,6 +171,19 @@ print(json.dumps(True))`, [f.request, f.store]), true);
   ] as const) await t.test(label, () => {
     const file = change(f, mutate); const before = state(f); const r = cli(f, "validate", file);
     assert.equal(r.code, 2); assert.doesNotMatch(r.stdout + r.stderr, /SENTINEL-SECRET|C:\\|\/home\//); assert.deepEqual(state(f), before);
+    if (label === "caller-selected successor") assert.equal(r.result.reason, "REQUEST_SHAPE");
+  });
+  for (const target of [outgoing, "synthetic-unappointed-successor"]) await t.test(`custody cannot substitute fixed successor ${target}`, () => {
+    const file = py(`q=m.decode(m.read(sys.argv[2])); private=pathlib.Path(q['proposal']['private_root'])
+custody=m.evidence(q['proposal']['custody'],private); custody['coordinator']=sys.argv[3]
+custody['writers_stopped']=[m.OLD,sys.argv[3],m.WORKER,m.PRODUCER]
+e=private/'changed-custody.json'; e.write_text(m.canonical(custody),encoding='utf-8')
+q['proposal']['custody']=dict(path=str(e),sha256=m.rawhash(e.read_bytes()))
+request=private/'changed-custody-request.json'; request.write_text(m.canonical(q),encoding='utf-8')
+print(json.dumps(str(request)))`, [f.request, target]);
+    const physical = disk(f.root), before = state(f), r = cli(f, "validate", file);
+    assert.equal(r.code, 2); assert.equal(r.result.reason, "CUSTODY_INCOMPLETE");
+    assert.deepEqual(state(f), before); assert.deepEqual(disk(f.root), physical);
   });
   await t.test("duplicate key and missing store refuse without creation", () => {
     const file = resolve(f.private, "duplicate.json"); writeFileSync(file, '{"schema_version":1,"schema_version":1}');
@@ -192,6 +209,7 @@ test("V03 V05 V06 V07 V13 P02 P03 P04 P05 P09: one native commit, conserved Git/
     assert.deepEqual({ ...ac, base_sha: bc.base_sha }, bc); assert.equal(ac.base_sha, f.main);
     assert.deepEqual({ ...ar, owner: br.owner, plan: br.plan, plan_hash: br.plan_hash }, br);
     const bp = JSON.parse(br.plan), ap = JSON.parse(ar.plan);
+    assert.equal(br.owner, old); assert.equal(bp.coordinator, old); assert.equal(ap.coordinator, successor);
     assert.deepEqual({ ...ap, coordinator: bp.coordinator, base_sha: bp.base_sha, workflow_version: bp.workflow_version }, bp);
     assert.equal(ar.owner, successor); assert.equal(ac.generation, 1); assert.equal(ac.state, "blocked");
     assert.equal(after.snapshot.unrelated_state_digest, before.snapshot.unrelated_state_digest);
@@ -207,7 +225,7 @@ old=m.blob(repo,p['selected_checkpoint'],m.STATE); new=m.blob(repo,p['worker_can
 assert new==m.reassessed(old,p['old_base'],p['main'])
 print(json.dumps(True))`, [f.request]), true);
   });
-  await t.test("real pinned helper rejects old owner across worker and Coordinator entry paths before claim mutation", () => {
+  await t.test("real pinned helper rejects old owner entry paths and outgoing Coordinator before claim mutation", () => {
     for (const op of ["status", "heartbeat", "block", "submit", "prepare-pr-merge"]) {
       const more = op === "status" ? [] : ["--story", story];
       if (["heartbeat", "block", "submit"].includes(op)) more.push("--worker", worker, "--generation", "1");
@@ -217,6 +235,9 @@ print(json.dumps(True))`, [f.request]), true);
       const beforeCall = state(f); const r = native(f, op, old, more);
       assert.notEqual(r.status, 0, `${op}: ${r.stdout}`); assert.match(r.stdout, /Exact coordinator owner required/); assert.deepEqual(state(f), beforeCall);
     }
+    const beforeOutgoing = state(f), departed = native(f, "status", outgoing);
+    assert.notEqual(departed.status, 0); assert.match(departed.stdout, /Exact coordinator owner required/);
+    assert.deepEqual(state(f), beforeOutgoing);
     for (const more of [["--worker", "wrong", "--generation", "1"], ["--worker", worker, "--generation", "2"]]) {
       const r = native(f, "heartbeat", successor, ["--story", story, ...more]);
       assert.notEqual(r.status, 0); assert.match(r.stdout, /Stale generation or wrong worker/);

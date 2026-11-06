@@ -22,7 +22,7 @@ import uuid
 RUN = 'e35-6-20261102'
 STORY = 'spec-design-35-6-35-6'
 OLD = '01a1160d-b5b1-7623-a8e8-54ef3dc537ed'
-NEW = '01a1a644-140e-7f83-bbf3-045a642e7ee1'
+NEW = '01a1afde-34b5-7bb2-976e-de71b7f6a94c'
 WORKER = '01a19c88-3c36-76f1-918b-88a00e4d222f'
 PRODUCER = '01a19bf5-183b-7ae1-ab86-8bd5804dcb6f'
 BASE = '824bed4a92eb388db669ffb60492a7b1dd9fc038'
