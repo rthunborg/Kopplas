@@ -732,11 +732,14 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
           const response = await route.fetch();
           observation.mark("fetch-complete");
           expect(response.ok()).toBe(true);
-          expect(await response.text()).toContain(f.ownBooking);
-          const responseHeaders = response.headers();
+          const fulfillmentBody = await response.body();
+          expect(fulfillmentBody.toString("utf8")).toContain(f.ownBooking);
+          const responseHeaders = { ...response.headers() };
+          delete responseHeaders["content-encoding"];
+          delete responseHeaders["transfer-encoding"];
+          responseHeaders["content-length"] = String(fulfillmentBody.length);
           const contentLength = responseHeaders["content-length"];
           const contentEncoding = responseHeaders["content-encoding"]?.trim().toLowerCase();
-          const fulfillmentBody = await response.body();
           observation.mark("body-validated");
           const lengthMatch = contentLength !== undefined && /^[0-9]{1,20}$/.test(contentLength)
             ? BigInt(contentLength) === BigInt(fulfillmentBody.length) ? "matches" : "differs" : "unknown";
@@ -748,7 +751,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
           oldFetched.resolve(undefined);
           await releaseOld.promise;
           observation.mark("fulfill-start");
-          try { await route.fulfill({ response }); }
+          try { await route.fulfill({ response, body: fulfillmentBody, headers: responseHeaders }); }
           catch (error) { observation.mark("fulfill-failed"); throw error; }
           observation.mark("fulfill-complete");
           oldDelivered.resolve(undefined);
