@@ -753,7 +753,8 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       const expected: { held?: CdpIdentity; navigation?: CdpIdentity } = {};
       const bound = { held: false, navigation: false };
       const baseline = { mainFrame: "missing", loader: "missing", defaultContext: "missing" };
-      const listeners: { event: string; listener: (event: unknown) => void }[] = [];
+      type CdpListenerEvent = "Network.requestWillBeSent" | "Network.responseReceived" | "Network.loadingFinished" | "Network.loadingFailed" | "Page.frameNavigated" | "Page.frameDetached" | "Runtime.executionContextCreated" | "Runtime.executionContextDestroyed" | "Runtime.executionContextsCleared";
+      const listeners: { event: CdpListenerEvent; listener: (event: unknown) => void }[] = [];
       function incomplete(value: Reason) { if (reason === "none") reason = value; }
       function mark(event: CdpEvent["event"], subject: CdpEvent["subject"], fields: Partial<CdpEvent> = {}, timestamp?: number, candidate: CdpCandidate | null = null) {
         try {
@@ -792,7 +793,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       }
       function resource(value: unknown): CdpEvent["type"] { return value === "Fetch" || value === "XHR" || value === "Document" ? value : "Other"; }
       function loaderState(value: unknown): CdpEvent["loader"] { return typeof value === "string" && value && initialLoader ? value === initialLoader ? "same" : "changed" : "unknown"; }
-      function listen<T>(event: string, handle: (value: T) => void) {
+      function listen<T>(event: CdpListenerEvent, handle: (value: T) => void) {
         const listener = (value: unknown) => { try { handle(value as T); } catch { incomplete("protocol"); } };
         session!.on(event, listener); listeners.push({ event, listener });
       }
