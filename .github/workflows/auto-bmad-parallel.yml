@@ -650,23 +650,84 @@ jobs:
           const exact = (value, keys) => fact(value && typeof value === 'object' && !Array.isArray(value)
             && Object.keys(value).sort().join('|') === [...keys].sort().join('|'));
 
+          const REFUSAL = Symbol('E09_FIXED_REFUSAL');
+          const STAGES = new Set(['A01','A02','A03','A04','A05','A06','A07','A08','A09','A10','A11','A12','I01','I02','I03','I04','S01','S02','S03','S04','S05','S06','N01','N02','N03','N04','N05','N06','N07','N08','N09',...Array.from({length:30},(_,index)=>`C${String(index+1).padStart(2,'0')}`)]);
+          function stageFact(value, stage) { if (!value) throw { marker:REFUSAL, stage }; }
+          function stageExact(value, keys, stage) {
+            stageFact(value && typeof value === 'object' && !Array.isArray(value)
+              && Object.keys(value).sort().join('|') === [...keys].sort().join('|')
+              && [Object.prototype,null].includes(Object.getPrototypeOf(value)),stage);
+          }
+          export function safeIdentity(value) {
+            stageExact(value,['version','repeatIndex','attempt'],'I01');
+            stageFact(value.version===1,'I02');
+            stageFact(Number.isInteger(value.repeatIndex)&&[0,1,2].includes(value.repeatIndex),'I03');
+            stageFact(Number.isInteger(value.attempt)&&value.attempt===0,'I04');
+            return {version:1,repeatIndex:value.repeatIndex,attempt:0};
+          }
+          export function safeCaptureStatus(value) {
+            stageExact(value,['version','repeatIndex','attempt','identityAttachment','setup','projection','cdpAttachment','captureState','captureReason'],'S01');
+            stageFact(value.version===1,'S02');
+            stageFact((value.repeatIndex===null||Number.isInteger(value.repeatIndex)&&[0,1,2].includes(value.repeatIndex))
+              && (value.attempt===null||Number.isInteger(value.attempt)&&value.attempt===0),'S03');
+            stageFact(['not-attempted','invalid','attached','failed'].includes(value.identityAttachment)
+              && ['not-attempted','complete','incomplete','failed'].includes(value.setup)
+              && ['not-attempted','complete','failed'].includes(value.projection)
+              && ['not-attempted','attached','failed'].includes(value.cdpAttachment),'S04');
+            const reasons=['none','disabled','baseline','missing-context','missing-match','ambiguous','redirect-rebind','clock','overflow','record','protocol','detach','missing-event'];
+            stageFact(value.captureState===null ? value.captureReason===null
+              : value.captureState==='COMPLETE' ? value.captureReason==='none'
+              : value.captureState==='INCOMPLETE' && reasons.includes(value.captureReason) && value.captureReason!=='none','S05');
+            stageFact((!['attached','failed'].includes(value.identityAttachment)||value.repeatIndex!==null&&value.attempt!==null)
+              && (value.identityAttachment!=='invalid'||value.repeatIndex===null||value.attempt===null)
+              && (value.projection==='complete' ? value.captureState!==null : value.captureState===null&&value.captureReason===null&&value.cdpAttachment==='not-attempted')
+              && (value.cdpAttachment==='not-attempted'||value.projection==='complete')
+              && (value.captureState!=='COMPLETE'||value.setup==='complete'),'S06');
+            return {version:1,repeatIndex:value.repeatIndex,attempt:value.attempt,identityAttachment:value.identityAttachment,
+              setup:value.setup,projection:value.projection,cdpAttachment:value.cdpAttachment,captureState:value.captureState,captureReason:value.captureReason};
+          }
+          export function readChannel(result,name,limit,decode) {
+            try {
+              stageFact(Array.isArray(result.attachments),'A01'); stageFact(result.attachments.length<=16,'A02');
+              const matches=result.attachments.filter(item=>item.name===name);
+              if(matches.length===0) return {value:null,outcome:{state:'MISSING',stage:'A03'}};
+              stageFact(matches.length===1,'A04'); const attachment=matches[0];
+              stageFact(attachment.contentType==='application/json','A05');
+              stageFact(typeof attachment.body==='string'&&attachment.path===undefined,'A06');
+              stageFact(attachment.body.length<=Math.ceil(limit/3)*4,'A07');
+              stageFact(/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(attachment.body),'A08');
+              const bytes=Buffer.from(attachment.body,'base64'); stageFact(bytes.length<=limit,'A09');
+              stageFact(bytes.toString('base64')===attachment.body,'A10');
+              let value; try { value=JSON.parse(bytes.toString('utf8')); } catch { throw {marker:REFUSAL,stage:'A11'}; }
+              return {value:decode(value),outcome:{state:'ACCEPTED',stage:'NONE'}};
+            } catch(error) {
+              const stage=error&&error.marker===REFUSAL&&STAGES.has(error.stage)&&error.stage!=='A03'?error.stage:'A12';
+              return {value:null,outcome:{state:'REFUSED',stage}};
+            }
+          }
+          export function identityAgreement(identity,cdp,status,duplicate) {
+            const mismatches=(left,right)=>left&&right&&['repeatIndex','attempt'].some(key=>left[key]!==null&&right[key]!==null&&left[key]!==right[key]);
+            if(duplicate||mismatches(identity,cdp)||mismatches(status,identity)||mismatches(status,cdp))return 'conflict';
+            return identity?cdp?'agree':'identity-only':cdp?'cdp-only':'neither';
+          }
+
           export function safeObservation(value, attempt) {
-            exact(value,['version','attempt','state','reason','events']);
-            fact(value.version === 1 && value.attempt === attempt && ['COMPLETE','INCOMPLETE'].includes(value.state));
-            fact(['none','clock','overflow','record','retry','missing'].includes(value.reason));
-            fact(Array.isArray(value.events) && value.events.length <= 32 && Buffer.byteLength(JSON.stringify(value)) <= 4096);
+            stageExact(value,['version','attempt','state','reason','events'],'N01');
+            stageFact(value.version === 1 && value.attempt === attempt && ['COMPLETE','INCOMPLETE'].includes(value.state),'N02');
+            stageFact(['none','clock','overflow','record','retry','missing'].includes(value.reason),'N03');
+            stageFact(Array.isArray(value.events) && value.events.length <= 32 && Buffer.byteLength(JSON.stringify(value)) <= 4096,'N04');
             let previous = 0;
             for (const [index,row] of value.events.entries()) {
-              exact(row,['seq','ms','event','phase','category']);
-              fact(row.seq === index + 1 && Number.isSafeInteger(row.ms) && row.ms >= previous && row.ms <= 2700000);
-              fact(EVENTS.includes(row.event) && ['none','before-release','after-release'].includes(row.phase)
-                && ['none','aborted','content-length','decoding','connection','other'].includes(row.category));
+              stageExact(row,['seq','ms','event','phase','category'],'N05');
+              stageFact(row.seq === index + 1 && Number.isSafeInteger(row.ms) && row.ms >= previous && row.ms <= 2700000,'N06');
+              stageFact(EVENTS.includes(row.event) && ['none','before-release','after-release'].includes(row.phase)
+                && ['none','aborted','content-length','decoding','connection','other'].includes(row.category),'N07');
               previous = row.ms;
             }
-            if (value.state === 'COMPLETE') fact(value.reason === 'none'
+            if (value.state === 'COMPLETE') stageFact(value.reason === 'none'
               && REQUIRED.every(event => value.events.some(row => row.event === event))
-              && value.events.some(row => row.event === 'request-finished' || row.event === 'request-failed'));
-            else fact(value.reason !== 'none');
+              && value.events.some(row => row.event === 'request-finished' || row.event === 'request-failed'),'N08');
+            else stageFact(value.reason !== 'none','N09');
             // Reconstruct fixed keys only, never propagate reporter objects/prototypes.
             return {version:1,attempt,state:value.state,reason:value.reason,events:value.events.map(row =>
               ({seq:row.seq,ms:row.ms,event:row.event,phase:row.phase,category:row.category}))};
@@ -683,47 +744,47 @@ jobs:
             'context-created':['context'],'context-destroyed':['context'],'contexts-cleared':['context']};
           function cdpSafeExact(value,keys) { exact(value,keys); fact([Object.prototype,null].includes(Object.getPrototypeOf(value))); }
           export function safeCdp(value) {
-            cdpSafeExact(value,['version','repeatIndex','attempt','state','reason','selection','baseline','events']);
-            fact(value.version === 1 && [0,1,2].includes(value.repeatIndex) && value.attempt === 0);
-            fact(['COMPLETE','INCOMPLETE'].includes(value.state));
-            fact(['none','disabled','baseline','missing-context','missing-match','ambiguous','redirect-rebind','clock','overflow','record','protocol','detach','missing-event'].includes(value.reason));
-            cdpSafeExact(value.selection,['held','nextContext']); cdpSafeExact(value.baseline,['mainFrame','loader','defaultContext']);
-            for (const item of Object.values(value.selection)) fact(['unique','missing','ambiguous','redirect-rebind'].includes(item));
-            for (const item of Object.values(value.baseline)) fact(['present','missing'].includes(item));
-            fact(Array.isArray(value.events) && value.events.length <= 48 && Buffer.byteLength(JSON.stringify(value)) <= 16384);
+            stageExact(value,['version','repeatIndex','attempt','state','reason','selection','baseline','events'],'C01');
+            stageFact(value.version === 1 && [0,1,2].includes(value.repeatIndex) && value.attempt === 0,'C02');
+            stageFact(['COMPLETE','INCOMPLETE'].includes(value.state),'C03');
+            stageFact(['none','disabled','baseline','missing-context','missing-match','ambiguous','redirect-rebind','clock','overflow','record','protocol','detach','missing-event'].includes(value.reason),'C04');
+            stageExact(value.selection,['held','nextContext'],'C05'); stageExact(value.baseline,['mainFrame','loader','defaultContext'],'C06');
+            for (const item of Object.values(value.selection)) stageFact(['unique','missing','ambiguous','redirect-rebind'].includes(item),'C07');
+            for (const item of Object.values(value.baseline)) stageFact(['present','missing'].includes(item),'C08');
+            stageFact(Array.isArray(value.events) && value.events.length <= 48 && Buffer.byteLength(JSON.stringify(value)) <= 16384,'C09');
             let previous = 0; const timestamps = new Map();
             const events = value.events.map((row,index) => {
-              cdpSafeExact(row,['seq','callbackMs','cdpMs',...Object.keys(CDP_ENUMS)]);
-              fact(row.seq === index + 1 && Number.isSafeInteger(row.callbackMs) && row.callbackMs >= previous && row.callbackMs <= 2700000);
+              stageExact(row,['seq','callbackMs','cdpMs',...Object.keys(CDP_ENUMS)],'C10');
+              stageFact(row.seq === index + 1 && Number.isSafeInteger(row.callbackMs) && row.callbackMs >= previous && row.callbackMs <= 2700000,'C11');
               previous = row.callbackMs;
-              fact(row.cdpMs === null || Number.isSafeInteger(row.cdpMs) && row.cdpMs >= 0 && row.cdpMs <= 2700000);
+              stageFact(row.cdpMs === null || Number.isSafeInteger(row.cdpMs) && row.cdpMs >= 0 && row.cdpMs <= 2700000,'C12');
               const safe = {seq:row.seq,callbackMs:row.callbackMs,cdpMs:row.cdpMs};
-              for (const key of Object.keys(CDP_ENUMS)) { fact(CDP_ENUMS[key].includes(row[key])); safe[key] = row[key]; }
-              for (const key of Object.keys(CDP_ENUMS)) if (!['event','subject','phase'].includes(key) && !(CDP_ACTIVE[row.event] || []).includes(key)) fact(row[key] === 'none');
-              fact(['response','finished','failed','document-request'].includes(row.event) === (row.cdpMs !== null));
+              for (const key of Object.keys(CDP_ENUMS)) { stageFact(CDP_ENUMS[key].includes(row[key]),'C13'); safe[key] = row[key]; }
+              for (const key of Object.keys(CDP_ENUMS)) if (!['event','subject','phase'].includes(key) && !(CDP_ACTIVE[row.event] || []).includes(key)) stageFact(row[key] === 'none','C14');
+              stageFact(['response','finished','failed','document-request'].includes(row.event) === (row.cdpMs !== null),'C15');
               if (row.cdpMs !== null) {
-                fact(['response','finished','failed','document-request'].includes(row.event));
-                fact(row.cdpMs >= (timestamps.get(row.subject) ?? 0)); timestamps.set(row.subject,row.cdpMs);
+                stageFact(['response','finished','failed','document-request'].includes(row.event),'C16');
+                stageFact(row.cdpMs >= (timestamps.get(row.subject) ?? 0),'C17'); timestamps.set(row.subject,row.cdpMs);
               }
-              if (['response','finished','failed'].includes(row.event)) fact(['held','next-context'].includes(row.subject));
-              if (row.event === 'failed') fact(row.type !== 'none' && row.failure !== 'none' && row.canceled !== 'none');
-              if (row.event === 'response') fact(row.mime !== 'none' && row.http !== 'none' && row.type !== 'none' && row.redirect !== 'none' && row.loader !== 'none');
-              if (row.event === 'document-request') fact(row.subject === 'main-frame' && row.type === 'Document' && row.loader !== 'none');
-              if (row.event === 'frame-navigated') fact(row.subject === 'main-frame' && row.loader !== 'none' && row.detail !== 'none');
-              if (row.event === 'frame-detached') fact(row.subject === 'main-frame' && row.detail !== 'none');
-              if (row.event === 'context-created') fact(row.subject === 'default-context' && row.context === 'created');
-              if (row.event === 'context-destroyed') fact(row.subject === 'default-context' && row.context === 'destroyed');
-              if (row.event === 'contexts-cleared') fact(row.subject === 'default-context' && row.context === 'cleared');
-              if (row.event === 'held-bound') fact(row.subject === 'held');
-              if (row.event === 'navigation-bound') fact(row.subject === 'next-context');
+              if (['response','finished','failed'].includes(row.event)) stageFact(['held','next-context'].includes(row.subject),'C18');
+              if (row.event === 'failed') stageFact(row.type !== 'none' && row.failure !== 'none' && row.canceled !== 'none','C19');
+              if (row.event === 'response') stageFact(row.mime !== 'none' && row.http !== 'none' && row.type !== 'none' && row.redirect !== 'none' && row.loader !== 'none','C20');
+              if (row.event === 'document-request') stageFact(row.subject === 'main-frame' && row.type === 'Document' && row.loader !== 'none','C21');
+              if (row.event === 'frame-navigated') stageFact(row.subject === 'main-frame' && row.loader !== 'none' && row.detail !== 'none','C22');
+              if (row.event === 'frame-detached') stageFact(row.subject === 'main-frame' && row.detail !== 'none','C23');
+              if (row.event === 'context-created') stageFact(row.subject === 'default-context' && row.context === 'created','C24');
+              if (row.event === 'context-destroyed') stageFact(row.subject === 'default-context' && row.context === 'destroyed','C25');
+              if (row.event === 'contexts-cleared') stageFact(row.subject === 'default-context' && row.context === 'cleared','C26');
+              if (row.event === 'held-bound') stageFact(row.subject === 'held','C27');
+              if (row.event === 'navigation-bound') stageFact(row.subject === 'next-context','C28');
               return safe;
             });
-            if (value.state === 'COMPLETE') fact(value.reason === 'none'
+            if (value.state === 'COMPLETE') stageFact(value.reason === 'none'
               && Object.values(value.selection).every(item => item === 'unique') && Object.values(value.baseline).every(item => item === 'present')
               && ['baseline','held-bound','navigation-bound','release-observed','cleanup-observed','session-detached'].every(event => events.some(row => row.event === event))
               && events.filter(row => row.subject === 'held' && ['finished','failed'].includes(row.event)).length === 1
-              && events.filter(row => row.subject === 'next-context' && row.event === 'response').length === 1);
-            else fact(value.reason !== 'none');
+              && events.filter(row => row.subject === 'next-context' && row.event === 'response').length === 1,'C29');
+            else stageFact(value.reason !== 'none','C30');
             return {version:1,repeatIndex:value.repeatIndex,attempt:0,state:value.state,reason:value.reason,
               selection:{held:value.selection.held,nextContext:value.selection.nextContext},
               baseline:{mainFrame:value.baseline.mainFrame,loader:value.baseline.loader,defaultContext:value.baseline.defaultContext},events};
@@ -770,19 +831,37 @@ jobs:
               fact(result.retry === 0 && ['passed','failed','timedOut','interrupted'].includes(result.status));
               fact((test.status === 'expected') === (result.status === 'passed'));
               if (result.status === 'passed') passed++; else failed++;
-              let nodeObservation = null, cdpObservation = null;
-              try { nodeObservation = safeAttachment(result,'my-day-e09-observation-v1',4096,value => safeObservation(value,0)); } catch { complete = false; }
-              try { cdpObservation = safeAttachment(result,'my-day-e09-cdp-v1',16384,safeCdp); } catch { complete = false; }
+              const node = readChannel(result,'my-day-e09-observation-v1',4096,value=>safeObservation(value,0));
+              const cdp = readChannel(result,'my-day-e09-cdp-v1',16384,safeCdp);
+              const identity = readChannel(result,'my-day-e09-identity-v1',256,safeIdentity);
+              const captureStatus = readChannel(result,'my-day-e09-capture-status-v1',1024,safeCaptureStatus);
+              const nodeObservation=node.value, cdpObservation=cdp.value;
               const repeatIndex = cdpObservation?.repeatIndex ?? null;
               if (repeatIndex !== null) { fact(!indices.has(repeatIndex)); indices.add(repeatIndex); }
               complete &&= nodeObservation?.state === 'COMPLETE' && cdpObservation?.state === 'COMPLETE';
-              // JSON reporter has no repeatEachIndex: null means unbound, never array-order inference.
-              fixtures.push({repeatIndex,attempt:0,status:result.status,nodeObservation,cdpObservation});
+              // Existing repeatIndex stays CDP-derived; independent identity never backfills it.
+              fixtures.push({repeatIndex,attempt:0,status:result.status,nodeObservation,cdpObservation,
+                identityObservation:identity.value,captureStatusObservation:captureStatus.value,identityAgreement:'neither',
+                attachmentOutcomes:{identity:identity.outcome,node:node.outcome,cdp:cdp.outcome,captureStatus:captureStatus.outcome}});
             }
+            const independentCounts=new Map();
+            for(const fixture of fixtures) if(fixture.identityObservation) {
+              const index=fixture.identityObservation.repeatIndex; independentCounts.set(index,(independentCounts.get(index)||0)+1);
+            }
+            for(const fixture of fixtures) {
+              const identity=fixture.identityObservation, cdp=fixture.cdpObservation, status=fixture.captureStatusObservation;
+              fixture.identityAgreement=identityAgreement(identity,cdp,status,!!identity&&independentCounts.get(identity.repeatIndex)>1);
+              complete &&= fixture.identityAgreement==='agree' && Object.values(fixture.attachmentOutcomes).every(value=>value.state==='ACCEPTED')
+                && status.repeatIndex!==null && status.attempt!==null && status.setup==='complete' && status.projection==='complete'
+                && status.identityAttachment==='attached' && status.cdpAttachment==='attached' && status.captureState==='COMPLETE' && status.captureReason==='none';
+              fact(Object.values(fixture.attachmentOutcomes).every(value=>Buffer.byteLength(JSON.stringify(value))<=256));
+              fact(Buffer.byteLength(JSON.stringify({...fixture,nodeObservation:null,cdpObservation:null,identityObservation:null,captureStatusObservation:null}))<=2048);
+            }
+            complete &&= independentCounts.size===3 && [0,1,2].every(index=>independentCounts.get(index)===1);
             complete &&= indices.size === 3 && [0,1,2].every(index => indices.has(index));
             fact(report.stats && report.stats.expected === passed && report.stats.unexpected === failed && report.stats.flaky === 0 && report.stats.skipped === 0);
             fact((native === 0) === (failed === 0 && passed === 3 && report.errors.length === 0));
-            const summary = {schema_version:1,mode:'DIAGNOSTIC_ONLY_NOT_QUALIFICATION',source,checkpoint,run_id:runId,run_attempt:1,
+            const summary = {schema_version:2,mode:'DIAGNOSTIC_ONLY_NOT_QUALIFICATION',source,checkpoint,run_id:runId,run_attempt:1,
               job:'my-day-e09-observation',case:'15.6-E09',cause:'UNKNOWN',native_exit:native,
               counts:{planned:3,cases:fixtures.length,passed,failed,skipped:0,flaky:0,attempts:passed+failed,
                 passed_attempts:passed,failed_attempts:failed},

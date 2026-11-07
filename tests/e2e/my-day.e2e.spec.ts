@@ -740,6 +740,47 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       return typeof value === "string" && ["net::ERR_CONNECTION_ABORTED", "net::ERR_CONNECTION_CLOSED", "net::ERR_CONNECTION_FAILED", "net::ERR_CONNECTION_REFUSED", "net::ERR_CONNECTION_RESET"].includes(value) ? "connection" : "other";
     }
     // E09_CDP_PURE_END
+    // E09_INTEGRITY_PURE_BEGIN: identity/status have no request data or clocks.
+    function createE09CaptureIntegrity(info: { repeatEachIndex: number; retry: number }, sink: (name: string, payload: string) => Promise<void>) {
+      type CaptureReason = "none" | "disabled" | "baseline" | "missing-context" | "missing-match" | "ambiguous" | "redirect-rebind" | "clock" | "overflow" | "record" | "protocol" | "detach" | "missing-event";
+      const status = {
+        version: 1 as const,
+        repeatIndex: [0, 1, 2].includes(info.repeatEachIndex) ? info.repeatEachIndex : null,
+        attempt: info.retry === 0 ? 0 : null,
+        identityAttachment: "not-attempted" as "not-attempted" | "invalid" | "attached" | "failed",
+        setup: "not-attempted" as "not-attempted" | "complete" | "incomplete" | "failed",
+        projection: "not-attempted" as "not-attempted" | "complete" | "failed",
+        cdpAttachment: "not-attempted" as "not-attempted" | "attached" | "failed",
+        captureState: null as "COMPLETE" | "INCOMPLETE" | null,
+        captureReason: null as CaptureReason | null,
+      };
+      async function attachIdentity() {
+        if (status.repeatIndex === null || status.attempt === null) { status.identityAttachment = "invalid"; return; }
+        let attempted = false;
+        try {
+          const payload = JSON.stringify({ version: 1, repeatIndex: status.repeatIndex, attempt: status.attempt });
+          if (Buffer.byteLength(payload, "utf8") > 256) return;
+          attempted = true;
+          await sink("my-day-e09-identity-v1", payload);
+          status.identityAttachment = "attached";
+        } catch { if (attempted) status.identityAttachment = "failed"; }
+      }
+      function setup(value: "complete" | "incomplete" | "failed") { status.setup = value; }
+      function projected(state: "COMPLETE" | "INCOMPLETE", reason: CaptureReason) {
+        status.projection = "complete"; status.captureState = state; status.captureReason = reason;
+      }
+      function projectionFailed() { status.projection = "failed"; status.captureState = null; status.captureReason = null; }
+      function cdpAttached(value: "attached" | "failed") { status.cdpAttachment = value; }
+      async function finishStatus() {
+        try {
+          const payload = JSON.stringify(status);
+          if (Buffer.byteLength(payload, "utf8") > 1024) return;
+          await sink("my-day-e09-capture-status-v1", payload);
+        } catch { /* Its own attachment cannot attest success; no raw fallback. */ }
+      }
+      return { attachIdentity, setup, projected, projectionFailed, cdpAttached, finishStatus };
+    }
+    // E09_INTEGRITY_PURE_END
     function createE09CdpCapture() {
       type Reason = "none" | "disabled" | "baseline" | "missing-context" | "missing-match" | "ambiguous" | "redirect-rebind" | "clock" | "overflow" | "record" | "protocol" | "detach" | "missing-event";
       type Pending = { candidate: CdpCandidate | null; record: CdpEvent };
@@ -859,7 +900,8 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
           if (defaults.length !== 1) incomplete("missing-context");
           else { baselineContext = defaults[0][0]; rootContexts.add(baselineContext); }
           mark("baseline", "diagnostic", { loader: loader ? "same" : "unknown", context: baselineContext === undefined ? "unknown" : "same" });
-        } catch { incomplete("protocol"); }
+          captureIntegrity?.setup(reason === "none" ? "complete" : "incomplete");
+        } catch { incomplete("protocol"); captureIntegrity?.setup("failed"); }
       }
       function bind(side: "held" | "navigation", request: Request) {
         try {
@@ -877,6 +919,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       }
       async function finish() {
         let detached = false;
+        let attachmentAttempted = false;
         try {
           if (session) {
             for (const item of listeners) session.off(item.event, item.listener);
@@ -899,13 +942,25 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
             incomplete("overflow");
             payload = JSON.stringify({ version: 1, repeatIndex, attempt, state: "INCOMPLETE", reason, selection: { held: held.state, nextContext: navigation.state }, baseline, events: [] });
           }
-          await test.info().attach("my-day-e09-cdp-v1", { contentType: "application/json", body: Buffer.from(payload, "utf8") });
-        } catch { /* Missing attachment is a collector failure, with no raw-error fallback or effect on the original test error. */ }
+          const attachmentBody = Buffer.from(payload, "utf8");
+          captureIntegrity?.projected(reason === "none" ? "COMPLETE" : "INCOMPLETE", reason);
+          attachmentAttempted = true;
+          await test.info().attach("my-day-e09-cdp-v1", { contentType: "application/json", body: attachmentBody });
+          captureIntegrity?.cdpAttached("attached");
+        } catch {
+          if (attachmentAttempted) captureIntegrity?.cdpAttached("failed");
+          else captureIntegrity?.projectionFailed();
+          /* Missing attachment remains a collector failure; original test errors are untouched. */
+        }
         finally { candidates.length = 0; pending.length = 0; contexts.clear(); rootContexts.clear(); expected.held = undefined; expected.navigation = undefined; listeners.length = 0; session = undefined; currentPage = undefined; root = ""; initialRoot = ""; loader = ""; initialLoader = ""; baselineContext = undefined; }
       }
       return { start, bind, control, incomplete, finish };
     }
+    const captureIntegrity = process.env.E09_CDP_DIAGNOSTIC_ONLY === "1"
+      ? createE09CaptureIntegrity(test.info(), (name, payload) => test.info().attach(name, { contentType: "application/json", body: Buffer.from(payload, "utf8") }))
+      : undefined;
     const cdp = process.env.E09_CDP_DIAGNOSTIC_ONLY === "1" ? createE09CdpCapture() : undefined;
+    if (captureIntegrity) await captureIntegrity.attachIdentity();
     try { await withMyDayFixture(async f => {
       await page.setViewportSize({ width: 1280, height: 800 });
       const tenantB = f.fx.base.tenantB.id, membershipB = randomUUID(), profileB = randomUUID(), bookingB = randomUUID();
@@ -1091,6 +1146,6 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
           } catch (error) { observation.mark("cleanup-failed"); throw error; }
         }
       }
-    }); } finally { if (cdp) await cdp.finish(); await observation.finish(); }
+    }); } finally { if (cdp) await cdp.finish(); await observation.finish(); if (captureIntegrity) await captureIntegrity.finishStatus(); }
   });
 });
