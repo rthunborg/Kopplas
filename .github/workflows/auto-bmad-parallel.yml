@@ -711,6 +711,111 @@ jobs:
             return identity?cdp?'agree':'identity-only':cdp?'cdp-only':'neither';
           }
 
+          // C17_WITNESS_HELPERS_BEGIN
+          const C17_WITNESS_REFUSAL = Symbol('E09_C17_WITNESS_REFUSAL');
+          const C17_OUTCOMES = {NOT_APPLICABLE:['NONE'],RECORDED:['NONE'],MISSING:['W01','W02','W08'],
+            INVALID:['W03','W04','W05','W06','W09','W10','W11'],OVERFLOW:['W07']};
+          function witnessFact(value,stage) { if(!value) throw {marker:C17_WITNESS_REFUSAL,stage}; }
+          function witnessExact(value,keys) {
+            witnessFact(value && typeof value==='object' && !Array.isArray(value)
+              && [Object.prototype,null].includes(Object.getPrototypeOf(value)),'W03');
+            const own=Reflect.ownKeys(value), descriptors=Object.getOwnPropertyDescriptors(value);
+            witnessFact(own.length===keys.length && own.every(key=>typeof key==='string' && keys.includes(key)
+              && Object.hasOwn(descriptors[key],'value')),'W03');
+          }
+          export function safeC17Witness(value) {
+            witnessExact(value,['version','stage','direction','subject','previous','current']);
+            witnessExact(value.previous,['seq','event','callbackMs','cdpMs']);
+            witnessExact(value.current,['seq','event','callbackMs','cdpMs']);
+            const network=['response','finished','failed','document-request'];
+            witnessFact(value.version===1 && value.stage==='C17' && value.direction==='decreasing'
+              && ['held','next-context','main-frame'].includes(value.subject)
+              && network.includes(value.previous.event) && network.includes(value.current.event),'W04');
+            for(const row of [value.previous,value.current]) witnessFact(Number.isSafeInteger(row.seq) && row.seq>=1 && row.seq<=48
+              && Number.isSafeInteger(row.callbackMs) && row.callbackMs>=0 && row.callbackMs<=2700000
+              && Number.isSafeInteger(row.cdpMs) && row.cdpMs>=0 && row.cdpMs<=2700000,'W05');
+            witnessFact(value.previous.seq<value.current.seq && value.previous.callbackMs<=value.current.callbackMs
+              && value.current.cdpMs<value.previous.cdpMs
+              && (value.subject==='main-frame' ? value.previous.event==='document-request'
+                : ['response','finished','failed'].includes(value.previous.event)),'W06');
+            const pair=row=>({seq:row.seq,event:row.event,callbackMs:row.callbackMs,cdpMs:row.cdpMs});
+            const safe={version:1,stage:'C17',direction:'decreasing',subject:value.subject,
+              previous:pair(value.previous),current:pair(value.current)};
+            witnessFact(Buffer.byteLength(JSON.stringify(safe))<=512,'W07');
+            return safe;
+          }
+          function c17Result(state,stage,witness=null) { return {witness,outcome:{state,stage}}; }
+          export function inspectC17Witness(value) {
+            try { return c17Result('RECORDED','NONE',safeC17Witness(value)); }
+            catch(error) {
+              const stage=error && error.marker===C17_WITNESS_REFUSAL && ['W03','W04','W05','W06','W07'].includes(error.stage)?error.stage:'W11';
+              return c17Result(stage==='W07'?'OVERFLOW':'INVALID',stage);
+            }
+          }
+          export function makeC17Candidate(current,previous) {
+            if(!current) return c17Result('MISSING','W01');
+            if(!previous) return c17Result('MISSING','W02');
+            try {
+              const pair=row=>({seq:row.seq,event:row.event,callbackMs:row.callbackMs,cdpMs:row.cdpMs});
+              return inspectC17Witness({version:1,stage:'C17',direction:'decreasing',subject:current.subject,
+                previous:pair(previous),current:pair(current)});
+            } catch { return c17Result('INVALID','W11'); }
+          }
+          function safeC17Outcome(value) {
+            witnessExact(value,['state','stage']);
+            fact(typeof value.state==='string' && typeof value.stage==='string'
+              && Object.hasOwn(C17_OUTCOMES,value.state) && C17_OUTCOMES[value.state].includes(value.stage));
+            fact(Buffer.byteLength(JSON.stringify({state:value.state,stage:value.stage}))<=64);
+            return {state:value.state,stage:value.stage};
+          }
+          export function bindC17Witness(fixture,candidate,duplicate) {
+            const channel=fixture.attachmentOutcomes.cdp;
+            if(channel.state!=='REFUSED' || channel.stage!=='C17') return c17Result('NOT_APPLICABLE','NONE');
+            if(duplicate) return c17Result('INVALID','W10');
+            if(fixture.identityAgreement==='conflict') return c17Result('INVALID','W09');
+            if(!fixture.identityObservation) return c17Result('MISSING','W08');
+            if(!candidate) return c17Result('MISSING','W01');
+            witnessExact(candidate,['witness','outcome']);
+            const outcome=safeC17Outcome(candidate.outcome);
+            if(outcome.state==='RECORDED') return inspectC17Witness(candidate.witness);
+            fact(outcome.state!=='NOT_APPLICABLE' && candidate.witness===null);
+            return c17Result(outcome.state,outcome.stage);
+          }
+          export function validateC17Summary(summary) {
+            witnessExact(summary,['schema_version','mode','source','checkpoint','run_id','run_attempt','job','case','cause','native_exit','counts','observation_state','sampling_result','fixtures']);
+            witnessExact(summary.counts,['planned','cases','passed','failed','skipped','flaky','attempts','passed_attempts','failed_attempts']);
+            fact(summary.schema_version===3 && Array.isArray(summary.fixtures) && summary.fixtures.length<=3);
+            const counts=new Map();
+            for(const fixture of summary.fixtures) if(fixture.identityObservation) {
+              const index=fixture.identityObservation.repeatIndex; counts.set(index,(counts.get(index)||0)+1);
+            }
+            let total=0, witnesses=0;
+            for(const fixture of summary.fixtures) {
+              witnessExact(fixture,['repeatIndex','attempt','status','nodeObservation','cdpObservation','identityObservation','captureStatusObservation','identityAgreement','attachmentOutcomes','c17RefusalWitness','c17WitnessOutcome']);
+              witnessExact(fixture.attachmentOutcomes,['identity','node','cdp','captureStatus']);
+              const outcome=safeC17Outcome(fixture.c17WitnessOutcome), channel=fixture.attachmentOutcomes.cdp;
+              const refused=channel.state==='REFUSED' && channel.stage==='C17';
+              const duplicate=!!fixture.identityObservation && counts.get(fixture.identityObservation.repeatIndex)>1;
+              fact(fixture.identityAgreement===identityAgreement(fixture.identityObservation,fixture.cdpObservation,fixture.captureStatusObservation,duplicate));
+              fact((outcome.state==='NOT_APPLICABLE')===!refused);
+              if(refused) {
+                fact(fixture.cdpObservation===null && fixture.repeatIndex===null);
+                if(duplicate) fact(outcome.state==='INVALID' && outcome.stage==='W10');
+                else if(fixture.identityAgreement==='conflict') fact(outcome.state==='INVALID' && outcome.stage==='W09');
+                else if(!fixture.identityObservation) fact(outcome.state==='MISSING' && outcome.stage==='W08');
+                else fact(!['W08','W09','W10'].includes(outcome.stage));
+              }
+              if(outcome.state==='RECORDED') {
+                fact(refused && fixture.identityObservation && fixture.attachmentOutcomes.identity.state==='ACCEPTED'
+                  && !duplicate && fixture.identityAgreement!=='conflict');
+                const safe=safeC17Witness(fixture.c17RefusalWitness);
+                total+=Buffer.byteLength(JSON.stringify(safe)); witnesses++;
+              } else fact(fixture.c17RefusalWitness===null);
+            }
+            fact(witnesses<=3 && total<=1536);
+          }
+          // C17_WITNESS_HELPERS_END
+
           export function safeObservation(value, attempt) {
             stageExact(value,['version','attempt','state','reason','events'],'N01');
             stageFact(value.version === 1 && value.attempt === attempt && ['COMPLETE','INCOMPLETE'].includes(value.state),'N02');
@@ -743,7 +848,11 @@ jobs:
             'document-request':['type','redirect','loader'],'frame-navigated':['loader','detail'],'frame-detached':['detail'],
             'context-created':['context'],'context-destroyed':['context'],'contexts-cleared':['context']};
           function cdpSafeExact(value,keys) { exact(value,keys); fact([Object.prototype,null].includes(Object.getPrototypeOf(value))); }
-          export function safeCdp(value) {
+          export function safeCdp(value, c17Capture) {
+            // C17_WITNESS_DECODE_BEGIN
+            const c17Prior=new Map(); let c17Current=null;
+            try {
+            // C17_WITNESS_DECODE_END
             stageExact(value,['version','repeatIndex','attempt','state','reason','selection','baseline','events'],'C01');
             stageFact(value.version === 1 && [0,1,2].includes(value.repeatIndex) && value.attempt === 0,'C02');
             stageFact(['COMPLETE','INCOMPLETE'].includes(value.state),'C03');
@@ -764,6 +873,9 @@ jobs:
               stageFact(['response','finished','failed','document-request'].includes(row.event) === (row.cdpMs !== null),'C15');
               if (row.cdpMs !== null) {
                 stageFact(['response','finished','failed','document-request'].includes(row.event),'C16');
+                // C17_WITNESS_CURRENT_BEGIN
+                c17Current={subject:row.subject,seq:row.seq,event:row.event,callbackMs:row.callbackMs,cdpMs:row.cdpMs};
+                // C17_WITNESS_CURRENT_END
                 stageFact(row.cdpMs >= (timestamps.get(row.subject) ?? 0),'C17'); timestamps.set(row.subject,row.cdpMs);
               }
               if (['response','finished','failed'].includes(row.event)) stageFact(['held','next-context'].includes(row.subject),'C18');
@@ -777,6 +889,9 @@ jobs:
               if (row.event === 'contexts-cleared') stageFact(row.subject === 'default-context' && row.context === 'cleared','C26');
               if (row.event === 'held-bound') stageFact(row.subject === 'held','C27');
               if (row.event === 'navigation-bound') stageFact(row.subject === 'next-context','C28');
+              // C17_WITNESS_PRIOR_BEGIN
+              if(row.cdpMs!==null) c17Prior.set(row.subject,{seq:row.seq,event:row.event,callbackMs:row.callbackMs,cdpMs:row.cdpMs});
+              // C17_WITNESS_PRIOR_END
               return safe;
             });
             if (value.state === 'COMPLETE') stageFact(value.reason === 'none'
@@ -788,6 +903,15 @@ jobs:
             return {version:1,repeatIndex:value.repeatIndex,attempt:0,state:value.state,reason:value.reason,
               selection:{held:value.selection.held,nextContext:value.selection.nextContext},
               baseline:{mainFrame:value.baseline.mainFrame,loader:value.baseline.loader,defaultContext:value.baseline.defaultContext},events};
+            // C17_WITNESS_CATCH_BEGIN
+            } catch(error) {
+              if(error && error.marker===REFUSAL && error.stage==='C17' && c17Capture) {
+                try { c17Capture.value=makeC17Candidate(c17Current,c17Current?c17Prior.get(c17Current.subject):undefined); }
+                catch { try { c17Capture.value=c17Result('INVALID','W11'); } catch {} }
+              }
+              throw error;
+            }
+            // C17_WITNESS_CATCH_END
           }
           function safeAttachment(result,name,limit,decode) {
             fact(Array.isArray(result.attachments) && result.attachments.length <= 16);
@@ -824,6 +948,9 @@ jobs:
             }
             const knownShape = specs.length === 3 && specs.every(spec => spec.tests.length === 1) || specs.length === 1 && tests.length === 3;
             const fixtures = [], indices = new Set(); let passed = 0, failed = 0, complete = report.errors.length === 0 && tests.length === 3 && knownShape;
+            // C17_WITNESS_RESULT_SCOPE_BEGIN
+            const c17Candidates=[];
+            // C17_WITNESS_RESULT_SCOPE_END
             for (const test of tests) {
               fact(test.projectName === 'chromium' && test.expectedStatus === 'passed' && ['expected','unexpected'].includes(test.status));
               fact(Array.isArray(test.results) && test.results.length === 1);
@@ -832,7 +959,9 @@ jobs:
               fact((test.status === 'expected') === (result.status === 'passed'));
               if (result.status === 'passed') passed++; else failed++;
               const node = readChannel(result,'my-day-e09-observation-v1',4096,value=>safeObservation(value,0));
-              const cdp = readChannel(result,'my-day-e09-cdp-v1',16384,safeCdp);
+              const c17Capture={value:null};
+              const cdp = readChannel(result,'my-day-e09-cdp-v1',16384,value=>safeCdp(value,c17Capture));
+              c17Candidates.push(c17Capture.value);
               const identity = readChannel(result,'my-day-e09-identity-v1',256,safeIdentity);
               const captureStatus = readChannel(result,'my-day-e09-capture-status-v1',1024,safeCaptureStatus);
               const nodeObservation=node.value, cdpObservation=cdp.value;
@@ -842,7 +971,8 @@ jobs:
               // Existing repeatIndex stays CDP-derived; independent identity never backfills it.
               fixtures.push({repeatIndex,attempt:0,status:result.status,nodeObservation,cdpObservation,
                 identityObservation:identity.value,captureStatusObservation:captureStatus.value,identityAgreement:'neither',
-                attachmentOutcomes:{identity:identity.outcome,node:node.outcome,cdp:cdp.outcome,captureStatus:captureStatus.outcome}});
+                attachmentOutcomes:{identity:identity.outcome,node:node.outcome,cdp:cdp.outcome,captureStatus:captureStatus.outcome},
+                c17RefusalWitness:null,c17WitnessOutcome:{state:'NOT_APPLICABLE',stage:'NONE'}});
             }
             const independentCounts=new Map();
             for(const fixture of fixtures) if(fixture.identityObservation) {
@@ -851,6 +981,10 @@ jobs:
             for(const fixture of fixtures) {
               const identity=fixture.identityObservation, cdp=fixture.cdpObservation, status=fixture.captureStatusObservation;
               fixture.identityAgreement=identityAgreement(identity,cdp,status,!!identity&&independentCounts.get(identity.repeatIndex)>1);
+              // C17_WITNESS_BIND_BEGIN
+              const c17=bindC17Witness(fixture,c17Candidates[fixtures.indexOf(fixture)],!!identity&&independentCounts.get(identity.repeatIndex)>1);
+              fixture.c17RefusalWitness=c17.witness; fixture.c17WitnessOutcome=c17.outcome;
+              // C17_WITNESS_BIND_END
               complete &&= fixture.identityAgreement==='agree' && Object.values(fixture.attachmentOutcomes).every(value=>value.state==='ACCEPTED')
                 && status.repeatIndex!==null && status.attempt!==null && status.setup==='complete' && status.projection==='complete'
                 && status.identityAttachment==='attached' && status.cdpAttachment==='attached' && status.captureState==='COMPLETE' && status.captureReason==='none';
@@ -861,12 +995,13 @@ jobs:
             complete &&= indices.size === 3 && [0,1,2].every(index => indices.has(index));
             fact(report.stats && report.stats.expected === passed && report.stats.unexpected === failed && report.stats.flaky === 0 && report.stats.skipped === 0);
             fact((native === 0) === (failed === 0 && passed === 3 && report.errors.length === 0));
-            const summary = {schema_version:2,mode:'DIAGNOSTIC_ONLY_NOT_QUALIFICATION',source,checkpoint,run_id:runId,run_attempt:1,
+            const summary = {schema_version:3,mode:'DIAGNOSTIC_ONLY_NOT_QUALIFICATION',source,checkpoint,run_id:runId,run_attempt:1,
               job:'my-day-e09-observation',case:'15.6-E09',cause:'UNKNOWN',native_exit:native,
               counts:{planned:3,cases:fixtures.length,passed,failed,skipped:0,flaky:0,attempts:passed+failed,
                 passed_attempts:passed,failed_attempts:failed},
               observation_state:complete ? 'COMPLETE' : 'INCOMPLETE',
               sampling_result:complete ? failed ? 'FAILURE_CAPTURED' : 'INCONCLUSIVE_CAUSE_NOT_REPRODUCED' : 'INCOMPLETE',fixtures};
+            validateC17Summary(summary);
             fact(Buffer.byteLength(JSON.stringify(summary)) <= 81920);
             return summary;
           }
