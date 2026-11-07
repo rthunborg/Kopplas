@@ -616,10 +616,11 @@ jobs:
         id: e09_case
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/e09-native.json
+          E09_CDP_DIAGNOSTIC_ONLY: "1"
         shell: bash
         run: |
           set +e
-          pnpm exec playwright test tests/e2e/my-day.e2e.spec.ts --grep '15[.]6-E09' --project=chromium --workers=1 --retries=1 --reporter=list,json > "$RUNNER_TEMP/e09-native.stdout" 2> "$RUNNER_TEMP/e09-native.stderr"
+          pnpm exec playwright test tests/e2e/my-day.e2e.spec.ts --grep '15[.]6-E09' --project=chromium --workers=1 --repeat-each=3 --retries=0 --max-failures=0 --trace=off --reporter=list,json > "$RUNNER_TEMP/e09-native.stdout" 2> "$RUNNER_TEMP/e09-native.stderr"
           native=$?
           printf 'native_exit=%s\n' "$native" >> "$GITHUB_OUTPUT"
           printf '%s\n' "$native" > "$RUNNER_TEMP/e09-native-exit"
@@ -671,49 +672,123 @@ jobs:
               ({seq:row.seq,ms:row.ms,event:row.event,phase:row.phase,category:row.category}))};
           }
 
+          const CDP_ENUMS = {
+            event:['baseline','held-bound','navigation-bound','response','finished','failed','document-request','frame-navigated','frame-detached','context-created','context-destroyed','contexts-cleared','release-observed','cleanup-observed','session-detached'],
+            subject:['held','next-context','main-frame','default-context','diagnostic'],phase:['before-arm','armed','held','navigating','released','cleanup'],
+            type:['Fetch','XHR','Document','Other','none'],mime:['flight','html','other','missing','none'],http:['2xx','3xx','4xx','5xx','other','none'],
+            canceled:['true','false','missing','none'],redirect:['present','absent','none'],loader:['same','changed','unknown','none'],context:['same','destroyed','created','cleared','unknown','none'],
+            failure:['aborted','content-length','decoding','connection','other','none'],block:['blocked','cors','blocked-and-cors','unknown','none'],detail:['remove','swap','navigation','bfcache','other','none']};
+          const CDP_ACTIVE = {baseline:['loader','context'],response:['type','mime','http','redirect','loader'],failed:['type','canceled','failure','block'],
+            'document-request':['type','redirect','loader'],'frame-navigated':['loader','detail'],'frame-detached':['detail'],
+            'context-created':['context'],'context-destroyed':['context'],'contexts-cleared':['context']};
+          function cdpSafeExact(value,keys) { exact(value,keys); fact([Object.prototype,null].includes(Object.getPrototypeOf(value))); }
+          export function safeCdp(value) {
+            cdpSafeExact(value,['version','repeatIndex','attempt','state','reason','selection','baseline','events']);
+            fact(value.version === 1 && [0,1,2].includes(value.repeatIndex) && value.attempt === 0);
+            fact(['COMPLETE','INCOMPLETE'].includes(value.state));
+            fact(['none','disabled','baseline','missing-context','missing-match','ambiguous','redirect-rebind','clock','overflow','record','protocol','detach','missing-event'].includes(value.reason));
+            cdpSafeExact(value.selection,['held','nextContext']); cdpSafeExact(value.baseline,['mainFrame','loader','defaultContext']);
+            for (const item of Object.values(value.selection)) fact(['unique','missing','ambiguous','redirect-rebind'].includes(item));
+            for (const item of Object.values(value.baseline)) fact(['present','missing'].includes(item));
+            fact(Array.isArray(value.events) && value.events.length <= 48 && Buffer.byteLength(JSON.stringify(value)) <= 16384);
+            let previous = 0; const timestamps = new Map();
+            const events = value.events.map((row,index) => {
+              cdpSafeExact(row,['seq','callbackMs','cdpMs',...Object.keys(CDP_ENUMS)]);
+              fact(row.seq === index + 1 && Number.isSafeInteger(row.callbackMs) && row.callbackMs >= previous && row.callbackMs <= 2700000);
+              previous = row.callbackMs;
+              fact(row.cdpMs === null || Number.isSafeInteger(row.cdpMs) && row.cdpMs >= 0 && row.cdpMs <= 2700000);
+              const safe = {seq:row.seq,callbackMs:row.callbackMs,cdpMs:row.cdpMs};
+              for (const key of Object.keys(CDP_ENUMS)) { fact(CDP_ENUMS[key].includes(row[key])); safe[key] = row[key]; }
+              for (const key of Object.keys(CDP_ENUMS)) if (!['event','subject','phase'].includes(key) && !(CDP_ACTIVE[row.event] || []).includes(key)) fact(row[key] === 'none');
+              fact(['response','finished','failed','document-request'].includes(row.event) === (row.cdpMs !== null));
+              if (row.cdpMs !== null) {
+                fact(['response','finished','failed','document-request'].includes(row.event));
+                fact(row.cdpMs >= (timestamps.get(row.subject) ?? 0)); timestamps.set(row.subject,row.cdpMs);
+              }
+              if (['response','finished','failed'].includes(row.event)) fact(['held','next-context'].includes(row.subject));
+              if (row.event === 'failed') fact(row.type !== 'none' && row.failure !== 'none' && row.canceled !== 'none');
+              if (row.event === 'response') fact(row.mime !== 'none' && row.http !== 'none' && row.type !== 'none' && row.redirect !== 'none' && row.loader !== 'none');
+              if (row.event === 'document-request') fact(row.subject === 'main-frame' && row.type === 'Document' && row.loader !== 'none');
+              if (row.event === 'frame-navigated') fact(row.subject === 'main-frame' && row.loader !== 'none' && row.detail !== 'none');
+              if (row.event === 'frame-detached') fact(row.subject === 'main-frame' && row.detail !== 'none');
+              if (row.event === 'context-created') fact(row.subject === 'default-context' && row.context === 'created');
+              if (row.event === 'context-destroyed') fact(row.subject === 'default-context' && row.context === 'destroyed');
+              if (row.event === 'contexts-cleared') fact(row.subject === 'default-context' && row.context === 'cleared');
+              if (row.event === 'held-bound') fact(row.subject === 'held');
+              if (row.event === 'navigation-bound') fact(row.subject === 'next-context');
+              return safe;
+            });
+            if (value.state === 'COMPLETE') fact(value.reason === 'none'
+              && Object.values(value.selection).every(item => item === 'unique') && Object.values(value.baseline).every(item => item === 'present')
+              && ['baseline','held-bound','navigation-bound','release-observed','cleanup-observed','session-detached'].every(event => events.some(row => row.event === event))
+              && events.filter(row => row.subject === 'held' && ['finished','failed'].includes(row.event)).length === 1
+              && events.filter(row => row.subject === 'next-context' && row.event === 'response').length === 1);
+            else fact(value.reason !== 'none');
+            return {version:1,repeatIndex:value.repeatIndex,attempt:0,state:value.state,reason:value.reason,
+              selection:{held:value.selection.held,nextContext:value.selection.nextContext},
+              baseline:{mainFrame:value.baseline.mainFrame,loader:value.baseline.loader,defaultContext:value.baseline.defaultContext},events};
+          }
+          function safeAttachment(result,name,limit,decode) {
+            fact(Array.isArray(result.attachments) && result.attachments.length <= 16);
+            const matches = result.attachments.filter(item => item.name === name); fact(matches.length === 1);
+            const attachment = matches[0];
+            fact(attachment.contentType === 'application/json' && typeof attachment.body === 'string' && attachment.path === undefined);
+            fact(attachment.body.length <= Math.ceil(limit / 3) * 4 && /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(attachment.body));
+            const bytes = Buffer.from(attachment.body,'base64'); fact(bytes.length <= limit && bytes.toString('base64') === attachment.body);
+            return decode(JSON.parse(bytes.toString('utf8')));
+          }
           export function parseSafeReport(report, native, source, checkpoint, runId) {
             fact(/^[a-f0-9]{40}$/.test(source) && /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(checkpoint));
             fact(/^[0-9]{1,20}$/.test(runId) && Number.isInteger(native) && native >= 0 && native <= 255);
-            fact(Array.isArray(report.errors) && report.errors.length === 0 && Array.isArray(report.suites));
+            fact(Array.isArray(report.errors) && Array.isArray(report.suites));
             const specs = []; let nodes = 0;
             function visit(suites, depth) {
               fact(depth <= 12 && Array.isArray(suites));
               for (const suite of suites) {
                 fact(++nodes <= 256);
-                if (suite.specs !== undefined) { fact(Array.isArray(suite.specs)); specs.push(...suite.specs); fact(specs.length <= 1); }
+                if (suite.specs !== undefined) { fact(Array.isArray(suite.specs)); specs.push(...suite.specs); fact(specs.length <= 3); }
                 if (suite.suites !== undefined) visit(suite.suites,depth + 1);
               }
             }
-            visit(report.suites,0); fact(specs.length === 1);
-            const spec = specs[0]; fact(spec.title === TITLE && ['my-day.e2e.spec.ts','tests/e2e/my-day.e2e.spec.ts'].includes(spec.file));
-            fact(Array.isArray(spec.tests) && spec.tests.length === 1);
-            const test = spec.tests[0]; fact(test.projectName === 'chromium' && ['expected','unexpected','flaky'].includes(test.status));
-            fact(Array.isArray(test.results) && test.results.length >= 1 && test.results.length <= 2);
-            if (test.results.length === 2) fact(test.results[0].status !== 'passed');
-            const observations = []; let passed = 0, failed = 0;
-            for (const [attempt,result] of test.results.entries()) {
-              fact(result.retry === attempt && ['passed','failed','timedOut','interrupted'].includes(result.status));
-              if (result.status === 'passed') passed++; else failed++;
-              fact(Array.isArray(result.attachments) && result.attachments.length <= 16);
-              const matches = result.attachments.filter(item => item.name === 'my-day-e09-observation-v1'); fact(matches.length === 1);
-              const attachment = matches[0];
-              fact(attachment.contentType === 'application/json' && typeof attachment.body === 'string' && attachment.path === undefined);
-              fact(attachment.body.length <= 5464 && /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(attachment.body));
-              const bytes = Buffer.from(attachment.body,'base64'); fact(bytes.length <= 4096 && bytes.toString('base64') === attachment.body);
-              observations.push(safeObservation(JSON.parse(bytes.toString('utf8')),attempt));
+            visit(report.suites,0); fact(specs.length >= 1 && specs.length <= 3);
+            const tests = [], specIds = new Set(), file = specs[0].file;
+            fact(['my-day.e2e.spec.ts','tests/e2e/my-day.e2e.spec.ts'].includes(file));
+            for (const spec of specs) {
+              // Native repeat suites can remain separate specs. Pin the unchanged
+              // physical declaration; spec IDs detect duplicates, never repeat identity.
+              fact(spec.title === TITLE && spec.file === file && spec.line === 629 && spec.column === 7);
+              fact(typeof spec.id === 'string' && spec.id.length > 0 && spec.id.length <= 200 && !specIds.has(spec.id)); specIds.add(spec.id);
+              fact(Array.isArray(spec.tests) && spec.tests.length >= 1 && spec.tests.length <= 3);
+              tests.push(...spec.tests); fact(tests.length <= 3);
             }
-            const lastPassed = test.results.at(-1).status === 'passed', flaky = test.status === 'flaky';
-            fact((native === 0) === lastPassed && (test.status === 'expected') === (lastPassed && failed === 0)
-              && flaky === (lastPassed && failed > 0) && (test.status === 'unexpected') === !lastPassed);
-            fact(report.stats && report.stats.expected === Number(test.status === 'expected') && report.stats.unexpected === Number(!lastPassed)
-              && report.stats.flaky === Number(flaky) && report.stats.skipped === 0);
-            fact(Buffer.byteLength(JSON.stringify(observations)) <= 8192);
+            const knownShape = specs.length === 3 && specs.every(spec => spec.tests.length === 1) || specs.length === 1 && tests.length === 3;
+            const fixtures = [], indices = new Set(); let passed = 0, failed = 0, complete = report.errors.length === 0 && tests.length === 3 && knownShape;
+            for (const test of tests) {
+              fact(test.projectName === 'chromium' && test.expectedStatus === 'passed' && ['expected','unexpected'].includes(test.status));
+              fact(Array.isArray(test.results) && test.results.length === 1);
+              const result = test.results[0];
+              fact(result.retry === 0 && ['passed','failed','timedOut','interrupted'].includes(result.status));
+              fact((test.status === 'expected') === (result.status === 'passed'));
+              if (result.status === 'passed') passed++; else failed++;
+              let nodeObservation = null, cdpObservation = null;
+              try { nodeObservation = safeAttachment(result,'my-day-e09-observation-v1',4096,value => safeObservation(value,0)); } catch { complete = false; }
+              try { cdpObservation = safeAttachment(result,'my-day-e09-cdp-v1',16384,safeCdp); } catch { complete = false; }
+              const repeatIndex = cdpObservation?.repeatIndex ?? null;
+              if (repeatIndex !== null) { fact(!indices.has(repeatIndex)); indices.add(repeatIndex); }
+              complete &&= nodeObservation?.state === 'COMPLETE' && cdpObservation?.state === 'COMPLETE';
+              // JSON reporter has no repeatEachIndex: null means unbound, never array-order inference.
+              fixtures.push({repeatIndex,attempt:0,status:result.status,nodeObservation,cdpObservation});
+            }
+            complete &&= indices.size === 3 && [0,1,2].every(index => indices.has(index));
+            fact(report.stats && report.stats.expected === passed && report.stats.unexpected === failed && report.stats.flaky === 0 && report.stats.skipped === 0);
+            fact((native === 0) === (failed === 0 && passed === 3 && report.errors.length === 0));
             const summary = {schema_version:1,mode:'DIAGNOSTIC_ONLY_NOT_QUALIFICATION',source,checkpoint,run_id:runId,run_attempt:1,
               job:'my-day-e09-observation',case:'15.6-E09',cause:'UNKNOWN',native_exit:native,
-              counts:{cases:1,passed:Number(lastPassed),failed:Number(!lastPassed),skipped:0,flaky:Number(flaky),attempts:passed+failed,
+              counts:{planned:3,cases:fixtures.length,passed,failed,skipped:0,flaky:0,attempts:passed+failed,
                 passed_attempts:passed,failed_attempts:failed},
-              observation_state:observations.every(item => item.state === 'COMPLETE') ? 'COMPLETE' : 'INCOMPLETE',observations};
-            fact(Buffer.byteLength(JSON.stringify(summary)) <= 10240);
+              observation_state:complete ? 'COMPLETE' : 'INCOMPLETE',
+              sampling_result:complete ? failed ? 'FAILURE_CAPTURED' : 'INCONCLUSIVE_CAUSE_NOT_REPRODUCED' : 'INCOMPLETE',fixtures};
+            fact(Buffer.byteLength(JSON.stringify(summary)) <= 81920);
             return summary;
           }
 

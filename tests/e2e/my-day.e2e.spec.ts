@@ -673,6 +673,238 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
     // E09_OBSERVER_END
     const observation = createE09Observation(test.info().retry,
       payload => test.info().attach("my-day-e09-observation-v1", { contentType: "application/json", body: Buffer.from(payload, "utf8") }));
+    // E09_CDP_PURE_BEGIN: extracted privately for pure privacy/correlation validation.
+    const cdpEnums = {
+      event: ["baseline", "held-bound", "navigation-bound", "response", "finished", "failed", "document-request", "frame-navigated", "frame-detached", "context-created", "context-destroyed", "contexts-cleared", "release-observed", "cleanup-observed", "session-detached"],
+      subject: ["held", "next-context", "main-frame", "default-context", "diagnostic"],
+      phase: ["before-arm", "armed", "held", "navigating", "released", "cleanup"],
+      type: ["Fetch", "XHR", "Document", "Other", "none"], mime: ["flight", "html", "other", "missing", "none"],
+      http: ["2xx", "3xx", "4xx", "5xx", "other", "none"], canceled: ["true", "false", "missing", "none"],
+      redirect: ["present", "absent", "none"], loader: ["same", "changed", "unknown", "none"],
+      context: ["same", "destroyed", "created", "cleared", "unknown", "none"],
+      failure: ["aborted", "content-length", "decoding", "connection", "other", "none"],
+      block: ["blocked", "cors", "blocked-and-cors", "unknown", "none"], detail: ["remove", "swap", "navigation", "bfcache", "other", "none"],
+    } as const;
+    type CdpEnumKey = keyof typeof cdpEnums;
+    type CdpEvent = { seq: number; callbackMs: number; cdpMs: number | null } & { [K in CdpEnumKey]: typeof cdpEnums[K][number] };
+    type CdpIdentity = { method: string; url: string; action: string; rsc: string; frame: string };
+    type CdpCandidate = CdpIdentity & { id: string; loader: string; rebound: boolean };
+    type CdpSelection = "unique" | "missing" | "ambiguous" | "redirect-rebind";
+    function cdpExact(value: unknown, keys: readonly string[]): asserts value is Record<string, unknown> {
+      if (!value || typeof value !== "object" || Array.isArray(value)
+        || ![Object.prototype, null].includes(Object.getPrototypeOf(value))
+        || Object.keys(value).sort().join("|") !== [...keys].sort().join("|")) throw new Error("E09_CDP_RECORD");
+    }
+    function cdpProject(value: unknown): CdpEvent {
+      cdpExact(value, ["seq", "callbackMs", "cdpMs", ...Object.keys(cdpEnums)]);
+      if (!Number.isSafeInteger(value.seq) || Number(value.seq) < 1 || Number(value.seq) > 48
+        || !Number.isSafeInteger(value.callbackMs) || Number(value.callbackMs) < 0 || Number(value.callbackMs) > 2700000
+        || (value.cdpMs !== null && (!Number.isSafeInteger(value.cdpMs) || Number(value.cdpMs) < 0 || Number(value.cdpMs) > 2700000))) throw new Error("E09_CDP_RECORD");
+      const out = { seq: value.seq, callbackMs: value.callbackMs, cdpMs: value.cdpMs } as CdpEvent;
+      for (const key of Object.keys(cdpEnums) as CdpEnumKey[]) {
+        if (!(cdpEnums[key] as readonly unknown[]).includes(value[key])) throw new Error("E09_CDP_RECORD");
+        Object.defineProperty(out, key, { enumerable: true, value: value[key] });
+      }
+      const active: Partial<Record<CdpEvent["event"], readonly CdpEnumKey[]>> = {
+        baseline: ["loader", "context"], response: ["type", "mime", "http", "redirect", "loader"],
+        failed: ["type", "canceled", "failure", "block"], "document-request": ["type", "redirect", "loader"],
+        "frame-navigated": ["loader", "detail"], "frame-detached": ["detail"],
+        "context-created": ["context"], "context-destroyed": ["context"], "contexts-cleared": ["context"],
+      };
+      for (const key of Object.keys(cdpEnums) as CdpEnumKey[]) {
+        if (!["event", "subject", "phase"].includes(key) && !(active[out.event] ?? []).includes(key) && out[key] !== "none") throw new Error("E09_CDP_RECORD");
+      }
+      if (["response", "finished", "failed", "document-request"].includes(out.event) !== (out.cdpMs !== null)) throw new Error("E09_CDP_RECORD");
+      return out;
+    }
+    function cdpSelect(expected: CdpIdentity | undefined, candidates: readonly CdpCandidate[]): { state: CdpSelection; index: number } {
+      if (!expected || !expected.frame || (expected.method === "POST" ? !expected.action : expected.method !== "GET" || expected.rsc !== "1")) return { state: "missing", index: -1 };
+      const matches: number[] = [];
+      for (const [index, candidate] of candidates.entries()) {
+        if (candidate.method === expected.method && candidate.url === expected.url && candidate.frame === expected.frame
+          && candidate.action === expected.action && candidate.rsc === expected.rsc) matches.push(index);
+      }
+      if (matches.length !== 1) return { state: matches.length ? "ambiguous" : "missing", index: -1 };
+      const index = matches[0];
+      return { state: candidates[index].rebound ? "redirect-rebind" : "unique", index };
+    }
+    function cdpMime(value: unknown): CdpEvent["mime"] {
+      if (typeof value !== "string" || !value) return "missing";
+      const mime = value.split(";", 1)[0].trim().toLowerCase();
+      return mime === "text/x-component" ? "flight" : mime === "text/html" ? "html" : "other";
+    }
+    function cdpFailure(value: unknown): CdpEvent["failure"] {
+      if (value === "net::ERR_ABORTED") return "aborted";
+      if (value === "net::ERR_CONTENT_LENGTH_MISMATCH") return "content-length";
+      if (value === "net::ERR_CONTENT_DECODING_FAILED") return "decoding";
+      return typeof value === "string" && ["net::ERR_CONNECTION_ABORTED", "net::ERR_CONNECTION_CLOSED", "net::ERR_CONNECTION_FAILED", "net::ERR_CONNECTION_REFUSED", "net::ERR_CONNECTION_RESET"].includes(value) ? "connection" : "other";
+    }
+    // E09_CDP_PURE_END
+    function createE09CdpCapture() {
+      type Reason = "none" | "disabled" | "baseline" | "missing-context" | "missing-match" | "ambiguous" | "redirect-rebind" | "clock" | "overflow" | "record" | "protocol" | "detach" | "missing-event";
+      type Pending = { candidate: CdpCandidate | null; record: CdpEvent };
+      const repeatIndex = test.info().repeatEachIndex, attempt = test.info().retry;
+      let reason: Reason = [0, 1, 2].includes(repeatIndex) && attempt === 0 ? "none" : "record";
+      let session: CDPSession | undefined, currentPage: Page | undefined;
+      let root = "", initialRoot = "", loader = "", initialLoader = "", baselineContext: number | undefined;
+      let phase: CdpEvent["phase"] = "before-arm", origin = 0, previous = 0, cdpOrigin: number | undefined;
+      const candidates: CdpCandidate[] = [], pending: Pending[] = [];
+      const contexts = new Map<number, { frame: string; isDefault: boolean }>(), rootContexts = new Set<number>();
+      const expected: { held?: CdpIdentity; navigation?: CdpIdentity } = {};
+      const bound = { held: false, navigation: false };
+      const baseline = { mainFrame: "missing", loader: "missing", defaultContext: "missing" };
+      const listeners: { event: string; listener: (event: unknown) => void }[] = [];
+      function incomplete(value: Reason) { if (reason === "none") reason = value; }
+      function mark(event: CdpEvent["event"], subject: CdpEvent["subject"], fields: Partial<CdpEvent> = {}, timestamp?: number, candidate: CdpCandidate | null = null) {
+        try {
+          // callbackMs is this Node observer's clock. cdpMs is relative CDP
+          // Network time; Page/Runtime events have none. Never equate the clocks
+          // or claim that callback order identifies an initiating browser call.
+          const elapsed = performance.now() - origin;
+          if (!Number.isFinite(elapsed) || elapsed < previous || elapsed < 0 || elapsed > 2700000) { incomplete("clock"); return; }
+          previous = elapsed;
+          let cdpMs: number | null = null;
+          if (["response", "finished", "failed", "document-request"].includes(event) && timestamp === undefined) { incomplete("clock"); return; }
+          if (timestamp !== undefined) {
+            if (!Number.isFinite(timestamp)) { incomplete("clock"); return; }
+            cdpOrigin ??= timestamp;
+            cdpMs = Math.floor((timestamp - cdpOrigin) * 1000);
+          }
+          if (pending.length >= 48) { incomplete("overflow"); return; }
+          const record = cdpProject({ seq: pending.length + 1, callbackMs: Math.floor(elapsed), cdpMs, event, subject, phase,
+            type: "none", mime: "none", http: "none", canceled: "none", redirect: "none", loader: "none", context: "none", failure: "none", block: "none", detail: "none", ...fields });
+          pending.push({ candidate, record });
+        } catch { incomplete("record"); }
+      }
+      function correlate() {
+        for (const side of ["held", "navigation"] as const) {
+          const selection = cdpSelect(expected[side], candidates);
+          if (selection.state === "ambiguous" || selection.state === "redirect-rebind") incomplete(selection.state);
+          if (selection.state === "unique" && !bound[side]) {
+            bound[side] = true;
+            mark(side === "held" ? "held-bound" : "navigation-bound", side === "held" ? "held" : "next-context");
+          }
+        }
+      }
+      function header(headers: Record<string, unknown>, name: string): string {
+        const keys = Object.keys(headers).filter(key => key.toLowerCase() === name);
+        return keys.length === 1 && typeof headers[keys[0]] === "string" ? headers[keys[0]] as string : "";
+      }
+      function resource(value: unknown): CdpEvent["type"] { return value === "Fetch" || value === "XHR" || value === "Document" ? value : "Other"; }
+      function loaderState(value: unknown): CdpEvent["loader"] { return typeof value === "string" && value && initialLoader ? value === initialLoader ? "same" : "changed" : "unknown"; }
+      function listen<T>(event: string, handle: (value: T) => void) {
+        const listener = (value: unknown) => { try { handle(value as T); } catch { incomplete("protocol"); } };
+        session!.on(event, listener); listeners.push({ event, listener });
+      }
+      async function start(page: Page) {
+        try {
+          origin = performance.now(); currentPage = page;
+          session = await page.context().newCDPSession(page);
+          listen<{ requestId: string; frameId?: string; loaderId?: string; timestamp: number; type?: string; redirectResponse?: unknown; request: { method: string; url: string; headers: Record<string, unknown> } }>("Network.requestWillBeSent", value => {
+            if (value.type === "Document" && (value.frameId === root || value.frameId === initialRoot)) mark("document-request", "main-frame", { type: "Document", loader: loaderState(value.loaderId), redirect: value.redirectResponse ? "present" : "absent" }, value.timestamp);
+            if (new URL(value.request.url).pathname !== "/my-day") return;
+            const action = header(value.request.headers, "next-action"), rsc = header(value.request.headers, "rsc");
+            if (!(value.request.method === "POST" && action) && !(value.request.method === "GET" && rsc === "1")) return;
+            if (Number.isFinite(value.timestamp)) cdpOrigin ??= value.timestamp;
+            else incomplete("clock");
+            const prior = candidates.find(candidate => candidate.id === value.requestId);
+            if (prior) { prior.rebound = true; correlate(); return; }
+            if (candidates.length >= 8) { incomplete("overflow"); return; }
+            candidates.push({ id: value.requestId, frame: value.frameId ?? "", loader: value.loaderId ?? "", method: value.request.method, url: value.request.url, action, rsc, rebound: !!value.redirectResponse });
+            correlate();
+          });
+          listen<{ requestId: string; timestamp: number; type: string; response: { mimeType?: string; status: number } }>("Network.responseReceived", value => {
+            const candidate = candidates.find(candidate => candidate.id === value.requestId); if (!candidate) return;
+            const status = value.response.status;
+            mark("response", "diagnostic", { type: resource(value.type), mime: cdpMime(value.response.mimeType), http: status >= 200 && status < 600 ? `${Math.floor(status / 100)}xx` as CdpEvent["http"] : "other", redirect: candidate.rebound ? "present" : "absent", loader: loaderState(candidate.loader) }, value.timestamp, candidate);
+          });
+          listen<{ requestId: string; timestamp: number }>("Network.loadingFinished", value => {
+            const candidate = candidates.find(candidate => candidate.id === value.requestId); if (candidate) mark("finished", "diagnostic", {}, value.timestamp, candidate);
+          });
+          listen<{ requestId: string; timestamp: number; type: string; errorText?: string; canceled?: boolean; blockedReason?: unknown; corsErrorStatus?: unknown }>("Network.loadingFailed", value => {
+            const candidate = candidates.find(candidate => candidate.id === value.requestId); if (!candidate) return;
+            mark("failed", "diagnostic", { type: resource(value.type), canceled: value.canceled === true ? "true" : value.canceled === false ? "false" : "missing", failure: cdpFailure(value.errorText), block: value.blockedReason ? value.corsErrorStatus ? "blocked-and-cors" : "blocked" : value.corsErrorStatus ? "cors" : "none" }, value.timestamp, candidate);
+          });
+          listen<{ frame: { id: string; parentId?: string; loaderId?: string }; type?: string }>("Page.frameNavigated", value => {
+            if (value.frame.parentId) return;
+            root = value.frame.id; loader = value.frame.loaderId ?? "";
+            mark("frame-navigated", "main-frame", { loader: loaderState(loader), detail: value.type === "BackForwardCacheRestore" ? "bfcache" : value.type === "Navigation" ? "navigation" : "other" });
+            for (const [id, context] of contexts) if (context.frame === root && context.isDefault) rootContexts.add(id);
+          });
+          listen<{ frameId: string; reason?: string }>("Page.frameDetached", value => {
+            if (value.frameId === root || value.frameId === initialRoot) mark("frame-detached", "main-frame", { detail: value.reason === "remove" || value.reason === "swap" ? value.reason : "other" });
+          });
+          listen<{ context: { id: number; auxData?: { frameId?: string; isDefault?: boolean } } }>("Runtime.executionContextCreated", value => {
+            const frame = value.context.auxData?.frameId ?? "", isDefault = value.context.auxData?.isDefault === true;
+            if (contexts.size >= 16) { incomplete("overflow"); return; }
+            contexts.set(value.context.id, { frame, isDefault });
+            if (frame === root && isDefault) { rootContexts.add(value.context.id); if (baselineContext !== undefined) mark("context-created", "default-context", { context: "created" }); }
+          });
+          listen<{ executionContextId: number }>("Runtime.executionContextDestroyed", value => {
+            if (rootContexts.has(value.executionContextId)) mark("context-destroyed", "default-context", { context: "destroyed" });
+            contexts.delete(value.executionContextId); rootContexts.delete(value.executionContextId);
+          });
+          listen<unknown>("Runtime.executionContextsCleared", () => {
+            if (baselineContext !== undefined) mark("contexts-cleared", "default-context", { context: "cleared" });
+            contexts.clear(); rootContexts.clear();
+          });
+          await session.send("Network.enable"); await session.send("Page.enable"); await session.send("Runtime.enable");
+          const tree = await session.send("Page.getFrameTree");
+          root = tree.frameTree.frame.id; initialRoot = root; loader = tree.frameTree.frame.loaderId; initialLoader = loader;
+          const defaults = [...contexts.entries()].filter(([, context]) => context.frame === root && context.isDefault);
+          baseline.mainFrame = root ? "present" : "missing"; baseline.loader = loader ? "present" : "missing";
+          baseline.defaultContext = defaults.length === 1 ? "present" : "missing";
+          if (!root || !loader) incomplete("baseline");
+          if (defaults.length !== 1) incomplete("missing-context");
+          else { baselineContext = defaults[0][0]; rootContexts.add(baselineContext); }
+          mark("baseline", "diagnostic", { loader: loader ? "same" : "unknown", context: baselineContext === undefined ? "unknown" : "same" });
+        } catch { incomplete("protocol"); }
+      }
+      function bind(side: "held" | "navigation", request: Request) {
+        try {
+          if (!currentPage || request.frame() !== currentPage.mainFrame()) { incomplete("missing-match"); return; }
+          if (expected[side]) { incomplete("ambiguous"); return; }
+          const headers = request.headers();
+          expected[side] = { method: request.method(), url: request.url(), action: header(headers, "next-action"), rsc: header(headers, "rsc"), frame: root };
+          correlate();
+        } catch { incomplete("protocol"); }
+      }
+      function control(next: CdpEvent["phase"]) {
+        phase = next;
+        if (next === "released") mark("release-observed", "diagnostic");
+        if (next === "cleanup") mark("cleanup-observed", "diagnostic");
+      }
+      async function finish() {
+        let detached = false;
+        try {
+          if (session) {
+            for (const item of listeners) session.off(item.event, item.listener);
+            try { await session.detach(); detached = true; mark("session-detached", "diagnostic"); } catch { incomplete("detach"); }
+          } else incomplete("protocol");
+          correlate();
+          const held = cdpSelect(expected.held, candidates), navigation = cdpSelect(expected.navigation, candidates);
+          for (const selection of [held, navigation]) if (selection.state !== "unique") incomplete(selection.state === "missing" ? "missing-match" : selection.state);
+          const events: CdpEvent[] = [];
+          for (const item of pending) {
+            const index = item.candidate ? candidates.indexOf(item.candidate) : -1;
+            const subject = item.candidate ? index === held.index ? "held" : index === navigation.index ? "next-context" : null : item.record.subject;
+            if (subject) events.push(cdpProject({ ...item.record, seq: events.length + 1, subject }));
+          }
+          if (!detached || events.filter(row => row.subject === "held" && ["finished", "failed"].includes(row.event)).length !== 1
+            || events.filter(row => row.subject === "next-context" && row.event === "response").length !== 1
+            || !["baseline", "held-bound", "navigation-bound", "release-observed", "cleanup-observed", "session-detached"].every(event => events.some(row => row.event === event))) incomplete("missing-event");
+          let payload = JSON.stringify({ version: 1, repeatIndex, attempt, state: reason === "none" ? "COMPLETE" : "INCOMPLETE", reason, selection: { held: held.state, nextContext: navigation.state }, baseline, events });
+          if (Buffer.byteLength(payload, "utf8") > 16384) {
+            incomplete("overflow");
+            payload = JSON.stringify({ version: 1, repeatIndex, attempt, state: "INCOMPLETE", reason, selection: { held: held.state, nextContext: navigation.state }, baseline, events: [] });
+          }
+          await test.info().attach("my-day-e09-cdp-v1", { contentType: "application/json", body: Buffer.from(payload, "utf8") });
+        } catch { /* Missing attachment is a collector failure, with no raw-error fallback or effect on the original test error. */ }
+        finally { candidates.length = 0; pending.length = 0; contexts.clear(); rootContexts.clear(); expected.held = undefined; expected.navigation = undefined; listeners.length = 0; session = undefined; currentPage = undefined; root = ""; initialRoot = ""; loader = ""; initialLoader = ""; baselineContext = undefined; }
+      }
+      return { start, bind, control, incomplete, finish };
+    }
+    const cdp = process.env.E09_CDP_DIAGNOSTIC_ONLY === "1" ? createE09CdpCapture() : undefined;
     try { await withMyDayFixture(async f => {
       await page.setViewportSize({ width: 1280, height: 800 });
       const tenantB = f.fx.base.tenantB.id, membershipB = randomUUID(), profileB = randomUUID(), bookingB = randomUUID();
@@ -720,6 +952,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         }
         if (!armed || held || !isDayRead(request)) { await route.fallback(); return; }
         held = true; heldRequest = request;
+        cdp?.control("held"); cdp?.bind("held", request);
         observation.mark("held-selected");
         // Observe this exact request before navigation can settle or cancel it.
         // Retain only lifecycle enums, never request data or raw failure text.
@@ -773,12 +1006,14 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         await openDay(page);
         await expect(bookingCard(page, f.ownBooking)).toBeVisible();
         await expect(bookingCard(page, bookingB)).toHaveCount(0);
+        if (cdp) await cdp.start(page);
         const reportBooking = jobsActive ? f.ownBooking : f.jobless;
         await bookingCard(page, reportBooking).getByRole("button", { name: "Rapportera tid", exact: true }).click();
         const form = filingDialog(page);
         await form.getByLabel("Anteckning", { exact: true }).fill(f.marker);
         await page.route("**/*", handler);
         armed = true;
+        cdp?.control("armed");
         await keyboardActivate(page, form.getByRole("button", { name: "Rapportera tid", exact: true }));
         await oldFetched.promise; // onSaved's A read completed, its browser response is held.
         await expect(form.getByTestId("time-report-submit-status")).toHaveText("Rapporterad");
@@ -802,7 +1037,9 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         // cannot satisfy the required observed GET and current B booking below.
         const nextContext = page.waitForResponse(reply => reply.request().method() === "GET"
           && new URL(reply.url()).pathname === "/my-day" && reply.request().headers()["rsc"] === "1");
+        if (cdp) void nextContext.then(reply => cdp.bind("navigation", reply.request()), () => cdp.incomplete("protocol"));
         observation.mark("navigation-start");
+        cdp?.control("navigating");
         await page.getByRole("link", { name: "Min dag", exact: true }).filter({ visible: true }).click();
         expect((await nextContext).ok()).toBe(true);
         observation.mark("navigation-response");
@@ -813,6 +1050,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         observation.mark("current-ui-verified");
         observation.mark("release");
         oldReleased = true;
+        cdp?.control("released");
         releaseOld.resolve(undefined);
         await oldDelivered.promise;
         await expect.poll(() => terminalEvent, { message: "Held A read must reach a terminal transport event" }).not.toBe("pending");
@@ -831,6 +1069,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         expect(terminal, "Only a completed transport after release proves a delivered late response").toEqual({ event: "finished", phase: "after-release", category: "none" });
       } finally {
         observation.mark("cleanup-enter");
+        cdp?.control("cleanup");
         page.off("requestfinished", onFinished);
         page.off("requestfailed", onFailed);
         observation.mark("listeners-removed");
@@ -851,6 +1090,6 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
           } catch (error) { observation.mark("cleanup-failed"); throw error; }
         }
       }
-    }); } finally { await observation.finish(); }
+    }); } finally { if (cdp) await cdp.finish(); await observation.finish(); }
   });
 });
