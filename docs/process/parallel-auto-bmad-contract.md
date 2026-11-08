@@ -230,6 +230,375 @@ transfer, automatic worker expiry or automatic workflow adoption operation.
 
 See [the operator guide](parallel-auto-bmad.md) for user-facing session prompts.
 
+## Exact Story 35.6 schema-2 runtime admission
+
+The ordinary schema-2 helper still refuses `amend-blocked` and other legacy
+maintenance APIs. The separately reviewed adapter
+`scripts/maintenance/admit_story35_6_runtime.py` is an exact-story exception:
+run `e35-6-20261102`, key `spec-design-35-6-35-6`, source
+`_bmad-output/specs/spec-design-35-6` / original ID `35-6`, repository
+`rthunborg/Kopplas`, existing PR127. It adds exactly `playwright.config.ts` and
+`test:general-browser-runtime` to the original eleven-path assignment. It does
+not authorize a different story, further files or product behavior.
+
+The adapter loads only the unchanged helpers in its own checkout. Its registered
+same-repository tooling checkout must be clean, on a `codex/` branch at the exact
+reviewed tooling SHA, already an ancestor of refreshed qualified `origin/main`.
+The executable derives its root from its resolved file path; synthetic fixture
+injection follows that same contract for Windows short-name/reparse aliases.
+Registration, common Git identity, separation and clean exact-SHA checks remain
+required; a lexical path alias does not create authority.
+Both existing `Auto-BMAD parallel contracts` jobs, `contracts (ubuntu-latest)` and
+`contracts (windows-latest)`, must pass at that SHA, with zero skipped checks.
+The `contracts` matrix has unconditional `needs: runtime-admission` and default
+success dependency semantics. Both existing accepted core check names require
+ALL THREE admission cells first: Ubuntu/all, Windows/0 and Windows/1. Admission
+collects the complete actual unittest inventory without running fixtures/bodies,
+normalizes only its known module prefix to canonical `Class.test_method` IDs,
+rejects empty/duplicate/error inventories, sorts, and partitions by alternating
+index into two nonempty disjoint exhaustive Windows groups. No source/count
+allowlist or external reported inventory supplies the expectation. Ubuntu retains
+the full native script invocation; Windows invokes the SAME unchanged script
+with each group's exact positional selectors. No substring/negative-name filter.
+
+Every admission cell checks actual checkout HEAD against immutable `GITHUB_SHA`,
+tracked source cleanliness, commit/tree and committed/checkout LF-normalized
+module SHA256 before/after collection/execution. Its records bind the full
+inventory count/digest, both Windows groups, selected IDs, exact actual child
+argv, native exit and terminal actual executed IDs/count. All three cells must
+have IDENTICAL source/full-inventory bindings for Root qualification; their group,
+selected IDs and argv honestly differ. Raw checkout EOL bytes may differ by OS;
+the shared module hash normalizes only CRLF to LF against committed source.
+The guard provides per-cell proof; Root retains and compares all three records.
+There is no automatic cross-job proof or invented single combined Windows argv.
+
+Native stderr is immediately byte-teed/flushed, including partial method progress,
+while stdout is inherited. The1MiB in-memory validation capture fails closed on
+overflow/invalid UTF8 without hiding further native output. The finite protocol
+requires exact selected canonical success IDs, one matching complete `Ran`/`OK`
+terminal result, native exit0 and zero skip/failure/error/expected-failure/
+unexpected-success outcomes. Missing/truncated/extra/duplicate records refuse.
+Completion output does not establish a per-method start timestamp or a timing
+balance: alternating groups are count-balanced only, not proven time-balanced.
+
+Both matrices retain `fail-fast: false`, the same setup/action pins and Python3.12,
+and the existing Ubuntu15/Windows30 minute job budgets. All five core commands
+and native exits remain unchanged (140 source methods per core OS job).
+No `always()`, continue-on-error, OS/group omission or skipped prerequisite can
+supply qualifying coverage. The adapter's exact two-name `CI_JOBS` and strict
+schema stay intact; its two checks still describe the real core140 jobs.
+
+Retain native source evidence for **all five jobs** under `tooling_ci.source_ref`:
+workflow/run identity, actual executed SHA/tree, OS/cell, terminal conclusion,
+exact command argv, full and selected inventories/digests and actual native
+executed/skipped counts. The two schema `checks` records describe downstream
+jobs' real five-command argv/counts; do not fabricate prerequisite aggregates or
+a third core check. Same-SHA whole-DAG review and ALL THREE native admission
+records are mandatory. Failed/canceled/skipped/missing/mismatched/nonterminal
+cells refuse qualification even when another status summary looks successful.
+
+Current topology continuation baseline qualified241596 has52 admission methods,
+so its actual complete Windows groups are26/26; these are source/collection facts,
+not native coverage. Frozen PR134 source01e6 has61 (31/30); only after genuine
+integration must the new exact source derive and execute that full61 inventory.
+The saved Windows01e6 job exceeded30m after57 completed/58th interrupted/three
+unstarted; no terminal61 PASS was earned. Never add old57 to a later4, reuse
+cached records or force61 onto52. Fresh direct exact-source terminal Ubuntu/full,
+both Windows groups and both core140 jobs plus separately required ordinary
+checks remain necessary. Local guard controls do not establish hosted completion,
+source CI qualification, tooling/live admission or product runtime acceptance.
+
+The following original PR130 count/integration-order record is historical; its
+four-job requirement is superseded by the five-job requirement above.
+
+For count provenance, the CI-topology baseline `d03a52ce...` has 140 core test
+methods across its five unchanged commands (70/13/21/26/10), plus **24** admission
+methods per OS when all commands actually execute. These source counts are not
+native pass evidence; always record actual terminal results and zero skips.
+The saved PR129 Windows run executed **38** admission tests at synthetic merge
+`7832cab2111e25522fc4751fc753a16472c3adde`, from source
+`82f9038f36f9f33f3965587e9bef359e321c547e` onto `d03a52ce...`; it was not direct
+execution of that source SHA and its overall job was canceled at the 30-minute
+budget. After real qualified CI integration, a genuine PR129 source descendant
+must contain the integrated workflow and 38-test source. Obtain fresh **direct
+exact-reviewed-tooling-SHA** native evidence for all four jobs before using it
+for tooling/admission qualification; no old/synthetic-source relabeling is allowed.
+
+The pinned workflow digest must remain unchanged in tooling, main, coordinator
+and worker. Never install/copy the adapter into either live checkout.
+
+All arguments are required; read `--help` before root performs the live operation:
+
+```text
+python -X utf8 <qualified-tooling>/scripts/maintenance/admit_story35_6_runtime.py --repo <existing-control-root> --run e35-6-20261102 --owner <existing-coordinator> --story spec-design-35-6-35-6 --worker <existing-worker> --generation <current-generation> --request <absolute-reviewed-request.json>
+```
+
+This template is documentation, not an instruction to perform admission. Root
+retains live mutation/publication custody. The implementation and its synthetic
+fixtures do not establish tooling CI, live admission or product runtime/P6 proof.
+
+### Strict request and raw evidence
+
+The request accepts exactly the following fields. Raw artifact references use
+`{"path":"<absolute-file>","sha256":"<raw-bytes-SHA256>"}`; store evidence outside
+the clean tracked checkouts. Hash raw bytes before review; do not normalize them.
+
+| Fields | Required evidence |
+| --- | --- |
+| `schema_version`, `request_id` | Integer 1 and once-created 1–128 ASCII identifier token. |
+| `run_id`, `story_id`, `owner`, `worker`, `expected_generation` | Exact admitted identities/current positive integer generation, matching CLI. |
+| `expected_plan_hash`, `expected_integration_sha`, `checkpoint_sha`, `qualified_main_sha`, `workflow_version` | Current canonical stored-plan SHA256, exact clean coordinator/worker HEADs, refreshed qualified origin/main SHA, unchanged workflow pin. Historical recorded hashes are not current authority. |
+| `add_write_paths`, `add_conflict_domains` | Exactly `["playwright.config.ts"]`, `["test:general-browser-runtime"]`. |
+| `reason`, `scope_approval_ref` | Concrete frozen-scope necessity and real owner authorization reference. |
+| `reviewed_tooling_sha`, `tool_sha256`, `tooling_author`, `tooling_review` | Exact tooling HEAD, LF-normalized adapter SHA256, author identity, existing independent Sol High `review` object at tooling SHA. Reviewer differs from tooling author, coordinator and every writer in the stopped-writer receipt, including nested fixers. |
+| `tooling_ci` | Raw artifact described below, with both existing OS jobs at tooling SHA. |
+| `quiescence` | Existing stopped-writer attestation schema from additive recovery above, bound to current worker/generation/branch/worktree/checkpoint. Inventory every write-capable worker/fixer; all stopped. |
+| `ownership_inventory` | Raw coordinator-attested repository-wide snapshot and reservation inventory below. |
+| `own_state` | Raw reference to the actual worker's `_bmad-output/auto-bmad/state/spec-design-35-6-35-6.yaml`. |
+| `publication` | Raw provider observation below, bound to PR127 and confirmed durable operation. |
+| `admission_review` | Exactly `review` (independent Sol High at checkpoint SHA) and `request_digest` (canonical SHA256 of the entire request excluding `admission_review`). Reviewer differs from tooling author, coordinator and every writer in the stopped-writer receipt, including nested fixers. The digest binds all raw artifact hashes and identities. |
+
+The request is parsed exactly once from its initially captured raw bytes, using
+duplicate-key rejection. The same byte sequence is rechecked before mutation;
+the request file is never reopened as a separate parsing input.
+
+Tooling CI JSON has exactly `schema_version: 1`, `repository`,
+`workflow: ".github/workflows/auto-bmad-parallel.yml"`, `commit`, `result: "passed"`,
+`checks`, and nonempty `source_ref` to native provider evidence. `checks` contains
+exactly the two job names above, using the existing check schema (actual argv,
+positive executed count, zero skipped, exact tooling commit). These are observed
+facts inspected by the coordinator and independent reviewer, never manufactured
+receipts or commands for the adapter to execute.
+
+Provider JSON has exactly `repository`, integer `pr_number: 127`, `pr_url`,
+`head_branch`, `base_branch: "main"`, `head_sha`, `state: "open"`, `merged: false`,
+and nonempty `observation_ref`. The adapter parses own state through existing
+`state_update.load_state`; immutable `publication_identity_json` must match the
+original run/source/branch/worktree/plan base. `publication_operation_json` must
+be durably `confirmed`, operation `create` or `push`, with matching PR127,
+repository, branch, main, head and identity. Published head must descend from
+the claim base and be an ancestor of the exact blocked checkpoint. Unknown,
+in-flight, mismatched or ambiguous outcomes refuse; reconcile them first through
+the existing publication process. No provider operation is performed here.
+
+Ownership JSON has exactly `schema_version: 1`, `coordinator`, `attested: true`,
+`complete: true`, `snapshot`, and `reservations`. `snapshot` equals the adapter's
+read-only `store_snapshot(connection, control_root)` projection: actual common Git
+directory; all stored runs, claims, journals, verifications, story publications
+and amendment audit rows; every registered worktree's path, branch, HEAD, raw
+porcelain status and raw hashes of state/epic anchors. To capture it, use SQLite
+URI `mode=ro` with `row_factory=sqlite3.Row` and a consistent read transaction.
+Never use the helper's write-capable `database` context to inspect the live store.
+The adapter recomputes this projection within its admission transaction. Each
+active plan is validated through its registered authoritative integration
+checkout, so a foreign source already on qualified main need not exist in the
+older target control checkout. Existing concurrent-source independence and
+path/domain ownership checks still apply.
+
+Each reservation entry has exactly `reservation` (existing six-field legacy
+reservation shape), `head` (actual current checkout HEAD), `source_status`
+(`active` or `stopped`), `evidence_ref` (actual current session status),
+`independent: true`, `independence_ref` (reviewed scope/source independence), and
+`anchors` (exact relative anchor paths the reservation covers). Include every
+declared live reservation and any additional nonterminal legacy anchor not
+recognized by its actual stored claim. An active nonconflicting producer is
+allowed; uncertain status or any path/domain/source collision refuses while
+preserving its reservation. Pending planned ownership remains governed by the
+ordinary helper. Existing claim independence requirements are retained.
+
+### Evidence-bound historical anchors
+
+This exact adapter also accepts inventory schema 2: the same fields plus
+`closed_anchors`. Schema 1 remains unchanged. A closed entry covers only exact
+otherwise-unrecognized nonterminal markers; it does not release an allocation,
+close an actor, or change the pinned helper. Ordinary active claims, legacy
+reservations and repository custody are checked first and remain authoritative.
+The approved implementation contract is
+`_bmad-output/implementation-artifacts/spec-35-6-historical-anchor-classification.md`.
+
+Each entry contains exactly `id`, `kind`, `subject`, `scope`, `anchors`, `proof`.
+`subject` binds `key`, `owner`, `source_kind`, `source_folder`, complete
+`story_keys`, and the historical task `branch`. `scope` retains complete original
+`write_paths`, `conflict_domains`, `bookkeeping_paths`, unabridged `authorities`
+(`role`, `ref`), current `coordinator`, and `complete: true`. Authority roles are
+`plan`, `binding`, `allocation`, `amendment`, `spec`, `bookkeeping`. Full scope
+includes original test/process grants; a Git diff or marker-only scope cannot
+replace the allocation/amendment record. Native arrays are conserved, including
+35.4's test grant for `playwright.config.ts`.
+
+An anchor has exactly `worktree`, actual Git `branch`, `head`, `path`, raw
+`sha256`, `subject_part`, `blob_commit`, `blob_sha256`. Its registered same-common-
+Git checkout, current snapshot identity and raw marker must match; the same-path
+blob at observed HEAD must match after explicit LF normalization. Actual checkout
+branch/HEAD are distinct from the historical task branch. Unmerged diagnostic
+HEADs are allowed only with this committed-marker binding and full closure proof.
+
+`finalized-run` proof is exactly `run_id`, `plan_hash`, `final_sha`,
+`verification_sha`: the actual finalized store row, entire stored plan and pins,
+all planned claims integrated with matching verifications/ancestry, exact final
+verification, and no unresolved operations. Copied markers must match same-path
+blobs at that run's recorded base/result/integration/final commits. Full story
+and shared scope is derived exactly from the plan. Its external legacy
+reservations remain separately preserved and are never absorbed by run closure.
+
+`legacy-main` is limited to 35.2, 35.4 and E15. Proof contains exactly `main_sha`,
+complete `terminal_states` (`subject_part`, `ref`), `source_bindings` (`ref`,
+`source_folder`, exact absolute `locations`, `owner`), `publications`, and
+`terminal_scope`. Require exact done counterparts at current qualified main,
+original source/owner/branch identities, complete allocation/amendment scope,
+raw merged publication observations and exact ordered merge parents with main
+ancestry. 35.4 includes both product PR121 and recorded closeout PR122. E15
+includes all six stories and epic and preserves legacy default publication flags.
+35.2's source binding lacks a path array: its bound approved allocation plus
+later grants must supply the full scope. Missing evidence refuses.
+
+For that exact 35.2 allocation, compare the unchanged recorded pin with either
+the captured raw SHA256 or its existing LF-normalized SHA256. No JSON
+reserialization or pin replacement is allowed. A raw CRLF-pinned original
+FileRef remains primary; a separate LF Git blob alone cannot satisfy that raw
+pin. Raw reference integrity, full allocation/owner/branch checks and lossless
+audit/rechecks remain mandatory.
+
+`terminal_scope` binds current `coordinator`, `subject_digest`, `scope_digest`,
+`complete_writer_inventory: true`, **`no_reopen_attested: true`**, exact source
+`owners`, `writers`, and `raw_observations`. Every source owner is a root; every
+observed scoped descendant is a writer. Writers bind `identity`, `parent`,
+`role`, actual completed `closure_turn_id`, `observation_ref`, and
+`state: "terminal-for-scope"`. The complete graph is acyclic and raw-backed;
+the admission reviewer is independent of every historical owner/writer too.
+
+Each observation is a strict projection containing `schema_version: 1`,
+`identity`, both digests, `scoped_turn_ids`, and `native_ref` to retained native
+`codex_app.read_thread` data (`threadId`, newest-first `turns`, closure `finals`,
+complete `children`). Only explicit historical scoped turns contribute edges;
+unrelated current work by that actor may continue. `notLoaded`, an unrelated
+latest turn, incomplete descendants, or a missing no-reopen attestation cannot
+close the task. Statement scope, complete selection and external authenticity
+remain coordinator/independent High review responsibilities.
+
+References are raw absolute files `{path, sha256}` or exact Git blobs
+`{commit, path, sha256}`. Capture each once, parse JSON with duplicate-key
+rejection, retain lossless base64 including BOM/CRLF, and recheck all sources
+and the complete current store/worktree snapshot before CAS. The existing
+append-only receipt retains full classifications, scope, derived decisions and
+raw sources. Rollback and historical replay semantics are unchanged. No proof
+overrides live/reopened ownership or custody, and no operational packet, live
+admission, tooling CI or product/runtime success follows from synthetic tests.
+
+#### Exact E15 current-custody alternative
+
+`legacy-main-current-custody` is a separate strict discriminator for only the
+existing `epic-15` owner, sprint source, six story keys and
+`codex/epic-15-scheduling-time-calendar` task branch. It reuses full actual
+allocation/amendment/bookkeeping scope, pins, integrated main/publication/ordered
+ancestry and exact registered anchor checks. Current native claims, legacy
+reservations and prepared integration/publication custody still refuse first.
+Original `legacy-main` terminal proof and `finalized-run` behavior are unchanged.
+
+Only `terminal_scope` is replaced with `current_custody`: exactly `coordinator`,
+`subject_digest`, `scope_digest`, `attested: true`,
+`complete_writer_inventory: true`, `no_reopen_attested: true`, and `evidence_ref`.
+These are Coordinator attestations, never provider-native completeness flags.
+The raw evidence object binds schema1, Coordinator/repository/common-Git,
+qualified main, request/run/story/worker/generation/checkpoint, subject/scope,
+complete current snapshot and exact anchors by digest. It retains an operator
+capture time `observed_at`, `valid_until`, and
+`no_new_overlapping_work_through_cas: true`; the interval is at most 900 seconds
+and must still be valid immediately before CAS. Native last activity/failed-turn
+timestamps are not query freshness and need no new actor turn.
+
+The evidence contains `operators`, `records`, `historical_refs` and an empty
+`uncertainties` array. Each actual record identifies actor/execution/external
+writer, owner, host, state, full current paths/domains, queued/background flags,
+`allocation` and actor `native_ref`. State is `non-writing` only with no
+assignment/queued/background work and `allocation: null`. For `live-reserved`,
+`allocation` is an existing digest string (compatible scalar form), or a
+nonempty array of unique existing digest strings. The writer's paths/domains
+must equal the exact set union of EVERY referenced full allocation; each native
+owner match and each conflict check still applies separately. References may
+have overlapping paths/domains: unique digests do not require disjoint grants.
+No missing supplement, reduced original grant, extra unallocated token, unknown
+reference, duplicate digest or invented second writer can satisfy this proof.
+Native allocation digests bind
+`{kind: "native-claim", claim: <exact snapshot row>}`; legacy digests bind
+`{kind: "legacy-reservation", reservation: <entire reservation>}`. Every other
+live allocation and every known relevant actor is covered. Legitimate active
+nonconflicting producers may continue with their full approved reservation;
+their scope is not reduced to recent changed files. Identified unknown state,
+scope, queued work, execution owner or custody refuses.
+
+Each operator has `identity`, `host`, `observation_ref`. The referenced
+`coordinator.host-operator-custody-observation` contains operator/host/capture
+time, concrete `knowledge`, matching per-record `facts`, checked sources and no
+uncertainties. Checked source purposes are exactly assignments, executions and
+external-writers. Their strict
+`coordinator.current-custody-inventory-projection` objects identify purpose,
+operator/host/capture time, matching records, nonempty original `raw_refs` and no
+uncertainties. These explicitly authored projections preserve actual existing
+host/task/operational observations; they are not new native APIs or a formal
+global process census. Relevant actor observations retain actual bounded
+`codex_app.read_thread` metadata separately. Failed/notLoaded metadata, a root
+boolean or empty host evidence alone cannot establish current custody.
+
+Historical failed records, known graph and unreadable old pages remain raw audit
+facts. The mode asserts only that the integrated marker confers no current live
+ownership; it asserts no historical success, no historical writes, task completion
+or actor closure. The Coordinator and actual host operator remain responsible
+for truthful complete actual writer/queued/background/known-external custody,
+source authenticity and the no-new-overlapping-assignment interval through CAS.
+Unchanged files prove integrity, not a fresh provider query. Independent High
+request review binds all these facts and remains independent of relevant actors,
+owners and operators. Final snapshot/raw-byte/window rechecks, the existing
+two-row CAS, rollback and lossless append-only audit remain mandatory; no marker,
+store schema, pinned helper, source pin or product configuration is changed.
+
+### Custody, transaction and continuation
+
+1. Root reconciles existing identities/provider operation, obtains qualified
+   tooling review and both exact-SHA CI jobs, and refreshes qualified main. No
+   live admission is implied by a synthetic test pass or a tooling PR.
+2. Keep claim writers stopped and registered coordinator/worker checkouts clean.
+   Capture the exact deliberately blocked claim with null evidence/result/
+   integration fields. Any target submission/publication, journal or verification,
+   prepared repository integration or unresolved PR merge custody refuses.
+3. Capture current inventory, raw own state, provider facts and writer statuses.
+   Have an independent Sol High reviewer inspect the complete strict request and
+   raw hashes; retain native source evidence and the full reviewed payload.
+4. Root invokes the separately qualified adapter once. It validates the complete
+   old-base-to-checkpoint diff against the original eleven paths first. Legacy
+   anchor recognition uses the authoritative old plan; revised ownership is
+   checked separately against all claims/shared paths/reservations. Immediately
+   before CAS it rechecks the inventory/store, Git heads, stopped writers and
+   every bound byte sequence.
+5. One existing `BEGIN IMMEDIATE` transaction updates only effective plan scope,
+   increments claim generation once, reanchors submission base to the checkpoint,
+   returns state to `claimed`, and appends complete before/after plan/claim,
+   request, raw-evidence snapshots and response to `claim_amendments`. Every raw
+   artifact, including the stopped-writer source, is retained as its reference
+   plus lossless base64 bytes; decoding must reproduce its exact raw SHA256,
+   including any UTF-8 BOM. Existing
+   append-only triggers protect this audit. A failure rolls all three back. The
+   adapter performs no Git mutation, claim transfer/release or writer restart.
+6. Save the full schema-2 response as a new assignment outside tracked files.
+   Obtain a fresh heartbeat using the original pinned helper and new generation
+   before root restarts writers. Old-generation heartbeat/block/submit refuse.
+   Preserve review history and run every ordinary exact-final-result gate; no
+   runtime, list-read/retry, product CI or readiness result is waived here.
+
+Continuation remains behind the existing durable publication/`pr_strategy`
+wrapper, which preserves the original PR identity before normal helper
+submission. This adapter does not change the original helper's direct-submit
+publication boundary or add a new publication authority.
+
+An identical token/payload retry returns only its immutable historical response
+with `replayed: true`, without new mutation or fresh qualification. Changed
+payloads and competing stale plan/generation requests refuse. Always heartbeat
+the receipt generation before treating it as current authority. SQLite cannot
+lock external agents, provider state or Git: continued silence, complete session
+inventory and authenticity of external status/CI/review observations remain
+coordinator responsibilities. The adapter hashes/rechecks data; it cannot prove
+the truth of a fabricated or incomplete external attestation.
+
 
 ## Quiesced inherited-skip finalization (maintenance only)
 
@@ -634,3 +1003,65 @@ folder (up to two explicitly planned folders). Terminal done_checkpoint is
 preserved: stop after the own PR, retain pending status until verified main merge.
 Unfulfilled spec_checkpoint approval and multi-entry continuation fail closed;
 no new checkpoint scheduler or source flag rewrite is introduced.
+
+## Failure-only reporter integration on the f0 lineage (2026-11-05)
+
+Owner-approved process continuation selectively reuses the reviewed PR1388773
+failure reporter in the ordinary current admission guard. This is reusable
+observability for the NEXT instrumented refusal, not a Git fix, materially
+discriminating causal experiment or recovery of historical f0's unlogged code.
+Original f0 qualification failed Windows0 before test collection; Ubuntu52 and
+Windows1-26 successes do not qualify Windows coverage or either skipped core.
+
+At each of the three existing binding phases, keep exactly one original
+`git diff --quiet <captured HEAD>` with unchanged argv, environment, inherited
+streams, PATH executable resolution and no added timeout. No new diagnostic
+Git/index/stat/version/executable operation precedes that predicate. Only retain
+its integer returncode; on zero, no reporter query/read/output runs and original
+guards continue. On nonzero, reporting is failure-only and the static fatal
+refusal is unconditional. The exact Git returncode is a metadata fact, separate
+from the Python guard's fatal exit1; capture success/empty/exception/timeout cannot
+mask or replace it. Added imports/definitions do not prove timing equivalence.
+
+The reused reporter emits one bounded safe JSON line in native job logs, with
+immutable actual checkout SHA, fixed phase/cell, original integer code,
+allowlist state and bounded name/status comparisons. It uses only the fixed
+postfailure tracked ls-tree, cached HEAD/index and index/worktree queries with
+reviewed no-optional-locks/no-pager/no-replace-objects/no-lazy-fetch and comparison
+no-ext-diff/no-textconv/no-renames flags. Preserve the six-second total deadline,
+2MiB allowlist/256KiB comparison input caps,16 display rows,32KiB safe output cap,
+full-capture parser/path allowlist, bounded waits and daemon/descriptor ownership.
+No raw query stdout/stderr, payload, arbitrary path, configuration, URL or token
+is added to reporting. Native original streams stay inherited. Failure metadata
+is best effort; failed/late/partial capture is not complete evidence.
+
+Later observations are AFTER_ORIGINAL_NONZERO_NON_ATOMIC and cause remains
+UNKNOWN. They cannot reconstruct original changed paths atomically, recover its
+before-index state, attribute an actor or prove cause. No index-byte observer,
+Trace2, config/filter/pin change, cleanup, refresh or repeated quiet is introduced.
+Code other than1 or a different later pattern conditionally narrows only that
+future observation. Git1/later-empty repeats the already known PR138 pattern;
+no refusal provides zero causal information gain. Neither is a repair claim.
+
+Root binds reviewed source/tree to actual executor checkout/tree, base,
+run/job/attempt and fixed cell. Retain actual PR synthetic merge identity and
+identical-tree/ancestry proof separately from candidate source. Frozen routine
+and adaptation hashes bind observer-tool provenance; existing Python/checkout
+Git version logs do not attest original PATH-resolved binary bytes/hash/build.
+
+Only the reporter component, necessary threading/time imports and literal phase
+plumbing are consumed in one f0-descendant lineage. Root records consumed versus
+remaining frozen PR138 index-observer/comparator work. Preserve its branch,
+evidence and reservations; no wholesale import, duplicate later integration,
+automatic PR138 close, merge or claim transfer follows. New overlap/conflict or
+remaining-scope disposition needs fresh reconciliation.
+
+Validation order is bounded local targeted/source controls, independent High
+source review, then ONE newly approved publication/automatic set containing
+ordinary CI with full unchanged hosted unit plus3admission+2core when dependencies
+pass and all applicable existing required gates. No local full suite, manual
+diagnostic/E09 dispatch or rerun. Stop after that set regardless outcome; preserve
+first failures and all35.6/35.7/live-adoption/merge/deployment holds. Actual normal
+first-clean gates may earn exact-source evidence, never cause, historical repair
+or automatic hold release. Current E09 mode/jobs/observer, ci.yml, cold four,
+tests/readers/helpers, dependencies and PRIMARY remain unchanged.

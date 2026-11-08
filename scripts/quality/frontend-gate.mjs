@@ -9,7 +9,7 @@ const SHA = /^[0-9a-f]{40}$/;
 const HASH = /^[0-9a-f]{64}$/;
 const STATES = ['finished', 'loading', 'error', 'empty'];
 const CATEGORIES = ['visual', 'accessibility', 'security', 'money', 'scope', 'integrity'];
-const MAX_IMAGES = 80;
+const MAX_IMAGES = 90;
 export const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
 export function canonical(value) {
   if (Array.isArray(value)) return '[' + value.map(canonical).join(',') + ']';

@@ -338,3 +338,33 @@ CDP interaction and cleanup on guard 0.9.15. See the
 [October 2 diagnosis and continuation instructions](epic-14-guard-startup-diagnosis-2026-09-29.md#guarded-browser-correction--2026-10-02).
 This host-specific launch correction changes no project dependency or CI browser
 selection and does not waive integration or application E2E acceptance gates.
+
+## Bounded early feedback
+
+Resolve commands against the assigned immutable candidate, `.nvmrc` Node22,
+package.json pnpm10.24.0 and workflow Python3.12; record actual tool versions.
+Windows native success never substitutes for ubuntu-latest/windows-latest hosted
+images or actual Actions checkout. See the [qualification responsibility table](../quality/ci.md#qualification-responsibilities-and-early-feedback).
+
+| Change | Useful bounded early feedback | Boundary still untested |
+| --- | --- | --- |
+| Docs/context | Named link/reference inspection; `node scripts/verify/check-review-order.mjs <spec>`; `node scripts/maintenance/check-coordination-context.mjs --monitor <file> --packet <file>` | No app/DB/browser/hosted acceptance. Context guard checks shape/size, not authority. |
+| Affected tooling | `python -X utf8 tests/maintenance/test_admit_story35_6_runtime.py -v`; selected actual cases in `.agents/skills/auto-bmad/scripts/tests/test_parallel_run.py`, test_parallel_cli.py, test_parallel_finalization.py, test_routing_migration.py, test_cli_delegate_windows_pid.py | Disposable fixture Git/SQLite is not live claim/resource custody. Run all required hosted partitions at qualification. Never invoke a product-run command as rehearsal. |
+| Product pure logic | `pnpm run verify:lockfiles`, `pnpm typecheck`, `pnpm lint`, affected actual Node test file; full `pnpm run test:unit` for required qualification | Mocks/typechecking cannot prove SQL/RLS, persistence, browser or provider. No dependency upgrade or install in foreign checkout. |
+| SQL/money/runtime | Supported isolated `SUPABASE_TEST_REQUIRED=1` plus `pnpm run test:int`, relevant `pnpm run test:pilot-performance`, configured production build/Playwright where assigned | Full applicable DB/RLS/recovery and current hosted/human gates remain. `with-calendar-feed-runtime.mjs db` is hosted-only: never forge admission environment locally. |
+
+Unknown impact defaults to current comprehensive qualification. A service test
+requires explicit owned allocation and resource-guard lifecycle in this guide;
+ordinary bounded fixtures need no resource launch. Do not launch a duplicate on
+another owner's mutable stack/browser. No demo access, native Supabase lifecycle
+workaround or foreign adoption. Production browser uses build/start, never
+next dev. Exact-logic extraction and synthetic checkout rehearsals require a
+separate assignment; tree-equal fixtures with core.autocrlf=false do not reproduce
+a hosted index or authorize normalizing the real index to clear refusal.
+
+For each executed test retain source/pins, command/partition, native and wrapper
+outcomes, positive executed counts, failed/skipped counts, time, OS/tool versions,
+artifact and mocked boundaries. Unavailable required suites stay unearned. Stop
+unchanged deterministic retries; preserve first failure and escalate through the
+[operating policy](bounded-workflow-operating-policy.md). These commands describe
+supported options and do not themselves authorize launching tests/resources.
