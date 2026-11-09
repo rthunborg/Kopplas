@@ -50,8 +50,8 @@ const causeProofInverse: readonly [string, string][] = [
     "  recovery-storage-loader:\n"
   ],
   [
-    "  e2e:\n    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}\n",
-    "  e2e:\n"
+    "  e2e:\n    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}\n    runs-on: ubuntu-24.04\n",
+    "  e2e:\n    runs-on: ubuntu-latest\n"
   ],
   [
     "      - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)\n        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}\n",
