@@ -559,7 +559,11 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.getByLabel("Sök kund").fill("35.3-no-match");
     await expect(page.getByTestId("customers-no-results")).toBeVisible();
     await expect(page.getByLabel("Sök kund")).toHaveValue("35.3-no-match");
-    await captureRecordState(page,"customers-no-match", [page.getByTestId("customers-no-results").getByText("Inga träffar", { exact: true }), page.getByTestId("customers-no-results").getByText("Ingen kund matchar din sökning eller ditt filter. Justera och försök igen.", { exact: true })], ["no-match"]);
+    const noMatch = page.getByTestId("customers-no-results");
+    await captureRecordState(page, "customers-no-match", [
+      noMatch.getByText("Ingen kund matchar din sökning eller ditt filter. Justera och försök igen.", { exact: true }),
+      noMatch.getByText("Inga träffar", { exact: true }),
+    ], ["no-match"]);
     await page.getByRole("button", { name: /återställ/i }).click();
     await expect(selectCompany).toBeChecked();
     await table.getByRole("link", { name: fixture.crm.company.displayName, exact: true }).click();
@@ -569,7 +573,8 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
 
   test("B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input", async ({ page }) => {
     await signIn(page, fixture.adminA.email, fixture.adminA.password);
-    const marker = `35.3 validated ${crypto.randomUUID()}`, dialog = await openCustomerCreate(page, marker);
+    const suffix = Buffer.from(crypto.getRandomValues(new Uint8Array(8))).toString("hex");
+    const marker = `35.3 validated ${suffix}`, dialog = await openCustomerCreate(page, marker);
     await captureRecordState(page,"customer-create-draft", [dialog.getByLabel("Visningsnamn")]);
     await dialog.getByLabel("E-post").fill("invalid");
     await dialog.getByLabel("Ort").fill("Västerås");
