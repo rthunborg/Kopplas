@@ -1,0 +1,76 @@
+{
+  "task_id": "35.7-P",
+  "kind": "targeted actual-browser fix confirmation",
+  "immutable_parent": "a24060287cb9e3bbea236741e74315b72785e4a7",
+  "source_inventory_sha256": "be74b39bea7d48fc36c8c9df371a1a602e74ee89e4ecc73ef8dc3c6423da0644",
+  "source_manifest_file_sha256": "edd0f61c7150b4c400afcf43747ae080f8196e8170676a11992dc3e10570a482",
+  "diff_sha256": "eb48b3a04105d290b77761e58d80eff2cb46f9996112580f5c749c5887b02e30",
+  "verdict": "FIX_CONFIRMED",
+  "remaining_consequential_findings": [],
+  "broad_rounds_completed": 1,
+  "layers": [
+    {
+      "task": "/root/producer_build/review_r1_edges",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "verdict": "FIX_CONFIRMED",
+      "scope": "Terms validation routing, seven control heights, stale/neighbor capture definitions",
+      "basis": [
+        "All47rawsourcepins/fullfixdiffhashmatch.",
+        "Localvalidationassignskindbeforepublishingerrors; pending/unknown guardsstillprecede branch andinvalidrequestnotdispatched.",
+        "Sevencontrolsuseunchanged44pxtoken; phoneassertionsrequirevisiblenamedcontrols, nonnullboundingboxes,height>=44.",
+        "Termsstaleandbothpricingviewportcapturesfollowexistingassertions; originalassertions/120secondtimeoutretained.",
+        "Capturemappingusestandardstates/additionalaccuratelynamedscenarios, withcoveragegapsexplicit."
+      ],
+      "limits": "Read-only; no tests. Recorded mocked regression RED->GREEN29passes; no post-fix measurements/browser/images. Finalhead CI/visual acceptance required."
+    },
+    {
+      "task": "/root/producer_build/review_r1_verification",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "verdict": "FIX_CONFIRMED",
+      "scope": "All52nonpassingnativecaseaudit and changedverificationclaims",
+      "basis": [
+        "All52caseIDs/status/retry/errors/locations/durations/timestampsmatchnativeJSONwithoutdiscrepancy; nativeSHA651a2e8b655e98537d6b9a03f2ef69076dd8c4d90e6a2edd263a68047529ac36.",
+        "470expected29unexpected1flaky3explicitskip19unexecutedserial; threecalendarpatternsdifferandprovenocommonunderlyingcause.",
+        "Only2termsfailuresestablishintroduceddefect; unchangedcallersnotbaselineexecutionproof.",
+        "Fixturesownuniquetenants/users;7loginwaitsend14:19:19.813Z beforefirstproducer14:19:41.199Z; calendarlatercausaluncertainty/globalstatemeasurementsabsentpreserved.",
+        "REDactualmissingtermsaria-invalid; GREEN29testsactualcontroller/parser/validator/termsmarkupwithmockedhook/router/action/browserboundaries.",
+        "Spec/deliveryretainfailedmatrix/partial34images/zeropostfixbrowser/blockedcollection/finalheadobligations; allCI_AchecksremainattributedAincluding52DBskips."
+      ],
+      "limits": "Read-only; no tests/edits/resources/DB. No consequentialverificationblockerinscope. Essentialproducerbrowser/visualproofrequired; unrelatedfailuresretaindisposition."
+    }
+  ],
+  "actual_old_A": {
+    "expected": 470,
+    "unexpected": 29,
+    "flaky": 1,
+    "skipped": 22,
+    "explicit_skip": 3,
+    "notrun": 19,
+    "producer_new_passed": 3,
+    "producer_new_failed": 2,
+    "captures": 34
+  },
+  "postfix": {
+    "focused_passed": 29,
+    "typecheck_native": 0,
+    "targeted_lint_native": 0,
+    "browser_executed": 0,
+    "PNGs": 0,
+    "native_collection": 0,
+    "native_list_exit": 1,
+    "registration_model_defined": 23,
+    "registration_model_producer": 6
+  },
+  "remaining_visual_package_work": {
+    "plan": "author-browser-capture-plan.json",
+    "nominal_defined_PNGs": 52,
+    "base_surfaces": 4,
+    "additional_surfaces": 10,
+    "frontend_paths_mapped": 27,
+    "limits": "Potential coverage/representativeness gaps remain explicit: read-error/current-unavailable; action-specific controls; retry/refresh pending; historical-vs-current sentences; phone viewport completeness. Qualify actual final-head frames before packaging, no blanket N/A or phantom coverage."
+  },
+  "development_complete": false,
+  "release_ready": false
+}

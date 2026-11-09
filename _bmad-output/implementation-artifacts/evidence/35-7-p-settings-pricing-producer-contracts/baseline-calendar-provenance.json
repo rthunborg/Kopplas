@@ -1,0 +1,76 @@
+{
+  "captured_at_utc": "2026-11-02T12:50:59.924840+00:00",
+  "baseline_head": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "baseline_clean_native_exit": 0,
+  "baseline_working_tree_clean": true,
+  "node_version": "v22.23.2",
+  "dependency_install_native_exit": 0,
+  "native_test_exit": 1,
+  "test_summary": {
+    "tests": 2,
+    "pass": 0,
+    "fail": 2,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "file_provenance": [
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "baseline_sha256": "e57d19fee17958e1e08cd529e4da54d88fccf6228fe9a57ad9b54a059930e18d",
+      "candidate_sha256": "e57d19fee17958e1e08cd529e4da54d88fccf6228fe9a57ad9b54a059930e18d",
+      "raw_bytes_identical": true,
+      "baseline_crlf_count": 3384
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "baseline_sha256": "e14e4d8b64743b78b09b8d3af766d51365a480d9c4838af09fe44dc6938ef4c2",
+      "candidate_sha256": "e14e4d8b64743b78b09b8d3af766d51365a480d9c4838af09fe44dc6938ef4c2",
+      "raw_bytes_identical": true,
+      "baseline_crlf_count": 704
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "baseline_sha256": "bbaa6f58def715bf3ea41b052f84589e009e812ce58e71854bfe77818fd2f1a5",
+      "candidate_sha256": "bbaa6f58def715bf3ea41b052f84589e009e812ce58e71854bfe77818fd2f1a5",
+      "raw_bytes_identical": true,
+      "baseline_crlf_count": 1457
+    },
+    {
+      "path": "package.json",
+      "baseline_sha256": "e3af9ff0fd9b23336337fad233ef0fd9b9d1c71ffc0c302d8ec7381fabb544fc",
+      "candidate_sha256": "e3af9ff0fd9b23336337fad233ef0fd9b9d1c71ffc0c302d8ec7381fabb544fc",
+      "raw_bytes_identical": true,
+      "baseline_crlf_count": 53
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "baseline_sha256": "42b91a116df6ac65a89e219ec9fabaaebd3d96845ca0fc44166678029cce3ca8",
+      "candidate_sha256": "42b91a116df6ac65a89e219ec9fabaaebd3d96845ca0fc44166678029cce3ca8",
+      "raw_bytes_identical": true,
+      "baseline_crlf_count": 4922
+    },
+    {
+      "path": "tests/support/register.mjs",
+      "baseline_sha256": "aa9000d42cedd89b8006375cee7fb046275a57c4550e11b84e651dd830166eb6",
+      "candidate_sha256": "aa9000d42cedd89b8006375cee7fb046275a57c4550e11b84e651dd830166eb6",
+      "raw_bytes_identical": true,
+      "baseline_crlf_count": 9
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "baseline_sha256": "def100ec124d747e866265c156a78b79a57f2e1e5b6e254fd1c631bd09ad00a2",
+      "candidate_sha256": "def100ec124d747e866265c156a78b79a57f2e1e5b6e254fd1c631bd09ad00a2",
+      "raw_bytes_identical": true,
+      "baseline_crlf_count": 273
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "baseline_sha256": "d8b4223475809cae6f52b6d39b8bbcba6704e0c504a1155f06b40408aaa282d5",
+      "candidate_sha256": "d8b4223475809cae6f52b6d39b8bbcba6704e0c504a1155f06b40408aaa282d5",
+      "raw_bytes_identical": true,
+      "baseline_crlf_count": 368
+    }
+  ],
+  "conclusion": "Both selected cases fail on the untouched recorded baseline with the same raw test/helper/calendar source bytes and dependencies as candidate. This is baseline provenance only; current full-unit command remains FAILED. No fixes, waiver, new gate PASS, database/service access or coverage for other cases. Required qualified current-candidate CI remains outstanding."
+}

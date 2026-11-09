@@ -1,0 +1,1503 @@
+{
+  "captured_at_utc": "2026-11-02T11:40:09.155857+00:00",
+  "head": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "scope": "Complete bounded exact-name scan of7legacyRPC+9commandexports+9actionexports under src and tests including support/factories; actual import-path scan crosschecks alias/module callers. Static/source evidence only, not runtime or external-caller absence proof.",
+  "scan_command": [
+    "rg",
+    "--json",
+    "-n",
+    "upsert_company_settings_with_audit|upsert_quote_terms_with_audit|approve_quote_terms_with_audit|upsert_work_role_with_audit|set_work_role_active_with_audit|upsert_article_with_audit|set_article_active_with_audit|updateCompanySettings|updateQuoteTerms|approveQuoteTerms|upsertWorkRole|archiveWorkRole|reactivateWorkRole|upsertArticle|archiveArticle|reactivateArticle|saveCompanySettingsAction|saveQuoteTermsAction|approveTermsAction|saveWorkRoleAction|archiveWorkRoleAction|reactivateWorkRoleAction|saveArticleAction|archiveArticleAction|reactivateArticleAction",
+    "src",
+    "tests",
+    "--glob",
+    "*.ts",
+    "--glob",
+    "*.tsx",
+    "--glob",
+    "*.mjs",
+    "--glob",
+    "*.js",
+    "--glob",
+    "*.json"
+  ],
+  "scan_native_exit": 0,
+  "matched_files": 21,
+  "matches": [
+    {
+      "path": "src/server/commands/settings/validation.ts",
+      "line": 18,
+      "text": " * deliberate `approveQuoteTerms` command. A client-supplied approval flag is simply\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/validation.ts",
+      "line": 112,
+      "text": " * Validated `updateCompanySettings` input (tenant_id is NEVER part of it \u2014\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/validation.ts",
+      "line": 193,
+      "text": " * Validated `updateQuoteTerms` input \u2014 ONLY the wording (tenant_id derived). NO\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/validation.ts",
+      "line": 195,
+      "text": " * approval is set ONLY by `approveQuoteTerms` (the sign-off STOP-CONDITION).\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/validation.ts",
+      "line": 212,
+      "text": "/** Validated `approveQuoteTerms` input \u2014 the target terms row id only. */\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/settings-db.ts",
+      "line": 17,
+      "text": "  rpc(fn: \"upsert_company_settings_with_audit\", args: {\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/settings-db.ts",
+      "line": 24,
+      "text": "  rpc(fn: \"upsert_quote_terms_with_audit\", args: {\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/settings-db.ts",
+      "line": 28,
+      "text": "  rpc(fn: \"approve_quote_terms_with_audit\", args: {\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "line": 9,
+      "text": " *   - `updateQuoteTerms` \u2014 upsert the tenant's single terms set (`unique\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "line": 17,
+      "text": " *   - `approveQuoteTerms` \u2014 the ONLY path that sets approval. A DELIBERATE\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "line": 41,
+      "text": "export const updateQuoteTerms = defineCommand<\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "line": 54,
+      "text": "    const { data, error } = await db.rpc(\"upsert_quote_terms_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "line": 60,
+      "text": "      throw new Error(\"updateQuoteTerms: no id returned\");\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "line": 67,
+      "text": "export const approveQuoteTerms = defineCommand<\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "line": 86,
+      "text": "    const { data, error } = await db.rpc(\"approve_quote_terms_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "line": 3,
+      "text": " * \"updateCompanySettings: Tenant quote identity and defaults; audit settings change\").\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "line": 5,
+      "text": " * `updateCompanySettings` \u2014 a `defineCommand` through the EXISTING envelope (resolve\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "line": 56,
+      "text": "export const updateCompanySettings = defineCommand<\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "line": 71,
+      "text": "    const { data, error } = await db.rpc(\"upsert_company_settings_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "line": 77,
+      "text": "      throw new Error(\"updateCompanySettings: no id returned\");\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 3,
+      "text": " * \"upsertWorkRole: Labor pricing. Audit pricing change\" / \"archiveWorkRole\").\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 5,
+      "text": " * `upsertWorkRole` / `archiveWorkRole` \u2014 each a `defineCommand` through the EXISTING\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 13,
+      "text": " * `upsertWorkRole` BRANCHES on `id` \u2014 CREATE (no id) INSERTs a NEW row; UPDATE (id\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 45,
+      "text": "export const upsertWorkRole = defineCommand<\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 67,
+      "text": "    const { data, error } = await db.rpc(\"upsert_work_role_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 78,
+      "text": "      throw new Error(\"upsertWorkRole: no id returned\");\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 86,
+      "text": "export const archiveWorkRole = defineCommand<ArchiveInput, PricingCommandResult>({\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 95,
+      "text": "    const { data, error } = await db.rpc(\"set_work_role_active_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 104,
+      "text": "      throw new Error(\"archiveWorkRole: no id returned\");\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 114,
+      "text": " * role\"). Same shape as `archiveWorkRole` (id-only input, ownership pre-check, ONE audit row\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 117,
+      "text": "export const reactivateWorkRole = defineCommand<\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 129,
+      "text": "    const { data, error } = await db.rpc(\"set_work_role_active_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 138,
+      "text": "      throw new Error(\"reactivateWorkRole: no id returned\");\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 22,
+      "text": " * SIGN-OFF STOP-CONDITION: `saveQuoteTermsAction` calls `updateQuoteTerms`, which\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 23,
+      "text": " * NEVER approves (it resets approval). Approval is set ONLY by `approveTermsAction`\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 24,
+      "text": " * \u2192 `approveQuoteTerms`, the deliberate human sign-off. There is no auto-approve path.\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 37,
+      "text": "import { updateCompanySettings } from \"@/server/commands/settings/company-settings\";\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 39,
+      "text": "  approveQuoteTerms,\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 40,
+      "text": "  updateQuoteTerms,\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 109,
+      "text": "export async function saveCompanySettingsAction(\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 114,
+      "text": "    updateCompanySettings as unknown as Command<never, SettingsCommandResult>,\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 120,
+      "text": "export async function saveQuoteTermsAction(\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 124,
+      "text": "  // Saving the terms TEXT NEVER approves them \u2014 updateQuoteTerms resets approval.\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 126,
+      "text": "    updateQuoteTerms as unknown as Command<never, SettingsCommandResult>,\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 132,
+      "text": "export async function approveTermsAction(\r\n"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "line": 138,
+      "text": "    approveQuoteTerms as unknown as Command<never, SettingsCommandResult>,\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/validation.ts",
+      "line": 100,
+      "text": " * Validated `upsertWorkRole` input. `tenant_id` is NEVER part of it (derived from the\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/validation.ts",
+      "line": 144,
+      "text": " * Validated `upsertArticle` input \u2014 ONLY the minimal manual columns. `tenant_id` and\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/pricing-db.ts",
+      "line": 18,
+      "text": "    fn: \"upsert_work_role_with_audit\",\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/pricing-db.ts",
+      "line": 30,
+      "text": "    fn: \"set_work_role_active_with_audit\",\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/pricing-db.ts",
+      "line": 40,
+      "text": "    fn: \"upsert_article_with_audit\",\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/pricing-db.ts",
+      "line": 53,
+      "text": "    fn: \"set_article_active_with_audit\",\r\n"
+    },
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "line": 104,
+      "text": "  const saved = await fx.adminClient.rpc(\"upsert_work_role_with_audit\", {\r\n"
+    },
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "line": 143,
+      "text": "      case \"work_role_upsert\": return fx.adminClient.rpc(\"upsert_work_role_with_audit\", { ...common, p_work_role_id: workRoleId, p_display_name: \"Renamed current role\", p_cost_rate_ore: 20000, p_sell_rate_ore: 40000 });\r\n"
+    },
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "line": 144,
+      "text": "      case \"work_role_active\": return fx.adminClient.rpc(\"set_work_role_active_with_audit\", { ...common, p_work_role_id: workRoleId, p_is_active: false });\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 3,
+      "text": " * \"upsertArticle: Optional minimal articles \u2026 No supplier behavior\" / \"archiveArticle\").\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 5,
+      "text": " * `upsertArticle` / `archiveArticle` \u2014 the SAME collection create/update/archive shape\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 32,
+      "text": "export const upsertArticle = defineCommand<\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 47,
+      "text": "    const { data, error } = await db.rpc(\"upsert_article_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 59,
+      "text": "      throw new Error(\"upsertArticle: no id returned\");\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 66,
+      "text": "export const archiveArticle = defineCommand<ArchiveInput, PricingCommandResult>({\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 75,
+      "text": "    const { data, error } = await db.rpc(\"set_article_active_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 84,
+      "text": "      throw new Error(\"archiveArticle: no id returned\");\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 94,
+      "text": " * path). Same shape as `archiveArticle` (id-only input, ownership pre-check, ONE audit row\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 97,
+      "text": "export const reactivateArticle = defineCommand<\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 109,
+      "text": "    const { data, error } = await db.rpc(\"set_article_active_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 118,
+      "text": "      throw new Error(\"reactivateArticle: no id returned\");\r\n"
+    },
+    {
+      "path": "tests/unit/lib/snapshots/build.test.ts",
+      "line": 268,
+      "text": "    // MUTATE the source row in place (simulating an `upsertWorkRole` edit / archive\r\n"
+    },
+    {
+      "path": "tests/unit/server/commands/settings-validation.test.ts",
+      "line": 6,
+      "text": " *   - updateCompanySettings: default_vat_display enum surface; vat_rate_bp INTEGER\r\n"
+    },
+    {
+      "path": "tests/unit/server/commands/settings-validation.test.ts",
+      "line": 9,
+      "text": " *   - updateQuoteTerms: terms_text required + non-blank; NO approval field ever read.\r\n"
+    },
+    {
+      "path": "tests/unit/server/commands/settings-validation.test.ts",
+      "line": 10,
+      "text": " *   - approveQuoteTerms: id UUID-shape guard.\r\n"
+    },
+    {
+      "path": "tests/unit/server/commands/settings-validation.test.ts",
+      "line": 32,
+      "text": "// \u2500\u2500 updateCompanySettings \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n"
+    },
+    {
+      "path": "tests/unit/server/commands/settings-validation.test.ts",
+      "line": 339,
+      "text": "// \u2500\u2500 updateQuoteTerms \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n"
+    },
+    {
+      "path": "tests/unit/server/commands/settings-validation.test.ts",
+      "line": 361,
+      "text": "// \u2500\u2500 approveQuoteTerms \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 36,
+      "text": "  archiveWorkRole,\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 37,
+      "text": "  reactivateWorkRole,\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 38,
+      "text": "  upsertWorkRole,\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 42,
+      "text": "  archiveArticle,\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 43,
+      "text": "  reactivateArticle,\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 44,
+      "text": "  upsertArticle,\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 119,
+      "text": "export async function saveWorkRoleAction(\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 124,
+      "text": "    upsertWorkRole as unknown as Command<never, PricingCommandResult>,\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 130,
+      "text": "export async function archiveWorkRoleAction(\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 135,
+      "text": "    archiveWorkRole as unknown as Command<never, PricingCommandResult>,\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 141,
+      "text": "export async function reactivateWorkRoleAction(\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 146,
+      "text": "    reactivateWorkRole as unknown as Command<never, PricingCommandResult>,\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 152,
+      "text": "export async function saveArticleAction(\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 157,
+      "text": "    upsertArticle as unknown as Command<never, PricingCommandResult>,\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 163,
+      "text": "export async function archiveArticleAction(\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 168,
+      "text": "    archiveArticle as unknown as Command<never, PricingCommandResult>,\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 174,
+      "text": "export async function reactivateArticleAction(\r\n"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "line": 179,
+      "text": "    reactivateArticle as unknown as Command<never, PricingCommandResult>,\r\n"
+    },
+    {
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "line": 12,
+      "text": " * - Editing/saving the terms TEXT (`saveQuoteTermsAction` \u2192 updateQuoteTerms) NEVER\r\n"
+    },
+    {
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "line": 14,
+      "text": " * - The deliberate \"Markera som godk\u00e4nd\" action (`approveTermsAction` \u2192 approveQuoteTerms)\r\n"
+    },
+    {
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "line": 24,
+      "text": "  approveTermsAction,\r\n"
+    },
+    {
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "line": 25,
+      "text": "  saveQuoteTermsAction,\r\n"
+    },
+    {
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "line": 58,
+      "text": "    saveQuoteTermsAction,\r\n"
+    },
+    {
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "line": 62,
+      "text": "    approveTermsAction,\r\n"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "line": 3,
+      "text": "import { updateCompanySettings } from \"@/server/commands/settings/company-settings\";\r\n"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "line": 4,
+      "text": "import { updateQuoteTerms } from \"@/server/commands/settings/quote-terms\";\r\n"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "line": 5,
+      "text": "import { upsertWorkRole } from \"@/server/commands/pricing/work-roles\";\r\n"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "line": 60,
+      "text": "      const companyIdentity = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "line": 72,
+      "text": "      const vat = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "line": 84,
+      "text": "      const terms = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "line": 91,
+      "text": "      const role = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "src/components/settings/CompanySettingsForm.tsx",
+      "line": 5,
+      "text": " * the 3.3 `updateCompanySettings` envelope command via the `saveCompanySettingsAction`\r\n"
+    },
+    {
+      "path": "src/components/settings/CompanySettingsForm.tsx",
+      "line": 26,
+      "text": "import { saveCompanySettingsAction } from \"@/features/settings/actions\";\r\n"
+    },
+    {
+      "path": "src/components/settings/CompanySettingsForm.tsx",
+      "line": 51,
+      "text": "    saveCompanySettingsAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "line": 5,
+      "text": " * form wired to the 3.4 `upsertWorkRole` / `archiveWorkRole` envelope commands via the\r\n"
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "line": 6,
+      "text": " * `saveWorkRoleAction` / `archiveWorkRoleAction` server actions.\r\n"
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "line": 23,
+      "text": "  saveWorkRoleAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "line": 24,
+      "text": "  archiveWorkRoleAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "line": 25,
+      "text": "  reactivateWorkRoleAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "line": 39,
+      "text": "    saveWorkRoleAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "line": 46,
+      "text": "    archiveWorkRoleAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "line": 51,
+      "text": "    reactivateWorkRoleAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "line": 5,
+      "text": " * form wired to the 3.4 `upsertArticle` / `archiveArticle` envelope commands via the\r\n"
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "line": 6,
+      "text": " * `saveArticleAction` / `archiveArticleAction` server actions.\r\n"
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "line": 24,
+      "text": "  saveArticleAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "line": 25,
+      "text": "  archiveArticleAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "line": 26,
+      "text": "  reactivateArticleAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "line": 40,
+      "text": "    saveArticleAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "line": 46,
+      "text": "    archiveArticleAction,\r\n"
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "line": 51,
+      "text": "    reactivateArticleAction,\r\n"
+    },
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "line": 25,
+      "text": "import { upsertWorkRole } from \"@/server/commands/pricing/work-roles\";\r\n"
+    },
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "line": 26,
+      "text": "import { upsertArticle } from \"@/server/commands/pricing/articles\";\r\n"
+    },
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "line": 428,
+      "text": "      const workRole = await runCommand(upsertWorkRole, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "line": 454,
+      "text": "      const article = await runCommand(upsertArticle, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 4,
+      "text": " * Covers the `updateCompanySettings` / `updateQuoteTerms` / `approveQuoteTerms`\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 19,
+      "text": " *     path that sets approved_at is the deliberate `approveQuoteTerms` command. There\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 26,
+      "text": " *   - Single row per tenant (P0, AC1): `updateCompanySettings` UPSERTS \u2014 a second\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 47,
+      "text": "import { updateCompanySettings } from \"@/server/commands/settings/company-settings\";\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 49,
+      "text": "  updateQuoteTerms,\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 50,
+      "text": "  approveQuoteTerms,\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 108,
+      "text": "describe(\"updateCompanySettings \u2014 upsert, VAT bp validation, audit (Story 3.3 AC1/AC5)\", () => {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 113,
+      "text": "    const result = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 157,
+      "text": "    const first = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 164,
+      "text": "    const second = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 181,
+      "text": "    const withLogo = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 199,
+      "text": "    const withoutLogo = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 219,
+      "text": "    const result = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 236,
+      "text": "    const result = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 257,
+      "text": "    const missing = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 270,
+      "text": "    const blank = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 286,
+      "text": "    const result = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 306,
+      "text": "describe(\"updateQuoteTerms \u2014 upsert terms text (Story 3.3 AC1)\", () => {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 311,
+      "text": "    const result = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 337,
+      "text": "// set by the deliberate `approveQuoteTerms` command.\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 343,
+      "text": "    const created = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 358,
+      "text": "  it(\"[P0] approveQuoteTerms is the ONLY path that sets approved_at + approved_by (to the resolved user)\", async (testCtx) => {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 361,
+      "text": "    const created = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 372,
+      "text": "    const approved = await runCommand(approveQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 391,
+      "text": "    const created = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 400,
+      "text": "    const approved = await runCommand(approveQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 411,
+      "text": "    const edited = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 425,
+      "text": "  it(\"[P0] NO create/edit path sets approval as a side-effect \u2014 repeated updateQuoteTerms NEVER yields approved_at\", async (testCtx) => {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 427,
+      "text": "    // Exercise create + several edits WITHOUT ever calling approveQuoteTerms. The\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 431,
+      "text": "      const r = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 457,
+      "text": "      const result = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 9,
+      "text": " * The four commands (`upsertWorkRole`/`archiveWorkRole` + `upsertArticle`/\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 10,
+      "text": " * `archiveArticle`) and the `work_roles_and_articles` migration do NOT exist yet \u2014\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 22,
+      "text": " *        import { upsertWorkRole, archiveWorkRole } from \"@/server/commands/pricing/work-roles\";\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 23,
+      "text": " *        import { upsertArticle, archiveArticle } from \"@/server/commands/pricing/articles\";\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 62,
+      "text": "  upsertWorkRole,\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 63,
+      "text": "  archiveWorkRole,\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 64,
+      "text": "  reactivateWorkRole,\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 67,
+      "text": "  upsertArticle,\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 68,
+      "text": "  archiveArticle,\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 69,
+      "text": "  reactivateArticle,\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 128,
+      "text": "describe(\"upsertWorkRole \u2014 create/update/archive collection + \u00f6re rates + audit (Story 3.4 AC2)\", () => {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 133,
+      "text": "    const result = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 181,
+      "text": "      const r = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 195,
+      "text": "    const created = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 205,
+      "text": "    const updated = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 221,
+      "text": "  it(\"[P0] archiveWorkRole flips is_active=false \u2014 the row STILL EXISTS (soft, never a hard DELETE)\", async (testCtx) => {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 223,
+      "text": "    const created = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 233,
+      "text": "    const archived = await runCommand(archiveWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 246,
+      "text": "  it(\"[P0/AC2] reactivateWorkRole flips is_active back to TRUE (archive is reversible) + writes ONE audit row\", async (testCtx) => {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 249,
+      "text": "    const created = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 259,
+      "text": "    const archived = await runCommand(archiveWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 269,
+      "text": "    const reactivated = await runCommand(reactivateWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 292,
+      "text": "    const result = await runCommand(reactivateWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 305,
+      "text": "    const result = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 319,
+      "text": "      const result = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 335,
+      "text": "    const result = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 350,
+      "text": "describe(\"upsertArticle \u2014 create/update/archive collection + \u00f6re unit price + audit (Story 3.4 AC3)\", () => {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 355,
+      "text": "    const result = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 387,
+      "text": "      const r = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 398,
+      "text": "  it(\"[P0] archiveArticle flips is_active=false \u2014 the row STILL EXISTS (soft, never a hard DELETE)\", async (testCtx) => {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 400,
+      "text": "    const created = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 410,
+      "text": "    const archived = await runCommand(archiveArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 422,
+      "text": "  it(\"[P0/AC3] reactivateArticle flips is_active back to TRUE (archive is reversible) + writes ONE audit row\", async (testCtx) => {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 424,
+      "text": "    const created = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 434,
+      "text": "    const archived = await runCommand(archiveArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 444,
+      "text": "    const reactivated = await runCommand(reactivateArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 465,
+      "text": "    const result = await runCommand(reactivateArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 479,
+      "text": "      const result = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 493,
+      "text": "    const result = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 520,
+      "text": "    const result = await runCommand(upsertArticle as never, {\r\n"
+    }
+  ],
+  "file_summary": {
+    "src/server/commands/settings/validation.ts": {
+      "name_matches": 5,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "src/server/commands/settings/settings-db.ts": {
+      "name_matches": 3,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "src/server/commands/settings/quote-terms.ts": {
+      "name_matches": 7,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "src/server/commands/settings/company-settings.ts": {
+      "name_matches": 5,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "src/server/commands/pricing/work-roles.ts": {
+      "name_matches": 13,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "src/features/settings/actions.ts": {
+      "name_matches": 13,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "src/server/commands/pricing/validation.ts": {
+      "name_matches": 2,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "src/server/commands/pricing/pricing-db.ts": {
+      "name_matches": 4,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "tests/support/booking-conflicts-atdd.ts": {
+      "name_matches": 3,
+      "direct_rpc_calls": 3,
+      "runCommand_calls": 0
+    },
+    "src/server/commands/pricing/articles.ts": {
+      "name_matches": 12,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "tests/unit/lib/snapshots/build.test.ts": {
+      "name_matches": 1,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "tests/unit/server/commands/settings-validation.test.ts": {
+      "name_matches": 6,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "src/features/pricing/actions.ts": {
+      "name_matches": 18,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "src/components/settings/QuoteTermsEditor.tsx": {
+      "name_matches": 6,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts": {
+      "name_matches": 7,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 4
+    },
+    "src/components/settings/CompanySettingsForm.tsx": {
+      "name_matches": 3,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "src/components/pricing/WorkRolesEditor.tsx": {
+      "name_matches": 8,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "src/components/pricing/ArticlesEditor.tsx": {
+      "name_matches": 8,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 0
+    },
+    "tests/integration/commands/non-admin-audit-authority.int.test.ts": {
+      "name_matches": 4,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 2
+    },
+    "tests/integration/commands/settings-commands.int.test.ts": {
+      "name_matches": 31,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 19
+    },
+    "tests/integration/commands/pricing-commands.int.test.ts": {
+      "name_matches": 40,
+      "direct_rpc_calls": 0,
+      "runCommand_calls": 24
+    }
+  },
+  "module_import_scan": {
+    "native_exit": 0,
+    "stdout": "tests\\e2e\\settings\\settings.e2e.spec.ts:8: * `src/features/settings/actions.ts` `\"use server\"` actions delegating to the\nsrc\\features\\settings\\read.ts:10: * envelope commands (`src/features/settings/actions.ts`).\nsrc\\features\\settings\\actions.ts:37:import { updateCompanySettings } from \"@/server/commands/settings/company-settings\";\nsrc\\features\\settings\\actions.ts:41:} from \"@/server/commands/settings/quote-terms\";\nsrc\\features\\settings\\actions.ts:42:import type { SettingsCommandResult } from \"@/server/commands/settings/company-settings\";\ntests\\e2e\\pricing\\pricing.e2e.spec.ts:9: * money input), and the `src/features/pricing/actions.ts` `\"use server\"` actions\ntests\\integration\\commands\\non-admin-audit-authority.int.test.ts:25:import { upsertWorkRole } from \"@/server/commands/pricing/work-roles\";\ntests\\integration\\commands\\non-admin-audit-authority.int.test.ts:26:import { upsertArticle } from \"@/server/commands/pricing/articles\";\nsrc\\features\\pricing\\read.ts:11: * commands (`src/features/pricing/actions.ts`).\nsrc\\features\\pricing\\actions.ts:40:} from \"@/server/commands/pricing/work-roles\";\nsrc\\features\\pricing\\actions.ts:45:} from \"@/server/commands/pricing/articles\";\ntests\\integration\\commands\\pricing-commands.int.test.ts:22: *        import { upsertWorkRole, archiveWorkRole } from \"@/server/commands/pricing/work-roles\";\ntests\\integration\\commands\\pricing-commands.int.test.ts:23: *        import { upsertArticle, archiveArticle } from \"@/server/commands/pricing/articles\";\ntests\\integration\\commands\\pricing-commands.int.test.ts:65:} from \"@/server/commands/pricing/work-roles\";\ntests\\integration\\commands\\pricing-commands.int.test.ts:70:} from \"@/server/commands/pricing/articles\";\ntests\\integration\\journeys\\first-admin-onboarding-lifecycle.int.test.ts:3:import { updateCompanySettings } from \"@/server/commands/settings/company-settings\";\ntests\\integration\\journeys\\first-admin-onboarding-lifecycle.int.test.ts:4:import { updateQuoteTerms } from \"@/server/commands/settings/quote-terms\";\ntests\\integration\\journeys\\first-admin-onboarding-lifecycle.int.test.ts:5:import { upsertWorkRole } from \"@/server/commands/pricing/work-roles\";\ntests\\integration\\commands\\settings-commands.int.test.ts:47:import { updateCompanySettings } from \"@/server/commands/settings/company-settings\";\ntests\\integration\\commands\\settings-commands.int.test.ts:51:} from \"@/server/commands/settings/quote-terms\";\nsrc\\components\\pricing\\WorkRolesEditor.tsx:26:} from \"@/features/pricing/actions\";\nsrc\\components\\pricing\\ArticlesEditor.tsx:27:} from \"@/features/pricing/actions\";\nsrc\\components\\settings\\CompanySettingsForm.tsx:26:import { saveCompanySettingsAction } from \"@/features/settings/actions\";\nsrc\\components\\settings\\QuoteTermsEditor.tsx:26:} from \"@/features/settings/actions\";\n",
+    "assessment": "Only explicit current command/action imports in already allocated source and4integration caller files; no additional aliased/module caller path identified."
+  },
+  "production_rpc_calls": [
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "line": 54,
+      "text": "    const { data, error } = await db.rpc(\"upsert_quote_terms_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "line": 86,
+      "text": "    const { data, error } = await db.rpc(\"approve_quote_terms_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "line": 71,
+      "text": "    const { data, error } = await db.rpc(\"upsert_company_settings_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 67,
+      "text": "    const { data, error } = await db.rpc(\"upsert_work_role_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 95,
+      "text": "    const { data, error } = await db.rpc(\"set_work_role_active_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 129,
+      "text": "    const { data, error } = await db.rpc(\"set_work_role_active_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 47,
+      "text": "    const { data, error } = await db.rpc(\"upsert_article_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 75,
+      "text": "    const { data, error } = await db.rpc(\"set_article_active_with_audit\", {\r\n"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 109,
+      "text": "    const { data, error } = await db.rpc(\"set_article_active_with_audit\", {\r\n"
+    }
+  ],
+  "test_direct_rpc_calls": [
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "line": 104,
+      "text": "  const saved = await fx.adminClient.rpc(\"upsert_work_role_with_audit\", {\r\n"
+    },
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "line": 143,
+      "text": "      case \"work_role_upsert\": return fx.adminClient.rpc(\"upsert_work_role_with_audit\", { ...common, p_work_role_id: workRoleId, p_display_name: \"Renamed current role\", p_cost_rate_ore: 20000, p_sell_rate_ore: 40000 });\r\n"
+    },
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "line": 144,
+      "text": "      case \"work_role_active\": return fx.adminClient.rpc(\"set_work_role_active_with_audit\", { ...common, p_work_role_id: workRoleId, p_is_active: false });\r\n"
+    }
+  ],
+  "test_command_calls": [
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "line": 60,
+      "text": "      const companyIdentity = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "line": 72,
+      "text": "      const vat = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "line": 84,
+      "text": "      const terms = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "line": 91,
+      "text": "      const role = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "line": 428,
+      "text": "      const workRole = await runCommand(upsertWorkRole, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "line": 454,
+      "text": "      const article = await runCommand(upsertArticle, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 113,
+      "text": "    const result = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 157,
+      "text": "    const first = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 164,
+      "text": "    const second = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 181,
+      "text": "    const withLogo = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 199,
+      "text": "    const withoutLogo = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 219,
+      "text": "    const result = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 236,
+      "text": "    const result = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 257,
+      "text": "    const missing = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 270,
+      "text": "    const blank = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 286,
+      "text": "    const result = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 311,
+      "text": "    const result = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 343,
+      "text": "    const created = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 361,
+      "text": "    const created = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 372,
+      "text": "    const approved = await runCommand(approveQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 391,
+      "text": "    const created = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 400,
+      "text": "    const approved = await runCommand(approveQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 411,
+      "text": "    const edited = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 431,
+      "text": "      const r = await runCommand(updateQuoteTerms, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "line": 457,
+      "text": "      const result = await runCommand(updateCompanySettings, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 133,
+      "text": "    const result = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 181,
+      "text": "      const r = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 195,
+      "text": "    const created = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 205,
+      "text": "    const updated = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 223,
+      "text": "    const created = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 233,
+      "text": "    const archived = await runCommand(archiveWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 249,
+      "text": "    const created = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 259,
+      "text": "    const archived = await runCommand(archiveWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 269,
+      "text": "    const reactivated = await runCommand(reactivateWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 292,
+      "text": "    const result = await runCommand(reactivateWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 305,
+      "text": "    const result = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 319,
+      "text": "      const result = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 335,
+      "text": "    const result = await runCommand(upsertWorkRole as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 355,
+      "text": "    const result = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 387,
+      "text": "      const r = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 400,
+      "text": "    const created = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 410,
+      "text": "    const archived = await runCommand(archiveArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 424,
+      "text": "    const created = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 434,
+      "text": "    const archived = await runCommand(archiveArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 444,
+      "text": "    const reactivated = await runCommand(reactivateArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 465,
+      "text": "    const result = await runCommand(reactivateArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 479,
+      "text": "      const result = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 493,
+      "text": "    const result = await runCommand(upsertArticle as never, {\r\n"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "line": 520,
+      "text": "    const result = await runCommand(upsertArticle as never, {\r\n"
+    }
+  ],
+  "source_and_initial_tests": "All9productionRPCinvocations and original settings/pricing integration callers are in approved initial allocation. Existing unit parsing/validation/actions and browser specs are allocated; no extra direct action export call in tests found.",
+  "already_approved2files": [
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "sha256": "db8bf110be77128ced37fa3cba52781f42336c9de7c9631720621af7ae75ebb2"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "sha256": "f26efe671b07aef0050faa5d8cc51bb75345748e4a7b132b03877284e6c0dbb9"
+    }
+  ],
+  "only_remaining_outside_allocation": [
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "line": 104,
+      "text": "  const saved = await fx.adminClient.rpc(\"upsert_work_role_with_audit\", {\r\n"
+    },
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "line": 143,
+      "text": "      case \"work_role_upsert\": return fx.adminClient.rpc(\"upsert_work_role_with_audit\", { ...common, p_work_role_id: workRoleId, p_display_name: \"Renamed current role\", p_cost_rate_ore: 20000, p_sell_rate_ore: 40000 });\r\n"
+    },
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "line": 144,
+      "text": "      case \"work_role_active\": return fx.adminClient.rpc(\"set_work_role_active_with_audit\", { ...common, p_work_role_id: workRoleId, p_is_active: false });\r\n"
+    }
+  ],
+  "noncaller_dispositions": [
+    {
+      "path": "tests/unit/lib/snapshots/build.test.ts",
+      "line": 268,
+      "kind": "comment only",
+      "finding": "Mentions upsertWorkRole in explanatory comment. No command/RPC invocation, source-name assertion or required edit."
+    },
+    {
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "finding": "Existing exact ACL lists select booking-editor/job-member/time-report functions by explicit domain names; no settings/pricing oldRPC signature or grant assertion. Exact policy enumeration also unchanged: new receipt has no policies, and domain read policies remain unchanged. No concrete edit required here.",
+      "anchors": [
+        {
+          "line": 652,
+          "purpose": "14.4 domain-specific editor inventory"
+        },
+        {
+          "line": 683,
+          "purpose": "16.2 domain-specific checked/helpers list"
+        },
+        {
+          "line": 717,
+          "purpose": "15.4 time report domain-specific ACL inventory"
+        }
+      ]
+    }
+  ],
+  "reachable_failure": "After required oldRPC execute revocation, enabled booking-conflicts AC10 scenarios call prepareConsumedWriter; all7non-invitation branches first execute seedWorkRole and fail oldRPCpermission/shape check before lock observation. Two work-role branches also contain revoked update/lifecycle calls. Actual registration at consumer552 calls test(scenario.title,scenario.run), not skip.",
+  "tests_executed": 0,
+  "broader_review": false,
+  "sourcebinding_modified": false
+}

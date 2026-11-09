@@ -1,0 +1,28 @@
+src\components\settings\QuoteTermsEditor.tsx:20:import { sameDraftBaseline, canonicalTermsEqual, type EditorOperationContext } from "@/features/settings/mutation-attempt";
+src\components\settings\QuoteTermsEditor.tsx:55:    const confirmsOwnWrite = (operation.kind === "terms.save" || operation.kind === "terms.approve") && operation.phase === "committed" && operation.hasCurrentRead && !defaults.readError && defaults.id === operation.state.targetId && defaults.write_revision === operation.state.committedRevision && canonicalTermsEqual(draft, defaults.terms_text);
+src\components\settings\QuoteTermsEditor.tsx:56:    if (confirmsOwnWrite && !sameDraftBaseline(baseline, defaults)) setBaseline(defaults);
+src\components\settings\QuoteTermsEditor.tsx:57:    const baselineChanged = !defaults.readError && (baseline.readError || !sameDraftBaseline(baseline, defaults)) && !confirmsOwnWrite;
+src\components\settings\QuoteTermsEditor.tsx:59:    const dirty = !canonicalTermsEqual(draft, reviewed.terms_text);
+src\components\settings\CompanySettingsForm.tsx:25:import { attemptBlocksReplacement, attemptForm, captureAttempt, settleAttempt, type MutationAttempt, type OperationKind, type EditorOperationContext, sameDraftBaseline } from "@/features/settings/mutation-attempt";
+src\components\settings\CompanySettingsForm.tsx:56:    const baselineChanged = !defaults.readError && (baseline.readError || !sameDraftBaseline(baseline, defaults));
+src\components\pricing\WorkRolesEditor.tsx:19:import { sameDraftBaseline, currentTargetStatus, type EditorOperationContext } from "@/features/settings/mutation-attempt";
+src\components\pricing\WorkRolesEditor.tsx:38:    const baselineChanged = !readError && selected !== null && (!currentSelected || !sameDraftBaseline(selected, currentSelected));
+src\components\pricing\WorkRolesEditor.tsx:39:    const currentStatus = currentTargetStatus(operation.hasCurrentRead, readError, [...workRoles, ...archivedWorkRoles], state.targetId, state.committedRevision);
+src\components\pricing\ArticlesEditor.tsx:20:import { sameDraftBaseline, currentTargetStatus, type EditorOperationContext } from "@/features/settings/mutation-attempt";
+src\components\pricing\ArticlesEditor.tsx:39:    const baselineChanged = !readError && selected !== null && (!currentSelected || !sameDraftBaseline(selected, currentSelected));
+src\components\pricing\ArticlesEditor.tsx:40:    const currentStatus = currentTargetStatus(operation.hasCurrentRead, readError, [...articles, ...archivedArticles], state.targetId, state.committedRevision);
+tests\unit\features\settings\mutation-attempt.test.ts:3:import { OPERATION_KINDS, captureAttempt, attemptForm, settleAttempt, attemptBlocksReplacement, operationPreconditions, operationFormFields, sameDraftBaseline, canonicalTermsEqual, currentTargetStatus } from "@/features/settings/mutation-attempt";
+tests\unit\features\settings\mutation-attempt.test.ts:78:        assert.equal(sameDraftBaseline(displayed, refreshed), false);
+tests\unit\features\settings\mutation-attempt.test.ts:85:        assert.equal(sameDraftBaseline(refreshed, { ...refreshed }), true);
+tests\unit\features\settings\mutation-attempt.test.ts:88:    assert.equal(canonicalTermsEqual(" \nReviewed wording\n ", "Reviewed wording"), true);
+tests\unit\features\settings\mutation-attempt.test.ts:89:    assert.equal(canonicalTermsEqual("Reviewed wording\n", "Reviewed wording"), true);
+tests\unit\features\settings\mutation-attempt.test.ts:90:    assert.equal(canonicalTermsEqual("Different wording", "Reviewed wording"), false);
+tests\unit\features\settings\mutation-attempt.test.ts:91:    assert.equal(canonicalTermsEqual("Reviewed  wording", "Reviewed wording"), false);
+tests\unit\features\settings\mutation-attempt.test.ts:99:                assert.equal(currentTargetStatus(true, true, partialRows, target, revision), "unavailable");
+tests\unit\features\settings\mutation-attempt.test.ts:100:            assert.equal(currentTargetStatus(false, false, [committed], target, revision), "pending");
+tests\unit\features\settings\mutation-attempt.test.ts:101:            assert.equal(currentTargetStatus(true, false, [committed], target, revision), "confirmed");
+tests\unit\features\settings\mutation-attempt.test.ts:102:            assert.equal(currentTargetStatus(true, false, [{ ...committed, write_revision: op }], target, revision), "newer");
+tests\unit\features\settings\mutation-attempt.test.ts:103:            assert.equal(currentTargetStatus(true, false, [], target, revision), "missing");
+src\features\settings\mutation-attempt.ts:92:export function sameDraftBaseline(a: { readonly id: string | null; readonly write_revision: string | null }, b: { readonly id: string | null; readonly write_revision: string | null }): boolean {
+src\features\settings\mutation-attempt.ts:96:export function canonicalTermsEqual(draft: string, saved: string): boolean { return draft.trim() === saved.trim(); }
+src\features\settings\mutation-attempt.ts:98:export function currentTargetStatus(hasCurrentRead: boolean, readError: boolean, rows: readonly { readonly id: string; readonly write_revision: string }[], targetId: string | null, committedRevision: string | null): "unavailable" | "pending" | "missing" | "newer" | "confirmed" {

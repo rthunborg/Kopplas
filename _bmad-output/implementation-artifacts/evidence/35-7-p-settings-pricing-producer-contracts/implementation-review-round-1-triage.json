@@ -1,0 +1,122 @@
+{
+  "task_id": "35.7-P",
+  "round": 1,
+  "round_cap": 3,
+  "status": "completed-four-approved-scope-patches-required",
+  "review_commit": "cad737c4399bb453ad3eb624911f3ce9218433c5",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "reviewers": [
+    {
+      "task": "/root/producer_build/review_r1_blind",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "context": "none",
+      "final_findings": 3
+    },
+    {
+      "task": "/root/producer_build/review_r1_edges",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "context": "none",
+      "final_findings": 2
+    },
+    {
+      "task": "/root/producer_build/review_r1_verification",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "context": "none",
+      "final_findings": 2
+    }
+  ],
+  "deduplication": "Only identical claim and required action consolidated; R1-1 merges company/terms stale refresh and neighboring pricing refresh under same draft-baseline fix. Whitespace canonical equivalence remains separate.",
+  "findings": [
+    {
+      "id": "R1-1",
+      "category": "patch",
+      "severity": "high",
+      "claim": "Refreshed props silently rebind an old draft to a newer expected revision.",
+      "layers": [
+        "blind-hunter",
+        "edge-case-hunter"
+      ],
+      "files": [
+        "src/components/settings/CompanySettingsForm.tsx:55",
+        "src/components/settings/QuoteTermsEditor.tsx:63",
+        "src/components/pricing/WorkRolesEditor.tsx:39",
+        "src/components/pricing/ArticlesEditor.tsx:40"
+      ],
+      "trigger": "Admin A edits revision R1; admin B changes the row to R2. A stale rejection refresh or neighboring pricing editor success refresh replaces the revision prop without replacing/reviewing the old draft. A deliberate next submit carries stale field values and R2, so SQL legitimately accepts and overwrites B.",
+      "downstream_check": "SQL target revision comparison remains enforced but cannot detect replacement of the draft's original revision with R2. Company echo state, controlled terms draft, and selected-ID keyed uncontrolled pricing inputs retain old fields.",
+      "required_fix": "Bind draft baseline ID/revision to the actual displayed/selected values, retain original expected facts through unrelated refreshes, show separately established current facts after stale rejection, and require explicit review/adoption before a fresh draft can use newer revision. Never clear or replace pending/unknown immutable attempts. Cover company/terms/pricing and neighboring editor refresh.",
+      "contract": "producer-contract.md stale facts and exact terms approval; current historical result vs independent current facts; P-AC4/P-AC6."
+    },
+    {
+      "id": "R1-2",
+      "category": "patch",
+      "severity": "medium",
+      "claim": "Saved canonical terms with surrounding whitespace stay dirty and block approval.",
+      "layers": [
+        "blind-hunter"
+      ],
+      "files": [
+        "src/components/settings/QuoteTermsEditor.tsx:51",
+        "src/components/settings/QuoteTermsEditor.tsx:52",
+        "src/components/settings/QuoteTermsEditor.tsx:104"
+      ],
+      "trigger": "Draft 'Reviewed terms\\n' saves canonical trimmed wording; raw draft inequality against current saved text keeps dirty=true and approval disabled on every repeat save.",
+      "downstream_check": "Parsers and command validators both trim terms. SQL approval exact canonical text/revision/current unapproved guard is correct; this is client dirty-state mismatch, not an approval bypass.",
+      "required_fix": "Use the existing canonical trim semantics for reviewed saved equivalence or reconcile only the matching committed draft after a successful current read; preserve genuinely unsaved edits and exact current unapproved approval requirements. Add meaningful save/approve whitespace regression."
+    },
+    {
+      "id": "R1-3",
+      "category": "patch",
+      "severity": "medium",
+      "claim": "Failed pricing rereads are displayed as confirmed committed-target deletion.",
+      "layers": [
+        "blind-hunter",
+        "edge-case-hunter",
+        "verification-gap"
+      ],
+      "files": [
+        "src/app/(app)/settings/pricing/page.tsx:43",
+        "src/app/(app)/settings/pricing/page.tsx:77",
+        "src/components/pricing/WorkRolesEditor.tsx:99",
+        "src/components/pricing/ArticlesEditor.tsx:100",
+        "src/components/settings/CompanySettingsForm.tsx:223"
+      ],
+      "trigger": "Committed/reconciled pricing operation refreshes; domain read fails and returns empty arrays with an error. A new readToken alone makes hasCurrentRead true; editor says existing target is gone.",
+      "downstream_check": "Generic page read alert exists but does not suppress editor's contradictory deletion/current-state claim. Settings forms already check readError; pricing editors receive no read-error state.",
+      "required_fix": "Carry successful domain-read status to the pricing editors, gate presence/absence/revision claims and mutation expected facts on actual successful authoritative reads, and show unavailable current facts on error. Cover active and archived reads and both editors with an owned regression.",
+      "contract": "producer-contract.md historical result/current facts and P-AC6."
+    },
+    {
+      "id": "R1-4",
+      "category": "patch",
+      "severity": "high",
+      "claim": "Authority-race requests are lazy RPC builders and never start before lock observation.",
+      "layers": [
+        "verification-gap"
+      ],
+      "files": [
+        "tests/integration/commands/settings-pricing-operation-contract.int.test.ts:347",
+        "tests/integration/commands/settings-pricing-operation-contract.int.test.ts:357"
+      ],
+      "trigger": "Four company.save/work_role.update x disable/re_role tests assign writer=call(op), then wait(1), and revoker=manage(...), then wait(2). Supabase/PostgREST builders execute on .then/await, so lock barrier cannot observe either request before finally consumes them.",
+      "downstream_check": "Authenticated fixture observer forwards RPC builders unchanged; no eager call wrapper. Other Promise.all/then paths consume builders normally.",
+      "required_fix": "Start real executing promises before waiting for each blocker, retain actual lock barrier and current-authority/audit/receipt assertions, and make cleanup settle in-flight requests deterministically without serializing away the race. Required actual CI execution remains outstanding.",
+      "contract": "P-AC3 current authority through mutation/audit/receipt; P-I authority race verification."
+    }
+  ],
+  "triage_authority": "All fixes implement already approved immutable contract, no business intent reopening, canonical contract/spec source unchanged. No bad_spec/intent_gap loopback, reset or rederivation.",
+  "source_limits": "Read-only source review; zero tests/services/DB access by reviewers. Known six pending unapproved paths unchanged; compile/build/fullunit/runtime/CI/visual blockers remain. This is not implementation PASS or runtime/readiness acceptance.",
+  "tool_provenance": "Verification reviewer ordinary git -C read permission refusal recovered via bounded read-only escalated exact git show; no global git config change.",
+  "author_fix_route": {
+    "recorded_before_dispatch": true,
+    "task": "/root/producer_build/implementation_author",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "same_author_context": true,
+    "ownership": "Only existing effective approved source/test/spec/delivery plus task evidence. Six pending test paths remain forbidden until actual approval.",
+    "round_use": "This completes broad Round1; follow-up checks focus on latest fixes and unresolved consequential findings. Three broad rounds maximum."
+  }
+}

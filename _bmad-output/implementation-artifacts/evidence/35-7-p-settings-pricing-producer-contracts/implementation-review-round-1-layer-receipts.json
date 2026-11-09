@@ -1,0 +1,91 @@
+{
+  "task_id": "35.7-P",
+  "round": 1,
+  "review_commit": "cad737c4399bb453ad3eb624911f3ce9218433c5",
+  "baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "provenance": "Actual completed collaboration subagent final results received by this workflow owner. Faithful final finding disposition retained here; exact original text remains in the owner chat, with no invented message IDs. No test execution by reviewers.",
+  "layers": [
+    {
+      "task": "/root/producer_build/review_r1_blind",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "context": "none",
+      "final_findings": [
+        {
+          "claim": "A neighboring editor refresh silently rebases a dirty pricing draft.",
+          "retained_in": "R1-1",
+          "source": "WorkRolesEditor.tsx36-39,93,102-105; ArticlesEditor.tsx37-40; CompanySettingsForm.tsx173",
+          "evidence": "Existing dirty uncontrolled inputs retain revision-R data while selected refreshed props supply revision R2. SQL expected-revision comparison then passes a stale overwrite."
+        },
+        {
+          "claim": "Successfully saved terms with surrounding whitespace remain permanently dirty within the mount.",
+          "retained_in": "R1-2",
+          "source": "QuoteTermsEditor.tsx51-52,64,104",
+          "evidence": "Existing parsers and validators trim terms; raw draft retains newline, so saved canonically equivalent text still disables approval."
+        },
+        {
+          "claim": "A failed pricing reread is treated as proof that a committed target disappeared.",
+          "retained_in": "R1-3",
+          "source": "ArticlesEditor.tsx100; WorkRolesEditor.tsx99; CompanySettingsForm.tsx223",
+          "evidence": "Failed read returns empty arrays, fresh token marks current read, so success region asserts deletion without successful current facts."
+        }
+      ],
+      "limits": "Read-only source review; no tests/services; no readiness approval."
+    },
+    {
+      "task": "/root/producer_build/review_r1_edges",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "context": "none",
+      "final_findings": [
+        {
+          "location": "src/components/settings/CompanySettingsForm.tsx:55-57",
+          "trigger_condition": "After stale rejection, an admin refreshes and resubmits a draft containing obsolete untouched fields.",
+          "guard_snippet": "if (!reviewedCurrentFacts) return; submit(candidate, reviewedRevision);",
+          "potential_consequence": "Refreshed revision validates stale field values, silently overwriting another admin's changes.",
+          "retained_in": "R1-1"
+        },
+        {
+          "location": "src/components/pricing/ArticlesEditor.tsx:107",
+          "trigger_condition": "Pricing recovery succeeds, but the subsequent current-row read fails.",
+          "guard_snippet": "const currentConfirmed = operation.hasCurrentRead && !readError;",
+          "potential_consequence": "Persisted articles and work roles are falsely reported removed after failed reads.",
+          "retained_in": "R1-3"
+        }
+      ],
+      "supplementary_actual_trace": "Company stale state.values persists every old field while defaults.write_revision refreshes. Terms controlled mounted draft and pricing selected-ID keyed uncontrolled form behave analogously. SQL company151 checks suppliedrevision and152 writesallfields, no downstream bypass needed. Reviewer explicitly excluded dirty-wording approval bypass because dirty check and exact SQL terms/revision remain enforced.",
+      "limits": "Read-only; no tests/services/files."
+    },
+    {
+      "task": "/root/producer_build/review_r1_verification",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "context": "none",
+      "final_findings": [
+        {
+          "claim": "Failed pricing rereads can be displayed as confirmed target deletion.",
+          "retained_in": "R1-3",
+          "evidence": "Pricing e2e290-307 verifies successful reread only; SQL history/deletion test228 does not cover failed UI current-read boundary. Contract53/P-AC6 require historical completion separate from independently established current facts.",
+          "required_regression": "After valid receipt, fail corresponding pricing reread and require current facts unavailable, not deletion/current revision."
+        },
+        {
+          "claim": "The new authority-race tests never start their RPCs before waiting for blocking.",
+          "retained_in": "R1-4",
+          "evidence": "Four tests328-373 assign lazy writer347 and wait356 before consuming; lazy revoker357 precedes wait358. call24 returns client.rpc; observer quote-send-diagnostics55-59 forwards unchanged. Installed PostgREST2.108.2 starts fetch in PostgrestBuilder.then267-388, not builder construction.",
+          "consequence": "Barrier exhausts before authority assertions; finally only consumes after blocker rollback. Cannot prove promised P-AC3 concurrent revoke/rerole.",
+          "required_regression": "Start actual executing promises before observing blockers, preserve outcomes/audit/receipt and deterministic settling."
+        }
+      ],
+      "limits": "Read complete6024-line source diff and authoritative commit; no edits/tests/DB/resources/runtimePASS."
+    }
+  ],
+  "tool_failure": {
+    "operation": "Evidence receipt write, not review/source mutation",
+    "native_exit": 1,
+    "error": "PowerShell ParserError: Missing ')' in method call.",
+    "cause": "PowerShell tokenized curly apostrophe in literal retained reviewer text as quote.",
+    "outcome": "Parser rejected entire command before execution; no file body applied. Retried with ASCII-escaped JSON literal safely, no source touched."
+  },
+  "triage_record": "implementation-review-round-1-triage.json",
+  "readiness": false
+}

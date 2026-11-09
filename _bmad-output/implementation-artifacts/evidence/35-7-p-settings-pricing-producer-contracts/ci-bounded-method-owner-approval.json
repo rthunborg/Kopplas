@@ -1,0 +1,19 @@
+{
+  "recorded_at_utc": "2026-11-02T17:09:33.5065647Z",
+  "source": "Parent /root relayed actual direct human async reply",
+  "question_item_id": [
+    "request_user_input_async",
+    "call_51881c6585c84472baaed6228fd0756c",
+    0
+  ],
+  "exact_answer": "Authorize both bounded effects",
+  "authority": "CI-only fresh exclusive GitHub test stack; temporary authenticated SELECT revoke/exact restore one allowlisted table at a time; ONE total fresh unreferenced test-owned pricing row deletion after committed receipt, including retries, both viewports same receipt/page",
+  "proposal_md": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.md",
+  "proposal_json": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.json",
+  "conditions": "Strong existing wrapper/stack/server nonce/exclusive-consumer proof; dedicated session; complete ACL/inherited/grantor/options preflight; register cleanup before commit; exact original grantor/tuple restore and full semantic ACL/authenticated read verification; release and settle transports; preserve scenario and cleanup errors; unverified restore fails and stops further faults/retries; deletion exact tenant/UUID/revision/actor and unreferenced guard, no CASCADE",
+  "exclusions": "Never local/demo/prod/shared fixtures/Auth users; no production27/canonical9/new helpers/global setup/config/workflow/dependencies/provider edits",
+  "independent_review_required_before_execution": true,
+  "no_runtime_credit": true,
+  "original_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "supersedes": "Earlier method hold only; direct human authority resolves prior Coordinator-only automatic rejection"
+}

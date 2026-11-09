@@ -1,0 +1,32 @@
+{
+  "resourceId": "6b824236-803a-48ce-8871-f4145ca6f325",
+  "state": "active",
+  "resourceType": "docker-compose",
+  "composeOperation": {
+    "schemaVersion": 1,
+    "requestId": "dab3d2e0-233d-4d0d-8bf6-71447ebb507e",
+    "phase": "active",
+    "acceptedUtc": "2026-11-02T11:31:32.9588504Z",
+    "updatedUtc": "2026-11-02T11:31:52.5053145Z",
+    "dispatchCommitted": true,
+    "backendFailureCategory": null,
+    "composeExitCode": null,
+    "guardProject": "rg-f921c6b8f5a9cdf18fa1c9ef0f5b667779ca4dd1",
+    "operationProgress": "active",
+    "failingService": null,
+    "errorCode": null,
+    "outcomeVerified": true
+  },
+  "startOutcome": {
+    "schemaVersion": 1,
+    "attemptDisposition": "unknown",
+    "backendInvocation": "unknown",
+    "temporaryUsage": "unknown",
+    "retainedReference": "unknown",
+    "recoveryRoute": "inspect_only",
+    "diagnosticCode": null,
+    "evidenceSource": "unknown",
+    "retainedLiveState": "unknown",
+    "explanation": "This catalog record does not prove whether this attempt invoked a backend. Inspect the recorded lifecycle and exact retained ownership before retrying."
+  }
+}

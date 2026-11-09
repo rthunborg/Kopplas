@@ -1,0 +1,1016 @@
+{
+  "kind": "Capture definitions only; no new runtime/PNG/package acceptance",
+  "candidate_before": "deb14ba0f9250c4e02f6d43011acc79ab475f613",
+  "baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "nominal_count": 103,
+  "package_cap": 80,
+  "new_png_count": 0,
+  "source_defined_tests": 24,
+  "source_defined_producer_tests": 7,
+  "native_collection": "Not run; existing tests/e2e/.auth/fixture.json absent. No replacement fixture/setup/runtime.",
+  "prior_actual_runtime": "Parent-qualified deb14 owned23/23 first-attempt passes incl6 producer; prior52 images have actual coverage defects. Neither result credits these changed tests/new head.",
+  "capture_inventory": [
+    {
+      "surface": "company",
+      "state": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/empty.png"
+    },
+    {
+      "surface": "company",
+      "state": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/error.png"
+    },
+    {
+      "surface": "company",
+      "state": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/loading.png"
+    },
+    {
+      "surface": "company",
+      "state": "unknown",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/unknown.png"
+    },
+    {
+      "surface": "company",
+      "state": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/finished.png"
+    },
+    {
+      "surface": "company",
+      "state": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/stale.png"
+    },
+    {
+      "surface": "company",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/reconcile-pending.png"
+    },
+    {
+      "surface": "company",
+      "state": "refresh-notice",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/refresh-notice.png"
+    },
+    {
+      "surface": "company",
+      "state": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/empty.png"
+    },
+    {
+      "surface": "company",
+      "state": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/error.png"
+    },
+    {
+      "surface": "company",
+      "state": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/loading.png"
+    },
+    {
+      "surface": "company",
+      "state": "unknown",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/unknown.png"
+    },
+    {
+      "surface": "company",
+      "state": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/finished.png"
+    },
+    {
+      "surface": "company",
+      "state": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/stale.png"
+    },
+    {
+      "surface": "company",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/reconcile-pending.png"
+    },
+    {
+      "surface": "company",
+      "state": "refresh-notice",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/refresh-notice.png"
+    },
+    {
+      "surface": "company",
+      "state": "stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/stale-draft.png"
+    },
+    {
+      "surface": "terms",
+      "state": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/empty.png"
+    },
+    {
+      "surface": "terms",
+      "state": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/error.png"
+    },
+    {
+      "surface": "terms",
+      "state": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/loading.png"
+    },
+    {
+      "surface": "terms",
+      "state": "unknown",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/unknown.png"
+    },
+    {
+      "surface": "terms",
+      "state": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/finished.png"
+    },
+    {
+      "surface": "terms",
+      "state": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/stale.png"
+    },
+    {
+      "surface": "terms",
+      "state": "retry-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/retry-pending.png"
+    },
+    {
+      "surface": "terms",
+      "state": "saved-unapproved",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/saved-unapproved.png"
+    },
+    {
+      "surface": "terms",
+      "state": "dirty-approval-disabled",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/dirty-approval-disabled.png"
+    },
+    {
+      "surface": "terms",
+      "state": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/empty.png"
+    },
+    {
+      "surface": "terms",
+      "state": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/error.png"
+    },
+    {
+      "surface": "terms",
+      "state": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/loading.png"
+    },
+    {
+      "surface": "terms",
+      "state": "unknown",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/unknown.png"
+    },
+    {
+      "surface": "terms",
+      "state": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/finished.png"
+    },
+    {
+      "surface": "terms",
+      "state": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/stale.png"
+    },
+    {
+      "surface": "terms",
+      "state": "retry-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/retry-pending.png"
+    },
+    {
+      "surface": "terms",
+      "state": "saved-unapproved",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/saved-unapproved.png"
+    },
+    {
+      "surface": "terms",
+      "state": "dirty-approval-disabled",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/dirty-approval-disabled.png"
+    },
+    {
+      "surface": "terms",
+      "state": "stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/stale-draft.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/empty.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/error.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/loading.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "unknown",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/unknown.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/finished.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/stale.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "neighbor-stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/neighbor-stale.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/reconcile-pending.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "archived-restore",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/archived-restore.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/empty.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/error.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/loading.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "unknown",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/unknown.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/finished.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/stale.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "neighbor-stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/neighbor-stale.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/reconcile-pending.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "archived-restore",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/archived-restore.png"
+    },
+    {
+      "surface": "article",
+      "state": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/empty.png"
+    },
+    {
+      "surface": "article",
+      "state": "error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/error.png"
+    },
+    {
+      "surface": "article",
+      "state": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/loading.png"
+    },
+    {
+      "surface": "article",
+      "state": "unknown",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/unknown.png"
+    },
+    {
+      "surface": "article",
+      "state": "finished",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/finished.png"
+    },
+    {
+      "surface": "article",
+      "state": "stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/stale.png"
+    },
+    {
+      "surface": "article",
+      "state": "neighbor-stale",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/neighbor-stale.png"
+    },
+    {
+      "surface": "article",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/reconcile-pending.png"
+    },
+    {
+      "surface": "article",
+      "state": "archived-restore",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/archived-restore.png"
+    },
+    {
+      "surface": "article",
+      "state": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/empty.png"
+    },
+    {
+      "surface": "article",
+      "state": "error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/error.png"
+    },
+    {
+      "surface": "article",
+      "state": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/loading.png"
+    },
+    {
+      "surface": "article",
+      "state": "unknown",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/unknown.png"
+    },
+    {
+      "surface": "article",
+      "state": "finished",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/finished.png"
+    },
+    {
+      "surface": "article",
+      "state": "stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/stale.png"
+    },
+    {
+      "surface": "article",
+      "state": "neighbor-stale",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/neighbor-stale.png"
+    },
+    {
+      "surface": "article",
+      "state": "reconcile-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/reconcile-pending.png"
+    },
+    {
+      "surface": "article",
+      "state": "archived-restore",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/archived-restore.png"
+    },
+    {
+      "surface": "article",
+      "state": "stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/stale-draft.png"
+    },
+    {
+      "surface": "article",
+      "state": "neighbor-stale-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/neighbor-stale-draft.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "current-newer",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/current-newer.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "current-newer",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/current-newer.png"
+    },
+    {
+      "surface": "article",
+      "state": "current-newer",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/current-newer.png"
+    },
+    {
+      "surface": "article",
+      "state": "current-newer",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/current-newer.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "current-newer-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/current-newer-draft.png"
+    },
+    {
+      "surface": "article",
+      "state": "current-newer-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/current-newer-draft.png"
+    },
+    {
+      "surface": "company",
+      "state": "read-unavailable",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/read-unavailable.png"
+    },
+    {
+      "surface": "company",
+      "state": "read-unavailable",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/read-unavailable.png"
+    },
+    {
+      "surface": "company",
+      "state": "read-unavailable-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/read-unavailable-draft.png"
+    },
+    {
+      "surface": "terms",
+      "state": "read-unavailable",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/read-unavailable.png"
+    },
+    {
+      "surface": "terms",
+      "state": "read-unavailable",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/read-unavailable.png"
+    },
+    {
+      "surface": "terms",
+      "state": "read-unavailable-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/read-unavailable-draft.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "read-unavailable",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/read-unavailable.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "read-unavailable",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/read-unavailable.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "read-unavailable-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/read-unavailable-draft.png"
+    },
+    {
+      "surface": "article",
+      "state": "read-unavailable",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/read-unavailable.png"
+    },
+    {
+      "surface": "article",
+      "state": "read-unavailable",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/read-unavailable.png"
+    },
+    {
+      "surface": "article",
+      "state": "read-unavailable-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/read-unavailable-draft.png"
+    },
+    {
+      "surface": "article",
+      "state": "current-missing-empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/current-missing-empty.png"
+    },
+    {
+      "surface": "article",
+      "state": "current-missing-empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/current-missing-empty.png"
+    },
+    {
+      "surface": "article",
+      "state": "current-missing-draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/current-missing-draft.png"
+    },
+    {
+      "surface": "company",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/company-1440x900/receipt-read-pending.png"
+    },
+    {
+      "surface": "company",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/company-360x640/receipt-read-pending.png"
+    },
+    {
+      "surface": "terms",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/terms-1440x900/receipt-read-pending.png"
+    },
+    {
+      "surface": "terms",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/terms-360x640/receipt-read-pending.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/work-role-1440x900/receipt-read-pending.png"
+    },
+    {
+      "surface": "work-role",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/work-role-360x640/receipt-read-pending.png"
+    },
+    {
+      "surface": "article",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "playwright-report/35-7-p/article-1440x900/receipt-read-pending.png"
+    },
+    {
+      "surface": "article",
+      "state": "receipt-read-pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "path": "playwright-report/35-7-p/article-360x640/receipt-read-pending.png"
+    }
+  ],
+  "changes": [
+    "Hold actual Next action POST until real pending/disabled UI is asserted and captured; release in finally.",
+    "Hold a real recovery/retry request before fallback to unchanged existing route/network; disabled same-attempt controls asserted.",
+    "Hold a real pathname-scoped GET with observed RSC header for explicit refresh notice; release/settle/unroute in finally.",
+    "Require actual active row (Redigera control), restored price25, absent archived row, enabled archive and current-confirmed receipt sentence before finished frame.",
+    "Keep original stale/neighbor overview frames and add phone retained-value frames.",
+    "Capture saved-unapproved/dirty-disabled approval and archived restore controls without new business-state seams."
+  ],
+  "mapping_limits": {
+    "supported_gate_states": [
+      "finished",
+      "loading",
+      "error",
+      "empty"
+    ],
+    "additional_surfaces": "Raw sidecars keep actual business state. Unknown/stale/neighbor/archive/saved-unapproved/dirty frames need accurately named additional surfaces with supported finished meaning rendered scenario, never mutation success. reconcile-pending/retry-pending map unknown surface loading; refresh-notice maps review surface loading. Phone *-draft is an additional scrolled full-viewport frame of the same stated scenario.",
+    "representative_reason": "Company reconcile, terms retry and both pricing reconcile captures observe the shared immutable controller pending branch; no separate approval pending capture definition, mapped to same controller while approval functional loss/reconcile assertions remain. Neighbor-stale is distinct pre-dispatch neighboring-success guard and all four overview frames are retained.",
+    "genuine_NA": [
+      "Unknown empty: absent receipt remains unknown; empty target is not a replacement success state.",
+      "Unknown separate terminal-error: denied/rejected recovery remains sticky unknown; native visible denial is not a terminal permission-to-replace state.",
+      "Archive/reactivate/edit/approve empty action forms: no actionable target exists in empty editor; base empty frame covers absence, not receipt-current-missing."
+    ],
+    "remaining_gaps": [
+      "All103 source definitions require actual next-head native execution/qualified PNGs; old473 had80actual originals and6concrete pixel defects.",
+      "All15method+8domainpending originals absent at473 because P-E5 failed beforeeffects;0currentfault/restore/delete/currentpending-image credit.",
+      "<=80 publication cap unresolved: current preserving-source candidate88 is not accepted; no shared-hook-only collapse of distinct inline busy widgets/oldrefreshnotice or false routeNAs.",
+      "Current3testfile batch requires independent transactional High confirmation and all final exact-head CI/visual/completion gates."
+    ]
+  },
+  "fault_authority": "Actual human Authorize both bounded effects, ci-bounded-method-owner-approval.json SHA4a15723d65685e38dd4534df47cd56cced831f9a5ba2a683b405bde83c59b681, source-only implementation pending independent High risk review BEFORE CI. No local effect authority/runtime proof.",
+  "current_newer_followup": {
+    "candidate_before": "4d46b29a87d29b5a31ec08cf2d65a164d3f640c7",
+    "normal_path": "Existing R1 flow saves31 on original mounted page and waits confirmed receipt; secondary authenticated own-fixture page rereads31 and normally edits SAMEtarget to41. Neighboring normal save triggers existing authorized RSC reread on original page. Original receipt DOM handle remains connected and now shows completed historical attempt plus newer status; currentfacts41/draft31/writeblocked/onlyone new neighbor POST with distinct identity asserted.",
+    "frames": 6,
+    "preserves": "All four distinct neighbor-stale overview slots, both article phone draft slots, all178 previous literal expects,23 registrations,120s timeout, unchanged package/production/canonical.",
+    "supported_mapping": "Additional accurately named historical-receipt/current-newer surface, finished = actual settled rendered view, never current success. Prior current-confirmed base frames remain separate.",
+    "runtime_or_images": 0,
+    "phone_framing": "Primary actual41 paragraph and receipt are visible/full viewport (ratio1), preserving receipt/current41 overview. Separate uncropped phonePriceSupplement shows actual local31 input visible/full viewport (ratio1) and value31. Additional phone frames not a replacement/crop/relabel. Latest minimal anchor starts at current-facts region so current41/receipt can fit; both existing ratio1 assertions and separate local31 supplements remain. Actual phone image must prove it."
+  },
+  "bounded_method": {
+    "case": "P-E5 CI-only bounded real read-unavailable and one historical target-missing example",
+    "timeoutMs": 120000,
+    "raw_new_frames": 15,
+    "safety": "Fresh exclusive GitHub existing-wrapper/stack/server nonce+PID+socket/consumer proof. Dedicated session; complete table/column semantic ACL+role/PUBLIC/inherited/dependent preflight. Four sequential exact SELECT tuple revoke/restore cycles, both viewports per cycle. Durable fsynced wx job claim outside Playwright-cleared directories refuses retries/restarts before new baseline; each intent persists before effect. One total exact fresh unreferenced article delete with receipt/tenant/revision/actor proof; same mounted receipt/page both viewports. No CASCADE/reset/recreate; full ACL plus same ordinary read restoration required; aggregate errors stop further faults.",
+    "journal": "tmp/private/35-7-p-ci-effects/<run>-<attempt>-<job>.jsonl; safe retained copy playwright-report/35-7-p/bounded-method-journal.jsonl",
+    "supported_gate_mapping": "Read-unavailable is additional read/error surface; current-missing-empty is actual missing-current empty rendered branch beside historical receipt, not a mutation success. Raw names are scenario metadata, not new gate state enums.",
+    "runtime_executed": 0,
+    "new_pngs": 0,
+    "selection": "95raw definitions retained. Final<=80 package requires independently verified genuine component/render equivalence; no selection/acceptance claimed.",
+    "failure_transport_fix": "The exact intercepted GET is retained. Every success/failure exit calls one cached release-and-terminal-settlement promise, bounded10s, waiting response.finished or actual request failure. Release errors do not skip terminal-wait attempt. Exact ACL recovery still runs if settlement fails, errors aggregate, fixtures retained under disposable-job custody on unverified settlement. No runtime claim."
+  },
+  "provisional_publication_selection": {
+    "source": "Latest completed reviewer/root handoff after provisional-surface-map-473067d4.json",
+    "raw_retained": 103,
+    "provisional_preserving_source_candidate": 88,
+    "accepted_selected": null,
+    "cap80_supported": false,
+    "unresolved": "Distinct company/terms/role/article inline save-busy renderers cannot be represented by terms alone just from shared hook/classes. Old stale refresh notice is a distinct widget notice, not the new receipt-pending copy. Retain all103raw/allasserts; <=80 remains unresolved pending legitimate actual source/image qualification. No new framework/productrefactor or forced cuts.",
+    "historical_map_path": "provisional-surface-map-473067d4.json",
+    "status": "PROVISIONAL ONLY; root owns actual package after runtime."
+  },
+  "current_batch": "Actual473native failure + all80 image assessment only: actual server launch-owner binding, six deficient existing frames corrected without newbusinessaction, source-derived three-autocommit teardown; prospective unavailable/missing notice+receipt+controls guards and exactly2already-held company GET receipt/current-read-pending originals.",
+  "receipt_read_pending": {
+    "new_frames": 8,
+    "domains": [
+      "company",
+      "terms",
+      "work-role",
+      "article"
+    ],
+    "point": "Each existing P-E5 cycle after exact committed receipt proof, BEFORE same held accept(committed) RSC GET release/revoke. Both original viewports on same mounted receipt/page; no extra mutation/fault/delete cycle or timeout.",
+    "proof": "Company/pricing success receipt+appropriate separate-current-read copy+no actual error UI selects hasCurrentRead=false. Terms copy also occurs on matching confirmation, so additionally exact saved wording current-facts panel must exist and approval form must be absent: confirmsOwnWrite would adopt matching defaults/hide panel; newer changes copy. These conservative guards run before/after PNG while exact Request remains nonterminal, receipt/adopt full viewport. No later manual refresh/cached-confirmed/unavailable/savebusy inference.",
+    "actual_runtime_or_images": 0
+  },
+  "prospective_method_framing": "Actual unavailable notice and historicalreceipt full in primary with no unknown/conflict controls in that committed-readerror branch; missing currentfacts/absence+receipt+actualadopt full in primary. Existing retained-draft supplements unchanged. These17 originals still unexecuted; guards fail closed, no imagecredit."
+}

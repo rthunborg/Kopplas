@@ -1,0 +1,54 @@
+{
+  "task_id": "35.7-P",
+  "captured_at_utc": "2026-11-02T13:32:30.358205+00:00",
+  "kind": "Final author publication bookkeeping only",
+  "source_review_commit": "7f6a7be9e0544844b43842b46d498f7539602dde",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "broad_rounds_completed": 1,
+  "targeted_follow_up": "Three actual independent non-author SolHigh FIX_CONFIRMED finals; no duplicate broad review",
+  "remaining_consequential_findings": [],
+  "review_evidence": "implementation-review-round-1-fix-results.json",
+  "route_evidence": "implementation-review-round-1-fix-confirmation.json",
+  "source_equality": "author-publication-source-equality.json",
+  "source_blob_inventory_sha256": "71463c560099227967b8814fe12393bd733377c9cdde410ce3fc4f221d934aca",
+  "source_files_unchanged": 47,
+  "canonical_raw_hashes_unchanged": 9,
+  "execution_reuse": {
+    "focused": {
+      "executed": 155,
+      "passed": 155,
+      "failed": 0,
+      "skipped": 0
+    },
+    "SSR": {
+      "executed": 4,
+      "passed": 4,
+      "limits": "Actual page/editor markup, mocked read/receipt boundaries; no hydration/authenticated query/browser-refresh proof"
+    },
+    "full_unit": {
+      "native_exit": 1,
+      "total": 3808,
+      "passed": 3805,
+      "failed": 2,
+      "skipped": 1,
+      "failures": "Exact2 clean-baseline-reproduced calendar cases; still failures, not waiver",
+      "skip": "Windows/Linux-xattr isolated-recovery-storage.test.ts:17 identity/refuse-overwrite; zero local body coverage; qualified Ubuntu/recovery-loader required"
+    },
+    "typecheck_native": 0,
+    "production_build_native": 0,
+    "lint_native": 0,
+    "lint_errors": 0,
+    "lint_warnings": 31,
+    "protocol_integration_collected": 82,
+    "protocol_integration_executed": 0,
+    "browser_executed": 0,
+    "captures": 0,
+    "source_execution_record": "author-round1-verification-summary.json",
+    "tests_or_services_rerun_this_bookkeeping": 0
+  },
+  "frontend_completion_gate": "Historical dirty-candidate failures retained. Workflow owner reruns clean exact-final-head gates after bookkeeping commit using original full baseline; none run in this dirty bookkeeping batch.",
+  "build_status": "in-progress",
+  "step5_done": false,
+  "development_complete": false,
+  "release_ready": false
+}
