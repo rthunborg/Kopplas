@@ -23,7 +23,7 @@ function py(code: string, args: string[] = []) {
 type Fixture = { root: string; request: string; repo: string; integration: string; worker: string;
   base: string; main: string; checkpoint: string; published: string; candidate: string; private: string; store: string };
 const setup = String.raw`
-import uuid,subprocess,shutil
+import re,uuid,subprocess,shutil
 src=pathlib.Path(sys.argv[2]); dest=src/'tmp/private/adoption-fixtures'/str(uuid.uuid4()); dest.mkdir(parents=True)
 repo=dest/'repository'; repo.mkdir(); private=dest/'private'; private.mkdir()
 integration=dest/'integration'; worker=dest/'worker'; stage=dest/'integration-staging'
@@ -41,7 +41,16 @@ for name in paths:
         data=data.replace(b'"file:{project-root}/docs/process/bounded-workflow-operating-policy.md", ',b'')
     put(name,data)
 folder='_bmad-output/specs/spec-design-35-6'; storyfile=folder+'/stories/35-6-crm-record-journeys.md'
-for name in [folder+'/SPEC.md',folder+'/stories.yaml',storyfile]: put(name,(src/name).read_bytes().replace(b'\r\n',b'\n'))
+for name in [folder+'/SPEC.md',folder+'/stories.yaml']: put(name,(src/name).read_bytes().replace(b'\r\n',b'\n'))
+# Keep the synthetic story eligible independently of the live story's status.
+story_data=(src/storyfile).read_bytes().replace(b'\r\n',b'\n')
+opening=b'---\n'
+assert story_data.startswith(opening), 'Expected story frontmatter at the start of the fixture source'
+frontmatter,closing,body=story_data[len(opening):].partition(b'\n---\n')
+assert closing, 'Expected a closing story frontmatter delimiter'
+frontmatter,replacements=re.subn(rb'(?m)^status:[^\n]*$',b'status: ready-for-dev',frontmatter)
+assert replacements==1, 'Expected exactly one status field in the story frontmatter'
+put(storyfile,opening+frontmatter+closing+body)
 owned=['src/app/(app)/customers/[customerId]/page.tsx','src/components/crm/CustomerDetail.tsx','src/components/crm/FacilityDialog.tsx','src/components/crm/ContactDialog.tsx','src/components/crm/ArchiveButton.tsx','tests/e2e/crm/customers.e2e.spec.ts',storyfile,m.STATE,'_bmad-output/auto-bmad/reports/'+m.STORY+'.md','_bmad-output/auto-bmad/delivery/'+m.STORY+'.json','_bmad-output/test-artifacts/atdd-checklist-35-6-crm-record-journeys.md']
 for name in owned:
     if name not in {storyfile,m.STATE}: put(name,b'synthetic original\n')

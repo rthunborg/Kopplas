@@ -147,7 +147,7 @@ function config(path: string, env = { CI: "true", KOPPLAS_FIXED_CHROMIUM_APPLICA
   const exports: Record<string, unknown> = {};
   const require = (name: string): unknown => name === "@playwright/test" ? { defineConfig: (value: unknown) => value, devices: { "Desktop Chrome": { viewport: { width: 1280, height: 720 }, defaultBrowserType: "chromium" } } }
     : name === "./playwright.config" ? { default: config("playwright.config.ts", env) }
-      : name === "./tests/support/test-env" ? new Proxy({}, { get: (_target, key) => String(key) }) : (() => { throw new Error(`DENIED import ${name}`); })();
+      : name === "./tests/support/test-env" ? new Proxy({}, { get: (_target, key) => key === "assertLocalStack" ? () => undefined : String(key) }) : (() => { throw new Error(`DENIED import ${name}`); })();
   vm.runInNewContext(text, { exports, require, process: { env, platform: "linux", version: "v22.23.3" } });
   return exports.default as Record<string, unknown>;
 }
