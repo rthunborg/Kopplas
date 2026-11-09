@@ -261,3 +261,72 @@ Use [Fast CI feedback and cold-start diagnosis](ci-performance.md) for focused
 check selection, safe cache/fixture reuse, the early production entry-screen
 lane, timing evidence and the PR #109 integration boundary. Early feedback does
 not replace native required checks or affected-surface visual acceptance.
+
+## Qualification responsibilities and early feedback
+
+This contract supplements existing gates; workflow files and current provider
+required-check metadata remain authoritative. Inventory inspected at process
+baseline `4824c4c1a6acf3e10b4227604b13b2fa304d80e1`; refresh changed job names,
+conditions and provider check bindings at the actual adoption head. This table
+is not a branch-protection attestation. One Coordinator-named observer per
+candidate/route/attempt consumes results, including failures; do not dispatch or
+poll a competing run merely because another owner is waiting.
+
+| Route / identity | Command / OS and responsible owner | Required evidence and limits |
+| --- | --- | --- |
+| CI / checkpoint-admission | Inline immutable dispatch binding; ubuntu-latest; Coordinator observer | PR/push main and supported workflow_dispatch. Dispatch exact expected_sha/checkpoint UUID, attempt1 branch binding; record actual source/base/synthetic merge and run/attempt/job. This job does not execute product tests. |
+| CI / verify | Lockfile, audit, source containment, typecheck, lint, test:unit, test:bmad-focused, test:auto-bmad-focused, timed-build.mjs, bundle containment; ubuntu-latest; author supplies candidate, observer consumes native job | Preserve full native result and unit executed/failed/skipped counts. `node scripts/ci/timed-build.mjs` is actual build wrapper; older table's pnpm build is underlying build, not replacement CI command. |
+| CI / db | `node scripts/ci/with-calendar-feed-runtime.mjs db`, then `pnpm run test:pilot-performance`; ubuntu-latest isolated stack; assigned test owner/observer | SUPABASE_TEST_REQUIRED=1, complete integration/RLS/H4 plus native-full-integration JSON and actual counts/explicit skips. Missing stack or skipped required suite earns no coverage. Wrapper admission is hosted-only; never forge GitHub environment locally. |
+| CI / recovery-storage-loader | Workflow isolated restore/Storage loader plus `pnpm exec vitest run tests/integration/ops/recovery-storage-immutability.int.test.ts` with its exact isolated env/reporters; ubuntu-latest; assigned test owner/observer | native-isolated-storage-recovery JSON, positive executed assertions, protected rows/bytes and original restore outcome. Local mocked children cannot prove recovery. |
+| CI / e2e | `node scripts/ci/with-calendar-feed-runtime.mjs browser`; ubuntu-latest pinned browser + production app; assigned test owner/observer | native-general-browser JSON/test names/counts and runtime provenance. Ordinary smoke versus opt-in full suite distinguished; success after real persistence. No next dev substitute. |
+| Auto-BMAD parallel contracts / runtime-admission | Exact workflow inline selection invoking tests/maintenance/test_admit_story35_6_runtime.py; ubuntu-latest all, windows-latest groups0/1; tool author/Coordinator observer | Path-filtered PR/push main or dispatch. Immutable source admission remains mandatory where adapter requires it. Preserve partition/selection, native executed/failed/skipped counts and first refusal, source/helper/workflow digests. |
+| Auto-BMAD parallel contracts / contracts | Actual parallel_run, parallel_cli, parallel_finalization, routing_migration, cli_delegate_windows_pid fixtures; ubuntu-latest/windows-latest; tool author/observer | Claims/recovery/integration and native CLI lifecycle evidence remain separate from real product runtime. Matrix partitions and current assertions unchanged. |
+| Frontend visual acceptance / assess | `node scripts/quality/frontend-controller.mjs hosted`; ubuntu-24.04 trusted base, Node24; independent reviewer/authenticated owner + Coordinator | Exact current-head evidence digest, actual production images desktop + connected360x640, relevant states and authenticated acceptance. Initial references need owner approval. Local N/A for docs/tooling does not waive frontend product gates. Current trusted provider setup/required binding must be verified, never presumed from this inventory. |
+
+CI diagnostic/release jobs dashboard-e2e, native-stream-probe,
+fixed-chromium-paired-probe, fixed-chromium-application-verification,
+feedback-scope and entry-ui-feedback retain their existing workflow conditions;
+they are not replacement required product proofs. Release_validation=true adds
+exhaustive browser/dashboard coverage under existing authorization. No trigger,
+fail-fast, check name, assertion, branch protection or evidence-reuse change is
+made here. Actual provider-required checks must all pass at the bound candidate.
+
+### Freeze and evidence envelope
+
+Gather author trail and required metadata before qualification. Record full
+source/base/merge parents/tree, tracked dirty state (if any), helper/spec/workflow
+digests, OS/tool versions, command and partition, start/end, native result versus
+wrapper result, executed/failed/skipped counts, artifact pointers, owning observer
+and mocked boundaries. Keep restricted originals; public summaries exclude paths
+not approved for publication, credentials, payloads and rows. Later code, metadata,
+source/base or relevant pin changes requalify as current exact-binding contracts
+demand. A status-only update belongs in CURRENT; it does not create inherited
+exact-head CI on a new commit. No extra mandatory status commit is introduced.
+
+Automatic PR synthetic merge owns integration compatibility. Direct source owns
+immutable source admission where the adapter requires it. Same tree with a
+different index/worktree/environment is separate evidence, never automatic reuse.
+Failed merge checks stay failed even if source passes. Reuse only what the current
+acceptance contract explicitly admits; no local approximation substitutes.
+
+Historical E1–E3 example from the approved November4 planning dossier: direct
+[41801717012](https://github.com/rthunborg/Kopplas/actions/runs/41801717012), PR
+[41801718443](https://github.com/rthunborg/Kopplas/actions/runs/41801718443), ordinary
+[41801718580](https://github.com/rthunborg/Kopplas/actions/runs/41801718580)
+overlap08:43:38–09:14:08UTC: elapsed union30m30s; summed runner-job intervals98m42s
+are a different measure, not elapsed or billable time. Direct source succeeded;
+PR Windows group1 refused before test collection. Cause/native Git exit were
+unknown in that snapshot. Source success/equal tree did not waive the failed PR.
+These historical observations are not qualification of this candidate or a claim
+about current DB/browser counts. Preserve new first-failure evidence separately.
+
+### Change-sensitive local rehearsal
+
+Use [local setup](../process/local-setup.md#bounded-early-feedback) for early
+commands. Docs get focused links/trail/context checks; affected tooling gets actual
+focused fixtures; SQL/money or unknown impact retains full applicable integrity
+and hosted route. This selects early feedback, never skips the required set.
+Optional extraction of inline YAML guard logic is unimplemented and separately
+scoped; copied Python approximations cannot qualify the workflow. One frozen
+candidate and one observer avoid duplicated runs. No new dispatch is authorized
+by documentation.

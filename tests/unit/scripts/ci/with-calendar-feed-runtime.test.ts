@@ -9,7 +9,7 @@ import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { INTEGRATION_ARGS, BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { INTEGRATION_ARGS, BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, createIntegrationChildDiagnostic, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 import { captureCalendarFeedTrace, recordCalendarFeedTrace, recordCalendarFeedContext, recordCalendarFeedMembership, executeCalendarFeed } from "../../../../src/server/commands/calendar-feed/calendar-feed-db";
 import { CommandError } from "../../../../src/server/commands/command-errors";
 import { validateCalendarFeedIntent } from "../../../../src/features/calendar-feed/validation";
@@ -3381,4 +3381,227 @@ test("INT015 annotation exact five-span inverse preserves all retained authority
   for(const fragment of["Math.floor(Number(identity.server_version_num) / 10000) !== 17","const primaryDeadline = Date.now() + 80_000;",
     "await fresh.connect(); await setupQualified(fresh); await absent(fresh);","if (failures.length) throw new AggregateError(failures,","}, 180_000);"])
     assert.ok(source.current.includes(fragment));
+});
+
+
+// Full integration child diagnostics: injected owned handles/streams only.
+const integrationHeader = "⎯⎯⎯ Unhandled Errors ⎯⎯⎯";
+function integrationObservation() {
+  const value = createIntegrationChildDiagnostic(); value.attempt();
+  value.refreshLaunch({ launchState: () => "started" }); return value;
+}
+function finishIntegrationObservation(value: ReturnType<typeof createIntegrationChildDiagnostic>) {
+  value.completed({ event: "CLOSE", code: 1, signal: null }); value.waited();
+  value.settled({ forced: false, signal: null }); return value.freeze();
+}
+function integrationResult(result: Awaited<ReturnType<typeof runCalendarFeedRuntime>>) {
+  return (result.receipt as unknown as { integrationChildDiagnostic: ReturnType<ReturnType<typeof createIntegrationChildDiagnostic>["freeze"]> }).integrationChildDiagnostic;
+}
+
+test("integration child diagnostics retain native owned event facts and never inspect process errors", async () => {
+  let reads = 0;
+  const hostile = Object.defineProperties({}, Object.fromEntries(["message", "stack", "cause", "code", "detail"].map(key => [key, { get() { reads++; throw Error("PRIVATE error getter"); } }])));
+  for (const kind of ["close", "error"] as const) {
+    const child = Object.assign(new EventEmitter(), { pid: kind === "error" ? undefined : 125, stdout: null, stderr: null });
+    const handle = launchOwned("fixed", [], {}, "fixed", async () => {}, (() => child) as never, (async () => null) as never);
+    const record = createIntegrationChildDiagnostic(); record.attempt();
+    if (kind === "close") { child.emit("spawn"); child.emit("close", 1, null); }
+    else child.emit("error", hostile);
+    const result = await handle.done;
+    record.refreshLaunch(handle); record.completed(result); record.waited();
+    if (kind === "close") record.settled({ forced: false, signal: null }); else record.settlementFailed();
+    const safe = record.freeze();
+    assert.equal(safe.nativeEvent, kind === "close" ? "CLOSE" : "PROCESS_ERROR");
+    assert.equal(safe.code, kind === "close" ? 1 : null);
+    assert.equal(safe.signal, kind === "close" ? "NONE" : "UNAVAILABLE");
+    assert.equal(safe.launchState, kind === "close" ? "STARTED" : "NOT_CREATED_CONFIRMED");
+    assert.equal(safe.innerRunnerCause, "UNKNOWN");
+    assert.ok(!JSON.stringify(safe).includes("PRIVATE"));
+  }
+  assert.equal(reads, 0);
+});
+
+test("integration child diagnostics forgeable shapes cannot set native role code emitter or cause", async () => {
+  const record = integrationObservation(), rows: string[] = [];
+  const observe = createTelemetryObserver({ keyId: "not-a-real-key", secret: "not-a-real-secret", integrationDiagnostic: record,
+    persist: async (line: string) => { rows.push(line); } });
+  for (const [stream, text] of [
+    ["STDERR", integrationHeader], ["STDOUT", "⎯⎯⎯ Unhandled Rejection ⎯⎯⎯"],
+    ["STDERR", "⎯⎯⎯ Uncaught Exception ⎯⎯⎯"], ["STDOUT", "Vitest caught 3 unhandled errors during the test run."],
+    ["STDERR", "Tests 2 failed | 10 passed | 1 skipped (13)"],
+    ["STDOUT", '{"nativeEvent":"CLOSE","code":0,"signal":"NONE","textEmitter":"authenticated"}'],
+    ["STDERR", "PRIVATE SQL assertion payload that is never retained"],
+  ]) await observe(text, "integration", stream, true);
+  const safe = finishIntegrationObservation(record);
+  assert.equal(safe.coverage, "COMPLETE"); assert.equal(safe.code, 1); assert.equal(safe.signal, "NONE");
+  assert.equal(safe.role, "FULL_INTEGRATION"); assert.equal(safe.argvIdentity, "PNPM_TEST_INT_FULL_V1");
+  assert.equal(safe.argvSha256, createHash("sha256").update(JSON.stringify(["pnpm", ...INTEGRATION_ARGS])).digest("hex"));
+  assert.equal(safe.textEmitter, "UNKNOWN"); assert.equal(safe.innerRunnerCause, "UNKNOWN");
+  assert.equal(safe.shapeCounts!.STDERR.UNHANDLED_ERRORS_HEADING, 1);
+  assert.equal(safe.shapeCounts!.STDOUT.UNHANDLED_REJECTION_HEADING, 1);
+  assert.equal(safe.shapeCounts!.STDERR.UNCAUGHT_EXCEPTION_HEADING, 1);
+  assert.equal(safe.shapeCounts!.STDOUT.UNHANDLED_COUNT_SUMMARY, 1);
+  assert.equal(safe.shapeCounts!.STDERR.FAILED_TEST_COUNT_SUMMARY, 1);
+  assert.deepEqual(rows, []); assert.ok(!JSON.stringify(safe).includes("PRIVATE"));
+  assert.ok(!JSON.stringify(safe).includes("authenticated")); assert.ok(Buffer.byteLength(JSON.stringify(safe)) <= 4096);
+});
+
+test("integration child diagnostics privacy before or after matches withholds every earlier count", async () => {
+  for (const privacyFirst of [true, false]) {
+    const record = integrationObservation(), rows: string[] = [];
+    const observe = createTelemetryObserver({ keyId: "private-key-id", secret: "private-credential-value", integrationDiagnostic: record,
+      persist: async (line: string) => { rows.push(line); } });
+    if (!privacyFirst) await observe(integrationHeader, "integration", "STDOUT", true);
+    await observe("private-credential-value", "production-server", "STDERR", true);
+    await observe(integrationHeader, "integration", "STDERR", true);
+    const safe = finishIntegrationObservation(record);
+    assert.equal(safe.coverage, "UNAVAILABLE"); assert.equal(safe.privacyBlocked, true); assert.equal(safe.shapeCounts, null);
+    assert.equal(observe.privacyFailed(), true); assert.ok(!JSON.stringify(safe).includes("private-credential-value"));
+    assert.ok(!rows.join("").includes("private-credential-value"));
+  }
+});
+
+test("integration child diagnostics require settlement and keep late diagnostics inert while privacy still rejects", async () => {
+  const record = integrationObservation(); record.observe(integrationHeader, "STDOUT", true);
+  record.completed({ event: "CLOSE", code: 1, signal: null }); record.waited();
+  const first = record.freeze(); assert.equal(first.coverage, "UNAVAILABLE"); assert.equal(first.shapeCounts, null);
+  const original = Object.freeze({ private: "original sink rejection" }); let writes = 0;
+  const observe = createTelemetryObserver({ keyId: "fixed-key", secret: "fixed-private-value", integrationDiagnostic: record,
+    persist: async () => { writes++; throw original; } });
+  await observe(integrationHeader, "integration", "STDERR", true);
+  await assert.rejects(observe("fixed-private-value", "integration", "STDOUT", true), error => error === original);
+  record.settled({ forced: false, signal: null }); record.completed({ event: "CLOSE", code: 0, signal: null });
+  assert.equal(record.freeze(), first); assert.equal(first.code, 1); assert.equal(first.shapeCounts, null);
+  assert.equal(writes, 1); assert.equal(observe.privacyFailed(), true);
+});
+
+test("integration child diagnostics fragments oversize budget and counter saturation stay bounded", () => {
+  for (const kind of ["fragment", "oversize", "budget", "unverified", "persist"] as const) {
+    const record = integrationObservation(); record.observe(integrationHeader, "STDERR", true);
+    if (kind === "fragment") record.observe(integrationHeader, "STDOUT", false);
+    if (kind === "oversize") record.observe("x".repeat(4097), "STDOUT", true);
+    if (kind === "budget") for (let i = 0; i < 2049; i++) record.observe("x".repeat(4096), "STDOUT", true);
+    if (kind === "unverified") record.settlementFailed();
+    if (kind === "persist") record.unavailable();
+    const safe = finishIntegrationObservation(record);
+    assert.equal(safe.coverage, ["unverified", "persist"].includes(kind) ? "UNAVAILABLE" : kind === "budget" ? "TRUNCATED" : "PARTIAL");
+    if (safe.coverage === "UNAVAILABLE") assert.equal(safe.shapeCounts, null);
+    else assert.equal(safe.shapeCounts!.STDERR.UNHANDLED_ERRORS_HEADING, 1);
+    assert.ok(Buffer.byteLength(JSON.stringify(safe)) <= 4096);
+  }
+  const saturated = integrationObservation(); for (let i = 0; i < 300; i++) saturated.observe(integrationHeader, "STDOUT", true);
+  const safe = finishIntegrationObservation(saturated); assert.equal(safe.shapeCounts!.STDOUT.UNHANDLED_ERRORS_HEADING, 255); assert.equal(safe.saturated, true);
+  const empty = finishIntegrationObservation(integrationObservation()); assert.equal(empty.coverage, "COMPLETE"); assert.equal(empty.innerRunnerCause, "UNKNOWN");
+});
+
+test("integration child diagnostics malformed native properties do not invoke getters or retain arbitrary values", () => {
+  let reads = 0;
+  const hostile = Object.defineProperties({}, Object.fromEntries(["event", "code", "signal", "launchState", "forced"].map(key => [key, { get() { reads++; throw Error("PRIVATE native getter"); } }])));
+  const record = integrationObservation(); record.completed(hostile); record.refreshLaunch(hostile); record.settled(hostile);
+  const safe = record.freeze(); assert.equal(reads, 0); assert.equal(safe.coverage, "UNAVAILABLE"); assert.equal(safe.shapeCounts, null);
+  assert.ok(!JSON.stringify(safe).includes("PRIVATE"));
+  for (const state of ["__proto__", { toString() { reads++; throw Error("PRIVATE coercion"); } }]) {
+    const malformed = createIntegrationChildDiagnostic(); malformed.attempt(); malformed.refreshLaunch({ launchState: () => state });
+    assert.equal(malformed.freeze().launchState, "UNKNOWN");
+  }
+  assert.equal(reads, 0);
+});
+
+test("integration child diagnostics use actual framing including split ANSI forced fragments and trailing tails", async () => {
+  const record = integrationObservation(), rows: string[] = [];
+  const observe = createTelemetryObserver({ keyId: "framing-key", secret: "framing-secret", integrationDiagnostic: record, persist: async (line: string) => { rows.push(line); } });
+  const stdout = Object.assign(new EventEmitter(), { setEncoding: () => undefined }), stderr = Object.assign(new EventEmitter(), { setEncoding: () => undefined });
+  const child = Object.assign(new EventEmitter(), { stdout, stderr, pid: 125 });
+  const identity = async () => ({ pid: 125, group: 125, startTime: "1000" });
+  const launch = actualFeedRegion("../../../../scripts/ci/with-calendar-feed-runtime.mjs", "export function launchOwned", "function defaultDependencies", "launchOwned", {
+    spawn: () => child, processIdentity: identity, createOwnedGroupStopper,
+    process: { kill: () => { throw Object.assign(Error("fixed absence"), { code: "ESRCH" }); } },
+  }) as typeof launchOwned;
+  const handle = launch("fixed", [], {}, "fixed", (line: string, stream: string, complete: boolean) => observe(line, "integration", stream, complete), (() => child) as never, identity);
+  child.emit("spawn"); stdout.emit("data", "\u001b[3"); stdout.emit("data", "1m" + integrationHeader + "\u001b[0m\n");
+  stderr.emit("data", "x".repeat(16_385)); stderr.emit("data", integrationHeader + "\n"); stderr.emit("data", integrationHeader);
+  stdout.emit("end"); stderr.emit("end"); child.emit("close", 1, null);
+  record.completed(await handle.done); record.waited(); record.settled(await handle.stop()); record.refreshLaunch(handle);
+  const safe = record.freeze(); assert.equal(safe.coverage, "PARTIAL"); assert.equal(safe.shapeCounts!.STDOUT.UNHANDLED_ERRORS_HEADING, 1);
+  assert.equal(safe.shapeCounts!.STDERR.UNHANDLED_ERRORS_HEADING, 0); assert.deepEqual(rows, []);
+});
+
+async function fullIntegrationDiagnosticFixture(options: { code?: number; stopFailure?: boolean; persistFailure?: boolean; gate?: Promise<void>; enteredStop?: () => void } = {}) {
+  const h = harness(), launch = h.deps.launch; let observed = Promise.resolve();
+  const result = await runCalendarFeedRuntime({ mode: "db", env, platform: "linux" }, { ...h.deps,
+    createTelemetry: async () => ({ path: "/private/fixed-observation.jsonl", persist: async () => { if (options.gate) await options.gate; if (options.persistFailure) throw Error("PRIVATE persist"); } }),
+    launch: (command: string, args: string[], childEnv: Record<string, string>, observe: (line: string, stream: string, complete: boolean) => Promise<void>) => {
+      const handle = launch(command, args, childEnv);
+      if (args[0] !== "run" || args[1] !== "test:int") return handle;
+      observed = Promise.resolve().then(async () => {
+        await observe(integrationHeader, "STDERR", true);
+        if (options.persistFailure || options.gate) await observe('{"event":"calendar_feed.response","status":200}', "STDOUT", true);
+      }); observed.catch(() => undefined);
+      return { ...handle, done: Promise.resolve({ code: options.code ?? 1, signal: null, event: "CLOSE" }),
+        async stop() { options.enteredStop?.(); await observed; if (options.stopFailure) throw Error("PRIVATE unverified stop"); return handle.stop(); } };
+    },
+  });
+  return { ...result, ...h };
+}
+
+test("integration child diagnostics exact full caller nonzero preserves failure key custody and healthy behavior", async () => {
+  for (const code of [1, 0]) {
+    const result = await fullIntegrationDiagnosticFixture({ code }), safe = integrationResult(result);
+    assert.equal(result.exitCode, code === 0 ? 0 : 1); assert.deepEqual(result.receipt.childExitCodes, [0, code]);
+    assert.deepEqual(result.launches[2].args, [...INTEGRATION_ARGS]); assert.equal(result.launches[2].command, "pnpm");
+    assert.equal(safe.nativeEvent, "CLOSE"); assert.equal(safe.code, code); assert.equal(safe.signal, "NONE");
+    assert.equal(safe.waitOutcome, "COMPLETED"); assert.equal(safe.completionPhase, "DURING_WAIT");
+    assert.equal(safe.coverage, "COMPLETE"); assert.equal(safe.shapeCounts!.STDERR.UNHANDLED_ERRORS_HEADING, 1);
+    assert.equal(safe.innerRunnerCause, "UNKNOWN"); assert.equal(result.receipt.keyDeleted, code === 0);
+    assert.equal(result.queries.some(call => call.sql.startsWith("delete")), code === 0);
+    if (code) { assert.ok(result.receipt.failures.includes("child-failed")); assert.ok(result.receipt.custody); }
+    assert.equal(result.receipt.launchAttempted, false); // Old cause-proof-only field is unchanged.
+  }
+});
+
+test("integration child diagnostics wait for observer settlement and withhold on persist or owned stop failure", async () => {
+  let release!: () => void, entered!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; }), stopped = new Promise<void>(resolve => { entered = resolve; });
+  let finished = false; const pending = fullIntegrationDiagnosticFixture({ gate, enteredStop: entered }).then(value => { finished = true; return value; });
+  await stopped; await Promise.resolve(); assert.equal(finished, false); release();
+  const complete = integrationResult(await pending); assert.equal(complete.coverage, "COMPLETE");
+  for (const options of [{ persistFailure: true }, { stopFailure: true }]) {
+    const result = await fullIntegrationDiagnosticFixture(options), safe = integrationResult(result);
+    assert.equal(result.exitCode, 1); assert.equal(safe.coverage, "UNAVAILABLE"); assert.equal(safe.shapeCounts, null);
+    assert.equal(result.receipt.keyDeleted, false); assert.ok(result.receipt.custody);
+    assert.ok(result.receipt.failures.includes("owned-child-cleanup-failed")); assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
+  }
+});
+
+test("integration child diagnostics timeout and abort distinguish later cleanup signal without changing budgets", async t => {
+  t.mock.timers.enable({ apis: ["setTimeout"] });
+  for (const outcome of ["TIMEOUT", "ABORTED"] as const) {
+    const h = harness(), launch = h.deps.launch; let entered!: () => void, finish!: (value: unknown) => void;
+    const started = new Promise<void>(resolve => { entered = resolve; });
+    const pending = runCalendarFeedRuntime({ mode: "db", env, platform: "linux" }, { ...h.deps,
+      launch: (command: string, args: string[], childEnv: Record<string, string>) => {
+        const handle = launch(command, args, childEnv); if (args[0] !== "run" || args[1] !== "test:int") return handle;
+        entered(); return { ...handle, done: new Promise(resolve => { finish = resolve; }), async stop() {
+          finish({ code: null, signal: "SIGINT", event: "CLOSE" }); await handle.stop(); return { forced: false, signal: "SIGINT" };
+        } };
+      },
+    });
+    await started; if (outcome === "TIMEOUT") t.mock.timers.tick(1_800_001); else h.signal();
+    const result = await pending, safe = integrationResult(result);
+    assert.equal(result.exitCode, 1); assert.equal(safe.waitOutcome, outcome); assert.equal(safe.completionPhase, "AFTER_WAIT");
+    assert.equal(safe.nativeEvent, "CLOSE"); assert.equal(safe.signal, "SIGINT"); assert.equal(safe.innerRunnerCause, "UNKNOWN");
+    assert.equal(safe.coverage, "UNAVAILABLE"); assert.equal(safe.shapeCounts, null); assert.ok(result.receipt.custody);
+  }
+});
+
+test("integration child diagnostics uncertain launch retains unknown native completion without error payload", async () => {
+  const h = harness(), launch = h.deps.launch; let reads = 0;
+  const hostile = Object.defineProperties({}, { message: { get() { reads++; throw Error("PRIVATE"); } }, cause: { get() { reads++; throw Error("PRIVATE"); } } });
+  const result = await runCalendarFeedRuntime({ mode: "db", env, platform: "linux" }, { ...h.deps,
+    launch: (command: string, args: string[], childEnv: Record<string, string>) => { if (args[0] === "run" && args[1] === "test:int") throw hostile; return launch(command, args, childEnv); },
+  });
+  const safe = integrationResult(result); assert.equal(reads, 0); assert.equal(result.exitCode, 1);
+  assert.equal(safe.launchState, "ATTEMPTED_UNVERIFIED"); assert.equal(safe.waitOutcome, "LAUNCH_THROWN");
+  assert.equal(safe.nativeEvent, "UNAVAILABLE"); assert.equal(safe.code, "UNKNOWN"); assert.equal(safe.shapeCounts, null);
+  assert.equal(result.receipt.keyDeleted, false); assert.ok(result.receipt.custody); assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
 });

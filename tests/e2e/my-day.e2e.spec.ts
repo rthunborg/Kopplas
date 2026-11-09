@@ -404,7 +404,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
           await expect(bookingCard(page, f.missingBooking)).toContainText(changedDescription);
           expect(gestures).toHaveLength(2);
         } finally { page.off("request", observeGestureRead); }
-      } finally { releaseOld.resolve(undefined); releaseQueuedFailure.resolve(undefined); await page.unroute("**/*", handler); }
+      } finally { releaseOld.resolve(undefined); releaseQueuedFailure.resolve(undefined); await page.unrouteAll({ behavior: "wait" }); }
       } finally {
         try { await touch.send("Emulation.setTouchEmulationEnabled", { enabled: false }); }
         finally { await touch.detach(); }
@@ -627,7 +627,53 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
   });
 
   test("[P0] 15.6-E09 a real tenant-switch RSC navigation discards the prior report owner and ignores its late read", async ({ resourcePage: page }) => {
-    await withMyDayFixture(async f => {
+    // E09_OBSERVER_BEGIN: callback timing only; never browser causality or payload.
+    function createE09Observation(retry: number, sink: (payload: string) => Promise<void>, clock = () => performance.now()) {
+      const allowed = ["attempt-start", "held-selected", "fetch-start", "fetch-complete", "body-validated",
+        "navigation-start", "navigation-response", "current-ui-verified", "release", "fulfill-start", "fulfill-complete",
+        "fulfill-failed", "request-finished", "request-failed", "cleanup-enter", "listeners-removed", "unroute-start",
+        "unroute-complete", "unroute-failed", "cleanup-start", "cleanup-complete", "cleanup-failed", "scope-exit"] as const;
+      type Event = typeof allowed[number];
+      type Phase = "none" | "before-release" | "after-release";
+      type Category = "none" | "aborted" | "content-length" | "decoding" | "connection" | "other";
+      type Reason = "none" | "clock" | "overflow" | "record" | "retry" | "missing";
+      const events: { seq: number; ms: number; event: Event; phase: Phase; category: Category }[] = [];
+      const attempt = retry === 0 || retry === 1 ? retry : null;
+      let reason: Reason = attempt === null ? "retry" : "none", origin = 0, previous = 0, closed = false;
+      try { origin = clock(); if (!Number.isFinite(origin)) reason = "clock"; } catch { reason = "clock"; }
+      function mark(event: Event, phase: Phase = "none", category: Category = "none") {
+        if (closed || reason !== "none") return;
+        try {
+          if (!allowed.includes(event) || !["none", "before-release", "after-release"].includes(phase)
+            || !["none", "aborted", "content-length", "decoding", "connection", "other"].includes(category)) { reason = "record"; return; }
+          const elapsed = clock() - origin;
+          if (!Number.isFinite(elapsed) || elapsed < previous || elapsed < 0 || elapsed > 2_700_000) { reason = "clock"; return; }
+          previous = elapsed;
+          if (events.length >= 32) { reason = "overflow"; return; }
+          events.push({ seq: events.length + 1, ms: Math.floor(elapsed), event, phase, category });
+        } catch { reason = "clock"; }
+      }
+      mark("attempt-start");
+      async function finish() {
+        if (closed) return;
+        mark("scope-exit"); closed = true;
+        try {
+          const required: Event[] = ["attempt-start", "held-selected", "fetch-start", "fetch-complete", "body-validated",
+            "navigation-start", "navigation-response", "current-ui-verified", "release", "fulfill-start", "fulfill-complete",
+            "cleanup-enter", "listeners-removed", "unroute-start", "unroute-complete", "cleanup-start", "cleanup-complete", "scope-exit"];
+          if (reason === "none" && (!required.every(event => events.some(row => row.event === event))
+            || !events.some(row => row.event === "request-finished" || row.event === "request-failed"))) reason = "missing";
+          let payload = JSON.stringify({ version: 1, attempt, state: reason === "none" ? "COMPLETE" : "INCOMPLETE", reason, events });
+          if (Buffer.byteLength(payload, "utf8") > 4096) payload = JSON.stringify({ version: 1, attempt, state: "INCOMPLETE", reason: "overflow", events: [] });
+          await sink(payload);
+        } catch { /* No raw fallback; missing attachment fails diagnostic capture, never masks the test. */ }
+      }
+      return { mark, finish };
+    }
+    // E09_OBSERVER_END
+    const observation = createE09Observation(test.info().retry,
+      payload => test.info().attach("my-day-e09-observation-v1", { contentType: "application/json", body: Buffer.from(payload, "utf8") }));
+    try { await withMyDayFixture(async f => {
       await page.setViewportSize({ width: 1280, height: 800 });
       const tenantB = f.fx.base.tenantB.id, membershipB = randomUUID(), profileB = randomUUID(), bookingB = randomUUID();
       const markerB = `my-day-current-context-${randomUUID()}`;
@@ -659,6 +705,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         const record: HeldTerminal = { event, phase: oldReleased ? "after-release" : "before-release",
           category: event === "finished" ? "none" : failureCategory(request) };
         test.info().annotations.push({ type: "my-day-held-read-terminal", description: JSON.stringify(record) });
+        observation.mark(event === "finished" ? "request-finished" : "request-failed", record.phase, record.category);
         oldTerminal.resolve(record);
       };
       const onFinished = (request: Request) => observeTerminal(request, "finished");
@@ -673,6 +720,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         }
         if (!armed || held || !isDayRead(request)) { await route.fallback(); return; }
         held = true; heldRequest = request;
+        observation.mark("held-selected");
         // Observe this exact request before navigation can settle or cancel it.
         // Retain only lifecycle enums, never request data or raw failure text.
         page.on("requestfinished", onFinished);
@@ -680,13 +728,19 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         try {
           // Only delay an actual completed A projection; do not fabricate the
           // response or keep a server transaction/command in flight.
+          observation.mark("fetch-start");
           const response = await route.fetch();
+          observation.mark("fetch-complete");
           expect(response.ok()).toBe(true);
-          expect(await response.text()).toContain(f.ownBooking);
-          const responseHeaders = response.headers();
+          const fulfillmentBody = await response.body();
+          expect(fulfillmentBody.toString("utf8")).toContain(f.ownBooking);
+          const responseHeaders = { ...response.headers() };
+          delete responseHeaders["content-encoding"];
+          delete responseHeaders["transfer-encoding"];
+          responseHeaders["content-length"] = String(fulfillmentBody.length);
           const contentLength = responseHeaders["content-length"];
           const contentEncoding = responseHeaders["content-encoding"]?.trim().toLowerCase();
-          const fulfillmentBody = await response.body();
+          observation.mark("body-validated");
           const lengthMatch = contentLength !== undefined && /^[0-9]{1,20}$/.test(contentLength)
             ? BigInt(contentLength) === BigInt(fulfillmentBody.length) ? "matches" : "differs" : "unknown";
           const encoding = contentEncoding === undefined || contentEncoding === "identity" ? "identity"
@@ -696,7 +750,10 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
           }) });
           oldFetched.resolve(undefined);
           await releaseOld.promise;
-          await route.fulfill({ response });
+          observation.mark("fulfill-start");
+          try { await route.fulfill({ response, body: fulfillmentBody, headers: responseHeaders }); }
+          catch (error) { observation.mark("fulfill-failed"); throw error; }
+          observation.mark("fulfill-complete");
           oldDelivered.resolve(undefined);
         } catch (error) { oldFetched.reject(error); oldDelivered.reject(error); throw error; }
       };
@@ -745,12 +802,16 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         // cannot satisfy the required observed GET and current B booking below.
         const nextContext = page.waitForResponse(reply => reply.request().method() === "GET"
           && new URL(reply.url()).pathname === "/my-day" && reply.request().headers()["rsc"] === "1");
+        observation.mark("navigation-start");
         await page.getByRole("link", { name: "Min dag", exact: true }).filter({ visible: true }).click();
         expect((await nextContext).ok()).toBe(true);
+        observation.mark("navigation-response");
         await expect(page.getByLabel("Datum", { exact: true })).toHaveValue(dateB);
         await expect(bookingCard(page, bookingB)).toContainText(markerB);
         await expect(bookingCard(page, f.ownBooking)).toHaveCount(0);
         await expect(form).toHaveCount(0);
+        observation.mark("current-ui-verified");
+        observation.mark("release");
         oldReleased = true;
         releaseOld.resolve(undefined);
         await oldDelivered.promise;
@@ -769,19 +830,27 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         expect(await f.snapshot()).toEqual(durable);
         expect(terminal, "Only a completed transport after release proves a delivered late response").toEqual({ event: "finished", phase: "after-release", category: "none" });
       } finally {
+        observation.mark("cleanup-enter");
         page.off("requestfinished", onFinished);
         page.off("requestfailed", onFailed);
+        observation.mark("listeners-removed");
         releaseOld.resolve(undefined);
-        try { await page.unroute("**/*", handler); }
+        observation.mark("unroute-start");
+        try { await page.unroute("**/*", handler); observation.mark("unroute-complete"); }
+        catch (error) { observation.mark("unroute-failed"); throw error; }
         finally {
+          observation.mark("cleanup-start");
+          try {
           await adminQuery("update public.tenant_memberships set status='active' where tenant_id=$1 and id=$2", [f.fx.base.tenantA.id, f.fx.ownProfile.membershipId]);
           await adminQuery("delete from public.booking_assignees where tenant_id=$1 and booking_id=$2", [tenantB, bookingB]);
           await adminQuery("delete from public.bookings where tenant_id=$1 and id=$2", [tenantB, bookingB]);
           await adminQuery("delete from public.person_profiles where tenant_id=$1 and id=$2", [tenantB, profileB]);
           await adminQuery("delete from public.membership_roles where tenant_id=$1 and membership_id=$2", [tenantB, membershipB]);
           await adminQuery("delete from public.tenant_memberships where tenant_id=$1 and id=$2", [tenantB, membershipB]);
+          observation.mark("cleanup-complete");
+          } catch (error) { observation.mark("cleanup-failed"); throw error; }
         }
       }
-    });
+    }); } finally { await observation.finish(); }
   });
 });

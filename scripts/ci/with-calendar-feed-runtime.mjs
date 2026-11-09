@@ -264,8 +264,86 @@ export function hasSensitiveOutput(line, { keyId, secret, knownValues = /** @typ
   return sensitiveOutputPredicate(line, { keyId, secret, knownValues }) !== null;
 }
 
+const INTEGRATION_OUTPUT_SHAPES = Object.freeze({
+  UNHANDLED_ERRORS_HEADING: /^[⎯─-]{3,120} Unhandled Errors [⎯─-]{3,120}$/,
+  UNHANDLED_REJECTION_HEADING: /^[⎯─-]{3,120} Unhandled Rejection [⎯─-]{3,120}$/,
+  UNCAUGHT_EXCEPTION_HEADING: /^[⎯─-]{3,120} Uncaught Exception [⎯─-]{3,120}$/,
+  UNHANDLED_COUNT_SUMMARY: /^Vitest caught [1-9][0-9]{0,3} unhandled errors? during the test run[.]$/,
+  FAILED_TEST_COUNT_SUMMARY: /^Tests +[1-9][0-9]{0,5} failed(?: *[|] *[0-9]{1,6} (?:passed|skipped|todo)){0,3} *(?:[(][0-9]{1,6}[)])?$/,
+});
+const INTEGRATION_SIGNALS = new Set(["SIGINT", "SIGTERM", "SIGKILL", "SIGABRT", "SIGSEGV", "SIGBUS", "SIGILL", "SIGFPE", "SIGPIPE", "SIGHUP", "SIGQUIT"]);
+
+/** Bounded observation only: text cannot authenticate a runner, emitter or cause. */
+export function createIntegrationChildDiagnostic() {
+  let frozen, attempted = false, afterWait = false, unavailable = false, privacyBlocked = false;
+  let partial = false, truncated = false, units = 0, saturated = false;
+  const counts = Object.fromEntries(["STDOUT", "STDERR"].map(stream => [stream, Object.fromEntries(Object.keys(INTEGRATION_OUTPUT_SHAPES).map(name => [name, 0]))]));
+  const facts = { schema_version: 1, role: "FULL_INTEGRATION", argvIdentity: "PNPM_TEST_INT_FULL_V1",
+    argvSha256: createHash("sha256").update(JSON.stringify(["pnpm", ...INTEGRATION_ARGS])).digest("hex"),
+    launchState: "NOT_ATTEMPTED", nativeEvent: "UNAVAILABLE", code: /** @type {number|null|string} */ ("UNKNOWN"),
+    signal: "UNAVAILABLE", waitOutcome: "UNKNOWN", completionPhase: "UNAVAILABLE",
+    ownedSettlement: "NOT_REACHED", forcedStop: /** @type {boolean|null} */ (null) };
+  const field = (value, key) => Object.getOwnPropertyDescriptor(value, key)?.value;
+  const update = work => { if (!frozen) { try { work(); } catch { unavailable = true; } } };
+  const api = {
+    attempt() { update(() => { attempted = true; facts.launchState = "ATTEMPTED_UNVERIFIED"; }); },
+    launchThrown() { update(() => { afterWait = true; facts.waitOutcome = "LAUNCH_THROWN"; }); },
+    refreshLaunch(handle) { update(() => {
+      const read = field(handle, "launchState"), state = typeof read === "function" ? read.call(handle) : undefined;
+      const names = { "started": "STARTED", "not-created-confirmed": "NOT_CREATED_CONFIRMED", "attempted-unverified": "ATTEMPTED_UNVERIFIED" };
+      if (facts.launchState !== "STARTED") facts.launchState = typeof state === "string" && Object.hasOwn(names, state) ? names[state] : "UNKNOWN";
+    }); },
+    completed(result) { update(() => {
+      const event = field(result, "event");
+      if (!["CLOSE", "PROCESS_ERROR"].includes(event)) { unavailable = true; return; }
+      facts.nativeEvent = event; facts.completionPhase = afterWait ? "AFTER_WAIT" : "DURING_WAIT";
+      if (event === "PROCESS_ERROR") { facts.code = null; facts.signal = "UNAVAILABLE"; return; }
+      const code = field(result, "code"), signal = field(result, "signal");
+      facts.code = code === null ? null : Number.isInteger(code) && code >= 0 && code <= 255 ? code : "UNKNOWN";
+      facts.signal = signal === null ? "NONE" : typeof signal === "string" ? INTEGRATION_SIGNALS.has(signal) ? signal : "OTHER" : "UNAVAILABLE";
+    }); },
+    waited() { update(() => { afterWait = true; facts.waitOutcome = "COMPLETED"; }); },
+    waitFailed(error) { update(() => {
+      afterWait = true;
+      const code = error instanceof RuntimeFailure ? field(error, "message") : undefined;
+      facts.waitOutcome = code === "child-timeout" ? "TIMEOUT" : code === "interrupted" ? "ABORTED" : "UNKNOWN";
+    }); },
+    settled(result) { update(() => {
+      const forced = field(result, "forced"), signal = field(result, "signal");
+      if (typeof forced !== "boolean" || !(signal === null || typeof signal === "string")) { unavailable = true; facts.ownedSettlement = "UNVERIFIED"; return; }
+      facts.ownedSettlement = "SETTLED"; facts.forcedStop = forced;
+    }); },
+    settlementFailed() { update(() => { unavailable = true; facts.ownedSettlement = "UNVERIFIED"; }); },
+    unavailable() { update(() => { unavailable = true; }); },
+    privacy() { update(() => { privacyBlocked = true; }); },
+    observe(line, stream, completeLine) { update(() => {
+      if (privacyBlocked || truncated) return;
+      if (typeof line !== "string" || typeof stream !== "string" || !Object.hasOwn(counts, stream)) { unavailable = true; return; }
+      if (line.length > 8_388_608 - units) { truncated = true; units = 8_388_608; return; }
+      units += line.length;
+      if (completeLine !== true || line.length > 4096) { partial = true; return; }
+      const normalized = stripVTControlCharacters(line).trim();
+      for (const [name, pattern] of Object.entries(INTEGRATION_OUTPUT_SHAPES)) if (pattern.test(normalized)) {
+        if (counts[stream][name] === 255) saturated = true; else counts[stream][name]++;
+      }
+    }); },
+    freeze() {
+      if (frozen) return frozen;
+      const coverage = !attempted || unavailable || privacyBlocked || facts.ownedSettlement !== "SETTLED" ? "UNAVAILABLE"
+        : truncated ? "TRUNCATED" : partial ? "PARTIAL" : "COMPLETE";
+      const snapshot = { ...facts, textEmitter: "UNKNOWN", innerRunnerCause: "UNKNOWN", coverage, privacyBlocked,
+        shapeCounts: coverage === "UNAVAILABLE" ? null : Object.freeze(Object.fromEntries(Object.entries(counts).map(([stream, values]) => [stream, Object.freeze({ ...values })]))), saturated };
+      // Only fixed enums/counts/argv digest enter this object, never text/errors.
+      frozen = Object.freeze(Buffer.byteLength(JSON.stringify(snapshot), "utf8") <= 4096 ? snapshot
+        : { ...facts, textEmitter: "UNKNOWN", innerRunnerCause: "UNKNOWN", coverage: "UNAVAILABLE", privacyBlocked, shapeCounts: null, saturated: false });
+      return frozen;
+    },
+  };
+  return api;
+}
+
 /** Never return/persist raw lines. Detection runs before filtering. */
-export function createTelemetryObserver({ keyId, secret, persist, knownValues = /** @type {string[]} */ ([]) }) {
+export function createTelemetryObserver({ keyId, secret, persist, knownValues = /** @type {string[]} */ ([]), integrationDiagnostic = /** @type {ReturnType<typeof createIntegrationChildDiagnostic>|undefined} */ (undefined) }) {
   let responseCount = 0, sensitiveOutputCount = 0;
   let firstPrivacy = /** @type {null | Readonly<{child:string,predicate:string,stream:string,renderedForm:string}>} */ (null);
   const observation = () => persist(JSON.stringify({ event: "calendar_feed.runtime_observation", responseCount, sensitiveOutputCount, sensitiveOutputDetected: sensitiveOutputCount !== 0, ...(firstPrivacy ? { firstPrivacy } : {}) }) + "\n");
@@ -277,6 +355,7 @@ export function createTelemetryObserver({ keyId, secret, persist, knownValues = 
     const unexpectedResponse = record?.event === "calendar_feed.response" && !validResponse;
     const predicate = sensitiveOutputPredicate(line, { keyId, secret, knownValues });
     if (predicate !== null || unexpectedResponse) {
+      integrationDiagnostic?.privacy();
       if (firstPrivacy === null) {
         // Rendering syntax is forgeable: these enums never authenticate an emitter.
         const normalized = completeLine === true ? stripVTControlCharacters(line) : "";
@@ -287,6 +366,7 @@ export function createTelemetryObserver({ keyId, secret, persist, knownValues = 
       sensitiveOutputCount++;
       await observation();
     }
+    if (child === "integration") integrationDiagnostic?.observe(line, stream, completeLine);
     if (!validResponse) return;
     responseCount++;
     await persist(JSON.stringify({ event: record.event, status: record.status }) + "\n");
@@ -439,8 +519,8 @@ export function launchOwned(command, args, env, cwd, observe, spawnProcess = spa
     stream?.on("end", () => { if (pending) { output = output.then(() => observe(pending, streamName, false)); output.catch(() => undefined); } });
   }
   const done = new Promise(resolveDone => {
-    child.once("error", () => resolveDone({ code: null, signal: null }));
-    child.once("close", (code, signal) => resolveDone({ code, signal }));
+    child.once("error", () => resolveDone({ code: null, signal: null, event: "PROCESS_ERROR" }));
+    child.once("close", (code, signal) => resolveDone({ code, signal, event: "CLOSE" }));
   });
   const groupExists = () => {
     if (!child.pid) return false;
@@ -525,6 +605,8 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     keyOutcome: /** @type {"not-attempted" | "rollback-confirmed" | "deleted-confirmed" | "unverified"} */ ("not-attempted"),
     custody: /** @type {null | {owner:string, job:string|undefined, vaultUuid:string|null, ownedName:string|null, expiry:string, nextAction:string, resumeCondition:string}} */ (null) };
   const children = new Set();
+  const integrationDiagnostic = mode === "db" ? createIntegrationChildDiagnostic() : undefined;
+  let fullIntegrationHandle;
   let db, keyUuid, ownedName, transactionOpen = false, createUncertain = false, browserTeardownUnverified = false, diagnosticUnverified = false;
   let diagnosticPrepared = false, diagnosticObserve = async () => {}, diagnosticPrivacy = { keyId: "", secret: "" };
   let stage = "admission", createAttempted = false, commitAttempted = false, rollbackConfirmed = false;
@@ -550,11 +632,20 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     return handle;
   };
   const run = async (command, args, childEnv, observer, timeout) => {
-    const handle = launch(command, args, childEnv, observer);
+    const full = mode === "db" && command === "pnpm" && args === INTEGRATION_ARGS;
+    if (full) integrationDiagnostic.attempt();
+    let handle;
+    try { handle = launch(command, args, childEnv, observer); }
+    catch (error) { if (full) integrationDiagnostic.launchThrown(); throw error; }
+    const completion = handle.done;
+    if (full) {
+      fullIntegrationHandle = handle; integrationDiagnostic.refreshLaunch(handle);
+      Promise.resolve(completion).then(result => integrationDiagnostic.completed(result), () => integrationDiagnostic.unavailable()).catch(() => undefined);
+    }
     let result;
-    try { result = await bounded(handle.done, timeout, "child-timeout", abort.signal); }
-    catch (error) { if (mode === "browser") browserTeardownUnverified = true; if (mode === "cause-proof") diagnosticUnverified = true; throw error; }
-    finally { refreshLaunch(); }
+    try { result = await bounded(completion, timeout, "child-timeout", abort.signal); if (full) integrationDiagnostic.waited(); }
+    catch (error) { if (full) integrationDiagnostic.waitFailed(error); if (mode === "browser") browserTeardownUnverified = true; if (mode === "cause-proof") diagnosticUnverified = true; throw error; }
+    finally { refreshLaunch(); if (full) integrationDiagnostic.refreshLaunch(handle); }
     receipt.childExitCodes.push(result.code);
     if (result.code !== 0 || result.signal) {
       // pnpm can map a killed nested Playwright runner to nonzero/null signal.
@@ -564,6 +655,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       fail("child-failed");
     }
     const stopped = await handle.stop();
+    if (full) { integrationDiagnostic.settled(stopped); integrationDiagnostic.refreshLaunch(handle); }
     if (mode === "db" && (stopped?.forced !== false || stopped?.signal !== null)) fail("owned-child-cleanup-failed");
     if (mode === "browser" && (stopped?.forced || stopped?.signal)) { browserTeardownUnverified = true; fail("browser-server-teardown-unverified"); }
     children.delete(handle); // Proven settlement cannot be signalled again later.
@@ -605,7 +697,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     if (!/^[A-Za-z0-9_-]{43}$/.test(secret)) fail("entropy-refused");
     stage = "telemetry";
     const telemetry = await deps.createTelemetry();
-    const observe = createTelemetryObserver({ keyId, secret, persist: telemetry.persist });
+    const observe = createTelemetryObserver({ keyId, secret, persist: telemetry.persist, integrationDiagnostic });
     diagnosticObserve = observe;
     diagnosticPrivacy = { keyId, secret };
     stage = "transaction-begin";
@@ -652,10 +744,15 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     for (const handle of [...children].reverse()) {
       try {
         const stopped = await handle.stop();
+        if (handle === fullIntegrationHandle) { integrationDiagnostic.settled(stopped); integrationDiagnostic.refreshLaunch(handle); }
         if (mode === "db" && (stopped?.forced !== false || stopped?.signal !== null)) fail("owned-child-cleanup-failed");
         if (mode === "browser" && (stopped?.forced || stopped?.signal)) browserTeardownUnverified = true;
         children.delete(handle);
-      } catch (error) { receipt.failures.push("owned-child-cleanup-failed"); receipt.diagnostics.push(safeDiagnostic("child-cleanup", error)); }
+      } catch (error) {
+        integrationDiagnostic?.unavailable();
+        if (handle === fullIntegrationHandle) { integrationDiagnostic.settlementFailed(); integrationDiagnostic.refreshLaunch(handle); }
+        receipt.failures.push("owned-child-cleanup-failed"); receipt.diagnostics.push(safeDiagnostic("child-cleanup", error));
+      }
     }
     if (browserTeardownUnverified && !receipt.failures.includes("browser-server-teardown-unverified")) receipt.failures.push("browser-server-teardown-unverified");
     if (diagnosticUnverified) receipt.failures.push("diagnostic-work-settlement-unverified");
@@ -694,6 +791,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     try { if (!await deps.finishDiagnostic(receipt, diagnosticObserve, diagnosticPrivacy)) receipt.failures.push("diagnostic-capture-failed"); }
     catch { receipt.failures.push("diagnostic-capture-failed"); }
   }
+  if (integrationDiagnostic) receipt.integrationChildDiagnostic = integrationDiagnostic.freeze();
   return { exitCode: receipt.failures.length ? 1 : 0, receipt };
 }
 
