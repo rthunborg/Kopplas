@@ -23,10 +23,16 @@ import {
   LOCAL_TEST_BOOKING_CONFLICT_SECRET,
   LOCAL_TEST_PROVISIONING_ATTESTATION_KEY_ID,
   LOCAL_TEST_PROVISIONING_ATTESTATION_SECRET,
+  assertLocalStack,
 } from "./tests/support/test-env";
 
+assertLocalStack();
 const PORT = Number(process.env.E2E_PORT ?? 3100);
+const PROXY_PORT = Number(process.env.DASHBOARD_PROXY_PORT ?? 37921);
+if ([PORT, PROXY_PORT].some(value => !Number.isInteger(value) || value < 1024 || value > 65535))
+  throw new Error("Browser tests require high loopback app/proxy ports");
 const BASE_URL = `http://127.0.0.1:${PORT}`;
+const PROXY_URL = `http://127.0.0.1:${PROXY_PORT}`;
 // The preload owns path/nonce initialization; its setup hook binds the actual
 // fresh server boot to this runner before passing that nonce to test workers.
 const JOB_EVENTS_OWNER_PID = String(process.pid);
@@ -54,7 +60,14 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
-  webServer: {
+  webServer: [{
+    // Reuse the subject-scoped dashboard dependency proxy. Only filesystem-armed
+    // synthetic reads fail; all other requests retain real upstream auth/RLS.
+    command: `node tests/e2e/dashboard/server-read-proxy.mjs --upstream ${LOCAL_SUPABASE_URL} --port ${PROXY_PORT} --control-root tests/e2e/.auth/dashboard-control`,
+    url: `${PROXY_URL}/auth/v1/health`,
+    timeout: 60_000,
+    reuseExistingServer: false,
+  }, {
     // Run a PRODUCTION build + start (not `next dev`): under dev, the Turbopack/webpack
     // HMR WebSocket fails its handshake in headless Chromium and the client never
     // hydrates (no React fiber attaches → the login form native-GET-submits). A prod
@@ -62,13 +75,13 @@ export default defineConfig({
     // Invoke Next via `node` + its JS bin (not `pnpm exec`/`npx`): Playwright spawns the
     // webServer through a shell whose PATH may lack the pnpm/npx shims (notably Windows);
     // `node` is always present. NEXT_PUBLIC_* (set below) are inlined at build time.
-    command: `node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start --port ${PORT}`,
+    command: `node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port ${PORT}`,
     url: BASE_URL,
     timeout: 240_000,
     // A pre-existing server cannot prove it loaded this run-bound preload.
     reuseExistingServer: false,
     env: {
-      NEXT_PUBLIC_SUPABASE_URL: LOCAL_SUPABASE_URL,
+      NEXT_PUBLIC_SUPABASE_URL: PROXY_URL,
       NEXT_PUBLIC_SUPABASE_ANON_KEY: LOCAL_SUPABASE_ANON_KEY,
       E2E_JOB_EVENTS_FETCH_FAULT_STARTUP: "true",
       E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID: JOB_EVENTS_OWNER_PID,
@@ -94,5 +107,5 @@ export default defineConfig({
       // deliberately absent from ordinary application environments.
       E2E_RESOURCE_SAVE_FAILURE_ENABLED: "true",
     },
-  },
+  }],
 });

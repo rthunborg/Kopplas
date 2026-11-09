@@ -25,11 +25,12 @@ const test = process.env.E2E_CDP_ENDPOINT ? base.extend({
     await browser.close(); // Disconnects this client; lifecycle remains with the root guard.
   }, {scope: "worker"}],
 }) : base;
-import { readFileSync, mkdirSync, appendFileSync } from "node:fs";
+import { readFileSync, mkdirSync, appendFileSync, existsSync } from "node:fs";
 import path from "node:path";
 import { expectActiveAdminNavigation } from "../support/active-admin-navigation";
 import { adminExec, adminQuery, closeAdminPool } from "../../factories/admin-sql";
 import { createTwoTenantFixture, cleanupFixture, adminInsertCustomer, adminInsertFacility, adminInsertContact } from "../../factories/tenants";
+import { armReadPlan, releaseRead } from "../dashboard/read-plan";
 
 async function captureRecordState(page: Page, state: string, captureTargets: readonly Locator[], stateIds: readonly string[] = [], currentViewportOnly = false) {
   const folder = process.env.E35_CAPTURE_DIR;
@@ -168,6 +169,63 @@ const DEFERRED_LABELS = [
 ];
 
 test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
+  test("[P0] E35-6-T-error-retry CustomerList retries a failed read through the real Försök igen link", async ({ page }) => {
+    const isolated = await createTwoTenantFixture();
+    let heldRevision: string | undefined;
+    try {
+      const marker = `35.6 list retry ${crypto.randomUUID()}`;
+      const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: marker, org_nr: "556677-8899" });
+      const foreignMarker = `35.6 foreign ${crypto.randomUUID()}`;
+      await adminInsertCustomer({ tenant_id: isolated.tenantB.id, customer_type: "company", display_name: foreignMarker, org_nr: "556677-8899" });
+      const snapshot = () => adminQuery("select id, tenant_id, display_name, archived_at from public.customers where tenant_id = $1 order by id", [isolated.tenantA.id]);
+      const before = await snapshot();
+      const audits = () => adminQuery("select id from public.audit_events where tenant_id = $1 and target_type = 'customer' order by id", [isolated.tenantA.id]);
+      const beforeAudits = await audits();
+      // No browser response substitution: the production server's cookie-bound
+      // customer SELECT receives a genuine dependency error for this subject only.
+      armReadPlan(isolated.adminA.id, { customers: [{ outcome: "error" }] });
+      await signIn(page, isolated.adminA.email, isolated.adminA.password);
+      await page.goto("/customers");
+      const failure = page.getByTestId("customers-failed");
+      await expect(failure).toContainText("Kundlistan kunde inte läsas in.");
+      await expect(page.getByTestId("customers-empty")).toHaveCount(0);
+      await expect(page.getByTestId("customers-no-results")).toHaveCount(0);
+      await expect(page.getByTestId("customers-table-body")).toHaveCount(0);
+      expect(await page.content()).not.toContain(marker);
+      expect(await page.content()).not.toContain(foreignMarker);
+      expect(await page.content()).not.toContain(fixture.crm.private.personnummer);
+      const retry = failure.getByRole("link", { name: "Försök igen", exact: true });
+      await expect(retry).toHaveAttribute("href", "/customers");
+      await waitForHydrated(retry);
+
+      // A new held revision proves the actual link starts a fresh server read,
+      // rather than accepting a cached failure or substituting page.reload().
+      heldRevision = armReadPlan(isolated.adminA.id, { customers: [{ outcome: "pass", hold: true }] });
+      expect(existsSync(path.join(process.cwd(), "tests/e2e/.auth/dashboard-control", heldRevision + ".held"))).toBe(false);
+      await retry.click({ noWaitAfter: true });
+      await expect.poll(() => existsSync(path.join(process.cwd(), "tests/e2e/.auth/dashboard-control", heldRevision + ".held"))).toBe(true);
+      await expect(page.getByTestId("customers-table-body")).toHaveCount(0);
+      releaseRead(heldRevision);
+      heldRevision = undefined;
+
+      await expect(page).toHaveURL(/\/customers$/);
+      await expect(page.getByTestId("customers-failed")).toHaveCount(0);
+      await expect(page.getByTestId("customers-empty")).toHaveCount(0);
+      await expect(page.getByTestId("customers-no-results")).toHaveCount(0);
+      const customerLink = page.getByTestId("customers-table-body").getByRole("link", { name: marker, exact: true });
+      await expect(customerLink).toHaveAttribute("href", `/customers/${customerId}`);
+      await expect(customerLink).toBeVisible();
+      await expect(page.getByTestId("customers-table-body").getByRole("link")).toHaveCount(1);
+      expect(await page.content()).not.toContain(foreignMarker);
+      expect(await page.content()).not.toContain(fixture.crm.private.personnummer);
+      expect(await snapshot()).toEqual(before);
+      expect(await audits()).toEqual(beforeAudits);
+    } finally {
+      if (heldRevision) releaseRead(heldRevision);
+      await cleanupFixture(isolated);
+    }
+  });
+
   test("AC5: an anonymous visitor to /customers and /customers/<id> is redirected to /login", async ({
     page,
   }) => {
