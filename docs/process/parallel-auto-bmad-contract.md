@@ -251,23 +251,65 @@ required; a lexical path alias does not create authority.
 Both existing `Auto-BMAD parallel contracts` jobs, `contracts (ubuntu-latest)` and
 `contracts (windows-latest)`, must pass at that SHA, with zero skipped checks.
 The `contracts` matrix has unconditional `needs: runtime-admission` and default
-success dependency semantics. Its two accepted check names therefore require
-**both** `runtime-admission (ubuntu-latest)` and
-`runtime-admission (windows-latest)` to succeed first. Admission runs its unchanged
-command in that prerequisite matrix; it is no longer physically inside the
-downstream jobs. Both matrices retain `fail-fast: false`, the same setup/action
-pins and Python 3.12, and the existing Ubuntu 15 / Windows 30 minute job budgets.
-No `always()`, continue-on-error, OS exclusion or skipped prerequisite can supply
-qualifying coverage. The adapter's two-name `CI_JOBS` and strict schema stay intact.
+success dependency semantics. Both existing accepted core check names require
+ALL THREE admission cells first: Ubuntu/all, Windows/0 and Windows/1. Admission
+collects the complete actual unittest inventory without running fixtures/bodies,
+normalizes only its known module prefix to canonical `Class.test_method` IDs,
+rejects empty/duplicate/error inventories, sorts, and partitions by alternating
+index into two nonempty disjoint exhaustive Windows groups. No source/count
+allowlist or external reported inventory supplies the expectation. Ubuntu retains
+the full native script invocation; Windows invokes the SAME unchanged script
+with each group's exact positional selectors. No substring/negative-name filter.
 
-Retain native source evidence for **all four jobs** under `tooling_ci.source_ref`:
-workflow/run identity, actual executed SHA, OS, terminal conclusion, exact command
-argv and actual executed/skipped counts. The two schema `checks` records describe
-the downstream jobs' real five-command argv/counts; do not relabel prerequisite
-execution or manufacture aggregate counts. Same-SHA DAG review and both native
-admission logs are mandatory. Missing, canceled, failed, skipped, mismatched or
-nonterminal prerequisite evidence refuses qualification even if a status summary
-looks successful. This task performs no hosted run or provider observation.
+Every admission cell checks actual checkout HEAD against immutable `GITHUB_SHA`,
+tracked source cleanliness, commit/tree and committed/checkout LF-normalized
+module SHA256 before/after collection/execution. Its records bind the full
+inventory count/digest, both Windows groups, selected IDs, exact actual child
+argv, native exit and terminal actual executed IDs/count. All three cells must
+have IDENTICAL source/full-inventory bindings for Root qualification; their group,
+selected IDs and argv honestly differ. Raw checkout EOL bytes may differ by OS;
+the shared module hash normalizes only CRLF to LF against committed source.
+The guard provides per-cell proof; Root retains and compares all three records.
+There is no automatic cross-job proof or invented single combined Windows argv.
+
+Native stderr is immediately byte-teed/flushed, including partial method progress,
+while stdout is inherited. The1MiB in-memory validation capture fails closed on
+overflow/invalid UTF8 without hiding further native output. The finite protocol
+requires exact selected canonical success IDs, one matching complete `Ran`/`OK`
+terminal result, native exit0 and zero skip/failure/error/expected-failure/
+unexpected-success outcomes. Missing/truncated/extra/duplicate records refuse.
+Completion output does not establish a per-method start timestamp or a timing
+balance: alternating groups are count-balanced only, not proven time-balanced.
+
+Both matrices retain `fail-fast: false`, the same setup/action pins and Python3.12,
+and the existing Ubuntu15/Windows30 minute job budgets. All five core commands
+and native exits remain unchanged (140 source methods per core OS job).
+No `always()`, continue-on-error, OS/group omission or skipped prerequisite can
+supply qualifying coverage. The adapter's exact two-name `CI_JOBS` and strict
+schema stay intact; its two checks still describe the real core140 jobs.
+
+Retain native source evidence for **all five jobs** under `tooling_ci.source_ref`:
+workflow/run identity, actual executed SHA/tree, OS/cell, terminal conclusion,
+exact command argv, full and selected inventories/digests and actual native
+executed/skipped counts. The two schema `checks` records describe downstream
+jobs' real five-command argv/counts; do not fabricate prerequisite aggregates or
+a third core check. Same-SHA whole-DAG review and ALL THREE native admission
+records are mandatory. Failed/canceled/skipped/missing/mismatched/nonterminal
+cells refuse qualification even when another status summary looks successful.
+
+Current topology continuation baseline qualified241596 has52 admission methods,
+so its actual complete Windows groups are26/26; these are source/collection facts,
+not native coverage. Frozen PR134 source01e6 has61 (31/30); only after genuine
+integration must the new exact source derive and execute that full61 inventory.
+The saved Windows01e6 job exceeded30m after57 completed/58th interrupted/three
+unstarted; no terminal61 PASS was earned. Never add old57 to a later4, reuse
+cached records or force61 onto52. Fresh direct exact-source terminal Ubuntu/full,
+both Windows groups and both core140 jobs plus separately required ordinary
+checks remain necessary. Local guard controls do not establish hosted completion,
+source CI qualification, tooling/live admission or product runtime acceptance.
+
+The following original PR130 count/integration-order record is historical; its
+four-job requirement is superseded by the five-job requirement above.
 
 For count provenance, the CI-topology baseline `d03a52ce...` has 140 core test
 methods across its five unchanged commands (70/13/21/26/10), plus **24** admission
@@ -961,3 +1003,65 @@ folder (up to two explicitly planned folders). Terminal done_checkpoint is
 preserved: stop after the own PR, retain pending status until verified main merge.
 Unfulfilled spec_checkpoint approval and multi-entry continuation fail closed;
 no new checkpoint scheduler or source flag rewrite is introduced.
+
+## Failure-only reporter integration on the f0 lineage (2026-11-05)
+
+Owner-approved process continuation selectively reuses the reviewed PR1388773
+failure reporter in the ordinary current admission guard. This is reusable
+observability for the NEXT instrumented refusal, not a Git fix, materially
+discriminating causal experiment or recovery of historical f0's unlogged code.
+Original f0 qualification failed Windows0 before test collection; Ubuntu52 and
+Windows1-26 successes do not qualify Windows coverage or either skipped core.
+
+At each of the three existing binding phases, keep exactly one original
+`git diff --quiet <captured HEAD>` with unchanged argv, environment, inherited
+streams, PATH executable resolution and no added timeout. No new diagnostic
+Git/index/stat/version/executable operation precedes that predicate. Only retain
+its integer returncode; on zero, no reporter query/read/output runs and original
+guards continue. On nonzero, reporting is failure-only and the static fatal
+refusal is unconditional. The exact Git returncode is a metadata fact, separate
+from the Python guard's fatal exit1; capture success/empty/exception/timeout cannot
+mask or replace it. Added imports/definitions do not prove timing equivalence.
+
+The reused reporter emits one bounded safe JSON line in native job logs, with
+immutable actual checkout SHA, fixed phase/cell, original integer code,
+allowlist state and bounded name/status comparisons. It uses only the fixed
+postfailure tracked ls-tree, cached HEAD/index and index/worktree queries with
+reviewed no-optional-locks/no-pager/no-replace-objects/no-lazy-fetch and comparison
+no-ext-diff/no-textconv/no-renames flags. Preserve the six-second total deadline,
+2MiB allowlist/256KiB comparison input caps,16 display rows,32KiB safe output cap,
+full-capture parser/path allowlist, bounded waits and daemon/descriptor ownership.
+No raw query stdout/stderr, payload, arbitrary path, configuration, URL or token
+is added to reporting. Native original streams stay inherited. Failure metadata
+is best effort; failed/late/partial capture is not complete evidence.
+
+Later observations are AFTER_ORIGINAL_NONZERO_NON_ATOMIC and cause remains
+UNKNOWN. They cannot reconstruct original changed paths atomically, recover its
+before-index state, attribute an actor or prove cause. No index-byte observer,
+Trace2, config/filter/pin change, cleanup, refresh or repeated quiet is introduced.
+Code other than1 or a different later pattern conditionally narrows only that
+future observation. Git1/later-empty repeats the already known PR138 pattern;
+no refusal provides zero causal information gain. Neither is a repair claim.
+
+Root binds reviewed source/tree to actual executor checkout/tree, base,
+run/job/attempt and fixed cell. Retain actual PR synthetic merge identity and
+identical-tree/ancestry proof separately from candidate source. Frozen routine
+and adaptation hashes bind observer-tool provenance; existing Python/checkout
+Git version logs do not attest original PATH-resolved binary bytes/hash/build.
+
+Only the reporter component, necessary threading/time imports and literal phase
+plumbing are consumed in one f0-descendant lineage. Root records consumed versus
+remaining frozen PR138 index-observer/comparator work. Preserve its branch,
+evidence and reservations; no wholesale import, duplicate later integration,
+automatic PR138 close, merge or claim transfer follows. New overlap/conflict or
+remaining-scope disposition needs fresh reconciliation.
+
+Validation order is bounded local targeted/source controls, independent High
+source review, then ONE newly approved publication/automatic set containing
+ordinary CI with full unchanged hosted unit plus3admission+2core when dependencies
+pass and all applicable existing required gates. No local full suite, manual
+diagnostic/E09 dispatch or rerun. Stop after that set regardless outcome; preserve
+first failures and all35.6/35.7/live-adoption/merge/deployment holds. Actual normal
+first-clean gates may earn exact-source evidence, never cause, historical repair
+or automatic hold release. Current E09 mode/jobs/observer, ci.yml, cold four,
+tests/readers/helpers, dependencies and PRIMARY remain unchanged.
