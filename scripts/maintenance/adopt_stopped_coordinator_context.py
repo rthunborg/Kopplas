@@ -22,9 +22,11 @@ import uuid
 RUN = 'e35-6-20261102'
 STORY = 'spec-design-35-6-35-6'
 OLD = '01a1160d-b5b1-7623-a8e8-54ef3dc537ed'
-NEW = '01a1afde-34b5-7bb2-976e-de71b7f6a94c'
 WORKER = '01a19c88-3c36-76f1-918b-88a00e4d222f'
 PRODUCER = '01a19bf5-183b-7ae1-ab86-8bd5804dcb6f'
+NEW = PRODUCER
+RETIRED_SUCCESSOR = '01a1afde-34b5-7bb2-976e-de71b7f6a94c'
+STOPPED_WRITERS = (OLD, NEW, WORKER, RETIRED_SUCCESSOR)
 BASE = '824bed4a92eb388db669ffb60492a7b1dd9fc038'
 MAIN = '4411cdc412f01ee023440525ff1e17bb824ef383'
 BEFORE_PIN = 'f2463d540f4c2d0829224eb48d619e772a8916334c9f80fa8704b1309e14b612'
@@ -470,9 +472,10 @@ def authorities(ctx):
     exact(custody, 'kind run story coordinator worker old_archived writers_stopped no_reopen delegates queued_operations native_operations holds issued expires provenance')
     need(custody['kind'] == 'current-stopped-custody' and custody['run'] == RUN and custody['story'] == STORY and
          custody['coordinator'] == NEW and custody['worker'] == WORKER and custody['old_archived'] is True and
-         custody['writers_stopped'] == [OLD, NEW, WORKER, PRODUCER] and custody['no_reopen'] is True and
+         custody['writers_stopped'] == list(STOPPED_WRITERS) and custody['no_reopen'] is True and
          custody['delegates'] == custody['queued_operations'] == custody['native_operations'] == [] and
-         custody['holds'] == ['35.6', '35.7'] and type(custody['provenance']) is str and bool(custody['provenance']), 'CUSTODY_INCOMPLETE')
+         custody['holds'] == ['35.6', '35.7', '35.7-P-producer-reservation'] and
+         type(custody['provenance']) is str and bool(custody['provenance']), 'CUSTODY_INCOMPLETE')
     now = time.time()
     need(type(custody['issued']) in {int, float} and type(custody['expires']) in {int, float} and
          custody['issued'] <= now < custody['expires'] <= custody['issued'] + 900, 'CUSTODY_EXPIRED')
@@ -494,7 +497,7 @@ def authorities(ctx):
     exact(q['admission_review'], 'request_digest reviewer model effort evidence')
     review = q['admission_review']
     need(review['request_digest'] == digest(review_envelope) and type(review['reviewer']) is str and
-         review['reviewer'] not in {OLD, NEW, WORKER, p['tool_author']} and review['reviewer'] and
+         review['reviewer'] not in STOPPED_WRITERS and review['reviewer'] != p['tool_author'] and review['reviewer'] and
          review['model'] == 'gpt-6.1-sol' and review['effort'] == 'high', 'REVIEW_BINDING')
     accepted = evidence(review['evidence'], private)
     exact(accepted, 'kind request_digest reviewer status provenance')
