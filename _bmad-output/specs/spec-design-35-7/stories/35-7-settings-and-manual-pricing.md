@@ -2,7 +2,7 @@
 title: "Story 35.7: Settings And Manual Pricing"
 type: story
 created: 2026-11-02
-status: draft
+status: ready-for-dev
 baseline_revision: fc3f7f8f4ba34b3ee91c7f7b6841d070b55b3c4f
 context:
   - _bmad-output/specs/spec-design-35-7/SPEC.md
@@ -14,9 +14,9 @@ context:
 
 # Operative admission overlay — 2026-11-02
 
-Owner-approved bounded Story 35.7; implementation not started. Draft is the installed normal planning state, not an unapproved product decision. Canonical sole folder story key: spec-design-35-7-35-7. Checkpoints: spec=false, done=true.
+The owner approved the bounded Story 35.7 design. Source preparation is ready for development. Implementation awaits the separate ownership and native assignment gates. The canonical story key is `spec-design-35-7-35-7`. Checkpoints are `spec=false` and `done=true`.
 
-Read SPEC.md, operative-contract.md, test-design.md and every companion. **35.7-P prerequisite is UNEARNED; do not implement until its independently reviewed qualified merge and evidence are bound.** It supplies the exact approved recovery and expected-facts contracts. Unknown/stale remain owned and blocked, not N/A or inherited. Never substitute client reread/list equality or ambiguous retry.
+Read SPEC.md, operative-contract.md, test-design.md and every companion. **35.7-P is qualified.** PR #126 merged as `01523c97eddec423288ef988217eedc3c9f0c258`. The fresh exact-main checkpoint passed all required gates with 104 browser first-attempt passes, including all 24 settings and pricing cases. The earlier failed push remains in the evidence history. This qualification supersedes the producer prerequisite status in the preparation companions. The approved recovery and expected-facts contracts still govern the presentation. Unknown and stale outcomes remain owned. A reread, list match or ambiguous retry cannot replace the required proof. [Producer PR](https://github.com/rthunborg/Kopplas/pull/126) · [Qualified checkpoint](https://github.com/rthunborg/Kopplas/actions/runs/42647750664)
 
 The approved 35.6-to-35.7 amendment is source ordering only and removes the operative technical CRM finish-to-start edge. The producer dependency remains. No concurrent producer/presentation writes to overlapping forms/pages/e2e; no claim or worker launch is created here. Exact eight-UI/two-e2e plus conditional local guard/static-test scope is in operative-contract.md. All other source history and seven AC/fifteen state identities stay preserved.
 
