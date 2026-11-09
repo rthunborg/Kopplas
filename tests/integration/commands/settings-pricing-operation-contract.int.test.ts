@@ -52,13 +52,16 @@ const forms: [
     boolean
 ][] = [["company.save", false], ["company.save", true], ["terms.save", false], ["terms.save", true], ["terms.approve", true], ["work_role.create", false], ["work_role.update", true], ["work_role.archive", true], ["work_role.reactivate", true], ["article.create", false], ["article.update", true], ["article.archive", true], ["article.reactivate", true]];
 type ProducerHookPhase = "setup-fixture" | "setup-actor-a" | "setup-actor-b" | "setup-membership" | "setup-receipt-support" | "drop-trigger" | "drop-function" | "drop-table" | "fixture-cleanup";
+class ProducerHookFailure extends Error {}
+
 async function producerHookPhase<T>(phase: ProducerHookPhase, run: () => Promise<T>): Promise<T> {
     try { const value = await run(); console.info(JSON.stringify({ producerHookPhase: phase, outcome: "returned", cleanupVerification: "not-established" })); return value; }
     catch (error) {
         let sqlstate = "unknown";
-        try { const code: unknown = (error as { code?: unknown } | null)?.code; if (typeof code === "string" && ["40P01", "40001", "55P03", "57014", "42501", "23503", "23505", "25P02", "08006", "08003", "57P01", "42P01", "42704"].includes(code)) sqlstate = code; } catch { /* Diagnostics never replace the original error. */ }
-        console.error(JSON.stringify({ producerHookPhase: phase, outcome: "rejected", sqlstate, category: sqlstate === "unknown" ? "unknown" : "native-sqlstate", cleanupVerification: "not-established" }));
-        throw error; // Preserve identity, native stack and any original error context for Vitest.
+        try { const code: unknown = (error as { code?: unknown } | null)?.code; if (typeof code === "string" && ["40P01", "40001", "55P03", "57014", "42501", "23503", "23505", "25P02", "08006", "08003", "57P01", "42P01", "42704"].includes(code)) sqlstate = code; } catch { /* Unreadable codes are unknown. */ }
+        const message = JSON.stringify({ producerHookPhase: phase, outcome: "rejected", sqlstate, category: sqlstate === "unknown" ? "unknown" : "native-sqlstate", cleanupVerification: "not-established" });
+        console.error(message);
+        throw new ProducerHookFailure(message);
     }
 }
 async function producerOwnedTeardown(available: TwoTenantFixture | undefined) {
@@ -72,11 +75,16 @@ async function producerOwnedTeardown(available: TwoTenantFixture | undefined) {
     finally {
         if (available) {
             try { await producerHookPhase("fixture-cleanup", () => cleanupFixture(available)); }
-            catch (error) { if (!errors.includes(error)) errors.push(error); }
+            catch (error) { errors.push(error); }
         }
     }
-    if (errors.length === 1) throw errors[0];
-    if (errors.length > 1) throw new AggregateError(errors, "Owned producer teardown and fixture cleanup rejected");
+    if (errors.length > 0) {
+        // Vitest surfaces the top-level message. Retain each safe phase without attaching raw errors.
+        const messages = errors.map(error => error instanceof ProducerHookFailure
+            ? error.message
+            : "Owned producer teardown rejected without a phase record (cleanupVerification=not-established)");
+        throw new Error(messages.join("\n"));
+    }
 }
 beforeAll(async () => {
     up = await isLocalStackReachable();
