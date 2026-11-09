@@ -32,7 +32,14 @@ import { adminExec, adminQuery, closeAdminPool } from "../../factories/admin-sql
 import { createTwoTenantFixture, cleanupFixture, adminInsertCustomer, adminInsertFacility, adminInsertContact } from "../../factories/tenants";
 import { armReadPlan, releaseRead } from "../dashboard/read-plan";
 
-async function captureRecordState(page: Page, state: string, captureTargets: readonly Locator[], stateIds: readonly string[] = [], currentViewportOnly = false) {
+async function captureRecordState(
+  page: Page,
+  state: string,
+  captureTargets: readonly Locator[],
+  stateIds: readonly string[] = [],
+  currentViewportOnly = false,
+  centerOn?: Locator,
+) {
   const folder = process.env.E35_CAPTURE_DIR;
   if (folder) mkdirSync(folder, {recursive:true});
   const originalViewport = page.viewportSize();
@@ -50,7 +57,11 @@ async function captureRecordState(page: Page, state: string, captureTargets: rea
       await page.bringToFront();
       if (!supplemental) {
         expect(captureTargets.length, "a qualifying capture requires an actual phase target").toBeGreaterThan(0);
-        await captureTargets[0].scrollIntoViewIfNeeded();
+        if (centerOn) {
+          await centerOn.evaluate(node => node.scrollIntoView({ block: "center", inline: "nearest", behavior: "instant" }));
+        } else {
+          await captureTargets[0].scrollIntoViewIfNeeded();
+        }
         // Reflow can move identity/status off screen: verify every named target now,
         // never infer it remains visible from an assertion at the original size.
         for (const target of captureTargets) await expect(target).toBeInViewport({ ratio: 1 });
@@ -560,10 +571,11 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await expect(page.getByTestId("customers-no-results")).toBeVisible();
     await expect(page.getByLabel("Sök kund")).toHaveValue("35.3-no-match");
     const noMatch = page.getByTestId("customers-no-results");
+    // Center the padded card so both texts have clearance at the scroll boundary.
     await captureRecordState(page, "customers-no-match", [
       noMatch.getByText("Ingen kund matchar din sökning eller ditt filter. Justera och försök igen.", { exact: true }),
       noMatch.getByText("Inga träffar", { exact: true }),
-    ], ["no-match"]);
+    ], ["no-match"], false, noMatch);
     await page.getByRole("button", { name: /återställ/i }).click();
     await expect(selectCompany).toBeChecked();
     await table.getByRole("link", { name: fixture.crm.company.displayName, exact: true }).click();
