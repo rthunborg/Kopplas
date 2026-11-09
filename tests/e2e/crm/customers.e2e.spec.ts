@@ -25,12 +25,15 @@ const test = process.env.E2E_CDP_ENDPOINT ? base.extend({
     await browser.close(); // Disconnects this client; lifecycle remains with the root guard.
   }, {scope: "worker"}],
 }) : base;
-import { readFileSync, mkdirSync, appendFileSync, existsSync } from "node:fs";
+import {
+  appendFileSync, closeSync, existsSync, linkSync, lstatSync, mkdirSync, openSync,
+  readFileSync, renameSync, rmSync, writeFileSync,
+} from "node:fs";
 import path from "node:path";
+import { setTimeout as sleep } from "node:timers/promises";
 import { expectActiveAdminNavigation } from "../support/active-admin-navigation";
 import { adminExec, adminQuery, closeAdminPool } from "../../factories/admin-sql";
 import { createTwoTenantFixture, cleanupFixture, adminInsertCustomer, adminInsertFacility, adminInsertContact } from "../../factories/tenants";
-import { armReadPlan, releaseRead } from "../dashboard/read-plan";
 
 async function captureRecordState(
   page: Page,
@@ -114,7 +117,9 @@ async function renderedContrast(page: Page, locator: Locator, state: string, out
   },{outline});
   if(outline) expect(parseFloat(measured.outlineWidth)).toBeGreaterThan(0);
   if(!disabled) expect(measured.ratio,`${state} rendered composite`).toBeGreaterThanOrEqual(outline?3:4.5);
-  const file=path.resolve("tmp/private/story35-3/round1-rendered-contrast.jsonl");
+  const file = path.resolve(process.env.KOPPLAS_FIXED_CHROMIUM_APPLICATION_MODE === "verify-application"
+    ? "test-results/private/round1-rendered-contrast.jsonl"
+    : "tmp/private/story35-3/round1-rendered-contrast.jsonl");
   const measurement={state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??process.env.GITHUB_SHA??"uncommitted Round1 source",kind:outline?"nontext focus":"text",disabled,threshold:disabled?"inactive control exempt":outline?3:4.5,...measured,limits:"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit; candidate environment is not authenticated provenance"};
   await test.info().attach(`rendered-contrast-${state.replace(/[^a-z0-9]+/gi,"-")}.json`, {body:Buffer.from(JSON.stringify(measurement)),contentType:"application/json"});
   mkdirSync(path.dirname(file),{recursive:true});
@@ -181,8 +186,79 @@ const DEFERRED_LABELS = [
 
 test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
   test("[P0] E35-6-T-error-retry CustomerList retries a failed read through the real Försök igen link", async ({ page }) => {
+    const control = path.resolve("test-results/private/crm-read-fetch-fault.json");
+    const runId = process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID;
+    if (process.env.E2E_CRM_READ_FAULT_CONTROL !== control
+      || !runId || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(runId)) {
+      throw new Error("CRM read fault requires this runner's fresh preload");
+    }
+
     const isolated = await createTwoTenantFixture();
-    let heldRevision: string | undefined;
+    let ownedControl: string | undefined;
+    let hold: { held: string; release: string } | undefined;
+    let released = false;
+    let retryFinished: Promise<boolean> | undefined;
+    let retryObserved = false;
+    let retryConfirmed = false;
+    let testFailed = false;
+    let customersUrl: ((url: URL) => boolean) | undefined;
+    function isPrefetch(request: BrowserRequest) {
+      const headers = request.headers();
+      return Boolean(headers["next-router-prefetch"] || headers["next-router-segment-prefetch"]
+        || headers.purpose?.includes("prefetch") || headers["sec-purpose"]?.includes("prefetch"));
+    }
+    async function blockPrefetch(route: Route) {
+      const request = route.request();
+      if (request.method() === "GET" && isPrefetch(request)) await route.abort("blockedbyclient");
+      else await route.fallback();
+    }
+    function readControl(file: string): string | undefined {
+      try {
+        const stat = lstatSync(file);
+        if (!stat.isFile() || stat.size > 2048) throw new Error("CRM read fault control ownership changed");
+        return readFileSync(file, "utf8");
+      }
+      catch (error) {
+        if ((error as NodeJS.ErrnoException).code === "ENOENT") return undefined;
+        throw error;
+      }
+    }
+    function removeOwned(file: string, contents: string) {
+      const current = readControl(file);
+      if (current === undefined) return;
+      if (current !== contents) throw new Error("CRM read fault control ownership changed");
+      rmSync(file);
+    }
+    function publish(file: string, contents: string, previous?: string) {
+      const temporary = `${file}.${runId}.${crypto.randomUUID()}.tmp`;
+      const fd = openSync(temporary, "wx", 0o600);
+      try {
+        try { writeFileSync(fd, contents); }
+        finally { closeSync(fd); }
+        if (previous === undefined) {
+          linkSync(temporary, file); // Publish atomically without replacing an existing control.
+        } else {
+          if (readControl(file) !== previous) throw new Error("CRM read fault control ownership changed");
+          renameSync(temporary, file);
+        }
+      } finally {
+        rmSync(temporary, { force: true });
+      }
+    }
+    function arm(outcome: "error" | "hold") {
+      const attemptId = crypto.randomUUID();
+      const expiresAt = Date.now() + 60_000;
+      const contents = JSON.stringify({ schemaVersion: 1, runId, attemptId, actorUserId: isolated.adminA.id, outcome, expiresAt });
+      publish(control, contents, ownedControl);
+      ownedControl = contents;
+      const prefix = `${control}.${runId}.${attemptId}`;
+      return { held: `${prefix}.held`, release: `${prefix}.release` };
+    }
+    function releaseHold(attempt: NonNullable<typeof hold>) {
+      if (readControl(attempt.held) !== "held") throw new Error("CRM retry read was not held");
+      publish(attempt.release, "release");
+      released = true;
+    }
     try {
       const marker = `35.6 list retry ${crypto.randomUUID()}`;
       const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: marker, org_nr: "556677-8899" });
@@ -194,8 +270,12 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       const beforeAudits = await audits();
       // No browser response substitution: the production server's cookie-bound
       // customer SELECT receives a genuine dependency error for this subject only.
-      armReadPlan(isolated.adminA.id, { customers: [{ outcome: "error" }] });
+      arm("error");
       await signIn(page, isolated.adminA.email, isolated.adminA.password);
+      const appOrigin = new URL(page.url()).origin;
+      customersUrl = url => url.origin === appOrigin && url.pathname === "/customers";
+      // Keep background prefetch from claiming the navigation's server-read hold.
+      await page.route(customersUrl, blockPrefetch);
       await page.goto("/customers");
       const failure = page.getByTestId("customers-failed");
       await expect(failure).toContainText("Kundlistan kunde inte läsas in.");
@@ -209,15 +289,29 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       await expect(retry).toHaveAttribute("href", "/customers");
       await waitForHydrated(retry);
 
-      // A new held revision proves the actual link starts a fresh server read,
+      // A new held attempt proves the actual link starts a fresh server read,
       // rather than accepting a cached failure or substituting page.reload().
-      heldRevision = armReadPlan(isolated.adminA.id, { customers: [{ outcome: "pass", hold: true }] });
-      expect(existsSync(path.join(process.cwd(), "tests/e2e/.auth/dashboard-control", heldRevision + ".held"))).toBe(false);
+      const attempt = arm("hold");
+      hold = attempt;
+      let clickStarted = false;
+      retryFinished = page.waitForRequest(request => clickStarted && request.method() === "GET"
+        && customersUrl?.(new URL(request.url())) === true && !isPrefetch(request), { timeout: 15_000 })
+        .then(async request => {
+          retryObserved = true;
+          const response = await request.response();
+          const afterRelease = released;
+          if (!response) return false;
+          const finished = await response.finished() === null;
+          retryConfirmed = afterRelease && response.ok() && finished;
+          return finished;
+        }).catch(() => false);
+      expect(existsSync(attempt.held)).toBe(false);
+      clickStarted = true;
       await retry.click({ noWaitAfter: true });
-      await expect.poll(() => existsSync(path.join(process.cwd(), "tests/e2e/.auth/dashboard-control", heldRevision + ".held"))).toBe(true);
+      await expect.poll(() => retryObserved).toBe(true);
+      await expect.poll(() => readControl(attempt.held) === "held").toBe(true);
       await expect(page.getByTestId("customers-table-body")).toHaveCount(0);
-      releaseRead(heldRevision);
-      heldRevision = undefined;
+      releaseHold(attempt);
 
       await expect(page).toHaveURL(/\/customers$/);
       await expect(page.getByTestId("customers-failed")).toHaveCount(0);
@@ -226,14 +320,58 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       const customerLink = page.getByTestId("customers-table-body").getByRole("link", { name: marker, exact: true });
       await expect(customerLink).toHaveAttribute("href", `/customers/${customerId}`);
       await expect(customerLink).toBeVisible();
+      await expect.poll(() => retryConfirmed, { message: "The actual retry navigation must finish successfully after release" }).toBe(true);
       await expect(page.getByTestId("customers-table-body").getByRole("link")).toHaveCount(1);
       expect(await page.content()).not.toContain(foreignMarker);
       expect(await page.content()).not.toContain(fixture.crm.private.personnummer);
       expect(await snapshot()).toEqual(before);
       expect(await audits()).toEqual(beforeAudits);
+    } catch (error) {
+      testFailed = true;
+      throw error;
     } finally {
-      if (heldRevision) releaseRead(heldRevision);
-      await cleanupFixture(isolated);
+      const cleanupErrors: unknown[] = [];
+      const failedSteps: string[] = [];
+      async function cleanup(step: string, run: () => void | Promise<void>) {
+        try { await run(); }
+        catch (error) { cleanupErrors.push(error); failedSteps.push(step); }
+      }
+      await cleanup("release hold", () => {
+        if (hold && retryFinished && !released && readControl(hold.held) === "held") releaseHold(hold);
+      });
+      let disarmed = false;
+      await cleanup("disarm control", () => {
+        if (ownedControl !== undefined) removeOwned(control, ownedControl);
+        disarmed = true;
+      });
+      const closePage = !disarmed || !retryConfirmed;
+      const settlement = cleanup("settle retry", async () => {
+        if (!closePage || page.isClosed()) return;
+        // Cancel browser work promptly. The preload bounds any claimed server hold to 15 seconds.
+        const timer = new AbortController();
+        try {
+          const closed = await Promise.race([
+            page.close().then(() => true),
+            sleep(1_000, false, { signal: timer.signal }),
+          ]);
+          if (!closed) throw new Error("CRM retry page closure did not settle");
+        } finally { timer.abort(); }
+      });
+      // Start fixture cleanup even if page closure stalls or fails.
+      const fixtureCleanup = cleanup("clean fixture", () => cleanupFixture(isolated));
+      await settlement;
+      await cleanup("remove held marker", () => { if (hold) removeOwned(hold.held, "held"); });
+      await cleanup("remove release marker", () => { if (hold && released) removeOwned(hold.release, "release"); });
+      await cleanup("remove prefetch route", async () => {
+        if (!closePage && customersUrl && !page.isClosed()) await page.unroute(customersUrl, blockPrefetch);
+      });
+      await fixtureCleanup;
+      if (cleanupErrors.length > 0) {
+        const description = failedSteps.join(", ");
+        if (testFailed) test.info().annotations.push({ type: "crm-read-fault-cleanup-failed", description });
+        else if (cleanupErrors.length === 1) throw cleanupErrors[0];
+        else throw new AggregateError(cleanupErrors, "CRM read fault cleanup failed (" + description + ")");
+      }
     }
   });
 
