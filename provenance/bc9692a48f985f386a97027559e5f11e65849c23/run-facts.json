@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "candidate": "bc9692a48f985f386a97027559e5f11e65849c23",
+  "run": 42633596784,
+  "browserJob": 129219218175,
+  "dbJob": 129219218255,
+  "browserArtifact": 13683795880,
+  "reportArtifact": 13681919984,
+  "dbArtifact": 13683707035,
+  "tests": {
+    "browserFirstAttemptPassed": 104,
+    "dbPassed": 2253,
+    "dbExplicitPending": 52,
+    "dbFailed": 0,
+    "producerDbPassed": 75
+  },
+  "sha256": {
+    "browserNative": "12acf98cc349379f3d95743d2aa0525b06b280494166571c94ca1a26e3d29686",
+    "dbNative": "d2200ce4bef674bb3446c10059dc4b3451ac2a5d23ad11a562c1054607cd218c",
+    "methodJournal": "0036365b3a96b848d8fd9ed304a1870ce3e22cc195b43b469ccd23c1923bf61f",
+    "playwrightConfig": "82d974a9810ab79fc0b841fe2d83c7d341eed129198fa06181d864b989f0ee4d"
+  },
+  "testEffects": {
+    "verifiedRestorations": [
+      "company_settings",
+      "quote_terms",
+      "work_roles",
+      "articles"
+    ],
+    "receiptBoundSyntheticDeletion": 1
+  },
+  "imagePolicy": "synthetic-no-pii",
+  "originals": 103,
+  "displayed": 90
+}
