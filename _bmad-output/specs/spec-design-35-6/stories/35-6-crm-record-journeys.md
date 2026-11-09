@@ -427,7 +427,18 @@ This final batch updates only this story, its assigned ATDD checklist and delive
 
 ## Suggested Review Order
 
-Author: Sol High implementation/fix delegate. Reviewed test source remains `121e94445eef918c289f2126fdece3268170c640`, the SINGLE B01 semantic capture-target change, E2E SHA-256 `179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f`; production remains unchanged from b143. Independent Sol High targeted source/trail review returned exactly No findings at121; current code review passed. This closeout changes only three author documents and reuses that unchanged-source review. Prior b143/capture1a3 approvals, the actual historical772/b143 P6 BLOCKED assessment and failed prior-head CI/captures earn no current runtime credit. The ONE prior typecheck/focused-lint pass binds to this source; all16 literal stops remain unchanged and are checked at closeout. P6-E2E-GAP-01 now has an existing-proxy capability analysis and a minimal unowned Playwright-config allocation proposal, not an implemented or executed solution. No successor P6/runtime/visual/current-headCI/completion pass is claimed; statusblocked/followuptrue/historicalscore9/deferredreview[]/releasefalse and11/98/72 remain.
+Author: fresh Sol High source-fix delegate `/root/crm_source_author`, under the named `source-35.6-20261108-153950` release. Refreshed against the uncommitted isolated working tree on `codex/35-6-fresh-source-20261108`, clean baseline `e266ed6ab87d3299c5ada5b9ec3c20e1818f1273` with ordered parents `54ec501da6ba7b756fe8013c0f71ac123f7a8a59` and `7e938e490cbb1c017d615475abe87caea18da127`. This continuation changes only General Playwright startup, the CRM test file, and this section; production CRM code and the frozen canonical suffix remain unchanged. Historical source reviews and failed prior-head runs below retain their original attribution and earn no current execution credit. The list-read retry test is implemented but unexecuted; no successor P6, runtime, visual, exact-head CI, development completion or release-ready result is claimed. Native identity, claims and story status remain unchanged.
+
+### Real dependency failure and fresh authorized retry
+
+General Playwright now starts the existing subject-scoped dashboard proxy before the unchanged production-mode app/preload, forwarding ordinary requests to the real local backend. The new `E35-6-T-error-retry` case faults only its isolated admin's customer reads, clicks the actual same-path retry link, requires a newly held backend read, and then checks the real authorized row identity, foreign-row exclusion and unchanged customer/audit snapshots (AC3/6/7). No reload, business-success mock, permission change or production endpoint was added.
+
+- `playwright.config.ts:63` — `webServer`: existing loopback proxy starts before the production app.
+- `playwright.config.ts:84` — `NEXT_PUBLIC_SUPABASE_URL`: app reads use the proxy; ordinary auth/RLS remains upstream.
+- `tests/e2e/crm/customers.e2e.spec.ts:172` — `E35-6-T-error-retry CustomerList`: real failure and distinct no-success states.
+- `tests/e2e/crm/customers.e2e.spec.ts:203` — `heldRevision = armReadPlan`: actual link must start a fresh read before recovery.
+
+The proxy changes the local General browser API origin for all cases; source inspection found the existing job-events handshake normalizes the server array and binds to the configured app origin, but auth/storage/origin compatibility is not runtime-verified. Existing proxy unit tests cover target rejection and bounded forwarding stubs, not end-to-end authentication, RLS or same-path Next Link freshness. A stale same-path retry remains an intended test failure requiring an observed defect and separately allocated production fix.
 
 ### Record identity and responsive composition
 
@@ -454,18 +465,20 @@ The native768 case proved facility selection reset after name rejection. Keying 
 - `src/components/crm/FacilityDialog.tsx:51` — `variant="sheet"`: retained viewport-bounded child presentation.
 - `src/components/crm/ContactDialog.tsx:151` — `key=`: rejected facility input establishes the remounted default.
 - `src/components/crm/ContactDialog.tsx:165` — `name="is_primary"`: unchanged checked-first explicit-false fallback.
-- `tests/e2e/crm/customers.e2e.spec.ts:1284` — `short viewport`: selected facility after rejection remains load-bearing.
+- `tests/e2e/crm/customers.e2e.spec.ts:1342` — `short viewport`: selected facility after rejection remains load-bearing.
 
 ### Single capture-target repair and honest evidence limits
 
 B01 now verifies the actual no-match message and support text after each resize, while preserving the original container/list/filter/reset behavior. Strict semantic target ratio1 stays in the existing helper; previous-head partial runtime/captures and P6 observations remain historical.
 
-- `tests/e2e/crm/customers.e2e.spec.ts:34` — `captureRecordState`: unchanged strict per-viewport semantic target validation.
-- `tests/e2e/crm/customers.e2e.spec.ts:504` — `customers-no-match`: exact message and support text replace padded wrapper.
-- `tests/e2e/crm/customers.e2e.spec.ts:375` — `malformed customer identity`: actual app error assertion, previous3eb proof only.
-- `tests/e2e/crm/customers.e2e.spec.ts:1326` — `E35-6-T-AC2/AC6`: retained context authority, previous3eb captures only.
+- `tests/e2e/crm/customers.e2e.spec.ts:35` — `captureRecordState`: unchanged strict per-viewport semantic target validation.
+- `tests/e2e/crm/customers.e2e.spec.ts:562` — `customers-no-match`: exact message and support text replace padded wrapper.
+- `tests/e2e/crm/customers.e2e.spec.ts:433` — `malformed customer identity`: actual app error assertion, previous3eb proof only.
+- `tests/e2e/crm/customers.e2e.spec.ts:1384` — `E35-6-T-AC2/AC6`: retained context authority, previous3eb captures only.
 
-Evidence: one current bounded typecheck and focused lint passed on the recorded precommit source hash; no build/unit/runtime repeat. Prior772 ordinaryCI and3eb full browser runs FINAL FAILED with exact counts/partial image provenance in the dated section above. Current repair runtime0executed0skipped/images0; eleven cases/98planned frames/72selected names are not executed coverage. Current sameHigh source/trail review passed at121 with exactly No findings; successor final result/P6/follow-up/authenticatedvisual/current-headCI/completion remain pending; existing21unowned historical blockers and the required list-read-error/retry proof/runtime-allocation gap remain. No new seam, weakened ratio/assertion, D5 child-empty credit or release-ready claim.
+Evidence in this continuation is Coordinator-executed and reported to this author: `pnpm install --frozen-lockfile`, `pnpm run verify:lockfiles`, initial `pnpm run typecheck`, and `pnpm exec eslint playwright.config.ts tests/e2e/crm/customers.e2e.spec.ts` passed (exit0). `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/e2e/server-read-proxy.test.ts` passed12, failed0, skipped0. After the held-marker/noWaitAfter refinement, the one focused typecheck/lint rerun also passed (exit0), bound to final SHA-256 config `06e103f00f0eff8a8c8f61fcd19d890a83d1e4ed70fcf756a08d70f32d316759` and CRM test `34500be2921af2b4e1d1bd11931fabb00d6174b3910e0e2c96deeb365cc7ee4d`. Independent High `/root/crm_fix_review` found no code findings at those same hashes; final trail reconciliation and review-order validation remain pending at this source freeze. `pnpm exec playwright test tests/e2e/crm/customers.e2e.spec.ts --project=chromium --workers=1 --retries=0 --trace=off --reporter=list --list` failed (exit1): the preexisting module-scope fixture read cannot find `tests/e2e/.auth/fixture.json`;0 tests collected. No fixture was fabricated and no collection retry occurred.
+
+Runtime blocker: the parent's Resource Guard List returned `ok=false`, `HOOK_CONTEXT_UNAVAILABLE`, `No current root turn actor is open.` Its enclosing command exited1; a separate native guard exit was not recorded by that wrapper. The supported managed route stopped without service/browser launches or workaround. Browser runtime0executed, images0; no build, DB/RLS or visual acceptance occurred. Existing planned capture counts and prior772/3eb failures remain historical. The runtime allocation is now explicit and source wiring exists, but genuine list retry success, shared General browser compatibility, successor P6/follow-up, required integration/RLS, authenticated visual acceptance, exact-head CI and completion remain unearned. No D5 child-empty credit or release-ready claim is added.
 
 ## Frozen canonical v1 source body — preserved LF
 

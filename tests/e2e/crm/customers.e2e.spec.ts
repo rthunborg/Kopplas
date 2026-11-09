@@ -25,13 +25,21 @@ const test = process.env.E2E_CDP_ENDPOINT ? base.extend({
     await browser.close(); // Disconnects this client; lifecycle remains with the root guard.
   }, {scope: "worker"}],
 }) : base;
-import { readFileSync, mkdirSync, appendFileSync } from "node:fs";
+import { readFileSync, mkdirSync, appendFileSync, existsSync } from "node:fs";
 import path from "node:path";
 import { expectActiveAdminNavigation } from "../support/active-admin-navigation";
 import { adminExec, adminQuery, closeAdminPool } from "../../factories/admin-sql";
 import { createTwoTenantFixture, cleanupFixture, adminInsertCustomer, adminInsertFacility, adminInsertContact } from "../../factories/tenants";
+import { armReadPlan, releaseRead } from "../dashboard/read-plan";
 
-async function captureRecordState(page: Page, state: string, captureTargets: readonly Locator[], stateIds: readonly string[] = [], currentViewportOnly = false) {
+async function captureRecordState(
+  page: Page,
+  state: string,
+  captureTargets: readonly Locator[],
+  stateIds: readonly string[] = [],
+  currentViewportOnly = false,
+  centerOn?: Locator,
+) {
   const folder = process.env.E35_CAPTURE_DIR;
   if (folder) mkdirSync(folder, {recursive:true});
   const originalViewport = page.viewportSize();
@@ -49,7 +57,11 @@ async function captureRecordState(page: Page, state: string, captureTargets: rea
       await page.bringToFront();
       if (!supplemental) {
         expect(captureTargets.length, "a qualifying capture requires an actual phase target").toBeGreaterThan(0);
-        await captureTargets[0].scrollIntoViewIfNeeded();
+        if (centerOn) {
+          await centerOn.evaluate(node => node.scrollIntoView({ block: "center", inline: "nearest", behavior: "instant" }));
+        } else {
+          await captureTargets[0].scrollIntoViewIfNeeded();
+        }
         // Reflow can move identity/status off screen: verify every named target now,
         // never infer it remains visible from an assertion at the original size.
         for (const target of captureTargets) await expect(target).toBeInViewport({ ratio: 1 });
@@ -168,6 +180,63 @@ const DEFERRED_LABELS = [
 ];
 
 test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
+  test("[P0] E35-6-T-error-retry CustomerList retries a failed read through the real Försök igen link", async ({ page }) => {
+    const isolated = await createTwoTenantFixture();
+    let heldRevision: string | undefined;
+    try {
+      const marker = `35.6 list retry ${crypto.randomUUID()}`;
+      const customerId = await adminInsertCustomer({ tenant_id: isolated.tenantA.id, customer_type: "company", display_name: marker, org_nr: "556677-8899" });
+      const foreignMarker = `35.6 foreign ${crypto.randomUUID()}`;
+      await adminInsertCustomer({ tenant_id: isolated.tenantB.id, customer_type: "company", display_name: foreignMarker, org_nr: "556677-8899" });
+      const snapshot = () => adminQuery("select id, tenant_id, display_name, archived_at from public.customers where tenant_id = $1 order by id", [isolated.tenantA.id]);
+      const before = await snapshot();
+      const audits = () => adminQuery("select id from public.audit_events where tenant_id = $1 and target_type = 'customer' order by id", [isolated.tenantA.id]);
+      const beforeAudits = await audits();
+      // No browser response substitution: the production server's cookie-bound
+      // customer SELECT receives a genuine dependency error for this subject only.
+      armReadPlan(isolated.adminA.id, { customers: [{ outcome: "error" }] });
+      await signIn(page, isolated.adminA.email, isolated.adminA.password);
+      await page.goto("/customers");
+      const failure = page.getByTestId("customers-failed");
+      await expect(failure).toContainText("Kundlistan kunde inte läsas in.");
+      await expect(page.getByTestId("customers-empty")).toHaveCount(0);
+      await expect(page.getByTestId("customers-no-results")).toHaveCount(0);
+      await expect(page.getByTestId("customers-table-body")).toHaveCount(0);
+      expect(await page.content()).not.toContain(marker);
+      expect(await page.content()).not.toContain(foreignMarker);
+      expect(await page.content()).not.toContain(fixture.crm.private.personnummer);
+      const retry = failure.getByRole("link", { name: "Försök igen", exact: true });
+      await expect(retry).toHaveAttribute("href", "/customers");
+      await waitForHydrated(retry);
+
+      // A new held revision proves the actual link starts a fresh server read,
+      // rather than accepting a cached failure or substituting page.reload().
+      heldRevision = armReadPlan(isolated.adminA.id, { customers: [{ outcome: "pass", hold: true }] });
+      expect(existsSync(path.join(process.cwd(), "tests/e2e/.auth/dashboard-control", heldRevision + ".held"))).toBe(false);
+      await retry.click({ noWaitAfter: true });
+      await expect.poll(() => existsSync(path.join(process.cwd(), "tests/e2e/.auth/dashboard-control", heldRevision + ".held"))).toBe(true);
+      await expect(page.getByTestId("customers-table-body")).toHaveCount(0);
+      releaseRead(heldRevision);
+      heldRevision = undefined;
+
+      await expect(page).toHaveURL(/\/customers$/);
+      await expect(page.getByTestId("customers-failed")).toHaveCount(0);
+      await expect(page.getByTestId("customers-empty")).toHaveCount(0);
+      await expect(page.getByTestId("customers-no-results")).toHaveCount(0);
+      const customerLink = page.getByTestId("customers-table-body").getByRole("link", { name: marker, exact: true });
+      await expect(customerLink).toHaveAttribute("href", `/customers/${customerId}`);
+      await expect(customerLink).toBeVisible();
+      await expect(page.getByTestId("customers-table-body").getByRole("link")).toHaveCount(1);
+      expect(await page.content()).not.toContain(foreignMarker);
+      expect(await page.content()).not.toContain(fixture.crm.private.personnummer);
+      expect(await snapshot()).toEqual(before);
+      expect(await audits()).toEqual(beforeAudits);
+    } finally {
+      if (heldRevision) releaseRead(heldRevision);
+      await cleanupFixture(isolated);
+    }
+  });
+
   test("AC5: an anonymous visitor to /customers and /customers/<id> is redirected to /login", async ({
     page,
   }) => {
@@ -501,7 +570,12 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.getByLabel("Sök kund").fill("35.3-no-match");
     await expect(page.getByTestId("customers-no-results")).toBeVisible();
     await expect(page.getByLabel("Sök kund")).toHaveValue("35.3-no-match");
-    await captureRecordState(page,"customers-no-match", [page.getByTestId("customers-no-results").getByText("Inga träffar", { exact: true }), page.getByTestId("customers-no-results").getByText("Ingen kund matchar din sökning eller ditt filter. Justera och försök igen.", { exact: true })], ["no-match"]);
+    const noMatch = page.getByTestId("customers-no-results");
+    // Center the padded card so both texts have clearance at the scroll boundary.
+    await captureRecordState(page, "customers-no-match", [
+      noMatch.getByText("Ingen kund matchar din sökning eller ditt filter. Justera och försök igen.", { exact: true }),
+      noMatch.getByText("Inga träffar", { exact: true }),
+    ], ["no-match"], false, noMatch);
     await page.getByRole("button", { name: /återställ/i }).click();
     await expect(selectCompany).toBeChecked();
     await table.getByRole("link", { name: fixture.crm.company.displayName, exact: true }).click();
@@ -511,7 +585,8 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
 
   test("B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input", async ({ page }) => {
     await signIn(page, fixture.adminA.email, fixture.adminA.password);
-    const marker = `35.3 validated ${crypto.randomUUID()}`, dialog = await openCustomerCreate(page, marker);
+    const suffix = Buffer.from(crypto.getRandomValues(new Uint8Array(8))).toString("hex");
+    const marker = `35.3 validated ${suffix}`, dialog = await openCustomerCreate(page, marker);
     await captureRecordState(page,"customer-create-draft", [dialog.getByLabel("Visningsnamn")]);
     await dialog.getByLabel("E-post").fill("invalid");
     await dialog.getByLabel("Ort").fill("Västerås");
