@@ -44,6 +44,9 @@ test("CI command projection rejects entry and argv drift and cannot erase unrela
   assert.equal(projectCalendarFeedCiCommands(workflow),projected); // actual raw checkout and LF CI bytes agree
   assert.ok(projected.includes("pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json"));
   assert.ok(projected.includes("run: pnpm run test:smoke"));
+  const runner = "    runs-on: ubuntu-24.04\n";
+  assert.ok(workflow.includes(runner));
+  assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(runner, "    runs-on: ubuntu-26.04\n"), wrapper), /exact diagnostic workflow fragment/);
   for (const [before, after] of [
     ["node scripts/ci/with-calendar-feed-runtime.mjs db", "pnpm run test:int"],
     ["node scripts/ci/with-calendar-feed-runtime.mjs db", "node scripts/ci/with-calendar-feed-runtime.mjs browser"],
