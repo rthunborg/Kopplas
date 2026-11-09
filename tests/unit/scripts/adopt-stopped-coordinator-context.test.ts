@@ -83,7 +83,7 @@ def ev(name,value):
     f=private/(name+'.json'); f.write_text(m.canonical(value),encoding='utf-8'); return dict(path=str(f),sha256=m.rawhash(f.read_bytes()))
 now=time.time()-(901 if variant=='expired' else 0); request_id=str(uuid.uuid4()); toolhash=m.rawhash(pathlib.Path(m.__file__).read_bytes())
 after=plan.copy(); after.update(coordinator=m.NEW,base_sha=main,workflow_version=m.AFTER_PIN)
-proposal=dict(environment='fixture',private_root=str(private),repository=str(repo),integration=str(integration),worker=str(worker),integration_staging=str(stage),before_integration=base,before_worker=checkpoint,integration_candidate=main,worker_candidate=candidate,checkpoint=checkpoint,published_head=published,selected_checkpoint=checkpoint,old_base=base,main=main,expected_snapshot=m.digest(snap),after_plan_hash=m.digest(after),original_plan=ev('original-plan',plan),exclusion_register=ev('exclusions',dict(synthetic=True,tokens=57,domains=7,allocations=3,provenance='SYNTHETIC historical exclusions, never current clearance')),main_observation=ev('main-observation',dict(kind='current-provider-main-observation',repository=plan['repository'],branch='main',head=main,issued=now-1,expires=now+899,provenance='SYNTHETIC fixture; no provider queried')),custody=ev('custody',dict(kind='current-stopped-custody',run=m.RUN,story=m.STORY,coordinator=m.NEW,worker=m.WORKER,old_archived=True,writers_stopped=[m.OLD,m.NEW,m.WORKER,m.PRODUCER],no_reopen=True,delegates=[],queued_operations=[],native_operations=[],holds=['35.6','35.7'],issued=now-1,expires=now+899,provenance='SYNTHETIC fixture; no live custody')),tool_sha256=toolhash,tool_revision=main,tool_author='synthetic-author')
+proposal=dict(environment='fixture',private_root=str(private),repository=str(repo),integration=str(integration),worker=str(worker),integration_staging=str(stage),before_integration=base,before_worker=checkpoint,integration_candidate=main,worker_candidate=candidate,checkpoint=checkpoint,published_head=published,selected_checkpoint=checkpoint,old_base=base,main=main,expected_snapshot=m.digest(snap),after_plan_hash=m.digest(after),original_plan=ev('original-plan',plan),exclusion_register=ev('exclusions',dict(synthetic=True,tokens=57,domains=7,allocations=3,provenance='SYNTHETIC historical exclusions, never current clearance')),main_observation=ev('main-observation',dict(kind='current-provider-main-observation',repository=plan['repository'],branch='main',head=main,issued=now-1,expires=now+899,provenance='SYNTHETIC fixture; no provider queried')),custody=ev('custody',dict(kind='current-stopped-custody',run=m.RUN,story=m.STORY,coordinator=m.NEW,worker=m.WORKER,old_archived=True,writers_stopped=[m.OLD,m.NEW,m.WORKER,m.RETIRED_SUCCESSOR],no_reopen=True,delegates=[],queued_operations=[],native_operations=[],holds=['35.6','35.7','35.7-P-producer-reservation'],issued=now-1,expires=now+899,provenance='SYNTHETIC fixture; no live custody')),tool_sha256=toolhash,tool_revision=main,tool_author='synthetic-author')
 proposal['qualification']=ev('qualification',dict(kind='qualified-cold-adoption-tool',environment='fixture',tool_sha256=toolhash,tool_revision=main,workflow=m.AFTER_PIN,model='gpt-6.1-sol',effort='high',status='passed',evidence='SYNTHETIC fixture, never live qualification',provenance='fixture'))
 q=dict(schema_version=1,request_id=request_id,proposal=proposal)
 d=m.digest(q); q['owner_approval']=dict(proposal_digest=d,evidence=ev('owner',dict(kind='trusted-channel-owner-decision',proposal_digest=d,decision='authorize-exact-cold-context-adoption',provenance='SYNTHETIC fixture; no owner authorization')))
@@ -103,7 +103,8 @@ function native(f: Fixture, operation: string, owner: string, more: string[] = [
     operation, "--run", "e35-6-20261102", "--owner", owner, ...more], { cwd: sourceRoot, encoding: "utf8", timeout: 180000 });
   return r;
 }
-const old = "01a1160d-b5b1-7623-a8e8-54ef3dc537ed", successor = "01a1afde-34b5-7bb2-976e-de71b7f6a94c";
+const old = "01a1160d-b5b1-7623-a8e8-54ef3dc537ed", successor = "01a19bf5-183b-7ae1-ab86-8bd5804dcb6f";
+const retired = "01a1afde-34b5-7bb2-976e-de71b7f6a94c";
 const outgoing = "01a1a644-140e-7f83-bbf3-045a642e7ee1";
 const worker = "01a19c88-3c36-76f1-918b-88a00e4d222f", story = "spec-design-35-6-35-6";
 function state(f: Fixture) {
@@ -126,6 +127,26 @@ type Request = { schema_version: unknown; proposal: Record<string, unknown>; own
 function change(f: Fixture, mutate: (value: Request) => void): string {
   const q = JSON.parse(readFileSync(f.request, "utf8")); mutate(q);
   const name = resolve(f.private, "changed-request.json"); writeFileSync(name, canonical(q)); return name;
+}
+
+function rebindAuthorities(f: Fixture, custodyPatch: Record<string, unknown>, reviewer?: string): string {
+  return py(`q=m.decode(m.read(sys.argv[2])); private=pathlib.Path(q['proposal']['private_root'])
+def bind(name,value):
+    file=private/('changed-'+name+'.json')
+    file.write_text(m.canonical(value),encoding='utf-8')
+    return dict(path=str(file),sha256=m.rawhash(file.read_bytes()))
+custody=m.evidence(q['proposal']['custody'],private); custody.update(json.loads(sys.argv[3]))
+q['proposal']['custody']=bind('custody',custody)
+envelope={k:q[k] for k in ['schema_version','request_id','proposal']}
+owner=m.evidence(q['owner_approval']['evidence'],private); owner['proposal_digest']=m.digest(envelope)
+q['owner_approval']=dict(proposal_digest=owner['proposal_digest'],evidence=bind('owner',owner))
+review=q['admission_review']; accepted=m.evidence(review['evidence'],private)
+review['reviewer']=sys.argv[4] or review['reviewer']
+review['request_digest']=m.digest(dict(envelope,owner_approval=q['owner_approval']))
+accepted.update(reviewer=review['reviewer'],request_digest=review['request_digest'])
+review['evidence']=bind('review',accepted)
+request=private/'changed-authority-request.json'; request.write_text(m.canonical(q),encoding='utf-8')
+print(json.dumps(str(request)))`, [f.request, JSON.stringify(custodyPatch), reviewer ?? ""]);
 }
 
 test("V01 V02 V12 P01: physical RO validation, exact native refusals and strict private input", { timeout: 240000 }, async t => {
@@ -173,16 +194,25 @@ print(json.dumps(True))`, [f.request, f.store]), true);
     assert.equal(r.code, 2); assert.doesNotMatch(r.stdout + r.stderr, /SENTINEL-SECRET|C:\\|\/home\//); assert.deepEqual(state(f), before);
     if (label === "caller-selected successor") assert.equal(r.result.reason, "REQUEST_SHAPE");
   });
-  for (const target of [outgoing, "synthetic-unappointed-successor"]) await t.test(`custody cannot substitute fixed successor ${target}`, () => {
-    const file = py(`q=m.decode(m.read(sys.argv[2])); private=pathlib.Path(q['proposal']['private_root'])
-custody=m.evidence(q['proposal']['custody'],private); custody['coordinator']=sys.argv[3]
-custody['writers_stopped']=[m.OLD,sys.argv[3],m.WORKER,m.PRODUCER]
-e=private/'changed-custody.json'; e.write_text(m.canonical(custody),encoding='utf-8')
-q['proposal']['custody']=dict(path=str(e),sha256=m.rawhash(e.read_bytes()))
-request=private/'changed-custody-request.json'; request.write_text(m.canonical(q),encoding='utf-8')
-print(json.dumps(str(request)))`, [f.request, target]);
+  const stoppedWriters = [old, successor, worker, retired];
+  const custodyRefusals = [
+    ["retired proposed successor", { coordinator: retired }],
+    ["outgoing manual Coordinator", { coordinator: outgoing }],
+    ["unappointed successor", { coordinator: "synthetic-unappointed-successor" }],
+    ["duplicate appointed Coordinator in writer roster", { writers_stopped: [old, successor, worker, successor] }],
+    ["incomplete stopped-writer roster", { writers_stopped: stoppedWriters.slice(0, -1) }],
+    ["missing express producer-reservation hold", { holds: ["35.6", "35.7"] }],
+  ] as const;
+  for (const [label, patch] of custodyRefusals) await t.test(`custody refuses ${label}`, () => {
+    const file = rebindAuthorities(f, patch);
     const physical = disk(f.root), before = state(f), r = cli(f, "validate", file);
     assert.equal(r.code, 2); assert.equal(r.result.reason, "CUSTODY_INCOMPLETE");
+    assert.deepEqual(state(f), before); assert.deepEqual(disk(f.root), physical);
+  });
+  for (const reviewer of [...stoppedWriters, "synthetic-author"]) await t.test(`review excludes affected writer or author ${reviewer}`, () => {
+    const file = rebindAuthorities(f, {}, reviewer);
+    const physical = disk(f.root), before = state(f), r = cli(f, "validate", file);
+    assert.equal(r.code, 2); assert.equal(r.result.reason, "REVIEW_BINDING");
     assert.deepEqual(state(f), before); assert.deepEqual(disk(f.root), physical);
   });
   await t.test("duplicate key and missing store refuse without creation", () => {

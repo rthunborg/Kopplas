@@ -138,6 +138,29 @@ custody remains unresolved and owner-accepted for this local copy only. Fresh
 exact live custody, current-main/tool qualification, approvals, hosted checks,
 publication, runtime and both product releases remain unearned/held.
 
+## Approved local successor amendment — 2026-11-09
+
+The owner approved the four-file source amendment at baseline
+`44e0e0dc3eeed46c8c871fe5d01e5f46d5615de4`. The appointed successor is
+`01a19bf5-183b-7ae1-ab86-8bd5804dcb6f`, the existing 35.7-P reservation holder.
+The proposed November 6 successor `01a1afde-34b5-7bb2-976e-de71b7f6a94c` is
+retired for this succession. The original archived owner, the outgoing manual
+Coordinator, and all prior authors and allocations retain their historical
+attribution.
+
+The four distinct stopped writers are the original owner, appointed successor,
+retained CRM worker, and retired proposed successor. The exact custody shape
+keeps its keys and requires the existing two holds plus the express
+`35.7-P-producer-reservation` hold. This binds both roles of the appointed
+Coordinator to the same stop/no-reopen window. The roster and tool author are
+excluded from independent admission review.
+
+The run, worker, blocked generation, producer reservation, exact pins, custody
+window, conditional transaction and audit remain as before. This source
+amendment leaves the live handoff pending fresh candidate and custody evidence,
+exact-digest direct owner approval, independent High review, and qualification.
+PR #134 qualification proceeds separately.
+
 ## Code Map
 
 - `scripts/maintenance/adopt_stopped_coordinator_context.py` — new standalone CLI outside workflow fingerprint paths.
@@ -245,23 +268,22 @@ release-ready claims remain withheld pending the named independent/hosted gates.
 
 ## Suggested Review Order
 
-Amendment author: `/root/binding_disposition`, gpt-6.1-sol High.
-Refreshed for the uncommitted four-file amendment at source
-`189fe04ea4fc176864f9f039abc940533069959c`; original baseline/author/evidence
-remain recorded above. Root's one static set and focused 60/60 run passed on
-the tested freeze. This final evidence prose is later; 18 reference anchors
-passed before it, without a later checker rerun. Final High delta audit remains
-pending; source inspection and actual execution are distinguished below.
+Amendment author: `/root/crm_ci_fixture_author`, gpt-6.1-sol High.
+This order covers the November 9 four-file amendment at
+`44e0e0dc3eeed46c8c871fe5d01e5f46d5615de4`. The previous authors' verification
+and provenance remain under their original source epochs above.
 
 ### Bind one appointed successor without transferring historical authority
 
-Only the fixed target changes. Custody for the outgoing or another actor must
-refuse, while successful fixtures retain original OLD/history and blocked state.
-Local author isolation never discharges the separate live-custody requirement.
+The fixed target now holds both roles. The custody record must include the
+retired proposed successor and expressly cover the existing producer
+reservation. Each affected writer and the tool author is ineligible to review.
 
-- `scripts/maintenance/adopt_stopped_coordinator_context.py:25` — `NEW`: binds the appointed successor.
+- `scripts/maintenance/adopt_stopped_coordinator_context.py:27` — `NEW`: binds the appointed successor to the existing producer identity.
+- `scripts/maintenance/adopt_stopped_coordinator_context.py:29` — `STOPPED_WRITERS`: fixes the four distinct identities for custody and reviewer exclusion.
 - `docs/process/stopped-coordinator-context-adoption.md:15` — `## Fixed successor amendment`: explains identity and isolated local authority.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:131` — `V01 V02 V12 P01`: checks identity, physical RO and fixed-target refusals.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:152` — `V01 V02 V12 P01`: checks identity, physical read-only validation and exact authority refusals.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:198` — `custodyRefusals`: checks retired and unappointed candidates, roster defects and missing dual-role custody.
 
 ### Exact operator authority before any mutation
 
@@ -269,10 +291,10 @@ The entrypoint exposes one stopped run and safe public output. Exact private
 approval/review/custody/tool bindings retain the local trust model; actor values
 are not authentication and the frozen exclusion register is not current clearance.
 
-- `scripts/maintenance/adopt_stopped_coordinator_context.py:759` — `def main`: separates read-only validation from explicit mutation/recovery.
-- `scripts/maintenance/adopt_stopped_coordinator_context.py:325` — `def validate`: checks exact target, paths, ancestry and pins.
-- `scripts/maintenance/adopt_stopped_coordinator_context.py:458` — `def authorities`: binds approval, review, current custody and qualifications.
-- `docs/process/stopped-coordinator-context-adoption.md:47` — `## Qualification and trust`: states live prerequisites and trust limits.
+- `scripts/maintenance/adopt_stopped_coordinator_context.py:762` — `def main`: separates read-only validation from explicit mutation/recovery.
+- `scripts/maintenance/adopt_stopped_coordinator_context.py:327` — `def validate`: checks exact target, paths, ancestry and pins.
+- `scripts/maintenance/adopt_stopped_coordinator_context.py:460` — `def authorities`: binds approval, review, current custody and qualifications.
+- `docs/process/stopped-coordinator-context-adoption.md:62` — `## Qualification and trust`: states live prerequisites and trust limits.
 
 ### Preserve product bytes and historical publication
 
@@ -280,9 +302,9 @@ Immutable candidates conserve selected product bytes and exact incoming main
 content. Only the existing publication-base value changes; original raw plan,
 state and ancestry remain history rather than relabelled current proof.
 
-- `scripts/maintenance/adopt_stopped_coordinator_context.py:289` — `def native`: invokes unchanged pinned validators in a real subprocess.
-- `scripts/maintenance/adopt_stopped_coordinator_context.py:317` — `def reassessed`: replaces only the publication-base SHA bytes.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:199` — `V03 V05 V06 V07 V13`: conserves history and checks old-helper packets.
+- `scripts/maintenance/adopt_stopped_coordinator_context.py:291` — `def native`: invokes unchanged pinned validators in a real subprocess.
+- `scripts/maintenance/adopt_stopped_coordinator_context.py:319` — `def reassessed`: replaces only the publication-base SHA bytes.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:229` — `V03 V05 V06 V07 V13`: conserves history and checks old-helper packets.
 
 ### Keep Git and SQLite failure boundaries explicit
 
@@ -290,29 +312,27 @@ Prepared-state/native rechecks precede cold stages; one SQLite commit contains
 the entire effective context and immutable audit. Recovery never compensates
 committed ownership, and unexpected audit insertion effects roll back together.
 
-- `scripts/maintenance/adopt_stopped_coordinator_context.py:592` — `def recover_hot_store`: confines hot recovery to exact native-intent.
-- `scripts/maintenance/adopt_stopped_coordinator_context.py:659` — `def recover`: journals stages and checks native conservation.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:407` — `V04 P06`: checks hot rollback journal and physical RO/recovery.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:420` — `V08 P07`: checks the real prevalidated-helper heartbeat race.
+- `scripts/maintenance/adopt_stopped_coordinator_context.py:595` — `def recover_hot_store`: confines hot recovery to exact native-intent.
+- `scripts/maintenance/adopt_stopped_coordinator_context.py:662` — `def recover`: journals stages and checks native conservation.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:437` — `V04 P06`: checks hot rollback journal and physical RO/recovery.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:450` — `V08 P07`: checks the real prevalidated-helper heartbeat race.
 
 ### Check evidence by source epoch and remaining gates
 
-The failed full run, successful targeted epochs and original final controls
-remain separate historical evidence. Root's actual amended-byte local static
-and 60-test results are recorded above; final High delta review remains pending.
-No local result supplies the external adapter, same-PR provider phase, hosted
-Windows or live-use approval.
+Earlier full and targeted runs remain evidence for their own source epochs.
+The November 9 Windows synthetic run selected the V01, V03 and standalone V07
+groups and passed 28 of 28 TAP nodes with no failures or skips. It exercised
+read-only authority refusals, a single conserved commit, replay and the
+unchanged helper's old-base, branch and pin guards. Python syntax, focused
+ESLint and TypeScript, and the review-order reference check passed. Independent
+review, hosted qualification, the external adapter, the same-PR provider phase
+and live-use approval remain separate gates.
 
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:459` — late main/clock checks inside native custody.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:482` — `R1 D2`: refuses PREPARED stale-state before Git stages.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:499` — `R1 conservation`: rolls back post-INSERT side effects.
-- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:523` — `V07 P05 P09`: checks unchanged-helper old-base/branch/pin refusal.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:489` — late main/clock checks inside native custody.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:512` — `R1 D2`: refuses PREPARED stale-state before Git stages.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:529` — `R1 conservation`: rolls back post-INSERT side effects.
+- `tests/unit/scripts/adopt-stopped-coordinator-context.test.ts:553` — `V07 P05 P09`: checks unchanged-helper old-base/branch/pin refusal.
 
-Evidence: original Verification table and source-epoch manifest above; current
-amendment freeze and exact approved commands are retained separately. The Root
-collector's single static set/native0 and complete 60/60 TAP/native0 passed on
-that freeze; no executable/test changes or reruns followed. This final prose
-requires only the independent High evidence/reference delta audit.
-Synthetic approval/provider/custody records are explicitly restricted to disposable
-fixture repositories. The author performed zero live-store operations, retained
-checkout writes, resource launches, CI/provider actions, commits or pushes.
+Synthetic approval, provider and custody records stay in fixture repositories.
+The author performed no live-store operations, retained checkout writes,
+resource launches, CI/provider actions, commits or pushes.

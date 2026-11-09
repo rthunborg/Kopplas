@@ -12,9 +12,24 @@ generic state-update rule, workflow fingerprint path, product dependency or
 product schema. The additive audit table belongs to the local coordination
 SQLite store.
 
-## Fixed successor amendment — 2026-11-06
+## Fixed successor amendment — 2026-11-09
 
-The once-only target is the user-appointed Coordinator
+The owner appointed `01a19bf5-183b-7ae1-ab86-8bd5804dcb6f` for this single CRM
+succession. This Coordinator also holds the existing 35.7-P producer reservation.
+The former proposed successor `01a1afde-34b5-7bb2-976e-de71b7f6a94c` is retired
+from the CRM succession and remains in the stopped-writer roster. The original
+native owner remains `01a1160d-b5b1-7623-a8e8-54ef3dc537ed`.
+
+This four-file source amendment leaves the existing producer reservation,
+native claims, run, generation, and allocations in place. A current custody
+record must expressly cover the appointed Coordinator's CRM work and producer
+reservation. The source approval does not authorize a live transfer. The
+current proposal needs new exact-digest owner approval, independent High
+review, and hosted qualification for the amended bytes.
+
+### Historical successor amendment — 2026-11-06
+
+The once-only target was the user-appointed Coordinator
 `01a1afde-34b5-7bb2-976e-de71b7f6a94c`. It replaces the superseded tool target
 `01a1a644-140e-7f83-bbf3-045a642e7ee1`, the outgoing manual Coordinator.
 The original native owner remains `01a1160d-b5b1-7623-a8e8-54ef3dc537ed`.
@@ -96,9 +111,21 @@ window. Preserve both product holds and all original exclusions. Heartbeat age,
 an archived chat, expired windows and historical shutdown records cannot supply
 present clearance.
 
-The stopped-writer inventory includes old/new Coordinator, retained CRM worker
-and held producer `01a19bf5-183b-7ae1-ab86-8bd5804dcb6f`. The private
-`exclusion_register` reference preserves the full frozen register's raw SHA-256
+The `writers_stopped` list requires four distinct identities in this order.
+
+1. Original native owner `01a1160d-b5b1-7623-a8e8-54ef3dc537ed`.
+2. Appointed CRM Coordinator and 35.7-P reservation holder `01a19bf5-183b-7ae1-ab86-8bd5804dcb6f`.
+3. Retained CRM worker `01a19c88-3c36-76f1-918b-88a00e4d222f`.
+4. Retired proposed successor `01a1afde-34b5-7bb2-976e-de71b7f6a94c`.
+
+Keep the existing custody keys. The exact `holds` list is
+`["35.6", "35.7", "35.7-P-producer-reservation"]`. The third entry expressly
+binds the appointed Coordinator's existing producer reservation to the same
+stop/no-reopen window and empty delegate, queue, and native-operation lists.
+Counting the Coordinator twice fails the fixed roster check. All four roster
+members and the tool author are excluded from independent admission review.
+
+The private `exclusion_register` reference preserves the full frozen register's raw SHA-256
 `38295be6a28463205ae1cd37ae5d9d933bdf85319796dfc87e1123698f620d23`
 (57 tokens, 7 domains, 3 allocation IDs, cap/fourth/PR134 holds). This is
 historical exclusion provenance, not current custody. Fixtures use explicitly
