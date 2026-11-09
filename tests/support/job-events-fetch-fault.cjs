@@ -27,7 +27,9 @@ function readPrivateJson(file) {
 // Playwright starts webServer before globalSetup. No reused server is allowed.
 // The hook runs in the runner, before the original fixture setup and workers.
 module.exports = async function configureJobEventsFault(config) {
-  const servers = Array.isArray(config.webServer) ? config.webServer : [config.webServer];
+  const servers = config.webServer === null
+    ? [config.metadata?.jobEventsFaultServer]
+    : [config.webServer].flat();
   const server = servers.find(value => value?.env?.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP === "true"
     && value.env.E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID === String(process.pid));
   const boot = readPrivateJson(handshakeFile);

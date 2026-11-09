@@ -37,6 +37,48 @@ const PROXY_URL = `http://127.0.0.1:${PROXY_PORT}`;
 // fresh server boot to this runner before passing that nonce to test workers.
 const JOB_EVENTS_OWNER_PID = String(process.pid);
 
+const nextServer = {
+  // Run a PRODUCTION build + start (not `next dev`): under dev, the Turbopack/webpack
+  // HMR WebSocket fails its handshake in headless Chromium and the client never
+  // hydrates (no React fiber attaches → the login form native-GET-submits). A prod
+  // build has no HMR socket, hydrates deterministically, and matches what ships.
+  // Invoke Next via `node` + its JS bin (not `pnpm exec`/`npx`): Playwright spawns the
+  // webServer through a shell whose PATH may lack the pnpm/npx shims (notably Windows);
+  // `node` is always present. NEXT_PUBLIC_* (set below) are inlined at build time.
+  command: `node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port ${PORT}`,
+  url: BASE_URL,
+  timeout: 240_000,
+  // A pre-existing server cannot prove it loaded this run-bound preload.
+  reuseExistingServer: false,
+  env: {
+    NEXT_PUBLIC_SUPABASE_URL: PROXY_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: LOCAL_SUPABASE_ANON_KEY,
+    E2E_JOB_EVENTS_FETCH_FAULT_STARTUP: "true",
+    E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID: JOB_EVENTS_OWNER_PID,
+    // Admin email links must return to this actual production-mode test host.
+    // The local Auth redirect allow-list has matching 3000 and 3100 entries.
+    NEXT_PUBLIC_APP_URL: BASE_URL,
+    // The server-only quote-PDF broker is deliberately the sole app path that
+    // needs this local credential. It is not NEXT_PUBLIC_ and Next does not
+    // inline it into browser bundles; tests prove Säljare still has no raw
+    // Storage SELECT/list/download/sign capability.
+    SUPABASE_SERVICE_ROLE_KEY: LOCAL_SUPABASE_SERVICE_ROLE_KEY,
+    // Server-only local fixture values. Production has no fallback and must
+    // provision its own matching Vault + environment configuration.
+    QUOTE_PDF_ATTESTATION_KEY_ID: LOCAL_TEST_QUOTE_PDF_KEY_ID,
+    QUOTE_PDF_ATTESTATION_HMAC_SECRET: LOCAL_TEST_QUOTE_PDF_SECRET,
+    BOOKING_CONFLICT_ATTESTATION_KEY_ID: LOCAL_TEST_BOOKING_CONFLICT_KEY_ID,
+    BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET: LOCAL_TEST_BOOKING_CONFLICT_SECRET,
+    TENANT_PROVISIONING_ATTESTATION_KEY_ID: LOCAL_TEST_PROVISIONING_ATTESTATION_KEY_ID,
+    TENANT_PROVISIONING_ATTESTATION_HMAC_SECRET: LOCAL_TEST_PROVISIONING_ATTESTATION_SECRET,
+    // Explicit opt-in for the disposable LOCAL production-mode test server.
+    TENANT_PROVISIONING_ENABLED: "true",
+    // Private server-only retry seam for the Story 14.1 browser test. It is
+    // deliberately absent from ordinary application environments.
+    E2E_RESOURCE_SAVE_FAILURE_ENABLED: "true",
+  },
+};
+
 export default defineConfig({
   testDir: "./tests/e2e",
   testMatch: "**/*.e2e.spec.ts",
@@ -53,6 +95,19 @@ export default defineConfig({
     : [["list"]],
   globalSetup: ["./tests/support/job-events-fetch-fault.cjs", "./tests/e2e/global-setup.ts"],
   globalTeardown: "./tests/e2e/global-teardown.ts",
+  // Playwright exposes a null FullConfig.webServer when multiple servers are
+  // configured. Pass only the setup hook's handshake inputs through metadata.
+  metadata: {
+    jobEventsFaultServer: {
+      url: nextServer.url,
+      reuseExistingServer: nextServer.reuseExistingServer,
+      env: {
+        E2E_JOB_EVENTS_FETCH_FAULT_STARTUP: nextServer.env.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP,
+        E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID: nextServer.env.E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID,
+        NEXT_PUBLIC_SUPABASE_URL: nextServer.env.NEXT_PUBLIC_SUPABASE_URL,
+      },
+    },
+  },
   use: {
     baseURL: BASE_URL,
     actionTimeout: 15_000,
@@ -67,45 +122,5 @@ export default defineConfig({
     url: `${PROXY_URL}/auth/v1/health`,
     timeout: 60_000,
     reuseExistingServer: false,
-  }, {
-    // Run a PRODUCTION build + start (not `next dev`): under dev, the Turbopack/webpack
-    // HMR WebSocket fails its handshake in headless Chromium and the client never
-    // hydrates (no React fiber attaches → the login form native-GET-submits). A prod
-    // build has no HMR socket, hydrates deterministically, and matches what ships.
-    // Invoke Next via `node` + its JS bin (not `pnpm exec`/`npx`): Playwright spawns the
-    // webServer through a shell whose PATH may lack the pnpm/npx shims (notably Windows);
-    // `node` is always present. NEXT_PUBLIC_* (set below) are inlined at build time.
-    command: `node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port ${PORT}`,
-    url: BASE_URL,
-    timeout: 240_000,
-    // A pre-existing server cannot prove it loaded this run-bound preload.
-    reuseExistingServer: false,
-    env: {
-      NEXT_PUBLIC_SUPABASE_URL: PROXY_URL,
-      NEXT_PUBLIC_SUPABASE_ANON_KEY: LOCAL_SUPABASE_ANON_KEY,
-      E2E_JOB_EVENTS_FETCH_FAULT_STARTUP: "true",
-      E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID: JOB_EVENTS_OWNER_PID,
-      // Admin email links must return to this actual production-mode test host.
-      // The local Auth redirect allow-list has matching 3000 and 3100 entries.
-      NEXT_PUBLIC_APP_URL: BASE_URL,
-      // The server-only quote-PDF broker is deliberately the sole app path that
-      // needs this local credential. It is not NEXT_PUBLIC_ and Next does not
-      // inline it into browser bundles; tests prove Säljare still has no raw
-      // Storage SELECT/list/download/sign capability.
-      SUPABASE_SERVICE_ROLE_KEY: LOCAL_SUPABASE_SERVICE_ROLE_KEY,
-      // Server-only local fixture values. Production has no fallback and must
-      // provision its own matching Vault + environment configuration.
-      QUOTE_PDF_ATTESTATION_KEY_ID: LOCAL_TEST_QUOTE_PDF_KEY_ID,
-      QUOTE_PDF_ATTESTATION_HMAC_SECRET: LOCAL_TEST_QUOTE_PDF_SECRET,
-      BOOKING_CONFLICT_ATTESTATION_KEY_ID: LOCAL_TEST_BOOKING_CONFLICT_KEY_ID,
-      BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET: LOCAL_TEST_BOOKING_CONFLICT_SECRET,
-      TENANT_PROVISIONING_ATTESTATION_KEY_ID: LOCAL_TEST_PROVISIONING_ATTESTATION_KEY_ID,
-      TENANT_PROVISIONING_ATTESTATION_HMAC_SECRET: LOCAL_TEST_PROVISIONING_ATTESTATION_SECRET,
-      // Explicit opt-in for the disposable LOCAL production-mode test server.
-      TENANT_PROVISIONING_ENABLED: "true",
-      // Private server-only retry seam for the Story 14.1 browser test. It is
-      // deliberately absent from ordinary application environments.
-      E2E_RESOURCE_SAVE_FAILURE_ENABLED: "true",
-    },
-  }],
+  }, nextServer],
 });

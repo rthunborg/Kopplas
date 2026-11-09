@@ -153,7 +153,13 @@ function config(path: string, env = { CI: "true", KOPPLAS_FIXED_CHROMIUM_APPLICA
 }
 test("actual effective config preserves complete original inventory/setup/use/budgets and isolates only allowed fields", () => {
   const original = config("playwright.config.ts"), fixed = config("playwright.fixed-chromium-application.config.ts");
-  for (const field of Object.keys(original).filter(k => !["use", "projects", "reporter"].includes(k))) assert.deepEqual(JSON.parse(JSON.stringify(fixed[field])), JSON.parse(JSON.stringify(original[field])));
+  for (const field of Object.keys(original).filter(k => !["use", "projects", "reporter", "metadata"].includes(k))) assert.deepEqual(JSON.parse(JSON.stringify(fixed[field])), JSON.parse(JSON.stringify(original[field])));
+  const expectedMetadata = {
+    ...(original.metadata as Record<string, unknown>),
+    verificationMode: "isolated-full158-application",
+    browserPin: "158.0.8104.0",
+  };
+  assert.deepEqual(JSON.parse(JSON.stringify(fixed.metadata)), JSON.parse(JSON.stringify(expectedMetadata)));
   const originalUse = original.use as Record<string,unknown>, fixedUse = fixed.use as Record<string,unknown>;
   for (const field of Object.keys(originalUse)) assert.deepEqual(fixedUse[field], originalUse[field]);
   assert.equal(fixedUse.channel, "chromium"); assert.deepEqual(JSON.parse(JSON.stringify(fixedUse.launchOptions)), { executablePath: candidate().executable });
