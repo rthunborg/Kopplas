@@ -6,6 +6,7 @@ writer inventory remain the coordinator's responsibility. See the contract.
 """
 import base64
 import copy
+import contextlib
 import hashlib
 import importlib.util
 import json
@@ -511,6 +512,30 @@ def current_custody(repo, entry, inventory, p, r, snapshots):
             'meaning': 'Integrated historical marker has no current live ownership; no historical task success or actor closure asserted.'}
 
 
+def allocation_arrays(value, e15_main=False):
+    """Conserve arrays; only three exact E15 main-state fields are counts."""
+    paths, domains = set(), set()
+    count_fields = {(name, 'bookkeeping_paths') for name in
+                    ['q_checkpoint', 'r_checkpoint', 'reviewed_ten_path_checkpoint']}
+    def walk(value, pointer=()):
+        if isinstance(value, dict):
+            for key, val in value.items():
+                field = pointer + (key,)
+                if key in {'write_paths', 'production_write_paths', 'test_write_paths', 'bookkeeping_paths'}:
+                    if not (e15_main and field in count_fields and type(val) is int and val == 3):
+                        paths.update(engine.strings(val, 'original allocation paths'))
+                if key in {'conflict_domains', 'shared_domains'}:
+                    domains.update(engine.strings(val, 'original semantic domains'))
+                if key == 'allocation' and isinstance(val, dict) and 'paths' in val:
+                    paths.update(engine.strings(val['paths'], 'original allocation paths'))
+                walk(val, field)
+        elif isinstance(value, list):
+            for index, val in enumerate(value):
+                walk(val, pointer + (index,))
+    walk(value)
+    return paths, domains
+
+
 def legacy_closure(repo, entry, authorities, p, r, snapshots):
     subject, proof, scope = entry['subject'], entry['proof'], entry['scope']
     require(subject['key'] in LEGACY, 'Unsupported historical legacy subject')
@@ -558,21 +583,9 @@ def legacy_closure(repo, entry, authorities, p, r, snapshots):
             locations.add(engine.source_root(location))
     require(subject['owner'] in owners, 'Historical source owner missing')
     required_paths, required_domains = set(), set()
-    def allocations(value):
-        if isinstance(value, dict):
-            for key, val in value.items():
-                if key in {'write_paths', 'production_write_paths', 'test_write_paths', 'bookkeeping_paths'}:
-                    required_paths.update(engine.strings(val, 'original allocation paths'))
-                if key in {'conflict_domains', 'shared_domains'}:
-                    required_domains.update(engine.strings(val, 'original semantic domains'))
-                if key == 'allocation' and isinstance(val, dict) and 'paths' in val:
-                    required_paths.update(engine.strings(val['paths'], 'original allocation paths'))
-                allocations(val)
-        elif isinstance(value, list):
-            for val in value:
-                allocations(val)
     for _, value in authorities:
-        allocations(value)
+        paths, domains = allocation_arrays(value)
+        required_paths.update(paths); required_domains.update(domains)
     if number == 115:
         binding = next((value for value in bindings if value.get('executionId') == '35-2'), None)
         require(binding is not None and isinstance(binding.get('sourceFiles'), dict), '35.2 original source binding required')
@@ -592,7 +605,8 @@ def legacy_closure(repo, entry, authorities, p, r, snapshots):
                     RUNTIME in value.get('test_write_paths', []) for value in bindings), '35.4 full production/test binding required')
     else:
         require(subject['owner'] == '01a120bb-ec6d-7611-9dde-ca64bc8e280f', 'E15 historical owner mismatch')
-        allocations(states['epic-15'])
+        paths, domains = allocation_arrays(states['epic-15'], e15_main=True)
+        required_paths.update(paths); required_domains.update(domains)
     require(required_paths and required_paths <= set(scope['write_paths']) and required_domains <= set(scope['conflict_domains']) and
             {state_path(part) for part in parts} <= set(scope['bookkeeping_paths']), 'Historical scope arrays/bookkeeping were reduced')
     require(any(source['role'] == 'allocation' and isinstance(value, dict) for source, value in authorities), 'Full legacy allocation register required')
@@ -862,7 +876,7 @@ def checkpoint():
     """Synthetic rollback hook after both CAS writes and audit insertion."""
 
 
-def admit(a):
+def read_request(a):
     repo = engine.top(a.repo)
     require((engine.common(repo) / 'auto-bmad-parallel.sqlite3').is_file(), 'Existing run store required')
     request_path = Path(a.request)
@@ -883,70 +897,125 @@ def admit(a):
     keys(admission, ['review', 'request_digest'])
     require(admission['request_digest'] == engine.digest({k: v for k, v in r.items() if k != 'admission_review'}),
             'Independent admission review must bind the entire request')
+    return repo, request_path, raw_request, r
+
+
+def validate_request(db, repo, a, request_path, raw_request, r):
+    """The complete pre-CAS predicate, including immediate final rechecks."""
+    admission = r['admission_review']
+    p = engine.get_run(db, a)
+    require(p['schema_version'] == 2 and p['repository'] == REPOSITORY and len(p['stories']) == 1, 'Exact schema-2 repository assignment required')
+    s = engine.story(p, STORY)
+    require(engine.source_identity(s) == (FOLDER, '35-6') and s['write_paths'] == OLD_PATHS and DOMAIN not in s['conflict_domains'],
+            'Original source/eleven-path ownership required')
+    row = db.execute('SELECT * FROM runs WHERE run=?', (RUN,)).fetchone()
+    require(row['state'] == 'active' and row['plan_hash'] == r['expected_plan_hash'] and p['workflow_version'] == r['workflow_version'], 'Run plan/workflow changed')
+    c = engine.get_claim(db, a, worker=True)
+    require(c['state'] == 'blocked' and text(c['block_reason']) and
+            all(c[k] is None for k in ['evidence', 'result_sha', 'integration_sha']), 'Exact blocked unpublished claim checkpoint required')
+    require(not db.execute('SELECT 1 FROM story_pr_publications WHERE (run=? AND story=?) OR state IN (\'merge-prepared\',\'merged\')', (RUN, STORY)).fetchone(), 'Publication submission or repository merge custody exists')
+    require(not db.execute('SELECT 1 FROM journal WHERE (run=? AND story=?) OR state=\'prepared\'', (RUN, STORY)).fetchone(), 'Target journal or repository integration custody exists')
+    require(not db.execute('SELECT 1 FROM verifications WHERE run=? AND story IN (?,?)', (RUN, STORY, '__repair__' + STORY)).fetchone(), 'Target verification already exists')
+    engine.validate_plan(repo, p)
+    target, wt = Path(p['integration_worktree']).resolve(), Path(c['worktree']).resolve()
+
+    def git_facts():
+        engine.clean(target)
+        engine.clean(wt)
+        require(engine.top(repo) == target and engine.branch(target) == p['integration_branch'] and
+                engine.branch(wt) == c['branch'], 'Coordinator/worker branch or checkout changed')
+        require(engine.sha(target, 'HEAD') == r['expected_integration_sha'] and
+                engine.sha(wt, 'HEAD') == engine.sha(repo, c['branch']) == r['checkpoint_sha'], 'Exact blocked checkpoint changed')
+        require(engine.story_pr_current_main(repo, p) == r['qualified_main_sha'], 'Qualified main changed')
+        require(engine.workflow_version(wt) == p['workflow_version'] and
+                engine.ancestor(repo, c['base_sha'], r['checkpoint_sha']), 'Worker workflow/base ancestry changed')
+        engine.source_pins(wt, p)
+
+    git_facts()
+    # Validate checkpoint against OLD ownership before constructing the new plan.
+    if c['base_sha'] != r['checkpoint_sha']:
+        engine.validate_diff(repo, p, c, c['base_sha'], r['checkpoint_sha'])
+    revised = copy.deepcopy(p)
+    revised_story = engine.story(revised, STORY)
+    revised_story['write_paths'].append(RUNTIME)
+    revised_story['conflict_domains'].append(DOMAIN)
+    for root, head in [(target, r['expected_integration_sha']), (wt, r['checkpoint_sha'])]:
+        require((root / RUNTIME).resolve().is_relative_to(root) and not (root / RUNTIME).is_dir(), 'Runtime ownership must be an in-checkout file')
+        tree = engine.git(root, 'ls-tree', '-z', head, '--', RUNTIME)
+        require(not any(x.startswith(('120000 ', '160000 ')) for x in tree.split('\x00')), 'Runtime symlink/submodule ownership refused')
+    engine.validate_plan(repo, revised)
+    snapshots = Captures()
+    stopped = stopped_receipt(r, c, p, snapshots)
+    forbidden = {p['coordinator']} | {writer['identity'] for writer in stopped['writers']}
+    independent_review(admission['review'], r['checkpoint_sha'], r['tooling_author'], forbidden)
+    qualify_tooling(repo, p, c, r, snapshots, forbidden)
+    pub = publication(repo, p, c, r, snapshots)
+    inventory, classifications = ownership(db, repo, p, c, revised_story, r, snapshots)
+    # Recheck every external fact immediately before the transaction CAS.
+    git_facts()
+    qualify_tooling(repo, p, c, r, snapshots, forbidden)
+    require(inventory['snapshot'] == store_snapshot(db, repo), 'Ownership changed immediately before CAS')
+    require(engine.stopped_writers(r, c, p) == stopped, 'Stopped-writer evidence changed')
+    require(request_path.read_bytes() == raw_request, 'Request changed during admission')
+    for ref, data in snapshots:
+        require(source_bytes(repo, ref) == data, 'Bound evidence changed immediately before CAS')
+    for decision in classifications:
+        if decision['kind'] == 'legacy-main-current-custody':
+            custody_window(decision['proof']['current_custody']['attestation'])
+    return p, c, revised, stopped, pub, inventory, classifications, snapshots
+
+
+@contextlib.contextmanager
+def readonly_database(repo):
+    """Existing store only; never call the schema-initializing helper context."""
+    path = engine.common(repo) / 'auto-bmad-parallel.sqlite3'
+    require(path.is_file(), 'Existing run store required')
+    db = sqlite3.connect(path.as_uri() + '?mode=ro', uri=True, isolation_level=None, timeout=30)
+    db.row_factory = sqlite3.Row
+    try:
+        db.execute('PRAGMA query_only=ON')
+        db.execute('BEGIN')
+        yield db
+    finally:
+        db.close()
+
+
+def readonly_capability(db):
+    # A nonfinalized schema1 plan could reach the pinned default-RW recognizer.
+    # Refuse it, rather than changing/duplicating that ownership predicate.
+    for row in db.execute('SELECT * FROM runs'):
+        plan = parse_raw_json(row['plan'].encode())
+        require(isinstance(plan, dict) and engine.digest(plan) == row['plan_hash'], 'Other plan integrity failure')
+        if row['state'] != 'finalized':
+            require(type(plan.get('schema_version')) is int and plan['schema_version'] == 2,
+                    'Read-only validation does not support nonfinalized schema-1 runs')
+
+
+def validate_only(a):
+    repo, request_path, raw_request, r = read_request(a)
+    with readonly_database(repo) as db:
+        readonly_capability(db)
+        require(not db.execute('SELECT 1 FROM claim_amendments WHERE request_id=?', (r['request_id'],)).fetchone(),
+                'Historical admission replay is not fresh read-only validation')
+        *_, snapshots = validate_request(db, repo, a, request_path, raw_request, r)
+        return {'mode': 'validate-only', 'validated': True, 'admitted': False, 'replayed': False,
+                'request_id': r['request_id'], 'request_sha256': hashlib.sha256(raw_request).hexdigest(),
+                'request_digest': engine.digest(r), 'reviewed_request_digest': r['admission_review']['request_digest'],
+                'reviewed_tooling_sha': r['reviewed_tooling_sha'], 'tool_sha256': r['tool_sha256'],
+                'qualified_main_sha': r['qualified_main_sha'], 'captured_artifacts': len(snapshots), 'writes': 0,
+                'meaning': 'Observation only; admission requires fresh complete validation and transactional CAS.'}
+
+
+def admit(a):
+    require(not getattr(a, 'validate_only', False), 'Validation-only flag cannot invoke mutating admission')
+    repo, request_path, raw_request, r = read_request(a)
     with engine.database(repo) as db:
         prior = db.execute('SELECT * FROM claim_amendments WHERE request_id=?', (r['request_id'],)).fetchone()
         if prior:
             require(prior['run'] == RUN and prior['story'] == STORY and prior['request_hash'] == engine.digest(r), 'Request token already used with different payload')
             return {**json.loads(prior['response']), 'replayed': True}
-        p = engine.get_run(db, a)
-        require(p['schema_version'] == 2 and p['repository'] == REPOSITORY and len(p['stories']) == 1, 'Exact schema-2 repository assignment required')
-        s = engine.story(p, STORY)
-        require(engine.source_identity(s) == (FOLDER, '35-6') and s['write_paths'] == OLD_PATHS and DOMAIN not in s['conflict_domains'],
-                'Original source/eleven-path ownership required')
-        row = db.execute('SELECT * FROM runs WHERE run=?', (RUN,)).fetchone()
-        require(row['state'] == 'active' and row['plan_hash'] == r['expected_plan_hash'] and p['workflow_version'] == r['workflow_version'], 'Run plan/workflow changed')
-        c = engine.get_claim(db, a, worker=True)
-        require(c['state'] == 'blocked' and text(c['block_reason']) and
-                all(c[k] is None for k in ['evidence', 'result_sha', 'integration_sha']), 'Exact blocked unpublished claim checkpoint required')
-        require(not db.execute('SELECT 1 FROM story_pr_publications WHERE (run=? AND story=?) OR state IN (\'merge-prepared\',\'merged\')', (RUN, STORY)).fetchone(), 'Publication submission or repository merge custody exists')
-        require(not db.execute('SELECT 1 FROM journal WHERE (run=? AND story=?) OR state=\'prepared\'', (RUN, STORY)).fetchone(), 'Target journal or repository integration custody exists')
-        require(not db.execute('SELECT 1 FROM verifications WHERE run=? AND story IN (?,?)', (RUN, STORY, '__repair__' + STORY)).fetchone(), 'Target verification already exists')
-        engine.validate_plan(repo, p)
-        target, wt = Path(p['integration_worktree']).resolve(), Path(c['worktree']).resolve()
-
-        def git_facts():
-            engine.clean(target)
-            engine.clean(wt)
-            require(engine.top(repo) == target and engine.branch(target) == p['integration_branch'] and
-                    engine.branch(wt) == c['branch'], 'Coordinator/worker branch or checkout changed')
-            require(engine.sha(target, 'HEAD') == r['expected_integration_sha'] and
-                    engine.sha(wt, 'HEAD') == engine.sha(repo, c['branch']) == r['checkpoint_sha'], 'Exact blocked checkpoint changed')
-            require(engine.story_pr_current_main(repo, p) == r['qualified_main_sha'], 'Qualified main changed')
-            require(engine.workflow_version(wt) == p['workflow_version'] and
-                    engine.ancestor(repo, c['base_sha'], r['checkpoint_sha']), 'Worker workflow/base ancestry changed')
-            engine.source_pins(wt, p)
-
-        git_facts()
-        # Validate checkpoint against OLD ownership before constructing the new plan.
-        if c['base_sha'] != r['checkpoint_sha']:
-            engine.validate_diff(repo, p, c, c['base_sha'], r['checkpoint_sha'])
-        revised = copy.deepcopy(p)
-        revised_story = engine.story(revised, STORY)
-        revised_story['write_paths'].append(RUNTIME)
-        revised_story['conflict_domains'].append(DOMAIN)
-        for root, head in [(target, r['expected_integration_sha']), (wt, r['checkpoint_sha'])]:
-            require((root / RUNTIME).resolve().is_relative_to(root) and not (root / RUNTIME).is_dir(), 'Runtime ownership must be an in-checkout file')
-            tree = engine.git(root, 'ls-tree', '-z', head, '--', RUNTIME)
-            require(not any(x.startswith(('120000 ', '160000 ')) for x in tree.split('\x00')), 'Runtime symlink/submodule ownership refused')
-        engine.validate_plan(repo, revised)
-        snapshots = Captures()
-        stopped = stopped_receipt(r, c, p, snapshots)
-        forbidden = {p['coordinator']} | {writer['identity'] for writer in stopped['writers']}
-        independent_review(admission['review'], r['checkpoint_sha'], r['tooling_author'], forbidden)
-        qualify_tooling(repo, p, c, r, snapshots, forbidden)
-        pub = publication(repo, p, c, r, snapshots)
-        inventory, classifications = ownership(db, repo, p, c, revised_story, r, snapshots)
-        # Recheck every external fact immediately before the transaction CAS.
-        git_facts()
-        qualify_tooling(repo, p, c, r, snapshots, forbidden)
-        require(inventory['snapshot'] == store_snapshot(db, repo), 'Ownership changed immediately before CAS')
-        require(engine.stopped_writers(r, c, p) == stopped, 'Stopped-writer evidence changed')
-        require(request_path.read_bytes() == raw_request, 'Request changed during admission')
-        for ref, data in snapshots:
-            require(source_bytes(repo, ref) == data, 'Bound evidence changed immediately before CAS')
-        for decision in classifications:
-            if decision['kind'] == 'legacy-main-current-custody':
-                custody_window(decision['proof']['current_custody']['attestation'])
+        p, c, revised, stopped, pub, inventory, classifications, snapshots = validate_request(
+            db, repo, a, request_path, raw_request, r)
         now = time.time()
         revised_hash = engine.digest(revised)
         updated = db.execute('UPDATE runs SET plan=?,plan_hash=? WHERE run=? AND owner=? AND state=\'active\' AND plan_hash=?',
@@ -974,13 +1043,15 @@ def parser():
     for field in ['repo', 'run', 'owner', 'story', 'worker', 'request']:
         result.add_argument('--' + field, required=True)
     result.add_argument('--generation', required=True, type=int)
+    result.add_argument('--validate-only', action='store_true', help='Strict complete validation without store mutation')
     result.set_defaults(command='admit-story35-6-runtime')
     return result
 
 
 def main(argv=None):
     try:
-        response = admit(parser().parse_args(argv))
+        args = parser().parse_args(argv)
+        response = validate_only(args) if args.validate_only else admit(args)
         print(json.dumps({'ok': True, **response}, sort_keys=True))
         return 0
     except (engine.Refusal, OSError, ValueError, TypeError, KeyError, sqlite3.Error) as error:
