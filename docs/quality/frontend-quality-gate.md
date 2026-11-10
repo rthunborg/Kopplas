@@ -266,6 +266,51 @@ protocol enforcement, never actual app comparison or hosted-provider execution.
 
 ## Completion, review and remediation
 
+### Prepare the package before requesting acceptance
+
+Use this procedure for fresh admissions under the
+[bounded workflow policy](../process/bounded-workflow-operating-policy.md).
+In the existing delivery or checkpoint record, list the remaining candidate
+metadata writes and identify which fields can be recorded later in the
+coordinator's existing receipt or report without changing the candidate or
+visual package. Reconcile the candidate-changing writes together before
+requesting acceptance. Use the existing read-only Phase 9
+`state_plan.py --finalize` invocation where applicable and the delivery
+validator for the record once its required checks have actually passed. A
+pending visual result stays pending. Keep any required terminal write that
+cannot truthfully occur yet on its existing, explicitly recorded route.
+
+Publish the evidence, render the description and replies from the same package
+digest, and verify the PR label or existing authenticated opt-out. From the
+clean candidate checkout, run:
+
+```text
+node scripts/quality/frontend-controller.mjs preflight --base <recorded-full-baseline> --digest <intended-package-digest>
+```
+
+Preflight reads the actual current PR and the selected uploaded package. It
+checks the full head and digest, labels, source, immutable captures, required
+coverage and presentation, and rereads current publication and PR metadata.
+`package-ready` means the package passed those checks. `outstanding` names
+the authenticated controls still required by the current protocol. An empty
+list means the existing controls verified during preflight. Use the separate
+acceptance and completion commands below for the authoritative result. The
+preflight checks published inputs and checkout cleanliness. The author verifies
+planned writes and the provenance of executed CI and independent review in the
+existing checkpoint before requesting a decision.
+
+If administrative corrections restore the exact PR presentation or label for
+the same head, digest and valid evidence, rerun preflight and the existing
+acceptance check. A receipt that still verifies needs no replacement. A wrong
+digest never identified a valid receipt. If candidate, material input, coverage,
+reference or digest changes, revalidate the affected evidence in scope. Reuse
+original capture bytes only through an existing qualified exact-input route with
+retained provenance. Keep the actual capture source and current candidate
+binding explicit. A reusable capture does not transfer an authenticated
+acceptance receipt to a different head or digest.
+
+### Validate acceptance before completion
+
 Before an implementation returns completed work or a review calls a frontend
 candidate ready, run:
 

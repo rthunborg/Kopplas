@@ -2,6 +2,17 @@
 
 Approved first-tranche operating contract. Apply on explicitly authorized fresh runs or reconciled resumes; it does not mutate existing assignments. It supplements current supported BMAD contracts; immutable plans, native state and claims retain authority.
 
+The 2026-11-10 readiness and routine-work rules below apply when admitting a new
+story from a qualified revision that includes this policy. Read it from that
+story's admitted checkout. A handoff or resume of an already admitted story
+uses its original policy, configuration, source pins and receipts.
+
+For the next eligible ordinary story after adoption, compare its existing
+timestamps and records with the prior workflow. Review time to verified
+readiness, time waiting for acceptance and merge, corrections after first
+readiness, and owner interruptions or repeated grants. Record the comparison
+with the existing closeout. These measures are prospective.
+
 ## Responsibilities and current record
 
 Story owner owns approved product scope and evidence; repair owner owns a separate bounded prerequisite; independent reviewer owns consequential assessment; Coordinator owns allocations, conflict reconciliation, integration and acknowledgement. One named observer watches each CI run. Subagents inherit the same boundary and risk-based model routing.
@@ -12,14 +23,65 @@ Current SQLite claims and declared legacy reservations control conflicts. A pack
 
 ## Lifecycle
 
-1. **Readiness:** Confirm approved scope/manifest, current owner and exclusive allocation, frozen source and pins, no competing writers, dependencies, supported test route, exact commands/OS/resources, independent reviewer and human gates. Record known limitations. No blanket history reconstruction. Refresh changed facts before use; a prior snapshot is not a reservation.
+1. **Readiness:** Confirm approved scope/manifest, current owner and exclusive allocation, frozen source and pins, no competing writers, dependencies and independent review. Resolve required verification and its authority in this admission. Record known limitations. Refresh changed facts before use; a prior snapshot does not reserve a resource.
 2. **Implementation:** Stable author executes only allocated scope. Focused actual tests provide early feedback. Unusual required harness behavior gets a bounded rehearsal early. Product correctness fixes and story-owned test corrections remain in scope; shared harness changes do not become in scope merely because tests need them.
 3. **Failure classification:** Use the table below before any retry or repair. Capture the first native result and source identity. Unknown cause is allowed; fabricated precision is not.
 4. **Escalation:** Preserve checkpoint/evidence, stop dependent implementation/publication/completion claims, retain reservations and issue blocker packet. Coordinator explicitly acknowledges the packet revision and disposition (accepted repair, needs decision, independent work permitted, or waiting). Receipt alone is not acknowledgement.
 5. **Verification:** Run focused tests during editing; at frozen candidate execute current required hosted checks with named source/merge identity and native counts. No skipped suite earns coverage. No duplicate local/hosted active test against the same mutable resource.
 6. **Review:** One stable independent reviewer; High for sensitive scope. Record current-head trail after code exists. Follow-up checks changed lines and unresolved consequential findings. After three broad rounds, only unresolved serious issues/fix regressions; no extra broad restart disguised as a new reviewer.
 7. **Integration:** Coordinator verifies exact candidate, source/base/merge bindings, current claims, all required gates and review. Failed automatic checks remain blockers. Integrate through current supported custody/journal procedure; worker-ready is not integrated.
-8. **Acceptance/closeout:** Report five dimensions independently. Code-written is not development-complete: the 2026-10-26 frontend amendment in docs/process/development-completion-policy.md still requires current revision-bound visual acceptance before development-complete/review-ready claims. Reporting separation does not defer that gate. Human acceptance binds to actual candidate/images; deployment remains separate and uses existing authority. Post-terminal hooks cannot change a completed result or add an owner checkpoint. Status-only closeout belongs in current record; do not invent a mandatory extra commit or claim a changed committed spec inherits earlier exact-head CI.
+8. **Acceptance/closeout:** Report five dimensions independently. Follow the [frontend package preparation and completion procedure](../quality/frontend-quality-gate.md#prepare-the-package-before-requesting-acceptance) before requesting any visual decision or claiming readiness. Complete authorized candidate metadata together and use existing delivery and finalization checks. Keep status-only updates in the current record when the route permits. Current revision-bound visual acceptance still governs development completion, and release and deployment use their existing authority.
+
+## Admit the verification the story needs
+
+Use the existing story admission or checkpoint record. For each mandatory check
+whose execution depends on infrastructure or access, tie the affected acceptance
+criteria to the exact supported command and target. Distinguish an owned local
+production-server route from a qualified hosted job, including the actual job
+inputs or revision, startup and readiness check, required proxy or callback
+behavior, and where to retain native results. Cover only the operational
+dependencies the story actually uses.
+
+For stateful verification, record the isolated database, browser profile and
+resource owner, the synthetic fixture operations needed to reach the required
+states, and their authorized create/read/update/cleanup boundaries. Include any
+capture/publication permission, protected route or separately approved hosted
+operation the check needs. Carry forward existing grants by reference to their
+source, target, scope and conditions. A missing guard context, foreign resource
+or unsupported hosted/local route blocks that check. A worktree supplies source
+isolation. Confirm runtime isolation and ownership separately.
+
+Resolve foreseeable gaps before implementation starts on the dependent path.
+Use an existing supported alternative or a bounded, authorized rehearsal early
+when a route has an unusual startup or fixture dependency. If required
+verification remains unsupported, record the blocked criterion, evidence,
+owner and next allowed action in the existing admission. Keep affected
+development completion blocked. Applicable independent work can continue
+within its allocation unless an existing hold forbids it.
+
+## Standing authority after admission
+
+The implementation author and coordinator proceed under the recorded admission.
+An authorized handoff, resume or ordinary phase transition carries existing
+grants for the same source, scope, targets and conditions. Revalidate those
+facts and writer/resource ownership on resumption. A new actor uses its own
+resource-guard identity. Record a scope or custody change through the existing
+workflow. Silence or an expired or revoked grant gives no authority.
+
+| Work | Decision |
+| --- | --- |
+| Reversible in-scope implementation, fixes and targeted revalidation | Proceed under the allocation. Keep independent review and consequential regression checks. |
+| Synthetic nonproduction fixture operations, captures and verification routes | Proceed under the recorded grant on the allocated target with the supported resource lifecycle. |
+| Administrative package and closeout corrections | Correct and recheck under the current allocation. Preserve the existing acceptance when its exact inputs and receipt still verify. |
+| Conformance to the approved design and explicit acceptance criteria | Use the existing independent reviewer to inspect actual evidence, cite the approved criteria and record the native review with the exact candidate and evidence digest. This requires no separate owner design decision. Apply the authenticated visual controls when the current hosted gate requires them. |
+| Material new scope, design choice or reference change, genuine acceptance uncertainty, or consequential action outside the grant | Bring the owner the exact decision and current evidence. Resolve the existing decision before proceeding on that path. |
+
+Advance through the ordinary authorized phases as their existing gates pass.
+An independent conformance review does not itself produce a GitHub-authenticated
+receipt. Use the hosted gate's existing accepted evidence modes. The current
+policy has no configured independent provider or approved reference entries.
+Merge, deployment, platform approval and resource controls retain their existing
+authority.
 
 ## Operational scope boundary
 
@@ -41,7 +103,12 @@ Send through supported Coordinator tool. Confirm actual active turn or explicit 
 
 For a completed/idle subagent use supported follow-up activation, not a message presumed to start work. Require scope/pin acknowledgement before listing it active. If app restart loses the live agent inventory, inspect retained checkpoint and supported session status; do not automatically spawn a replacement. Explicitly acknowledge former writer quiescence before any replacement.
 
-Resume only on explicit supported handoff referencing the blocker/hold revision, qualified repair commit/evidence or approved scope amendment, current ownership/generation, pins and next command. Validate unchanged facts; never hot-upgrade a running session. A scope amendment requires its normal approval; an acknowledgement is not an amendment.
+Resume a blocked or held path only on the existing supported handoff referencing
+the blocker/hold revision, qualified repair commit/evidence or approved scope
+amendment, current ownership/generation, pins and next command. Reuse the
+standing grant once these facts verify. An existing explicit hold still needs its
+recorded disposition. A scope amendment follows its normal approval and a
+running session keeps its admitted workflow.
 
 ## Metrics
 

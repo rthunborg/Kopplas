@@ -9,7 +9,7 @@ import { tmpdir } from "node:os";
 import { join, dirname, resolve } from "node:path";
 import { EVIDENCE_MARKER, evidenceDigest, evaluateFrontend, hash, inspectPng } from "../../../scripts/quality/frontend-gate.mjs";
 import { renderPrScreenshots, publicationPath, presentationFeedback, feedbackScopeDigest } from "../../../scripts/quality/frontend-presentation.mjs";
-import { assessPr, reportPrAssessment, verifyTrustedSources } from "../../../scripts/quality/frontend-controller.mjs";
+import { assessPr, preflightPr, reportPrAssessment, verifyTrustedSources } from "../../../scripts/quality/frontend-controller.mjs";
 import { guardedCompletion } from "../../../scripts/quality/completion-gate.mjs";
 import { selectFeedback } from "../../../scripts/pr-feedback/policy.mjs";
 import { monitor } from "../../../scripts/pr-feedback/runtime.mjs";
@@ -473,7 +473,7 @@ test("trusted canonical source bytes must exist and match committed authority", 
 });
 function controllerApi(f: ReturnType<typeof fixture>, actors = [{author: {id: 777}, committer: {id: 888}}]) {
   return async (path: string) => {
-    if (path === "/repos/o/r/pulls/1") return {number: 1, state: "open", head: {sha: head}, changed_files: f.input.files.length, commits: actors.length, user: {id: 123}, body: f.input.prBody, labels: [{name: "agent-fix"}]};
+    if (path === "/repos/o/r/pulls/1") return {number: 1, state: "open", head: {sha: head}, base: {ref: "main", sha: "b".repeat(40)}, changed_files: f.input.files.length, commits: actors.length, user: {id: 123}, body: f.input.prBody, labels: f.input.labels.map(name => ({name}))};
     if (path.includes("/files?")) return f.input.files.map((filename) => ({filename}));
     if (path.includes("/commits?")) return actors;
     if (path.includes("/issues/1/comments?")) return f.input.comments;
@@ -499,6 +499,103 @@ test("API derives reviewer identity exclusion from human-opened PR commit author
   await assert.rejects(assessPr({...args, api: controllerApi(f, [{author: {id: 777}, committer: {id: 456}}])}), /Independent vision/);
   assert.equal((await assessPr({...args, api: controllerApi(f)})).mode, "independent-vision");
 });
+
+test("visual preflight checks one published digest before any initial owner decision", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit(false);
+  const digest = evidenceDigest(f.evidence);
+  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, expectedDigest: digest, policy: f.policy, readSource: () => bytes};
+  const ready = await preflightPr(args);
+  assert.equal(ready.status, "package-ready");
+  assert.equal(ready.headSha, head);
+  assert.equal(ready.evidenceDigest, digest);
+  assert.deepEqual(ready.outstanding, ["visual-accept"]);
+  await assert.rejects(assessPr(args), /explicit owner acceptance/);
+  const {f: reports, run} = reporterFixture();
+  await assert.rejects(run(async () => ready), /did not return current accepted/);
+  assert.equal(reports.storedStatus, "failure");
+  await assert.rejects(preflightPr({...args, expectedDigest: "e".repeat(64)}), /does not match a published current-head visual package/);
+  await assert.rejects(preflightPr({...args, expectedHead: "f".repeat(40)}), /candidate head changed/);
+  await assert.rejects(preflightPr({...args, readSource: () => Buffer.from("stale source")}), /source bytes unavailable or mismatched/);
+
+  f.input.labels = [];
+  await assert.rejects(preflightPr(args), /requires agent-fix/);
+  f.input.labels = ["agent-fix"];
+  f.input.prBody = "Screenshots without the required labels";
+  await assert.rejects(preflightPr(args), /must start with current durable embedded screenshots/);
+});
+
+test("preflight checks image integrity and critical findings even when acceptance is outstanding", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit(false);
+  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, policy: f.policy, readSource: () => bytes};
+  const expectedHash = f.evidence.captures[0].actual.sha256;
+  f.evidence.captures[0].actual.sha256 = "f".repeat(64);
+  f.submit(false);
+  await assert.rejects(preflightPr({...args, expectedDigest: evidenceDigest(f.evidence)}), /Image input hash mismatch/);
+  f.evidence.captures[0].actual.sha256 = expectedHash;
+  f.submit(false);
+  f.independent();
+  const receipt = f.input.comments.at(-1)!;
+  receipt.body = receipt.body.replace('"findings":[]', '"findings":[{"id":"SEC-1","category":"security","status":"unresolved"}]');
+  await assert.rejects(preflightPr({...args, expectedDigest: evidenceDigest(f.evidence)}), /critical findings cannot be waived/);
+});
+
+test("same-binding administrative repair preserves the authenticated receipt and package edits do not", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit();
+  const digest = evidenceDigest(f.evidence);
+  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, policy: f.policy, readSource: () => bytes};
+  const accepted = await assessPr(args);
+  const currentBody = f.input.prBody;
+  const originalReceipt = f.input.comments[1];
+  f.input.prBody = "Incorrect presentation";
+  await assert.rejects(preflightPr({...args, expectedDigest: digest}), /must start with current durable embedded screenshots/);
+  f.input.prBody = currentBody;
+  const repaired = await preflightPr({...args, expectedDigest: digest});
+  assert.equal(repaired.status, "package-ready");
+  assert.deepEqual(repaired.outstanding, []);
+  assert.deepEqual(await assessPr(args), accepted);
+
+  f.evidence.runtime.fixture = "A materially different capture input";
+  f.submit(false);
+  f.input.comments.push(originalReceipt);
+  const replacement = await preflightPr({...args, expectedDigest: evidenceDigest(f.evidence)});
+  assert.equal(replacement.status, "package-ready");
+  assert.deepEqual(replacement.outstanding, ["visual-accept"]);
+  await assert.rejects(assessPr(args), /explicit owner acceptance/);
+});
+
+test("preflight refuses a moved base, changed label or edited package snapshot", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit(false);
+  const args = {repo: "o/r", prNumber: 1, expectedHead: head, expectedDigest: evidenceDigest(f.evidence), policy: f.policy, readSource: () => bytes};
+  const read = controllerApi(f);
+  for (const change of ["base", "label", "body", "comment"]) {
+    let prReads = 0;
+    let commentReads = 0;
+    const api = async (path: string) => {
+      const value = await read(path);
+      if (path === "/repos/o/r/pulls/1" && ++prReads === 2) {
+        if (change === "base") return {...value, base: {ref: "main", sha: "c".repeat(40)}};
+        if (change === "label") return {...value, labels: []};
+        if (change === "body") return {...value, body: "Changed during the check"};
+      }
+      if (path.includes("/issues/1/comments?") && ++commentReads === 2 && change === "comment") return [];
+      return value;
+    };
+    await assert.rejects(preflightPr({...args, api}), /changed during (visual preflight|screenshot assessment)/);
+  }
+});
+
 test("signal/null helper outcomes never report completion success", () => {
   for (const outcome of [{status: null, signal: "SIGTERM"}, {status: 0, signal: "SIGTERM"}, {status: null}]) {
     let calls = 0;

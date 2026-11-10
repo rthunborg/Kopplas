@@ -90,7 +90,16 @@ function command(comment, name, sha, digest) {
 
 /** All network-derived identities/permissions/files/images are passed by the
  * trusted controller, never read from an author's evidence JSON. */
-export async function evaluateFrontend({ headSha, files, comments = [], reviewComments = [], feedback = [], permissions = {}, policy, loadBlob, loadPublication, repo, prNumber, prBody, authorId, authorIds = [], authorsComplete = true, labels = [] }) {
+export function evaluateFrontend(input) {
+  return evaluatePackages(input);
+}
+
+export function preflightFrontend(input, digest) {
+  need(typeof digest === 'string' && HASH.test(digest), 'Preflight requires the intended evidence digest.');
+  return evaluatePackages(input, digest);
+}
+
+async function evaluatePackages({ headSha, files, comments = [], reviewComments = [], feedback = [], permissions = {}, policy, loadBlob, loadPublication, repo, prNumber, prBody, authorId, authorIds = [], authorsComplete = true, labels = [] }, preflightDigest) {
   need(SHA.test(headSha), 'Candidate must be a full Git revision.');
   need(Array.isArray(files) && files.length && files.length <= 3000 && files.every((p) => typeof p === 'string') && unique(files), 'Incomplete changed-path inventory.');
   const frontend = files.filter(isFrontend);
@@ -98,17 +107,25 @@ export async function evaluateFrontend({ headSha, files, comments = [], reviewCo
   need(policy?.schemaVersion === 1, 'Missing trusted visual policy.');
   const packages = comments.map((c) => ({ comment: c, evidence: record(c, EVIDENCE_MARKER) })).filter(({ evidence: e }) => e?.candidateSha === headSha);
   need(packages.length > 0 && packages.length <= 10, 'Missing current-head visual evidence (or ambiguous evidence volume).');
+  const selected = preflightDigest ? packages.filter(({ evidence }) => evidenceDigest(evidence) === preflightDigest) : packages;
+  need(selected.length > 0, 'Intended digest does not match a published current-head visual package.');
   // A bad unrelated package must not shadow an authenticated accepted package.
   const failures = [];
-  for (const { evidence: e } of packages) {
-    try { return await validatePackage({ e, headSha, files, frontend, comments, reviewComments, feedback, permissions, policy, loadBlob, loadPublication, repo, prNumber, prBody, authorId, authorIds, authorsComplete, labels }); }
+  for (const { evidence: e } of selected) {
+    try { return await validatePackage({ e, headSha, files, frontend, comments, reviewComments, feedback, permissions, policy, loadBlob, loadPublication, repo, prNumber, prBody, authorId, authorIds, authorsComplete, labels, preflight: Boolean(preflightDigest) }); }
     catch (error) { failures.push(error.message); }
   }
   throw new Error(failures.join(' | ').slice(0, 1800));
 }
 
-async function validatePackage({ e, headSha, files, frontend, comments, reviewComments, feedback, permissions, policy, loadBlob, loadPublication, repo, prNumber, prBody, authorId, authorIds, authorsComplete, labels }) {
+async function validatePackage({ e, headSha, files, frontend, comments, reviewComments, feedback, permissions, policy, loadBlob, loadPublication, repo, prNumber, prBody, authorId, authorIds, authorsComplete, labels, preflight }) {
   const digest = evidenceDigest(e);
+  const outstanding = new Set();
+  const requireControl = (present, control, message) => {
+    if (present) return;
+    need(preflight, message);
+    outstanding.add(control);
+  };
   const ownerControls = comments.filter((c) => human(c, permissions) && /^(?:\/visual-(?:accept|revoke|waive|opt-out|not-applicable)) /.test(c.body ?? '') && c.body.includes(`${headSha} ${digest}`));
   need(ownerControls.every((c) => Number.isFinite(commentTime(c))), 'Invalid authenticated acceptance/revocation ordering timestamp.');
   const manual = comments.filter((c) => human(c, permissions) && command(c, 'visual-accept', headSha, digest)).sort(byLatest);
@@ -117,7 +134,10 @@ async function validatePackage({ e, headSha, files, frontend, comments, reviewCo
   need(e.schemaVersion === 1 && Array.isArray(e.changedPaths) && same([...e.changedPaths].sort(), [...files].sort()), 'Evidence path coverage is stale or incomplete.');
   if (e.kind === 'not-applicable') {
     need(!files.some(isRenderedPath), 'Rendered frontend paths cannot use N/A evidence.');
-    need(text(e.reason) && comments.some((c) => human(c, permissions) && command(c, 'visual-not-applicable', headSha, digest)), 'Ambiguous source/backend N/A requires explicit authenticated impact assessment and reason.');
+    const reasonMessage = 'Ambiguous source/backend N/A requires explicit authenticated impact assessment and reason.';
+    need(text(e.reason), reasonMessage);
+    requireControl(comments.some((c) => human(c, permissions) && command(c, 'visual-not-applicable', headSha, digest)), 'visual-not-applicable', reasonMessage);
+    if (preflight) return { status: 'package-ready', headSha, evidenceDigest: digest, outstanding: [...outstanding] };
     return { status: 'not-applicable', headSha, reason: e.reason, evidenceDigest: digest, mode: 'owner-scoped-applicability', coverage: files };
   }
   need(e.kind === 'frontend', 'Frontend capture evidence required.');
@@ -158,8 +178,11 @@ async function validatePackage({ e, headSha, files, frontend, comments, reviewCo
     }
     const reference = policy.references?.[surface.referenceId];
     // First foundations/screens and every new/replaced reference require owner.
-    if (surface.referenceSetting === true || !reference) need(manual.length && surface.referenceSetting === true, 'Initial foundation/screen reference requires explicit owner acceptance.');
-    else need(captures.every((c) => reference[c.state]?.[`${c.viewport.width}x${c.viewport.height}`] === c.reference.sha256), 'Reference was changed without owner rebaseline acceptance.');
+    if (surface.referenceSetting === true || !reference) {
+      const referenceMessage = 'Initial foundation/screen reference requires explicit owner acceptance.';
+      need(surface.referenceSetting === true, referenceMessage);
+      requireControl(manual.length, 'visual-accept', referenceMessage);
+    } else need(captures.every((c) => reference[c.state]?.[`${c.viewport.width}x${c.viewport.height}`] === c.reference.sha256), 'Reference was changed without owner rebaseline acceptance.');
   }
   need(e.captures.every((c) => e.surfaces.some((s) => s.id === c.surface)), 'Orphan capture.');
   need(frontend.every((file) => e.surfaces.some((s) => s.files.includes(file))), 'Frontend file omitted from accepted surface coverage.');
@@ -167,11 +190,14 @@ async function validatePackage({ e, headSha, files, frontend, comments, reviewCo
   for (const deviation of e.deviations) {
     need(typeof deviation.id === 'string' && CATEGORIES.includes(deviation.category) && text(deviation.description), 'Malformed deviation.');
     need(deviation.category === 'visual', 'Security, money, scope, integrity and accessibility defects cannot be waived.');
-    need(comments.some((c) => human(c, permissions) && c.body?.startsWith(`/visual-waive ${headSha} ${digest} ${deviation.id}\n`) && text(c.body.split('\n').slice(1).join('\n'))), `Deviation ${deviation.id} needs named owner waiver.`);
+    requireControl(comments.some((c) => human(c, permissions) && c.body?.startsWith(`/visual-waive ${headSha} ${digest} ${deviation.id}\n`) && text(c.body.split('\n').slice(1).join('\n'))), `visual-waive ${deviation.id}`, `Deviation ${deviation.id} needs named owner waiver.`);
   }
   const presentation = await validatePresentation({ e, head: headSha, digest, repo, prNumber, prBody, feedback, comments, reviewComments, permissions,
-    authorIds: [authorId, ...authorIds], loadPublication, ownerWaiver: (id, rationale) => comments.some((c) => human(c, permissions)
-      && c.body === `/visual-waive ${headSha} ${digest} ${id}\n${rationale}`) });
+    authorIds: [authorId, ...authorIds], loadPublication, ownerWaiver: (id, rationale) => {
+      const present = comments.some((c) => human(c, permissions) && c.body === `/visual-waive ${headSha} ${digest} ${id}\n${rationale}`);
+      if (preflight) requireControl(present, `visual-waive ${id}`);
+      return present || preflight;
+    } });
   let vision;
   let providerOutcome = { status: 'unavailable', reason: 'No authenticated configured image-review receipt.' };
   const candidates = comments.filter((comment) => command(comment, 'visual-review', headSha, digest)
@@ -195,6 +221,9 @@ async function validatePackage({ e, headSha, files, frontend, comments, reviewCo
       vision = { commentId: latest.id, provider: receipt.provider, model: receipt.model, verdict: receipt.verdict, findings: receipt.findings, capability: receipt.capability };
     }
   }
-  need(vision || manual.length, 'Independent vision review unavailable/failed/skipped; authenticated owner manual acceptance required.');
+  if (!outstanding.has('visual-accept')) requireControl(vision || manual.length,
+    policy.trustedVisionReviewers?.length ? 'visual-review or visual-accept' : 'visual-accept',
+    'Independent vision review unavailable/failed/skipped; authenticated owner manual acceptance required.');
+  if (preflight) return { status: 'package-ready', headSha, evidenceDigest: digest, evidenceSource: e.source, outstanding: [...outstanding] };
   return { status: 'accepted', headSha, evidenceDigest: digest, mode: vision ? 'independent-vision' : 'owner-manual', evidenceSource: e.source, acceptanceCommentId: manual.at(-1)?.id, independentReview: vision ?? providerOutcome, presentation, coverage: e.surfaces.map(({ id, route, component }) => ({ id, route, component })) };
 }
