@@ -266,6 +266,54 @@ protocol enforcement, never actual app comparison or hosted-provider execution.
 
 ## Completion, review and remediation
 
+### Admit the verification the story needs
+
+Apply this procedure when admitting a new story from a qualified revision that
+includes it. An already admitted story uses its original policy, source pins,
+configuration and receipts through handoff or resume.
+
+Use the existing story admission or checkpoint record. Tie each mandatory
+infrastructure-dependent check to its acceptance criteria, supported command and
+target. Distinguish an owned local production-server route from a qualified
+hosted job. Record the actual inputs or revision, startup and readiness check,
+required proxy or callback behavior, and where to retain native results.
+
+For stateful verification, identify the isolated database, browser profile and
+resource owner, and the synthetic fixture operations required to reach the
+specified states. Record the authorized create, read, update and cleanup scope
+and any capture, publication or hosted operation the check needs. Reference
+existing grants by source, target and conditions. Confirm runtime custody
+separately from the worktree. An absent guard context, foreign resource or
+unsupported route blocks the dependent check.
+
+Resolve foreseeable gaps before dependent implementation. When a route has an
+unusual startup or fixture dependency, use a supported alternative or an early
+authorized rehearsal. If required verification remains unsupported, name the
+blocked criterion, evidence, owner and next allowed action in the admission.
+Keep dependent completion blocked. Other allocated work may proceed unless a
+recorded hold applies.
+
+### Carry standing authority through handoff
+
+Proceed under the original allocation for reversible implementation,
+corrections, targeted revalidation, authorized isolated fixture operations,
+captures and administrative package work. Advance through ordinary authorized
+phases as their gates pass. A handoff or resume keeps the existing grants for
+the same source, scope, target and conditions. Recheck ownership and applicable
+conditions. A new actor uses its own resource-guard identity. A recorded hold,
+expired grant or custody change follows its existing decision route.
+
+Use the existing independent reviewer to assess conformance to explicit
+acceptance criteria. Record the actual evidence and its binding. Route material
+scope or design decisions, genuine acceptance uncertainty and consequential
+actions outside the grant to the owner. Keep required human visual acceptance,
+independent review, merge, deployment and platform controls.
+
+On the next eligible ordinary story, use its existing records to compare time
+to verified readiness, waiting for acceptance and merge, corrections after first
+readiness, and owner interruptions or repeated grants. Record the comparison in
+the existing closeout after the story runs.
+
 ### Prepare the package before requesting acceptance
 
 Use this procedure for fresh admissions under the
