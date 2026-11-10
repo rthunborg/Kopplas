@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 /**
  * `/settings/company` (Företagsinställningar) — company identity + VAT display/rate
@@ -23,7 +24,33 @@ import { bpToPercentString } from "@/features/settings/vat-display";
 
 export const dynamic = "force-dynamic";
 
-export default async function CompanySettingsPage() {
+export default function CompanySettingsPage() {
+  return (
+    <div className="flex min-w-0 flex-col gap-6 p-gutter-field sm:p-gutter">
+      <div className="flex flex-col gap-2">
+        <Link
+          href="/settings"
+          className="inline-flex min-h-control-lg items-center self-start rounded-control text-label text-text-secondary underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+        >
+          ← Inställningar
+        </Link>
+        <h1 className="text-title font-semibold text-text-primary wrap-anywhere">
+          Företagsinställningar
+        </h1>
+        <p className="text-label text-text-secondary">
+          Företagsidentitet för offerter och PDF, samt standardvärden för
+          momsvisning och momssats.
+        </p>
+      </div>
+
+      <Suspense fallback={<p role="status" className="text-body text-text-secondary">Hämtar företagsinställningar…</p>}>
+        <CompanySettingsContent />
+      </Suspense>
+    </div>
+  );
+}
+
+async function CompanySettingsContent() {
   const contextResult = await resolveTenantContext();
   const operationContext = contextResult.ok ? { tenantId: contextResult.data.tenantId, actorId: contextResult.data.userId } : null;
   const { settings, error } = await readCompanySettings();
@@ -49,33 +76,17 @@ export default async function CompanySettingsPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6 p-6">
-      <div className="flex flex-col gap-2">
-        <Link
-          href="/settings"
-          className="text-sm text-blue-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-        >
-          ← Inställningar
-        </Link>
-        <h1 className="text-2xl font-semibold text-zinc-900">
-          Företagsinställningar
-        </h1>
-        <p className="text-sm text-zinc-600">
-          Företagsidentitet för offerter och PDF, samt standardvärden för
-          momsvisning och momssats.
-        </p>
-      </div>
-
+    <>
       {error && (
         <p
           role="alert"
-          className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"
+          className="max-w-2xl rounded-control border border-risk-text bg-risk-surface px-3 py-2 text-label text-risk-text"
         >
           {error}
         </p>
       )}
 
       <CompanySettingsForm defaults={defaults} />
-    </div>
+    </>
   );
 }

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 /**
  * `/settings/quote-terms` (Offertvillkor) — the tenant-owned quote terms editor with
@@ -18,7 +19,31 @@ import { readQuoteTerms } from "@/features/settings/read";
 
 export const dynamic = "force-dynamic";
 
-export default async function QuoteTermsPage() {
+export default function QuoteTermsPage() {
+  return (
+    <div className="flex min-w-0 flex-col gap-6 p-gutter-field sm:p-gutter">
+      <div className="flex flex-col gap-2">
+        <Link
+          href="/settings"
+          className="inline-flex min-h-control-lg items-center self-start rounded-control text-label text-text-secondary underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+        >
+          ← Inställningar
+        </Link>
+        <h1 className="text-title font-semibold text-text-primary">Offertvillkor</h1>
+        <p className="text-label text-text-secondary">
+          Återanvändbara offertvillkor för din organisation. Villkoren godkänns av
+          ägare/juridik innan de används i skarpa offerter.
+        </p>
+      </div>
+
+      <Suspense fallback={<p role="status" className="text-body text-text-secondary">Hämtar offertvillkor…</p>}>
+        <QuoteTermsContent />
+      </Suspense>
+    </div>
+  );
+}
+
+async function QuoteTermsContent() {
   const contextResult = await resolveTenantContext();
   const operationContext = contextResult.ok ? { tenantId: contextResult.data.tenantId, actorId: contextResult.data.userId } : null;
   const { terms, error } = await readQuoteTerms();
@@ -35,31 +60,17 @@ export default async function QuoteTermsPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6 p-6">
-      <div className="flex flex-col gap-2">
-        <Link
-          href="/settings"
-          className="text-sm text-blue-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-        >
-          ← Inställningar
-        </Link>
-        <h1 className="text-2xl font-semibold text-zinc-900">Offertvillkor</h1>
-        <p className="text-sm text-zinc-600">
-          Återanvändbara offertvillkor för din organisation. Villkoren godkänns av
-          ägare/juridik innan de används i skarpa offerter.
-        </p>
-      </div>
-
+    <>
       {error && (
         <p
           role="alert"
-          className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"
+          className="max-w-2xl rounded-control border border-risk-text bg-risk-surface px-3 py-2 text-label text-risk-text"
         >
           {error}
         </p>
       )}
 
       <QuoteTermsEditor defaults={defaults} />
-    </div>
+    </>
   );
 }
