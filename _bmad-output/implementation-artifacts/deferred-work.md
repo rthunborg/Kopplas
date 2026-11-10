@@ -584,3 +584,20 @@ existing AC, recorded so it is not re-triaged a third time.
   evidence: Status: deferred (OPEN), not passing coverage. Scope: E35-5-REL-3 final Phase B consolidation. Owner: Coordinator. Evidence: Final Phase B validation/stabilization and release approval remain separate. Preserve existing E16 fourteen-item and E20 caveats; optional remaining release-run work cancelled/no coverage credit. Next action: Consolidate existing ledgers and inherited limitations, obtain required final release evidence and explicit approval; no merge or deployment granted by this record.
   qualification: Native NFR advisory CONCERNS records 7 PASS, 16 CONCERNS and 0 FAIL; unknown quantitative performance, operational, coverage/duplication, scan and telemetry measurements are not passes. Native test-quality advisory Request Changes remains 92/100 (A), with 2 HIGH, 1 MEDIUM and 1 LOW fixed-rubric findings; these are test-maintainability/quality heuristics, not established introduced production defects or CI failures, and authorize no test refactor in this metadata batch. Coordinator assigns any separately authorized follow-up. Mandatory final-head CI, captures, exact digest/package owner acceptance and clean controller/completion admission remain development blockers, not deferred release items. No release approval or release-ready claim is granted.
   location: _bmad-output/auto-bmad/delivery/spec-design-35-5-35-5.json#/deferred_release_validation/2
+
+## Deferred from: Story 35.7 release validation (2026-11-10)
+
+- source_spec: `35-7-settings-and-manual-pricing.md`
+  summary: E35-7-REL-1 — wider device and composite visual validation
+  evidence: Open release validation. Owner is UI owner (named human pending). Exact owner-manual acceptance covers the selected production-build desktop and 360×640 states. Wider physical device coverage and composite contrast and reflow remain outstanding. Assign the named UI owner in the deferred-work ledger, pin the release candidate and record wider device, composite contrast and reflow findings.
+  location: _bmad-output/auto-bmad/delivery/spec-design-35-7-35-7.json#/deferred_release_validation/0
+
+- source_spec: `35-7-settings-and-manual-pricing.md`
+  summary: E35-7-REL-2 — manual accessibility and field-device walkthrough
+  evidence: Open release validation. Owner is QA/accessibility owner (named human pending). Chromium exercises the bounded keyboard and focus flow and reduced layout height. Manual keyboard, actual virtual keyboard, screen reader and daylight behavior on devices remain outstanding. Assign the named QA/accessibility owner, run the manual journeys on the pinned release candidate with actual devices and assistive technology, and file results and follow-up findings.
+  location: _bmad-output/auto-bmad/delivery/spec-design-35-7-35-7.json#/deferred_release_validation/1
+
+- source_spec: `35-7-settings-and-manual-pricing.md`
+  summary: E35-7-REL-3 — Phase B release consolidation
+  evidence: Open release validation. Owner is Coordinator (named human pending). The Phase B release validation and stabilization checkpoint remains separate. E16's 14-item release evidence and E20 caveats remain open to that consolidation. Consolidate REL-1 and REL-2 and the outstanding E16 and E20 caveats at the Phase B release checkpoint, then seek separate release approval once its gates pass.
+  location: _bmad-output/auto-bmad/delivery/spec-design-35-7-35-7.json#/deferred_release_validation/2
