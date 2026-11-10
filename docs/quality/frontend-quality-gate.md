@@ -144,25 +144,25 @@ The controller compares immutable regular-file blobs at the current PR head and
 its provider-reported merge base for these source exemptions:
 
 - **Minor presentation copy.** Direct plain text in an existing native button,
-  label, legend or heading can qualify for capitalization, terminal punctuation
-  or a bounded spelling correction. The rest of the source must match exactly.
+  label, legend or heading can qualify for capitalization or adding or removing
+  a final period. The words and rest of the source must match.
   Dynamic strings, accessible status or alert regions, number and amount edits,
   sensitive copy paths, meaningful wording changes, added or renamed files,
   route or attribute edits, layout or style changes and mixed production work
   stay gated. Ordinary accompanying docs or tests can remain in the PR.
-- **Backend persistence work.** Existing Supabase server/public client or
-  environment modules and command database adapters can qualify when their
-  changed source remains in those seams and preserves literal prose and HTML.
-  Backend plus frontend production changes stay gated. Read models, headless
-  UI state, display formatters, customer-facing outputs and unclassified
-  application source remain subject to impact assessment.
+- **Backend connection plumbing.** Existing Supabase server/public client or
+  environment modules can qualify when the change preserves literal prose and
+  HTML. Database adapters and projections can affect what users see and remain
+  subject to impact assessment, as do read models, headless UI state, display
+  formatters and other unclassified application source.
 
 An ambiguous backend-only candidate can still submit `kind=not-applicable`,
 `candidateSha`, the exact `changedPaths` and a concrete `reason` for authenticated
 owner `/visual-not-applicable <head> <digest>`. Missing parser or provenance,
 unavailable blobs and ambiguous cases follow the existing strict visual path.
-The trusted workflow uses only the locked TypeScript parser to read inert source
-text. Main integration changes the controller used by all open PRs. Integrate
+The trusted visual and feedback collectors use the same locked TypeScript
+parser to read inert source text. Main integration changes the controller
+used by all open PRs. Integrate
 only after active consumers of the prior visual contract close, then use the
 new policy at a clean story admission.
 

@@ -11,6 +11,7 @@ export function preflightPr(input: Omit<AssessmentInput, 'policy' | 'readSource'
 export function reportPrAssessment(input: {api: Api; repo: string; prNumber: number; runId: string; assess?: typeof assessPr}): ReturnType<typeof assessPr>;
 
 export function verifyTrustedSources(policy: unknown, readSource?: (path: string) => Buffer): true;
+export function verifyParserArchive(bytes: Buffer): void;
 export function publishedImages(api: Api, repo: string, prNumber: number): {
   read: (request: import('./frontend-presentation.mjs').PublicationRequest) => Promise<import('./frontend-presentation.mjs').PublicationResult>;
   recheck: () => Promise<void>;

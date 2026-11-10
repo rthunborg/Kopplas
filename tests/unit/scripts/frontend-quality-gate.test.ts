@@ -4,12 +4,12 @@ import { createHash } from "node:crypto";
 import { deflateSync } from "node:zlib";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, existsSync, rmSync } from "node:fs";
+import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, existsSync, rmSync, unlinkSync, rmdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname, resolve } from "node:path";
 import { EVIDENCE_MARKER, evidenceDigest, evaluateFrontend, hash, inspectPng } from "../../../scripts/quality/frontend-gate.mjs";
 import { renderPrScreenshots, publicationPath, presentationFeedback, feedbackScopeDigest } from "../../../scripts/quality/frontend-presentation.mjs";
-import { assessPr, preflightPr, reportPrAssessment, verifyTrustedSources } from "../../../scripts/quality/frontend-controller.mjs";
+import { assessPr, preflightPr, reportPrAssessment, verifyParserArchive, verifyTrustedSources } from "../../../scripts/quality/frontend-controller.mjs";
 import { guardedCompletion } from "../../../scripts/quality/completion-gate.mjs";
 import { selectFeedback } from "../../../scripts/pr-feedback/policy.mjs";
 import { monitor } from "../../../scripts/pr-feedback/runtime.mjs";
@@ -499,20 +499,31 @@ const mainRevision = "b".repeat(40);
 const mergeBase = "c".repeat(40);
 
 function sourceChange(before: string, after: string, options: {
-  file?: string; companion?: string; oldMode?: string; changedBase?: boolean; wrongBlob?: boolean; status?: string; truncatedTree?: boolean;
+  file?: string; companion?: string; oldMode?: string; changedBase?: boolean; wrongBlob?: boolean; status?: string; truncatedTree?: boolean; hiddenChange?: boolean;
 } = {}) {
   const path = options.file ?? "src/components/crm/CustomerList.tsx";
   const entries = new Map<string, Buffer>();
-  const entry = (source: string, mode: string) => {
+  const entry = (source: string, mode: string, filename = path) => {
     const bytes = Buffer.from(source);
     const sha = createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex");
     entries.set(sha, bytes);
-    return {path, mode, sha, type: "blob", size: bytes.length};
+    return {path: filename, mode, sha, type: "blob", size: bytes.length};
   };
   const oldEntry = entry(before, options.oldMode ?? "100644");
   const newEntry = entry(after, "100644");
+  const beforeTree = [oldEntry], afterTree = [newEntry];
   const files = [{filename: path, status: options.status ?? "modified", sha: newEntry.sha}];
-  if (options.companion) files.push({filename: options.companion, status: "modified", sha: "1".repeat(40)});
+  if (options.companion) {
+    const original = entry("old", "100644", options.companion);
+    const updated = entry("new", "100644", options.companion);
+    beforeTree.push(original);
+    afterTree.push(options.hiddenChange ? original : updated);
+    files.push({filename: options.companion, status: "modified", sha: updated.sha});
+  }
+  if (options.hiddenChange) {
+    beforeTree.push(entry("h1{color:red}", "100644", "src/app/globals.css"));
+    afterTree.push(entry("h1{color:blue}", "100644", "src/app/globals.css"));
+  }
   const oldTree = "d".repeat(40), newTree = "e".repeat(40);
   let reads = 0;
   const api = async (url: string) => {
@@ -526,8 +537,8 @@ function sourceChange(before: string, after: string, options: {
     if (url === `/repos/o/r/compare/${mainRevision}...${head}?per_page=1`) return {merge_base_commit: {sha: mergeBase}};
     if (url === `/repos/o/r/git/commits/${mergeBase}`) return {sha: mergeBase, tree: {sha: oldTree}};
     if (url === `/repos/o/r/git/commits/${head}`) return {sha: head, tree: {sha: newTree}};
-    if (url === `/repos/o/r/git/trees/${oldTree}?recursive=1`) return {sha: oldTree, truncated: options.truncatedTree ?? false, tree: [oldEntry]};
-    if (url === `/repos/o/r/git/trees/${newTree}?recursive=1`) return {sha: newTree, truncated: false, tree: [newEntry]};
+    if (url === `/repos/o/r/git/trees/${oldTree}?recursive=1`) return {sha: oldTree, truncated: options.truncatedTree ?? false, tree: beforeTree};
+    if (url === `/repos/o/r/git/trees/${newTree}?recursive=1`) return {sha: newTree, truncated: false, tree: afterTree};
     if (url.includes("/git/blobs/")) {
       const sha = url.split("/").at(-1)!;
       const bytes = entries.get(sha)!;
@@ -538,9 +549,8 @@ function sourceChange(before: string, after: string, options: {
   return {api, repo: "o/r", prNumber: 1, expectedHead: head};
 }
 
-test("a verified native heading typo and its test update need no human visual receipt", async () => {
-  const before = customerHeading.replace("Kunder", "Kudner");
-  const candidate = sourceChange(before, customerHeading, {companion: "tests/unit/components/customer-list.test.ts"});
+test("a verified native heading punctuation edit and its test update need no human visual receipt", async () => {
+  const candidate = sourceChange(customerHeading, customerHeading.replace("Kunder", "Kunder."), {companion: "tests/unit/components/customer-list.test.ts"});
   const result = await assessPr(candidate);
   assert.equal(result.status, "not-applicable");
   assert.equal(result.mode, "copy-only");
@@ -550,13 +560,16 @@ test("a verified native heading typo and its test update need no human visual re
   await assert.rejects(assessPr({...candidate, typescriptPath: null}), /Missing current-head visual evidence/);
 });
 
-test("verified backend persistence work needs no human visual receipt", async () => {
-  const before = 'export const write = (db: Client) => db.rpc("upsert_work_role_v1");';
-  const after = before.replace("_v1", "_v2");
-  const file = "src/server/commands/pricing/pricing-db.ts";
+test("verified backend connection plumbing needs no human visual receipt", async () => {
+  const before = 'export const create = (url: string, key: string) => createServerClient(url, key, {retry: false});';
+  const after = before.replace("false", "true");
+  const file = "src/server/db/supabase-server-client.ts";
   assert.equal((await assessPr(sourceChange(before, after, {file}))).mode, "backend-only");
   await assert.rejects(assessPr(sourceChange(before, after, {file: "src/server/read-models/dashboard.ts"})), /Missing current-head visual evidence/);
   await assert.rejects(assessPr(sourceChange(before, 'export const write = () => "New customer error";', {file})), /Missing current-head visual evidence/);
+  await assert.rejects(assessPr(sourceChange(before, after, {file, companion: "supabase/migrations/20260101000000_projection.sql"})), /Missing current-head visual evidence/);
+  const quoteSnapshot = 'const pdfInput = {introText: snapshot.intro_text, lines: snapshot.lines};';
+  await assert.rejects(assessPr(sourceChange(quoteSnapshot, quoteSnapshot.replace("snapshot.intro_text", "null"), {file: "src/server/commands/quotes/quote-db.ts"})), /Missing current-head visual evidence/);
 });
 
 test("visual scope stays gated for mixed, structural, behavioral or consequential string changes", async () => {
@@ -569,6 +582,8 @@ test("visual scope stays gated for mixed, structural, behavioral or consequentia
     sourceChange(customerHeading.replace("<h1 ", '<h1 role="alert" '), title.replace("<h1 ", '<h1 role="alert" ')),
     sourceChange(customerHeading.replace("Kunder", "100 kr"), customerHeading.replace("Kunder", "200 kr")),
     sourceChange(customerHeading.replace("Kunder", "Access granted"), customerHeading.replace("Kunder", "Access denied")),
+    sourceChange(customerHeading.replace("Kunder", "Spara arbetsledare"), customerHeading.replace("Kunder", "Spåra arbetsledare"), {file: "src/components/jobs/JobMembersPanel.tsx"}),
+    sourceChange(customerHeading, customerHeading.replace("Kunder", "Kunder?")),
     sourceChange('const route = "/customers";' + customerHeading, 'const route = "/contacts";' + title),
     sourceChange(customerHeading, title, {file: "src/components/pricing/WorkRolesEditor.tsx"}),
     sourceChange(customerHeading, title, {companion: "src/app/globals.css"}),
@@ -583,19 +598,49 @@ test("source exemptions require stable PR identity, complete trees and matching 
   for (const options of [{oldMode: "120000"}, {oldMode: "100755"}, {status: "added"}, {status: "renamed"}, {wrongBlob: true}, {truncatedTree: true}]) {
     await assert.rejects(assessPr(sourceChange(customerHeading, after, options)), /Missing current-head visual evidence/);
   }
+  await assert.rejects(assessPr(sourceChange(customerHeading, after, {hiddenChange: true, companion: "tests/unit/crm.test.ts"})), /Missing current-head visual evidence/);
   await assert.rejects(assessPr(sourceChange(customerHeading, after, {changedBase: true})), /PR identity changed/);
 });
 
 test("trusted workflow provisioning rejects a wrong parser archive before exposing a parser path", () => {
-  const workflow = readFileSync(".github/workflows/frontend-quality-gate.yml", "utf8");
-  const program = workflow.match(/<<'NODE'\r?\n([\s\S]*?)\r?\n {10}NODE/)?.[1];
-  assert.ok(program);
-  assert.match(workflow, /https:\/\/registry\.npmjs\.org\/typescript\/-\/typescript-5\.9\.3\.tgz/);
-  assert.doesNotMatch(workflow, /curl[^\r\n]*(--location|\s-L\s)/);
-  assert.match(workflow, /tar -xOzf "\$archive" -- "\$entry" > "\$parser_dir\/typescript\.cjs"/);
-  const result = spawnSync(process.execPath, ["--input-type=module", "-", "package.json"], {input: program, encoding: "utf8", windowsHide: true});
-  assert.notEqual(result.status, 0);
-  assert.match(result.stderr, /Trusted TypeScript lock integrity mismatch/);
+  for (const path of [".github/workflows/frontend-quality-gate.yml", ".github/workflows/pr-feedback.yml"]) {
+    const workflow = readFileSync(path, "utf8");
+    assert.match(workflow, /continue-on-error: true\s+run: node scripts\/quality\/frontend-controller\.mjs provision-parser/);
+    assert.ok(workflow.indexOf("provision-parser") < workflow.indexOf("GITHUB_TOKEN:"));
+  }
+  assert.throws(() => verifyParserArchive(Buffer.from("untrusted parser archive")), /Trusted TypeScript lock integrity mismatch/);
+});
+
+test("feedback collection uses the verified runner-local parser and stays strict when it is missing or corrupt", async () => {
+  const temp = mkdtempSync(join(tmpdir(), "frontend-parser-fixture-"));
+  const directory = join(temp, "kopplas-visual-parser.Abc123");
+  const parser = join(directory, "typescript.cjs");
+  const environment = {
+    GITHUB_ACTIONS: "true", GITHUB_REPOSITORY: "o/r",
+    GITHUB_WORKFLOW_REF: "o/r/.github/workflows/pr-feedback.yml@refs/heads/main",
+    RUNNER_TEMP: temp, KOPPLAS_VISUAL_TYPESCRIPT: parser, KOPPLAS_VISUAL_TYPESCRIPT_SHA256: "",
+  };
+  const previous = new Map(Object.keys(environment).map((name) => [name, process.env[name]]));
+  try {
+    Object.assign(process.env, environment);
+    const candidate = sourceChange(customerHeading, customerHeading.replace("Kunder", "Kunder."));
+    await assert.rejects(assessPr(candidate), /Missing current-head visual evidence/);
+    const bytes = readFileSync("node_modules/typescript/lib/typescript.js");
+    mkdirSync(directory);
+    writeFileSync(parser, bytes);
+    process.env.KOPPLAS_VISUAL_TYPESCRIPT_SHA256 = hash(bytes);
+    assert.equal((await assessPr(candidate)).mode, "copy-only");
+    writeFileSync(parser, "corrupt parser bytes");
+    await assert.rejects(assessPr(candidate), /Missing current-head visual evidence/);
+  } finally {
+    for (const [name, value] of previous) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+    if (existsSync(parser)) unlinkSync(parser);
+    if (existsSync(directory)) rmdirSync(directory);
+    rmdirSync(temp);
+  }
 });
 
 test("API-authenticated manual acceptance still blocks missing or mismatched canonical sources", async () => {

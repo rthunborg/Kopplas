@@ -1,7 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { readFileSync, appendFileSync } from 'node:fs';
-import { resolve, dirname, isAbsolute } from 'node:path';
+import { readFileSync, appendFileSync, lstatSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { resolve, dirname, isAbsolute, join, basename } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { createApi } from '../pr-feedback/runtime.mjs';
 import { DEFAULT_ALLOWED_USER_IDS } from '../pr-feedback/policy.mjs';
@@ -11,6 +11,9 @@ import { presentationFeedback } from './frontend-presentation.mjs';
 const SHA = /^[0-9a-f]{40}$/;
 const DIGEST = /^[0-9a-f]{64}$/;
 const POLICY_PATH = 'scripts/quality/frontend-policy.json';
+const PARSER_VERSION = '5.9.3';
+const PARSER_ENTRY = 'package/lib/typescript.js';
+const MAX_PARSER_BYTES = 12_000_000;
 export const defaultPolicy = JSON.parse(readFileSync(new URL('./frontend-policy.json', import.meta.url), 'utf8'));
 const SOURCE_PATHS = Object.freeze({
   'DESIGN.md': '_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md',
@@ -28,6 +31,58 @@ function committedSource(path) {
 function readPreflightBaseFile(revision, path) {
   try { return committedFile(revision, path); }
   catch { throw new Error(`Visual preflight needs the trusted PR base blob ${revision}:${path} in the local Git object store.`); }
+}
+export function verifyParserArchive(bytes) {
+  const manifest = JSON.parse(readFileSync(join(TRUSTED_ROOT, 'package.json'), 'utf8'));
+  const lock = readFileSync(join(TRUSTED_ROOT, 'pnpm-lock.yaml'), 'utf8');
+  const key = `  typescript@${PARSER_VERSION}:`;
+  const packages = lock.split(/^snapshots:\s*$/m)[0].split(/\r?\n/);
+  const indexes = packages.flatMap((line, index) => line === key ? [index] : []);
+  const expected = indexes.length === 1 && /^    resolution: \{integrity: (sha512-[A-Za-z0-9+/]+={0,2})\}$/.exec(packages[indexes[0] + 1])?.[1];
+  const actual = 'sha512-' + createHash('sha512').update(bytes).digest('base64');
+  if (manifest.devDependencies.typescript !== PARSER_VERSION || !expected || actual !== expected) throw new Error('Trusted TypeScript lock integrity mismatch.');
+}
+
+function provisionParser() {
+  const runnerTemp = process.env.RUNNER_TEMP ?? '', envFile = process.env.GITHUB_ENV ?? '';
+  if (!isAbsolute(runnerTemp) || !isAbsolute(envFile) || /[\r\n]/.test(runnerTemp)) throw new Error('Parser provisioning requires runner-private temporary paths.');
+  const directory = mkdtempSync(join(runnerTemp, 'kopplas-visual-parser.'));
+  const archive = join(directory, 'typescript.tgz');
+  const url = `https://registry.npmjs.org/typescript/-/typescript-${PARSER_VERSION}.tgz`;
+  const run = (program, args, maxBuffer) => execFileSync(program, args, { maxBuffer, timeout: 30000, windowsHide: true });
+  run('curl', ['--disable', '--fail', '--silent', '--show-error', '--proto', '=https', '--max-time', '30', '--max-filesize', '6000000', '--output', archive, url], 64 * 1024);
+  if (lstatSync(archive).size > 6_000_000) throw new Error('TypeScript parser archive exceeds the download limit.');
+  verifyParserArchive(readFileSync(archive));
+  const names = run('tar', ['-tzf', archive], 128 * 1024).toString('utf8').trimEnd().split(/\r?\n/);
+  if (names.some((name) => !/^package\/[A-Za-z0-9_.\/-]+$/.test(name) || /(^|\/)\.\.?($|\/)/.test(name))
+    || names.filter((name) => name === PARSER_ENTRY).length !== 1) throw new Error('Unsafe parser archive member inventory.');
+  const metadata = run('tar', ['-tvzf', archive, '--', PARSER_ENTRY], 4096).toString('utf8');
+  if (!metadata.startsWith('-')) throw new Error('Parser archive member is not a regular file.');
+  const bytes = run('tar', ['-xOzf', archive, '--', PARSER_ENTRY], MAX_PARSER_BYTES);
+  if (!bytes.length) throw new Error('Extracted parser is empty.');
+  const path = join(directory, 'typescript.cjs');
+  writeFileSync(path, bytes, { flag: 'wx', mode: 0o600 });
+  appendFileSync(envFile, `KOPPLAS_VISUAL_TYPESCRIPT=${path}\nKOPPLAS_VISUAL_TYPESCRIPT_SHA256=${hash(bytes)}\n`);
+}
+
+function hostedParserPath() {
+  const path = process.env.KOPPLAS_VISUAL_TYPESCRIPT ?? '', digest = process.env.KOPPLAS_VISUAL_TYPESCRIPT_SHA256 ?? '';
+  const runnerTemp = process.env.RUNNER_TEMP ?? '';
+  const directory = dirname(path);
+  if (!isAbsolute(runnerTemp) || !isAbsolute(path) || !DIGEST.test(digest) || dirname(directory) !== runnerTemp
+    || !/^kopplas-visual-parser\.[A-Za-z0-9]+$/.test(basename(directory)) || basename(path) !== 'typescript.cjs') return null;
+  try {
+    const file = lstatSync(path);
+    return lstatSync(directory).isDirectory() && file.isFile() && file.size > 0
+      && file.size <= MAX_PARSER_BYTES && hash(readFileSync(path)) === digest ? path : null;
+  } catch { return null; }
+}
+
+function usesHostedParser() {
+  const workflow = process.env.GITHUB_WORKFLOW_REF;
+  const repo = process.env.GITHUB_REPOSITORY;
+  return process.env.GITHUB_ACTIONS === 'true' && Boolean(workflow && repo &&
+    ['frontend-quality-gate.yml', 'pr-feedback.yml'].some((name) => workflow === `${repo}/.github/workflows/${name}@refs/heads/main`));
 }
 export function verifyTrustedSources(policy, readSource = committedSource) {
   if (!policy?.source?.hashes || !Object.keys(policy.source.hashes).length) throw new Error('Approved canonical source inventory missing.');
@@ -90,10 +145,10 @@ async function sourceExemption(api, repo, pr, changed, typescriptPath) {
   if (!source.length || source.length > 8 || source.some((f) => f.status !== 'modified' || f.previous_filename || !SHA.test(f.sha ?? ''))) return;
   const kind = sourceExemptionKind(source[0].filename);
   if (!kind || source.some((f) => sourceExemptionKind(f.filename) !== kind)) return;
-  const companion = kind === 'copy-only' ? /^(?:docs|tests|_bmad-output)\// : /^(?:docs|tests|_bmad-output|supabase)\//;
+  const companion = /^(?:docs|tests|_bmad-output)\//;
   if (changed.some((f) => !source.includes(f) && ![f.filename, f.previous_filename ?? f.filename].every((path) => companion.test(path)))) return;
   try {
-    const ts = await sourceExemptionParser(typescriptPath);
+    const ts = await sourceExemptionParser(typescriptPath === undefined && usesHostedParser() ? hostedParserPath() : typescriptPath);
     if (!ts) return;
     const compare = await api(`/repos/${repo}/compare/${pr.base.sha}...${pr.head.sha}?per_page=1`);
     const mergeBase = compare.merge_base_commit?.sha;
@@ -103,13 +158,27 @@ async function sourceExemption(api, repo, pr, changed, typescriptPath) {
       if (commit.sha !== revision || !SHA.test(commit.tree?.sha ?? '')) throw new Error('Source commit tree identity unavailable.');
       const result = await api(`/repos/${repo}/git/trees/${commit.tree.sha}?recursive=1`);
       if (result.sha !== commit.tree.sha || result.truncated !== false || !Array.isArray(result.tree) || result.tree.length > 20000) throw new Error('Incomplete source tree.');
-      return result.tree;
+      const leaves = result.tree.filter((entry) => entry.type !== 'tree');
+      const entries = new Map(leaves.map((entry) => [entry.path, entry]));
+      if (entries.size !== leaves.length || leaves.some((entry) => typeof entry.path !== 'string' || !SHA.test(entry.sha ?? ''))) throw new Error('Malformed source tree.');
+      return entries;
     };
     const [baseTree, headTree] = await Promise.all([tree(mergeBase), tree(pr.head.sha)]);
+    const paths = new Set([...baseTree.keys(), ...headTree.keys()]);
+    const changedPaths = new Set([...paths].filter((path) => {
+      const before = baseTree.get(path), after = headTree.get(path);
+      return before?.sha !== after?.sha || before?.mode !== after?.mode || before?.type !== after?.type;
+    }));
+    if (changedPaths.size !== changed.length || changed.some(({filename, previous_filename, status, sha}) => {
+      const before = baseTree.get(filename), after = headTree.get(filename);
+      const regular = (entry) => !entry || entry.mode === '100644' && entry.type === 'blob';
+      const actualStatus = !before ? 'added' : !after ? 'removed' : 'modified';
+      return !changedPaths.has(filename) || previous_filename || status !== actualStatus
+        || sha !== (after ?? before)?.sha || !regular(before) || !regular(after);
+    })) return;
     const blob = async (entries, path, expectedSha) => {
-      const matches = entries.filter((entry) => entry.path === path);
-      const [entry] = matches;
-      if (matches.length !== 1 || entry.mode !== '100644' || entry.type !== 'blob' || !SHA.test(entry.sha ?? '')
+      const entry = entries.get(path);
+      if (!entry || entry.mode !== '100644' || entry.type !== 'blob' || !SHA.test(entry.sha ?? '')
         || (expectedSha && entry.sha !== expectedSha) || !Number.isSafeInteger(entry.size) || entry.size < 1 || entry.size > 128 * 1024) throw new Error('Source file is unavailable or outside the regular-file proof.');
       const data = await api(`/repos/${repo}/git/blobs/${entry.sha}`);
       if (data.sha !== entry.sha || data.encoding !== 'base64' || data.size !== entry.size
@@ -145,7 +214,7 @@ async function assessPrSnapshot({ api, repo, prNumber, expectedHead, policy = de
     if (fresh.state !== 'open' || fresh.head?.sha !== pr.head.sha || fresh.base?.ref !== pr.base.ref
       || fresh.base?.sha !== pr.base.sha || fresh.changed_files !== pr.changed_files) throw new Error('PR identity changed during visual applicability assessment.');
     return { status: 'not-applicable', headSha: pr.head.sha, baseSha: pr.base.sha, mergeBaseSha: exemption.mergeBase, mode: exemption.kind,
-      reason: exemption.kind === 'copy-only' ? 'The complete changed-source inventory is verified minor presentation copy.' : 'The complete changed-source inventory is verified backend persistence work.', coverage: files };
+      reason: exemption.kind === 'copy-only' ? 'The complete changed-source inventory is verified minor presentation copy.' : 'The complete changed-source inventory is verified backend connection plumbing.', coverage: files };
   }
   const evidence = [...comments, ...reviews.filter((r) => r.commit_id === pr.head.sha && r.state !== 'DISMISSED')];
   const frontend = changed.some((f) => isFrontend(f.filename) || f.previous_filename && isFrontend(f.previous_filename));
@@ -251,9 +320,7 @@ async function hosted() {
   if (eventName !== 'pull_request_target' && process.env.GITHUB_REF !== 'refs/heads/main') throw new Error('Visual controller requires main.');
   if (eventName === 'pull_request_target' && event.pull_request?.base?.ref !== 'main') throw new Error('Visual controller requires trusted main base.');
   const api = createApi(process.env.GITHUB_TOKEN);
-  const parser = process.env.KOPPLAS_VISUAL_TYPESCRIPT;
-  const typescriptPath = parser && isAbsolute(parser) && dirname(dirname(parser)) === process.env.RUNNER_TEMP
-    && /^kopplas-visual-parser\.[A-Za-z0-9]+\/typescript\.cjs$/.test(parser.slice(process.env.RUNNER_TEMP.length + 1)) ? parser : null;
+  const typescriptPath = hostedParserPath();
   const target = event.pull_request?.number ?? (event.issue?.pull_request ? event.issue.number : undefined) ?? Number(event.inputs?.pr_number || 0);
   if (eventName === 'issue_comment' && !target) return;
   const prs = target ? [{ number: target }] : await all(api, `/repos/${repo}/pulls?state=open`);
@@ -307,5 +374,12 @@ async function localPreflight() {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const command = process.argv[2];
-  (command === 'hosted' ? hosted() : command === 'local' ? local() : command === 'preflight' ? localPreflight() : Promise.reject(new Error('Use hosted, local or preflight.'))).catch((error) => { console.error(error.message); process.exitCode = 1; });
+  async function run() {
+    if (command === 'provision-parser') return provisionParser();
+    if (command === 'hosted') return hosted();
+    if (command === 'local') return local();
+    if (command === 'preflight') return localPreflight();
+    throw new Error('Use hosted, local, preflight or provision-parser.');
+  }
+  run().catch((error) => { console.error(error.message); process.exitCode = 1; });
 }

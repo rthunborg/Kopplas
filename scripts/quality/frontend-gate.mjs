@@ -41,11 +41,11 @@ export function isFrontend(path) {
 export const isShared = (path) => /^src\/(app\/(globals\.css|layout\.tsx)|components\/(ui|shared|app-shell)\/|.*\/(tokens|theme)[^/]*\.)/.test(path) || /^public\/.*\.(woff2?|ttf|otf)$/.test(path);
 
 const COPY_TAGS = new Set(['button', 'label', 'legend', 'h1', 'h2', 'h3']);
-const COPY_TEXT = /^[\p{L}\p{M}]+(?: [\p{L}\p{M}]+){0,7}[.!?]?$/u;
+const COPY_TEXT = /^[\p{L}\p{M}]+(?: [\p{L}\p{M}]+){0,7}\.?$/u;
 const CONSEQUENTIAL_PATH = /(?:^|[\/_.-])(?:auth|billing|invoice|money|operator|payments?|permissions?|pricing|quotes?|roles?|security|tax)(?:[\/_.-]|$)/i;
 
 export function sourceExemptionKind(path) {
-  if (/^src\/server\/(?:db\/supabase-(?:server-client|public-client|env)|commands\/[\w-]+\/[\w-]+-db)\.ts$/.test(path)) return 'backend-only';
+  if (/^src\/server\/db\/supabase-(?:server-client|public-client|env)\.ts$/.test(path)) return 'backend-only';
   if (/^src\/(?:components|app)\/.+\.tsx$/.test(path) && !CONSEQUENTIAL_PATH.test(path)) return 'copy-only';
 }
 
@@ -58,23 +58,10 @@ export async function sourceExemptionParser(modulePath) {
   } catch { /* Missing or invalid parser leaves the strict gate in place. */ }
 }
 
-function oneSpellingEdit(before, after) {
-  const a = [...before], b = [...after];
-  if (Math.min(a.length, b.length) < 4 || Math.abs(a.length - b.length) > 1) return false;
-  const first = a.findIndex((letter, index) => letter !== b[index]);
-  const index = first === -1 ? a.length : first;
-  const tail = (left, right) => a.slice(left).join('') === b.slice(right).join('');
-  if (a.length !== b.length) return a.length > b.length ? tail(index + 1, index) : tail(index, index + 1);
-  return tail(index + 1, index + 1) || a[index] === b[index + 1] && a[index + 1] === b[index] && tail(index + 2, index + 2);
-}
-
 function minorText(before, after) {
-  if ([before, after].some((value) => value.length > 64 || !COPY_TEXT.test(value))) return false;
-  const words = (value) => value.normalize('NFC').toLowerCase().replace(/[.!?]$/, '').split(' ');
-  const a = words(before), b = words(after);
-  if (a.length !== b.length) return false;
-  const changed = a.flatMap((word, index) => word === b[index] ? [] : [index]);
-  return !changed.length || changed.length === 1 && oneSpellingEdit(a[changed[0]], b[changed[0]]);
+  const words = (value) => value.normalize('NFC').toLowerCase().replace(/\.$/, '');
+  return [before, after].every((value) => value.length <= 64 && COPY_TEXT.test(value))
+    && words(before).length >= 4 && words(before) === words(after);
 }
 
 function copyStructure(ts, tree, source) {
