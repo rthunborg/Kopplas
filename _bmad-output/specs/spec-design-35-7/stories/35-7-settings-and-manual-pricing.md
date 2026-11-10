@@ -2,8 +2,8 @@
 title: "Story 35.7: Settings And Manual Pricing"
 type: story
 created: 2026-11-02
-status: ready-for-dev
-baseline_revision: fc3f7f8f4ba34b3ee91c7f7b6841d070b55b3c4f
+status: in-progress
+baseline_revision: 0dd0c4e03ba51b22d55cfa63562ef440a84f725b
 context:
   - _bmad-output/specs/spec-design-35-7/SPEC.md
   - _bmad-output/specs/spec-design-35-7/operative-contract.md
@@ -126,13 +126,63 @@ Release `E35-7-REL-1` visual/device/composite contrast/reflow: UI owner; `REL-2`
 - [DESIGN](../planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md), [EXPERIENCE](../planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md), [detailed annex](../planning-artifacts/ux-design-specification-phase-b.md), [crosswalk](../planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md).
 - [Package index/predecessors](../planning-artifacts/design-transition-2026-10-23/story-preparation/README.md), [review convention](../../docs/process/review-order.md).
 
-## Implementation-author Suggested Review Order scaffold
+## Suggested Review Order
 
-Planning scaffold only. Implementation/fix author replaces it with exactly one final `## Suggested Review Order` after code/verification; no empty selectable final heading or invented lines now.
+The Story 35.7 implementation delegate (gpt-6.1-sol, High) refreshed this trail against the Round 2 contrast fix on `42b881b1fdc6b050e9b265783e0f6fb7ca758b92`.
 
-1. Entry/user outcome: rationale and final route/component symbol with verified line.
-2. State/authority: reuse/tradeoff rationale and changed boundary/downstream guard with verified lines.
-3. Evidence/limits: actual AC assertions, command/revision/counts/skips, mocked boundaries and pending release/operational work. Refresh after fixes; reviewer checks final diff.
+### Connected settings and manual pricing
+
+The existing hub links to the three authorized pages. The readers disclose loading and unavailable data separately from authorized absence. Pricing gives fast reads 120 ms to finish before showing a loading label, then renders the same in-flight results in the same editor tree.
+
+- `src/app/(app)/settings/page.tsx:35` — `SettingsPage` introduces the three settings destinations.
+- `src/app/(app)/settings/company/page.tsx:37` — `wrap-anywhere` lets the long company heading wrap at 200% text enlargement.
+- `src/app/(app)/settings/pricing/page.tsx:33` — `PricingSettingsPage` starts each checked reader once and bounds the loading delay.
+- `src/components/settings/CompanySettingsForm.tsx:86` — `company-empty-defaults` labels the VAT suggestion only for established absence.
+- `src/components/pricing/ArticlesEditor.tsx:56` — `visibleActive` filters only rows returned by the authorized article read.
+
+### Draft ownership and current facts
+
+Settings departure takes one decision across mounted forms. An in-flight or unresolved attempt takes priority over dirty drafts, while row changes retain the editor's local decision. An owning form pauses input during its post-receipt reread so the revision update cannot replace newly typed text. Terms report saved approval independently of raw draft changes. Only the producer's canonical wording authorizes the approval request.
+
+- `src/components/settings/SettingsFormNavigationGuard.tsx:34` — `allowDeparture` checks all attempts before requesting a single dirty confirmation.
+- `src/components/settings/SettingsFormNavigationGuard.tsx:72` — `onNavigate` guards cancellable traversal before the history entry changes.
+- `src/components/settings/CompanySettingsForm.tsx:215` — `accept` settles the matching attempt and requires a subsequent authorized reread.
+- `src/components/settings/QuoteTermsEditor.tsx:74` — `approvedAt` displays the persisted approval only when current facts are available.
+
+### Row identity and feedback
+
+The pricing editors submit the selected revision. They retain dirty input on known unsent attempts and cancel, then discard only at admitted dispatch. A visible selection marker, higher-contrast control boundaries, and row-level lifecycle progress and errors preserve context. The work-role list precedes the recovery and edit area so the current facts, receipt and draft stay adjacent on a phone. Recovery controls remain outside both disabled groups.
+
+- `src/components/pricing/WorkRolesEditor.tsx:97` — `formAction` pins the selected role ID and revision.
+- `src/components/pricing/WorkRolesEditor.tsx:149` — `AttemptRecovery` starts the adjacent recovery, current facts, receipt and draft sequence.
+- `src/components/pricing/ArticlesEditor.tsx:75` — `submitLifecycle` ties optional draft discard to the dispatch boundary.
+- `src/components/pricing/ArticlesEditor.tsx:90` — `lifecycleFeedback` associates progress or error with the acted-on row.
+
+### Visible field and row control boundaries
+
+The owned wrappers give visible text fields and the company select the same `n-600` border as search and the terms textarea. Pricing row actions use that token on white, selected and sunken surfaces. The scoped field selectors match text, email and select controls, leaving hidden operation fields outside their selector.
+
+- `src/components/settings/CompanySettingsForm.tsx:89` — `input[type=email]` scopes the company field borders.
+- `src/components/pricing/WorkRolesEditor.tsx:172` — `input[type=text]` scopes the pricing field borders.
+- `src/components/pricing/ArticlesEditor.tsx:153` — `border-n-600` makes the row edit control visible on the selected surface.
+
+### Assertions and outstanding evidence
+
+AC1 and AC4 use the VAT correction and terms save/approve journeys. AC2 and AC3 assert actual row IDs, stored öre, phone targets and keyboard selection. AC5 and AC6 assert draft retention, membership revocation and protection across pending or failed rereads. The retained producer tests supply the AC6/AC7 authority and reconciliation assertions.
+
+- `tests/e2e/settings/settings.e2e.spec.ts:210` — `E35-7 ATDD company validation` checks authorized absence, associated VAT errors and corrected persistence.
+- `tests/e2e/settings/settings.e2e.spec.ts:251` — `E35-7 cancels a settings link and Back` checks raw whitespace and unchanged history.
+- `tests/e2e/settings/settings.e2e.spec.ts:321` — `E35-7 hides company write controls` checks revocation and zero company/audit mutations.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:248` — `E35-7 ATDD phone row edits` checks row identity, offline retention and a single departure confirmation.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:597` — `assertProducerPendingRead` checks locked inputs and separates the receipt from company absence.
+
+The Round 2 candidate passed typecheck, changed-file ESLint and the production build. The emitted CSS contains the scoped 1 px borders with the compiled `n-600` color. Token calculations give 7.18:1 against white and 6.59:1 against sunken or selected. These calculations and the built CSS still need rendered verification. Node's test runner with the repository import register executed 179 focused settings/pricing tests with zero failures or skips. This includes four synthetic failed-read presentation checks in `tests/unit/features/settings/mutation-attempt.test.ts:146`. The hosted red checkpoint at `c57a7054` recorded three expected failures and 104 other first-attempt passes before implementation.
+
+On the targeted company-heading fix based on `d871bfd7563ba0e3c043964bb4fb6d3e5df0c1cd`, scoped ESLint, the production build and typecheck passed. The built stylesheet emits `overflow-wrap: anywhere` for the utility used by the company heading. The `E35-7 connected settings journey` test checks page and content overflow at 200% text size. That rendered result still needs hosted verification.
+
+The targeted work-role reflow repair passed scoped ESLint, the production build, typecheck and all 179 focused settings/pricing unit tests with zero skips. Static comparison preserved the receipt and edit form markup, including the draft key, and verified that recovery remains between two equally guarded control groups. The simultaneous viewport checks still need hosted execution.
+
+The updated browser assertions await hosted execution. Phase 6 tracks delayed route reads, Forward, archived search, a second editor during a pending attempt, and enlarged-text reflow. Hosted database/RLS and recovery evidence, targeted independent review, and revision-bound visual acceptance remain pending. The settings guard covers local form choices, links and supported cancellable traversal. Shared shell logout and browser traversal without cancellation support remain outside that guard. Drafts and attempts live in the mounted form, so hard reload, closure or crash can lose them. Synthetic renders supply neither authorized database nor navigation evidence. E35-7-REL-1 remains with the UI owner for wider device and contrast review, REL-2 with QA/accessibility for manual checks, and REL-3 with the Coordinator for Phase B consolidation. These obligations remain deferred and `release_ready=false`.
 
 ## Dev Agent Record
 

@@ -26,7 +26,7 @@
  *     modules — pricing adds NO new nav item (it lives under the existing Inställningar
  *     hub), so "Prissättning" is reachable from /settings but is NOT a top-nav link.
  */
-import { test, expect, type Page, type Locator } from "@playwright/test";
+import { test, expect, type Dialog, type Page, type Locator } from "@playwright/test";
 import { readFileSync, readlinkSync, readdirSync, realpathSync } from "node:fs";
 import path from "node:path";
 import { expectActiveAdminNavigation } from "../support/active-admin-navigation";
@@ -207,8 +207,190 @@ import { mkdir, writeFile, open, stat, realpath } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
-import { createTwoTenantFixture, cleanupFixture, makeAuthedServerClient } from "../../factories/tenants";
+import { adminInsertArticle, adminInsertWorkRole, createTwoTenantFixture, cleanupFixture, makeAuthedServerClient } from "../../factories/tenants";
 import { canonicalTermsEqual } from "@/features/settings/mutation-attempt";
+
+test("E35-7 ATDD no-match retains the article query and restores the authorized row", async ({ page }) => {
+    const own = await createTwoTenantFixture();
+    try {
+        const name = "Jordfelsbrytare";
+        await adminInsertArticle({ tenant_id: own.tenantA.id, name, unit_price_ore: 1250 });
+        await adminInsertArticle({ tenant_id: own.tenantB.id, name: "Jordfelsbrytare annan verksamhet" });
+        await page.setViewportSize({ width: 360, height: 640 });
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings/pricing");
+
+        const editor = page.getByTestId("articles-editor");
+        const row = editor.getByRole("listitem").filter({ hasText: name });
+        await waitForHydrated(row.getByRole("button", { name: "Redigera", exact: true }));
+        await expect(row).toHaveCount(1);
+        await expect(row).toContainText("12,50 kr");
+        const search = editor.getByLabel(/sök/i);
+        await expect(search).toBeVisible();
+        await search.fill("Kopplingsdosa");
+        const noMatch = editor.getByText(/inga matchningar|inga träffar|inga artiklar matchar/i);
+        await expect(noMatch).toBeVisible();
+        await expect(search).toHaveValue("Kopplingsdosa");
+        await expect(row).toHaveCount(0);
+        await expect(editor.getByText(/Inga artiklar ännu/)).toHaveCount(0);
+
+        await editor.getByRole("button", { name: "Rensa sökning", exact: true }).click();
+        await expect(search).toHaveValue("");
+        await expect(noMatch).toHaveCount(0);
+        await expect(row).toHaveCount(1);
+        await expect(row).toContainText("12,50 kr");
+        await expect(editor.getByText("Jordfelsbrytare annan verksamhet")).toHaveCount(0);
+    } finally {
+        await cleanupFixture(own);
+    }
+});
+
+test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pricing identities", async ({ page }, info) => {
+    const own = await createTwoTenantFixture();
+    let diagnostic: Awaited<ReturnType<typeof observeArticleDraft>> | undefined;
+    try {
+        const roleName = "Installationstekniker";
+        const articleName = "Kopplingsdosa";
+        const roleId = await adminInsertWorkRole({ tenant_id: own.tenantA.id, display_name: roleName, sell_rate_ore: 85000 });
+        const articleId = await adminInsertArticle({ tenant_id: own.tenantA.id, name: articleName, unit_price_ore: 1250 });
+        await page.setViewportSize({ width: 360, height: 640 });
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings/pricing");
+
+        const role = page.getByTestId("work-roles-editor");
+        const article = page.getByTestId("articles-editor");
+        const roleRow = role.getByRole("listitem").filter({ hasText: roleName });
+        const articleRow = article.getByRole("listitem").filter({ hasText: articleName });
+        await waitForHydrated(roleRow.getByRole("button", { name: "Redigera", exact: true }));
+        for (const [row, displayed] of [[roleRow, "850,00 kr/tim"], [articleRow, "12,50 kr"]] as const) {
+            await expect(row).toHaveCount(1);
+            const amount = row.getByText(displayed, { exact: true });
+            await expect(amount).toBeVisible();
+            const edit = row.getByRole("button", { name: "Redigera", exact: true });
+            const size = await edit.evaluate(element => {
+                const { width, height } = element.getBoundingClientRect();
+                return { width, height };
+            });
+            expect(Math.min(size.width, size.height), `${displayed} row edit target`).toBeGreaterThanOrEqual(44);
+            await expect(amount).toHaveCSS("font-variant-numeric", /tabular-nums/);
+        }
+
+        diagnostic = await observeArticleDraft(page, {
+            label: articleName, price: { original: "12,50", draft: "14,75" }, unit: { original: "", draft: "st" },
+        });
+        await roleRow.getByRole("button", { name: "Redigera", exact: true }).press("Enter");
+        const rate = role.getByLabel("Pris (kr/tim)");
+        await expect(rate).toHaveValue("850,00");
+        await rate.fill("875,25");
+        await role.getByRole("button", { name: "Spara roll", exact: true }).click();
+        await expect(roleRow).toContainText("875,25 kr/tim");
+        diagnostic.note("role-row-updated");
+
+        await articleRow.getByRole("button", { name: "Redigera", exact: true }).click();
+        const price = article.getByLabel("Enhetspris (kr)");
+        await expect(price).toHaveValue("12,50");
+        await price.fill("14,75");
+        await article.getByLabel("Enhet", { exact: true }).fill("st");
+        const discard = page.waitForEvent("dialog");
+        const startNew = article.getByRole("button", { name: "Ny post", exact: true }).click();
+        const prompt = await discard;
+        diagnostic.dialog("observed", prompt);
+        await prompt.dismiss();
+        diagnostic.dialog("dismissed", prompt);
+        await startNew;
+        diagnostic.note("new-post-click-settled");
+        await expect(price).toHaveValue("14,75");
+        await expect(article.getByLabel("Enhet", { exact: true })).toHaveValue("st");
+        const actions: BrowserRequest[] = [];
+        const countPricingActions = (request: BrowserRequest) => {
+            if (new URL(request.url()).pathname === "/settings/pricing" && request.method() === "POST" && request.headers()["next-action"]) {
+                actions.push(request);
+            }
+        };
+        page.on("request", countPricingActions);
+        try {
+            try {
+                await page.context().setOffline(true);
+                await articleRow.getByRole("button", { name: "Arkivera", exact: true }).click();
+                const connectionRequired = article.getByText("Du är offline. Ingen begäran skickades. Utkastet är inte sparat.");
+                await expect(connectionRequired).toBeVisible();
+                await expect(price).toHaveValue("14,75");
+                await expect(articleRow).toHaveCount(1);
+                await expect(article.getByTestId("settings-saved")).toHaveCount(0);
+                for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+                    await page.setViewportSize(viewport);
+                    await producerCapture(page, info, "article", "connection-required", connectionRequired, "center", {
+                        state: "connection-required", mechanism: "browser offline before dispatch, zero action POSTs and retained draft",
+                    });
+                }
+                expect(actions).toHaveLength(0);
+            } finally {
+                await page.context().setOffline(false);
+            }
+            await article.getByRole("button", { name: "Spara artikel", exact: true }).click();
+            await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            diagnostic.note("article-receipt-asserted");
+            expect(actions).toHaveLength(1);
+        } finally {
+            page.off("request", countPricingActions);
+        }
+        await expect(articleRow).toContainText("14,75 kr");
+        await expect(articleRow).toContainText(/\bst\b/);
+
+        const client = await makeAuthedServerClient(own.adminA);
+        const roles = await client.from("work_roles").select("id, sell_rate_ore").eq("tenant_id", own.tenantA.id);
+        const articles = await client.from("articles").select("id, unit_price_ore, unit").eq("tenant_id", own.tenantA.id);
+        expect(roles.error).toBeNull();
+        expect(articles.error).toBeNull();
+        expect(roles.data).toEqual([{ id: roleId, sell_rate_ore: 87525 }]);
+        expect(articles.data).toEqual([{ id: articleId, unit_price_ore: 1475, unit: "st" }]);
+        await expect(rate).toBeEnabled();
+        await expect(price).toBeEnabled();
+        await rate.fill("900,00");
+        await price.fill("17,00");
+        const dialogs: string[] = [];
+        const acceptDiscard = async (dialog: Dialog) => {
+            dialogs.push(dialog.type());
+            await dialog.accept();
+        };
+        page.on("dialog", acceptDiscard);
+        try {
+            await page.getByRole("link", { name: "← Inställningar" }).click();
+            await expect(page).toHaveURL(/\/settings$/);
+            expect(dialogs).toEqual(["confirm"]);
+        } finally {
+            page.off("dialog", acceptDiscard);
+        }
+    } catch (error) {
+        await diagnostic?.finish(error);
+        throw error;
+    } finally {
+        await diagnostic?.finish();
+        await cleanupFixture(own);
+    }
+});
+
+async function expectRenderedContrast(control: Locator, property: "color" | "borderTopColor", minimum: number) {
+    const colors = await control.evaluate((element, property) => {
+        let container: Element | null = property === "borderTopColor" ? element.parentElement : element;
+        while (container && getComputedStyle(container).backgroundColor === "rgba(0, 0, 0, 0)") {
+            container = container.parentElement;
+        }
+        return { foreground: getComputedStyle(element)[property], background: container && getComputedStyle(container).backgroundColor };
+    }, property);
+    function luminance(color: string | null) {
+        const channels = color?.match(/^rgb\((\d+), (\d+), (\d+)\)$/)?.slice(1).map(Number);
+        expect(channels, "Opaque rendered sRGB color").toHaveLength(3);
+        const [red, green, blue] = channels!.map(value => {
+            const srgb = value / 255;
+            return srgb <= 0.04045 ? srgb / 12.92 : ((srgb + 0.055) / 1.055) ** 2.4;
+        });
+        return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+    }
+    const values = [luminance(colors.foreground), luminance(colors.background)];
+    expect((Math.max(...values) + 0.05) / (Math.min(...values) + 0.05), `${property} ${colors.foreground} on ${colors.background}`).toBeGreaterThanOrEqual(minimum);
+}
+
 async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
     for (const name of names) {
         const control = scope.getByRole("button", { name, exact: true });
@@ -218,7 +400,7 @@ async function assertProducerTouchTargets(scope: Page | Locator, names: readonly
         expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
     }
 }
-async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" = "center") {
+async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" | "preserve" = "center", presentation?: { readonly state: string; readonly mechanism: string; readonly remaining?: () => number; readonly deferWrite?: (write: () => Promise<void>) => void }) {
     const scope = surface === "company" || surface === "terms" ? page.locator("body") : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
     const anchor = explicitAnchor ?? (state === "loading" ? scope.getByRole("button", { name: "Sparar…", exact: true })
         : state === "unknown" || state.endsWith("-pending") ? scope.getByTestId("operation-unconfirmed")
@@ -226,21 +408,39 @@ async function producerCapture(page: Page, info: TestInfo, surface: string, stat
         : state === "error" ? scope.locator('[aria-invalid="true"]').first().locator("..")
         : state === "finished" ? scope.getByTestId(surface === "terms" ? "quote-terms-approved-status" : "settings-saved")
         : surface === "company" ? page.getByLabel("Företagsnamn") : surface === "terms" ? page.getByLabel("Offertvillkor") : scope);
-    await expect(anchor).toBeVisible();
-    await anchor.evaluate((el, block) => el.scrollIntoView({ block }), anchorBlock);
-    await expect(anchor).toBeInViewport();
+    const timeout = () => presentation?.remaining ? { timeout: presentation.remaining() } : {};
+    await expect(anchor).toBeVisible(timeout());
+    if (anchorBlock !== "preserve") {
+        await anchor.evaluate((el, block) => el.scrollIntoView({ block }), anchorBlock, timeout());
+    }
+    await expect(anchor).toBeInViewport(timeout());
     if (state === "loading") await expect(anchor).toBeDisabled();
     const boot = JSON.parse(readFileSync(path.join(process.cwd(), "test-results/private/job-events-fetch-fault.json.startup.json"), "utf8"));
     expect(boot.runId).toBe(process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID);
     expect(boot.applicationUrl).toBe(new URL(page.url()).origin);
     expect(Number.isSafeInteger(boot.serverPid)).toBe(true);
     const viewport = page.viewportSize()!;
-    const dir = path.join(process.cwd(), "playwright-report", "35-7-p", `${surface}-${viewport.width}x${viewport.height}`);
-    await mkdir(dir, { recursive: true });
-    const file = path.join(dir, `${state}.png`);
-    const png = await page.screenshot({ path: file, fullPage: false });
-    const candidate = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-    await writeFile(path.join(dir, `${state}.json`), JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading" || state.endsWith("-pending") || state === "refresh-notice", captureAnchor: await anchor.evaluate(el => ({ tag: el.tagName, id: el.id, text: el.textContent?.trim().slice(0, 160) })), configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state, viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt: new Date().toISOString() }, null, 2));
+    const dir = path.join(process.cwd(), "playwright-report", presentation ? "35-7-presentation" : "35-7-p", `${surface}-${viewport.width}x${viewport.height}`);
+    const captureState = presentation?.state ?? state;
+    const file = path.join(dir, `${captureState}.png`);
+    if (!presentation?.deferWrite) await mkdir(dir, { recursive: true });
+    const png = await page.screenshot({
+        ...(!presentation?.deferWrite ? { path: file } : {}),
+        fullPage: false, ...(presentation ? { timeout: 3_000, ...timeout() } : {}),
+    });
+    const captureAnchor = await anchor.evaluate(el => ({ tag: el.tagName, id: el.id, text: el.textContent?.trim().slice(0, 160) }), undefined, timeout());
+    const capturedAt = new Date().toISOString();
+    const write = async () => {
+        const candidate = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+        const metadata = JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading" || state.endsWith("-pending") || state === "refresh-notice" || Boolean(presentation && state === "pending-target"), captureAnchor, configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state: captureState, ...(presentation ? { mechanism: presentation.mechanism } : {}), viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt }, null, 2);
+        if (presentation?.deferWrite) {
+            await mkdir(dir, { recursive: true });
+            await writeFile(file, png);
+        }
+        await writeFile(path.join(dir, `${captureState}.json`), metadata);
+    };
+    if (presentation?.deferWrite) presentation.deferWrite(write);
+    else await write();
 }
 type ProducerReadTerminal = { kind: "finished" | "failed"; request: BrowserRequest };
 function producerReadIssue(stage: string, error: unknown) {
@@ -375,6 +575,7 @@ async function assertProducerReadUnavailable(view: ProducerReadDomainView, histo
     await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
     await expect(scope.getByLabel(name)).toBeDisabled(); await expect(scope.getByLabel(name)).toHaveValue(draft);
     await expect(scope.getByRole("button", { name: save, exact: true })).toBeDisabled();
+    if (surface === "company") await expect(scope.getByTestId("company-empty-defaults")).toHaveCount(0);
     if (price) {
         await expect(receipt).toContainText("Aktuella uppgifter är inte tillgängliga.");
         await expect(scope.getByText(surface === "article" ? /Inga artiklar/ : /Inga arbetsroller/)).toHaveCount(0);
@@ -419,6 +620,8 @@ async function assertProducerPendingRead(view: ProducerReadDomainView, historica
     await expect(scope.getByRole("button", { name: /^(Sparar…|Godkänner…|Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska)$/ })).toHaveCount(0);
     await expect(scope.getByLabel(name)).toHaveValue(draft);
     if (price) await expect(scope.getByLabel(price)).toHaveValue("31,00");
+    await expect(scope.getByLabel(name)).toBeDisabled();
+    if (surface === "company") await expect(scope.getByTestId("company-empty-defaults")).toHaveCount(0);
     expect(await historical.evaluate(element => element.isConnected)).toBe(true);
     if (surface === "terms") {
         expect(termsBaseline).not.toBeUndefined();
@@ -487,11 +690,13 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             for (const spec of [{ id: "work-roles-editor", surface: "work-role", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", archived: "work-roles-archived" }, { id: "articles-editor", surface: "article", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", archived: "articles-archived" }]) {
                 const editor = page.getByTestId(spec.id);
                 await producerCapture(page, info, spec.surface, "empty");
+                await producerCapture(page, info, spec.surface, "empty", undefined, "center", { state: "empty", mechanism: "authorized fresh-tenant absence" });
                 await editor.getByLabel(spec.name).fill(`Synthetic ${spec.surface}`);
                 await editor.getByLabel(spec.price).fill("-1");
                 await editor.getByRole("button", { name: spec.save }).click();
                 await expect(editor.getByLabel(spec.price)).toHaveAttribute("aria-invalid", "true");
                 await producerCapture(page, info, spec.surface, "error");
+                await producerCapture(page, info, spec.surface, "error", undefined, "center", { state: "validation", mechanism: "actual action validation" });
                 await editor.getByLabel(spec.price).fill("12,50");
                 const createLoss = await loseCommittedReply(page, "/settings/pricing");
                 await editor.getByRole("button", { name: spec.save }).dblclick();
@@ -501,11 +706,13 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                     await expect(editor.getByRole("button", { name: "Sparar…", exact: true })).toBeDisabled();
                     await expect(editor.getByLabel(spec.name)).toBeDisabled();
                     await producerCapture(page, info, spec.surface, "loading");
+                    await producerCapture(page, info, spec.surface, "loading", undefined, "center", { state: "submitting", mechanism: "held action transport, pending client state" });
                 } finally { createLoss.release(); }
                 await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
                 await expect(editor.getByRole("button", { name: "Ny post" })).toBeDisabled();
                 if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
                 await producerCapture(page, info, spec.surface, "unknown");
+                await producerCapture(page, info, spec.surface, "unknown", undefined, "center", { state: "unknown", mechanism: "controlled loss of action reply" });
                 const reconcileHold = await holdNextProducerTransport(page, "/settings/pricing", "action");
                 try {
                     await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
@@ -547,6 +754,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await expect(activeRow).toHaveCount(0);
                 await expect(row.getByRole("button", { name: "Återaktivera" })).toBeEnabled();
                 await producerCapture(page, info, spec.surface, "archived-restore", row);
+                await producerCapture(page, info, spec.surface, "archived-restore", row, "center", { state: "archived-restore", mechanism: "same selected row archived by a confirmed action" });
                 await expect(row.getByRole("button", { name: "Återaktivera" })).toBeInViewport();
                 const restoreLoss = await loseCommittedReply(page, "/settings/pricing");
                 await row.getByRole("button", { name: "Återaktivera" }).click();
@@ -564,6 +772,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await expect(row).toHaveCount(0);
                 await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
                 await producerCapture(page, info, spec.surface, "finished", activeRow);
+                await producerCapture(page, info, spec.surface, "finished", activeRow, "center", { state: "finished", mechanism: "reactivated authorized row after current read" });
                 await expect(activeRow.getByRole("button", { name: "Arkivera" })).toBeInViewport();
                 await expect(editor.getByTestId("settings-saved")).toBeInViewport();
             }
@@ -573,11 +782,78 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
         }
     });
 
+async function positionProducerFrame(page: Page, anchors: readonly Locator[]) {
+    const handles: NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>>[] = [];
+    try {
+        for (const anchor of anchors) {
+            const handle = await anchor.elementHandle({ timeout: 3_000 });
+            if (!handle) throw new Error("Required producer capture anchor is missing");
+            handles.push(handle);
+        }
+        await page.evaluate(elements => {
+            const main = document.getElementById("main-content");
+            const root = document.scrollingElement;
+            if (!main || !root || elements.some(element => !main.contains(element) || !element.getClientRects().length)) {
+                throw new Error("All producer capture anchors must be rendered inside the main scroll container");
+            }
+            const mainBox = main.getBoundingClientRect();
+            const mainTop = mainBox.top + main.clientTop;
+            const mainBottom = Math.min(mainBox.bottom, mainTop + main.clientHeight);
+            const mainLeft = mainBox.left + main.clientLeft;
+            const left = Math.max(0, mainLeft);
+            const right = Math.min(window.innerWidth, mainBox.right, mainLeft + main.clientWidth);
+            const boxes = elements.map(element => element.getBoundingClientRect());
+            const first = Math.min(...boxes.map(box => box.top));
+            const last = Math.max(...boxes.map(box => box.bottom));
+
+            // Inner scroll moves the anchors within main. Document scroll moves
+            // main and anchors together. Limit both to their actual scroll ranges.
+            const inner = main.scrollTop;
+            const total = inner + root.scrollTop;
+            const maxInner = Math.max(0, main.scrollHeight - main.clientHeight);
+            const maxOuter = Math.max(0, root.scrollHeight - root.clientHeight);
+            const minTotal = Math.ceil(total + last - window.innerHeight);
+            const maxTotal = Math.floor(total + first);
+            const minInner = Math.max(0, Math.ceil(inner + last - mainBottom), minTotal - maxOuter);
+            const lastInner = Math.min(maxInner, Math.floor(inner + first - mainTop), maxTotal);
+            if (minInner > lastInner || minTotal > maxTotal || boxes.some(box => box.left < left || box.right > right)) {
+                throw new Error(`Producer capture anchors cannot fit together: ${(last - first).toFixed(1)}px with a ${(mainBottom - mainTop).toFixed(1)}px main scrollport and ${window.innerHeight}px viewport`);
+            }
+
+            const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+            const centeredInner = Math.round(inner + (first + last - mainTop - mainBottom) / 2);
+            const targetInner = clamp(centeredInner, minInner, lastInner);
+            const centeredOuter = Math.round(total + (first + last - window.innerHeight) / 2) - targetInner;
+            const targetOuter = clamp(centeredOuter, Math.max(0, minTotal - targetInner), Math.min(maxOuter, maxTotal - targetInner));
+            main.scrollTo({ top: targetInner, behavior: "instant" });
+            root.scrollTo({ top: targetOuter, behavior: "instant" });
+        }, handles);
+    } finally {
+        await Promise.all(handles.map(handle => handle.dispose()));
+    }
+}
+
+async function expectProducerFrame(anchors: readonly Locator[]) {
+    for (const anchor of anchors) await expect(anchor).toBeInViewport({ ratio: 1 });
+}
+
+async function captureStalePricingFrame(
+    page: Page, info: TestInfo, surface: string, state: "stale" | "neighbor-stale",
+    captureAnchor: Locator, simultaneouslyRequired: readonly Locator[],
+) {
+    const anchors = [captureAnchor, ...simultaneouslyRequired];
+    await positionProducerFrame(page, anchors);
+    await expectProducerFrame(anchors);
+    await producerCapture(page, info, surface, state, captureAnchor, "preserve");
+    await expectProducerFrame(anchors);
+}
+
 for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }])
 test(`R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
     test.setTimeout(120_000);
     const own = await createTwoTenantFixture();
     let other: Page | undefined;
+    let diagnostic: Awaited<ReturnType<typeof observeArticleDraft>> | undefined;
     const specs = [
         { id: "work-roles-editor", surface: "work-role", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", label: "Pinned role" },
         { id: "articles-editor", surface: "article", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", label: "Pinned article" },
@@ -587,6 +863,10 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
         await signIn(page, own.adminA.email, own.adminA.password);
         await page.goto("/settings/pricing");
         await waitForHydrated(page.getByLabel("Benämning"));
+        if (viewport.width === 360) diagnostic = await observeArticleDraft(page, {
+            label: "Pinned article", price: { original: "10,00", draft: "11,00", current: "20,00" }, unit: { original: "" },
+        });
+        const ordinary = await makeAuthedServerClient(own.adminA);
         for (const spec of specs) {
             const editor = page.getByTestId(spec.id);
             await editor.getByLabel(spec.name).fill(spec.label);
@@ -599,6 +879,7 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
         await waitForHydrated(other.getByLabel("Benämning"));
         for (const [index, spec] of specs.entries()) {
             const editor = page.getByTestId(spec.id), remote = other.getByTestId(spec.id);
+            const articleDiagnostic = spec.surface === "article" ? diagnostic : undefined;
             const row = editor.getByRole("listitem").filter({ hasText: spec.label });
             const remoteRow = remote.getByRole("listitem").filter({ hasText: spec.label });
             await row.getByRole("button", { name: "Redigera" }).click();
@@ -611,27 +892,26 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             await expect(editor.getByRole("button", { name: "Uppdatera och granska" })).toBeVisible();
             await expect(editor.getByTestId("pricing-current-facts")).toContainText("20,00");
             await expect(editor.getByLabel(spec.price)).toHaveValue("11,00");
+            articleDiagnostic?.note("retained-draft-and-current-facts-asserted");
             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
             if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
-            const staleAnchor = viewport.width === 360 && spec.surface === "work-role" ? editor.getByRole("button", { name: "Uppdatera och granska", exact: true }) : editor.getByTestId("pricing-current-facts");
-            const staleBlock = viewport.width === 1440 && spec.surface === "article" || viewport.width === 360 && spec.surface === "work-role" ? "start" : "center";
-            if (viewport.width === 1440 || spec.surface === "work-role") {
-                await staleAnchor.evaluate((element, block: "center" | "start") => element.scrollIntoView({ block }), staleBlock);
-                await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
-            }
-            await producerCapture(page, info, spec.surface, "stale", staleAnchor, staleBlock);
-            if (viewport.width === 1440 || spec.surface === "work-role") await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
-            if (viewport.width === 360 && spec.surface === "work-role") {
-                await expect(editor.getByTestId("pricing-current-facts").getByText(/20,00/)).toBeInViewport({ ratio: 1 });
-                await expect(editor.getByRole("button", { name: "Använd aktuella uppgifter", exact: true })).toBeInViewport({ ratio: 1 });
-                await expect(editor.getByRole("button", { name: "Uppdatera och granska", exact: true })).toBeInViewport({ ratio: 1 });
-            }
+            const facts = editor.getByTestId("pricing-current-facts");
+            const price = editor.getByLabel(spec.price);
+            const adopt = editor.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
+            const refresh = editor.getByRole("button", { name: "Uppdatera och granska", exact: true });
+            const phoneRole = viewport.width === 360 && spec.surface === "work-role";
+            const staleAnchor = phoneRole ? refresh : facts;
+            const staleRequired = phoneRole ? [price, facts.getByText(/20,00/), adopt]
+                : viewport.width === 1440 ? [price] : [];
+            await captureStalePricingFrame(page, info, spec.surface, "stale", staleAnchor, staleRequired);
             if (viewport.width === 360 && spec.surface === "article") {
                 await producerCapture(page, info, spec.surface, "stale-draft", editor.getByLabel(spec.price));
                 await expect(editor.getByLabel(spec.price)).toBeInViewport();
             }
             await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+            articleDiagnostic?.note("adopt-click-settled");
             await expect(editor.getByLabel(spec.price)).toHaveValue("20,00");
+            articleDiagnostic?.note("adoption-asserted");
             await editor.getByLabel(spec.price).fill("21,00");
             await remoteRow.getByRole("button", { name: "Redigera" }).click();
             await remote.getByLabel(spec.price).fill("30,00");
@@ -647,18 +927,9 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             await expect(editor.getByLabel(spec.price)).toHaveValue("21,00");
             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
             if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Använd aktuella uppgifter"]);
-            const neighbor_staleAnchor = viewport.width === 360 && spec.surface === "work-role" ? editor.getByTestId("pricing-current-facts") : editor.getByTestId("pricing-current-facts");
-            const neighbor_staleBlock = viewport.width === 1440 && spec.surface === "article" || viewport.width === 360 && spec.surface === "work-role" ? "start" : "center";
-            if (viewport.width === 1440 || spec.surface === "work-role") {
-                await neighbor_staleAnchor.evaluate((element, block: "center" | "start") => element.scrollIntoView({ block }), neighbor_staleBlock);
-                await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
-            }
-            await producerCapture(page, info, spec.surface, "neighbor-stale", neighbor_staleAnchor, neighbor_staleBlock);
-            if (viewport.width === 1440 || spec.surface === "work-role") await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
-            if (viewport.width === 360 && spec.surface === "work-role") {
-                await expect(editor.getByTestId("pricing-current-facts").getByText(/30,00/)).toBeInViewport({ ratio: 1 });
-                await expect(editor.getByRole("button", { name: "Använd aktuella uppgifter", exact: true })).toBeInViewport({ ratio: 1 });
-            }
+            const neighborRequired = phoneRole ? [price, facts.getByText(/30,00/), adopt]
+                : viewport.width === 1440 ? [price] : [];
+            await captureStalePricingFrame(page, info, spec.surface, "neighbor-stale", facts, neighborRequired);
             if (viewport.width === 360 && spec.surface === "article") {
                 await producerCapture(page, info, spec.surface, "neighbor-stale-draft", editor.getByLabel(spec.price));
                 await expect(editor.getByLabel(spec.price)).toBeInViewport();
@@ -671,6 +942,7 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             const historicalOperationId = await operationIdOf(await receiptRequest);
             await expect(row).toContainText("31,00");
             await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            articleDiagnostic?.note("article-receipt-asserted");
             const historicalReceipt = await editor.getByTestId("settings-saved").elementHandle();
             expect(historicalReceipt).not.toBeNull();
             // A normal checked UI edit changes the SAME target after this receipt.
@@ -691,11 +963,67 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             try {
                 // Neighbor success performs the existing authorized reread without
                 // resetting/replaying the historical target's controller or receipt.
-                await neighbor.getByRole("button", { name: "Ny post" }).click();
-                await neighbor.getByLabel(neighborSpec.name).fill(`Current newer refresh ${index}`);
-                await neighbor.getByLabel(neighborSpec.price).fill("99,00");
-                await neighbor.getByRole("button", { name: neighborSpec.save }).click();
-                await expect(neighbor.getByRole("listitem").filter({ hasText: `Current newer refresh ${index}` })).toHaveCount(1);
+                const label = `Current newer refresh ${index}`;
+                const role = neighborSpec.surface === "work-role";
+                const newHeading = page.getByRole("heading", { name: role ? "Ny arbetsroll" : "Ny artikel", exact: true });
+                const createForm = neighbor.locator("form").filter({ has: newHeading });
+                await neighbor.getByRole("button", { name: "Ny post", exact: true }).click();
+                const nameField = createForm.getByRole("textbox", { name: neighborSpec.name, exact: true });
+                const priceField = createForm.getByRole("textbox", { name: neighborSpec.price, exact: true });
+                const createSave = createForm.getByRole("button", { name: neighborSpec.save, exact: true });
+                await expect(createForm).toBeVisible();
+                await expect(nameField).toBeFocused();
+                await expect(nameField).toHaveValue("");
+                await expect(priceField).toHaveValue("");
+                await expect(createForm.locator('input[name="id"]')).toHaveCount(0);
+                await nameField.fill(label);
+                await priceField.fill("99,00");
+                await expect(nameField).toHaveValue(label);
+                await expect(priceField).toHaveValue("99,00");
+                await expect(createSave).toBeEnabled();
+
+                const actionDeadline = { timeout: 15_000 };
+                const createRequest = page.waitForRequest(async request => {
+                    const headers = request.headers();
+                    if (new URL(request.url()).pathname !== "/settings/pricing" || request.method() !== "POST"
+                        || !headers["next-action"] || !headers["content-type"]?.startsWith("multipart/form-data")) return false;
+                    const body = request.postDataBuffer();
+                    if (!body) return false;
+                    const form = await new globalThis.Request("http://capture.invalid", {
+                        method: "POST", headers: { "content-type": headers["content-type"] }, body: new Uint8Array(body),
+                    }).formData().catch(() => null);
+                    if (!form) return false;
+                    const values = (name: string) => [...form].filter(([key]) => key === name || key.endsWith(`_${name}`)).map(([, value]) => value);
+                    const hasOne = (name: string, value: string) => {
+                        const entries = values(name);
+                        return entries.length === 1 && entries[0] === value;
+                    };
+                    return values("id").length === 0 && hasOne("expectedRevision", "absent")
+                        && hasOne(role ? "display_name" : "name", label)
+                        && hasOne(role ? "sell_rate_kronor" : "unit_price_kronor", "99,00");
+                }, actionDeadline);
+                // Observe headers for this exact POST; the streamed response can remain open.
+                const createHeaders = page.waitForResponse(async response =>
+                    response.request().method() === "POST" && response.request() === await createRequest, actionDeadline);
+                const [createdRequest, createResponse] = await Promise.all([createRequest, createHeaders, createSave.click()]);
+                expect(createResponse.request() === createdRequest && createResponse.ok()).toBe(true);
+                const created = await producerCapturedFacts(createdRequest);
+                expect(/^[0-9a-f-]{36}$/i.test(created.operation)).toBe(true);
+                expect(/^[0-9a-f-]{36}$/i.test(created.target)).toBe(true);
+                expect(created.tenant === own.tenantA.id && created.actor === own.adminA.id).toBe(true);
+                expect(created.expectedRevision).toBe("absent");
+                const createdRow = neighbor.getByRole("listitem").filter({ hasText: label });
+                await expect(createdRow).toHaveCount(1);
+                await expect(createdRow).toBeVisible();
+                await expect(neighbor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+
+                const persisted = role
+                    ? await ordinary.from("work_roles").select("id,amount:sell_rate_ore").eq("tenant_id", own.tenantA.id).eq("display_name", label)
+                    : await ordinary.from("articles").select("id,amount:unit_price_ore").eq("tenant_id", own.tenantA.id).eq("name", label);
+                expect(persisted.error?.code ?? null).toBeNull();
+                expect(persisted.data?.length).toBe(1);
+                expect(persisted.data?.[0]?.id === created.target).toBe(true);
+                expect(persisted.data?.[0]?.amount).toBe(9900);
                 await expect(row).toContainText("41,00");
                 await expect(editor.getByTestId("pricing-current-facts")).toContainText("41,00");
                 await expect(editor.getByLabel(spec.price)).toHaveValue("31,00");
@@ -705,8 +1033,9 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
                 await expect(editor.getByTestId("settings-saved")).not.toContainText("Aktuella uppgifter är bekräftade.");
                 expect(await historicalReceipt!.evaluate(element => element.isConnected)).toBe(true);
                 expect(await historicalReceipt!.textContent()).toContain("Nyare ändringar finns. Granska aktuella uppgifter.");
-                expect(laterActionRequests).toHaveLength(1);
-                expect(await operationIdOf(laterActionRequests[0])).not.toBe(historicalOperationId);
+                expect(laterActionRequests.length).toBe(1);
+                expect(laterActionRequests[0] === createdRequest).toBe(true);
+                expect(created.operation !== historicalOperationId).toBe(true);
                 await producerCapture(page, info, spec.surface, "current-newer", editor.getByTestId("pricing-current-facts"), "start");
                 await expect(editor.getByTestId("pricing-current-facts")).toBeInViewport();
                 await expect(editor.getByTestId("pricing-current-facts").getByText(/41,00/)).toBeVisible();
@@ -725,7 +1054,11 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             } finally { page.off("request", observeLaterAction); }
 
         }
+    } catch (error) {
+        await diagnostic?.finish(error);
+        throw error;
     } finally {
+        await diagnostic?.finish();
         await other?.close();
         await cleanupFixture(own);
     }
@@ -1062,7 +1395,7 @@ function producerNamespaceOutput(raw: string, input: ProducerNamespaceInput): Pr
     } catch { return fail(); }
 }
 
-async function qualifyProducerBoundedEffects(info: TestInfo) {
+async function qualifyProducerRuntime(info: TestInfo) {
     const runtime = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
     runtime.validateAdmission("browser", process.env, process.platform);
     expect(info.config.workers).toBe(1);
@@ -1120,6 +1453,11 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
         return address?.[1] === "0C1C" && ["00000000", "0100007F", "00000000000000000000000000000000", "00000000000000000000000001000000"].includes(address[0]) && fields[3] === "0A" && socketIds.has(fields[9]);
     }));
     expect(runtime.ownsListenerRecord(3100, sockets, tcp) || wildcardOwned).toBe(true);
+    return { runtime, stack, boot, wrapperPid };
+}
+
+async function qualifyProducerBoundedEffects(info: TestInfo) {
+    const { runtime, stack, boot, wrapperPid } = await qualifyProducerRuntime(info);
     // A fresh isolated job plus the single configured worker is not permission
     // to affect another runner: inspect actual host CLI consumers as well.
     const installedCli = producerPlaywrightEntry(path.resolve("node_modules/@playwright/test/cli.js"));
@@ -1420,17 +1758,16 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                     await assertPendingBranch();
                     const adopt = scope.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
                     const hasAdopt = await adopt.count(); expect(hasAdopt).toBeLessThanOrEqual(1);
+                    const pendingAnchor = hasAdopt ? adopt : pendingReceipt;
+                    const pendingFrame = hasAdopt ? [pendingReceipt, adopt] : [pendingReceipt];
                     for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
                         await page.setViewportSize(viewport);
-                        const pendingAnchor = hasAdopt ? adopt : pendingReceipt;
-                        await pendingAnchor.evaluate(element => element.scrollIntoView({ block: "start" }));
-                        await expect(pendingReceipt).toBeInViewport({ ratio: 1 });
-                        if (hasAdopt) await expect(adopt).toBeInViewport({ ratio: 1 });
+                        await positionProducerFrame(page, pendingFrame);
+                        await expectProducerFrame(pendingFrame);
                         expect(heldReadTerminal).toBe(false);
                         await assertPendingBranch();
-                        await producerCapture(page, info, spec.surface, "receipt-read-pending", pendingAnchor, "start");
-                        await expect(pendingReceipt).toBeInViewport({ ratio: 1 });
-                        if (hasAdopt) await expect(adopt).toBeInViewport({ ratio: 1 });
+                        await producerCapture(page, info, spec.surface, "receipt-read-pending", pendingAnchor, "preserve");
+                        await expectProducerFrame(pendingFrame);
                         expect(heldReadTerminal).toBe(false);
                         await assertPendingBranch();
                     }
@@ -1463,17 +1800,19 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                 expect(await historical!.evaluate(element => element.isConnected)).toBe(true);
                 // A committed receipt with a failed read has no unknown/conflict recovery controls.
                 await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
+                const unavailableFrame = [unavailable, scope.getByTestId("settings-saved")];
                 for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
                     await page.setViewportSize(viewport);
-                    const unavailableAlignment = spec.surface === "article" && viewport.width === 360 ? "center" : "start";
-                    await unavailable.evaluate((element, block: "center" | "start") => element.scrollIntoView({ block }), unavailableAlignment);
-                    await expect(unavailable).toBeInViewport({ ratio: 1 });
-                    await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
+                    await positionProducerFrame(page, unavailableFrame);
+                    await expectProducerFrame(unavailableFrame);
                     await assertDomain();
-                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, unavailableAlignment);
+                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, "preserve");
+                    await expectProducerFrame(unavailableFrame);
+                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, "preserve", {
+                        state: "read-error", mechanism: "real checked read failure with preserved historical receipt (P-E5)",
+                    });
                     await assertDomain();
-                    await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
-                    await expect(unavailable).toBeInViewport({ ratio: 1 });
+                    await expectProducerFrame(unavailableFrame);
                     if (viewport.width === 360) {
                         await assertDomain();
                         await producerCapture(page, info, spec.surface, "read-unavailable-draft", scope.getByLabel(spec.name));
@@ -1560,19 +1899,23 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
         await expect(article.getByText(/Inga artiklar/)).toBeVisible();
         await expect(article.getByRole("button", { name: "Spara artikel" })).toBeDisabled();
         expect(await retainedReceipt!.evaluate(element => element.isConnected)).toBe(true);
+        const missingFacts = article.getByTestId("pricing-current-facts");
+        const missingFrame = [
+            missingFacts, article.getByTestId("settings-saved"),
+            article.getByRole("button", { name: "Använd aktuella uppgifter", exact: true }),
+            missingFacts.getByText("Ingen aktuell post finns.", { exact: true }),
+            article.getByText(/Inga artiklar/),
+        ];
         for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
             await page.setViewportSize(viewport);
-            const missingFacts = article.getByTestId("pricing-current-facts");
-            const adopt = article.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
-            await missingFacts.evaluate(element => element.scrollIntoView({ block: "start" }));
-            await expect(article.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
-            await expect(adopt).toBeInViewport({ ratio: 1 });
-            await expect(article.getByText("Ingen aktuell post finns.", { exact: true })).toBeInViewport({ ratio: 1 });
-            await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "start");
-            await expect(article.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
-            await expect(adopt).toBeInViewport({ ratio: 1 });
-            await expect(article.getByText("Ingen aktuell post finns.", { exact: true })).toBeInViewport({ ratio: 1 });
-            await expect(article.getByText(/Inga artiklar/)).toBeInViewport({ ratio: 1 });
+            await positionProducerFrame(page, missingFrame);
+            await expectProducerFrame(missingFrame);
+            await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "preserve");
+            await expectProducerFrame(missingFrame);
+            await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "preserve", {
+                state: "historical-target-missing", mechanism: "authorized reread after bounded test-owned row deletion (P-E5)",
+            });
+            await expectProducerFrame(missingFrame);
             if (viewport.width === 360) {
                 await producerCapture(page, info, "article", "current-missing-draft", article.getByLabel("Enhetspris (kr)"));
                 await expect(article.getByLabel("Enhetspris (kr)")).toBeInViewport({ ratio: 1 });
@@ -1591,3 +1934,513 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
         if (failures.length) throw new AggregateError(failures, "Bounded producer effects failed; retry is refused by durable job claim");
     }
 });
+
+const initialReads = [
+    { surface: "company", route: "/settings/company", relation: "public.company_settings",
+        loading: "Hämtar företagsinställningar…", absent: "Företagsnamn" },
+    { surface: "terms", route: "/settings/quote-terms", relation: "public.quote_terms",
+        loading: "Hämtar offertvillkor…", absent: "Offertvillkor" },
+    { surface: "pricing", route: "/settings/pricing", relation: "public.articles",
+        loading: "Hämtar arbetsroller och artiklar…", absent: "Artikelnamn" },
+] as const;
+
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+    test(`E35-7 initial route reads stream actual loading before authorized absence ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+        test.skip(process.env.CI !== "true", "Requires the fresh isolated hosted browser runtime");
+        test.setTimeout(90_000);
+        expect(info.retry).toBe(0); // Repeated acquisition after an ambiguous effect is refused.
+        const { runtime, stack } = await qualifyProducerRuntime(info);
+        const own = await createTwoTenantFixture();
+        let fixtureCleanupSafe = true;
+        try {
+            await page.setViewportSize(viewport);
+            await signIn(page, own.adminA.email, own.adminA.password);
+            for (const spec of initialReads) {
+                const field = page.getByRole("textbox", { name: spec.absent, exact: true });
+                const lock = runtime.createCalendarFeedDatabaseClient(stack, "proof");
+                let connectionLost = false;
+                lock.on("error", () => { connectionLost = true; });
+                let transaction = false;
+                let writeCapture: (() => Promise<void>) | undefined;
+                try {
+                    await lock.connect();
+                    await runtime.readCalendarFeedSetupAuthority(lock);
+                    const identity = await lock.query(`
+                        select current_database() as database,
+                            inet_server_port() as port, pg_is_in_recovery() as recovery
+                    `);
+                    expect(identity.rows).toEqual([{ database: "postgres", port: 5432, recovery: false }]);
+                    // Read the most conservative positive timeout across applicable
+                    // authenticator/authenticated and database settings. Require
+                    // explicit positive statement-timeout evidence before locking.
+                    const options = await lock.query(`
+                        select split_part(option, '=', 1) as name, split_part(option, '=', 2) as value
+                        from pg_db_role_setting s cross join lateral unnest(s.setconfig) option
+                        where (s.setdatabase = 0 or s.setdatabase = (select oid from pg_database where datname = current_database()))
+                            and (s.setrole = 0 or s.setrole in (select oid from pg_roles where rolname in ('authenticator', 'authenticated')))
+                            and split_part(option, '=', 1) in ('statement_timeout', 'lock_timeout', 'transaction_timeout')
+                    `);
+                    const bounds = options.rows.map(({ name, value }) => {
+                        const setting = /^(\d+(?:\.\d+)?)(ms|s|min)?$/.exec(value);
+                        if (!setting) throw new Error("Unrecognized checked-read timeout setting");
+                        return { name, ms: Number(setting[1]) * (setting[2] === "min" ? 60_000 : setting[2] === "s" ? 1_000 : 1) };
+                    }).filter(({ ms }) => ms > 0);
+                    expect(bounds.some(({ name }) => name === "statement_timeout")).toBe(true);
+                    const budget = Math.min(5_000, Math.min(...bounds.map(({ ms }) => ms)) - 1_500);
+                    expect(budget).toBeGreaterThanOrEqual(2_000);
+                    const deadline = performance.now() + budget;
+                    const remaining = () => {
+                        const ms = Math.floor(deadline - performance.now());
+                        if (ms <= 0 || connectionLost) throw new Error("Bounded initial-read capture expired");
+                        return ms;
+                    };
+                    await lock.query("begin");
+                    transaction = true;
+                    const holderLimits = {
+                        text: `select set_config('transaction_timeout', $1, true),
+                            set_config('idle_in_transaction_session_timeout', '3s', true),
+                            set_config('statement_timeout', '1s', true),
+                            set_config('lock_timeout', '1s', true)`,
+                        values: [`${remaining() + 1_500}ms`],
+                        query_timeout: 1_000,
+                    };
+                    await lock.query(holderLimits);
+                    fixtureCleanupSafe = false; // Arm before the first possibly uncertain relation effect.
+                    const holdRelation = { text: `lock table ${spec.relation} in access exclusive mode`, query_timeout: Math.min(1_000, remaining()) };
+                    await lock.query(holdRelation);
+                    const observe = (text: string, values: string[] = []) => {
+                        const query = { text, values, query_timeout: Math.min(1_000, remaining()) };
+                        return lock.query(query);
+                    };
+                    const started = await observe("select clock_timestamp()::text as at");
+                    await page.goto(spec.route, { waitUntil: "commit", timeout: remaining() });
+                    const loading = page.getByRole("status").filter({ hasText: spec.loading });
+                    await expect(loading).toBeVisible({ timeout: remaining() });
+                    const blockedPostgrestRead = async () => {
+                        await observe("select pg_stat_clear_snapshot()");
+                        const [schema, table] = spec.relation.split(".");
+                        const result = await observe(`
+                            select a.pid
+                            from pg_stat_activity a
+                            join pg_locks l on l.pid = a.pid and l.locktype = 'relation'
+                            where a.usename = 'authenticator' and a.datname = current_database()
+                                and a.state = 'active' and a.wait_event_type = 'Lock' and a.query_start >= $1::timestamptz
+                                and not l.granted and l.mode = 'AccessShareLock' and l.relation = to_regclass($2)
+                                and l.database = (select oid from pg_database where datname = current_database())
+                                and pg_backend_pid() = any(pg_blocking_pids(a.pid))
+                                and a.query ~* '^[[:space:]]*WITH[[:space:]]+pgrst_source[[:space:]]+AS[[:space:]]*[(][[:space:]]*SELECT[[:space:]]'
+                                and strpos(a.query, $3) > 0
+                        `, [started.rows[0].at, spec.relation, `"${schema}"."${table}"`]);
+                        remaining();
+                        return result.rows.map(({ pid }) => Number(pid));
+                    };
+                    let waiting: number[] = [];
+                    await expect.poll(async () => { waiting = await blockedPostgrestRead(); return waiting.length; },
+                        { timeout: remaining(), intervals: [50, 100, 200] }).toBeGreaterThan(0);
+                    await expect(field).toHaveCount(0, { timeout: remaining() });
+                    await expect(page.getByTestId("settings-saved")).toHaveCount(0, { timeout: remaining() });
+                    await expect(page.getByText(/förslag på 25 %|Inga artiklar ännu|Inga arbetsroller ännu/)).toHaveCount(0, { timeout: remaining() });
+                    await producerCapture(page, info, spec.surface, "initial-loading", loading, "center", {
+                        state: "loading", mechanism: `streamed route while PostgREST waits for ${spec.relation}; bounded transaction rollback`,
+                        remaining, deferWrite: write => { writeCapture = write; },
+                    });
+                    expect((await blockedPostgrestRead()).some(pid => waiting.includes(pid))).toBe(true);
+                    await expect(loading).toBeVisible({ timeout: remaining() });
+                } finally {
+                    try {
+                        if (transaction) {
+                            const rollback = { text: "rollback", query_timeout: 1_000 };
+                            await lock.query(rollback);
+                            fixtureCleanupSafe = !connectionLost;
+                        }
+                    } finally {
+                        await lock.end();
+                    }
+                }
+                if (!writeCapture || !fixtureCleanupSafe) throw new Error("Initial-read capture or lock release not established");
+                await expect(page).toHaveURL(new URL(spec.route, "http://127.0.0.1:3100").href);
+                await expect(page.getByText(spec.loading, { exact: true })).toHaveCount(0);
+                await expect(field).toBeEnabled();
+                await expect(field).toHaveValue("");
+                await expect(page.getByRole("button", { name: "Försök läsa igen", exact: true })).toHaveCount(0);
+                if (spec.surface === "company") {
+                    await expect(page.getByTestId("company-empty-defaults")).toContainText("förslag på 25 %");
+                    await expect(page.getByLabel("Momssats")).toHaveValue("25");
+                } else if (spec.surface === "terms") {
+                    await expect(page.getByTestId("quote-terms-signoff-warning")).toBeVisible();
+                    await expect(page.getByRole("button", { name: "Markera som godkänd" })).toHaveCount(0);
+                } else {
+                    await expect(page.getByText(/Inga arbetsroller ännu/)).toBeVisible();
+                    await expect(page.getByText(/Inga artiklar ännu/)).toBeVisible();
+                }
+                await writeCapture();
+            }
+        } finally {
+            if (fixtureCleanupSafe) await cleanupFixture(own);
+        }
+    });
+}
+
+test("E35-7 filters archived and active pricing by authorized identity", async ({ page }, info) => {
+    const own = await createTwoTenantFixture();
+    try {
+        const ordinary = await makeAuthedServerClient(own.adminA);
+        const roleId = await adminInsertWorkRole({ tenant_id: own.tenantA.id, display_name: "Installationstekniker" });
+        const articleId = await adminInsertArticle({ tenant_id: own.tenantA.id, name: "Kopplingsdosa", unit_price_ore: 1250 });
+        await adminInsertArticle({ tenant_id: own.tenantB.id, name: "Kopplingsdosa annan verksamhet" });
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings/pricing");
+        const role = page.getByTestId("work-roles-editor");
+        const article = page.getByTestId("articles-editor");
+        const roleRow = role.getByRole("listitem").filter({ hasText: "Installationstekniker" });
+        const articleRow = article.getByRole("listitem").filter({ hasText: "Kopplingsdosa" });
+        const roleSearch = role.getByLabel("Sök arbetsroller");
+        const articleSearch = article.getByLabel("Sök artiklar");
+        const roleEdit = roleRow.getByRole("button", { name: "Redigera" });
+        await waitForHydrated(roleEdit);
+        await roleEdit.press("Enter");
+        await expect(roleEdit).toHaveAttribute("aria-current", "true");
+        await expectRenderedContrast(roleEdit, "borderTopColor", 3);
+        await expectRenderedContrast(roleSearch, "borderTopColor", 3);
+        await expectRenderedContrast(articleRow.getByRole("button", { name: "Redigera" }), "borderTopColor", 3);
+        await articleRow.getByRole("button", { name: "Redigera" }).press("Enter");
+        await article.getByLabel("Artikelnummer").fill("EL-725");
+        await article.getByLabel("Enhet", { exact: true }).fill("styck");
+        await article.getByRole("button", { name: "Spara artikel" }).press("Enter");
+        await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        await articleSearch.fill("EL-725");
+        await expect(articleRow).toHaveCount(1);
+        await articleSearch.fill("styck");
+        await expect(articleRow).toHaveCount(1);
+        await article.getByRole("button", { name: "Rensa sökning" }).press("Enter");
+        await articleRow.getByRole("button", { name: "Arkivera" }).press("Enter");
+        await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        await article.getByRole("button", { name: "Visa arkiverade (1)" }).press("Enter");
+        const archived = article.getByTestId("articles-archived");
+        const archivedRow = archived.getByRole("listitem").filter({ hasText: "Kopplingsdosa" });
+        await expect(archivedRow).toHaveCount(1);
+        await expectRenderedContrast(archivedRow.getByRole("button", { name: "Återaktivera" }), "borderTopColor", 3);
+        const archivedProof = await ordinary.from("articles").select("id,is_active,write_revision").eq("tenant_id", own.tenantA.id).single();
+        expect(archivedProof.error).toBeNull();
+        expect(archivedProof.data).toMatchObject({ id: articleId, is_active: false });
+
+        await roleSearch.fill("Ingen sådan roll");
+        await articleSearch.fill("Ingen sådan artikel");
+        const rolesNoMatch = role.getByRole("status").filter({ hasText: "Inga matchningar bland aktiva arbetsroller." });
+        const archivedNoMatch = archived.getByRole("status").filter({ hasText: "Inga matchningar bland arkiverade artiklar." });
+        await expect(rolesNoMatch).toBeVisible();
+        await expect(archivedNoMatch).toBeVisible();
+        await expect(roleRow).toHaveCount(0);
+        await expect(archivedRow).toHaveCount(0);
+        await expect(roleSearch).toHaveValue("Ingen sådan roll");
+        await expect(articleSearch).toHaveValue("Ingen sådan artikel");
+        for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+            await page.setViewportSize(viewport);
+            await producerCapture(page, info, "work-role", "no-match", rolesNoMatch, "center", {
+                state: "no-match", mechanism: "local filter over an authorized selected role",
+            });
+            await producerCapture(page, info, "article", "no-match", archivedNoMatch, "center", {
+                state: "no-match", mechanism: "local filter over an authorized archived article",
+            });
+        }
+        await role.getByRole("button", { name: "Rensa sökning" }).press("Enter");
+        await article.getByRole("button", { name: "Rensa sökning" }).press("Enter");
+        await expect(roleEdit).toHaveAttribute("aria-current", "true");
+        await expect(archivedRow).toHaveCount(1);
+        await expect(archived.getByText("Kopplingsdosa annan verksamhet")).toHaveCount(0);
+        await archivedRow.getByRole("button", { name: "Återaktivera" }).press("Enter");
+        await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        await expect(archivedRow).toHaveCount(0);
+        await expect(articleRow).toContainText("12,50 kr");
+        const activeProof = await ordinary.from("articles").select("id,is_active,write_revision").eq("tenant_id", own.tenantA.id).single();
+        expect(activeProof.error).toBeNull();
+        expect(activeProof.data).toMatchObject({ id: articleId, is_active: true });
+        expect(activeProof.data!.write_revision).not.toBe(archivedProof.data!.write_revision);
+        const roleProof = await ordinary.from("work_roles").select("id").eq("tenant_id", own.tenantA.id).single();
+        expect(roleProof.error).toBeNull();
+        expect(roleProof.data).toEqual({ id: roleId });
+    } finally {
+        await cleanupFixture(own);
+    }
+});
+
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+    test(`E35-7 pending row A prevents selecting B and settles only its captured revision ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+        const own = await createTwoTenantFixture();
+        try {
+            const a = await adminInsertArticle({ tenant_id: own.tenantA.id, name: "Dosa A", unit_price_ore: 1250 });
+            const b = await adminInsertArticle({ tenant_id: own.tenantA.id, name: "Dosa B", unit_price_ore: 2175 });
+            const ordinary = await makeAuthedServerClient(own.adminA);
+            const readPrices = () => ordinary.from("articles").select("id,unit_price_ore,write_revision")
+                .eq("tenant_id", own.tenantA.id).order("name");
+            const baseline = await readPrices();
+            expect(baseline.error).toBeNull();
+            expect(baseline.data).toMatchObject([{ id: a, unit_price_ore: 1250 }, { id: b, unit_price_ore: 2175 }]);
+            await page.setViewportSize(viewport);
+            await signIn(page, own.adminA.email, own.adminA.password);
+            await page.goto("/settings/pricing");
+
+            const editor = page.getByTestId("articles-editor");
+            const edit = (name: string) => editor.getByRole("listitem").filter({ hasText: name }).getByRole("button", { name: "Redigera" });
+            const aEdit = edit("Dosa A");
+            const bEdit = edit("Dosa B");
+            await waitForHydrated(aEdit);
+            await aEdit.press("Enter");
+            await expect(aEdit).toHaveAttribute("aria-current", "true");
+            const price = editor.getByLabel("Enhetspris (kr)");
+            await price.fill("14,75");
+
+            const requests: BrowserRequest[] = [];
+            const observe = (request: BrowserRequest) => {
+                if (new URL(request.url()).pathname === "/settings/pricing" && request.method() === "POST" && request.headers()["next-action"]) {
+                    requests.push(request);
+                }
+            };
+            page.on("request", observe);
+            try {
+                const hold = await holdNextProducerTransport(page, "/settings/pricing", "action");
+                try {
+                    await editor.getByRole("button", { name: "Spara artikel" }).press("Enter");
+                    await hold.seen;
+                    const request = hold.request()!;
+                    expect(await producerCapturedFacts(request)).toEqual({
+                        operation: expect.stringMatching(/^[a-f0-9-]{36}$/i), target: a, tenant: own.tenantA.id,
+                        actor: own.adminA.id, expectedRevision: baseline.data![0].write_revision,
+                    });
+                    await expect(price).toBeDisabled();
+                    await expect(bEdit).toBeDisabled();
+                    await bEdit.scrollIntoViewIfNeeded();
+                    const target = (await bEdit.boundingBox())!;
+                    await page.mouse.click(target.x + target.width / 2, target.y + target.height / 2);
+                    await expect(bEdit).not.toHaveAttribute("aria-current", "true");
+                    await expect(aEdit).toHaveAttribute("aria-current", "true");
+                    await expect(price).toHaveValue("14,75");
+                    await expect(editor.getByTestId("settings-saved")).toHaveCount(0);
+                    await expect(page.getByTestId("work-roles-editor").getByRole("button", { name: "Spara roll" })).toBeEnabled();
+                    const back = page.getByRole("link", { name: "← Inställningar" });
+                    await back.click();
+                    await expect(page).toHaveURL(/\/settings\/pricing$/);
+                    await expect(editor.getByRole("status").filter({ hasText: /Behåll sidan öppen tills försöket är bekräftat/i })).toBeVisible();
+                    expect(requests).toEqual([request]);
+                    const stillBaseline = await readPrices();
+                    expect(stillBaseline.error).toBeNull();
+                    expect(stillBaseline.data).toEqual(baseline.data);
+                    await producerCapture(page, info, "article", "pending-target", bEdit, "center", {
+                        state: "pending-target", mechanism: "original action transport held before dispatch; selected A, disabled B",
+                    });
+                } finally {
+                    try { await hold.releaseHeld(); }
+                    finally { await hold.dispose(); }
+                }
+
+                await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+                await expect(aEdit).toHaveAttribute("aria-current", "true");
+                const persisted = await readPrices();
+                expect(persisted.error).toBeNull();
+                expect(persisted.data).toMatchObject([{ id: a, unit_price_ore: 1475 }, baseline.data![1]]);
+                expect(persisted.data![0].write_revision).not.toBe(baseline.data![0].write_revision);
+                await bEdit.press("Enter");
+                await expect(bEdit).toHaveAttribute("aria-current", "true");
+                await expect(price).toHaveValue("21,75");
+                await expect(editor.getByTestId("settings-saved")).toHaveCount(0);
+                expect(requests).toHaveLength(1);
+            } finally {
+                page.off("request", observe);
+            }
+        } finally {
+            await cleanupFixture(own);
+        }
+    });
+}
+
+type DraftSamples = { readonly original: string; readonly draft?: string; readonly current?: string };
+type PricingDraftTraceWindow = Window & {
+    __kopplasPricingDraftTrace?: {
+        mark(stage: string): void;
+        stop(): void;
+        checkpoints: unknown[];
+        transitions: unknown[];
+    };
+};
+
+async function observeArticleDraft(page: Page, samples: { readonly label: string; readonly price: DraftSamples; readonly unit: DraftSamples }) {
+    const began = Date.now();
+    const origin = new URL(page.url()).origin;
+    const requests = new WeakMap<BrowserRequest, number>();
+    let nextRequest = 0;
+    const transport: { at: number; event: string; request?: number }[] = [];
+    const record = (event: string, request?: number) => {
+        if (transport.length === 64) transport.shift();
+        transport.push({ at: Date.now() - began, event, ...(request === undefined ? {} : { request }) });
+    };
+    const onRequest = (request: BrowserRequest) => {
+        const url = new URL(request.url());
+        if (url.origin !== origin || url.pathname !== "/settings/pricing" || request.method() !== "GET"
+            || request.headers()["rsc"] !== "1") return;
+        const ordinal = ++nextRequest;
+        requests.set(request, ordinal);
+        record("rsc-request", ordinal);
+    };
+    const onResponse = (response: Awaited<ReturnType<BrowserRequest["response"]>>) => {
+        if (!response) return;
+        const ordinal = requests.get(response.request());
+        if (ordinal !== undefined) record(response.ok() ? "rsc-headers-ok" : "rsc-headers-other", ordinal);
+    };
+    const onFinished = (request: BrowserRequest) => {
+        const ordinal = requests.get(request);
+        if (ordinal !== undefined) record("rsc-finished", ordinal);
+    };
+    const onFailed = (request: BrowserRequest) => {
+        const ordinal = requests.get(request);
+        if (ordinal !== undefined) record("rsc-failed", ordinal);
+    };
+    await page.evaluate(({ began, samples }) => {
+        const state = window as PricingDraftTraceWindow;
+        const main = document.getElementById("main-content");
+        if (!main) throw new Error("Pricing diagnostic requires the main content region");
+        const nodes = new WeakMap<Element, number>();
+        let nextNode = 0, lastSnapshot = "", frame: number | undefined;
+        let trackedRow: Element | null = null;
+        const checkpoints: unknown[] = [], transitions: unknown[] = [];
+        const nodeId = (element: Element | null) => {
+            if (!element) return null;
+            if (!nodes.has(element)) nodes.set(element, ++nextNode);
+            return nodes.get(element);
+        };
+        const category = (value: string | undefined, values: DraftSamples) => value === values.original ? "original"
+            : values.draft !== undefined && value === values.draft ? "draft"
+            : values.current !== undefined && value === values.current ? "current" : "other";
+        const confirmed = (scope: Element | null) =>
+            scope?.querySelector('[data-testid="settings-saved"]')?.textContent?.includes("Aktuella uppgifter är bekräftade.") ?? false;
+        const sample = (stage: string, explicit = false) => {
+            const article = document.querySelector('[data-testid="articles-editor"]');
+            const role = document.querySelector('[data-testid="work-roles-editor"]');
+            const price = article?.querySelector<HTMLInputElement>('input[name="unit_price_kronor"]') ?? null;
+            const unit = article?.querySelector<HTMLInputElement>('input[name="unit"]') ?? null;
+            const isFixtureRow = (item: Element) => {
+                const name = item.querySelector("span")?.textContent?.trim();
+                return name === samples.label || name?.startsWith(`${samples.label} (`);
+            };
+            if (!trackedRow || !article?.contains(trackedRow) || !isFixtureRow(trackedRow)) {
+                trackedRow = Array.from(article?.querySelector("ul")?.children ?? []).find(isFixtureRow) ?? null;
+            }
+            const row = trackedRow;
+            const rowName = row?.querySelector("span")?.textContent?.trim();
+            const rowUnit = rowName === samples.label ? "" : rowName?.slice(samples.label.length + 2, -1);
+            const focus = document.activeElement;
+            const statuses = Array.from(article?.querySelectorAll('[role="status"]') ?? []);
+            const snapshot = {
+                priceNode: nodeId(price), unitNode: nodeId(unit),
+                price: category(price?.value, samples.price), priceDefault: category(price?.defaultValue, samples.price),
+                unit: category(unit?.value, samples.unit), unitDefault: category(unit?.defaultValue, samples.unit),
+                rowPresent: Boolean(row), rowSelected: Boolean(row?.querySelector('[aria-current="true"]')),
+                rowPrice: category(row?.querySelector(".tabular-nums")?.textContent?.trim().replace(/ kr$/, ""), samples.price),
+                rowUnit: category(rowUnit, samples.unit),
+                focus: focus === price ? "price" : focus === unit ? "unit"
+                    : focus === article?.querySelector('input[name="name"]') ? "name"
+                    : focus && article?.contains(focus) ? "article-other" : "outside",
+                priceDisabled: price?.matches(":disabled") ?? false,
+                dirty: statuses.some(status => status.textContent?.trim() === "Osparade ändringar."),
+                currentFacts: Boolean(article?.querySelector('[data-testid="pricing-current-facts"]')),
+                articleConfirmed: confirmed(article), roleConfirmed: confirmed(role),
+            };
+            const fingerprint = JSON.stringify(snapshot);
+            if (!explicit && fingerprint === lastSnapshot) return;
+            lastSnapshot = fingerprint;
+            const target = explicit ? checkpoints : transitions;
+            const limit = explicit ? 32 : 48;
+            if (target.length === limit) target.shift();
+            target.push({ at: Date.now() - began, stage, ...snapshot });
+        };
+        const onFieldInput = (event: Event) => {
+            const field = event.target;
+            if (!(field instanceof HTMLInputElement) || !field.closest('[data-testid="articles-editor"]')) return;
+            const kind = field.name === "unit_price_kronor" ? "price" : field.name === "unit" ? "unit" : null;
+            if (kind) sample(`${kind}-${event.type === "beforeinput" ? "before-input" : "input"}`, true);
+        };
+        const onFocus = () => sample("focus");
+        const onClick = (event: MouseEvent) => {
+            const button = event.target instanceof Element ? event.target.closest("button") : null;
+            if (!button) return;
+            const label = button.textContent?.trim();
+            if (label === "Spara roll" && button.closest('[data-testid="work-roles-editor"]')) {
+                sample("role-save-click-event", true);
+                return;
+            }
+            if (!button.closest('[data-testid="articles-editor"]')) return;
+            const stage = label === "Ny post" ? "new-post"
+                : label === "Använd aktuella uppgifter" ? "adopt"
+                : label === "Spara artikel" ? "article-save" : null;
+            if (!stage) return;
+            sample(`${stage}-click-event`, true);
+            if (frame !== undefined) cancelAnimationFrame(frame);
+            // Passive sample after the event handler, including any blocking dialog.
+            frame = requestAnimationFrame(() => {
+                frame = undefined;
+                sample(`${stage}-next-frame`, true);
+            });
+        };
+        const mutations = new MutationObserver(() => sample("dom-transition"));
+        mutations.observe(main, {
+            subtree: true, childList: true, characterData: true, attributes: true,
+            attributeFilter: ["aria-current", "disabled", "value"],
+        });
+        main.addEventListener("beforeinput", onFieldInput, true);
+        main.addEventListener("input", onFieldInput, true);
+        main.addEventListener("focusin", onFocus, true);
+        main.addEventListener("click", onClick, true);
+        state.__kopplasPricingDraftTrace = {
+            mark: stage => sample(stage, true),
+            stop: () => {
+                mutations.disconnect();
+                if (frame !== undefined) cancelAnimationFrame(frame);
+                main.removeEventListener("beforeinput", onFieldInput, true);
+                main.removeEventListener("input", onFieldInput, true);
+                main.removeEventListener("focusin", onFocus, true);
+                main.removeEventListener("click", onClick, true);
+            },
+            checkpoints, transitions,
+        };
+        sample("installed", true);
+    }, { began, samples });
+    page.on("request", onRequest);
+    page.on("response", onResponse);
+    page.on("requestfinished", onFinished);
+    page.on("requestfailed", onFailed);
+    let active = true;
+    return {
+        note: (stage: string) => record(stage),
+        dialog: (stage: "observed" | "dismissed", dialog: Dialog) => {
+            record(`dialog-${stage}-${dialog.type() === "confirm" ? "confirm" : "other"}`);
+        },
+        finish: async (failure?: unknown) => {
+            if (!active) return;
+            active = false;
+            page.off("request", onRequest);
+            page.off("response", onResponse);
+            page.off("requestfinished", onFinished);
+            page.off("requestfailed", onFailed);
+            const failed = failure instanceof Error;
+            const browserExport = page.evaluate(failed => {
+                const state = window as PricingDraftTraceWindow;
+                const trace = state.__kopplasPricingDraftTrace;
+                if (!trace) return null;
+                if (failed) trace.mark("failure");
+                trace.stop();
+                delete state.__kopplasPricingDraftTrace;
+                return failed ? { checkpoints: trace.checkpoints, transitions: trace.transitions } : null;
+            }, failed).catch(() => null);
+            let timer: ReturnType<typeof setTimeout> | undefined;
+            const deadline = new Promise<null>(resolve => { timer = setTimeout(() => resolve(null), 1_000); });
+            const dom = await Promise.race([browserExport, deadline]).finally(() => {
+                if (timer !== undefined) clearTimeout(timer);
+            });
+            if (failed) {
+                const diagnostic = `
+Pricing draft diagnostic (categorical): ${JSON.stringify({ dom, transport })}`;
+                failure.message += diagnostic;
+                if (failure.stack) failure.stack += diagnostic;
+            }
+        },
+    };
+}
