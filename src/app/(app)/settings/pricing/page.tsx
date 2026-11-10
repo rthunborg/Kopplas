@@ -1,3 +1,6 @@
+import { setTimeout as delay } from "node:timers/promises";
+import { Suspense, use } from "react";
+import type { EditorOperationContext } from "@/features/settings/mutation-attempt";
 import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 /**
  * `/settings/pricing` (Prissättning) — work roles + optional minimal articles (Story
@@ -25,55 +28,65 @@ import {
 
 export const dynamic = "force-dynamic";
 
+const LOADING_DELAY_MS = 120;
+
 export default async function PricingSettingsPage() {
   const contextResult = await resolveTenantContext();
-  const operationContext = contextResult.ok ? { tenantId: contextResult.data.tenantId, actorId: contextResult.data.userId } : null;
-  const [
-    { workRoles, error: workRolesError },
-    { articles, error: articlesError },
-    { workRoles: archivedWorkRoles, error: archivedWorkRolesError },
-    { articles: archivedArticles, error: archivedArticlesError },
-  ] = await Promise.all([
+  const operationContext = contextResult.ok
+    ? { tenantId: contextResult.data.tenantId, actorId: contextResult.data.userId }
+    : null;
+  const pendingReads = readPricing();
+  // Brief reads finish with the page. Slow reads show the loading label without
+  // discarding or restarting the original authorized queries.
+  const timer = new AbortController();
+  const loadingDelay = delay(LOADING_DELAY_MS, null, { signal: timer.signal });
+  const reads = await Promise.race([pendingReads, loadingDelay]).finally(() => timer.abort());
+
+  return (
+    <div className="flex min-w-0 flex-col gap-8 p-gutter-field sm:p-gutter">
+      <div className="flex flex-col gap-2">
+        <Link
+          href="/settings"
+          className="inline-flex min-h-control-lg items-center self-start rounded-control text-label text-text-secondary underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+        >
+          ← Inställningar
+        </Link>
+        <h1 className="text-title font-semibold text-text-primary">Prissättning</h1>
+        <p className="text-label text-text-secondary">
+          Hantera återanvändbara timpriser för arbetsroller och enhetspriser för manuella artiklar.
+        </p>
+      </div>
+
+      <Suspense fallback={<p role="status" className="text-body text-text-secondary">Hämtar arbetsroller och artiklar…</p>}>
+        <PricingEditors result={reads ?? pendingReads} operationContext={operationContext} />
+      </Suspense>
+    </div>
+  );
+}
+
+function readPricing() {
+  return Promise.all([
     readWorkRoles(),
     readArticles(),
     readArchivedWorkRoles(),
     readArchivedArticles(),
   ]);
+}
 
+function PricingEditors({ result, operationContext }: {
+  readonly result: ReturnType<typeof readPricing> | Awaited<ReturnType<typeof readPricing>>;
+  readonly operationContext: EditorOperationContext | null;
+}) {
+  const reads = result instanceof Promise ? use(result) : result;
+  const [
+    { workRoles, error: workRolesError },
+    { articles, error: articlesError },
+    { workRoles: archivedWorkRoles, error: archivedWorkRolesError },
+    { articles: archivedArticles, error: archivedArticlesError },
+  ] = reads;
   const readToken = crypto.randomUUID();
-
-  const error =
-    workRolesError ??
-    articlesError ??
-    archivedWorkRolesError ??
-    archivedArticlesError;
-
   return (
-    <div className="flex flex-col gap-8 p-6">
-      <div className="flex flex-col gap-2">
-        <Link
-          href="/settings"
-          className="text-sm text-blue-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-        >
-          ← Inställningar
-        </Link>
-        <h1 className="text-2xl font-semibold text-zinc-900">Prissättning</h1>
-        <p className="text-sm text-zinc-600">
-          Arbetsroller och ett minimalt manuellt artikelregister med
-          återanvändbara priser. Priser lagras i öre; ingen momsberäkning görs
-          här.
-        </p>
-      </div>
-
-      {error && (
-        <p
-          role="alert"
-          className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"
-        >
-          {error}
-        </p>
-      )}
-
+    <>
       <WorkRolesEditor
         readError={Boolean(workRolesError || archivedWorkRolesError)}
         readToken={readToken}
@@ -88,6 +101,6 @@ export default async function PricingSettingsPage() {
         articles={articles}
         archivedArticles={archivedArticles}
       />
-    </div>
+    </>
   );
 }

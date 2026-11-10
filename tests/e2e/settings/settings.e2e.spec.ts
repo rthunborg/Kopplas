@@ -28,6 +28,7 @@
 import { test, expect, type Page, type Locator } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { adminQuery } from "../../factories/admin-sql";
 import { expectActiveAdminNavigation } from "../support/active-admin-navigation";
 
 interface SettingsFixture {
@@ -236,6 +237,85 @@ test("E35-7 ATDD company validation links to the invalid VAT field on a phone", 
         await page.reload();
         await expect(name).toHaveValue(draft);
         await expect(vat).toHaveValue("25");
+    } finally {
+        await cleanupFixture(own);
+    }
+});
+
+test("E35-7 cancels a settings link and Back without replacing the terms draft or history", async ({ page }) => {
+    const own = await createTwoTenantFixture();
+    try {
+        await page.setViewportSize({ width: 360, height: 640 });
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings");
+        await page.getByRole("link", { name: /^Offertvillkor/ }).click();
+        const terms = page.getByLabel("Offertvillkor");
+        await waitForHydrated(terms);
+        const before = await page.evaluate(() => ({
+            href: location.href,
+            index: (window as Window & { navigation?: { currentEntry: { index: number } } }).navigation?.currentEntry.index,
+            length: history.length,
+        }));
+        expect(before.index).toEqual(expect.any(Number));
+        await terms.fill("Detta utkast ska behållas.");
+        const backLink = page.getByRole("link", { name: "← Inställningar" });
+
+        const linkPrompt = page.waitForEvent("dialog");
+        const click = backLink.click();
+        await (await linkPrompt).dismiss();
+        await click;
+        await expect(terms).toHaveValue("Detta utkast ska behållas.");
+
+        const traversePrompt = page.waitForEvent("dialog");
+        const back = page.evaluate(() => history.back());
+        await (await traversePrompt).dismiss();
+        await back;
+        await expect(terms).toHaveValue("Detta utkast ska behållas.");
+        expect(await page.evaluate(() => ({
+            href: location.href,
+            index: (window as Window & { navigation?: { currentEntry: { index: number } } }).navigation?.currentEntry.index,
+            length: history.length,
+        }))).toEqual(before);
+
+        const discardPrompt = page.waitForEvent("dialog");
+        const leave = backLink.click();
+        await (await discardPrompt).accept();
+        await leave;
+        await expect(page).toHaveURL(/\/settings$/);
+        await page.getByRole("link", { name: /^Offertvillkor/ }).click();
+        await expect(page.getByLabel("Offertvillkor")).toHaveValue("");
+    } finally {
+        await cleanupFixture(own);
+    }
+});
+
+test("E35-7 hides company write controls after current membership is revoked", async ({ page }) => {
+    const own = await createTwoTenantFixture();
+    try {
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings/company");
+        const name = page.getByLabel("Företagsnamn");
+        await waitForHydrated(name);
+        await name.fill("Bolaget med återkallad åtkomst");
+        const before = await adminQuery(
+            "select id from public.audit_events where tenant_id=$1 order by id",
+            [own.tenantA.id],
+        );
+        const affected = await adminQuery(
+            "update public.tenant_memberships set status='disabled' where tenant_id=$1 and user_id=$2 returning id",
+            [own.tenantA.id, own.adminA.id],
+        );
+        expect(affected).toHaveLength(1);
+        await page.getByRole("button", { name: "Spara", exact: true }).click();
+        await expect(page.getByRole("alert").filter({ hasText: "Du har inte behörighet att utföra åtgärden." })).toBeVisible();
+        await expect(name).toBeHidden();
+        await expect(page.getByRole("button", { name: "Spara", exact: true })).toHaveCount(0);
+        await expect(page.getByTestId("settings-saved")).toHaveCount(0);
+        expect(await adminQuery("select id from public.company_settings where tenant_id=$1", [own.tenantA.id])).toEqual([]);
+        expect(await adminQuery(
+            "select id from public.audit_events where tenant_id=$1 order by id",
+            [own.tenantA.id],
+        )).toEqual(before);
     } finally {
         await cleanupFixture(own);
     }

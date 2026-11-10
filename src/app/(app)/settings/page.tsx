@@ -28,17 +28,17 @@ const SETTINGS_LINKS = [
     href: "/settings/pricing",
     title: "Prissättning",
     description:
-      "Arbetsroller och ett minimalt manuellt artikelregister med återanvändbara priser (i öre).",
+      "Spara timpriser för arbetsroller och enhetspriser för manuella artiklar.",
   },
 ] as const;
 
 export default function SettingsPage() {
   return (
-    <div className="flex flex-col gap-6 p-6">
+    <div className="flex min-w-0 flex-col gap-6 p-gutter-field sm:p-gutter">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-semibold text-zinc-900">Inställningar</h1>
-        <p className="text-sm text-zinc-600">
-          Hantera företagsidentitet, momsstandarder och offertvillkor.
+        <h1 className="text-title font-semibold text-text-primary">Inställningar</h1>
+        <p className="text-label text-text-secondary">
+          Hantera företagsuppgifter, moms, offertvillkor och manuella priser.
         </p>
       </div>
 
@@ -47,12 +47,12 @@ export default function SettingsPage() {
           <li key={link.href}>
             <Link
               href={link.href}
-              className="block rounded-md border border-zinc-300 px-4 py-3 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              className="block min-h-control-lg rounded-control border border-border-subtle bg-card px-4 py-3 hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
             >
-              <span className="block text-base font-medium text-zinc-900">
+              <span className="block text-body font-medium text-text-primary">
                 {link.title}
               </span>
-              <span className="mt-1 block text-sm text-zinc-600">
+              <span className="mt-1 block text-label text-text-secondary">
                 {link.description}
               </span>
             </Link>

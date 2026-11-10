@@ -18,7 +18,7 @@
  * signalling.
  */
 import { sameDraftBaseline, currentTargetStatus, type EditorOperationContext } from "@/features/settings/mutation-attempt";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AttemptRecovery, useMountedSettingsPricingAttempt } from "@/components/settings/CompanySettingsForm";
 import { FormErrorSummary, TextField } from "@/components/crm/FormField";
 import { saveArticleAction, archiveArticleAction, reactivateArticleAction, } from "@/features/pricing/actions";
@@ -35,126 +35,173 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
     const operation = useMountedSettingsPricingAttempt(PRICING_ACTION_INITIAL, operationContext, readToken);
     const { state, pending } = operation;
     const [selected, setSelected] = useState<RevisionedArticleRow | null>(null);
+    const [query, setQuery] = useState("");
+    const [showArchived, setShowArchived] = useState(false);
+    const [draftVersion, setDraftVersion] = useState(0);
+    const [hadAuthorizedRead, setHadAuthorizedRead] = useState(!readError);
+    if (!readError && !hadAuthorizedRead) setHadAuthorizedRead(true);
+    const firstField = useRef<HTMLInputElement>(null);
+
     const currentSelected = [...articles, ...archivedArticles].find(row => row.id === selected?.id);
+    const confirmsSelectedWrite = !operation.dirty && operation.hasCurrentRead && !readError && currentSelected
+        && currentSelected.id === state.targetId && currentSelected.write_revision === state.committedRevision
+        && operation.kind === "article.update";
+    if (confirmsSelectedWrite && selected && !sameDraftBaseline(selected, currentSelected)) {
+        setSelected(currentSelected);
+    }
     const baselineChanged = !readError && selected !== null && (!currentSelected || !sameDraftBaseline(selected, currentSelected));
     const currentStatus = currentTargetStatus(operation.hasCurrentRead, readError, [...articles, ...archivedArticles], state.targetId, state.committedRevision);
-    const archiveState = operation.kind === "article.archive" ? state : PRICING_ACTION_INITIAL;
-    const reactivateState = operation.kind === "article.reactivate" ? state : PRICING_ACTION_INITIAL;
-    const formAction = (form: FormData) => operation.submit(saveArticleAction, selected ? "article.update" : "article.create", form, selected?.id ?? null, selected?.write_revision ?? null, readError || baselineChanged);
-    const archiveAction = (form: FormData) => operation.submit(archiveArticleAction, "article.archive", form, String(form.get("id")), String(form.get("write_revision")), readError);
-    const reactivateAction = (form: FormData) => operation.submit(reactivateArticleAction, "article.reactivate", form, String(form.get("id")), String(form.get("write_revision")), readError);
-    const [showArchived, setShowArchived] = useState(false);
-    const mine = state.form === "article";
-    const lifecycleError = archiveState.status === "error" && archiveState.form === "article"
-        ? archiveState.formError
-        : reactivateState.status === "error" && reactivateState.form === "article"
-            ? reactivateState.formError
-            : null;
-    const lifecycleRetryable = (archiveState.status === "error" &&
-        archiveState.form === "article" &&
-        archiveState.code === "SERVER_ERROR") ||
-        (reactivateState.status === "error" &&
-            reactivateState.form === "article" &&
-            reactivateState.code === "SERVER_ERROR");
-    const v = (field: string, fallback: string): string => (mine && state.values[field]) || fallback;
-    const err = (field: string): string | undefined => mine ? state.fieldErrors[field] : undefined;
+    const search = query.trim().toLocaleLowerCase("sv-SE");
+    const matches = (article: NonNullable<typeof selected>) => [article.name, article.sku, article.unit].some(value => value?.toLocaleLowerCase("sv-SE").includes(search));
+    const visibleActive = articles.filter(matches);
+    const visibleArchived = archivedArticles.filter(matches);
+    const isSave = operation.kind === "article.create" || operation.kind === "article.update";
+    const lifecycleError = !isSave && state.status === "error" ? state.formError : null;
+    const fieldErrors = isSave ? state.fieldErrors : {};
+
+    function choose(next: typeof selected, adoptCurrent = false) {
+        if (operation.blocked || (!adoptCurrent && !operation.allowReplacement())) return;
+        operation.reset();
+        setSelected(next);
+        setDraftVersion(version => version + 1);
+        if (!adoptCurrent) requestAnimationFrame(() => firstField.current?.focus());
+    }
+
+    function submitLifecycle(form: FormData, reactivate: boolean) {
+        const id = String(form.get("id"));
+        if (operation.dirty) {
+            if (!operation.allowReplacement()) return;
+            setSelected(null);
+            setDraftVersion(version => version + 1);
+            operation.setDirty(false);
+        }
+        const action = reactivate ? reactivateArticleAction : archiveArticleAction;
+        const kind = reactivate ? "article.reactivate" : "article.archive";
+        void operation.submit(action, kind, form, id, String(form.get("write_revision")), readError);
+    }
+
+    const formAction = (form: HTMLFormElement) => operation.submit(saveArticleAction, selected ? "article.update" : "article.create",
+        new FormData(form), selected?.id ?? null, selected?.write_revision ?? null, readError || baselineChanged, form);
     return (<section data-testid="articles-editor" aria-labelledby="articles-heading" className="flex flex-col gap-4">
-      <h2 id="articles-heading" className="text-lg font-semibold text-zinc-900">
+      <h2 id="articles-heading" className="text-heading font-semibold text-text-primary">
         Artiklar / material
       </h2>
 
       <AttemptRecovery operation={operation}/>
-      {readError && <p data-testid="pricing-current-unavailable" role="alert" className="text-sm text-risk-text">Aktuella uppgifter är inte tillgängliga. Uppdatera innan du sparar.</p>}
-      {baselineChanged && <div data-testid="pricing-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-sm text-text-secondary">
+      {readError && <p data-testid="pricing-current-unavailable" role="alert" className="text-label text-risk-text">Aktuella uppgifter är inte tillgängliga. Uppdatera innan du sparar.</p>}
+      {readError && <button type="button" disabled={operation.blocked} onClick={operation.refreshRead} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Försök läsa igen</button>}
+      {baselineChanged && !operation.accessLost && <div data-testid="pricing-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-label text-text-secondary">
         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
         <p>{currentSelected ? `${currentSelected.name}: ${oreToKronorString(currentSelected.unit_price_ore)} kr; artikelnummer ${currentSelected.sku ?? "—"}; enhet ${currentSelected.unit ?? "—"}` : "Ingen aktuell post finns."}</p>
-        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setSelected(currentSelected ?? null); }} className="min-h-control-lg self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
+        <button type="button" disabled={operation.blocked} onClick={() => choose(currentSelected ?? null, true)} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Använd aktuella uppgifter</button>
       </div>}
-      <fieldset disabled={operation.blocked || readError} className="contents">
-      {lifecycleError && (<p data-testid="article-archive-error" role="alert" className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800">
+      <fieldset disabled={operation.blocked || readError || operation.accessLost}
+        className={operation.accessLost || !hadAuthorizedRead ? "hidden" : "contents"}>
+      {lifecycleError && (<p data-testid="article-archive-error" role="alert" className="rounded-control border border-risk-text bg-risk-surface px-3 py-2 text-label text-risk-text">
           {lifecycleError}
-          {lifecycleRetryable ? " Försök igen." : ""}
         </p>)}
 
-      {readError ? null : articles.length === 0 ? (<p className="text-sm text-zinc-600">
+        {state.status === "success" && !operation.dirty && (<p data-testid="settings-saved" role="status" className="rounded-control border border-ok-text bg-ok-surface px-3 py-2 text-label text-ok-text">
+            Det tidigare försöket slutfördes.
+            {currentStatus === "unavailable" ? " Aktuella uppgifter är inte tillgängliga." : currentStatus === "missing" ? " Posten finns inte längre i aktuella uppgifter." : currentStatus === "newer" ? " Nyare ändringar finns. Granska aktuella uppgifter." : currentStatus === "confirmed" ? " Aktuella uppgifter är bekräftade." : " Aktuella uppgifter hämtas separat."}
+          </p>)}
+
+      {!readError && (articles.length > 0 || archivedArticles.length > 0) && (
+        <div className="flex min-w-0 max-w-xl flex-col gap-1">
+          <label htmlFor="articles-search" className="text-label font-medium text-text-secondary">Sök artiklar</label>
+          <div className="flex flex-wrap gap-2">
+            <input id="articles-search" value={query} onChange={event => setQuery(event.target.value)}
+              className="min-h-control-lg min-w-0 grow rounded-control bg-sunken px-3 py-2 text-body text-text-primary focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"/>
+            <button type="button" disabled={!query} onClick={() => setQuery("")} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Rensa sökning</button>
+          </div>
+        </div>
+      )}
+
+      {readError ? null : articles.length === 0 ? (<p className="text-label text-text-secondary">
           Inga artiklar ännu. Lägg till din första artikel nedan.
-        </p>) : (<ul className="flex flex-col gap-2">
-          {articles.map((article) => (<li key={article.id} className="flex items-center justify-between gap-4 rounded-md border border-zinc-200 px-3 py-2">
-              <div className="flex flex-col">
-                <span className="text-sm font-medium text-zinc-900">
+        </p>) : visibleActive.length === 0 ? (
+          <p role="status" className="text-label text-text-secondary">Inga matchningar bland aktiva artiklar.</p>
+        ) : (<ul className="flex flex-col gap-2">
+          {visibleActive.map((article) => (<li key={article.id} className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-control border border-border-subtle bg-card px-3 py-2">
+              <div className="flex min-w-0 grow basis-full flex-col wrap-anywhere sm:basis-0">
+                <span className="text-label font-medium text-text-primary">
                   {article.name}
                   {article.unit ? ` (${article.unit})` : ""}
                 </span>
-                <span className="text-xs text-zinc-600">
+                {article.sku && <span className="text-label text-text-secondary">Artikelnr {article.sku}</span>}
+                <span className="text-label tabular-nums text-text-secondary">
                   {oreToKronorString(article.unit_price_ore)} kr
                 </span>
               </div>
-              <button type="button" disabled={operation.blocked} onClick={() => { operation.reset(); setSelected(article); }} className="rounded-control border border-border-default px-2 py-1 text-sm">Redigera</button>
-              <form onSubmit={event => { event.preventDefault(); void archiveAction(new FormData(event.currentTarget)); }}>
+              <button type="button" disabled={operation.blocked} aria-current={selected?.id === article.id ? "true" : undefined} onClick={() => choose(article)} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Redigera</button>
+              <form onSubmit={event => { event.preventDefault(); submitLifecycle(new FormData(event.currentTarget), false); }}>
                 <input type="hidden" name="id" value={article.id}/>
                 <input type="hidden" name="write_revision" value={article.write_revision}/>
-                <button type="submit" className="rounded-md border border-zinc-300 px-2 py-1 text-xs text-zinc-700 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
-                  Arkivera
+                <button type="submit" disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
+                  {operation.pending && operation.kind === "article.archive" && state.targetId === article.id ? "Arkiverar…" : "Arkivera"}
                 </button>
               </form>
             </li>))}
         </ul>)}
 
-      <form key={`${selected?.id ?? "new"}:${selected?.write_revision ?? "absent"}`} onSubmit={event => { event.preventDefault(); void formAction(new FormData(event.currentTarget)); }} className="flex max-w-xl flex-col gap-4" noValidate>
+      <form onChange={event => operation.trackDraft(event.currentTarget)} onSubmit={event => { event.preventDefault(); void formAction(event.currentTarget); }} className="flex min-w-0 max-w-xl flex-col gap-4" noValidate>
         {selected && <input type="hidden" name="id" value={selected.id}/>}
-        <FormErrorSummary message={mine ? state.formError : null}/>
+        <h3 className="text-body font-medium text-text-primary wrap-anywhere">{selected ? "Redigera artikel" : "Ny artikel"}</h3>
+        <FormErrorSummary message={isSave ? state.formError : null} fieldErrors={fieldErrors}/>
+        {operation.dirty && !operation.blocked && <p role="status" className="text-label text-text-secondary">Osparade ändringar.</p>}
 
-        {mine && state.status === "success" && (<p data-testid="settings-saved" role="status" className="rounded-md border border-green-300 bg-green-50 px-3 py-2 text-sm text-green-800">
-            Det tidigare försöket slutfördes.
-            {currentStatus === "unavailable" ? " Aktuella uppgifter är inte tillgängliga." : currentStatus === "missing" ? " Posten finns inte längre i aktuella uppgifter." : currentStatus === "newer" ? " Nyare ändringar finns. Granska aktuella uppgifter." : currentStatus === "confirmed" ? " Aktuella uppgifter är bekräftade." : " Aktuella uppgifter hämtas separat."}
-          </p>)}
 
-        <TextField name="name" label="Artikelnamn" required defaultValue={v("name", selected?.name ?? "")} error={err("name")}/>
+
+        <div key={`${selected?.id ?? "new"}:${selected?.write_revision ?? "absent"}:${draftVersion}`} className="contents">
+        <TextField inputRef={firstField} name="name" label="Artikelnamn" required defaultValue={selected?.name ?? ""} error={fieldErrors.name}/>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <TextField name="sku" label="Artikelnummer" defaultValue={v("sku", selected?.sku ?? "")}/>
-          <TextField name="unit" label="Enhet" defaultValue={v("unit", selected?.unit ?? "")}/>
+          <TextField name="sku" label="Artikelnummer" defaultValue={selected?.sku ?? ""}/>
+          <TextField name="unit" label="Enhet" defaultValue={selected?.unit ?? ""}/>
         </div>
-        <TextField name="unit_price_kronor" label="Enhetspris (kr)" required defaultValue={v("unit_price_kronor", selected ? oreToKronorString(selected.unit_price_ore) : "")} error={err("unit_price_kronor")}/>
-        <p className="text-xs text-zinc-500">
+        <TextField name="unit_price_kronor" label="Enhetspris (kr)" required defaultValue={selected ? oreToKronorString(selected.unit_price_ore) : ""} error={fieldErrors.unit_price_kronor}/>
+        <p className="text-label text-text-tertiary">
           Anges i kronor (t.ex. 12,50). Lagras som heltal i öre. Manuella material –
           ingen leverantörsintegration.
         </p>
 
-        <div className="mt-2 flex justify-end">
-          <button type="submit" disabled={pending || baselineChanged} className="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60">
-            {pending ? "Sparar…" : "Spara artikel"}
+        </div>
+        <div className="flex">
+          <button type="submit" disabled={pending || baselineChanged || operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control bg-ink px-4 py-2 text-label font-medium text-white hover:bg-n-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:bg-sunken disabled:text-text-disabled">
+            {pending && isSave ? "Sparar…" : "Spara artikel"}
           </button>
         </div>
       </form>
 
-      <button type="button" disabled={operation.blocked} onClick={() => { operation.reset(); setSelected(null); }} className="self-start rounded-control border border-border-default px-3 py-2">Ny post</button>
+      <button type="button" disabled={operation.blocked} onClick={() => choose(null)} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Ny post</button>
       {/* Archived articles — hidden behind a toggle so archive is a REVERSIBLE door: an
             admin can VIEW archived rows and REACTIVATE them (Story 3.4 AC3). */}
       {!readError && archivedArticles.length > 0 && (<div className="flex flex-col gap-2">
-          <button type="button" aria-expanded={showArchived} onClick={() => setShowArchived((s) => !s)} className="self-start text-sm text-blue-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+          <button type="button" aria-expanded={showArchived} aria-controls={showArchived ? "articles-archived" : undefined} onClick={() => setShowArchived((s) => !s)} className="min-h-control-lg self-start rounded-control px-2 text-label text-text-secondary underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
             {showArchived
                 ? "Dölj arkiverade"
                 : `Visa arkiverade (${archivedArticles.length})`}
           </button>
 
-          {showArchived && (<section data-testid="articles-archived" aria-label="Arkiverade artiklar" className="flex flex-col gap-2">
-              <h3 className="text-sm font-medium text-zinc-700">Arkiverade</h3>
+          {showArchived && (<section id="articles-archived" data-testid="articles-archived" aria-label="Arkiverade artiklar" className="flex flex-col gap-2">
+              <h3 className="text-label font-medium text-text-secondary">Arkiverade</h3>
+              {visibleArchived.length === 0 && <p role="status" className="text-label text-text-secondary">Inga matchningar bland arkiverade artiklar.</p>}
               <ul className="flex flex-col gap-2">
-                {archivedArticles.map((article) => (<li key={article.id} className="flex items-center justify-between gap-4 rounded-md border border-dashed border-zinc-300 bg-zinc-50 px-3 py-2">
-                    <div className="flex flex-col">
-                      <span className="text-sm font-medium text-zinc-700">
+                {visibleArchived.map((article) => (<li key={article.id} className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-control border border-dashed border-border-default bg-sunken px-3 py-2">
+                    <div className="flex min-w-0 grow basis-full flex-col wrap-anywhere sm:basis-0">
+                      <span className="text-label font-medium text-text-secondary">
                         {article.name}
                         {article.unit ? ` (${article.unit})` : ""}
                       </span>
-                      <span className="text-xs text-zinc-500">
+                      {article.sku && <span className="text-label text-text-secondary">Artikelnr {article.sku}</span>}
+                <span className="text-label tabular-nums text-text-secondary">
                         {oreToKronorString(article.unit_price_ore)} kr
                       </span>
                     </div>
-                    <form onSubmit={event => { event.preventDefault(); void reactivateAction(new FormData(event.currentTarget)); }}>
+                    <form onSubmit={event => { event.preventDefault(); submitLifecycle(new FormData(event.currentTarget), true); }}>
                       <input type="hidden" name="id" value={article.id}/>
                 <input type="hidden" name="write_revision" value={article.write_revision}/>
-                      <button type="submit" className="rounded-md border border-zinc-300 px-2 py-1 text-xs text-zinc-700 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
-                        Återaktivera
+                      <button type="submit" disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
+                        {operation.pending && operation.kind === "article.reactivate" && state.targetId === article.id ? "Återaktiverar…" : "Återaktivera"}
                       </button>
                     </form>
                   </li>))}

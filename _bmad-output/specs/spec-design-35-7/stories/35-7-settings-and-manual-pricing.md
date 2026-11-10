@@ -2,8 +2,8 @@
 title: "Story 35.7: Settings And Manual Pricing"
 type: story
 created: 2026-11-02
-status: ready-for-dev
-baseline_revision: fc3f7f8f4ba34b3ee91c7f7b6841d070b55b3c4f
+status: in-progress
+baseline_revision: 0dd0c4e03ba51b22d55cfa63562ef440a84f725b
 context:
   - _bmad-output/specs/spec-design-35-7/SPEC.md
   - _bmad-output/specs/spec-design-35-7/operative-contract.md
@@ -126,13 +126,43 @@ Release `E35-7-REL-1` visual/device/composite contrast/reflow: UI owner; `REL-2`
 - [DESIGN](../planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md), [EXPERIENCE](../planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md), [detailed annex](../planning-artifacts/ux-design-specification-phase-b.md), [crosswalk](../planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md).
 - [Package index/predecessors](../planning-artifacts/design-transition-2026-10-23/story-preparation/README.md), [review convention](../../docs/process/review-order.md).
 
-## Implementation-author Suggested Review Order scaffold
+## Suggested Review Order
 
-Planning scaffold only. Implementation/fix author replaces it with exactly one final `## Suggested Review Order` after code/verification; no empty selectable final heading or invented lines now.
+Author: Story 35.7 implementation delegate (gpt-6.1-sol, High).
+Refreshed against the allocated presentation candidate on the Phase 5 baseline `0dd0c4e03ba51b22d55cfa63562ef440a84f725b`.
 
-1. Entry/user outcome: rationale and final route/component symbol with verified line.
-2. State/authority: reuse/tradeoff rationale and changed boundary/downstream guard with verified lines.
-3. Evidence/limits: actual AC assertions, command/revision/counts/skips, mocked boundaries and pending release/operational work. Refresh after fixes; reviewer checks final diff.
+### Connected settings and manual pricing
+
+The existing settings hub links to the three authorized pages. The readers disclose loading and unavailable data separately from an authorized empty result. Pricing gives fast reads 120 ms to finish before showing a loading label, then renders the same in-flight results in the same editor tree.
+
+- `src/app/(app)/settings/page.tsx:35` — `SettingsPage` introduces the three settings destinations.
+- `src/app/(app)/settings/company/page.tsx:53` — `CompanySettingsContent` supplies the company facts and read result.
+- `src/app/(app)/settings/pricing/page.tsx:33` — `PricingSettingsPage` starts each checked reader once and bounds the loading delay.
+- `src/app/(app)/settings/pricing/page.tsx:76` — `PricingEditors` retains independent role and article read-failure boundaries.
+
+### Draft ownership and current facts
+
+The forms keep the displayed revision and reuse the qualified producer's operation identity and checked actions. A receipt identifies the attempt. Current saved and approved facts still depend on an authorized reread. The local guard can cancel a supported history traversal before it changes the active entry.
+
+- `src/components/settings/CompanySettingsForm.tsx:187` — `accept` settles only the matching attempt and separates the receipt from the reread.
+- `src/components/settings/QuoteTermsEditor.tsx:72` — `isApproved` ties the approval display to current reviewed wording and read state.
+- `src/components/settings/SettingsFormNavigationGuard.tsx:33` — `onNavigate` blocks cancellable Back and Forward when the editor rejects departure.
+- `src/components/pricing/WorkRolesEditor.tsx:82` — `formAction` pins the selected role ID and revision.
+- `src/components/pricing/ArticlesEditor.tsx:56` — `visibleActive` filters only rows already returned by the authorized article read.
+
+### Assertions and outstanding evidence
+
+AC1 and AC4 use the company VAT correction and the existing save/approve browser journeys. AC2 and AC3 use actual row IDs and stored öre, with Swedish display, keyboard selection and minimum target size asserted independently. AC5 and AC6 use cancelled navigation, validation, no-match, and membership revocation. The retained producer tests cover recovery and stale facts for AC6 and AC7.
+
+- `tests/e2e/settings/settings.e2e.spec.ts:206` — `E35-7 ATDD company validation` links the VAT error to the field and checks persistence after correction.
+- `tests/e2e/settings/settings.e2e.spec.ts:245` — `E35-7 cancels a settings link and Back` asserts unchanged URL, history and draft.
+- `tests/e2e/settings/settings.e2e.spec.ts:292` — `E35-7 hides company write controls` checks real revocation and zero company/audit mutations.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:248` — `E35-7 ATDD phone row edits` checks keyboard, touch target, draft retention and row identity.
+- `tests/unit/features/settings/mutation-attempt.test.ts:146` — `R1-3 actual pricing page/editor` checks unavailable presentation with a synthetic reader and receipt.
+
+Local evidence: `npm run typecheck`, ESLint for the changed TS/TSX paths, `npm run verify:lockfiles`, `npm run verify:service-role-containment`, and the focused settings/pricing unit command passed. The focused command used Node's test runner with the repository import register for both feature unit directories and three settings/pricing validator files. It executed 179 tests with zero failures or skips. The hosted red checkpoint at `c57a7054` recorded three expected failures and 104 other first-attempt passes. That run predates this implementation.
+
+Current candidate evidence still needs the hosted production-server browser and required database/RLS/recovery lanes, independent review, and revision-bound visual acceptance. The browser tests and browser support for cancellable traversal remain to be verified. The guard retains suitable input and attempts in the mounted form. Hard reload, tab closure or crash can lose them. Synthetic static renders do not exercise authorized database reads or navigation. E35-7-REL-1 remains with the UI owner for wider device and contrast review, REL-2 with QA/accessibility for manual checks, and REL-3 with the Coordinator for Phase B consolidation. Those obligations are deferred and `release_ready=false`.
 
 ## Dev Agent Record
 

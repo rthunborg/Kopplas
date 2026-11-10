@@ -27,6 +27,7 @@ import type { SettingsActionState } from "@/features/settings/action-state";
 import { FormErrorSummary, SelectField, TextField, } from "@/components/crm/FormField";
 import { saveCompanySettingsAction } from "@/features/settings/actions";
 import { SETTINGS_ACTION_INITIAL } from "@/features/settings/action-state";
+import { hasChangedSettingsFields, installSettingsFormNavigationGuard } from "./SettingsFormNavigationGuard";
 import { VAT_DISPLAY_OPTIONS } from "@/features/settings/vat-display";
 /** The current company settings the form hydrates from (null = no row yet). */
 export interface CompanySettingsDefaults {
@@ -53,50 +54,62 @@ export function CompanySettingsForm({ defaults, }: {
     const operation = useMountedSettingsPricingAttempt(SETTINGS_ACTION_INITIAL, defaults.operationContext, defaults.readToken);
     const { state, pending } = operation;
     const [baseline, setBaseline] = useState(defaults);
-    const baselineChanged = !defaults.readError && (baseline.readError || !sameDraftBaseline(baseline, defaults));
-    const formAction = (form: FormData) => operation.submit(saveCompanySettingsAction, "company.save", form, baseline.id, baseline.write_revision, defaults.readError || baselineChanged);
-    // Echo-back values from a failed submit take precedence over the initial defaults.
-    const v = (field: string, fallback: string | null | undefined): string => state.values[field] ?? fallback ?? "";
-    return (<form key={`${baseline.id ?? "absent"}:${baseline.write_revision ?? "absent"}`} onSubmit={event => { event.preventDefault(); void formAction(new FormData(event.currentTarget)); }} className="flex max-w-2xl flex-col gap-4" noValidate>
+    const confirmsOwnWrite = operation.hasCurrentRead && !defaults.readError && defaults.id === state.targetId
+        && defaults.write_revision === state.committedRevision;
+    if (!defaults.readError && (baseline.readError || (confirmsOwnWrite && !operation.dirty && !sameDraftBaseline(baseline, defaults)))) {
+        setBaseline(defaults);
+    }
+    const baselineChanged = !defaults.readError && !(confirmsOwnWrite && !operation.dirty) && (baseline.readError || !sameDraftBaseline(baseline, defaults));
+    const formAction = (form: HTMLFormElement) => operation.submit(saveCompanySettingsAction, "company.save", new FormData(form),
+        baseline.id, baseline.write_revision, defaults.readError || baselineChanged, form);
+    return (<form onChange={event => operation.trackDraft(event.currentTarget)}
+      onSubmit={event => { event.preventDefault(); void formAction(event.currentTarget); }}
+      className="flex min-w-0 max-w-2xl flex-col gap-4" noValidate>
       <AttemptRecovery operation={operation}/>
-      {baselineChanged && <div data-testid="company-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-sm text-text-secondary">
+      {defaults.readError && <button type="button" disabled={operation.blocked} onClick={operation.refreshRead} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Försök läsa igen</button>}
+      {baselineChanged && !operation.accessLost && <div data-testid="company-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-label text-text-secondary">
         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
         <dl>{Object.entries(defaults).filter(([key]) => ["company_name", "org_nr", "address_line1", "address_line2", "postal_code", "city", "email", "phone", "default_vat_display", "vat_rate_percent"].includes(key)).map(([key, value]) => <div key={key}><dt className="font-medium">{({company_name:"Företagsnamn",org_nr:"Organisationsnummer",address_line1:"Adress",address_line2:"Adressrad 2",postal_code:"Postnummer",city:"Ort",email:"E-post",phone:"Telefon",default_vat_display:"Standardvisning av moms",vat_rate_percent:"Momssats"} as Record<string,string>)[key]}</dt><dd>{key === "default_vat_display" ? VAT_DISPLAY_OPTIONS.find(option => option.value === value)?.label ?? "—" : String(value ?? "—")}</dd></div>)}</dl>
         {!defaults.id && <p>Ingen aktuell post finns.</p>}
-        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); }} className="min-h-control-lg self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
+        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); }} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Använd aktuella uppgifter</button>
       </div>}
-      <fieldset disabled={operation.blocked || defaults.readError} className="contents">
-      <FormErrorSummary message={state.formError}/>
+      <fieldset disabled={operation.blocked || defaults.readError || operation.accessLost}
+        className={operation.accessLost || baseline.readError ? "hidden" : "contents"}>
+      <FormErrorSummary message={state.formError} fieldErrors={state.fieldErrors}/>
 
-      {state.status === "success" && (<p data-testid="settings-saved" role="status" className="rounded-md border border-green-300 bg-green-50 px-3 py-2 text-sm text-green-800">
+      {state.status === "success" && !operation.dirty && (<p data-testid="settings-saved" role="status" className="rounded-control border border-ok-text bg-ok-surface px-3 py-2 text-label text-ok-text">
           Försöket att spara företagsinställningarna slutfördes.
           {operation.hasCurrentRead && !defaults.readError ? !defaults.id ? " Posten finns inte längre i aktuella uppgifter." : defaults.write_revision !== state.committedRevision ? " Nyare ändringar finns. Granska aktuella uppgifter före nästa sparande." : " Aktuella uppgifter är bekräftade." : " Aktuella uppgifter hämtas separat."}
         </p>)}
 
-      <TextField name="company_name" label="Företagsnamn" required defaultValue={v("company_name", baseline.company_name)} error={state.fieldErrors.company_name}/>
-      <TextField name="org_nr" label="Organisationsnummer" defaultValue={v("org_nr", baseline.org_nr)}/>
-      <TextField name="address_line1" label="Adress" defaultValue={v("address_line1", baseline.address_line1)}/>
+      {!baseline.id && <p className="text-label text-text-secondary">Företagsinställningar har ännu inte sparats. Momssatsen visar ett förslag på 25 %.</p>}
+      {operation.dirty && !operation.blocked && <p role="status" className="text-label text-text-secondary">Osparade ändringar.</p>}
+      <div key={`${baseline.id ?? "absent"}:${baseline.write_revision ?? "absent"}`} className="contents">
+      <TextField name="company_name" label="Företagsnamn" required defaultValue={baseline.company_name ?? ""} error={state.fieldErrors.company_name}/>
+      <TextField name="org_nr" label="Organisationsnummer" defaultValue={baseline.org_nr ?? ""}/>
+      <TextField name="address_line1" label="Adress" defaultValue={baseline.address_line1 ?? ""}/>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <TextField name="postal_code" label="Postnummer" defaultValue={v("postal_code", baseline.postal_code)}/>
-        <TextField name="city" label="Ort" defaultValue={v("city", baseline.city)}/>
+        <TextField name="postal_code" label="Postnummer" defaultValue={baseline.postal_code ?? ""}/>
+        <TextField name="city" label="Ort" defaultValue={baseline.city ?? ""}/>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <TextField name="email" label="E-post" type="email" defaultValue={v("email", baseline.email)} error={state.fieldErrors.email}/>
-        <TextField name="phone" label="Telefon" defaultValue={v("phone", baseline.phone)} error={state.fieldErrors.phone}/>
+        <TextField name="email" label="E-post" type="email" defaultValue={baseline.email ?? ""} error={state.fieldErrors.email}/>
+        <TextField name="phone" label="Telefon" defaultValue={baseline.phone ?? ""} error={state.fieldErrors.phone}/>
       </div>
 
-      <SelectField name="default_vat_display" label="Standardvisning av moms" options={VAT_DISPLAY_OPTIONS} defaultValue={v("default_vat_display", baseline.default_vat_display)} error={state.fieldErrors.default_vat_display}/>
+      <SelectField name="default_vat_display" label="Standardvisning av moms" options={VAT_DISPLAY_OPTIONS} defaultValue={baseline.default_vat_display ?? ""} error={state.fieldErrors.default_vat_display}/>
 
       <div className="flex flex-col gap-1">
-        <TextField name="vat_rate_percent" label="Momssats" defaultValue={v("vat_rate_percent", baseline.vat_rate_percent)} error={state.fieldErrors.vat_rate_percent}/>
-        <p className="text-xs text-zinc-500">
+        <TextField name="vat_rate_percent" label="Momssats" defaultValue={baseline.vat_rate_percent ?? ""} error={state.fieldErrors.vat_rate_percent}/>
+        <p className="text-label text-text-tertiary">
           Anges i procent (t.ex. 25 för 25 %). Lagras som heltal i baspunkter. Ingen
           momsberäkning görs här – endast standardvärdet sparas.
         </p>
       </div>
 
-      <div className="mt-2 flex justify-end">
-        <button type="submit" disabled={pending || baselineChanged} className="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60">
+      </div>
+      <div className="flex">
+        <button type="submit" disabled={pending || baselineChanged || operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control bg-ink px-4 py-2 text-label font-medium text-white hover:bg-n-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:bg-sunken disabled:text-text-disabled">
           {pending ? "Sparar…" : "Spara"}
         </button>
       </div>
@@ -120,36 +133,42 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
     const [phase, setPhase] = useState<MutationAttempt["phase"] | "idle">("idle");
     const [notice, setNotice] = useState<string | null>(null);
     const [needsRefresh, setNeedsRefresh] = useState(false);
+    const [requestedReadToken, setRequestedReadToken] = useState<string | null>(null);
+    const awaitingCurrentRead = phase === "committed" && readToken === capturedReadToken;
+    const reviewBlocked = needsRefresh || requestedReadToken === readToken;
+    const originForm = useRef<HTMLFormElement | null>(null);
     useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
-    useEffect(() => {
-        const before = (e: BeforeUnloadEvent) => { if (attemptBlocksReplacement(attempt.current)) {
-            e.preventDefault();
-            e.returnValue = "";
-        } };
-        const click = (e: MouseEvent) => { const a = (e.target as Element).closest?.("a[href]"); if (a && attemptBlocksReplacement(attempt.current)) {
-            e.preventDefault();
-            e.stopPropagation();
-            setNotice("Behåll sidan öppen tills försöket är bekräftat. En omladdning kan förlora försöket.");
-        } };
-        window.addEventListener("beforeunload", before);
-        document.addEventListener("click", click, true);
-        return () => { window.removeEventListener("beforeunload", before); document.removeEventListener("click", click, true); };
+    const protectedAttempt = useCallback(() => busy.current || attemptBlocksReplacement(attempt.current), []);
+    const draftDirty = useRef(false);
+    const [dirty, setDirtyState] = useState(false);
+    const [navigationNotice, setNavigationNotice] = useState<string | null>(null);
+    const setDirty = useCallback((next: boolean) => {
+        draftDirty.current = next;
+        setDirtyState(next);
     }, []);
-    const blocked = phase === "pending" || phase === "unknown";
+    const trackDraft = (form: HTMLFormElement) => setDirty(hasChangedSettingsFields(form));
+    const allowReplacement = useCallback(() => {
+        if (protectedAttempt()) {
+            setNavigationNotice("Behåll sidan öppen tills försöket är bekräftat. En omladdning kan förlora försöket.");
+            return false;
+        }
+        return !draftDirty.current || window.confirm("Du har osparade ändringar. Vill du lämna utkastet?");
+    }, [protectedAttempt]);
+    useEffect(() => installSettingsFormNavigationGuard(
+        () => draftDirty.current || protectedAttempt(), allowReplacement,
+    ), [allowReplacement, protectedAttempt]);
+    const blocked = pending || phase === "pending" || phase === "unknown";
+    const [accessLost, setAccessLost] = useState(false);
     useEffect(() => {
-        if (!blocked)
-            return;
-        let ownsEntry = true;
-        const push = () => history.pushState({ ...history.state, settingsPricingAttempt: true }, "", location.href);
-        push();
-        const back = () => { if (attemptBlocksReplacement(attempt.current))
-            push();
-        else
-            ownsEntry = false; };
-        window.addEventListener("popstate", back);
-        return () => { window.removeEventListener("popstate", back); if (ownsEntry && history.state?.settingsPricingAttempt)
-            history.back(); };
-    }, [blocked]);
+        if (state.status !== "error" || accessLost) return;
+        const form = originForm.current;
+        if (!form || (document.activeElement !== document.body && !form.contains(document.activeElement))) return;
+        const field = form.querySelector<HTMLElement>('[aria-invalid="true"]');
+        const summary = form.querySelector<HTMLElement>('[data-testid="form-error-summary"] [role="alert"]');
+        if (summary && !field) summary.tabIndex = -1;
+        (field ?? summary)?.focus();
+    }, [state, accessLost]);
+
     const invoke = useCallback(async (reconcile: boolean) => {
         const current = attempt.current;
         const action = savedAction.current;
@@ -168,8 +187,13 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
         const accept = (result: S) => {
             if (!mounted.current || attempt.current?.operationId !== current.operationId || attempt.current?.generation !== current.generation)
                 return;
-            if (result.operationId !== current.operationId || result.targetId !== current.targetId || attempt.current.phase === "committed")
-                return;
+            if (attempt.current.phase === "committed") return;
+            if (result.operationId !== current.operationId || result.targetId !== current.targetId) {
+                result = { ...initial, status: "unconfirmed", operationId: current.operationId, targetId: current.targetId };
+            }
+            const denied = result.code === "PERMISSION_DENIED" || result.code === "TENANT_ACCESS_DENIED"
+                || result.code === "UNAUTHENTICATED" || result.code === "TENANT_MEMBERSHIP_REQUIRED";
+            if (denied || result.status === "success") setAccessLost(denied);
             const next = settleAttempt(attempt.current, result);
             attempt.current = next;
             setPhase(next.phase);
@@ -177,6 +201,7 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
             if (next.phase === "committed") {
                 // A neighboring form may have refreshed while this was unknown.
                 // Require another authorized read after this receipt is observed.
+                setDirty(false);
                 setCapturedReadToken(latestReadToken.current);
                 router.refresh();
                 setNeedsRefresh(false);
@@ -194,9 +219,9 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
         busy.current = false;
         if (mounted.current)
             setPending(false);
-    }, [initial, router]);
-    const submit = async (action: (s: S, f: FormData) => Promise<S>, kind: OperationKind, form: FormData, targetId: string | null, revision: string | null, readError = false) => {
-        if (busy.current || attemptBlocksReplacement(attempt.current) || needsRefresh)
+    }, [initial, router, setDirty]);
+    const submit = async (action: (s: S, f: FormData) => Promise<S>, kind: OperationKind, form: FormData, targetId: string | null, revision: string | null, readError = false, origin?: HTMLFormElement) => {
+        if (busy.current || attemptBlocksReplacement(attempt.current) || reviewBlocked || awaitingCurrentRead || accessLost)
             return;
         if (readError || !context) {
             setNotice("Aktuella uppgifter kunde inte läsas. Uppdatera innan du sparar.");
@@ -206,6 +231,7 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
             setNotice("Du är offline. Ingen begäran skickades. Utkastet är inte sparat.");
             return;
         }
+        originForm.current = origin ?? null;
         form.set("contextTenantId", context.tenantId);
         form.set("contextActorId", context.actorId);
         const operationId = crypto.randomUUID(), proposedTarget = targetId ?? crypto.randomUUID();
@@ -217,6 +243,8 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
         if (!checked.ok || Object.keys(parsed.fieldErrors).length) {
             // Local validation belongs to this form even though no attempt is dispatched.
             setAttemptKind(kind);
+            setPhase("idle");
+            setNotice(null);
             setState({ ...initial, ...("form" in initial ? { form: kind.startsWith("work_role") ? "work_role" : "article" } : {}), status: "error", code: "VALIDATION_FAILED", formError: "Kontrollera uppgifterna innan du sparar.", fieldErrors: parsed.fieldErrors, values: parsed.values });
             return;
         }
@@ -224,13 +252,32 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
         setAttemptKind(kind);
         attempt.current = captureAttempt({ operationId, kind, generation: ++serial.current, context: context.tenantId + ":" + context.actorId + ":" + window.location.pathname, targetId: proposedTarget, expectedRevision: revision, form, candidate: { ...checked.data } });
         savedAction.current = action;
+        setState({ ...initial, targetId: proposedTarget });
         setPhase("pending");
         await invoke(false);
     };
-    const refresh = () => { router.refresh(); setNeedsRefresh(false); setNotice("Aktuella uppgifter hämtas. Granska dem innan ett nytt medvetet försök."); };
-    const reset = () => { if (attemptBlocksReplacement(attempt.current))
-        return; attempt.current = null; savedAction.current = null; setAttemptKind(undefined); setState(initial); setPhase("idle"); setNeedsRefresh(false); setNotice(null); };
-    return { state, pending, phase, notice, needsRefresh, reset, hasCurrentRead: phase === "committed" && readToken !== capturedReadToken, kind: attemptKind, blocked, submit, retry: () => invoke(false), reconcile: () => invoke(true), refresh };
+    const refresh = () => {
+        setRequestedReadToken(readToken);
+        setNeedsRefresh(false);
+        setNotice("Aktuella uppgifter hämtas. Granska dem innan ett nytt medvetet försök.");
+        router.refresh();
+    };
+    const reset = () => {
+        if (protectedAttempt()) return;
+        attempt.current = null;
+        savedAction.current = null;
+        setAttemptKind(undefined);
+        setState(initial);
+        setPhase("idle");
+        setNeedsRefresh(false);
+        setRequestedReadToken(null);
+        setNotice(null);
+        setDirty(false);
+    };
+    const refreshRead = () => router.refresh();
+    return { state, pending, phase, notice, needsRefresh: reviewBlocked, reviewBlocked, awaitingCurrentRead, reset, hasCurrentRead: phase === "committed" && readToken !== capturedReadToken,
+        kind: attemptKind, blocked, submit, retry: () => invoke(false), reconcile: () => invoke(true), refresh, refreshRead,
+        dirty, setDirty, trackDraft, allowReplacement, navigationNotice, accessLost };
 }
 export function AttemptRecovery({ operation }: {
     readonly operation: {
@@ -238,14 +285,18 @@ export function AttemptRecovery({ operation }: {
         phase: string;
         notice: string | null;
         needsRefresh: boolean;
+        navigationNotice: string | null;
+        accessLost: boolean;
         retry: () => Promise<void>;
         reconcile: () => Promise<void>;
         refresh: () => void;
     };
 }) {
-    return <div aria-live="polite" className="flex flex-wrap gap-2">
-  {operation.notice && <p role="status" className="w-full text-sm text-text-secondary">{operation.notice}</p>}
-  {operation.phase === "unknown" && <><p role="alert" data-testid="operation-unconfirmed" className="w-full text-sm text-warn-text">Resultatet är inte bekräftat. Samma försök behålls. Omladdning eller stängning kan förlora möjligheten att kontrollera det.</p><button type="button" disabled={operation.pending} onClick={() => void operation.reconcile()} className="min-h-control-lg rounded-control border border-border-default px-3 py-2">Kontrollera resultat</button><button type="button" disabled={operation.pending} onClick={() => void operation.retry()} className="min-h-control-lg rounded-control border border-border-default px-3 py-2">Försök igen med samma uppgifter</button></>}
-  {operation.needsRefresh && <button type="button" onClick={operation.refresh} className="min-h-control-lg rounded-control border border-border-default px-3 py-2">Uppdatera och granska</button>}
+    return <div aria-live="polite" className="flex flex-wrap gap-2 empty:hidden">
+  {operation.accessLost && <p role="alert" className="w-full rounded-control bg-risk-surface p-3 text-label text-risk-text">Du har inte behörighet att utföra åtgärden.</p>}
+  {operation.navigationNotice && operation.phase === "pending" && <p role="status" className="w-full text-label text-text-secondary">{operation.navigationNotice}</p>}
+  {operation.notice && <p role="status" className="w-full text-label text-text-secondary">{operation.notice}</p>}
+  {operation.phase === "unknown" && <><p role="alert" data-testid="operation-unconfirmed" className="w-full text-label text-warn-text">Resultatet är inte bekräftat. Samma försök behålls. Omladdning eller stängning kan förlora möjligheten att kontrollera det.</p><button type="button" disabled={operation.pending} onClick={() => void operation.reconcile()} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Kontrollera resultat</button><button type="button" disabled={operation.pending} onClick={() => void operation.retry()} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Försök igen med samma uppgifter</button></>}
+  {operation.needsRefresh && <button type="button" onClick={operation.refresh} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Uppdatera och granska</button>}
  </div>;
 }

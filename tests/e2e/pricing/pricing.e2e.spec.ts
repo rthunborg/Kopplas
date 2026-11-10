@@ -234,7 +234,8 @@ test("E35-7 ATDD no-match retains the article query and restores the authorized 
         await expect(row).toHaveCount(0);
         await expect(editor.getByText(/Inga artiklar ännu/)).toHaveCount(0);
 
-        await search.clear();
+        await editor.getByRole("button", { name: "Rensa sökning", exact: true }).click();
+        await expect(search).toHaveValue("");
         await expect(noMatch).toHaveCount(0);
         await expect(row).toHaveCount(1);
         await expect(row).toContainText("12,50 kr");
@@ -285,6 +286,12 @@ test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pric
         await expect(price).toHaveValue("12,50");
         await price.fill("14,75");
         await article.getByLabel("Enhet", { exact: true }).fill("st");
+        const discard = page.waitForEvent("dialog");
+        const startNew = article.getByRole("button", { name: "Ny post", exact: true }).click();
+        await (await discard).dismiss();
+        await startNew;
+        await expect(price).toHaveValue("14,75");
+        await expect(article.getByLabel("Enhet", { exact: true })).toHaveValue("st");
         await article.getByRole("button", { name: "Spara artikel", exact: true }).click();
         await expect(articleRow).toContainText("14,75 kr");
         await expect(articleRow).toContainText(/\bst\b/);
