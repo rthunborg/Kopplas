@@ -959,36 +959,41 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
                 await expect(priceField).toHaveValue("99,00");
                 await expect(createSave).toBeEnabled();
 
-                const [createdRequest] = await Promise.all([
-                    page.waitForRequest(async request => {
-                        const headers = request.headers();
-                        if (new URL(request.url()).pathname !== "/settings/pricing" || request.method() !== "POST"
-                            || !headers["next-action"] || !headers["content-type"]?.startsWith("multipart/form-data")) return false;
-                        const body = request.postDataBuffer();
-                        if (!body) return false;
-                        const form = await new globalThis.Request("http://capture.invalid", {
-                            method: "POST", headers: { "content-type": headers["content-type"] }, body: new Uint8Array(body),
-                        }).formData().catch(() => null);
-                        if (!form) return false;
-                        const values = (name: string) => [...form].filter(([key]) => key === name || key.endsWith(`_${name}`)).map(([, value]) => value);
-                        const hasOne = (name: string, value: string) => {
-                            const entries = values(name);
-                            return entries.length === 1 && entries[0] === value;
-                        };
-                        return values("id").length === 0 && hasOne("expectedRevision", "absent")
-                            && hasOne(role ? "display_name" : "name", label)
-                            && hasOne(role ? "sell_rate_kronor" : "unit_price_kronor", "99,00");
-                    }, { timeout: 15_000 }),
-                    createSave.click(),
-                ]);
+                const actionDeadline = { timeout: 15_000 };
+                const createRequest = page.waitForRequest(async request => {
+                    const headers = request.headers();
+                    if (new URL(request.url()).pathname !== "/settings/pricing" || request.method() !== "POST"
+                        || !headers["next-action"] || !headers["content-type"]?.startsWith("multipart/form-data")) return false;
+                    const body = request.postDataBuffer();
+                    if (!body) return false;
+                    const form = await new globalThis.Request("http://capture.invalid", {
+                        method: "POST", headers: { "content-type": headers["content-type"] }, body: new Uint8Array(body),
+                    }).formData().catch(() => null);
+                    if (!form) return false;
+                    const values = (name: string) => [...form].filter(([key]) => key === name || key.endsWith(`_${name}`)).map(([, value]) => value);
+                    const hasOne = (name: string, value: string) => {
+                        const entries = values(name);
+                        return entries.length === 1 && entries[0] === value;
+                    };
+                    return values("id").length === 0 && hasOne("expectedRevision", "absent")
+                        && hasOne(role ? "display_name" : "name", label)
+                        && hasOne(role ? "sell_rate_kronor" : "unit_price_kronor", "99,00");
+                }, actionDeadline);
+                // Observe headers for this exact POST; the streamed response can remain open.
+                const createHeaders = page.waitForResponse(async response =>
+                    response.request().method() === "POST" && response.request() === await createRequest, actionDeadline);
+                const [createdRequest, createResponse] = await Promise.all([createRequest, createHeaders, createSave.click()]);
+                expect(createResponse.request() === createdRequest && createResponse.ok()).toBe(true);
                 const created = await producerCapturedFacts(createdRequest);
                 expect(/^[0-9a-f-]{36}$/i.test(created.operation)).toBe(true);
                 expect(/^[0-9a-f-]{36}$/i.test(created.target)).toBe(true);
                 expect(created.tenant === own.tenantA.id && created.actor === own.adminA.id).toBe(true);
                 expect(created.expectedRevision).toBe("absent");
-                const createResponse = await createdRequest.response();
-                expect(createResponse?.ok()).toBe(true);
-                expect(await createResponse!.finished()).toBeNull();
+                const createdRow = neighbor.getByRole("listitem").filter({ hasText: label });
+                await expect(createdRow).toHaveCount(1);
+                await expect(createdRow).toBeVisible();
+                await expect(neighbor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+
                 const persisted = role
                     ? await ordinary.from("work_roles").select("id,amount:sell_rate_ore").eq("tenant_id", own.tenantA.id).eq("display_name", label)
                     : await ordinary.from("articles").select("id,amount:unit_price_ore").eq("tenant_id", own.tenantA.id).eq("name", label);
@@ -996,11 +1001,6 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
                 expect(persisted.data?.length).toBe(1);
                 expect(persisted.data?.[0]?.id === created.target).toBe(true);
                 expect(persisted.data?.[0]?.amount).toBe(9900);
-
-                const createdRow = neighbor.getByRole("listitem").filter({ hasText: label });
-                await expect(createdRow).toHaveCount(1);
-                await expect(createdRow).toBeVisible();
-                await expect(neighbor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
                 await expect(row).toContainText("41,00");
                 await expect(editor.getByTestId("pricing-current-facts")).toContainText("41,00");
                 await expect(editor.getByLabel(spec.price)).toHaveValue("31,00");
