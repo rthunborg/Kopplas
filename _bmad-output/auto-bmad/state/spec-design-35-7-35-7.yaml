@@ -9,11 +9,11 @@ spec_folder: "_bmad-output/specs/spec-design-35-7"
 story_id: 35-7
 branch: codex/story-35-7-settings-manual-pricing
 status: in-progress
-updated_at: "2026-11-10T08:25:44Z"
+updated_at: "2026-11-10T08:48:55Z"
 started_at: "2026-11-09T20:54:57Z"
 completed_at: null
-active_seconds: 2011
-timing_anchor: 1794299144
+active_seconds: 3402
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -92,3 +92,4 @@ parallel_run_id: e35-7-presentation-20261109
 development_state: checkpoint_pending
 candidate_revision: f252758fe8036f877e9137e6fb336b2f7e8b3a8e
 visual_state: pending
+publication_identity_json: "{\"base_branch\": \"main\", \"base_revision\": \"f225e3e27c67ce5af2fc81156610e87c8c6ebd90\", \"branch\": \"codex/story-35-7-settings-manual-pricing\", \"repository\": \"rthunborg/Kopplas\", \"run_id\": \"e35-7-presentation-20261109\", \"story_key\": \"spec-design-35-7-35-7\", \"worktree\": \"C:\\\\DEV\\\\Kopplas\\\\tmp\\\\private\\\\e35-presentation-35-7-worker\"}"

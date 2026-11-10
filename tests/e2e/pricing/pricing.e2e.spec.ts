@@ -245,7 +245,7 @@ test("E35-7 ATDD no-match retains the article query and restores the authorized 
     }
 });
 
-test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pricing identities", async ({ page }) => {
+test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pricing identities", async ({ page }, info) => {
     const own = await createTwoTenantFixture();
     try {
         const roleName = "Installationstekniker";
@@ -292,16 +292,38 @@ test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pric
         await startNew;
         await expect(price).toHaveValue("14,75");
         await expect(article.getByLabel("Enhet", { exact: true })).toHaveValue("st");
+        const actions: BrowserRequest[] = [];
+        const countPricingActions = (request: BrowserRequest) => {
+            if (new URL(request.url()).pathname === "/settings/pricing" && request.method() === "POST" && request.headers()["next-action"]) {
+                actions.push(request);
+            }
+        };
+        page.on("request", countPricingActions);
         try {
-            await page.context().setOffline(true);
-            await articleRow.getByRole("button", { name: "Arkivera", exact: true }).click();
-            await expect(article.getByText("Du är offline. Ingen begäran skickades. Utkastet är inte sparat.")).toBeVisible();
-            await expect(price).toHaveValue("14,75");
-            await expect(articleRow).toHaveCount(1);
+            try {
+                await page.context().setOffline(true);
+                await articleRow.getByRole("button", { name: "Arkivera", exact: true }).click();
+                const connectionRequired = article.getByText("Du är offline. Ingen begäran skickades. Utkastet är inte sparat.");
+                await expect(connectionRequired).toBeVisible();
+                await expect(price).toHaveValue("14,75");
+                await expect(articleRow).toHaveCount(1);
+                await expect(article.getByTestId("settings-saved")).toHaveCount(0);
+                for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+                    await page.setViewportSize(viewport);
+                    await producerCapture(page, info, "article", "connection-required", connectionRequired, "center", {
+                        state: "connection-required", mechanism: "browser offline before dispatch, zero action POSTs and retained draft",
+                    });
+                }
+                expect(actions).toHaveLength(0);
+            } finally {
+                await page.context().setOffline(false);
+            }
+            await article.getByRole("button", { name: "Spara artikel", exact: true }).click();
+            await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            expect(actions).toHaveLength(1);
         } finally {
-            await page.context().setOffline(false);
+            page.off("request", countPricingActions);
         }
-        await article.getByRole("button", { name: "Spara artikel", exact: true }).click();
         await expect(articleRow).toContainText("14,75 kr");
         await expect(articleRow).toContainText(/\bst\b/);
 
@@ -334,6 +356,27 @@ test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pric
     }
 });
 
+async function expectRenderedContrast(control: Locator, property: "color" | "borderTopColor", minimum: number) {
+    const colors = await control.evaluate((element, property) => {
+        let container: Element | null = property === "borderTopColor" ? element.parentElement : element;
+        while (container && getComputedStyle(container).backgroundColor === "rgba(0, 0, 0, 0)") {
+            container = container.parentElement;
+        }
+        return { foreground: getComputedStyle(element)[property], background: container && getComputedStyle(container).backgroundColor };
+    }, property);
+    function luminance(color: string | null) {
+        const channels = color?.match(/^rgb\((\d+), (\d+), (\d+)\)$/)?.slice(1).map(Number);
+        expect(channels, "Opaque rendered sRGB color").toHaveLength(3);
+        const [red, green, blue] = channels!.map(value => {
+            const srgb = value / 255;
+            return srgb <= 0.04045 ? srgb / 12.92 : ((srgb + 0.055) / 1.055) ** 2.4;
+        });
+        return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+    }
+    const values = [luminance(colors.foreground), luminance(colors.background)];
+    expect((Math.max(...values) + 0.05) / (Math.min(...values) + 0.05), `${property} ${colors.foreground} on ${colors.background}`).toBeGreaterThanOrEqual(minimum);
+}
+
 async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
     for (const name of names) {
         const control = scope.getByRole("button", { name, exact: true });
@@ -343,7 +386,7 @@ async function assertProducerTouchTargets(scope: Page | Locator, names: readonly
         expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
     }
 }
-async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" = "center") {
+async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" = "center", presentation?: { readonly state: string; readonly mechanism: string; readonly remaining?: () => number; readonly deferWrite?: (write: () => Promise<void>) => void }) {
     const scope = surface === "company" || surface === "terms" ? page.locator("body") : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
     const anchor = explicitAnchor ?? (state === "loading" ? scope.getByRole("button", { name: "Sparar…", exact: true })
         : state === "unknown" || state.endsWith("-pending") ? scope.getByTestId("operation-unconfirmed")
@@ -351,21 +394,37 @@ async function producerCapture(page: Page, info: TestInfo, surface: string, stat
         : state === "error" ? scope.locator('[aria-invalid="true"]').first().locator("..")
         : state === "finished" ? scope.getByTestId(surface === "terms" ? "quote-terms-approved-status" : "settings-saved")
         : surface === "company" ? page.getByLabel("Företagsnamn") : surface === "terms" ? page.getByLabel("Offertvillkor") : scope);
-    await expect(anchor).toBeVisible();
-    await anchor.evaluate((el, block) => el.scrollIntoView({ block }), anchorBlock);
-    await expect(anchor).toBeInViewport();
+    const timeout = () => presentation?.remaining ? { timeout: presentation.remaining() } : {};
+    await expect(anchor).toBeVisible(timeout());
+    await anchor.evaluate((el, block) => el.scrollIntoView({ block }), anchorBlock, timeout());
+    await expect(anchor).toBeInViewport(timeout());
     if (state === "loading") await expect(anchor).toBeDisabled();
     const boot = JSON.parse(readFileSync(path.join(process.cwd(), "test-results/private/job-events-fetch-fault.json.startup.json"), "utf8"));
     expect(boot.runId).toBe(process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID);
     expect(boot.applicationUrl).toBe(new URL(page.url()).origin);
     expect(Number.isSafeInteger(boot.serverPid)).toBe(true);
     const viewport = page.viewportSize()!;
-    const dir = path.join(process.cwd(), "playwright-report", "35-7-p", `${surface}-${viewport.width}x${viewport.height}`);
-    await mkdir(dir, { recursive: true });
-    const file = path.join(dir, `${state}.png`);
-    const png = await page.screenshot({ path: file, fullPage: false });
-    const candidate = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-    await writeFile(path.join(dir, `${state}.json`), JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading" || state.endsWith("-pending") || state === "refresh-notice", captureAnchor: await anchor.evaluate(el => ({ tag: el.tagName, id: el.id, text: el.textContent?.trim().slice(0, 160) })), configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state, viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt: new Date().toISOString() }, null, 2));
+    const dir = path.join(process.cwd(), "playwright-report", presentation ? "35-7-presentation" : "35-7-p", `${surface}-${viewport.width}x${viewport.height}`);
+    const captureState = presentation?.state ?? state;
+    const file = path.join(dir, `${captureState}.png`);
+    if (!presentation?.deferWrite) await mkdir(dir, { recursive: true });
+    const png = await page.screenshot({
+        ...(!presentation?.deferWrite ? { path: file } : {}),
+        fullPage: false, ...(presentation ? { timeout: 3_000, ...timeout() } : {}),
+    });
+    const captureAnchor = await anchor.evaluate(el => ({ tag: el.tagName, id: el.id, text: el.textContent?.trim().slice(0, 160) }), undefined, timeout());
+    const capturedAt = new Date().toISOString();
+    const write = async () => {
+        const candidate = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+        const metadata = JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading" || state.endsWith("-pending") || state === "refresh-notice" || Boolean(presentation && state === "pending-target"), captureAnchor, configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state: captureState, ...(presentation ? { mechanism: presentation.mechanism } : {}), viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt }, null, 2);
+        if (presentation?.deferWrite) {
+            await mkdir(dir, { recursive: true });
+            await writeFile(file, png);
+        }
+        await writeFile(path.join(dir, `${captureState}.json`), metadata);
+    };
+    if (presentation?.deferWrite) presentation.deferWrite(write);
+    else await write();
 }
 type ProducerReadTerminal = { kind: "finished" | "failed"; request: BrowserRequest };
 function producerReadIssue(stage: string, error: unknown) {
@@ -615,11 +674,13 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             for (const spec of [{ id: "work-roles-editor", surface: "work-role", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", archived: "work-roles-archived" }, { id: "articles-editor", surface: "article", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", archived: "articles-archived" }]) {
                 const editor = page.getByTestId(spec.id);
                 await producerCapture(page, info, spec.surface, "empty");
+                await producerCapture(page, info, spec.surface, "empty", undefined, "center", { state: "empty", mechanism: "authorized fresh-tenant absence" });
                 await editor.getByLabel(spec.name).fill(`Synthetic ${spec.surface}`);
                 await editor.getByLabel(spec.price).fill("-1");
                 await editor.getByRole("button", { name: spec.save }).click();
                 await expect(editor.getByLabel(spec.price)).toHaveAttribute("aria-invalid", "true");
                 await producerCapture(page, info, spec.surface, "error");
+                await producerCapture(page, info, spec.surface, "error", undefined, "center", { state: "validation", mechanism: "actual action validation" });
                 await editor.getByLabel(spec.price).fill("12,50");
                 const createLoss = await loseCommittedReply(page, "/settings/pricing");
                 await editor.getByRole("button", { name: spec.save }).dblclick();
@@ -629,11 +690,13 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                     await expect(editor.getByRole("button", { name: "Sparar…", exact: true })).toBeDisabled();
                     await expect(editor.getByLabel(spec.name)).toBeDisabled();
                     await producerCapture(page, info, spec.surface, "loading");
+                    await producerCapture(page, info, spec.surface, "loading", undefined, "center", { state: "submitting", mechanism: "held action transport, pending client state" });
                 } finally { createLoss.release(); }
                 await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
                 await expect(editor.getByRole("button", { name: "Ny post" })).toBeDisabled();
                 if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
                 await producerCapture(page, info, spec.surface, "unknown");
+                await producerCapture(page, info, spec.surface, "unknown", undefined, "center", { state: "unknown", mechanism: "controlled loss of action reply" });
                 const reconcileHold = await holdNextProducerTransport(page, "/settings/pricing", "action");
                 try {
                     await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
@@ -675,6 +738,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await expect(activeRow).toHaveCount(0);
                 await expect(row.getByRole("button", { name: "Återaktivera" })).toBeEnabled();
                 await producerCapture(page, info, spec.surface, "archived-restore", row);
+                await producerCapture(page, info, spec.surface, "archived-restore", row, "center", { state: "archived-restore", mechanism: "same selected row archived by a confirmed action" });
                 await expect(row.getByRole("button", { name: "Återaktivera" })).toBeInViewport();
                 const restoreLoss = await loseCommittedReply(page, "/settings/pricing");
                 await row.getByRole("button", { name: "Återaktivera" }).click();
@@ -692,6 +756,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await expect(row).toHaveCount(0);
                 await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
                 await producerCapture(page, info, spec.surface, "finished", activeRow);
+                await producerCapture(page, info, spec.surface, "finished", activeRow, "center", { state: "finished", mechanism: "reactivated authorized row after current read" });
                 await expect(activeRow.getByRole("button", { name: "Arkivera" })).toBeInViewport();
                 await expect(editor.getByTestId("settings-saved")).toBeInViewport();
             }
@@ -1190,7 +1255,7 @@ function producerNamespaceOutput(raw: string, input: ProducerNamespaceInput): Pr
     } catch { return fail(); }
 }
 
-async function qualifyProducerBoundedEffects(info: TestInfo) {
+async function qualifyProducerRuntime(info: TestInfo) {
     const runtime = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
     runtime.validateAdmission("browser", process.env, process.platform);
     expect(info.config.workers).toBe(1);
@@ -1248,6 +1313,11 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
         return address?.[1] === "0C1C" && ["00000000", "0100007F", "00000000000000000000000000000000", "00000000000000000000000001000000"].includes(address[0]) && fields[3] === "0A" && socketIds.has(fields[9]);
     }));
     expect(runtime.ownsListenerRecord(3100, sockets, tcp) || wildcardOwned).toBe(true);
+    return { runtime, stack, boot, wrapperPid };
+}
+
+async function qualifyProducerBoundedEffects(info: TestInfo) {
+    const { runtime, stack, boot, wrapperPid } = await qualifyProducerRuntime(info);
     // A fresh isolated job plus the single configured worker is not permission
     // to affect another runner: inspect actual host CLI consumers as well.
     const installedCli = producerPlaywrightEntry(path.resolve("node_modules/@playwright/test/cli.js"));
@@ -1599,6 +1669,9 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                     await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
                     await assertDomain();
                     await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, unavailableAlignment);
+                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, unavailableAlignment, {
+                        state: "read-error", mechanism: "real checked read failure with preserved historical receipt (P-E5)",
+                    });
                     await assertDomain();
                     await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
                     await expect(unavailable).toBeInViewport({ ratio: 1 });
@@ -1697,6 +1770,9 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
             await expect(adopt).toBeInViewport({ ratio: 1 });
             await expect(article.getByText("Ingen aktuell post finns.", { exact: true })).toBeInViewport({ ratio: 1 });
             await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "start");
+            await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "start", {
+                state: "historical-target-missing", mechanism: "authorized reread after bounded test-owned row deletion (P-E5)",
+            });
             await expect(article.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
             await expect(adopt).toBeInViewport({ ratio: 1 });
             await expect(article.getByText("Ingen aktuell post finns.", { exact: true })).toBeInViewport({ ratio: 1 });
@@ -1719,3 +1795,320 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
         if (failures.length) throw new AggregateError(failures, "Bounded producer effects failed; retry is refused by durable job claim");
     }
 });
+
+const initialReads = [
+    { surface: "company", route: "/settings/company", relation: "public.company_settings",
+        loading: "Hämtar företagsinställningar…", absent: "Företagsnamn" },
+    { surface: "terms", route: "/settings/quote-terms", relation: "public.quote_terms",
+        loading: "Hämtar offertvillkor…", absent: "Offertvillkor" },
+    { surface: "pricing", route: "/settings/pricing", relation: "public.articles",
+        loading: "Hämtar arbetsroller och artiklar…", absent: "Artikelnamn" },
+] as const;
+
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+    test(`E35-7 initial route reads stream actual loading before authorized absence ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+        test.skip(process.env.CI !== "true", "Requires the fresh isolated hosted browser runtime");
+        test.setTimeout(90_000);
+        expect(info.retry).toBe(0); // Repeated acquisition after an ambiguous effect is refused.
+        const { runtime, stack } = await qualifyProducerRuntime(info);
+        const own = await createTwoTenantFixture();
+        let fixtureCleanupSafe = true;
+        try {
+            await page.setViewportSize(viewport);
+            await signIn(page, own.adminA.email, own.adminA.password);
+            for (const spec of initialReads) {
+                const lock = runtime.createCalendarFeedDatabaseClient(stack, "proof");
+                let connectionLost = false;
+                lock.on("error", () => { connectionLost = true; });
+                let transaction = false;
+                let writeCapture: (() => Promise<void>) | undefined;
+                try {
+                    await lock.connect();
+                    await runtime.readCalendarFeedSetupAuthority(lock);
+                    const identity = await lock.query(`
+                        select current_database() as database,
+                            inet_server_port() as port, pg_is_in_recovery() as recovery
+                    `);
+                    expect(identity.rows).toEqual([{ database: "postgres", port: 5432, recovery: false }]);
+                    // Read the most conservative positive timeout across applicable
+                    // authenticator/authenticated and database settings. Require
+                    // explicit positive statement-timeout evidence before locking.
+                    const options = await lock.query(`
+                        select split_part(option, '=', 1) as name, split_part(option, '=', 2) as value
+                        from pg_db_role_setting s cross join lateral unnest(s.setconfig) option
+                        where (s.setdatabase = 0 or s.setdatabase = (select oid from pg_database where datname = current_database()))
+                            and (s.setrole = 0 or s.setrole in (select oid from pg_roles where rolname in ('authenticator', 'authenticated')))
+                            and split_part(option, '=', 1) in ('statement_timeout', 'lock_timeout', 'transaction_timeout')
+                    `);
+                    const bounds = options.rows.map(({ name, value }) => {
+                        const setting = /^(\d+(?:\.\d+)?)(ms|s|min)?$/.exec(value);
+                        if (!setting) throw new Error("Unrecognized checked-read timeout setting");
+                        return { name, ms: Number(setting[1]) * (setting[2] === "min" ? 60_000 : setting[2] === "s" ? 1_000 : 1) };
+                    }).filter(({ ms }) => ms > 0);
+                    expect(bounds.some(({ name }) => name === "statement_timeout")).toBe(true);
+                    const budget = Math.min(5_000, Math.min(...bounds.map(({ ms }) => ms)) - 1_500);
+                    expect(budget).toBeGreaterThanOrEqual(2_000);
+                    const deadline = performance.now() + budget;
+                    const remaining = () => {
+                        const ms = Math.floor(deadline - performance.now());
+                        if (ms <= 0 || connectionLost) throw new Error("Bounded initial-read capture expired");
+                        return ms;
+                    };
+                    await lock.query("begin");
+                    transaction = true;
+                    const holderLimits = {
+                        text: `select set_config('transaction_timeout', $1, true),
+                            set_config('idle_in_transaction_session_timeout', '3s', true),
+                            set_config('statement_timeout', '1s', true),
+                            set_config('lock_timeout', '1s', true)`,
+                        values: [`${remaining() + 1_500}ms`],
+                        query_timeout: 1_000,
+                    };
+                    await lock.query(holderLimits);
+                    fixtureCleanupSafe = false; // Arm before the first possibly uncertain relation effect.
+                    const holdRelation = { text: `lock table ${spec.relation} in access exclusive mode`, query_timeout: Math.min(1_000, remaining()) };
+                    await lock.query(holdRelation);
+                    const observe = (text: string, values: string[] = []) => {
+                        const query = { text, values, query_timeout: Math.min(1_000, remaining()) };
+                        return lock.query(query);
+                    };
+                    const started = await observe("select clock_timestamp()::text as at");
+                    await page.goto(spec.route, { waitUntil: "commit", timeout: remaining() });
+                    const loading = page.getByRole("status").filter({ hasText: spec.loading });
+                    await expect(loading).toBeVisible({ timeout: remaining() });
+                    const blockedPostgrestRead = async () => {
+                        await observe("select pg_stat_clear_snapshot()");
+                        const [schema, table] = spec.relation.split(".");
+                        const result = await observe(`
+                            select a.pid
+                            from pg_stat_activity a
+                            join pg_locks l on l.pid = a.pid and l.locktype = 'relation'
+                            where a.usename = 'authenticator' and a.datname = current_database()
+                                and a.state = 'active' and a.wait_event_type = 'Lock' and a.query_start >= $1::timestamptz
+                                and not l.granted and l.mode = 'AccessShareLock' and l.relation = to_regclass($2)
+                                and l.database = (select oid from pg_database where datname = current_database())
+                                and pg_backend_pid() = any(pg_blocking_pids(a.pid))
+                                and a.query ~* '^[[:space:]]*WITH[[:space:]]+pgrst_source[[:space:]]+AS[[:space:]]*[(][[:space:]]*SELECT[[:space:]]'
+                                and strpos(a.query, $3) > 0
+                        `, [started.rows[0].at, spec.relation, `"${schema}"."${table}"`]);
+                        remaining();
+                        return result.rows.map(({ pid }) => Number(pid));
+                    };
+                    let waiting: number[] = [];
+                    await expect.poll(async () => { waiting = await blockedPostgrestRead(); return waiting.length; },
+                        { timeout: remaining(), intervals: [50, 100, 200] }).toBeGreaterThan(0);
+                    await expect(page.getByLabel(spec.absent, { exact: true })).toHaveCount(0, { timeout: remaining() });
+                    await expect(page.getByTestId("settings-saved")).toHaveCount(0, { timeout: remaining() });
+                    await expect(page.getByText(/förslag på 25 %|Inga artiklar ännu|Inga arbetsroller ännu/)).toHaveCount(0, { timeout: remaining() });
+                    await producerCapture(page, info, spec.surface, "initial-loading", loading, "center", {
+                        state: "loading", mechanism: `streamed route while PostgREST waits for ${spec.relation}; bounded transaction rollback`,
+                        remaining, deferWrite: write => { writeCapture = write; },
+                    });
+                    expect((await blockedPostgrestRead()).some(pid => waiting.includes(pid))).toBe(true);
+                    await expect(loading).toBeVisible({ timeout: remaining() });
+                } finally {
+                    try {
+                        if (transaction) {
+                            const rollback = { text: "rollback", query_timeout: 1_000 };
+                            await lock.query(rollback);
+                            fixtureCleanupSafe = !connectionLost;
+                        }
+                    } finally {
+                        await lock.end();
+                    }
+                }
+                if (!writeCapture || !fixtureCleanupSafe) throw new Error("Initial-read capture or lock release not established");
+                await expect(page).toHaveURL(new URL(spec.route, "http://127.0.0.1:3100").href);
+                await expect(page.getByText(spec.loading, { exact: true })).toHaveCount(0);
+                const field = page.getByLabel(spec.absent, { exact: true });
+                await expect(field).toBeEnabled();
+                await expect(field).toHaveValue("");
+                if (spec.surface === "company") {
+                    await expect(page.getByTestId("company-empty-defaults")).toContainText("förslag på 25 %");
+                    await expect(page.getByLabel("Momssats")).toHaveValue("25");
+                } else if (spec.surface === "terms") {
+                    await expect(page.getByTestId("quote-terms-signoff-warning")).toBeVisible();
+                    await expect(page.getByRole("button", { name: "Markera som godkänd" })).toHaveCount(0);
+                } else {
+                    await expect(page.getByText(/Inga arbetsroller ännu/)).toBeVisible();
+                    await expect(page.getByText(/Inga artiklar ännu/)).toBeVisible();
+                }
+                await writeCapture();
+            }
+        } finally {
+            if (fixtureCleanupSafe) await cleanupFixture(own);
+        }
+    });
+}
+
+test("E35-7 filters archived and active pricing by authorized identity", async ({ page }, info) => {
+    const own = await createTwoTenantFixture();
+    try {
+        const ordinary = await makeAuthedServerClient(own.adminA);
+        const roleId = await adminInsertWorkRole({ tenant_id: own.tenantA.id, display_name: "Installationstekniker" });
+        const articleId = await adminInsertArticle({ tenant_id: own.tenantA.id, name: "Kopplingsdosa", unit_price_ore: 1250 });
+        await adminInsertArticle({ tenant_id: own.tenantB.id, name: "Kopplingsdosa annan verksamhet" });
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings/pricing");
+        const role = page.getByTestId("work-roles-editor");
+        const article = page.getByTestId("articles-editor");
+        const roleRow = role.getByRole("listitem").filter({ hasText: "Installationstekniker" });
+        const articleRow = article.getByRole("listitem").filter({ hasText: "Kopplingsdosa" });
+        const roleSearch = role.getByLabel("Sök arbetsroller");
+        const articleSearch = article.getByLabel("Sök artiklar");
+        const roleEdit = roleRow.getByRole("button", { name: "Redigera" });
+        await waitForHydrated(roleEdit);
+        await roleEdit.press("Enter");
+        await expect(roleEdit).toHaveAttribute("aria-current", "true");
+        await expectRenderedContrast(roleEdit, "borderTopColor", 3);
+        await expectRenderedContrast(roleSearch, "borderTopColor", 3);
+        await expectRenderedContrast(articleRow.getByRole("button", { name: "Redigera" }), "borderTopColor", 3);
+        await articleRow.getByRole("button", { name: "Redigera" }).press("Enter");
+        await article.getByLabel("Artikelnummer").fill("EL-725");
+        await article.getByLabel("Enhet", { exact: true }).fill("styck");
+        await article.getByRole("button", { name: "Spara artikel" }).press("Enter");
+        await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        await articleSearch.fill("EL-725");
+        await expect(articleRow).toHaveCount(1);
+        await articleSearch.fill("styck");
+        await expect(articleRow).toHaveCount(1);
+        await article.getByRole("button", { name: "Rensa sökning" }).press("Enter");
+        await articleRow.getByRole("button", { name: "Arkivera" }).press("Enter");
+        await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        await article.getByRole("button", { name: "Visa arkiverade (1)" }).press("Enter");
+        const archived = article.getByTestId("articles-archived");
+        const archivedRow = archived.getByRole("listitem").filter({ hasText: "Kopplingsdosa" });
+        await expect(archivedRow).toHaveCount(1);
+        await expectRenderedContrast(archivedRow.getByRole("button", { name: "Återaktivera" }), "borderTopColor", 3);
+        const archivedProof = await ordinary.from("articles").select("id,is_active,write_revision").eq("tenant_id", own.tenantA.id).single();
+        expect(archivedProof.error).toBeNull();
+        expect(archivedProof.data).toMatchObject({ id: articleId, is_active: false });
+
+        await roleSearch.fill("Ingen sådan roll");
+        await articleSearch.fill("Ingen sådan artikel");
+        const rolesNoMatch = role.getByRole("status").filter({ hasText: "Inga matchningar bland aktiva arbetsroller." });
+        const archivedNoMatch = archived.getByRole("status").filter({ hasText: "Inga matchningar bland arkiverade artiklar." });
+        await expect(rolesNoMatch).toBeVisible();
+        await expect(archivedNoMatch).toBeVisible();
+        await expect(roleRow).toHaveCount(0);
+        await expect(archivedRow).toHaveCount(0);
+        await expect(roleSearch).toHaveValue("Ingen sådan roll");
+        await expect(articleSearch).toHaveValue("Ingen sådan artikel");
+        for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+            await page.setViewportSize(viewport);
+            await producerCapture(page, info, "work-role", "no-match", rolesNoMatch, "center", {
+                state: "no-match", mechanism: "local filter over an authorized selected role",
+            });
+            await producerCapture(page, info, "article", "no-match", archivedNoMatch, "center", {
+                state: "no-match", mechanism: "local filter over an authorized archived article",
+            });
+        }
+        await role.getByRole("button", { name: "Rensa sökning" }).press("Enter");
+        await article.getByRole("button", { name: "Rensa sökning" }).press("Enter");
+        await expect(roleEdit).toHaveAttribute("aria-current", "true");
+        await expect(archivedRow).toHaveCount(1);
+        await expect(archived.getByText("Kopplingsdosa annan verksamhet")).toHaveCount(0);
+        await archivedRow.getByRole("button", { name: "Återaktivera" }).press("Enter");
+        await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        await expect(archivedRow).toHaveCount(0);
+        await expect(articleRow).toContainText("12,50 kr");
+        const activeProof = await ordinary.from("articles").select("id,is_active,write_revision").eq("tenant_id", own.tenantA.id).single();
+        expect(activeProof.error).toBeNull();
+        expect(activeProof.data).toMatchObject({ id: articleId, is_active: true });
+        expect(activeProof.data!.write_revision).not.toBe(archivedProof.data!.write_revision);
+        const roleProof = await ordinary.from("work_roles").select("id").eq("tenant_id", own.tenantA.id).single();
+        expect(roleProof.error).toBeNull();
+        expect(roleProof.data).toEqual({ id: roleId });
+    } finally {
+        await cleanupFixture(own);
+    }
+});
+
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+    test(`E35-7 pending row A prevents selecting B and settles only its captured revision ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+        const own = await createTwoTenantFixture();
+        try {
+            const a = await adminInsertArticle({ tenant_id: own.tenantA.id, name: "Dosa A", unit_price_ore: 1250 });
+            const b = await adminInsertArticle({ tenant_id: own.tenantA.id, name: "Dosa B", unit_price_ore: 2175 });
+            const ordinary = await makeAuthedServerClient(own.adminA);
+            const readPrices = () => ordinary.from("articles").select("id,unit_price_ore,write_revision")
+                .eq("tenant_id", own.tenantA.id).order("name");
+            const baseline = await readPrices();
+            expect(baseline.error).toBeNull();
+            expect(baseline.data).toMatchObject([{ id: a, unit_price_ore: 1250 }, { id: b, unit_price_ore: 2175 }]);
+            await page.setViewportSize(viewport);
+            await signIn(page, own.adminA.email, own.adminA.password);
+            await page.goto("/settings/pricing");
+
+            const editor = page.getByTestId("articles-editor");
+            const edit = (name: string) => editor.getByRole("listitem").filter({ hasText: name }).getByRole("button", { name: "Redigera" });
+            const aEdit = edit("Dosa A");
+            const bEdit = edit("Dosa B");
+            await waitForHydrated(aEdit);
+            await aEdit.press("Enter");
+            await expect(aEdit).toHaveAttribute("aria-current", "true");
+            const price = editor.getByLabel("Enhetspris (kr)");
+            await price.fill("14,75");
+
+            const requests: BrowserRequest[] = [];
+            const observe = (request: BrowserRequest) => {
+                if (new URL(request.url()).pathname === "/settings/pricing" && request.method() === "POST" && request.headers()["next-action"]) {
+                    requests.push(request);
+                }
+            };
+            page.on("request", observe);
+            try {
+                const hold = await holdNextProducerTransport(page, "/settings/pricing", "action");
+                try {
+                    await editor.getByRole("button", { name: "Spara artikel" }).press("Enter");
+                    await hold.seen;
+                    const request = hold.request()!;
+                    expect(await producerCapturedFacts(request)).toEqual({
+                        operation: expect.stringMatching(/^[a-f0-9-]{36}$/i), target: a, tenant: own.tenantA.id,
+                        actor: own.adminA.id, expectedRevision: baseline.data![0].write_revision,
+                    });
+                    await expect(price).toBeDisabled();
+                    await expect(bEdit).toBeDisabled();
+                    await bEdit.scrollIntoViewIfNeeded();
+                    const target = (await bEdit.boundingBox())!;
+                    await page.mouse.click(target.x + target.width / 2, target.y + target.height / 2);
+                    await expect(bEdit).not.toHaveAttribute("aria-current", "true");
+                    await expect(aEdit).toHaveAttribute("aria-current", "true");
+                    await expect(price).toHaveValue("14,75");
+                    await expect(editor.getByTestId("settings-saved")).toHaveCount(0);
+                    await expect(page.getByTestId("work-roles-editor").getByRole("button", { name: "Spara roll" })).toBeEnabled();
+                    const back = page.getByRole("link", { name: "← Inställningar" });
+                    await back.click();
+                    await expect(page).toHaveURL(/\/settings\/pricing$/);
+                    await expect(editor.getByRole("status").filter({ hasText: /Behåll sidan öppen tills försöket är bekräftat/i })).toBeVisible();
+                    expect(requests).toEqual([request]);
+                    const stillBaseline = await readPrices();
+                    expect(stillBaseline.error).toBeNull();
+                    expect(stillBaseline.data).toEqual(baseline.data);
+                    await producerCapture(page, info, "article", "pending-target", bEdit, "center", {
+                        state: "pending-target", mechanism: "original action transport held before dispatch; selected A, disabled B",
+                    });
+                } finally {
+                    try { await hold.releaseHeld(); }
+                    finally { await hold.dispose(); }
+                }
+
+                await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+                await expect(aEdit).toHaveAttribute("aria-current", "true");
+                const persisted = await readPrices();
+                expect(persisted.error).toBeNull();
+                expect(persisted.data).toMatchObject([{ id: a, unit_price_ore: 1475 }, baseline.data![1]]);
+                expect(persisted.data![0].write_revision).not.toBe(baseline.data![0].write_revision);
+                await bEdit.press("Enter");
+                await expect(bEdit).toHaveAttribute("aria-current", "true");
+                await expect(price).toHaveValue("21,75");
+                await expect(editor.getByTestId("settings-saved")).toHaveCount(0);
+                expect(requests).toHaveLength(1);
+            } finally {
+                page.off("request", observe);
+            }
+        } finally {
+            await cleanupFixture(own);
+        }
+    });
+}

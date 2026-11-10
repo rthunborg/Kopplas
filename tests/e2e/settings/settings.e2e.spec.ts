@@ -25,7 +25,7 @@
  *   - Route auth + nav (P0, AC4): anon → /login; nav stays exactly aligned with active manifest
  *     modules (no new settings nav item; no /settings/pricing — Story 3.4).
  */
-import { test, expect, type Page, type Locator } from "@playwright/test";
+import { test, expect, type Dialog, type Page, type Locator } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { adminQuery } from "../../factories/admin-sql";
@@ -205,7 +205,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
-import { createTwoTenantFixture, cleanupFixture } from "../../factories/tenants";
+import { createTwoTenantFixture, cleanupFixture, makeAuthedServerClient } from "../../factories/tenants";
 
 test("E35-7 ATDD company validation links to the invalid VAT field on a phone", async ({ page }) => {
     const own = await createTwoTenantFixture();
@@ -248,7 +248,7 @@ test("E35-7 ATDD company validation links to the invalid VAT field on a phone", 
     }
 });
 
-test("E35-7 cancels a settings link and Back without replacing the terms draft or history", async ({ page }) => {
+test("E35-7 cancels a settings link and Back without replacing the terms draft or history", async ({ page }, info) => {
     const own = await createTwoTenantFixture();
     try {
         await page.setViewportSize({ width: 360, height: 640 });
@@ -257,33 +257,54 @@ test("E35-7 cancels a settings link and Back without replacing the terms draft o
         await page.getByRole("link", { name: /^Offertvillkor/ }).click();
         const terms = page.getByLabel("Offertvillkor");
         await waitForHydrated(terms);
-        const before = await page.evaluate(() => ({
-            href: location.href,
-            index: (window as Window & { navigation?: { currentEntry: { index: number } } }).navigation?.currentEntry.index,
-            length: history.length,
-        }));
-        expect(before.index).toEqual(expect.any(Number));
+        const backLink = page.getByRole("link", { name: "← Inställningar" });
+        // Create an actual Forward entry without a dirty draft, then return to terms.
+        await backLink.click();
+        await expect(page).toHaveURL(/\/settings$/);
+        await page.evaluate(() => history.back());
+        await expect(page).toHaveURL(/\/settings\/quote-terms$/);
+        await waitForHydrated(terms);
+        const historySnapshot = () => page.evaluate(() => {
+            const { navigation } = window as Window & { navigation?: {
+                currentEntry: { index: number };
+                canGoBack: boolean;
+                canGoForward: boolean;
+                entries(): Array<{ key: string; url: string }>;
+            } };
+            if (!navigation) throw new Error("Chromium Navigation API is required for history proof");
+            return {
+                href: location.href, index: navigation.currentEntry.index, length: history.length,
+                canGoBack: navigation.canGoBack, canGoForward: navigation.canGoForward,
+                entries: navigation.entries().map(({ key, url }) => ({ key, url })),
+            };
+        });
+        const before = await historySnapshot();
+        expect(before.canGoBack).toBe(true);
+        expect(before.canGoForward).toBe(true);
         const whitespaceDraft = " \n ";
         await terms.fill(whitespaceDraft);
         await expect(page.getByText(/Utkastet har osparade ändringar i blanksteg/)).toBeVisible();
-        const backLink = page.getByRole("link", { name: "← Inställningar" });
-
         const linkPrompt = page.waitForEvent("dialog");
         const click = backLink.click();
         await (await linkPrompt).dismiss();
         await click;
         await expect(terms).toHaveValue(whitespaceDraft);
 
-        const traversePrompt = page.waitForEvent("dialog");
-        const back = page.evaluate(() => history.back());
-        await (await traversePrompt).dismiss();
-        await back;
-        await expect(terms).toHaveValue(whitespaceDraft);
-        expect(await page.evaluate(() => ({
-            href: location.href,
-            index: (window as Window & { navigation?: { currentEntry: { index: number } } }).navigation?.currentEntry.index,
-            length: history.length,
-        }))).toEqual(before);
+        for (const direction of ["back", "forward"] as const) {
+            const traversePrompt = page.waitForEvent("dialog");
+            const traverse = page.evaluate(step => history[step](), direction);
+            await (await traversePrompt).dismiss();
+            await traverse;
+            await expect(terms).toHaveValue(whitespaceDraft);
+            expect(await historySnapshot()).toEqual(before);
+        }
+
+        for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+            await page.setViewportSize(viewport);
+            await producerCapture(page, info, "terms", "dirty-navigation", page.getByText(/Utkastet har osparade ändringar i blanksteg/), "center", {
+                state: "dirty-navigation", mechanism: "real canceled link and Back/Forward traversal; history and raw draft preserved",
+            });
+        }
 
         const discardPrompt = page.waitForEvent("dialog");
         const leave = backLink.click();
@@ -297,7 +318,7 @@ test("E35-7 cancels a settings link and Back without replacing the terms draft o
     }
 });
 
-test("E35-7 hides company write controls after current membership is revoked", async ({ page }) => {
+test("E35-7 hides company write controls after current membership is revoked", async ({ page }, info) => {
     const own = await createTwoTenantFixture();
     try {
         await signIn(page, own.adminA.email, own.adminA.password);
@@ -324,10 +345,47 @@ test("E35-7 hides company write controls after current membership is revoked", a
             "select id from public.audit_events where tenant_id=$1 order by id",
             [own.tenantA.id],
         )).toEqual(before);
+        const revoked = page.getByRole("alert").filter({ hasText: "Du har inte behörighet att utföra åtgärden." });
+        for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+            await page.setViewportSize(viewport);
+            await producerCapture(page, info, "company", "revoked", revoked, "center", {
+                state: "revoked", mechanism: "actual membership change and checked action denial",
+            });
+        }
+        const acceptReload = async (dialog: Dialog) => {
+            expect(dialog.type()).toBe("beforeunload");
+            await dialog.accept();
+        };
+        page.on("dialog", acceptReload);
+        try { await page.reload(); }
+        finally { page.off("dialog", acceptReload); }
+        await expect(page.getByRole("heading", { name: "Ingen åtkomst", exact: true })).toBeVisible();
+        await expect(name).toBeHidden();
     } finally {
         await cleanupFixture(own);
     }
 });
+
+async function expectRenderedContrast(control: Locator, property: "color" | "borderTopColor", minimum: number) {
+    const colors = await control.evaluate((element, property) => {
+        let container: Element | null = property === "borderTopColor" ? element.parentElement : element;
+        while (container && getComputedStyle(container).backgroundColor === "rgba(0, 0, 0, 0)") {
+            container = container.parentElement;
+        }
+        return { foreground: getComputedStyle(element)[property], background: container && getComputedStyle(container).backgroundColor };
+    }, property);
+    function luminance(color: string | null) {
+        const channels = color?.match(/^rgb\((\d+), (\d+), (\d+)\)$/)?.slice(1).map(Number);
+        expect(channels, "Opaque rendered sRGB color").toHaveLength(3);
+        const [red, green, blue] = channels!.map(value => {
+            const srgb = value / 255;
+            return srgb <= 0.04045 ? srgb / 12.92 : ((srgb + 0.055) / 1.055) ** 2.4;
+        });
+        return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+    }
+    const values = [luminance(colors.foreground), luminance(colors.background)];
+    expect((Math.max(...values) + 0.05) / (Math.min(...values) + 0.05), `${property} ${colors.foreground} on ${colors.background}`).toBeGreaterThanOrEqual(minimum);
+}
 
 async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
     for (const name of names) {
@@ -338,7 +396,7 @@ async function assertProducerTouchTargets(scope: Page | Locator, names: readonly
         expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
     }
 }
-async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" = "center") {
+async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" = "center", presentation?: { readonly state: string; readonly mechanism: string }) {
     const scope = surface === "company" || surface === "terms" ? page.locator("body") : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
     const anchor = explicitAnchor ?? (state === "loading" ? scope.getByRole("button", { name: "Sparar…", exact: true })
         : state === "unknown" || state.endsWith("-pending") ? scope.getByTestId("operation-unconfirmed")
@@ -355,12 +413,13 @@ async function producerCapture(page: Page, info: TestInfo, surface: string, stat
     expect(boot.applicationUrl).toBe(new URL(page.url()).origin);
     expect(Number.isSafeInteger(boot.serverPid)).toBe(true);
     const viewport = page.viewportSize()!;
-    const dir = path.join(process.cwd(), "playwright-report", "35-7-p", `${surface}-${viewport.width}x${viewport.height}`);
+    const dir = path.join(process.cwd(), "playwright-report", presentation ? "35-7-presentation" : "35-7-p", `${surface}-${viewport.width}x${viewport.height}`);
     await mkdir(dir, { recursive: true });
-    const file = path.join(dir, `${state}.png`);
-    const png = await page.screenshot({ path: file, fullPage: false });
+    const captureState = presentation?.state ?? state;
+    const file = path.join(dir, `${captureState}.png`);
+    const png = await page.screenshot({ path: file, fullPage: false, ...(presentation ? { timeout: 3_000 } : {}) });
     const candidate = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-    await writeFile(path.join(dir, `${state}.json`), JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading" || state.endsWith("-pending") || state === "refresh-notice", captureAnchor: await anchor.evaluate(el => ({ tag: el.tagName, id: el.id, text: el.textContent?.trim().slice(0, 160) })), configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state, viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt: new Date().toISOString() }, null, 2));
+    await writeFile(path.join(dir, `${captureState}.json`), JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading" || state.endsWith("-pending") || state === "refresh-notice", captureAnchor: await anchor.evaluate(el => ({ tag: el.tagName, id: el.id, text: el.textContent?.trim().slice(0, 160) })), configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state: captureState, ...(presentation ? { mechanism: presentation.mechanism } : {}), viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt: new Date().toISOString() }, null, 2));
 }
 async function holdNextProducerTransport(page: Page, routePath: string, transport: "action" | "refresh") {
     let release!: () => void, arrived!: () => void, settled!: () => void;
@@ -428,6 +487,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await page.goto("/settings/company");
             await waitForHydrated(page.getByLabel("Företagsnamn"));
             await producerCapture(page, info, "company", "empty");
+            await producerCapture(page, info, "company", "empty", undefined, "center", { state: "empty", mechanism: "authorized fresh-tenant absence" });
             await page.getByLabel("Företagsnamn").fill("Synthetic producer company");
             await page.getByLabel("Momssats").fill("250");
             await page.getByRole("button", { name: "Spara", exact: true }).click();
@@ -437,6 +497,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             const vatError = page.locator(`[id="${vatErrorId}"]`);
             await expect(vatError).toBeVisible();
             await producerCapture(page, info, "company", "error", page.getByLabel("Momssats").locator(".."));
+            await producerCapture(page, info, "company", "error", page.getByLabel("Momssats").locator(".."), "center", { state: "validation", mechanism: "actual action validation" });
             await expect(vatError).toBeInViewport();
             await page.getByLabel("Momssats").fill("25");
             let sent = 0;
@@ -455,10 +516,12 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await expect(page.getByRole("button", { name: "Sparar…", exact: true })).toBeDisabled();
                 await expect(page.getByLabel("Företagsnamn")).toBeDisabled();
                 await producerCapture(page, info, "company", "loading");
+                await producerCapture(page, info, "company", "loading", undefined, "center", { state: "submitting", mechanism: "held action transport, pending client state" });
             } finally { loss.release(); }
             await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
             if (viewport.width === 360) await assertProducerTouchTargets(page, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
             await producerCapture(page, info, "company", "unknown");
+            await producerCapture(page, info, "company", "unknown", undefined, "center", { state: "unknown", mechanism: "controlled loss of action reply" });
             await expect(page.getByLabel("Företagsnamn")).toBeDisabled();
             await page.getByRole("link", { name: "← Inställningar" }).click();
             await expect(page).toHaveURL(/settings\/company$/);
@@ -476,6 +539,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await loss.clear();
             await expect(page.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
             await producerCapture(page, info, "company", "finished");
+            await producerCapture(page, info, "company", "finished", undefined, "center", { state: "finished", mechanism: "server-confirmed write and current read" });
             await page.reload();
             await page.getByLabel("Företagsnamn").fill("Retry before original reached server");
             const absentLoss = await loseCommittedReply(page, "/settings/company", false);
@@ -513,6 +577,9 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await expect(refresh).toBeInViewport({ ratio: 1 });
                 await expect(adopt).toBeInViewport({ ratio: 1 });
             } else await producerCapture(page, info, "company", "stale");
+            await producerCapture(page, info, "company", "stale", page.getByTestId("company-current-facts"), "center", {
+                state: "stale", mechanism: "competing authorized write and checked revision",
+            });
             if (viewport.width === 360) {
                 await producerCapture(page, info, "company", "stale-draft", page.getByLabel("Företagsnamn"));
                 await expect(page.getByLabel("Företagsnamn")).toBeInViewport();
@@ -534,9 +601,11 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await page.goto("/settings/quote-terms");
             await waitForHydrated(page.getByLabel("Offertvillkor"));
             await producerCapture(page, info, "terms", "empty");
+            await producerCapture(page, info, "terms", "empty", undefined, "center", { state: "empty", mechanism: "authorized fresh-tenant absence" });
             await page.getByRole("button", { name: "Spara villkor" }).click();
             await expect(page.getByLabel("Offertvillkor")).toHaveAttribute("aria-invalid", "true");
             await producerCapture(page, info, "terms", "error");
+            await producerCapture(page, info, "terms", "error", undefined, "center", { state: "validation", mechanism: "actual action validation" });
             await page.getByLabel("Offertvillkor").fill(" \nExact reviewed synthetic wording\n ");
             const saveLoss = await loseCommittedReply(page, "/settings/quote-terms");
             await page.getByRole("button", { name: "Spara villkor" }).click();
@@ -545,10 +614,12 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await expect(page.getByRole("button", { name: "Sparar…", exact: true })).toBeDisabled();
                 await expect(page.getByLabel("Offertvillkor")).toBeDisabled();
                 await producerCapture(page, info, "terms", "loading");
+                await producerCapture(page, info, "terms", "loading", undefined, "center", { state: "submitting", mechanism: "held action transport, pending client state" });
             } finally { saveLoss.release(); }
             await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
             if (viewport.width === 360) await assertProducerTouchTargets(page, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
             await producerCapture(page, info, "terms", "unknown");
+            await producerCapture(page, info, "terms", "unknown", undefined, "center", { state: "unknown", mechanism: "controlled loss of action reply" });
             const retryHold = await holdNextProducerTransport(page, "/settings/quote-terms", "action");
             try {
                 await page.getByRole("button", { name: "Försök igen med samma uppgifter" }).click();
@@ -587,6 +658,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             expect(new Set(approveLoss.identities).size).toBe(1);
             await approveLoss.clear();
             await producerCapture(page, info, "terms", "finished");
+            await producerCapture(page, info, "terms", "finished", undefined, "center", { state: "finished", mechanism: "server-confirmed write and current read" });
             const newerTerms = await page.context().newPage();
             try {
                 await newerTerms.goto("/settings/quote-terms");
@@ -602,6 +674,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 await expect(page.getByRole("button", { name: "Spara villkor" })).toBeDisabled();
                 if (viewport.width === 360) await assertProducerTouchTargets(page, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
                 await producerCapture(page, info, "terms", "stale");
+                await producerCapture(page, info, "terms", "stale", undefined, "center", { state: "stale", mechanism: "competing authorized write and checked revision" });
                 if (viewport.width === 360) {
                     await producerCapture(page, info, "terms", "stale-draft", page.getByLabel("Offertvillkor"));
                     await expect(page.getByLabel("Offertvillkor")).toBeInViewport();
@@ -616,3 +689,139 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await cleanupFixture(own);
         }
     });
+
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+    test(`E35-7 connected settings journey and rendered controls ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+        const own = await createTwoTenantFixture();
+        try {
+            await page.setViewportSize(viewport);
+            await signIn(page, own.adminA.email, own.adminA.password);
+            await page.goto("/settings");
+            const companyLink = page.getByRole("link", { name: /^Företagsinställningar/ });
+            const termsLink = page.getByRole("link", { name: /^Offertvillkor/ });
+            const pricingLink = page.getByRole("link", { name: /^Prissättning/ });
+            for (const link of [companyLink, termsLink, pricingLink]) {
+                await expect(link).toBeVisible();
+                if (viewport.width === 360) expect((await link.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+            }
+            await producerCapture(page, info, "hub", "finished", companyLink, "center", {
+                state: "finished", mechanism: "authorized synchronous settings route",
+            });
+            await waitForHydrated(companyLink);
+            await companyLink.press("Enter");
+            await expect(page).toHaveURL(/\/settings\/company$/);
+
+            const name = page.getByLabel("Företagsnamn");
+            const vat = page.getByLabel("Momssats");
+            const save = page.getByRole("button", { name: "Spara", exact: true });
+            await waitForHydrated(name);
+            await expect(page.getByTestId("company-empty-defaults")).toContainText("förslag på 25 %");
+            await expect(vat).toHaveValue("25");
+            await expect(page.getByTestId("settings-saved")).toHaveCount(0);
+            for (const field of [name, vat, page.getByLabel("Standardvisning av moms")]) {
+                await expectRenderedContrast(field, "borderTopColor", 3);
+            }
+            await expectRenderedContrast(save, "color", 4.5);
+            if (viewport.width === 360) {
+                await assertProducerTouchTargets(page, ["Spara"]);
+                const main = page.locator("#main-content");
+                const heading = page.getByRole("heading", { name: "Företagsinställningar", level: 1 });
+                const computedSize = (control: Locator) => control.evaluate(element => parseFloat(getComputedStyle(element).fontSize));
+                const normal = { heading: await computedSize(heading), field: await computedSize(vat), action: await computedSize(save) };
+                // The design compiles fixed font sizes into the utility rules.
+                // Override only font-size on this owned surface, so wrapping and
+                // overflow still come from the production layout.
+                const enlargement = await page.addStyleTag({ content: `
+                    #main-content .text-title { font-size: ${normal.heading * 2}px; }
+                    #main-content .text-body { font-size: ${normal.field * 2}px; }
+                    #main-content .text-label { font-size: ${normal.action * 2}px; }
+                ` });
+                expect(await computedSize(heading)).toBe(normal.heading * 2);
+                expect(await computedSize(vat)).toBe(normal.field * 2);
+                expect(await computedSize(save)).toBe(normal.action * 2);
+                // Model reduced layout height without claiming a native keyboard.
+                await page.setViewportSize({ width: 360, height: 400 });
+                const assertReflow = async () => {
+                    await expect.poll(() => main.evaluate(element => ({
+                        pageOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+                        mainOverflow: element.scrollWidth - element.clientWidth,
+                    }))).toEqual({ pageOverflow: 0, mainOverflow: 0 });
+                };
+                await assertReflow();
+                await name.fill("Kopplas Installationsprov AB");
+                await vat.fill("250");
+                await save.press("Enter");
+                const errorLink = page.getByTestId("form-error-summary").getByRole("link", { name: /moms/i });
+                await expect(errorLink).toHaveCSS("font-size", `${normal.action * 2}px`);
+                await errorLink.press("Enter");
+                await expect(vat).toBeFocused();
+                await expect(vat).toBeInViewport();
+                await expect(vat).toHaveCSS("outline-style", "solid");
+                await expect(vat).toHaveAccessibleDescription(/.+/);
+                await assertReflow();
+                await save.scrollIntoViewIfNeeded();
+                await expect(save).toBeInViewport();
+                await expect(page.getByTestId("settings-saved")).toHaveCount(0);
+                await enlargement.evaluate(style => style.parentNode?.removeChild(style));
+                await page.setViewportSize(viewport);
+            }
+            await name.fill("Kopplas Installationsprov AB");
+            await vat.fill("25");
+            await save.press("Enter");
+            await expect(page.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            const ordinary = await makeAuthedServerClient(own.adminA);
+            const company = await ordinary.from("company_settings").select("id,company_name,vat_rate_bp").eq("tenant_id", own.tenantA.id).single();
+            expect(company.error).toBeNull();
+            expect(company.data).toMatchObject({ id: expect.any(String), company_name: "Kopplas Installationsprov AB", vat_rate_bp: 2500 });
+
+            await page.getByRole("link", { name: "← Inställningar" }).press("Enter");
+            await termsLink.press("Enter");
+            await expect(page).toHaveURL(/\/settings\/quote-terms$/);
+            const terms = page.getByLabel("Offertvillkor");
+            const saveTerms = page.getByRole("button", { name: "Spara villkor", exact: true });
+            await waitForHydrated(terms);
+            await expect(terms).toHaveValue("");
+            await expectRenderedContrast(terms, "borderTopColor", 3);
+            await expectRenderedContrast(page.getByTestId("quote-terms-signoff-warning"), "color", 4.5);
+            if (viewport.width === 360) await assertProducerTouchTargets(page, ["Spara villkor"]);
+            const wording = "Anbudet gäller i 30 dagar.";
+            const readTerms = () => ordinary.from("quote_terms").select("id,terms_text,approved_at,approved_by,write_revision").eq("tenant_id", own.tenantA.id).single();
+            await terms.fill(wording);
+            await saveTerms.press("Enter");
+            await expect(page.getByTestId("settings-saved")).toBeVisible();
+            await expect(page.getByTestId("quote-terms-signoff-warning")).toBeVisible();
+            const saved = await readTerms();
+            expect(saved.error).toBeNull();
+            expect(saved.data).toMatchObject({ id: expect.any(String), terms_text: wording, approved_at: null, approved_by: null });
+            const approve = page.getByRole("button", { name: "Markera som godkänd", exact: true });
+            if (viewport.width === 360) await assertProducerTouchTargets(page, ["Markera som godkänd"]);
+            await expect(approve).toBeEnabled();
+            await approve.press("Enter");
+            await expect(page.getByTestId("quote-terms-approved-status")).toContainText("Godkänd");
+            const approved = await readTerms();
+            expect(approved.error).toBeNull();
+            expect(approved.data).toMatchObject({ id: saved.data!.id, terms_text: wording, approved_at: expect.any(String), approved_by: own.adminA.id });
+            expect(approved.data!.write_revision).not.toBe(saved.data!.write_revision);
+
+            await expect(saveTerms).toBeEnabled();
+            await terms.fill("Anbudet gäller i 45 dagar.");
+            await expect(page.getByText(/Utkastet har osparad ordalydelse/)).toBeVisible();
+            await expect(page.getByTestId("quote-terms-approved-status")).toBeVisible();
+            await saveTerms.press("Enter");
+            await expect(page.getByTestId("quote-terms-signoff-warning")).toBeVisible();
+            await expect(page.getByTestId("quote-terms-approved-status")).toHaveCount(0);
+            const amended = await readTerms();
+            expect(amended.error).toBeNull();
+            expect(amended.data).toMatchObject({ id: saved.data!.id, terms_text: "Anbudet gäller i 45 dagar.", approved_at: null, approved_by: null });
+            expect(amended.data!.write_revision).not.toBe(approved.data!.write_revision);
+
+            await page.getByRole("link", { name: "← Inställningar" }).press("Enter");
+            await pricingLink.press("Enter");
+            await expect(page).toHaveURL(/\/settings\/pricing$/);
+            await expect(page.getByText(/Inga arbetsroller ännu/)).toBeVisible();
+            await expect(page.getByText(/Inga artiklar ännu/)).toBeVisible();
+        } finally {
+            await cleanupFixture(own);
+        }
+    });
+}
