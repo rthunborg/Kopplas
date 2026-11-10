@@ -150,11 +150,11 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
                   </span>
                   {selected?.id === article.id && <span className="text-label font-medium text-text-primary">Vald för redigering</span>}
                 </div>
-                <button type="button" disabled={operation.blocked} aria-current={selected?.id === article.id ? "true" : undefined} onClick={() => choose(article)} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Redigera</button>
+                <button type="button" disabled={operation.blocked} aria-current={selected?.id === article.id ? "true" : undefined} onClick={() => choose(article)} className="min-h-control-lg rounded-control border border-n-600 px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Redigera</button>
                 <form onSubmit={event => { event.preventDefault(); submitLifecycle(event.currentTarget, false); }}>
                   <input type="hidden" name="id" value={article.id}/>
                   <input type="hidden" name="write_revision" value={article.write_revision}/>
-                  <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
+                  <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-n-600 px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
                     {operation.pending && operation.kind === "article.archive" && state.targetId === article.id ? "Arkiverar…" : "Arkivera"}
                   </button>
                   {feedback}
@@ -169,7 +169,7 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
         <FormErrorSummary message={isSave ? state.formError : null} fieldErrors={fieldErrors}/>
         {operation.dirty && !operation.blocked && <p role="status" className="text-label text-text-secondary">Osparade ändringar.</p>}
 
-        <div key={`${selected?.id ?? "new"}:${selected?.write_revision ?? "absent"}:${draftVersion}`} className="contents">
+        <div key={`${selected?.id ?? "new"}:${selected?.write_revision ?? "absent"}:${draftVersion}`} className="contents [&_input[type=text]]:border [&_input[type=text]]:border-n-600">
         <TextField inputRef={firstField} name="name" label="Artikelnamn" required defaultValue={selected?.name ?? ""} error={fieldErrors.name}/>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <TextField name="sku" label="Artikelnummer" defaultValue={selected?.sku ?? ""}/>
@@ -220,7 +220,7 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
                     <form onSubmit={event => { event.preventDefault(); submitLifecycle(event.currentTarget, true); }}>
                       <input type="hidden" name="id" value={article.id}/>
                       <input type="hidden" name="write_revision" value={article.write_revision}/>
-                      <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
+                      <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-n-600 px-3 py-2 text-label text-text-secondary hover:bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
                         {operation.pending && operation.kind === "article.reactivate" && state.targetId === article.id ? "Återaktiverar…" : "Återaktivera"}
                       </button>
                       {feedback}

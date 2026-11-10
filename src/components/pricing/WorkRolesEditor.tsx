@@ -147,11 +147,11 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
                   </span>
                   {selected?.id === role.id && <span className="text-label font-medium text-text-primary">Vald för redigering</span>}
                 </div>
-                <button type="button" disabled={operation.blocked} aria-current={selected?.id === role.id ? "true" : undefined} onClick={() => choose(role)} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Redigera</button>
+                <button type="button" disabled={operation.blocked} aria-current={selected?.id === role.id ? "true" : undefined} onClick={() => choose(role)} className="min-h-control-lg rounded-control border border-n-600 px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Redigera</button>
                 <form onSubmit={event => { event.preventDefault(); submitLifecycle(event.currentTarget, false); }}>
                   <input type="hidden" name="id" value={role.id}/>
                   <input type="hidden" name="write_revision" value={role.write_revision}/>
-                  <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
+                  <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-n-600 px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
                     {operation.pending && operation.kind === "work_role.archive" && state.targetId === role.id ? "Arkiverar…" : "Arkivera"}
                   </button>
                   {feedback}
@@ -166,7 +166,7 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
         <FormErrorSummary message={isSave ? state.formError : null} fieldErrors={fieldErrors}/>
         {operation.dirty && !operation.blocked && <p role="status" className="text-label text-text-secondary">Osparade ändringar.</p>}
 
-        <div key={`${selected?.id ?? "new"}:${selected?.write_revision ?? "absent"}:${draftVersion}`} className="contents">
+        <div key={`${selected?.id ?? "new"}:${selected?.write_revision ?? "absent"}:${draftVersion}`} className="contents [&_input[type=text]]:border [&_input[type=text]]:border-n-600">
         <TextField inputRef={firstField} name="display_name" label="Benämning" required defaultValue={selected?.display_name ?? ""} error={fieldErrors.display_name}/>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <TextField name="sell_rate_kronor" label="Pris (kr/tim)" required defaultValue={selected ? oreToKronorString(selected.sell_rate_ore) : ""} error={fieldErrors.sell_rate_kronor}/>
@@ -214,7 +214,7 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
                     <form onSubmit={event => { event.preventDefault(); submitLifecycle(event.currentTarget, true); }}>
                       <input type="hidden" name="id" value={role.id}/>
                       <input type="hidden" name="write_revision" value={role.write_revision}/>
-                      <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
+                      <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-n-600 px-3 py-2 text-label text-text-secondary hover:bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
                         {operation.pending && operation.kind === "work_role.reactivate" && state.targetId === role.id ? "Återaktiverar…" : "Återaktivera"}
                       </button>
                       {feedback}

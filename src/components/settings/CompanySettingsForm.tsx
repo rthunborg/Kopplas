@@ -86,7 +86,7 @@ export function CompanySettingsForm({ defaults, }: {
         <p data-testid="company-empty-defaults" className="text-label text-text-secondary">Företagsinställningar har ännu inte sparats. Momssatsen visar ett förslag på 25 %.</p>
       )}
       {operation.dirty && !operation.blocked && <p role="status" className="text-label text-text-secondary">Osparade ändringar.</p>}
-      <div key={`${baseline.id ?? "absent"}:${baseline.write_revision ?? "absent"}`} className="contents">
+      <div key={`${baseline.id ?? "absent"}:${baseline.write_revision ?? "absent"}`} className="contents [&_:is(input[type=text],input[type=email],select)]:border [&_:is(input[type=text],input[type=email],select)]:border-n-600">
       <TextField name="company_name" label="Företagsnamn" required defaultValue={baseline.company_name ?? ""} error={state.fieldErrors.company_name}/>
       <TextField name="org_nr" label="Organisationsnummer" defaultValue={baseline.org_nr ?? ""}/>
       <TextField name="address_line1" label="Adress" defaultValue={baseline.address_line1 ?? ""}/>

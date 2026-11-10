@@ -128,7 +128,7 @@ Release `E35-7-REL-1` visual/device/composite contrast/reflow: UI owner; `REL-2`
 
 ## Suggested Review Order
 
-The Story 35.7 implementation delegate (gpt-6.1-sol, High) refreshed this trail against the Round 1 fix candidate on `ba2065e19c110a4eb9e38c81c93ebab41368d820`.
+The Story 35.7 implementation delegate (gpt-6.1-sol, High) refreshed this trail against the Round 2 contrast fix on `42b881b1fdc6b050e9b265783e0f6fb7ca758b92`.
 
 ### Connected settings and manual pricing
 
@@ -156,6 +156,14 @@ The pricing editors submit the selected revision. They retain dirty input on kno
 - `src/components/pricing/ArticlesEditor.tsx:75` — `submitLifecycle` ties optional draft discard to the dispatch boundary.
 - `src/components/pricing/ArticlesEditor.tsx:90` — `lifecycleFeedback` associates progress or error with the acted-on row.
 
+### Visible field and row control boundaries
+
+The owned wrappers give visible text fields and the company select the same `n-600` border as search and the terms textarea. Pricing row actions use that token on white, selected and sunken surfaces. The scoped field selectors match text, email and select controls, leaving hidden operation fields outside their selector.
+
+- `src/components/settings/CompanySettingsForm.tsx:89` — `input[type=email]` scopes the company field borders.
+- `src/components/pricing/WorkRolesEditor.tsx:169` — `input[type=text]` scopes the pricing field borders.
+- `src/components/pricing/ArticlesEditor.tsx:153` — `border-n-600` makes the row edit control visible on the selected surface.
+
 ### Assertions and outstanding evidence
 
 AC1 and AC4 use the VAT correction and terms save/approve journeys. AC2 and AC3 assert actual row IDs, stored öre, phone targets and keyboard selection. AC5 and AC6 assert draft retention, membership revocation and protection across pending or failed rereads. The retained producer tests supply the AC6/AC7 authority and reconciliation assertions.
@@ -166,7 +174,7 @@ AC1 and AC4 use the VAT correction and terms save/approve journeys. AC2 and AC3 
 - `tests/e2e/pricing/pricing.e2e.spec.ts:248` — `E35-7 ATDD phone row edits` checks row identity, offline retention and a single departure confirmation.
 - `tests/e2e/pricing/pricing.e2e.spec.ts:536` — `assertProducerPendingRead` checks locked inputs and separates the receipt from company absence.
 
-The Round 1 candidate passed typecheck, changed-file ESLint, the production build and built-bundle containment. Node's test runner with the repository import register executed 179 focused settings/pricing tests with zero failures or skips. This includes four synthetic failed-read presentation checks in `tests/unit/features/settings/mutation-attempt.test.ts:146`. The hosted red checkpoint at `c57a7054` recorded three expected failures and 104 other first-attempt passes before implementation.
+The Round 2 candidate passed typecheck, changed-file ESLint and the production build. The emitted CSS contains the scoped 1 px borders with the compiled `n-600` color. Token calculations give 7.18:1 against white and 6.59:1 against sunken or selected. These calculations and the built CSS still need rendered verification. Node's test runner with the repository import register executed 179 focused settings/pricing tests with zero failures or skips. This includes four synthetic failed-read presentation checks in `tests/unit/features/settings/mutation-attempt.test.ts:146`. The hosted red checkpoint at `c57a7054` recorded three expected failures and 104 other first-attempt passes before implementation.
 
 The updated browser assertions await hosted execution. Delayed route reads, Forward, archived search, a second editor during a pending attempt, and enlarged-text reflow remain planned Phase 6 checks. Hosted database/RLS and recovery evidence, targeted independent review, and revision-bound visual acceptance remain pending. The settings guard covers local form choices, links and supported cancellable traversal. Shared shell logout and browser traversal without cancellation support remain outside that guard. Drafts and attempts live in the mounted form, so hard reload, closure or crash can lose them. Synthetic renders supply neither authorized database nor navigation evidence. E35-7-REL-1 remains with the UI owner for wider device and contrast review, REL-2 with QA/accessibility for manual checks, and REL-3 with the Coordinator for Phase B consolidation. These obligations remain deferred and `release_ready=false`.
 
