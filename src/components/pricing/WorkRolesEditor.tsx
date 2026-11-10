@@ -96,29 +96,14 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
 
     const formAction = (form: HTMLFormElement) => operation.submit(saveWorkRoleAction, selected ? "work_role.update" : "work_role.create",
         new FormData(form), selected?.id ?? null, selected?.write_revision ?? null, readError || baselineChanged, form);
+    const controlsDisabled = operation.blocked || operation.awaitingCurrentRead || readError || operation.accessLost;
+    const controlsClassName = operation.accessLost || !hadAuthorizedRead ? "hidden" : "contents";
     return (<section data-testid="work-roles-editor" aria-labelledby="work-roles-heading" className="flex flex-col gap-4">
       <h2 id="work-roles-heading" className="text-heading font-semibold text-text-primary">
         Arbetsroller
       </h2>
 
-      <AttemptRecovery operation={operation}/>
-      {readError && <p data-testid="pricing-current-unavailable" role="alert" className="text-label text-risk-text">Aktuella uppgifter är inte tillgängliga. Uppdatera innan du sparar.</p>}
-      {readError && <button type="button" disabled={operation.blocked} onClick={operation.refreshRead} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Försök läsa igen</button>}
-      {baselineChanged && !operation.accessLost && <div data-testid="pricing-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-label text-text-secondary">
-        <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
-        <p className="wrap-anywhere">{currentSelected ? `${currentSelected.display_name}: ${oreToKronorString(currentSelected.sell_rate_ore)} kr/tim; kostnad ${oreToKronorString(currentSelected.cost_rate_ore)} kr/tim` : "Ingen aktuell post finns."}</p>
-        <button type="button" disabled={operation.blocked} onClick={() => choose(currentSelected ?? null, true)} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Använd aktuella uppgifter</button>
-      </div>}
-      <fieldset disabled={operation.blocked || operation.awaitingCurrentRead || readError || operation.accessLost}
-        className={operation.accessLost || !hadAuthorizedRead ? "hidden" : "contents"}>
-      {!lifecycleRowVisible && lifecycleLabel && pending && <p role="status" className="text-label text-text-secondary">{lifecycleLabel}</p>}
-      {!lifecycleRowVisible && lifecycleError && <p data-testid="work-role-archive-error" role="alert" className="text-label text-risk-text">{lifecycleError}</p>}
-
-        {state.status === "success" && !operation.dirty && (<p data-testid="settings-saved" role="status" className="rounded-control border border-ok-text bg-ok-surface px-3 py-2 text-label text-ok-text">
-            Det tidigare försöket slutfördes.
-            {currentStatus === "unavailable" ? " Aktuella uppgifter är inte tillgängliga." : currentStatus === "missing" ? " Posten finns inte längre i aktuella uppgifter." : currentStatus === "newer" ? " Nyare ändringar finns. Granska aktuella uppgifter." : currentStatus === "confirmed" ? " Aktuella uppgifter är bekräftade." : " Aktuella uppgifter hämtas separat."}
-          </p>)}
-
+      <fieldset disabled={controlsDisabled} className={controlsClassName}>
       {!readError && (workRoles.length > 0 || archivedWorkRoles.length > 0) && (
         <div className="flex min-w-0 max-w-xl flex-col gap-1">
           <label htmlFor="work-roles-search" className="text-label font-medium text-text-secondary">Sök arbetsroller</label>
@@ -159,6 +144,24 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
               </li>;
           })}
         </ul>)}
+      </fieldset>
+
+      <AttemptRecovery operation={operation}/>
+      {readError && <p data-testid="pricing-current-unavailable" role="alert" className="text-label text-risk-text">Aktuella uppgifter är inte tillgängliga. Uppdatera innan du sparar.</p>}
+      {readError && <button type="button" disabled={operation.blocked} onClick={operation.refreshRead} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Försök läsa igen</button>}
+      {baselineChanged && !operation.accessLost && <div data-testid="pricing-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-label text-text-secondary">
+        <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
+        <p className="wrap-anywhere">{currentSelected ? `${currentSelected.display_name}: ${oreToKronorString(currentSelected.sell_rate_ore)} kr/tim; kostnad ${oreToKronorString(currentSelected.cost_rate_ore)} kr/tim` : "Ingen aktuell post finns."}</p>
+        <button type="button" disabled={operation.blocked} onClick={() => choose(currentSelected ?? null, true)} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Använd aktuella uppgifter</button>
+      </div>}
+      <fieldset disabled={controlsDisabled} className={controlsClassName}>
+      {!lifecycleRowVisible && lifecycleLabel && pending && <p role="status" className="text-label text-text-secondary">{lifecycleLabel}</p>}
+      {!lifecycleRowVisible && lifecycleError && <p data-testid="work-role-archive-error" role="alert" className="text-label text-risk-text">{lifecycleError}</p>}
+
+        {state.status === "success" && !operation.dirty && (<p data-testid="settings-saved" role="status" className="rounded-control border border-ok-text bg-ok-surface px-3 py-2 text-label text-ok-text">
+            Det tidigare försöket slutfördes.
+            {currentStatus === "unavailable" ? " Aktuella uppgifter är inte tillgängliga." : currentStatus === "missing" ? " Posten finns inte längre i aktuella uppgifter." : currentStatus === "newer" ? " Nyare ändringar finns. Granska aktuella uppgifter." : currentStatus === "confirmed" ? " Aktuella uppgifter är bekräftade." : " Aktuella uppgifter hämtas separat."}
+          </p>)}
 
       <form onChange={event => operation.trackDraft(event.currentTarget)} onSubmit={event => { event.preventDefault(); void formAction(event.currentTarget); }} className="flex min-w-0 max-w-xl flex-col gap-4" noValidate>
         {selected && <input type="hidden" name="id" value={selected.id}/>}

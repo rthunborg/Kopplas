@@ -386,7 +386,7 @@ async function assertProducerTouchTargets(scope: Page | Locator, names: readonly
         expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
     }
 }
-async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" = "center", presentation?: { readonly state: string; readonly mechanism: string; readonly remaining?: () => number; readonly deferWrite?: (write: () => Promise<void>) => void }) {
+async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" | "preserve" = "center", presentation?: { readonly state: string; readonly mechanism: string; readonly remaining?: () => number; readonly deferWrite?: (write: () => Promise<void>) => void }) {
     const scope = surface === "company" || surface === "terms" ? page.locator("body") : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
     const anchor = explicitAnchor ?? (state === "loading" ? scope.getByRole("button", { name: "Sparar…", exact: true })
         : state === "unknown" || state.endsWith("-pending") ? scope.getByTestId("operation-unconfirmed")
@@ -396,7 +396,9 @@ async function producerCapture(page: Page, info: TestInfo, surface: string, stat
         : surface === "company" ? page.getByLabel("Företagsnamn") : surface === "terms" ? page.getByLabel("Offertvillkor") : scope);
     const timeout = () => presentation?.remaining ? { timeout: presentation.remaining() } : {};
     await expect(anchor).toBeVisible(timeout());
-    await anchor.evaluate((el, block) => el.scrollIntoView({ block }), anchorBlock, timeout());
+    if (anchorBlock !== "preserve") {
+        await anchor.evaluate((el, block) => el.scrollIntoView({ block }), anchorBlock, timeout());
+    }
     await expect(anchor).toBeInViewport(timeout());
     if (state === "loading") await expect(anchor).toBeDisabled();
     const boot = JSON.parse(readFileSync(path.join(process.cwd(), "test-results/private/job-events-fetch-fault.json.startup.json"), "utf8"));
@@ -766,6 +768,64 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
         }
     });
 
+async function captureStalePricingFrame(
+    page: Page, info: TestInfo, surface: string, state: "stale" | "neighbor-stale",
+    captureAnchor: Locator, simultaneouslyRequired: readonly Locator[],
+) {
+    const anchors = [captureAnchor, ...simultaneouslyRequired];
+    const handles: NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>>[] = [];
+    try {
+        for (const anchor of anchors) {
+            const handle = await anchor.elementHandle({ timeout: 3_000 });
+            if (!handle) throw new Error("Required stale pricing anchor is missing");
+            handles.push(handle);
+        }
+        await page.evaluate(elements => {
+            const main = document.getElementById("main-content");
+            const root = document.scrollingElement;
+            if (!main || !root || elements.some(element => !main.contains(element) || !element.getClientRects().length)) {
+                throw new Error("All stale pricing anchors must be rendered inside the main scroll container");
+            }
+            const mainBox = main.getBoundingClientRect();
+            const mainTop = mainBox.top + main.clientTop;
+            const mainBottom = Math.min(mainBox.bottom, mainTop + main.clientHeight);
+            const mainLeft = mainBox.left + main.clientLeft;
+            const left = Math.max(0, mainLeft);
+            const right = Math.min(window.innerWidth, mainBox.right, mainLeft + main.clientWidth);
+            const boxes = elements.map(element => element.getBoundingClientRect());
+            const first = Math.min(...boxes.map(box => box.top));
+            const last = Math.max(...boxes.map(box => box.bottom));
+
+            // Inner scroll moves the anchors within main. Document scroll moves
+            // main and anchors together. Limit both to their actual scroll ranges.
+            const inner = main.scrollTop;
+            const total = inner + root.scrollTop;
+            const maxInner = Math.max(0, main.scrollHeight - main.clientHeight);
+            const maxOuter = Math.max(0, root.scrollHeight - root.clientHeight);
+            const minTotal = Math.ceil(total + last - window.innerHeight);
+            const maxTotal = Math.floor(total + first);
+            const minInner = Math.max(0, Math.ceil(inner + last - mainBottom), minTotal - maxOuter);
+            const lastInner = Math.min(maxInner, Math.floor(inner + first - mainTop), maxTotal);
+            if (minInner > lastInner || minTotal > maxTotal || boxes.some(box => box.left < left || box.right > right)) {
+                throw new Error(`Stale pricing anchors cannot fit together: ${(last - first).toFixed(1)}px with a ${(mainBottom - mainTop).toFixed(1)}px main scrollport and ${window.innerHeight}px viewport`);
+            }
+
+            const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+            const centeredInner = Math.round(inner + (first + last - mainTop - mainBottom) / 2);
+            const targetInner = clamp(centeredInner, minInner, lastInner);
+            const centeredOuter = Math.round(total + (first + last - window.innerHeight) / 2) - targetInner;
+            const targetOuter = clamp(centeredOuter, Math.max(0, minTotal - targetInner), Math.min(maxOuter, maxTotal - targetInner));
+            main.scrollTo({ top: targetInner, behavior: "instant" });
+            root.scrollTo({ top: targetOuter, behavior: "instant" });
+        }, handles);
+    } finally {
+        await Promise.all(handles.map(handle => handle.dispose()));
+    }
+    for (const anchor of anchors) await expect(anchor).toBeInViewport({ ratio: 1 });
+    await producerCapture(page, info, surface, state, captureAnchor, "preserve");
+    for (const anchor of anchors) await expect(anchor).toBeInViewport({ ratio: 1 });
+}
+
 for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }])
 test(`R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
     test.setTimeout(120_000);
@@ -806,19 +866,15 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             await expect(editor.getByLabel(spec.price)).toHaveValue("11,00");
             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
             if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
-            const staleAnchor = viewport.width === 360 && spec.surface === "work-role" ? editor.getByRole("button", { name: "Uppdatera och granska", exact: true }) : editor.getByTestId("pricing-current-facts");
-            const staleBlock = viewport.width === 1440 && spec.surface === "article" || viewport.width === 360 && spec.surface === "work-role" ? "start" : "center";
-            if (viewport.width === 1440 || spec.surface === "work-role") {
-                await staleAnchor.evaluate((element, block: "center" | "start") => element.scrollIntoView({ block }), staleBlock);
-                await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
-            }
-            await producerCapture(page, info, spec.surface, "stale", staleAnchor, staleBlock);
-            if (viewport.width === 1440 || spec.surface === "work-role") await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
-            if (viewport.width === 360 && spec.surface === "work-role") {
-                await expect(editor.getByTestId("pricing-current-facts").getByText(/20,00/)).toBeInViewport({ ratio: 1 });
-                await expect(editor.getByRole("button", { name: "Använd aktuella uppgifter", exact: true })).toBeInViewport({ ratio: 1 });
-                await expect(editor.getByRole("button", { name: "Uppdatera och granska", exact: true })).toBeInViewport({ ratio: 1 });
-            }
+            const facts = editor.getByTestId("pricing-current-facts");
+            const price = editor.getByLabel(spec.price);
+            const adopt = editor.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
+            const refresh = editor.getByRole("button", { name: "Uppdatera och granska", exact: true });
+            const phoneRole = viewport.width === 360 && spec.surface === "work-role";
+            const staleAnchor = phoneRole ? refresh : facts;
+            const staleRequired = phoneRole ? [price, facts.getByText(/20,00/), adopt]
+                : viewport.width === 1440 ? [price] : [];
+            await captureStalePricingFrame(page, info, spec.surface, "stale", staleAnchor, staleRequired);
             if (viewport.width === 360 && spec.surface === "article") {
                 await producerCapture(page, info, spec.surface, "stale-draft", editor.getByLabel(spec.price));
                 await expect(editor.getByLabel(spec.price)).toBeInViewport();
@@ -840,18 +896,9 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             await expect(editor.getByLabel(spec.price)).toHaveValue("21,00");
             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
             if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Använd aktuella uppgifter"]);
-            const neighbor_staleAnchor = viewport.width === 360 && spec.surface === "work-role" ? editor.getByTestId("pricing-current-facts") : editor.getByTestId("pricing-current-facts");
-            const neighbor_staleBlock = viewport.width === 1440 && spec.surface === "article" || viewport.width === 360 && spec.surface === "work-role" ? "start" : "center";
-            if (viewport.width === 1440 || spec.surface === "work-role") {
-                await neighbor_staleAnchor.evaluate((element, block: "center" | "start") => element.scrollIntoView({ block }), neighbor_staleBlock);
-                await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
-            }
-            await producerCapture(page, info, spec.surface, "neighbor-stale", neighbor_staleAnchor, neighbor_staleBlock);
-            if (viewport.width === 1440 || spec.surface === "work-role") await expect(editor.getByLabel(spec.price)).toBeInViewport({ ratio: 1 });
-            if (viewport.width === 360 && spec.surface === "work-role") {
-                await expect(editor.getByTestId("pricing-current-facts").getByText(/30,00/)).toBeInViewport({ ratio: 1 });
-                await expect(editor.getByRole("button", { name: "Använd aktuella uppgifter", exact: true })).toBeInViewport({ ratio: 1 });
-            }
+            const neighborRequired = phoneRole ? [price, facts.getByText(/30,00/), adopt]
+                : viewport.width === 1440 ? [price] : [];
+            await captureStalePricingFrame(page, info, spec.surface, "neighbor-stale", facts, neighborRequired);
             if (viewport.width === 360 && spec.surface === "article") {
                 await producerCapture(page, info, spec.surface, "neighbor-stale-draft", editor.getByLabel(spec.price));
                 await expect(editor.getByLabel(spec.price)).toBeInViewport();
@@ -1621,12 +1668,20 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                     for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
                         await page.setViewportSize(viewport);
                         const pendingAnchor = hasAdopt ? adopt : pendingReceipt;
-                        await pendingAnchor.evaluate(element => element.scrollIntoView({ block: "start" }));
+                        await pendingAnchor.evaluate(element => {
+                            const main = element.closest("#main-content");
+                            const root = document.scrollingElement;
+                            if (!main || !root) throw new Error("Pending receipt capture requires the main and document scroll containers");
+                            element.scrollIntoView({ block: "start", behavior: "instant" });
+                            const mainInset = Math.min(8, main.scrollTop);
+                            main.scrollBy({ top: -mainInset, behavior: "instant" });
+                            root.scrollBy({ top: mainInset - 8, behavior: "instant" });
+                        });
                         await expect(pendingReceipt).toBeInViewport({ ratio: 1 });
                         if (hasAdopt) await expect(adopt).toBeInViewport({ ratio: 1 });
                         expect(heldReadTerminal).toBe(false);
                         await assertPendingBranch();
-                        await producerCapture(page, info, spec.surface, "receipt-read-pending", pendingAnchor, "start");
+                        await producerCapture(page, info, spec.surface, "receipt-read-pending", pendingAnchor, "preserve");
                         await expect(pendingReceipt).toBeInViewport({ ratio: 1 });
                         if (hasAdopt) await expect(adopt).toBeInViewport({ ratio: 1 });
                         expect(heldReadTerminal).toBe(false);
@@ -1817,6 +1872,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await page.setViewportSize(viewport);
             await signIn(page, own.adminA.email, own.adminA.password);
             for (const spec of initialReads) {
+                const field = page.getByRole("textbox", { name: spec.absent, exact: true });
                 const lock = runtime.createCalendarFeedDatabaseClient(stack, "proof");
                 let connectionLost = false;
                 lock.on("error", () => { connectionLost = true; });
@@ -1897,7 +1953,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                     let waiting: number[] = [];
                     await expect.poll(async () => { waiting = await blockedPostgrestRead(); return waiting.length; },
                         { timeout: remaining(), intervals: [50, 100, 200] }).toBeGreaterThan(0);
-                    await expect(page.getByLabel(spec.absent, { exact: true })).toHaveCount(0, { timeout: remaining() });
+                    await expect(field).toHaveCount(0, { timeout: remaining() });
                     await expect(page.getByTestId("settings-saved")).toHaveCount(0, { timeout: remaining() });
                     await expect(page.getByText(/förslag på 25 %|Inga artiklar ännu|Inga arbetsroller ännu/)).toHaveCount(0, { timeout: remaining() });
                     await producerCapture(page, info, spec.surface, "initial-loading", loading, "center", {
@@ -1920,9 +1976,9 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
                 if (!writeCapture || !fixtureCleanupSafe) throw new Error("Initial-read capture or lock release not established");
                 await expect(page).toHaveURL(new URL(spec.route, "http://127.0.0.1:3100").href);
                 await expect(page.getByText(spec.loading, { exact: true })).toHaveCount(0);
-                const field = page.getByLabel(spec.absent, { exact: true });
                 await expect(field).toBeEnabled();
                 await expect(field).toHaveValue("");
+                await expect(page.getByRole("button", { name: "Försök läsa igen", exact: true })).toHaveCount(0);
                 if (spec.surface === "company") {
                     await expect(page.getByTestId("company-empty-defaults")).toContainText("förslag på 25 %");
                     await expect(page.getByLabel("Momssats")).toHaveValue("25");

@@ -396,7 +396,7 @@ async function assertProducerTouchTargets(scope: Page | Locator, names: readonly
         expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
     }
 }
-async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" = "center", presentation?: { readonly state: string; readonly mechanism: string }) {
+async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" | "preserve" = "center", presentation?: { readonly state: string; readonly mechanism: string }) {
     const scope = surface === "company" || surface === "terms" ? page.locator("body") : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
     const anchor = explicitAnchor ?? (state === "loading" ? scope.getByRole("button", { name: "Sparar…", exact: true })
         : state === "unknown" || state.endsWith("-pending") ? scope.getByTestId("operation-unconfirmed")
@@ -405,7 +405,9 @@ async function producerCapture(page: Page, info: TestInfo, surface: string, stat
         : state === "finished" ? scope.getByTestId(surface === "terms" ? "quote-terms-approved-status" : "settings-saved")
         : surface === "company" ? page.getByLabel("Företagsnamn") : surface === "terms" ? page.getByLabel("Offertvillkor") : scope);
     await expect(anchor).toBeVisible();
-    await anchor.evaluate((el, block) => el.scrollIntoView({ block }), anchorBlock);
+    if (anchorBlock !== "preserve") {
+        await anchor.evaluate((el, block) => el.scrollIntoView({ block }), anchorBlock);
+    }
     await expect(anchor).toBeInViewport();
     if (state === "loading") await expect(anchor).toBeDisabled();
     const boot = JSON.parse(readFileSync(path.join(process.cwd(), "test-results/private/job-events-fetch-fault.json.startup.json"), "utf8"));
@@ -567,19 +569,32 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await expect(page.getByTestId("company-current-facts")).toContainText("Newer current company");
             await expect(page.getByRole("button", { name: "Spara", exact: true })).toBeDisabled();
             if (viewport.width === 360) await assertProducerTouchTargets(page, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
+            const staleFacts = page.getByTestId("company-current-facts");
+            const stalePresentation = { state: "stale", mechanism: "competing authorized write and checked revision" };
             if (viewport.width === 360) {
                 const refresh = page.getByRole("button", { name: "Uppdatera och granska", exact: true });
                 const adopt = page.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
-                await refresh.evaluate(element => element.scrollIntoView({ block: "start" }));
+                await refresh.evaluate(element => {
+                    const main = element.closest("#main-content");
+                    const root = document.scrollingElement;
+                    if (!main || !root) throw new Error("Company stale capture requires the main and document scroll containers");
+                    element.scrollIntoView({ block: "start", behavior: "instant" });
+                    const mainInset = Math.min(8, main.scrollTop);
+                    main.scrollBy({ top: -mainInset, behavior: "instant" });
+                    root.scrollBy({ top: mainInset - 8, behavior: "instant" });
+                });
                 await expect(refresh).toBeInViewport({ ratio: 1 });
                 await expect(adopt).toBeInViewport({ ratio: 1 });
-                await producerCapture(page, info, "company", "stale", refresh, "start");
+                await producerCapture(page, info, "company", "stale", refresh, "preserve");
                 await expect(refresh).toBeInViewport({ ratio: 1 });
                 await expect(adopt).toBeInViewport({ ratio: 1 });
-            } else await producerCapture(page, info, "company", "stale");
-            await producerCapture(page, info, "company", "stale", page.getByTestId("company-current-facts"), "center", {
-                state: "stale", mechanism: "competing authorized write and checked revision",
-            });
+                await producerCapture(page, info, "company", "stale", staleFacts, "preserve", stalePresentation);
+                await expect(refresh).toBeInViewport({ ratio: 1 });
+                await expect(adopt).toBeInViewport({ ratio: 1 });
+            } else {
+                await producerCapture(page, info, "company", "stale");
+                await producerCapture(page, info, "company", "stale", staleFacts, "center", stalePresentation);
+            }
             if (viewport.width === 360) {
                 await producerCapture(page, info, "company", "stale-draft", page.getByLabel("Företagsnamn"));
                 await expect(page.getByLabel("Företagsnamn")).toBeInViewport();

@@ -151,9 +151,10 @@ Settings departure takes one decision across mounted forms. An in-flight or unre
 
 ### Row identity and feedback
 
-The pricing editors submit the selected revision. They retain dirty input on known unsent attempts and cancel, then discard only at admitted dispatch. A visible selection marker, higher-contrast control boundaries, and row-level lifecycle progress and errors preserve context.
+The pricing editors submit the selected revision. They retain dirty input on known unsent attempts and cancel, then discard only at admitted dispatch. A visible selection marker, higher-contrast control boundaries, and row-level lifecycle progress and errors preserve context. The work-role list precedes the recovery and edit area so the current facts, receipt and draft stay adjacent on a phone. Recovery controls remain outside both disabled groups.
 
 - `src/components/pricing/WorkRolesEditor.tsx:97` — `formAction` pins the selected role ID and revision.
+- `src/components/pricing/WorkRolesEditor.tsx:149` — `AttemptRecovery` starts the adjacent recovery, current facts, receipt and draft sequence.
 - `src/components/pricing/ArticlesEditor.tsx:75` — `submitLifecycle` ties optional draft discard to the dispatch boundary.
 - `src/components/pricing/ArticlesEditor.tsx:90` — `lifecycleFeedback` associates progress or error with the acted-on row.
 
@@ -162,7 +163,7 @@ The pricing editors submit the selected revision. They retain dirty input on kno
 The owned wrappers give visible text fields and the company select the same `n-600` border as search and the terms textarea. Pricing row actions use that token on white, selected and sunken surfaces. The scoped field selectors match text, email and select controls, leaving hidden operation fields outside their selector.
 
 - `src/components/settings/CompanySettingsForm.tsx:89` — `input[type=email]` scopes the company field borders.
-- `src/components/pricing/WorkRolesEditor.tsx:169` — `input[type=text]` scopes the pricing field borders.
+- `src/components/pricing/WorkRolesEditor.tsx:172` — `input[type=text]` scopes the pricing field borders.
 - `src/components/pricing/ArticlesEditor.tsx:153` — `border-n-600` makes the row edit control visible on the selected surface.
 
 ### Assertions and outstanding evidence
@@ -173,11 +174,13 @@ AC1 and AC4 use the VAT correction and terms save/approve journeys. AC2 and AC3 
 - `tests/e2e/settings/settings.e2e.spec.ts:251` — `E35-7 cancels a settings link and Back` checks raw whitespace and unchanged history.
 - `tests/e2e/settings/settings.e2e.spec.ts:321` — `E35-7 hides company write controls` checks revocation and zero company/audit mutations.
 - `tests/e2e/pricing/pricing.e2e.spec.ts:248` — `E35-7 ATDD phone row edits` checks row identity, offline retention and a single departure confirmation.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:595` — `assertProducerPendingRead` checks locked inputs and separates the receipt from company absence.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:597` — `assertProducerPendingRead` checks locked inputs and separates the receipt from company absence.
 
 The Round 2 candidate passed typecheck, changed-file ESLint and the production build. The emitted CSS contains the scoped 1 px borders with the compiled `n-600` color. Token calculations give 7.18:1 against white and 6.59:1 against sunken or selected. These calculations and the built CSS still need rendered verification. Node's test runner with the repository import register executed 179 focused settings/pricing tests with zero failures or skips. This includes four synthetic failed-read presentation checks in `tests/unit/features/settings/mutation-attempt.test.ts:146`. The hosted red checkpoint at `c57a7054` recorded three expected failures and 104 other first-attempt passes before implementation.
 
 On the targeted company-heading fix based on `d871bfd7563ba0e3c043964bb4fb6d3e5df0c1cd`, scoped ESLint, the production build and typecheck passed. The built stylesheet emits `overflow-wrap: anywhere` for the utility used by the company heading. The `E35-7 connected settings journey` test checks page and content overflow at 200% text size. That rendered result still needs hosted verification.
+
+The targeted work-role reflow repair passed scoped ESLint, the production build, typecheck and all 179 focused settings/pricing unit tests with zero skips. Static comparison preserved the receipt and edit form markup, including the draft key, and verified that recovery remains between two equally guarded control groups. The simultaneous viewport checks still need hosted execution.
 
 The updated browser assertions await hosted execution. Phase 6 tracks delayed route reads, Forward, archived search, a second editor during a pending attempt, and enlarged-text reflow. Hosted database/RLS and recovery evidence, targeted independent review, and revision-bound visual acceptance remain pending. The settings guard covers local form choices, links and supported cancellable traversal. Shared shell logout and browser traversal without cancellation support remain outside that guard. Drafts and attempts live in the mounted form, so hard reload, closure or crash can lose them. Synthetic renders supply neither authorized database nor navigation evidence. E35-7-REL-1 remains with the UI owner for wider device and contrast review, REL-2 with QA/accessibility for manual checks, and REL-3 with the Coordinator for Phase B consolidation. These obligations remain deferred and `release_ready=false`.
 
