@@ -9,28 +9,29 @@ spec_folder: "_bmad-output/specs/spec-design-35-7"
 story_id: 35-7
 branch: codex/story-35-7-settings-manual-pricing
 status: in-progress
-updated_at: "2026-11-10T07:52:14Z"
+updated_at: "2026-11-10T08:25:44Z"
 started_at: "2026-11-09T20:54:57Z"
 completed_at: null
-active_seconds: 1
-timing_anchor: 1794297134
+active_seconds: 2011
+timing_anchor: 1794299144
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Presentation must preserve actual tenant authority, integer prices, immutable transaction recovery and locked revisions."
+escalation_reason: "Phase 6 must prove real tenant authority, pricing persistence, transaction recovery, and fail-closed disposable database admission."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Owned scenarios exercise tenant authority, persisted manual pricing, audit and transaction reconciliation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Presentation must preserve actual tenant authority, integer prices, immutable transaction recovery and locked revisions.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Phase 6 must prove real tenant authority, pricing persistence, transaction recovery, and fail-closed disposable database admission.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Persisted manual prices and hard-to-reproduce ambiguous, stale, revoked and late-operation outcomes require pre- and post-development tests."
@@ -40,12 +41,12 @@ completed_phases: [0, 1, 4]
 spec_path: "_bmad-output/specs/spec-design-35-7/stories/35-7-settings-and-manual-pricing.md"
 spec_approved: true
 build:
-  status: null
-  blocking_condition: null
+  status: in-progress
+  blocking_condition: "Production-browser, database, recovery and authenticated exact-revision visual acceptance pending."
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
-  warnings: []
+  warnings: [The configured external review invocation returned nonzero without reading the diff. Distinct context-free in-tool Sol High exact review supplied independent review coverage.]
 followup_passes: 0
 hitl_halt: null
 review_unverified: false
@@ -88,3 +89,6 @@ overrides:
   phase_4_timing: "Recovered stale timing anchor after hosted CI and chat interruption; original active effort unknown."
 constraints: []
 parallel_run_id: e35-7-presentation-20261109
+development_state: checkpoint_pending
+candidate_revision: f252758fe8036f877e9137e6fb336b2f7e8b3a8e
+visual_state: pending
