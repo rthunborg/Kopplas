@@ -26,7 +26,7 @@
  *     modules — pricing adds NO new nav item (it lives under the existing Inställningar
  *     hub), so "Prissättning" is reachable from /settings but is NOT a top-nav link.
  */
-import { test, expect, type Page, type Locator } from "@playwright/test";
+import { test, expect, type Dialog, type Page, type Locator } from "@playwright/test";
 import { readFileSync, readlinkSync, readdirSync, realpathSync } from "node:fs";
 import path from "node:path";
 import { expectActiveAdminNavigation } from "../support/active-admin-navigation";
@@ -292,6 +292,15 @@ test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pric
         await startNew;
         await expect(price).toHaveValue("14,75");
         await expect(article.getByLabel("Enhet", { exact: true })).toHaveValue("st");
+        try {
+            await page.context().setOffline(true);
+            await articleRow.getByRole("button", { name: "Arkivera", exact: true }).click();
+            await expect(article.getByText("Du är offline. Ingen begäran skickades. Utkastet är inte sparat.")).toBeVisible();
+            await expect(price).toHaveValue("14,75");
+            await expect(articleRow).toHaveCount(1);
+        } finally {
+            await page.context().setOffline(false);
+        }
         await article.getByRole("button", { name: "Spara artikel", exact: true }).click();
         await expect(articleRow).toContainText("14,75 kr");
         await expect(articleRow).toContainText(/\bst\b/);
@@ -303,6 +312,23 @@ test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pric
         expect(articles.error).toBeNull();
         expect(roles.data).toEqual([{ id: roleId, sell_rate_ore: 87525 }]);
         expect(articles.data).toEqual([{ id: articleId, unit_price_ore: 1475, unit: "st" }]);
+        await expect(rate).toBeEnabled();
+        await expect(price).toBeEnabled();
+        await rate.fill("900,00");
+        await price.fill("17,00");
+        const dialogs: string[] = [];
+        const acceptDiscard = async (dialog: Dialog) => {
+            dialogs.push(dialog.type());
+            await dialog.accept();
+        };
+        page.on("dialog", acceptDiscard);
+        try {
+            await page.getByRole("link", { name: "← Inställningar" }).click();
+            await expect(page).toHaveURL(/\/settings$/);
+            expect(dialogs).toEqual(["confirm"]);
+        } finally {
+            page.off("dialog", acceptDiscard);
+        }
     } finally {
         await cleanupFixture(own);
     }
@@ -474,6 +500,7 @@ async function assertProducerReadUnavailable(view: ProducerReadDomainView, histo
     await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
     await expect(scope.getByLabel(name)).toBeDisabled(); await expect(scope.getByLabel(name)).toHaveValue(draft);
     await expect(scope.getByRole("button", { name: save, exact: true })).toBeDisabled();
+    if (surface === "company") await expect(scope.getByTestId("company-empty-defaults")).toHaveCount(0);
     if (price) {
         await expect(receipt).toContainText("Aktuella uppgifter är inte tillgängliga.");
         await expect(scope.getByText(surface === "article" ? /Inga artiklar/ : /Inga arbetsroller/)).toHaveCount(0);
@@ -518,6 +545,8 @@ async function assertProducerPendingRead(view: ProducerReadDomainView, historica
     await expect(scope.getByRole("button", { name: /^(Sparar…|Godkänner…|Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska)$/ })).toHaveCount(0);
     await expect(scope.getByLabel(name)).toHaveValue(draft);
     if (price) await expect(scope.getByLabel(price)).toHaveValue("31,00");
+    await expect(scope.getByLabel(name)).toBeDisabled();
+    if (surface === "company") await expect(scope.getByTestId("company-empty-defaults")).toHaveCount(0);
     expect(await historical.evaluate(element => element.isConnected)).toBe(true);
     if (surface === "terms") {
         expect(termsBaseline).not.toBeUndefined();

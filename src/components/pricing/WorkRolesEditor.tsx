@@ -55,28 +55,43 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
     const visibleActive = workRoles.filter(matches);
     const visibleArchived = archivedWorkRoles.filter(matches);
     const isSave = operation.kind === "work_role.create" || operation.kind === "work_role.update";
-    const lifecycleError = !isSave && state.status === "error" ? state.formError : null;
+    const lifecycleLabel = operation.kind === "work_role.archive" ? "Arkiverar…"
+        : operation.kind === "work_role.reactivate" ? "Återaktiverar…" : null;
+    const lifecycleError = lifecycleLabel && state.status === "error" ? state.formError : null;
+    const lifecycleRows = operation.kind === "work_role.archive" ? visibleActive : showArchived ? visibleArchived : [];
+    const lifecycleRowVisible = !readError && lifecycleRows.some(row => row.id === state.targetId);
+    const lifecycleFeedbackId = "work-role-lifecycle-feedback";
     const fieldErrors = isSave ? state.fieldErrors : {};
 
     function choose(next: typeof selected, adoptCurrent = false) {
-        if (operation.blocked || (!adoptCurrent && !operation.allowReplacement())) return;
+        if (operation.blocked || operation.awaitingCurrentRead || (!adoptCurrent && !operation.allowReplacement())) return;
         operation.reset();
         setSelected(next);
         setDraftVersion(version => version + 1);
         if (!adoptCurrent) requestAnimationFrame(() => firstField.current?.focus());
     }
 
-    function submitLifecycle(form: FormData, reactivate: boolean) {
-        const id = String(form.get("id"));
-        if (operation.dirty) {
-            if (!operation.allowReplacement()) return;
-            setSelected(null);
-            setDraftVersion(version => version + 1);
-            operation.setDirty(false);
-        }
+    function submitLifecycle(origin: HTMLFormElement, reactivate: boolean) {
+        const form = new FormData(origin);
         const action = reactivate ? reactivateWorkRoleAction : archiveWorkRoleAction;
         const kind = reactivate ? "work_role.reactivate" : "work_role.archive";
-        void operation.submit(action, kind, form, id, String(form.get("write_revision")), readError);
+        void operation.submit(action, kind, form, String(form.get("id")), String(form.get("write_revision")), readError, origin, {
+            confirm: operation.allowReplacement,
+            onStart: () => {
+                if (!operation.dirty) return;
+                setSelected(null);
+                setDraftVersion(version => version + 1);
+                operation.setDirty(false);
+            },
+        });
+    }
+
+    function lifecycleFeedback(rowId: string, reactivate: boolean) {
+        const kind = reactivate ? "work_role.reactivate" : "work_role.archive";
+        if (operation.kind !== kind || state.targetId !== rowId) return null;
+        if (pending) return <p id={lifecycleFeedbackId} role="status" className="mt-1 text-label text-text-secondary">{lifecycleLabel}</p>;
+        if (!lifecycleError) return null;
+        return <p id={lifecycleFeedbackId} data-settings-lifecycle-feedback role="alert" className="mt-1 wrap-anywhere text-label text-risk-text">{lifecycleError}</p>;
     }
 
     const formAction = (form: HTMLFormElement) => operation.submit(saveWorkRoleAction, selected ? "work_role.update" : "work_role.create",
@@ -91,14 +106,13 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
       {readError && <button type="button" disabled={operation.blocked} onClick={operation.refreshRead} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Försök läsa igen</button>}
       {baselineChanged && !operation.accessLost && <div data-testid="pricing-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-label text-text-secondary">
         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
-        <p>{currentSelected ? `${currentSelected.display_name}: ${oreToKronorString(currentSelected.sell_rate_ore)} kr/tim; kostnad ${oreToKronorString(currentSelected.cost_rate_ore)} kr/tim` : "Ingen aktuell post finns."}</p>
+        <p className="wrap-anywhere">{currentSelected ? `${currentSelected.display_name}: ${oreToKronorString(currentSelected.sell_rate_ore)} kr/tim; kostnad ${oreToKronorString(currentSelected.cost_rate_ore)} kr/tim` : "Ingen aktuell post finns."}</p>
         <button type="button" disabled={operation.blocked} onClick={() => choose(currentSelected ?? null, true)} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Använd aktuella uppgifter</button>
       </div>}
-      <fieldset disabled={operation.blocked || readError || operation.accessLost}
+      <fieldset disabled={operation.blocked || operation.awaitingCurrentRead || readError || operation.accessLost}
         className={operation.accessLost || !hadAuthorizedRead ? "hidden" : "contents"}>
-      {lifecycleError && (<p data-testid="work-role-archive-error" role="alert" className="rounded-control border border-risk-text bg-risk-surface px-3 py-2 text-label text-risk-text">
-          {lifecycleError}
-        </p>)}
+      {!lifecycleRowVisible && lifecycleLabel && pending && <p role="status" className="text-label text-text-secondary">{lifecycleLabel}</p>}
+      {!lifecycleRowVisible && lifecycleError && <p data-testid="work-role-archive-error" role="alert" className="text-label text-risk-text">{lifecycleError}</p>}
 
         {state.status === "success" && !operation.dirty && (<p data-testid="settings-saved" role="status" className="rounded-control border border-ok-text bg-ok-surface px-3 py-2 text-label text-ok-text">
             Det tidigare försöket slutfördes.
@@ -110,35 +124,40 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
           <label htmlFor="work-roles-search" className="text-label font-medium text-text-secondary">Sök arbetsroller</label>
           <div className="flex flex-wrap gap-2">
             <input id="work-roles-search" value={query} onChange={event => setQuery(event.target.value)}
-              className="min-h-control-lg min-w-0 grow rounded-control bg-sunken px-3 py-2 text-body text-text-primary focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"/>
+              className="min-h-control-lg min-w-0 grow rounded-control border border-n-600 bg-sunken px-3 py-2 text-body text-text-primary focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"/>
             <button type="button" disabled={!query} onClick={() => setQuery("")} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Rensa sökning</button>
           </div>
         </div>
       )}
 
       {readError ? null : workRoles.length === 0 ? (<p className="text-label text-text-secondary">
-          Inga arbetsroller ännu. Lägg till din första roll nedan.
+          {archivedWorkRoles.length ? "Inga aktiva arbetsroller. Arkiverade arbetsroller finns nedan." : "Inga arbetsroller ännu. Lägg till din första roll nedan."}
         </p>) : visibleActive.length === 0 ? (
           <p role="status" className="text-label text-text-secondary">Inga matchningar bland aktiva arbetsroller.</p>
         ) : (<ul className="flex flex-col gap-2">
-          {visibleActive.map((role) => (<li key={role.id} className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-control border border-border-subtle bg-card px-3 py-2">
-              <div className="flex min-w-0 grow basis-full flex-col wrap-anywhere sm:basis-0">
-                <span className="text-label font-medium text-text-primary">
-                  {role.display_name}
-                </span>
-                <span className="text-label tabular-nums text-text-secondary">
-                  {oreToKronorString(role.sell_rate_ore)} kr/tim
-                </span>
-              </div>
-              <button type="button" disabled={operation.blocked} aria-current={selected?.id === role.id ? "true" : undefined} onClick={() => choose(role)} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Redigera</button>
-              <form onSubmit={event => { event.preventDefault(); submitLifecycle(new FormData(event.currentTarget), false); }}>
-                <input type="hidden" name="id" value={role.id}/>
-                <input type="hidden" name="write_revision" value={role.write_revision}/>
-                <button type="submit" disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
-                  {operation.pending && operation.kind === "work_role.archive" && state.targetId === role.id ? "Arkiverar…" : "Arkivera"}
-                </button>
-              </form>
-            </li>))}
+          {visibleActive.map((role) => {
+              const feedback = lifecycleFeedback(role.id, false);
+              return <li key={role.id} className={`flex flex-wrap items-center gap-x-4 gap-y-2 rounded-control border px-3 py-2 ${selected?.id === role.id ? "border-ink bg-selected" : "border-border-subtle bg-card"}`}>
+                <div className="flex min-w-0 grow basis-full flex-col wrap-anywhere sm:basis-0">
+                  <span className="text-label font-medium text-text-primary">
+                    {role.display_name}
+                  </span>
+                  <span className="text-label tabular-nums text-text-secondary">
+                    {oreToKronorString(role.sell_rate_ore)} kr/tim
+                  </span>
+                  {selected?.id === role.id && <span className="text-label font-medium text-text-primary">Vald för redigering</span>}
+                </div>
+                <button type="button" disabled={operation.blocked} aria-current={selected?.id === role.id ? "true" : undefined} onClick={() => choose(role)} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Redigera</button>
+                <form onSubmit={event => { event.preventDefault(); submitLifecycle(event.currentTarget, false); }}>
+                  <input type="hidden" name="id" value={role.id}/>
+                  <input type="hidden" name="write_revision" value={role.write_revision}/>
+                  <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
+                    {operation.pending && operation.kind === "work_role.archive" && state.targetId === role.id ? "Arkiverar…" : "Arkivera"}
+                  </button>
+                  {feedback}
+                </form>
+              </li>;
+          })}
         </ul>)}
 
       <form onChange={event => operation.trackDraft(event.currentTarget)} onSubmit={event => { event.preventDefault(); void formAction(event.currentTarget); }} className="flex min-w-0 max-w-xl flex-col gap-4" noValidate>
@@ -146,8 +165,6 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
         <h3 className="text-body font-medium text-text-primary wrap-anywhere">{selected ? "Redigera arbetsroll" : "Ny arbetsroll"}</h3>
         <FormErrorSummary message={isSave ? state.formError : null} fieldErrors={fieldErrors}/>
         {operation.dirty && !operation.blocked && <p role="status" className="text-label text-text-secondary">Osparade ändringar.</p>}
-
-
 
         <div key={`${selected?.id ?? "new"}:${selected?.write_revision ?? "absent"}:${draftVersion}`} className="contents">
         <TextField inputRef={firstField} name="display_name" label="Benämning" required defaultValue={selected?.display_name ?? ""} error={fieldErrors.display_name}/>
@@ -182,7 +199,9 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
               <h3 className="text-label font-medium text-text-secondary">Arkiverade</h3>
               {visibleArchived.length === 0 && <p role="status" className="text-label text-text-secondary">Inga matchningar bland arkiverade arbetsroller.</p>}
               <ul className="flex flex-col gap-2">
-                {visibleArchived.map((role) => (<li key={role.id} className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-control border border-dashed border-border-default bg-sunken px-3 py-2">
+                {visibleArchived.map((role) => {
+                  const feedback = lifecycleFeedback(role.id, true);
+                  return <li key={role.id} className={`flex flex-wrap items-center gap-x-4 gap-y-2 rounded-control border px-3 py-2 ${selected?.id === role.id ? "border-ink bg-selected" : "border-dashed border-border-default bg-sunken"}`}>
                     <div className="flex min-w-0 grow basis-full flex-col wrap-anywhere sm:basis-0">
                       <span className="text-label font-medium text-text-secondary">
                         {role.display_name}
@@ -190,15 +209,18 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
                       <span className="text-label tabular-nums text-text-secondary">
                         {oreToKronorString(role.sell_rate_ore)} kr/tim
                       </span>
+                      {selected?.id === role.id && <span className="text-label font-medium text-text-primary">Vald för redigering</span>}
                     </div>
-                    <form onSubmit={event => { event.preventDefault(); submitLifecycle(new FormData(event.currentTarget), true); }}>
+                    <form onSubmit={event => { event.preventDefault(); submitLifecycle(event.currentTarget, true); }}>
                       <input type="hidden" name="id" value={role.id}/>
-                <input type="hidden" name="write_revision" value={role.write_revision}/>
-                      <button type="submit" disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
+                      <input type="hidden" name="write_revision" value={role.write_revision}/>
+                      <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
                         {operation.pending && operation.kind === "work_role.reactivate" && state.targetId === role.id ? "Återaktiverar…" : "Återaktivera"}
                       </button>
+                      {feedback}
                     </form>
-                  </li>))}
+                  </li>;
+                })}
               </ul>
             </section>)}
         </div>)}

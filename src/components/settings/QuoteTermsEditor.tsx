@@ -58,58 +58,63 @@ export function QuoteTermsEditor({ defaults, }: {
         setDraft(defaults.terms_text);
     } else if (confirmsOwnWrite && !sameDraftBaseline(baseline, defaults)) {
         setBaseline(defaults);
+        if (operation.kind === "terms.save") setDraft(defaults.terms_text);
     }
     const baselineChanged = !defaults.readError && (baseline.readError || !sameDraftBaseline(baseline, defaults)) && !confirmsOwnWrite;
     const reviewed = confirmsOwnWrite ? defaults : baseline;
-    const dirty = !canonicalTermsEqual(draft, reviewed.terms_text);
+    const draftDiffersFromSavedWording = !canonicalTermsEqual(draft, reviewed.terms_text);
+    const rawDraftChanged = draft !== reviewed.terms_text;
     const saveState = operation.kind === "terms.save" ? operation.state : SETTINGS_ACTION_INITIAL;
     const approveState = operation.kind === "terms.approve" ? operation.state : SETTINGS_ACTION_INITIAL;
     const savePending = operation.pending && operation.kind === "terms.save";
     const approvePending = operation.pending && operation.kind === "terms.approve";
     const termsId = reviewed.id;
-    // A receipt proves historical completion only; current approval comes from an
-    // independent authorized reread, never a lingering justApproved action flag.
-    const isApproved = !dirty && !baselineChanged && !defaults.readError && !operation.blocked && (operation.phase !== "committed" || operation.hasCurrentRead) && defaults.approved_at !== null;
+    // The approved status refers to persisted wording, independently of the draft.
+    const currentFactsPending = operation.blocked || operation.awaitingCurrentRead;
+    const approvedAt = !defaults.readError && !currentFactsPending ? defaults.approved_at : null;
     const justSavedText = saveState.status === "success" && !operation.dirty;
     const saveAction = (form: HTMLFormElement) => operation.submit(saveQuoteTermsAction, "terms.save", new FormData(form),
         reviewed.id, reviewed.write_revision, defaults.readError || baselineChanged, form);
     const approveAction = (form: HTMLFormElement) => operation.submit(approveTermsAction, "terms.approve", new FormData(form),
-        reviewed.id, reviewed.write_revision, defaults.readError || dirty || baselineChanged || defaults.approved_at !== null, form);
+        reviewed.id, reviewed.write_revision, defaults.readError || draftDiffersFromSavedWording || baselineChanged || defaults.approved_at !== null, form);
     return (<div className="flex min-w-0 max-w-3xl flex-col gap-6">
       <AttemptRecovery operation={operation}/>
       {defaults.readError && <button type="button" disabled={operation.blocked} onClick={operation.refreshRead} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Försök läsa igen</button>}
-      {baselineChanged && !operation.accessLost && <div data-testid="terms-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-label text-text-secondary">
+      {baselineChanged && !currentFactsPending && !operation.accessLost && <div data-testid="terms-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-label text-text-secondary">
         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade villkor:</p>
         <p className="whitespace-pre-wrap wrap-anywhere">{defaults.id ? defaults.terms_text : "Ingen aktuell post finns."}</p>
         <p>{defaults.approved_at ? "Aktuella villkor är godkända." : "Aktuella villkor är inte godkända."}</p>
         <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); setDraft(defaults.terms_text); }} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Använd aktuella uppgifter</button>
       </div>}
-      <fieldset disabled={operation.blocked || defaults.readError || operation.accessLost}
+      <fieldset disabled={currentFactsPending || defaults.readError || operation.accessLost}
         className={operation.accessLost || baseline.readError ? "hidden" : "contents"}>
-      {/* SIGN-OFF STATUS / WARNING — always present, sourced from approval state. */}
-      {!defaults.readError && (isApproved ? (<div data-testid="quote-terms-approved-status" role="status" className="rounded-control border border-ok-text bg-ok-surface px-4 py-3 text-label text-ok-text">
-          <strong>Godkänd</strong> av ägare/juridik
-          {defaults.approved_at
-                ? ` (${formatApprovedAt(defaults.approved_at)})`
-                : ""}
-          .
-          <span className="mt-1 block text-ok-text">
-            Obs: om du redigerar texten måste villkoren godkännas på nytt.
-          </span>
-        </div>) : (<div data-testid="quote-terms-signoff-warning" role="alert" className="rounded-control border border-warn-text bg-warn-surface px-4 py-3 text-label text-warn-text">
-          <strong>Ej godkänt:</strong> Offertvillkoren kräver godkännande av
-          ägare/juridik innan de används i skarpa offerter.
-        </div>))}
-      {dirty && !operation.blocked && <p role="status" className="text-label text-text-secondary">Texten har osparade ändringar. Spara villkoren innan de kan godkännas.</p>}
+      {!defaults.readError && (currentFactsPending ? (
+        <p role="status" className="rounded-control border border-border-default bg-sunken px-4 py-3 text-label text-text-secondary">
+          Aktuell status för sparade villkor inväntar bekräftelse.
+        </p>
+      ) : approvedAt ? (
+        <div data-testid="quote-terms-approved-status" role="status" className="rounded-control border border-ok-text bg-ok-surface px-4 py-3 text-label text-ok-text">
+          Sparade villkor. <strong>Godkänd</strong> av ägare/juridik ({formatApprovedAt(approvedAt)}).
+          <span className="mt-1 block">Om du sparar ny text måste den godkännas på nytt.</span>
+        </div>
+      ) : (
+        <div data-testid="quote-terms-signoff-warning" role="alert" className="rounded-control border border-warn-text bg-warn-surface px-4 py-3 text-label text-warn-text">
+          <strong>Ej godkänt:</strong> De sparade villkoren kräver godkännande av ägare/juridik innan de används i skarpa offerter.
+        </div>
+      ))}
+      {rawDraftChanged && !currentFactsPending && <p role="status" className="text-label text-text-secondary">
+        {draftDiffersFromSavedWording ? "Utkastet har osparad ordalydelse. Spara den innan den kan godkännas."
+          : "Utkastet har osparade ändringar i blanksteg eller radbrytningar."}
+      </p>}
 
       {/* TERMS TEXT form — saving NEVER approves. */}
       <form onSubmit={event => { event.preventDefault(); void saveAction(event.currentTarget); }} className="flex flex-col gap-3" noValidate>
         <FormErrorSummary message={saveState.formError} fieldErrors={saveState.fieldErrors}/>
         {justSavedText && (<p data-testid="settings-saved" role="status" className="rounded-control border border-ok-text bg-ok-surface px-3 py-2 text-label text-ok-text">
-            Försöket att spara offertvillkoren slutfördes; sparande godkänner inte villkoren.
+            Försöket att spara offertvillkoren slutfördes. Godkännande görs separat.
             {operation.hasCurrentRead && !defaults.readError && defaults.write_revision !== saveState.committedRevision ? " Nyare aktuella uppgifter finns. Granska dem innan du sparar igen." : " Aktuella uppgifter läses separat."}
           </p>)}
-        <TermsTextField value={draft} onChange={value => { operation.setDirty(!canonicalTermsEqual(value, reviewed.terms_text)); setDraft(value); }} error={saveState.fieldErrors.terms_text}/>
+        <TermsTextField value={draft} onChange={value => { operation.setDirty(value !== reviewed.terms_text); setDraft(value); }} error={saveState.fieldErrors.terms_text}/>
         <div className="flex">
           <button type="submit" disabled={savePending || baselineChanged || operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control bg-ink px-4 py-2 text-label font-medium text-white hover:bg-n-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:bg-sunken disabled:text-text-disabled">
             {savePending ? "Sparar…" : "Spara villkor"}
@@ -118,12 +123,12 @@ export function QuoteTermsEditor({ defaults, }: {
       </form>
 
       {/* APPROVE form — the deliberate human sign-off (the ONLY path to approval). */}
-      {!isApproved && termsId && (<form onSubmit={event => { event.preventDefault(); void approveAction(event.currentTarget); }} className="flex flex-col gap-2" noValidate>
+      {!approvedAt && termsId && (<form onSubmit={event => { event.preventDefault(); void approveAction(event.currentTarget); }} className="flex flex-col gap-2" noValidate>
           <FormErrorSummary message={approveState.formError}/>
           <input type="hidden" name="id" value={termsId}/>
           <input type="hidden" name="terms_text" value={reviewed.terms_text}/>
           <div className="flex">
-            <button type="submit" disabled={approvePending || dirty || baselineChanged || operation.awaitingCurrentRead || operation.reviewBlocked || defaults.approved_at !== null} className="min-h-control-lg rounded-control border border-warn-text bg-warn-surface px-4 py-2 text-label font-medium text-warn-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:border-border-subtle disabled:bg-sunken disabled:text-text-disabled">
+            <button type="submit" disabled={approvePending || draftDiffersFromSavedWording || baselineChanged || operation.awaitingCurrentRead || operation.reviewBlocked || defaults.approved_at !== null} className="min-h-control-lg rounded-control border border-warn-text bg-warn-surface px-4 py-2 text-label font-medium text-warn-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:border-border-subtle disabled:bg-sunken disabled:text-text-disabled">
               {approvePending ? "Godkänner…" : "Markera som godkänd"}
             </button>
           </div>
@@ -150,7 +155,7 @@ function TermsTextField({ value, error, onChange, }: {
           *
         </span>
       </label>
-      <textarea id={id} name="terms_text" required rows={10} value={value} onChange={event => onChange(event.target.value)} aria-invalid={hasError ? "true" : undefined} aria-describedby={hasError ? errorId : undefined} className="min-h-control-lg w-full rounded-control bg-sunken px-3 py-2 text-body text-text-primary focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"/>
+      <textarea id={id} name="terms_text" required rows={10} value={value} onChange={event => onChange(event.target.value)} aria-invalid={hasError ? "true" : undefined} aria-describedby={hasError ? errorId : undefined} className="min-h-control-lg min-w-0 w-full rounded-control border border-n-600 bg-sunken px-3 py-2 text-body text-text-primary focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"/>
       {hasError && (<p id={errorId} className="text-label text-risk-text">
           {error}
         </p>)}

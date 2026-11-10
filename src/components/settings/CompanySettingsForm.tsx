@@ -27,7 +27,7 @@ import type { SettingsActionState } from "@/features/settings/action-state";
 import { FormErrorSummary, SelectField, TextField, } from "@/components/crm/FormField";
 import { saveCompanySettingsAction } from "@/features/settings/actions";
 import { SETTINGS_ACTION_INITIAL } from "@/features/settings/action-state";
-import { hasChangedSettingsFields, installSettingsFormNavigationGuard } from "./SettingsFormNavigationGuard";
+import { confirmSettingsDraftDiscard, hasChangedSettingsFields, installSettingsFormNavigationGuard } from "./SettingsFormNavigationGuard";
 import { VAT_DISPLAY_OPTIONS } from "@/features/settings/vat-display";
 /** The current company settings the form hydrates from (null = no row yet). */
 export interface CompanySettingsDefaults {
@@ -69,11 +69,11 @@ export function CompanySettingsForm({ defaults, }: {
       {defaults.readError && <button type="button" disabled={operation.blocked} onClick={operation.refreshRead} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Försök läsa igen</button>}
       {baselineChanged && !operation.accessLost && <div data-testid="company-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-label text-text-secondary">
         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
-        <dl>{Object.entries(defaults).filter(([key]) => ["company_name", "org_nr", "address_line1", "address_line2", "postal_code", "city", "email", "phone", "default_vat_display", "vat_rate_percent"].includes(key)).map(([key, value]) => <div key={key}><dt className="font-medium">{({company_name:"Företagsnamn",org_nr:"Organisationsnummer",address_line1:"Adress",address_line2:"Adressrad 2",postal_code:"Postnummer",city:"Ort",email:"E-post",phone:"Telefon",default_vat_display:"Standardvisning av moms",vat_rate_percent:"Momssats"} as Record<string,string>)[key]}</dt><dd>{key === "default_vat_display" ? VAT_DISPLAY_OPTIONS.find(option => option.value === value)?.label ?? "—" : String(value ?? "—")}</dd></div>)}</dl>
+        <dl className="wrap-anywhere">{Object.entries(defaults).filter(([key]) => ["company_name", "org_nr", "address_line1", "address_line2", "postal_code", "city", "email", "phone", "default_vat_display", "vat_rate_percent"].includes(key)).map(([key, value]) => <div key={key}><dt className="font-medium">{({company_name:"Företagsnamn",org_nr:"Organisationsnummer",address_line1:"Adress",address_line2:"Adressrad 2",postal_code:"Postnummer",city:"Ort",email:"E-post",phone:"Telefon",default_vat_display:"Standardvisning av moms",vat_rate_percent:"Momssats"} as Record<string,string>)[key]}</dt><dd>{key === "default_vat_display" ? VAT_DISPLAY_OPTIONS.find(option => option.value === value)?.label ?? "—" : String(value ?? "—")}</dd></div>)}</dl>
         {!defaults.id && <p>Ingen aktuell post finns.</p>}
         <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); }} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Använd aktuella uppgifter</button>
       </div>}
-      <fieldset disabled={operation.blocked || defaults.readError || operation.accessLost}
+      <fieldset disabled={operation.blocked || operation.awaitingCurrentRead || defaults.readError || operation.accessLost}
         className={operation.accessLost || baseline.readError ? "hidden" : "contents"}>
       <FormErrorSummary message={state.formError} fieldErrors={state.fieldErrors}/>
 
@@ -82,7 +82,9 @@ export function CompanySettingsForm({ defaults, }: {
           {operation.hasCurrentRead && !defaults.readError ? !defaults.id ? " Posten finns inte längre i aktuella uppgifter." : defaults.write_revision !== state.committedRevision ? " Nyare ändringar finns. Granska aktuella uppgifter före nästa sparande." : " Aktuella uppgifter är bekräftade." : " Aktuella uppgifter hämtas separat."}
         </p>)}
 
-      {!baseline.id && <p className="text-label text-text-secondary">Företagsinställningar har ännu inte sparats. Momssatsen visar ett förslag på 25 %.</p>}
+      {!defaults.id && !defaults.readError && !operation.blocked && state.status !== "success" && (
+        <p data-testid="company-empty-defaults" className="text-label text-text-secondary">Företagsinställningar har ännu inte sparats. Momssatsen visar ett förslag på 25 %.</p>
+      )}
       {operation.dirty && !operation.blocked && <p role="status" className="text-label text-text-secondary">Osparade ändringar.</p>}
       <div key={`${baseline.id ?? "absent"}:${baseline.write_revision ?? "absent"}`} className="contents">
       <TextField name="company_name" label="Företagsnamn" required defaultValue={baseline.company_name ?? ""} error={state.fieldErrors.company_name}/>
@@ -116,6 +118,17 @@ export function CompanySettingsForm({ defaults, }: {
       </fieldset>
     </form>);
 }
+interface InitialSettingsDispatch<S extends SettingsActionState> {
+    readonly attempt: MutationAttempt;
+    readonly action: (state: S, form: FormData) => Promise<S>;
+    readonly onStart?: () => void;
+}
+
+interface SettingsSubmissionOptions {
+    readonly confirm?: () => boolean;
+    readonly onStart?: () => void;
+}
+
 /** Shared only by the four ADR-B014 editors; no durable browser storage or polling. */
 export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(initial: S, context: EditorOperationContext | null, readToken: string) {
     const router = useRouter();
@@ -147,16 +160,21 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
         setDirtyState(next);
     }, []);
     const trackDraft = (form: HTMLFormElement) => setDirty(hasChangedSettingsFields(form));
-    const allowReplacement = useCallback(() => {
+    const reportBlocked = useCallback(() => {
+        setNavigationNotice("Behåll sidan öppen tills försöket är bekräftat. En omladdning kan förlora försöket.");
+    }, []);
+    const allowReplacement = () => {
         if (protectedAttempt()) {
-            setNavigationNotice("Behåll sidan öppen tills försöket är bekräftat. En omladdning kan förlora försöket.");
+            reportBlocked();
             return false;
         }
-        return !draftDirty.current || window.confirm("Du har osparade ändringar. Vill du lämna utkastet?");
-    }, [protectedAttempt]);
-    useEffect(() => installSettingsFormNavigationGuard(
-        () => draftDirty.current || protectedAttempt(), allowReplacement,
-    ), [allowReplacement, protectedAttempt]);
+        return !draftDirty.current || confirmSettingsDraftDiscard();
+    };
+    useEffect(() => installSettingsFormNavigationGuard({
+        hasProtectedAttempt: protectedAttempt,
+        hasDirtyDraft: () => draftDirty.current,
+        reportBlocked,
+    }), [protectedAttempt, reportBlocked]);
     const blocked = pending || phase === "pending" || phase === "unknown";
     const [accessLost, setAccessLost] = useState(false);
     useEffect(() => {
@@ -164,21 +182,31 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
         const form = originForm.current;
         if (!form || (document.activeElement !== document.body && !form.contains(document.activeElement))) return;
         const field = form.querySelector<HTMLElement>('[aria-invalid="true"]');
-        const summary = form.querySelector<HTMLElement>('[data-testid="form-error-summary"] [role="alert"]');
+        const summary = form.querySelector<HTMLElement>('[data-testid="form-error-summary"] [role="alert"], [data-settings-lifecycle-feedback][role="alert"]');
         if (summary && !field) summary.tabIndex = -1;
         (field ?? summary)?.focus();
     }, [state, accessLost]);
 
-    const invoke = useCallback(async (reconcile: boolean) => {
-        const current = attempt.current;
-        const action = savedAction.current;
+    const invoke = useCallback(async (reconcile: boolean, dispatch?: InitialSettingsDispatch<S>) => {
+        const current = dispatch?.attempt ?? attempt.current;
+        const action = dispatch?.action ?? savedAction.current;
         if (!current || !action || busy.current)
             return;
         if (!navigator.onLine) {
-            setNotice("Du är offline. Ingen begäran skickades. Anslut och försök igen.");
+            setNotice(dispatch
+                ? "Du är offline. Ingen begäran skickades. Utkastet är inte sparat."
+                : "Du är offline. Ingen begäran skickades. Anslut och försök igen.");
             return;
         }
         busy.current = true;
+        if (dispatch) {
+            attempt.current = current;
+            savedAction.current = action;
+            setAttemptKind(current.kind);
+            setState({ ...initial, targetId: current.targetId });
+            setPhase("pending");
+            dispatch.onStart?.();
+        }
         setPending(true);
         setNotice(null);
         const form = attemptForm(current);
@@ -201,7 +229,7 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
             if (next.phase === "committed") {
                 // A neighboring form may have refreshed while this was unknown.
                 // Require another authorized read after this receipt is observed.
-                setDirty(false);
+                if (current.kind !== "terms.approve") setDirty(false);
                 setCapturedReadToken(latestReadToken.current);
                 router.refresh();
                 setNeedsRefresh(false);
@@ -220,7 +248,7 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
         if (mounted.current)
             setPending(false);
     }, [initial, router, setDirty]);
-    const submit = async (action: (s: S, f: FormData) => Promise<S>, kind: OperationKind, form: FormData, targetId: string | null, revision: string | null, readError = false, origin?: HTMLFormElement) => {
+    const submit = async (action: (s: S, f: FormData) => Promise<S>, kind: OperationKind, form: FormData, targetId: string | null, revision: string | null, readError = false, origin?: HTMLFormElement, options?: SettingsSubmissionOptions) => {
         if (busy.current || attemptBlocksReplacement(attempt.current) || reviewBlocked || awaitingCurrentRead || accessLost)
             return;
         if (readError || !context) {
@@ -248,13 +276,9 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
             setState({ ...initial, ...("form" in initial ? { form: kind.startsWith("work_role") ? "work_role" : "article" } : {}), status: "error", code: "VALIDATION_FAILED", formError: "Kontrollera uppgifterna innan du sparar.", fieldErrors: parsed.fieldErrors, values: parsed.values });
             return;
         }
-        setCapturedReadToken(readToken);
-        setAttemptKind(kind);
-        attempt.current = captureAttempt({ operationId, kind, generation: ++serial.current, context: context.tenantId + ":" + context.actorId + ":" + window.location.pathname, targetId: proposedTarget, expectedRevision: revision, form, candidate: { ...checked.data } });
-        savedAction.current = action;
-        setState({ ...initial, targetId: proposedTarget });
-        setPhase("pending");
-        await invoke(false);
+        if (options?.confirm && !options.confirm()) return;
+        const captured = captureAttempt({ operationId, kind, generation: ++serial.current, context: context.tenantId + ":" + context.actorId + ":" + window.location.pathname, targetId: proposedTarget, expectedRevision: revision, form, candidate: { ...checked.data } });
+        await invoke(false, { attempt: captured, action, onStart: options?.onStart });
     };
     const refresh = () => {
         setRequestedReadToken(readToken);

@@ -183,6 +183,10 @@ test.describe("Settings UI — Company + Quote terms (Story 3.3 E2E)", () => {
       /Godkänd av/i,
     );
     await expect(page.getByTestId("quote-terms-signoff-warning")).toHaveCount(0);
+    await page.getByLabel("Offertvillkor").fill("Ändrat utkast efter godkännandet");
+    await expect(page.getByText(/Utkastet har osparad ordalydelse/)).toBeVisible();
+    await expect(page.getByTestId("quote-terms-approved-status")).toContainText(/Sparade villkor.*Godkänd av/i);
+    await expect(page.getByTestId("quote-terms-signoff-warning")).toHaveCount(0);
   });
 
   test("AC4: the nav stays EXACTLY aligned with active manifest modules — no new settings nav item, no /settings/pricing", async ({
@@ -211,6 +215,7 @@ test("E35-7 ATDD company validation links to the invalid VAT field on a phone", 
         await page.goto("/settings");
         await page.getByRole("link", { name: /^Företagsinställningar/ }).click();
         await expect(page).toHaveURL(/\/settings\/company$/);
+        await expect(page.getByTestId("company-empty-defaults")).toBeVisible();
         const name = page.getByLabel("Företagsnamn");
         await waitForHydrated(name);
         const save = page.getByRole("button", { name: "Spara", exact: true });
@@ -234,6 +239,7 @@ test("E35-7 ATDD company validation links to the invalid VAT field on a phone", 
         await vat.fill("25");
         await save.click();
         await expect(page.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        await expect(page.getByTestId("company-empty-defaults")).toHaveCount(0);
         await page.reload();
         await expect(name).toHaveValue(draft);
         await expect(vat).toHaveValue("25");
@@ -257,20 +263,22 @@ test("E35-7 cancels a settings link and Back without replacing the terms draft o
             length: history.length,
         }));
         expect(before.index).toEqual(expect.any(Number));
-        await terms.fill("Detta utkast ska behållas.");
+        const whitespaceDraft = " \n ";
+        await terms.fill(whitespaceDraft);
+        await expect(page.getByText(/Utkastet har osparade ändringar i blanksteg/)).toBeVisible();
         const backLink = page.getByRole("link", { name: "← Inställningar" });
 
         const linkPrompt = page.waitForEvent("dialog");
         const click = backLink.click();
         await (await linkPrompt).dismiss();
         await click;
-        await expect(terms).toHaveValue("Detta utkast ska behållas.");
+        await expect(terms).toHaveValue(whitespaceDraft);
 
         const traversePrompt = page.waitForEvent("dialog");
         const back = page.evaluate(() => history.back());
         await (await traversePrompt).dismiss();
         await back;
-        await expect(terms).toHaveValue("Detta utkast ska behållas.");
+        await expect(terms).toHaveValue(whitespaceDraft);
         expect(await page.evaluate(() => ({
             href: location.href,
             index: (window as Window & { navigation?: { currentEntry: { index: number } } }).navigation?.currentEntry.index,

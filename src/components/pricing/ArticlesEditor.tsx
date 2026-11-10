@@ -56,28 +56,43 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
     const visibleActive = articles.filter(matches);
     const visibleArchived = archivedArticles.filter(matches);
     const isSave = operation.kind === "article.create" || operation.kind === "article.update";
-    const lifecycleError = !isSave && state.status === "error" ? state.formError : null;
+    const lifecycleLabel = operation.kind === "article.archive" ? "Arkiverar…"
+        : operation.kind === "article.reactivate" ? "Återaktiverar…" : null;
+    const lifecycleError = lifecycleLabel && state.status === "error" ? state.formError : null;
+    const lifecycleRows = operation.kind === "article.archive" ? visibleActive : showArchived ? visibleArchived : [];
+    const lifecycleRowVisible = !readError && lifecycleRows.some(row => row.id === state.targetId);
+    const lifecycleFeedbackId = "article-lifecycle-feedback";
     const fieldErrors = isSave ? state.fieldErrors : {};
 
     function choose(next: typeof selected, adoptCurrent = false) {
-        if (operation.blocked || (!adoptCurrent && !operation.allowReplacement())) return;
+        if (operation.blocked || operation.awaitingCurrentRead || (!adoptCurrent && !operation.allowReplacement())) return;
         operation.reset();
         setSelected(next);
         setDraftVersion(version => version + 1);
         if (!adoptCurrent) requestAnimationFrame(() => firstField.current?.focus());
     }
 
-    function submitLifecycle(form: FormData, reactivate: boolean) {
-        const id = String(form.get("id"));
-        if (operation.dirty) {
-            if (!operation.allowReplacement()) return;
-            setSelected(null);
-            setDraftVersion(version => version + 1);
-            operation.setDirty(false);
-        }
+    function submitLifecycle(origin: HTMLFormElement, reactivate: boolean) {
+        const form = new FormData(origin);
         const action = reactivate ? reactivateArticleAction : archiveArticleAction;
         const kind = reactivate ? "article.reactivate" : "article.archive";
-        void operation.submit(action, kind, form, id, String(form.get("write_revision")), readError);
+        void operation.submit(action, kind, form, String(form.get("id")), String(form.get("write_revision")), readError, origin, {
+            confirm: operation.allowReplacement,
+            onStart: () => {
+                if (!operation.dirty) return;
+                setSelected(null);
+                setDraftVersion(version => version + 1);
+                operation.setDirty(false);
+            },
+        });
+    }
+
+    function lifecycleFeedback(rowId: string, reactivate: boolean) {
+        const kind = reactivate ? "article.reactivate" : "article.archive";
+        if (operation.kind !== kind || state.targetId !== rowId) return null;
+        if (pending) return <p id={lifecycleFeedbackId} role="status" className="mt-1 text-label text-text-secondary">{lifecycleLabel}</p>;
+        if (!lifecycleError) return null;
+        return <p id={lifecycleFeedbackId} data-settings-lifecycle-feedback role="alert" className="mt-1 wrap-anywhere text-label text-risk-text">{lifecycleError}</p>;
     }
 
     const formAction = (form: HTMLFormElement) => operation.submit(saveArticleAction, selected ? "article.update" : "article.create",
@@ -92,14 +107,13 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
       {readError && <button type="button" disabled={operation.blocked} onClick={operation.refreshRead} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Försök läsa igen</button>}
       {baselineChanged && !operation.accessLost && <div data-testid="pricing-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-label text-text-secondary">
         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
-        <p>{currentSelected ? `${currentSelected.name}: ${oreToKronorString(currentSelected.unit_price_ore)} kr; artikelnummer ${currentSelected.sku ?? "—"}; enhet ${currentSelected.unit ?? "—"}` : "Ingen aktuell post finns."}</p>
+        <p className="wrap-anywhere">{currentSelected ? `${currentSelected.name}: ${oreToKronorString(currentSelected.unit_price_ore)} kr; artikelnummer ${currentSelected.sku ?? "—"}; enhet ${currentSelected.unit ?? "—"}` : "Ingen aktuell post finns."}</p>
         <button type="button" disabled={operation.blocked} onClick={() => choose(currentSelected ?? null, true)} className="min-h-control-lg self-start rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Använd aktuella uppgifter</button>
       </div>}
-      <fieldset disabled={operation.blocked || readError || operation.accessLost}
+      <fieldset disabled={operation.blocked || operation.awaitingCurrentRead || readError || operation.accessLost}
         className={operation.accessLost || !hadAuthorizedRead ? "hidden" : "contents"}>
-      {lifecycleError && (<p data-testid="article-archive-error" role="alert" className="rounded-control border border-risk-text bg-risk-surface px-3 py-2 text-label text-risk-text">
-          {lifecycleError}
-        </p>)}
+      {!lifecycleRowVisible && lifecycleLabel && pending && <p role="status" className="text-label text-text-secondary">{lifecycleLabel}</p>}
+      {!lifecycleRowVisible && lifecycleError && <p data-testid="article-archive-error" role="alert" className="text-label text-risk-text">{lifecycleError}</p>}
 
         {state.status === "success" && !operation.dirty && (<p data-testid="settings-saved" role="status" className="rounded-control border border-ok-text bg-ok-surface px-3 py-2 text-label text-ok-text">
             Det tidigare försöket slutfördes.
@@ -111,37 +125,42 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
           <label htmlFor="articles-search" className="text-label font-medium text-text-secondary">Sök artiklar</label>
           <div className="flex flex-wrap gap-2">
             <input id="articles-search" value={query} onChange={event => setQuery(event.target.value)}
-              className="min-h-control-lg min-w-0 grow rounded-control bg-sunken px-3 py-2 text-body text-text-primary focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"/>
+              className="min-h-control-lg min-w-0 grow rounded-control border border-n-600 bg-sunken px-3 py-2 text-body text-text-primary focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink"/>
             <button type="button" disabled={!query} onClick={() => setQuery("")} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Rensa sökning</button>
           </div>
         </div>
       )}
 
       {readError ? null : articles.length === 0 ? (<p className="text-label text-text-secondary">
-          Inga artiklar ännu. Lägg till din första artikel nedan.
+          {archivedArticles.length ? "Inga aktiva artiklar. Arkiverade artiklar finns nedan." : "Inga artiklar ännu. Lägg till din första artikel nedan."}
         </p>) : visibleActive.length === 0 ? (
           <p role="status" className="text-label text-text-secondary">Inga matchningar bland aktiva artiklar.</p>
         ) : (<ul className="flex flex-col gap-2">
-          {visibleActive.map((article) => (<li key={article.id} className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-control border border-border-subtle bg-card px-3 py-2">
-              <div className="flex min-w-0 grow basis-full flex-col wrap-anywhere sm:basis-0">
-                <span className="text-label font-medium text-text-primary">
-                  {article.name}
-                  {article.unit ? ` (${article.unit})` : ""}
-                </span>
-                {article.sku && <span className="text-label text-text-secondary">Artikelnr {article.sku}</span>}
-                <span className="text-label tabular-nums text-text-secondary">
-                  {oreToKronorString(article.unit_price_ore)} kr
-                </span>
-              </div>
-              <button type="button" disabled={operation.blocked} aria-current={selected?.id === article.id ? "true" : undefined} onClick={() => choose(article)} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Redigera</button>
-              <form onSubmit={event => { event.preventDefault(); submitLifecycle(new FormData(event.currentTarget), false); }}>
-                <input type="hidden" name="id" value={article.id}/>
-                <input type="hidden" name="write_revision" value={article.write_revision}/>
-                <button type="submit" disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
-                  {operation.pending && operation.kind === "article.archive" && state.targetId === article.id ? "Arkiverar…" : "Arkivera"}
-                </button>
-              </form>
-            </li>))}
+          {visibleActive.map((article) => {
+              const feedback = lifecycleFeedback(article.id, false);
+              return <li key={article.id} className={`flex flex-wrap items-center gap-x-4 gap-y-2 rounded-control border px-3 py-2 ${selected?.id === article.id ? "border-ink bg-selected" : "border-border-subtle bg-card"}`}>
+                <div className="flex min-w-0 grow basis-full flex-col wrap-anywhere sm:basis-0">
+                  <span className="text-label font-medium text-text-primary">
+                    {article.name}
+                    {article.unit ? ` (${article.unit})` : ""}
+                  </span>
+                  {article.sku && <span className="text-label text-text-secondary">Artikelnr {article.sku}</span>}
+                  <span className="text-label tabular-nums text-text-secondary">
+                    {oreToKronorString(article.unit_price_ore)} kr
+                  </span>
+                  {selected?.id === article.id && <span className="text-label font-medium text-text-primary">Vald för redigering</span>}
+                </div>
+                <button type="button" disabled={operation.blocked} aria-current={selected?.id === article.id ? "true" : undefined} onClick={() => choose(article)} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">Redigera</button>
+                <form onSubmit={event => { event.preventDefault(); submitLifecycle(event.currentTarget, false); }}>
+                  <input type="hidden" name="id" value={article.id}/>
+                  <input type="hidden" name="write_revision" value={article.write_revision}/>
+                  <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
+                    {operation.pending && operation.kind === "article.archive" && state.targetId === article.id ? "Arkiverar…" : "Arkivera"}
+                  </button>
+                  {feedback}
+                </form>
+              </li>;
+          })}
         </ul>)}
 
       <form onChange={event => operation.trackDraft(event.currentTarget)} onSubmit={event => { event.preventDefault(); void formAction(event.currentTarget); }} className="flex min-w-0 max-w-xl flex-col gap-4" noValidate>
@@ -149,8 +168,6 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
         <h3 className="text-body font-medium text-text-primary wrap-anywhere">{selected ? "Redigera artikel" : "Ny artikel"}</h3>
         <FormErrorSummary message={isSave ? state.formError : null} fieldErrors={fieldErrors}/>
         {operation.dirty && !operation.blocked && <p role="status" className="text-label text-text-secondary">Osparade ändringar.</p>}
-
-
 
         <div key={`${selected?.id ?? "new"}:${selected?.write_revision ?? "absent"}:${draftVersion}`} className="contents">
         <TextField inputRef={firstField} name="name" label="Artikelnamn" required defaultValue={selected?.name ?? ""} error={fieldErrors.name}/>
@@ -186,25 +203,30 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
               <h3 className="text-label font-medium text-text-secondary">Arkiverade</h3>
               {visibleArchived.length === 0 && <p role="status" className="text-label text-text-secondary">Inga matchningar bland arkiverade artiklar.</p>}
               <ul className="flex flex-col gap-2">
-                {visibleArchived.map((article) => (<li key={article.id} className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-control border border-dashed border-border-default bg-sunken px-3 py-2">
+                {visibleArchived.map((article) => {
+                  const feedback = lifecycleFeedback(article.id, true);
+                  return <li key={article.id} className={`flex flex-wrap items-center gap-x-4 gap-y-2 rounded-control border px-3 py-2 ${selected?.id === article.id ? "border-ink bg-selected" : "border-dashed border-border-default bg-sunken"}`}>
                     <div className="flex min-w-0 grow basis-full flex-col wrap-anywhere sm:basis-0">
                       <span className="text-label font-medium text-text-secondary">
                         {article.name}
                         {article.unit ? ` (${article.unit})` : ""}
                       </span>
                       {article.sku && <span className="text-label text-text-secondary">Artikelnr {article.sku}</span>}
-                <span className="text-label tabular-nums text-text-secondary">
+                      <span className="text-label tabular-nums text-text-secondary">
                         {oreToKronorString(article.unit_price_ore)} kr
                       </span>
+                      {selected?.id === article.id && <span className="text-label font-medium text-text-primary">Vald för redigering</span>}
                     </div>
-                    <form onSubmit={event => { event.preventDefault(); submitLifecycle(new FormData(event.currentTarget), true); }}>
+                    <form onSubmit={event => { event.preventDefault(); submitLifecycle(event.currentTarget, true); }}>
                       <input type="hidden" name="id" value={article.id}/>
-                <input type="hidden" name="write_revision" value={article.write_revision}/>
-                      <button type="submit" disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
+                      <input type="hidden" name="write_revision" value={article.write_revision}/>
+                      <button type="submit" aria-describedby={feedback ? lifecycleFeedbackId : undefined} disabled={operation.awaitingCurrentRead || operation.reviewBlocked} className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:text-text-disabled">
                         {operation.pending && operation.kind === "article.reactivate" && state.targetId === article.id ? "Återaktiverar…" : "Återaktivera"}
                       </button>
+                      {feedback}
                     </form>
-                  </li>))}
+                  </li>;
+                })}
               </ul>
             </section>)}
         </div>)}
