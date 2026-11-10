@@ -6,7 +6,7 @@ no product scope, schema, dependency, environment, deployment or paused run.
 
 ## Acceptance and trust
 
-A frontend candidate is ready only when its **current full Git head** has actual
+A candidate with a substantive frontend visual change is ready only when its **current full Git head** has actual
 production-server UI evidence, complete affected-surface coverage and either
 independent image review or authenticated owner manual acceptance. Initial
 foundation/screen references and every replacement reference also require owner
@@ -134,16 +134,37 @@ protected-input, scope, authorization, money and transaction checks.
 Root tokens/font/global styles require representative **auth, records, dialogs,
 documents, jobs, scheduling and time/Min dag** consumers. Record all other affected
 consumers in the package; this minimum is not whole-site coverage. Shared primitive
-changes require their real affected consumers. Direct frontend-bearing paths
-cannot use an N/A package. Backend/docs/tooling with no rendered path receives an
-explicit N/A reason and its complete file inventory. Every `src` source change and Next/Tailwind/PostCSS configuration change is
-conservatively subject to impact assessment, including headless `.ts` state,
-formatters and date/display helpers. A backend-only ambiguous source candidate
-may submit `kind=not-applicable`, `candidateSha`, the exact `changedPaths` and a
-concrete `reason`, then needs authenticated owner
-`/visual-not-applicable <head> <digest>`. Direct rendered paths cannot use this
-route. Docs/tooling without source/config changes receive computed explicit N/A.
-Automatic extensions alone never decide headless UI state is backend-only.
+changes require their real affected consumers. Direct rendered paths cannot use
+an author-submitted N/A package. The controller can compute N/A for docs/tooling
+without frontend-bearing source or config changes, or for the verified source
+exemptions below. Substantive frontend changes still require the ordinary human
+visual acceptance. Engineering review and ordinary tests cover all changes.
+
+The controller compares immutable regular-file blobs at the current PR head and
+its provider-reported merge base for these source exemptions:
+
+- **Minor presentation copy.** Direct plain text in an existing native button,
+  label, legend or heading can qualify for capitalization, terminal punctuation
+  or a bounded spelling correction. The rest of the source must match exactly.
+  Dynamic strings, accessible status or alert regions, number and amount edits,
+  sensitive copy paths, meaningful wording changes, added or renamed files,
+  route or attribute edits, layout or style changes and mixed production work
+  stay gated. Ordinary accompanying docs or tests can remain in the PR.
+- **Backend persistence work.** Existing Supabase server/public client or
+  environment modules and command database adapters can qualify when their
+  changed source remains in those seams and preserves literal prose and HTML.
+  Backend plus frontend production changes stay gated. Read models, headless
+  UI state, display formatters, customer-facing outputs and unclassified
+  application source remain subject to impact assessment.
+
+An ambiguous backend-only candidate can still submit `kind=not-applicable`,
+`candidateSha`, the exact `changedPaths` and a concrete `reason` for authenticated
+owner `/visual-not-applicable <head> <digest>`. Missing parser or provenance,
+unavailable blobs and ambiguous cases follow the existing strict visual path.
+The trusted workflow uses only the locked TypeScript parser to read inert source
+text. Main integration changes the controller used by all open PRs. Integrate
+only after active consumers of the prior visual contract close, then use the
+new policy at a clean story admission.
 
 Store derived reference/actual PNGs outside immutable
 `docs/design/claude-design/v1/handoff/`. Record source version/hash, component,

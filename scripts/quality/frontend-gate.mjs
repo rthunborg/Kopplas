@@ -1,4 +1,6 @@
 import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 import { inflateSync } from 'node:zlib';
 import { DEFAULT_ALLOWED_USER_IDS } from '../pr-feedback/policy.mjs';
 import { validatePresentation } from './frontend-presentation.mjs';
@@ -37,6 +39,99 @@ export function isFrontend(path) {
   return isRenderedPath(path) || /^src\//.test(path) || /^(next|tailwind|postcss)\.config\./.test(path);
 }
 export const isShared = (path) => /^src\/(app\/(globals\.css|layout\.tsx)|components\/(ui|shared|app-shell)\/|.*\/(tokens|theme)[^/]*\.)/.test(path) || /^public\/.*\.(woff2?|ttf|otf)$/.test(path);
+
+const COPY_TAGS = new Set(['button', 'label', 'legend', 'h1', 'h2', 'h3']);
+const COPY_TEXT = /^[\p{L}\p{M}]+(?: [\p{L}\p{M}]+){0,7}[.!?]?$/u;
+const CONSEQUENTIAL_PATH = /(?:^|[\/_.-])(?:auth|billing|invoice|money|operator|payments?|permissions?|pricing|quotes?|roles?|security|tax)(?:[\/_.-]|$)/i;
+
+export function sourceExemptionKind(path) {
+  if (/^src\/server\/(?:db\/supabase-(?:server-client|public-client|env)|commands\/[\w-]+\/[\w-]+-db)\.ts$/.test(path)) return 'backend-only';
+  if (/^src\/(?:components|app)\/.+\.tsx$/.test(path) && !CONSEQUENTIAL_PATH.test(path)) return 'copy-only';
+}
+
+export async function sourceExemptionParser(modulePath) {
+  if (modulePath === null) return;
+  try {
+    const typescript = (await import(modulePath ? pathToFileURL(modulePath).href : 'typescript')).default;
+    const pinned = JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), 'utf8')).devDependencies.typescript;
+    if (typescript.version === pinned) return typescript;
+  } catch { /* Missing or invalid parser leaves the strict gate in place. */ }
+}
+
+function oneSpellingEdit(before, after) {
+  const a = [...before], b = [...after];
+  if (Math.min(a.length, b.length) < 4 || Math.abs(a.length - b.length) > 1) return false;
+  const first = a.findIndex((letter, index) => letter !== b[index]);
+  const index = first === -1 ? a.length : first;
+  const tail = (left, right) => a.slice(left).join('') === b.slice(right).join('');
+  if (a.length !== b.length) return a.length > b.length ? tail(index + 1, index) : tail(index, index + 1);
+  return tail(index + 1, index + 1) || a[index] === b[index + 1] && a[index + 1] === b[index] && tail(index + 2, index + 2);
+}
+
+function minorText(before, after) {
+  if ([before, after].some((value) => value.length > 64 || !COPY_TEXT.test(value))) return false;
+  const words = (value) => value.normalize('NFC').toLowerCase().replace(/[.!?]$/, '').split(' ');
+  const a = words(before), b = words(after);
+  if (a.length !== b.length) return false;
+  const changed = a.flatMap((word, index) => word === b[index] ? [] : [index]);
+  return !changed.length || changed.length === 1 && oneSpellingEdit(a[changed[0]], b[changed[0]]);
+}
+
+function copyStructure(ts, tree, source) {
+  const fragments = [], copy = [];
+  let cursor = 0;
+  function ordinaryLabel(node) {
+    for (let ancestor = node; ancestor; ancestor = ancestor.parent) {
+      if (ts.isJsxElement(ancestor) && ancestor.openingElement.attributes.properties.some((attribute) =>
+        ts.isJsxAttribute(attribute) && /^(role|aria-live|aria-invalid)$/.test(attribute.name.getText(tree)))) return false;
+    }
+    return true;
+  }
+  function visit(node) {
+    if (ts.isJsxText(node) && ts.isJsxElement(node.parent) && node.parent.children.length === 1
+      && COPY_TAGS.has(node.parent.openingElement.tagName.getText(tree)) && ordinaryLabel(node.parent)) {
+      const raw = source.slice(node.pos, node.end);
+      const value = raw.trim();
+      if (value && COPY_TEXT.test(value)) {
+        const start = node.pos + raw.indexOf(value);
+        fragments.push(source.slice(cursor, start));
+        copy.push(value);
+        cursor = start + value.length;
+      }
+    }
+    ts.forEachChild(node, visit);
+  }
+  visit(tree);
+  fragments.push(source.slice(cursor));
+  return { fragments, copy };
+}
+
+export function verifiesSourceExemption(ts, kind, path, before, after) {
+  if (before === after || sourceExemptionKind(path) !== kind) return false;
+  const parse = (source) => ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true);
+  const oldTree = parse(before), newTree = parse(after);
+  if (oldTree.parseDiagnostics.length || newTree.parseDiagnostics.length) return false;
+  if (kind === 'backend-only') {
+    // Persistence seams may change data access, but leave browser/render APIs
+    // and literal prose/HTML outside the automatic exemption.
+    const prose = (tree) => {
+      const values = [];
+      function visit(node) {
+        if (ts.isTemplateExpression(node)) values.push(node.getText(tree));
+        if (ts.isStringLiteralLike(node) && (/[<>]|\p{L}\s+\p{L}/u.test(node.text)
+          || /^(?:react|next\/(?:image|link|navigation))(?:\/|$)/.test(node.text))) values.push(node.text);
+        ts.forEachChild(node, visit);
+      }
+      visit(tree);
+      return values;
+    };
+    return same(prose(oldTree), prose(newTree));
+  }
+  const oldCopy = copyStructure(ts, oldTree, before), newCopy = copyStructure(ts, newTree, after);
+  return same(oldCopy.fragments, newCopy.fragments)
+    && oldCopy.copy.some((value, index) => value !== newCopy.copy[index])
+    && oldCopy.copy.every((value, index) => value === newCopy.copy[index] || minorText(value, newCopy.copy[index]));
+}
 
 // Browser PNG screenshots only. Validate chunks/CRC, complete pixel stream and
 // filters: a header or a renamed text file cannot stand in for an image.

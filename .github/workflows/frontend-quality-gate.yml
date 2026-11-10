@@ -39,6 +39,39 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '24'
+      - name: Provision lock-verified parser for applicability proofs
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          parser_dir=$(mktemp -d "$RUNNER_TEMP/kopplas-visual-parser.XXXXXXXX")
+          archive="$parser_dir/typescript.tgz"
+          curl --disable --fail --silent --show-error --proto '=https' --max-time 30 --max-filesize 6000000 \
+            --output "$archive" https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz
+          [[ $(wc -c < "$archive") -le 6000000 ]]
+          node --input-type=module - "$archive" <<'NODE'
+          import { createHash } from 'node:crypto';
+          import { readFileSync } from 'node:fs';
+          const version = '5.9.3';
+          const manifest = JSON.parse(readFileSync('package.json', 'utf8'));
+          const lock = readFileSync('pnpm-lock.yaml', 'utf8');
+          const key = `  typescript@${version}:`;
+          const packages = lock.split(/^snapshots:\s*$/m)[0].split(/\r?\n/);
+          const indexes = packages.flatMap((line, index) => line === key ? [index] : []);
+          const expected = indexes.length === 1 && /^    resolution: \{integrity: (sha512-[A-Za-z0-9+/]+={0,2})\}$/.exec(packages[indexes[0] + 1])?.[1];
+          const actual = 'sha512-' + createHash('sha512').update(readFileSync(process.argv[2])).digest('base64');
+          if (manifest.devDependencies.typescript !== version || !expected || actual !== expected) throw new Error('Trusted TypeScript lock integrity mismatch.');
+          NODE
+          entry=package/lib/typescript.js
+          tar -tzf "$archive" | awk '$0 !~ /^package\/[A-Za-z0-9_.\/-]+$/ || $0 ~ /(^|\/)\.\.?($|\/)/ { invalid = 1 } END { exit invalid }'
+          [[ $(tar -tzf "$archive" -- "$entry") == "$entry" ]]
+          metadata=$(tar -tvzf "$archive" -- "$entry")
+          [[ "$metadata" == -* ]]
+          read -r mode owner size _ <<< "$metadata"
+          [[ "$size" =~ ^[0-9]+$ && "$size" -gt 0 && "$size" -le 12000000 ]]
+          tar -xOzf "$archive" -- "$entry" > "$parser_dir/typescript.cjs"
+          [[ $(wc -c < "$parser_dir/typescript.cjs") -eq "$size" ]]
+          printf 'KOPPLAS_VISUAL_TYPESCRIPT=%s\n' "$parser_dir/typescript.cjs" >> "$GITHUB_ENV"
       - name: Verify immutable image evidence and authenticated acceptance
         env:
           GITHUB_TOKEN: ${{ github.token }}

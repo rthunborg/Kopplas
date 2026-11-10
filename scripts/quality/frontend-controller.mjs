@@ -1,10 +1,11 @@
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { readFileSync, appendFileSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
+import { resolve, dirname, isAbsolute } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { createApi } from '../pr-feedback/runtime.mjs';
 import { DEFAULT_ALLOWED_USER_IDS } from '../pr-feedback/policy.mjs';
-import { CHECK_NAME, EVIDENCE_MARKER, evaluateFrontend, preflightFrontend, isFrontend, hash } from './frontend-gate.mjs';
+import { CHECK_NAME, EVIDENCE_MARKER, evaluateFrontend, preflightFrontend, isFrontend, hash, sourceExemptionKind, sourceExemptionParser, verifiesSourceExemption } from './frontend-gate.mjs';
 import { presentationFeedback } from './frontend-presentation.mjs';
 
 const SHA = /^[0-9a-f]{40}$/;
@@ -81,7 +82,51 @@ export async function preflightPr({ expectedHead, expectedDigest, readBaseFile =
   return assessPrSnapshot({ ...input, expectedHead }, { digest: expectedDigest, readBaseFile });
 }
 
-async function assessPrSnapshot({ api, repo, prNumber, expectedHead, policy = defaultPolicy, readSource }, preflight) {
+/** Validate the complete candidate inventory against immutable provider blobs.
+ * Unavailable proofs leave the existing visual and N/A paths authoritative. */
+async function sourceExemption(api, repo, pr, changed, typescriptPath) {
+  if (pr.base?.ref !== 'main' || !SHA.test(pr.base.sha ?? '')) return;
+  const source = changed.filter(({filename, previous_filename}) => isFrontend(filename) || previous_filename && isFrontend(previous_filename));
+  if (!source.length || source.length > 8 || source.some((f) => f.status !== 'modified' || f.previous_filename || !SHA.test(f.sha ?? ''))) return;
+  const kind = sourceExemptionKind(source[0].filename);
+  if (!kind || source.some((f) => sourceExemptionKind(f.filename) !== kind)) return;
+  const companion = kind === 'copy-only' ? /^(?:docs|tests|_bmad-output)\// : /^(?:docs|tests|_bmad-output|supabase)\//;
+  if (changed.some((f) => !source.includes(f) && ![f.filename, f.previous_filename ?? f.filename].every((path) => companion.test(path)))) return;
+  try {
+    const ts = await sourceExemptionParser(typescriptPath);
+    if (!ts) return;
+    const compare = await api(`/repos/${repo}/compare/${pr.base.sha}...${pr.head.sha}?per_page=1`);
+    const mergeBase = compare.merge_base_commit?.sha;
+    if (!SHA.test(mergeBase ?? '')) return;
+    const tree = async (revision) => {
+      const commit = await api(`/repos/${repo}/git/commits/${revision}`);
+      if (commit.sha !== revision || !SHA.test(commit.tree?.sha ?? '')) throw new Error('Source commit tree identity unavailable.');
+      const result = await api(`/repos/${repo}/git/trees/${commit.tree.sha}?recursive=1`);
+      if (result.sha !== commit.tree.sha || result.truncated !== false || !Array.isArray(result.tree) || result.tree.length > 20000) throw new Error('Incomplete source tree.');
+      return result.tree;
+    };
+    const [baseTree, headTree] = await Promise.all([tree(mergeBase), tree(pr.head.sha)]);
+    const blob = async (entries, path, expectedSha) => {
+      const matches = entries.filter((entry) => entry.path === path);
+      const [entry] = matches;
+      if (matches.length !== 1 || entry.mode !== '100644' || entry.type !== 'blob' || !SHA.test(entry.sha ?? '')
+        || (expectedSha && entry.sha !== expectedSha) || !Number.isSafeInteger(entry.size) || entry.size < 1 || entry.size > 128 * 1024) throw new Error('Source file is unavailable or outside the regular-file proof.');
+      const data = await api(`/repos/${repo}/git/blobs/${entry.sha}`);
+      if (data.sha !== entry.sha || data.encoding !== 'base64' || data.size !== entry.size
+        || typeof data.content !== 'string' || data.content.length > 192 * 1024) throw new Error('Source blob metadata mismatch.');
+      const bytes = Buffer.from(data.content, 'base64');
+      if (bytes.length !== entry.size || createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex') !== entry.sha) throw new Error('Source blob bytes mismatch.');
+      return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+    };
+    for (const {filename, sha} of source) {
+      const [before, after] = await Promise.all([blob(baseTree, filename), blob(headTree, filename, sha)]);
+      if (!verifiesSourceExemption(ts, kind, filename, before, after)) return;
+    }
+    return { kind, mergeBase };
+  } catch { /* Missing, invalid or ambiguous proof keeps the existing gate. */ }
+}
+
+async function assessPrSnapshot({ api, repo, prNumber, expectedHead, policy = defaultPolicy, readSource, typescriptPath }, preflight) {
   const pr = await api(`/repos/${repo}/pulls/${prNumber}`);
   if (pr.state !== 'open' || !SHA.test(pr.head?.sha ?? '') || expectedHead && pr.head.sha !== expectedHead) throw new Error('Visual candidate head changed or PR is closed.');
   if (preflight && (pr.base?.ref !== 'main' || !SHA.test(pr.base.sha ?? ''))) throw new Error('Visual preflight requires the PR to target a current main revision.');
@@ -92,6 +137,16 @@ async function assessPrSnapshot({ api, repo, prNumber, expectedHead, policy = de
     all(api, `/repos/${repo}/pulls/${prNumber}/reviews`),
   ]);
   if (pr.changed_files !== changed.length) throw new Error('Truncated visual surface file inventory.');
+  const files = changed.flatMap((f) => f.previous_filename ? [f.filename, f.previous_filename] : [f.filename]);
+  if (!files.length || files.length > 3000 || files.some((path) => typeof path !== 'string') || new Set(files).size !== files.length) throw new Error('Incomplete changed-path inventory.');
+  const exemption = await sourceExemption(api, repo, pr, changed, typescriptPath);
+  if (exemption) {
+    const fresh = await api(`/repos/${repo}/pulls/${prNumber}`);
+    if (fresh.state !== 'open' || fresh.head?.sha !== pr.head.sha || fresh.base?.ref !== pr.base.ref
+      || fresh.base?.sha !== pr.base.sha || fresh.changed_files !== pr.changed_files) throw new Error('PR identity changed during visual applicability assessment.');
+    return { status: 'not-applicable', headSha: pr.head.sha, baseSha: pr.base.sha, mergeBaseSha: exemption.mergeBase, mode: exemption.kind,
+      reason: exemption.kind === 'copy-only' ? 'The complete changed-source inventory is verified minor presentation copy.' : 'The complete changed-source inventory is verified backend persistence work.', coverage: files };
+  }
   const evidence = [...comments, ...reviews.filter((r) => r.commit_id === pr.head.sha && r.state !== 'DISMISSED')];
   const frontend = changed.some((f) => isFrontend(f.filename) || f.previous_filename && isFrontend(f.previous_filename));
   const inline = frontend ? await all(api, `/repos/${repo}/pulls/${prNumber}/comments`) : [];
@@ -115,7 +170,7 @@ async function assessPrSnapshot({ api, repo, prNumber, expectedHead, policy = de
   const feedback = frontend ? presentationFeedback({ comments, reviews, reviewComments: inline, permissions }) : [];
   const publication = publishedImages(api, repo, prNumber);
   const input = { headSha: pr.head.sha, repo, prNumber, prBody: pr.body, reviewComments: inline, feedback, loadPublication: publication.read,
-    files: changed.flatMap((f) => f.previous_filename ? [f.filename, f.previous_filename] : [f.filename]), comments: evidence, permissions, policy: trustedPolicy, authorId: pr.user?.id, authorIds: [...authorIds], authorsComplete, labels: (pr.labels ?? []).map((l) => l.name), loadBlob: async (oid) => {
+    files, comments: evidence, permissions, policy: trustedPolicy, authorId: pr.user?.id, authorIds: [...authorIds], authorsComplete, labels: (pr.labels ?? []).map((l) => l.name), loadBlob: async (oid) => {
     const blob = await api(`/repos/${repo}/git/blobs/${oid}`);
     if (blob.sha !== oid || blob.encoding !== 'base64' || !Number.isInteger(blob.size) || blob.size > 8 * 1024 * 1024 || typeof blob.content !== 'string' || blob.content.length > 12 * 1024 * 1024) throw new Error('Missing/oversized actual image input.');
     const bytes = Buffer.from(blob.content.replace(/\s/g, ''), 'base64');
@@ -155,10 +210,11 @@ export async function reportPrAssessment({ api, repo, prNumber, runId, assess = 
     const response = await api(`/repos/${repo}/statuses/${head}`, { method: 'POST', body: { context: CHECK_NAME, state, target_url: target, description: state === 'pending' ? 'Verifying current visual evidence.' : state === 'success' ? 'Current visual evidence accepted or not applicable.' : 'Visual assessment or reporting failed.' } });
     if (!Number.isSafeInteger(response?.id) || response.id < 1 || response.context !== CHECK_NAME || response.state !== state) throw new Error('Commit status response did not confirm the requested result.');
   };
-  const current = async () => {
+  const current = async (baseSha) => {
     const fresh = await api(`/repos/${repo}/pulls/${prNumber}`);
     const labels = (value) => JSON.stringify((value ?? []).map((l) => l.name).sort());
-    if (fresh.state !== 'open' || fresh.head?.sha !== head || fresh.base?.ref !== 'main' || fresh.body !== pr.body || labels(fresh.labels) !== labels(pr.labels)) throw new Error('Visual candidate metadata changed before reporting.');
+    if (fresh.state !== 'open' || fresh.head?.sha !== head || fresh.base?.ref !== 'main' || (baseSha && fresh.base.sha !== baseSha)
+      || fresh.body !== pr.body || labels(fresh.labels) !== labels(pr.labels)) throw new Error('Visual candidate metadata changed before reporting.');
   };
   let check;
   try {
@@ -170,10 +226,10 @@ export async function reportPrAssessment({ api, repo, prNumber, runId, assess = 
     check = created;
     const result = await assess({ api, repo, prNumber, expectedHead: head });
     if (!['accepted', 'not-applicable'].includes(result?.status) || result.headSha !== head) throw new Error('Visual assessment did not return current accepted/N/A evidence.');
-    await current();
+    await current(result.baseSha);
     const reported = await api(`/repos/${repo}/check-runs/${check.id}`, { method: 'PATCH', body: { status: 'completed', conclusion: 'success', output: { title: result.status === 'accepted' ? 'Visual acceptance recorded' : 'Visual evidence not applicable', summary: JSON.stringify(result, null, 2).slice(0, 60000) } } });
     if (reported?.id !== check.id || reported.head_sha !== head || reported.app?.id !== 15368 || reported.status !== 'completed' || reported.conclusion !== 'success') throw new Error('Visual CheckRun completion was not confirmed.');
-    await current();
+    await current(result.baseSha);
     await status('success');
     return result;
   } catch (error) {
@@ -195,6 +251,9 @@ async function hosted() {
   if (eventName !== 'pull_request_target' && process.env.GITHUB_REF !== 'refs/heads/main') throw new Error('Visual controller requires main.');
   if (eventName === 'pull_request_target' && event.pull_request?.base?.ref !== 'main') throw new Error('Visual controller requires trusted main base.');
   const api = createApi(process.env.GITHUB_TOKEN);
+  const parser = process.env.KOPPLAS_VISUAL_TYPESCRIPT;
+  const typescriptPath = parser && isAbsolute(parser) && dirname(dirname(parser)) === process.env.RUNNER_TEMP
+    && /^kopplas-visual-parser\.[A-Za-z0-9]+\/typescript\.cjs$/.test(parser.slice(process.env.RUNNER_TEMP.length + 1)) ? parser : null;
   const target = event.pull_request?.number ?? (event.issue?.pull_request ? event.issue.number : undefined) ?? Number(event.inputs?.pr_number || 0);
   if (eventName === 'issue_comment' && !target) return;
   const prs = target ? [{ number: target }] : await all(api, `/repos/${repo}/pulls?state=open`);
@@ -204,7 +263,8 @@ async function hosted() {
     const pr = await api(`/repos/${repo}/pulls/${item.number}`);
     if (pr.base.ref !== 'main' || pr.state !== 'open') continue;
     let result, failure;
-    try { result = await reportPrAssessment({ api, repo, prNumber: item.number, runId: process.env.GITHUB_RUN_ID }); }
+    try { result = await reportPrAssessment({ api, repo, prNumber: item.number, runId: process.env.GITHUB_RUN_ID,
+      assess: (input) => assessPr({ ...input, typescriptPath }) }); }
     catch (error) { failure = error.message; failed = true; }
     const summary = result ? JSON.stringify(result, null, 2) : `BLOCKED: ${failure}`;
     if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `PR #${item.number}, ${pr.head.sha}: ${summary}\n`);
