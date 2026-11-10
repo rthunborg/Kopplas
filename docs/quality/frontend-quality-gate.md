@@ -291,6 +291,10 @@ node scripts/quality/frontend-controller.mjs preflight --base <recorded-full-bas
 Preflight reads the actual current PR and the selected uploaded package. It
 checks the full head and digest, labels, source, immutable captures, required
 coverage and presentation, and rereads current publication and PR metadata.
+It reads policy and source blobs at the current main base revision reported by
+the PR. If those Git objects are unavailable locally, preflight blocks until
+the checkout has the qualified base objects. This current snapshot can differ
+from the event revision used by an in-flight hosted check.
 `package-ready` means the package passed those checks. `outstanding` names
 the authenticated controls still required by the current protocol. An empty
 list means the existing controls verified during preflight. Use the separate

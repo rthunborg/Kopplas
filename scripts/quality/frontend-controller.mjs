@@ -9,6 +9,7 @@ import { presentationFeedback } from './frontend-presentation.mjs';
 
 const SHA = /^[0-9a-f]{40}$/;
 const DIGEST = /^[0-9a-f]{64}$/;
+const POLICY_PATH = 'scripts/quality/frontend-policy.json';
 export const defaultPolicy = JSON.parse(readFileSync(new URL('./frontend-policy.json', import.meta.url), 'utf8'));
 const SOURCE_PATHS = Object.freeze({
   'DESIGN.md': '_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md',
@@ -16,10 +17,16 @@ const SOURCE_PATHS = Object.freeze({
   'v1/inventory.sha256.json': 'docs/design/claude-design/v1/inventory.sha256.json',
 });
 const TRUSTED_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
+function committedFile(revision, path) {
+  // Git blob bytes avoid checkout newline conversion changing source hashes.
+  return execFileSync('git', ['-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', '-c', 'credential.helper=', 'show', `${revision}:${path}`], { cwd: TRUSTED_ROOT, maxBuffer: 2 * 1024 * 1024, windowsHide: true });
+}
 function committedSource(path) {
-  // HEAD belongs to the trusted controller checkout, never the candidate. Git
-  // blob bytes avoid OS checkout/CRLF normalization changing the source hash.
-  return execFileSync('git', ['-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', '-c', 'credential.helper=', 'show', `HEAD:${path}`], { cwd: TRUSTED_ROOT, maxBuffer: 2 * 1024 * 1024, windowsHide: true });
+  return committedFile('HEAD', path);
+}
+function readPreflightBaseFile(revision, path) {
+  try { return committedFile(revision, path); }
+  catch { throw new Error(`Visual preflight needs the trusted PR base blob ${revision}:${path} in the local Git object store.`); }
 }
 export function verifyTrustedSources(policy, readSource = committedSource) {
   if (!policy?.source?.hashes || !Object.keys(policy.source.hashes).length) throw new Error('Approved canonical source inventory missing.');
@@ -69,15 +76,16 @@ export function assessPr(input) {
   return assessPrSnapshot(input);
 }
 
-export async function preflightPr({ expectedHead, expectedDigest, ...input }) {
+export async function preflightPr({ expectedHead, expectedDigest, readBaseFile = readPreflightBaseFile, ...input }) {
   if (!SHA.test(expectedHead ?? '') || !DIGEST.test(expectedDigest ?? '')) throw new Error('Preflight requires the exact candidate head and intended evidence digest.');
-  return assessPrSnapshot({ ...input, expectedHead }, expectedDigest);
+  return assessPrSnapshot({ ...input, expectedHead }, { digest: expectedDigest, readBaseFile });
 }
 
-async function assessPrSnapshot({ api, repo, prNumber, expectedHead, policy = defaultPolicy, readSource }, preflightDigest) {
+async function assessPrSnapshot({ api, repo, prNumber, expectedHead, policy = defaultPolicy, readSource }, preflight) {
   const pr = await api(`/repos/${repo}/pulls/${prNumber}`);
   if (pr.state !== 'open' || !SHA.test(pr.head?.sha ?? '') || expectedHead && pr.head.sha !== expectedHead) throw new Error('Visual candidate head changed or PR is closed.');
-  if (preflightDigest && (pr.base?.ref !== 'main' || !SHA.test(pr.base.sha ?? ''))) throw new Error('Visual preflight requires the PR to target a current main revision.');
+  if (preflight && (pr.base?.ref !== 'main' || !SHA.test(pr.base.sha ?? ''))) throw new Error('Visual preflight requires the PR to target a current main revision.');
+  const trustedPolicy = preflight ? JSON.parse(preflight.readBaseFile(pr.base.sha, POLICY_PATH).toString('utf8')) : policy;
   const [changed, comments, reviews] = await Promise.all([
     all(api, `/repos/${repo}/pulls/${prNumber}/files`),
     all(api, `/repos/${repo}/issues/${prNumber}/comments`),
@@ -107,26 +115,32 @@ async function assessPrSnapshot({ api, repo, prNumber, expectedHead, policy = de
   const feedback = frontend ? presentationFeedback({ comments, reviews, reviewComments: inline, permissions }) : [];
   const publication = publishedImages(api, repo, prNumber);
   const input = { headSha: pr.head.sha, repo, prNumber, prBody: pr.body, reviewComments: inline, feedback, loadPublication: publication.read,
-    files: changed.flatMap((f) => f.previous_filename ? [f.filename, f.previous_filename] : [f.filename]), comments: evidence, permissions, policy, authorId: pr.user?.id, authorIds: [...authorIds], authorsComplete, labels: (pr.labels ?? []).map((l) => l.name), loadBlob: async (oid) => {
+    files: changed.flatMap((f) => f.previous_filename ? [f.filename, f.previous_filename] : [f.filename]), comments: evidence, permissions, policy: trustedPolicy, authorId: pr.user?.id, authorIds: [...authorIds], authorsComplete, labels: (pr.labels ?? []).map((l) => l.name), loadBlob: async (oid) => {
     const blob = await api(`/repos/${repo}/git/blobs/${oid}`);
     if (blob.sha !== oid || blob.encoding !== 'base64' || !Number.isInteger(blob.size) || blob.size > 8 * 1024 * 1024 || typeof blob.content !== 'string' || blob.content.length > 12 * 1024 * 1024) throw new Error('Missing/oversized actual image input.');
     const bytes = Buffer.from(blob.content.replace(/\s/g, ''), 'base64');
     if (bytes.length !== blob.size) throw new Error('Image bytes truncated.');
     return bytes;
   } };
-  const result = preflightDigest ? await preflightFrontend(input, preflightDigest) : await evaluateFrontend(input);
-  if (result.status === 'accepted' || result.evidenceSource) verifyTrustedSources(policy, readSource);
+  const result = preflight ? await preflightFrontend(input, preflight.digest) : await evaluateFrontend(input);
+  if (result.status === 'accepted' || result.evidenceSource) verifyTrustedSources(trustedPolicy,
+    preflight ? (path) => preflight.readBaseFile(pr.base.sha, path) : readSource);
+  const recheckPresentation = async (fresh) => {
+    const latest = await Promise.all([all(api, `/repos/${repo}/issues/${prNumber}/comments`), all(api, `/repos/${repo}/pulls/${prNumber}/reviews`), all(api, `/repos/${repo}/pulls/${prNumber}/comments`)]);
+    if ((fresh && fresh.body !== pr.body) || hash(Buffer.from(JSON.stringify(latest))) !== hash(Buffer.from(JSON.stringify([comments, reviews, inline])))) throw new Error('PR body or feedback/replies changed during screenshot assessment.');
+    await publication.recheck();
+  };
+  // Read PR metadata last in preflight so changes during the other readbacks
+  // cannot leave the preparation result tied to a stale snapshot.
+  if (result.status === 'package-ready') await recheckPresentation();
   const fresh = await api(`/repos/${repo}/pulls/${prNumber}`);
   if (fresh.head.sha !== pr.head.sha || fresh.state !== 'open') throw new Error('Visual candidate changed during assessment.');
-  if (preflightDigest && (fresh.base?.ref !== pr.base.ref || fresh.base?.sha !== pr.base.sha || fresh.changed_files !== pr.changed_files
+  if (preflight && (fresh.base?.ref !== pr.base.ref || fresh.base?.sha !== pr.base.sha || fresh.changed_files !== pr.changed_files
     || JSON.stringify((fresh.labels ?? []).map((label) => label.name).sort()) !== JSON.stringify([...input.labels].sort()))) {
     throw new Error('PR base, changed-file count or labels changed during visual preflight.');
   }
-  if (result.status === 'accepted' || result.status === 'package-ready') {
-    const latest = await Promise.all([all(api, `/repos/${repo}/issues/${prNumber}/comments`), all(api, `/repos/${repo}/pulls/${prNumber}/reviews`), frontend ? all(api, `/repos/${repo}/pulls/${prNumber}/comments`) : []]);
-    if (fresh.body !== pr.body || hash(Buffer.from(JSON.stringify(latest))) !== hash(Buffer.from(JSON.stringify([comments, reviews, inline])))) throw new Error('PR body or feedback/replies changed during screenshot assessment.');
-    await publication.recheck();
-  }
+  if (result.status === 'accepted') await recheckPresentation(fresh);
+  if (result.status === 'package-ready' && fresh.body !== pr.body) throw new Error('PR body or feedback/replies changed during screenshot assessment.');
   return result;
 }
 

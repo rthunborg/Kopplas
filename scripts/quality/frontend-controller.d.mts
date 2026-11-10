@@ -3,7 +3,11 @@ export const defaultPolicy: unknown;
 export function all(api: Api, path: string): Promise<unknown[]>;
 type AssessmentInput = {api: Api; repo: string; prNumber: number; expectedHead?: string; policy?: unknown; readSource?: (path: string) => Buffer};
 export function assessPr(input: AssessmentInput): Promise<{status: string; headSha: string; mode?: string}>;
-export function preflightPr(input: AssessmentInput & {expectedHead: string; expectedDigest: string}): ReturnType<typeof import('./frontend-gate.mjs').preflightFrontend>;
+export function preflightPr(input: Omit<AssessmentInput, 'policy' | 'readSource'> & {
+  expectedHead: string;
+  expectedDigest: string;
+  readBaseFile?: (revision: string, path: string) => Buffer;
+}): ReturnType<typeof import('./frontend-gate.mjs').preflightFrontend>;
 export function reportPrAssessment(input: {api: Api; repo: string; prNumber: number; runId: string; assess?: typeof assessPr}): ReturnType<typeof assessPr>;
 
 export function verifyTrustedSources(policy: unknown, readSource?: (path: string) => Buffer): true;

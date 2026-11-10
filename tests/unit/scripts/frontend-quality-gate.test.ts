@@ -485,6 +485,14 @@ function controllerApi(f: ReturnType<typeof fixture>, actors = [{author: {id: 77
     throw new Error(`Unexpected path ${path}`);
   };
 }
+function trustedFixtureBase(policy: ReturnType<typeof fixture>["policy"], bytes: Buffer) {
+  return (revision: string, path: string) => {
+    assert.equal(revision, "b".repeat(40));
+    if (path === "scripts/quality/frontend-policy.json") return Buffer.from(JSON.stringify(policy));
+    assert.match(path, /\/DESIGN\.md$/);
+    return bytes;
+  };
+}
 test("API-authenticated manual acceptance still blocks missing or mismatched canonical sources", async () => {
   const f = fixture(); const bytes = Buffer.from("approved source"); f.policy.source.hashes["DESIGN.md"] = hash(bytes); f.submit();
   const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, policy: f.policy};
@@ -506,19 +514,19 @@ test("visual preflight checks one published digest before any initial owner deci
   f.policy.source.hashes["DESIGN.md"] = hash(bytes);
   f.submit(false);
   const digest = evidenceDigest(f.evidence);
-  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, expectedDigest: digest, policy: f.policy, readSource: () => bytes};
+  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, expectedDigest: digest, readBaseFile: trustedFixtureBase(f.policy, bytes)};
   const ready = await preflightPr(args);
   assert.equal(ready.status, "package-ready");
   assert.equal(ready.headSha, head);
   assert.equal(ready.evidenceDigest, digest);
   assert.deepEqual(ready.outstanding, ["visual-accept"]);
-  await assert.rejects(assessPr(args), /explicit owner acceptance/);
+  await assert.rejects(assessPr({...args, policy: f.policy, readSource: () => bytes}), /explicit owner acceptance/);
   const {f: reports, run} = reporterFixture();
   await assert.rejects(run(async () => ready), /did not return current accepted/);
   assert.equal(reports.storedStatus, "failure");
   await assert.rejects(preflightPr({...args, expectedDigest: "e".repeat(64)}), /does not match a published current-head visual package/);
   await assert.rejects(preflightPr({...args, expectedHead: "f".repeat(40)}), /candidate head changed/);
-  await assert.rejects(preflightPr({...args, readSource: () => Buffer.from("stale source")}), /source bytes unavailable or mismatched/);
+  await assert.rejects(preflightPr({...args, readBaseFile: trustedFixtureBase(f.policy, Buffer.from("stale source"))}), /source bytes unavailable or mismatched/);
 
   f.input.labels = [];
   await assert.rejects(preflightPr(args), /requires agent-fix/);
@@ -527,12 +535,25 @@ test("visual preflight checks one published digest before any initial owner deci
   await assert.rejects(preflightPr(args), /must start with current durable embedded screenshots/);
 });
 
+test("preflight uses policy and source from the reported main base instead of the candidate", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit();
+  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, policy: f.policy, readSource: () => bytes};
+  assert.equal((await assessPr(args)).status, "accepted");
+  const mainPolicy = {...f.policy, source: {...f.policy.source, version: "approved on current main"}};
+  const input = {...args, expectedDigest: evidenceDigest(f.evidence), readBaseFile: trustedFixtureBase(mainPolicy, bytes)};
+  await assert.rejects(preflightPr(input), /Approved source identity\/version\/hash mismatch/);
+  await assert.rejects(preflightPr({...input, readBaseFile: () => { throw new Error("Trusted base blob is unavailable"); }}), /Trusted base blob is unavailable/);
+});
+
 test("preflight checks image integrity and critical findings even when acceptance is outstanding", async () => {
   const f = fixture();
   const bytes = Buffer.from("approved source");
   f.policy.source.hashes["DESIGN.md"] = hash(bytes);
   f.submit(false);
-  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, policy: f.policy, readSource: () => bytes};
+  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, readBaseFile: trustedFixtureBase(f.policy, bytes)};
   const expectedHash = f.evidence.captures[0].actual.sha256;
   f.evidence.captures[0].actual.sha256 = "f".repeat(64);
   f.submit(false);
@@ -551,7 +572,7 @@ test("same-binding administrative repair preserves the authenticated receipt and
   f.policy.source.hashes["DESIGN.md"] = hash(bytes);
   f.submit();
   const digest = evidenceDigest(f.evidence);
-  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, policy: f.policy, readSource: () => bytes};
+  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, policy: f.policy, readSource: () => bytes, readBaseFile: trustedFixtureBase(f.policy, bytes)};
   const accepted = await assessPr(args);
   const currentBody = f.input.prBody;
   const originalReceipt = f.input.comments[1];
@@ -577,7 +598,7 @@ test("preflight refuses a moved base, changed label or edited package snapshot",
   const bytes = Buffer.from("approved source");
   f.policy.source.hashes["DESIGN.md"] = hash(bytes);
   f.submit(false);
-  const args = {repo: "o/r", prNumber: 1, expectedHead: head, expectedDigest: evidenceDigest(f.evidence), policy: f.policy, readSource: () => bytes};
+  const args = {repo: "o/r", prNumber: 1, expectedHead: head, expectedDigest: evidenceDigest(f.evidence), readBaseFile: trustedFixtureBase(f.policy, bytes)};
   const read = controllerApi(f);
   for (const change of ["base", "label", "body", "comment"]) {
     let prReads = 0;
@@ -593,6 +614,31 @@ test("preflight refuses a moved base, changed label or edited package snapshot",
       return value;
     };
     await assert.rejects(preflightPr({...args, api}), /changed during (visual preflight|screenshot assessment)/);
+  }
+});
+
+test("preflight rechecks the full PR after the screenshot publication readback", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit(false);
+  const args = {repo: "o/r", prNumber: 1, expectedHead: head, expectedDigest: evidenceDigest(f.evidence), readBaseFile: trustedFixtureBase(f.policy, bytes)};
+  const read = controllerApi(f);
+  const changes = [
+    {head: {sha: "c".repeat(40)}},
+    {state: "closed"},
+    {labels: []},
+    {body: "Changed during screenshot publication readback"},
+  ];
+  for (const change of changes) {
+    let refReads = 0;
+    const api = async (path: string) => {
+      const value = await read(path);
+      if (path.includes("/git/ref/heads/")) refReads++;
+      return path === "/repos/o/r/pulls/1" && refReads > 1 ? {...value, ...change} : value;
+    };
+    await assert.rejects(preflightPr({...args, api}), /changed during (assessment|visual preflight|screenshot assessment)/);
+    assert.equal(refReads, 2);
   }
 });
 
