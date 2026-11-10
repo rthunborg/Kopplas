@@ -2,10 +2,11 @@
 title: "Story 35.6: CRM Record Journeys"
 type: feature
 created: 2026-11-02
-status: ready-for-dev
+status: blocked
 review_loop_iteration: 0
+baseline_revision: 90c4c708c0cb87b16cb6bc10fd981ebd9978d76b
 release_ready: false
-implementation_started: false
+implementation_started: true
 context:
   - ../SPEC.md
   - ../approved-operative-overlay-2026-11-02.md
@@ -17,6 +18,8 @@ context:
   - ../../../../docs/quality/frontend-quality-gate.md
   - ../../../implementation-artifacts/spec-35-6-crm-record-journeys.md
   - ../../../test-artifacts/dt-2026-10-23-test-design/slice-35-6.md
+followup_review_recommended: true
+deferred: []
 ---
 
 ## Operative normal Build plan — 2026-11-02
@@ -84,11 +87,11 @@ Execution order follows the composition boundary, then its consumers and asserti
 
 **Execution:**
 
-- [ ] `src/app/(app)/customers/[customerId]/page.tsx` — adapt generic failure/not-found and record-panel composition to accepted tokens, readable spacing, visible return actions and responsive width. Preserve every read/capability decision and exact file/Documents/Booking prop (AC2/3/4/6/7).
-- [ ] `src/components/crm/CustomerDetail.tsx` — finish existing identity, relationship, facilities/contacts and related-area composition using current record data, accepted card/section/connection treatment, wrapping, Swedish labels and >=44px phone controls. Keep default masking, edit facts, archive liveness and keyed panel ownership; do not invent destinations, counts, capabilities or child read states (AC1–7).
-- [ ] `src/components/crm/FacilityDialog.tsx` — adapt existing form spacing/grouping and usable actions; pass current fieldErrors to existing summary and retain field association/input. Keep Dialog/DialogActions, action/hidden identity/remount/success semantics and existing fields (AC1/3/4/5/6/7).
-- [ ] `src/components/crm/ContactDialog.tsx` — adapt existing contact form and error-summary composition as above, preserving optional facility selection, unchanged parent/target, primary convenience semantics and checked server results. No new uniqueness or child lifecycle protocol (AC1/3/4/5/6/7).
-- [ ] `src/components/crm/ArchiveButton.tsx` — align existing inline confirmation, error/status text and controls with surrounding responsive layout and accepted destructive tokens. Preserve distinct customer safety branch, matching target/view continuation, pending exclusion and child action semantics; no reason or recovery flow (AC1/3/4/5/6/7).
+- [x] `src/app/(app)/customers/[customerId]/page.tsx` — adapt generic failure/not-found and record-panel composition to accepted tokens, readable spacing, visible return actions and responsive width. Preserve every read/capability decision and exact file/Documents/Booking prop (AC2/3/4/6/7).
+- [x] `src/components/crm/CustomerDetail.tsx` — finish existing identity, relationship, facilities/contacts and related-area composition using current record data, accepted card/section/connection treatment, wrapping, Swedish labels and >=44px phone controls. Keep default masking, edit facts, archive liveness and keyed panel ownership; do not invent destinations, counts, capabilities or child read states (AC1–7).
+- [x] `src/components/crm/FacilityDialog.tsx` — adapt existing form spacing/grouping and usable actions; pass current fieldErrors to existing summary and retain field association/input. Keep Dialog/DialogActions, action/hidden identity/remount/success semantics and existing fields (AC1/3/4/5/6/7).
+- [x] `src/components/crm/ContactDialog.tsx` — adapt existing contact form and error-summary composition as above, preserving optional facility selection, unchanged parent/target, primary convenience semantics and checked server results. No new uniqueness or child lifecycle protocol (AC1/3/4/5/6/7).
+- [x] `src/components/crm/ArchiveButton.tsx` — align existing inline confirmation, error/status text and controls with surrounding responsive layout and accepted destructive tokens. Preserve distinct customer safety branch, matching target/view continuation, pending exclusion and child action semantics; no reason or recovery flow (AC1/3/4/5/6/7).
 - [ ] `tests/e2e/crm/customers.e2e.spec.ts` — add bounded E35-6-T-AC1–7 assertions for actual adapted journeys; reuse original B03–B10 for the sixteen state IDs under the exact operative matrix below. Exercise all nine real actions on unique test-owned records, observe exact persisted identity/parent/archived_at/audit, and test adapted UI at 360×640/desktop with labels, >=44px targets, keyboard focus/error visibility and masked detail. Reuse file-local gates and existing factory imports; never mock business-command success, mutate shared auth seeds or create a helper/suite (AC1–7).
 
 **Acceptance Criteria:**
@@ -136,7 +139,7 @@ Planning review trail: review the page/CustomerDetail user outcome first, then c
 
 ## Verification
 
-**Planning now:** Code/contract inspection and native read-only story parsing only. All execution tasks unchecked; all runtime/build/unit/integration/RLS/browser/visual/CI/delivery checks **UNRUN**. Independent review of this bounded plan delta is still required before publication. No resource or service is launched; release_ready=false and implementation_started=false.
+**Historical planning snapshot:** Code/contract inspection and native read-only story parsing only. All execution tasks unchecked; all runtime/build/unit/integration/RLS/browser/visual/CI/delivery checks **UNRUN**. Independent review of this bounded plan delta is still required before publication. No resource or service is launched; release_ready=false and implementation_started=false.
 
 **Later implementation commands and assertions:**
 
@@ -147,6 +150,322 @@ Planning review trail: review the page/CustomerDetail user outcome first, then c
 - Follow current `docs/quality/frontend-quality-gate.md` for actual candidate production captures and accepted visual evidence at 360×640/desktop, including finished/loading/error/empty with concrete applicability reasons and relevant focus/validation/selection states. Initial/reference replacement still requires existing owner acceptance. Future independent sensitive review, exact-head CI and completion/delivery wrapper remain required; this plan earns none.
 
 E35-6-REL-1 UI visual/device/composite contrast/reflow, REL-2 QA/accessibility manual/screen-reader/daylight and REL-3 Coordinator final Phase B consolidation retain their existing delivery/deferred-work ownership process. Exhaustive release work, named people/exact candidate and evidence remain unearned; preserve E16 14-item and E20 caveats. Current visual development acceptance is required at its actual completion phase and cannot be deferred as polish.
+
+## Implementation and verification checkpoint - 2026-11-02
+
+Implementation author: Sol High implementation delegate. Baseline: `90c4c708c0cb87b16cb6bc10fd981ebd9978d76b`; initial evidence below concerns the assigned implementation working tree. Round 1 reviewed candidate `d42d66f247e6027a82c6d0d3da76f6e85b38efc2`; the fixes are committed at `9bbf276cf695a0e127a864e442dbeb2e3a79eab6`. Targeted independent Sol High delta and trail review returned exactly No findings at that fix head. Frontmatter status blocked now records the actual incomplete checkpoint/HALT result: runtime, visual, full-unit and exact-head CI/completion gates remain unearned. release_ready=false. Checked product tasks above mean source adaptation only; runtime acceptance and the E2E execution task remain pending.
+
+Owner-authorized presentation choices use the accepted DESIGN/EXPERIENCE and existing tokens: stack child identity/actions on phone, wrap long Swedish values, use restrained section bands and bordered task cards, keep a visible canonical customer-list return, and show existing contact/facility relationship text without inventing a destination. Child forms retain shared Dialog/DialogActions and their action/remount/hidden identity semantics; fieldsets group current fields, and the existing summary now receives fieldErrors for focusable error links. The contact primary checkbox uses echoed rejected values so retained input survives form reset. Round 1 adds a trailing hidden false fallback: checked on remains the first FormData value, while an unchecked field explicitly reaches the existing parser/update command as false. Both child dialogs use the existing Dialog sheet variant so its viewport-bound flex layout keeps the title/close chrome outside scrolling form content; this reuses the accepted SideSheet composition without changing shared focus or ordinary child pending semantics. Archive changes are presentation only; customer view/target checks, unknown block and child success branches are unchanged. Existing related-area content is retained; no new count, route or capability is inferred.
+
+At 9bb, ten active E35-6 acceptance cases existed in source (current focused repair has eleven): the eight committed ATDD cases are retained, with stronger primary-checkbox assertions, one source-owned screenshot/reflow case and one short-viewport child-dialog regression. Source case count is not executed coverage. The screenshot case attaches fixed-viewport actual production-server captures when executed at 360x640 and 1440x900: populated detail, scrolled facility/contact identity, forms, validation/focus and archive confirmation. Its separate 360x400 CSS enlargement/short-viewport captures are supplemental proxies, not qualifying visual-gate viewport captures or physical keyboard proof. No captures were executed or fabricated locally. Empty/loading/customer unknown/stale and inherited files/booking remain bound to their existing B03-B10/source-owner suites; screenshot scaffolding does not cover every required visual state or grant acceptance.
+
+| Check | Actual result in this working tree |
+| --- | --- |
+| Correct local dependencies | Parent installed worktree-local frozen lockfile dependencies; Next 16.4.1 resolves. package.json/pnpm-lock.yaml unchanged. Earlier ancestor Next 16.3.6 optimizer import mismatch is resolved. |
+| `pnpm typecheck` | Passed, exit 0; rerun after final source/test edits also passed. |
+| `pnpm lint` | Passed, exit 0, 0 errors/31 existing warnings. Focused final ESLint on the six allocated source/test files passed without warnings. |
+| `pnpm build` | Passed again after the Round 1 sheet-variant and explicit-false product changes, Next 16.4.1 production build, exit 0. |
+| `pnpm verify:bundle-containment` | Passed again after the Round 1 production build, exit 0. |
+| `pnpm verify:lockfiles`, `pnpm verify:service-role-containment`, `pnpm audit --audit-level=high` | Parent-executed passed checks in this worktree; audit reports 5 moderate, no high vulnerabilities. No later authority/dependency changes invalidate them. |
+| `pnpm test:unit` | Two equivalent runs: 3780 tests, 3776 passed, 3 failed, 1 skipped; exit 1. Not a passing gate. |
+| Focused CRM units | `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/crm/action-state.test.ts tests/unit/features/crm/form-parsing.test.ts tests/unit/components/crm/customer-presentation.test.ts tests/unit/server/commands/crm-validation.test.ts`: 126 passed, 0 failed, 0 skipped. |
+| Bounded unit diagnosis | Full-run failures in unchanged `with-calendar-feed-runtime.test.ts`: test at 1992 compares CRLF/LF SQL bodies; test at 2237 fails source extraction with undefined.split. The third failure, integration-test-partitions.test.ts:85, compares native/backslash TEMP with forward-slash TEMP. Focused native Windows TEMP run of that file passed 8/8, 0 skipped. Unowned tests/runtime/migrations have zero diff from baseline; no source rewrite or third broad retry. |
+| Browser discovery | `pnpm test:e2e tests/e2e/crm/customers.e2e.spec.ts --list` failed before discovery: missing tests/e2e/.auth/fixture.json. No discovered/executed coverage is credited. |
+| Integration/RLS, recovery/storage, browser and visual | UNRUN: 0 executed, 0 skipped. No trusted resourceGuardContext was available for managed launches; no DB/server/browser was started. Isolated hosted candidate execution remains the Coordinator's next action. |
+| Independent sensitive review, exact-head CI, frontend acceptance and completion wrapper | Independent code review passed: all six Sol High Round 1 routes completed at d42, three medium fixes committed at 9bb, and targeted independent Sol High delta/trail review at 9bb returned exactly No findings. Runtime/visual readiness is not inferred. Both actual clean-candidate gate commands exited 1 before the delivery helper: one published PR at the exact revision is required. No completion/status writes occurred. |
+
+Named blockers: **DEV-UNIT-WINDOWS** (Coordinator/CI owner): obtain exact-head isolated CI unit evidence for unchanged calendar-feed source-extraction failures; change no unowned fixture to hide them. **DEV-RUNTIME-VISUAL** (Coordinator/UI owner): publish the reviewed candidate through the authorized checkpoint route, run the supported isolated production-server integration/browser/capture lane, inspect actual counts/artifacts, and obtain current authenticated frontend acceptance. Resume completion only after applicable checks, independent review and the project completion wrapper pass. Physical-device/manual release checks remain E35-6-REL-1/2; final Phase B consolidation remains REL-3. Named release people/evidence are not invented; E16's 14-item and E20 caveats remain.
+
+D5 remains a disclosed limitation: child read failures flatten to arrays with error:null; no child-empty honesty coverage is awarded. Privacy remains list-personnummer absent/detail initially masked, with entitled detail payload intentional. No new customer reconciliation/reset, child expected-facts/dirty/unknown protocol, reason field, CRM filter persistence, helper, dependency, schema or Phase C surface was added.
+
+## Review Triage Log
+
+### Round 1 - reviewed candidate d42d66f247e6027a82c6d0d3da76f6e85b38efc2
+
+All six routes used gpt-6.1-sol / high, as recorded by the parent review handoff. Original round findings concern the reviewed d42 candidate; the three fixes are committed at `9bbf276cf695a0e127a864e442dbeb2e3a79eab6`. Targeted independent Sol High consequential delta and trail review at that fix head returned exactly No findings. Independent code review passed with runtime/visual evidence limits retained.
+
+| Route | Actual returned result |
+| --- | --- |
+| Native edge-case | Empty findings array. |
+| Security | No findings. |
+| Blind | No concrete introduced defect reported. |
+| Intent | Aligned with D1-D5; broad journey/runtime evidence remains unearned. |
+| Verification-gap | Accepted one medium unchecked-primary edit regression patch. |
+| External CLI | Executed review returned the medium short-viewport contact-dialog finding. Final cmd TYPE display failed with system-cannot-find-file; native-path PowerShell read recovered the retained review. This is not an unavailable review or a pass for the patched candidate. |
+
+The build verifier separately identified the medium fixed-viewport capture patch; it was not a second verification-gap-layer finding. The external layer identified the medium overflow patch.
+
+Classification: intent_gap=0, bad_spec=0, patch=3 (all medium), defer=0, reject=0. All accepted patches were handled in one bounded batch, without a new broad review or protected-boundary change.
+
+Addressed:
+
+1. Extended the existing unique contact lifecycle case: create primary=true, open that exact contact, uncheck primary, reject blank name, retain unchecked state with unchanged true DB value and only the creation audit, then correct and save primary=false on the same ID/parent/facility with the original final attributable audit checks. The owned form's trailing false fallback is necessary because absent optional is_primary means no update under the unchanged parser/command contract.
+2. Replaced the populated-record full-page capture with fullPage:false and added fixed-viewport scrolled child identity captures after in-viewport assertions. Primary dimensions remain 360x640 and 1440x900; 360x400 CSS enlargement/occlusion stays explicitly supplemental.
+3. Reused existing Dialog variant=sheet in both allocated child consumers; its bounded scrolling body keeps chrome reachable. Added one real 768x640 source regression with an actual facility option and rejected contact, plus the equivalent facility rejection: title/close remain in viewport while error links, fields and save are reached, and close restores the invoker. No shared Dialog/style or child safety contract was changed.
+
+Round 1 patch verification: pnpm typecheck passed; focused ESLint on six allocated source/test files passed; pnpm build and pnpm verify:bundle-containment passed again after product changes. Four direct pure FormData/parser probes (checked/unchecked x valid/invalid name) passed through the unchanged parser. These are not UI/DB persistence proof. Full units were not broadly repeated; prior failed/skip evidence is retained. Runtime/integration/browser/visual remain UNRUN, 0 executed, 0 skipped. Targeted independent Sol High delta/trail review at 9bb returned exactly No findings; code review passed. Exact-head CI, authenticated frontend acceptance and successful completion-wrapper admission remain pending; the actual pre-helper gate refusal is recorded below. No development-complete/done/release claim.
+
+```json
+{"round":1,"intent_gap":0,"bad_spec":0,"patch":3,"medium":3,"defer":0,"reject":0,"score":9,"followup_review_recommended":true,"deferred":[]}
+```
+
+## Auto Run Result
+
+Result: **blocked / incomplete checkpoint**. Current test source is `121e94445eef918c289f2126fdece3268170c640`; production remains unchanged from b143. Independent Sol High targeted source/trail review returned exactly No findings at121; current code review passed. This final closeout changes only the three author documents. Current repaired-head runtime, visual acceptance, successor P6 and exact-head CI/completion remain unearned. The final closeout below records the actual historical P6 BLOCKED result and the subsequent read-only seam/runtime reconciliation. Prior reviewed production/capture milestones below remain historical; the capture-test repair started at d369, received the targeted 0c1a viewport-subject finding and is fixed at `1a3a4a7ec8a09672d47d2dca44d6c8a9c408625b`, where the same independent Sol High consequential delta/trail review returned exactly No findings. The historical 9bb completion-gate observations below are retained, not rerun; the new repair evidence/map and genuine gaps follow in their dated section. Primary independent review covered `d42d66f247e6027a82c6d0d3da76f6e85b38efc2`; all six Sol High routes completed, three medium patches were fixed, and targeted independent Sol High delta/trail review through 9bb returned exactly No findings. Independent code review passed. This does not grant development completion, runtime/visual acceptance, release approval or deployment authority.
+
+Final source evidence: typecheck, focused six-file lint, production build and bundle containment passed on source committed at 9bb. Retained full-unit evidence is 3776 passed, 3 failed and 1 skipped (3780 total); focused CRM 126 passed, native Windows TEMP diagnostic 8 passed, and four direct pure FormData/parser probes passed. Broad units were not repeated after two equivalent failed approaches. Required integration/RLS/recovery/storage, browser and visual execution remain UNRUN, 0 executed and 0 skipped. Ten E35-6 source cases were declared at 9bb; the current focused repair declares eleven. No local runtime coverage is inferred.
+
+Both actual clean-9bb commands returned exit 1 with the same exact message: `One published PR at this exact candidate revision is required for authenticated visual acceptance.`
+
+```text
+node C:/DEV/Kopplas/tmp/private/e35-worker-35-6/scripts/quality/frontend-controller.mjs local --base 90c4c708c0cb87b16cb6bc10fd981ebd9978d76b
+node C:/DEV/Kopplas/tmp/private/e35-worker-35-6/scripts/quality/completion-gate.mjs 90c4c708c0cb87b16cb6bc10fd981ebd9978d76b delivery_gate.py C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/auto-bmad/delivery/spec-design-35-6-35-6.json
+```
+
+The wrapper stopped at its frontend precheck: delivery_gate.py was never invoked and no completion/status writes occurred. No gate retry is needed before a concrete state change. Parent authorized checkpoint publication; the root must publish the checkpoint PR, then use the supported `scripts/ci/checkpoint-dispatch.mjs` route with release_validation=true for exact-head isolated hosted full verification. Obtain actual authenticated visual acceptance, verify full units on Linux and required integration/RLS/recovery/storage evidence, inspect executed/skipped counts and only then rerun the completion wrapper. These are named **DEV-RUNTIME-VISUAL** (root/Coordinator/UI owner) and **DEV-UNIT-WINDOWS** (Coordinator/CI owner) resume conditions, not a new business-approval request.
+
+E35-6-REL-1 remains deferred to the UI owner, REL-2 to QA/accessibility, and REL-3 to the Coordinator; named people and release evidence are still unearned. The three deferred release records and their concrete next actions remain in the assigned delivery JSON. D1-D5, all seven ACs/sixteen states, the exact frozen historical suffix, E16's 14-item and E20 caveats are unchanged. release_ready=false.
+
+```json
+{"status":"blocked","code_fix_head":"9bbf276cf695a0e127a864e442dbeb2e3a79eab6","independent_code_review":"passed","followup_review_recommended":true,"score":9,"deferred":[],"runtime_executed":0,"runtime_skipped":0,"release_ready":false}
+```
+
+## Focused capture verification repair - 2026-11-02
+
+Authorized continuation of the same blocked checkpoint, not a new broad review/P6. Sol High test-integrity/privacy/evidence route; no model change or delegation. Capture repair baseline is `d369489bc85d5ff22b624214db851b003a3fca44`; initial targeted review at `0c1a78e31fd6bb2b245d3088e9e30fd82edbdedc` identified the subject-visibility finding, fixed at `1a3a4a7ec8a09672d47d2dca44d6c8a9c408625b`. All production, shared primitive/style, authority, fixture, workflow, dependency and root tracking files remain read-only. Prior six-layer review and clean 9bb targeted review remain historical evidence for their reviewed sources; the same independent Sol High reviewer returned exactly No findings on the consequential fixed delta/trail at `1a3a4a7ec8a09672d47d2dca44d6c8a9c408625b`. Current capture-repair code review passed; actual runtime/visual/CI readiness remains unearned.
+
+The existing captureRecordState helper now always attaches real PNG Buffer bytes and companion JSON to the native Playwright reporter without E35_CAPTURE_DIR. It captures full CSS-pixel viewports at 1440x900 and 360x640 at the already asserted phase, without redispatch or reload, and restores original viewport, focused element and scroll positions. Optional explicit-directory PNG/JSONL output remains separate from the required native attachments. Metadata includes actual viewport, PNG dimensions/byte count, state IDs, phase, source/proxy classification and E35_CAPTURE_REVISION/GITHUB_SHA candidate claim; that environment claim is not authenticated provenance. The root must independently verify run/head/bytes before any visual acceptance. Rendered contrast assertions are unchanged; their measured JSON now attaches natively and the existing optional file's parent directory is created before writing, avoiding a fresh-checkout artifact-path failure.
+
+Only one new case was added: authenticated malformed customer ID, requiring the real customer-detail-failed branch, generic message, canonical return and absence of not-found/child-empty before capture. It is source-supported by the current request-bound UUID equality read, not runtime proof. Existing cases supply the additional privacy/denied/revoked/unknown-after-remount/confirmed/late-final-B captures and exact owner file-panel, Documents and Booking captures. Documents PNGs occur on real /files after exact query tuple and safe-return href assertions, before clicking Back. File panels assert exact owner labels in viewport; Booking captures assert actual selected customer on open/reopen. No upload or Booking save is added. Existing adapted capture case retains 16 qualifying frames plus 2 phone proxies; the 768x640 rejected-contact regression now emits one supplemental frame. Eleven E35-6 source cases are active; no assertion, timeout, skip or command success was weakened.
+
+Unknown phases are deliberately separate: pre-remount screenshots follow retained unconfirmed input; post-remount create screenshots show an actual payload-free unresolved hint/replay block in a fresh form refilled by the test, never restored original payload. The archive remount screenshot is a freshly opened server-read editor with the block. No reconciliation, retry/reset, child safety authority or storage payload was introduced (D3/D4).
+
+### Sixteen state IDs and real capture phases
+
+Every row retains its E35-6-T-<state> identity and both qualifying viewports. Shared names across rows are allowed only for the same asserted phase, as shown here; no child state is substituted for customer authority.
+
+| Applies state | Stable capture state name / actual assertion phase |
+| --- | --- |
+| E35-6-STATE-loading | customer-loading |
+| E35-6-STATE-loaded | customers-list-private-value-absent; customer-private-detail-masked |
+| E35-6-STATE-empty | customers-empty (successful isolated CustomerList only) |
+| E35-6-STATE-no-match | customers-no-match |
+| E35-6-STATE-validation | customer-validation |
+| E35-6-STATE-denied | customer-foreign-identity-denied |
+| E35-6-STATE-revoked | customer-revoked-membership-rejected |
+| E35-6-STATE-connection-required | customer-archive-connection-required |
+| E35-6-STATE-submitting | customer-pending |
+| E35-6-STATE-error-retry | customer-validation; customer-confirmed-after-validation (definite rejection/correction) |
+| E35-6-STATE-unknown | customer-unknown-{before-forward,lose-response}; customer-unresolved-hint-fresh-form-{before-forward,lose-response}; customer-archive-unresolved-hint-fresh-form |
+| E35-6-STATE-stale | customer-conflict |
+| E35-6-STATE-confirmed | customer-confirmed-after-validation (independent identity/row/audit + exact link) |
+| E35-6-STATE-dirty-navigation | customer-dirty-decision |
+| E35-6-STATE-late-result | customer-late-final-B-private-masked (after delayed A delivered) |
+| E35-6-STATE-focus-dialog | customer-dirty-decision (actual trapped decision focus) |
+
+### Bounded candidate package selection
+
+Expected source emission if every CRM case completes once: **98 PNGs = 92 qualifying viewport frames + 6 supplemental frames**, plus companion JSON/contrast JSON. These are source-derived expectations, not runtime artifacts. Test retries can add attempts/duplicates; root must select verified actual frames from one exact candidate with actual pass/phase provenance, never manufacture a missing image.
+
+The explicit selection below is **72 qualifying attachment names**, below the 80-capture package cap: 32 state/privacy frames + 4 pre-remount unknown frames + 2 archive unresolved frames + 2 actual detail read-error frames + 16 adapted composition frames + 16 exact file/Documents/Booking frames. Do not infer acceptance until every selected actual image/assertion exists and required surface coverage is independently accepted.
+
+Excluded duplicates/inherited qualifying frames: customers-loaded, customers-selected and customer-detail-loaded (6); customer-create-draft (2); customer-edit-loaded (2); customer-phone-validation (2); inherited-new-facility-button, inherited-new-contact-button, inherited-calculation-field and inherited-file-index-select (8). Total 20. Their real source assertions/emissions remain intact. Excluded supplemental frames: controlled-checked-read-503-document-fallback (synthetic 503 document, NEVER app UI error); controlled-text-enlargement-200percent at 360x640 (measured text only); controlled-visible-viewport-occlusion at 360x320; supplemental-short-768-contact-rejected at 768x640; controlled-facility-enlargement-occlusion and controlled-contact-enlargement-occlusion at 360x400. These 6 retain actual dimensions/classifications and remain useful supplementary artifacts, not qualifying phone/desktop evidence or physical keyboard proof.
+
+```json
+{
+  "plannedAttachmentNames": [
+    "customers-list-private-value-absent-1440x900.png",
+    "customers-list-private-value-absent-360x640.png",
+    "customer-private-detail-masked-1440x900.png",
+    "customer-private-detail-masked-360x640.png",
+    "customers-no-match-1440x900.png",
+    "customers-no-match-360x640.png",
+    "customers-empty-1440x900.png",
+    "customers-empty-360x640.png",
+    "customer-validation-1440x900.png",
+    "customer-validation-360x640.png",
+    "customer-confirmed-after-validation-1440x900.png",
+    "customer-confirmed-after-validation-360x640.png",
+    "customer-archive-connection-required-1440x900.png",
+    "customer-archive-connection-required-360x640.png",
+    "customer-pending-1440x900.png",
+    "customer-pending-360x640.png",
+    "customer-unresolved-hint-fresh-form-before-forward-1440x900.png",
+    "customer-unresolved-hint-fresh-form-before-forward-360x640.png",
+    "customer-unresolved-hint-fresh-form-lose-response-1440x900.png",
+    "customer-unresolved-hint-fresh-form-lose-response-360x640.png",
+    "customer-conflict-1440x900.png",
+    "customer-conflict-360x640.png",
+    "customer-loading-1440x900.png",
+    "customer-loading-360x640.png",
+    "customer-late-final-B-private-masked-1440x900.png",
+    "customer-late-final-B-private-masked-360x640.png",
+    "customer-dirty-decision-1440x900.png",
+    "customer-dirty-decision-360x640.png",
+    "customer-foreign-identity-denied-1440x900.png",
+    "customer-foreign-identity-denied-360x640.png",
+    "customer-revoked-membership-rejected-1440x900.png",
+    "customer-revoked-membership-rejected-360x640.png",
+    "customer-unknown-before-forward-1440x900.png",
+    "customer-unknown-before-forward-360x640.png",
+    "customer-unknown-lose-response-1440x900.png",
+    "customer-unknown-lose-response-360x640.png",
+    "customer-archive-unresolved-hint-fresh-form-1440x900.png",
+    "customer-archive-unresolved-hint-fresh-form-360x640.png",
+    "customer-detail-real-read-error-1440x900.png",
+    "customer-detail-real-read-error-360x640.png",
+    "record-loaded-1440x900.png",
+    "record-loaded-360x640.png",
+    "facility-record-1440x900.png",
+    "facility-record-360x640.png",
+    "facility-form-1440x900.png",
+    "facility-form-360x640.png",
+    "facility-validation-focus-1440x900.png",
+    "facility-validation-focus-360x640.png",
+    "contact-record-1440x900.png",
+    "contact-record-360x640.png",
+    "contact-form-1440x900.png",
+    "contact-form-360x640.png",
+    "contact-validation-focus-1440x900.png",
+    "contact-validation-focus-360x640.png",
+    "archive-confirmation-1440x900.png",
+    "archive-confirmation-360x640.png",
+    "context-customer-exact-file-panel-1440x900.png",
+    "context-customer-exact-file-panel-360x640.png",
+    "context-customer-documents-safe-return-1440x900.png",
+    "context-customer-documents-safe-return-360x640.png",
+    "context-facility-exact-file-panel-1440x900.png",
+    "context-facility-exact-file-panel-360x640.png",
+    "context-facility-documents-safe-return-1440x900.png",
+    "context-facility-documents-safe-return-360x640.png",
+    "context-contact-exact-file-panel-1440x900.png",
+    "context-contact-exact-file-panel-360x640.png",
+    "context-contact-documents-safe-return-1440x900.png",
+    "context-contact-documents-safe-return-360x640.png",
+    "customer-booking-preconnection-1440x900.png",
+    "customer-booking-preconnection-360x640.png",
+    "customer-booking-reopened-preconnection-1440x900.png",
+    "customer-booking-reopened-preconnection-360x640.png"
+  ],
+  "captureCount": 72,
+  "packageCap": 80,
+  "actualLocalCaptureCount": 0
+}
+```
+
+### Evidence and genuine gaps
+
+Current repair: pnpm typecheck and focused CRM E2E ESLint passed, exit 0. Review-order checker and diff/frozen-suffix checks are recorded at handoff. Browser discovery is unavailable because this worktree has no existing correct .auth/fixture.json; no fake fixture was created and no discovery/runtime pass is credited. No build/unit repeat or managed resource launch occurred. Current task runtime/capture evidence remains 0 executed, 0 skipped and 0 actual PNGs until root collects real hosted artifacts.
+
+Historical hosted observation relayed by root: Linux verify at head `5a6263d45e139b4a0137b085e0014f23742f931e`, root-owned run `41463404500`, reports 3780/3780 unit tests passed, 0 skipped. This resolves the prior Windows-only unit failures at that observed head; it is not a new local run, current capture proof or blanket runtime pass. Root owns that running CI job and its exact-head/provenance reconciliation; this delegate did not poll, cancel or adopt it. Earlier Windows 3776 passed/3 failed/1 skipped, CRM 126 pass, native-TEMP 8 pass and 4 parser probes remain historical evidence, not relabeled.
+
+Named remaining gaps: **CRM-LIST-READ-ERROR-CAPTURE** (Coordinator/source-owner verification): list read-error/retry has no existing browser fault seam; no producer change is allocated, and neither a child-empty array nor synthetic 503 can satisfy it. Obtain real source-owner error evidence or an authorized bounded verification route before claiming that surface complete. **CRM-DETAIL-READ-ERROR-ASSERTION** (root/hosted lane): the malformed-ID case must actually reach customer-detail-failed and pass on the real server before its two PNGs can enter the package; if it does not, retain the genuine gap rather than substituting HTML/503. **DEV-RUNTIME-VISUAL** (root/Coordinator/UI owner): publish the repaired checkpoint, collect exact-head isolated production-server assertions/PNG/metadata and required integration/RLS/recovery/storage counts, verify source/run provenance and obtain actual authenticated visual acceptance. D5 remains list-successful-zero only; child read failures flatten to arrays and earn no honesty coverage. No pending or Phase C surface is added.
+
+Status remains blocked, followup_review_recommended=true, prior score=9, deferred review items=[]; three release obligations remain deferred to UI owner, QA/accessibility and Coordinator. No done flip, completion helper, visual-gate retry, release-ready claim or business approval request.
+
+### Targeted capture review fix - 0c1a
+
+Targeted independent Sol High review of `0c1a78e31fd6bb2b245d3088e9e30fd82edbdedc` identified one consequential medium capture-integrity defect: viewport resize could move the asserted subject out of the resulting image. This is a focused capture-repair finding/fix, not a new broad review round 2; historical Round 1 followup=true, score=9 and deferred review=[] remain unchanged.
+
+The existing helper now requires explicit real semantic Locator targets at every call. In EACH qualifying viewport, after resize it scrolls the first target into view and asserts every requested target fully in viewport (ratio=1) immediately before screenshot bytes are produced. No original-size assertion, page body or full-page image substitutes for the target. File-panel captures bind the exact owner label, Documents captures bind the actual safe-return link on /files, Booking captures bind the selected customer control, and every one of the sixteen customer phases binds its actual field, alert, loading label, selected identity, rejection/decision or confirmed record link. Late-final-B binds both the masked detail value and private record heading. Supplemental captures keep actual dimensions/classification and do not gain qualifying target-validation credit; synthetic 503 remains non-application UI.
+
+Original viewport/focus/scroll restoration, no redispatch/reload, existing assertions and authority are retained. Attachment names and frame counts are unchanged: expected98 source PNGs=92 qualifying+6 supplemental per successful once-through run; the exact72 planned package names above remain valid under the80 cap, subject to actual successful target assertions/bytes and retries adding duplicates. No new case or product/server/shared helper/suite was added; eleven E35-6 source cases remain. Typecheck and focused CRM E2E lint passed, exit0, after the target-binding change. Diff/review-trail/frozen-suffix checks are recorded at handoff; runtime remains0executed0skipped and0local PNGs. The same independent Sol High reviewer inspected the consequential delta and refreshed trail at `1a3a4a7ec8a09672d47d2dca44d6c8a9c408625b` and returned exactly No findings. Current capture-repair review passed. Actual hosted assertions/image provenance, P6/follow-up, authenticated visual acceptance/current-head CI and existing genuine gaps remain pending.
+
+### Final capture-repair author reconciliation
+
+Current test source is committed at `1a3a4a7ec8a09672d47d2dca44d6c8a9c408625b`; production remains unchanged from reviewed9bb. Repair lineage: baseline d369, initial targeted0c1a finding, target-binding fix at1a3, then the same independent Sol High consequential delta/trail review returned exactly **No findings**. Capture-repair independent code review passed. Actual final-source typecheck/focused lint and author16-stop reference validation passed; this reconciliation changes story/delivery documentation only. No source, tests, resources, CI polling, completion helper or gate retry occurred here.
+
+Runtime remains0executed0skipped and actual local PNGs0. The98source/92qualifying6supplemental expectations and72selected stable names are still plans, not collected artifacts. Root-relayed prior5a/run observations remain previous-head evidence; no general-browser result or current capture proof is inferred. The list read-error fault-seam gap and malformed-detail real assertion await actual hosted evidence. Status remains blocked, followup=true/historicalscore9/deferredreview[], with P6/follow-up/authenticatedvisual/current-headCI and completion admission pending; all three release obligations remain deferred and release_ready=false.
+
+## Native-proven input and verification repair - 2026-11-02
+
+Same admitted installed Build Auto review-fix checkpoint, explicit Sol High test-integrity/input-retention route. Baseline `d8c202ef5b026343690f8e71d68873b6b61c3fbf` plus current uncommitted five-path batch. Only ContactDialog production and the assigned CRM E2E/story/checklist/delivery are writable; all other production/shared/server/authority/workflow/dependency/root tracking surfaces stay read-only. No new broad round2 or P6, no resource/CI adoption.
+
+Read actual native evidence from root-owned old head5a/run41463404500: C:/DEV/Kopplas/tmp/private/e35-6-owned-browser-41463404500.json and C:/DEV/Kopplas/tmp/private/e35-6-native-41463404500/browser/general-browser.json, with actual job log C:/DEV/Kopplas/tmp/private/e35-6-browser-41463404500.log. Owned old-head results are **10 unexpected failures plus1 flaky**:4 contrast-output ENOENT failures (already repaired by0c1a/1a3),3 pg Date-versus-String lifecycle assertions,1 forward-history pre-draft detachment,1 selected-facility reset after rejected name,1 whole-body-zoom proxy Save outside viewport; the separate flaky B03 failure was missing Dashboard at old line551 AFTER held archive release and passed retry. These are real historical failures, not current passes; current repair runtime remains0executed0skipped, actual local images0.
+
+Changes and load-bearing evidence:
+
+- ContactDialog keys the existing uncontrolled SelectField from the echoed selected facility value. A rejected action's React form reset can no longer restore the original empty selection after the echoed value changes: remount establishes the submitted selected default. Optional relationship payload, checked server/parser, shared SelectField, primary-checkbox false fallback and child lifecycle authority are unchanged. The existing768x640 selected UUID after rejection assertion remains required; no child safety protocol was added.
+- pg observations type archived_at as Date|null and assert actual valid Date instances (finite getTime), while retaining exact row identity/tenant/parent/name and attributable actor/command/three-audit assertions for all three lifecycle families. This corrects the native driver's representation, never converts an archive absence into success or weakens persistence identity.
+- B07 forward-history setup now waits for actual visible Kunder list, absence of old detail and hydrated list action before Back; after Back it requires returned exact customer detail, absence of list heading and hydrated edit trigger before creating the dirty draft. Existing Forward URL/history length/key, noncommit event and retained draft assertions are untouched. No response-body/finished/RSC EOF wait or timeout increase.
+- B03 asserts the requested Dashboard URL/history state before an explicit current-entry HTTP reload with waitUntil=commit, then requires visible Dashboard and the same URL/length/key plus original archive row/audit checks. This is bounded requested-destination adoption/recovery, NOT proof that automatic CSR adoption completed. If reload does not preserve the entry key, the unchanged assertion must fail; no weaker key check or blind side-effect retry is allowed.
+- Controlled proxies now enlarge measured dialog text fonts to200% without scaling whole100dvh sheet geometry. Both B08 and the child capture case verify computed font growth >=1.9x, own-form reflow, field bounds and reachable errors/actions; separate short visible viewports retain real save hit-testing. B08 restores original fonts before its320px occlusion phase; the child proxy measures enlargement at360x640 before its400px occlusion stage. All changes are ephemeral test-only dialog styles; no product/global style changed. Source-related body/root zoom's invalid viewport scaling is removed rather than deleting reachability assertions. No physical keyboard/native zoom claim.
+
+Source case/capture counts remain11 E35-6 cases and expected98PNGs=92qualifying+6supplemental per successful once-through run, retries extra. The exact72 selected qualifying attachment names and all16state bindings are unchanged. One excluded supplement is renamed controlled-text-enlargement-200percent and now has actual360x640 measured-text dimensions instead of600x1280 whole-root zoom; child360x400 enlargement/occlusion and other supplements retain honest classification. All selected captures still require actual per-viewport semantic target assertions before PNG. D1-D5,7ACs/16states and frozen historical suffix remain intact; D5 child-read collapse still earns no empty proof.
+
+Current checks: pnpm typecheck, focused ContactDialog/CRM E2E ESLint, pnpm build (Next16.4.1 production) and pnpm verify:bundle-containment all passed, exit0, after this ContactDialog change. No full unit repeat; root separately relayed exact3eb Linux3780pass0skip (previous-head observation, not this repair/runtime proof). Root owns ongoing run41469021274/head3eb; this delegate did not poll/cancel/adopt it. Actual current-head browser/PNG evidence remains pending, and the malformed-detail real error assertion plus list-read-error fault-seam gap remain unearned.
+
+Unowned unexpected native failures remain named blockers, not dismissed or credited as coverage: **UNOWNED-REDIRECT-7**, **UNOWNED-BOOKING-2**, **UNOWNED-CALENDAR-10**, **UNOWNED-NOTIFICATION-PROFILE-1**, **UNOWNED-SCHEDULING-1** (21 total, root/Coordinator and respective module owners). Their diagnosis/fix is outside this claim. **B03-ADOPTION-RUNTIME** remains an explicit uncertainty until actual hosted re-execution proves the same entry key, visible requested Dashboard and original archive audit after bounded HTTP adoption. Root must collect actual repaired-head results and independent Sol High targeted native-fix review; no done/helper/gate retry/release claim. Status blocked, followuptrue/historicalscore9/deferredreview[], three release obligations deferred.
+
+## Single B01 semantic capture-target repair - 2026-11-02
+
+Coordinator-admitted single test repair after freeze release, same BuildAuto review-fix/SolHigh checkpoint. Clean baseline416b86ae5acec6f740da62cbf2322917625f76f9; actual precommit CRM E2E SHA-256 `179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f`. The exact single-line test source is now committed at `121e94445eef918c289f2126fdece3268170c640`; its hash is unchanged. Current candidate contains this SINGLE tested-source delta, not merely documentation; production and all other behavior remain unchanged from the baseline. Prior b143 native-fix/capture1a3 approvals and the prior772 P6 assessment are HISTORICAL, not current repaired-head review/runtime/P6 passes.
+
+The diagnosed B01 phone image target was the padded customers-no-results wrapper, whose intersection ratio was0.9994848966598511. The capture now binds the actual exact `Inga träffar` message AND `Ingen kund matchar din sökning eller ditt filter. Justera och försök igen.` support text, both scoped to that no-match container. Original container visibility and all selection/filter/reset assertions remain unchanged. The existing helper still scrolls/asserts every semantic target with strict ratio1 in EACH1440x900/360x640 viewport. No ratio/tolerance/timeout/skip change, duplicate case, fake response, new framework/seam or authority. Eleven E35cases/98plannedPNG/72selected stable names and all16states/D1-D5 are unchanged; new repair execution0/images0 until actual hosted results.
+
+ONE bounded current typecheck and focused CRM E2E lint passed, exit0. Diff/trail/frozen checks are recorded at handoff. No production build/unit/runtime/resource/CI polling/gate helper/retry occurred. Same independent SolHigh targeted review of the committed single source change and author trail returned exactly No findings at `121e94445eef918c289f2126fdece3268170c640`. Current code review passed; final result/P6/follow-up/runtime/visual/current-headCI/completion remain pending/blocked. The recorded hash binds the ONE actual bounded typecheck/focused-lint pass to source121; prior diff/trail checks also passed. This is the final authored source/review reconciliation, with no additional tests or gate attempts.
+
+Root-relayed previous-head evidence only: ordinary772 CI41473808206 FINAL FAILED, units3780pass0skip; integration2163pass0fail52skip (51Booking-series plus recovery separately1pass); recovery1pass0skip; essential browser79pass1fail0skip, with unowned My-day15.6E09 abort-versus-finished transport failure. Previous3eb full run41469021274 FINAL FAILED,478pass28fail22skip; owned37pass7fail; genuine malformed-detail branch passed with its pair and context composition passed16PNGs. Root reports80unique owned PNG names,59/72selected present and54passed-qualified names, all at3eb NOT772 and NOT this repair. These failures and partial captures are not reinterpreted as current success, authenticated visual acceptance or complete72-frame proof. Existing21unowned blockers remain visible; this repair adds no out-of-claim fixes.
+
+Genuine CustomerList customers-failed/loadError/retry remains a named development evidence gap. Subsequent read-only reconciliation identified an existing isolated dependency-fault proxy, but its required General CI runtime wiring is outside the current allocation; capability is not executed recovery proof. D5 child read failures still flatten to arrays and receive no successful-empty coverage. Statusblocked, followuptrue/historicalscore9/deferredreview[], three release obligations deferred, release_ready=false. No done claim or current P6/runtime pass.
+
+## Final truthful closeout - 2026-11-02
+
+This final batch updates only this story, its assigned ATDD checklist and delivery JSON on documentation baseline809ff2fd8dd0aaf8a762b6ff78b8608b6507abfc. Source/test evidence_revision remains `121e94445eef918c289f2126fdece3268170c640`, E2E SHA-256 `179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f`; production remains unchanged from b143. The unchanged source's independent Sol High targeted review returned exactly No findings. No new source approval, test execution or P6 approval is implied by this documentation batch. Historical Round1 score9/followup_review_recommended=true/deferred=[] and the existing three REL obligations remain; statusblocked/release_ready=false.
+
+**Actual P6 result, historical772/b143:** read `C:/DEV/Kopplas/tmp/private/e35-control/tmp/private/e35-p6/p6-result-2026-11-02T16-03-48-528Z.json` and its actual `tea-automate-e2e-tests-2026-11-02T16-03-48-528Z.json` companion. Candidate772c5241b82dc3a9ea517282f4c138938a01edbf/reviewed sourceb1437128f186c9a840803066eac0144da6810d11: genuine Create/BMad-integrated P6 **BLOCKED**, API success=true with0 generated/0 duplicate, E2E success=false with0 generated and required P6-E2E-GAP-01. Step01/02 completed; halted Step03-generate-tests; aggregation and validation NOT_RUN. Historical standard automation-summary SHA-256 is `D2080582DC7345596BABB84EE4E1C044E7287EE1FDDB2FFEE6F52D14A8892ACF`. This is no P6 PASS and no successor result exists in this evidence.
+
+**Required proof and real caller:** E35-6-STATE-error-retry / E35-6-T-error-retry still requires actual list read failure, customers-failed, the real Försök igen link and fresh successful authorized server read. Customer route layout/RouteAccessBoundary resolve request tenant and route access before rendering; the per-request cookie-bound Supabase client retains real auth/RLS. `src/features/crm/read.ts:38-49` queries customers, selects the list projection, filters archived_at=null and orders display_name; query/throw failure returns rows=[] plus GENERIC_READ_ERROR. `src/app/(app)/customers/page.tsx:16-20` is force-dynamic and passes the real read error to CustomerList.loadError. `src/components/crm/CustomerList.tsx:73-92` renders customers-failed and the ordinary Next Link href=/customers, Försök igen. The empty array in this failed branch is not successful-empty proof. D5's separate child-read flattening remains disclosed and uncredited.
+
+**Read-only reconciliation, capability only:** the existing `tests/e2e/dashboard/read-plan.ts:4-16` arms isolated fixture-subject/table error/pass plans. Existing `tests/e2e/dashboard/server-read-proxy.mjs:20-79` accepts only a loopback upstream, selects faults by JWT subject and table, returns a genuine dependency400 JSON fault, and otherwise forwards the original method/headers/body and real backend response. Decoded subject selects a fault, never grants authentication. A customers-only plan leaves membership/auth and real backend RLS intact. No new production seam/endpoint is needed. A future meaningful owned case would seed an entitled isolated customer, prove the real failed alert and absence of success/empty/private leakage under the error plan, switch to a held pass plan, click the actual retry link, observe that fresh production read, release it and assert current authorized rows plus unchanged identity/persistence/audits. Same-path Next Link freshness must be proven; a forced HTTP reload cannot earn retry credit. No case, plan, fault, runtime or framework was added or executed during reconciliation.
+
+**Minimum proposal only / DEV-P6-LIST-RETRY:** additional allocation of currently unowned `playwright.config.ts` is needed to start the EXISTING dashboard proxy as the first webServer and the existing production build/start as the second through that proxy, preserving current calendar/runtime preload, request auth and loopback API/direct-DB guards. General CI currently has no proxy and full browser includes CRM; Dashboard CI starts the proxy but its testMatch excludes CRM. An unconditional required owned case would therefore fail General CI without this runtime admission; no case/skip/config/seam was added. Default existing proxy port37921/upstream54321 and control-root tests/e2e/.auth/dashboard-control are already supported; this is reuse, not a new adapter. The current claim has11 paths; pinned `.agents/skills/auto-bmad/scripts/parallel_run.py:1031` rejects amend-blocked for schema2 with `Schema 2 does not support legacy integration or maintenance APIs`. No helper was invoked. Coordinator must choose a valid allocation/protocol route before changing the claim. Resume requires that bounded config allocation and managed runtime admission, implementation of the owned real failure/retry case, actual candidate-bound recovery evidence, and a successful successor P6; current config ownership/runtime are not authorized here. This is a required DEVELOPMENT blocker, not a fourth release deferral or a business reapproval request.
+
+**Historical native results only:** root-relayed772/run41473808206 FINAL FAILED: units3780passed0skipped; integration2163passed0failed52skipped (51Booking-series plus recovery separately1passed); recovery1passed0skipped; essential smoke79passed1failed0skipped (unowned My-day15.6E09 abort-versus-finished transport). Second full3eb/run41469021274 FINAL FAILED:478passed28failed22skipped (19serial scheduling+3explicit quote10.5); owned37passed7failed. All seven owned causes were patched in current source, including B01, but there is no repaired-head execution. The21unowned historical failure groups remain blockers: redirects7, Booking2, calendar10, notification/profile1, scheduling1. At3eb alone,80unique owned PNG names included59/72selected present and54passed selected images; genuine malformed-detail branch passed its pair and context composition passed16PNGs. These are not772/809/current-source captures, complete-package acceptance or a current pass. No failed/skipped case is credited as coverage.
+
+**Completion limits:** current repaired source runtime0executed0skipped/images0;11sourcecases/98plannedPNG/72selected stable names and all7ACs/16stateIDs/D1-D5 remain unchanged. Current code review passed; successor P6, follow-up, authenticated visual acceptance, exact-head CI, actual repaired native proof, existing unowned failures and completion remain blocked/pending. Existing REL-1/2/3 retain their owners and deferred status. Final closeout verification is limited to the existing16-stop review-order checker, diff check and exact frozen90 suffix/source identity checks; no repeated type/lint/build/unit/runtime/CI/gate/helper/resource action. Root state/report and all unowned sources remain untouched.
+
+## Suggested Review Order
+
+Author: Sol High implementation/fix delegate. Reviewed test source remains `121e94445eef918c289f2126fdece3268170c640`, the SINGLE B01 semantic capture-target change, E2E SHA-256 `179a7f9a2bfb7066ee04c532b2331e2dcea0ce25fb84ada450dee2972aa1b53f`; production remains unchanged from b143. Independent Sol High targeted source/trail review returned exactly No findings at121; current code review passed. This closeout changes only three author documents and reuses that unchanged-source review. Prior b143/capture1a3 approvals, the actual historical772/b143 P6 BLOCKED assessment and failed prior-head CI/captures earn no current runtime credit. The ONE prior typecheck/focused-lint pass binds to this source; all16 literal stops remain unchanged and are checked at closeout. P6-E2E-GAP-01 now has an existing-proxy capability analysis and a minimal unowned Playwright-config allocation proposal, not an implemented or executed solution. No successor P6/runtime/visual/current-headCI/completion pass is claimed; statusblocked/followuptrue/historicalscore9/deferredreview[]/releasefalse and11/98/72 remain.
+
+### Record identity and responsive composition
+
+The current record remains the composition boundary. Shipped tokens, stacked phone actions and wrapping preserve visible identity while retaining each independently keyed file consumer; the relationship label has no invented destination.
+
+- `src/app/(app)/customers/[customerId]/page.tsx:26` — `CustomerDetailPage`: read-bound entry and generic error/not-found composition.
+- `src/components/crm/CustomerDetail.tsx:168` — `Kunduppgifter`: masked identity and readable summary (AC3/4/7).
+- `src/components/crm/CustomerDetail.tsx:270` — `FacilitiesSection`: responsive record actions and keyed child panels.
+- `src/components/crm/CustomerDetail.tsx:367` — `ContactsSection`: current relationships and independently keyed contact panels.
+
+### Existing authority and archive outcomes
+
+D1-D4 retain the existing customer-only safety contract. Archive styling changes no dispatch, view-liveness or matching-target decision, and page-owned Documents/Booking tuples remain exact (AC1/2/3/6/7).
+
+- `src/components/crm/ArchiveButton.tsx:88` — `stillCurrent`: preserved originating-view continuation boundary.
+- `src/components/crm/ArchiveButton.tsx:132` — `<form`: wrapped confirmation/error/actions without a reason or recovery path.
+- `src/app/(app)/customers/[customerId]/page.tsx:117` — `parentCustomerId`: exact facility parent and suffix authority.
+- `src/app/(app)/customers/[customerId]/page.tsx:147` — `bookingPanel`: unchanged customer Booking host and preconnection.
+
+### Rejected contact selection and checked input
+
+The native768 case proved facility selection reset after name rejection. Keying the existing select from echoed facility value refreshes its uncontrolled default without changing optional relationship authority; primary false submission and shared sheet/focus remain intact (AC1/3/4/5).
+
+- `src/components/crm/FacilityDialog.tsx:51` — `variant="sheet"`: retained viewport-bounded child presentation.
+- `src/components/crm/ContactDialog.tsx:151` — `key=`: rejected facility input establishes the remounted default.
+- `src/components/crm/ContactDialog.tsx:165` — `name="is_primary"`: unchanged checked-first explicit-false fallback.
+- `tests/e2e/crm/customers.e2e.spec.ts:1284` — `short viewport`: selected facility after rejection remains load-bearing.
+
+### Single capture-target repair and honest evidence limits
+
+B01 now verifies the actual no-match message and support text after each resize, while preserving the original container/list/filter/reset behavior. Strict semantic target ratio1 stays in the existing helper; previous-head partial runtime/captures and P6 observations remain historical.
+
+- `tests/e2e/crm/customers.e2e.spec.ts:34` — `captureRecordState`: unchanged strict per-viewport semantic target validation.
+- `tests/e2e/crm/customers.e2e.spec.ts:504` — `customers-no-match`: exact message and support text replace padded wrapper.
+- `tests/e2e/crm/customers.e2e.spec.ts:375` — `malformed customer identity`: actual app error assertion, previous3eb proof only.
+- `tests/e2e/crm/customers.e2e.spec.ts:1326` — `E35-6-T-AC2/AC6`: retained context authority, previous3eb captures only.
+
+Evidence: one current bounded typecheck and focused lint passed on the recorded precommit source hash; no build/unit/runtime repeat. Prior772 ordinaryCI and3eb full browser runs FINAL FAILED with exact counts/partial image provenance in the dated section above. Current repair runtime0executed0skipped/images0; eleven cases/98planned frames/72selected names are not executed coverage. Current sameHigh source/trail review passed at121 with exactly No findings; successor final result/P6/follow-up/authenticatedvisual/current-headCI/completion remain pending; existing21unowned historical blockers and the required list-read-error/retry proof/runtime-allocation gap remain. No new seam, weakened ratio/assertion, D5 child-empty credit or release-ready claim.
 
 ## Frozen canonical v1 source body — preserved LF
 

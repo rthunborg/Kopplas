@@ -49,7 +49,7 @@ export function ArchiveButton({
   readonly id: string;
   /** The parent customer id (facility/contact) for revalidation targeting. */
   readonly customerId?: string;
-  /** Accessible name for the control (icon-only when compact). */
+  /** Accessible name for the control; compact keeps a visible text label. */
   readonly label: string;
   readonly confirmMessage: string;
   readonly onArchived: () => void;
@@ -119,8 +119,8 @@ export function ArchiveButton({
         aria-label={label}
         className={
           compact
-            ? "min-h-control-lg px-2 text-label text-risk-text hover:underline focus-visible:outline-2 focus-visible:outline-ink"
-            :"min-h-control-lg rounded-control border border-border-default px-3 py-2 text-label text-risk-text hover:bg-risk-surface focus-visible:outline-2 focus-visible:outline-ink"
+            ? "min-h-control-lg rounded-control px-3 py-2 text-label text-risk-text underline underline-offset-4 hover:bg-risk-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+            :"min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-risk-text hover:bg-risk-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
         }
       >
         Arkivera
@@ -129,24 +129,24 @@ export function ArchiveButton({
   }
 
   return (
-    <form action={formAction} className="flex flex-col items-end gap-1">
+    <form action={formAction} aria-busy={pending} className="flex min-w-0 max-w-full flex-col gap-3 rounded-card border border-border-default bg-card p-4 text-left [overflow-wrap:anywhere]">
       <input type="hidden" name="id" value={id} />
       {customerId&&<input type="hidden" name="customer_id" value={customerId} />}
-      {kind==="customer"&&blocked&&<p role="alert" className="text-caption text-warn-text">Resultatet är obekräftat eller det går inte att säkert spara i den här fliken.</p>}
-      <p role="status" className="text-caption text-text-secondary">
+      {kind==="customer"&&blocked&&<p role="alert" className="rounded-control bg-warn-surface px-3 py-2 text-label text-warn-text">Resultatet är obekräftat eller det går inte att säkert spara i den här fliken.</p>}
+      <p role="status" className="text-label text-text-secondary">
         {confirmMessage}
       </p>
       {state.status==="error"&&(
-        <p role="alert" className="text-caption text-risk-text">
+        <p role="alert" className="rounded-control bg-risk-surface px-3 py-2 text-label text-risk-text">
           {state.formError}
         </p>
       )}
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-end gap-2">
         <button
           type="button"
           onClick={() => setConfirming(false)}
           disabled={pending}
-          className="min-h-control-lg rounded-control border border-border-default px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-ink"
+          className="min-h-control-lg rounded-control border border-border-strong px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:bg-sunken disabled:text-text-disabled"
         >
           Avbryt
         </button>
@@ -154,7 +154,7 @@ export function ArchiveButton({
           type="submit"
           disabled={pending||blocked||kind==="customer"&&["UNAUTHENTICATED","TENANT_MEMBERSHIP_REQUIRED","TENANT_ACCESS_DENIED","PERMISSION_DENIED"].includes(state.code??"")}
           aria-label={label}
-          className="min-h-control-lg rounded-control bg-risk-text px-3 py-2 text-label text-white focus-visible:outline-2 focus-visible:outline-ink disabled:bg-sunken disabled:text-text-disabled"
+          className="min-h-control-lg rounded-control bg-risk-text px-3 py-2 text-label text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:bg-sunken disabled:text-text-disabled"
         >
           {pending? "Arkiverar…":"Arkivera"}
         </button>
