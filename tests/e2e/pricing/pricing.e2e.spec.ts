@@ -768,23 +768,19 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
         }
     });
 
-async function captureStalePricingFrame(
-    page: Page, info: TestInfo, surface: string, state: "stale" | "neighbor-stale",
-    captureAnchor: Locator, simultaneouslyRequired: readonly Locator[],
-) {
-    const anchors = [captureAnchor, ...simultaneouslyRequired];
+async function positionProducerFrame(page: Page, anchors: readonly Locator[]) {
     const handles: NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>>[] = [];
     try {
         for (const anchor of anchors) {
             const handle = await anchor.elementHandle({ timeout: 3_000 });
-            if (!handle) throw new Error("Required stale pricing anchor is missing");
+            if (!handle) throw new Error("Required producer capture anchor is missing");
             handles.push(handle);
         }
         await page.evaluate(elements => {
             const main = document.getElementById("main-content");
             const root = document.scrollingElement;
             if (!main || !root || elements.some(element => !main.contains(element) || !element.getClientRects().length)) {
-                throw new Error("All stale pricing anchors must be rendered inside the main scroll container");
+                throw new Error("All producer capture anchors must be rendered inside the main scroll container");
             }
             const mainBox = main.getBoundingClientRect();
             const mainTop = mainBox.top + main.clientTop;
@@ -807,7 +803,7 @@ async function captureStalePricingFrame(
             const minInner = Math.max(0, Math.ceil(inner + last - mainBottom), minTotal - maxOuter);
             const lastInner = Math.min(maxInner, Math.floor(inner + first - mainTop), maxTotal);
             if (minInner > lastInner || minTotal > maxTotal || boxes.some(box => box.left < left || box.right > right)) {
-                throw new Error(`Stale pricing anchors cannot fit together: ${(last - first).toFixed(1)}px with a ${(mainBottom - mainTop).toFixed(1)}px main scrollport and ${window.innerHeight}px viewport`);
+                throw new Error(`Producer capture anchors cannot fit together: ${(last - first).toFixed(1)}px with a ${(mainBottom - mainTop).toFixed(1)}px main scrollport and ${window.innerHeight}px viewport`);
             }
 
             const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
@@ -821,9 +817,21 @@ async function captureStalePricingFrame(
     } finally {
         await Promise.all(handles.map(handle => handle.dispose()));
     }
+}
+
+async function expectProducerFrame(anchors: readonly Locator[]) {
     for (const anchor of anchors) await expect(anchor).toBeInViewport({ ratio: 1 });
+}
+
+async function captureStalePricingFrame(
+    page: Page, info: TestInfo, surface: string, state: "stale" | "neighbor-stale",
+    captureAnchor: Locator, simultaneouslyRequired: readonly Locator[],
+) {
+    const anchors = [captureAnchor, ...simultaneouslyRequired];
+    await positionProducerFrame(page, anchors);
+    await expectProducerFrame(anchors);
     await producerCapture(page, info, surface, state, captureAnchor, "preserve");
-    for (const anchor of anchors) await expect(anchor).toBeInViewport({ ratio: 1 });
+    await expectProducerFrame(anchors);
 }
 
 for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }])
@@ -840,6 +848,7 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
         await signIn(page, own.adminA.email, own.adminA.password);
         await page.goto("/settings/pricing");
         await waitForHydrated(page.getByLabel("Benämning"));
+        const ordinary = await makeAuthedServerClient(own.adminA);
         for (const spec of specs) {
             const editor = page.getByTestId(spec.id);
             await editor.getByLabel(spec.name).fill(spec.label);
@@ -931,11 +940,67 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             try {
                 // Neighbor success performs the existing authorized reread without
                 // resetting/replaying the historical target's controller or receipt.
-                await neighbor.getByRole("button", { name: "Ny post" }).click();
-                await neighbor.getByLabel(neighborSpec.name).fill(`Current newer refresh ${index}`);
-                await neighbor.getByLabel(neighborSpec.price).fill("99,00");
-                await neighbor.getByRole("button", { name: neighborSpec.save }).click();
-                await expect(neighbor.getByRole("listitem").filter({ hasText: `Current newer refresh ${index}` })).toHaveCount(1);
+                const label = `Current newer refresh ${index}`;
+                const role = neighborSpec.surface === "work-role";
+                const newHeading = page.getByRole("heading", { name: role ? "Ny arbetsroll" : "Ny artikel", exact: true });
+                const createForm = neighbor.locator("form").filter({ has: newHeading });
+                await neighbor.getByRole("button", { name: "Ny post", exact: true }).click();
+                const nameField = createForm.getByRole("textbox", { name: neighborSpec.name, exact: true });
+                const priceField = createForm.getByRole("textbox", { name: neighborSpec.price, exact: true });
+                const createSave = createForm.getByRole("button", { name: neighborSpec.save, exact: true });
+                await expect(createForm).toBeVisible();
+                await expect(nameField).toBeFocused();
+                await expect(nameField).toHaveValue("");
+                await expect(priceField).toHaveValue("");
+                await expect(createForm.locator('input[name="id"]')).toHaveCount(0);
+                await nameField.fill(label);
+                await priceField.fill("99,00");
+                await expect(nameField).toHaveValue(label);
+                await expect(priceField).toHaveValue("99,00");
+                await expect(createSave).toBeEnabled();
+
+                const [createdRequest] = await Promise.all([
+                    page.waitForRequest(async request => {
+                        const headers = request.headers();
+                        if (new URL(request.url()).pathname !== "/settings/pricing" || request.method() !== "POST"
+                            || !headers["next-action"] || !headers["content-type"]?.startsWith("multipart/form-data")) return false;
+                        const body = request.postDataBuffer();
+                        if (!body) return false;
+                        const form = await new globalThis.Request("http://capture.invalid", {
+                            method: "POST", headers: { "content-type": headers["content-type"] }, body: new Uint8Array(body),
+                        }).formData().catch(() => null);
+                        if (!form) return false;
+                        const values = (name: string) => [...form].filter(([key]) => key === name || key.endsWith(`_${name}`)).map(([, value]) => value);
+                        const hasOne = (name: string, value: string) => {
+                            const entries = values(name);
+                            return entries.length === 1 && entries[0] === value;
+                        };
+                        return values("id").length === 0 && hasOne("expectedRevision", "absent")
+                            && hasOne(role ? "display_name" : "name", label)
+                            && hasOne(role ? "sell_rate_kronor" : "unit_price_kronor", "99,00");
+                    }, { timeout: 15_000 }),
+                    createSave.click(),
+                ]);
+                const created = await producerCapturedFacts(createdRequest);
+                expect(/^[0-9a-f-]{36}$/i.test(created.operation)).toBe(true);
+                expect(/^[0-9a-f-]{36}$/i.test(created.target)).toBe(true);
+                expect(created.tenant === own.tenantA.id && created.actor === own.adminA.id).toBe(true);
+                expect(created.expectedRevision).toBe("absent");
+                const createResponse = await createdRequest.response();
+                expect(createResponse?.ok()).toBe(true);
+                expect(await createResponse!.finished()).toBeNull();
+                const persisted = role
+                    ? await ordinary.from("work_roles").select("id,amount:sell_rate_ore").eq("tenant_id", own.tenantA.id).eq("display_name", label)
+                    : await ordinary.from("articles").select("id,amount:unit_price_ore").eq("tenant_id", own.tenantA.id).eq("name", label);
+                expect(persisted.error?.code ?? null).toBeNull();
+                expect(persisted.data?.length).toBe(1);
+                expect(persisted.data?.[0]?.id === created.target).toBe(true);
+                expect(persisted.data?.[0]?.amount).toBe(9900);
+
+                const createdRow = neighbor.getByRole("listitem").filter({ hasText: label });
+                await expect(createdRow).toHaveCount(1);
+                await expect(createdRow).toBeVisible();
+                await expect(neighbor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
                 await expect(row).toContainText("41,00");
                 await expect(editor.getByTestId("pricing-current-facts")).toContainText("41,00");
                 await expect(editor.getByLabel(spec.price)).toHaveValue("31,00");
@@ -945,8 +1010,9 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
                 await expect(editor.getByTestId("settings-saved")).not.toContainText("Aktuella uppgifter är bekräftade.");
                 expect(await historicalReceipt!.evaluate(element => element.isConnected)).toBe(true);
                 expect(await historicalReceipt!.textContent()).toContain("Nyare ändringar finns. Granska aktuella uppgifter.");
-                expect(laterActionRequests).toHaveLength(1);
-                expect(await operationIdOf(laterActionRequests[0])).not.toBe(historicalOperationId);
+                expect(laterActionRequests.length).toBe(1);
+                expect(laterActionRequests[0] === createdRequest).toBe(true);
+                expect(created.operation !== historicalOperationId).toBe(true);
                 await producerCapture(page, info, spec.surface, "current-newer", editor.getByTestId("pricing-current-facts"), "start");
                 await expect(editor.getByTestId("pricing-current-facts")).toBeInViewport();
                 await expect(editor.getByTestId("pricing-current-facts").getByText(/41,00/)).toBeVisible();
@@ -1665,25 +1731,16 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                     await assertPendingBranch();
                     const adopt = scope.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
                     const hasAdopt = await adopt.count(); expect(hasAdopt).toBeLessThanOrEqual(1);
+                    const pendingAnchor = hasAdopt ? adopt : pendingReceipt;
+                    const pendingFrame = hasAdopt ? [pendingReceipt, adopt] : [pendingReceipt];
                     for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
                         await page.setViewportSize(viewport);
-                        const pendingAnchor = hasAdopt ? adopt : pendingReceipt;
-                        await pendingAnchor.evaluate(element => {
-                            const main = element.closest("#main-content");
-                            const root = document.scrollingElement;
-                            if (!main || !root) throw new Error("Pending receipt capture requires the main and document scroll containers");
-                            element.scrollIntoView({ block: "start", behavior: "instant" });
-                            const mainInset = Math.min(8, main.scrollTop);
-                            main.scrollBy({ top: -mainInset, behavior: "instant" });
-                            root.scrollBy({ top: mainInset - 8, behavior: "instant" });
-                        });
-                        await expect(pendingReceipt).toBeInViewport({ ratio: 1 });
-                        if (hasAdopt) await expect(adopt).toBeInViewport({ ratio: 1 });
+                        await positionProducerFrame(page, pendingFrame);
+                        await expectProducerFrame(pendingFrame);
                         expect(heldReadTerminal).toBe(false);
                         await assertPendingBranch();
                         await producerCapture(page, info, spec.surface, "receipt-read-pending", pendingAnchor, "preserve");
-                        await expect(pendingReceipt).toBeInViewport({ ratio: 1 });
-                        if (hasAdopt) await expect(adopt).toBeInViewport({ ratio: 1 });
+                        await expectProducerFrame(pendingFrame);
                         expect(heldReadTerminal).toBe(false);
                         await assertPendingBranch();
                     }
@@ -1716,20 +1773,19 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                 expect(await historical!.evaluate(element => element.isConnected)).toBe(true);
                 // A committed receipt with a failed read has no unknown/conflict recovery controls.
                 await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
+                const unavailableFrame = [unavailable, scope.getByTestId("settings-saved")];
                 for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
                     await page.setViewportSize(viewport);
-                    const unavailableAlignment = spec.surface === "article" && viewport.width === 360 ? "center" : "start";
-                    await unavailable.evaluate((element, block: "center" | "start") => element.scrollIntoView({ block }), unavailableAlignment);
-                    await expect(unavailable).toBeInViewport({ ratio: 1 });
-                    await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
+                    await positionProducerFrame(page, unavailableFrame);
+                    await expectProducerFrame(unavailableFrame);
                     await assertDomain();
-                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, unavailableAlignment);
-                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, unavailableAlignment, {
+                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, "preserve");
+                    await expectProducerFrame(unavailableFrame);
+                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, "preserve", {
                         state: "read-error", mechanism: "real checked read failure with preserved historical receipt (P-E5)",
                     });
                     await assertDomain();
-                    await expect(scope.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
-                    await expect(unavailable).toBeInViewport({ ratio: 1 });
+                    await expectProducerFrame(unavailableFrame);
                     if (viewport.width === 360) {
                         await assertDomain();
                         await producerCapture(page, info, spec.surface, "read-unavailable-draft", scope.getByLabel(spec.name));
@@ -1816,22 +1872,23 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
         await expect(article.getByText(/Inga artiklar/)).toBeVisible();
         await expect(article.getByRole("button", { name: "Spara artikel" })).toBeDisabled();
         expect(await retainedReceipt!.evaluate(element => element.isConnected)).toBe(true);
+        const missingFacts = article.getByTestId("pricing-current-facts");
+        const missingFrame = [
+            missingFacts, article.getByTestId("settings-saved"),
+            article.getByRole("button", { name: "Använd aktuella uppgifter", exact: true }),
+            missingFacts.getByText("Ingen aktuell post finns.", { exact: true }),
+            article.getByText(/Inga artiklar/),
+        ];
         for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
             await page.setViewportSize(viewport);
-            const missingFacts = article.getByTestId("pricing-current-facts");
-            const adopt = article.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
-            await missingFacts.evaluate(element => element.scrollIntoView({ block: "start" }));
-            await expect(article.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
-            await expect(adopt).toBeInViewport({ ratio: 1 });
-            await expect(article.getByText("Ingen aktuell post finns.", { exact: true })).toBeInViewport({ ratio: 1 });
-            await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "start");
-            await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "start", {
+            await positionProducerFrame(page, missingFrame);
+            await expectProducerFrame(missingFrame);
+            await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "preserve");
+            await expectProducerFrame(missingFrame);
+            await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "preserve", {
                 state: "historical-target-missing", mechanism: "authorized reread after bounded test-owned row deletion (P-E5)",
             });
-            await expect(article.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
-            await expect(adopt).toBeInViewport({ ratio: 1 });
-            await expect(article.getByText("Ingen aktuell post finns.", { exact: true })).toBeInViewport({ ratio: 1 });
-            await expect(article.getByText(/Inga artiklar/)).toBeInViewport({ ratio: 1 });
+            await expectProducerFrame(missingFrame);
             if (viewport.width === 360) {
                 await producerCapture(page, info, "article", "current-missing-draft", article.getByLabel("Enhetspris (kr)"));
                 await expect(article.getByLabel("Enhetspris (kr)")).toBeInViewport({ ratio: 1 });
