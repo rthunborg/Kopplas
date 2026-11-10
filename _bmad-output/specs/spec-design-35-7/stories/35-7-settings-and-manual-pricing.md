@@ -128,7 +128,7 @@ Release `E35-7-REL-1` visual/device/composite contrast/reflow: UI owner; `REL-2`
 
 ## Suggested Review Order
 
-Author: Story 35.7 implementation delegate (gpt-6.1-sol, High).
+The Story 35.7 implementation delegate (gpt-6.1-sol, High) wrote this trail.
 Refreshed against the allocated presentation candidate on the Phase 5 baseline `0dd0c4e03ba51b22d55cfa63562ef440a84f725b`.
 
 ### Connected settings and manual pricing
@@ -160,7 +160,7 @@ AC1 and AC4 use the company VAT correction and the existing save/approve browser
 - `tests/e2e/pricing/pricing.e2e.spec.ts:248` — `E35-7 ATDD phone row edits` checks keyboard, touch target, draft retention and row identity.
 - `tests/unit/features/settings/mutation-attempt.test.ts:146` — `R1-3 actual pricing page/editor` checks unavailable presentation with a synthetic reader and receipt.
 
-Local evidence: `npm run typecheck`, ESLint for the changed TS/TSX paths, `npm run verify:lockfiles`, `npm run verify:service-role-containment`, and the focused settings/pricing unit command passed. The focused command used Node's test runner with the repository import register for both feature unit directories and three settings/pricing validator files. It executed 179 tests with zero failures or skips. The hosted red checkpoint at `c57a7054` recorded three expected failures and 104 other first-attempt passes. That run predates this implementation.
+On the product revision `70b32329ee8e8c7e59ce2756ced862b11ba45c4c`, the local production build, typecheck, ESLint for changed TS/TSX paths, lockfiles, service-role containment, and built-bundle containment passed. The focused settings/pricing unit command used Node's test runner with the repository import register for both feature unit directories and three settings/pricing validator files. It executed 179 tests with zero failures or skips. The hosted red checkpoint at `c57a7054` recorded three expected failures and 104 other first-attempt passes. That run predates this implementation.
 
 Current candidate evidence still needs the hosted production-server browser and required database/RLS/recovery lanes, independent review, and revision-bound visual acceptance. The browser tests and browser support for cancellable traversal remain to be verified. The guard retains suitable input and attempts in the mounted form. Hard reload, tab closure or crash can lose them. Synthetic static renders do not exercise authorized database reads or navigation. E35-7-REL-1 remains with the UI owner for wider device and contrast review, REL-2 with QA/accessibility for manual checks, and REL-3 with the Coordinator for Phase B consolidation. Those obligations are deferred and `release_ready=false`.
 
