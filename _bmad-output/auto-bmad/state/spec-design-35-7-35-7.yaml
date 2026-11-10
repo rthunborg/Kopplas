@@ -9,27 +9,28 @@ spec_folder: "_bmad-output/specs/spec-design-35-7"
 story_id: 35-7
 branch: codex/story-35-7-settings-manual-pricing
 status: in-progress
-updated_at: "2026-11-10T07:51:59Z"
+updated_at: "2026-11-10T07:52:14Z"
 started_at: "2026-11-09T20:54:57Z"
 completed_at: null
 active_seconds: 1
-timing_anchor: null
+timing_anchor: 1794297134
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: tea_per_story
-selected_role: tea-delegate
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Owned scenarios exercise tenant authority, persisted manual pricing, audit and transaction reconciliation."
+escalation_reason: "Presentation must preserve actual tenant authority, integer prices, immutable transaction recovery and locked revisions."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Owned scenarios exercise tenant authority, persisted manual pricing, audit and transaction reconciliation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Presentation must preserve actual tenant authority, integer prices, immutable transaction recovery and locked revisions.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Persisted manual prices and hard-to-reproduce ambiguous, stale, revoked and late-operation outcomes require pre- and post-development tests."
