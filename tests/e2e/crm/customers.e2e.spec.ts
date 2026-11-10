@@ -774,8 +774,46 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await page.getByRole("link", {name:fixture.crm.company.displayName,exact:true}).click();
       await expect(page).toHaveURL(new RegExp(`/customers/${fixture.crm.company.id}$`));
       if (traversal === "forward") {
+        const detailUrl = page.url();
+        const listUrl = new URL("/customers", detailUrl).href;
+        const heading = page.getByRole("heading", { name: fixture.crm.company.displayName, exact: true });
+        const edit = page.getByTestId("edit-customer-button");
+        const historyEntry = () => page.evaluate(() => {
+          const { navigation } = window as unknown as {
+            navigation: { currentEntry: NavigationHistoryEntry; entries(): NavigationHistoryEntry[] };
+          };
+          const current = navigation.currentEntry;
+          const forward = navigation.entries()[current.index + 1];
+          return {
+            key: current.key,
+            forward: forward ? { key: forward.key, url: forward.url, sameDocument: forward.sameDocument } : null,
+          };
+        });
+        await expect(heading).toBeVisible();
+        await waitForHydrated(edit);
+        const detail = await historyEntry();
+        expect(detail.key).toBeTruthy();
+
         await openPhoneNavigation(page);
-        await page.getByRole("link", {name:"Kunder",exact:true}).click(); await page.goBack();
+        const customers = page.getByRole("link", { name: "Kunder", exact: true });
+        await waitForHydrated(customers);
+        await customers.click();
+        await expect(page).toHaveURL(listUrl);
+        const list = page.getByRole("table", { name: "Kundlista" });
+        await expect(list.getByRole("link", { name: fixture.crm.company.displayName, exact: true })).toBeVisible();
+        await expect(edit).toHaveCount(0);
+        const listEntry = await historyEntry();
+        expect(listEntry.key).toBeTruthy();
+        expect(listEntry.key).not.toBe(detail.key);
+
+        await page.goBack();
+        await expect(page).toHaveURL(detailUrl);
+        await expect(heading).toBeVisible();
+        await waitForHydrated(edit);
+        expect(await historyEntry()).toEqual({
+          key: detail.key,
+          forward: { key: listEntry.key, url: listUrl, sameDocument: true },
+        });
       }
       const editor = await openCustomerEditor(page, fixture.crm.company.id, false);
       await editor.getByLabel("Ort").fill("Unsent 35.3 draft");
