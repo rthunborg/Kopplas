@@ -34,7 +34,7 @@ export default function CompanySettingsPage() {
         >
           ← Inställningar
         </Link>
-        <h1 className="text-title font-semibold text-text-primary">
+        <h1 className="text-title font-semibold text-text-primary wrap-anywhere">
           Företagsinställningar
         </h1>
         <p className="text-label text-text-secondary">

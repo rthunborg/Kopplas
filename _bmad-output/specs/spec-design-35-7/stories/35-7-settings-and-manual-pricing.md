@@ -135,6 +135,7 @@ The Story 35.7 implementation delegate (gpt-6.1-sol, High) refreshed this trail 
 The existing hub links to the three authorized pages. The readers disclose loading and unavailable data separately from authorized absence. Pricing gives fast reads 120 ms to finish before showing a loading label, then renders the same in-flight results in the same editor tree.
 
 - `src/app/(app)/settings/page.tsx:35` — `SettingsPage` introduces the three settings destinations.
+- `src/app/(app)/settings/company/page.tsx:37` — `wrap-anywhere` lets the long company heading wrap at 200% text enlargement.
 - `src/app/(app)/settings/pricing/page.tsx:33` — `PricingSettingsPage` starts each checked reader once and bounds the loading delay.
 - `src/components/settings/CompanySettingsForm.tsx:86` — `company-empty-defaults` labels the VAT suggestion only for established absence.
 - `src/components/pricing/ArticlesEditor.tsx:56` — `visibleActive` filters only rows returned by the authorized article read.
@@ -170,13 +171,15 @@ AC1 and AC4 use the VAT correction and terms save/approve journeys. AC2 and AC3 
 
 - `tests/e2e/settings/settings.e2e.spec.ts:210` — `E35-7 ATDD company validation` checks authorized absence, associated VAT errors and corrected persistence.
 - `tests/e2e/settings/settings.e2e.spec.ts:251` — `E35-7 cancels a settings link and Back` checks raw whitespace and unchanged history.
-- `tests/e2e/settings/settings.e2e.spec.ts:300` — `E35-7 hides company write controls` checks revocation and zero company/audit mutations.
+- `tests/e2e/settings/settings.e2e.spec.ts:321` — `E35-7 hides company write controls` checks revocation and zero company/audit mutations.
 - `tests/e2e/pricing/pricing.e2e.spec.ts:248` — `E35-7 ATDD phone row edits` checks row identity, offline retention and a single departure confirmation.
-- `tests/e2e/pricing/pricing.e2e.spec.ts:536` — `assertProducerPendingRead` checks locked inputs and separates the receipt from company absence.
+- `tests/e2e/pricing/pricing.e2e.spec.ts:595` — `assertProducerPendingRead` checks locked inputs and separates the receipt from company absence.
 
 The Round 2 candidate passed typecheck, changed-file ESLint and the production build. The emitted CSS contains the scoped 1 px borders with the compiled `n-600` color. Token calculations give 7.18:1 against white and 6.59:1 against sunken or selected. These calculations and the built CSS still need rendered verification. Node's test runner with the repository import register executed 179 focused settings/pricing tests with zero failures or skips. This includes four synthetic failed-read presentation checks in `tests/unit/features/settings/mutation-attempt.test.ts:146`. The hosted red checkpoint at `c57a7054` recorded three expected failures and 104 other first-attempt passes before implementation.
 
-The updated browser assertions await hosted execution. Delayed route reads, Forward, archived search, a second editor during a pending attempt, and enlarged-text reflow remain planned Phase 6 checks. Hosted database/RLS and recovery evidence, targeted independent review, and revision-bound visual acceptance remain pending. The settings guard covers local form choices, links and supported cancellable traversal. Shared shell logout and browser traversal without cancellation support remain outside that guard. Drafts and attempts live in the mounted form, so hard reload, closure or crash can lose them. Synthetic renders supply neither authorized database nor navigation evidence. E35-7-REL-1 remains with the UI owner for wider device and contrast review, REL-2 with QA/accessibility for manual checks, and REL-3 with the Coordinator for Phase B consolidation. These obligations remain deferred and `release_ready=false`.
+On the targeted company-heading fix based on `d871bfd7563ba0e3c043964bb4fb6d3e5df0c1cd`, scoped ESLint, the production build and typecheck passed. The built stylesheet emits `overflow-wrap: anywhere` for the utility used by the company heading. The `E35-7 connected settings journey` test checks page and content overflow at 200% text size. That rendered result still needs hosted verification.
+
+The updated browser assertions await hosted execution. Phase 6 tracks delayed route reads, Forward, archived search, a second editor during a pending attempt, and enlarged-text reflow. Hosted database/RLS and recovery evidence, targeted independent review, and revision-bound visual acceptance remain pending. The settings guard covers local form choices, links and supported cancellable traversal. Shared shell logout and browser traversal without cancellation support remain outside that guard. Drafts and attempts live in the mounted form, so hard reload, closure or crash can lose them. Synthetic renders supply neither authorized database nor navigation evidence. E35-7-REL-1 remains with the UI owner for wider device and contrast review, REL-2 with QA/accessibility for manual checks, and REL-3 with the Coordinator for Phase B consolidation. These obligations remain deferred and `release_ready=false`.
 
 ## Dev Agent Record
 
