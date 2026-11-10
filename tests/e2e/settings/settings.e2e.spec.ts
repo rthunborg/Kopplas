@@ -201,6 +201,46 @@ import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
 import { createTwoTenantFixture, cleanupFixture } from "../../factories/tenants";
+
+test("E35-7 ATDD company validation links to the invalid VAT field on a phone", async ({ page }) => {
+    const own = await createTwoTenantFixture();
+    try {
+        await page.setViewportSize({ width: 360, height: 640 });
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings");
+        await page.getByRole("link", { name: /^Företagsinställningar/ }).click();
+        await expect(page).toHaveURL(/\/settings\/company$/);
+        const name = page.getByLabel("Företagsnamn");
+        await waitForHydrated(name);
+        const save = page.getByRole("button", { name: "Spara", exact: true });
+        const draft = "Kopplas Provbolag AB";
+        await name.fill(draft);
+        const vat = page.getByLabel("Momssats");
+        await vat.fill("250");
+        await save.click();
+        await expect(vat).toHaveAttribute("aria-invalid", "true");
+        await expect(vat).toHaveAccessibleDescription(/.+/);
+        await expect(name).toHaveValue(draft);
+        await expect(vat).toHaveValue("250");
+        await expect(page.getByTestId("settings-saved")).toHaveCount(0);
+
+        const errorLink = page.getByTestId("form-error-summary").getByRole("link", { name: /moms/i });
+        await expect(errorLink).toBeVisible();
+        await errorLink.press("Enter");
+        await expect(vat).toBeFocused();
+        await expect(vat).toBeInViewport();
+
+        await vat.fill("25");
+        await save.click();
+        await expect(page.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        await page.reload();
+        await expect(name).toHaveValue(draft);
+        await expect(vat).toHaveValue("25");
+    } finally {
+        await cleanupFixture(own);
+    }
+});
+
 async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
     for (const name of names) {
         const control = scope.getByRole("button", { name, exact: true });

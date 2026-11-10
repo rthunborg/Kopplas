@@ -207,8 +207,100 @@ import { mkdir, writeFile, open, stat, realpath } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
-import { createTwoTenantFixture, cleanupFixture, makeAuthedServerClient } from "../../factories/tenants";
+import { adminInsertArticle, adminInsertWorkRole, createTwoTenantFixture, cleanupFixture, makeAuthedServerClient } from "../../factories/tenants";
 import { canonicalTermsEqual } from "@/features/settings/mutation-attempt";
+
+test("E35-7 ATDD no-match retains the article query and restores the authorized row", async ({ page }) => {
+    const own = await createTwoTenantFixture();
+    try {
+        const name = "Jordfelsbrytare";
+        await adminInsertArticle({ tenant_id: own.tenantA.id, name, unit_price_ore: 1250 });
+        await adminInsertArticle({ tenant_id: own.tenantB.id, name: "Jordfelsbrytare annan verksamhet" });
+        await page.setViewportSize({ width: 360, height: 640 });
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings/pricing");
+
+        const editor = page.getByTestId("articles-editor");
+        const row = editor.getByRole("listitem").filter({ hasText: name });
+        await waitForHydrated(row.getByRole("button", { name: "Redigera", exact: true }));
+        await expect(row).toHaveCount(1);
+        await expect(row).toContainText("12,50 kr");
+        const search = editor.getByLabel(/sök/i);
+        await expect(search).toBeVisible();
+        await search.fill("Kopplingsdosa");
+        const noMatch = editor.getByText(/inga matchningar|inga träffar|inga artiklar matchar/i);
+        await expect(noMatch).toBeVisible();
+        await expect(search).toHaveValue("Kopplingsdosa");
+        await expect(row).toHaveCount(0);
+        await expect(editor.getByText(/Inga artiklar ännu/)).toHaveCount(0);
+
+        await search.clear();
+        await expect(noMatch).toHaveCount(0);
+        await expect(row).toHaveCount(1);
+        await expect(row).toContainText("12,50 kr");
+        await expect(editor.getByText("Jordfelsbrytare annan verksamhet")).toHaveCount(0);
+    } finally {
+        await cleanupFixture(own);
+    }
+});
+
+test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pricing identities", async ({ page }) => {
+    const own = await createTwoTenantFixture();
+    try {
+        const roleName = "Installationstekniker";
+        const articleName = "Kopplingsdosa";
+        const roleId = await adminInsertWorkRole({ tenant_id: own.tenantA.id, display_name: roleName, sell_rate_ore: 85000 });
+        const articleId = await adminInsertArticle({ tenant_id: own.tenantA.id, name: articleName, unit_price_ore: 1250 });
+        await page.setViewportSize({ width: 360, height: 640 });
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings/pricing");
+
+        const role = page.getByTestId("work-roles-editor");
+        const article = page.getByTestId("articles-editor");
+        const roleRow = role.getByRole("listitem").filter({ hasText: roleName });
+        const articleRow = article.getByRole("listitem").filter({ hasText: articleName });
+        await waitForHydrated(roleRow.getByRole("button", { name: "Redigera", exact: true }));
+        for (const [row, displayed] of [[roleRow, "850,00 kr/tim"], [articleRow, "12,50 kr"]] as const) {
+            await expect(row).toHaveCount(1);
+            const amount = row.getByText(displayed, { exact: true });
+            await expect(amount).toBeVisible();
+            const edit = row.getByRole("button", { name: "Redigera", exact: true });
+            const size = await edit.evaluate(element => {
+                const { width, height } = element.getBoundingClientRect();
+                return { width, height };
+            });
+            expect(Math.min(size.width, size.height), `${displayed} row edit target`).toBeGreaterThanOrEqual(44);
+            await expect(amount).toHaveCSS("font-variant-numeric", /tabular-nums/);
+        }
+
+        await roleRow.getByRole("button", { name: "Redigera", exact: true }).press("Enter");
+        const rate = role.getByLabel("Pris (kr/tim)");
+        await expect(rate).toHaveValue("850,00");
+        await rate.fill("875,25");
+        await role.getByRole("button", { name: "Spara roll", exact: true }).click();
+        await expect(roleRow).toContainText("875,25 kr/tim");
+
+        await articleRow.getByRole("button", { name: "Redigera", exact: true }).click();
+        const price = article.getByLabel("Enhetspris (kr)");
+        await expect(price).toHaveValue("12,50");
+        await price.fill("14,75");
+        await article.getByLabel("Enhet", { exact: true }).fill("st");
+        await article.getByRole("button", { name: "Spara artikel", exact: true }).click();
+        await expect(articleRow).toContainText("14,75 kr");
+        await expect(articleRow).toContainText(/\bst\b/);
+
+        const client = await makeAuthedServerClient(own.adminA);
+        const roles = await client.from("work_roles").select("id, sell_rate_ore").eq("tenant_id", own.tenantA.id);
+        const articles = await client.from("articles").select("id, unit_price_ore, unit").eq("tenant_id", own.tenantA.id);
+        expect(roles.error).toBeNull();
+        expect(articles.error).toBeNull();
+        expect(roles.data).toEqual([{ id: roleId, sell_rate_ore: 87525 }]);
+        expect(articles.data).toEqual([{ id: articleId, unit_price_ore: 1475, unit: "st" }]);
+    } finally {
+        await cleanupFixture(own);
+    }
+});
+
 async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
     for (const name of names) {
         const control = scope.getByRole("button", { name, exact: true });

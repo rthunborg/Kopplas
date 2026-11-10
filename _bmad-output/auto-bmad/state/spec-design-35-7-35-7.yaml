@@ -9,11 +9,11 @@ spec_folder: "_bmad-output/specs/spec-design-35-7"
 story_id: 35-7
 branch: codex/story-35-7-settings-manual-pricing
 status: in-progress
-updated_at: "2026-11-09T20:55:08Z"
+updated_at: "2026-11-10T07:51:59Z"
 started_at: "2026-11-09T20:54:57Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1794257708
+active_seconds: 1
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -35,7 +35,7 @@ tea_selected: [atdd, automate]
 tea_rationale: "Persisted manual prices and hard-to-reproduce ambiguous, stale, revoked and late-operation outcomes require pre- and post-development tests."
 epic_story_count: 1
 stories_after_in_epic: 0
-completed_phases: [0, 1]
+completed_phases: [0, 1, 4]
 spec_path: "_bmad-output/specs/spec-design-35-7/stories/35-7-settings-and-manual-pricing.md"
 spec_approved: true
 build:
@@ -84,5 +84,6 @@ blockers: []
 overrides:
   scoped_story_tea: "atdd, automate"
   provider_actions: coordinator custody
+  phase_4_timing: "Recovered stale timing anchor after hosted CI and chat interruption; original active effort unknown."
 constraints: []
 parallel_run_id: e35-7-presentation-20261109
