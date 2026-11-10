@@ -17,7 +17,7 @@
  * signalling. Mirrors the Story 3.3 settings form a11y.
  */
 import { sameDraftBaseline, currentTargetStatus, type EditorOperationContext } from "@/features/settings/mutation-attempt";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { AttemptRecovery, useMountedSettingsPricingAttempt } from "@/components/settings/CompanySettingsForm";
 import { FormErrorSummary, TextField } from "@/components/crm/FormField";
 import { saveWorkRoleAction, archiveWorkRoleAction, reactivateWorkRoleAction, } from "@/features/pricing/actions";
@@ -39,7 +39,13 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
     const [draftVersion, setDraftVersion] = useState(0);
     const [hadAuthorizedRead, setHadAuthorizedRead] = useState(!readError);
     if (!readError && !hadAuthorizedRead) setHadAuthorizedRead(true);
-    const firstField = useRef<HTMLInputElement>(null);
+    const focusOnMount = useRef(false);
+    const firstField = useCallback((field: HTMLInputElement | null) => {
+        if (field && focusOnMount.current) {
+            focusOnMount.current = false;
+            field.focus();
+        }
+    }, []);
 
     const currentSelected = [...workRoles, ...archivedWorkRoles].find(row => row.id === selected?.id);
     const confirmsSelectedWrite = !operation.dirty && operation.hasCurrentRead && !readError && currentSelected
@@ -66,9 +72,9 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
     function choose(next: typeof selected, adoptCurrent = false) {
         if (operation.blocked || operation.awaitingCurrentRead || (!adoptCurrent && !operation.allowReplacement())) return;
         operation.reset();
+        focusOnMount.current = !adoptCurrent;
         setSelected(next);
         setDraftVersion(version => version + 1);
-        if (!adoptCurrent) requestAnimationFrame(() => firstField.current?.focus());
     }
 
     function submitLifecycle(origin: HTMLFormElement, reactivate: boolean) {
@@ -128,7 +134,7 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
                     {role.display_name}
                   </span>
                   <span className="text-label tabular-nums text-text-secondary">
-                    {oreToKronorString(role.sell_rate_ore)} kr/tim
+                    {`${oreToKronorString(role.sell_rate_ore)} kr/tim`}
                   </span>
                   {selected?.id === role.id && <span className="text-label font-medium text-text-primary">Vald för redigering</span>}
                 </div>
@@ -210,7 +216,7 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
                         {role.display_name}
                       </span>
                       <span className="text-label tabular-nums text-text-secondary">
-                        {oreToKronorString(role.sell_rate_ore)} kr/tim
+                        {`${oreToKronorString(role.sell_rate_ore)} kr/tim`}
                       </span>
                       {selected?.id === role.id && <span className="text-label font-medium text-text-primary">Vald för redigering</span>}
                     </div>

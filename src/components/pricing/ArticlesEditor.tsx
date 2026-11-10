@@ -18,13 +18,27 @@
  * signalling.
  */
 import { sameDraftBaseline, currentTargetStatus, type EditorOperationContext } from "@/features/settings/mutation-attempt";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { AttemptRecovery, useMountedSettingsPricingAttempt } from "@/components/settings/CompanySettingsForm";
 import { FormErrorSummary, TextField } from "@/components/crm/FormField";
 import { saveArticleAction, archiveArticleAction, reactivateArticleAction, } from "@/features/pricing/actions";
 import { PRICING_ACTION_INITIAL } from "@/features/pricing/action-state";
 import { oreToKronorString } from "@/features/pricing/money-display";
 import type { RevisionedArticleRow } from "@/features/pricing/read";
+
+function articleFields(row: RevisionedArticleRow | null) {
+    return {
+        name: row?.name ?? "",
+        sku: row?.sku ?? "",
+        unit: row?.unit ?? "",
+        unit_price_kronor: row ? oreToKronorString(row.unit_price_ore) : "",
+    };
+}
+
+function seedArticleDraft(row: RevisionedArticleRow | null) {
+    return { selected: row, fields: articleFields(row) };
+}
+
 export function ArticlesEditor({ operationContext, readToken, readError, articles, archivedArticles = [], }: {
     readonly operationContext: EditorOperationContext | null;
     readonly readToken: string;
@@ -33,21 +47,38 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
     readonly archivedArticles?: readonly RevisionedArticleRow[];
 }) {
     const operation = useMountedSettingsPricingAttempt(PRICING_ACTION_INITIAL, operationContext, readToken);
-    const { state, pending } = operation;
-    const [selected, setSelected] = useState<RevisionedArticleRow | null>(null);
+    const { state, pending, setDirty } = operation;
+    const [draft, setDraft] = useState(() => seedArticleDraft(null));
+    const { selected, fields } = draft;
     const [query, setQuery] = useState("");
     const [showArchived, setShowArchived] = useState(false);
-    const [draftVersion, setDraftVersion] = useState(0);
     const [hadAuthorizedRead, setHadAuthorizedRead] = useState(!readError);
     if (!readError && !hadAuthorizedRead) setHadAuthorizedRead(true);
     const firstField = useRef<HTMLInputElement>(null);
+    const capturedInitialInput = useRef(false);
+    const captureInitialInput = useCallback((form: HTMLFormElement | null) => {
+        if (!form || capturedInitialInput.current) return;
+        capturedInitialInput.current = true;
+        // The browser can receive input before React attaches to the server-rendered form.
+        const data = new FormData(form);
+        const initialFields = {
+            name: String(data.get("name") ?? ""),
+            sku: String(data.get("sku") ?? ""),
+            unit: String(data.get("unit") ?? ""),
+            unit_price_kronor: String(data.get("unit_price_kronor") ?? ""),
+        };
+        if (Object.values(initialFields).some(Boolean)) {
+            setDraft({ selected: null, fields: initialFields });
+            setDirty(true);
+        }
+    }, [setDirty]);
 
     const currentSelected = [...articles, ...archivedArticles].find(row => row.id === selected?.id);
     const confirmsSelectedWrite = !operation.dirty && operation.hasCurrentRead && !readError && currentSelected
         && currentSelected.id === state.targetId && currentSelected.write_revision === state.committedRevision
         && operation.kind === "article.update";
     if (confirmsSelectedWrite && selected && !sameDraftBaseline(selected, currentSelected)) {
-        setSelected(currentSelected);
+        setDraft(seedArticleDraft(currentSelected));
     }
     const baselineChanged = !readError && selected !== null && (!currentSelected || !sameDraftBaseline(selected, currentSelected));
     const currentStatus = currentTargetStatus(operation.hasCurrentRead, readError, [...articles, ...archivedArticles], state.targetId, state.committedRevision);
@@ -64,12 +95,19 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
     const lifecycleFeedbackId = "article-lifecycle-feedback";
     const fieldErrors = isSave ? state.fieldErrors : {};
 
+    function changeField(name: keyof typeof fields, value: string) {
+        const next = { ...fields, [name]: value };
+        const baseline = articleFields(selected);
+        setDraft({ selected, fields: next });
+        operation.setDirty(next.name !== baseline.name || next.sku !== baseline.sku
+            || next.unit !== baseline.unit || next.unit_price_kronor !== baseline.unit_price_kronor);
+    }
+
     function choose(next: typeof selected, adoptCurrent = false) {
         if (operation.blocked || operation.awaitingCurrentRead || (!adoptCurrent && !operation.allowReplacement())) return;
         operation.reset();
-        setSelected(next);
-        setDraftVersion(version => version + 1);
-        if (!adoptCurrent) requestAnimationFrame(() => firstField.current?.focus());
+        setDraft(seedArticleDraft(next));
+        if (!adoptCurrent) firstField.current?.focus();
     }
 
     function submitLifecycle(origin: HTMLFormElement, reactivate: boolean) {
@@ -80,8 +118,7 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
             confirm: operation.allowReplacement,
             onStart: () => {
                 if (!operation.dirty) return;
-                setSelected(null);
-                setDraftVersion(version => version + 1);
+                setDraft(seedArticleDraft(null));
                 operation.setDirty(false);
             },
         });
@@ -163,19 +200,19 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
           })}
         </ul>)}
 
-      <form onChange={event => operation.trackDraft(event.currentTarget)} onSubmit={event => { event.preventDefault(); void formAction(event.currentTarget); }} className="flex min-w-0 max-w-xl flex-col gap-4" noValidate>
+      <form ref={captureInitialInput} onSubmit={event => { event.preventDefault(); void formAction(event.currentTarget); }} className="flex min-w-0 max-w-xl flex-col gap-4" noValidate>
         {selected && <input type="hidden" name="id" value={selected.id}/>}
         <h3 className="text-body font-medium text-text-primary wrap-anywhere">{selected ? "Redigera artikel" : "Ny artikel"}</h3>
         <FormErrorSummary message={isSave ? state.formError : null} fieldErrors={fieldErrors}/>
         {operation.dirty && !operation.blocked && <p role="status" className="text-label text-text-secondary">Osparade ändringar.</p>}
 
-        <div key={`${selected?.id ?? "new"}:${selected?.write_revision ?? "absent"}:${draftVersion}`} className="contents [&_input[type=text]]:border [&_input[type=text]]:border-n-600">
-        <TextField inputRef={firstField} name="name" label="Artikelnamn" required defaultValue={selected?.name ?? ""} error={fieldErrors.name}/>
+        <div className="contents [&_input[type=text]]:border [&_input[type=text]]:border-n-600">
+        <TextField inputRef={firstField} name="name" label="Artikelnamn" required value={fields.name} onChange={value => changeField("name", value)} error={fieldErrors.name}/>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <TextField name="sku" label="Artikelnummer" defaultValue={selected?.sku ?? ""}/>
-          <TextField name="unit" label="Enhet" defaultValue={selected?.unit ?? ""}/>
+          <TextField name="sku" label="Artikelnummer" value={fields.sku} onChange={value => changeField("sku", value)}/>
+          <TextField name="unit" label="Enhet" value={fields.unit} onChange={value => changeField("unit", value)}/>
         </div>
-        <TextField name="unit_price_kronor" label="Enhetspris (kr)" required defaultValue={selected ? oreToKronorString(selected.unit_price_ore) : ""} error={fieldErrors.unit_price_kronor}/>
+        <TextField name="unit_price_kronor" label="Enhetspris (kr)" required value={fields.unit_price_kronor} onChange={value => changeField("unit_price_kronor", value)} error={fieldErrors.unit_price_kronor}/>
         <p className="text-label text-text-tertiary">
           Anges i kronor (t.ex. 12,50). Lagras som heltal i öre. Manuella material –
           ingen leverantörsintegration.

@@ -181,6 +181,7 @@ test.describe("Pricing UI — Work roles + Articles (Story 3.4 E2E)", () => {
     const archived = editor.getByTestId("work-roles-archived");
     const archivedRow = archived.locator("li", { hasText: roleName });
     await expect(archivedRow).toHaveCount(1);
+    await expectRoleRate(archivedRow, "500,00");
 
     // REACTIVATE it — the SAME row returns to the active list (un-archived, not re-created).
     await archivedRow.getByRole("button", { name: "Återaktivera" }).click();
@@ -530,7 +531,10 @@ function producerReadSettlement(hold: { releaseHeld: () => Promise<void>; dispos
         return result!;
     })();
 }
-async function holdNextProducerTransport(page: Page, routePath: string, transport: "action" | "refresh", onHeld?: (request: BrowserRequest) => void) {
+async function holdNextProducerTransport(
+    page: Page, routePath: string, transport: "action" | "refresh",
+    onHeld?: (request: BrowserRequest) => void, selectRefresh?: (request: BrowserRequest) => boolean,
+) {
     let release!: () => void, arrived!: () => void, settled!: () => void;
     const gate = new Promise<void>(r => { release = r; });
     const seen = new Promise<void>(r => { arrived = r; });
@@ -540,7 +544,7 @@ async function holdNextProducerTransport(page: Page, routePath: string, transpor
     const handler = async (route: import("@playwright/test").Route) => {
         const request = route.request();
         const matches = transport === "action" ? request.method() === "POST" && Boolean(request.headers()["next-action"])
-            : request.method() === "GET" && request.headers()["rsc"] === "1";
+            : request.method() === "GET" && request.headers()["rsc"] === "1" && (selectRefresh?.(request) ?? true);
         if (held || !matches) { await route.fallback(); return; }
         held = true;
         heldRequest = request;
@@ -848,6 +852,111 @@ async function captureStalePricingFrame(
     await expectProducerFrame(anchors);
 }
 
+function isPricingAction(request: BrowserRequest) {
+    return new URL(request.url()).pathname === "/settings/pricing" && request.method() === "POST" && Boolean(request.headers()["next-action"]);
+}
+
+function isPricingRefresh(request: BrowserRequest) {
+    const headers = request.headers();
+    return new URL(request.url()).pathname === "/settings/pricing" && request.method() === "GET" && headers.rsc === "1"
+        && headers["next-router-prefetch"] === undefined && headers["next-router-segment-prefetch"] === undefined
+        && !headers.purpose?.includes("prefetch") && !headers["sec-purpose"]?.includes("prefetch");
+}
+
+async function fillBeforePricingHydration(page: Page, label: string) {
+    const script = (url: URL) => url.pathname.startsWith("/_next/static/") && url.pathname.endsWith(".js");
+    const article = page.getByTestId("articles-editor");
+    const name = article.getByRole("textbox", { name: "Artikelnamn", exact: true });
+    const sku = article.getByRole("textbox", { name: "Artikelnummer", exact: true });
+    const unit = article.getByRole("textbox", { name: "Enhet", exact: true });
+    const price = article.getByRole("textbox", { name: "Enhetspris (kr)", exact: true });
+    const fields = [[name, label], [sku, "  pre-hydration-01"], [unit, "m"], [price, " 7,5 "]] as const;
+    let release!: () => void;
+    let held = 0;
+    const gate = new Promise<void>(resolve => { release = resolve; });
+    const handler = async (route: import("@playwright/test").Route) => {
+        held++;
+        await gate;
+        await route.fallback();
+    };
+    await page.route(script, handler);
+    try {
+        await page.goto("/settings/pricing", { waitUntil: "commit" });
+        for (const [field, value] of fields) await field.fill(value);
+        expect(held).toBeGreaterThan(0);
+        for (const [field, value] of fields) {
+            expect(await field.evaluate(element => Object.keys(element).some(key => key.startsWith("__react")))).toBe(false);
+            await expect(field).toHaveValue(value);
+        }
+    } finally {
+        release();
+        await page.unroute(script, handler);
+    }
+    await expect(article.getByText("Osparade ändringar.", { exact: true })).toBeVisible();
+    for (const [field, value] of fields) await expect(field).toHaveValue(value);
+    await sku.fill("");
+    await unit.fill("");
+    await expect(sku).toHaveValue("");
+    await expect(unit).toHaveValue("");
+    await expect(name).toHaveValue(label);
+}
+
+function waitForPricingCreateRequest(page: Page, role: boolean, label: string, price: string) {
+    return page.waitForRequest(async request => {
+        if (!isPricingAction(request) || !request.headers()["content-type"]?.startsWith("multipart/form-data") || !request.postDataBuffer()) return false;
+        const form = await producerActionForm(request).catch(() => null);
+        if (!form) return false;
+        const values = (name: string) => [...form].filter(([key]) => key === name || key.endsWith(`_${name}`)).map(([, value]) => value);
+        const hasOne = (name: string, value: string) => {
+            const entries = values(name);
+            return entries.length === 1 && entries[0] === value;
+        };
+        return values("id").length === 0 && hasOne("expectedRevision", "absent")
+            && hasOne(role ? "display_name" : "name", label)
+            && hasOne(role ? "sell_rate_kronor" : "unit_price_kronor", price);
+    }, { timeout: 15_000 });
+}
+
+async function expectRoleRate(row: Locator, rate: string) {
+    const amount = row.getByText(/kr\/tim/);
+    const expected = `${rate} kr/tim`;
+    await expect(amount).toHaveText([expected]);
+    await expect.poll(() => amount.evaluate(element => Array.from(element.childNodes, node => [node.nodeType, node.textContent])))
+        .toEqual([[3, expected]]);
+}
+
+async function expectStoredPricingRow(
+    client: Awaited<ReturnType<typeof makeAuthedServerClient>>,
+    tenantId: string, targetId: string, role: boolean, label: string, amount: number,
+) {
+    const stored = role
+        ? await client.from("work_roles").select("id,write_revision,name:display_name,amount:sell_rate_ore").eq("tenant_id", tenantId).eq("id", targetId).single()
+        : await client.from("articles").select("id,write_revision,name,amount:unit_price_ore").eq("tenant_id", tenantId).eq("id", targetId).single();
+    expect(stored.error?.code ?? null).toBeNull();
+    expect(stored.data).toMatchObject({ id: targetId, name: label, amount });
+    return stored.data!;
+}
+
+async function expectPricingCommit(
+    client: Awaited<ReturnType<typeof makeAuthedServerClient>>,
+    owner: Awaited<ReturnType<typeof createTwoTenantFixture>>,
+    facts: Awaited<ReturnType<typeof producerCapturedFacts>>,
+    kind: "article.update" | "work_role.update", label: string, amount: number,
+) {
+    expect(facts.tenant === owner.tenantA.id && facts.actor === owner.adminA.id).toBe(true);
+    const role = kind === "work_role.update";
+    const stored = await expectStoredPricingRow(client, owner.tenantA.id, facts.target, role, label, amount);
+    const receipt = await client.rpc("reconcile_settings_pricing_operation", {
+        p_tenant_id: facts.tenant, p_actor_user_id: facts.actor, p_operation_id: facts.operation,
+        p_correlation_id: facts.operation, p_target_id: facts.target, p_operation_kind: kind,
+        p_expected_revision: facts.expectedRevision === "absent" ? null : facts.expectedRevision,
+        p_payload: role ? { display_name: label, cost_rate_ore: 0, sell_rate_ore: amount }
+            : { name: label, sku: null, unit: null, unit_price_ore: amount },
+    });
+    expect(receipt.error?.code ?? null).toBeNull();
+    expect(receipt.data).toMatchObject({ operationId: facts.operation, targetId: facts.target, committedRevision: stored.write_revision });
+}
+
 for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }])
 test(`R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
     test.setTimeout(120_000);
@@ -861,7 +970,9 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
     try {
         await page.setViewportSize(viewport);
         await signIn(page, own.adminA.email, own.adminA.password);
-        await page.goto("/settings/pricing");
+        const preHydrationArticle = viewport.width === 1440;
+        if (preHydrationArticle) await fillBeforePricingHydration(page, specs[1].label);
+        else await page.goto("/settings/pricing");
         await waitForHydrated(page.getByLabel("Benämning"));
         if (viewport.width === 360) diagnostic = await observeArticleDraft(page, {
             label: "Pinned article", price: { original: "10,00", draft: "11,00", current: "20,00" }, unit: { original: "" },
@@ -869,10 +980,13 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
         const ordinary = await makeAuthedServerClient(own.adminA);
         for (const spec of specs) {
             const editor = page.getByTestId(spec.id);
-            await editor.getByLabel(spec.name).fill(spec.label);
+            if (!preHydrationArticle || spec.surface !== "article") await editor.getByLabel(spec.name).fill(spec.label);
             await editor.getByLabel(spec.price).fill("10,00");
+            await expect(editor.getByLabel(spec.name)).toHaveValue(spec.label);
+            await expect(editor.getByLabel(spec.price)).toHaveValue("10,00");
             await editor.getByRole("button", { name: spec.save }).click();
             await expect(editor.getByRole("listitem").filter({ hasText: spec.label })).toHaveCount(1);
+            await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
         }
         other = await page.context().newPage();
         await other.goto("/settings/pricing");
@@ -882,21 +996,97 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             const articleDiagnostic = spec.surface === "article" ? diagnostic : undefined;
             const row = editor.getByRole("listitem").filter({ hasText: spec.label });
             const remoteRow = remote.getByRole("listitem").filter({ hasText: spec.label });
-            await row.getByRole("button", { name: "Redigera" }).click();
-            await editor.getByLabel(spec.price).fill("11,00");
+            const article = spec.surface === "article";
+            const table = article ? "articles" : "work_roles";
+            const nameColumn = article ? "name" : "display_name";
+            const readRevision = () => ordinary.from(table).select("id,write_revision").eq("tenant_id", own.tenantA.id).eq(nameColumn, spec.label).single();
+            const original = await readRevision();
+            expect(original.error?.code ?? null).toBeNull();
+            const price = editor.getByLabel(spec.price);
+            const save = editor.getByRole("button", { name: spec.save });
+            const facts = editor.getByTestId("pricing-current-facts");
+            const edit = row.getByRole("button", { name: "Redigera", exact: true });
+            if (article) await edit.click();
+            else {
+                await edit.press("Enter");
+                await expect(editor.getByLabel(spec.name)).toBeFocused();
+            }
+            await price.fill("11,00");
+            await expect(price).toHaveValue("11,00");
+            if (article) {
+                await editor.getByLabel(spec.name).fill(`${spec.label} draft`);
+                await editor.getByLabel("Artikelnummer").fill("  draft-01");
+                await editor.getByLabel("Enhet", { exact: true }).fill("m");
+                await expect(editor.getByText("Osparade ändringar.", { exact: true })).toBeVisible();
+            }
             await remoteRow.getByRole("button", { name: "Redigera" }).click();
             await remote.getByLabel(spec.price).fill("20,00");
+            await expect(remote.getByLabel(spec.price)).toHaveValue("20,00");
             await remote.getByRole("button", { name: spec.save }).click();
             await expect(remoteRow).toContainText("20,00");
-            await editor.getByRole("button", { name: spec.save }).click();
-            await expect(editor.getByRole("button", { name: "Uppdatera och granska" })).toBeVisible();
-            await expect(editor.getByTestId("pricing-current-facts")).toContainText("20,00");
-            await expect(editor.getByLabel(spec.price)).toHaveValue("11,00");
+            if (!article) await expectRoleRate(remoteRow, "20,00");
+            await expect(remote.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            const terminal = observeProducerReadTerminal(page, "/settings/pricing");
+            const stalePosts: BrowserRequest[] = [], pricingRefreshes: BrowserRequest[] = [];
+            let staleHeaders: import("@playwright/test").Response | undefined;
+            let heldHeaders: import("@playwright/test").Response | undefined;
+            let heldRefresh: BrowserRequest | undefined;
+            const observeRequest = (request: BrowserRequest) => {
+                if (isPricingAction(request)) stalePosts.push(request);
+                if (isPricingRefresh(request)) pricingRefreshes.push(request);
+            };
+            const observeResponse = (response: import("@playwright/test").Response) => {
+                if (response.request() === stalePosts[0]) staleHeaders = response;
+                if (response.request() === heldRefresh) heldHeaders = response;
+            };
+            const hold = await holdNextProducerTransport(page, "/settings/pricing", "refresh", request => {
+                heldRefresh = request;
+                terminal.bind(request);
+            }, request => staleHeaders?.ok() === true && isPricingRefresh(request))
+                .catch(error => { terminal.dispose(); throw error; });
+            const releaseRead = producerReadSettlement(hold, terminal);
+            page.on("request", observeRequest);
+            page.on("response", observeResponse);
+            try {
+                const action = page.waitForResponse(response => response.request() === stalePosts[0], { timeout: 15_000 });
+                const [rejected] = await Promise.all([action, save.click()]);
+                const submitted = rejected.request();
+                expect(rejected.ok()).toBe(true);
+                const stale = await producerCapturedFacts(submitted);
+                expect(stale.target).toBe(original.data!.id);
+                expect(stale.expectedRevision).toBe(original.data!.write_revision);
+                await expect.poll(() => Boolean(hold.request()), { timeout: 15_000 }).toBe(true);
+                expect(pricingRefreshes.length === 1 && pricingRefreshes[0] === heldRefresh).toBe(true);
+                await expect(editor.getByRole("button", { name: "Uppdatera och granska" })).toBeVisible();
+                await expect(facts).toHaveCount(0);
+                await expect(row).toContainText("10,00");
+                await expect(price).toHaveValue("11,00");
+                await expect(price).toBeEnabled();
+                await price.focus();
+                await expect(price).toBeFocused();
+                const read = await releaseRead();
+                expect(read.kind !== "not-held" && read.request === heldRefresh).toBe(true);
+                // The router can cancel the stream after consuming the current facts.
+                if (read.kind === "failed") expect(terminal.summary().exact.failureCategory).toBe("net::ERR_ABORTED");
+                expect(heldHeaders?.ok()).toBe(true);
+                await expect(facts).toContainText("20,00");
+                await expect(price).toHaveValue("11,00");
+                await expect(price).toBeFocused();
+                expect(stalePosts.length === 1 && stalePosts[0] === submitted).toBe(true);
+                expect(pricingRefreshes.length === 1 && pricingRefreshes[0] === heldRefresh).toBe(true);
+            } finally {
+                page.off("request", observeRequest);
+                page.off("response", observeResponse);
+                await releaseRead();
+            }
+            if (article) {
+                await expect(editor.getByLabel(spec.name)).toHaveValue(`${spec.label} draft`);
+                await expect(editor.getByLabel("Artikelnummer")).toHaveValue("  draft-01");
+                await expect(editor.getByLabel("Enhet", { exact: true })).toHaveValue("m");
+            }
             articleDiagnostic?.note("retained-draft-and-current-facts-asserted");
             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
             if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
-            const facts = editor.getByTestId("pricing-current-facts");
-            const price = editor.getByLabel(spec.price);
             const adopt = editor.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
             const refresh = editor.getByRole("button", { name: "Uppdatera och granska", exact: true });
             const phoneRole = viewport.width === 360 && spec.surface === "work-role";
@@ -911,12 +1101,22 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
             articleDiagnostic?.note("adopt-click-settled");
             await expect(editor.getByLabel(spec.price)).toHaveValue("20,00");
+            if (article) {
+                await expect(editor.getByLabel(spec.name)).toHaveValue(spec.label);
+                await expect(editor.getByLabel("Artikelnummer")).toHaveValue("");
+                await expect(editor.getByLabel("Enhet", { exact: true })).toHaveValue("");
+                await expect(editor.getByText("Osparade ändringar.", { exact: true })).toHaveCount(0);
+            }
             articleDiagnostic?.note("adoption-asserted");
             await editor.getByLabel(spec.price).fill("21,00");
             await remoteRow.getByRole("button", { name: "Redigera" }).click();
             await remote.getByLabel(spec.price).fill("30,00");
             await remote.getByRole("button", { name: spec.save }).click();
             await expect(remoteRow).toContainText("30,00");
+            if (!article) await expectRoleRate(remoteRow, "30,00");
+            await expect(remote.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            const current = await readRevision();
+            expect(current.error?.code ?? null).toBeNull();
             const neighborSpec = specs[1-index], neighbor = page.getByTestId(neighborSpec.id);
             await neighbor.getByRole("button", { name: "Ny post" }).click();
             await neighbor.getByLabel(neighborSpec.name).fill(`Neighbor refresh ${index}`);
@@ -936,12 +1136,26 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             }
             await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
             await expect(editor.getByLabel(spec.price)).toHaveValue("30,00");
-            await editor.getByLabel(spec.price).fill("31,00");
-            const receiptRequest = page.waitForRequest(request => new URL(request.url()).pathname === "/settings/pricing" && request.method() === "POST" && Boolean(request.headers()["next-action"]));
-            await editor.getByRole("button", { name: spec.save }).click();
-            const historicalOperationId = await operationIdOf(await receiptRequest);
+            const submittedPrice = article ? "31" : "31,00";
+            await price.fill(submittedPrice);
+            await expect(price).toHaveValue(submittedPrice);
+            const receiptRequest = page.waitForRequest(isPricingAction, { timeout: 15_000 });
+            const receiptResponse = page.waitForResponse(async response => isPricingAction(response.request()) && response.request() === await receiptRequest, { timeout: 15_000 });
+            const [receiptPost, response] = await Promise.all([receiptRequest, receiptResponse, save.click()]);
+            expect(response.ok()).toBe(true);
+            const committed = await producerCapturedFacts(receiptPost);
+            expect(committed.target).toBe(current.data!.id);
+            expect(committed.expectedRevision).toBe(current.data!.write_revision);
+            await expectPricingCommit(ordinary, own, committed, article ? "article.update" : "work_role.update", spec.label, 3100);
+            const historicalOperationId = committed.operation;
             await expect(row).toContainText("31,00");
+            if (!article) await expectRoleRate(row, "31,00");
             await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            if (article) {
+                await expect(facts).toHaveCount(0);
+                await expect(save).toBeEnabled();
+                await expect(price).toHaveValue("31,00");
+            }
             articleDiagnostic?.note("article-receipt-asserted");
             const historicalReceipt = await editor.getByTestId("settings-saved").elementHandle();
             expect(historicalReceipt).not.toBeNull();
@@ -957,7 +1171,7 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             await expect(remote.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
             const laterActionRequests: BrowserRequest[] = [];
             const observeLaterAction = (request: BrowserRequest) => {
-                if (new URL(request.url()).pathname === "/settings/pricing" && request.method() === "POST" && request.headers()["next-action"]) laterActionRequests.push(request);
+                if (isPricingAction(request)) laterActionRequests.push(request);
             };
             page.on("request", observeLaterAction);
             try {
@@ -983,25 +1197,7 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
                 await expect(createSave).toBeEnabled();
 
                 const actionDeadline = { timeout: 15_000 };
-                const createRequest = page.waitForRequest(async request => {
-                    const headers = request.headers();
-                    if (new URL(request.url()).pathname !== "/settings/pricing" || request.method() !== "POST"
-                        || !headers["next-action"] || !headers["content-type"]?.startsWith("multipart/form-data")) return false;
-                    const body = request.postDataBuffer();
-                    if (!body) return false;
-                    const form = await new globalThis.Request("http://capture.invalid", {
-                        method: "POST", headers: { "content-type": headers["content-type"] }, body: new Uint8Array(body),
-                    }).formData().catch(() => null);
-                    if (!form) return false;
-                    const values = (name: string) => [...form].filter(([key]) => key === name || key.endsWith(`_${name}`)).map(([, value]) => value);
-                    const hasOne = (name: string, value: string) => {
-                        const entries = values(name);
-                        return entries.length === 1 && entries[0] === value;
-                    };
-                    return values("id").length === 0 && hasOne("expectedRevision", "absent")
-                        && hasOne(role ? "display_name" : "name", label)
-                        && hasOne(role ? "sell_rate_kronor" : "unit_price_kronor", "99,00");
-                }, actionDeadline);
+                const createRequest = waitForPricingCreateRequest(page, role, label, "99,00");
                 // Observe headers for this exact POST; the streamed response can remain open.
                 const createHeaders = page.waitForResponse(async response =>
                     response.request().method() === "POST" && response.request() === await createRequest, actionDeadline);
@@ -1015,6 +1211,7 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
                 const createdRow = neighbor.getByRole("listitem").filter({ hasText: label });
                 await expect(createdRow).toHaveCount(1);
                 await expect(createdRow).toBeVisible();
+                if (role) await expectRoleRate(createdRow, "99,00");
                 await expect(neighbor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
 
                 const persisted = role
@@ -1025,6 +1222,7 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
                 expect(persisted.data?.[0]?.id === created.target).toBe(true);
                 expect(persisted.data?.[0]?.amount).toBe(9900);
                 await expect(row).toContainText("41,00");
+                if (!article) await expectRoleRate(row, "41,00");
                 await expect(editor.getByTestId("pricing-current-facts")).toContainText("41,00");
                 await expect(editor.getByLabel(spec.price)).toHaveValue("31,00");
                 await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
@@ -1641,8 +1839,14 @@ async function producerAclSnapshot(db: import("pg").Client, table: string): Prom
     expect(result.rows).toHaveLength(1);
     return result.rows[0].snapshot as ProducerAcl;
 }
+function producerActionForm(request: BrowserRequest) {
+    const body = request.postDataBuffer();
+    if (!body) throw new Error("Missing server action body");
+    return new globalThis.Request("http://capture.invalid", { method: "POST", headers: { "content-type": request.headers()["content-type"] }, body: new Uint8Array(body) }).formData();
+}
+
 async function producerCapturedFacts(request: BrowserRequest) {
-    const form = await new globalThis.Request("http://capture.invalid", { method: "POST", headers: { "content-type": request.headers()["content-type"] }, body: new Uint8Array(request.postDataBuffer()!) }).formData();
+    const form = await producerActionForm(request);
     const field = (name: string) => { const values = [...form.entries()].filter(([key]) => key.endsWith(name)).map(([, value]) => value); expect(values).toHaveLength(1); expect(typeof values[0]).toBe("string"); return String(values[0]); };
     return { operation: field("operationId"), target: field("targetId"), tenant: field("contextTenantId"), actor: field("contextActorId"), expectedRevision: field("expectedRevision") };
 }
@@ -1690,16 +1894,20 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
                 await assertProducerTermsBaseline(scope, termsBaseline, label);
             }
             await scope.getByLabel(spec.name).fill(label);
+            await expect(scope.getByLabel(spec.name)).toHaveValue(label);
             let creation: string | undefined;
             if (spec.price) {
                 await scope.getByLabel(spec.price).fill("10,00");
+                await expect(scope.getByLabel(spec.price)).toHaveValue("10,00");
                 const createdRequest = page.waitForRequest(request => request.method() === "POST" && Boolean(request.headers()["next-action"]) && new URL(request.url()).pathname === spec.route);
                 await scope.getByRole("button", { name: spec.save, exact: true }).click();
                 creation = (await producerCapturedFacts(await createdRequest)).operation;
                 const row = scope.getByRole("listitem").filter({ hasText: label });
                 await expect(row).toHaveCount(1);
+                if (spec.surface === "work-role") await expectRoleRate(row, "10,00");
                 await row.getByRole("button", { name: "Redigera", exact: true }).click();
                 await scope.getByLabel(spec.price).fill("31,00");
+                await expect(scope.getByLabel(spec.price)).toHaveValue("31,00");
             }
             const before = await producerAclSnapshot(db, spec.table);
             expect(before.owner).toBe("postgres");
@@ -1855,9 +2063,37 @@ test("P-E5 CI-only bounded real read-unavailable and one historical target-missi
         const article = page.getByTestId("articles-editor"), neighbor = page.getByTestId("work-roles-editor");
         const refreshArticle = async (label: string) => {
             await neighbor.getByRole("button", { name: "Ny post" }).click();
-            await neighbor.getByLabel("Benämning").fill(label); await neighbor.getByLabel("Pris (kr/tim)").fill("19,00");
-            await neighbor.getByRole("button", { name: "Spara roll" }).click();
-            await expect(neighbor.getByRole("listitem").filter({ hasText: label })).toHaveCount(1);
+            const form = neighbor.locator("form").filter({ has: page.getByRole("heading", { name: "Ny arbetsroll", exact: true }) });
+            const name = form.getByLabel("Benämning"), price = form.getByLabel("Pris (kr/tim)");
+            const save = form.getByRole("button", { name: "Spara roll", exact: true });
+            await expect(name).toBeFocused();
+            await expect(name).toHaveValue("");
+            await expect(price).toHaveValue("");
+            await name.fill(label);
+            await price.fill("19,00");
+            await expect(name).toHaveValue(label);
+            await expect(price).toHaveValue("19,00");
+            await expect(save).toBeEnabled();
+            const actions: BrowserRequest[] = [];
+            const observe = (request: BrowserRequest) => { if (isPricingAction(request)) actions.push(request); };
+            page.on("request", observe);
+            try {
+                const request = waitForPricingCreateRequest(page, true, label, "19,00");
+                const response = page.waitForResponse(async response => isPricingAction(response.request()) && response.request() === await request, { timeout: 15_000 });
+                const [posted, headers] = await Promise.all([request, response, save.click()]);
+                expect(headers.ok()).toBe(true);
+                const created = await producerCapturedFacts(posted);
+                expect(created.tenant === fixture.tenantA.id && created.actor === fixture.adminA.id).toBe(true);
+                expect(created.expectedRevision).toBe("absent");
+                const stored = await expectStoredPricingRow(ordinary, fixture.tenantA.id, created.target, true, label, 1900);
+                const receipt = await db.query("select committed_revision from public.settings_pricing_operations where id=$1 and correlation_id=id and tenant_id=$2 and actor_user_id=$3 and target_id=$4 and operation_kind='work_role.create'", [created.operation, fixture.tenantA.id, fixture.adminA.id, stored.id]);
+                expect(receipt.rows).toEqual([{ committed_revision: stored.write_revision }]);
+                await expect(neighbor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+                const row = neighbor.getByRole("listitem").filter({ hasText: label });
+                await expect(row).toHaveCount(1);
+                await expectRoleRate(row, "19,00");
+                expect(actions.length === 1 && actions[0] === posted).toBe(true);
+            } finally { page.off("request", observe); }
         };
         await refreshArticle("Bounded restored-read refresh");
         await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
