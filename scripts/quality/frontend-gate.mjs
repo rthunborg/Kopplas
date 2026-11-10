@@ -46,7 +46,8 @@ const CONSEQUENTIAL_PATH = /(?:^|[\/_.-])(?:auth|billing|invoice|money|operator|
 
 export function sourceExemptionKind(path) {
   if (/^src\/server\/db\/supabase-(?:server-client|public-client|env)\.ts$/.test(path)) return 'backend-only';
-  if (/^src\/(?:components|app)\/.+\.tsx$/.test(path) && !CONSEQUENTIAL_PATH.test(path)) return 'copy-only';
+  const pathWords = path.replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2').replace(/([a-z0-9])([A-Z])/g, '$1-$2');
+  if (/^src\/(?:components|app)\/.+\.tsx$/.test(path) && !CONSEQUENTIAL_PATH.test(pathWords)) return 'copy-only';
 }
 
 export async function sourceExemptionParser(modulePath) {
