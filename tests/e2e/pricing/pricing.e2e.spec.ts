@@ -247,6 +247,7 @@ test("E35-7 ATDD no-match retains the article query and restores the authorized 
 
 test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pricing identities", async ({ page }, info) => {
     const own = await createTwoTenantFixture();
+    let diagnostic: Awaited<ReturnType<typeof observeArticleDraft>> | undefined;
     try {
         const roleName = "Installationstekniker";
         const articleName = "Kopplingsdosa";
@@ -274,12 +275,16 @@ test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pric
             await expect(amount).toHaveCSS("font-variant-numeric", /tabular-nums/);
         }
 
+        diagnostic = await observeArticleDraft(page, {
+            label: articleName, price: { original: "12,50", draft: "14,75" }, unit: { original: "", draft: "st" },
+        });
         await roleRow.getByRole("button", { name: "Redigera", exact: true }).press("Enter");
         const rate = role.getByLabel("Pris (kr/tim)");
         await expect(rate).toHaveValue("850,00");
         await rate.fill("875,25");
         await role.getByRole("button", { name: "Spara roll", exact: true }).click();
         await expect(roleRow).toContainText("875,25 kr/tim");
+        diagnostic.note("role-row-updated");
 
         await articleRow.getByRole("button", { name: "Redigera", exact: true }).click();
         const price = article.getByLabel("Enhetspris (kr)");
@@ -288,8 +293,12 @@ test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pric
         await article.getByLabel("Enhet", { exact: true }).fill("st");
         const discard = page.waitForEvent("dialog");
         const startNew = article.getByRole("button", { name: "Ny post", exact: true }).click();
-        await (await discard).dismiss();
+        const prompt = await discard;
+        diagnostic.dialog("observed", prompt);
+        await prompt.dismiss();
+        diagnostic.dialog("dismissed", prompt);
         await startNew;
+        diagnostic.note("new-post-click-settled");
         await expect(price).toHaveValue("14,75");
         await expect(article.getByLabel("Enhet", { exact: true })).toHaveValue("st");
         const actions: BrowserRequest[] = [];
@@ -320,6 +329,7 @@ test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pric
             }
             await article.getByRole("button", { name: "Spara artikel", exact: true }).click();
             await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            diagnostic.note("article-receipt-asserted");
             expect(actions).toHaveLength(1);
         } finally {
             page.off("request", countPricingActions);
@@ -351,7 +361,11 @@ test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pric
         } finally {
             page.off("dialog", acceptDiscard);
         }
+    } catch (error) {
+        await diagnostic?.finish(error);
+        throw error;
     } finally {
+        await diagnostic?.finish();
         await cleanupFixture(own);
     }
 });
@@ -839,6 +853,7 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
     test.setTimeout(120_000);
     const own = await createTwoTenantFixture();
     let other: Page | undefined;
+    let diagnostic: Awaited<ReturnType<typeof observeArticleDraft>> | undefined;
     const specs = [
         { id: "work-roles-editor", surface: "work-role", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", label: "Pinned role" },
         { id: "articles-editor", surface: "article", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", label: "Pinned article" },
@@ -848,6 +863,9 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
         await signIn(page, own.adminA.email, own.adminA.password);
         await page.goto("/settings/pricing");
         await waitForHydrated(page.getByLabel("Benämning"));
+        if (viewport.width === 360) diagnostic = await observeArticleDraft(page, {
+            label: "Pinned article", price: { original: "10,00", draft: "11,00", current: "20,00" }, unit: { original: "" },
+        });
         const ordinary = await makeAuthedServerClient(own.adminA);
         for (const spec of specs) {
             const editor = page.getByTestId(spec.id);
@@ -861,6 +879,7 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
         await waitForHydrated(other.getByLabel("Benämning"));
         for (const [index, spec] of specs.entries()) {
             const editor = page.getByTestId(spec.id), remote = other.getByTestId(spec.id);
+            const articleDiagnostic = spec.surface === "article" ? diagnostic : undefined;
             const row = editor.getByRole("listitem").filter({ hasText: spec.label });
             const remoteRow = remote.getByRole("listitem").filter({ hasText: spec.label });
             await row.getByRole("button", { name: "Redigera" }).click();
@@ -873,6 +892,7 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             await expect(editor.getByRole("button", { name: "Uppdatera och granska" })).toBeVisible();
             await expect(editor.getByTestId("pricing-current-facts")).toContainText("20,00");
             await expect(editor.getByLabel(spec.price)).toHaveValue("11,00");
+            articleDiagnostic?.note("retained-draft-and-current-facts-asserted");
             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
             if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
             const facts = editor.getByTestId("pricing-current-facts");
@@ -889,7 +909,9 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
                 await expect(editor.getByLabel(spec.price)).toBeInViewport();
             }
             await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+            articleDiagnostic?.note("adopt-click-settled");
             await expect(editor.getByLabel(spec.price)).toHaveValue("20,00");
+            articleDiagnostic?.note("adoption-asserted");
             await editor.getByLabel(spec.price).fill("21,00");
             await remoteRow.getByRole("button", { name: "Redigera" }).click();
             await remote.getByLabel(spec.price).fill("30,00");
@@ -920,6 +942,7 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             const historicalOperationId = await operationIdOf(await receiptRequest);
             await expect(row).toContainText("31,00");
             await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            articleDiagnostic?.note("article-receipt-asserted");
             const historicalReceipt = await editor.getByTestId("settings-saved").elementHandle();
             expect(historicalReceipt).not.toBeNull();
             // A normal checked UI edit changes the SAME target after this receipt.
@@ -1031,7 +1054,11 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
             } finally { page.off("request", observeLaterAction); }
 
         }
+    } catch (error) {
+        await diagnostic?.finish(error);
+        throw error;
     } finally {
+        await diagnostic?.finish();
         await other?.close();
         await cleanupFixture(own);
     }
@@ -2224,4 +2251,196 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 
             await cleanupFixture(own);
         }
     });
+}
+
+type DraftSamples = { readonly original: string; readonly draft?: string; readonly current?: string };
+type PricingDraftTraceWindow = Window & {
+    __kopplasPricingDraftTrace?: {
+        mark(stage: string): void;
+        stop(): void;
+        checkpoints: unknown[];
+        transitions: unknown[];
+    };
+};
+
+async function observeArticleDraft(page: Page, samples: { readonly label: string; readonly price: DraftSamples; readonly unit: DraftSamples }) {
+    const began = Date.now();
+    const origin = new URL(page.url()).origin;
+    const requests = new WeakMap<BrowserRequest, number>();
+    let nextRequest = 0;
+    const transport: { at: number; event: string; request?: number }[] = [];
+    const record = (event: string, request?: number) => {
+        if (transport.length === 64) transport.shift();
+        transport.push({ at: Date.now() - began, event, ...(request === undefined ? {} : { request }) });
+    };
+    const onRequest = (request: BrowserRequest) => {
+        const url = new URL(request.url());
+        if (url.origin !== origin || url.pathname !== "/settings/pricing" || request.method() !== "GET"
+            || request.headers()["rsc"] !== "1") return;
+        const ordinal = ++nextRequest;
+        requests.set(request, ordinal);
+        record("rsc-request", ordinal);
+    };
+    const onResponse = (response: Awaited<ReturnType<BrowserRequest["response"]>>) => {
+        if (!response) return;
+        const ordinal = requests.get(response.request());
+        if (ordinal !== undefined) record(response.ok() ? "rsc-headers-ok" : "rsc-headers-other", ordinal);
+    };
+    const onFinished = (request: BrowserRequest) => {
+        const ordinal = requests.get(request);
+        if (ordinal !== undefined) record("rsc-finished", ordinal);
+    };
+    const onFailed = (request: BrowserRequest) => {
+        const ordinal = requests.get(request);
+        if (ordinal !== undefined) record("rsc-failed", ordinal);
+    };
+    await page.evaluate(({ began, samples }) => {
+        const state = window as PricingDraftTraceWindow;
+        const main = document.getElementById("main-content");
+        if (!main) throw new Error("Pricing diagnostic requires the main content region");
+        const nodes = new WeakMap<Element, number>();
+        let nextNode = 0, lastSnapshot = "", frame: number | undefined;
+        let trackedRow: Element | null = null;
+        const checkpoints: unknown[] = [], transitions: unknown[] = [];
+        const nodeId = (element: Element | null) => {
+            if (!element) return null;
+            if (!nodes.has(element)) nodes.set(element, ++nextNode);
+            return nodes.get(element);
+        };
+        const category = (value: string | undefined, values: DraftSamples) => value === values.original ? "original"
+            : values.draft !== undefined && value === values.draft ? "draft"
+            : values.current !== undefined && value === values.current ? "current" : "other";
+        const confirmed = (scope: Element | null) =>
+            scope?.querySelector('[data-testid="settings-saved"]')?.textContent?.includes("Aktuella uppgifter är bekräftade.") ?? false;
+        const sample = (stage: string, explicit = false) => {
+            const article = document.querySelector('[data-testid="articles-editor"]');
+            const role = document.querySelector('[data-testid="work-roles-editor"]');
+            const price = article?.querySelector<HTMLInputElement>('input[name="unit_price_kronor"]') ?? null;
+            const unit = article?.querySelector<HTMLInputElement>('input[name="unit"]') ?? null;
+            const isFixtureRow = (item: Element) => {
+                const name = item.querySelector("span")?.textContent?.trim();
+                return name === samples.label || name?.startsWith(`${samples.label} (`);
+            };
+            if (!trackedRow || !article?.contains(trackedRow) || !isFixtureRow(trackedRow)) {
+                trackedRow = Array.from(article?.querySelector("ul")?.children ?? []).find(isFixtureRow) ?? null;
+            }
+            const row = trackedRow;
+            const rowName = row?.querySelector("span")?.textContent?.trim();
+            const rowUnit = rowName === samples.label ? "" : rowName?.slice(samples.label.length + 2, -1);
+            const focus = document.activeElement;
+            const statuses = Array.from(article?.querySelectorAll('[role="status"]') ?? []);
+            const snapshot = {
+                priceNode: nodeId(price), unitNode: nodeId(unit),
+                price: category(price?.value, samples.price), priceDefault: category(price?.defaultValue, samples.price),
+                unit: category(unit?.value, samples.unit), unitDefault: category(unit?.defaultValue, samples.unit),
+                rowPresent: Boolean(row), rowSelected: Boolean(row?.querySelector('[aria-current="true"]')),
+                rowPrice: category(row?.querySelector(".tabular-nums")?.textContent?.trim().replace(/ kr$/, ""), samples.price),
+                rowUnit: category(rowUnit, samples.unit),
+                focus: focus === price ? "price" : focus === unit ? "unit"
+                    : focus === article?.querySelector('input[name="name"]') ? "name"
+                    : focus && article?.contains(focus) ? "article-other" : "outside",
+                priceDisabled: price?.matches(":disabled") ?? false,
+                dirty: statuses.some(status => status.textContent?.trim() === "Osparade ändringar."),
+                currentFacts: Boolean(article?.querySelector('[data-testid="pricing-current-facts"]')),
+                articleConfirmed: confirmed(article), roleConfirmed: confirmed(role),
+            };
+            const fingerprint = JSON.stringify(snapshot);
+            if (!explicit && fingerprint === lastSnapshot) return;
+            lastSnapshot = fingerprint;
+            const target = explicit ? checkpoints : transitions;
+            const limit = explicit ? 32 : 48;
+            if (target.length === limit) target.shift();
+            target.push({ at: Date.now() - began, stage, ...snapshot });
+        };
+        const onFieldInput = (event: Event) => {
+            const field = event.target;
+            if (!(field instanceof HTMLInputElement) || !field.closest('[data-testid="articles-editor"]')) return;
+            const kind = field.name === "unit_price_kronor" ? "price" : field.name === "unit" ? "unit" : null;
+            if (kind) sample(`${kind}-${event.type === "beforeinput" ? "before-input" : "input"}`, true);
+        };
+        const onFocus = () => sample("focus");
+        const onClick = (event: MouseEvent) => {
+            const button = event.target instanceof Element ? event.target.closest("button") : null;
+            if (!button) return;
+            const label = button.textContent?.trim();
+            if (label === "Spara roll" && button.closest('[data-testid="work-roles-editor"]')) {
+                sample("role-save-click-event", true);
+                return;
+            }
+            if (!button.closest('[data-testid="articles-editor"]')) return;
+            const stage = label === "Ny post" ? "new-post"
+                : label === "Använd aktuella uppgifter" ? "adopt"
+                : label === "Spara artikel" ? "article-save" : null;
+            if (!stage) return;
+            sample(`${stage}-click-event`, true);
+            if (frame !== undefined) cancelAnimationFrame(frame);
+            // Passive sample after the event handler, including any blocking dialog.
+            frame = requestAnimationFrame(() => {
+                frame = undefined;
+                sample(`${stage}-next-frame`, true);
+            });
+        };
+        const mutations = new MutationObserver(() => sample("dom-transition"));
+        mutations.observe(main, {
+            subtree: true, childList: true, characterData: true, attributes: true,
+            attributeFilter: ["aria-current", "disabled", "value"],
+        });
+        main.addEventListener("beforeinput", onFieldInput, true);
+        main.addEventListener("input", onFieldInput, true);
+        main.addEventListener("focusin", onFocus, true);
+        main.addEventListener("click", onClick, true);
+        state.__kopplasPricingDraftTrace = {
+            mark: stage => sample(stage, true),
+            stop: () => {
+                mutations.disconnect();
+                if (frame !== undefined) cancelAnimationFrame(frame);
+                main.removeEventListener("beforeinput", onFieldInput, true);
+                main.removeEventListener("input", onFieldInput, true);
+                main.removeEventListener("focusin", onFocus, true);
+                main.removeEventListener("click", onClick, true);
+            },
+            checkpoints, transitions,
+        };
+        sample("installed", true);
+    }, { began, samples });
+    page.on("request", onRequest);
+    page.on("response", onResponse);
+    page.on("requestfinished", onFinished);
+    page.on("requestfailed", onFailed);
+    let active = true;
+    return {
+        note: (stage: string) => record(stage),
+        dialog: (stage: "observed" | "dismissed", dialog: Dialog) => {
+            record(`dialog-${stage}-${dialog.type() === "confirm" ? "confirm" : "other"}`);
+        },
+        finish: async (failure?: unknown) => {
+            if (!active) return;
+            active = false;
+            page.off("request", onRequest);
+            page.off("response", onResponse);
+            page.off("requestfinished", onFinished);
+            page.off("requestfailed", onFailed);
+            const failed = failure instanceof Error;
+            const browserExport = page.evaluate(failed => {
+                const state = window as PricingDraftTraceWindow;
+                const trace = state.__kopplasPricingDraftTrace;
+                if (!trace) return null;
+                if (failed) trace.mark("failure");
+                trace.stop();
+                delete state.__kopplasPricingDraftTrace;
+                return failed ? { checkpoints: trace.checkpoints, transitions: trace.transitions } : null;
+            }, failed).catch(() => null);
+            let timer: ReturnType<typeof setTimeout> | undefined;
+            const deadline = new Promise<null>(resolve => { timer = setTimeout(() => resolve(null), 1_000); });
+            const dom = await Promise.race([browserExport, deadline]).finally(() => {
+                if (timer !== undefined) clearTimeout(timer);
+            });
+            if (failed) {
+                const diagnostic = `
+Pricing draft diagnostic (categorical): ${JSON.stringify({ dom, transport })}`;
+                failure.message += diagnostic;
+                if (failure.stack) failure.stack += diagnostic;
+            }
+        },
+    };
 }
