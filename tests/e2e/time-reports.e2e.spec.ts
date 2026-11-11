@@ -140,14 +140,36 @@ test.describe("15.4 essential production-host time reporting", () => {
         };
         const denialFinished = (request: import("@playwright/test").Request) => recordDenialTerminal(request, "finished");
         const denialFailed = (request: import("@playwright/test").Request) => recordDenialTerminal(request, "failed");
+        type DenialTransportFailure = "aborted" | "content-length" | "decoding" | "connection" | "other" | "unobserved" | "none";
+        const denialTransportFailure = (request: import("@playwright/test").Request | undefined): DenialTransportFailure => {
+          const terminal = request ? denialTerminals.get(request) : undefined;
+          if (terminal === "finished") return "none";
+          if (!request || terminal !== "failed") return "unobserved";
+          try {
+            const text = request.failure()?.errorText;
+            if (typeof text !== "string" || !text) return "unobserved";
+            switch (text) {
+              case "net::ERR_ABORTED": return "aborted";
+              case "net::ERR_CONTENT_LENGTH_MISMATCH": return "content-length";
+              case "net::ERR_CONTENT_DECODING_FAILED": return "decoding";
+              case "net::ERR_CONNECTION_CLOSED": case "net::ERR_CONNECTION_RESET":
+              case "net::ERR_CONNECTION_REFUSED": case "net::ERR_CONNECTION_ABORTED":
+              case "net::ERR_CONNECTION_FAILED": case "net::ERR_CONNECTION_TIMED_OUT":
+              case "net::ERR_TIMED_OUT": return "connection";
+              default: return "other";
+            }
+          } catch { return "unobserved"; }
+        };
         let selectedDenialResponse: import("@playwright/test").Response | undefined;
         let denialPhase: "wait-for-response" | "body-read" | "denial-assertions" = "wait-for-response";
         const emitDenialDiagnostic = (outcome: "returned" | "rejected", error?: unknown) => {
           try {
             const name = error instanceof Error ? error.name : "unknown";
+            const request = selectedDenialResponse?.request();
             console.info(JSON.stringify({ diagnostic: "time-report-denied-body", phase: denialPhase, outcome,
               status: selectedDenialResponse ? selectedDenialResponse.status() : null,
-              terminal: selectedDenialResponse ? denialTerminals.get(selectedDenialResponse.request()) ?? "unobserved" : "unobserved",
+              terminal: request ? denialTerminals.get(request) ?? "unobserved" : "unobserved",
+              transportFailure: denialTransportFailure(request),
               errorCategory: outcome === "returned" ? "none" : ["Error", "TimeoutError", "TargetClosedError"].includes(name) ? name : "unknown" }));
           } catch { /* Diagnostic failure must never replace the original scenario error. */ }
         };
