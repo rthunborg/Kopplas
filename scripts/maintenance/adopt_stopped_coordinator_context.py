@@ -39,6 +39,14 @@ POLICIES = {
     'docs/process/templates/current-work-packet.md': 'c8b31e05794e349d15d8e64c3638398375a04e409ec8cadc3cef118da80f29f9',
 }
 STATE = '_bmad-output/auto-bmad/state/' + STORY + '.yaml'
+B07_PATH = 'tests/e2e/crm/customers.e2e.spec.ts'
+B07_HARNESS = 'f7bcfb885fca2275c2626bab80bed047ca2f6e41'
+B07_RETAINED = 'b1e1d8511cd1ec9fbd4183d7c7b1082f01ae299a'
+B07_COMBINED = '63a7856f5baf0bff1ca5e64f153887197aa5a31d'
+B07_BASE_BLOB = 'c71fd388cc2258366f3cfebc6c4802b57183bebd'
+B07_INCOMING_BLOB = 'cad25e4fc91f1c9be5b217e3fc63bdb0bccbe659'
+B07_RETAINED_BLOB = '6bc1918e89823a5f580e8988c438d77a9a78447f'
+B07_COMBINED_BLOB = 'abd27711a7a952da97a204dce498fd6e3bf5542e'
 AUDIT = 'coordinator_successions'
 MAX_FILE = 4 * 1024 * 1024
 DDL = [
@@ -324,6 +332,30 @@ def reassessed(data, old, new):
     return (b'\xef\xbb\xbf' if data.startswith(b'\xef\xbb\xbf') else b'') + changed.encode('utf-8')
 
 
+def require_ownership_disposition(repo, proposal, owned, original_tree, before_tree, main_tree):
+    conflicts = {name for name in owned if before_tree.get(name) != original_tree.get(name)
+                 and main_tree.get(name) != original_tree.get(name) and before_tree.get(name) != main_tree.get(name)}
+    selected = proposal['selected_checkpoint']
+    if not conflicts and selected != B07_COMBINED:
+        return
+    # The caller has already checked the fixed native run, claim and live/fixture paths.
+    need(proposal['environment'] == 'live' and conflicts == {B07_PATH} and selected == B07_COMBINED,
+         'CONFLICT_NEEDS_DISPOSITION')
+    need(gittext(repo, 'rev-list', '--parents', '-n', '1', selected).split() == [selected, B07_RETAINED],
+         'B07_CHECKPOINT_ANCESTRY')
+    ancestor(repo, B07_HARNESS, proposal['main'])
+    retained_tree = tree(repo, B07_RETAINED)
+    harness_tree = tree(repo, B07_HARNESS)
+    expected = (
+        (original_tree, B07_BASE_BLOB), (retained_tree, B07_RETAINED_BLOB),
+        (harness_tree, B07_INCOMING_BLOB), (main_tree, B07_INCOMING_BLOB),
+        (before_tree, B07_COMBINED_BLOB),
+    )
+    need(all(entries.get(B07_PATH) == ['100644', oid] for entries, oid in expected), 'B07_BLOB_CHANGED')
+    need({name for name in retained_tree.keys() | before_tree.keys()
+          if retained_tree.get(name) != before_tree.get(name)} == {B07_PATH}, 'B07_CHECKPOINT_SCOPE')
+
+
 def validate(request_path, allow_hot_recovery=False):
     raw = read(request_path)
     q = decode(raw)
@@ -430,9 +462,7 @@ def validate(request_path, allow_hot_recovery=False):
                                             [p['selected_checkpoint'], p['main'], p['worker_candidate']]]
     original_tree = tree(root, p['old_base'])
     need(all(not token.endswith('/') for token in owned), 'ALLOCATION_CHANGED')
-    need(not any(before_tree.get(name) != original_tree.get(name) and
-                 main_tree.get(name) != original_tree.get(name) and before_tree.get(name) != main_tree.get(name)
-                 for name in owned), 'CONFLICT_NEEDS_DISPOSITION')
+    require_ownership_disposition(root, p, owned, original_tree, before_tree, main_tree)
     for name in set(before_tree) | set(main_tree) | set(candidate_tree):
         if name == STATE:
             continue

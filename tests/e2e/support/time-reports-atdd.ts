@@ -6,7 +6,7 @@ import type { Locator, Page, Request, Route } from "@playwright/test";
 import { expect } from "./resource-cdp-attachment";
 import { withBookingFixture, type BookingFixture } from "../../support/bookings-atdd";
 import { fileReport, reportInput } from "../../support/time-reports-atdd";
-import { adminInsertCustomer, makeAuthedServerClient, type FixtureUser } from "../../factories/tenants";
+import { E09FixtureError, type E09FixtureOptions, adminInsertCustomer, makeAuthedServerClient, type FixtureUser } from "../../factories/tenants";
 import { adminQuery, adminSession } from "../../factories/admin-sql";
 import { createJob } from "@/server/commands/jobs";
 import { runCommand } from "@/server/commands/envelope";
@@ -54,11 +54,13 @@ export async function reportSnapshot(tenantIds: readonly string[]): Promise<Repo
  */
 export async function withTimeReportBrowserFixture(
   run: (fixture: TimeReportBrowserFixture) => Promise<void>,
+  options?: E09FixtureOptions,
 ): Promise<void> {
   await withBookingFixture(async (fx) => {
     const marker = `time-report-${randomUUID()}`;
     const bookingIds = [randomUUID(), randomUUID(), randomUUID()];
     const jobs: string[] = [], customers: string[] = [];
+    let primaryFailed = false, scenarioStarted = false;
     try {
       const customerId = await adminInsertCustomer({ tenant_id: fx.base.tenantA.id,
         customer_type: "company", display_name: marker });
@@ -90,35 +92,50 @@ export async function withTimeReportBrowserFixture(
       }
       const noProfile = fx.roleUnionUser;
       const noProfileClient = await makeAuthedServerClient(noProfile);
-      expect(await adminQuery(`select p.id from public.person_profiles p join public.tenant_memberships m
+      const noProfileRows = await adminQuery(`select p.id from public.person_profiles p join public.tenant_memberships m
         on m.id=p.membership_id and m.tenant_id=p.tenant_id where m.user_id=$1 and m.tenant_id=$2`,
-      [noProfile.id, fx.base.tenantA.id])).toEqual([]);
+      [noProfile.id, fx.base.tenantA.id]);
+      if (options?.e09Strict) expect(noProfileRows.length === 0).toBe(true);
+      else expect(noProfileRows).toEqual([]);
+      scenarioStarted = true;
       await run({ fx, marker, ownBooking: bookingIds[0], peerBooking: bookingIds[1],
         missingBooking: bookingIds[2], job, otherJob, noProfile, noProfileClient,
         snapshot: () => reportSnapshot(fx.tenantIds) });
+    } catch (error) {
+      if (!options?.e09Strict) throw error;
+      primaryFailed = true;
     } finally {
-      // Test-only immutable-row bypass, bounded to this factory's two tenants and
-      // exact parent IDs. Restore connection enforcement before returning it.
-      // Base factory then owns role/profile/user/tenant teardown. No lifecycle stop.
-      await adminSession(async ({ query }) => {
-        await query("begin");
-        try {
-          await query("set local session_replication_role=replica");
-          await query("delete from public.time_reports where tenant_id=any($1::uuid[])", [fx.tenantIds]);
-          await query("delete from public.audit_events where tenant_id=any($1::uuid[])", [fx.tenantIds]);
-          await query("delete from public.booking_conflicts where tenant_id=$1 and (booking_id=any($2::uuid[]) or related_booking_id=any($2::uuid[]))", [fx.base.tenantA.id, bookingIds]);
-          await query("delete from public.booking_assignees where tenant_id=$1 and booking_id=any($2::uuid[])", [fx.base.tenantA.id, bookingIds]);
-          await query("delete from public.bookings where tenant_id=$1 and id=any($2::uuid[])", [fx.base.tenantA.id, bookingIds]);
-          await query("delete from public.job_events where tenant_id=$1 and job_id=any($2::uuid[])", [fx.base.tenantA.id, jobs]);
-          await query("delete from public.job_members where tenant_id=$1 and job_id=any($2::uuid[])", [fx.base.tenantA.id, jobs]);
-          await query("delete from public.jobs where tenant_id=$1 and id=any($2::uuid[])", [fx.base.tenantA.id, jobs]);
-          await query("delete from public.customers where tenant_id=$1 and id=any($2::uuid[])", [fx.base.tenantA.id, customers]);
-          await query("set local session_replication_role=origin");
-          await query("commit");
-        } catch (error) { await query("rollback"); throw error; }
-      });
+      let cleanupFailed = false;
+      try {
+        // Test-only immutable-row bypass, bounded to this factory's two tenants and
+        // exact parent IDs. Restore connection enforcement before returning it.
+        // Base factory then owns role/profile/user/tenant teardown. No lifecycle stop.
+        await adminSession(async ({ query }) => {
+          await query("begin");
+          try {
+            await query("set local session_replication_role=replica");
+            await query("delete from public.time_reports where tenant_id=any($1::uuid[])", [fx.tenantIds]);
+            await query("delete from public.audit_events where tenant_id=any($1::uuid[])", [fx.tenantIds]);
+            await query("delete from public.booking_conflicts where tenant_id=$1 and (booking_id=any($2::uuid[]) or related_booking_id=any($2::uuid[]))", [fx.base.tenantA.id, bookingIds]);
+            await query("delete from public.booking_assignees where tenant_id=$1 and booking_id=any($2::uuid[])", [fx.base.tenantA.id, bookingIds]);
+            await query("delete from public.bookings where tenant_id=$1 and id=any($2::uuid[])", [fx.base.tenantA.id, bookingIds]);
+            await query("delete from public.job_events where tenant_id=$1 and job_id=any($2::uuid[])", [fx.base.tenantA.id, jobs]);
+            await query("delete from public.job_members where tenant_id=$1 and job_id=any($2::uuid[])", [fx.base.tenantA.id, jobs]);
+            await query("delete from public.jobs where tenant_id=$1 and id=any($2::uuid[])", [fx.base.tenantA.id, jobs]);
+            await query("delete from public.customers where tenant_id=$1 and id=any($2::uuid[])", [fx.base.tenantA.id, customers]);
+            await query("set local session_replication_role=origin");
+            await query("commit");
+          } catch (error) { await query("rollback"); throw error; }
+        });
+      } catch (error) {
+        if (!options?.e09Strict) throw error;
+        cleanupFailed = true;
+      }
+      if (options?.e09Strict && (primaryFailed || cleanupFailed)) {
+        throw new E09FixtureError(primaryFailed ? (scenarioStarted ? "scenario" : "setup") : "cleanup", cleanupFailed);
+      }
     }
-  });
+  }, options);
 }
 
 export async function hydrated(locator: Locator): Promise<void> {

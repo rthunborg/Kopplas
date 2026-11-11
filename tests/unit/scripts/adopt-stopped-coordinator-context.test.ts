@@ -92,6 +92,88 @@ request=private/'request.json'; request.write_text(m.canonical(q),encoding='utf-
 print(json.dumps(dict(root=str(dest),request=str(request),repo=str(repo),integration=str(integration),worker=str(worker),base=base,main=main,checkpoint=checkpoint,published=published,candidate=candidate,private=str(private),store=str(store))))
 `;
 function fixture(variant = ""): Fixture { return py(setup, [sourceRoot, variant]); }
+
+test("B07 exact disposition admits one selected path and refuses all drift", { timeout: 180000 }, () => {
+  const result = py(String.raw`
+import uuid
+repo=pathlib.Path(sys.argv[2])/'tmp/private/adoption-fixtures'/str(uuid.uuid4())/'b07-git'
+repo.mkdir(parents=True)
+def g(*args): return m.gittext(repo,*args)
+def put(name, data):
+    path=repo/name; path.parent.mkdir(parents=True,exist_ok=True); path.write_text(data,encoding='utf-8')
+def commit(message):
+    g('add','.'); g('commit','--allow-empty','-m',message); return g('rev-parse','HEAD')
+def branch(name, base):
+    g('checkout','-b',name,base)
+path=m.B07_PATH
+other='owned-other.txt'
+g('init','-b','main')
+g('config','user.name','Synthetic B07 fixture')
+g('config','user.email','fixture@example.invalid')
+g('config','core.autocrlf','false')
+g('config','core.longpaths','true')
+put(path,'original'); put(other,'original'); base=commit('Original test')
+put(path,'incoming'); harness=commit('Reviewed incoming harness')
+put('main.txt','incoming unowned'); main=commit('Qualified main')
+branch('wrong-ancestry',base); put(path,'incoming'); wrong_ancestry=commit('Same blob without harness ancestry')
+branch('wrong-incoming',main); put(path,'different incoming'); wrong_incoming=commit('Altered incoming test')
+branch('other-conflict',main); put(other,'conflicting incoming'); other_conflict=commit('Additional conflict')
+branch('retained',base); put(path,'retained'); put(other,'retained'); retained=commit('Retained product checkpoint')
+put(path,'combined'); combined=commit('One-path combined checkpoint')
+branch('wrong-parent',combined); wrong_parent=commit('Wrong direct parent with identical tree')
+branch('wrong-scope',retained); put(path,'combined'); put('extra.txt','extra'); wrong_scope=commit('Combined plus extra path')
+branch('wrong-blob',retained); put(path,'different combined'); wrong_blob=commit('Altered combined test')
+
+def oid(commit):
+    return m.tree(repo,commit)[path][1]
+
+# Substitute synthetic pins only in this direct helper call. The fixture CLI
+# still rejects the disposition and cannot pass the live repository boundary.
+m.B07_HARNESS=harness
+m.B07_RETAINED=retained
+m.B07_COMBINED=combined
+m.B07_BASE_BLOB=oid(base)
+m.B07_INCOMING_BLOB=oid(harness)
+m.B07_RETAINED_BLOB=oid(retained)
+m.B07_COMBINED_BLOB=oid(combined)
+def check(selected, incoming, environment='live', old=base):
+    proposal=dict(selected_checkpoint=selected,main=incoming,environment=environment)
+    try:
+        m.require_ownership_disposition(repo,proposal,{path,other},m.tree(repo,old),m.tree(repo,selected),m.tree(repo,incoming))
+        return 'admitted'
+    except m.Refusal as error:
+        return str(error)
+
+results=dict(
+    exact=check(combined,main),
+    fixture=check(combined,main,'fixture'),
+    arbitrary_checkpoint=check(retained,main),
+    wrong_ancestry=check(combined,wrong_ancestry),
+    changed_incoming=check(combined,wrong_incoming),
+    extra_conflict=check(combined,other_conflict),
+    missing_conflict=check(combined,base),
+    changed_original=check(combined,main,old=wrong_incoming),
+)
+for name, selected in [('wrong_parent',wrong_parent),('extra_path',wrong_scope),('changed_combined',wrong_blob)]:
+    m.B07_COMBINED=selected
+    results[name]=check(selected,main)
+print(json.dumps(results))
+`, [sourceRoot]);
+  assert.deepEqual(result, {
+    exact: "admitted",
+    fixture: "CONFLICT_NEEDS_DISPOSITION",
+    arbitrary_checkpoint: "CONFLICT_NEEDS_DISPOSITION",
+    wrong_ancestry: "NATIVE_OPERATION_REFUSED",
+    changed_incoming: "B07_BLOB_CHANGED",
+    extra_conflict: "CONFLICT_NEEDS_DISPOSITION",
+    missing_conflict: "CONFLICT_NEEDS_DISPOSITION",
+    changed_original: "B07_BLOB_CHANGED",
+    wrong_parent: "B07_CHECKPOINT_ANCESTRY",
+    extra_path: "B07_CHECKPOINT_SCOPE",
+    changed_combined: "B07_BLOB_CHANGED",
+  });
+});
+
 function cli(f: Fixture, operation = "validate", request = f.request) {
   const r = spawnSync(python, ["-B", tool, operation, "--request", request], { cwd: sourceRoot, encoding: "utf8", timeout: 180000 });
   assert.equal(r.signal, null, r.stderr);

@@ -137,6 +137,18 @@ checkpoint must descend from the distinct retained checkpoint and actual
 published PR127 head, and from the recorded worker before-HEAD. Conflict,
 product changes or a need to rewrite published history stops the operation.
 
+The single live B07 overlap disposition applies only to
+`tests/e2e/crm/customers.e2e.spec.ts` for run `e35-6-20261102`. Qualified main
+must descend from exact PR #145 head `f7bcfb885fca2275c2626bab80bed047ca2f6e41`
+and retain its reviewed incoming file blob. Select the exact combined
+checkpoint `63a7856f5baf0bff1ca5e64f153887197aa5a31d`. It has the single
+parent `b1e1d8511cd1ec9fbd4183d7c7b1082f01ae299a` and changes only that test
+file. The helper pins the original, retained, incoming and combined regular
+file blobs. The combined test preserves the product checks and binds the real
+Forward entry to the same-document list visit. Any other or additional
+conflict refuses. The normal worker-candidate tree, native approval,
+qualification and stopped-writer custody gates still apply.
+
 The integration candidate must descend from its before-HEAD and qualified main
 and have exactly main's tree. Any integration-only operative tree state requires
 a bounded disposition rather than silent removal. Register an isolated staging
