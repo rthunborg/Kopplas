@@ -319,8 +319,12 @@ export async function seedRoleAwarePhaseAUsers(
 /** Private E09 only: fixed categories never carry raw fixture values or causes. */
 export type E09FixtureOptions = { readonly e09Strict?: boolean };
 export class E09FixtureError extends Error {
-  constructor(readonly category: "setup" | "scenario" | "cleanup", readonly cleanupFailed = false) {
+  readonly category: "setup" | "scenario" | "cleanup";
+  readonly cleanupFailed: boolean;
+  constructor(category: "setup" | "scenario" | "cleanup", cleanupFailed = false) {
     super(`E09 fixture: ${category}`);
+    this.category = category;
+    this.cleanupFailed = cleanupFailed;
     this.name = "E09FixtureError";
   }
 }
