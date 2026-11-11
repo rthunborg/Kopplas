@@ -637,7 +637,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
     trace: "off",
     screenshot: "off",
     video: "off",
-    _setupArtifacts: async ({ playwright, _combinedContextOptions }, use) => {
+    _setupArtifacts: async ({ playwright, _combinedContextOptions }, provide) => {
       if (playwrightPackage.version !== "1.61.1" || process.env.DEBUG || process.env.DEBUG_FILE || process.env.PWDEBUG
         || process.env.NODE_DEBUG || process.env.PW_TEST_REUSE_CONTEXT) {
         throw new Error("E09 Playwright version, debug or context reuse configuration refused");
@@ -661,7 +661,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         },
       };
       instrumentation.addListener(defaults);
-      try { await use(); } finally { instrumentation.removeListener(defaults); }
+      try { await provide(); } finally { instrumentation.removeListener(defaults); }
     },
   });
 
