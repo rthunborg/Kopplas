@@ -316,19 +316,128 @@ export async function seedRoleAwarePhaseAUsers(
   };
 }
 
-export async function createRoleAwarePhaseAFixture(): Promise<RoleAwarePhaseAFixture> {
-  const base = await createTwoTenantFixture();
-  return { base, ...(await seedRoleAwarePhaseAUsers(base)) };
+/** Private E09 only: fixed categories never carry raw fixture values or causes. */
+export type E09FixtureOptions = { readonly e09Strict?: boolean };
+export class E09FixtureError extends Error {
+  constructor(readonly category: "setup" | "scenario" | "cleanup", readonly cleanupFailed = false) {
+    super(`E09 fixture: ${category}`);
+    this.name = "E09FixtureError";
+  }
+}
+export type E09OwnedProfile = { id: string; membershipId: string; tenantId: string; userId: string };
+
+export async function createRoleAwarePhaseAFixture(options?: E09FixtureOptions): Promise<RoleAwarePhaseAFixture> {
+  try {
+    const base = await createTwoTenantFixture();
+    return { base, ...(await seedRoleAwarePhaseAUsers(base)) };
+  } catch (error) {
+    // Partial provisioning has no complete ownership handle. Preserve it for
+    // diagnosis; never claim rollback or start destructive inferred cleanup.
+    if (options?.e09Strict) throw new E09FixtureError("setup");
+    throw error;
+  }
 }
 
 export async function cleanupRoleAwarePhaseAFixture(
   fixture: RoleAwarePhaseAFixture,
+  options?: E09FixtureOptions & { readonly profiles: readonly E09OwnedProfile[] },
 ): Promise<void> {
+  if (options?.e09Strict) return cleanupE09Fixture(fixture, options.profiles);
   await cleanupFixture(
     { ...fixture.base, extraUsers: fixture.extraUsers } as TwoTenantFixture & {
       readonly extraUsers: readonly FixtureUser[];
     },
   );
+}
+
+/** Completed E09 booking fixture only. No replica-mode root deletion: ordinary
+ * cascades remain enabled after exact owned restrictive profile edges are removed.
+ * Each independent phase is awaited; failures are fixed and never logged raw. */
+async function cleanupE09Fixture(fixture: RoleAwarePhaseAFixture, profiles: readonly E09OwnedProfile[]): Promise<void> {
+  const tenants = [fixture.base.tenantA, fixture.base.tenantB];
+  const tenantIds = tenants.map(row => row.id);
+  const users = [fixture.base.adminA, fixture.base.adminB, fixture.base.orphanUser, ...fixture.extraUsers];
+  const userIds = users.map(row => row.id);
+  const profileIds = profiles.map(row => row.id);
+  let failed = false, owned = false;
+  const phase = async (run: () => Promise<void>) => { try { await run(); } catch { failed = true; } };
+  await phase(async () => {
+    const expected = [
+      [fixture.base.tenantA.id, fixture.base.adminA.id],
+      [fixture.base.tenantA.id, fixture.users.montor.id],
+      [fixture.base.tenantA.id, fixture.users.projektledare.id],
+      [fixture.base.tenantB.id, fixture.base.adminB.id],
+    ];
+    const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (profiles.length !== 4 || new Set(profileIds).size !== 4 || new Set(tenantIds).size !== 2
+      || new Set(userIds).size !== 10 || [...tenantIds, ...userIds, ...profileIds, ...profiles.map(p => p.membershipId)].some(id => !uuid.test(id))
+      || expected.some(([tenant, user]) => profiles.filter(p => p.tenantId === tenant && p.userId === user).length !== 1)) {
+      throw new E09FixtureError("cleanup", true);
+    }
+    await adminSession(async ({ query }) => {
+      await query("begin");
+      try {
+        const roots = await query<{ id: string; name: string }>("select id,name from public.tenants where id=any($1::uuid[]) for update", [tenantIds]);
+        const memberships = await query<{ id: string; tenant_id: string; user_id: string }>(
+          "select id,tenant_id,user_id from public.tenant_memberships where tenant_id=any($1::uuid[]) or user_id=any($2::uuid[]) for update", [tenantIds, userIds]);
+        const actual = await query<{ id: string; tenant_id: string; membership_id: string }>(
+          "select id,tenant_id,membership_id from public.person_profiles where tenant_id=any($1::uuid[]) or id=any($2::uuid[]) for update", [tenantIds, profileIds]);
+        if (roots.length !== 2 || tenants.some(t => !roots.some(row => row.id === t.id && row.name === t.name))
+          || memberships.some(m => !tenantIds.includes(m.tenant_id) || !userIds.includes(m.user_id))
+          || actual.length !== 4 || profiles.some(p => !actual.some(a => a.id === p.id && a.tenant_id === p.tenantId && a.membership_id === p.membershipId)
+            || !memberships.some(m => m.id === p.membershipId && m.tenant_id === p.tenantId && m.user_id === p.userId))) {
+          throw new E09FixtureError("cleanup", true);
+        }
+        await query("commit");
+      } catch (error) { await query("rollback"); throw error; }
+    });
+    owned = true;
+  });
+  if (owned) {
+    await phase(async () => {
+      await adminSession(async ({ query }) => {
+        await query("begin");
+        try {
+          // Immutable audit rows alone need the established connection-local bypass.
+          await query("set local session_replication_role=replica");
+          await query("delete from public.audit_events where tenant_id=any($1::uuid[])", [tenantIds]);
+          await query("set local session_replication_role=origin");
+          await query("delete from public.tenant_provisioning_requests where tenant_id=any($1::uuid[])", [tenantIds]);
+          await query("delete from public.person_work_hours where tenant_id=any($1::uuid[]) and person_profile_id=any($2::uuid[])", [tenantIds, profileIds]);
+          await query("delete from public.person_profiles where tenant_id=any($1::uuid[]) and id=any($2::uuid[])", [tenantIds, profileIds]);
+          await query("commit");
+        } catch (error) { await query("rollback"); throw error; }
+      });
+    });
+    // A refused profile deletion must not suppress independent owned Auth attempts.
+    for (const id of userIds) await phase(async () => {
+      const result = await admin().auth.admin.deleteUser(id);
+      if (!result || result.error) throw new E09FixtureError("cleanup", true);
+    });
+    await phase(async () => { await adminQuery("delete from public.tenants where id=any($1::uuid[])", [tenantIds]); });
+  }
+  // Readback runs even after failure. This is the closed set created by the E09
+  // wrappers, not an all-tables cleanup facility; there are no readback deletes.
+  for (const table of ["tenants", "tenant_memberships", "membership_roles", "person_profiles", "person_work_hours",
+    "audit_events", "tenant_provisioning_requests", "notifications", "booking_conflicts", "booking_assignees", "bookings",
+    "time_reports", "job_events", "job_members", "jobs", "facilities", "customers"]) {
+    await phase(async () => {
+      const column = table === "tenants" ? "id" : "tenant_id";
+      if ((await adminQuery(`select 1 from public.${table} where ${column}=any($1::uuid[]) limit 1`, [tenantIds])).length) {
+        throw new E09FixtureError("cleanup", true);
+      }
+    });
+  }
+  await phase(async () => {
+    if ((await adminQuery("select 1 from public.person_profiles where id=any($1::uuid[]) limit 1", [profileIds])).length) throw new E09FixtureError("cleanup", true);
+  });
+  await phase(async () => {
+    if ((await adminQuery("select 1 from public.tenant_memberships where user_id=any($1::uuid[]) limit 1", [userIds])).length) throw new E09FixtureError("cleanup", true);
+  });
+  await phase(async () => {
+    if ((await adminQuery("select 1 from auth.users where id=any($1::uuid[]) limit 1", [userIds])).length) throw new E09FixtureError("cleanup", true);
+  });
+  if (failed || !owned) throw new E09FixtureError("cleanup", true);
 }
 
 /**

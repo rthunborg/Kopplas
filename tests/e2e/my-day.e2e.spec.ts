@@ -17,8 +17,11 @@
  * Imports perform no DB/browser setup. Full RLS/DST/DTO matrices belong to the
  * companion suites; exhaustive visual/manual matrices remain release work.
  */
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
+import { open } from "node:fs/promises";
+import { isDeepStrictEqual } from "node:util";
 import type { CDPSession, Locator, Page, Request, Route } from "@playwright/test";
+import playwrightPackage from "@playwright/test/package.json";
 import { test, expect } from "./support/resource-cdp-attachment";
 import {
   REPORT_DATE, filingAttempt, filingDialog, hydrated, signIn,
@@ -26,7 +29,7 @@ import {
   type TimeReportBrowserFixture,
 } from "./support/time-reports-atdd";
 import { adminQuery } from "../factories/admin-sql";
-import { adminInsertFacility } from "../factories/tenants";
+import { E09FixtureError, type E09FixtureOptions, adminInsertFacility } from "../factories/tenants";
 import { SCOPE_MANIFEST } from "@/scope/manifest";
 import { TENANT_CONTEXT_MESSAGES } from "@/server/auth/tenant-context";
 
@@ -53,7 +56,7 @@ type MyDayFixture = TimeReportBrowserFixture & { jobless: string; shared: string
  * cleanup; this local extension owns its three bookings, facility and notifications.
  * Existing immutable booking metadata/SQL seed shape is reused, never report INSERT.
  */
-async function withMyDayFixture(run: (f: MyDayFixture) => Promise<void>): Promise<void> {
+async function withMyDayFixture(run: (f: MyDayFixture) => Promise<void>, options?: E09FixtureOptions): Promise<void> {
   await withTimeReportBrowserFixture(async f => {
     const tenant = f.fx.base.tenantA.id;
     const ids = [randomUUID(), randomUUID(), randomUUID()];
@@ -85,7 +88,7 @@ async function withMyDayFixture(run: (f: MyDayFixture) => Promise<void>): Promis
       await adminQuery("update public.bookings set facility_id=null where tenant_id=$1 and id=$2", [tenant, f.ownBooking]);
       await adminQuery("delete from public.facilities where tenant_id=$1 and id=$2", [tenant, facilityId]);
     }
-  });
+  }, options);
 }
 
 /** Existing Next action identity + existing ReportInput, extended to its new host.
@@ -626,231 +629,614 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
     });
   });
 
-  test("[P0] 15.6-E09 a real tenant-switch RSC navigation discards the prior report owner and ignores its late read", async ({ resourcePage: page }) => {
-    // E09_OBSERVER_BEGIN: callback timing only; never browser causality or payload.
-    function createE09Observation(retry: number, sink: (payload: string) => Promise<void>, clock = () => performance.now()) {
-      const allowed = ["attempt-start", "held-selected", "fetch-start", "fetch-complete", "body-validated",
-        "navigation-start", "navigation-response", "current-ui-verified", "release", "fulfill-start", "fulfill-complete",
-        "fulfill-failed", "request-finished", "request-failed", "cleanup-enter", "listeners-removed", "unroute-start",
-        "unroute-complete", "unroute-failed", "cleanup-start", "cleanup-complete", "cleanup-failed", "scope-exit"] as const;
-      type Event = typeof allowed[number];
-      type Phase = "none" | "before-release" | "after-release";
-      type Category = "none" | "aborted" | "content-length" | "decoding" | "connection" | "other";
-      type Reason = "none" | "clock" | "overflow" | "record" | "retry" | "missing";
-      const events: { seq: number; ms: number; event: Event; phase: Phase; category: Category }[] = [];
-      const attempt = retry === 0 || retry === 1 ? retry : null;
-      let reason: Reason = attempt === null ? "retry" : "none", origin = 0, previous = 0, closed = false;
-      try { origin = clock(); if (!Number.isFinite(origin)) reason = "clock"; } catch { reason = "clock"; }
-      function mark(event: Event, phase: Phase = "none", category: Category = "none") {
-        if (closed || reason !== "none") return;
-        try {
-          if (!allowed.includes(event) || !["none", "before-release", "after-release"].includes(phase)
-            || !["none", "aborted", "content-length", "decoding", "connection", "other"].includes(category)) { reason = "record"; return; }
-          const elapsed = clock() - origin;
-          if (!Number.isFinite(elapsed) || elapsed < previous || elapsed < 0 || elapsed > 2_700_000) { reason = "clock"; return; }
-          previous = elapsed;
-          if (events.length >= 32) { reason = "overflow"; return; }
-          events.push({ seq: events.length + 1, ms: Math.floor(elapsed), event, phase, category });
-        } catch { reason = "clock"; }
+  // Only E09 uses this pinned Playwright 1.61.1 fixture override. The ordinary
+  // recorder instruments API calls before the case can sanitize errors, and
+  // its error context can include a page snapshot even with tracing off.
+  type E09ContextListener = { runBeforeCreateBrowserContext: (options: Record<string, unknown>) => Promise<void> };
+  const privateE09 = test.extend<{ _setupArtifacts: void; _combinedContextOptions: Record<string, unknown> }>({
+    trace: "off",
+    screenshot: "off",
+    video: "off",
+    _setupArtifacts: async ({ playwright, _combinedContextOptions }, use) => {
+      if (playwrightPackage.version !== "1.61.1" || process.env.DEBUG || process.env.DEBUG_FILE || process.env.PWDEBUG
+        || process.env.NODE_DEBUG || process.env.PW_TEST_REUSE_CONTEXT) {
+        throw new Error("E09 Playwright version, debug or context reuse configuration refused");
       }
-      mark("attempt-start");
-      async function finish() {
-        if (closed) return;
-        mark("scope-exit"); closed = true;
-        try {
-          const required: Event[] = ["attempt-start", "held-selected", "fetch-start", "fetch-complete", "body-validated",
-            "navigation-start", "navigation-response", "current-ui-verified", "release", "fulfill-start", "fulfill-complete",
-            "cleanup-enter", "listeners-removed", "unroute-start", "unroute-complete", "cleanup-start", "cleanup-complete", "scope-exit"];
-          if (reason === "none" && (!required.every(event => events.some(row => row.event === event))
-            || !events.some(row => row.event === "request-finished" || row.event === "request-failed"))) reason = "missing";
-          let payload = JSON.stringify({ version: 1, attempt, state: reason === "none" ? "COMPLETE" : "INCOMPLETE", reason, events });
-          if (Buffer.byteLength(payload, "utf8") > 4096) payload = JSON.stringify({ version: 1, attempt, state: "INCOMPLETE", reason: "overflow", events: [] });
-          await sink(payload);
-        } catch { /* No raw fallback; missing attachment fails diagnostic capture, never masks the test. */ }
+      // Preserve the normal context-default hook without enabling recording.
+      // Playwright's ordinary context factory relies on this hook for baseURL
+      // and device options. The attached fixture can still supply overrides.
+      const { _instrumentation: instrumentation } = playwright as unknown as { _instrumentation?: {
+        addListener(listener: E09ContextListener): void;
+        removeListener(listener: E09ContextListener): void;
+      } };
+      if (!instrumentation || typeof instrumentation.addListener !== "function" || typeof instrumentation.removeListener !== "function") {
+        throw new Error("E09 Playwright context configuration unavailable");
       }
-      return { mark, finish };
+      const defaults: E09ContextListener = {
+        async runBeforeCreateBrowserContext(options) {
+          for (const [key, value] of Object.entries(_combinedContextOptions)) {
+            if (!(key in options)) options[key] = value;
+          }
+          if (options.recordHar || options.recordVideo) throw new Error("E09 browser context recording refused");
+        },
+      };
+      instrumentation.addListener(defaults);
+      try { await use(); } finally { instrumentation.removeListener(defaults); }
+    },
+  });
+
+  // E09_REPLAY_HELPERS_BEGIN
+  const e09Limits = {
+    manifest: 2 * 1024 * 1024, arguments: 2048, headers: 16 * 1024, headerCount: 64,
+    body: 256 * 1024, chunk: 16 * 1024, chunks: 32,
+    commandMs: 3000, selectionMs: 12000, streamMs: 10000, terminalMs: 5000, nonTargets: 64,
+  };
+  type E09Failure = "setup" | "binding" | "filing" | "headers" | "encoding" | "stream"
+    | "timeout" | "overflow" | "projection" | "early-terminal" | "continued-request" | "session-closed"
+    | "missing-reply" | "rejected-reply" | "missing-terminal" | "late-failure"
+    | "journey" | "cleanup";
+  class E09Error extends Error {
+    constructor(readonly category: E09Failure) { super(`E09: ${category}`); }
+  }
+  function e09Require(condition: unknown, category: E09Failure): asserts condition {
+    if (!condition) throw new E09Error(category);
+  }
+  async function e09Within<T>(run: Promise<T>, ms: number, category: E09Failure = "timeout"): Promise<T> {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    try {
+      return await Promise.race([run, new Promise<never>((_, reject) => {
+        timer = setTimeout(() => reject(new E09Error(category)), Math.max(0, ms));
+      })]);
+    } finally { clearTimeout(timer); }
+  }
+  function e09Object(value: unknown): Record<string, unknown> | undefined {
+    if (value && typeof value === "object" && !Array.isArray(value)) return value as Record<string, unknown>;
+  }
+  function e09Parse(text: string): unknown {
+    try { return JSON.parse(text); } catch { return undefined; }
+  }
+  function e09ActionIds(manifest: unknown) {
+    const node = e09Object(e09Object(manifest)?.node);
+    const edge = e09Object(e09Object(manifest)?.edge);
+    e09Require(node && edge, "binding");
+    const lookup = (filename: string, exportedName: string) => {
+      const matches = (entries: Record<string, unknown>) => Object.entries(entries).filter(([, record]) =>
+        e09Object(record)?.filename === filename && e09Object(record)?.exportedName === exportedName);
+      const candidates = matches(node);
+      e09Require(candidates.length === 1 && matches(edge).length === 0, "binding");
+      const [id, record] = candidates[0];
+      const workers = e09Object(e09Object(record)?.workers);
+      e09Require(/^[a-f0-9]{42}$/.test(id) && workers && Object.keys(workers).some(key => key.endsWith("/my-day/page")), "binding");
+      return id;
+    };
+    return {
+      read: lookup("src/features/my-day/actions.ts", "readMyDayAction"),
+      file: lookup("src/features/time-reports/actions.ts", "fileTimeReportAction"),
+    };
+  }
+  async function e09BuildActionIds() {
+    // The configured Next production server builds in the runner's cwd.
+    const file = await open(".next/server/server-reference-manifest.json", "r");
+    try {
+      const bytes = Buffer.alloc(e09Limits.manifest + 1);
+      const { bytesRead } = await file.read(bytes, 0, bytes.length, 0);
+      e09Require(bytesRead < bytes.length && (await file.stat()).size === bytesRead, "binding");
+      return e09ActionIds(e09Parse(bytes.toString("utf8", 0, bytesRead)));
+    } finally { await file.close(); }
+  }
+
+  type E09Request = {
+    url: string; method: string; headers: Record<string, unknown>;
+    postData?: string; postDataEntries?: { bytes?: string }[];
+  };
+  function e09RequestHeader(request: E09Request, name: string) {
+    const entries = Object.entries(request.headers).filter(([key]) => key.toLowerCase() === name);
+    e09Require(entries.length <= 1, "binding");
+    const value = entries[0]?.[1];
+    e09Require(value === undefined || typeof value === "string", "binding");
+    return value;
+  }
+  function e09Base64(text: string, cap: number, category: E09Failure) {
+    e09Require(text.length <= 4 * Math.ceil(cap / 3), "overflow");
+    e09Require(/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(text), category);
+    const bytes = Buffer.from(text, "base64");
+    e09Require(bytes.length <= cap, "overflow");
+    e09Require(bytes.toString("base64") === text, category);
+    return bytes;
+  }
+  function e09Args(request: E09Request, fallback?: string) {
+    e09Require(/^text\/plain(?:;\s*charset=utf-8)?$/i.test(e09RequestHeader(request, "content-type") ?? ""), "binding");
+    let raw = request.postData ?? fallback;
+    if (request.postDataEntries !== undefined) {
+      const [entry] = request.postDataEntries;
+      e09Require(request.postDataEntries.length === 1 && typeof entry?.bytes === "string", "binding");
+      const decoded = new TextDecoder("utf-8", { fatal: true }).decode(e09Base64(entry.bytes, e09Limits.arguments, "binding"));
+      e09Require(raw === undefined || raw === decoded, "binding");
+      raw = decoded;
     }
-    // E09_OBSERVER_END
-    const observation = createE09Observation(test.info().retry,
-      payload => test.info().attach("my-day-e09-observation-v1", { contentType: "application/json", body: Buffer.from(payload, "utf8") }));
-    try { await withMyDayFixture(async f => {
-      await page.setViewportSize({ width: 1280, height: 800 });
-      const tenantB = f.fx.base.tenantB.id, membershipB = randomUUID(), profileB = randomUUID(), bookingB = randomUUID();
-      const markerB = `my-day-current-context-${randomUUID()}`;
-      const dateB = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Stockholm" }).format(new Date());
-      const oldFetched = barrier<void>(), releaseOld = barrier<void>(), oldDelivered = barrier<void>();
-      let armed = false, held = false;
-      let heldRequest: Request | undefined;
-      type HeldTerminal = { event: "finished" | "failed"; phase: "before-release" | "after-release";
-        category: "none" | "aborted" | "content-length" | "decoding" | "connection" | "other" };
-      const oldTerminal = barrier<HeldTerminal>();
-      let terminalEvent: HeldTerminal["event"] | "pending" = "pending";
-      let oldReleased = false;
-      const failureCategory = (request: Request): HeldTerminal["category"] => {
-        switch (request.failure()?.errorText) {
-          case "net::ERR_ABORTED": return "aborted";
-          case "net::ERR_CONTENT_LENGTH_MISMATCH": return "content-length";
-          case "net::ERR_CONTENT_DECODING_FAILED": return "decoding";
-          case "net::ERR_CONNECTION_ABORTED":
-          case "net::ERR_CONNECTION_CLOSED":
-          case "net::ERR_CONNECTION_FAILED":
-          case "net::ERR_CONNECTION_REFUSED":
-          case "net::ERR_CONNECTION_RESET": return "connection";
-          default: return "other";
-        }
-      };
-      const observeTerminal = (request: Request, event: HeldTerminal["event"]) => {
-        if (request !== heldRequest || terminalEvent !== "pending") return;
-        terminalEvent = event;
-        const record: HeldTerminal = { event, phase: oldReleased ? "after-release" : "before-release",
-          category: event === "finished" ? "none" : failureCategory(request) };
-        test.info().annotations.push({ type: "my-day-held-read-terminal", description: JSON.stringify(record) });
-        observation.mark(event === "finished" ? "request-finished" : "request-failed", record.phase, record.category);
-        oldTerminal.resolve(record);
-      };
-      const onFinished = (request: Request) => observeTerminal(request, "finished");
-      const onFailed = (request: Request) => observeTerminal(request, "failed");
-      const attempts: FilingAttempt[] = [];
-      const before = await f.snapshot();
-      const handler = async (route: Route) => {
-        const request = route.request();
-        if (isFiling(request, f.marker)) {
-          attempts.push(filingAttempt(request));
-          await route.fallback(); return;
-        }
-        if (!armed || held || !isDayRead(request)) { await route.fallback(); return; }
-        held = true; heldRequest = request;
-        observation.mark("held-selected");
-        // Observe this exact request before navigation can settle or cancel it.
-        // Retain only lifecycle enums, never request data or raw failure text.
-        page.on("requestfinished", onFinished);
-        page.on("requestfailed", onFailed);
-        try {
-          // Only delay an actual completed A projection; do not fabricate the
-          // response or keep a server transaction/command in flight.
-          observation.mark("fetch-start");
-          const response = await route.fetch();
-          observation.mark("fetch-complete");
-          expect(response.ok()).toBe(true);
-          const fulfillmentBody = await response.body();
-          expect(fulfillmentBody.toString("utf8")).toContain(f.ownBooking);
-          const responseHeaders = { ...response.headers() };
-          delete responseHeaders["content-encoding"];
-          delete responseHeaders["transfer-encoding"];
-          responseHeaders["content-length"] = String(fulfillmentBody.length);
-          const contentLength = responseHeaders["content-length"];
-          const contentEncoding = responseHeaders["content-encoding"]?.trim().toLowerCase();
-          observation.mark("body-validated");
-          const lengthMatch = contentLength !== undefined && /^[0-9]{1,20}$/.test(contentLength)
-            ? BigInt(contentLength) === BigInt(fulfillmentBody.length) ? "matches" : "differs" : "unknown";
-          const encoding = contentEncoding === undefined || contentEncoding === "identity" ? "identity"
-            : contentEncoding === "gzip" || contentEncoding === "br" || contentEncoding === "deflate" ? contentEncoding : "other";
-          test.info().annotations.push({ type: "my-day-held-read-framing", description: JSON.stringify({
-            hasContentLength: contentLength !== undefined, contentLengthMatchesBody: lengthMatch, retainedContentEncoding: encoding,
-          }) });
-          oldFetched.resolve(undefined);
-          await releaseOld.promise;
-          observation.mark("fulfill-start");
-          try { await route.fulfill({ response, body: fulfillmentBody, headers: responseHeaders }); }
-          catch (error) { observation.mark("fulfill-failed"); throw error; }
-          observation.mark("fulfill-complete");
-          oldDelivered.resolve(undefined);
-        } catch (error) { oldFetched.reject(error); oldDelivered.reject(error); throw error; }
-      };
+    e09Require(raw !== undefined && Buffer.byteLength(raw) <= e09Limits.arguments, "binding");
+    const args = e09Parse(raw);
+    const argument = Array.isArray(args) && args.length === 1 ? e09Object(args[0]) : undefined;
+    e09Require(argument && raw === JSON.stringify([argument]), "binding");
+    return { raw, argument };
+  }
+  function e09ReadArgs(input: Record<string, unknown>) {
+    e09Require(Object.keys(input).length === 3
+      && input.date === REPORT_DATE && input.mode === "day" && input.noticePage === 1, "binding");
+  }
+
+  type E09Header = { name: string; value: string };
+  function e09ResponseHeaders(headers: E09Header[] | undefined) {
+    e09Require(headers && headers.length <= e09Limits.headerCount, "headers");
+    const selected = new Map<string, string>();
+    let total = 0;
+    for (const { name, value } of headers) {
+      total += Buffer.byteLength(name) + Buffer.byteLength(value) + 4;
+      e09Require(total <= e09Limits.headers && /^[!#$%&'*+.^_`|~0-9A-Za-z-]+$/.test(name) && !/[^\t\x20-\x7e]/.test(value), "headers");
+      const key = name.toLowerCase();
+      e09Require(!["set-cookie", "set-cookie2", "location", "x-action-redirect", "trailer", "upgrade"].includes(key), "headers");
+      // Reconstruct only the fields consumed by the pinned action reducer.
+      if (!["content-type", "content-encoding", "content-length", "transfer-encoding", "x-action-revalidated",
+        "x-nextjs-postponed", "x-nextjs-stale-time", "x-action-not-found"].includes(key)) continue;
+      e09Require(!selected.has(key), "headers");
+      selected.set(key, value.trim());
+    }
+    e09Require(/^text\/x-component(?:;\s*charset=utf-8)?$/i.test(selected.get("content-type") ?? ""), "headers");
+    const encoding = selected.get("content-encoding")?.toLowerCase() ?? "identity";
+    // Chromium 149 decodes in URLRequestHttpJob or passes client-side
+    // decoding types to DevToolsURLLoaderInterceptor, which installs the
+    // decoding pipe before returning the stream. Accept only singleton
+    // encodings on that path and still require the decoded Flight result.
+    e09Require(["identity", "gzip", "br"].includes(encoding), "encoding");
+    const length = selected.get("content-length"), transfer = selected.get("transfer-encoding");
+    e09Require(length === undefined || /^(0|[1-9][0-9]{0,8})$/.test(length), "headers");
+    e09Require(transfer === undefined || (transfer.toLowerCase() === "chunked" && length === undefined), "headers");
+    // A compressed wire length is not a decoded byte count. Next's
+    // streaming compression removes it; refuse other compressed framing.
+    e09Require(encoding === "identity" || length === undefined, "headers");
+    e09Require(!selected.has("x-nextjs-postponed") && !selected.has("x-action-not-found"), "headers");
+    const expectedBytes = length === undefined ? undefined : Number(length);
+    e09Require(expectedBytes === undefined || expectedBytes <= e09Limits.body, "overflow");
+    for (const name of ["content-encoding", "transfer-encoding", "content-length"]) selected.delete(name);
+    return { expectedBytes, headers: Array.from(selected, ([name, value]) => ({ name, value })) };
+  }
+  type E09Chunk = { data: string; base64Encoded?: boolean; eof: boolean };
+  async function e09ReadBody(read: (size: number) => Promise<E09Chunk>, ms = e09Limits.streamMs) {
+    const body = Buffer.alloc(e09Limits.body);
+    let used = 0;
+    const deadline = performance.now() + ms;
+    for (let index = 0; index < e09Limits.chunks; index++) {
+      const remaining = deadline - performance.now();
+      e09Require(remaining > 0, "timeout");
+      const chunk = await e09Within(read(e09Limits.chunk), Math.min(remaining, e09Limits.commandMs));
+      e09Require(typeof chunk.data === "string" && typeof chunk.eof === "boolean"
+        && (chunk.base64Encoded === undefined || typeof chunk.base64Encoded === "boolean"), "stream");
+      e09Require(chunk.base64Encoded || (chunk.data.length <= e09Limits.chunk && Buffer.byteLength(chunk.data) <= e09Limits.chunk), "overflow");
+      const bytes = chunk.base64Encoded ? e09Base64(chunk.data, e09Limits.chunk, "stream") : Buffer.from(chunk.data, "utf8");
+      e09Require(bytes.length <= e09Limits.chunk && used + bytes.length <= e09Limits.body, "overflow");
+      e09Require(chunk.base64Encoded || bytes.toString("utf8") === chunk.data, "stream");
+      e09Require(bytes.length > 0 || chunk.eof, "stream");
+      bytes.copy(body, used);
+      used += bytes.length;
+      if (chunk.eof) return body.subarray(0, used);
+    }
+    throw new E09Error("overflow");
+  }
+  function e09Projection(body: Buffer, context: string, ownBooking: string, otherBooking: string) {
+    // Pinned production Flight action envelope root points to the settled
+    // action result row. A UUID anywhere in an unrelated row is insufficient.
+    let text: string;
+    try { text = new TextDecoder("utf-8", { fatal: true }).decode(body); }
+    catch { throw new E09Error("projection"); }
+    const lines = text.split("\n");
+    const find = (row: string) => {
+      const found = lines.filter(line => line.startsWith(row + ":"));
+      e09Require(found.length === 1, "projection");
+      return e09Object(e09Parse(found[0].slice(row.length + 1)));
+    };
+    const action = find("0")?.a;
+    e09Require(typeof action === "string" && /^\$@[a-f0-9]+$/.test(action), "projection");
+    const result = find(action.slice(2)), data = e09Object(result?.data);
+    e09Require(result?.ok === true && result.renderContextKey === context
+      && data?.date === REPORT_DATE && data.mode === "day" && data.noticePage === 1 && Array.isArray(data.bookings), "projection");
+    const bookings = data.bookings.map(booking => e09Object(booking)?.id);
+    e09Require(bookings.filter(id => id === ownBooking).length === 1 && !bookings.includes(otherBooking), "projection");
+  }
+  type E09Terminal = { event: "finished" | "failed"; phase: "early" | "late";
+    category: "none" | "aborted" | "content-length" | "decoding" | "connection" | "other" };
+  type E09Outcome = "not-sent" | "reply-unknown" | "reply-rejected"
+    | "accepted-no-terminal" | "accepted-failed" | "accepted-finished";
+  function e09FailureCategory(errorText: string): E09Terminal["category"] {
+    switch (errorText) {
+      case "net::ERR_ABORTED": return "aborted";
+      case "net::ERR_CONTENT_LENGTH_MISMATCH": return "content-length";
+      case "net::ERR_CONTENT_DECODING_FAILED": return "decoding";
+      case "net::ERR_CONNECTION_ABORTED":
+      case "net::ERR_CONNECTION_CLOSED":
+      case "net::ERR_CONNECTION_FAILED":
+      case "net::ERR_CONNECTION_REFUSED":
+      case "net::ERR_CONNECTION_RESET": return "connection";
+      default: return "other";
+    }
+  }
+  async function e09Fulfill(send: () => Promise<unknown>, terminal: Promise<E09Terminal>, accept: () => void, ms = e09Limits.commandMs,
+    terminalMs = e09Limits.terminalMs): Promise<E09Outcome> {
+    try {
+      const reply = await e09Within(send(), ms);
+      // A successful direct Chromium Fetch.fulfillRequest result is empty.
+      if (!e09Object(reply) || Object.keys(reply as object).length !== 0) return "reply-unknown";
+    } catch (error) {
+      // Playwright's pinned CRSession formats a reply error using the actual
+      // command method. Session closure/timeout have no such reply proof.
+      return error instanceof Error && /^(?:cdpSession\.send: )?Protocol error \(Fetch\.fulfillRequest\): /.test(error.message)
+        ? "reply-rejected" : "reply-unknown";
+    }
+    accept();
+    try {
+      const observed = await e09Within(terminal, terminalMs, "missing-terminal");
+      if (observed.phase !== "late") return "accepted-no-terminal";
+      return observed.event === "finished" ? "accepted-finished" : "accepted-failed";
+    } catch { return "accepted-no-terminal"; }
+  }
+  // E09_REPLAY_HELPERS_END
+
+  function e09Transport(session: CDPSession, url: string, frameId: string, action: Awaited<ReturnType<typeof e09BuildActionIds>>,
+    marker: string, context: string, ownBooking: string, otherBooking: string) {
+    const ready = barrier<void>(), terminal = barrier<E09Terminal>();
+    const sessionClosed = barrier<void>();
+    const pending = new Set<Promise<void>>();
+    let selection: { networkId: string; args: string; fetchId?: string } | undefined;
+    let prepared: { headers: E09Header[]; body: Buffer } | undefined;
+    let failure: E09Failure | undefined, observed: E09Terminal | undefined;
+    let outcome: E09Outcome = "not-sent";
+    let sent = false, accepted = false, closing = false, closed = false, filing = 0, nonTargets = 0;
+    let sessionClose: "before-send" | "awaiting-reply" | "after-accepted" | null = null;
+    let stream: string | undefined, taking = false, eof = false;
+    const fail = (category: E09Failure) => {
+      failure ??= category;
+      ready.reject(new E09Error(category));
+    };
+    const check = () => { if (failure) throw new E09Error(failure); };
+    const sameRoute = (request: E09Request, frame: string | undefined) => request.url === url
+      && request.method === "POST" && frame === frameId;
+    const onNetwork = (event: { requestId: string; frameId?: string; request: E09Request; redirectResponse?: unknown }) => {
+      if (closing) return;
       try {
-        // Deterministic current authority: A is older until explicitly revoked.
-        // Both tenants and every row here belong to this factory invocation.
-        await adminQuery(`insert into public.tenant_memberships(id,tenant_id,user_id,role,status,created_at)
-          select $1,$2,$3,'montor','active',created_at + interval '1 day'
-          from public.tenant_memberships where tenant_id=$4 and id=$5`,
-          [membershipB, tenantB, f.fx.users.montor.id, f.fx.base.tenantA.id, f.fx.ownProfile.membershipId]);
-        await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) values($1,$2,$3)", [profileB, tenantB, membershipB]);
-        await adminQuery(`insert into public.bookings(id,tenant_id,starts_at,ends_at,description,create_command_id,create_payload_digest,create_result)
-          values($1,$2,$3,$4,$5,$6,repeat('a',64),jsonb_build_object('bookingId',$1::uuid::text))`,
-          [bookingB, tenantB, `${dateB}T06:00:00Z`, `${dateB}T07:00:00Z`, markerB, randomUUID()]);
-        await adminQuery("insert into public.booking_assignees(tenant_id,booking_id,person_profile_id) values($1,$2,$3)", [tenantB, bookingB, profileB]);
-        await signIn(page, f.fx.users.montor);
-        await openDay(page);
-        await expect(bookingCard(page, f.ownBooking)).toBeVisible();
-        await expect(bookingCard(page, bookingB)).toHaveCount(0);
-        const reportBooking = jobsActive ? f.ownBooking : f.jobless;
-        await bookingCard(page, reportBooking).getByRole("button", { name: "Rapportera tid", exact: true }).click();
-        const form = filingDialog(page);
-        await form.getByLabel("Anteckning", { exact: true }).fill(f.marker);
-        await page.route("**/*", handler);
-        armed = true;
-        await keyboardActivate(page, form.getByRole("button", { name: "Rapportera tid", exact: true }));
-        await oldFetched.promise; // onSaved's A read completed, its browser response is held.
-        await expect(form.getByTestId("time-report-submit-status")).toHaveText("Rapporterad");
-        const durable = await f.snapshot();
-        const rows = durable.reports.filter(row => row.note === f.marker);
-        expect(rows).toHaveLength(1);
-        expect(rows[0]).toMatchObject({ tenant_id: f.fx.base.tenantA.id, user_id: f.fx.users.montor.id,
-          booking_id: reportBooking, job_id: jobsActive ? f.job.id : null, status: "submitted" });
-        expect(durable.reports.length - before.reports.length).toBe(1);
-        expect(durable.audit.filter(row => row.target_id === rows[0].id)).toHaveLength(1);
-        await page.keyboard.press("Escape");
-        await expect(form).toHaveCount(0);
-        await adminQuery("update public.tenant_memberships set status='disabled' where tenant_id=$1 and id=$2",
-          [f.fx.base.tenantA.id, f.fx.ownProfile.membershipId]);
-        // Next 16 queues ACTION_REFRESH behind Server Actions. Its existing
-        // ACTION_NAVIGATE path preempts them, so the actual Min dag link provides
-        // a real overlapping B RSC update without a private router/test endpoint.
-        // Installed Next app-router-state.js special-cases exact same-page links:
-        // render-tree.js refetches their dynamic page leaf instead of retaining
-        // its prior render tree. This route is force-dynamic; static prefetch reuse
-        // cannot satisfy the required observed GET and current B booking below.
-        const nextContext = page.waitForResponse(reply => reply.request().method() === "GET"
-          && new URL(reply.url()).pathname === "/my-day" && reply.request().headers()["rsc"] === "1");
-        observation.mark("navigation-start");
-        await page.getByRole("link", { name: "Min dag", exact: true }).filter({ visible: true }).click();
-        expect((await nextContext).ok()).toBe(true);
-        observation.mark("navigation-response");
-        await expect(page.getByLabel("Datum", { exact: true })).toHaveValue(dateB);
-        await expect(bookingCard(page, bookingB)).toContainText(markerB);
-        await expect(bookingCard(page, f.ownBooking)).toHaveCount(0);
-        await expect(form).toHaveCount(0);
-        observation.mark("current-ui-verified");
-        observation.mark("release");
-        oldReleased = true;
-        releaseOld.resolve(undefined);
-        await oldDelivered.promise;
-        await expect.poll(() => terminalEvent, { message: "Held A read must reach a terminal transport event" }).not.toBe("pending");
-        const terminal = await oldTerminal.promise;
-        // Allow the real Flight decode and React commit to settle after the
-        // transport settles; retain isolation evidence even if transport failed.
-        await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
-        await expect(bookingCard(page, bookingB)).toContainText(markerB);
-        await expect(agenda(page).getByRole("article")).toHaveCount(1);
-        for (const id of [f.ownBooking, f.shared, f.jobless, f.missingBooking, f.allDay]) await expect(bookingCard(page, id)).toHaveCount(0);
-        await expect(ownJobs(page).getByRole("link")).toHaveCount(0);
-        await expect(form).toHaveCount(0);
-        await expect(page.getByTestId(`time-report-entry-${reportBooking}`)).toHaveCount(0);
-        expect(attempts).toHaveLength(1);
-        expect(await f.snapshot()).toEqual(durable);
-        expect(terminal, "Only a completed transport after release proves a delivered late response").toEqual({ event: "finished", phase: "after-release", category: "none" });
-      } finally {
-        observation.mark("cleanup-enter");
-        page.off("requestfinished", onFinished);
-        page.off("requestfailed", onFailed);
-        observation.mark("listeners-removed");
-        releaseOld.resolve(undefined);
-        observation.mark("unroute-start");
-        try { await page.unroute("**/*", handler); observation.mark("unroute-complete"); }
-        catch (error) { observation.mark("unroute-failed"); throw error; }
-        finally {
-          observation.mark("cleanup-start");
-          try {
-          await adminQuery("update public.tenant_memberships set status='active' where tenant_id=$1 and id=$2", [f.fx.base.tenantA.id, f.fx.ownProfile.membershipId]);
-          await adminQuery("delete from public.booking_assignees where tenant_id=$1 and booking_id=$2", [tenantB, bookingB]);
-          await adminQuery("delete from public.bookings where tenant_id=$1 and id=$2", [tenantB, bookingB]);
-          await adminQuery("delete from public.person_profiles where tenant_id=$1 and id=$2", [tenantB, profileB]);
-          await adminQuery("delete from public.membership_roles where tenant_id=$1 and membership_id=$2", [tenantB, membershipB]);
-          await adminQuery("delete from public.tenant_memberships where tenant_id=$1 and id=$2", [tenantB, membershipB]);
-          observation.mark("cleanup-complete");
-          } catch (error) { observation.mark("cleanup-failed"); throw error; }
+        e09Require(!selection || event.requestId !== selection.networkId, "binding");
+        if (!sameRoute(event.request, event.frameId)) return;
+        const id = e09RequestHeader(event.request, "next-action");
+        if (id !== action.file && id !== action.read) return;
+        e09Require(!event.redirectResponse && !!event.requestId, "binding");
+        const { raw, argument } = e09Args(event.request);
+        if (id === action.file) {
+          e09Require(filing === 0 && !selection && argument.note === marker, "filing");
+          e09Require(typeof argument.attemptId === "string"
+            && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(argument.attemptId)
+            && typeof argument.date === "string" && Number.isInteger(argument.minutes), "filing");
+          filing++;
+        } else {
+          e09Require(filing === 1 && !selection, "binding");
+          e09ReadArgs(argument);
+          selection = { networkId: event.requestId, args: raw };
         }
-      }
-    }); } finally { await observation.finish(); }
+      } catch (error) { fail(error instanceof E09Error ? error.category : "binding"); }
+    };
+    const onTerminal = (requestId: string, event: E09Terminal["event"], category: E09Terminal["category"]) => {
+      if (closing || requestId !== selection?.networkId) return;
+      if (observed) { fail("binding"); return; }
+      observed = { event, category, phase: sent ? "late" : "early" };
+      terminal.resolve(observed);
+      if (!sent) fail("early-terminal");
+    };
+    const onFinished = ({ requestId }: { requestId: string }) => onTerminal(requestId, "finished", "none");
+    const onFailed = ({ requestId, errorText }: { requestId: string; errorText: string }) =>
+      onTerminal(requestId, "failed", e09FailureCategory(errorText));
+    const onClose = () => {
+      closed = true;
+      sessionClosed.resolve(undefined);
+      if (closing) return;
+      sessionClose = !sent ? "before-send" : accepted ? "after-accepted" : "awaiting-reply";
+      if (!sent) fail("session-closed");
+      if (!observed) terminal.reject(new E09Error("session-closed"));
+    };
+    const onPaused = (event: {
+      requestId: string; networkId?: string; frameId: string; request: E09Request; responseStatusCode?: number;
+      responseErrorReason?: string; redirectedRequestId?: string; responseHeaders?: E09Header[];
+    }) => {
+      if (closing) return;
+      let target = false;
+      const pause = async () => {
+        target = sameRoute(event.request, event.frameId) && e09RequestHeader(event.request, "next-action") === action.read;
+        if (!target && (!selection || event.networkId !== selection.networkId)) {
+          e09Require(++nonTargets <= e09Limits.nonTargets, "overflow");
+          await e09Within(session.send("Fetch.continueRequest", { requestId: event.requestId }), e09Limits.commandMs);
+          return;
+        }
+        e09Require(target && selection && !!event.requestId && event.networkId === selection.networkId
+          && !selection.fetchId && !event.redirectedRequestId, "binding");
+        selection.fetchId = event.requestId;
+        check();
+        // Fetch may omit post data. Use its exact same-session Network ID
+        // to read the payload and reject any conflicting bytes or argument.
+        const supplied = event.request.postData !== undefined || event.request.postDataEntries !== undefined;
+        const fallback = supplied ? undefined : (await e09Within(
+          session.send("Network.getRequestPostData", { requestId: selection.networkId }), e09Limits.commandMs)).postData;
+        const { raw, argument } = e09Args(event.request, fallback);
+        e09ReadArgs(argument);
+        e09Require(raw === selection.args && event.responseStatusCode === 200 && !event.responseErrorReason, "binding");
+        const { headers, expectedBytes } = e09ResponseHeaders(event.responseHeaders);
+        check();
+        e09Require(!closing, "cleanup");
+        taking = true;
+        stream = (await e09Within(session.send("Fetch.takeResponseBodyAsStream", { requestId: selection.fetchId }), e09Limits.commandMs)).stream;
+        e09Require(typeof stream === "string" && stream.length > 0, "stream");
+        const body = await e09ReadBody(size => {
+          check();
+          e09Require(!closing, "cleanup");
+          return session.send("IO.read", { handle: stream!, size });
+        });
+        eof = true;
+        await e09Within(session.send("IO.close", { handle: stream }), e09Limits.commandMs);
+        stream = undefined;
+        e09Require(expectedBytes === undefined || expectedBytes === body.length, "headers");
+        e09Projection(body, context, ownBooking, otherBooking);
+        check();
+        prepared = { headers: [...headers, { name: "content-length", value: String(body.length) }], body };
+        ready.resolve(undefined);
+      };
+      if (pending.size >= e09Limits.nonTargets) { fail("overflow"); return; }
+      const work = pause().catch(error => fail(error instanceof E09Error ? error.category : target ? "stream" : "continued-request"));
+      pending.add(work);
+      void work.then(() => pending.delete(work));
+    };
+    session.on("Network.requestWillBeSent", onNetwork);
+    session.on("Network.loadingFinished", onFinished);
+    session.on("Network.loadingFailed", onFailed);
+    session.on("Fetch.requestPaused", onPaused);
+    session.on("close", onClose);
+    return {
+      async enable() {
+        await e09Within(session.send("Network.enable", { maxPostDataSize: e09Limits.arguments }), e09Limits.commandMs);
+        await e09Within(session.send("Fetch.enable", { patterns: [{ urlPattern: url + "*", requestStage: "Response" }] }), e09Limits.commandMs);
+      },
+      waitUntilHeld: () => e09Within(ready.promise, e09Limits.selectionMs),
+      async release() {
+        check();
+        e09Require(selection?.fetchId && prepared && !sent && !observed && eof && !stream, "binding");
+        const { fetchId } = selection;
+        const { headers, body } = prepared;
+        prepared = undefined;
+        const encoded = body.toString("base64");
+        e09Require(encoded.length <= 4 * Math.ceil(e09Limits.body / 3), "overflow");
+        // EOF proves only that CDP exposed all bytes. Both the replacement
+        // reply and the original Network ID's late terminal are required.
+        sent = true;
+        outcome = await e09Fulfill(() => session.send("Fetch.fulfillRequest", {
+          requestId: fetchId, responseCode: 200, responseHeaders: headers, body: encoded,
+        }), terminal.promise, () => { accepted = true; });
+      },
+      requireSuccess() {
+        check();
+        if (outcome === "reply-rejected") throw new E09Error("rejected-reply");
+        if (outcome === "accepted-no-terminal") throw new E09Error("missing-terminal");
+        if (outcome === "accepted-failed") throw new E09Error("late-failure");
+        e09Require(outcome === "accepted-finished" && filing === 1, "missing-reply");
+      },
+      async cleanup(page: Page) {
+        closing = true;
+        prepared = undefined;
+        let clean = !closed;
+        try {
+          await e09Within(Promise.all(pending), e09Limits.streamMs, "cleanup");
+          if (stream) {
+            await e09Within(session.send("IO.close", { handle: stream }), e09Limits.commandMs, "cleanup");
+            stream = undefined;
+          }
+          if (failure || (taking && !eof) || (selection && !selection.fetchId)
+            || outcome === "reply-unknown" || outcome === "accepted-no-terminal") {
+            // Close the fixture target when a paused response is ambiguous.
+            // CDP also forbids changing requests before stream EOF.
+            await e09Within(page.close(), e09Limits.commandMs, "cleanup");
+            e09Require(page.isClosed(), "cleanup");
+            await e09Within(sessionClosed.promise, e09Limits.commandMs, "cleanup");
+          } else {
+            if (selection?.fetchId && !observed) {
+              await e09Within(session.send("Fetch.failRequest", {
+                requestId: selection.fetchId, errorReason: "Aborted",
+              }), e09Limits.commandMs, "cleanup");
+            }
+            await e09Within(session.send("Fetch.disable"), e09Limits.commandMs, "cleanup");
+            await e09Within(session.send("Network.disable"), e09Limits.commandMs, "cleanup");
+            await e09Within(session.detach(), e09Limits.commandMs, "cleanup");
+          }
+        } catch {
+          clean = false;
+          await e09Within(page.close(), e09Limits.commandMs, "cleanup").catch(() => undefined);
+        } finally {
+          session.off("Network.requestWillBeSent", onNetwork);
+          session.off("Network.loadingFinished", onFinished);
+          session.off("Network.loadingFailed", onFailed);
+          session.off("Fetch.requestPaused", onPaused);
+          session.off("close", onClose);
+        }
+        e09Require(clean, "cleanup");
+        check();
+      },
+      record() { return { outcome, terminal: observed ?? null, sessionClose }; },
+    };
+  }
+
+  privateE09("[P0] 15.6-E09 a real tenant-switch RSC navigation discards the prior report owner and ignores its late read", async ({ resourcePage: page }, testInfo) => {
+    let stage: "setup" | "a-ui" | "held-read" | "durability" | "b-navigation" | "b-ui" | "release" | "late-isolation" = "setup";
+    let failure: E09Failure | undefined, cleanupFailed = false;
+    let transport: ReturnType<typeof e09Transport> | undefined;
+    const remember = (error: unknown, fallback: E09Failure) => { failure ??= error instanceof E09Error ? error.category : fallback; };
+    const verifyUi = async (predicate: () => Promise<boolean>) => {
+      await e09Within((async () => {
+        const deadline = performance.now() + 15000;
+        while (performance.now() < deadline) {
+          if (await predicate()) return;
+          await new Promise(resolve => setTimeout(resolve, 50));
+        }
+        throw new E09Error("journey");
+      })(), 15000, "journey");
+    };
+    try {
+      const baseURL = testInfo.project.use.baseURL;
+      e09Require(baseURL, "setup");
+      const url = new URL("/my-day", baseURL);
+      const action = await e09BuildActionIds();
+      await withMyDayFixture(async f => {
+        const tenantA = f.fx.base.tenantA.id, tenantB = f.fx.base.tenantB.id;
+        const user = f.fx.users.montor;
+        const contextA = createHash("sha256").update(JSON.stringify([user.id, tenantA])).digest("hex");
+        const membershipB = randomUUID(), profileB = randomUUID(), bookingB = randomUUID();
+        const markerB = `my-day-current-context-${randomUUID()}`;
+        const dateB = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Stockholm" }).format(new Date());
+        let session: CDPSession | undefined;
+        let attaching = false;
+        try {
+          await page.setViewportSize({ width: 1280, height: 800 });
+          const before = await f.snapshot();
+          // Deterministic authority: A is older until explicitly revoked.
+          // Both tenants and every row here belong to this factory invocation.
+          await adminQuery(`insert into public.tenant_memberships(id,tenant_id,user_id,role,status,created_at)
+            select $1,$2,$3,'montor','active',created_at + interval '1 day'
+            from public.tenant_memberships where tenant_id=$4 and id=$5`,
+            [membershipB, tenantB, user.id, tenantA, f.fx.ownProfile.membershipId]);
+          await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) values($1,$2,$3)", [profileB, tenantB, membershipB]);
+          await adminQuery(`insert into public.bookings(id,tenant_id,starts_at,ends_at,description,create_command_id,create_payload_digest,create_result)
+            values($1,$2,$3,$4,$5,$6,repeat('a',64),jsonb_build_object('bookingId',$1::uuid::text))`,
+            [bookingB, tenantB, `${dateB}T06:00:00Z`, `${dateB}T07:00:00Z`, markerB, randomUUID()]);
+          await adminQuery("insert into public.booking_assignees(tenant_id,booking_id,person_profile_id) values($1,$2,$3)", [tenantB, bookingB, profileB]);
+
+          // The same real login/date/keyboard path, with value-free assertion
+          // failures for this case's reporters.
+          stage = "a-ui";
+          await page.context().clearCookies();
+          await page.goto(new URL("/login", url).href);
+          const login = page.getByRole("button", { name: "Logga in", exact: true });
+          await hydrated(login);
+          await page.getByLabel("E-post", { exact: true }).fill(user.email);
+          await page.getByLabel("Lösenord", { exact: true }).fill(user.password);
+          await login.click();
+          await verifyUi(async () => new URL(page.url()).pathname !== "/login");
+          await page.goto(url.href);
+          const selected = page.getByLabel("Datum", { exact: true });
+          await hydrated(selected);
+          await selected.fill(REPORT_DATE);
+          await verifyUi(async () => (await selected.inputValue()) === REPORT_DATE);
+          await verifyUi(() => bookingCard(page, f.ownBooking).isVisible());
+          await verifyUi(async () => (await bookingCard(page, bookingB).count()) === 0);
+          const reportBooking = jobsActive ? f.ownBooking : f.jobless;
+          await bookingCard(page, reportBooking).getByRole("button", { name: "Rapportera tid", exact: true }).click();
+          const form = filingDialog(page);
+          await form.getByLabel("Anteckning", { exact: true }).fill(f.marker);
+          const submit = form.getByRole("button", { name: "Rapportera tid", exact: true });
+          await submit.focus();
+          await verifyUi(() => submit.evaluate(element => document.activeElement === element));
+
+          stage = "held-read";
+          attaching = true;
+          session = await e09Within(page.context().newCDPSession(page), e09Limits.commandMs);
+          const { product } = await e09Within(session.send("Browser.getVersion"), e09Limits.commandMs);
+          e09Require(/^(?:Headless)?Chrome\/149\.0\.7827\.55$/.test(product), "setup");
+          const { frameTree: { frame } } = await e09Within(session.send("Page.getFrameTree"), e09Limits.commandMs);
+          e09Require(frame.url === url.href && !!frame.id && !frame.parentId, "binding");
+          transport = e09Transport(session, url.href, frame.id, action, f.marker, contextA, f.ownBooking, bookingB);
+          await transport.enable();
+          await page.keyboard.press("Enter");
+          await transport.waitUntilHeld();
+
+          stage = "durability";
+          await verifyUi(async () => (await form.getByTestId("time-report-submit-status").textContent())?.trim() === "Rapporterad");
+          const durable = await f.snapshot();
+          const rows = durable.reports.filter(row => row.note === f.marker);
+          e09Require(rows.length === 1 && rows[0].tenant_id === tenantA && rows[0].user_id === user.id
+            && rows[0].booking_id === reportBooking && rows[0].job_id === (jobsActive ? f.job.id : null)
+            && rows[0].status === "submitted", "journey");
+          e09Require(durable.reports.length - before.reports.length === 1
+            && durable.audit.filter(row => row.target_id === rows[0].id).length === 1, "journey");
+          await page.keyboard.press("Escape");
+          await verifyUi(async () => (await form.count()) === 0);
+          await adminQuery("update public.tenant_memberships set status='disabled' where tenant_id=$1 and id=$2",
+            [tenantA, f.fx.ownProfile.membershipId]);
+
+          // ACTION_NAVIGATE preempts the queued refresh. The actual same-page
+          // link performs a new force-dynamic B RSC navigation while A is held.
+          stage = "b-navigation";
+          const [reply] = await Promise.all([
+            page.waitForResponse(response => {
+              const target = new URL(response.url()), request = response.request();
+              return target.origin === url.origin && target.pathname === url.pathname
+                && request.method() === "GET" && request.headers()["rsc"] === "1";
+            }, { timeout: 15000 }),
+            page.getByRole("link", { name: "Min dag", exact: true }).filter({ visible: true }).click(),
+          ]);
+          e09Require(reply.ok(), "journey");
+          const bCard = bookingCard(page, bookingB);
+          const hasB = async () => (await bCard.textContent())?.includes(markerB) === true;
+          stage = "b-ui";
+          await verifyUi(async () => (await page.getByLabel("Datum", { exact: true }).inputValue()) === dateB);
+          await verifyUi(hasB);
+          await verifyUi(async () => (await bookingCard(page, f.ownBooking).count()) === 0);
+          await verifyUi(async () => (await form.count()) === 0);
+
+          stage = "release";
+          await transport.release();
+          stage = "late-isolation";
+          // Preserve the post-release UI and persistence assertions even
+          // when the diagnostic observed a reply rejection or native failure.
+          await e09Within(page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))),
+            e09Limits.commandMs, "journey");
+          await verifyUi(hasB);
+          await verifyUi(async () => (await agenda(page).getByRole("article").count()) === 1);
+          for (const id of [f.ownBooking, f.shared, f.jobless, f.missingBooking, f.allDay]) {
+            await verifyUi(async () => (await bookingCard(page, id).count()) === 0);
+          }
+          await verifyUi(async () => (await ownJobs(page).getByRole("link").count()) === 0);
+          await verifyUi(async () => (await form.count()) === 0);
+          await verifyUi(async () => (await page.getByTestId(`time-report-entry-${reportBooking}`).count()) === 0);
+          e09Require(isDeepStrictEqual(await f.snapshot(), durable), "journey");
+          transport.requireSuccess();
+        } catch (error) {
+          remember(error, "journey");
+        } finally {
+          try {
+            if (transport) await transport.cleanup(page);
+            else if (session) await e09Within(session.detach(), e09Limits.commandMs, "cleanup");
+            else if (attaching) {
+              await e09Within(page.close(), e09Limits.commandMs, "cleanup");
+              e09Require(page.isClosed(), "cleanup");
+            }
+          } catch (error) {
+            if (!(error instanceof E09Error) || error.category === "cleanup") cleanupFailed = true;
+            remember(error, "cleanup");
+          }
+          const cleanupQueries = [
+            ["update public.tenant_memberships set status='active' where tenant_id=$1 and id=$2", [tenantA, f.fx.ownProfile.membershipId]],
+            ["delete from public.booking_assignees where tenant_id=$1 and booking_id=$2", [tenantB, bookingB]],
+            ["delete from public.bookings where tenant_id=$1 and id=$2", [tenantB, bookingB]],
+            ["delete from public.person_profiles where tenant_id=$1 and id=$2", [tenantB, profileB]],
+            ["delete from public.membership_roles where tenant_id=$1 and membership_id=$2", [tenantB, membershipB]],
+            ["delete from public.tenant_memberships where tenant_id=$1 and id=$2", [tenantB, membershipB]],
+          ] as const;
+          for (const [sql, args] of cleanupQueries) {
+            try { await adminQuery(sql, args); } catch { cleanupFailed = true; }
+          }
+        }
+      }, { e09Strict: true });
+    } catch (error) {
+      if (stage !== "setup" || (error instanceof E09FixtureError && error.cleanupFailed)) cleanupFailed = true; // Factory teardown can throw after the journey.
+      remember(error, "setup");
+    }
+    try {
+      const record = transport?.record() ?? { outcome: "not-sent", terminal: null, sessionClose: null };
+      await testInfo.attach("my-day-e09-bounded-replay", {
+        contentType: "application/json",
+        body: JSON.stringify({ stage, failure: failure ?? null, cleanupFailed, ...record }),
+      });
+    } catch { failure ??= "cleanup"; }
+    if (failure || cleanupFailed) throw new E09Error(failure ?? "cleanup");
   });
 });
