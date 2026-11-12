@@ -15,7 +15,7 @@ context:
 
 ## Status and intent
 
-Owner-approved source ready for ordinary development; native admission and implementation have not started. As an entitled existing user, I want the accepted E19.1 dashboard composition so I can understand live projected pipeline facts and follow the current destination with accessible, honest read outcomes. The current owner approval supersedes the frozen original's preparation-only status.
+Owner-approved implementation candidate; native admission and implementation have started. Independent review, required runtime evidence and human visual acceptance remain pending. As an entitled existing user, I want the accepted E19.1 dashboard composition so I can understand live projected pipeline facts and follow the current destination with accessible, honest read outcomes. The current owner approval supersedes the frozen original's preparation-only status.
 
 ## Acceptance Criteria
 
@@ -54,7 +54,7 @@ record above remains historical; implementation_started=true for this candidate.
 Development_complete=false; release_ready=false. Required runtime, independent
 review and candidate-bound human visual acceptance remain pending.
 
-Current author working tree is based on `a1404c36796774db8362d23beaf49657c1d92459`.
+The current fix tree is based on independently reviewed `733b1ca455db1583eedd595845454162636f77f9`.
 See [verification and all eleven state bindings](../../../implementation-artifacts/evidence/35-14-dashboard/implementation-verification.md)
 and the adjacent product/test byte fingerprint. Pinned offline install, production
 build, typecheck, lint and 119 focused tests passed (zero failed/skipped); all 55
@@ -64,20 +64,20 @@ created. The parent owns exact-head CI/review/visual continuation; no done claim
 ## Suggested Review Order
 
 Author: `/root/dashboard_35_14_worker/build/implementation` (implementation author).
-Refreshed against the final uncommitted author tree over `a1404c36796774db8362d23beaf49657c1d92459`;
-the evidence fingerprint pins the five changed product/test files.
+Refreshed against the Round 1 fix tree over reviewed `733b1ca455db1583eedd595845454162636f77f9`;
+the evidence fingerprint pins final product/test and story bytes.
 
 ### Current dashboard facts within the frozen host
 
 I retained the current server/read composition and changed only feature-local
 appearance. Semantic tokens, flat cards, tabular counts and a single phone column
 apply the accepted written design while the host/onboarding and sole destination
-stay intact. Compact phone padding preserves content width; desktop uses 24px.
+stay intact. Compact phone padding preserves content width; desktop uses 24px. Round 1 fixes express approved type sizes in rem at the 16px baseline, preserving user text enlargement without global edits.
 
 - `src/app/(app)/dashboard/page.tsx:30` — `async function DashboardWidgets()`: unchanged eligibility and isolated loading entry.
-- `src/components/dashboard/WidgetCard.tsx:3` — `export function WidgetCard`: local card, heading and sole supported link.
+- `src/components/dashboard/WidgetCard.tsx:5` — `export function WidgetCard`: local card, heading and sole supported link.
 - `src/components/dashboard/DashboardGrid.tsx:3` — `export function DashboardGrid`: responsive one-column/desktop registry container.
-- `src/components/dashboard/QuotePipelineWidget.tsx:66` — `<dl className=`: single phone metric column, grouped desktop values.
+- `src/components/dashboard/QuotePipelineWidget.tsx:68` — `<dl className=`: single phone metric column, grouped desktop values.
 
 ### Honest failure, withholding and freshness
 
@@ -86,9 +86,9 @@ semantics rather than introducing local data state. Failure adds a persistent
 connection/retry instruction without claiming a network-specific diagnosis;
 the lock now uses a monochrome icon and retains its existing tooltip handlers.
 
-- `src/components/dashboard/QuotePipelineWidget.tsx:14` — `function MaskedValue()`: focus, touch and Escape explanation.
-- `src/components/dashboard/QuotePipelineWidget.tsx:56` — `state === "error"`: local failure without successful values/time.
-- `src/components/dashboard/QuotePipelineWidget.tsx:73` — `entitlements.withheld.includes`: unchanged authoritative withholding branch.
+- `src/components/dashboard/QuotePipelineWidget.tsx:16` — `function MaskedValue()`: focus, touch and Escape explanation.
+- `src/components/dashboard/QuotePipelineWidget.tsx:58` — `state === "error"`: local failure without successful values/time.
+- `src/components/dashboard/QuotePipelineWidget.tsx:75` — `entitlements.withheld.includes`: unchanged authoritative withholding branch.
 - `src/components/dashboard/DashboardRetry.tsx:12` — `const retry =`: unchanged explicit refresh through current server authority.
 
 ### Assertions and evidence limits
@@ -100,8 +100,8 @@ execution, late-result navigation proof and actual visual acceptance remain pend
 
 - `tests/unit/components/dashboard/widget-state.test.ts:77` — `loading announces progress`: no fabricated values or successful timestamp.
 - `tests/unit/components/dashboard/widget-state.test.ts:123` — `absent-withheld money renders Dold`: absence never becomes zero.
-- `tests/e2e/dashboard/dashboard-design.e2e.spec.ts:64` — `phone values remain in one column`: computed responsive/reflow assertion, currently unrun.
-- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:514` — `successive failed retries recover`: retained real-source recovery, currently unrun.
+- `tests/e2e/dashboard/dashboard-design.e2e.spec.ts:64` — `phone values remain in one column`: asserts actual doubled font and text bounds, then reflow; unrun.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:517` — `successive failed retries recover`: retained real-source recovery, currently unrun.
 
 Evidence: pinned Next16.4.1 production build/typecheck/lint passed; 119 focused
 tests passed, zero failed/skipped. SSR phone topology probe passed one assertion.

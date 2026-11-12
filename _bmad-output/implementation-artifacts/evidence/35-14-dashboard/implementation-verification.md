@@ -1,8 +1,8 @@
 # 35.14 implementation verification — 2026-11-12
 
 Implementation author: `/root/dashboard_35_14_worker/build/implementation`, Sol Low.
-Subject: uncommitted author working tree over `a1404c36796774db8362d23beaf49657c1d92459`.
-`implementation-fingerprint.json` pins all five changed product/test file bytes (raw and LF).
+Subject: Round 1 fix tree over reviewed `733b1ca455db1583eedd595845454162636f77f9`.
+`implementation-fingerprint.json` pins final product/test and story bytes (raw and LF).
 The seven allocated product paths remain the closed boundary. Only three presentation
 components and the two allocated E2E files changed; DashboardPage and DashboardRetry
 remain unchanged. No authority, money arithmetic, producer, registry, host, environment,
@@ -90,6 +90,29 @@ Validation,submitting,unknown,confirmed,locked,dirty-navigation,focus-dialog and
 file operations remain N/A. Quote destination protections remain inherited, unmodified.
 
 ## Pending gates and next action
+
+Round 1 fix evidence: the independent blind layer identified that fixed-px type
+utilities prevented root-font text enlargement, while the prior test checked only
+visibility/overflow. Built CSS inspection confirmed `.text-heading{font-size:20px}`
+and `.text-metric{font-size:38px}`. The written DESIGN sets the type scale and
+requires text enlargement; it does not require fixed CSS units. The two owned
+components now override only font-size with equivalent rem values at the normal
+16px baseline (11/12/13/15/20/38px). Existing semantic utilities retain the approved
+line-height/tracking; globals remain frozen. The General test measures every
+actual h2/dt/dd/p/a computed font size and text Range height, doubles the current
+root size and requires doubled font sizes plus larger text bounds before checking
+values/actions/reflow. Thus fixed-px typography cannot silently pass this check.
+
+Existing phone tooltip, successful retry recovery and enlarged-text seams gained
+PNG attachments, preserving their functional assertions. Attachments remain
+unearned until actual execution. Round 1 affected lint passed with no diagnostics;
+the six-file focused run passed 119 tests, 0 failed/skipped (round1-focused-tests.tap);
+Next16.4.1 production build and its TypeScript step passed. General 3 / dedicated
+52 tests collect successfully but remain unrun. Current intent wording and the
+same author review trail were refreshed. Independent edge/gap/security-High
+reviewers reported no findings through the parent; external reviewer launch was
+unavailable and is not counted as successful external review. These review
+reports do not supply runtime or visual acceptance.
 
 Development-complete=false; release-ready=false. Author returns an implementation
 candidate for independent review, not a completion claim. Parent owns exact-head CI

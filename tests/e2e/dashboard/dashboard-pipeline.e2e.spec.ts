@@ -406,7 +406,7 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
     await expect(elsewhere).toBeFocused();
   });
   // Contract: new mask absent; clock controls gesture duration, not server read clock.
-  test("[P1] 19.1-E2E-009 mobile long press shows role explanation [AC4,9]", async ({ page }) => {
+  test("[P1] 19.1-E2E-009 mobile long press shows role explanation [AC4,9]", async ({ page }, testInfo) => {
     await page.setViewportSize({ width: 360, height: 640 });
     await login(page, fixture().roleAware.saljare);
     const mask = card(page).getByRole("button", { name: "Dolt för din roll", exact: true });
@@ -417,6 +417,9 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
     await mask.dispatchEvent("pointerup", { pointerType: "touch", pointerId: 1, isPrimary: true, button: 0, buttons: 0 });
     await expect(page.getByRole("tooltip", { name: "Din roll ser inte belopp", exact: true })).toBeVisible();
     await expect(card(page).getByText("Dold", { exact: true })).toBeVisible();
+    await testInfo.attach("dashboard-open-role-tooltip-phone", {
+      body: await page.screenshot({ fullPage: true }), contentType: "image/png",
+    });
   });
   for (const viewport of [
     { name: "mobile", width: 360, height: 640 },
@@ -511,7 +514,7 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
   }
 });
 
-test("[P1] 19.1-E2E-011 successive failed retries recover in the same session [AC7]", async ({ page }) => {
+test("[P1] 19.1-E2E-011 successive failed retries recover in the same session [AC7]", async ({ page }, testInfo) => {
   const data = scenario("retry-failure");
   const expected = await source(data);
   const before = await mutations(data.tenantId);
@@ -560,6 +563,9 @@ test("[P1] 19.1-E2E-011 successive failed retries recover in the same session [A
         const completed = Date.parse((await pipeline.locator("time").getAttribute("datetime"))!);
         expect(completed).toBeGreaterThanOrEqual(releasedAt);
         expect(completed).toBeLessThanOrEqual(Date.now());
+        await testInfo.attach("dashboard-recovered-retry", {
+          body: await page.screenshot({ fullPage: true }), contentType: "image/png",
+        });
       }
     }
     expect(await mutations(data.tenantId)).toEqual(before);

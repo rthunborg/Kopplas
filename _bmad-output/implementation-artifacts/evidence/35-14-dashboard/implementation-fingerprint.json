@@ -1,26 +1,30 @@
 {
-  "baseRevision": "a1404c36796774db8362d23beaf49657c1d92459",
-  "kind": "uncommitted-author-working-tree",
+  "baseRevision": "733b1ca455db1583eedd595845454162636f77f9",
+  "kind": "round1-uncommitted-author-fix-tree",
   "paths": {
     "src/components/dashboard/WidgetCard.tsx": {
-      "rawSha256": "0746ae7d6184347362b912454db9f6d1369e9315777dfd18a44642c7297a1b3b",
-      "lfSha256": "0746ae7d6184347362b912454db9f6d1369e9315777dfd18a44642c7297a1b3b"
+      "rawSha256": "e819f3a805a282cc641e5bc13b055c5063d259724358fe96129d97383e17ce17",
+      "lfSha256": "e819f3a805a282cc641e5bc13b055c5063d259724358fe96129d97383e17ce17"
     },
     "src/components/dashboard/QuotePipelineWidget.tsx": {
-      "rawSha256": "7c37dc1d7343b28d42b72814c8fcda038d3f189b622a3afb192fc49b62f2d914",
-      "lfSha256": "7c37dc1d7343b28d42b72814c8fcda038d3f189b622a3afb192fc49b62f2d914"
+      "rawSha256": "9dff1764021f7c5da9fd10d4210923953c1aa549ee80e22b4735c0fe1811c3ac",
+      "lfSha256": "9dff1764021f7c5da9fd10d4210923953c1aa549ee80e22b4735c0fe1811c3ac"
     },
     "src/components/dashboard/DashboardGrid.tsx": {
       "rawSha256": "dd9d1f284ef8a3c8b046b3545f5dffd45df1c12068b95b4bcd79a497cf4f39f0",
       "lfSha256": "dd9d1f284ef8a3c8b046b3545f5dffd45df1c12068b95b4bcd79a497cf4f39f0"
     },
     "tests/e2e/dashboard/dashboard-design.e2e.spec.ts": {
-      "rawSha256": "1af81571abcc0841d4722e2f5fec69cb83ebba06cf69dfb0192d0992e980c028",
-      "lfSha256": "24f001f1185e2933cb9541efc1cf1af640d380b4c467c75412170fb045fc2add"
+      "rawSha256": "6e217f6d80e5534be3b13dbc6d4d24b5d90c6290df1f38f03a6311d5f98ea5c1",
+      "lfSha256": "d547706a1ab5a3547be4454a883ba43fff76c2b87720189524d3e05dded2de38"
     },
     "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts": {
-      "rawSha256": "ffa29d67b39f7bd89edd2d64aa320c1e0813ddd36d576ec18ebd7bd6ee40f69e",
-      "lfSha256": "2ba53d0856576d44f5ebec4a90e375cd5ed953142b133a1af4d30019df1de5dd"
+      "rawSha256": "04cf82ccb89400271c33b0837a63782ab49dc8746c02708aca6506d6b42f6bbe",
+      "lfSha256": "8220bc145163f1cd2e7ee6aa93c09ef7b547012a12d8f4e28fa2658895579da2"
+    },
+    "_bmad-output/specs/spec-design-35-14/stories/35-14-live-dashboard-pipeline.md": {
+      "rawSha256": "8ea4319021e0782f3d7ef5a631c6e46cf6f3fddc84d5e6f51475840da4d41452",
+      "lfSha256": "8ea4319021e0782f3d7ef5a631c6e46cf6f3fddc84d5e6f51475840da4d41452"
     }
   }
 }

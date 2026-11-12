@@ -61,7 +61,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
   });
 }
 
-test("E35-14-T-AC2 E35-14-T-AC4 phone values remain in one column through enlarged text", async ({ page }) => {
+test("E35-14-T-AC2 E35-14-T-AC4 phone values remain in one column through enlarged text", async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 360, height: 640 });
   await signIn(page);
   const pipeline = page.getByRole("region", { name: "Offertpipeline", exact: true });
@@ -69,7 +69,24 @@ test("E35-14-T-AC2 E35-14-T-AC4 phone values remain in one column through enlarg
   // The read-only phone composition must retain every real value, without a side-by-side metric squeeze.
   const metricGrid = pipeline.locator("dl");
   expect(await metricGrid.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(/\s+/).length)).toBe(1);
-  await page.addStyleTag({ content: "html { font-size: 200% !important; }" });
+  const typography = pipeline.locator("h2, dt, dd, p, a");
+  const before = await typography.evaluateAll(elements => elements.map(element => {
+    const text = document.createRange();
+    text.selectNodeContents(element);
+    return { fontSize: parseFloat(getComputedStyle(element).fontSize), height: text.getBoundingClientRect().height };
+  }));
+  const rootSize = await page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).fontSize));
+  await page.addStyleTag({ content: `html { font-size: ${rootSize * 2}px !important; }` });
+  const enlarged = await typography.evaluateAll(elements => elements.map(element => {
+    const text = document.createRange();
+    text.selectNodeContents(element);
+    return { fontSize: parseFloat(getComputedStyle(element).fontSize), height: text.getBoundingClientRect().height };
+  }));
+  expect(enlarged).toHaveLength(before.length);
+  for (const [index, actual] of enlarged.entries()) {
+    expect(actual.fontSize).toBeCloseTo(before[index].fontSize * 2, 1);
+    expect(actual.height).toBeGreaterThan(before[index].height);
+  }
   for (const name of ["Skickade", "Accepterade", "Förlorade", "Träffgrad", "Accepterat värde"]) {
     await expect(pipeline.getByLabel(name, { exact: true })).toBeVisible();
   }
@@ -77,4 +94,7 @@ test("E35-14-T-AC2 E35-14-T-AC4 phone values remain in one column through enlarg
   await link.scrollIntoViewIfNeeded();
   await link.click({ trial: true });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+  await testInfo.attach("dashboard-enlarged-text-phone", {
+    body: await page.screenshot({ fullPage: true }), contentType: "image/png",
+  });
 });
