@@ -1,0 +1,347 @@
+{
+  "status": "proposed-fixed-design-not-a-write-grant",
+  "base": "1091cd4c3b16b66e8757a021fe016dce4f82a04d",
+  "operations": [
+    {
+      "action": "createCalculationAction",
+      "command": "createCalculation",
+      "closed_kind": "calculation.create",
+      "production_callers": [
+        "src/components/calculations/CalculationList.tsx"
+      ],
+      "expected_scope": "new",
+      "expected_facts": "customer/facility/contact identity; normalized title",
+      "domain_effect": "new header + atomic lifecycle audit",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "updateCalculationAction",
+      "command": "updateCalculation",
+      "closed_kind": "calculation.update",
+      "production_callers": [
+        "src/components/calculations/CalculationEditor.tsx"
+      ],
+      "expected_scope": "header",
+      "expected_facts": "original submitted header field values plus lifecycle context",
+      "domain_effect": "header patch + atomic lifecycle audit",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "updateTaxInputAction",
+      "command": "updateCalculation",
+      "closed_kind": "calculation.update",
+      "production_callers": [
+        "src/components/calculations/TaxSettingsPanel.tsx"
+      ],
+      "expected_scope": "header-tax",
+      "expected_facts": "original complete tax_input_snapshot plus lifecycle context",
+      "domain_effect": "tax snapshot patch + atomic lifecycle audit",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "archiveCalculationAction",
+      "command": "archiveCalculation",
+      "closed_kind": "calculation.archive",
+      "production_callers": [
+        "src/components/calculations/CalculationEditor.tsx"
+      ],
+      "expected_scope": "calculation-tree",
+      "expected_facts": "header + all active section/row projection facts and full membership/order",
+      "domain_effect": "header archived_at/status only; descendants hidden, not deleted/cascaded",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "createSectionAction",
+      "command": "createSection",
+      "closed_kind": "calculation.section.create",
+      "production_callers": [
+        "src/components/calculations/CalculationEditor.tsx"
+      ],
+      "expected_scope": "new",
+      "expected_facts": "parent calculation current lifecycle context",
+      "domain_effect": "append section with server sort order",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "updateSectionAction",
+      "command": "updateSection",
+      "closed_kind": "calculation.section.update",
+      "production_callers": [
+        "src/components/calculations/SectionEditor.tsx"
+      ],
+      "expected_scope": "section",
+      "expected_facts": "complete original section projection and current parent context",
+      "domain_effect": "section fields only",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "archiveSectionAction",
+      "command": "archiveSection",
+      "closed_kind": "calculation.section.archive",
+      "production_callers": [
+        "src/components/calculations/SectionEditor.tsx"
+      ],
+      "expected_scope": "section-tree",
+      "expected_facts": "section plus all active descendant row facts and full membership/order",
+      "domain_effect": "section archived_at only; children hidden, no deletion/cascade",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "createRowAction",
+      "command": "createRow",
+      "closed_kind": "calculation.row.create",
+      "production_callers": [
+        "src/components/calculations/RowEditor.tsx"
+      ],
+      "expected_scope": "new",
+      "expected_facts": "current parent context; selected source ID; server row-limit/source checks",
+      "domain_effect": "append row with immutable resolved source snapshot",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "updateRowAction",
+      "command": "updateRow",
+      "closed_kind": "calculation.row.update",
+      "production_callers": [
+        "src/components/calculations/RowEditor.tsx"
+      ],
+      "expected_scope": "row",
+      "expected_facts": "all original row projected mutable/source fields and parent context",
+      "domain_effect": "row patch; existing source/type/VAT/option/tax-reconciliation rules",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "archiveRowAction",
+      "command": "archiveRow",
+      "closed_kind": "calculation.row.archive",
+      "production_callers": [
+        "src/components/calculations/SectionEditor.tsx"
+      ],
+      "expected_scope": "row",
+      "expected_facts": "complete original row projection and parent context",
+      "domain_effect": "row archived_at only",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "reorderSectionsAction",
+      "command": "reorderSections",
+      "closed_kind": "calculation.sections.reorder",
+      "production_callers": [
+        "src/components/calculations/CalculationEditor.tsx"
+      ],
+      "expected_scope": "section-siblings",
+      "expected_facts": "complete active section IDs and original sort order",
+      "domain_effect": "complete desired permutation; no partial sibling overwrite",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "reorderRowsAction",
+      "command": "reorderRows",
+      "closed_kind": "calculation.rows.reorder",
+      "production_callers": [
+        "src/components/calculations/SectionEditor.tsx"
+      ],
+      "expected_scope": "row-siblings",
+      "expected_facts": "complete active row IDs and original sort order in selected section",
+      "domain_effect": "complete desired permutation; no partial sibling overwrite",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    },
+    {
+      "action": "createReviewedQuoteVersionFromCalculationAction",
+      "command": "createQuoteVersionFromCalculation",
+      "closed_kind": "quote.version.create",
+      "production_callers": [
+        "src/components/calculations/PreQuotePreview.tsx"
+      ],
+      "expected_scope": "reviewed-initial-quote",
+      "expected_facts": "mandatory original reviewed digest/date and selected attachment IDs",
+      "domain_effect": "existing initial quote/version/event/audit + one-time review consume",
+      "durable_operation_proof": true,
+      "client_request_identity": "crypto.randomUUID before dispatch; scoped retained handle; no automatic replay"
+    }
+  ],
+  "closed_kind_count": 12,
+  "additional_readonly_action": "reconcileCalculationEditorOperationAction -> checked reconcile RPC; no new envelope enrollment",
+  "disabled_legacy_action": "createQuoteVersionFromCalculationAction remains existing fail-closed no-write response; QuoteList offers navigation to calculation review only",
+  "public_rpcs": [
+    "mutate_calculation_editor",
+    "authorize_calculation_editor_quote",
+    "create_calculation_editor_quote",
+    "reconcile_calculation_editor_operation"
+  ],
+  "table": "public.calculation_editor_operations",
+  "manifest_module": "calculations",
+  "migration": "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql",
+  "migration_slot": "proposed filename only; not created/reserved or executable; serialized owner must use installed CLI new migration and bind actual timestamp before implementation if different",
+  "proposed_write_paths": [
+    "src/features/calculations/actions.ts",
+    "src/features/calculations/action-state.ts",
+    "src/features/calculations/form-parsing.ts",
+    "src/features/calculations/editor-operation.ts",
+    "src/server/commands/calculations/calculations.ts",
+    "src/server/commands/calculations/sections.ts",
+    "src/server/commands/calculations/rows.ts",
+    "src/server/commands/calculations/reorder.ts",
+    "src/server/commands/calculations/validation.ts",
+    "src/server/commands/calculations/calc-db.ts",
+    "src/server/commands/calculations/editor-operation-db.ts",
+    "src/features/quotes/actions.ts",
+    "src/features/quotes/create-quote-action-state.ts",
+    "src/server/commands/quotes/quotes.ts",
+    "src/server/commands/quotes/validation.ts",
+    "src/server/commands/quotes/quote-db.ts",
+    "src/components/calculations/CalculationList.tsx",
+    "src/components/calculations/CalculationEditor.tsx",
+    "src/components/calculations/SectionEditor.tsx",
+    "src/components/calculations/RowEditor.tsx",
+    "src/components/calculations/TaxSettingsPanel.tsx",
+    "src/components/calculations/PreQuotePreview.tsx",
+    "src/scope/manifest.ts",
+    "tests/unit/features/calculations/action-state.test.ts",
+    "tests/unit/features/calculations/form-parsing.test.ts",
+    "tests/unit/features/calculations/editor-operation.test.ts",
+    "tests/unit/server/commands/calc-validation.test.ts",
+    "tests/unit/server/commands/calc-validation-coverage.test.ts",
+    "tests/unit/server/commands/calc-source-validation.test.ts",
+    "tests/unit/server/commands/calculation-row-limit-command.test.ts",
+    "tests/unit/server/commands/quote-validation.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/scope/manifest-derivations.test.ts",
+    "tests/integration/commands/calculation-commands.int.test.ts",
+    "tests/integration/commands/calculation-parent-ownership.int.test.ts",
+    "tests/integration/commands/calculation-row-source.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-determinism.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-retry-consistency.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-source-of-truth.int.test.ts",
+    "tests/integration/commands/quote-audit-rollback.int.test.ts",
+    "tests/integration/commands/quote-initial-non-admin-audit.int.test.ts",
+    "tests/integration/commands/quote-version.int.test.ts",
+    "tests/integration/commands/tax-answer-acceptance-job.int.test.ts",
+    "tests/integration/commands/calculation-mutation-safety.int.test.ts",
+    "tests/integration/commands/quote-initial-mutation-safety.int.test.ts",
+    "tests/integration/commands/calculation-editor-safety-fixture.ts",
+    "tests/integration/rls/tenant-table-inventory.ts",
+    "tests/integration/rls/calc-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/migration-reset.int.test.ts",
+    "tests/integration/rls/calculation-editor-operation-contract.rls.test.ts",
+    "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+    "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql",
+    "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+    "tests/integration/rls/quote-review-authorization-migration-reset.int.test.ts",
+    "tests/integration/rls/quote-tables-migration-reset.int.test.ts"
+  ],
+  "production_paths": [
+    "src/features/calculations/actions.ts",
+    "src/features/calculations/action-state.ts",
+    "src/features/calculations/form-parsing.ts",
+    "src/features/calculations/editor-operation.ts",
+    "src/server/commands/calculations/calculations.ts",
+    "src/server/commands/calculations/sections.ts",
+    "src/server/commands/calculations/rows.ts",
+    "src/server/commands/calculations/reorder.ts",
+    "src/server/commands/calculations/validation.ts",
+    "src/server/commands/calculations/calc-db.ts",
+    "src/server/commands/calculations/editor-operation-db.ts",
+    "src/features/quotes/actions.ts",
+    "src/features/quotes/create-quote-action-state.ts",
+    "src/server/commands/quotes/quotes.ts",
+    "src/server/commands/quotes/validation.ts",
+    "src/server/commands/quotes/quote-db.ts",
+    "src/components/calculations/CalculationList.tsx",
+    "src/components/calculations/CalculationEditor.tsx",
+    "src/components/calculations/SectionEditor.tsx",
+    "src/components/calculations/RowEditor.tsx",
+    "src/components/calculations/TaxSettingsPanel.tsx",
+    "src/components/calculations/PreQuotePreview.tsx",
+    "src/scope/manifest.ts"
+  ],
+  "unit_paths": [
+    "tests/unit/features/calculations/action-state.test.ts",
+    "tests/unit/features/calculations/form-parsing.test.ts",
+    "tests/unit/features/calculations/editor-operation.test.ts",
+    "tests/unit/server/commands/calc-validation.test.ts",
+    "tests/unit/server/commands/calc-validation-coverage.test.ts",
+    "tests/unit/server/commands/calc-source-validation.test.ts",
+    "tests/unit/server/commands/calculation-row-limit-command.test.ts",
+    "tests/unit/server/commands/quote-validation.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/scope/manifest-derivations.test.ts"
+  ],
+  "integration_paths": [
+    "tests/integration/commands/calculation-commands.int.test.ts",
+    "tests/integration/commands/calculation-parent-ownership.int.test.ts",
+    "tests/integration/commands/calculation-row-source.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-determinism.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-retry-consistency.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-source-of-truth.int.test.ts",
+    "tests/integration/commands/quote-audit-rollback.int.test.ts",
+    "tests/integration/commands/quote-initial-non-admin-audit.int.test.ts",
+    "tests/integration/commands/quote-version.int.test.ts",
+    "tests/integration/commands/tax-answer-acceptance-job.int.test.ts",
+    "tests/integration/commands/calculation-mutation-safety.int.test.ts",
+    "tests/integration/commands/quote-initial-mutation-safety.int.test.ts",
+    "tests/integration/commands/calculation-editor-safety-fixture.ts"
+  ],
+  "rls_paths": [
+    "tests/integration/rls/tenant-table-inventory.ts",
+    "tests/integration/rls/calc-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/migration-reset.int.test.ts",
+    "tests/integration/rls/calculation-editor-operation-contract.rls.test.ts",
+    "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+    "tests/integration/rls/quote-review-authorization-migration-reset.int.test.ts",
+    "tests/integration/rls/quote-tables-migration-reset.int.test.ts"
+  ],
+  "e2e_paths": [
+    "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts"
+  ],
+  "new_paths": [
+    "src/features/calculations/editor-operation.ts",
+    "src/server/commands/calculations/editor-operation-db.ts",
+    "tests/unit/features/calculations/editor-operation.test.ts",
+    "tests/integration/commands/calculation-mutation-safety.int.test.ts",
+    "tests/integration/commands/quote-initial-mutation-safety.int.test.ts",
+    "tests/integration/commands/calculation-editor-safety-fixture.ts",
+    "tests/integration/rls/calculation-editor-operation-contract.rls.test.ts",
+    "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+    "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql"
+  ],
+  "proposed_conflict_domains": [
+    "mutation:calculation-editor-safety",
+    "mutation:quote-initial-editor-result",
+    "privacy:calculation-editor-operation-proofs",
+    "test:calculation-editor-safety",
+    "schema:migrations",
+    "registry:scope-manifest",
+    "tests:shared-fixtures-resources"
+  ],
+  "shared_fixture_scope": "tests/integration/rls/tenant-table-inventory.ts only; existing tests/support/ and factories immutable; feature-local new command fixture handles changed required inputs",
+  "readonly_paths": [
+    "src/features/calculations/read.ts",
+    "src/features/calculations/readiness.ts",
+    "src/lib/money/",
+    "src/server/commands/envelope.ts",
+    "src/server/commands/envelope-core.ts",
+    "src/features/settings/",
+    "src/features/pricing/",
+    "src/server/commands/settings/",
+    "src/server/commands/pricing/",
+    "tests/support/",
+    "package.json",
+    "playwright.config.ts",
+    ".github/workflows/"
+  ],
+  "grant": false,
+  "compatibility": "Mandatory operation identity/expected facts on every changed production command; old direct DML/RPC execute grants revoked. All direct-command unit/integration caller fixtures listed; existing service-owned seed factories remain unchanged. Three existing RLS suites must assert new grant boundary without weakening cross-tenant/source tests."
+}
