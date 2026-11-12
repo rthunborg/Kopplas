@@ -89,11 +89,106 @@ test("thrown delete transport failure remains a failure and is redacted only und
   const legacy = actualFactory(current(), async () => {throw original;});
   await assert.rejects(legacy.run(USER), (failure) => failure === original); assert.equal(legacy.calls(), 1);
 });
-test("NUDGE004 changes only opt-in diagnostic argument, retaining all63 concurrent deletions", () => {
+function deferred() {
+  let resolve!: () => void, reject!: (error: unknown) => void;
+  const promise = new Promise<void>((done, fail) => { resolve = done; reject = fail; });
+  return {promise, resolve, reject};
+}
+
+function actualNudgeRecipients(deleteAt: (index: number) => Promise<void>) {
   const source = readFileSync(new URL("../../support/time-reports-atdd.ts", import.meta.url), "utf8");
-  assert.ok(source.includes('Promise.allSettled(ownedUsers.map(userId=>deleteAuthUser(userId,"redacted")))'));
-  assert.ok(source.includes('for (let batch = 0; batch < 9; batch++)'));
-  assert.ok(source.includes('ownedUsers.push(...extra.extraUsers.map(u => u.id))'));
+  const start = source.indexOf("export async function withNudgeRecipients("), aggregateStart = source.indexOf("function throwFixtureFailures("), aggregateEnd = source.indexOf("// Opt-in NUDGE004 labels", aggregateStart);
+  assert.ok(start >= 0 && aggregateStart >= 0 && aggregateEnd > aggregateStart);
+  const aggregate = stripTypeScriptTypes(source.slice(aggregateStart, aggregateEnd));
+  const body = stripTypeScriptTypes(source.slice(start).replace("export ", ""));
+  const expected = Array.from({length: 63}, (_, index) => `33333333-3333-4333-8333-${String(index + 1).padStart(12, "0")}`);
+  const calls: Array<{id: string; mode?: "redacted"}> = [], failureSites: string[] = [];
+  let batches = 0, profiles = 0, bookings = 0, inFlight = 0, maxInFlight = 0, site = "";
+  const fx = {base: {tenantA: {id: "owned-tenant"}}};
+  const run = new Function("crypto", "seedRoleAwarePhaseAUsers", "adminQuery", "seedReportBooking", "cleanupOwnedTimeReports", "deleteAuthUser", `${aggregate}\n${body}\nreturn withNudgeRecipients;`)(
+    {randomUUID: () => `profile-${++profiles}`},
+    async (base: unknown) => {
+      assert.equal(base, fx.base);
+      const users = expected.slice(batches * 7, ++batches * 7).map(id => ({id}));
+      return {extraUsers: users, users: {projektledare: users[0], montor: users[1]}, roleUnionUser: users[2]};
+    },
+    async () => [], async () => `booking-${++bookings}`, async () => {},
+    async (id: string, mode?: "redacted") => {
+      const index = calls.length;
+      calls.push({id, mode});
+      inFlight++; maxInFlight = Math.max(maxInFlight, inFlight);
+      try { await deleteAt(index); } finally { inFlight--; }
+    },
+  ) as (fx: unknown, callback: (recipients: Array<{userId: string}>) => Promise<void>, labels: unknown) => Promise<void>;
+  return {
+    run: (callback: (recipients: Array<{userId: string}>) => Promise<void>) => run(fx, callback, {
+      at(next: string) { site = next; }, failure() { failureSites.push(site); },
+    }),
+    expected, calls, failureSites, counts: () => ({batches, profiles, bookings, inFlight, maxInFlight}),
+  };
+}
+
+test("actual NUDGE004 serial cleanup attempts all63 owned users once and waits for first and last deletion", async () => {
+  const first = deferred(), last = deferred(), firstStarted = deferred(), lastStarted = deferred();
+  const f = actualNudgeRecipients(async index => {
+    if (index === 0) { firstStarted.resolve(); await first.promise; }
+    if (index === 62) { lastStarted.resolve(); await last.promise; }
+  });
+  let callbacks = 0, settled = false;
+  const pending = f.run(async recipients => {
+    callbacks++;
+    assert.deepEqual(recipients.map(recipient => recipient.userId), f.expected.filter((_, index) => index % 7 < 3));
+  }).then(() => { settled = true; }, error => { settled = true; throw error; });
+  try {
+    await firstStarted.promise; await Promise.resolve();
+    assert.deepEqual(f.calls, [{id: f.expected[0], mode: "redacted"}]);
+    assert.equal(settled, false); assert.equal(f.counts().inFlight, 1);
+    first.resolve();
+    await lastStarted.promise; await Promise.resolve();
+    assert.equal(settled, false); assert.equal(f.counts().inFlight, 1);
+    assert.deepEqual(f.calls, f.expected.map(id => ({id, mode: "redacted"})));
+    assert.equal(new Set(f.calls.map(call => call.id)).size, 63);
+    last.resolve(); await pending;
+    assert.equal(settled, true); assert.equal(callbacks, 1);
+    assert.deepEqual(f.counts(), {batches: 9, profiles: 27, bookings: 27, inFlight: 0, maxInFlight: 1});
+    assert.deepEqual(f.failureSites, []);
+  } finally {
+    first.resolve(); last.resolve(); await pending.catch(() => {});
+  }
+});
+
+test("actual NUDGE004 attempts all63 after early middle and last failures, preserving original errors and primary cause", async () => {
+  for (const callbackFails of [false, true]) {
+    const primary = {original: "callback"}, early = {original: "early"}, middle = {original: "middle"}, final = {original: "last"};
+    const last = deferred(), lastStarted = deferred();
+    const f = actualNudgeRecipients(async index => {
+      if (index === 0) throw early;
+      if (index === 31) throw middle;
+      if (index === 62) { lastStarted.resolve(); await last.promise; }
+    });
+    let callbacks = 0, settled = false;
+    const pending = f.run(async recipients => {
+      callbacks++; assert.equal(recipients.length, 27);
+      if (callbackFails) throw primary;
+    }).then(() => { settled = true; return undefined; }, error => { settled = true; return error as unknown; });
+    try {
+      await lastStarted.promise; await Promise.resolve();
+      assert.equal(settled, false); assert.equal(f.counts().inFlight, 1);
+      assert.deepEqual(f.calls, f.expected.map(id => ({id, mode: "redacted"})));
+      last.reject(final);
+      const failure = await pending;
+      assert.ok(failure instanceof AggregateError);
+      const errors = callbackFails ? [primary, early, middle, final] : [early, middle, final];
+      assert.equal(failure.errors.length, errors.length);
+      errors.forEach((error, index) => assert.equal(failure.errors[index], error));
+      assert.equal(failure.cause, callbackFails ? primary : undefined);
+      assert.equal(callbacks, 1);
+      assert.deepEqual(f.counts(), {batches: 9, profiles: 27, bookings: 27, inFlight: 0, maxInFlight: 1});
+      assert.deepEqual(f.failureSites, [...(callbackFails ? ["recipients-callback"] : []), "cleanup-auth", "cleanup-auth", "cleanup-auth"]);
+    } finally {
+      last.resolve(); await pending;
+    }
+  }
 });
 
 const window = {from: "2026-10-26T16:32:00Z", to: "2026-10-26T16:33:00Z"};
