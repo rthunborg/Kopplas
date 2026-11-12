@@ -464,6 +464,7 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
       await expect(notifications).toHaveCount(0);
       await expect(bell).toBeFocused();
       const profile = header.getByRole("button", { name: "Profil", exact: true });
+      await hydrated(profile);
       await profile.click();
       const preferences = header.getByRole("link", { name: "Notisinställningar", exact: true });
       await expect(preferences).toBeVisible();
@@ -471,6 +472,10 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
       expect(menuBounds.x).toBeGreaterThanOrEqual(0);
       expect(menuBounds.x + menuBounds.width).toBeLessThanOrEqual(viewport.width);
       await profile.click();
+      await expect(profile).toHaveAttribute("aria-expanded", "false");
+      await expect(preferences).toHaveCount(0);
+      await expect(page).toHaveURL(/\/dashboard$/);
+      await expect(card(page)).toBeVisible();
       const box = await card(page).boundingBox();
       expect(box).not.toBeNull();
       expect(box!.x).toBeGreaterThanOrEqual(0);
@@ -653,16 +658,35 @@ test("E35-14-T-AC4 E35-14-T-error-retry enlarged phone error retains keyboard re
   }
 });
 
-lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot replace newer quote navigation", async ({ page }) => {
+lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot replace newer quote navigation", async ({ page }, testInfo) => {
   const data = scenario("retry-failure");
   await page.setViewportSize({ width: 1280, height: 900 });
   armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
   type CompletedRefresh = { route: Route; response: APIResponse; body: Buffer };
   let acceptCompleted!: (value: CompletedRefresh) => void;
-  const completed = new Promise<CompletedRefresh>(resolve => { acceptCompleted = resolve; });
+  let rejectCompleted!: (reason: Error) => void;
+  const completed = new Promise<CompletedRefresh>((resolve, reject) => { acceptCompleted = resolve; rejectCompleted = reject; });
   let release!: () => void;
   const deliveryGate = new Promise<void>(resolve => { release = resolve; });
   let intercepted = false;
+  let handlerFailed = false;
+  let finishHandler!: () => void;
+  const handlerSettled = new Promise<void>(resolve => { finishHandler = resolve; });
+  const lifecycle: { path: string; phase: string; status?: number; category?: string }[] = [];
+  const observedPath = (value: string) => {
+    const pathname = new URL(value).pathname;
+    return pathname === "/dashboard" || pathname === "/quotes" ? pathname : null;
+  };
+  page.on("request", request => { const path = observedPath(request.url()); if (path) lifecycle.push({ path, phase: "start" }); });
+  page.on("response", response => { const path = observedPath(response.url()); if (path) lifecycle.push({ path, phase: "status", status: response.status() }); });
+  page.on("requestfinished", request => { const path = observedPath(request.url()); if (path) lifecycle.push({ path, phase: "finish" }); });
+  page.on("requestfailed", request => {
+    const path = observedPath(request.url());
+    if (path) lifecycle.push({ path, phase: "failure", category: request.failure()?.errorText.includes("ABORTED") ? "aborted" : "transport-failed" });
+  });
+  let sameDocumentBeforeRelease: boolean | null = null;
+  let quoteHeadingBeforeRelease: boolean | null = null;
+  let nonce: string | undefined;
   const dashboardURL = (url: URL) => url.pathname === "/dashboard";
   try {
     await login(page, data.user);
@@ -674,11 +698,18 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
     await page.route(dashboardURL, async route => {
       if (intercepted || route.request().headers()["rsc"] !== "1") return route.continue();
       intercepted = true;
-      const response = await route.fetch();
-      const body = await response.body(); // Entire real producer result has completed before navigation.
-      acceptCompleted({ route, response, body });
-      await deliveryGate;
-      await route.fulfill({ status: response.status(), headers: response.headers(), body });
+      try {
+        const response = await route.fetch();
+        const body = await response.body(); // Entire real producer result has completed before navigation.
+        lifecycle.push({ path: "/dashboard", phase: "producer-completed", status: response.status() });
+        acceptCompleted({ route, response, body });
+        await deliveryGate;
+        await route.fulfill({ status: response.status(), headers: response.headers(), body });
+      } catch {
+        handlerFailed = true;
+        lifecycle.push({ path: "/dashboard", phase: "handler-failed", category: "transport-handler-failed" });
+        rejectCompleted(new Error("Genuine refresh transport handler failed"));
+      } finally { finishHandler(); }
     });
     armReadPlan(data.user.id, { quote_events: [{ outcome: "pass" }] });
     await retry.click();
@@ -687,28 +718,43 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
     expect(held.response.ok()).toBe(true);
     // Assert only a bounded fact; never print response bytes (including on failed expectations).
     expect(held.body.includes(Buffer.from("completedAt"))).toBe(true);
-    const nonce = `dashboard-late-result-${Date.now()}`;
+    nonce = `dashboard-late-result-${Date.now()}`;
     await page.evaluate(value => { document.documentElement.dataset.dashboardLateResultNonce = value; }, nonce);
-    await page.getByRole("navigation", { name: "Huvudnavigation", exact: true })
-      .getByRole("link", { name: "Offerter", exact: true }).click();
+    const quoteLink = page.getByRole("navigation", { name: "Huvudnavigation", exact: true })
+      .getByRole("link", { name: "Offerter", exact: true });
+    await hydrated(quoteLink);
+    await expect(quoteLink).toHaveAttribute("href", "/quotes");
+    await quoteLink.click();
     await expect(page).toHaveURL(/\/quotes$/);
     await expect(page.getByRole("heading", { name: "Offerter", exact: true })).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.dataset.dashboardLateResultNonce)).toBe(nonce);
+    quoteHeadingBeforeRelease = true;
+    sameDocumentBeforeRelease = await page.evaluate(value => document.documentElement.dataset.dashboardLateResultNonce === value, nonce);
+    expect(sameDocumentBeforeRelease).toBe(true);
     const request = held.route.request();
     const finished = page.waitForEvent("requestfinished", { predicate: candidate => candidate === request });
     const responseFinished = page.waitForResponse(candidate => candidate.request() === request)
       .then(async response => { expect(await response.finished()).toBeNull(); });
     release();
     // Cancellation/timeouts fail this test: they are not evidence that late delivery was ignored.
-    await Promise.all([finished, responseFinished]);
+    await Promise.all([finished, responseFinished, handlerSettled]);
+    expect(handlerFailed).toBe(false);
     await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
     await expect(page).toHaveURL(/\/quotes$/);
     await expect(page.getByRole("heading", { name: "Offerter", exact: true })).toBeVisible();
     await expect(card(page)).toHaveCount(0);
     expect(await page.evaluate(() => document.documentElement.dataset.dashboardLateResultNonce)).toBe(nonce);
   } finally {
+    if (nonce !== undefined && !page.isClosed() && sameDocumentBeforeRelease === null) {
+      sameDocumentBeforeRelease = await page.evaluate(value => document.documentElement.dataset.dashboardLateResultNonce === value, nonce).catch(() => null);
+      quoteHeadingBeforeRelease = await page.getByRole("heading", { name: "Offerter", exact: true }).isVisible().catch(() => null);
+    }
     release();
+    if (intercepted) await handlerSettled;
     await page.unroute(dashboardURL);
+    await testInfo.attach("late-refresh-bounded-lifecycle", {
+      body: Buffer.from(JSON.stringify({ lifecycle: lifecycle.slice(0, 64), omittedEvents: Math.max(0, lifecycle.length - 64), sameDocumentBeforeRelease, quoteHeadingBeforeRelease, handlerFailed })),
+      contentType: "application/json",
+    });
     armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
   }
 });

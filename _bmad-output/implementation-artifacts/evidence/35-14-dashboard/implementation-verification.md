@@ -1,7 +1,7 @@
 # 35.14 implementation verification — 2026-11-12
 
 Implementation author: `/root/dashboard_35_14_worker/build/implementation`, Sol Low.
-Subject: focused capture-isolation correction over clean `74a8a1c6a36da5d34753dd54d41a34b2f072a542`.
+Subject: authorized hosted-failure correction over clean `cc5c37d9dc3bac876a179fd15f1f953793e994f7`.
 `implementation-fingerprint.json` pins final product/test and story bytes (raw and LF).
 The seven allocated product paths remain the closed boundary. Only three presentation
 components and the two allocated E2E files changed; DashboardPage and DashboardRetry
@@ -90,6 +90,48 @@ Validation,submitting,unknown,confirmed,locked,dirty-navigation,focus-dialog and
 file operations remain N/A. Quote destination protections remain inherited, unmodified.
 
 ## Pending gates and next action
+
+### Hosted first failure and authorized changed candidate
+
+The frozen cc5c37d9 dedicated hosted run 43211157970, job 131161713783,
+executed 82 cases: 79 passed, 3 unexpected failures, 0 skipped/flaky/retries.
+The supplied dashboard JSON was verified against SHA256
+fd8da9d9170841643afc8f85e599eb540e43624ac5ed291e960da866e2a67c8c.
+The failed cases were disconnected retry (missing alert after known-offline
+refresh), strict late-RSC navigation (still /dashboard before release), and the
+existing mobile geometry case (null immediate card measurement after menus).
+The enlarged-phone keyboard recovery case passed. These observations remain
+historical failures, not relabeled passes of this new source.
+
+Root released the exact write freeze after the four named manual output files
+were rechecked absent immediately before writing. First new app edit was
+DashboardRetry.tsx, 2026-11-12 12:15:06 UTC. Only that component, the allocated
+pipeline spec and existing author metadata/evidence changed. No manual output,
+launcher, producer, proxy, framework, global or configuration edits occurred.
+
+Known-offline Retry now avoids dispatching router.refresh and preserves the
+actual error plus enabled explicit retry. It does not claim navigator.onLine
+proves network availability. Mobile measurement now waits for profile hydration,
+menu closure, current /dashboard and visible card; every geometry assertion
+remains. Late-RSC adds actual shell-link hydration/href checks, path-only start/
+numeric-status/finish/fixed-failure-category facts and nonce/heading booleans.
+The attachment is capped at 64 events and records omitted-event count; no raw
+RSC, headers, body, query URL or traffic log is emitted. Genuine response bytes
+remain memory-only. Handler settlement is awaited before unroute, including
+failed cleanup, to avoid secondary already-handled errors. Strict committed
+same-document /quotes BEFORE fulfillment and successful browser delivery remain
+mandatory. Cancellation cannot pass. The actual navigation/completion cause is
+still uncertain; these bounded facts diagnose the next changed candidate.
+
+Actual changed-candidate checks: affected-file lint exit 0, no diagnostics;
+typecheck exit 0; Next 16.4.1 production build including TypeScript exit 0;
+actual component SSR suite 8 passed, 0 failed/skipped (hosted-correction-ssr.tap);
+hook-isolated actual DashboardRetry probe 3 passed, 0 failed for known-offline,
+connected and already-pending dispatch. The probe substitutes router/hooks and
+navigator: it is not browser, network, server-authority or RLS evidence.
+Dedicated pipeline collection exit 0, 54 cases, 0 executed locally. No local
+runtime/provider/resource was launched. New exact-candidate hosted execution,
+independent review and visual/manual acceptance remain required; no done claim.
 
 ### Focused capture isolation after the AC6 correction
 

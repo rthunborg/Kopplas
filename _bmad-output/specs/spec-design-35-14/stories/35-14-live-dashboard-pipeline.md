@@ -54,17 +54,16 @@ record above remains historical; implementation_started=true for this candidate.
 Development_complete=false; release_ready=false. Required runtime, independent
 review and candidate-bound human visual acceptance remain pending.
 
-The current fix tree is based on independently reviewed `733b1ca455db1583eedd595845454162636f77f9`.
+The current hosted-failure correction tree is based on `cc5c37d9dc3bac876a179fd15f1f953793e994f7`.
 See [verification and all eleven state bindings](../../../implementation-artifacts/evidence/35-14-dashboard/implementation-verification.md)
 and the adjacent product/test byte fingerprint. Pinned offline install, production
 build, typecheck, lint and 119 focused tests passed (zero failed/skipped); all 55
-collected browser tests remain unrun. No runtime resource or visual capture was
-created. The parent owns exact-head CI/review/visual continuation; no done claim.
+collected browser tests were unrun at that author checkpoint. Later hosted evidence is recorded below; this correction launches no resources. The parent owns exact-head CI/review/visual continuation; no done claim.
 
 ## Suggested Review Order
 
 Author: `/root/dashboard_35_14_worker/build/implementation` (implementation author).
-Refreshed against the focused capture-isolation correction over `74a8a1c6a36da5d34753dd54d41a34b2f072a542`;
+Refreshed against the authorized hosted-failure correction over `cc5c37d9dc3bac876a179fd15f1f953793e994f7`;
 the evidence fingerprint pins final product/test and story bytes.
 
 ### Current dashboard facts within the frozen host
@@ -81,7 +80,7 @@ stay intact. Compact phone padding preserves content width; desktop uses 24px. R
 
 ### Honest failure, withholding and freshness
 
-I preserved the existing projection, absent-value handling and server refresh
+I preserved the existing projection and absent-value handling. The hosted correction prevents known-offline refresh dispatch and retains the existing actionable error; connected refresh still re-runs server authority. I preserved the server refresh
 semantics rather than introducing local data state. Failure adds a persistent
 connection/retry instruction without claiming a network-specific diagnosis;
 the lock now uses a monochrome icon and retains its existing tooltip handlers.
@@ -89,7 +88,7 @@ the lock now uses a monochrome icon and retains its existing tooltip handlers.
 - `src/components/dashboard/QuotePipelineWidget.tsx:16` — `function MaskedValue()`: focus, touch and Escape explanation.
 - `src/components/dashboard/QuotePipelineWidget.tsx:58` — `state === "error"`: local failure without successful values/time.
 - `src/components/dashboard/QuotePipelineWidget.tsx:75` — `entitlements.withheld.includes`: unchanged authoritative withholding branch.
-- `src/components/dashboard/DashboardRetry.tsx:12` — `const retry =`: unchanged explicit refresh through current server authority.
+- `src/components/dashboard/DashboardRetry.tsx:12` — `const retry =`: known-offline guard retains error; connected retry repeats server authority.
 
 ### Assertions and evidence limits
 
@@ -101,8 +100,8 @@ execution, late-result navigation proof and actual visual acceptance remain pend
 - `tests/unit/components/dashboard/widget-state.test.ts:77` — `loading announces progress`: no fabricated values or successful timestamp.
 - `tests/unit/components/dashboard/widget-state.test.ts:123` — `absent-withheld money renders Dold`: absence never becomes zero.
 - `tests/e2e/dashboard/dashboard-design.e2e.spec.ts:64` — `phone values remain in one column`: asserts actual doubled font and text bounds, then reflow; unrun.
-- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:520` — `successive failed retries recover`: retained real-source recovery, currently unrun.
-- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:656` — `completed refresh cannot replace newer quote navigation`: genuine completed RSC delivery after navigation; unrun.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:525` — `successive failed retries recover`: retained real-source recovery; correction awaits new runtime execution.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:661` — `completed refresh cannot replace newer quote navigation`: strict late delivery with path-only diagnostics; prior hosted failure retained.
 
 Evidence: pinned Next16.4.1 production build/typecheck/lint passed; 119 focused
 tests passed, zero failed/skipped. SSR phone topology probe passed one assertion.
@@ -111,7 +110,7 @@ commands, byte fingerprint and all seven AC/eleven state bindings are recorded i
 the linked implementation verification file.
 
 Limits: SSR/mocked read-dependency tests do not prove browser/RSC/RLS behavior.
-Current collection: General 3 and dedicated 54 browser tests; all remain unrun. Full required
+Current collection: General 3 and dedicated pipeline 54. Hosted dedicated job on cc5c37d9 executed 82 cases: 79 passed, 3 failed, zero skipped/retried. The changed candidate has not executed. Full required
 DB/RLS/recovery, exact-head CI, independent review, production captures and human
 substantive visual acceptance remain pending. No independent filter/module-
 unavailable state is manufactured; no-match/unavailable use their actual seams.
