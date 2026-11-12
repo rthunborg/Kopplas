@@ -9,7 +9,7 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/_bmad-output/spe
 story_id: 35-14
 branch: codex/parallel-e35-14-dashboard-20261112
 status: in-progress
-updated_at: "2026-11-12T11:09:34Z"
+updated_at: "2026-11-12T11:17:48Z"
 started_at: "2026-11-12T10:43:31Z"
 completed_at: null
 active_seconds: 1431
@@ -57,7 +57,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [b62378f9, a1404c36, 733b1ca4, f9749b6c, 050dfe3c, 453d7278]
+commits: [b62378f9, a1404c36, 733b1ca4, f9749b6c, 050dfe3c, 453d7278, 60912b77, 74a8a1c6, 28c82ff3]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -73,7 +73,7 @@ retro:
   verdict: null
   open_action_items: 0
 bmad_status_flipped_at: null
-pr_url: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/153"
 ci_run_url: null
 ci_status: unknown
 pr_merged: false
