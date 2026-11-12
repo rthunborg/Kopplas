@@ -1,0 +1,5 @@
+# Existing sole story, owner-approved 2026-11-12. No new breakdown/checkpoint choice.
+- id: "35-14"
+  title: "Live Dashboard Pipeline"
+  description: "Implement approved E19.1-only dashboard presentation under CAP-1, the exact seven product paths and operative dependency amendment. Preserve original seven ACs, eleven Applies state/test identities and all frozen onboarding/shared/producer boundaries."
+  invoke_dev_with: "Read all SPEC companions. Ordinary phases continue under the owner's explicit approval; actual native assignment/source pins and current gates still apply. Do not edit frozen onboarding host, registry/producers/shared setup or introduce E19.2."

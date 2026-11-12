@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "story_id": "35-14",
+  "story_key": "spec-design-35-14-35-14",
+  "source_status": "owner-approved-ready-for-dev; native assignment not yet admitted",
+  "inspection_base": "1091cd4c3b16b66e8757a021fe016dce4f82a04d",
+  "inspection_tree": "d38c07a57e42d05a1abfe7a78785416ab31d3bed",
+  "authority": "Owner2026-11-12 exact seven product paths,35.13order amendment and routine delivery continuation, relayed current coordinator; human visual/applicable merge/deploy gates retained.",
+  "source_inputs": [
+    {
+      "original_path": "C:\\DEV\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-35-14-live-dashboard-pipeline.md",
+      "raw_sha256": "38f6f63cd0589e4aa62e9fb2a36c8a5c1fe01ba410d4aecd4657dddb486a6043",
+      "lf_sha256": "1bdaaedb1e827f149678eeb4dc42ce7a9482d577ee2a6e7571f1afa17c45695b",
+      "copied_to": "source-intent.md"
+    },
+    {
+      "original_path": "C:\\DEV\\Kopplas\\_bmad-output\\test-artifacts\\dt-2026-10-23-test-design\\slice-35-14.md",
+      "raw_sha256": "d0b0d82e3b0f2c8827974e16967a3a29c4dd740da344491cf3d4652d408c581c",
+      "lf_sha256": "dfe56dc19163e9ad76c7bf21945e6535604795b9227f51085978252f29dbe5e2",
+      "copied_to": "source-test-design.md"
+    }
+  ],
+  "product_write_paths": [
+    "src/app/(app)/dashboard/page.tsx",
+    "src/components/dashboard/WidgetCard.tsx",
+    "src/components/dashboard/QuotePipelineWidget.tsx",
+    "src/components/dashboard/DashboardGrid.tsx",
+    "src/components/dashboard/DashboardRetry.tsx",
+    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts",
+    "tests/e2e/dashboard/dashboard-design.e2e.spec.ts"
+  ],
+  "protocol_metadata_write_paths": [
+    "_bmad-output/specs/spec-design-35-14/stories/35-14-live-dashboard-pipeline.md",
+    "_bmad-output/auto-bmad/state/spec-design-35-14-35-14.yaml",
+    "_bmad-output/auto-bmad/reports/spec-design-35-14-35-14.md",
+    "_bmad-output/auto-bmad/delivery/spec-design-35-14-35-14.json",
+    "_bmad-output/test-artifacts/spec-design-35-14-35-14/",
+    "_bmad-output/implementation-artifacts/evidence/35-14-dashboard/"
+  ],
+  "metadata_is_not_additional_product_scope": true,
+  "conflict_domains": [
+    "presentation:dashboard-pipeline",
+    "test:e2e-dashboard-pipeline"
+  ],
+  "onboarding_host_freeze": {
+    "path": "src/app/(app)/dashboard/page.tsx",
+    "start_literal": "export default async function DashboardPage()",
+    "end_before_literal": "/** Check eligibility",
+    "lf_sha256": "1e5ea60dfc3febe970770aaae1bdb9910547a1c919690df653e2c863236411d0",
+    "onboarding_imports": [
+      "import { OnboardingChecklist } from \"@/components/onboarding/OnboardingChecklist\";",
+      "import { OnboardingReminder } from \"@/components/onboarding/OnboardingReminder\";",
+      "import { readOnboardingChecklist } from \"@/server/read-models/onboarding-checklist\";"
+    ]
+  },
+  "readonly_current_raw_sha256": {
+    ".github/workflows/ci.yml": "54cbd98711e2c96239360e8efba84d87723dffc9b0d799e7bd67bba6f3486588",
+    "docs/process/development-completion-policy.md": "2aabc5bdbbc59fd4a0880fd826e0fcd80c46f7538c37cde6dc327b66ea741a05",
+    "docs/process/review-order.md": "fbfe43e4f16fe93755cd465ab00291e2511971a60a97337eaf88c2a0fc58e115",
+    "package.json": "79dbd8db55e87995de1f6e9894e24135d9a3817b99efb3c03295e1132b42fb5a",
+    "playwright.config.ts": "281b9bca4ab572c66bde2c6cad710d4aa527b7900b158970411fbf8be6d160bf",
+    "src/app/(app)/layout.tsx": "91ccf3946e62bbc33c9c00f2fda2064df8ba9fcec22e0c72d0d31cd943eafd58",
+    "src/app/page.tsx": "82890521f03d531840aafe80f2b53566c6e51c700d67468844e6d679f93aaa5e",
+    "src/components/app-shell/AppShell.tsx": "3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df",
+    "src/components/app-shell/NavIcon.tsx": "7044d35bc881351dd3595fc34cae780b13023b9bcbe6880929fe15f700f95a1f",
+    "src/components/app-shell/NoTenantAccess.tsx": "86e4aac3e5b4964bff3221edf127634634a36a8803d56ddeb210da83c7dedaa7",
+    "src/components/app-shell/PagePlaceholder.tsx": "c2e8d228877f6f75d3502566fab9e3df981668a07e110eaf1fd458a07e60c7d2",
+    "src/components/app-shell/RouteAccessBoundary.tsx": "2a099a26539b9d1dd331db969230f640a8d0e0e3551bd07fc9e4296021cf97e5",
+    "src/components/app-shell/SignOutButton.tsx": "d2af1560782baf94fc61f950d2365cc08e5ab84f2333ea4f57976df6de7353cf",
+    "src/components/app-shell/nav-items.ts": "c3b370c72fcdf03439781d69efddf354700d09660e27fa5fd9cff464124a13a1",
+    "src/components/onboarding/OnboardingChecklist.tsx": "347f4d407eed87cbe8e968fb155501d85045dce81e9ad0bc1be65fe6abb65ea5",
+    "src/components/onboarding/OnboardingReminder.tsx": "f743df1031db7c41a049d103e27a5cd80c2ded3bce90001fe4f85b8fd2e1a0bc",
+    "src/lib/money/domain.ts": "4ee0889cf30fdc839b4cda9340ed823925cde3a0c30c8915c53e242c1297320d",
+    "src/lib/money/index.ts": "cb706b5e9c305d2e7227632f303b38b4b4d810f179e73c721819d2f79247083a",
+    "src/lib/money/ore.ts": "186921bbe829ab0b6eeda23c35f96748deb4195f6dcbb74bc6919136aeb60c9a",
+    "src/lib/money/tax-answer.ts": "fdd41dfbcbd2435cd54273c0f6eb049ae0979414b92f5d18389520c1319d6aee",
+    "src/lib/money/tax-input.ts": "6a258963b6fea793d9f1554bd105c041e91d3b42841b3bbb6cdc3942148597c8",
+    "src/lib/money/tax-policy.ts": "975fdea4c13c21af4c9bd890aa43d0df5c74fd9c95ae88e75b44cd834759d93f",
+    "src/lib/money/tax.ts": "45ce0376f672e641c78c578b890bb6af480c6e5a397cd2ae500e76ba4cbddd03",
+    "src/lib/money/vat.ts": "a1f72e9e87e33f459b52fa92c6d1cdab867f1fd3574bb5ab85eecde193db0300",
+    "src/scope/manifest.ts": "6e146fcedc188494343cd3bae628071bb15b4f1d081012898bceec36451497cb",
+    "src/scope/widget-registry.ts": "2bfa0ab586a5a62748b057af1851d1c6983fb670473b92bc2f2a9345fd30fb08",
+    "src/server/read-models/dashboard.ts": "26ce46f41b7fb171523389f79a1b83f2e01f61433b2a2f32a6d19d5b21215b6a",
+    "src/server/read-models/entitlements.ts": "c8a59958a5ea48d323a6e291c36cb8368e37da350b3a6114a2c0ffcacf49e074",
+    "src/server/read-models/onboarding-checklist.ts": "e43ed6043e7e0d13344871c25afa7d223c7c2b15615044a26d26d89019629828",
+    "src/server/read-models/quote-pipeline-aggregate.ts": "1065aabf84789413a37bc38248fbcba541534b43c33047cfbde367be4db25843",
+    "src/server/read-models/quote-pipeline.ts": "b7930e6f591a21878cb5058d66c10b1c46f04ef3d88439e079befe49fcdba59f",
+    "tests/e2e/dashboard/guarded-test.ts": "1d8b9b68f884ed4933620e7ede3de88dd79692e51d6f6e0e6b9f8d8508b03770",
+    "tests/e2e/dashboard/playwright.ci.config.ts": "bfa7da8c7ff77c5791c5dbf93e93e0212bd4bece0e97531122b49eda31236227",
+    "tests/e2e/dashboard/playwright.config.ts": "58685f94366c40b5b963475bc1f3e8e64741848d50c4ee57b4855006ec148aea",
+    "tests/e2e/dashboard/read-plan.ts": "ff035e89aa577be195c55e9b9c1e3402eab2ff28198ae9204d1311efe2cdc23c",
+    "tests/e2e/dashboard/server-read-proxy.mjs": "20147c434a5af5b7ee88c272d7034d5ff44ed6d2b9f3abbbfafce998d61029e8",
+    "tests/e2e/dashboard/setup.ts": "663b04e624fa571bd0389ee11db6440611bde5b5aeedb2f4d8e6ff83fe3e7aea",
+    "tests/e2e/dashboard/teardown.ts": "cd90e6c515865c1b932199bf82fc4c8423a86a5f3771b63de09a855e59a9a1d2",
+    "tests/e2e/global-setup.ts": "50e8315fa7985b08bf348033674c697f6a055d81595d685e6652675b1df2bd5e"
+  },
+  "product_existing_raw_sha256": {
+    "src/app/(app)/dashboard/page.tsx": "01b887678ba4a87b27c0d98303adbb509a4161f1bb01bb86581242d29375f11e",
+    "src/components/dashboard/WidgetCard.tsx": "4dd2cbf37fe747bb522a1ceb2ad2060228c35696f7d489a7beb597f2f724f6ad",
+    "src/components/dashboard/QuotePipelineWidget.tsx": "aa7f70630396235eb7f970d5e402b178baf40b5f2b83fe79f2622b031271af15",
+    "src/components/dashboard/DashboardGrid.tsx": "719940505392fbe3d04d7a14416976f93323fe4faab0bab57b6b36405bbfe047",
+    "src/components/dashboard/DashboardRetry.tsx": "ab7352b7d658c84114ad60a6abaaa75159f3b995b8895c1bb41286a73d7f3177",
+    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts": "fb9d5a87d36560f9b33a13e176c4ee78aa1d37befa09728352ce0a6906f76155"
+  },
+  "retained_allocation_comparisons": [
+    {
+      "id": "05b7d3ce97f465c020ad7878a4121ee529a25dbd4fe0561a185f832ad699c5b6",
+      "retained_paths": 55,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "6e5337c293c17caed5f3c7ca05f83b6d9ce23f946d82dd6de38b19305cc27d76",
+      "retained_paths": 55,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "4aaf4467e8ff773ea35344e2ea5af88dc35bdff63cdc0b88ad09de64c549cb4e",
+      "retained_paths": 75,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "c2c09707bee69bc4e0f3a21b1ab0ea4e3bc5c73e24773ebb09a12bc210bffd5b",
+      "retained_paths": 1,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "retained-plan:spec-design-35-2",
+      "retained_paths": 75,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "retained-plan:15",
+      "retained_paths": 386,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "held-crm",
+      "retained_paths": 11,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    }
+  ],
+  "independence_provenance": {
+    "scope_review_path": "C:\\DEV\\Kopplas\\tmp\\private\\35-6-35-7-coordinator-2026-11-09\\product-35-8-producer-ownership-compatibility-20261112.md",
+    "raw_sha256": "d7326083cac0f2bae3116d0b638c899b835a4e32ab206d72f393a06ef10d35a7",
+    "scope": "Existing receipt independently reviewed exact seven-path35.14leaf and frozenhost boundaries; owner nowselects it. Exact finalsource/planreview beforeclaim remains."
+  },
+  "source_contract_commit_required": true,
+  "source_publication_pending": true,
+  "native_capacity": "unknown; no current native-store observation by this actor",
+  "native_worker_identity": "/root/dashboard_35_14_worker",
+  "worker_identity_format": "actual helper requires nonempty unique string, no UUID restriction",
+  "admitted": false,
+  "implementation_started": false,
+  "runtime_pass": false,
+  "release_ready": false,
+  "publication_normalization": "Original companion working-copy CRLF raw bytes preserved at intake; committed Git content may normalize LF only. Compare companion Git blobs with source_inputs.lf_sha256. Native SPEC/stories/story pins are LF-normalized. No gitattributes modification.",
+  "readonly_current_lf_sha256": {
+    ".github/workflows/ci.yml": "1f49ccb948a4bc62f329319502dae70e8d6c2ae5eb60580f97972c9d9c9a8b22",
+    "docs/process/development-completion-policy.md": "9e4b727d08baf53bc0f2575b2b749abd158ab0e5983038fe1ac7de1a6505ebec",
+    "docs/process/review-order.md": "039c108d1a72f57139319596880a9c1ed94564a5e7564a4947c3380185e2dbc5",
+    "package.json": "044b5c0eed087f052ab4011dab993bcc0b081f720557125e015cb34f588efb9c",
+    "playwright.config.ts": "82d974a9810ab79fc0b841fe2d83c7d341eed129198fa06181d864b989f0ee4d",
+    "src/app/(app)/layout.tsx": "97352bd2f9082f709fe0a8feb86dc4c9a36ac0b0091a3a5e3f511bff461fae23",
+    "src/app/page.tsx": "12810f2fab3619230e87a40e7af192af2eb385d2516d9c323b9b6380c868cb37",
+    "src/components/app-shell/AppShell.tsx": "9321be63b4c5a3909b77bccca77042400ce1569dcf1c663458a4bb52ca47fa5d",
+    "src/components/app-shell/NavIcon.tsx": "96d090f5ff77dbb346e23f32c68664bc484e56903cc7acb036cb3d9c7c39ad12",
+    "src/components/app-shell/NoTenantAccess.tsx": "0e7d7c9fe47c994c6bde9de37884f870ffb356fa4bf15268d62129686e5b541e",
+    "src/components/app-shell/PagePlaceholder.tsx": "394aa078191c367dc05fa7e2c203799be5dcc51f832cf646659d73d5e7df6f8d",
+    "src/components/app-shell/RouteAccessBoundary.tsx": "358e248918440db1b53668de0a42f4d0e95c8799014dc918d8dabc49967a9f62",
+    "src/components/app-shell/SignOutButton.tsx": "cc4b4fab70721c262c7231e95cdd56188a145dea6133c1b5d7b2b18eb7b1db7a",
+    "src/components/app-shell/nav-items.ts": "39c3e0db94de5369fe2f39097fd33386e199736cd20267667107d91beb3fcf6e",
+    "src/components/onboarding/OnboardingChecklist.tsx": "6b69c5406079a9f3f738e43cf7b2b2d70a46891281527fa98a28fb71ac9813df",
+    "src/components/onboarding/OnboardingReminder.tsx": "4ad2378cdf8ef4307eea5f98a5ce322de4086677a19b89250c2a1961f053e25b",
+    "src/lib/money/domain.ts": "6cbfad4e8860c43458e4c01132c861cdebd8da2e826c9628a7f9ff3349fa195f",
+    "src/lib/money/index.ts": "da9988c9989588344538650d31b787dac20e1ce4cae3aba2764b21370750608e",
+    "src/lib/money/ore.ts": "27e00b46d6e54bdff58e18c75493e0c3313f1e350fcea418dca6c3917ad7894a",
+    "src/lib/money/tax-answer.ts": "09abd93f4759ba654eec65836e9347b3d48ac9dabca07cfdb46fbfd11a4180c4",
+    "src/lib/money/tax-input.ts": "2d5a58dac25d051922d9f9e332ef5d76b25fb5f8671b6262061f847cf100e1c0",
+    "src/lib/money/tax-policy.ts": "aac7c64c076c316dbde0540492af76a93674497f01174d10a24580b29044326d",
+    "src/lib/money/tax.ts": "b16825d59e5f7c7fb0b2dae799934e3f065398d8b3b4a86402fb931e68716157",
+    "src/lib/money/vat.ts": "1da91874a42cc1d57197d9833167509ab5753b53b5144a65d308367a46f6c4ce",
+    "src/scope/manifest.ts": "a773473789c83d5074ce3e86efb21f748774f471c58b189ae72ae3142cb7ff62",
+    "src/scope/widget-registry.ts": "e776fe1675baa24491e252c62780e45f4448919c34293c4ab4ad38f07d696ee2",
+    "src/server/read-models/dashboard.ts": "63d61c1143e07944dd222dffb0ba048fccf03e5e4ada05304d2e876e4a08e88f",
+    "src/server/read-models/entitlements.ts": "d254e21676320e48494d5766ce1423cc50a8b01cc745f32d933535919587cae2",
+    "src/server/read-models/onboarding-checklist.ts": "68ed3b312b9866a9785739053bfcdc07624e85012ee871ca484c759ed459eb4e",
+    "src/server/read-models/quote-pipeline-aggregate.ts": "ad4b0fb000af7c188d967b759acf260079f0934de7d381907a49cd6d06ed16ea",
+    "src/server/read-models/quote-pipeline.ts": "ed7d29e9c36dc269864d922fa4cd684458c3fab9a6fdc2ec8747f704faa4ecd2",
+    "tests/e2e/dashboard/guarded-test.ts": "24c580bb2d8097af0576d51904586ebec179865970c45149709f1c9f536296fc",
+    "tests/e2e/dashboard/playwright.ci.config.ts": "68a6fca120b9ec3087b7bf711a3df760a6d007422b4237940ac56b0b37f6e6f7",
+    "tests/e2e/dashboard/playwright.config.ts": "dcbdef8782ef17aa1ececce3634ef1347ddbdb51e5752f801ae3b8cf4262716c",
+    "tests/e2e/dashboard/read-plan.ts": "c8937cace80875fc3aa82fc2a3c80b59d66b1564688d4ba794c47704bfb2fdc0",
+    "tests/e2e/dashboard/server-read-proxy.mjs": "5b953f1583aa4add030093b6e7139219d84c54372099555559751afadf23e00d",
+    "tests/e2e/dashboard/setup.ts": "de81f6d1472b34abe0de5ef385d3fdc1c7e8d89489dc5823db2b0e666b8128d7",
+    "tests/e2e/dashboard/teardown.ts": "6f54bf17a8930ea619fa6c2a81aa47a701ed7620f054960d14b0fa7e435a6fb3",
+    "tests/e2e/global-setup.ts": "a970b722c29d37d87f83e29f33f9a78db0097201920916e5b5c32aa5bcd9705b"
+  },
+  "product_existing_lf_sha256": {
+    "src/app/(app)/dashboard/page.tsx": "241b23ab18f121ddcfa2b8f3793d433d6459d5fdaf85bd14fde862596e5fa7d3",
+    "src/components/dashboard/WidgetCard.tsx": "5985e5c0b8f3c13c6a7f37b7941fe8162a9467e7d533bb35b59ab198149c792b",
+    "src/components/dashboard/QuotePipelineWidget.tsx": "203261fa6baf67e5c54d6c00461667031344975e5f5921667935b29169f1e994",
+    "src/components/dashboard/DashboardGrid.tsx": "5171eb4d3de6e42048ef1ba68835fe980b30788a47fe087059a25035aff74cd6",
+    "src/components/dashboard/DashboardRetry.tsx": "c6bb0ab7b4bab6e9ffc1599b04c9f3694770701b282ba80d512a70a2bb7ab2b6",
+    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts": "3716c18ddde1f07ca60dfffce5b630bd57eb8b4c0a82513bc6f8d6d62258a10a"
+  }
+}
