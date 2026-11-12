@@ -1,0 +1,26 @@
+{
+  "baseRevision": "a1404c36796774db8362d23beaf49657c1d92459",
+  "kind": "uncommitted-author-working-tree",
+  "paths": {
+    "src/components/dashboard/WidgetCard.tsx": {
+      "rawSha256": "0746ae7d6184347362b912454db9f6d1369e9315777dfd18a44642c7297a1b3b",
+      "lfSha256": "0746ae7d6184347362b912454db9f6d1369e9315777dfd18a44642c7297a1b3b"
+    },
+    "src/components/dashboard/QuotePipelineWidget.tsx": {
+      "rawSha256": "7c37dc1d7343b28d42b72814c8fcda038d3f189b622a3afb192fc49b62f2d914",
+      "lfSha256": "7c37dc1d7343b28d42b72814c8fcda038d3f189b622a3afb192fc49b62f2d914"
+    },
+    "src/components/dashboard/DashboardGrid.tsx": {
+      "rawSha256": "dd9d1f284ef8a3c8b046b3545f5dffd45df1c12068b95b4bcd79a497cf4f39f0",
+      "lfSha256": "dd9d1f284ef8a3c8b046b3545f5dffd45df1c12068b95b4bcd79a497cf4f39f0"
+    },
+    "tests/e2e/dashboard/dashboard-design.e2e.spec.ts": {
+      "rawSha256": "1af81571abcc0841d4722e2f5fec69cb83ebba06cf69dfb0192d0992e980c028",
+      "lfSha256": "24f001f1185e2933cb9541efc1cf1af640d380b4c467c75412170fb045fc2add"
+    },
+    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts": {
+      "rawSha256": "ffa29d67b39f7bd89edd2d64aa320c1e0813ddd36d576ec18ebd7bd6ee40f69e",
+      "lfSha256": "2ba53d0856576d44f5ebec4a90e375cd5ed953142b133a1af4d30019df1de5dd"
+    }
+  }
+}

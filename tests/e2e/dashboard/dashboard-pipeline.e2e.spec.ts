@@ -477,7 +477,7 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
     });
     for (const state of ["loading", "error", "empty", "withheld"] as const) {
       // Contract: contained state fixture required, including a held actual loading read.
-      test("[P1] 19.1-E2E-010 " + viewport.name + " " + state + " fits with useful dimensions [AC9]", async ({ page }) => {
+      test("[P1] 19.1-E2E-010 " + viewport.name + " " + state + " fits with useful dimensions [AC9]", async ({ page }, testInfo) => {
         const data = scenario("layout-" + state);
         await page.setViewportSize({ width: viewport.width, height: viewport.height });
         await login(page, data.user);
@@ -495,6 +495,10 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
         await expect(card(page).getByText("Kunde inte läsa offertpipeline")).toHaveCount(state === "error" ? 1 : 0);
         await expect(card(page).getByText("Inga offerthändelser under perioden")).toHaveCount(state === "empty" ? 1 : 0);
         await expect(card(page).getByText("Dold", { exact: true })).toHaveCount(state === "withheld" ? 1 : 0);
+        // Real production UI with synthetic fixtures; fault states are controlled source failures.
+        await testInfo.attach(`dashboard-source-${state}-${viewport.name}`, {
+          body: await page.screenshot({ fullPage: true }), contentType: "image/png",
+        });
         if (state === "loading") {
           await expect(card(page)).toHaveAttribute("aria-busy", "true");
           await expect(card(page).getByRole("status")).toHaveAttribute("aria-live", "polite");

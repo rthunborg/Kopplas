@@ -24,7 +24,7 @@ async function signIn(page: Page) {
 }
 
 for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 }]) {
-  test(`E35-14-T-AC4 E35-14-T-AC1 E35-14-T-loaded ${viewport.width} connected facts and keyboard destination`, async ({ page }) => {
+  test(`E35-14-T-AC4 E35-14-T-AC1 E35-14-T-loaded ${viewport.width} connected facts and keyboard destination`, async ({ page }, testInfo) => {
     await page.setViewportSize(viewport);
     await signIn(page);
     const pipeline = page.getByRole("region", { name: "Offertpipeline", exact: true });
@@ -52,6 +52,9 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
       expect(bounds.width).toBeGreaterThanOrEqual(44);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+    await testInfo.attach(`dashboard-current-period-${viewport.width}`, {
+      body: await page.screenshot({ fullPage: true }), contentType: "image/png",
+    });
     await page.keyboard.press("Enter");
     await expect(page).toHaveURL(/\/quotes$/);
     await expect(page.getByRole("heading", { name: "Offerter", exact: true })).toBeVisible();
