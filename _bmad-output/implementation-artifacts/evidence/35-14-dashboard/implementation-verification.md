@@ -1,7 +1,7 @@
 # 35.14 implementation verification — 2026-11-12
 
 Implementation author: `/root/dashboard_35_14_worker/build/implementation`, Sol Low.
-Subject: authorized hosted-failure correction over clean `cc5c37d9dc3bac876a179fd15f1f953793e994f7`.
+Subject: oracle/correlation and whole-viewport capture correction over clean `8546af606fee9a5412c44f606c36a2fa2d0e8576`.
 `implementation-fingerprint.json` pins final product/test and story bytes (raw and LF).
 The seven allocated product paths remain the closed boundary. Three presentation
 components, DashboardRetry's known-offline predispatch guard and the two allocated
@@ -90,6 +90,65 @@ Validation,submitting,unknown,confirmed,locked,dirty-navigation,focus-dialog and
 file operations remain N/A. Quote destination protections remain inherited, unmodified.
 
 ## Pending gates and next action
+
+### Subsequent live-refresh oracle/correlation refinement
+
+The actual 8546 hosted dedicated result is 81 passed, 1 failed late-result,
+0 skipped/retried. Offline and mobile geometry passed. Artifact SHA256 is
+df491d08adac024190d1ea2cfe212842181d1821636efc42e26e6fc5093c1aee.
+The failed attachment recorded genuine producer completion 200, quote request
+starts/statuses followed by aborted categories, surviving document nonce and
+absent quote heading before release; handlerFailed=false. Its path-aggregated
+events could not identify individual prefetch/live/held requests. This does not
+establish prefetch as the cause or prove late successful delivery.
+
+After the exact four 8546 manual output files were rechecked absent immediately
+prewrite, the first actual test edit was 2026-11-12 12:53:44 UTC in the allocated
+pipeline spec. The oracle now arms immediately before Retry and holds only a
+subsequent GET /dashboard request with RSC=1, router-state-tree present and both
+prefetch headers absent. It asserts the fetched canonical pathname is /dashboard
+as a boolean, never emitting its URL. Test-local numeric IDs correlate request,
+held-live-refresh, producer-completed, fulfillment and browser lifecycle facts;
+request-kind/header-presence flags are booleans only. Genuine bytes and headers
+remain in memory, with no raw values, query URLs or traffic log in evidence.
+The existing 64-event output cap, fixed categories, strict same-document real
+AppShell /quotes plus heading BEFORE fulfillment, successful browser completion,
+nonce assertions, no-abort-pass rule and awaited cleanup are preserved.
+
+The oracle refinement changed only the allocated pipeline spec and existing author
+metadata; the same authorized batch also adds the capture correction below in the
+two allocated E2E files. Product, shared proxy/framework/config and manual outputs
+were untouched. Affected ESLint
+exit 0 without diagnostics, typecheck exit 0 and dedicated collection exit 0,
+54 pipeline cases, 0 executed. No build or unchanged unit rerun was performed.
+This corrects oracle ambiguity only: actual navigation cause and successful
+late-result behavior remain unresolved until the next exact-candidate execution.
+No resource or provider action, completion or acceptance claim is made.
+
+Same-batch capture precheck read the supplied diagnostic-visual-review.md and
+52-original PNG inventory. Owned mobile source loading was 360×754, empty
+360×1054, withheld 360×1004; open tooltip was 360×1004 and enlarged error
+360×1252. These are not whole 360×640 frames. Owned source error mobile was
+360×640 and desktop state captures 1440×900. Recovered retry was 1280×816.
+The diagnostic review inspected ten originals and granted no acceptance.
+
+The smallest capture correction retains each existing full-page context attachment
+and adds a distinctly named whole-viewport companion using fullPage:false. If the
+original PNG dimensions already equal the actual viewport, it reuses those original
+bytes rather than taking another identical shot. General existing 360×640/1280×900
+journeys and enlargement gain companions; dedicated existing loading/error/empty/
+withheld loops do likewise. Existing source-history facts gain 360×640/1440×900
+captures only after all original functional assertions. Existing repeated retry
+success gains phone capture after its mutation/no-side-effect assertion; its
+desktop success capture stays in place. The phone tooltip trigger scrolls into
+view before its unchanged long-press gesture/assertions. No debug crop, generated
+image, hidden host, new fixture, state or journey is introduced.
+
+Final affected-file lint and typecheck exit 0; pipeline collection 54, General
+collection 3, all zero local executions. Both local test files are the approved
+write paths. Capture instrumentation supplies no image or visual acceptance until
+actual current-candidate execution and review. Historical 52-image/old-head and
+81-pass/1-failure evidence remain unchanged; the late-navigation cause is unknown.
 
 ### Hosted first failure and authorized changed candidate
 

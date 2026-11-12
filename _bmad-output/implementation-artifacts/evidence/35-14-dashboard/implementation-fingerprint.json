@@ -1,6 +1,6 @@
 {
-  "baseRevision": "cc5c37d9dc3bac876a179fd15f1f953793e994f7",
-  "kind": "authorized-hosted-failure-correction",
+  "baseRevision": "8546af606fee9a5412c44f606c36a2fa2d0e8576",
+  "kind": "live-refresh-oracle-correlation-and-whole-viewport-capture-correction",
   "paths": {
     "src/components/dashboard/WidgetCard.tsx": {
       "rawSha256": "e819f3a805a282cc641e5bc13b055c5063d259724358fe96129d97383e17ce17",
@@ -15,16 +15,16 @@
       "lfSha256": "dd9d1f284ef8a3c8b046b3545f5dffd45df1c12068b95b4bcd79a497cf4f39f0"
     },
     "tests/e2e/dashboard/dashboard-design.e2e.spec.ts": {
-      "rawSha256": "6e217f6d80e5534be3b13dbc6d4d24b5d90c6290df1f38f03a6311d5f98ea5c1",
-      "lfSha256": "d547706a1ab5a3547be4454a883ba43fff76c2b87720189524d3e05dded2de38"
+      "rawSha256": "8959a5cee189ba4762d4acdbe9611ab9651e7f0d3d181e396f2df158b5b19feb",
+      "lfSha256": "8857ac9b434c4244da5ce4da49a64fc346f1370730f7cc738cc8818a4887b207"
     },
     "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts": {
-      "rawSha256": "11a059e8f3458d43479f3da0b506445923c3c18107e6ec88c6e9efb94dc42b48",
-      "lfSha256": "d490e58d2c892c8a464ecfc1c41175b79c23efcc40cdee280cb0660b071484f5"
+      "rawSha256": "5ef82c93f7200cffc16a4215500fb0d8cbdaf0dd18417bdcbe3eddbb4fb6ed15",
+      "lfSha256": "01ed4d3a2e41122b20556d618d965d3ae6eef4bff7382e6fc73b8b4da884f5e7"
     },
     "_bmad-output/specs/spec-design-35-14/stories/35-14-live-dashboard-pipeline.md": {
-      "rawSha256": "320f5eb2db0ba149446f4dccf49d5c14e29835d3968b2c18c21987cb5e452e74",
-      "lfSha256": "320f5eb2db0ba149446f4dccf49d5c14e29835d3968b2c18c21987cb5e452e74"
+      "rawSha256": "c4bf181a8c2e97ebc4df8b8dc4970344178425b9b067c4a9e95f261ca80da106",
+      "lfSha256": "c4bf181a8c2e97ebc4df8b8dc4970344178425b9b067c4a9e95f261ca80da106"
     },
     "src/components/dashboard/DashboardRetry.tsx": {
       "rawSha256": "be3153bfa629cfb4f5e9e4047126f78cbe95853050e5fde770c7773a411f1c9b",

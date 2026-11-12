@@ -8,7 +8,7 @@
  * period/completion-clock coverage is in unit tests. No production fault switch.
  */
 import { test, expect } from "./guarded-test";
-import type { APIResponse, Locator, Page, Route } from "@playwright/test";
+import type { APIResponse, Locator, Page, Request, Route, TestInfo } from "@playwright/test";
 import { armReadPlan, releaseRead } from "./read-plan";
 import { readFileSync } from "node:fs";
 import path from "node:path";
@@ -18,6 +18,19 @@ import { formatOreAsKronor } from "../../../src/lib/money";
 
 // Only the genuine RSC transport case suppresses capture; other cases retain lane/CLI options.
 const lateResultTest = test.extend({ trace: "off", video: "off", screenshot: "off" });
+
+
+/** Preserve full-page context and attach an explicitly whole-viewport original. */
+async function attachDashboardView(page: Page, testInfo: TestInfo, name: string) {
+  const viewport = page.viewportSize();
+  if (!viewport) throw new Error("Dashboard capture requires an explicit viewport");
+  const context = await page.screenshot({ fullPage: true });
+  await testInfo.attach(name, { body: context, contentType: "image/png" });
+  // Reuse the original when its actual PNG dimensions already equal the viewport.
+  const whole = context.readUInt32BE(16) === viewport.width && context.readUInt32BE(20) === viewport.height
+    ? context : await page.screenshot({ fullPage: false });
+  await testInfo.attach(`${name}-whole-viewport-${viewport.width}x${viewport.height}`, { body: whole, contentType: "image/png" });
+}
 
 type User = { id: string; email: string; password: string };
 type Scenario = {
@@ -141,7 +154,7 @@ test.describe("19.1-E2E-001 current roles and live card set", () => {
 
 test.describe("19.1 actual source consistency and money delivery", () => {
   // Contract: card absent; pinned real source-history/clock fixture required.
-  test("[P1] 19.1-E2E-002 source counts, adjusted commitment, dates, rate and read time [AC3,9]", async ({ page }) => {
+  test("[P1] 19.1-E2E-002 source counts, adjusted commitment, dates, rate and read time [AC3,9]", async ({ page }, testInfo) => {
     const startedAt = Date.now();
     const data = scenario("source-history");
     const expected = await source(data);
@@ -165,6 +178,12 @@ test.describe("19.1 actual source consistency and money delivery", () => {
     expect(completed).toBeLessThanOrEqual(Date.now());
     await expect(pipeline.getByText(/^Hämtad /)).toBeVisible();
     await expect(pipeline.getByText(/realtid|senast ändrad/i)).toHaveCount(0);
+    // Capture the same verified source facts only after all existing functional assertions.
+    for (const viewport of [{ width: 360, height: 640 }, { width: 1440, height: 900 }]) {
+      await page.setViewportSize(viewport);
+      await pipeline.getByRole("heading", { name: "Offertpipeline", exact: true }).scrollIntoViewIfNeeded();
+      await attachDashboardView(page, testInfo, `dashboard-permitted-loaded-${viewport.width}`);
+    }
   });
   // Contract: dedicated actual accepted-value sentinel + seller fixture required.
   test("[P0] 19.1-E2E-003 seller amount absent in initial HTML, RSC, DOM/attributes [AC4]", async ({ page }) => {
@@ -415,14 +434,13 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
     const mask = card(page).getByRole("button", { name: "Dolt för din roll", exact: true });
     await hydrated(mask);
     await page.clock.install();
+    await mask.scrollIntoViewIfNeeded();
     await mask.dispatchEvent("pointerdown", { pointerType: "touch", pointerId: 1, isPrimary: true, button: 0, buttons: 1 });
     await page.clock.fastForward(1000); // controlled user gesture timer, no sleep
     await mask.dispatchEvent("pointerup", { pointerType: "touch", pointerId: 1, isPrimary: true, button: 0, buttons: 0 });
     await expect(page.getByRole("tooltip", { name: "Din roll ser inte belopp", exact: true })).toBeVisible();
     await expect(card(page).getByText("Dold", { exact: true })).toBeVisible();
-    await testInfo.attach("dashboard-open-role-tooltip-phone", {
-      body: await page.screenshot({ fullPage: true }), contentType: "image/png",
-    });
+    await attachDashboardView(page, testInfo, "dashboard-open-role-tooltip-phone");
   });
   for (const viewport of [
     { name: "mobile", width: 360, height: 640 },
@@ -507,9 +525,7 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
         await expect(card(page).getByText("Inga offerthändelser under perioden")).toHaveCount(state === "empty" ? 1 : 0);
         await expect(card(page).getByText("Dold", { exact: true })).toHaveCount(state === "withheld" ? 1 : 0);
         // Real production UI with synthetic fixtures; fault states are controlled source failures.
-        await testInfo.attach(`dashboard-source-${state}-${viewport.name}`, {
-          body: await page.screenshot({ fullPage: true }), contentType: "image/png",
-        });
+        await attachDashboardView(page, testInfo, `dashboard-source-${state}-${viewport.name}`);
         if (state === "loading") {
           await expect(card(page)).toHaveAttribute("aria-busy", "true");
           await expect(card(page).getByRole("status")).toHaveAttribute("aria-live", "polite");
@@ -571,12 +587,13 @@ test("[P1] 19.1-E2E-011 successive failed retries recover in the same session [A
         const completed = Date.parse((await pipeline.locator("time").getAttribute("datetime"))!);
         expect(completed).toBeGreaterThanOrEqual(releasedAt);
         expect(completed).toBeLessThanOrEqual(Date.now());
-        await testInfo.attach("dashboard-recovered-retry", {
-          body: await page.screenshot({ fullPage: true }), contentType: "image/png",
-        });
+        await attachDashboardView(page, testInfo, "dashboard-recovered-retry");
       }
     }
     expect(await mutations(data.tenantId)).toEqual(before);
+    await page.setViewportSize({ width: 360, height: 640 });
+    await pipeline.getByRole("heading", { name: "Offertpipeline", exact: true }).scrollIntoViewIfNeeded();
+    await attachDashboardView(page, testInfo, "dashboard-recovered-retry-phone");
   } finally {
     // Keep this synthetic subject unavailable for any later repeat without retaining a hold.
     armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
@@ -644,9 +661,7 @@ test("E35-14-T-AC4 E35-14-T-error-retry enlarged phone error retains keyboard re
       const style = getComputedStyle(element);
       return style.outlineStyle !== "none" && parseFloat(style.outlineWidth) > 0;
     })).toBe(true);
-    await testInfo.attach("dashboard-enlarged-error-phone", {
-      body: await page.screenshot({ fullPage: true }), contentType: "image/png",
-    });
+    await attachDashboardView(page, testInfo, "dashboard-enlarged-error-phone");
     armReadPlan(data.user.id, { quote_events: [{ outcome: "pass" }] });
     await page.keyboard.press("Enter");
     await expect(alert).toHaveCount(0);
@@ -662,27 +677,45 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
   const data = scenario("retry-failure");
   await page.setViewportSize({ width: 1280, height: 900 });
   armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
-  type CompletedRefresh = { route: Route; response: APIResponse; body: Buffer };
+  type CompletedRefresh = { route: Route; response: APIResponse; body: Buffer; requestId: number; fetchedCanonicalDashboard: boolean };
   let acceptCompleted!: (value: CompletedRefresh) => void;
   let rejectCompleted!: (reason: Error) => void;
   const completed = new Promise<CompletedRefresh>((resolve, reject) => { acceptCompleted = resolve; rejectCompleted = reject; });
   let release!: () => void;
   const deliveryGate = new Promise<void>(resolve => { release = resolve; });
   let intercepted = false;
+  let armed = false;
+  let heldRequestId: number | null = null;
   let handlerFailed = false;
   let finishHandler!: () => void;
   const handlerSettled = new Promise<void>(resolve => { finishHandler = resolve; });
-  const lifecycle: { path: string; phase: string; status?: number; category?: string }[] = [];
+  type RequestFacts = { requestId: number; path: string | null; afterArm: boolean; get: boolean; rsc: boolean; routerStatePresent: boolean; prefetch: boolean; segmentPrefetch: boolean };
+  const requestFacts = new Map<Request, RequestFacts>();
+  const lifecycle: (RequestFacts & { phase: string; status?: number; category?: string })[] = [];
   const observedPath = (value: string) => {
     const pathname = new URL(value).pathname;
     return pathname === "/dashboard" || pathname === "/quotes" ? pathname : null;
   };
-  page.on("request", request => { const path = observedPath(request.url()); if (path) lifecycle.push({ path, phase: "start" }); });
-  page.on("response", response => { const path = observedPath(response.url()); if (path) lifecycle.push({ path, phase: "status", status: response.status() }); });
-  page.on("requestfinished", request => { const path = observedPath(request.url()); if (path) lifecycle.push({ path, phase: "finish" }); });
+  const facts = (request: Request): RequestFacts => {
+    const existing = requestFacts.get(request);
+    if (existing) return existing;
+    const headers = request.headers();
+    const value = { requestId: requestFacts.size + 1, path: observedPath(request.url()), afterArm: armed,
+      get: request.method() === "GET", rsc: headers["rsc"] === "1",
+      routerStatePresent: "next-router-state-tree" in headers,
+      prefetch: "next-router-prefetch" in headers, segmentPrefetch: "next-router-segment-prefetch" in headers };
+    requestFacts.set(request, value);
+    return value;
+  };
+  const record = (request: Request, phase: string, status?: number, category?: string) => {
+    const value = facts(request);
+    if (value.path) lifecycle.push({ ...value, phase, ...(status === undefined ? {} : { status }), ...(category === undefined ? {} : { category }) });
+  };
+  page.on("request", request => record(request, "start"));
+  page.on("response", response => record(response.request(), "status", response.status()));
+  page.on("requestfinished", request => record(request, "finish"));
   page.on("requestfailed", request => {
-    const path = observedPath(request.url());
-    if (path) lifecycle.push({ path, phase: "failure", category: request.failure()?.errorText.includes("ABORTED") ? "aborted" : "transport-failed" });
+    record(request, "failure", undefined, request.failure()?.errorText.includes("ABORTED") ? "aborted" : "transport-failed");
   });
   let sameDocumentBeforeRelease: boolean | null = null;
   let quoteHeadingBeforeRelease: boolean | null = null;
@@ -696,26 +729,34 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
     // Hold only transport of the genuine completed refresh, never producer input or invented RSC.
     // Bytes/headers remain memory-only; only lateResultTest disables trace/video/screenshot.
     await page.route(dashboardURL, async route => {
-      if (intercepted || route.request().headers()["rsc"] !== "1") return route.continue();
+      const value = facts(route.request());
+      if (intercepted || !value.afterArm || !value.get || value.path !== "/dashboard" || !value.rsc || !value.routerStatePresent || value.prefetch || value.segmentPrefetch) return route.continue();
       intercepted = true;
+      heldRequestId = value.requestId;
+      record(route.request(), "held-live-refresh");
       try {
         const response = await route.fetch();
         const body = await response.body(); // Entire real producer result has completed before navigation.
-        lifecycle.push({ path: "/dashboard", phase: "producer-completed", status: response.status() });
-        acceptCompleted({ route, response, body });
+        const fetchedCanonicalDashboard = new URL(response.url()).pathname === "/dashboard";
+        record(route.request(), "producer-completed", response.status());
+        acceptCompleted({ route, response, body, requestId: value.requestId, fetchedCanonicalDashboard });
         await deliveryGate;
         await route.fulfill({ status: response.status(), headers: response.headers(), body });
+        record(route.request(), "fulfillment-completed");
       } catch {
         handlerFailed = true;
-        lifecycle.push({ path: "/dashboard", phase: "handler-failed", category: "transport-handler-failed" });
+        record(route.request(), "handler-failed", undefined, "transport-handler-failed");
         rejectCompleted(new Error("Genuine refresh transport handler failed"));
       } finally { finishHandler(); }
     });
     armReadPlan(data.user.id, { quote_events: [{ outcome: "pass" }] });
+    armed = true;
     await retry.click();
     await expect(card(page)).toHaveAttribute("aria-busy", "true");
     const held = await completed;
     expect(held.response.ok()).toBe(true);
+    expect(held.fetchedCanonicalDashboard).toBe(true);
+    expect(held.requestId).toBe(heldRequestId);
     // Assert only a bounded fact; never print response bytes (including on failed expectations).
     expect(held.body.includes(Buffer.from("completedAt"))).toBe(true);
     nonce = `dashboard-late-result-${Date.now()}`;
@@ -752,7 +793,7 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
     if (intercepted) await handlerSettled;
     await page.unroute(dashboardURL);
     await testInfo.attach("late-refresh-bounded-lifecycle", {
-      body: Buffer.from(JSON.stringify({ lifecycle: lifecycle.slice(0, 64), omittedEvents: Math.max(0, lifecycle.length - 64), sameDocumentBeforeRelease, quoteHeadingBeforeRelease, handlerFailed })),
+      body: Buffer.from(JSON.stringify({ lifecycle: lifecycle.slice(0, 64), omittedEvents: Math.max(0, lifecycle.length - 64), heldRequestId, sameDocumentBeforeRelease, quoteHeadingBeforeRelease, handlerFailed })),
       contentType: "application/json",
     });
     armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });

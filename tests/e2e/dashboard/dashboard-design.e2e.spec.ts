@@ -1,10 +1,23 @@
 /** General lane: ordinary seeded fixture only; no dashboard19/proxy dependency. */
 import { test, expect } from "./guarded-test";
-import type { Page } from "@playwright/test";
+import type { Page, TestInfo } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
 test.use({ trace: "off", video: "off", screenshot: "off" });
+
+
+/** Preserve full-page context and attach an explicitly whole-viewport original. */
+async function attachDashboardView(page: Page, testInfo: TestInfo, name: string) {
+  const viewport = page.viewportSize();
+  if (!viewport) throw new Error("Dashboard capture requires an explicit viewport");
+  const context = await page.screenshot({ fullPage: true });
+  await testInfo.attach(name, { body: context, contentType: "image/png" });
+  // Reuse the original when its actual PNG dimensions already equal the viewport.
+  const whole = context.readUInt32BE(16) === viewport.width && context.readUInt32BE(20) === viewport.height
+    ? context : await page.screenshot({ fullPage: false });
+  await testInfo.attach(`${name}-whole-viewport-${viewport.width}x${viewport.height}`, { body: whole, contentType: "image/png" });
+}
 
 async function signIn(page: Page) {
   const fixture = JSON.parse(readFileSync(path.join(process.cwd(), "tests/e2e/.auth/fixture.json"), "utf8")) as {
@@ -52,9 +65,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
       expect(bounds.width).toBeGreaterThanOrEqual(44);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
-    await testInfo.attach(`dashboard-current-period-${viewport.width}`, {
-      body: await page.screenshot({ fullPage: true }), contentType: "image/png",
-    });
+    await attachDashboardView(page, testInfo, `dashboard-current-period-${viewport.width}`);
     await page.keyboard.press("Enter");
     await expect(page).toHaveURL(/\/quotes$/);
     await expect(page.getByRole("heading", { name: "Offerter", exact: true })).toBeVisible();
@@ -94,7 +105,5 @@ test("E35-14-T-AC2 E35-14-T-AC4 phone values remain in one column through enlarg
   await link.scrollIntoViewIfNeeded();
   await link.click({ trial: true });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
-  await testInfo.attach("dashboard-enlarged-text-phone", {
-    body: await page.screenshot({ fullPage: true }), contentType: "image/png",
-  });
+  await attachDashboardView(page, testInfo, "dashboard-enlarged-text-phone");
 });

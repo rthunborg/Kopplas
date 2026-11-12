@@ -54,7 +54,7 @@ record above remains historical; implementation_started=true for this candidate.
 Development_complete=false; release_ready=false. Required runtime, independent
 review and candidate-bound human visual acceptance remain pending.
 
-The current hosted-failure correction tree is based on `cc5c37d9dc3bac876a179fd15f1f953793e994f7`.
+The current oracle/correlation and whole-viewport capture correction is based on `8546af606fee9a5412c44f606c36a2fa2d0e8576`.
 See [verification and all eleven state bindings](../../../implementation-artifacts/evidence/35-14-dashboard/implementation-verification.md)
 and the adjacent product/test byte fingerprint. Pinned offline install, production
 build, typecheck, lint and 119 focused tests passed (zero failed/skipped); all 55
@@ -63,7 +63,7 @@ collected browser tests were unrun at that author checkpoint. Later hosted evide
 ## Suggested Review Order
 
 Author: `/root/dashboard_35_14_worker/build/implementation` (implementation author).
-Refreshed against the authorized hosted-failure correction over `cc5c37d9dc3bac876a179fd15f1f953793e994f7`;
+Refreshed against the oracle/correlation and whole-viewport capture correction over `8546af606fee9a5412c44f606c36a2fa2d0e8576`;
 the evidence fingerprint pins final product/test and story bytes.
 
 ### Current dashboard facts within the frozen host
@@ -94,14 +94,14 @@ the lock now uses a monochrome icon and retains its existing tooltip handlers.
 
 AC1/2/6 reuse real component states and source projections; AC3/7 reuse registry
 and read-contract checks. AC4/5 retain separate usable keyboard/touch/reflow and
-tooltip assertions; capture attachments supplement those outcomes. Browser
+tooltip assertions; capture attachments supplement those outcomes. The same-batch inventory precheck proved long full-page phone PNGs were not whole 360×640 frames. Existing seams now retain full-page context and add explicitly named whole-viewport originals, with no fixture or journey expansion. Browser
 execution, late-result navigation proof and actual visual acceptance remain pending.
 
 - `tests/unit/components/dashboard/widget-state.test.ts:77` — `loading announces progress`: no fabricated values or successful timestamp.
 - `tests/unit/components/dashboard/widget-state.test.ts:123` — `absent-withheld money renders Dold`: absence never becomes zero.
-- `tests/e2e/dashboard/dashboard-design.e2e.spec.ts:64` — `phone values remain in one column`: asserts actual doubled font and text bounds, then reflow; unrun.
-- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:525` — `successive failed retries recover`: retained real-source recovery; correction awaits new runtime execution.
-- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:661` — `completed refresh cannot replace newer quote navigation`: strict late delivery with path-only diagnostics; prior hosted failure retained.
+- `tests/e2e/dashboard/dashboard-design.e2e.spec.ts:75` — `phone values remain in one column`: asserts actual doubled font and text bounds, then reflow; unrun.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:541` — `successive failed retries recover`: retained real-source recovery; correction awaits new runtime execution.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:676` — `completed refresh cannot replace newer quote navigation`: strict late delivery with path-only diagnostics; prior hosted failure retained.
 
 Evidence: pinned Next16.4.1 production build/typecheck/lint passed; 119 focused
 tests passed, zero failed/skipped. SSR phone topology probe passed one assertion.
@@ -110,11 +110,11 @@ commands, byte fingerprint and all seven AC/eleven state bindings are recorded i
 the linked implementation verification file.
 
 Limits: SSR/mocked read-dependency tests do not prove browser/RSC/RLS behavior.
-Current collection: General 3 and dedicated pipeline 54. Hosted dedicated job on cc5c37d9 executed 82 cases: 79 passed, 3 failed, zero skipped/retried. The changed candidate has not executed. Full required
+Current collection: General 3 and dedicated pipeline 54. Hosted dedicated job on cc5c37d9 executed 82 cases: 79 passed, 3 failed, zero skipped/retried. Later hosted8546 evidence is 81 passed/1 failed late-result/0 skipped/retried; offline and mobile passed. This oracle-refined candidate has not executed. Full required
 DB/RLS/recovery, exact-head CI, independent review, production captures and human
 substantive visual acceptance remain pending. No independent filter/module-
 unavailable state is manufactured; no-match/unavailable use their actual seams.
-The later AC6 correction buffers a genuine completed RSC response in memory, navigates through the existing shell Next Link with a same-document nonce, then requires successful browser request/response completion before asserting the quote route remains current. Cancellation fails; the test is not runtime proof until executed. Only its extended lateResultTest fixture pool disables trace/video/automatic screenshots; the prior 53 cases retain lane and CLI diagnostic options. Late-result navigation remains a named runtime proof gap. The absent local
+The later AC6 correction buffers a genuine completed RSC response in memory, navigates through the existing shell Next Link with a same-document nonce, then requires successful browser request/response completion before asserting the quote route remains current. Cancellation fails; the test is not runtime proof until executed. Only its extended lateResultTest fixture pool disables trace/video/automatic screenshots; the prior 53 cases retain lane and CLI diagnostic options. Late-result navigation remains a named runtime proof gap. The latest correction arms immediately before Retry and accepts only a subsequent GET dashboard live RSC request with router-state-tree present and both prefetch headers absent; test-local request IDs correlate lifecycle facts. This corrects oracle ambiguity, not an established navigation cause or pass. The absent local
 `.env.test` cannot be repaired through this closed allocation. No development-
 complete or release-ready claim is made.
 
