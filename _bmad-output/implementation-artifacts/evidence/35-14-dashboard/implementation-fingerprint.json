@@ -23,8 +23,8 @@
       "lfSha256": "eab43533c7a19a523b05819a4fef8d9a19b5639f2eacf5d67c88b64bfda5f33b"
     },
     "_bmad-output/specs/spec-design-35-14/stories/35-14-live-dashboard-pipeline.md": {
-      "rawSha256": "a7ebab4790c08ea042f356d80171824965f66a2b074ece24feed0a2f52e4ba05",
-      "lfSha256": "a7ebab4790c08ea042f356d80171824965f66a2b074ece24feed0a2f52e4ba05"
+      "rawSha256": "dc0bb7c055365a3496069b19534ebae973f37d9eefa706eb1c91a687e6a282f3",
+      "lfSha256": "dc0bb7c055365a3496069b19534ebae973f37d9eefa706eb1c91a687e6a282f3"
     },
     "src/components/dashboard/DashboardRetry.tsx": {
       "rawSha256": "be3153bfa629cfb4f5e9e4047126f78cbe95853050e5fde770c7773a411f1c9b",
