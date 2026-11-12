@@ -1,6 +1,6 @@
 {
-  "baseRevision": "60912b77d914130698ce3fac8da439dc5b4ae558",
-  "kind": "later-targeted-ac6-verification-gap-correction",
+  "baseRevision": "74a8a1c6a36da5d34753dd54d41a34b2f072a542",
+  "kind": "focused-late-result-capture-isolation-correction",
   "paths": {
     "src/components/dashboard/WidgetCard.tsx": {
       "rawSha256": "e819f3a805a282cc641e5bc13b055c5063d259724358fe96129d97383e17ce17",
@@ -19,12 +19,12 @@
       "lfSha256": "d547706a1ab5a3547be4454a883ba43fff76c2b87720189524d3e05dded2de38"
     },
     "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts": {
-      "rawSha256": "ad17b47e450477ae67924f6a4686e102d6d0a5b92fa9a9010c31e901991b91a3",
-      "lfSha256": "f9d3218aad6f963a57573bb691c9b47539a6c7656d5f0c39887558264f3449ea"
+      "rawSha256": "aa903d740ec5e7011bd7b55847d1dfaca300f95ab5cc000018aab31953e1a75a",
+      "lfSha256": "49a4d34b88256dc004974d55133cbf8cf8eb2813ff712101eed73f3e3cf89bd7"
     },
     "_bmad-output/specs/spec-design-35-14/stories/35-14-live-dashboard-pipeline.md": {
-      "rawSha256": "da6da63b454e7c1f2be80d9c83663b166d470288097b4e6d855f5189797f85eb",
-      "lfSha256": "da6da63b454e7c1f2be80d9c83663b166d470288097b4e6d855f5189797f85eb"
+      "rawSha256": "3c6c186115f30a3bda9c3f28a167817361e555ebce8a3711c9742421b1e83b82",
+      "lfSha256": "3c6c186115f30a3bda9c3f28a167817361e555ebce8a3711c9742421b1e83b82"
     }
   }
 }

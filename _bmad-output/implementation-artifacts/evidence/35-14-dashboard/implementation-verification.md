@@ -1,7 +1,7 @@
 # 35.14 implementation verification — 2026-11-12
 
 Implementation author: `/root/dashboard_35_14_worker/build/implementation`, Sol Low.
-Subject: later targeted AC6 verification-gap correction over clean `60912b77d914130698ce3fac8da439dc5b4ae558`.
+Subject: focused capture-isolation correction over clean `74a8a1c6a36da5d34753dd54d41a34b2f072a542`.
 `implementation-fingerprint.json` pins final product/test and story bytes (raw and LF).
 The seven allocated product paths remain the closed boundary. Only three presentation
 components and the two allocated E2E files changed; DashboardPage and DashboardRetry
@@ -91,6 +91,17 @@ file operations remain N/A. Quote destination protections remain inherited, unmo
 
 ## Pending gates and next action
 
+### Focused capture isolation after the AC6 correction
+
+The pinned Playwright 1.61.1 extended test type now supplies trace/video/screenshot
+options only to lateResultTest. The other 53 cases remain registered with ordinary
+test and retain lane defaults plus CLI/future diagnostic overrides; explicit UI
+attachments and functional assertions are unchanged. Current lane defaults are
+already off, so this correction preserves future diagnostics without changing
+current capture outcomes. Affected ESLint exits 0 without diagnostics; dedicated
+collection exits 0 with 54 tests, 0 executed. No unchanged unit/build rerun or
+runtime launch occurred. Current review stops remain valid at the same lines.
+
 ### Later targeted AC6 verification-gap correction
 
 This correction follows the separately checkpointed automation receipt; it is not
@@ -106,13 +117,13 @@ browser requestfinished and response.finished without error before checking the
 quote route/heading and absence of the dashboard card. Abort, cancelled transport
 or missing observable delivery fails; none is accepted as proof of ignored late
 completion. Genuine RSC bytes/headers stay memory-only, are never attached/logged,
-and file-level trace/video/automatic screenshots are disabled. Existing explicit
+and its extended lateResultTest fixture pool disables trace/video/automatic screenshots. Existing explicit
 UI captures and functional assertions remain. No new selector/cache guard exists.
 
 Actual validation: affected-file ESLint exit 0 without diagnostics; dedicated
 Playwright collection exit 0, 54 tests (prior 53 plus one), 0 executed. An initial
 collection rejected describe-scoped trace/video/screenshot options; the supported
-file-level options corrected it. General remains 3 collected tests from prior
+file-level options initially corrected it; the subsequent focused correction below isolates those options to the sole late-result case. General remains 3 collected tests from prior
 evidence. No browser pass or screenshot is claimed. The first real runtime result
 must establish whether genuine delivery survives navigation; if the request is
 aborted, retain that concrete missing completion boundary rather than claiming

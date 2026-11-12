@@ -64,7 +64,7 @@ created. The parent owns exact-head CI/review/visual continuation; no done claim
 ## Suggested Review Order
 
 Author: `/root/dashboard_35_14_worker/build/implementation` (implementation author).
-Refreshed against the later targeted AC6 verification-gap correction over `60912b77d914130698ce3fac8da439dc5b4ae558`;
+Refreshed against the focused capture-isolation correction over `74a8a1c6a36da5d34753dd54d41a34b2f072a542`;
 the evidence fingerprint pins final product/test and story bytes.
 
 ### Current dashboard facts within the frozen host
@@ -115,7 +115,7 @@ Current collection: General 3 and dedicated 54 browser tests; all remain unrun. 
 DB/RLS/recovery, exact-head CI, independent review, production captures and human
 substantive visual acceptance remain pending. No independent filter/module-
 unavailable state is manufactured; no-match/unavailable use their actual seams.
-The later AC6 correction buffers a genuine completed RSC response in memory, navigates through the existing shell Next Link with a same-document nonce, then requires successful browser request/response completion before asserting the quote route remains current. Cancellation fails; the test is not runtime proof until executed. Late-result navigation remains a named runtime proof gap. The absent local
+The later AC6 correction buffers a genuine completed RSC response in memory, navigates through the existing shell Next Link with a same-document nonce, then requires successful browser request/response completion before asserting the quote route remains current. Cancellation fails; the test is not runtime proof until executed. Only its extended lateResultTest fixture pool disables trace/video/automatic screenshots; the prior 53 cases retain lane and CLI diagnostic options. Late-result navigation remains a named runtime proof gap. The absent local
 `.env.test` cannot be repaired through this closed allocation. No development-
 complete or release-ready claim is made.
 

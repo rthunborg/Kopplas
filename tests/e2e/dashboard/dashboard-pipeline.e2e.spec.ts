@@ -16,8 +16,8 @@ import { adminQuery } from "../../factories/admin-sql";
 import { aggregateQuotePipeline, resolvePipelinePeriod, type PipelineEventRow } from "../../../src/server/read-models/quote-pipeline-aggregate";
 import { formatOreAsKronor } from "../../../src/lib/money";
 
-// Genuine RSC transport bytes must remain memory-only; explicit UI attachments are retained.
-test.use({ trace: "off", video: "off", screenshot: "off" });
+// Only the genuine RSC transport case suppresses capture; other cases retain lane/CLI options.
+const lateResultTest = test.extend({ trace: "off", video: "off", screenshot: "off" });
 
 type User = { id: string; email: string; password: string };
 type Scenario = {
@@ -653,7 +653,7 @@ test("E35-14-T-AC4 E35-14-T-error-retry enlarged phone error retains keyboard re
   }
 });
 
-test("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot replace newer quote navigation", async ({ page }) => {
+lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot replace newer quote navigation", async ({ page }) => {
   const data = scenario("retry-failure");
   await page.setViewportSize({ width: 1280, height: 900 });
   armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
@@ -670,7 +670,7 @@ test("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot replace newer q
     await expect(retry).toBeVisible();
     await hydrated(retry);
     // Hold only transport of the genuine completed refresh, never producer input or invented RSC.
-    // Bytes/headers remain memory-only; the file disables trace/video/screenshot.
+    // Bytes/headers remain memory-only; only lateResultTest disables trace/video/screenshot.
     await page.route(dashboardURL, async route => {
       if (intercepted || route.request().headers()["rsc"] !== "1") return route.continue();
       intercepted = true;
