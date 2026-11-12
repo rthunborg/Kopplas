@@ -677,6 +677,15 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
   const data = scenario("retry-failure");
   await page.setViewportSize({ width: 1280, height: 900 });
   armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
+  type ObserverResult = { cloneFinished: boolean; bytes: number; reason: "complete" | "fetch-failed" | "redirect" | "missing-body" | "size-limit" | "deadline" | "cleanup" | "reader-failed" };
+  type ResponseObserver = {
+    binding: (expected: { url: string; get: boolean; rsc: boolean; routerStatePresent: boolean; prefetch: boolean; segmentPrefetch: boolean }) => { unique: boolean; exactRequest: boolean; redirected: boolean };
+    restore: () => boolean;
+    cancel: () => void;
+    done: Promise<ObserverResult>;
+  };
+  let observerInstalled = false;
+  let cloneResult: ObserverResult | undefined;
   let armed = false;
   let heldRequestId: number | null = null;
   let heldRequest: Request | undefined;
@@ -763,6 +772,91 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
     // Existing proxy holds the actual widget read BELOW Suspense; shared RSC streams normally.
     heldPlan = armReadPlan(data.user.id, { quote_events: [{ outcome: "pass", hold: true }] });
     const heldMarker = path.join(process.cwd(), "tests/e2e/.auth/dashboard-control", heldPlan + ".held");
+    // Controlled tee lifetime intervention: one native fetch, same Response returned promptly.
+    // Clone EOF is an additional witness, NEVER a substitute for the original HTTP/body gates.
+    await page.evaluate(() => {
+      type Result = { cloneFinished: boolean; bytes: number; reason: "complete" | "fetch-failed" | "redirect" | "missing-body" | "size-limit" | "deadline" | "cleanup" | "reader-failed" };
+      const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+      if (host.__dashboardLateResponseObserver) throw new Error("Late response observer already installed");
+      const priorFetch = window.fetch;
+      let matches = 0;
+      let selectedURL: string | undefined;
+      let selectedFacts: { get: boolean; rsc: boolean; routerStatePresent: boolean; prefetch: boolean; segmentPrefetch: boolean } | undefined;
+      let redirected = false;
+      let bytes = 0;
+      let terminal = false;
+      let reason: Result["reason"] = "reader-failed";
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      let drainAbort: AbortController | undefined;
+      let complete!: (result: Result) => void;
+      const done = new Promise<Result>(resolve => { complete = resolve; });
+      const finish = (cloneFinished: boolean, resultReason: Result["reason"]) => {
+        if (terminal) return;
+        terminal = true;
+        if (timer) clearTimeout(timer);
+        complete({ cloneFinished, bytes, reason: resultReason });
+      };
+      const wrapper: typeof fetch = function (this: typeof globalThis, ...args: Parameters<typeof fetch>) {
+        // Preserve the actual native invocation, receiver, Request/init and signal exactly.
+        const nativeResult = Reflect.apply(priorFetch, this, args) as ReturnType<typeof fetch>;
+        const [input, init] = args;
+        let selected = false;
+        let inputURL = "";
+        let inputFacts: typeof selectedFacts;
+        try {
+          inputURL = new URL(input instanceof Request ? input.url : String(input), location.href).href;
+          const method = (init?.method ?? (input instanceof Request ? input.method : "GET")).toUpperCase();
+          const headers = new Headers(init?.headers ?? (input instanceof Request ? input.headers : undefined));
+          inputFacts = { get: method === "GET", rsc: headers.get("rsc") === "1", routerStatePresent: headers.has("next-router-state-tree"),
+            prefetch: headers.has("next-router-prefetch"), segmentPrefetch: headers.has("next-router-segment-prefetch") };
+          selected = new URL(inputURL).pathname === "/dashboard" && method === "GET" && headers.get("rsc") === "1" &&
+            headers.has("next-router-state-tree") && !headers.has("next-router-prefetch") && !headers.has("next-router-segment-prefetch");
+        } catch { /* The native request remains authoritative; missing selection fails binding. */ }
+        if (!selected) return nativeResult;
+        matches++;
+        if (matches !== 1) return nativeResult; // Extra eligible requests fail the unique-binding assertion.
+        selectedURL = inputURL;
+        selectedFacts = inputFacts;
+        return nativeResult.then(response => {
+          redirected = response.redirected;
+          if (redirected) { finish(false, "redirect"); return response; }
+          try {
+            const clone = response.clone();
+            if (!clone.body) { finish(false, "missing-body"); return response; }
+            drainAbort = new AbortController(); // Controls ONLY the owned clone drain, never native fetch.
+            timer = setTimeout(() => { reason = "deadline"; drainAbort!.abort(); }, 15000);
+            // Discard chunks after counting: bounded retained memory; no payload leaves this closure.
+            const drain = clone.body.pipeTo(new WritableStream<Uint8Array>({
+              write(chunk) {
+                bytes += chunk.byteLength;
+                if (bytes > 8 * 1024 * 1024) { reason = "size-limit"; throw new Error("Clone size limit"); }
+              },
+            }), { signal: drainAbort.signal });
+            void drain.then(() => finish(true, "complete"), () => finish(false, reason));
+          } catch { finish(false, "reader-failed"); }
+          return response; // SAME ORIGINAL object; never await clone data or completion here.
+        }, error => { finish(false, "fetch-failed"); throw error; });
+      };
+      window.fetch = wrapper;
+      host.__dashboardLateResponseObserver = {
+        binding: expected => ({ unique: matches === 1, exactRequest: selectedURL === expected.url && selectedFacts !== undefined &&
+          selectedFacts.get === expected.get && selectedFacts.rsc === expected.rsc && selectedFacts.routerStatePresent === expected.routerStatePresent &&
+          selectedFacts.prefetch === expected.prefetch && selectedFacts.segmentPrefetch === expected.segmentPrefetch, redirected }),
+        restore: () => {
+          const owned = window.fetch === wrapper;
+          if (owned) window.fetch = priorFetch;
+          return owned;
+        },
+        cancel: () => {
+          if (terminal) return;
+          reason = "cleanup";
+          if (drainAbort) drainAbort.abort();
+          else if (matches === 0) finish(false, "cleanup");
+        },
+        done,
+      };
+    });
+    observerInstalled = true;
     armed = true;
     await retry.click();
     await expect(card(page)).toHaveAttribute("aria-busy", "true");
@@ -780,6 +874,13 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
     expect(response?.status()).toBe(200);
     expect(readFinished || readFailed).toBe(false);
     record(request, "producer-held");
+    const binding = await page.evaluate(expected => {
+      const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+      return host.__dashboardLateResponseObserver?.binding(expected);
+    }, { url: request.url(), ...facts(request) });
+    expect(binding?.unique).toBe(true);
+    expect(binding?.exactRequest).toBe(true);
+    expect(binding?.redirected).toBe(false);
     nonce = `dashboard-late-result-${Date.now()}`;
     await page.evaluate(value => { document.documentElement.dataset.dashboardLateResultNonce = value; }, nonce);
     const quoteLink = page.getByRole("navigation", { name: "Huvudnavigation", exact: true })
@@ -805,6 +906,18 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
     expect(completed.successfulResult).toBe(true);
     expect(completed.freshCompletion).toBe(true);
     record(request, "successful-late-result", completed.status!);
+    cloneResult = await page.evaluate(async () => {
+      const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+      return host.__dashboardLateResponseObserver!.done;
+    });
+    expect(cloneResult.cloneFinished).toBe(true);
+    expect(cloneResult.reason).toBe("complete");
+    expect(cloneResult.bytes > 0 && cloneResult.bytes <= 8 * 1024 * 1024).toBe(true);
+    const finalBinding = await page.evaluate(expected => {
+      const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+      return host.__dashboardLateResponseObserver?.binding(expected);
+    }, { url: request.url(), ...facts(request) });
+    expect(finalBinding?.unique && finalBinding.exactRequest && !finalBinding.redirected).toBe(true);
     await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
     await expect.poll(() => new URL(page.url()).pathname, { timeout: 15000 }).toBe("/quotes");
     await expect(page.getByRole("heading", { name: "Offerter", exact: true })).toBeVisible();
@@ -832,6 +945,32 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
         await readWork;
       } finally { if (timer) clearTimeout(timer); }
     }
+    if (observerInstalled) {
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      try {
+        const restored = await page.evaluate(() => {
+          const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+          const observer = host.__dashboardLateResponseObserver;
+          const owned = observer?.restore() ?? false;
+          observer?.cancel();
+          return owned;
+        });
+        if (!restored) failures.push(new Error("Late response fetch restoration failed"));
+        cloneResult = await Promise.race([page.evaluate(async () => {
+          const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+          const result = await host.__dashboardLateResponseObserver!.done;
+          delete host.__dashboardLateResponseObserver;
+          return result;
+        }), new Promise<never>((_, reject) => {
+          timer = setTimeout(() => reject(new Error("Clone cleanup deadline")), 15000);
+        })]);
+        if (!cloneResult.cloneFinished) failures.push(new Error("Late response clone did not finish successfully"));
+      } catch {
+        failures.push(new Error("Late response clone cleanup failed"));
+        // Closing only our own page destroys any outstanding page-scoped reader/task.
+        try { if (!page.isClosed()) await page.close(); } catch { failures.push(new Error("Clone page cleanup failed")); }
+      } finally { if (timer) clearTimeout(timer); }
+    }
     page.off("request", onRequest);
     page.off("response", onResponse);
     page.off("requestfinished", onFinished);
@@ -839,7 +978,8 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
     try {
       await testInfo.attach("late-refresh-bounded-lifecycle", {
         body: Buffer.from(JSON.stringify({ lifecycle: lifecycle.slice(0, 64), omittedEvents: Math.max(0, lifecycle.length - 64), heldRequestId,
-          sameDocumentBeforeRelease, quoteHeadingBeforeRelease, readFinished, readFailed, releasedBeforeDeadline: releasedAt > 0 && heldSince > 0 && releasedAt - heldSince < 15000 })),
+          sameDocumentBeforeRelease, quoteHeadingBeforeRelease, readFinished, readFailed, releasedBeforeDeadline: releasedAt > 0 && heldSince > 0 && releasedAt - heldSince < 15000,
+          cloneFinished: cloneResult?.cloneFinished ?? false, cloneBytes: cloneResult?.bytes ?? 0, cloneReason: cloneResult?.reason ?? "unobserved" })),
         contentType: "application/json",
       });
     } catch { failures.push(new Error("Late read bounded attachment failed")); }

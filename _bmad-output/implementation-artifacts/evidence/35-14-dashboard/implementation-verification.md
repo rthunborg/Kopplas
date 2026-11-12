@@ -2,7 +2,7 @@
 
 Implementation author: `/root/dashboard_35_14_worker/build/implementation`, Sol Low.
 Current test-seam/trail author: `/root/dashboard_35_14_worker/late_refresh_medium`, Sol Medium.
-Subject: held-producer late-result correction over clean `f524e9ef2bb09358b6f4bf7a471983503d682bc8`; earlier author checkpoints below remain historical.
+Subject: same-response observer correction over clean `bdd13a8ea05ca93a45b01d8a335dbcc062e05ae8`; earlier author checkpoints below remain historical.
 `implementation-fingerprint.json` pins final product/test and story bytes (raw and LF).
 The seven allocated product paths remain the closed boundary. Three presentation
 components, DashboardRetry's known-offline predispatch guard and the two allocated
@@ -92,7 +92,66 @@ file operations remain N/A. Quote destination protections remain inherited, unmo
 
 ## Pending gates and next action
 
-### Current held-producer late-result correction
+### Current same-genuine-response observer correction
+
+Author: `/root/dashboard_35_14_worker/late_refresh_medium`, existing explicit Sol
+Medium escalation. The mandatory High method note raw SHA256
+bce63f5d7a2b05cea8ce5b2bb9cbc6411db8911e816373b7137ccee84e186c0b
+was verified/read before writing. All4 reserved f524 external manual outputs were
+absent immediately before the first edit; parent received timestamp
+2026-11-12T14:15:29.1689914Z and allocated pipeline path. Only this strict case and
+owned story/verification/fingerprint metadata changed. No product/shared support,
+proxy/config, native/provider, network/browser or managed resources changed.
+
+The existing genuine producer hold and real Quotes-before-release sequence remain.
+A temporary case-scoped public window.fetch observer calls the saved native fetch
+exactly once with unchanged receiver/arguments/init/signal, clones its ONE selected
+genuine response before application consumption, then promptly returns the SAME
+original Response without awaiting clone data. Exact opaque full input URL and
+GET/RSC/router-state/prefetch facts compare to the original Playwright request in
+memory only. Missing/additional selection, mismatch or redirects fail. The clone
+uses an owned pipeTo reader with8MiB total byte limit, discarded chunks and15-second
+deadline. A separate AbortController controls only that clone drain for failure
+cleanup, never the native request or application reader. Promise failures become
+fixed outcome categories; clone EOF is an additional required observation, not a
+replacement for original-operation assertions. Fetch/global restoration, reached
+hold release and all owned work cleanup are awaited/fail closed; only this case's
+own page may close on bounded cleanup failure.
+
+This tee is a CONTROLLED physical-stream-lifetime intervention. It can retain the
+real HTTP stream if the obsolete application reader stops consuming its branch;
+it is not an unmodified production transport trace and cannot establish original
+Next-consumer completion or the observed abort's exclusive cause. Original native
+requestfinished without requestfailed, original response.finished() null, actual
+status200, full original genuine success descriptor/completedAt after release and
+current Quotes heading/URL/nonce remain mandatory. Clone bytes/EOF, headers200 or
+control markers cannot satisfy those gates. Any original abort remains failure.
+An actual network/signal abort may still kill both branches; Chromium/Next success
+is unproven. If it fails, retain that concrete gap and stop the method loop.
+
+The bdd report raw SHA25694a42817eba1a0955234d9e9408b546385b3a975f576904141a72b73110216d0
+and full job-log SHA25606b1dca787cebdba25842312b4d550d06572cf3b487bcb2a4d87e74735951503
+were verified read-only. Actual81 pass/1 strict fail/0 skipped/flaky/retries remain
+historical: real Quotes committed before read release, original dashboard aborted,
+and sole inner failure at803 was transportSucceeded=false. Producer success body,
+completedAt and physical cleanup failure were not observed. The early failure is
+not relabeled as a pass. The earlier precompleted-whole-RSC-withheld variant also
+remains explicitly absent from this changed coverage.
+
+Offline synthetic WHATWG clone/cancel proof (node -e, no files/network/resources)
+passed2/failed0: one cancelled original reader plus draining clone preserved source
+EOF without underlying cancellation; cancelling both caused one source cancel.
+This demonstrates public-API semantics only, not actual browser behavior.
+Changed-candidate affected ESLint and typecheck both exit0; dedicated54 and General3
+cases collect successfully, zero executed locally. All other53 pipeline cases,
+imports/capture code are LF-identical to bdd; other lane files/capture companions
+are unchanged, retaining85 identities and73 companions. Production/unit evidence is
+reused with original revision limits, not rerun. Both exact-delta independent
+reviews and the root's one changed-candidate runtime checkpoint remain pending.
+No development_complete/release_ready/consumer-completion/root-cause claim.
+
+
+### Historical held-producer late-result checkpoint (bdd13a8e)
 
 The mandatory Sol High semantics note was read and its raw SHA256 verified as
 ab7a9bbc4ce97656b927b7a9d5121c1d2c920da9a0c4f383b85a3f7d80a11791 before editing.

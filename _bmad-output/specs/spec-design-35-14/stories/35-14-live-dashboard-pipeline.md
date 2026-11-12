@@ -54,7 +54,7 @@ record above remains historical; implementation_started=true for this candidate.
 Development_complete=false; release_ready=false. Required runtime, independent
 review and candidate-bound human visual acceptance remain pending.
 
-The current test-only held-producer correction is based on clean `f524e9ef2bb09358b6f4bf7a471983503d682bc8`; the earlier oracle/correlation and whole-viewport correction remains historical evidence.
+The current test-only same-response observer correction is based on clean `bdd13a8ea05ca93a45b01d8a335dbcc062e05ae8`; the earlier oracle/correlation and whole-viewport correction remains historical evidence.
 See [verification and all eleven state bindings](../../../implementation-artifacts/evidence/35-14-dashboard/implementation-verification.md)
 and the adjacent product/test byte fingerprint. Pinned offline install, production
 build, typecheck, lint and 119 focused tests passed (zero failed/skipped); all 55
@@ -63,7 +63,7 @@ collected browser tests were unrun at that author checkpoint. Later hosted evide
 ## Suggested Review Order
 
 Author: `/root/dashboard_35_14_worker/build/implementation` (implementation author).
-Test-seam/trail refresh author: `/root/dashboard_35_14_worker/late_refresh_medium`, Sol Medium (recorded escalation after two Low refinements). Refreshed against the held-producer correction over `f524e9ef2bb09358b6f4bf7a471983503d682bc8`;
+Test-seam/trail refresh author: `/root/dashboard_35_14_worker/late_refresh_medium`, Sol Medium (recorded escalation after two Low refinements). Refreshed against the same-genuine-response observer correction over `bdd13a8ea05ca93a45b01d8a335dbcc062e05ae8`;
 the evidence fingerprint pins final product/test and story bytes.
 
 ### Current dashboard facts within the frozen host
@@ -101,7 +101,7 @@ execution, late-result navigation proof and actual visual acceptance remain pend
 - `tests/unit/components/dashboard/widget-state.test.ts:123` — `absent-withheld money renders Dold`: absence never becomes zero.
 - `tests/e2e/dashboard/dashboard-design.e2e.spec.ts:75` — `phone values remain in one column`: asserts actual doubled font and text bounds, then reflow; unrun.
 - `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:541` — `successive failed retries recover`: retained real-source recovery; correction awaits new runtime execution.
-- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:676` — `completed refresh cannot replace newer quote navigation`: revision-specific producer hold below Suspense, strict Quotes navigation before release, original successful browser/body completion and fresh result; prior hosted failures retained.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:676` — `completed refresh cannot replace newer quote navigation`: revision-specific producer hold below Suspense and controlled same-response tee, strict Quotes navigation before release, original successful browser/body completion and fresh result; prior hosted failures retained.
 
 Evidence: pinned Next16.4.1 production build/typecheck/lint passed; 119 focused
 tests passed, zero failed/skipped. SSR phone topology probe passed one assertion.
@@ -115,6 +115,10 @@ DB/RLS/recovery, exact-head CI, independent review, production captures and huma
 substantive visual acceptance remain pending. No independent filter/module-
 unavailable state is manufactured; no-match/unavailable use their actual seams.
 The current AC6 correction uses the existing revision-specific quote_events hold below DashboardWidgets Suspense, allowing shared RSC material to stream normally. The real Retry starts the original live dashboard RSC request; its read must reach the actual held marker. Real AppShell Quotes URL/heading and same-document nonce must commit while that read remains unresolved. Only then is the producer released, and the same original request must finish successfully with response.finished() null, a complete genuine success body and completedAt at/after release. Abort, proxy expiry, timeout, read/body failure and cleanup failure cannot pass. Cleanup releases the actual revision, awaits started work, removes owned observers and restores the scenario; primary and cleanup errors are retained together. Request IDs, fixed paths/statuses and bounded booleans remain the only attachment facts. Trace/video/automatic screenshots stay off only for this strict test; other 53 cases and all explicit capture companions remain unchanged.
+
+The strict case now also installs one temporary public fetch observer after login. It invokes native fetch once per call with unchanged arguments/receiver/signal, clones only the uniquely matched live dashboard response and promptly returns the SAME original Response to Next. Exact full request URL and GET/RSC/router-state/prefetch facts are compared against the original Playwright request in memory; extras, mismatch and redirects fail. The owned clone drains/discards chunks with an 8MiB byte cap and 15-second lifetime; failures are observed, fetch is restored, clone/control work is awaited and bounded cleanup fails closed. Clone EOF is only an additional witness: the original requestfinished/no-failure, response.finished() null, full genuine original-body success/freshness and Quotes/nonce guards remain mandatory. This is an explicit controlled physical-stream-lifetime intervention that may retain the HTTP stream after an application reader abandons its branch. It does NOT prove original Next-consumer completion, an unmodified production trace, the abort cause or a permanent product fix. Actual Chromium/Next feasibility is unproven until the changed runtime checkpoint.
+
+Historical bdd hosted evidence remains81 passed/1 strict failure/0 skipped/flaky/retries (report SHA25694a42817eba1a0955234d9e9408b546385b3a975f576904141a72b73110216d0). Its actual Quotes navigation committed before release, then the original dashboard request aborted; sole inner assertion was transportSucceeded=false. No successful old producer body/completedAt or cleanup failure was observed. The original request must still succeed in this changed candidate; clone success cannot replace that requirement.
 
 The former variant completed upstream first and withheld the entire RSC response before navigation. That transport-specific coverage is now absent; it is an author test-seam change, not a passing result or a business-gate waiver. Historical f524 hosted evidence remains 81 passed, 1 strict late-result failure, zero skipped/flaky/retries; its source JSON SHA256 is bd90778122e41338426ef9b5958bfab50cdc0e0503e3cc546f5fb3d57b03d762. Current changed-candidate lint and typecheck passed; 54 pipeline plus 3 General cases collected, zero executed locally. Product code, router.refresh, authority, layout, registry, producer, shared proxy/support/config and capture instrumentation are unchanged. Unchanged production/unit evidence is reused with its prior revision limits. The actual late-result browser pass, targeted independent reviews and current CI/visual gates remain pending. No exclusive runtime-cause, development-complete or release-ready claim is made.
 
