@@ -1,6 +1,6 @@
 ---
 title: "Story 35.14: Live Dashboard Pipeline"
-status: in-review
+status: blocked
 tracking_key: 35-14-live-dashboard-pipeline
 baseline_revision: a1404c36796774db8362d23beaf49657c1d92459
 context:
@@ -117,3 +117,32 @@ unavailable state is manufactured; no-match/unavailable use their actual seams.
 Late-result navigation remains a named runtime proof gap. The absent local
 `.env.test` cannot be repaired through this closed allocation. No development-
 complete or release-ready claim is made.
+
+## Review Triage Log
+
+### 2026-11-12 — Review pass
+
+**Round 1 of 3** — five internal layers plus configured external attempted on fixed 733b1ca455db1583eedd595845454162636f77f9; Coordinator-authorized capacity batches, outputs collected before triage.
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1 (medium 1, high 0, low 0)
+- defer: 0
+- reject: 9 (non-introduced pending-gate/capture/metadata observations; required gates remain explicitly blocked)
+- addressed_findings:
+  - `[medium]` `[patch]` Preserved root-font text scaling with baseline-equivalent rem sizes and meaningful computed-size/text-bound enlargement assertions. Metadata and existing capture instrumentation refreshed by author without claiming execution.
+
+Targeted regression/trail check at f9749b6cc6ba99d512647ba3aaf334a58679338b: independent Sol Low, no findings; 12 review stops and six fingerprints validated. This was targeted fix verification, not another broad restart. External configured review remains blocked; no whole-round pass claimed.
+
+## Auto Run Result
+
+Status: blocked
+Blocking condition: required external review cannot read diff (registered Core launch requires an installed app); frontend gate API authentication unavailable (HTTP 401); required browser/DB/RLS/recovery, late-result runtime evidence and actual visual/manual acceptance remain unmet.
+
+Implemented checkpoint: f9749b6cc6ba99d512647ba3aaf334a58679338b over baseline a1404c36796774db8362d23beaf49657c1d92459. Three presentation components use approved tokens, flat cards, responsive phone metrics, accessible controls and rem text scaling; two E2E files retain functional assertions and add capture instrumentation. DashboardPage, DashboardRetry, producers, registry and host remain unchanged.
+
+Follow-up review recommendation: false; patched high=0, medium=1, low=0; score=3. This does not waive the incomplete configured external layer or pending actual runtime/acceptance gates. Deferred finding count: 0.
+
+Actual checks: pinned Next16.4.1 production build/typecheck pass; affected lint pass and full lint 0 errors/32 existing warnings; focused119 tests pass/0 failed/0 skipped; phone SSR topology1 pass; lockfile/service-role/bundle containment and39 frozen hashes pass; review-order12 references/0 errors. Browser collection3 General+52 dedicated only,0 executed. Final code fingerprints and author evidence retained under evidence/35-14-dashboard. Local frontend-controller attempted with recorded baseline and failed gh repo lookup HTTP401; no authenticated acceptance. No screenshots produced/accepted, no DB service/browser resources launched. No done or release-ready claim.
+
+Resume: Coordinator owns supported external runtime repair, phase6 automation, exact-head provider qualification and authenticated visual evidence continuation. Preserve single draft PR153 identity; no worker publication performed. Complete required actual3 focused dashboard/quote integration files with SUPABASE_TEST_REQUIRED=1 and zero skips, both browser lanes and late-result proof, then candidate-bound visual/manual acceptance before completion. Do not copy secrets or expand ownership to fix infrastructure.

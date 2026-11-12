@@ -14,3 +14,5 @@ Scheduling: Coordinator-authorized sequential batches preserve all layers on one
 ## Triage
 
 Pending implementation author inspection: text-scaling behavior/assertion and current metadata provenance. Capture attachments may cover existing recovered/tooltip/enlargement seams without claiming captures ran. Required browser, integration/RLS/recovery, late-result runtime, exact-head CI and actual visual/manual acceptance remain unmet gates; they are not polish or deferred passes. No security/authority/money logic change or finding was introduced.
+
+Final targeted regression/trail review at f9749b6cc6ba99d512647ba3aaf334a58679338b: Sol Low, No findings. Rem enlargement assertions, capture instrumentation, six fingerprints and12 review stops verified. Standalone PATH-equivalent Codex0.159.3 correction also failed actual diff read with same registered Core launch error; no assessment. Frontend local gate failed gh repo view HTTP401; not passed.
