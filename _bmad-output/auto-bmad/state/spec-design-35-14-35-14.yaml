@@ -9,17 +9,17 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/_bmad-output/spe
 story_id: 35-14
 branch: codex/parallel-e35-14-dashboard-20261112
 status: in-progress
-updated_at: "2026-11-12T11:17:48Z"
+updated_at: "2026-11-12T20:06:01Z"
 started_at: "2026-11-12T10:43:31Z"
 completed_at: null
 active_seconds: 1431
-timing_anchor: null
+timing_anchor: 1794513961
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: tea_per_story
-selected_role: tea-delegate
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: low
@@ -32,6 +32,7 @@ routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "TEA high selects phases for AC6 concurrency; effort Low covers only ordinary stale-read UI presentation tests. Frozen authority/producers/money/transactions are outside scope and require High if reached."
@@ -92,5 +93,6 @@ overrides:
   e2_provenance: "Actual coordinator E2 e417a463, SolLow /root/dashboard_35_14_e2; prior inherited marker corrected before build"
   continuation: "Root authorized selected distinct automate on blocked checkpoint; no development-complete/status waiver"
   review_scheduling: "Root authorized bounded batches on fixed read-only733b1ca4 for5-slot capacity. All6layers retained; batches one round, all outputs collected before triage. External blocked; targeted delta review no findings."
+  completion_order_v2: "Owner approved exact35.14gen1 temporalexception: approval product-35-14-completion-order-v2-owner-approval-20261112.json SHAd893181b9d869fd255616e05c095cc6d7ea11b2a5d8ac934e04797f28aaa5526; proposal1ec05cea5c070b6d03478ab121136f0ad957bad1b4a15b32cdeef0ae40a06f14. ProvisionalIMPLEMENTATION-STAGEONLY; accepteddevelopmentFALSE/visualpending. Directphase5-7originalhelpers authorized in order; NOTnormalwrapperPASS. FinalGactualproof+owner+UNCHANGEDfinalgate mandatory. App/tests/config/deps/contracts frozeneb8fddb7; no aggregate8/9."
 constraints: []
 parallel_run_id: e35-14-dashboard-20261112
