@@ -1,0 +1,542 @@
+{
+  "schemaVersion": 1,
+  "kind": "approved-producer-source-binding",
+  "story_id": "35-8-p",
+  "story_key": "spec-calculation-editor-mutation-safety-35-8-p",
+  "inspection_base": {
+    "sha": "f5b5a5a6d4097dfc5c614e82efafe1ded6e8f294",
+    "tree": "3c62dbf4878f712973b8d949dc984a40fd8b0dcb",
+    "repository": "rthunborg/Kopplas",
+    "qualification_ref": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-14-qualified-source-main-f5b5a5a6.json",
+      "raw_sha256": "4bcc29ea77042cd6fc09326ade82e2baf4874b2699d6965ee10673877d4f6e19",
+      "lf_sha256": "4bcc29ea77042cd6fc09326ade82e2baf4874b2699d6965ee10673877d4f6e19"
+    },
+    "branch": "codex/35-8-producer-source-admission-20261112",
+    "checkout_lf": true
+  },
+  "publication_and_activation": "Source package is not yet committed/qualified. Root reviews exact bytes/Git LF, publishes at normal boundary, then pins actual qualified source-containing main in a new native plan. No circular source self-hash or fabricated native pin.",
+  "authority_and_input_refs": {
+    "reviewed_contract": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-8-current-workflow-admission-2026-11-11/_bmad-output/implementation-artifacts/evidence/35-8-current-workflow-admission/implementation-recommendation.md",
+      "raw_sha256": "dcfbac12ec16123206b11fa98b6ca0d6b4a2c979a738415669297bd32e08f84d",
+      "lf_sha256": "dcfbac12ec16123206b11fa98b6ca0d6b4a2c979a738415669297bd32e08f84d"
+    },
+    "reviewed_matrix": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-8-current-workflow-admission-2026-11-11/_bmad-output/implementation-artifacts/evidence/35-8-current-workflow-admission/implementation-recommendation-matrix.json",
+      "raw_sha256": "ade74fba0096b8d3d8d6ba0846c0445e1732b2bf9f995c546b5b83541193adc8",
+      "lf_sha256": "ade74fba0096b8d3d8d6ba0846c0445e1732b2bf9f995c546b5b83541193adc8"
+    },
+    "independent_design_review": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-implementation-recommendation-independent-review-20261112.md",
+      "raw_sha256": "b77e635fc06fb18ead7d30188b8f005f017a55cf1b61c97520fb628867d97350",
+      "lf_sha256": "b77e635fc06fb18ead7d30188b8f005f017a55cf1b61c97520fb628867d97350"
+    },
+    "owner_decision": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-backend-implementation-owner-decision-20261112.md",
+      "raw_sha256": "2b6109e3ad4e084420ef9d52686bd155b36f718f0bfba5ad9555233602a947b0",
+      "lf_sha256": "360f48607ee08d8df3f6753f76c881fe9b7808855644d62acbec43ef52852b53"
+    },
+    "owner_approval": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-backend-owner-approval-20261112.json",
+      "raw_sha256": "3ec6b073c2b1e553346db80d823c03168b1df73c91a80ad5483ae0caa097d92b",
+      "lf_sha256": "cceb0d60390ace266a007c61a814f51bce7f47d72b292200865b25aa3b5ec932"
+    },
+    "accepted_projection": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-future-effective-ownership-projection-20261112.json",
+      "raw_sha256": "b078be1d9e4bb8f4f5b304c45507b87ef21af62cc89d63197c4f094249cb37ac",
+      "lf_sha256": "b078be1d9e4bb8f4f5b304c45507b87ef21af62cc89d63197c4f094249cb37ac"
+    },
+    "projection_root_acceptance": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-future-effective-projection-root-acceptance-20261112.json",
+      "raw_sha256": "69ed720f7ebdd617ce8d0e0e873c37d6d6c654498dc430c6163af0180336627a",
+      "lf_sha256": "6831f7a6a73ce97278d94a07c4059c08c5e096a9156b6b40c7190106c702ea58"
+    },
+    "independent_projection_review": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-future-ownership-and-decision-independent-delta-review-20261112.md",
+      "raw_sha256": "d8d131ac9ebd49b38dfc67de83902fe443847a09d03afcd85c244499db6ec72c",
+      "lf_sha256": "d8d131ac9ebd49b38dfc67de83902fe443847a09d03afcd85c244499db6ec72c"
+    },
+    "E15_counterrecord": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-E15-holder-grant-coordinator-counterrecord-20261112.json",
+      "raw_sha256": "07d0a674551aaf266e4ef7d825b8918e3527c1bb41641da9a9d302361c76cb60",
+      "lf_sha256": "605f51ea1e98ffcb81e56561c333b0660a301c9eec00761aad10fa08fb8e0b1a"
+    },
+    "producer_grant": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-producer-serialized-additive-grant-20261112.json",
+      "raw_sha256": "50e48157dbb758aa2ec93b211ec55c97f217f0091035306687fc396f5e387bfc",
+      "lf_sha256": "915ea174d52b453466943bc09100229950903dae2781325fb0fedc455c8dd7dd"
+    },
+    "producer_counterrecord": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-producer-grant-owner-counterrecord-20261112.json",
+      "raw_sha256": "2416520bce906dfbe8182949f9bcfaffb1a2a898154df53649bfacf141991e59",
+      "lf_sha256": "faaad711011ccd253a41b4c7df748418dd6bdd967dccd36e8a6628f5ba1d6489"
+    },
+    "verification_route": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-prerequisite-verification-route-20261112.md",
+      "raw_sha256": "cf1d09165668eafa30541887722918dfd6b9448cc0022520e60139111570df57",
+      "lf_sha256": "cf1d09165668eafa30541887722918dfd6b9448cc0022520e60139111570df57"
+    },
+    "qualified_base": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-14-qualified-source-main-f5b5a5a6.json",
+      "raw_sha256": "4bcc29ea77042cd6fc09326ade82e2baf4874b2699d6965ee10673877d4f6e19",
+      "lf_sha256": "4bcc29ea77042cd6fc09326ade82e2baf4874b2699d6965ee10673877d4f6e19"
+    },
+    "source_route": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-approved-producer-source-route-20261112.json",
+      "raw_sha256": "6b13aa8232da1314a5a69d0e0fad1e15f5868f2a531d758ae5a78ffbbb6d60bd",
+      "lf_sha256": "4d3b1cdddcf6aced3f24f842865b4a497b82ee5ade158e7ca9002f3a716be777"
+    },
+    "prior_admission_inputs": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-8-current-workflow-admission-2026-11-11/_bmad-output/implementation-artifacts/evidence/35-8-current-workflow-admission/backend-future-normal-admission-inputs-20261112.json",
+      "raw_sha256": "dfadff65515878c67c04f2a6d0b94c88d7e01cef732c82a4aaecfa0b2f13c678",
+      "lf_sha256": "dfadff65515878c67c04f2a6d0b94c88d7e01cef732c82a4aaecfa0b2f13c678"
+    },
+    "recipient_standstill": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-8-current-workflow-admission-2026-11-11/_bmad-output/implementation-artifacts/evidence/35-8-current-workflow-admission/backend-author-current-standstill-20261112.json",
+      "raw_sha256": "61d5166e7257824714567eff839f186a2bf8172f268b04b97e65d3ac09b4b872",
+      "lf_sha256": "61d5166e7257824714567eff839f186a2bf8172f268b04b97e65d3ac09b4b872"
+    },
+    "projection_E15_holder_grant": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/custody-2026-11-12/e15-whole-lane-holder-handoff.json",
+      "raw_sha256": "7b72ca8e888ed75a3264a5aeb97c92f77402a86f7318989e558473ccd7a5ffbe",
+      "lf_sha256": "fb9496708edb7fbe76f1db20353fb16952f3a951cbfdbb16e1b017f9d216a029"
+    },
+    "projection_E15_Root_counterrecord": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-E15-holder-grant-coordinator-counterrecord-20261112.json",
+      "raw_sha256": "07d0a674551aaf266e4ef7d825b8918e3527c1bb41641da9a9d302361c76cb60",
+      "lf_sha256": "605f51ea1e98ffcb81e56561c333b0660a301c9eec00761aad10fa08fb8e0b1a"
+    },
+    "projection_producer_conditional_grant": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-producer-serialized-additive-grant-20261112.json",
+      "raw_sha256": "50e48157dbb758aa2ec93b211ec55c97f217f0091035306687fc396f5e387bfc",
+      "lf_sha256": "915ea174d52b453466943bc09100229950903dae2781325fb0fedc455c8dd7dd"
+    },
+    "projection_producer_Root_counterrecord": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-producer-grant-owner-counterrecord-20261112.json",
+      "raw_sha256": "2416520bce906dfbe8182949f9bcfaffb1a2a898154df53649bfacf141991e59",
+      "lf_sha256": "faaad711011ccd253a41b4c7df748418dd6bdd967dccd36e8a6628f5ba1d6489"
+    },
+    "projection_final_55_matrix": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-8-current-workflow-admission-2026-11-11/_bmad-output/implementation-artifacts/evidence/35-8-current-workflow-admission/implementation-recommendation-matrix.json",
+      "raw_sha256": "ade74fba0096b8d3d8d6ba0846c0445e1732b2bf9f995c546b5b83541193adc8",
+      "lf_sha256": "ade74fba0096b8d3d8d6ba0846c0445e1732b2bf9f995c546b5b83541193adc8"
+    },
+    "original_35_8_intent": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-8-current-workflow-admission-2026-11-11/_bmad-output/specs/spec-design-35-8/source-intent.md",
+      "raw_sha256": "3a503ea913cf19f608c393f6484970e9312142c03fd403d7d7fe30ea0cc400d0",
+      "lf_sha256": "340083d1dc585cb7c055dc5c228f88f1e14e670fe16a71f53c35c5746863d4fd"
+    },
+    "original_35_8_test_design": {
+      "path": "C:/DEV/Kopplas/tmp/private/35-8-current-workflow-admission-2026-11-11/_bmad-output/specs/spec-design-35-8/source-test-design.md",
+      "raw_sha256": "6a9063a2c8aa09dbecd871a59444ca717ea929f598dc394c03214ece1eea1387",
+      "lf_sha256": "3fbf35d4cfe65611d94a94337d48a06186af8df64a5fb71ac4f45b384e11d28e"
+    }
+  },
+  "approved_product_paths": [
+    "src/features/calculations/actions.ts",
+    "src/features/calculations/action-state.ts",
+    "src/features/calculations/form-parsing.ts",
+    "src/features/calculations/editor-operation.ts",
+    "src/server/commands/calculations/calculations.ts",
+    "src/server/commands/calculations/sections.ts",
+    "src/server/commands/calculations/rows.ts",
+    "src/server/commands/calculations/reorder.ts",
+    "src/server/commands/calculations/validation.ts",
+    "src/server/commands/calculations/calc-db.ts",
+    "src/server/commands/calculations/editor-operation-db.ts",
+    "src/features/quotes/actions.ts",
+    "src/features/quotes/create-quote-action-state.ts",
+    "src/server/commands/quotes/quotes.ts",
+    "src/server/commands/quotes/validation.ts",
+    "src/server/commands/quotes/quote-db.ts",
+    "src/components/calculations/CalculationList.tsx",
+    "src/components/calculations/CalculationEditor.tsx",
+    "src/components/calculations/SectionEditor.tsx",
+    "src/components/calculations/RowEditor.tsx",
+    "src/components/calculations/TaxSettingsPanel.tsx",
+    "src/components/calculations/PreQuotePreview.tsx",
+    "src/scope/manifest.ts",
+    "tests/unit/features/calculations/action-state.test.ts",
+    "tests/unit/features/calculations/form-parsing.test.ts",
+    "tests/unit/features/calculations/editor-operation.test.ts",
+    "tests/unit/server/commands/calc-validation.test.ts",
+    "tests/unit/server/commands/calc-validation-coverage.test.ts",
+    "tests/unit/server/commands/calc-source-validation.test.ts",
+    "tests/unit/server/commands/calculation-row-limit-command.test.ts",
+    "tests/unit/server/commands/quote-validation.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/scope/manifest-derivations.test.ts",
+    "tests/integration/commands/calculation-commands.int.test.ts",
+    "tests/integration/commands/calculation-parent-ownership.int.test.ts",
+    "tests/integration/commands/calculation-row-source.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-determinism.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-retry-consistency.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-source-of-truth.int.test.ts",
+    "tests/integration/commands/quote-audit-rollback.int.test.ts",
+    "tests/integration/commands/quote-initial-non-admin-audit.int.test.ts",
+    "tests/integration/commands/quote-version.int.test.ts",
+    "tests/integration/commands/tax-answer-acceptance-job.int.test.ts",
+    "tests/integration/commands/calculation-mutation-safety.int.test.ts",
+    "tests/integration/commands/quote-initial-mutation-safety.int.test.ts",
+    "tests/integration/commands/calculation-editor-safety-fixture.ts",
+    "tests/integration/rls/tenant-table-inventory.ts",
+    "tests/integration/rls/calc-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/migration-reset.int.test.ts",
+    "tests/integration/rls/calculation-editor-operation-contract.rls.test.ts",
+    "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+    "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql",
+    "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+    "tests/integration/rls/quote-review-authorization-migration-reset.int.test.ts",
+    "tests/integration/rls/quote-tables-migration-reset.int.test.ts"
+  ],
+  "approved_conflict_domains": [
+    "mutation:calculation-editor-safety",
+    "mutation:quote-initial-editor-result",
+    "privacy:calculation-editor-operation-proofs",
+    "test:calculation-editor-safety",
+    "schema:migrations",
+    "registry:scope-manifest",
+    "tests:shared-fixtures-resources"
+  ],
+  "qualified_base_preimages": {
+    "src/features/calculations/actions.ts": {
+      "exists": true,
+      "raw_sha256": "cc3bfbf50ace96ac7035a6e4bb51fd90d857ff0e86d3aa11576f840c45b72928",
+      "lf_sha256": "cc3bfbf50ace96ac7035a6e4bb51fd90d857ff0e86d3aa11576f840c45b72928"
+    },
+    "src/features/calculations/action-state.ts": {
+      "exists": true,
+      "raw_sha256": "2f67aab2fe21cbba7bd6caf5832453bb2a5006e459b7135975a22a06534aa3d1",
+      "lf_sha256": "2f67aab2fe21cbba7bd6caf5832453bb2a5006e459b7135975a22a06534aa3d1"
+    },
+    "src/features/calculations/form-parsing.ts": {
+      "exists": true,
+      "raw_sha256": "8f49a4ceff602bc01b5da6502782420f5a57ac9fdc0c1a6f77b3cf57e32ff259",
+      "lf_sha256": "8f49a4ceff602bc01b5da6502782420f5a57ac9fdc0c1a6f77b3cf57e32ff259"
+    },
+    "src/features/calculations/editor-operation.ts": {
+      "exists": false,
+      "must_be_new": true
+    },
+    "src/server/commands/calculations/calculations.ts": {
+      "exists": true,
+      "raw_sha256": "cab1cfca28dfd5c1725d2277b4990d58fcaff8e118f9fe22872ddce5ac9e04c7",
+      "lf_sha256": "cab1cfca28dfd5c1725d2277b4990d58fcaff8e118f9fe22872ddce5ac9e04c7"
+    },
+    "src/server/commands/calculations/sections.ts": {
+      "exists": true,
+      "raw_sha256": "ca3536c401120dd44fbd2f4be73bb2bf4d0e7e9b98be5784822ab4835d99d7c4",
+      "lf_sha256": "ca3536c401120dd44fbd2f4be73bb2bf4d0e7e9b98be5784822ab4835d99d7c4"
+    },
+    "src/server/commands/calculations/rows.ts": {
+      "exists": true,
+      "raw_sha256": "fb3a0016e8c389ee895bb5215c74e46b97fba270904e76170364c6b7318c28fd",
+      "lf_sha256": "fb3a0016e8c389ee895bb5215c74e46b97fba270904e76170364c6b7318c28fd"
+    },
+    "src/server/commands/calculations/reorder.ts": {
+      "exists": true,
+      "raw_sha256": "73c0a68752d54cc5be6c149f5f854c0a2b2beb94deca8d524733c1ca5c48ed07",
+      "lf_sha256": "73c0a68752d54cc5be6c149f5f854c0a2b2beb94deca8d524733c1ca5c48ed07"
+    },
+    "src/server/commands/calculations/validation.ts": {
+      "exists": true,
+      "raw_sha256": "99749b589b2adad6591558995f01c2944c34017ccfa9cc7b84f61c8b3719d50f",
+      "lf_sha256": "99749b589b2adad6591558995f01c2944c34017ccfa9cc7b84f61c8b3719d50f"
+    },
+    "src/server/commands/calculations/calc-db.ts": {
+      "exists": true,
+      "raw_sha256": "7946fa1f300992b2ef597bbb43542372dcfc07fdee51676f1ee9f7dcdac22aa9",
+      "lf_sha256": "7946fa1f300992b2ef597bbb43542372dcfc07fdee51676f1ee9f7dcdac22aa9"
+    },
+    "src/server/commands/calculations/editor-operation-db.ts": {
+      "exists": false,
+      "must_be_new": true
+    },
+    "src/features/quotes/actions.ts": {
+      "exists": true,
+      "raw_sha256": "33db97dcf5ba73d84a76cfcf241db559f5580ce43dca663fcd6ee0a8f1d0c978",
+      "lf_sha256": "33db97dcf5ba73d84a76cfcf241db559f5580ce43dca663fcd6ee0a8f1d0c978"
+    },
+    "src/features/quotes/create-quote-action-state.ts": {
+      "exists": true,
+      "raw_sha256": "e061a933d421f14363b5810b5363ee853349f4b96e3d59d54b0d6904172b7dfc",
+      "lf_sha256": "e061a933d421f14363b5810b5363ee853349f4b96e3d59d54b0d6904172b7dfc"
+    },
+    "src/server/commands/quotes/quotes.ts": {
+      "exists": true,
+      "raw_sha256": "111d6903dca426e1ff7fc27e07fe6779770e96cd5dc7039a64598b18c89e126c",
+      "lf_sha256": "111d6903dca426e1ff7fc27e07fe6779770e96cd5dc7039a64598b18c89e126c"
+    },
+    "src/server/commands/quotes/validation.ts": {
+      "exists": true,
+      "raw_sha256": "f0dabfff954b21bb973f2232d73187704087418cec3bbe6b690133bfd40c1da3",
+      "lf_sha256": "f0dabfff954b21bb973f2232d73187704087418cec3bbe6b690133bfd40c1da3"
+    },
+    "src/server/commands/quotes/quote-db.ts": {
+      "exists": true,
+      "raw_sha256": "f61c9ac6840e5fe71adbb15f836653db8c4f1aa766bc82fbf434ea6685a77b96",
+      "lf_sha256": "f61c9ac6840e5fe71adbb15f836653db8c4f1aa766bc82fbf434ea6685a77b96"
+    },
+    "src/components/calculations/CalculationList.tsx": {
+      "exists": true,
+      "raw_sha256": "0e94259684e550cb815a123ced8a67a30716f5737aa6a75c55d33f3748816940",
+      "lf_sha256": "0e94259684e550cb815a123ced8a67a30716f5737aa6a75c55d33f3748816940"
+    },
+    "src/components/calculations/CalculationEditor.tsx": {
+      "exists": true,
+      "raw_sha256": "1636f1fc0637648c210c522fbffdac8826a1c6b2f0094a6225c70bc090c2735d",
+      "lf_sha256": "1636f1fc0637648c210c522fbffdac8826a1c6b2f0094a6225c70bc090c2735d"
+    },
+    "src/components/calculations/SectionEditor.tsx": {
+      "exists": true,
+      "raw_sha256": "6b45a7619818cf2de2924286f51527188b9b5eea3e1399a29a1e9df444916a94",
+      "lf_sha256": "6b45a7619818cf2de2924286f51527188b9b5eea3e1399a29a1e9df444916a94"
+    },
+    "src/components/calculations/RowEditor.tsx": {
+      "exists": true,
+      "raw_sha256": "8e05ae3ccda819a783101e88bf5880f5ea07f70520be8d5b98a4608c0b88192e",
+      "lf_sha256": "8e05ae3ccda819a783101e88bf5880f5ea07f70520be8d5b98a4608c0b88192e"
+    },
+    "src/components/calculations/TaxSettingsPanel.tsx": {
+      "exists": true,
+      "raw_sha256": "c32b16046f4e9b82b69457303d4ac10a481bee9a43d10c4fb88afa9940a9b295",
+      "lf_sha256": "c32b16046f4e9b82b69457303d4ac10a481bee9a43d10c4fb88afa9940a9b295"
+    },
+    "src/components/calculations/PreQuotePreview.tsx": {
+      "exists": true,
+      "raw_sha256": "5cc4e2704c9a7d078ee0c6e468e80aee862bdd30f60ca712c1db3712ac038ce3",
+      "lf_sha256": "5cc4e2704c9a7d078ee0c6e468e80aee862bdd30f60ca712c1db3712ac038ce3"
+    },
+    "src/scope/manifest.ts": {
+      "exists": true,
+      "raw_sha256": "a773473789c83d5074ce3e86efb21f748774f471c58b189ae72ae3142cb7ff62",
+      "lf_sha256": "a773473789c83d5074ce3e86efb21f748774f471c58b189ae72ae3142cb7ff62"
+    },
+    "tests/unit/features/calculations/action-state.test.ts": {
+      "exists": true,
+      "raw_sha256": "c755d7817662f1eb5d752f8d111a828012e9f0474f44b3c24dcf36987e142067",
+      "lf_sha256": "c755d7817662f1eb5d752f8d111a828012e9f0474f44b3c24dcf36987e142067"
+    },
+    "tests/unit/features/calculations/form-parsing.test.ts": {
+      "exists": true,
+      "raw_sha256": "8fe3874bffc3fed289931aa41195c1f0684185e258cecef52c9c2c89bc8646ca",
+      "lf_sha256": "8fe3874bffc3fed289931aa41195c1f0684185e258cecef52c9c2c89bc8646ca"
+    },
+    "tests/unit/features/calculations/editor-operation.test.ts": {
+      "exists": false,
+      "must_be_new": true
+    },
+    "tests/unit/server/commands/calc-validation.test.ts": {
+      "exists": true,
+      "raw_sha256": "96008e65052fcd52ecc39fd1001f1973d1c1b22f6229596d73d167f2571644d0",
+      "lf_sha256": "96008e65052fcd52ecc39fd1001f1973d1c1b22f6229596d73d167f2571644d0"
+    },
+    "tests/unit/server/commands/calc-validation-coverage.test.ts": {
+      "exists": true,
+      "raw_sha256": "198e7ce6a209db170c604f95e4bd8d4cf5176979cb3037ff9b4ab9c6a2cf40ff",
+      "lf_sha256": "198e7ce6a209db170c604f95e4bd8d4cf5176979cb3037ff9b4ab9c6a2cf40ff"
+    },
+    "tests/unit/server/commands/calc-source-validation.test.ts": {
+      "exists": true,
+      "raw_sha256": "b7b7bd71042c2bdbdceac2c92005c6cce54af934af22441b2da27a147a7e2b80",
+      "lf_sha256": "b7b7bd71042c2bdbdceac2c92005c6cce54af934af22441b2da27a147a7e2b80"
+    },
+    "tests/unit/server/commands/calculation-row-limit-command.test.ts": {
+      "exists": true,
+      "raw_sha256": "055e60039476cc74a9a7d6d668a86a3a8df9f414ebec660b180423998d502bb4",
+      "lf_sha256": "055e60039476cc74a9a7d6d668a86a3a8df9f414ebec660b180423998d502bb4"
+    },
+    "tests/unit/server/commands/quote-validation.test.ts": {
+      "exists": true,
+      "raw_sha256": "48a5afd25c83d1338414c211b110cb35bfeabda2b4ac8f8c894081989701dad6",
+      "lf_sha256": "48a5afd25c83d1338414c211b110cb35bfeabda2b4ac8f8c894081989701dad6"
+    },
+    "tests/unit/scope/manifest-shape.test.ts": {
+      "exists": true,
+      "raw_sha256": "f8b3a69d50a621896b9b5e96fc7da523472d9fd3732ef3a4fb9d3650f71d3a47",
+      "lf_sha256": "f8b3a69d50a621896b9b5e96fc7da523472d9fd3732ef3a4fb9d3650f71d3a47"
+    },
+    "tests/unit/scope/manifest-derivations.test.ts": {
+      "exists": true,
+      "raw_sha256": "2919ff514ee3a5943b5d5bcddb79b9d032bb654bbbab149db39f8238d6114bc6",
+      "lf_sha256": "2919ff514ee3a5943b5d5bcddb79b9d032bb654bbbab149db39f8238d6114bc6"
+    },
+    "tests/integration/commands/calculation-commands.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "a1f01e8276202f03efb0473a328f620af6a1f6da24a6a1dfc5a8390ce67d03dd",
+      "lf_sha256": "a1f01e8276202f03efb0473a328f620af6a1f6da24a6a1dfc5a8390ce67d03dd"
+    },
+    "tests/integration/commands/calculation-parent-ownership.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "04fc37c8e62f0d6e30bb6c8e63dc5fcd4698e0e4539c687dbdf45ecdda200a83",
+      "lf_sha256": "04fc37c8e62f0d6e30bb6c8e63dc5fcd4698e0e4539c687dbdf45ecdda200a83"
+    },
+    "tests/integration/commands/calculation-row-source.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "e691def6c9f56607cf53a973ef91d905d69a4dd673b1f4d6a7e3d7c5cf5fad94",
+      "lf_sha256": "e691def6c9f56607cf53a973ef91d905d69a4dd673b1f4d6a7e3d7c5cf5fad94"
+    },
+    "tests/integration/commands/generate-quote-pdf-determinism.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "a1a2ed845b52f4e92353c5c5028bd146ce71dbc30d6ce4f3fc96097bb17f1537",
+      "lf_sha256": "a1a2ed845b52f4e92353c5c5028bd146ce71dbc30d6ce4f3fc96097bb17f1537"
+    },
+    "tests/integration/commands/generate-quote-pdf-retry-consistency.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "c53c5129f0dfd51f4af30f2a6caad82ec988d16ba5f831ecd14afe77c67c57d2",
+      "lf_sha256": "c53c5129f0dfd51f4af30f2a6caad82ec988d16ba5f831ecd14afe77c67c57d2"
+    },
+    "tests/integration/commands/generate-quote-pdf-source-of-truth.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "ea91dc84a847aaf44c8a6610bec554217747de5a510d7a8557eb0df3aa4498a4",
+      "lf_sha256": "ea91dc84a847aaf44c8a6610bec554217747de5a510d7a8557eb0df3aa4498a4"
+    },
+    "tests/integration/commands/quote-audit-rollback.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "726acf7f8588d65cce2e0b498c75df3faa9dfa62ce511066ac57c620d9b75536",
+      "lf_sha256": "726acf7f8588d65cce2e0b498c75df3faa9dfa62ce511066ac57c620d9b75536"
+    },
+    "tests/integration/commands/quote-initial-non-admin-audit.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "af650f3d68e93013bd7ab3f65da28bfec07711b2c20124b26e41e3caa81a0b09",
+      "lf_sha256": "af650f3d68e93013bd7ab3f65da28bfec07711b2c20124b26e41e3caa81a0b09"
+    },
+    "tests/integration/commands/quote-version.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "22af132c6507d8cd9c59a70fb29fd5fd32aed8861cecd4387737f11a3ed2aace",
+      "lf_sha256": "22af132c6507d8cd9c59a70fb29fd5fd32aed8861cecd4387737f11a3ed2aace"
+    },
+    "tests/integration/commands/tax-answer-acceptance-job.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "07aa555279df4b9d699ed33766c7330a6b42c30c1c555d128faf454d90e80618",
+      "lf_sha256": "07aa555279df4b9d699ed33766c7330a6b42c30c1c555d128faf454d90e80618"
+    },
+    "tests/integration/commands/calculation-mutation-safety.int.test.ts": {
+      "exists": false,
+      "must_be_new": true
+    },
+    "tests/integration/commands/quote-initial-mutation-safety.int.test.ts": {
+      "exists": false,
+      "must_be_new": true
+    },
+    "tests/integration/commands/calculation-editor-safety-fixture.ts": {
+      "exists": false,
+      "must_be_new": true
+    },
+    "tests/integration/rls/tenant-table-inventory.ts": {
+      "exists": true,
+      "raw_sha256": "02c8d826e63ad6660cf89c7b8b61f400ea7a7baed0f2258b2cac597858014c9c",
+      "lf_sha256": "02c8d826e63ad6660cf89c7b8b61f400ea7a7baed0f2258b2cac597858014c9c"
+    },
+    "tests/integration/rls/calc-tables-migration-reset.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "6836cacb08af6511f6fbe55deb6e1f3ca2dc659ad1e0eef578ca00dc5e3019fb",
+      "lf_sha256": "6836cacb08af6511f6fbe55deb6e1f3ca2dc659ad1e0eef578ca00dc5e3019fb"
+    },
+    "tests/integration/rls/migration-reset.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "1d16e021f75de5f5005514520956153004faa9558bc0bf168b408d201b3fd993",
+      "lf_sha256": "1d16e021f75de5f5005514520956153004faa9558bc0bf168b408d201b3fd993"
+    },
+    "tests/integration/rls/calculation-editor-operation-contract.rls.test.ts": {
+      "exists": false,
+      "must_be_new": true
+    },
+    "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts": {
+      "exists": false,
+      "must_be_new": true
+    },
+    "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql": {
+      "exists": false,
+      "must_be_new": true
+    },
+    "tests/integration/rls/cross-tenant-isolation.rls.test.ts": {
+      "exists": true,
+      "raw_sha256": "38d81b9c53e908791f2bd89add3c7e715954bfd1b15ad2176aa8d188a5a98ffe",
+      "lf_sha256": "38d81b9c53e908791f2bd89add3c7e715954bfd1b15ad2176aa8d188a5a98ffe"
+    },
+    "tests/integration/rls/quote-review-authorization-migration-reset.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "1cd81633eededbebc302c470251731838c9cfd6c86bfd5406ebb35fefa1bacfe",
+      "lf_sha256": "1cd81633eededbebc302c470251731838c9cfd6c86bfd5406ebb35fefa1bacfe"
+    },
+    "tests/integration/rls/quote-tables-migration-reset.int.test.ts": {
+      "exists": true,
+      "raw_sha256": "9f185adbb5398f848c376137867cf5279af06120f56c463ec831c70233e842b2",
+      "lf_sha256": "9f185adbb5398f848c376137867cf5279af06120f56c463ec831c70233e842b2"
+    }
+  },
+  "operation_count": 12,
+  "action_caller_count": 13,
+  "operation_matrix": "approved-source-matrix.json",
+  "readonly_contract": [
+    "src/features/calculations/read.ts",
+    "src/features/calculations/readiness.ts",
+    "src/lib/money/",
+    "src/server/commands/envelope.ts",
+    "src/server/commands/envelope-core.ts",
+    "src/features/settings/",
+    "src/features/pricing/",
+    "src/server/commands/settings/",
+    "src/server/commands/pricing/",
+    "tests/support/",
+    "package.json",
+    "playwright.config.ts",
+    ".github/workflows/"
+  ],
+  "preservation": {
+    "original_ac_ids": [
+      "E35-8-AC1",
+      "E35-8-AC2",
+      "E35-8-AC3",
+      "E35-8-AC4",
+      "E35-8-AC5",
+      "E35-8-AC6",
+      "E35-8-AC7"
+    ],
+    "original_ac_test_ids": [
+      "E35-8-T-AC1",
+      "E35-8-T-AC2",
+      "E35-8-T-AC3",
+      "E35-8-T-AC4",
+      "E35-8-T-AC5",
+      "E35-8-T-AC6",
+      "E35-8-T-AC7"
+    ],
+    "applies_state_ids": [
+      "loading",
+      "loaded",
+      "empty",
+      "no-match",
+      "validation",
+      "denied",
+      "revoked",
+      "connection-required",
+      "submitting",
+      "error-retry",
+      "unknown",
+      "stale",
+      "confirmed",
+      "locked",
+      "dirty-navigation",
+      "late-result",
+      "focus-dialog"
+    ],
+    "inherited_state": "unavailable",
+    "verbatim_locations": "test-design.md original AC section and original AC/state test rows",
+    "original_AC6_unchanged": true,
+    "separate_presentation_source_unchanged": true
+  },
+  "normal_admission_pending": [
+    "Independent exact canonical package review and Root Git-normalized source integration/publication at the normal boundary; do not move main during frozen35.14 verification.",
+    "Actual source-containing qualified main and exact SPEC/stories/story/helper/workflow pins; refresh consumer drift if present. f5b5a5a6 is inspection base, not future source-containing main.",
+    "Refresh holder/producer/recipient relevant source-writer/command/queued handles and specifically unresolved historic producer children/successors; no global census or UNKNOWN queue conversion.",
+    "Bind sole Sol High author, approved source/base/preimages/starting checkpoint and accepted shared-slice holds; no E15 automatic reopen. New truthful positive schema2 plan; no initialized-plan rewrite or waiver.",
+    "Native capacity currently held2/2 by CRMblocked and35.14running gen1; wait normal completion/integration and fresh supported admission under cap, no eviction/transfer/bare picker.",
+    "Root registers same-primary-commonGit coordinator/worker, normal anchors/E2, actual migration slot/generator binding and owned isolated resource/serial-DDL checks; task author does none here.",
+    "Later candidate verification/distinct High review/actual frontend gate and factual explicitly authorized matched app/schema pause/drain operator window; no live cutover authorized by source preparation."
+  ],
+  "native_admitted": false,
+  "implementation_started": false
+}
