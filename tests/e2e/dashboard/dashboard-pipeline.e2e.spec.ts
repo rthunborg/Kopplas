@@ -21,9 +21,13 @@ const lateResultTest = test.extend({ trace: "off", video: "off", screenshot: "of
 
 
 /** Preserve full-page context and attach an explicitly whole-viewport original. */
-async function attachDashboardView(page: Page, testInfo: TestInfo, name: string) {
+async function attachDashboardView(page: Page, testInfo: TestInfo, name: string, wholeViewportOnly = false) {
   const viewport = page.viewportSize();
   if (!viewport) throw new Error("Dashboard capture requires an explicit viewport");
+  if (wholeViewportOnly) {
+    await testInfo.attach(name, { body: await page.screenshot({ fullPage: false }), contentType: "image/png" });
+    return;
+  }
   const context = await page.screenshot({ fullPage: true });
   await testInfo.attach(name, { body: context, contentType: "image/png" });
   // Reuse the original when its actual PNG dimensions already equal the viewport.
@@ -139,7 +143,7 @@ test.describe("19.1-E2E-001 current roles and live card set", () => {
   }
   for (const role of ["montor", "ekonomi"] as const) {
     // Contract: new eligibility contract; uses EXISTING per-run role fixtures.
-    test("[P0] " + role + " has no pipeline, skeleton, false totals or deep link [AC2]", async ({ page }) => {
+    test("[P0] " + role + " has no pipeline, skeleton, false totals or deep link [AC2]", async ({ page }, testInfo) => {
       const f = fixture();
       await login(page, role === "montor" ? f.roleAware.montor : f.notifications.finance, role === "montor" ? "/my-day" : "/dashboard");
       await expect(page).toHaveURL(/\/dashboard$/);
@@ -148,6 +152,15 @@ test.describe("19.1-E2E-001 current roles and live card set", () => {
       await expect(card(page)).toHaveCount(0);
       await expect(page.getByRole("link", { name: "Visa offerter", exact: true })).toHaveCount(0);
       await expect(page.getByText(/Kunde inte läsa offertpipeline|Inga offerthändelser under perioden/)).toHaveCount(0);
+      if (role === "ekonomi") {
+        for (const viewport of [{ name: "phone", width: 360, height: 640 }, { name: "desktop", width: 1280, height: 900 }]) {
+          await page.setViewportSize(viewport);
+          await expect(page.getByRole("heading", { name: "Dashboard", exact: true })).toBeVisible();
+          await expect(card(page)).toHaveCount(0);
+          await expect(page.getByRole("link", { name: "Visa offerter", exact: true })).toHaveCount(0);
+          await attachDashboardView(page, testInfo, `dashboard-denied-pipeline-${viewport.name}-whole-viewport-${viewport.width}x${viewport.height}`, true);
+        }
+      }
     });
   }
 });
@@ -304,7 +317,7 @@ test.describe("19.1 real server-failure recovery and current authority", () => {
   }
   for (const revoked of ["quote", "money"] as const) {
     // Contract: success→real failure→retry plan and unique membership fixture required.
-    test("[P0] 19.1-E2E-007 " + revoked + " revoked in same session before retry [AC7]", async ({ page }) => {
+    test("[P0] 19.1-E2E-007 " + revoked + " revoked in same session before retry [AC7]", async ({ page }, testInfo) => {
       const data = scenario("revoke-" + revoked);
       const memberships = await adminQuery<{ id: string; role: string }>(
         "select id,role from public.tenant_memberships where tenant_id=$1 and user_id=$2 and status='active'", [data.tenantId, data.user.id]);
@@ -340,6 +353,15 @@ test.describe("19.1 real server-failure recovery and current authority", () => {
           }
           expect(await page.content()).not.toContain(formatOreAsKronor(data.acceptedSentinelOre));
           await expect(page.getByRole("heading", { name: "Dashboard", exact: true })).toBeVisible();
+          if (revoked === "quote") {
+            for (const viewport of [{ name: "phone", width: 360, height: 640 }, { name: "desktop", width: 1280, height: 900 }]) {
+              await page.setViewportSize(viewport);
+              await expect(page.getByRole("heading", { name: "Dashboard", exact: true })).toBeVisible();
+              await expect(card(page)).toHaveCount(0);
+              await expect(page.getByRole("link", { name: "Visa offerter", exact: true })).toHaveCount(0);
+              await attachDashboardView(page, testInfo, `dashboard-quote-revoked-pipeline-${viewport.name}-whole-viewport-${viewport.width}x${viewport.height}`, true);
+            }
+          }
         } finally { await observed.close(); }
       } finally {
         await adminQuery("update public.tenant_memberships set role=$3 where tenant_id=$1 and id=$2", [data.tenantId, memberships[0].id, memberships[0].role]);
@@ -380,7 +402,8 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
     }
   }
   // Contract: new mask absent; only EXISTING seller credentials needed.
-  test("[P1] 19.1-E2E-009 keyboard reaches mask explanation and authorized quotes [AC9]", async ({ page }) => {
+  test("[P1] 19.1-E2E-009 keyboard reaches mask explanation and authorized quotes [AC9]", async ({ page }, testInfo) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
     await login(page, fixture().roleAware.saljare);
     const mask = card(page).getByRole("button", { name: "Dolt för din roll", exact: true });
     await hydrated(mask);
@@ -388,6 +411,7 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
     await expect(mask).toBeFocused();
     await page.keyboard.press("Enter");
     await expect(page.getByRole("tooltip", { name: "Din roll ser inte belopp", exact: true })).toBeVisible();
+    await attachDashboardView(page, testInfo, "dashboard-open-role-tooltip-desktop-whole-viewport-1280x900", true);
     await page.keyboard.press("Escape");
     await expect(page.getByRole("tooltip")).toHaveCount(0);
     const link = card(page).getByRole("link", { name: "Visa offerter", exact: true });

@@ -2,7 +2,8 @@
 
 Implementation author: `/root/dashboard_35_14_worker/build/implementation`, Sol Low.
 Current test-seam/trail author: `/root/dashboard_35_14_worker/late_refresh_medium`, Sol Medium.
-Subject: same-response observer correction over clean `bdd13a8ea05ca93a45b01d8a335dbcc062e05ae8`; earlier author checkpoints below remain historical.
+Subject: exclusive five-frame capture correction over clean `cc2905f5557fe0b32b63e19850609c26d42935b7`; earlier author checkpoints below remain historical.
+Current capture/trail author: `/root/dashboard_35_14_worker/build/implementation`, Sol Low; prior Medium seam implementation remains unchanged.
 `implementation-fingerprint.json` pins final product/test and story bytes (raw and LF).
 The seven allocated product paths remain the closed boundary. Three presentation
 components, DashboardRetry's known-offline predispatch guard and the two allocated
@@ -382,3 +383,13 @@ pending named owner/candidate binding in the existing delivery/deferred records.
 Broader manual/device/screen-reader/daylight release checks remain deferred there;
 essential functional/visual gaps above are not reclassified as release polish.
 E16 fourteen deferred checks and E20 caveats retain their original provenance.
+
+## Exclusive predeclared five-frame correction
+
+Predeclaration SHA256 `92ada89f0218a6df80db8faf5e6f1035be74379980fdbc4b7c569e96e3ffdeb3` was verified before this correction. Clean base cc2905f5557fe0b32b63e19850609c26d42935b7. First test edit: 2026-11-12 17:38:18 UTC, owned pipeline spec. Only that test and existing author story/evidence/fingerprint changed; no phase/state/report/status/timing/workflow writes, resources, provider actions, push or CI.
+
+Exactly five captures: existing ekonomi absence at 360×640 and 1280×900; existing quote-revoked branch at those sizes after all payload/no-sentinel/heading assertions and before unchanged membership restoration finally; existing keyboard-open tooltip at 1280×900 after visible and before Escape. Resized absence frames repeat heading/card0/link0. No role, route, mutation, fixture, context or journey added; all later tooltip Escape/link/navigation checks retained.
+
+Helper wholeViewportOnly defaults false, preserving all old calls; only five new calls pass true and emit one native fullPage:false PNG each. Expected dedicated inventory 73+5=78 remains contingent on actual execution. Coordinator-reported cc2905f5 82 dedicated plus 3 General passes, 73 original PNGs and 22 inspected originals are historical, not new-frame passes or new-head external review.
+
+Cheap checks: affected lint and typecheck exit0, pipeline collection54/General3, zero local executions. TypeScript AST comparison:25 identical static test/describe identifier expressions, all231 original expect statement expressions retained in order;237 current statements include six added post-resize checks. No build/unit rerun. Review stops/fingerprints refreshed; new-head runtime, independent Low/Root High review, actual images and owner acceptance remain pending. Author quiesces after this one clean commit; no triage/fix until both requested reviews return.

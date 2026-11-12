@@ -64,6 +64,8 @@ collected browser tests were unrun at that author checkpoint. Later hosted evide
 
 Author: `/root/dashboard_35_14_worker/build/implementation` (implementation author).
 Test-seam/trail refresh author: `/root/dashboard_35_14_worker/late_refresh_medium`, Sol Medium (recorded escalation after two Low refinements). Refreshed against the same-genuine-response observer correction over `bdd13a8ea05ca93a45b01d8a335dbcc062e05ae8`;
+Five-frame capture/trail refresh author: `/root/dashboard_35_14_worker/build/implementation`, Sol Low. Current capture-only correction is over `cc2905f5557fe0b32b63e19850609c26d42935b7`; the earlier Medium seam decisions remain unchanged.
+
 the evidence fingerprint pins final product/test and story bytes.
 
 ### Current dashboard facts within the frozen host
@@ -95,13 +97,14 @@ the lock now uses a monochrome icon and retains its existing tooltip handlers.
 AC1/2/6 reuse real component states and source projections; AC3/7 reuse registry
 and read-contract checks. AC4/5 retain separate usable keyboard/touch/reflow and
 tooltip assertions; capture attachments supplement those outcomes. The same-batch inventory precheck proved long full-page phone PNGs were not whole 360×640 frames. Existing seams now retain full-page context and add explicitly named whole-viewport originals, with no fixture or journey expansion. Browser
-execution, late-result navigation proof and actual visual acceptance remain pending.
+execution of the five new captures and actual visual acceptance remain pending. Coordinator-reported cc2905f5 results (82 dedicated plus 3 General passes and 73 original PNGs, 22 visually inspected) are historical and do not qualify these new frames.
 
 - `tests/unit/components/dashboard/widget-state.test.ts:77` — `loading announces progress`: no fabricated values or successful timestamp.
 - `tests/unit/components/dashboard/widget-state.test.ts:123` — `absent-withheld money renders Dold`: absence never becomes zero.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:24` — `async function attachDashboardView`: default unchanged; five new calls emit whole-viewport only.
 - `tests/e2e/dashboard/dashboard-design.e2e.spec.ts:75` — `phone values remain in one column`: asserts actual doubled font and text bounds, then reflow; unrun.
-- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:541` — `successive failed retries recover`: retained real-source recovery; correction awaits new runtime execution.
-- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:676` — `completed refresh cannot replace newer quote navigation`: revision-specific producer hold below Suspense and controlled same-response tee, strict Quotes navigation before release, original successful browser/body completion and fresh result; prior hosted failures retained.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:565` — `successive failed retries recover`: retained real-source recovery; correction awaits new runtime execution.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:700` — `completed refresh cannot replace newer quote navigation`: revision-specific producer hold below Suspense and controlled same-response tee, strict Quotes navigation before release, original successful browser/body completion and fresh result; prior hosted failures retained.
 
 Evidence: pinned Next16.4.1 production build/typecheck/lint passed; 119 focused
 tests passed, zero failed/skipped. SSR phone topology probe passed one assertion.
