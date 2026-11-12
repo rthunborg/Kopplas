@@ -54,7 +54,7 @@ record above remains historical; implementation_started=true for this candidate.
 Development_complete=false; release_ready=false. Required runtime, independent
 review and candidate-bound human visual acceptance remain pending.
 
-The current oracle/correlation and whole-viewport capture correction is based on `8546af606fee9a5412c44f606c36a2fa2d0e8576`.
+The current test-only held-producer correction is based on clean `f524e9ef2bb09358b6f4bf7a471983503d682bc8`; the earlier oracle/correlation and whole-viewport correction remains historical evidence.
 See [verification and all eleven state bindings](../../../implementation-artifacts/evidence/35-14-dashboard/implementation-verification.md)
 and the adjacent product/test byte fingerprint. Pinned offline install, production
 build, typecheck, lint and 119 focused tests passed (zero failed/skipped); all 55
@@ -63,7 +63,7 @@ collected browser tests were unrun at that author checkpoint. Later hosted evide
 ## Suggested Review Order
 
 Author: `/root/dashboard_35_14_worker/build/implementation` (implementation author).
-Refreshed against the oracle/correlation and whole-viewport capture correction over `8546af606fee9a5412c44f606c36a2fa2d0e8576`;
+Test-seam/trail refresh author: `/root/dashboard_35_14_worker/late_refresh_medium`, Sol Medium (recorded escalation after two Low refinements). Refreshed against the held-producer correction over `f524e9ef2bb09358b6f4bf7a471983503d682bc8`;
 the evidence fingerprint pins final product/test and story bytes.
 
 ### Current dashboard facts within the frozen host
@@ -101,7 +101,7 @@ execution, late-result navigation proof and actual visual acceptance remain pend
 - `tests/unit/components/dashboard/widget-state.test.ts:123` — `absent-withheld money renders Dold`: absence never becomes zero.
 - `tests/e2e/dashboard/dashboard-design.e2e.spec.ts:75` — `phone values remain in one column`: asserts actual doubled font and text bounds, then reflow; unrun.
 - `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:541` — `successive failed retries recover`: retained real-source recovery; correction awaits new runtime execution.
-- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:676` — `completed refresh cannot replace newer quote navigation`: strict late delivery with path-only diagnostics; prior hosted failure retained.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:676` — `completed refresh cannot replace newer quote navigation`: revision-specific producer hold below Suspense, strict Quotes navigation before release, original successful browser/body completion and fresh result; prior hosted failures retained.
 
 Evidence: pinned Next16.4.1 production build/typecheck/lint passed; 119 focused
 tests passed, zero failed/skipped. SSR phone topology probe passed one assertion.
@@ -114,9 +114,9 @@ Current collection: General 3 and dedicated pipeline 54. Hosted dedicated job on
 DB/RLS/recovery, exact-head CI, independent review, production captures and human
 substantive visual acceptance remain pending. No independent filter/module-
 unavailable state is manufactured; no-match/unavailable use their actual seams.
-The later AC6 correction buffers a genuine completed RSC response in memory, navigates through the existing shell Next Link with a same-document nonce, then requires successful browser request/response completion before asserting the quote route remains current. Cancellation fails; the test is not runtime proof until executed. Only its extended lateResultTest fixture pool disables trace/video/automatic screenshots; the prior 53 cases retain lane and CLI diagnostic options. Late-result navigation remains a named runtime proof gap. The latest correction arms immediately before Retry and accepts only a subsequent GET dashboard live RSC request with router-state-tree present and both prefetch headers absent; test-local request IDs correlate lifecycle facts. This corrects oracle ambiguity, not an established navigation cause or pass. The absent local
-`.env.test` cannot be repaired through this closed allocation. No development-
-complete or release-ready claim is made.
+The current AC6 correction uses the existing revision-specific quote_events hold below DashboardWidgets Suspense, allowing shared RSC material to stream normally. The real Retry starts the original live dashboard RSC request; its read must reach the actual held marker. Real AppShell Quotes URL/heading and same-document nonce must commit while that read remains unresolved. Only then is the producer released, and the same original request must finish successfully with response.finished() null, a complete genuine success body and completedAt at/after release. Abort, proxy expiry, timeout, read/body failure and cleanup failure cannot pass. Cleanup releases the actual revision, awaits started work, removes owned observers and restores the scenario; primary and cleanup errors are retained together. Request IDs, fixed paths/statuses and bounded booleans remain the only attachment facts. Trace/video/automatic screenshots stay off only for this strict test; other 53 cases and all explicit capture companions remain unchanged.
+
+The former variant completed upstream first and withheld the entire RSC response before navigation. That transport-specific coverage is now absent; it is an author test-seam change, not a passing result or a business-gate waiver. Historical f524 hosted evidence remains 81 passed, 1 strict late-result failure, zero skipped/flaky/retries; its source JSON SHA256 is bd90778122e41338426ef9b5958bfab50cdc0e0503e3cc546f5fb3d57b03d762. Current changed-candidate lint and typecheck passed; 54 pipeline plus 3 General cases collected, zero executed locally. Product code, router.refresh, authority, layout, registry, producer, shared proxy/support/config and capture instrumentation are unchanged. Unchanged production/unit evidence is reused with its prior revision limits. The actual late-result browser pass, targeted independent reviews and current CI/visual gates remain pending. No exclusive runtime-cause, development-complete or release-ready claim is made.
 
 ## Review Triage Log
 

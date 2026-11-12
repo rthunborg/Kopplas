@@ -1,6 +1,6 @@
 {
-  "baseRevision": "8546af606fee9a5412c44f606c36a2fa2d0e8576",
-  "kind": "live-refresh-oracle-correlation-and-whole-viewport-capture-correction",
+  "baseRevision": "f524e9ef2bb09358b6f4bf7a471983503d682bc8",
+  "kind": "held-producer-late-result-test-seam-correction",
   "paths": {
     "src/components/dashboard/WidgetCard.tsx": {
       "rawSha256": "e819f3a805a282cc641e5bc13b055c5063d259724358fe96129d97383e17ce17",
@@ -19,12 +19,12 @@
       "lfSha256": "8857ac9b434c4244da5ce4da49a64fc346f1370730f7cc738cc8818a4887b207"
     },
     "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts": {
-      "rawSha256": "5ef82c93f7200cffc16a4215500fb0d8cbdaf0dd18417bdcbe3eddbb4fb6ed15",
-      "lfSha256": "01ed4d3a2e41122b20556d618d965d3ae6eef4bff7382e6fc73b8b4da884f5e7"
+      "rawSha256": "c531ec8b917d0377ee2d96e7be6a1705cbfedb2b2a719b1a296294e5a5e26584",
+      "lfSha256": "c531ec8b917d0377ee2d96e7be6a1705cbfedb2b2a719b1a296294e5a5e26584"
     },
     "_bmad-output/specs/spec-design-35-14/stories/35-14-live-dashboard-pipeline.md": {
-      "rawSha256": "c4bf181a8c2e97ebc4df8b8dc4970344178425b9b067c4a9e95f261ca80da106",
-      "lfSha256": "c4bf181a8c2e97ebc4df8b8dc4970344178425b9b067c4a9e95f261ca80da106"
+      "rawSha256": "065183d41ccb0b1a29de9ab4fa12755a8795ba5c86cbb131e57bfd5dff065e5b",
+      "lfSha256": "065183d41ccb0b1a29de9ab4fa12755a8795ba5c86cbb131e57bfd5dff065e5b"
     },
     "src/components/dashboard/DashboardRetry.tsx": {
       "rawSha256": "be3153bfa629cfb4f5e9e4047126f78cbe95853050e5fde770c7773a411f1c9b",

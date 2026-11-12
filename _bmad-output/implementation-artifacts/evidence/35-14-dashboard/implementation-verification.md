@@ -1,7 +1,8 @@
 # 35.14 implementation verification — 2026-11-12
 
 Implementation author: `/root/dashboard_35_14_worker/build/implementation`, Sol Low.
-Subject: oracle/correlation and whole-viewport capture correction over clean `8546af606fee9a5412c44f606c36a2fa2d0e8576`.
+Current test-seam/trail author: `/root/dashboard_35_14_worker/late_refresh_medium`, Sol Medium.
+Subject: held-producer late-result correction over clean `f524e9ef2bb09358b6f4bf7a471983503d682bc8`; earlier author checkpoints below remain historical.
 `implementation-fingerprint.json` pins final product/test and story bytes (raw and LF).
 The seven allocated product paths remain the closed boundary. Three presentation
 components, DashboardRetry's known-offline predispatch guard and the two allocated
@@ -90,6 +91,53 @@ Validation,submitting,unknown,confirmed,locked,dirty-navigation,focus-dialog and
 file operations remain N/A. Quote destination protections remain inherited, unmodified.
 
 ## Pending gates and next action
+
+### Current held-producer late-result correction
+
+The mandatory Sol High semantics note was read and its raw SHA256 verified as
+ab7a9bbc4ce97656b927b7a9d5121c1d2c920da9a0c4f383b85a3f7d80a11791 before editing.
+Immediately before the first source write, all four reserved f524 manual external
+outputs were absent. Parent received the first-edit timestamp 2026-11-12T13:34:14.5854135Z
+and exact allocated pipeline path. This author changed only that test and existing
+own-story/evidence metadata; no product, support/config/proxy, resources or provider
+operations changed. No fresh broad review or unchanged production/unit run occurred.
+
+The approved old-read-after-new-selection invariant now uses the existing real
+quote_events read-plan hold. The actual revision-specific held marker proves the
+read started; live RSC matching excludes prefetch and correlates the original
+browser request. DashboardWidgets Suspense permits shared layout/loading material
+to stream. The test requires real AppShell Quotes URL, visible heading and surviving
+same-document nonce BEFORE release, while the old request is unresolved and the
+existing 15-second proxy deadline has not elapsed. It then releases that revision
+and requires the original browser requestfinished, response.finished() null, status
+200, complete real success body/descriptor and completedAt at/after release. Raw
+body/header/query values stay memory-only. Cancellation, error shells, expiry,
+timeout or reader failure fail; after successful delivery Quotes/nonce remain
+current and the dashboard card remains absent. Bounded diagnostics retain numeric
+IDs, fixed paths/phases/statuses and booleans, capped at64 events. Cleanup releases
+reached holds, awaits started work, closes only its own page if cleanup times out,
+removes owned listeners, restores the synthetic subject and preserves primary plus
+cleanup failures. No replacement payload, direct history change or stream wrapper.
+
+Coverage change: the source completes AFTER navigation. The previous
+precompleted-upstream/whole-RSC-withheld transport variant is no longer exercised.
+The original source intent requires old read completion after newer navigation;
+this test implementation change does not mark any old failure passed. Actual f524
+hosted result stays81 passed/1 strict late-result failure/0 skipped/flaky/retries;
+source JSON SHA256 bd90778122e41338426ef9b5958bfab50cdc0e0503e3cc546f5fb3d57b03d762.
+The shared-pending-ancestor mechanism is supported by pinned Next16.4.1 code;
+exclusive runtime causation and successful new browser completion remain unproven.
+
+Actual changed-candidate checks: affected ESLint exit0/no diagnostics; pnpm
+typecheck exit0; dedicated pipeline collection54 cases and General collection3
+cases, both exit0 and zero executed locally. Existing case identities and capture
+companions are unchanged. Prior production/unit evidence remains bound to its
+original unchanged product revision and is reused, not rerun or relabeled. Current
+exact-candidate runtime, both targeted independent reviews, external/CI and
+revision-bound visual acceptance remain pending. Development_complete=false;
+release_ready=false. A future aborted/unfinished old stream remains a concrete
+blocking completion-boundary gap, never a late-result pass.
+
 
 ### Subsequent live-refresh oracle/correlation refinement
 

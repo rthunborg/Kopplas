@@ -8,9 +8,9 @@
  * period/completion-clock coverage is in unit tests. No production fault switch.
  */
 import { test, expect } from "./guarded-test";
-import type { APIResponse, Locator, Page, Request, Route, TestInfo } from "@playwright/test";
+import type { Locator, Page, Request, TestInfo } from "@playwright/test";
 import { armReadPlan, releaseRead } from "./read-plan";
-import { readFileSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { adminQuery } from "../../factories/admin-sql";
 import { aggregateQuotePipeline, resolvePipelinePeriod, type PipelineEventRow } from "../../../src/server/read-models/quote-pipeline-aggregate";
@@ -677,18 +677,16 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
   const data = scenario("retry-failure");
   await page.setViewportSize({ width: 1280, height: 900 });
   armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
-  type CompletedRefresh = { route: Route; response: APIResponse; body: Buffer; requestId: number; fetchedCanonicalDashboard: boolean };
-  let acceptCompleted!: (value: CompletedRefresh) => void;
-  let rejectCompleted!: (reason: Error) => void;
-  const completed = new Promise<CompletedRefresh>((resolve, reject) => { acceptCompleted = resolve; rejectCompleted = reject; });
-  let release!: () => void;
-  const deliveryGate = new Promise<void>(resolve => { release = resolve; });
-  let intercepted = false;
   let armed = false;
   let heldRequestId: number | null = null;
-  let handlerFailed = false;
-  let finishHandler!: () => void;
-  const handlerSettled = new Promise<void>(resolve => { finishHandler = resolve; });
+  let heldRequest: Request | undefined;
+  let heldPlan: string | undefined;
+  let heldSince = 0;
+  let readFinished = false;
+  let readFailed = false;
+  let releasedAt = 0;
+  type ReadCompletion = { transportSucceeded: boolean; status: number | null; successfulResult: boolean; freshCompletion: boolean };
+  let readWork: Promise<ReadCompletion> | undefined;
   type RequestFacts = { requestId: number; path: string | null; afterArm: boolean; get: boolean; rsc: boolean; routerStatePresent: boolean; prefetch: boolean; segmentPrefetch: boolean };
   const requestFacts = new Map<Request, RequestFacts>();
   const lifecycle: (RequestFacts & { phase: string; status?: number; category?: string })[] = [];
@@ -711,54 +709,77 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
     const value = facts(request);
     if (value.path) lifecycle.push({ ...value, phase, ...(status === undefined ? {} : { status }), ...(category === undefined ? {} : { category }) });
   };
-  page.on("request", request => record(request, "start"));
-  page.on("response", response => record(response.request(), "status", response.status()));
-  page.on("requestfinished", request => record(request, "finish"));
-  page.on("requestfailed", request => {
+  let settleRead!: () => void;
+  const readSettled = new Promise<void>(resolve => { settleRead = resolve; });
+  const onRequest = (request: Request) => {
+    record(request, "start");
+    const value = facts(request);
+    if (heldRequest || !value.afterArm || !value.get || value.path !== "/dashboard" || !value.rsc || !value.routerStatePresent || value.prefetch || value.segmentPrefetch) return;
+    heldRequest = request;
+    heldRequestId = value.requestId;
+    record(request, "selected-live-refresh");
+    // Observe before completion. Keep real body/header values memory-only and failures bounded.
+    readWork = (async (): Promise<ReadCompletion> => {
+      try {
+        const response = await request.response();
+        await readSettled;
+        if (!response || readFailed || !readFinished) return { transportSucceeded: false, status: response?.status() ?? null, successfulResult: false, freshCompletion: false };
+        const transportSucceeded = await response.finished() === null;
+        if (!transportSucceeded) return { transportSucceeded: false, status: response.status(), successfulResult: false, freshCompletion: false };
+        const body = await response.body();
+        const completion = /"completedAt":"([^"\\]+)"/.exec(body.toString("utf8"));
+        const completedAt = completion ? Date.parse(completion[1]) : NaN;
+        return { transportSucceeded, status: response.status(),
+          successfulResult: response.ok() && new URL(response.url()).pathname === "/dashboard" &&
+            body.includes(Buffer.from('"ok":true')) && body.includes(Buffer.from('"descriptor":')) && Number.isFinite(completedAt),
+          freshCompletion: releasedAt > 0 && Number.isFinite(completedAt) && completedAt >= releasedAt && completedAt <= Date.now() };
+      } catch {
+        return { transportSucceeded: false, status: null, successfulResult: false, freshCompletion: false };
+      }
+    })();
+  };
+  const onResponse = (response: import("@playwright/test").Response) => record(response.request(), "status", response.status());
+  const onFinished = (request: Request) => {
+    record(request, "finish");
+    if (request === heldRequest) { readFinished = true; settleRead(); }
+  };
+  const onFailed = (request: Request) => {
     record(request, "failure", undefined, request.failure()?.errorText.includes("ABORTED") ? "aborted" : "transport-failed");
-  });
+    if (request === heldRequest) { readFailed = true; settleRead(); }
+  };
+  page.on("request", onRequest);
+  page.on("response", onResponse);
+  page.on("requestfinished", onFinished);
+  page.on("requestfailed", onFailed);
   let sameDocumentBeforeRelease: boolean | null = null;
   let quoteHeadingBeforeRelease: boolean | null = null;
   let nonce: string | undefined;
-  const dashboardURL = (url: URL) => url.pathname === "/dashboard";
+  const failures: unknown[] = [];
   try {
     await login(page, data.user);
     const retry = card(page).getByRole("button", { name: "Försök igen", exact: true });
     await expect(retry).toBeVisible();
     await hydrated(retry);
-    // Hold only transport of the genuine completed refresh, never producer input or invented RSC.
-    // Bytes/headers remain memory-only; only lateResultTest disables trace/video/screenshot.
-    await page.route(dashboardURL, async route => {
-      const value = facts(route.request());
-      if (intercepted || !value.afterArm || !value.get || value.path !== "/dashboard" || !value.rsc || !value.routerStatePresent || value.prefetch || value.segmentPrefetch) return route.continue();
-      intercepted = true;
-      heldRequestId = value.requestId;
-      record(route.request(), "held-live-refresh");
-      try {
-        const response = await route.fetch();
-        const body = await response.body(); // Entire real producer result has completed before navigation.
-        const fetchedCanonicalDashboard = new URL(response.url()).pathname === "/dashboard";
-        record(route.request(), "producer-completed", response.status());
-        acceptCompleted({ route, response, body, requestId: value.requestId, fetchedCanonicalDashboard });
-        await deliveryGate;
-        await route.fulfill({ status: response.status(), headers: response.headers(), body });
-        record(route.request(), "fulfillment-completed");
-      } catch {
-        handlerFailed = true;
-        record(route.request(), "handler-failed", undefined, "transport-handler-failed");
-        rejectCompleted(new Error("Genuine refresh transport handler failed"));
-      } finally { finishHandler(); }
-    });
-    armReadPlan(data.user.id, { quote_events: [{ outcome: "pass" }] });
+    // Existing proxy holds the actual widget read BELOW Suspense; shared RSC streams normally.
+    heldPlan = armReadPlan(data.user.id, { quote_events: [{ outcome: "pass", hold: true }] });
+    const heldMarker = path.join(process.cwd(), "tests/e2e/.auth/dashboard-control", heldPlan + ".held");
     armed = true;
     await retry.click();
     await expect(card(page)).toHaveAttribute("aria-busy", "true");
-    const held = await completed;
-    expect(held.response.ok()).toBe(true);
-    expect(held.fetchedCanonicalDashboard).toBe(true);
-    expect(held.requestId).toBe(heldRequestId);
-    // Assert only a bounded fact; never print response bytes (including on failed expectations).
-    expect(held.body.includes(Buffer.from("completedAt"))).toBe(true);
+    await expect.poll(() => {
+      try {
+        if (readFileSync(heldMarker, "utf8") !== "held") return false;
+        heldSince = statSync(heldMarker).mtimeMs;
+        return true;
+      } catch { return false; }
+    }, { timeout: 15000, message: "The original widget read must reach its revision-specific hold" }).toBe(true);
+    expect(heldRequest !== undefined).toBe(true);
+    const request = heldRequest!;
+    const response = await request.response(); // Headers/shared shell, never the held full body.
+    expect(response !== null).toBe(true);
+    expect(response?.status()).toBe(200);
+    expect(readFinished || readFailed).toBe(false);
+    record(request, "producer-held");
     nonce = `dashboard-late-result-${Date.now()}`;
     await page.evaluate(value => { document.documentElement.dataset.dashboardLateResultNonce = value; }, nonce);
     const quoteLink = page.getByRole("navigation", { name: "Huvudnavigation", exact: true })
@@ -766,36 +787,64 @@ lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot repla
     await hydrated(quoteLink);
     await expect(quoteLink).toHaveAttribute("href", "/quotes");
     await quoteLink.click();
-    await expect(page).toHaveURL(/\/quotes$/);
+    await expect.poll(() => new URL(page.url()).pathname, { timeout: 15000 }).toBe("/quotes");
     await expect(page.getByRole("heading", { name: "Offerter", exact: true })).toBeVisible();
     quoteHeadingBeforeRelease = true;
     sameDocumentBeforeRelease = await page.evaluate(value => document.documentElement.dataset.dashboardLateResultNonce === value, nonce);
     expect(sameDocumentBeforeRelease).toBe(true);
-    const request = held.route.request();
-    const finished = page.waitForEvent("requestfinished", { predicate: candidate => candidate === request });
-    const responseFinished = page.waitForResponse(candidate => candidate.request() === request)
-      .then(async response => { expect(await response.finished()).toBeNull(); });
-    release();
-    // Cancellation/timeouts fail this test: they are not evidence that late delivery was ignored.
-    await Promise.all([finished, responseFinished, handlerSettled]);
-    expect(handlerFailed).toBe(false);
+    expect(readFinished || readFailed).toBe(false);
+    releasedAt = Date.now();
+    expect(releasedAt - heldSince < 15000, "The real read must be released before the proxy deadline").toBe(true);
+    record(request, "release-after-quotes");
+    releaseRead(heldPlan);
+    // Only genuine successful completion of THIS original browser request proves late delivery.
+    await expect.poll(() => readFinished || readFailed, { timeout: 15000, message: "The original dashboard browser request must settle after read release" }).toBe(true);
+    const completed = await readWork!;
+    expect(completed.transportSucceeded).toBe(true);
+    expect(completed.status).toBe(200);
+    expect(completed.successfulResult).toBe(true);
+    expect(completed.freshCompletion).toBe(true);
+    record(request, "successful-late-result", completed.status!);
     await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
-    await expect(page).toHaveURL(/\/quotes$/);
+    await expect.poll(() => new URL(page.url()).pathname, { timeout: 15000 }).toBe("/quotes");
     await expect(page.getByRole("heading", { name: "Offerter", exact: true })).toBeVisible();
     await expect(card(page)).toHaveCount(0);
     expect(await page.evaluate(() => document.documentElement.dataset.dashboardLateResultNonce)).toBe(nonce);
+  } catch (error) {
+    failures.push(error);
   } finally {
     if (nonce !== undefined && !page.isClosed() && sameDocumentBeforeRelease === null) {
       sameDocumentBeforeRelease = await page.evaluate(value => document.documentElement.dataset.dashboardLateResultNonce === value, nonce).catch(() => null);
       quoteHeadingBeforeRelease = await page.getByRole("heading", { name: "Offerter", exact: true }).isVisible().catch(() => null);
     }
-    release();
-    if (intercepted) await handlerSettled;
-    await page.unroute(dashboardURL);
-    await testInfo.attach("late-refresh-bounded-lifecycle", {
-      body: Buffer.from(JSON.stringify({ lifecycle: lifecycle.slice(0, 64), omittedEvents: Math.max(0, lifecycle.length - 64), heldRequestId, sameDocumentBeforeRelease, quoteHeadingBeforeRelease, handlerFailed })),
-      contentType: "application/json",
-    });
-    armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
+    try { if (heldPlan) releaseRead(heldPlan); } catch { failures.push(new Error("Late read release cleanup failed")); }
+    if (readWork) {
+      // Give released work a bounded chance to settle; close our own page on timeout and await it.
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      try {
+        await Promise.race([readWork, new Promise<never>((_, reject) => {
+          timer = setTimeout(() => reject(new Error("Late read cleanup did not settle")), 15000);
+        })]);
+      } catch {
+        failures.push(new Error("Late read cleanup did not settle successfully"));
+        try { await page.close(); } catch { failures.push(new Error("Late read page cleanup failed")); }
+        settleRead();
+        await readWork;
+      } finally { if (timer) clearTimeout(timer); }
+    }
+    page.off("request", onRequest);
+    page.off("response", onResponse);
+    page.off("requestfinished", onFinished);
+    page.off("requestfailed", onFailed);
+    try {
+      await testInfo.attach("late-refresh-bounded-lifecycle", {
+        body: Buffer.from(JSON.stringify({ lifecycle: lifecycle.slice(0, 64), omittedEvents: Math.max(0, lifecycle.length - 64), heldRequestId,
+          sameDocumentBeforeRelease, quoteHeadingBeforeRelease, readFinished, readFailed, releasedBeforeDeadline: releasedAt > 0 && heldSince > 0 && releasedAt - heldSince < 15000 })),
+        contentType: "application/json",
+      });
+    } catch { failures.push(new Error("Late read bounded attachment failed")); }
+    try { armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] }); }
+    catch { failures.push(new Error("Late read scenario restoration failed")); }
   }
+  if (failures.length) throw new AggregateError(failures, "Late-result verification or awaited cleanup failed");
 });
