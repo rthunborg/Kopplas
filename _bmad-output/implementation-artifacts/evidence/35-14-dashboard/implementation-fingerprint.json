@@ -1,6 +1,6 @@
 {
-  "baseRevision": "cc2905f5557fe0b32b63e19850609c26d42935b7",
-  "kind": "exclusive-predeclared-five-whole-viewport-capture-correction",
+  "baseRevision": "24defd6aa114b4bb8823d060339ec5da09721782",
+  "kind": "provisional-author-finalize-metadata-only-owner-approved-v2",
   "paths": {
     "src/components/dashboard/WidgetCard.tsx": {
       "rawSha256": "e819f3a805a282cc641e5bc13b055c5063d259724358fe96129d97383e17ce17",
@@ -23,12 +23,13 @@
       "lfSha256": "eab43533c7a19a523b05819a4fef8d9a19b5639f2eacf5d67c88b64bfda5f33b"
     },
     "_bmad-output/specs/spec-design-35-14/stories/35-14-live-dashboard-pipeline.md": {
-      "rawSha256": "23347580975647af35059c929e18be74c123367ec2ea04ea673219f96b4c0f74",
-      "lfSha256": "23347580975647af35059c929e18be74c123367ec2ea04ea673219f96b4c0f74"
+      "rawSha256": "a7ebab4790c08ea042f356d80171824965f66a2b074ece24feed0a2f52e4ba05",
+      "lfSha256": "a7ebab4790c08ea042f356d80171824965f66a2b074ece24feed0a2f52e4ba05"
     },
     "src/components/dashboard/DashboardRetry.tsx": {
       "rawSha256": "be3153bfa629cfb4f5e9e4047126f78cbe95853050e5fde770c7773a411f1c9b",
       "lfSha256": "be3153bfa629cfb4f5e9e4047126f78cbe95853050e5fde770c7773a411f1c9b"
     }
-  }
+  },
+  "frozenProductTestRevision": "eb8fddb77d4f8b330445c61d4e54063c4402054f"
 }
