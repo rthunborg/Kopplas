@@ -47,7 +47,6 @@
     "start_literal": "export default async function DashboardPage()",
     "end_before_literal": "/** Check eligibility",
     "lf_sha256": "1e5ea60dfc3febe970770aaae1bdb9910547a1c919690df653e2c863236411d0",
-    "text": "export default async function DashboardPage() {\n  const onboarding = await readOnboardingChecklist();\n  const showChecklist = onboarding.visible && !onboarding.checklist.workingState && onboarding.dismissedAt === null;\n  const showReminder = onboarding.visible && !onboarding.checklist.workingState && onboarding.dismissedAt !== null;\n  return (\n    <section className=\"mx-auto flex max-w-6xl flex-col gap-5\">\n      {showChecklist && <OnboardingChecklist items={onboarding.checklist.items} termsApprovalWarning={onboarding.checklist.termsApprovalWarning} />}\n      {showReminder && <OnboardingReminder />}\n      <div><h1 className=\"text-2xl font-semibold text-zinc-900\">Dashboard</h1><p className=\"mt-4 text-sm leading-6 text-zinc-600\">Detta är din operativa startvy. Använd menyn för att navigera mellan pilotens moduler.</p></div>\n      <DashboardWidgets />\n    </section>\n  );\n}\n\n\n",
     "onboarding_imports": [
       "import { OnboardingChecklist } from \"@/components/onboarding/OnboardingChecklist\";",
       "import { OnboardingReminder } from \"@/components/onboarding/OnboardingReminder\";",
