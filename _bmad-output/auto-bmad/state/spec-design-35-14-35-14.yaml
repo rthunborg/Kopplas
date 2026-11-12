@@ -9,17 +9,17 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/_bmad-output/spe
 story_id: 35-14
 branch: codex/parallel-e35-14-dashboard-20261112
 status: in-progress
-updated_at: "2026-11-12T10:48:05Z"
+updated_at: "2026-11-12T10:49:41Z"
 started_at: "2026-11-12T10:43:31Z"
 completed_at: null
 active_seconds: 267
-timing_anchor: null
+timing_anchor: 1794480581
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: tea_per_story
-selected_role: tea-delegate
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: low
@@ -30,6 +30,7 @@ escalation_reason: Ordinary task uses Low effort
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "TEA high selects phases for AC6 concurrency; effort Low covers only ordinary stale-read UI presentation tests. Frozen authority/producers/money/transactions are outside scope and require High if reached."
@@ -82,7 +83,8 @@ open_questions: []
 deferred_work: []
 blockers: []
 overrides:
-  worker_assignment: "claimed generation 1; prepared test-design retained; no aggregate writes"
+  worker_assignment: "claimed generation 1; no aggregate writes"
   publication: Root owns provider integration and PR custody
+  e2_provenance: "Correct prior inherited phase2 marker: actual coordinator delegated E2 /root/dashboard_35_14_e2 Sol Low, control e417a463, test-design-spec-design-35-14.md SHA5345c42e0b3b4136e21d62b4aa3ba917e3dffcae5cf4f1e6e116b627695801e1; no workerbase change"
 constraints: []
 parallel_run_id: e35-14-dashboard-20261112
