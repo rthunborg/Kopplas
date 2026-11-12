@@ -64,7 +64,7 @@ created. The parent owns exact-head CI/review/visual continuation; no done claim
 ## Suggested Review Order
 
 Author: `/root/dashboard_35_14_worker/build/implementation` (implementation author).
-Refreshed against the Round 1 fix tree over reviewed `733b1ca455db1583eedd595845454162636f77f9`;
+Refreshed against the later targeted AC6 verification-gap correction over `60912b77d914130698ce3fac8da439dc5b4ae558`;
 the evidence fingerprint pins final product/test and story bytes.
 
 ### Current dashboard facts within the frozen host
@@ -101,7 +101,8 @@ execution, late-result navigation proof and actual visual acceptance remain pend
 - `tests/unit/components/dashboard/widget-state.test.ts:77` — `loading announces progress`: no fabricated values or successful timestamp.
 - `tests/unit/components/dashboard/widget-state.test.ts:123` — `absent-withheld money renders Dold`: absence never becomes zero.
 - `tests/e2e/dashboard/dashboard-design.e2e.spec.ts:64` — `phone values remain in one column`: asserts actual doubled font and text bounds, then reflow; unrun.
-- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:517` — `successive failed retries recover`: retained real-source recovery, currently unrun.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:520` — `successive failed retries recover`: retained real-source recovery, currently unrun.
+- `tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts:656` — `completed refresh cannot replace newer quote navigation`: genuine completed RSC delivery after navigation; unrun.
 
 Evidence: pinned Next16.4.1 production build/typecheck/lint passed; 119 focused
 tests passed, zero failed/skipped. SSR phone topology probe passed one assertion.
@@ -110,11 +111,11 @@ commands, byte fingerprint and all seven AC/eleven state bindings are recorded i
 the linked implementation verification file.
 
 Limits: SSR/mocked read-dependency tests do not prove browser/RSC/RLS behavior.
-General 3 and dedicated 52 browser tests are collected but unrun. Full required
+Current collection: General 3 and dedicated 54 browser tests; all remain unrun. Full required
 DB/RLS/recovery, exact-head CI, independent review, production captures and human
 substantive visual acceptance remain pending. No independent filter/module-
 unavailable state is manufactured; no-match/unavailable use their actual seams.
-Late-result navigation remains a named runtime proof gap. The absent local
+The later AC6 correction buffers a genuine completed RSC response in memory, navigates through the existing shell Next Link with a same-document nonce, then requires successful browser request/response completion before asserting the quote route remains current. Cancellation fails; the test is not runtime proof until executed. Late-result navigation remains a named runtime proof gap. The absent local
 `.env.test` cannot be repaired through this closed allocation. No development-
 complete or release-ready claim is made.
 

@@ -1,7 +1,7 @@
 # 35.14 implementation verification — 2026-11-12
 
 Implementation author: `/root/dashboard_35_14_worker/build/implementation`, Sol Low.
-Subject: Round 1 fix tree over reviewed `733b1ca455db1583eedd595845454162636f77f9`.
+Subject: later targeted AC6 verification-gap correction over clean `60912b77d914130698ce3fac8da439dc5b4ae558`.
 `implementation-fingerprint.json` pins final product/test and story bytes (raw and LF).
 The seven allocated product paths remain the closed boundary. Only three presentation
 components and the two allocated E2E files changed; DashboardPage and DashboardRetry
@@ -90,6 +90,34 @@ Validation,submitting,unknown,confirmed,locked,dirty-navigation,focus-dialog and
 file operations remain N/A. Quote destination protections remain inherited, unmodified.
 
 ## Pending gates and next action
+
+### Later targeted AC6 verification-gap correction
+
+This correction follows the separately checkpointed automation receipt; it is not
+part of that completed delegate's output. Only dashboard-pipeline.e2e.spec.ts and
+existing author story/evidence metadata changed. No product/shared/proxy/config
+changes, resource launches or unchanged build/119-test reruns occurred.
+
+The new E35-14-T-AC6 / E35-14-T-late-result test obtains the actual refresh via
+route.fetch, reads its entire genuine body before holding browser fulfillment,
+uses the existing shell Next Link to reach /quotes, and verifies a document nonce
+survives. It then fulfills the original status/headers/body and requires both
+browser requestfinished and response.finished without error before checking the
+quote route/heading and absence of the dashboard card. Abort, cancelled transport
+or missing observable delivery fails; none is accepted as proof of ignored late
+completion. Genuine RSC bytes/headers stay memory-only, are never attached/logged,
+and file-level trace/video/automatic screenshots are disabled. Existing explicit
+UI captures and functional assertions remain. No new selector/cache guard exists.
+
+Actual validation: affected-file ESLint exit 0 without diagnostics; dedicated
+Playwright collection exit 0, 54 tests (prior 53 plus one), 0 executed. An initial
+collection rejected describe-scoped trace/video/screenshot options; the supported
+file-level options corrected it. General remains 3 collected tests from prior
+evidence. No browser pass or screenshot is claimed. The first real runtime result
+must establish whether genuine delivery survives navigation; if the request is
+aborted, retain that concrete missing completion boundary rather than claiming
+the invariant passed. Existing external/controller/DB/RLS/runtime/visual/manual
+blockers remain. Earlier counts below describe their historical checkpoints.
 
 Round 1 fix evidence: the independent blind layer identified that fixed-px type
 utilities prevented root-font text enlargement, while the prior test checked only

@@ -8,13 +8,16 @@
  * period/completion-clock coverage is in unit tests. No production fault switch.
  */
 import { test, expect } from "./guarded-test";
-import type { Locator, Page } from "@playwright/test";
+import type { APIResponse, Locator, Page, Route } from "@playwright/test";
 import { armReadPlan, releaseRead } from "./read-plan";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { adminQuery } from "../../factories/admin-sql";
 import { aggregateQuotePipeline, resolvePipelinePeriod, type PipelineEventRow } from "../../../src/server/read-models/quote-pipeline-aggregate";
 import { formatOreAsKronor } from "../../../src/lib/money";
+
+// Genuine RSC transport bytes must remain memory-only; explicit UI attachments are retained.
+test.use({ trace: "off", video: "off", screenshot: "off" });
 
 type User = { id: string; email: string; password: string };
 type Scenario = {
@@ -646,6 +649,66 @@ test("E35-14-T-AC4 E35-14-T-error-retry enlarged phone error retains keyboard re
     await expect(pipeline.locator("time")).toBeVisible();
     await expect(pipeline.getByRole("link", { name: "Visa offerter", exact: true })).toHaveAttribute("href", "/quotes");
   } finally {
+    armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
+  }
+});
+
+test("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot replace newer quote navigation", async ({ page }) => {
+  const data = scenario("retry-failure");
+  await page.setViewportSize({ width: 1280, height: 900 });
+  armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
+  type CompletedRefresh = { route: Route; response: APIResponse; body: Buffer };
+  let acceptCompleted!: (value: CompletedRefresh) => void;
+  const completed = new Promise<CompletedRefresh>(resolve => { acceptCompleted = resolve; });
+  let release!: () => void;
+  const deliveryGate = new Promise<void>(resolve => { release = resolve; });
+  let intercepted = false;
+  const dashboardURL = (url: URL) => url.pathname === "/dashboard";
+  try {
+    await login(page, data.user);
+    const retry = card(page).getByRole("button", { name: "Försök igen", exact: true });
+    await expect(retry).toBeVisible();
+    await hydrated(retry);
+    // Hold only transport of the genuine completed refresh, never producer input or invented RSC.
+    // Bytes/headers remain memory-only; the file disables trace/video/screenshot.
+    await page.route(dashboardURL, async route => {
+      if (intercepted || route.request().headers()["rsc"] !== "1") return route.continue();
+      intercepted = true;
+      const response = await route.fetch();
+      const body = await response.body(); // Entire real producer result has completed before navigation.
+      acceptCompleted({ route, response, body });
+      await deliveryGate;
+      await route.fulfill({ status: response.status(), headers: response.headers(), body });
+    });
+    armReadPlan(data.user.id, { quote_events: [{ outcome: "pass" }] });
+    await retry.click();
+    await expect(card(page)).toHaveAttribute("aria-busy", "true");
+    const held = await completed;
+    expect(held.response.ok()).toBe(true);
+    // Assert only a bounded fact; never print response bytes (including on failed expectations).
+    expect(held.body.includes(Buffer.from("completedAt"))).toBe(true);
+    const nonce = `dashboard-late-result-${Date.now()}`;
+    await page.evaluate(value => { document.documentElement.dataset.dashboardLateResultNonce = value; }, nonce);
+    await page.getByRole("navigation", { name: "Huvudnavigation", exact: true })
+      .getByRole("link", { name: "Offerter", exact: true }).click();
+    await expect(page).toHaveURL(/\/quotes$/);
+    await expect(page.getByRole("heading", { name: "Offerter", exact: true })).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.dataset.dashboardLateResultNonce)).toBe(nonce);
+    const request = held.route.request();
+    const finished = page.waitForEvent("requestfinished", { predicate: candidate => candidate === request });
+    const responseFinished = page.waitForResponse(candidate => candidate.request() === request)
+      .then(async response => { expect(await response.finished()).toBeNull(); });
+    release();
+    // Cancellation/timeouts fail this test: they are not evidence that late delivery was ignored.
+    await Promise.all([finished, responseFinished]);
+    await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+    await expect(page).toHaveURL(/\/quotes$/);
+    await expect(page.getByRole("heading", { name: "Offerter", exact: true })).toBeVisible();
+    await expect(card(page)).toHaveCount(0);
+    expect(await page.evaluate(() => document.documentElement.dataset.dashboardLateResultNonce)).toBe(nonce);
+  } finally {
+    release();
+    await page.unroute(dashboardURL);
     armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
   }
 });
