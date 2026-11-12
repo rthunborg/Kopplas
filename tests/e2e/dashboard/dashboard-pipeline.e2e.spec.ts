@@ -564,3 +564,32 @@ test("[P1] 19.1-E2E-011 successive failed retries recover in the same session [A
     armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
   }
 });
+// 35.14 presentation extension; existing source/role/payload oracles above remain unchanged.
+test("E35-14-T-AC4 E35-14-T-AC6 E35-14-T-connection-required disconnected retry stays honest and explicitly recovers", async ({ page, context }) => {
+  const data = scenario("retry-failure");
+  await page.setViewportSize({ width: 360, height: 640 });
+  armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
+  await login(page, data.user);
+  const pipeline = card(page);
+  const retry = pipeline.getByRole("button", { name: "Försök igen", exact: true });
+  await expect(pipeline.getByRole("alert")).toContainText("Kunde inte läsa offertpipeline");
+  await hydrated(retry);
+  await context.setOffline(true);
+  try {
+    await retry.click();
+    await expect(pipeline.getByRole("alert")).toContainText("Kunde inte läsa offertpipeline");
+    await expect(retry).toBeEnabled();
+    await expect(pipeline.locator("time")).toHaveCount(0);
+    await expect(pipeline.getByLabel("Skickade", { exact: true })).toHaveCount(0);
+    const bounds = (await retry.boundingBox())!;
+    expect(bounds.height).toBeGreaterThanOrEqual(44);
+    expect(bounds.width).toBeGreaterThanOrEqual(44);
+  } finally {
+    await context.setOffline(false);
+  }
+  armReadPlan(data.user.id, { quote_events: [{ outcome: "pass" }] });
+  await retry.click();
+  await expect(pipeline.getByRole("alert")).toHaveCount(0);
+  await expect(pipeline.locator("time")).toBeVisible();
+  await expect(pipeline.getByRole("link", { name: "Visa offerter", exact: true })).toHaveAttribute("href", "/quotes");
+});

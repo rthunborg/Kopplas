@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/_bmad-output/spe
 story_id: 35-14
 branch: codex/parallel-e35-14-dashboard-20261112
 status: in-progress
-updated_at: "2026-11-12T10:43:38Z"
+updated_at: "2026-11-12T10:48:05Z"
 started_at: "2026-11-12T10:43:31Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1794480218
+active_seconds: 267
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -32,10 +32,10 @@ routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
-tea_rationale: "AC6 late-result concurrency coverage; frozen producers and authority remain unchanged"
+tea_rationale: "TEA high selects phases for AC6 concurrency; effort Low covers only ordinary stale-read UI presentation tests. Frozen authority/producers/money/transactions are outside scope and require High if reached."
 epic_story_count: 1
 stories_after_in_epic: 0
-completed_phases: [0, 1, 2, 3]
+completed_phases: [0, 1, 2, 3, 4]
 spec_path: "C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/_bmad-output/specs/spec-design-35-14/stories/35-14-live-dashboard-pipeline.md"
 spec_approved: true
 build:
@@ -55,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [b62378f9]
 phase8_steps:
   trace_gate: null
   nfr: null
