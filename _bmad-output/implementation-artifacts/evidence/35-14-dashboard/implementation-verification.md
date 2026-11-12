@@ -3,9 +3,9 @@
 Implementation author: `/root/dashboard_35_14_worker/build/implementation`, Sol Low.
 Subject: authorized hosted-failure correction over clean `cc5c37d9dc3bac876a179fd15f1f953793e994f7`.
 `implementation-fingerprint.json` pins final product/test and story bytes (raw and LF).
-The seven allocated product paths remain the closed boundary. Only three presentation
-components and the two allocated E2E files changed; DashboardPage and DashboardRetry
-remain unchanged. No authority, money arithmetic, producer, registry, host, environment,
+The seven allocated product paths remain the closed boundary. Three presentation
+components, DashboardRetry's known-offline predispatch guard and the two allocated
+E2E files changed; DashboardPage remains unchanged. No authority, money arithmetic, producer, registry, host, environment,
 configuration or support changes. Existing sensitive oracles are reused, not redefined.
 
 ## Result and decisions
