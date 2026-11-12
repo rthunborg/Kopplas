@@ -603,3 +603,49 @@ test("E35-14-T-AC4 E35-14-T-AC6 E35-14-T-connection-required disconnected retry 
   await expect(pipeline.locator("time")).toBeVisible();
   await expect(pipeline.getByRole("link", { name: "Visa offerter", exact: true })).toHaveAttribute("href", "/quotes");
 });
+
+test("E35-14-T-AC4 E35-14-T-error-retry enlarged phone error retains keyboard recovery", async ({ page }, testInfo) => {
+  const data = scenario("retry-failure");
+  await page.setViewportSize({ width: 360, height: 640 });
+  armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
+  try {
+    await login(page, data.user);
+    const pipeline = card(page);
+    const alert = pipeline.getByRole("alert");
+    const retry = pipeline.getByRole("button", { name: "Försök igen", exact: true });
+    await expect(alert).toContainText("Kontrollera anslutningen och försök igen.");
+    await hydrated(retry);
+    const rootSize = await page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).fontSize));
+    const initialFontSize = await retry.evaluate(element => parseFloat(getComputedStyle(element).fontSize));
+    await page.addStyleTag({ content: `html { font-size: ${rootSize * 2}px !important; }` });
+    expect(await retry.evaluate(element => parseFloat(getComputedStyle(element).fontSize))).toBeCloseTo(initialFontSize * 2, 1);
+    await expect(alert).toBeVisible();
+    await retry.scrollIntoViewIfNeeded();
+    await retry.click({ trial: true });
+    const bounds = (await retry.boundingBox())!;
+    expect(bounds.height).toBeGreaterThanOrEqual(44);
+    expect(bounds.width).toBeGreaterThanOrEqual(44);
+    expect(bounds.x).toBeGreaterThanOrEqual(0);
+    expect(bounds.x + bounds.width).toBeLessThanOrEqual(360);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+    await retry.focus();
+    await page.keyboard.press("Shift+Tab");
+    await page.keyboard.press("Tab");
+    await expect(retry).toBeFocused();
+    expect(await retry.evaluate(element => {
+      const style = getComputedStyle(element);
+      return style.outlineStyle !== "none" && parseFloat(style.outlineWidth) > 0;
+    })).toBe(true);
+    await testInfo.attach("dashboard-enlarged-error-phone", {
+      body: await page.screenshot({ fullPage: true }), contentType: "image/png",
+    });
+    armReadPlan(data.user.id, { quote_events: [{ outcome: "pass" }] });
+    await page.keyboard.press("Enter");
+    await expect(alert).toHaveCount(0);
+    await expect(retry).toHaveCount(0);
+    await expect(pipeline.locator("time")).toBeVisible();
+    await expect(pipeline.getByRole("link", { name: "Visa offerter", exact: true })).toHaveAttribute("href", "/quotes");
+  } finally {
+    armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
+  }
+});
