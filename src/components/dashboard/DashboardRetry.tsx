@@ -9,7 +9,11 @@ import { QuotePipelineWidget } from "./QuotePipelineWidget";
 export function DashboardRetry({ result }: { readonly result: DashboardPipelineResult }) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
-  const retry = () => { if (!pending) startTransition(() => router.refresh()); };
+  const retry = () => {
+    // A known offline browser cannot dispatch this connected read. Keep its current error/action.
+    if (pending || navigator.onLine === false) return;
+    startTransition(() => router.refresh());
+  };
   return <QuotePipelineWidget state={pending ? "loading" : result.ok ? "loaded" : "error"}
     descriptor={!pending && result.ok ? result.data.descriptor : undefined}
     completedAt={!pending && result.ok ? result.data.completedAt : undefined}

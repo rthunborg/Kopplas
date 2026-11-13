@@ -1,0 +1,99 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: spec-design-35-14-35-14
+epic_num: null
+story_num: null
+story_suffix: ""
+story_source: stories
+spec_folder: "C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/_bmad-output/specs/spec-design-35-14"
+story_id: 35-14
+branch: codex/parallel-e35-14-dashboard-20261112
+status: in-progress
+updated_at: "2026-11-12T20:19:07Z"
+started_at: "2026-11-12T10:43:31Z"
+completed_at: null
+active_seconds: 2186
+timing_anchor: null
+is_first_in_epic: true
+is_last_in_epic: true
+git_mode: remote
+base_branch: main
+selected_phase: tea_per_story
+selected_role: tea-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: low
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: Ordinary task uses Low effort
+routing_ledger:
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: "TEA high selects phases for AC6 concurrency; effort Low covers only ordinary stale-read UI presentation tests. Frozen authority/producers/money/transactions are outside scope and require High if reached."
+epic_story_count: 1
+stories_after_in_epic: 0
+completed_phases: [0, 1, 2, 3, 4, 5, 6, 7]
+spec_path: "C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/_bmad-output/specs/spec-design-35-14/stories/35-14-live-dashboard-pipeline.md"
+spec_approved: true
+build:
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: null
+  deferred_count: 0
+  warnings: []
+followup_passes: 0
+hitl_halt: "skipped (clean recommendation gate; finalG visual acceptance pending under approved V2)"
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: [b62378f9, a1404c36, 733b1ca4, f9749b6c, 050dfe3c, 453d7278, 60912b77, 74a8a1c6, 28c82ff3, cc5c37d9, 23455f4d, 8546af60, f524e9ef, bdd13a8e, cc2905f5, eb8fddb7, 24defd6a, 4cc70ecf, 932436c6, 6803b9f3]
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/153"
+ci_run_url: null
+ci_status: unknown
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers:
+  - "PROVISIONAL implementation-stage completion ONLY; accepted development FALSE/visual-pending under actual approvedV2. FinalG actualcurrentCI/85browser/DB/recovery/78captures/entireCC..G review/owneracceptance/unchangedfinalgate mandatory."
+overrides:
+  worker_assignment: generation1
+  publication: "Root sole publisher; immutable draft PR153 https://github.com/rthunborg/Kopplas/pull/153"
+  e2_provenance: "Actual coordinator E2 e417a463, SolLow /root/dashboard_35_14_e2; prior inherited marker corrected before build"
+  continuation: "Root authorized selected distinct automate on blocked checkpoint; no development-complete/status waiver"
+  review_scheduling: "Root authorized bounded batches on fixed read-only733b1ca4 for5-slot capacity. All6layers retained; batches one round, all outputs collected before triage. External blocked; targeted delta review no findings."
+  completion_order_v2: "Owner approved exact35.14gen1 temporalexception: approval product-35-14-completion-order-v2-owner-approval-20261112.json SHAd893181b9d869fd255616e05c095cc6d7ea11b2a5d8ac934e04797f28aaa5526; proposal1ec05cea5c070b6d03478ab121136f0ad957bad1b4a15b32cdeef0ae40a06f14. ProvisionalIMPLEMENTATION-STAGEONLY; accepteddevelopmentFALSE/visualpending. Directphase5-7originalhelpers authorized in order; NOTnormalwrapperPASS. FinalGactualproof+owner+UNCHANGEDfinalgate mandatory. App/tests/config/deps/contracts frozeneb8fddb7; no aggregate8/9."
+  phase6_retained_continuation: "Distinct SolLow TEA completed actual retained453-step applicability at A2 using qualified CC85 and reviewed capture-onlyeb delta. No material automation implementation gap; original453artifact/receipts unchanged; no new generation/execution. V2 provisionalONLY; accepteddevelopmentFALSE/finalG78frames+checks+ownerpending."
+  phase7_disposition: "Actual authorfollowup_review_recommended=false and configuredfollowup=recommended: normalNOnewpass, notwaiver. Existingrequiredlayers/qualifiedCCreview retained; ENTIRECC..G aggregate review stillmandatory. No traceadvisory selected; deferred_count0; globalharvest/aggregate8/9 outsideworker."
+constraints: []
+parallel_run_id: e35-14-dashboard-20261112

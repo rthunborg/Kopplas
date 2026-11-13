@@ -1,0 +1,35 @@
+{
+  "baseRevision": "24defd6aa114b4bb8823d060339ec5da09721782",
+  "kind": "provisional-author-finalize-metadata-only-owner-approved-v2",
+  "paths": {
+    "src/components/dashboard/WidgetCard.tsx": {
+      "rawSha256": "e819f3a805a282cc641e5bc13b055c5063d259724358fe96129d97383e17ce17",
+      "lfSha256": "e819f3a805a282cc641e5bc13b055c5063d259724358fe96129d97383e17ce17"
+    },
+    "src/components/dashboard/QuotePipelineWidget.tsx": {
+      "rawSha256": "9dff1764021f7c5da9fd10d4210923953c1aa549ee80e22b4735c0fe1811c3ac",
+      "lfSha256": "9dff1764021f7c5da9fd10d4210923953c1aa549ee80e22b4735c0fe1811c3ac"
+    },
+    "src/components/dashboard/DashboardGrid.tsx": {
+      "rawSha256": "dd9d1f284ef8a3c8b046b3545f5dffd45df1c12068b95b4bcd79a497cf4f39f0",
+      "lfSha256": "dd9d1f284ef8a3c8b046b3545f5dffd45df1c12068b95b4bcd79a497cf4f39f0"
+    },
+    "tests/e2e/dashboard/dashboard-design.e2e.spec.ts": {
+      "rawSha256": "8959a5cee189ba4762d4acdbe9611ab9651e7f0d3d181e396f2df158b5b19feb",
+      "lfSha256": "8857ac9b434c4244da5ce4da49a64fc346f1370730f7cc738cc8818a4887b207"
+    },
+    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts": {
+      "rawSha256": "eab43533c7a19a523b05819a4fef8d9a19b5639f2eacf5d67c88b64bfda5f33b",
+      "lfSha256": "eab43533c7a19a523b05819a4fef8d9a19b5639f2eacf5d67c88b64bfda5f33b"
+    },
+    "_bmad-output/specs/spec-design-35-14/stories/35-14-live-dashboard-pipeline.md": {
+      "rawSha256": "dc0bb7c055365a3496069b19534ebae973f37d9eefa706eb1c91a687e6a282f3",
+      "lfSha256": "dc0bb7c055365a3496069b19534ebae973f37d9eefa706eb1c91a687e6a282f3"
+    },
+    "src/components/dashboard/DashboardRetry.tsx": {
+      "rawSha256": "be3153bfa629cfb4f5e9e4047126f78cbe95853050e5fde770c7773a411f1c9b",
+      "lfSha256": "be3153bfa629cfb4f5e9e4047126f78cbe95853050e5fde770c7773a411f1c9b"
+    }
+  },
+  "frozenProductTestRevision": "eb8fddb77d4f8b330445c61d4e54063c4402054f"
+}
