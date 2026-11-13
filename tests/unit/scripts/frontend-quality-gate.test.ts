@@ -4,12 +4,12 @@ import { createHash } from "node:crypto";
 import { deflateSync } from "node:zlib";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, existsSync, rmSync } from "node:fs";
+import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, existsSync, rmSync, unlinkSync, rmdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname, resolve } from "node:path";
 import { EVIDENCE_MARKER, evidenceDigest, evaluateFrontend, hash, inspectPng } from "../../../scripts/quality/frontend-gate.mjs";
 import { renderPrScreenshots, publicationPath, presentationFeedback, feedbackScopeDigest } from "../../../scripts/quality/frontend-presentation.mjs";
-import { assessPr, reportPrAssessment, verifyTrustedSources } from "../../../scripts/quality/frontend-controller.mjs";
+import { assessPr, preflightPr, reportPrAssessment, verifyParserArchive, verifyTrustedSources } from "../../../scripts/quality/frontend-controller.mjs";
 import { guardedCompletion } from "../../../scripts/quality/completion-gate.mjs";
 import { selectFeedback } from "../../../scripts/pr-feedback/policy.mjs";
 import { monitor } from "../../../scripts/pr-feedback/runtime.mjs";
@@ -473,7 +473,7 @@ test("trusted canonical source bytes must exist and match committed authority", 
 });
 function controllerApi(f: ReturnType<typeof fixture>, actors = [{author: {id: 777}, committer: {id: 888}}]) {
   return async (path: string) => {
-    if (path === "/repos/o/r/pulls/1") return {number: 1, state: "open", head: {sha: head}, changed_files: f.input.files.length, commits: actors.length, user: {id: 123}, body: f.input.prBody, labels: [{name: "agent-fix"}]};
+    if (path === "/repos/o/r/pulls/1") return {number: 1, state: "open", head: {sha: head}, base: {ref: "main", sha: "b".repeat(40)}, changed_files: f.input.files.length, commits: actors.length, user: {id: 123}, body: f.input.prBody, labels: f.input.labels.map(name => ({name}))};
     if (path.includes("/files?")) return f.input.files.map((filename) => ({filename}));
     if (path.includes("/commits?")) return actors;
     if (path.includes("/issues/1/comments?")) return f.input.comments;
@@ -485,6 +485,168 @@ function controllerApi(f: ReturnType<typeof fixture>, actors = [{author: {id: 77
     throw new Error(`Unexpected path ${path}`);
   };
 }
+function trustedFixtureBase(policy: ReturnType<typeof fixture>["policy"], bytes: Buffer) {
+  return (revision: string, path: string) => {
+    assert.equal(revision, "b".repeat(40));
+    if (path === "scripts/quality/frontend-policy.json") return Buffer.from(JSON.stringify(policy));
+    assert.match(path, /\/DESIGN\.md$/);
+    return bytes;
+  };
+}
+
+const customerHeading = 'export function CustomerList() { return <h1 className="text-title font-medium text-text-primary">Kunder</h1>; }';
+const mainRevision = "b".repeat(40);
+const mergeBase = "c".repeat(40);
+
+function sourceChange(before: string, after: string, options: {
+  file?: string; companion?: string; oldMode?: string; changedBase?: boolean; wrongBlob?: boolean; status?: string; truncatedTree?: boolean; hiddenChange?: boolean;
+} = {}) {
+  const path = options.file ?? "src/components/crm/CustomerList.tsx";
+  const entries = new Map<string, Buffer>();
+  const entry = (source: string, mode: string, filename = path) => {
+    const bytes = Buffer.from(source);
+    const sha = createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex");
+    entries.set(sha, bytes);
+    return {path: filename, mode, sha, type: "blob", size: bytes.length};
+  };
+  const oldEntry = entry(before, options.oldMode ?? "100644");
+  const newEntry = entry(after, "100644");
+  const beforeTree = [oldEntry], afterTree = [newEntry];
+  const files = [{filename: path, status: options.status ?? "modified", sha: newEntry.sha}];
+  if (options.companion) {
+    const original = entry("old", "100644", options.companion);
+    const updated = entry("new", "100644", options.companion);
+    beforeTree.push(original);
+    afterTree.push(options.hiddenChange ? original : updated);
+    files.push({filename: options.companion, status: "modified", sha: updated.sha});
+  }
+  if (options.hiddenChange) {
+    beforeTree.push(entry("h1{color:red}", "100644", "src/app/globals.css"));
+    afterTree.push(entry("h1{color:blue}", "100644", "src/app/globals.css"));
+  }
+  const oldTree = "d".repeat(40), newTree = "e".repeat(40);
+  let reads = 0;
+  const api = async (url: string) => {
+    if (url === "/repos/o/r/pulls/1") {
+      const changed = ++reads > 1 && options.changedBase;
+      return {number: 1, state: "open", head: {sha: head}, base: {ref: "main", sha: changed ? "f".repeat(40) : mainRevision}, changed_files: files.length, commits: 1, user: {id: 123}, body: ""};
+    }
+    if (url.includes("/files?")) return files;
+    if (url.includes("/commits?")) return [{author: {id: 777}, committer: {id: 888}}];
+    if (url.includes("/comments?") || url.includes("/reviews?")) return [];
+    if (url === `/repos/o/r/compare/${mainRevision}...${head}?per_page=1`) return {merge_base_commit: {sha: mergeBase}};
+    if (url === `/repos/o/r/git/commits/${mergeBase}`) return {sha: mergeBase, tree: {sha: oldTree}};
+    if (url === `/repos/o/r/git/commits/${head}`) return {sha: head, tree: {sha: newTree}};
+    if (url === `/repos/o/r/git/trees/${oldTree}?recursive=1`) return {sha: oldTree, truncated: options.truncatedTree ?? false, tree: beforeTree};
+    if (url === `/repos/o/r/git/trees/${newTree}?recursive=1`) return {sha: newTree, truncated: false, tree: afterTree};
+    if (url.includes("/git/blobs/")) {
+      const sha = url.split("/").at(-1)!;
+      const bytes = entries.get(sha)!;
+      return {sha, size: bytes.length, encoding: "base64", content: (options.wrongBlob ? Buffer.alloc(bytes.length) : bytes).toString("base64")};
+    }
+    throw new Error(`Unexpected URL ${url}`);
+  };
+  return {api, repo: "o/r", prNumber: 1, expectedHead: head};
+}
+
+test("a verified native heading punctuation edit and its test update need no human visual receipt", async () => {
+  const candidate = sourceChange(customerHeading, customerHeading.replace("Kunder", "Kunder."), {companion: "tests/unit/components/customer-list.test.ts"});
+  const result = await assessPr(candidate);
+  assert.equal(result.status, "not-applicable");
+  assert.equal(result.mode, "copy-only");
+  assert.equal(result.headSha, head);
+  assert.equal(result.baseSha, mainRevision);
+  assert.equal(result.mergeBaseSha, mergeBase);
+  await assert.rejects(assessPr({...candidate, typescriptPath: null}), /Missing current-head visual evidence/);
+});
+
+test("verified backend connection plumbing needs no human visual receipt", async () => {
+  const before = 'export const create = (url: string, key: string) => createServerClient(url, key, {retry: false});';
+  const after = before.replace("false", "true");
+  const file = "src/server/db/supabase-server-client.ts";
+  assert.equal((await assessPr(sourceChange(before, after, {file}))).mode, "backend-only");
+  await assert.rejects(assessPr(sourceChange(before, after, {file: "src/server/read-models/dashboard.ts"})), /Missing current-head visual evidence/);
+  await assert.rejects(assessPr(sourceChange(before, 'export const write = () => "New customer error";', {file})), /Missing current-head visual evidence/);
+  await assert.rejects(assessPr(sourceChange(before, after, {file, companion: "supabase/migrations/20260101000000_projection.sql"})), /Missing current-head visual evidence/);
+  const quoteSnapshot = 'const pdfInput = {introText: snapshot.intro_text, lines: snapshot.lines};';
+  await assert.rejects(assessPr(sourceChange(quoteSnapshot, quoteSnapshot.replace("snapshot.intro_text", "null"), {file: "src/server/commands/quotes/quote-db.ts"})), /Missing current-head visual evidence/);
+});
+
+test("visual scope stays gated for mixed, structural, behavioral or consequential string changes", async () => {
+  const title = customerHeading.replace("Kunder", "Kunder.");
+  const cases = [
+    sourceChange(customerHeading, title.replace("font-medium", "font-bold")),
+    sourceChange(customerHeading, title.replaceAll("h1", "h2")),
+    sourceChange(customerHeading, customerHeading.replace("Kunder", "{label}")),
+    sourceChange(customerHeading, title.replace('className="text-title', 'data-testid="heading" className="text-title')),
+    sourceChange(customerHeading.replace("<h1 ", '<h1 role="alert" '), title.replace("<h1 ", '<h1 role="alert" ')),
+    sourceChange(customerHeading.replace("Kunder", "100 kr"), customerHeading.replace("Kunder", "200 kr")),
+    sourceChange(customerHeading.replace("Kunder", "Access granted"), customerHeading.replace("Kunder", "Access denied")),
+    sourceChange(customerHeading.replace("Kunder", "Spara arbetsledare"), customerHeading.replace("Kunder", "Spåra arbetsledare"), {file: "src/components/jobs/JobMembersPanel.tsx"}),
+    sourceChange(customerHeading, customerHeading.replace("Kunder", "Kunder?")),
+    sourceChange('const route = "/customers";' + customerHeading, 'const route = "/contacts";' + title),
+    sourceChange(customerHeading, title, {file: "src/components/pricing/WorkRolesEditor.tsx"}),
+    sourceChange('const heading = <h2 id="tax-document-settings-title">Skatteinställningar</h2>;',
+      'const heading = <h2 id="tax-document-settings-title">Skatteinställningar.</h2>;', {file: "src/components/calculations/TaxSettingsPanel.tsx"}),
+    sourceChange('const retry = <button type="button" onClick={operation.refreshRead}>Försök läsa igen</button>;',
+      'const retry = <button type="button" onClick={operation.refreshRead}>Försök läsa igen.</button>;', {file: "src/components/settings/QuoteTermsEditor.tsx"}),
+    sourceChange(customerHeading, title, {companion: "src/app/globals.css"}),
+    sourceChange(customerHeading, title, {companion: "src/server/commands/pricing/pricing-db.ts"}),
+    sourceChange(customerHeading, title, {companion: "package.json"}),
+  ];
+  for (const input of cases) await assert.rejects(assessPr(input), /Missing current-head visual evidence/);
+});
+
+test("source exemptions require stable PR identity, complete trees and matching regular Git blobs", async () => {
+  const after = customerHeading.replace("Kunder", "Kunder.");
+  for (const options of [{oldMode: "120000"}, {oldMode: "100755"}, {status: "added"}, {status: "renamed"}, {wrongBlob: true}, {truncatedTree: true}]) {
+    await assert.rejects(assessPr(sourceChange(customerHeading, after, options)), /Missing current-head visual evidence/);
+  }
+  await assert.rejects(assessPr(sourceChange(customerHeading, after, {hiddenChange: true, companion: "tests/unit/crm.test.ts"})), /Missing current-head visual evidence/);
+  await assert.rejects(assessPr(sourceChange(customerHeading, after, {changedBase: true})), /PR identity changed/);
+});
+
+test("trusted workflow provisioning rejects a wrong parser archive before exposing a parser path", () => {
+  for (const path of [".github/workflows/frontend-quality-gate.yml", ".github/workflows/pr-feedback.yml"]) {
+    const workflow = readFileSync(path, "utf8");
+    assert.match(workflow, /continue-on-error: true\s+run: node scripts\/quality\/frontend-controller\.mjs provision-parser/);
+    assert.ok(workflow.indexOf("provision-parser") < workflow.indexOf("GITHUB_TOKEN:"));
+  }
+  assert.throws(() => verifyParserArchive(Buffer.from("untrusted parser archive")), /Trusted TypeScript lock integrity mismatch/);
+});
+
+test("feedback collection uses the verified runner-local parser and stays strict when it is missing or corrupt", async () => {
+  const temp = mkdtempSync(join(tmpdir(), "frontend-parser-fixture-"));
+  const directory = join(temp, "kopplas-visual-parser.Abc123");
+  const parser = join(directory, "typescript.cjs");
+  const environment = {
+    GITHUB_ACTIONS: "true", GITHUB_REPOSITORY: "o/r",
+    GITHUB_WORKFLOW_REF: "o/r/.github/workflows/pr-feedback.yml@refs/heads/main",
+    RUNNER_TEMP: temp, KOPPLAS_VISUAL_TYPESCRIPT: parser, KOPPLAS_VISUAL_TYPESCRIPT_SHA256: "",
+  };
+  const previous = new Map(Object.keys(environment).map((name) => [name, process.env[name]]));
+  try {
+    Object.assign(process.env, environment);
+    const candidate = sourceChange(customerHeading, customerHeading.replace("Kunder", "Kunder."));
+    await assert.rejects(assessPr(candidate), /Missing current-head visual evidence/);
+    const bytes = readFileSync("node_modules/typescript/lib/typescript.js");
+    mkdirSync(directory);
+    writeFileSync(parser, bytes);
+    process.env.KOPPLAS_VISUAL_TYPESCRIPT_SHA256 = hash(bytes);
+    assert.equal((await assessPr(candidate)).mode, "copy-only");
+    writeFileSync(parser, "corrupt parser bytes");
+    await assert.rejects(assessPr(candidate), /Missing current-head visual evidence/);
+  } finally {
+    for (const [name, value] of previous) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+    if (existsSync(parser)) unlinkSync(parser);
+    if (existsSync(directory)) rmdirSync(directory);
+    rmdirSync(temp);
+  }
+});
+
 test("API-authenticated manual acceptance still blocks missing or mismatched canonical sources", async () => {
   const f = fixture(); const bytes = Buffer.from("approved source"); f.policy.source.hashes["DESIGN.md"] = hash(bytes); f.submit();
   const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, policy: f.policy};
@@ -499,6 +661,141 @@ test("API derives reviewer identity exclusion from human-opened PR commit author
   await assert.rejects(assessPr({...args, api: controllerApi(f, [{author: {id: 777}, committer: {id: 456}}])}), /Independent vision/);
   assert.equal((await assessPr({...args, api: controllerApi(f)})).mode, "independent-vision");
 });
+
+test("visual preflight checks one published digest before any initial owner decision", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit(false);
+  const digest = evidenceDigest(f.evidence);
+  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, expectedDigest: digest, readBaseFile: trustedFixtureBase(f.policy, bytes)};
+  const ready = await preflightPr(args);
+  assert.equal(ready.status, "package-ready");
+  assert.equal(ready.headSha, head);
+  assert.equal(ready.evidenceDigest, digest);
+  assert.deepEqual(ready.outstanding, ["visual-accept"]);
+  await assert.rejects(assessPr({...args, policy: f.policy, readSource: () => bytes}), /explicit owner acceptance/);
+  const {f: reports, run} = reporterFixture();
+  await assert.rejects(run(async () => ready), /did not return current accepted/);
+  assert.equal(reports.storedStatus, "failure");
+  await assert.rejects(preflightPr({...args, expectedDigest: "e".repeat(64)}), /does not match a published current-head visual package/);
+  await assert.rejects(preflightPr({...args, expectedHead: "f".repeat(40)}), /candidate head changed/);
+  await assert.rejects(preflightPr({...args, readBaseFile: trustedFixtureBase(f.policy, Buffer.from("stale source"))}), /source bytes unavailable or mismatched/);
+
+  f.input.labels = [];
+  await assert.rejects(preflightPr(args), /requires agent-fix/);
+  f.input.labels = ["agent-fix"];
+  f.input.prBody = "Screenshots without the required labels";
+  await assert.rejects(preflightPr(args), /must start with current durable embedded screenshots/);
+});
+
+test("preflight uses policy and source from the reported main base instead of the candidate", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit();
+  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, policy: f.policy, readSource: () => bytes};
+  assert.equal((await assessPr(args)).status, "accepted");
+  const mainPolicy = {...f.policy, source: {...f.policy.source, version: "approved on current main"}};
+  const input = {...args, expectedDigest: evidenceDigest(f.evidence), readBaseFile: trustedFixtureBase(mainPolicy, bytes)};
+  await assert.rejects(preflightPr(input), /Approved source identity\/version\/hash mismatch/);
+  await assert.rejects(preflightPr({...input, readBaseFile: () => { throw new Error("Trusted base blob is unavailable"); }}), /Trusted base blob is unavailable/);
+});
+
+test("preflight checks image integrity and critical findings even when acceptance is outstanding", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit(false);
+  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, readBaseFile: trustedFixtureBase(f.policy, bytes)};
+  const expectedHash = f.evidence.captures[0].actual.sha256;
+  f.evidence.captures[0].actual.sha256 = "f".repeat(64);
+  f.submit(false);
+  await assert.rejects(preflightPr({...args, expectedDigest: evidenceDigest(f.evidence)}), /Image input hash mismatch/);
+  f.evidence.captures[0].actual.sha256 = expectedHash;
+  f.submit(false);
+  f.independent();
+  const receipt = f.input.comments.at(-1)!;
+  receipt.body = receipt.body.replace('"findings":[]', '"findings":[{"id":"SEC-1","category":"security","status":"unresolved"}]');
+  await assert.rejects(preflightPr({...args, expectedDigest: evidenceDigest(f.evidence)}), /critical findings cannot be waived/);
+});
+
+test("same-binding administrative repair preserves the authenticated receipt and package edits do not", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit();
+  const digest = evidenceDigest(f.evidence);
+  const args = {api: controllerApi(f), repo: "o/r", prNumber: 1, expectedHead: head, policy: f.policy, readSource: () => bytes, readBaseFile: trustedFixtureBase(f.policy, bytes)};
+  const accepted = await assessPr(args);
+  const currentBody = f.input.prBody;
+  const originalReceipt = f.input.comments[1];
+  f.input.prBody = "Incorrect presentation";
+  await assert.rejects(preflightPr({...args, expectedDigest: digest}), /must start with current durable embedded screenshots/);
+  f.input.prBody = currentBody;
+  const repaired = await preflightPr({...args, expectedDigest: digest});
+  assert.equal(repaired.status, "package-ready");
+  assert.deepEqual(repaired.outstanding, []);
+  assert.deepEqual(await assessPr(args), accepted);
+
+  f.evidence.runtime.fixture = "A materially different capture input";
+  f.submit(false);
+  f.input.comments.push(originalReceipt);
+  const replacement = await preflightPr({...args, expectedDigest: evidenceDigest(f.evidence)});
+  assert.equal(replacement.status, "package-ready");
+  assert.deepEqual(replacement.outstanding, ["visual-accept"]);
+  await assert.rejects(assessPr(args), /explicit owner acceptance/);
+});
+
+test("preflight refuses a moved base, changed label or edited package snapshot", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit(false);
+  const args = {repo: "o/r", prNumber: 1, expectedHead: head, expectedDigest: evidenceDigest(f.evidence), readBaseFile: trustedFixtureBase(f.policy, bytes)};
+  const read = controllerApi(f);
+  for (const change of ["base", "label", "body", "comment"]) {
+    let prReads = 0;
+    let commentReads = 0;
+    const api = async (path: string) => {
+      const value = await read(path);
+      if (path === "/repos/o/r/pulls/1" && ++prReads === 2) {
+        if (change === "base") return {...value, base: {ref: "main", sha: "c".repeat(40)}};
+        if (change === "label") return {...value, labels: []};
+        if (change === "body") return {...value, body: "Changed during the check"};
+      }
+      if (path.includes("/issues/1/comments?") && ++commentReads === 2 && change === "comment") return [];
+      return value;
+    };
+    await assert.rejects(preflightPr({...args, api}), /changed during (visual preflight|screenshot assessment)/);
+  }
+});
+
+test("preflight rechecks the full PR after the screenshot publication readback", async () => {
+  const f = fixture();
+  const bytes = Buffer.from("approved source");
+  f.policy.source.hashes["DESIGN.md"] = hash(bytes);
+  f.submit(false);
+  const args = {repo: "o/r", prNumber: 1, expectedHead: head, expectedDigest: evidenceDigest(f.evidence), readBaseFile: trustedFixtureBase(f.policy, bytes)};
+  const read = controllerApi(f);
+  const changes = [
+    {head: {sha: "c".repeat(40)}},
+    {state: "closed"},
+    {labels: []},
+    {body: "Changed during screenshot publication readback"},
+  ];
+  for (const change of changes) {
+    let refReads = 0;
+    const api = async (path: string) => {
+      const value = await read(path);
+      if (path.includes("/git/ref/heads/")) refReads++;
+      return path === "/repos/o/r/pulls/1" && refReads > 1 ? {...value, ...change} : value;
+    };
+    await assert.rejects(preflightPr({...args, api}), /changed during (assessment|visual preflight|screenshot assessment)/);
+    assert.equal(refReads, 2);
+  }
+});
+
 test("signal/null helper outcomes never report completion success", () => {
   for (const outcome of [{status: null, signal: "SIGTERM"}, {status: 0, signal: "SIGTERM"}, {status: null}]) {
     let calls = 0;

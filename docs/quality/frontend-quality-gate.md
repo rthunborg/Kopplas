@@ -6,7 +6,7 @@ no product scope, schema, dependency, environment, deployment or paused run.
 
 ## Acceptance and trust
 
-A frontend candidate is ready only when its **current full Git head** has actual
+A candidate with a substantive frontend visual change is ready only when its **current full Git head** has actual
 production-server UI evidence, complete affected-surface coverage and either
 independent image review or authenticated owner manual acceptance. Initial
 foundation/screen references and every replacement reference also require owner
@@ -134,16 +134,37 @@ protected-input, scope, authorization, money and transaction checks.
 Root tokens/font/global styles require representative **auth, records, dialogs,
 documents, jobs, scheduling and time/Min dag** consumers. Record all other affected
 consumers in the package; this minimum is not whole-site coverage. Shared primitive
-changes require their real affected consumers. Direct frontend-bearing paths
-cannot use an N/A package. Backend/docs/tooling with no rendered path receives an
-explicit N/A reason and its complete file inventory. Every `src` source change and Next/Tailwind/PostCSS configuration change is
-conservatively subject to impact assessment, including headless `.ts` state,
-formatters and date/display helpers. A backend-only ambiguous source candidate
-may submit `kind=not-applicable`, `candidateSha`, the exact `changedPaths` and a
-concrete `reason`, then needs authenticated owner
-`/visual-not-applicable <head> <digest>`. Direct rendered paths cannot use this
-route. Docs/tooling without source/config changes receive computed explicit N/A.
-Automatic extensions alone never decide headless UI state is backend-only.
+changes require their real affected consumers. Direct rendered paths cannot use
+an author-submitted N/A package. The controller can compute N/A for docs/tooling
+without frontend-bearing source or config changes, or for the verified source
+exemptions below. Substantive frontend changes still require the ordinary human
+visual acceptance. Engineering review and ordinary tests cover all changes.
+
+The controller compares immutable regular-file blobs at the current PR head and
+its provider-reported merge base for these source exemptions:
+
+- **Minor presentation copy.** Direct plain text in an existing native button,
+  label, legend or heading can qualify for capitalization or adding or removing
+  a final period. The words and rest of the source must match.
+  Dynamic strings, accessible status or alert regions, number and amount edits,
+  sensitive copy paths, meaningful wording changes, added or renamed files,
+  route or attribute edits, layout or style changes and mixed production work
+  stay gated. Ordinary accompanying docs or tests can remain in the PR.
+- **Backend connection plumbing.** Existing Supabase server/public client or
+  environment modules can qualify when the change preserves literal prose and
+  HTML. Database adapters and projections can affect what users see and remain
+  subject to impact assessment, as do read models, headless UI state, display
+  formatters and other unclassified application source.
+
+An ambiguous backend-only candidate can still submit `kind=not-applicable`,
+`candidateSha`, the exact `changedPaths` and a concrete `reason` for authenticated
+owner `/visual-not-applicable <head> <digest>`. Missing parser or provenance,
+unavailable blobs and ambiguous cases follow the existing strict visual path.
+The trusted visual and feedback collectors use the same locked TypeScript
+parser to read inert source text. Main integration changes the controller
+used by all open PRs. Integrate
+only after active consumers of the prior visual contract close, then use the
+new policy at a clean story admission.
 
 Store derived reference/actual PNGs outside immutable
 `docs/design/claude-design/v1/handoff/`. Record source version/hash, component,
@@ -265,6 +286,103 @@ provider integration remains unconfigured. Synthetic policy tests demonstrate
 protocol enforcement, never actual app comparison or hosted-provider execution.
 
 ## Completion, review and remediation
+
+### Admit the verification the story needs
+
+Apply this procedure when admitting a new story from a qualified revision that
+includes it. An already admitted story uses its original policy, source pins,
+configuration and receipts through handoff or resume.
+
+Use the existing story admission or checkpoint record. Tie each mandatory
+infrastructure-dependent check to its acceptance criteria, supported command and
+target. Distinguish an owned local production-server route from a qualified
+hosted job. Record the actual inputs or revision, startup and readiness check,
+required proxy or callback behavior, and where to retain native results.
+
+For stateful verification, identify the isolated database, browser profile and
+resource owner, and the synthetic fixture operations required to reach the
+specified states. Record the authorized create, read, update and cleanup scope
+and any capture, publication or hosted operation the check needs. Reference
+existing grants by source, target and conditions. Confirm runtime custody
+separately from the worktree. An absent guard context, foreign resource or
+unsupported route blocks the dependent check.
+
+Resolve foreseeable gaps before dependent implementation. When a route has an
+unusual startup or fixture dependency, use a supported alternative or an early
+authorized rehearsal. If required verification remains unsupported, name the
+blocked criterion, evidence, owner and next allowed action in the admission.
+Keep dependent completion blocked. Other allocated work may proceed unless a
+recorded hold applies.
+
+### Carry standing authority through handoff
+
+Proceed under the original allocation for reversible implementation,
+corrections, targeted revalidation, authorized isolated fixture operations,
+captures and administrative package work. Advance through ordinary authorized
+phases as their gates pass. A handoff or resume keeps the existing grants for
+the same source, scope, target and conditions. Recheck ownership and applicable
+conditions. A new actor uses its own resource-guard identity. A recorded hold,
+expired grant or custody change follows its existing decision route.
+
+Use the existing independent reviewer to assess conformance to explicit
+acceptance criteria. Record the actual evidence and its binding. Route material
+scope or design decisions, genuine acceptance uncertainty and consequential
+actions outside the grant to the owner. Keep required human visual acceptance,
+independent review, merge, deployment and platform controls.
+
+On the next eligible ordinary story, use its existing records to compare time
+to verified readiness, waiting for acceptance and merge, corrections after first
+readiness, and owner interruptions or repeated grants. Record the comparison in
+the existing closeout after the story runs.
+
+### Prepare the package before requesting acceptance
+
+Use this procedure for fresh admissions under the
+[bounded workflow policy](../process/bounded-workflow-operating-policy.md).
+In the existing delivery or checkpoint record, list the remaining candidate
+metadata writes and identify which fields can be recorded later in the
+coordinator's existing receipt or report without changing the candidate or
+visual package. Reconcile the candidate-changing writes together before
+requesting acceptance. Use the existing read-only Phase 9
+`state_plan.py --finalize` invocation where applicable and the delivery
+validator for the record once its required checks have actually passed. A
+pending visual result stays pending. Keep any required terminal write that
+cannot truthfully occur yet on its existing, explicitly recorded route.
+
+Publish the evidence, render the description and replies from the same package
+digest, and verify the PR label or existing authenticated opt-out. From the
+clean candidate checkout, run:
+
+```text
+node scripts/quality/frontend-controller.mjs preflight --base <recorded-full-baseline> --digest <intended-package-digest>
+```
+
+Preflight reads the actual current PR and the selected uploaded package. It
+checks the full head and digest, labels, source, immutable captures, required
+coverage and presentation, and rereads current publication and PR metadata.
+It reads policy and source blobs at the current main base revision reported by
+the PR. If those Git objects are unavailable locally, preflight blocks until
+the checkout has the qualified base objects. This current snapshot can differ
+from the event revision used by an in-flight hosted check.
+`package-ready` means the package passed those checks. `outstanding` names
+the authenticated controls still required by the current protocol. An empty
+list means the existing controls verified during preflight. Use the separate
+acceptance and completion commands below for the authoritative result. The
+preflight checks published inputs and checkout cleanliness. The author verifies
+planned writes and the provenance of executed CI and independent review in the
+existing checkpoint before requesting a decision.
+
+If administrative corrections restore the exact PR presentation or label for
+the same head, digest and valid evidence, rerun preflight and the existing
+acceptance check. A receipt that still verifies needs no replacement. A wrong
+digest never identified a valid receipt. If candidate, material input, coverage,
+reference or digest changes, revalidate the affected evidence in scope. Reuse
+original capture bytes only through an existing qualified exact-input route with
+retained provenance. Keep the actual capture source and current candidate
+binding explicit. A reusable capture does not transfer an authenticated
+acceptance receipt to a different head or digest.
+
+### Validate acceptance before completion
 
 Before an implementation returns completed work or a review calls a frontend
 candidate ready, run:

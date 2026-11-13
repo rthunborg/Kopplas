@@ -39,6 +39,9 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '24'
+      - name: Provision lock-verified parser for applicability proofs
+        continue-on-error: true
+        run: node scripts/quality/frontend-controller.mjs provision-parser
       - name: Verify immutable image evidence and authenticated acceptance
         env:
           GITHUB_TOKEN: ${{ github.token }}
