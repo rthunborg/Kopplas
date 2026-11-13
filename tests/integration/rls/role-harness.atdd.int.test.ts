@@ -175,7 +175,13 @@ async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<
   const [{id: workOrder}] = await adminQuery<{id:string}>("insert into public.work_orders(tenant_id,job_id,title) values($1,$2,'Harness work order') returning id",[tenantId,job]);
   const [{id: workOrderAssignee}] = await adminQuery<{id:string}>("insert into public.work_order_assignees(tenant_id,job_id,work_order_id,person_profile_id) values($1,$2,$3,$4) returning id",[tenantId,job,workOrder,personProfile]);
   const [{id: workOrderDependency}] = await adminQuery<{id:string}>("insert into public.work_order_dependencies(tenant_id,dependent_job_id,dependent_work_order_id,prerequisite_job_id) values($1,$2,$3,$4) returning id",[tenantId,job,workOrder,prerequisite]);
+  const calculationEditorOperation = (await adminQuery<{ operation_id: string }>(
+    "insert into public.calculation_editor_operations (operation_id,tenant_id,actor_user_id,operation_kind,form_kind,protocol_version,request_digest,status,terminal_code,committed_at) values (gen_random_uuid(),$1,$2,'calculation.update','calculation',1,repeat('a',64),'closed','COMMAND_CONFLICT',clock_timestamp()) returning operation_id",
+    [tenantId, actorId],
+  ))[0]?.operation_id;
+  if (!calculationEditorOperation) throw new Error("role harness seed: calculation editor proof missing");
   return {
+    calculation_editor_operations: calculationEditorOperation,
     calendar_feed_tokens: feedToken,
     time_reports: timeReport,
     booking_conflict_resolutions:resolution,

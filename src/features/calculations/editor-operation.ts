@@ -59,6 +59,7 @@ export function validateEditorSafety(raw: unknown, kind: EditorKind): EditorSafe
 }
 /** Stable request equality only; the authoritative binding is computed by SQL. */
 export function canonicalEditorJson(value: unknown): string {
+  if (value instanceof Date) return JSON.stringify(value.toISOString());
   if (Array.isArray(value)) return `[${value.map(canonicalEditorJson).join(",")}]`;
   if (record(value)) return `{${Object.keys(value).filter(key => value[key] !== undefined).sort().map(key => `${JSON.stringify(key)}:${canonicalEditorJson(value[key])}`).join(",")}}`;
   return JSON.stringify(value ?? null);

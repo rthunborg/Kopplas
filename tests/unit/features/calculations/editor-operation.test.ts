@@ -94,3 +94,28 @@ test("P-1/P-2 version-1 per-kind normalization rejects extra/missing expected ke
   assert.equal((safe.expected.header as { title: string }).title, "original");
   assert.equal(canonicalEditorJson({ a: 1, b: null }), canonicalEditorJson({ b: null, a: 1 }));
 });
+
+test("P-2 canonical expected facts retain database Date instants instead of empty objects", () => {
+  const instant = new Date("2026-11-13T10:00:00Z");
+  assert.equal(canonicalEditorJson({ captured_at: instant }), canonicalEditorJson({ captured_at: instant.toISOString() }));
+});
+
+const sectionFacts={id,title:"Section",display_mode:"detailed",sort_order:0,archived_at:null};
+const rowFacts=Object.fromEntries((await import("@/features/calculations/editor-operation")).ROW_FACTS.map(key=>[key,key==="id"||key==="section_id"?id:null]));
+for(const [caller,validate,payload] of callers){
+  test(`P-1 ${caller}: complete original expected shape is mandatory and closed`,()=>{
+    const header=projectEditorFacts({id,title:"Original",status:"draft"},HEADER_FACTS);
+    const expected:Record<string,unknown>={version:1,header};
+    if(caller==="createCalculationAction")Object.assign(expected,{form:"calculation",customer_id:id,facility_id:null,contact_id:null});
+    else if(caller==="createReviewedQuoteVersionFromCalculationAction")Object.assign(expected,{form:"reviewed-initial-quote",reviewed_snapshot_digest:"a".repeat(64),reviewed_quote_capture_date:"2026-11-13",attachment_file_ids:[]});
+    else if(caller==="updateCalculationAction"||caller==="updateTaxInputAction")expected.form=caller==="updateTaxInputAction"?"tax_input":"calculation";
+    else if(caller==="archiveCalculationAction")Object.assign(expected,{form:"archive_calculation",sections:[]});
+    else if(caller==="reorderSectionsAction"||caller==="reorderRowsAction")Object.assign(expected,{form:caller==="reorderRowsAction"?"reorder_rows":"reorder_sections",siblings:[{id,sort_order:0},{id:other,sort_order:1}]});
+    else if(caller.includes("Section")){expected.form=caller.startsWith("archive")?"archive_section":"section";if(!caller.startsWith("create"))expected.section=sectionFacts;if(caller.startsWith("archive"))expected.rows=[];}
+    else {Object.assign(expected,{form:caller.startsWith("archive")?"archive_row":"row",section:sectionFacts});if(!caller.startsWith("create"))expected.row=rowFacts;}
+    if(caller==="createCalculationAction"||caller==="createReviewedQuoteVersionFromCalculationAction")delete expected.header;
+    const input={...payload,operation_id:id,expected};assert.equal(validate(input).ok,true);
+    assert.equal(validate({...input,expected:{...expected,extra:true}}).ok,false);
+    assert.equal(validate({...input,expected:{version:1,form:expected.form}}).ok,false);
+  });
+}

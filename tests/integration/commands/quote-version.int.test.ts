@@ -45,7 +45,7 @@ import { adminSelectAuditEvents } from "../../factories/audit-events";
 import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
 import { buildQuoteReviewProof } from "../../support/quote-review-proof";
-import { runEditorCommand as runCommand } from "./calculation-editor-safety-fixture";
+import { captureEditorTestIntent, runEditorCommand as runCommand } from "./calculation-editor-safety-fixture";
 import { createQuoteVersionFromCalculation } from "@/server/commands/quotes";
 import {
   attachmentsToPayload,
@@ -518,33 +518,18 @@ describe("createQuoteVersionFromCalculation — numbering race-safety (AC3, 6.1-
 
     const correlationId = crypto.randomUUID();
     const rpc = asQuoteReviewRpcClient(a);
-    const authorization = await rpc.rpc("authorize_quote_initial_review", {
-      p_tenant_id: fixture.tenantA.id,
-      p_calculation_id: src.calcId,
-      p_captured_at: FIXED_ISO,
-      p_customer_id: reviewed.customerId,
-      p_facility_id: reviewed.facilityId,
-      p_contact_id: reviewed.contactId,
-      p_snapshot: malformedSnapshot,
-      p_lines: linesToPayload(reviewed.snapshot),
-      p_attachments: attachmentsToPayload(reviewed.snapshot),
-      p_reviewed_quote_capture_date: reviewed.quoteCaptureDate,
-      p_reviewed_calculation_status: reviewed.reviewedCalculationStatus,
-      p_reviewed_readiness_rows: reviewed.reviewedReadinessRows,
-      p_actor_user_id: fixture.adminA.id,
-      p_correlation_id: correlationId,
-    });
+    const reviewedProof = await buildQuoteReviewProof(a, {calculationId:src.calcId,capturedAt:FIXED_ISO});
+    const domain = {calculation_id:src.calcId,attachment_file_ids:[],...reviewedProof};
+    const safety = await captureEditorTestIntent("quote.version.create",domain,correlationId);
+    const request = {p_tenant_id:fixture.tenantA.id,p_actor_user_id:fixture.adminA.id,p_operation_id:correlationId,p_input:{...domain,...safety}};
+    const authorization = await rpc.rpc("authorize_calculation_editor_quote", {...request,p_review:{
+      p_calculation_id:src.calcId,p_captured_at:FIXED_ISO,p_customer_id:reviewed.customerId,p_facility_id:reviewed.facilityId,p_contact_id:reviewed.contactId,
+      p_snapshot:malformedSnapshot,p_lines:linesToPayload(reviewed.snapshot),p_attachments:attachmentsToPayload(reviewed.snapshot),
+      p_reviewed_quote_capture_date:reviewed.quoteCaptureDate,p_reviewed_calculation_status:reviewed.reviewedCalculationStatus,p_reviewed_readiness_rows:reviewed.reviewedReadinessRows,
+    }});
     expect(authorization.error).toBeNull();
-    expect(typeof authorization.data).toBe("string");
-    if (typeof authorization.data !== "string") return;
-
-    const { error } = await rpc.rpc("create_quote_version_from_calculation", {
-      p_tenant_id: fixture.tenantA.id,
-      p_authorization_id: authorization.data,
-      p_captured_at: FIXED_ISO,
-      p_actor_user_id: fixture.adminA.id,
-      p_correlation_id: correlationId,
-    });
+    expect(authorization.data).toMatchObject({status:"unconfirmed",operationId:correlationId});
+    const {error}=await rpc.rpc("create_calculation_editor_quote",request);
     // The RPC reached the version insert and raised on its timestamptz cast.
     expect(error).not.toBeNull();
     expect(error?.code).toBe("22007");

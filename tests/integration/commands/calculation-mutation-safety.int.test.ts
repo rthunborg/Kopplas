@@ -12,8 +12,9 @@ import {
 } from "../../factories/tenants";
 import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
+import { captureEditorTestIntent } from "./calculation-editor-safety-fixture";
 import { runCommand } from "@/server/commands/envelope";
-import { createCalculation, updateCalculation, archiveCalculation, updateRow, archiveSection, reorderRows } from "@/server/commands/calculations";
+import { createCalculation, updateCalculation, archiveCalculation, createSection, updateSection, archiveSection, createRow, updateRow, archiveRow, reorderSections, reorderRows } from "@/server/commands/calculations";
 
 let up = false;
 let fixture: TwoTenantFixture;
@@ -147,7 +148,7 @@ describe("35.8-P calculation original-operation and atomic expected-content cont
     if (skipUnlessStack(ctx, up)) return;
     const s = await seed();
     const original = await sectionTree(s.section);
-    const rowOp = intent("row", { header: await header(s.calc), row: original.rows.find(row => row.id === s.rows[0]) });
+    const rowOp = intent("row", { header: await header(s.calc), section: original.section, row: original.rows.find(row => row.id === s.rows[0]) });
     const archiveOp = intent("archive_section", { header: await header(s.calc), ...original });
     await adminExec("update public.calculation_rows set label='Newer child',is_optional=true,is_selected=false,included_in_invoice_total=false where id=$1", [s.rows[0]]);
     const before = await sectionTree(s.section);
@@ -182,8 +183,100 @@ describe("35.8-P calculation original-operation and atomic expected-content cont
     expect(await adminSelectAuditEvents({ correlationId: op.operation_id })).toEqual([]);
   });
 
-  it.todo("P-2 complete original tax/section/row archive snapshots; disjoint header patch coexistence; sibling archive/reorder and complete duplicate-free permutations");
-  it.todo("P-3 all eleven calculation effect kinds: post-commit loss, same intent serialization, changed payload/kind refusal and terminal closed replay");
-  it.todo("P-3 forced existing audit-failure fixture: domain + required audit + committed proof roll back together; original identity safely retries");
-  it.todo("P-2 existing source mutation interactions and row-limit recheck under root lock without new money rules");
+
+  it("P-2 disjoint header fields coexist; obsolete tax, section and row archive decisions conflict", async ctx => {
+    if (skipUnlessStack(ctx, up)) return;
+    const s = await seed();
+    const title = { id: s.calc, title: "Disjoint title", ...await captureEditorTestIntent("calculation.update", {id:s.calc}) };
+    await adminExec("update public.calculations set tax_input_snapshot=$2::jsonb where id=$1", [s.calc, JSON.stringify(taxInput)]);
+    expect(await runCommand(updateCalculation, {client:actor as never,input:title,correlationId:title.operation_id})).toMatchObject({ok:true});
+    const requests = [
+      [updateCalculation, "calculation.update", {id:s.calc,tax_input_snapshot:taxInput}],
+      [updateSection, "calculation.section.update", {id:s.section,title:"Stale"}],
+      [archiveRow, "calculation.row.archive", {id:s.rows[0]}],
+    ] as const;
+    for (const [command,kind,input] of requests) {
+      const safety = await captureEditorTestIntent(kind,input);
+      if(kind === "calculation.update") await adminExec("update public.calculations set tax_input_snapshot=null where id=$1",[s.calc]);
+      else if(kind === "calculation.section.update") await adminExec("update public.calculation_sections set title='Newer' where id=$1",[s.section]);
+      else await adminExec("update public.calculation_rows set label='Newer' where id=$1",[s.rows[0]]);
+      expect(await runCommand(command as typeof updateCalculation,{client:actor as never,input:{...input,...safety},correlationId:safety.operation_id})).toMatchObject({ok:false,code:"COMMAND_CONFLICT"});
+      expect(await adminSelectAuditEvents({correlationId:safety.operation_id})).toEqual([]);
+    }
+  });
+
+  it("P-2 complete permutation rejects duplicates, omitted siblings and stale archive/reorder ranks", async ctx => {
+    if (skipUnlessStack(ctx, up)) return;
+    const s=await seed();
+    for(const ids of [[s.rows[0],s.rows[0]],[s.rows[0]]]) {
+      const input={section_id:s.section,ordered_row_ids:ids};const safety=await captureEditorTestIntent("calculation.rows.reorder",input);
+      expect((await runCommand(reorderRows,{client:actor as never,input:{...input,...safety},correlationId:safety.operation_id})).ok).toBe(false);
+    }
+    for(const change of ["sort_order=sort_order+5","archived_at=clock_timestamp()"]){
+      const input={section_id:s.section,ordered_row_ids:[...s.rows].reverse()};const safety=await captureEditorTestIntent("calculation.rows.reorder",input);
+      await adminExec(`update public.calculation_rows set ${change} where id=$1`,[s.rows[0]]);
+      const before=await sectionTree(s.section);
+      expect(await runCommand(reorderRows,{client:actor as never,input:{...input,...safety},correlationId:safety.operation_id})).toMatchObject({ok:false,code:"COMMAND_CONFLICT"});
+      expect(await sectionTree(s.section)).toEqual(before);
+    }
+  });
+
+  for(const effect of ["create","update","tax","archive","section.create","section.update","section.archive","row.create","row.update","row.archive","sections.reorder","rows.reorder"] as const) {
+    it(`P-3 ${effect}: lost commit and concurrent same-intent replay retain one immutable effect`,async ctx=>{
+      if(skipUnlessStack(ctx,up))return;const s=await seed();
+      const operations={
+        create:[createCalculation,{customer_id:s.customer,title:`Loss ${crypto.randomUUID()}`}],
+        update:[updateCalculation,{id:s.calc,title:"Saved"}],tax:[updateCalculation,{id:s.calc,tax_input_snapshot:taxInput}],archive:[archiveCalculation,{id:s.calc}],
+        "section.create":[createSection,{calculation_id:s.calc,title:"New section"}],"section.update":[updateSection,{id:s.section,title:"Saved section"}],"section.archive":[archiveSection,{id:s.section}],
+        "row.create":[createRow,{section_id:s.section,row_type:"labor",quantity:1,unit:"h",vat_rate_bp:2500,unit_sell_ore:10000}],"row.update":[updateRow,{id:s.rows[0],label:"Saved row"}],"row.archive":[archiveRow,{id:s.rows[0]}],
+        "sections.reorder":[reorderSections,{calculation_id:s.calc,ordered_section_ids:[s.section]}],"rows.reorder":[reorderRows,{section_id:s.section,ordered_row_ids:[...s.rows].reverse()}],
+      } as const;
+      const [command,domain]=operations[effect];const kind=command.config.command as Parameters<typeof captureEditorTestIntent>[0];
+      const safety=await captureEditorTestIntent(kind,domain);const input={...domain,...safety};let lost=false;
+      const lossy=new Proxy(actor,{get(target,key){if(key==="rpc")return async(name:string,args:Record<string,unknown>)=>{const response=await target.rpc(name,args);if(name==="mutate_calculation_editor"&&!response.error&&!lost){lost=true;throw new Error("post-commit loss");}return response;};const value=Reflect.get(target,key);return typeof value==="function"?value.bind(target):value;}});
+      const submit=(client:TestServerClient)=>runCommand(command as typeof updateCalculation,{client:client as never,input,correlationId:safety.operation_id});
+      expect((await submit(lossy)).ok).toBe(false);expect(lost).toBe(true);
+      const before=await adminQuery("select * from public.calculation_editor_operations where operation_id=$1",[safety.operation_id]);
+      const domainBefore=await domainState(s.customer);
+      const [one,two]=await Promise.all([submit(actor),submit(actor)]);expect(one.ok).toBe(true);expect(two).toEqual(one);
+      expect(await domainState(s.customer)).toEqual(domainBefore);
+      expect(await adminQuery("select * from public.calculation_editor_operations where operation_id=$1",[safety.operation_id])).toEqual(before);
+      expect(await adminSelectAuditEvents({correlationId:safety.operation_id})).toHaveLength(["create","update","tax","archive"].includes(effect)?1:0);
+      const changed=await actor.rpc("mutate_calculation_editor",{p_tenant_id:s.tenant,p_actor_user_id:fixture.adminA.id,p_operation_id:safety.operation_id,p_kind:kind,p_input:{...input,expected:{...input.expected,form:"wrong"}},p_captured_at:new Date().toISOString()});
+      expect(changed.error).not.toBeNull();
+    });
+  }
+
+  it("P-3 audit failure rolls domain and proof back; the exact original identity safely retries",async ctx=>{
+    if(skipUnlessStack(ctx,up))return;const s=await seed();const input={customer_id:s.customer,title:`Rollback ${crypto.randomUUID()}`};const safety=await captureEditorTestIntent("calculation.create",input);
+    await adminExec("insert into test_support.forced_audit_failures(correlation_id) values($1)",[safety.operation_id]);
+    try{expect((await runCommand(createCalculation,{client:actor as never,input:{...input,...safety},correlationId:safety.operation_id})).ok).toBe(false);}
+    finally{await adminExec("delete from test_support.forced_audit_failures where correlation_id=$1",[safety.operation_id]);}
+    expect(await adminQuery("select id from public.calculations where title=$1",[input.title])).toEqual([]);
+    expect(await adminQuery("select operation_id from public.calculation_editor_operations where operation_id=$1",[safety.operation_id])).toEqual([]);
+    expect(await runCommand(createCalculation,{client:actor as never,input:{...input,...safety},correlationId:safety.operation_id})).toMatchObject({ok:true});
+    expect(await adminSelectAuditEvents({correlationId:safety.operation_id})).toHaveLength(1);
+  });
+
+  it("P-2 SQL resolves the current pricing source under its lock and enforces the persisted 500-row limit",async ctx=>{
+    if(skipUnlessStack(ctx,up))return;const s=await seed();
+    const [{id:source}]=await adminQuery<{id:string}>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,'Before',2000,10000) returning id",[s.tenant]);
+    const input={section_id:s.section,row_type:"labor",quantity:1,unit:"h",vat_rate_bp:2500,source_kind:"work_role",source_id:source};const safety=await captureEditorTestIntent("calculation.row.create",input);
+    let release!:()=>void;const released=new Promise<void>(r=>release=r);let ready!:()=>void;const locked=new Promise<void>(r=>ready=r);let pid=0;
+    const holder=adminSession(async session=>{await session.query("begin");try{pid=(await session.query<{pid:number}>("select pg_backend_pid() pid"))[0].pid;await session.query("update public.work_roles set display_name='After',sell_rate_ore=12000 where id=$1",[source]);ready();await released;await session.query("commit");}catch(error){await session.query("rollback");throw error;}});
+    await Promise.race([locked,holder]);const pending=runCommand(createRow,{client:actor as never,input:{...input,...safety},correlationId:safety.operation_id,clock:{now:()=>new Date("2026-11-13T10:00:00Z")}});
+    try{await expect.poll(async()=>(await adminQuery<{waiting:boolean}>("select exists(select 1 from pg_stat_activity where $1::int=any(pg_blocking_pids(pid))) waiting",[pid]))[0].waiting).toBe(true);}finally{release();await holder;}
+    const result=await pending;expect(result.ok).toBe(true);if(!result.ok)return;
+    expect(await adminQuery("select source_name,source_price_ore::text,source_captured_at from public.calculation_rows where id=$1",[result.data.targetId])).toEqual([{source_name:"After",source_price_ore:"12000",source_captured_at:new Date("2026-11-13T10:00:00Z")}]);
+    await adminExec("insert into public.calculation_rows(tenant_id,section_id,row_type,quantity,unit,vat_rate_bp) select $1,$2,'labor',1,'h',2500 from generate_series(1,497)",[s.tenant,s.section]);
+    const limit=await captureEditorTestIntent("calculation.row.create",input);
+    expect(await runCommand(createRow,{client:actor as never,input:{...input,...limit},correlationId:limit.operation_id})).toMatchObject({ok:false,code:"VALIDATION_FAILED"});
+    expect(await adminQuery("select operation_id from public.calculation_editor_operations where operation_id=$1",[limit.operation_id])).toEqual([]);
+  });
 });
+
+const taxInput={schemaVersion:2,documentVatType:"STANDARD_VAT_25",buyerVatNumber:null,deductionChoice:"NONE",paymentDate:null,finalPaymentDate:null,personAllowanceSlots:[],greenBasisMethod:"ACTUAL_ELIGIBLE_COSTS",genuineFixedPrice:false,fixedPriceOre:null,fixedPriceCategorySplitOre:null,fixedPriceRowIds:null};
+
+async function domainState(customer:string){return adminQuery(`select 'calculation' kind,c.id,to_jsonb(c) facts from public.calculations c where c.customer_id=$1
+ union all select 'section',s.id,to_jsonb(s) from public.calculation_sections s join public.calculations c on c.id=s.calculation_id where c.customer_id=$1
+ union all select 'row',r.id,to_jsonb(r) from public.calculation_rows r join public.calculation_sections s on s.id=r.section_id join public.calculations c on c.id=s.calculation_id where c.customer_id=$1 order by kind,id`,[customer]);}

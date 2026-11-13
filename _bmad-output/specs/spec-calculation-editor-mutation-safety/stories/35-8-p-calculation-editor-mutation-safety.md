@@ -1,6 +1,6 @@
 ---
 title: "Story 35.8-P: Calculation Editor Mutation Safety"
-status: blocked
+status: in-progress
 tracking_key: spec-calculation-editor-mutation-safety-35-8-p
 baseline_revision: 3a2fe5a565e2627b45b9b46880e26966ef0cd23f
 context:
@@ -83,3 +83,60 @@ Private evidence root: `C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11
 Review rounds completed: 0. Patch findings: 0 (no product review performed). No deferred review finding was invented. Independent review remains required after authorized implementation and verification. No Suggested Review Order was manufactured for this incomplete blocked exit; the completion hook preserves this result.
 
 Remaining owned work includes fixture typing and manifest counts, material integration/RLS/browser cases and grant/reset adapters, source capture/archive/command-clock semantics and expected UUID canonicalization, full required verification and independent review. These are unfinished development requirements, not passed or waived release deferrals. Resume only after Parent explicitly binds the fixed checkpoint and applicable allocation disposition.
+## Generation-2 continuation
+
+Continuation starts at `15d8210e79a044babb9255b5aebd73bec2c54ae6` under the verified Root release and generation-2 assignment on 2026-11-13. The historical blocked Auto Run Result above remains unchanged. The original implementation baseline remains `3a2fe5a565e2627b45b9b46880e26966ef0cd23f`; independent product review must inspect the full unreviewed story delta from admitted base `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`, including ATDD tests and the original partial implementation. Development complete and release ready remain false pending actual required evidence and independent High review.
+
+## Suggested Review Order
+
+Author: `/root/final_g_evidence_high/producer_safety_build/implementation_author_gen2` (implementation continuation and fixes, Sol High).
+Refreshed against the generation-2 uncommitted source checkpoint on HEAD `15d8210e79a044babb9255b5aebd73bec2c54ae6`. This is an implemented checkpoint with unresolved qualification, not development completion or frontend acceptance. Review the **full unreviewed story delta from admitted base `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`**, including ATDD and prior partial implementation. Preserve the story baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f` for its recorded frontend gate.
+
+### Original form intent and truthful recovery
+
+The six allocated hosts share feature-local plumbing in an existing allocated host; the approved contract requires opaque session handles and keeps original submitted text/money in memory. This continuation captures expected facts when editing starts, preserves later drafts against React action resets, checks a retained handle before another dispatch, and exposes a recovered create/quote destination without calling a neighboring or later draft saved. An absent/prepared remount without original input remains unconfirmed and cannot silently recapture/replay.
+
+- `src/components/calculations/CalculationList.tsx:184` — `useEditorOperation`: six-host identity, duplicate and recovery boundary.
+- `src/components/calculations/CalculationList.tsx:249` — `useLayoutEffect`: restores newer in-memory input after an older result.
+- `src/features/calculations/actions.ts:98` — `correlationId: operationId`: preserves the retained identity through the existing envelope.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:113` — `E35-8-T-late-result`: P-6 late result, duplicate suppression and persistence reread.
+
+### Typed expected content and atomic effects
+
+Per the approved expected-content design, SQL owns normalization, binding, root/descendant locks, current source resolution and complete sibling/subtree comparison; TypeScript remains an early domain-validation boundary. This continuation fixes Date canonicalization, normalizes UUID/tree and numeric serialization, and forwards the injected command clock for source/archive capture rather than substituting wall time. Existing constraints and private lifecycle helpers continue to enforce money, tax and audit rules; this adds no valuation engine.
+
+- `supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql:114` — `ce_input_internal`: closed typed input and normalized expected content.
+- `supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql:246` — `mutate_calculation_editor`: P-2 comparison and domain/proof transaction.
+- `tests/integration/commands/calculation-mutation-safety.int.test.ts:113` — `rechecks original header`: observed two-connection root-lock interleaving.
+- `tests/integration/commands/calculation-mutation-safety.int.test.ts:261` — `SQL resolves`: current source lock and persisted 500-row limit.
+
+### Immutable operation proof and original quote authority
+
+The approved feature-local proof table retains only identities, digest and terminal result; target or actor deletion cannot erase that history. Quote retries enter the checked create path before building a fresh snapshot. This continuation also locks an initially absent counter key before the real wall-clock expiry check, and supplies real lock-wait/terminal-closure cases rather than a command-clock proxy for expiry.
+
+- `supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql:222` — `ce_request_internal`: server binding and serialized original-result replay.
+- `src/server/commands/quotes/quotes.ts:75` — `const resumed`: prepared/committed retries precede recapture.
+- `supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql:435` — `clock_timestamp()`: post-lock expiry before the existing private consumer.
+- `tests/integration/commands/quote-initial-mutation-safety.int.test.ts:137` — `real authorization lock`: P-4 actual expiry and no-domain-write closure.
+
+### Close bypasses and preserve current authority
+
+Current tenant/member/role authority precedes lookup/replay. The approved cutover revokes old application writes and initial quote entry points together; the new forced-RLS proof table has no direct application read/write surface. The exact additional harness enrollment uses Calculations.Edit metadata, zero direct roles and operation_id projection, with one privileged closed-proof seed. The unrelated tax-reconciliation caller discovered by the bounded closure scan is outside generation-2 scope and remains untouched; its preserving adapter requires Root disposition.
+
+- `supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql:196` — `ce_gate_internal`: live authority and established tenant lock order.
+- `supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql:470` — `revoke insert,update,delete`: no admitted direct editor mutation bypass.
+- `tests/support/authz/role-harness.ts:43` — `calculation_editor_operations: []`: exact closed direct-role contract.
+- `tests/integration/rls/calculation-editor-operation-contract.rls.test.ts:118` — `seller prepare/create/reconcile/replay`: P-5 safe projection and revoked prepared/committed authority.
+
+### Evidence, limits and rollout boundary
+
+P-1's thirteen callers have missing/extra/complete-shape unit assertions. P-2/P-3 bodies cover original facts, complete permutations/subtrees, every calculation effect (including tax), post-commit loss, same-intent serialization, no extra domain effect/audit, immutable history and audit rollback. P-4 bodies preserve authorization/capture/correlation and test real lock-crossing expiry/committed closure. P-5 checks direct grants, canonical binding, forged actors/tenants/parents, revocation, seller projection and immutable/unique proof. P-6 registers ten real-browser cases across all six hosts; the preserved downstream seventeen-state presentation contract remains separate.
+
+- `tests/unit/features/calculations/editor-operation.test.ts:105` — `for(const [caller,validate,payload] of callers)`: P-1 closed original-fact shapes across all thirteen callers.
+- `tests/integration/commands/calculation-mutation-safety.int.test.ts:224` — `for(const effect`: P-3 twelve forms across eleven calculation kinds.
+- `tests/integration/commands/quote-initial-mutation-safety.int.test.ts:146` — `waiting creator`: P-4 rereads a committed terminal closure.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:137` — `for(const host`: P-6 remaining four editor hosts; list/header cases precede it.
+
+Current executed evidence is recorded in `gen2-verification.json` and raw logs under `_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/`: focused units 186 passed, zero failed/skipped/TODO; typecheck, production build, lockfile/service-role/built-bundle checks and full lint pass (lint has 40 warnings). The full unit command hit its explicit 240000 ms containment limit: native exit -1, 1283 observed top-level passes, zero observed failures, **no final totals or full pass**; source changes overlapped that diagnostic run. All seven known owned process identities were verified absent. Browser collection registers ten tests, with zero browser executions. The first full lint failure and its corrected targeted/full checks remain recorded, rather than relabelled.
+
+Limits: DB/RLS/recovery/storage and real production-browser execution are unrun here; SQL source inspection and compiled test bodies are not executed coverage. Quote-expiry fixtures privilege-insert a copy of a real prepared authorization with a shortened wall-clock window while retaining the exact 15-minute issued/expiry constraint; they do not alter triggers. Post-commit transport-loss proxies and browser response interception forward real database/app calls before dropping only the response, but remain synthetic transport faults. No authenticated candidate-bound visual capture/acceptance or independent product review has occurred (rounds 0). The local frontend controller ran with baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f` and rejected the dirty, uncommitted candidate; no N/A exemption or acceptance is claimed. Full ordinary verification, separate TEA automation provenance, full hosted production browser plus dashboard, visual acceptance and independent High review remain required. The migration remains unapplied and requires the later factual owner-authorized matched app/schema pause/drain cutover; this checkpoint grants no deployment authority.

@@ -3,7 +3,7 @@
  * no assertion permits recapture, new correlation, or renewed review authority.
  */
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { adminQuery } from "../../factories/admin-sql";
+import { adminExec, adminQuery, adminSession } from "../../factories/admin-sql";
 import { adminSelectAuditEvents } from "../../factories/audit-events";
 import {
   createTwoTenantFixture, cleanupFixture, makeAuthedServerClient,
@@ -133,11 +133,73 @@ describe("35.8-P initial quote original review operation", () => {
     expect(await adminQuery("select id from public.quote_versions where calculation_id=$1", [s.calc])).toHaveLength(1);
   });
 
-  // These require the build's feature-local fixture / controlled SQL scheduling.
-  // No weakening via transaction-start now(), fresh review, or skipped-as-pass.
-  it.todo("P-4 two-connection authorization lock held across actual expiry: clock_timestamp after all locks refuses consume; no quote/event/audit");
-  it.todo("P-4 checked terminal closure commits under operation lock before waiting creator wakes; creator rereads closed state and cannot consume");
-  it.todo("P-4 expired/stale prepared reconcile is read-only unconfirmed; checked create alone commits closed no-domain-write proof");
-  it.todo("P-4 revoked member/role/source and changed selected attachment deny prepared create/replay without recapture; committed historical proof grants no new authority");
-  it.todo("P-4 current seller customer-visible projection excludes costs on prepare/reconcile/replay; existing Admin/PM authority and PDF provenance regressions remain unchanged");
+
+  it("P-4 real authorization lock crossing expiry checks wall clock after waiting and commits only closure",async ctx=>{
+    if(skipUnlessStack(ctx,up))return;const s=await expiringPrepared(2);
+    let release!:()=>void;const released=new Promise<void>(r=>release=r);let ready!:()=>void;const locked=new Promise<void>(r=>ready=r);let pid=0;
+    const holder=adminSession(async session=>{await session.query("begin");try{pid=(await session.query<{pid:number}>("select pg_backend_pid() pid"))[0].pid;await session.query("select id from public.quote_review_authorizations where id=$1 for update",[s.authorization]);ready();await released;await session.query("select pg_sleep(greatest(0,extract(epoch from ($1::timestamptz-clock_timestamp())))+0.1)",[s.expires]);await session.query("commit");}catch(error){await session.query("rollback");throw error;}});
+    await Promise.race([locked,holder]);const pending=submit(s);
+    try{await expect.poll(async()=>(await adminQuery<{waiting:boolean}>("select exists(select 1 from pg_stat_activity where $1::int=any(pg_blocking_pids(pid))) waiting",[pid]))[0].waiting).toBe(true);}finally{release();await holder;}
+    expect(await pending).toMatchObject({ok:false,code:"COMMAND_CONFLICT"});await assertClosedWithoutQuote(s);
+  });
+
+  it("P-4 waiting creator rereads a committed terminal closure and never consumes the authorization",async ctx=>{
+    if(skipUnlessStack(ctx,up))return;const s=await expiringPrepared(60);
+    let release!:()=>void;const released=new Promise<void>(r=>release=r);let ready!:()=>void;const locked=new Promise<void>(r=>ready=r);let pid=0;
+    const holder=adminSession(async session=>{await session.query("begin");try{pid=(await session.query<{pid:number}>("select pg_backend_pid() pid"))[0].pid;await session.query("select operation_id from public.calculation_editor_operations where operation_id=$1 for update",[s.operation]);ready();await released;await session.query("select public.ce_finish_internal($1,null,$2,null,0,true)",[s.operation,s.calc]);await session.query("commit");}catch(error){await session.query("rollback");throw error;}});
+    await Promise.race([locked,holder]);const pending=submit(s);
+    try{await expect.poll(async()=>(await adminQuery<{waiting:boolean}>("select exists(select 1 from pg_stat_activity where $1::int=any(pg_blocking_pids(pid))) waiting",[pid]))[0].waiting).toBe(true);}finally{release();await holder;}
+    expect(await pending).toMatchObject({ok:false,code:"COMMAND_CONFLICT"});await assertClosedWithoutQuote(s);
+  });
+
+  it("P-4 expired or stale prepared reconciliation is read-only; only checked creation closes it",async ctx=>{
+    if(skipUnlessStack(ctx,up))return;
+    for(const reason of ["expired","stale"]){
+      const s=await expiringPrepared(reason==="expired"?-1:60);
+      if(reason==="stale")await adminExec("update public.calculation_rows set label='Changed after review' where section_id in (select id from public.calculation_sections where calculation_id=$1)",[s.calc]);
+      const before=await adminQuery("select * from public.calculation_editor_operations where operation_id=$1",[s.operation]);
+      expect((await actor.rpc("reconcile_calculation_editor_operation",{p_operation_id:s.operation})).data).toMatchObject({status:"unconfirmed"});
+      expect(await adminQuery("select * from public.calculation_editor_operations where operation_id=$1",[s.operation])).toEqual(before);
+      expect(await submit(s)).toMatchObject({ok:false,code:"COMMAND_CONFLICT"});await assertClosedWithoutQuote(s);
+      expect(await submit(s)).toMatchObject({ok:false,code:"COMMAND_CONFLICT"});
+    }
+  });
+
+  it("P-4 changed attachment selection cannot renew a prepared identity or gain new authority",async ctx=>{
+    if(skipUnlessStack(ctx,up))return;const s=await expiringPrepared(60);const before=await adminQuery("select * from public.calculation_editor_operations where operation_id=$1",[s.operation]);
+    const changed={...s.input,attachment_file_ids:[crypto.randomUUID()]};
+    expect((await runCommand(createQuoteVersionFromCalculation,{client:actor as never,input:changed,correlationId:s.operation})).ok).toBe(false);
+    expect(await adminQuery("select * from public.calculation_editor_operations where operation_id=$1",[s.operation])).toEqual(before);
+    expect(await adminQuery("select id from public.quote_review_authorizations where correlation_id=$1",[s.operation])).toHaveLength(1);
+    expect(await submit(s)).toMatchObject({ok:true});
+  });
 });
+
+async function prepareOriginal() {
+  const s=await originalIntent();const fault=interruptedClient("before-create");
+  await runCommand(createQuoteVersionFromCalculation,{client:fault.client as never,input:s.input,correlationId:s.operation,clock:{now:()=>new Date(capturedAt)}});
+  expect(fault.wasInterrupted()).toBe(true);return s;
+}
+/** Privileged fixture INSERT copies real reviewed payload, with a short real expiry.
+ * It changes no trigger/config and preserves the existing exact 15-minute constraint.
+ * The new identity gets the same authoritative SQL canonical binding as production.
+ */
+async function expiringPrepared(seconds:number) {
+  const donor=await prepareOriginal();const operation=crypto.randomUUID(),authorization=crypto.randomUUID();const input={...donor.input,operation_id:operation};
+  const [{expires_at:expires}]=await adminQuery<{expires_at:Date}>(`insert into public.quote_review_authorizations select (jsonb_populate_record(null::public.quote_review_authorizations,to_jsonb(a)||jsonb_build_object('id',$2::uuid,'correlation_id',$3::uuid,'issued_at',statement_timestamp()+make_interval(secs=>$4)-interval '15 minutes','expires_at',statement_timestamp()+make_interval(secs=>$4)))).* from public.quote_review_authorizations a where correlation_id=$1 returning expires_at`,[donor.operation,authorization,operation,seconds]);
+  // clock_timestamp must be evaluated once to retain exact constraint equality.
+  await adminExec(`insert into public.calculation_editor_operations(operation_id,tenant_id,actor_user_id,operation_kind,form_kind,protocol_version,request_digest,status,calculation_id,authorization_id,captured_at)
+    select $1,$2,$3,'quote.version.create','reviewed-initial-quote',1,
+      encode(extensions.digest(jsonb_build_object('protocol',1,'tenant',$2::uuid,'actor',$3::uuid,'kind','quote.version.create','input',public.ce_input_internal('quote.version.create',$5::jsonb,$1))::text,'sha256'),'hex'),
+      'prepared',$4,$6,$7`,[operation,fixture.tenantA.id,fixture.adminA.id,donor.calc,JSON.stringify(input),authorization,capturedAt]);
+  return {operation,authorization,calc:donor.calc,input,expires};
+}
+function submit(s:Awaited<ReturnType<typeof expiringPrepared>>) {
+  return runCommand(createQuoteVersionFromCalculation,{client:actor as never,input:s.input,correlationId:s.operation,clock:{now:()=>new Date("2026-11-14T10:00:00Z")}});
+}
+async function assertClosedWithoutQuote(s:Awaited<ReturnType<typeof expiringPrepared>>) {
+  expect(await adminQuery("select status,terminal_code from public.calculation_editor_operations where operation_id=$1",[s.operation])).toEqual([{status:"closed",terminal_code:"COMMAND_CONFLICT"}]);
+  expect(await adminQuery("select id from public.quote_versions where calculation_id=$1",[s.calc])).toEqual([]);
+  expect(await adminSelectAuditEvents({correlationId:s.operation})).toEqual([]);
+  expect((await adminQuery("select consumed_at from public.quote_review_authorizations where id=$1",[s.authorization]))[0].consumed_at).toBeNull();
+}

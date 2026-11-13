@@ -491,7 +491,7 @@ describe("Calc commands via the envelope (AC2/AC6/AC7 / 5.1-INT-03/04/05)", () =
       p_calculation_id: calcId,
       p_patch: { status: "ready" },
     });
-    expect(direct.error?.code).toBe("23514");
+    expect(direct.error?.code).toBe("42501");
     const row = await adminQuery<{ status: string; archived_at: string | null }>(
       "select status, archived_at from public.calculations where id = $1", [calcId],
     );
@@ -522,7 +522,7 @@ describe("Calc commands via the envelope (AC2/AC6/AC7 / 5.1-INT-03/04/05)", () =
       correlationId: crypto.randomUUID(),
     });
     expect(revive.ok).toBe(false);
-    if (!revive.ok) expect(revive.code).toBe("VALIDATION_FAILED");
+    if (!revive.ok) expect(revive.code).toBe("COMMAND_CONFLICT");
 
     // BYPASSRLS re-read proves the row is UNCHANGED: still archived, archived_at intact
     // (status and archived_at cannot silently disagree — finding 2).

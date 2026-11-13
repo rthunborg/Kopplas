@@ -18,7 +18,7 @@ import { isLocalStackReachable } from "../../support/test-env";
 import { assertSearchPathExactlyEmpty } from "../../support/search-path";
 import { skipUnlessStack } from "../../support/stack-gate";
 import { buildQuoteReviewProof } from "../../support/quote-review-proof";
-import { runEditorCommand as runCommand } from "./calculation-editor-safety-fixture";
+import { captureEditorTestIntent, runEditorCommand as runCommand } from "./calculation-editor-safety-fixture";
 import { createQuoteVersionFromCalculation } from "@/server/commands/quotes";
 import {
   buildQuoteInitialCustomerVisibleReviewDigest,
@@ -110,7 +110,7 @@ describe("Story 11.2 initial Seller quote review and creation", () => {
     );
     expect(functions).toHaveLength(3);
     for (const fn of functions) {
-      expect(fn.prosecdef).toBe(true); expect(fn.anon_exec).toBe(false); expect(fn.authenticated_exec).toBe(true); expect(fn.service_exec).toBe(false);
+      expect(fn.prosecdef).toBe(true); expect(fn.anon_exec).toBe(false); expect(fn.authenticated_exec).toBe(fn.proname === "read_quote_initial_customer_visible_source"); expect(fn.service_exec).toBe(false);
       assertSearchPathExactlyEmpty(fn.proname, fn.proconfig ?? []);
     }
   });
@@ -138,7 +138,7 @@ describe("Story 11.2 initial Seller quote review and creation", () => {
     const preview = await sellerPreview(source.calculationId);
     expect(preview.built.snapshot.warnings.some((warning) => warning.code === "LOW_MARGIN")).toBe(false);
     await adminExec(`update public.calculation_rows set unit_cost_ore=$1 where id=$2`, [9_500, source.rowId]);
-    const stale = await seller.rpc("authorize_quote_initial_customer_visible_review", {
+    const stale = await authorizeSeller(preview, source.calculationId, crypto.randomUUID(), {
       p_tenant_id: fixture.base.tenantA.id, p_calculation_id: source.calculationId, p_captured_at: FIXED_ISO,
       p_customer_id: preview.built.customerId, p_facility_id: preview.built.facilityId, p_contact_id: preview.built.contactId,
       p_snapshot: snapshotToPayload(preview.built.snapshot), p_lines: linesToPayload(preview.built.snapshot), p_attachments: attachmentsToPayload(preview.built.snapshot),
@@ -153,7 +153,7 @@ describe("Story 11.2 initial Seller quote review and creation", () => {
     if (skipUnlessStack(testCtx, stackUp)) return;
     const source = await seedInitialSource(`initial-deny-${crypto.randomUUID()}`);
     const safePreview = await sellerPreview(source.calculationId);
-    const nullCorrelation = await seller.rpc("authorize_quote_initial_customer_visible_review", {
+    const nullCorrelation = await authorizeSeller(safePreview, source.calculationId, null, {
       p_tenant_id: fixture.base.tenantA.id, p_calculation_id: source.calculationId, p_captured_at: FIXED_ISO,
       p_customer_id: safePreview.built.customerId, p_facility_id: safePreview.built.facilityId, p_contact_id: safePreview.built.contactId,
       p_snapshot: snapshotToPayload(safePreview.built.snapshot), p_lines: linesToPayload(safePreview.built.snapshot), p_attachments: attachmentsToPayload(safePreview.built.snapshot),
@@ -207,3 +207,10 @@ describe("Story 11.2 initial Seller quote review and creation", () => {
     expect(await adminSelectAuditEvents({ correlationId })).toEqual([]);
   });
 });
+
+async function authorizeSeller(preview:Awaited<ReturnType<typeof sellerPreview>>,calculationId:string,operation:string|null,review:Record<string,unknown>){
+  const domain={calculation_id:calculationId,attachment_file_ids:[],...preview.proof};
+  const safety=await captureEditorTestIntent("quote.version.create",domain,operation??crypto.randomUUID());
+  const payload=Object.fromEntries(Object.entries(review).filter(([key])=>!["p_tenant_id","p_actor_user_id","p_correlation_id"].includes(key)));
+  return seller.rpc("authorize_calculation_editor_quote",{p_tenant_id:fixture.base.tenantA.id,p_actor_user_id:fixture.users.saljare.id,p_operation_id:operation,p_input:{...domain,...safety},p_review:{...payload,p_reviewed_readiness_rows:[]}});
+}

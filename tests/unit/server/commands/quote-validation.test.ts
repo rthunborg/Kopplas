@@ -249,7 +249,7 @@ function withEditorIntent<T>(validate: (raw: unknown) => T, kind: string) {
     const input = raw as Record<string, unknown>, id = "10000000-0000-4000-8000-000000000001";
     const header = { id, title: "Original", status: "draft", archived_at: null, tax_input_snapshot: null };
     const section = { id, title: "Original section", display_mode: "detailed", sort_order: 0, archived_at: null };
-    const row = Object.fromEntries(EDITOR_ROW_FIELDS.map(key => [key, null])); row.id = id; row.section_id = id;
+    const row: Record<string, unknown> = Object.fromEntries(EDITOR_ROW_FIELDS.map(key => [key, null])); row.id = id; row.section_id = id;
     const expected: Record<string, unknown> = { version: 1, header };
     if (kind === "calculation.create") { delete expected.header; Object.assign(expected, { form: "calculation", customer_id: input.customer_id, facility_id: input.facility_id ?? null, contact_id: input.contact_id ?? null }); }
     else if (kind === "quote.version.create") { delete expected.header; Object.assign(expected, { form: "reviewed-initial-quote", reviewed_snapshot_digest: input.reviewed_snapshot_digest, reviewed_quote_capture_date: input.reviewed_quote_capture_date, attachment_file_ids: input.attachment_file_ids ?? [] }); }

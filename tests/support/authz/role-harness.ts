@@ -20,6 +20,7 @@ export const TABLE_PROJECTION_CAPABILITIES: Readonly<Record<string, string>> = {
   tenant_provisioning_requests: "Platform.Operator.Access", tenant_provisioning_invites: "Platform.Operator.Access",
   customers: "Customers.View", facilities: "Customers.View", contacts: "Customers.View",
   settings_pricing_operations: "CompanySettings.Edit",
+  calculation_editor_operations: "Calculations.Edit",
   company_settings: "CompanySettings.View", quote_terms: "CompanySettings.View", work_roles: "Pricing.Edit", articles: "Pricing.Edit",
   calculations: "Calculations.View", calculation_sections: "Calculations.View", calculation_rows: "Calculations.View",
   files: "Files.View", file_links: "Files.View",
@@ -39,6 +40,7 @@ export const TABLE_PROJECTION_CAPABILITIES: Readonly<Record<string, string>> = {
 /** Existing RLS self-context contract, intentionally broader than Memberships.Manage. */
 export const TABLE_DIRECT_RLS_ALLOWED_ROLES: Readonly<Partial<Record<TenantTableName, readonly TenantRole[]>>> = {
   settings_pricing_operations: [],
+  calculation_editor_operations: [],
   calendar_feed_tokens: [],
   booking_series: ["tenant_admin", "projektledare"],
   booking_conflict_resolutions: ["tenant_admin", "projektledare"],
@@ -226,6 +228,7 @@ export const TABLE_RLS_PROJECTION_ADAPTERS: Readonly<Record<TenantTableName, Tab
   facilities: idProjection("facilities"),
   contacts: idProjection("contacts"),
   settings_pricing_operations: keyProjection("settings_pricing_operations", "id", true),
+  calculation_editor_operations: keyProjection("calculation_editor_operations", "operation_id", true),
   company_settings: idProjection("company_settings"),
   quote_terms: idProjection("quote_terms"),
   work_roles: idProjection("work_roles"),

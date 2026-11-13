@@ -187,7 +187,7 @@ function TaxSettingsForm({
         onSubmit={(event) => {
           if (reverseChargeDeductionConflict || fixedPriceScopeMissing) {
             event.preventDefault();
-          }
+          } else { taxOperation.formProps.onSubmit(event); }
         }}
       >
         {taxOperation.recovery}

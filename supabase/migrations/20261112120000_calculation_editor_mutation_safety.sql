@@ -71,21 +71,29 @@ begin
  else raise exception 'invalid editor kind' using errcode='23514';end case;
  perform public.ce_shape_internal(e,fields,fields);
  if e->'version' is distinct from '1'::jsonb or e->>'form' is distinct from form then raise exception 'invalid editor version/form' using errcode='23514';end if;
- normalized:=e;
+ normalized:=jsonb_set(e,'{version}','1'::jsonb);
+ if kind='calculation.create' then
+  normalized:=normalized||jsonb_build_object('customer_id',(e->>'customer_id')::uuid,'facility_id',(e->>'facility_id')::uuid,'contact_id',(e->>'contact_id')::uuid);
+ end if;
+ if kind='quote.version.create' then
+  if jsonb_typeof(e->'attachment_file_ids') is distinct from 'array' then raise exception 'invalid expected attachments' using errcode='23514';end if;
+  select coalesce(jsonb_agg(to_jsonb(value::uuid) order by ord),'[]'::jsonb) into items from jsonb_array_elements_text(e->'attachment_file_ids') with ordinality x(value,ord);
+  normalized:=jsonb_set(normalized,'{attachment_file_ids}',items);
+ end if;
  if e?'header' then normalized:=jsonb_set(normalized,'{header}',public.ce_project_internal('header',e->'header'));end if;
  if e?'section' then normalized:=jsonb_set(normalized,'{section}',public.ce_project_internal('section',e->'section'));end if;
  if e?'row' then normalized:=jsonb_set(normalized,'{row}',public.ce_project_internal('row',e->'row'));end if;
  if e?'rows' then
   if jsonb_typeof(e->'rows') is distinct from 'array' or jsonb_array_length(e->'rows')>500 then raise exception 'invalid expected rows' using errcode='23514';end if;
-  select coalesce(jsonb_agg(public.ce_project_internal('row',x) order by x->>'id'),'[]'::jsonb) into items from jsonb_array_elements(e->'rows') x;
+  select coalesce(jsonb_agg(public.ce_project_internal('row',x) order by (x->>'id')::uuid),'[]'::jsonb) into items from jsonb_array_elements(e->'rows') x;
   normalized:=jsonb_set(normalized,'{rows}',items);
  end if;
  if e?'sections' then
   if jsonb_typeof(e->'sections') is distinct from 'array' or jsonb_array_length(e->'sections')>1000 then raise exception 'invalid expected sections' using errcode='23514';end if;
-  for item in select x from jsonb_array_elements(e->'sections') x order by x->'section'->>'id' loop
+  for item in select x from jsonb_array_elements(e->'sections') x order by (x->'section'->>'id')::uuid loop
    perform public.ce_shape_internal(item,array['section','rows'],array['section','rows']);
    if jsonb_typeof(item->'rows') is distinct from 'array' or jsonb_array_length(item->'rows')>500 then raise exception 'invalid subtree' using errcode='23514';end if;
-   select coalesce(jsonb_agg(public.ce_project_internal('row',x) order by x->>'id'),'[]'::jsonb) into normalized_rows from jsonb_array_elements(item->'rows') x;
+   select coalesce(jsonb_agg(public.ce_project_internal('row',x) order by (x->>'id')::uuid),'[]'::jsonb) into normalized_rows from jsonb_array_elements(item->'rows') x;
    trees:=trees||jsonb_build_array(jsonb_build_object('section',public.ce_project_internal('section',item->'section'),'rows',normalized_rows));
   end loop;
   normalized:=jsonb_set(normalized,'{sections}',trees);
@@ -140,7 +148,7 @@ begin
     domain:=jsonb_set(domain,array[k],to_jsonb(btrim(domain->>k)));
    end if;
   elsif k in ('unit_cost_ore','unit_sell_ore','markup_bp','vat_rate_bp') then
-   if jsonb_typeof(value) is distinct from 'number' or domain->>k !~ '^[0-9]+$' or (domain->>k)::numeric>case when k='markup_bp' then 1000000 when k='vat_rate_bp' then 10000 else 9007199254740991 end then raise exception 'invalid editor number' using errcode='23514';end if;
+   if jsonb_typeof(value) is distinct from 'number' or (domain->>k)::numeric<0 or (domain->>k)::numeric<>trunc((domain->>k)::numeric) or (domain->>k)::numeric>case when k='markup_bp' then 1000000 when k='vat_rate_bp' then 10000 else 9007199254740991 end then raise exception 'invalid editor number' using errcode='23514';end if;
   elsif k='quantity' then
    if jsonb_typeof(value) is distinct from 'number' or (domain->>k)::numeric<=0 then raise exception 'invalid quantity' using errcode='23514';end if;
   elsif k in ('is_hidden','is_optional','is_selected','included_in_invoice_total','source_clear') then
@@ -235,12 +243,13 @@ begin
  if not found then raise exception 'editor terminal state conflict' using errcode='CE409';end if;
  return public.ce_proof_internal(op);
 end $$;
-create function public.mutate_calculation_editor(p_tenant_id uuid,p_actor_user_id uuid,p_operation_id uuid,p_kind text,p_input jsonb) returns jsonb
+create function public.mutate_calculation_editor(p_tenant_id uuid,p_actor_user_id uuid,p_operation_id uuid,p_kind text,p_input jsonb,p_captured_at timestamptz) returns jsonb
 language plpgsql volatile security definer set search_path='' set timezone='UTC' set lock_timeout='5s' set statement_timeout='20s' as $$
 declare request jsonb; input jsonb; expected jsonb; patch jsonb; current_header jsonb; current_section jsonb; current_row jsonb;
  c public.calculations; sec public.calculation_sections; r public.calculation_rows; role_source public.work_roles; article_source public.articles;
  calculation uuid; parent uuid; target uuid; stale boolean:=false; siblings jsonb; rows jsonb; trees jsonb; desired uuid[]; actual uuid[]; count integer:=1; k text;
 begin
+ if p_captured_at is null or not isfinite(p_captured_at) then raise exception 'invalid editor capture' using errcode='23514';end if;
  if p_kind='quote.version.create' then raise exception 'wrong editor endpoint' using errcode='23514';end if;
  request:=public.ce_request_internal(p_tenant_id,p_actor_user_id,p_operation_id,p_kind,p_input);
  if (request->>'exists')::boolean then return request->'proof';end if;
@@ -316,14 +325,14 @@ begin
  when 'calculation.update' then
   target:=c.id;
   if patch<>'{}'::jsonb then perform public.update_calculation_with_audit(p_tenant_id,p_actor_user_id,p_operation_id,c.id,patch);end if;
- when 'calculation.archive' then target:=public.archive_calculation_with_audit(p_tenant_id,p_actor_user_id,p_operation_id,c.id,clock_timestamp());
+ when 'calculation.archive' then target:=public.archive_calculation_with_audit(p_tenant_id,p_actor_user_id,p_operation_id,c.id,p_captured_at);
  when 'calculation.section.create' then
   insert into public.calculation_sections(tenant_id,calculation_id,title,display_mode,sort_order)
   select p_tenant_id,c.id,input->>'title',coalesce(input->>'display_mode','detailed'),coalesce(max(x.sort_order),-1)+1 from public.calculation_sections x where x.tenant_id=p_tenant_id and x.calculation_id=c.id and x.archived_at is null returning id into target;
  when 'calculation.section.update' then
   target:=sec.id; update public.calculation_sections x set title=case when input?'title' then input->>'title' else x.title end,display_mode=case when input?'display_mode' then input->>'display_mode' else x.display_mode end where x.id=sec.id and x.tenant_id=p_tenant_id;
- when 'calculation.section.archive' then target:=sec.id;update public.calculation_sections x set archived_at=clock_timestamp() where x.id=sec.id and x.tenant_id=p_tenant_id;
- when 'calculation.row.archive' then target:=r.id;update public.calculation_rows x set archived_at=clock_timestamp() where x.id=r.id and x.tenant_id=p_tenant_id;
+ when 'calculation.section.archive' then target:=sec.id;update public.calculation_sections x set archived_at=p_captured_at where x.id=sec.id and x.tenant_id=p_tenant_id;
+ when 'calculation.row.archive' then target:=r.id;update public.calculation_rows x set archived_at=p_captured_at where x.id=r.id and x.tenant_id=p_tenant_id;
  when 'calculation.sections.reorder' then
   target:=c.id;count:=cardinality(desired);update public.calculation_sections x set sort_order=t.ord-1 from unnest(desired) with ordinality t(id,ord) where x.id=t.id and x.tenant_id=p_tenant_id and x.calculation_id=c.id;
  when 'calculation.rows.reorder' then
@@ -345,11 +354,11 @@ begin
    if input->>'source_kind'='work_role' then
     select * into role_source from public.work_roles x where x.tenant_id=p_tenant_id and x.id=(input->>'source_id')::uuid for share;
     if not found then raise exception 'source denied' using errcode='42501';end if;
-    patch:=patch||jsonb_build_object('source_kind','work_role','source_id',role_source.id,'source_name',role_source.display_name,'source_price_ore',role_source.sell_rate_ore,'source_cost_ore',role_source.cost_rate_ore,'source_updated_at',role_source.updated_at,'source_captured_at',clock_timestamp(),'source_sku',null,'source_unit',null);
+    patch:=patch||jsonb_build_object('source_kind','work_role','source_id',role_source.id,'source_name',role_source.display_name,'source_price_ore',role_source.sell_rate_ore,'source_cost_ore',role_source.cost_rate_ore,'source_updated_at',role_source.updated_at,'source_captured_at',p_captured_at,'source_sku',null,'source_unit',null);
    else
     select * into article_source from public.articles x where x.tenant_id=p_tenant_id and x.id=(input->>'source_id')::uuid for share;
     if not found then raise exception 'source denied' using errcode='42501';end if;
-    patch:=patch||jsonb_build_object('source_kind','article','source_id',article_source.id,'source_name',article_source.name,'source_price_ore',article_source.unit_price_ore,'source_cost_ore',null,'source_updated_at',article_source.updated_at,'source_captured_at',clock_timestamp(),'source_sku',article_source.sku,'source_unit',article_source.unit);
+    patch:=patch||jsonb_build_object('source_kind','article','source_id',article_source.id,'source_name',article_source.name,'source_price_ore',article_source.unit_price_ore,'source_cost_ore',null,'source_updated_at',article_source.updated_at,'source_captured_at',p_captured_at,'source_sku',article_source.sku,'source_unit',article_source.unit);
    end if;
   elsif p_kind='calculation.row.create' or (input->>'source_clear')::boolean is true then
    patch:=patch||jsonb_build_object('source_kind',null,'source_id',null,'source_name',null,'source_price_ore',null,'source_cost_ore',null,'source_updated_at',null,'source_captured_at',null,'source_sku',null,'source_unit',null);
@@ -420,7 +429,9 @@ begin
   exception when check_violation then raise exception 'reviewed source changed' using errcode='QV409';end;
   -- Acquire the existing numbering row before the real wall-clock check. New
   -- initial creators already serialize on the established tenant-operation lock.
-  perform 1 from public.tenant_counters c where c.tenant_id=p_tenant_id and c.counter_name='quote_number' for update;
+  insert into public.tenant_counters(tenant_id,counter_name,current_value) values(p_tenant_id,'quote_number',0)
+  on conflict(tenant_id,counter_name) do update set current_value=public.tenant_counters.current_value;
+  -- The upsert also locks an initially absent counter key before checking expiry.
   if a.purpose<>'initial_creation' or a.consumed_at is not null or a.expires_at<=clock_timestamp() then raise exception 'quote review expired' using errcode='QV401';end if;
   -- Existing implementation still owns one-time consume, source/file locks,
   -- numbering, quote/version/event/audit writes and their rollback semantics.
@@ -463,5 +474,5 @@ do $$ declare f record; begin
   execute format('revoke all on function %s from public,anon,authenticated,service_role',f.signature);
  end loop;
 end $$;
-grant execute on function public.mutate_calculation_editor(uuid,uuid,uuid,text,jsonb),public.authorize_calculation_editor_quote(uuid,uuid,uuid,jsonb,jsonb),public.create_calculation_editor_quote(uuid,uuid,uuid,jsonb),public.reconcile_calculation_editor_operation(uuid) to authenticated;
+grant execute on function public.mutate_calculation_editor(uuid,uuid,uuid,text,jsonb,timestamptz),public.authorize_calculation_editor_quote(uuid,uuid,uuid,jsonb,jsonb),public.create_calculation_editor_quote(uuid,uuid,uuid,jsonb),public.reconcile_calculation_editor_operation(uuid) to authenticated;
 commit;

@@ -34,6 +34,7 @@ export async function mutateEditor<I extends EditorSafetyInput>(ctx: CommandExec
     p_operation_id: ctx.input.operation_id,
     p_kind: kind,
     p_input: ctx.input,
+    p_captured_at: ctx.clock.now().toISOString(),
   });
   if (proof.status === "closed") throw new CommandError("COMMAND_CONFLICT");
   if (proof.status !== "committed") throw new Error("Editor operation remains unconfirmed");
