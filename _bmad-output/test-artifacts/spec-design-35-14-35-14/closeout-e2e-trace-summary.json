@@ -1,0 +1,164 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_at": "2026-11-13T12:19:09.155182+00:00",
+  "repo": "rthunborg/Kopplas",
+  "collection_mode": "contract_static",
+  "collection_status": "COLLECTED",
+  "inventory_basis": "acceptance_criteria",
+  "gate_basis": "priority_thresholds",
+  "source_sha": "0a92b1f92f5ec3835955ebc56de51812b7ad0ef0",
+  "target": {
+    "type": "epic",
+    "id": "spec-design-35-14",
+    "label": "Design35.14 approved E19.1 live dashboard pipeline"
+  },
+  "decision_mode": "deterministic",
+  "evaluator": "TEA delegate /root/final_g_package_low; gpt-6.1-sol Low",
+  "confidence": "high",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "sources": [
+      "_bmad-output/specs/spec-design-35-14/source-intent.md",
+      "_bmad-output/specs/spec-design-35-14/source-test-design.md",
+      "_bmad-output/specs/spec-design-35-14/test-design.md",
+      "_bmad-output/specs/spec-design-35-14/operative-contract.md"
+    ],
+    "external_pointer_status": "not_used",
+    "synthetic": false
+  },
+  "gate_status": "PASS",
+  "coverage": {
+    "inventory": {
+      "covered": 7,
+      "total": 7,
+      "pct": 100
+    },
+    "priority_breakdown": {
+      "P0": {
+        "total": 2,
+        "covered": 2,
+        "pct": 100
+      },
+      "P1": {
+        "total": 5,
+        "covered": 5,
+        "pct": 100
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      }
+    },
+    "by_level": {
+      "e2e": {
+        "tests": 85,
+        "criteria_covered": 7
+      },
+      "api": {
+        "tests": 26,
+        "criteria_covered": 2
+      },
+      "component": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "unit": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "live": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "other": {
+        "tests": 0,
+        "criteria_covered": 0
+      }
+    }
+  },
+  "tests": {
+    "files": 7,
+    "cases": 111,
+    "skipped_cases": 0,
+    "fixme_cases": 0,
+    "pending_cases": 0
+  },
+  "risk_summary": {
+    "critical_open": 0,
+    "high_open": 0,
+    "medium_open": 0,
+    "low_open": 0
+  },
+  "heuristics": {
+    "endpoint_gaps": 0,
+    "auth_negative_path_status": "present",
+    "error_path_status": "present",
+    "ui_journey_status": "not_applicable",
+    "ui_state_status": "not_applicable"
+  },
+  "live_evidence": {
+    "present": false,
+    "results_file": "C:\\DEV\\Kopplas\\tmp\\private\\35-14-dashboard-closeout-20261113\\_bmad-output\\test-artifacts\\live-verification-results.json",
+    "freshness": "not_present",
+    "recorded_source_sha": "",
+    "current_source_sha": "0a92b1f92f5ec3835955ebc56de51812b7ad0ef0",
+    "producer": "",
+    "counted": 0,
+    "stale": 0,
+    "unverifiable": 0,
+    "failed": 0,
+    "contradicted": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "unmatched": 0,
+    "invalid": 0,
+    "requirements_live_only": 0
+  },
+  "gate_criteria": {
+    "p0_coverage_required": "100%",
+    "p0_coverage_actual": "100%",
+    "p0_status": "MET",
+    "p1_coverage_target": "90%",
+    "p1_coverage_minimum": "80%",
+    "p1_coverage_actual": "100%",
+    "p1_status": "MET",
+    "overall_coverage_minimum": "80%",
+    "overall_coverage_actual": "100%",
+    "overall_status": "MET"
+  },
+  "blockers": [],
+  "recommendations": [
+    {
+      "priority": "LOW",
+      "action": "Complete the separately assigned normal E8 NFR/test-quality advisories, coordinator reconcile/archive and named-folder retrospective; this trace does not mark them complete.",
+      "requirements": []
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "Preserve actual broader failed General/ordinary DB outcomes and unknown causes without coverage credit or repair attribution; existing owners retain their scenario obligations. No new test/CI rerun is requested by this trace.",
+      "requirements": []
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "Carry E35-14-REL-1/2/3 and existing E16/E20 caveats into actual release consolidation with named UI/QA/coordinator owners and pinned release candidate; release_ready remains false.",
+      "requirements": [
+        "E35-14-REL-1",
+        "E35-14-REL-2",
+        "E35-14-REL-3"
+      ]
+    }
+  ],
+  "links": {
+    "trace_report_path": "_bmad-output/test-artifacts/spec-design-35-14-35-14/closeout-traceability.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  }
+}
