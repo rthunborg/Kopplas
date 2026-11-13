@@ -51,7 +51,7 @@ import {
 } from "../../support/stack-gate";
 import { extractPdfText } from "../../support/pdf-text";
 import { buildQuoteReviewProof } from "../../support/quote-review-proof";
-import { runCommand } from "@/server/commands/envelope";
+import { runEditorCommand as runCommand } from "./calculation-editor-safety-fixture";
 import {
   createQuoteVersionFromCalculation,
   generateQuotePdf,

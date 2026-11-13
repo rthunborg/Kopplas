@@ -120,7 +120,7 @@ export const SCOPE_MANIFEST: ScopeManifest = {
       epic: "E5",
       activatedAt: PHASE_A.E5,
       navItems: [{ route: "/calculations", group: "primary", requiredCapability: "Calculations.View" }],
-      tenantTables: ["calculations", "calculation_sections", "calculation_rows"],
+      tenantTables: ["calculations", "calculation_sections", "calculation_rows", "calculation_editor_operations"],
       widgets: [],
       notificationCategories: [],
       publicSurfaces: [],

@@ -18,7 +18,9 @@
  * never inline). Kronor/percent at the input boundary; öre/rounding wording only in the totals
  * summary (AC6).
  */
-import { useActionState, useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { useEditorOperation } from "./CalculationList";
+import { projectEditorFacts, HEADER_FACTS, SECTION_FACTS, ROW_FACTS } from "@/features/calculations/editor-operation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormErrorSummary, TextField } from "@/components/crm/FormField";
@@ -99,23 +101,17 @@ export function CalculationEditor({
   readonly filesPanel?: ReactNode;
 }) {
   const { header, sections, customer } = detail;
+  const headerFacts = projectEditorFacts(header, HEADER_FACTS);
+  const sectionTrees = sections.map(s => ({ section: projectEditorFacts(s, SECTION_FACTS), rows: s.rows.map(r => projectEditorFacts(r, ROW_FACTS)) }));
 
-  const [titleState, titleAction, titlePending] = useActionState(
-    updateCalculationAction,
-    CALC_ACTION_INITIAL,
-  );
-  const [sectionState, sectionAction, sectionPending] = useActionState(
-    createSectionAction,
-    CALC_ACTION_INITIAL,
-  );
-  const [archiveState, archiveAction] = useActionState(
-    archiveCalculationAction,
-    CALC_ACTION_INITIAL,
-  );
-  const [sectionReorderState, sectionReorderAction] = useActionState(
-    reorderSectionsAction,
-    CALC_ACTION_INITIAL,
-  );
+  const titleOperation = useEditorOperation(updateCalculationAction, CALC_ACTION_INITIAL, `${header.id}/title`, () => ({ version: 1, form: "calculation", header: headerFacts }));
+  const [titleState, titleAction, titlePending] = [titleOperation.state, titleOperation.action, titleOperation.pending];
+  const sectionOperation = useEditorOperation(createSectionAction, CALC_ACTION_INITIAL, `${header.id}/new-section`, () => ({ version: 1, form: "section", header: headerFacts }));
+  const [sectionState, sectionAction, sectionPending] = [sectionOperation.state, sectionOperation.action, sectionOperation.pending];
+  const archiveOperation = useEditorOperation(archiveCalculationAction, CALC_ACTION_INITIAL, `${header.id}/archive`, () => ({ version: 1, form: "archive_calculation", header: headerFacts, sections: sectionTrees }));
+  const [archiveState, archiveAction] = [archiveOperation.state, archiveOperation.action];
+  const reorderOperation = useEditorOperation(reorderSectionsAction, CALC_ACTION_INITIAL, `${header.id}/section-order`, () => ({ version: 1, form: "reorder_sections", header: headerFacts, siblings: sections.map(s => ({ id: s.id, sort_order: s.sort_order })) }));
+  const [sectionReorderState, sectionReorderAction] = [reorderOperation.state, reorderOperation.action];
   const [showAddSection, setShowAddSection] = useState(false);
   const router = useRouter();
 
@@ -349,7 +345,7 @@ export function CalculationEditor({
         </dl>
 
         {/* Rename the calc + change status. */}
-        <form action={titleAction} className="flex flex-col gap-3" noValidate>
+        <form {...titleOperation.formProps} action={titleAction} className="flex flex-col gap-3" noValidate>{titleOperation.recovery}
           <input type="hidden" name="id" value={header.id} />
           <FormErrorSummary message={titleMine ? titleState.formError : null} />
           {titleMine && titleState.status === "success" && (
@@ -385,6 +381,7 @@ export function CalculationEditor({
       </header>
 
       <TaxSettingsPanel
+        headerFacts={headerFacts}
         calculationId={header.id}
         value={header.tax_input_snapshot}
         fixedPriceScopeRows={fixedPriceScopeRows}
@@ -423,7 +420,7 @@ export function CalculationEditor({
             sections.map((section, index) => (
               <div key={section.id} className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
-                  <form action={sectionReorderAction}>
+                  <form {...reorderOperation.formProps} action={sectionReorderAction}>{reorderOperation.recovery}
                     <input
                       type="hidden"
                       name="calculation_id"
@@ -444,7 +441,7 @@ export function CalculationEditor({
                       ↑
                     </button>
                   </form>
-                  <form action={sectionReorderAction}>
+                  <form {...reorderOperation.formProps} action={sectionReorderAction}>{reorderOperation.recovery}
                     <input
                       type="hidden"
                       name="calculation_id"
@@ -467,6 +464,7 @@ export function CalculationEditor({
                   </form>
                 </div>
                 <SectionEditor
+                  headerFacts={headerFacts}
                   section={section}
                   calculationId={header.id}
                   sources={sources}
@@ -479,12 +477,12 @@ export function CalculationEditor({
           )}
 
           {showAddSection ? (
-            <form
+            <form {...sectionOperation.formProps}
               action={sectionAction}
               data-testid="add-section-form"
               className="flex max-w-xl flex-col gap-3 rounded-lg border border-dashed border-zinc-300 bg-white p-4"
               noValidate
-            >
+            >{sectionOperation.recovery}
               <input type="hidden" name="calculation_id" value={header.id} />
               <FormErrorSummary
                 message={sectionState.form === "section" ? sectionState.formError : null}
@@ -569,7 +567,7 @@ export function CalculationEditor({
 
       {/* Archive the whole calculation (soft-archive via the command). */}
       <div className="flex justify-end border-t border-zinc-200 pt-4">
-        <form action={archiveAction}>
+        <form {...archiveOperation.formProps} action={archiveAction}>{archiveOperation.recovery}
           <input type="hidden" name="id" value={header.id} />
           <button
             type="submit"

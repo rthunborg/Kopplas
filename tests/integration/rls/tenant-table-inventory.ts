@@ -148,6 +148,7 @@ export type TenantTableName =
   | "calculations"
   | "calculation_sections"
   | "calculation_rows"
+  | "calculation_editor_operations"
   // Story 8.1 files (the single Phase A file model; NO raw content, NO PII).
   | "files"
   | "file_links"
@@ -343,6 +344,8 @@ export type MutationDenialKind = "privilege" | "rls-invisible";
  * branch of the cross-tenant suite.
  */
 export function updateDenialKind(table: TenantTableName): MutationDenialKind {
+  if (["calculations","calculation_sections","calculation_rows"].includes(table)) return "privilege";
+  if (table === "calculation_editor_operations") return "privilege";
   if (table === "settings_pricing_operations") return "privilege";
   if (table === "calendar_feed_tokens") return "privilege";
   if (table === "time_reports") return "privilege";
@@ -420,6 +423,7 @@ export function updateDenialKind(table: TenantTableName): MutationDenialKind {
  * not the canonical fresh-schema expectation and must fail this strict gate.
  */
 export function deleteDenialKind(table: TenantTableName): MutationDenialKind {
+  if (table === "calculation_editor_operations") return "privilege";
   if (table === "settings_pricing_operations") return "privilege";
   switch (table) {
     case "tenants":
@@ -482,6 +486,7 @@ export function spoofedRowFor(
   table: TenantTableName,
   ctx: InventoryContext,
 ): Record<string, unknown> {
+  if (table === "calculation_editor_operations") { return { operation_id:crypto.randomUUID(), tenant_id:ctx.fixture.tenantB.id, actor_user_id:ctx.fixture.adminA.id, operation_kind:'calculation.update', form_kind:'calculation', protocol_version:1, request_digest:'a'.repeat(64), status:'closed', terminal_code:'COMMAND_CONFLICT', committed_at:'2026-11-13T12:00:00Z' }; }
   if (table === "settings_pricing_operations") { const id=crypto.randomUUID(); return { id, tenant_id: ctx.fixture.tenantB.id, actor_user_id: ctx.fixture.adminA.id, operation_kind: 'company.save', request_digest: 'a'.repeat(64), target_id:crypto.randomUUID(), committed_revision:crypto.randomUUID(), correlation_id:id, committed_at:'2026-11-02T12:00:00Z', approved_at:null }; }
   const { fixture } = ctx;
   if (table === "calendar_feed_tokens") return { id:crypto.randomUUID(),tenant_id:fixture.tenantB.id,membership_id:crypto.randomUUID(),token_hash:"a".repeat(64),revision:1,attempt_id:crypto.randomUUID(),action:"create",expected_revision:0 };
@@ -961,6 +966,7 @@ export function tenantBFilter(
   table: TenantTableName,
   ctx: InventoryContext,
 ): { column: string; value: string } {
+  if (table === "calculation_editor_operations") return {column:"tenant_id",value:ctx.fixture.tenantB.id};
   if (table === "settings_pricing_operations") return {column:"tenant_id",value:ctx.fixture.tenantB.id};
   if (isJobDepthTable(table)) return {column: table === "work_order_dependencies" ? "dependent_job_id" : "job_id", value: requireCrmId(ctx.tenantBJobId, "tenantBJobId", table)};
   if (table === "calendar_feed_tokens") return {column:"tenant_id",value:ctx.fixture.tenantB.id};
@@ -1213,6 +1219,7 @@ export function tenantBFilter(
 export function hijackMutationFor(
   table: TenantTableName,
 ): Record<string, unknown> {
+  if (table === "calculation_editor_operations") return {request_digest:"b".repeat(64)};
   if (table === "settings_pricing_operations") return {request_digest:"b".repeat(64)};
   if (table === "calendar_feed_tokens") return {revoked_at:"2026-10-20T12:00:00Z"};
   if (table === "time_reports") return { duration_minutes: 999 };
@@ -1334,6 +1341,7 @@ export function hijackMutationFor(
  * Settings tables added in Story 3.3; CRM tables in Story 3.1.
  */
 export function rlsInvisibleLabelColumn(table: TenantTableName): string {
+  if (table === "calculation_editor_operations") return "request_digest";
   if (table === "settings_pricing_operations") return "request_digest";
   if (table === "calendar_feed_tokens") return "id";
   if (table === "time_reports") return "id";
@@ -1462,6 +1470,7 @@ export function anonRowFor(
   table: TenantTableName,
   ctx: InventoryContext,
 ): Record<string, unknown> {
+  if (table === "calculation_editor_operations") { return { operation_id:crypto.randomUUID(), tenant_id:ctx.fixture.tenantA.id, actor_user_id:ctx.fixture.adminA.id, operation_kind:'calculation.update', form_kind:'calculation', protocol_version:1, request_digest:'a'.repeat(64), status:'closed', terminal_code:'COMMAND_CONFLICT', committed_at:'2026-11-13T12:00:00Z' }; }
   if (table === "settings_pricing_operations") { const id=crypto.randomUUID(); return { id, tenant_id: ctx.fixture.tenantA.id, actor_user_id: ctx.fixture.adminA.id, operation_kind: 'company.save', request_digest: 'a'.repeat(64), target_id:crypto.randomUUID(), committed_revision:crypto.randomUUID(), correlation_id:id, committed_at:'2026-11-02T12:00:00Z', approved_at:null }; }
   const { fixture } = ctx;
   if (table === "calendar_feed_tokens") return {id:crypto.randomUUID(),tenant_id:fixture.tenantA.id,membership_id:crypto.randomUUID(),token_hash:"a".repeat(64),revision:1,attempt_id:crypto.randomUUID(),action:"create",expected_revision:0};
@@ -1778,6 +1787,7 @@ export function anonFilterFor(
   table: TenantTableName,
   ctx: InventoryContext,
 ): { column: string; value: string } {
+  if (table === "calculation_editor_operations") return {column:"tenant_id",value:ctx.fixture.tenantA.id};
   if (table === "settings_pricing_operations") return {column:"tenant_id",value:ctx.fixture.tenantA.id};
   if (isJobDepthTable(table)) return {column: "tenant_id", value: ctx.fixture.tenantA.id};
   if (table === "calendar_feed_tokens") return {column:"tenant_id",value:ctx.fixture.tenantA.id};
@@ -1846,6 +1856,7 @@ export function anonFilterFor(
 export function anonMutationFor(
   table: TenantTableName,
 ): Record<string, unknown> {
+  if (table === "calculation_editor_operations") return {request_digest:"b".repeat(64)};
   if (table === "settings_pricing_operations") return {request_digest:"b".repeat(64)};
   if (table === "calendar_feed_tokens") return {revoked_at:"2026-10-20T12:00:00Z"};
   if (table === "time_reports") return { duration_minutes: 999 };

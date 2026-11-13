@@ -45,7 +45,7 @@ import { adminSelectAuditEvents } from "../../factories/audit-events";
 import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
 import { buildQuoteReviewProof } from "../../support/quote-review-proof";
-import { runCommand } from "@/server/commands/envelope";
+import { runEditorCommand as runCommand } from "./calculation-editor-safety-fixture";
 import { createQuoteVersionFromCalculation } from "@/server/commands/quotes";
 import {
   attachmentsToPayload,

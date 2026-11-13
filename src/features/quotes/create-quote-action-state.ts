@@ -21,7 +21,7 @@
 import type { CommandErrorCode } from "@/server/commands/command-errors";
 
 /** The status discriminant of a create-quote action result. */
-export type CreateQuoteActionStatus = "idle" | "success" | "error";
+export type CreateQuoteActionStatus = "idle" | "success" | "error" | "unknown";
 
 /** The state `useActionState` carries for the list-page create-quote affordance. */
 export interface CreateQuoteActionState {
@@ -31,6 +31,7 @@ export interface CreateQuoteActionState {
   /** A generic, user-safe message. */
   readonly formError: string | null;
   /** The NEW draft version id on success. */
+  readonly operationId?: string | null;
   readonly targetId: string | null;
   /** The parent quote id on success — the `/quotes/{quoteId}` navigation target. */
   readonly quoteId: string | null;

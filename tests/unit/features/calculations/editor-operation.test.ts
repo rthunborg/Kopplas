@@ -53,8 +53,44 @@ test("P-4 reviewed digest/date remain mandatory for initial quote creation", () 
   assert.equal(validateCreateReviewedQuoteVersionFromCalculation({ calculation_id: id, attachment_file_ids: [] }).ok, false);
 });
 
-// API spelling of the new feature-local helper is deliberately left to the build
-// delegate. These are material uncovered pure-state checks, never passing coverage.
-test.todo("P-6 unknown/absent/prepared preserves original immutable request and scoped handle across remount; no automatic replay");
-test.todo("E35-8-T-late-result / E35-8-T-confirmed: operation A proof cannot mark later draft B or a neighboring form saved");
-test.todo("P-1/P-2 version-1 per-kind normalization rejects extra/missing expected keys and preserves original complete projection");
+import {
+  retainEditorIntent, applyEditorProof, editorHandle, readEditorHandle,
+  validateEditorSafety, canonicalEditorJson, projectEditorFacts, HEADER_FACTS,
+} from "@/features/calculations/editor-operation";
+
+test("P-6 unknown/absent/prepared preserves original immutable request and scoped handle across remount; no automatic replay", () => {
+  const request = { title: "Original", expected: { status: "draft" } };
+  const retained = retainEditorIntent("user/tenant/calc/title", request, id);
+  request.title = "Unsent later draft";
+  assert.match(retained.originalRequest, /Original/);
+  for (const status of ["unconfirmed", "prepared", "absent"]) {
+    const applied = applyEditorProof(retained, { operationId: id, status }, request);
+    assert.equal(applied.intent, retained);
+    assert.equal(applied.currentDraftSaved, false);
+  }
+  const handle = editorHandle(retained);
+  assert.deepEqual(readEditorHandle(handle, retained.scope), { operationId: id, scope: retained.scope });
+  assert.equal(readEditorHandle(handle, "other/user/form"), null);
+  assert.equal(handle.includes("Original"), false);
+  assert.equal(handle.includes("title"), true); // opaque form scope, never submitted text
+  assert.equal(Object.isFrozen(retained), true);
+});
+test("E35-8-T-late-result / E35-8-T-confirmed: operation A proof cannot mark later draft B or a neighboring form saved", () => {
+  const a = retainEditorIntent("a", { title: "A" }, id);
+  const b = retainEditorIntent("b", { title: "B" }, other);
+  assert.equal(applyEditorProof(b, { operationId: id, status: "committed" }, { title: "B" }).currentDraftSaved, false);
+  assert.equal(applyEditorProof(a, { operationId: id, status: "committed" }, { title: "later" }).currentDraftSaved, false);
+  assert.equal(applyEditorProof(a, { operationId: id, status: "committed" }, { title: "A" }).currentDraftSaved, true);
+  assert.equal(applyEditorProof(a, { operationId: id, status: "closed" }, { title: "A" }).currentDraftSaved, false);
+});
+test("P-1/P-2 version-1 per-kind normalization rejects extra/missing expected keys and preserves original complete projection", () => {
+  const header = projectEditorFacts({ id, title: "original", status: "draft" }, HEADER_FACTS);
+  const original = { operation_id: id, id, title: "changed", expected: { version: 1, form: "calculation", header } };
+  assert.equal(validateUpdateCalculation(original).ok, true);
+  assert.equal(validateEditorSafety({ ...original, expected: { ...original.expected, extra: true } }, "calculation.update"), null);
+  assert.equal(validateEditorSafety({ ...original, expected: { ...original.expected, header: { id } } }, "calculation.update"), null);
+  const safe = validateEditorSafety(original, "calculation.update")!;
+  header.title = "later";
+  assert.equal((safe.expected.header as { title: string }).title, "original");
+  assert.equal(canonicalEditorJson({ a: 1, b: null }), canonicalEditorJson({ b: null, a: 1 }));
+});

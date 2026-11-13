@@ -61,6 +61,7 @@ const PINNED_TENANT_TABLES = [
   "calculations",
   "calculation_sections",
   "calculation_rows",
+  "calculation_editor_operations",
   "files",
   "file_links",
   "tenant_counters",

@@ -13,11 +13,12 @@
  * The list is a thin index — the EDITOR is the heart of this story. No deferred-workflow
  * label appears; no new nav item (Kalkyler already exists in the seven-item shell).
  */
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormField";
-import { createCalculationAction } from "@/features/calculations/actions";
+import { calculationEditorScopeAction, reconcileCalculationEditorOperationAction, createCalculationAction } from "@/features/calculations/actions";
+import { editorHandle, readEditorHandle, retainEditorIntent } from "@/features/calculations/editor-operation";
 import {
   CALC_ACTION_INITIAL,
   isRetryableCalcError,
@@ -47,10 +48,8 @@ export function CalculationList({
 }) {
   const router = useRouter();
   const [showCreate, setShowCreate] = useState(false);
-  const [state, formAction, pending] = useActionState(
-    createCalculationAction,
-    CALC_ACTION_INITIAL,
-  );
+  const createOperation = useEditorOperation(createCalculationAction, CALC_ACTION_INITIAL, "new/calculation", form => ({ version: 1, form: "calculation", customer_id: form.get("customer_id"), facility_id: form.get("facility_id") || null, contact_id: form.get("contact_id") || null }));
+  const [state, formAction, pending] = [createOperation.state, createOperation.action, createOperation.pending];
 
   // On a successful create, navigate to the new calc's editor.
   useEffect(() => {
@@ -98,12 +97,12 @@ export function CalculationList({
       )}
 
       {showCreate && (
-        <form
+        <form {...createOperation.formProps}
           action={formAction}
           data-testid="new-calculation-form"
           className="flex max-w-xl flex-col gap-4 rounded-lg border border-zinc-200 bg-white p-4"
           noValidate
-        >
+        >{createOperation.recovery}
           <FormErrorSummary message={isMine ? state.formError : null} />
           {retryable && (
             <p role="status" className="text-sm text-amber-800">
@@ -177,4 +176,66 @@ export function CalculationList({
       )}
     </section>
   );
+}
+
+
+type EditorActionState = { readonly status: "idle" | "success" | "error" | "unknown"; readonly targetId: string | null; readonly formError: string | null; readonly operationId?: string | null };
+/** Six-host connected editor plumbing. Only opaque scoped handles survive remount. */
+export function useEditorOperation<S extends EditorActionState>(
+  action: (previous: S, form: FormData) => Promise<S>, initial: S, formKey: string,
+  expected: (form: FormData) => Record<string, unknown>,
+) {
+  const [scope, setScope] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
+  const [recoverable, setRecoverable] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const handle = useRef<string | null>(null), original = useRef<FormData | null>(null);
+  const busy = useRef(false), revision = useRef(0);
+  const key = scope ? `kopplas/editor/v1/${scope}/${formKey}` : null;
+  useEffect(() => { let active = true;
+    calculationEditorScopeAction().then(s => { if(active) setScope(s); }).catch(() => { if(active) setNotice("Anslutning krävs för att kontrollera åtgärder."); });
+    return () => { active = false; };
+  }, []);
+  useEffect(() => { if (!key || !scope) return;
+    try { const raw = sessionStorage.getItem(key), saved = raw ? readEditorHandle(raw, `${scope}/${formKey}`) : null;
+      handle.current = saved?.operationId ?? null; setRecoverable(Boolean(saved));
+      if (saved) setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen.");
+    } catch { setNotice("Sessionslagring krävs för att bevara åtgärdens identitet."); }
+  }, [key, scope, formKey]);
+  function clear() { handle.current = null; original.current = null; setRecoverable(false); setChecked(false); if (key) sessionStorage.removeItem(key); }
+  const [state, dispatch, pending] = useActionState<S, FormData>(async (previous: S, form: FormData): Promise<S> => {
+    if (busy.current) return previous;
+    if (!navigator.onLine || !key || !scope) { setNotice("Anslutning krävs. Uppgifterna är inte skickade."); return { ...initial, status: "error" }; }
+    if (handle.current) { setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen."); return { ...previous, status: "unknown", targetId: null }; }
+    const submitted = new FormData(); for (const [k,v] of form.entries()) submitted.append(k,v);
+    const operationId = crypto.randomUUID(); submitted.set("operation_id", operationId); submitted.set("expected", JSON.stringify(expected(form)));
+    const intent = retainEditorIntent(`${scope}/${formKey}`, [...submitted.entries()], operationId);
+    try { sessionStorage.setItem(key, editorHandle(intent)); } catch { setNotice("Åtgärden skickades inte. Fliken kan inte bevara identiteten."); return { ...initial, status: "error" }; }
+    handle.current = operationId; original.current = submitted; setRecoverable(true); setChecked(false); busy.current = true;
+    const submittedRevision = revision.current;
+    try { const next = await action(previous, submitted);
+      if(next.status === "unknown") { setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen."); return next; }
+      clear();
+      if(next.status === "success" && submittedRevision !== revision.current) { setNotice("Tidigare åtgärd bekräftad. Dina nya ändringar är inte sparade."); return { ...next, status: "idle", targetId: null }; }
+      setNotice(null); return next;
+    } catch { setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen."); return { ...previous, status: "unknown", operationId, targetId: null }; }
+    finally { busy.current = false; }
+  }, initial as Awaited<S>);
+  async function reconcile() { if(!handle.current || busy.current) return; busy.current = true;
+    try { const proof = await reconcileCalculationEditorOperationAction(handle.current); setChecked(true);
+      if(proof.status === "unconfirmed") { setNotice("Resultatet är fortfarande obekräftat."); return; }
+      setNotice(proof.status === "committed" ? "Den ursprungliga åtgärden är bekräftad. Kontrollera aktuella uppgifter före nya ändringar." : "Åtgärden avvisades. Uppdatera underlaget före en ny åtgärd."); clear();
+    } catch { setNotice("Resultatet kunde inte kontrolleras. Försök kontrollera igen."); } finally { busy.current = false; }
+  }
+  async function retry() { if(!checked || !original.current || busy.current) return; busy.current = true;
+    try { const next = await action(initial, original.current);
+      if(next.status !== "success") setNotice("Resultatet är fortfarande obekräftat. Kontrollera innan du fattar ett nytt beslut.");
+      else { setNotice(next.status === "success" ? "Den ursprungliga åtgärden är bekräftad. Nya ändringar är inte sparade." : next.formError); clear(); }
+    } catch { setNotice("Resultatet är fortfarande obekräftat."); } finally { busy.current = false; }
+  }
+  return { state, action: dispatch, pending, formProps: { onChange: () => { revision.current++; } },
+    recovery: <>{notice && <p role="status">{notice}</p>}{recoverable && <div className="flex flex-wrap gap-2">
+      <button type="button" className="min-h-11 rounded-control border border-border-strong px-4" onClick={() => { void reconcile(); }}>Kontrollera resultat</button>
+      {checked && original.current && <button type="button" className="min-h-11 rounded-control border border-border-strong px-4" onClick={() => { void retry(); }}>Försök samma åtgärd igen</button>}
+    </div>}</> };
 }

@@ -1,3 +1,4 @@
+import { validateEditorSafety, type EditorSafetyInput } from "@/features/calculations/editor-operation";
 /**
  * PURE calculation input validators (Story 5.1, Task 3.2; architecture §5 step 4).
  *
@@ -213,7 +214,7 @@ function optionalOreOk(v: unknown): boolean {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /** Validated `createCalculation` input (tenant_id is NEVER part of it — derived). */
-export interface CreateCalculationInput {
+export interface CreateCalculationInput extends EditorSafetyInput {
   readonly customer_id: string;
   readonly facility_id?: string;
   readonly contact_id?: string;
@@ -227,7 +228,7 @@ export interface CreateCalculationInput {
  * the target row's REAL current status loaded from the DB (findings 1 & 2) — never a
  * client-supplied `currentStatus`.
  */
-export interface UpdateCalculationInput {
+export interface UpdateCalculationInput extends EditorSafetyInput {
   readonly id: string;
   readonly title?: string;
   readonly status?: CalcStatus;
@@ -235,13 +236,13 @@ export interface UpdateCalculationInput {
 }
 
 /** Validated `{ id }` input shared by the archive commands. */
-export interface ArchiveCalcInput {
+export interface ArchiveCalcInput extends EditorSafetyInput {
   readonly id: string;
 }
 
-export function validateCreateCalculation(
+function validateCreateCalculationDomain(
   raw: unknown,
-): ValidationResult<CreateCalculationInput> {
+): ValidationResult<Omit<CreateCalculationInput, keyof EditorSafetyInput>> {
   if (!isRecord(raw)) return fail;
   if (!isUuidLike(raw.customer_id)) return fail;
   if (isPresent(raw.facility_id) && !isUuidLike(raw.facility_id)) return fail;
@@ -262,9 +263,9 @@ export function validateCreateCalculation(
   };
 }
 
-export function validateUpdateCalculation(
+function validateUpdateCalculationDomain(
   raw: unknown,
-): ValidationResult<UpdateCalculationInput> {
+): ValidationResult<Omit<UpdateCalculationInput, keyof EditorSafetyInput>> {
   if (!isRecord(raw)) return fail;
   if (!isUuidLike(raw.id)) return fail;
 
@@ -303,9 +304,9 @@ export function validateUpdateCalculation(
   };
 }
 
-export function validateArchiveCalc(
+function validateArchiveCalcDomain(
   raw: unknown,
-): ValidationResult<ArchiveCalcInput> {
+): ValidationResult<Omit<ArchiveCalcInput, keyof EditorSafetyInput>> {
   if (!isRecord(raw)) return fail;
   if (!isUuidLike(raw.id)) return fail;
   return { ok: true, data: { id: raw.id as string } };
@@ -315,13 +316,13 @@ export function validateArchiveCalc(
 // Section commands
 // ─────────────────────────────────────────────────────────────────────────────
 
-export interface CreateSectionInput {
+export interface CreateSectionInput extends EditorSafetyInput {
   readonly calculation_id: string;
   readonly title?: string;
   readonly display_mode?: SectionDisplayMode;
 }
 
-export interface UpdateSectionInput {
+export interface UpdateSectionInput extends EditorSafetyInput {
   readonly id: string;
   readonly title?: string;
   readonly display_mode?: SectionDisplayMode;
@@ -334,9 +335,9 @@ function isDisplayMode(v: unknown): v is SectionDisplayMode {
   );
 }
 
-export function validateCreateSection(
+function validateCreateSectionDomain(
   raw: unknown,
-): ValidationResult<CreateSectionInput> {
+): ValidationResult<Omit<CreateSectionInput, keyof EditorSafetyInput>> {
   if (!isRecord(raw)) return fail;
   if (!isUuidLike(raw.calculation_id)) return fail;
   // title is OPTIONAL for a section (a section may be untitled). When present it must
@@ -355,9 +356,9 @@ export function validateCreateSection(
   };
 }
 
-export function validateUpdateSection(
+function validateUpdateSectionDomain(
   raw: unknown,
-): ValidationResult<UpdateSectionInput> {
+): ValidationResult<Omit<UpdateSectionInput, keyof EditorSafetyInput>> {
   if (!isRecord(raw)) return fail;
   if (!isUuidLike(raw.id)) return fail;
   if (isPresent(raw.title) && !isNonEmptyText(raw.title)) return fail;
@@ -374,17 +375,17 @@ export function validateUpdateSection(
   };
 }
 
-export function validateArchiveSection(
+function validateArchiveSectionDomain(
   raw: unknown,
-): ValidationResult<ArchiveCalcInput> {
-  return validateArchiveCalc(raw);
+): ValidationResult<Omit<ArchiveCalcInput, keyof EditorSafetyInput>> {
+  return validateArchiveCalcDomain(raw);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Row commands
 // ─────────────────────────────────────────────────────────────────────────────
 
-export interface CreateRowInput {
+export interface CreateRowInput extends EditorSafetyInput {
   readonly section_id: string;
   readonly row_type: RowType;
   readonly quantity: number;
@@ -413,7 +414,7 @@ export interface CreateRowInput {
   readonly source_id?: string;
 }
 
-export interface UpdateRowInput {
+export interface UpdateRowInput extends EditorSafetyInput {
   readonly id: string;
   readonly row_type?: RowType;
   readonly quantity?: number;
@@ -595,9 +596,9 @@ function bool(rec: Record<string, unknown>, key: string): boolean | undefined {
   return typeof v === "boolean" ? v : undefined;
 }
 
-export function validateCreateRow(
+function validateCreateRowDomain(
   raw: unknown,
-): ValidationResult<CreateRowInput> {
+): ValidationResult<Omit<CreateRowInput, keyof EditorSafetyInput>> {
   if (!isRecord(raw)) return fail;
   if (!isUuidLike(raw.section_id)) return fail;
   if (!isRowType(raw.row_type)) return fail;
@@ -658,7 +659,7 @@ export function validateCreateRow(
   };
 }
 
-export function validateUpdateRow(raw: unknown): ValidationResult<UpdateRowInput> {
+function validateUpdateRowDomain(raw: unknown): ValidationResult<Omit<UpdateRowInput, keyof EditorSafetyInput>> {
   if (!isRecord(raw)) return fail;
   if (!isUuidLike(raw.id)) return fail;
   if (isPresent(raw.row_type) && !isRowType(raw.row_type)) return fail;
@@ -716,22 +717,22 @@ export function validateUpdateRow(raw: unknown): ValidationResult<UpdateRowInput
   };
 }
 
-export function validateArchiveRow(
+function validateArchiveRowDomain(
   raw: unknown,
-): ValidationResult<ArchiveCalcInput> {
-  return validateArchiveCalc(raw);
+): ValidationResult<Omit<ArchiveCalcInput, keyof EditorSafetyInput>> {
+  return validateArchiveCalcDomain(raw);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Atomic reorder commands (ADR-A009 narrow RPC)
 // ─────────────────────────────────────────────────────────────────────────────
 
-export interface ReorderRowsInput {
+export interface ReorderRowsInput extends EditorSafetyInput {
   readonly section_id: string;
   readonly ordered_row_ids: readonly string[];
 }
 
-export interface ReorderSectionsInput {
+export interface ReorderSectionsInput extends EditorSafetyInput {
   readonly calculation_id: string;
   readonly ordered_section_ids: readonly string[];
 }
@@ -746,9 +747,9 @@ function isUuidArray(v: unknown): v is string[] {
   );
 }
 
-export function validateReorderRows(
+function validateReorderRowsDomain(
   raw: unknown,
-): ValidationResult<ReorderRowsInput> {
+): ValidationResult<Omit<ReorderRowsInput, keyof EditorSafetyInput>> {
   if (!isRecord(raw)) return fail;
   if (!isUuidLike(raw.section_id)) return fail;
   if (!isUuidArray(raw.ordered_row_ids)) return fail;
@@ -761,9 +762,9 @@ export function validateReorderRows(
   };
 }
 
-export function validateReorderSections(
+function validateReorderSectionsDomain(
   raw: unknown,
-): ValidationResult<ReorderSectionsInput> {
+): ValidationResult<Omit<ReorderSectionsInput, keyof EditorSafetyInput>> {
   if (!isRecord(raw)) return fail;
   if (!isUuidLike(raw.calculation_id)) return fail;
   if (!isUuidArray(raw.ordered_section_ids)) return fail;
@@ -774,4 +775,72 @@ export function validateReorderSections(
       ordered_section_ids: [...(raw.ordered_section_ids as string[])],
     },
   };
+}
+
+// Every application command requires original expected content and retained identity.
+export function validateCreateCalculation(raw: unknown): ValidationResult<CreateCalculationInput> {
+  const safety = validateEditorSafety(raw, "calculation.create");
+  if (!safety) return fail;
+  const domain = validateCreateCalculationDomain(raw);
+  return domain.ok ? { ok: true, data: { ...domain.data, ...safety } } : domain;
+}
+export function validateUpdateCalculation(raw: unknown): ValidationResult<UpdateCalculationInput> {
+  const safety = validateEditorSafety(raw, "calculation.update");
+  if (!safety) return fail;
+  const domain = validateUpdateCalculationDomain(raw);
+  return domain.ok ? { ok: true, data: { ...domain.data, ...safety } } : domain;
+}
+export function validateArchiveCalc(raw: unknown): ValidationResult<ArchiveCalcInput> {
+  const safety = validateEditorSafety(raw, "calculation.archive");
+  if (!safety) return fail;
+  const domain = validateArchiveCalcDomain(raw);
+  return domain.ok ? { ok: true, data: { ...domain.data, ...safety } } : domain;
+}
+export function validateCreateSection(raw: unknown): ValidationResult<CreateSectionInput> {
+  const safety = validateEditorSafety(raw, "calculation.section.create");
+  if (!safety) return fail;
+  const domain = validateCreateSectionDomain(raw);
+  return domain.ok ? { ok: true, data: { ...domain.data, ...safety } } : domain;
+}
+export function validateUpdateSection(raw: unknown): ValidationResult<UpdateSectionInput> {
+  const safety = validateEditorSafety(raw, "calculation.section.update");
+  if (!safety) return fail;
+  const domain = validateUpdateSectionDomain(raw);
+  return domain.ok ? { ok: true, data: { ...domain.data, ...safety } } : domain;
+}
+export function validateArchiveSection(raw: unknown): ValidationResult<ArchiveCalcInput> {
+  const safety = validateEditorSafety(raw, "calculation.section.archive");
+  if (!safety) return fail;
+  const domain = validateArchiveSectionDomain(raw);
+  return domain.ok ? { ok: true, data: { ...domain.data, ...safety } } : domain;
+}
+export function validateCreateRow(raw: unknown): ValidationResult<CreateRowInput> {
+  const safety = validateEditorSafety(raw, "calculation.row.create");
+  if (!safety) return fail;
+  const domain = validateCreateRowDomain(raw);
+  return domain.ok ? { ok: true, data: { ...domain.data, ...safety } } : domain;
+}
+export function validateUpdateRow(raw: unknown): ValidationResult<UpdateRowInput> {
+  const safety = validateEditorSafety(raw, "calculation.row.update");
+  if (!safety) return fail;
+  const domain = validateUpdateRowDomain(raw);
+  return domain.ok ? { ok: true, data: { ...domain.data, ...safety } } : domain;
+}
+export function validateArchiveRow(raw: unknown): ValidationResult<ArchiveCalcInput> {
+  const safety = validateEditorSafety(raw, "calculation.row.archive");
+  if (!safety) return fail;
+  const domain = validateArchiveRowDomain(raw);
+  return domain.ok ? { ok: true, data: { ...domain.data, ...safety } } : domain;
+}
+export function validateReorderSections(raw: unknown): ValidationResult<ReorderSectionsInput> {
+  const safety = validateEditorSafety(raw, "calculation.sections.reorder");
+  if (!safety) return fail;
+  const domain = validateReorderSectionsDomain(raw);
+  return domain.ok ? { ok: true, data: { ...domain.data, ...safety } } : domain;
+}
+export function validateReorderRows(raw: unknown): ValidationResult<ReorderRowsInput> {
+  const safety = validateEditorSafety(raw, "calculation.rows.reorder");
+  if (!safety) return fail;
+  const domain = validateReorderRowsDomain(raw);
+  return domain.ok ? { ok: true, data: { ...domain.data, ...safety } } : domain;
 }

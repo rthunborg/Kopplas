@@ -42,7 +42,7 @@ import {
   expectDatabaseOwnedTimestamp,
   readDatabaseNow,
 } from "../../support/database-time";
-import { runCommand } from "@/server/commands/envelope";
+import { runEditorCommand as runCommand } from "./calculation-editor-safety-fixture";
 import {
   createCalculation,
   updateCalculation,

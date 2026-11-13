@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useEditorOperation } from "./CalculationList";
 import { useRouter } from "next/navigation";
 
 import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormField";
@@ -85,10 +86,12 @@ export interface FixedPriceScopeRowOption {
 
 export function TaxSettingsPanel({
   calculationId,
+  headerFacts,
   value,
   fixedPriceScopeRows,
 }: {
   readonly calculationId: string;
+  readonly headerFacts?: Record<string, unknown>;
   readonly value: TaxInputSnapshotV2 | null;
   readonly fixedPriceScopeRows: readonly FixedPriceScopeRowOption[];
 }) {
@@ -100,6 +103,7 @@ export function TaxSettingsPanel({
   return (
     <TaxSettingsForm
       key={canonicalRevision}
+      headerFacts={headerFacts}
       calculationId={calculationId}
       input={input}
       fixedPriceScopeRows={fixedPriceScopeRows}
@@ -109,14 +113,17 @@ export function TaxSettingsPanel({
 
 function TaxSettingsForm({
   calculationId,
+  headerFacts,
   input,
   fixedPriceScopeRows,
 }: {
   readonly calculationId: string;
+  readonly headerFacts?: Record<string, unknown>;
   readonly input: TaxInputSnapshotV2;
   readonly fixedPriceScopeRows: readonly FixedPriceScopeRowOption[];
 }) {
-  const [state, action, pending] = useActionState(updateTaxInputAction, CALC_ACTION_INITIAL);
+  const taxOperation = useEditorOperation(updateTaxInputAction, CALC_ACTION_INITIAL, `${calculationId}/tax`, () => ({ version: 1, form: "tax_input", header: headerFacts ?? null }));
+  const [state, action, pending] = [taxOperation.state, taxOperation.action, taxOperation.pending];
   const router = useRouter();
   const mine = state.form === "tax_input";
   const v = (field: string, fallback: string): string =>
@@ -173,7 +180,7 @@ function TaxSettingsForm({
         Ange explicita moms- och avdragsfakta. Uppgifterna fryses när en offertversion skapas.
       </p>
 
-      <form
+      <form {...taxOperation.formProps}
         action={action}
         className="mt-4 flex flex-col gap-4"
         noValidate
@@ -183,6 +190,7 @@ function TaxSettingsForm({
           }
         }}
       >
+        {taxOperation.recovery}
         <input type="hidden" name="id" value={calculationId} />
         <FormErrorSummary message={mine ? state.formError : null} />
         {mine && state.status === "success" ? (
