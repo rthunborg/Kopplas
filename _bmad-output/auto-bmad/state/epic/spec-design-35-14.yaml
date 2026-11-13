@@ -1,0 +1,114 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: spec-design-35-14
+epic_num: null
+story_num: null
+story_suffix: null
+story_source: stories
+spec_folder: "C:/DEV/Kopplas/tmp/private/35-14-dashboard-closeout-20261113/_bmad-output/specs/spec-design-35-14"
+story_id: null
+branch: codex/35-14-dashboard-closeout-20261113
+status: in-progress
+updated_at: "2026-11-13T12:59:24Z"
+started_at: "2026-11-12T10:47:25Z"
+completed_at: null
+active_seconds: 2766
+timing_anchor: null
+is_first_in_epic: false
+is_last_in_epic: false
+git_mode: remote
+base_branch: main
+selected_phase: retrospective
+selected_role: retrospective-delegate
+selected_profile: default
+selected_model: gpt-6.1-sol
+selected_effort: low
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Ordinary headless one-story retrospective; reuse distinct High qualification/finding dispositions, no new sensitive source decision."
+routing_ledger:
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary presentation-only test-design adoption; retained producers and authority unchanged.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary presentation-only aggregate trace; independent High runtime/custody qualification retained, no sensitive source changes.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual NFR security/tenant-isolation evidence assessment; reuse final High DB/runtime evidence without broad new source audit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Retain persisted high effort for the in-flight tea_epic_audit phase across NFR and test-review substeps; no same-phase downgrade.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Bounded own-story deferred reconciliation only; foreign ledger entries untouched and current advisory findings remain open.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"deferred_reconcile\",\"profile\":\"standard\",\"role\":\"deferred-reconciler\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary headless one-story retrospective; reuse distinct High qualification/finding dispositions, no new sensitive source decision.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"retrospective\",\"profile\":\"default\",\"role\":\"retrospective-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: null
+tea_selected: []
+tea_rationale: null
+epic_story_count: null
+stories_after_in_epic: null
+completed_phases: [0, 1, 2, 5, 81, 82]
+spec_path: null
+spec_approved: false
+build:
+  status: null
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: []
+followup_passes: 0
+hitl_halt: null
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: []
+phase8_steps:
+  trace_gate: done
+  nfr: done
+  test_review: done
+  reconcile: done
+  archive: done
+  retro: done
+gate_decision: PASS
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: "_bmad-output/specs/spec-design-35-14/RETROSPECTIVE.md"
+  verdict: accepted-with-open-items
+  open_action_items: null
+bmad_status_flipped_at: null
+pr_url: null
+ci_run_url: null
+ci_status: unknown
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work:
+  - "[35.14 quality open:20H3] Conditional/assertion-structure findings remain open; formal0/F Request Changes unchanged. Owner:Root coordinator. Evidence:_bmad-output/test-artifacts/spec-design-35-14-35-14/closeout-test-review.md SHA256fac6d1bfc68bcd84507859140aec3a25d16750e0bc445c84580a5cda49bd393e. Next:bounded authorized test maintenance to strengthen independent assertions while preserving every functional case; current inspected M evidence remains qualified, no future drift/empty-selection guarantee."
+  - "[35.14 quality open:1H4] Shared persistent read-plan isolation defect remains open. Owner:Root coordinator. Evidence:_bmad-output/test-artifacts/spec-design-35-14-35-14/closeout-test-review.md SHA256fac6d1bfc68bcd84507859140aec3a25d16750e0bc445c84580a5cda49bd393e and independent dispositiona31d8113. Next:bounded test-owned setup/restoration correction and focused order-independence verification when separately allocated; reverse-order execution unperformed. Actual canonical M fixed-order passes remain supported."
+  - "[35.14 quality open:9maintenance/convention] Includes Absolute HIGH H5 filelength and remaining maintenance/convention findings; none marked fixed or waived. Owner:Root coordinator. Evidence:_bmad-output/test-artifacts/spec-design-35-14-35-14/closeout-test-review.md SHA256fac6d1bfc68bcd84507859140aec3a25d16750e0bc445c84580a5cda49bd393e. Next:scope exact test-maintenance followup preserving all cases/assertions and the formal rubric; no broad framework repair or new release gate."
+  - "[35.14 quality open:4interaction/readiness] Four reported interaction/readiness findings remain open. Owner:Root coordinator. Evidence:_bmad-output/test-artifacts/spec-design-35-14-35-14/closeout-test-review.md SHA256fac6d1bfc68bcd84507859140aec3a25d16750e0bc445c84580a5cda49bd393e. Next:review each reported assertion/readiness location in bounded authorized maintenance and preserve current-proof limits. No new current required AC failure established; all34 findings remain in full report."
+blockers: []
+overrides:
+  owner_authority: "2026-11-12 approved seven-path E19.1-only delivery, 35.13 sequencing amendment and normal routine continuation; substantive frontend visual decision retained"
+  late_coordinator_E2: "Prepared canonical design was not actual coordinator phase completion. Bounded validation/adoption is now completing before application source build; existing worker claim/ATDD preserved."
+constraints: []
+epic_slug: design-35-14
+active_story: null
+stories_landed:
+  - spec-design-35-14-35-14
+stories_skipped: []
+batch_flip_done: true
+parallel_run_id: e35-14-dashboard-20261112
+publication_strategy: story-pr
+qualified_source_revision: f5b5a5a6d4097dfc5c614e82efafe1ded6e8f294
+epic_test_design:
+  status: adopted
+  path: "_bmad-output/test-artifacts/test-design-spec-design-35-14.md"
+  sha256: 5345c42e0b3b4136e21d62b4aa3ba917e3dffcae5cf4f1e6e116b627695801e1
+  delegate: "/root/dashboard_35_14_e2"
+  model: gpt-6.1-sol
+  effort: low
+  source_revision: f5b5a5a6d4097dfc5c614e82efafe1ded6e8f294
+  source_test_design_lf_sha256: 94419c9fdfa1b390a31dfefb9ff0d1e1c578e2f0a54d4a23be0f31f61c31e519
+  runtime_evidence: "Unexecuted for future candidate; this is test-design adoption only"
