@@ -9,11 +9,11 @@ spec_folder: "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\wo
 story_id: 35-8-p
 branch: codex/parallel-e35-8-producer-safety-20261112
 status: in-progress
-updated_at: "2026-11-13T15:10:23Z"
+updated_at: "2026-11-13T17:09:13Z"
 started_at: "2026-11-13T14:19:23Z"
 completed_at: null
 active_seconds: 3034
-timing_anchor: null
+timing_anchor: 1794589753
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -26,10 +26,11 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Approved producer transaction, tenant/auth/RLS and money invariants require sensitive High implementation/review."
+escalation_reason: "Explicit recoveredgen2 partialP5 continuation; tenant/auth/RLS/money/transaction invariants, exact57+6 only."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"ATDD for tenant, authorization, money and transactional producer safety.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Approved producer transaction, tenant/auth/RLS and money invariants require sensitive High implementation/review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit recoveredgen2 partialP5 continuation; tenant/auth/RLS/money/transaction invariants, exact57+6 only.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Authorization/RLS, money and atomic concurrent mutation/replay; one-story epic so no trace advisory."
@@ -39,8 +40,8 @@ completed_phases: [0, 1, 2, 3, 4]
 spec_path: "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\specs\\spec-calculation-editor-mutation-safety\\stories\\35-8-p-calculation-editor-mutation-safety.md"
 spec_approved: true
 build:
-  status: blocked
-  blocking_condition: implementation verification failed
+  status: in-progress
+  blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
@@ -78,12 +79,10 @@ pr_merged: false
 merge_method: null
 merge_commit: null
 branch_deleted: false
-open_questions:
-  - "Root-owned independently reviewed exact two-file ownership/allocation and supported schema2 recovery decision; no blanket scope extension."
+open_questions: []
 deferred_work:
   - "UNFINISHED REQUIRED: owned typing/count fixes and material test bodies/adapters, SQL/source/clock reconciliation, all final checks, independent review and frontend acceptance. No required gate waived."
-blockers:
-  - "Mandatory new-table H4 enrollment requires two unallocated files: tests/integration/rls/role-harness.atdd.int.test.ts and explicitly readonly tests/support/authz/role-harness.ts. No outside edits or inventory/role bypass."
+blockers: []
 overrides:
   worker_adapter: "Actual claimed assignment replaces picker/branching and matching-epic guard. E2 and approved ready spec adopted, not regenerated."
 constraints:
