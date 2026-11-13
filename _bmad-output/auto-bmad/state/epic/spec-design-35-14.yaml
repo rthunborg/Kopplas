@@ -8,11 +8,11 @@ story_source: stories
 spec_folder: "C:/DEV/Kopplas/tmp/private/35-14-dashboard-closeout-20261113/_bmad-output/specs/spec-design-35-14"
 story_id: null
 branch: codex/35-14-dashboard-closeout-20261113
-status: in-progress
-updated_at: "2026-11-13T12:59:24Z"
+status: done
+updated_at: "2026-11-13T13:13:39Z"
 started_at: "2026-11-12T10:47:25Z"
-completed_at: null
-active_seconds: 2766
+completed_at: "2026-11-13T13:13:39Z"
+active_seconds: 2827
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
@@ -37,9 +37,9 @@ routing_ledger:
 tea_risk: null
 tea_selected: []
 tea_rationale: null
-epic_story_count: null
+epic_story_count: 1
 stories_after_in_epic: null
-completed_phases: [0, 1, 2, 5, 81, 82]
+completed_phases: [0, 1, 2, 5, 9, 81, 82]
 spec_path: null
 spec_approved: false
 build:
@@ -59,7 +59,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [420cffe8]
 phase8_steps:
   trace_gate: done
   nfr: done
