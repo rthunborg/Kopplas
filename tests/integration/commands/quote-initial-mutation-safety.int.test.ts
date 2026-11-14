@@ -44,16 +44,18 @@ async function originalIntent() {
 }
 function interruptedClient(mode: "before-create" | "after-create") {
   const calls: { name: string; args: Record<string, unknown> }[] = [];
-  let interrupted = false;
+  let interrupted = false, prepared = false;
   const client = new Proxy(actor, { get(target, key) {
     if (key === "rpc") return async (name: string, args: Record<string, unknown>) => {
       calls.push({ name, args });
-      if (name === "create_calculation_editor_quote" && mode === "before-create" && !interrupted) {
+      if (name === "create_calculation_editor_quote" && mode === "before-create" && prepared && !interrupted) {
         interrupted = true;
         throw new Error("synthetic transport loss before create dispatch");
       }
       const response = await target.rpc(name, args);
-      if (name === "create_calculation_editor_quote" && mode === "after-create" && !response.error && !interrupted) {
+      if (name === "authorize_calculation_editor_quote" && !response.error) prepared = true;
+      const proof: unknown = response.data;
+      if (name === "create_calculation_editor_quote" && mode === "after-create" && !response.error && proof !== null && typeof proof === "object" && "status" in proof && proof.status === "committed" && !interrupted) {
         interrupted = true;
         throw new Error("synthetic transport loss after database commit");
       }

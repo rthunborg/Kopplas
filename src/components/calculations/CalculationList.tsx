@@ -13,12 +13,12 @@
  * The list is a thin index — the EDITOR is the heart of this story. No deferred-workflow
  * label appears; no new nav item (Kalkyler already exists in the seven-item shell).
  */
-import { useActionState, useEffect, useLayoutEffect, useState, useRef } from "react";
+import { useActionState, useEffect, useState, useRef, startTransition } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormField";
 import { calculationEditorScopeAction, reconcileCalculationEditorOperationAction, createCalculationAction } from "@/features/calculations/actions";
-import { editorHandle, readEditorHandle, retainEditorIntent } from "@/features/calculations/editor-operation";
+import { editorHandle, readEditorHandle, retainEditorIntent, editorRequestFingerprint } from "@/features/calculations/editor-operation";
 import {
   CALC_ACTION_INITIAL,
   isRetryableCalcError,
@@ -180,7 +180,7 @@ export function CalculationList({
 
 
 type EditorActionState = { readonly status: "idle" | "success" | "error" | "unknown"; readonly targetId: string | null; readonly formError: string | null; readonly operationId?: string | null };
-/** Six-host connected editor plumbing. Only opaque scoped handles survive remount. */
+/** Six-host connected controller. Reentry is explicit and bound to original facts. */
 export function useEditorOperation<S extends EditorActionState>(
   action: (previous: S, form: FormData) => Promise<S>, initial: S, formKey: string,
   expected: (form: FormData) => Record<string, unknown>,
@@ -190,10 +190,13 @@ export function useEditorOperation<S extends EditorActionState>(
   const [recoverable, setRecoverable] = useState(false);
   const [checked, setChecked] = useState(false);
   const [hasOriginalRequest, setHasOriginalRequest] = useState(false);
+  const [recoveryPending, setRecoveryPending] = useState(false);
+  const [hasDraftChanges, setHasDraftChanges] = useState(false);
   const handle = useRef<string | null>(null), original = useRef<FormData | null>(null);
+  const replayContext = useRef<{ requestFingerprint: string } | null>(null);
   const busy = useRef(false), revision = useRef(0), submitting = useRef(false);
+  const formElement = useRef<HTMLFormElement | null>(null);
   const draftExpected = useRef<Record<string, unknown> | null>(null);
-  const laterDraft = useRef<{ element: HTMLFormElement; values: FormData } | null>(null);
   const currentKey = useRef<string | null>(null);
   const [resultLink, setResultLink] = useState<string | null>(null);
   const key = scope ? `kopplas/editor/v1/${scope}/${formKey}` : null;
@@ -205,86 +208,100 @@ export function useEditorOperation<S extends EditorActionState>(
     currentKey.current = key;
     if (!key || !scope) return;
     let active = true;
-    // Restore this external session handle after identity resolution. Never submit
-    // from a lifecycle callback, and ignore restoration for an unmounted scope.
     queueMicrotask(() => {
       if (!active) return;
       try { const raw = sessionStorage.getItem(key), saved = raw ? readEditorHandle(raw, `${scope}/${formKey}`) : null;
         handle.current = saved?.operationId ?? null; setRecoverable(Boolean(saved));
-        setHasOriginalRequest(false); original.current = null; draftExpected.current = null;
+        replayContext.current = saved?.replay ?? null;
+        setHasOriginalRequest(false); original.current = null;
         if (saved) setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen.");
       } catch { setNotice("Sessionslagring krävs för att bevara åtgärdens identitet."); }
     });
     return () => { active = false; };
   }, [key, scope, formKey]);
-  function clear() { draftExpected.current = null; handle.current = null; original.current = null; setHasOriginalRequest(false); setRecoverable(false); setChecked(false); if (key) { try { sessionStorage.removeItem(key); } catch { /* A retained stale handle can still reconcile. */ } } }
-  const [state, dispatch, pending] = useActionState<S, FormData>(async (previous: S, form: FormData): Promise<S> => {
+  function clear() { draftExpected.current = null; handle.current = null; original.current = null; replayContext.current = null; setHasOriginalRequest(false); setRecoverable(false); setChecked(false); if (key) { try { sessionStorage.removeItem(key); } catch { /* A stale handle remains safely reconcilable. */ } } }
+  const [state, dispatch, actionPending] = useActionState<S, FormData>(async (previous: S, form: FormData): Promise<S> => {
     if (busy.current) { submitting.current = false; return previous; }
-    if (!navigator.onLine || !key || !scope) { setNotice("Anslutning krävs. Uppgifterna är inte skickade."); submitting.current = false; return { ...initial, status: "error", values: Object.fromEntries([...form.entries()].filter((entry): entry is [string, string] => typeof entry[1] === "string")) }; }
-    if (!handle.current) {
-      try { const raw = sessionStorage.getItem(key); const saved = raw ? readEditorHandle(raw, `${scope}/${formKey}`) : null;
-        if (saved) { handle.current = saved.operationId; setRecoverable(true); }
-      } catch { setNotice("Åtgärden skickades inte. Identiteten kunde inte kontrolleras."); submitting.current = false; return { ...initial, status: "error" }; }
+    if (!navigator.onLine || !key || !scope) { setNotice("Anslutning krävs. Uppgifterna är inte skickade."); submitting.current = false; return { ...previous, status: "error", targetId: null }; }
+    try {
+      const raw = sessionStorage.getItem(key), saved = raw ? readEditorHandle(raw, `${scope}/${formKey}`) : null;
+      if (!handle.current && saved) { handle.current = saved.operationId; replayContext.current = saved.replay ?? null; setRecoverable(true); }
+    } catch { setNotice("Åtgärden skickades inte. Identiteten kunde inte kontrolleras."); submitting.current = false; return { ...previous, status: "idle", targetId: null }; }
+    const submitted = new FormData(); for (const [k,v] of form.entries()) if (!k.startsWith("$ACTION_")) submitted.append(k,v);
+    if (handle.current) {
+      try {
+        if (checked && !original.current && replayContext.current) {
+          submitted.set("operation_id", handle.current);
+          submitted.set("expected", JSON.stringify((formKey === "new/calculation" ? null : draftExpected.current) ?? expected(form)));
+          if (await editorRequestFingerprint(submitted) === replayContext.current.requestFingerprint) {
+            original.current = submitted; setHasOriginalRequest(true);
+            setNotice("Underlaget matchar den ursprungliga åtgärden. Välj Försök samma åtgärd igen för att skicka det.");
+          } else setNotice("Underlaget matchar inte den ursprungliga åtgärden. Behåll samma ursprungliga uppgifter och kontrollera igen.");
+        } else setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen.");
+      } catch { setNotice("Det ursprungliga underlaget kunde inte kontrolleras. Ingen åtgärd skickades."); }
+      submitting.current = false; return { ...previous, status: "unknown", targetId: null };
     }
-    if (handle.current) { setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen."); submitting.current = false; return { ...previous, status: "unknown", targetId: null }; }
-    const submitted = new FormData(); for (const [k,v] of form.entries()) submitted.append(k,v);
-    const operationId = crypto.randomUUID(); submitted.set("operation_id", operationId); submitted.set("expected", JSON.stringify(draftExpected.current ?? expected(form)));
+    // A NEW calculation's selections are editable until this actual submission.
+    // Existing entities retain the server-projected facts from the first edit.
+    const operationId = crypto.randomUUID();
+    submitted.set("operation_id", operationId);
+    submitted.set("expected", JSON.stringify((formKey === "new/calculation" ? null : draftExpected.current) ?? expected(form)));
     const intent = retainEditorIntent(`${scope}/${formKey}`, [...submitted.entries()], operationId);
-    try { sessionStorage.setItem(key, editorHandle(intent)); } catch { setNotice("Åtgärden skickades inte. Fliken kan inte bevara identiteten."); submitting.current = false; return { ...initial, status: "error", values: Object.fromEntries([...form.entries()].filter((entry): entry is [string, string] => typeof entry[1] === "string")) }; }
-    handle.current = operationId; original.current = submitted; setHasOriginalRequest(true); setRecoverable(true); setChecked(false); busy.current = true;
     const submittedRevision = revision.current, submittedKey = key;
-    try { const next = await action(previous, submitted);
+    busy.current = true;
+    try {
+      const context = { requestFingerprint: await editorRequestFingerprint(submitted) };
+      try { sessionStorage.setItem(key, editorHandle(intent, context)); }
+      catch { setNotice("Åtgärden skickades inte. Fliken kan inte bevara identiteten."); return { ...previous, status: "idle", targetId: null }; }
+      handle.current = operationId; original.current = submitted; replayContext.current = context;
+      setHasOriginalRequest(true); setRecoverable(true); setChecked(false);
+      const next = await action(previous, submitted);
       if (currentKey.current !== submittedKey) return initial;
       if(next.status === "unknown") { setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen."); return next; }
       clear();
       if(next.status === "success" && submittedRevision !== revision.current) { setNotice("Tidigare åtgärd bekräftad. Dina nya ändringar är inte sparade."); return { ...next, status: "idle", targetId: null }; }
+      if (next.status === "success") setHasDraftChanges(false);
       setNotice(null); return next;
-    } catch { if (currentKey.current !== submittedKey) return initial;
-      setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen.");
-      return { ...previous, status: "unknown", operationId, targetId: null, values: Object.fromEntries([...submitted.entries()].filter((entry): entry is [string, string] => typeof entry[1] === "string")) }; }
-    finally { busy.current = false; submitting.current = false; }
+    } catch {
+      if (currentKey.current !== submittedKey) return initial;
+      setNotice(handle.current ? "Resultatet är obekräftat. Kontrollera innan du försöker igen." : "Åtgärden skickades inte. Underlaget kunde inte bevaras.");
+      return handle.current ? { ...previous, status: "unknown", operationId, targetId: null } : { ...previous, status: "idle", targetId: null };
+    } finally { busy.current = false; submitting.current = false; }
   }, initial as Awaited<S>);
-  // React resets uncontrolled action forms on resolution. Restore only a newer
-  // in-memory draft, never replacing it with the older operation's echoed values.
-  useLayoutEffect(() => {
-    if (pending || !laterDraft.current) return;
-    const { element, values } = laterDraft.current;
-    for (const control of Array.from(element.elements)) {
-      if (!(control instanceof HTMLInputElement || control instanceof HTMLTextAreaElement || control instanceof HTMLSelectElement)) continue;
-      const value = values.get(control.name);
-      if (control instanceof HTMLInputElement && ["checkbox", "radio"].includes(control.type)) control.checked = values.getAll(control.name).includes(control.value);
-      else if (typeof value === "string" && control.type !== "file") control.value = value;
-    }
-    laterDraft.current = null;
-  }, [pending, state]);
-  async function reconcile() { if(!handle.current || busy.current) return; busy.current = true;
+  async function reconcile() { if(!handle.current || busy.current) return; busy.current = true; setRecoveryPending(true);
     try { const proof = await reconcileCalculationEditorOperationAction(handle.current); setChecked(true);
-      if(proof.status === "unconfirmed") { setNotice(original.current ? "Resultatet är fortfarande obekräftat. Du kan försöka samma ursprungliga åtgärd igen." : "Resultatet är fortfarande obekräftat. Det ursprungliga underlaget finns inte kvar i fliken; en ny åtgärd kan inte skickas ännu."); return; }
+      if(proof.status === "unconfirmed") { setNotice(original.current ? "Resultatet är fortfarande obekräftat. Du kan försöka samma ursprungliga åtgärd igen." : replayContext.current ? "Resultatet är fortfarande obekräftat. Ange samma ursprungliga uppgifter och välj Spara för att kontrollera underlaget före samma åtgärd." : "Resultatet är fortfarande obekräftat. Det ursprungliga underlaget finns inte kvar i fliken."); return; }
       if (proof.status === "committed" && proof.targetAvailable !== false && proof.targetId) {
         setResultLink(proof.quoteId ? `/quotes/${proof.quoteId}/versions/${proof.targetId}` : formKey === "new/calculation" ? `/calculations/${proof.targetId}` : null);
       }
       setNotice(proof.status === "committed" ? "Den ursprungliga åtgärden är bekräftad. Kontrollera aktuella uppgifter före nya ändringar." : "Åtgärden avvisades. Uppdatera underlaget före en ny åtgärd."); clear();
-    } catch { setNotice("Resultatet kunde inte kontrolleras. Försök kontrollera igen."); } finally { busy.current = false; }
+    } catch { setNotice("Resultatet kunde inte kontrolleras. Försök kontrollera igen."); } finally { busy.current = false; setRecoveryPending(false); }
   }
-  async function retry() { if(!checked || !original.current || busy.current) return; busy.current = true;
+  async function retry() { if(!checked || !original.current || busy.current) return; busy.current = true; setRecoveryPending(true);
     try { const next = await action(initial, original.current);
       if(next.status === "error") { setNotice(next.formError ?? "Resultatet kunde inte bekräftas. Kontrollera innan du fattar ett nytt beslut."); }
       else if(next.status !== "success") setNotice("Resultatet är fortfarande obekräftat. Kontrollera innan du fattar ett nytt beslut.");
       else { setNotice("Den ursprungliga åtgärden är bekräftad. Nya ändringar är inte sparade."); if(next.targetId) setResultLink("quoteId" in next && typeof next.quoteId === "string" ? `/quotes/${next.quoteId}/versions/${next.targetId}` : formKey === "new/calculation" ? `/calculations/${next.targetId}` : null); clear(); }
-    } catch { setNotice("Resultatet är fortfarande obekräftat."); } finally { busy.current = false; }
+    } catch { setNotice("Resultatet är fortfarande obekräftat."); } finally { busy.current = false; setRecoveryPending(false); }
   }
-  return { state, action: dispatch, pending, formProps: {
+  function markChanged() {
+    revision.current++; setHasDraftChanges(true);
+    if (formKey !== "new/calculation" && formElement.current) draftExpected.current ??= expected(new FormData(formElement.current));
+  }
+  return { state, action: dispatch, pending: actionPending || recoveryPending, hasDraftChanges, markChanged, formProps: {
+      ref: formElement,
       "data-editor-ready": Boolean(scope),
-      onSubmit: (event: React.FormEvent<HTMLFormElement>) => { if (submitting.current || busy.current) event.preventDefault(); else submitting.current = true; },
-      onChange: (event: React.FormEvent<HTMLFormElement>) => {
-        revision.current++;
-        const values = new FormData(event.currentTarget);
-        draftExpected.current ??= expected(values);
-        if (busy.current) laterDraft.current = { element: event.currentTarget, values };
+      // Explicit transition dispatch avoids React's action-form auto-reset on
+      // refused submissions and late results. The live controls stay the draft.
+      onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault(); if (submitting.current || busy.current) return;
+        submitting.current = true; const form = new FormData(event.currentTarget);
+        startTransition(() => { dispatch(form); });
       },
+      onChange: markChanged,
     },
     recovery: <>{notice && <p role="status">{notice}</p>}{resultLink && <Link href={resultLink} className="min-h-control-lg text-text-primary underline">Öppna bekräftat resultat</Link>}{recoverable && <div className="flex flex-wrap gap-2">
-      <button type="button" className="min-h-control-lg rounded-control border border-border-strong px-4" onClick={() => { void reconcile(); }}>Kontrollera resultat</button>
-      {checked && hasOriginalRequest && <button type="button" className="min-h-control-lg rounded-control border border-border-strong px-4" onClick={() => { void retry(); }}>Försök samma åtgärd igen</button>}
+      <button type="button" disabled={recoveryPending} className="min-h-control-lg rounded-control border border-border-strong px-4" onClick={() => { void reconcile(); }}>Kontrollera resultat</button>
+      {checked && hasOriginalRequest && <button type="button" disabled={recoveryPending} className="min-h-control-lg rounded-control border border-border-strong px-4" onClick={() => { void retry(); }}>Försök samma åtgärd igen</button>}
     </div>}</> };
 }

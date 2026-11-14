@@ -119,3 +119,28 @@ for(const [caller,validate,payload] of callers){
     assert.equal(validate({...input,expected:{version:1,form:expected.form}}).ok,false);
   });
 }
+
+
+test("P-2 section expectations preserve 501-section reorder and uncapped complete archive subtrees", () => {
+  const sections = Array.from({length: 1002}, (_, index) => ({ section: {...sectionFacts, id: `10000000-0000-4000-8000-${String(index + 1).padStart(12, "0")}`, sort_order:index}, rows:[] }));
+  const header=projectEditorFacts({id,title:"Original",status:"draft"},HEADER_FACTS);
+  const siblings=sections.slice(0,501).map(({section})=>({id:section.id,sort_order:section.sort_order}));
+  assert.equal(validateReorderSections({calculation_id:id,ordered_section_ids:siblings.map(s=>s.id).reverse(),operation_id:other,expected:{version:1,form:"reorder_sections",header,siblings}}).ok,true);
+  assert.equal(validateArchiveCalc({id,operation_id:other,expected:{version:1,form:"archive_calculation",header,sections}}).ok,true);
+  assert.equal(validateArchiveCalc({id,operation_id:other,expected:{version:1,form:"archive_calculation",header,sections:[...sections,{...sections[0],rows:Array.from({length:501},()=>rowFacts)}]}}).ok,false);
+});
+
+test("P-6 matching reentry fingerprints business values and original facts, never React transport ordering", async () => {
+  const {editorRequestFingerprint}=await import("@/features/calculations/editor-operation");
+  const original=new FormData();original.append("title","Original input");original.append("operation_id",id);original.append("expected",JSON.stringify({version:1,form:"calculation",header:{id,title:"Original server fact"}}));original.append("$ACTION_ID_first","transport");original.append("selected","a");original.append("selected","b");
+  const reordered=new FormData();reordered.append("selected","a");reordered.append("selected","b");reordered.append("expected",JSON.stringify({header:{title:"Original server fact",id},form:"calculation",version:1}));reordered.append("operation_id",id);reordered.append("$ACTION_ID_other","different transport");reordered.append("title","Original input");
+  const fingerprint=await editorRequestFingerprint(original);
+  assert.equal(await editorRequestFingerprint(reordered),fingerprint);
+  for(const [field,value] of [["title","Later input"],["operation_id",other],["expected",JSON.stringify({version:1,form:"calculation",header:{id,title:"Changed server fact"}})]]){const changed=new FormData();for(const [k,v]of original)changed.append(k,v);changed.set(field!,value!);assert.notEqual(await editorRequestFingerprint(changed),fingerprint);}
+  const replay={requestFingerprint:fingerprint};
+  const retained=retainEditorIntent("actor/tenant/calc/title",[...original],id);
+  const saved=editorHandle(retained,replay);
+  assert.equal(saved.includes("Original input"),false);assert.equal(saved.includes("Original server fact"),false);
+  assert.deepEqual(readEditorHandle(saved,retained.scope)?.replay,replay);
+  assert.equal(readEditorHandle(saved,"another/actor"),null);
+});

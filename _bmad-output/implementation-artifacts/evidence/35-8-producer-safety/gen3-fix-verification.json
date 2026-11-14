@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "kind": "GEN3_CURRENT_CONTROLLER_IMPLEMENTATION_CHECKPOINT_NOT_ACCEPTANCE",
+  "recorded_at": "2026-11-14T15:04:09.265084+00:00",
+  "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+  "head": "80787f68231016979c6cb8e72f85da15a878bbdf",
+  "commits_by_this_author": [],
+  "story_baseline": "3a2fe5a565e2627b45b9b46880e26966ef0cd23f",
+  "full_story_baseline": "1c53833c70ad61a26cbfbc117a040b1f99d33f2e",
+  "development_complete": false,
+  "release_ready": false,
+  "frontend_accepted": false,
+  "commands": [
+    {
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--pretty",
+        "false"
+      ],
+      "attempt": 1,
+      "native_exit": 2,
+      "raw": "gen3-fix-typecheck-first.log",
+      "reason": "New integration fixture passed two arguments to the existing one-object audit query helper. Corrected local call, no factory change."
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--pretty",
+        "false"
+      ],
+      "attempt": 2,
+      "native_exit": 0,
+      "raw": "gen3-fix-typecheck-second.log",
+      "scope": "intermediate check; final check below follows Tax controller lifetime adjustment"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--pretty",
+        "false"
+      ],
+      "attempt": 3,
+      "native_exit": 0,
+      "raw": "gen3-fix-typecheck-final.log",
+      "scope": "final current source"
+    },
+    {
+      "argv": [
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "--test-timeout=30000",
+        "tests/unit/features/calculations/editor-operation.test.ts"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "passed": 34,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "raw": "gen3-fix-editor-unit.tap"
+    },
+    {
+      "argv": [
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "--test-timeout=30000",
+        "tests/unit/features/calculations/editor-operation.test.ts",
+        "tests/unit/features/calculations/action-state.test.ts",
+        "tests/unit/features/calculations/form-parsing.test.ts",
+        "tests/unit/server/commands/calc-validation.test.ts",
+        "tests/unit/server/commands/calc-validation-coverage.test.ts",
+        "tests/unit/server/commands/calc-source-validation.test.ts",
+        "tests/unit/server/commands/calculation-row-limit-command.test.ts",
+        "tests/unit/server/commands/quote-validation.test.ts",
+        "tests/unit/scope/manifest-shape.test.ts",
+        "tests/unit/scope/manifest-derivations.test.ts"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "passed": 188,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "raw": "gen3-fix-focused-unit.tap",
+      "scope": "focused units, not full ordinary unit gate"
+    },
+    {
+      "argv": [
+        "node",
+        "--test",
+        "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-fix-controller-check.mjs"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "raw": "gen3-fix-controller-check.tap",
+      "scope": "Actual current function extraction with synthetic React/hooks/form/RPC seams. Not browser/SQL/envelope runtime."
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "."
+      ],
+      "native_exit": 0,
+      "counts": {
+        "errors": 0,
+        "warnings": 40
+      },
+      "raw": "gen3-fix-full-lint.log"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/next/dist/bin/next",
+        "build"
+      ],
+      "native_exit": 0,
+      "raw": [
+        "gen3-fix-build.stdout.log",
+        "gen3-fix-build.stderr.log"
+      ],
+      "process_identity_receipt": "gen3-fix-build-process.json",
+      "scope": "production build only; no production server launched"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-lockfiles.mjs"
+      ],
+      "native_exit": 0,
+      "output": "Only pnpm-lock.yaml present"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-service-role-containment.mjs"
+      ],
+      "native_exit": 0,
+      "output": "No NEXT_PUBLIC_ service-role variable or service-role reference in client paths"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-bundle-containment.mjs"
+      ],
+      "native_exit": 0,
+      "output": "Current production .next artifact contains no forbidden service-role material"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+        "--project=chromium",
+        "--list"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "registered": 17,
+        "executed": 0
+      },
+      "raw": "gen3-fix-browser-collection.log"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-review-order.mjs",
+        "_bmad-output/specs/spec-calculation-editor-mutation-safety/stories/35-8-p-calculation-editor-mutation-safety.md"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "sections": 1,
+        "references": 20,
+        "errors": 0
+      },
+      "raw": "gen3-fix-review-trail.log"
+    }
+  ],
+  "source_sha256": {
+    "src/components/calculations/CalculationList.tsx": "0a85c517149d1c1940e6972fe26e2c41b768fdc58832b895dc6e842837f0ce16",
+    "src/components/calculations/TaxSettingsPanel.tsx": "278fdbf47d970b8588eb57fb7c4fa25f0f301d8eca7cfac6356a73e9e602c966",
+    "src/features/calculations/editor-operation.ts": "d8557e0411c5ff0cf8660fb851c335f7557413a54c37168e0c39c78519de3f2b",
+    "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql": "6ea15f1f10e276dd91e0cf6bb5b1159a970f777a416e06eda1d01f2665679bcc",
+    "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts": "0fefd8b9385485e373c5aabcef613c2585af969ce4a9350a43ffa6fa181b7548",
+    "tests/integration/commands/calculation-mutation-safety.int.test.ts": "d4c30698d3682f7f37e0dbaa0c23de2abebc9b54c3cf89be50a3beda5aa2d5d5",
+    "tests/integration/commands/quote-initial-mutation-safety.int.test.ts": "15878fd4289fe6c0f776d682f03e2f1b2b9985293feb2b7ff498208d7a2ad40f",
+    "tests/unit/features/calculations/editor-operation.test.ts": "a718591a49ea879ad48b70caa95605dfbfbc99a3e33e502519ed4f1e94b78bd8"
+  },
+  "raw_evidence_sha256": {
+    "gen3-fix-browser-collection.log": "f7a4f5e6435a44ae72dd6f9a2870a96ec8963d7ef524b8e147c1496acd6318ad",
+    "gen3-fix-build-process.json": "2acb5e5efff8038006d986ddb9eb244cfa3a966791ac2c79d4fe9ddd4742ae05",
+    "gen3-fix-build.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gen3-fix-build.stdout.log": "93f0a9f9891ace4ac22eab1c7a68ce62794538e2d553f84e7433fe1cce79275d",
+    "gen3-fix-controller-check.mjs": "a3d7b6603b6bec5af911dfa9506e3cf234c8324867c235f1ce6ca3339aecbfcc",
+    "gen3-fix-controller-check.tap": "5b9ce6fc471d611a06a6941b513abd6a857e14cd3c6046e05638adb2db08d021",
+    "gen3-fix-editor-unit.tap": "0ec1c5fd059b0b86a02638082e37d8b01dcc7dfab8b7c0bea9a273db2992f547",
+    "gen3-fix-focused-unit.tap": "be1c3e881b44411e7e231996fa4392469a14d9f404f7103ff188102e69107513",
+    "gen3-fix-full-lint.log": "f3993a0b6f456b65df970a3e8f8abc1627c9201b23e826f96d17779530ca0466",
+    "gen3-fix-lint-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gen3-fix-lint-first.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gen3-fix-review-trail.log": "27487eadf574c773bf2287ae598102f31b33c448369ed109f07802747801abbf",
+    "gen3-fix-typecheck-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gen3-fix-typecheck-first.log": "41bd2ba822346c52db00cbdefe29da057eeb9fdc3e132b4289ce8099eec93de8",
+    "gen3-fix-typecheck-second.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "implementation_choices": [
+    "Explicit onSubmit transition dispatch prevents native action-form resetting of refused or later live controls; current inputs remain unsent until server confirmation.",
+    "New calculation parent selection binds at actual submit; existing entity expected facts bind at first edit.",
+    "Session recovery retains only scoped opaque identity and complete original business/expected request SHA256. Explicit matching reentry must match all original facts; transient React action fields are excluded, cross-field order normalized, repeated-value order retained.",
+    "The Tax controller survives canonical field remounts; only a clean nonpending tax form resets to changed canonical input. Later controlled allowance membership and uncontrolled field edits stay mounted.",
+    "Reorder keeps existing section1000/row500 bounds; archive has no artificial section-count cap and compares the complete source-allowed tree. New integration body covers501 reorder and1002-section archive, preserving soft-archive descendants.",
+    "Quote transport fault arming follows successful authorization; postcommit loss requires actual committed proof instead of the absent create probe."
+  ],
+  "evidence_limits": [
+    "Synthetic hook harness is not React/browser execution; registered real-browser paths remain unrun.",
+    "New complete-population SQL/command integration body and existing real lock/authority tests are compiled but DB_UNRUN.",
+    "Matching remount reconstruction cannot accept changed expected facts. Without an exact match, the handle remains unconfirmed and no new intent is minted.",
+    "Old source-app builds/hashes do not qualify modified app or SQL source. Historical full-unit240s unknown-final diagnostic remains not a pass."
+  ],
+  "pending_checks": [
+    "full ordinary hosted unit/verify-development",
+    "full DB integration/RLS with SUPABASE_TEST_REQUIRED=1 and both projects",
+    "direct recovery/storage integrity",
+    "full production browser/dashboard exact candidate",
+    "configured independent qualification",
+    "candidate-bound six-host desktop/360x640 screenshots",
+    "authenticated human/controller acceptance",
+    "unchanged final frontend-FIRST wrapper on same delivery JSON"
+  ],
+  "own_runtime": "No managed DB/browser/server/service launched. Production build owned nodePID44684 created2026-11-14T14:59:45.0827663Z ended native0 at15:00:06.0875051Z within180s bound. Full lint toolsession44575 ended native0. All other bounded commands ended.",
+  "metadata_status": "Story in-review is workflow tracking only; required qualification remains pending. Other current tracked phase/delivery bookkeeping remains with Root under approved generation3 timing.",
+  "rollout": "Existing named SQL only; unapplied, no live app/schema cutover authority."
+}

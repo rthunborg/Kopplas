@@ -26,8 +26,8 @@ function keys(value: unknown, required: readonly string[]): value is Record<stri
 function facts(value: unknown, required: readonly string[]): boolean {
   return keys(value, required) && isEditorUuid(value.id) && required.every(key => value[key] !== undefined);
 }
-function siblings(value: unknown): boolean {
-  return Array.isArray(value) && value.length <= 500 && value.every(item => keys(item, ["id", "sort_order"]) && isEditorUuid(item.id) && Number.isInteger(item.sort_order))
+function siblings(value: unknown, limit: number): boolean {
+  return Array.isArray(value) && value.length <= limit && value.every(item => keys(item, ["id", "sort_order"]) && isEditorUuid(item.id) && Number.isInteger(item.sort_order))
     && new Set(value.map(item => item.id)).size === value.length;
 }
 function tree(value: unknown): boolean {
@@ -47,14 +47,14 @@ export function validateEditorSafety(raw: unknown, kind: EditorKind): EditorSafe
     && e.reviewed_quote_capture_date === raw.reviewed_quote_capture_date && canonicalEditorJson(e.attachment_file_ids) === canonicalEditorJson(raw.attachment_file_ids ?? []);
   else if (!facts(e.header, HEADER_FACTS)) return null;
   else if (kind === "calculation.update") valid = keys(e, ["version", "form", "header"]) && e.form === (raw.tax_input_snapshot === undefined ? "calculation" : "tax_input");
-  else if (kind === "calculation.archive") valid = keys(e, ["version", "form", "header", "sections"]) && e.form === "archive_calculation" && Array.isArray(e.sections) && e.sections.length <= 500 && e.sections.every(tree);
+  else if (kind === "calculation.archive") valid = keys(e, ["version", "form", "header", "sections"]) && e.form === "archive_calculation" && Array.isArray(e.sections) && e.sections.every(tree);
   else if (kind === "calculation.section.create") valid = keys(e, ["version", "form", "header"]) && e.form === "section";
   else if (kind === "calculation.section.update") valid = keys(e, ["version", "form", "header", "section"]) && e.form === "section" && facts(e.section, SECTION_FACTS);
   else if (kind === "calculation.section.archive") valid = keys(e, ["version", "form", "header", "section", "rows"]) && e.form === "archive_section" && tree({ section: e.section, rows: e.rows });
   else if (kind === "calculation.row.create") valid = keys(e, ["version", "form", "header", "section"]) && e.form === "row" && facts(e.section, SECTION_FACTS);
   else if (kind === "calculation.row.update" || kind === "calculation.row.archive") valid = keys(e, ["version", "form", "header", "section", "row"])
     && e.form === (kind.endsWith("archive") ? "archive_row" : "row") && facts(e.section, SECTION_FACTS) && facts(e.row, ROW_FACTS);
-  else valid = keys(e, ["version", "form", "header", "siblings"]) && e.form === (kind === "calculation.rows.reorder" ? "reorder_rows" : "reorder_sections") && siblings(e.siblings);
+  else valid = keys(e, ["version", "form", "header", "siblings"]) && e.form === (kind === "calculation.rows.reorder" ? "reorder_rows" : "reorder_sections") && siblings(e.siblings, kind === "calculation.rows.reorder" ? 500 : 1000);
   return valid ? { operation_id: raw.operation_id.toLowerCase(), expected: JSON.parse(canonicalEditorJson(e)) as EditorExpected } : null;
 }
 /** Stable request equality only; the authoritative binding is computed by SQL. */
@@ -82,8 +82,29 @@ export function applyEditorProof(intent: RetainedEditorIntent, proof: { operatio
   if (proof.operationId !== intent.operationId || (proof.status !== "committed" && proof.status !== "closed")) return { intent, currentDraftSaved: false };
   return { intent: Object.freeze({ ...intent, state: proof.status }), currentDraftSaved: proof.status === "committed" && intent.originalRequest === canonicalEditorJson(currentRequest) };
 }
-/** Only opaque scope/identity is durable. Original request and money/text stay in memory. */
-export function editorHandle(intent: RetainedEditorIntent): string { return JSON.stringify({ version: 1, scope: intent.scope, operationId: intent.operationId }); }
-export function readEditorHandle(value: string, scope: string): { operationId: string; scope: string } | null {
-  try { const v: unknown = JSON.parse(value); return keys(v, ["version", "scope", "operationId"]) && v.version === 1 && v.scope === scope && isEditorUuid(v.operationId) ? { operationId: v.operationId, scope } : null; } catch { return null; }
+export interface EditorReplayContext { readonly requestFingerprint: string }
+/** Tab-scoped recovery retains only opaque identity and the complete original
+ * request fingerprint. No submitted draft or expected text/money/tax facts persist. */
+export function editorHandle(intent: RetainedEditorIntent, replay?: EditorReplayContext): string {
+  return JSON.stringify({ version: 1, scope: intent.scope, operationId: intent.operationId, ...(replay ? { replay } : {}) });
+}
+export function readEditorHandle(value: string, scope: string): { operationId: string; scope: string; replay?: EditorReplayContext } | null {
+  try {
+    const v: unknown = JSON.parse(value);
+    if ((!keys(v, ["version", "scope", "operationId"]) && !keys(v, ["version", "scope", "operationId", "replay"])) || v.version !== 1 || v.scope !== scope || !isEditorUuid(v.operationId)) return null;
+    if (v.replay === undefined) return { operationId: v.operationId, scope };
+    if (!keys(v.replay, ["requestFingerprint"]) || typeof v.replay.requestFingerprint !== "string" || !/^[a-f0-9]{64}$/.test(v.replay.requestFingerprint)) return null;
+    return { operationId: v.operationId, scope, replay: { requestFingerprint: v.replay.requestFingerprint } };
+  } catch { return null; }
+}
+/** Exact business-request match, independent of React transport metadata and
+ * cross-field serialization order. Repeated values keep their meaningful order.
+ * A fingerprint is only a local reentry check; SQL still owns binding and authority. */
+export async function editorRequestFingerprint(form: FormData): Promise<string> {
+  const entries = [...form.entries()].filter(([key]) => !key.startsWith("$ACTION_")).map(([key, value]) => {
+    if (typeof value !== "string") throw new Error("Editor recovery does not retain files");
+    return [key, key === "expected" ? canonicalEditorJson(JSON.parse(value)) : value] as const;
+  }).sort(([a], [b]) => a.localeCompare(b));
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(canonicalEditorJson(entries)));
+  return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, "0")).join("");
 }

@@ -1,7 +1,7 @@
 /** 35.8-P P-6 essential real-app acceptance. Run only with configured production
  * server + local fixture; no mocked successful command or browser-side money engine.
  */
-import { test, expect, type Page, type Locator } from "@playwright/test";
+import { test, expect, type Page, type Locator, type Request as BrowserRequest } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
@@ -153,3 +153,78 @@ async function addSection(page:Page){await page.getByTestId("add-section").click
 async function addRow(page:Page){await page.getByTestId("add-row").click();const form=page.getByTestId("row-create-form");await expect(form).toHaveAttribute("data-editor-ready","true");await form.getByLabel("Antal",{exact:true}).fill("1");await form.getByLabel("Enhet",{exact:true}).fill("h");await form.getByLabel("Kostnad (kr)").fill("20");await form.getByLabel("Pris (kr)").fill("100");await form.getByLabel("Moms (%)").fill("25");await form.getByRole("button",{name:"Lägg till rad",exact:true}).click();await expect(page.getByTestId("row-edit-form")).toHaveCount(1);}
 async function loseResponse(page:Page,pattern:string){let count=0;await page.route(pattern,async route=>{if(route.request().method()!=="POST"||!route.request().headers()["next-action"]||count||!route.request().postData()?.includes("operation_id"))return route.continue();count++;await route.fetch();await route.abort("failed");});return{count:()=>count,remove:()=>page.unroute(pattern)};}
 // Full downstream seventeen-state presentation acceptance remains separately owned.
+
+
+async function editorPostedRequest(request: BrowserRequest) {
+  const parsed=await new Request("http://localhost",{method:"POST",headers:{"content-type":request.headers()["content-type"]??""},body:request.postData()??""}).formData();
+  const field=(name:string)=>{const found=[...parsed].find(([key])=>key===name||key.endsWith(`_${name}`));if(!found||typeof found[1]!=="string")throw new Error(`Missing actual editor field ${name}`);return found[1];};
+  return {operationId:field("operation_id"),expected:JSON.parse(field("expected")),title:field("title")};
+}
+
+test("P-6 explicit original retry preserves later draft through reconcile and the next fresh submission",async({page,context})=>{
+  const url=await ownCalculation(page),form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");
+  const a=`Original ${crypto.randomUUID()}`,b1=`During check ${crypto.randomUUID()}`,b2=`After check ${crypto.randomUUID()}`;
+  const writes:Awaited<ReturnType<typeof editorPostedRequest>>[]=[];let lost=false,holdCheck=false,checkHeld=false;
+  let releaseCheck!:()=>void;const released=new Promise<void>(resolve=>releaseCheck=resolve);
+  await page.route("**/calculations/**",async route=>{
+    const request=route.request();if(request.method()!=="POST"||!request.headers()["next-action"])return route.continue();
+    if(request.postData()?.includes("operation_id")){writes.push(await editorPostedRequest(request));if(!lost){lost=true;return route.abort("failed");}return route.continue();}
+    if(holdCheck){const response=await route.fetch();checkHeld=true;await released;return route.fulfill({response});}return route.continue();
+  });
+  await form.getByLabel("Titel").fill(a);await form.getByRole("button",{name:"Spara titel"}).click();
+  await expect(form.getByRole("status")).toContainText(/obekräftat/i);expect(writes).toHaveLength(1);
+  holdCheck=true;await form.getByRole("button",{name:"Kontrollera resultat"}).click();await expect.poll(()=>checkHeld).toBe(true);
+  await form.getByLabel("Titel").fill(b1);releaseCheck();await expect(form.getByRole("status")).toContainText(/fortfarande obekräftat/i);
+  await form.getByLabel("Titel").fill(b2);await form.getByRole("button",{name:"Försök samma åtgärd igen"}).click();
+  await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await expect(form.getByLabel("Titel")).toHaveValue(b2);
+  expect(writes).toHaveLength(2);expect(writes[1]).toEqual(writes[0]);expect(writes[1]?.title).toBe(a);
+  const observer=await context.newPage();try{
+    await observer.goto(url);await expect(headerForm(observer).getByLabel("Titel")).toHaveValue(a);
+    await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByText("Kalkylen har sparats.")).toBeVisible();await expect(form.getByLabel("Titel")).toHaveValue(b2);
+    expect(writes).toHaveLength(3);expect(writes[2]?.title).toBe(b2);expect(writes[2]?.operationId).not.toBe(writes[0]?.operationId);
+    await observer.reload();await expect(headerForm(observer).getByLabel("Titel")).toHaveValue(b2);
+  }finally{releaseCheck();await observer.close();}
+});
+
+test("P-6 remount permits only matching reentered business request with original expected binding",async({page,context})=>{
+  const url=await ownCalculation(page),form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");
+  const original=`Reenter ${crypto.randomUUID()}`,later=`Different ${crypto.randomUUID()}`;let dropped=false;
+  const writes:Awaited<ReturnType<typeof editorPostedRequest>>[]=[];
+  await page.route("**/calculations/**",async route=>{const request=route.request();if(request.method()!=="POST"||!request.headers()["next-action"]||!request.postData()?.includes("operation_id"))return route.continue();writes.push(await editorPostedRequest(request));if(!dropped){dropped=true;return route.abort("failed");}return route.continue();});
+  await form.getByLabel("Titel").fill(original);await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("status")).toContainText(/obekräftat/i);
+  await page.reload();const remounted=headerForm(page);await expect(remounted).toHaveAttribute("data-editor-ready","true");
+  await remounted.getByRole("button",{name:"Kontrollera resultat"}).click();await expect(remounted.getByRole("status")).toContainText(/samma ursprungliga uppgifter/i);
+  await remounted.getByLabel("Titel").fill(later);await remounted.getByRole("button",{name:"Spara titel"}).click();await expect(remounted.getByRole("status")).toContainText(/matchar inte/i);expect(writes).toHaveLength(1);
+  await remounted.getByLabel("Titel").fill(original);await remounted.getByRole("button",{name:"Spara titel"}).click();await expect(remounted.getByRole("status")).toContainText(/Underlaget matchar den ursprungliga/i);expect(writes).toHaveLength(1);
+  await remounted.getByLabel("Titel").fill(later);await remounted.getByRole("button",{name:"Försök samma åtgärd igen"}).click();await expect(remounted.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await expect(remounted.getByLabel("Titel")).toHaveValue(later);
+  expect(writes).toHaveLength(2);expect(writes[1]).toEqual(writes[0]);
+  const observer=await context.newPage();try{await observer.goto(url);await expect(headerForm(observer).getByLabel("Titel")).toHaveValue(original);}finally{await observer.close();}
+});
+
+for(const refusal of ["offline","unresolved-scope","storage-read","storage-write"] as const){
+  test(`P-6 pre-dispatch ${refusal} preserves uncontrolled draft without issuing an operation`,async({page})=>{
+    const url=await ownCalculation(page);let writes=0;
+    await page.route("**/calculations/**",async route=>{const r=route.request();if(r.method()!=="POST"||!r.headers()["next-action"])return route.continue();if(r.postData()?.includes("operation_id")){writes++;return route.continue();}return refusal==="unresolved-scope"?route.abort("failed"):route.continue();});
+    if(refusal==="unresolved-scope")await page.reload();
+    const form=headerForm(page);await hydrated(form.getByLabel("Titel"));
+    if(refusal!=="unresolved-scope")await expect(form).toHaveAttribute("data-editor-ready","true");
+    if(refusal==="storage-read"||refusal==="storage-write"){await page.evaluate(mode=>{const name=mode==="storage-read"?"getItem":"setItem";Storage.prototype[name]=()=>{throw new Error("synthetic unavailable tab storage");};},refusal);}
+    if(refusal==="offline")await page.context().setOffline(true);
+    const draft=`Unsent ${refusal} ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(draft);await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("status")).toContainText(/inte skickade|skickades inte/i);await expect(form.getByLabel("Titel")).toHaveValue(draft);await expect(form.getByText("Kalkylen har sparats.")).toHaveCount(0);expect(writes).toBe(0);expect(page.url()).toBe(url);
+    const tax=page.getByTestId("tax-document-settings").locator("form");await tax.getByLabel("Skatteavdrag",{exact:true}).selectOption("ROT");await tax.getByLabel("Betalningsdatum för ROT",{exact:true}).fill("2026-11-14");await tax.getByRole("button",{name:"Spara skatte- och momsuppgifter"}).click();await expect(tax.getByRole("status")).toContainText(/inte skickade|skickades inte/i);await expect(tax.getByLabel("Skatteavdrag",{exact:true})).toHaveValue("ROT");await expect(tax.getByLabel("Betalningsdatum för ROT",{exact:true})).toHaveValue("2026-11-14");expect(writes).toBe(0);
+    if(refusal==="offline")await page.context().setOffline(false);
+  });
+}
+
+test("P-6 tax pending A revalidation preserves controlled allowance membership and newer B draft",async({page,context})=>{
+  const url=await ownCalculation(page),form=page.getByTestId("tax-document-settings").locator("form");await expect(form).toHaveAttribute("data-editor-ready","true");
+  await form.getByLabel("Skatteavdrag",{exact:true}).selectOption("ROT");await form.getByLabel("Betalningsdatum för ROT",{exact:true}).fill("2026-11-13");
+  let held=false;let release!:()=>void;const released=new Promise<void>(resolve=>release=resolve);
+  await page.route("**/calculations/**",async route=>{if(route.request().method()!=="POST"||!route.request().headers()["next-action"]||!route.request().postData()?.includes("operation_id")||held)return route.continue();held=true;const response=await route.fetch();await released;await route.fulfill({response});});
+  try{
+    await form.getByRole("button",{name:"Spara skatte- och momsuppgifter"}).click();await expect.poll(()=>held).toBe(true);
+    await form.getByRole("button",{name:"Lägg till person"}).click();await form.getByLabel("Person 3: ROT kvar (kr)").fill("1234");await form.getByLabel("Betalningsdatum för ROT",{exact:true}).fill("2026-11-14");
+  }finally{release();}
+  await expect(form.getByRole("status")).toContainText(/nya ändringar.*inte sparade/i);await expect(form.getByLabel("Person 3: ROT kvar (kr)")).toHaveValue("1234");await expect(form.getByLabel("Betalningsdatum för ROT",{exact:true})).toHaveValue("2026-11-14");await expect(form.getByLabel("Skatteavdrag",{exact:true})).toHaveValue("ROT");
+  const observer=await context.newPage();try{await observer.goto(url);const persisted=observer.getByTestId("tax-document-settings");await expect(persisted.getByLabel("Betalningsdatum för ROT",{exact:true})).toHaveValue("2026-11-13");await expect(persisted.getByLabel("Person 3: ROT kvar (kr)")).toHaveCount(0);}finally{await observer.close();}
+});

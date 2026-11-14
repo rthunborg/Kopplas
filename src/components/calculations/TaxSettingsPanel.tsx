@@ -5,7 +5,7 @@ import { useEditorOperation } from "./CalculationList";
 import { useRouter } from "next/navigation";
 
 import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormField";
-import { CALC_ACTION_INITIAL, isRetryableCalcError } from "@/features/calculations/action-state";
+import { CALC_ACTION_INITIAL, isRetryableCalcError, type CalcActionState } from "@/features/calculations/action-state";
 import { updateTaxInputAction } from "@/features/calculations/actions";
 import {
   MAX_PERSON_ALLOWANCE_SLOTS,
@@ -96,14 +96,16 @@ export function TaxSettingsPanel({
   readonly fixedPriceScopeRows: readonly FixedPriceScopeRowOption[];
 }) {
   const input = value ?? EMPTY_TAX_INPUT;
-  // A changed canonical snapshot remounts every uncontrolled field and local editor state. This
-  // makes a server refresh authoritative without sacrificing the browser's in-place values while
-  // a validation error is being corrected.
+  // The controller outlives canonical field resets. A refreshed snapshot may
+  // reset a clean form, but never remount a pending or later unsent tax draft.
+  const taxOperation = useEditorOperation(updateTaxInputAction, CALC_ACTION_INITIAL, `${calculationId}/tax`, () => ({ version: 1, form: "tax_input", header: headerFacts ?? null }));
   const canonicalRevision = JSON.stringify(input);
+  const [displayedRevision, setDisplayedRevision] = useState(canonicalRevision);
+  if (!taxOperation.hasDraftChanges && !taxOperation.pending && displayedRevision !== canonicalRevision) setDisplayedRevision(canonicalRevision);
   return (
     <TaxSettingsForm
-      key={canonicalRevision}
-      headerFacts={headerFacts}
+      key={displayedRevision}
+      taxOperation={taxOperation}
       calculationId={calculationId}
       input={input}
       fixedPriceScopeRows={fixedPriceScopeRows}
@@ -113,16 +115,15 @@ export function TaxSettingsPanel({
 
 function TaxSettingsForm({
   calculationId,
-  headerFacts,
+  taxOperation,
   input,
   fixedPriceScopeRows,
 }: {
   readonly calculationId: string;
-  readonly headerFacts?: Record<string, unknown>;
+  readonly taxOperation: ReturnType<typeof useEditorOperation<CalcActionState>>;
   readonly input: TaxInputSnapshotV2;
   readonly fixedPriceScopeRows: readonly FixedPriceScopeRowOption[];
 }) {
-  const taxOperation = useEditorOperation(updateTaxInputAction, CALC_ACTION_INITIAL, `${calculationId}/tax`, () => ({ version: 1, form: "tax_input", header: headerFacts ?? null }));
   const [state, action, pending] = [taxOperation.state, taxOperation.action, taxOperation.pending];
   const router = useRouter();
   const mine = state.form === "tax_input";
@@ -350,6 +351,7 @@ function TaxSettingsForm({
                   aria-label={`Ta bort person ${number}`}
                   disabled={allowanceSlots.length <= 2}
                   onClick={() => {
+                    taxOperation.markChanged();
                     setAllowanceSlots((current) =>
                       removeAllowanceEditorSlot(current, editorSlot.key),
                     );
@@ -366,6 +368,7 @@ function TaxSettingsForm({
               type="button"
               disabled={!canAddAllowanceSlot}
               onClick={() => {
+                taxOperation.markChanged();
                 const key = `new-${nextAllowanceKey.current}`;
                 nextAllowanceKey.current += 1;
                 setAllowanceSlots((current) => addAllowanceEditorSlot(current, key));

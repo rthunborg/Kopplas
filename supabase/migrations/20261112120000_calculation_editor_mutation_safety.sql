@@ -89,7 +89,7 @@ begin
   normalized:=jsonb_set(normalized,'{rows}',items);
  end if;
  if e?'sections' then
-  if jsonb_typeof(e->'sections') is distinct from 'array' or jsonb_array_length(e->'sections')>1000 then raise exception 'invalid expected sections' using errcode='23514';end if;
+  if jsonb_typeof(e->'sections') is distinct from 'array' then raise exception 'invalid expected sections' using errcode='23514';end if;
   for item in select x from jsonb_array_elements(e->'sections') x order by (x->'section'->>'id')::uuid loop
    perform public.ce_shape_internal(item,array['section','rows'],array['section','rows']);
    if jsonb_typeof(item->'rows') is distinct from 'array' or jsonb_array_length(item->'rows')>500 then raise exception 'invalid subtree' using errcode='23514';end if;

@@ -56,6 +56,26 @@ async function reconcile(operation: string) {
 }
 
 describe("35.8-P calculation original-operation and atomic expected-content contract", () => {
+  it("P-2 accepts complete 501-section reorder and archives every section beyond 1000 without a new creation cap", async ctx => {
+    if (skipUnlessStack(ctx,up)) return;
+    const s=await seed();
+    await adminExec("insert into public.calculation_sections(tenant_id,calculation_id,title,sort_order) select $1,$2,'Population section',n from generate_series(1,500)n",[s.tenant,s.calc]);
+    const siblings=await adminQuery<{id:string;sort_order:number}>("select id,sort_order from public.calculation_sections where calculation_id=$1 and archived_at is null order by sort_order",[s.calc]);
+    expect(siblings).toHaveLength(501);
+    const reordered=siblings.map(x=>x.id).reverse(),reorderInput={calculation_id:s.calc,ordered_section_ids:reordered};
+    const reorderSafety=await captureEditorTestIntent("calculation.sections.reorder",reorderInput);
+    expect(await runCommand(reorderSections,{client:actor as never,input:{...reorderInput,...reorderSafety},correlationId:reorderSafety.operation_id})).toMatchObject({ok:true});
+    expect((await adminQuery<{id:string}>("select id from public.calculation_sections where calculation_id=$1 and archived_at is null order by sort_order",[s.calc])).map(x=>x.id)).toEqual(reordered);
+    await adminExec("insert into public.calculation_sections(tenant_id,calculation_id,title,sort_order) select $1,$2,'Population section',n from generate_series(501,1000)n",[s.tenant,s.calc]);
+    const createInput={calculation_id:s.calc,title:"Section above 1000"},createSafety=await captureEditorTestIntent("calculation.section.create",createInput);
+    expect(await runCommand(createSection,{client:actor as never,input:{...createInput,...createSafety},correlationId:createSafety.operation_id})).toMatchObject({ok:true});
+    const archiveInput={id:s.calc},archiveSafety=await captureEditorTestIntent("calculation.archive",archiveInput);
+    expect(archiveSafety.expected.sections).toHaveLength(1002);
+    expect(await runCommand(archiveCalculation,{client:actor as never,input:{...archiveInput,...archiveSafety},correlationId:archiveSafety.operation_id})).toMatchObject({ok:true});
+    expect((await header(s.calc))?.archived_at).not.toBeNull();
+    expect(await adminQuery("select id from public.calculation_sections where calculation_id=$1 and archived_at is null",[s.calc])).toHaveLength(1002);
+    expect(await adminSelectAuditEvents({correlationId:archiveSafety.operation_id})).toHaveLength(1);
+  });
   it("P-3 lost create response + concurrent original replay produces one target and one audit", async ctx => {
     if (skipUnlessStack(ctx, up)) return;
     const s = await seed();
