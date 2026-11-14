@@ -378,7 +378,7 @@ end $$;
 
 create function public.authorize_calculation_editor_quote(p_tenant_id uuid,p_actor_user_id uuid,p_operation_id uuid,p_input jsonb,p_review jsonb) returns jsonb
 language plpgsql volatile security definer set search_path='' set timezone='UTC' set lock_timeout='5s' set statement_timeout='20s' as $$
-declare request jsonb; input jsonb; authorization uuid; captured timestamptz; supplied_ids jsonb; op public.calculation_editor_operations;
+declare request jsonb; input jsonb; quote_authorization uuid; captured timestamptz; supplied_ids jsonb; op public.calculation_editor_operations;
 begin
  request:=public.ce_request_internal(p_tenant_id,p_actor_user_id,p_operation_id,'quote.version.create',p_input);
  if (request->>'exists')::boolean then return request->'proof';end if;
@@ -396,12 +396,12 @@ begin
  perform 1 from public.calculation_sections s where s.tenant_id=p_tenant_id and s.calculation_id=(input->>'calculation_id')::uuid order by s.id for update;
  perform 1 from public.calculation_rows r join public.calculation_sections s on s.id=r.section_id and s.tenant_id=r.tenant_id where r.tenant_id=p_tenant_id and s.calculation_id=(input->>'calculation_id')::uuid order by r.id for update of r;
  if public.has_tenant_role(p_tenant_id,array['tenant_admin','projektledare']::text[]) then
-  authorization:=public.authorize_quote_initial_review(p_tenant_id,(input->>'calculation_id')::uuid,captured,(p_review->>'p_customer_id')::uuid,(p_review->>'p_facility_id')::uuid,(p_review->>'p_contact_id')::uuid,p_review->'p_snapshot',p_review->'p_lines',p_review->'p_attachments',(input->>'reviewed_quote_capture_date')::date,p_review->>'p_reviewed_calculation_status',p_review->'p_reviewed_readiness_rows',p_actor_user_id,p_operation_id);
+  quote_authorization:=public.authorize_quote_initial_review(p_tenant_id,(input->>'calculation_id')::uuid,captured,(p_review->>'p_customer_id')::uuid,(p_review->>'p_facility_id')::uuid,(p_review->>'p_contact_id')::uuid,p_review->'p_snapshot',p_review->'p_lines',p_review->'p_attachments',(input->>'reviewed_quote_capture_date')::date,p_review->>'p_reviewed_calculation_status',p_review->'p_reviewed_readiness_rows',p_actor_user_id,p_operation_id);
  else
-  authorization:=public.authorize_quote_initial_customer_visible_review(p_tenant_id,(input->>'calculation_id')::uuid,captured,(p_review->>'p_customer_id')::uuid,(p_review->>'p_facility_id')::uuid,(p_review->>'p_contact_id')::uuid,p_review->'p_snapshot',p_review->'p_lines',p_review->'p_attachments',(input->>'reviewed_quote_capture_date')::date,p_review->>'p_reviewed_calculation_status',p_actor_user_id,p_operation_id);
+  quote_authorization:=public.authorize_quote_initial_customer_visible_review(p_tenant_id,(input->>'calculation_id')::uuid,captured,(p_review->>'p_customer_id')::uuid,(p_review->>'p_facility_id')::uuid,(p_review->>'p_contact_id')::uuid,p_review->'p_snapshot',p_review->'p_lines',p_review->'p_attachments',(input->>'reviewed_quote_capture_date')::date,p_review->>'p_reviewed_calculation_status',p_actor_user_id,p_operation_id);
  end if;
  insert into public.calculation_editor_operations(operation_id,tenant_id,actor_user_id,operation_kind,form_kind,protocol_version,request_digest,status,calculation_id,authorization_id,captured_at)
- values(p_operation_id,p_tenant_id,p_actor_user_id,'quote.version.create','reviewed-initial-quote',1,request->>'digest','prepared',(input->>'calculation_id')::uuid,authorization,captured) returning * into op;
+ values(p_operation_id,p_tenant_id,p_actor_user_id,'quote.version.create','reviewed-initial-quote',1,request->>'digest','prepared',(input->>'calculation_id')::uuid,quote_authorization,captured) returning * into op;
  return public.ce_proof_internal(op);
 end $$;
 create function public.create_calculation_editor_quote(p_tenant_id uuid,p_actor_user_id uuid,p_operation_id uuid,p_input jsonb) returns jsonb
