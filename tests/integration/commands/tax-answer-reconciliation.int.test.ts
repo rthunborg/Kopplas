@@ -24,6 +24,8 @@ import { adminQuery, adminSession } from "../../factories/admin-sql";
 import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
 import { LOCAL_TEST_QUOTE_PDF_KEY_ID } from "../../support/quote-pdf";
+import { buildQuoteReviewProof } from "../../support/quote-review-proof";
+import { captureEditorTestIntent } from "./calculation-editor-safety-fixture";
 
 const ROOT = process.cwd();
 const CAPTURED_AT = "2026-08-05T12:00:00.000Z";
@@ -312,30 +314,65 @@ async function authorizeAndCreateInitial(
   const actorUserId = input.actorUserId ?? fixture.adminA.id;
   const correlationId = input.correlationId ?? crypto.randomUUID();
   const rpc = asQuoteReviewRpcClient(testClient);
-  const authorization = await rpc.rpc("authorize_quote_initial_review", {
-    p_tenant_id: input.tenantId,
-    p_calculation_id: input.calculationId,
-    p_captured_at: input.capturedAt,
-    p_customer_id: input.customerId,
-    p_facility_id: input.facilityId,
-    p_contact_id: input.contactId,
-    p_snapshot: input.snapshot,
-    p_lines: input.lines,
-    p_attachments: input.attachments,
-    p_reviewed_quote_capture_date: input.reviewedQuoteCaptureDate,
-    p_reviewed_calculation_status: input.reviewedCalculationStatus,
-    p_reviewed_readiness_rows: input.reviewedReadinessRows,
-    p_actor_user_id: actorUserId,
-    p_correlation_id: correlationId,
+  const attachmentFileIds = input.attachments.map((attachment) => {
+    if (typeof attachment.fileId !== "string") throw new Error("Missing reviewed attachment identity");
+    return attachment.fileId;
   });
-  if (authorization.error || typeof authorization.data !== "string") return authorization;
-  return rpc.rpc("create_quote_version_from_calculation", {
-    p_tenant_id: input.tenantId,
-    p_authorization_id: authorization.data,
-    p_captured_at: input.capturedAt,
-    p_actor_user_id: actorUserId,
-    p_correlation_id: correlationId,
+  // Capture the original source with its owning fixture client. The foreign-client
+  // test must reach the checked SQL gate, rather than fail in a source-read helper.
+  // The supplied hostile snapshot/lines/review facts below remain byte-for-byte intact.
+  const reviewed = await buildQuoteReviewProof(client, {
+    calculationId: input.calculationId,
+    attachmentFileIds,
+    capturedAt: input.capturedAt,
   });
+  const domain = {
+    calculation_id: input.calculationId,
+    attachment_file_ids: attachmentFileIds,
+    reviewed_snapshot_digest: reviewed.reviewed_snapshot_digest,
+    reviewed_quote_capture_date: input.reviewedQuoteCaptureDate,
+  };
+  const safety = await captureEditorTestIntent("quote.version.create", domain, correlationId);
+  const request = {
+    p_tenant_id: input.tenantId,
+    p_actor_user_id: actorUserId,
+    p_operation_id: correlationId,
+    p_input: { ...domain, ...safety },
+  };
+  const authorization = await rpc.rpc("authorize_calculation_editor_quote", {
+    ...request,
+    p_review: {
+      p_calculation_id: input.calculationId,
+      p_captured_at: input.capturedAt,
+      p_customer_id: input.customerId,
+      p_facility_id: input.facilityId,
+      p_contact_id: input.contactId,
+      p_snapshot: input.snapshot,
+      p_lines: input.lines,
+      p_attachments: input.attachments,
+      p_reviewed_quote_capture_date: input.reviewedQuoteCaptureDate,
+      p_reviewed_calculation_status: input.reviewedCalculationStatus,
+      p_reviewed_readiness_rows: input.reviewedReadinessRows,
+    },
+  });
+  if (authorization.error) return authorization;
+  const created = await rpc.rpc("create_calculation_editor_quote", request);
+  if (created.error) return created;
+  const proof = created.data;
+  if (!proof || typeof proof !== "object" || Array.isArray(proof)
+    || !("status" in proof) || proof.status !== "committed"
+    || !("operationId" in proof) || proof.operationId !== correlationId
+    || !("targetAvailable" in proof) || proof.targetAvailable !== true
+    || !("targetId" in proof) || typeof proof.targetId !== "string"
+    || !("quoteId" in proof) || typeof proof.quoteId !== "string"
+    || !("quoteNumber" in proof) || typeof proof.quoteNumber !== "number"
+    || !Number.isSafeInteger(proof.quoteNumber) || proof.quoteNumber <= 0) {
+    throw new Error("Initial quote RPC did not confirm an available committed result");
+  }
+  return {
+    data: [{ quote_id: proof.quoteId, quote_version_id: proof.targetId, quote_number: proof.quoteNumber }],
+    error: null,
+  };
 }
 
 async function authorizeAndCreateSuccessor(
