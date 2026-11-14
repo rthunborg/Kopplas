@@ -208,3 +208,40 @@ No workergloballedger/sibling/aggregate or privateadmissioncode operation.
 **⚠️ Needs human:** (none)
 
 **Next:** Root exactsix-path checkpoint→distinct targetedHigh→reviewed ordinary diagnosticCI for missing quote facts. No fullrelease until final repair can qualify; no producerDone/nativehandoff/HUMAN acceptance/cutover from this freeze.
+
+## Report — 2026-11-14T22:15:45Z (same-gen4 diagnostic lifecycle regression fix; unaccepted)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `914f4c9`).
+**Pipeline status:** IN PROGRESS / PRODUCER IMPLEMENTATION AND FINAL VERIFICATION UNACCEPTED. One targeted finding author-fixed; independent followup and actual native facts pending.
+**Continues:** SameGen4/65/baseD/originalbranch, basedK914f; Root71505/ACK485249, authorSTOP2d4c then parentmetadata. No transition; sevenprotectedfiles unchanged.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 31h 56m (≈25h 16m AI-run, ≈6h 40m human/idle wait); resumed 6×.
+
+**Phases run:** No new phase-done or broadreview. Preserve provisional0-7/three broadrounds/fourteen originalfindings; later targetedP2 K-DIAGNOSTIC-SETTLEMENT-01 retained separately.
+**Skipped:** No new DB/PG/integration/RLS/browser/PNG execution. Reuse unaffected source proof; no broadunit/build/browser/admission rerun or managedresource/testDB.
+
+**Overrides:** Standing owner source R/product-35-8-standing-test-consumer-completion-owner-decision-20261114.json SHAed773af37cf406619ae07fbf6737672ca5853fad81ef0e7b276a959e0b1dd481 and operative source R/product-35-8-standing-authority-operative-counterrecord-20261114.json SHA56f0b42345deec86b84af1e422eaee5e34e9f385d49814d3e9173245bfd42b48 remain bound in state with full absolute paths. Covered future transitions remain separately case-qualified; this case existingGen4/65/noCAS. Same provisionalcompletion/SAMEretaineddelivery6b209/finalalltechnical+independent+HUMAN+controller+unchangedfrontend-FIRSTwrapper required. Historical active90972 is phase-wall includingwaits, modelprocessingUNKNOWN.
+
+**TEA:** Prior selected source adoption and E2E508f/19cases/50plannedcaptures unchanged; no fresh actual image acceptance.
+
+**Build:** Only points() body changed, inverse restores exactK71857d0e; original P4 bodies/authenticatedRPC/querytexts/assertions/timeouts/cleanup unchanged. Selected sourceassert guardcode observations return only after fullsession settlement. Any acquisition/cleanup/unexpectedcode/malformed-or-missing-result failure throws fixed ErrorFAIL without cause/data; pre-failure stopsRPC, post-failure fails, originalRPCthrow propagates identity unchanged/no post. Author terminal2d4c3c0d0205c08d2a3e40915f924c6bc55230cc67b6781807d79ef89897bb0a retainsallargv/logs/manifests. Actual-source offline regression againstoldK:12tests3pass9fail/native1 retained; fixedsame12pass0fail/cancel/skip/TODO/native0. Type/lint0/no diagnostics; reader/trailoneSRO32refs0errors native0, standingprovisionaldone/blocknull/followupfalse/historicalpatch0reject1. No productruntime proof or productionguardrepair.
+
+**Review:** K reviewer433bf429 FIX_REQUIRED oneP2; rest boundedKscope retained. Currentfix author-corrected only, distinct targeted Highpending beforepublication; no fourth broadpass/reset.
+
+**Retrospective:** Root aggregate later, outside this worker fix.
+
+**Open questions:**
+1. Exact quote closure and actual historical row timestamp mismatch remain unproved.
+2. J all19browser failedstage/commoncause unavailable without nativeJSON/stacks; limitedsourcecomparison does not identify specificsetupbug.
+3. CalendarAPI019 emitter/relationship andAPI020pending/keycustody limits remain unknown.
+
+**Deferred work:**
+1. Root checkpoint→targetedfixfollowup→reviewed ordinarydiagnosticCI for missingquotefacts. No duplicatefullrelease now; actualfinalrepairalltechnical/DB/RLS/recovery/storage/browser/dashboard/PNGs/HUMAN/controller/SAME6b209wrapper stillrequired.
+2. J browserendpoint1a3e2942 proves configured45m timeout, notRootcancel; 19identities failedbothattempts, no finalJSON/PNGproof. Parentreadonly assessment76e98e97 found durationpatterncompatiblewithmany15swaits, no causalattribution/E2Echange.
+3. CRM/PR151/sharedworkflow-pins/foreignrights/livecutover holds unchanged.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Root four-path checkpoint and distinct targetedsettlement followup, then ordinarydiagnosticCI only. No producerDone/publicationGO/nativehandoff/merge/cutover from localchecks.

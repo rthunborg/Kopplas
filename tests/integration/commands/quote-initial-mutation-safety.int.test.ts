@@ -114,16 +114,29 @@ const reads: ReadonlyArray<readonly [Point, string]> = [
 async function points(value: string): Promise<Mark[]> {
   const marks: Mark[] = [];
   for (const [name, text] of reads) {
+    let mark: Mark | undefined;
     try {
-      const pass = await adminSession(async read => {
-        const rows = await read.query<{ ok: boolean }>(text, [value, fixture.tenantA.id, fixture.adminA.id]);
-        return rows[0]?.ok === true;
+      await adminSession(async read => {
+        let rows: { ok: boolean }[];
+        try {
+          rows = await read.query<{ ok: boolean }>(text, [value, fixture.tenantA.id, fixture.adminA.id]);
+        } catch (value: unknown) {
+          const item = code(value);
+          if ((name === "line-sources" || name === "reviewed-source") && item !== null && item !== "OTHER") {
+            mark = [name, false, item];
+            return;
+          }
+          throw new Error("FAIL");
+        }
+        if (!Array.isArray(rows) || rows.length !== 1 || typeof rows[0]?.ok !== "boolean") throw new Error("FAIL");
+        mark = [name, rows[0].ok, null];
       });
-      marks.push([name, pass, null]);
-    } catch (value: unknown) {
-      // Query, cleanup and connection failures never escape as raw PG errors.
-      marks.push([name, false, code(value)]);
+    } catch {
+      // Acquisition, query integrity and cleanup failure are never observations.
+      throw new Error("FAIL");
     }
+    if (!mark) throw new Error("FAIL");
+    marks.push(mark);
   }
   return marks;
 }
