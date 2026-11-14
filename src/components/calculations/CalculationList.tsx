@@ -241,8 +241,9 @@ export function useEditorOperation<S extends EditorActionState>(
         if (checked && !original.current && replayContext.current) {
           submitted.set("operation_id", handle.current);
           submitted.set("expected", JSON.stringify((formKey === "new/calculation" ? null : draftExpected.current) ?? expected(form)));
+          const reenteredRevision = revision.current;
           if (await editorRequestFingerprint(submitted) === replayContext.current.requestFingerprint) {
-            original.current = submitted; originalRevision.current = revision.current; setHasOriginalRequest(true);
+            original.current = submitted; originalRevision.current = reenteredRevision; setHasOriginalRequest(true);
             setNotice("Underlaget matchar den ursprungliga åtgärden. Välj Försök samma åtgärd igen för att skicka det.");
           } else setNotice("Underlaget matchar inte den ursprungliga åtgärden. Behåll samma ursprungliga uppgifter och kontrollera igen.");
         } else setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen.");
