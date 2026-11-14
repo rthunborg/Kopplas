@@ -1,9 +1,37 @@
 /** 35.8-P P-6 essential real-app acceptance. Run only with configured production
  * server + local fixture; no mocked successful command or browser-side money engine.
  */
-import { test, expect, type Page, type Locator, type Request as BrowserRequest } from "@playwright/test";
+import { test, expect, type Page, type Locator, type TestInfo, type Request as BrowserRequest } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+
+const captureViewports = [{ width: 1280, height: 900 }, { width: 360, height: 640 }] as const;
+type CaptureHost = "calculation-list" | "calculation-header" | "section-editor" | "row-editor" | "tax-settings" | "pre-quote-preview";
+type CaptureCondition = "confirmed" | "submitting" | "unconfirmed" | "stale" | "refused-unsent" | "late-draft" | "invalid" | "empty";
+/** Attach the original viewport PNG bytes: the existing JSON reporter retains body.
+ * Assertions run at each real viewport, before capture; resizing never creates a request. */
+async function captureState(page: Page, testInfo: TestInfo, host: CaptureHost, condition: CaptureCondition,
+  form: Locator, assertState: () => Promise<void>, currentViewportOnly = false) {
+  const originalViewport = page.viewportSize();
+  if (!originalViewport) throw new Error("Producer captures require a concrete viewport");
+  try {
+    for (const viewport of currentViewportOnly ? [originalViewport] : captureViewports) {
+      if (!currentViewportOnly) await page.setViewportSize(viewport);
+      const focus = condition === "empty" ? form.getByText("Inga rader ännu i den här sektionen.", { exact: true })
+        : condition === "submitting" ? form.locator('button[type="submit"]')
+        : condition === "invalid" || condition === "stale" ? form.getByRole("alert").first()
+        : form.getByRole("status").first();
+      await focus.scrollIntoViewIfNeeded();
+      await expect(focus).toBeVisible();
+      await assertState();
+      const captureId = `35-8-p-${host}-${condition}-${viewport.width}x${viewport.height}`;
+      const buffer = await page.screenshot({ fullPage: false });
+      await testInfo.attach(captureId + ".png", { body: buffer, contentType: "image/png" });
+    }
+  } finally {
+    if (!currentViewportOnly) await page.setViewportSize(originalViewport);
+  }
+}
 
 interface Fixture { adminA: { email: string; password: string }; }
 function fixture(): Fixture {
@@ -45,7 +73,7 @@ async function ownCalculation(page: Page) {
 function headerForm(page: Page) { return page.getByTestId("calculation-header").locator("form").first(); }
 
 for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 }]) {
-  test(`E35-8-T-unknown / confirmed: lost committed response retains original handle through remount (${viewport.width})`, async ({ page, context }) => {
+  test(`E35-8-T-unknown / confirmed: lost committed response retains original handle through remount (${viewport.width})`, async ({ page, context }, testInfo) => {
     await page.setViewportSize(viewport);
     const url = await ownCalculation(page);
     const form = headerForm(page);
@@ -54,6 +82,9 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
     await form.getByLabel("Titel").fill(title);
     let intercepted = 0;
     let originalBody = "";
+    let responseComplete!: () => void, responseFailed!: (error: unknown) => void;
+    const responseCompleted = new Promise<void>((resolve, reject) => { responseComplete = resolve; responseFailed = reject; });
+    void responseCompleted.catch(() => {}); // The original promise is awaited below and during cleanup.
     await page.route("**/calculations/**", async route => {
       const request = route.request();
       if (request.method() !== "POST" || !request.headers()["next-action"] || intercepted) return route.continue();
@@ -61,20 +92,38 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
       originalBody = request.postData() ?? "";
       // Forward the REAL mutation and wait for the server result before dropping
       // only its response. Independent reread below proves persistence separately.
-      await route.fetch();
-      await route.abort("failed");
+      try {
+        await route.fetch();
+        await captureState(page, testInfo, "calculation-header", "submitting", form, async () => {
+          await expect(form.locator('button[type="submit"]')).toBeDisabled();
+          await expect(form.getByLabel("Titel")).toHaveValue(title);
+        }, true);
+        await route.abort("failed");
+        responseComplete();
+      } catch (error) {
+        responseFailed(error);
+        await route.abort("failed").catch(() => {});
+      }
     });
+    try {
     await expect(form).toHaveAttribute("data-editor-ready", "true");
     await form.getByRole("button", { name: "Spara titel" }).click();
     await expect.poll(() => intercepted).toBe(1);
+    await responseCompleted;
     expect(originalBody).toMatch(/operation[_-]?id/i);
     await expect(form.getByText("Kalkylen har sparats.")).toHaveCount(0);
     await expect(form.getByRole("status")).toContainText(/obekräft|inte.*bekräft|okänt|osäkert/i);
+    await captureState(page, testInfo, "calculation-header", "unconfirmed", form, async () => {
+      await expect(form.getByRole("status")).toContainText(/obekräft|inte.*bekräft|okänt|osäkert/i);
+      await expect(form.getByLabel("Titel")).toHaveValue(title);
+      await expect(form.getByText("Kalkylen har sparats.")).toHaveCount(0);
+    }, true);
     // Another read sees the write but does not prove the operation to this form.
     const observer = await context.newPage();
-    await observer.goto(url);
-    await expect(headerForm(observer).getByLabel("Titel")).toHaveValue(title);
-    await observer.close();
+    try {
+      await observer.goto(url);
+      await expect(headerForm(observer).getByLabel("Titel")).toHaveValue(title);
+    } finally { await observer.close(); }
     await page.unroute("**/calculations/**");
     await page.reload();
     const remounted = headerForm(page);
@@ -84,10 +133,18 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
     await remounted.getByRole("button", { name: /kontrollera|stäm av/i }).click();
     await expect(remounted.getByRole("status")).toContainText(/sparats|bekräft/i);
     expect(intercepted).toBe(1);
+    await captureState(page, testInfo, "calculation-header", "confirmed", remounted, async () => {
+      await expect(remounted.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);
+      await expect(remounted.getByLabel("Titel")).toHaveValue(title);
+    }, true);
+    } finally {
+      await page.unroute("**/calculations/**");
+      if (intercepted) await responseCompleted;
+    }
   });
 }
 
-test("E35-8-T-stale: an original header decision cannot overwrite the other tab's confirmed edit", async ({ page, context }) => {
+test("E35-8-T-stale: an original header decision cannot overwrite the other tab's confirmed edit", async ({ page, context }, testInfo) => {
   const url = await ownCalculation(page);
   const other = await context.newPage();
   try {
@@ -106,11 +163,16 @@ test("E35-8-T-stale: an original header decision cannot overwrite the other tab'
     await expect(stale.getByLabel("Titel")).toHaveValue("Retained unsent old decision");
     await other.reload();
     await expect(headerForm(other).getByLabel("Titel")).toHaveValue(winner);
+    await captureState(page, testInfo, "calculation-header", "stale", stale, async () => {
+      await expect(stale.getByRole("alert")).toContainText(/ändrat|ändrats|inaktuell|uppdatera/i);
+      await expect(stale.getByLabel("Titel")).toHaveValue("Retained unsent old decision");
+      await expect(stale.getByText("Kalkylen har sparats.")).toHaveCount(0);
+    });
   } finally { await other.close(); }
 });
 
 
-test("E35-8-T-late-result: original A cannot reset or save later unsent draft B",async({page,context})=>{
+test("E35-8-T-late-result: original A cannot reset or save later unsent draft B",async({page,context},testInfo)=>{
   const url=await ownCalculation(page);const form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");
   const saved=`A ${crypto.randomUUID()}`,later=`B ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(saved);
   let release!:()=>void;const released=new Promise<void>(resolve=>release=resolve);let held=false, posts=0;
@@ -119,39 +181,89 @@ test("E35-8-T-late-result: original A cannot reset or save later unsent draft B"
   finally{release();}
   await expect(form.getByRole("status")).toContainText(/nya ändringar.*inte sparade/i);await expect(form.getByLabel("Titel")).toHaveValue(later);expect(posts).toBe(1);await expect(form.getByText("Kalkylen har sparats.")).toHaveCount(0);
   const observer=await context.newPage();try{await observer.goto(url);await expect(headerForm(observer).getByLabel("Titel")).toHaveValue(saved);}finally{await observer.close();}
+  await captureState(page,testInfo,"calculation-header","late-draft",form,async()=>{
+    await expect(form.getByRole("status")).toContainText(/nya ändringar.*inte sparade/i);await expect(form.getByLabel("Titel")).toHaveValue(later);await expect(form.getByText("Kalkylen har sparats.")).toHaveCount(0);
+  });
 });
 
-test("E35-8-T-connection-required / submitting / error-retry: unsent draft survives reconnect without automatic replay",async({page,context})=>{
+test("E35-8-T-connection-required / submitting / error-retry: unsent draft survives reconnect without automatic replay",async({page,context},testInfo)=>{
   const url=await ownCalculation(page);const form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");const draft=`Offline ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(draft);
-  await context.setOffline(true);try{await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("status")).toContainText(/inte skickade/i);await expect(form.getByLabel("Titel")).toHaveValue(draft);}finally{await context.setOffline(false);}
+  await context.setOffline(true);try{await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("status")).toContainText(/inte skickade/i);await expect(form.getByLabel("Titel")).toHaveValue(draft);await captureState(page,testInfo,"calculation-header","refused-unsent",form,async()=>{await expect(form.getByRole("status")).toContainText(/inte skickade/i);await expect(form.getByLabel("Titel")).toHaveValue(draft);});}finally{await context.setOffline(false);}
   const observer=await context.newPage();try{await observer.goto(url);await expect(headerForm(observer).getByLabel("Titel")).not.toHaveValue(draft);}finally{await observer.close();}
   await form.getByLabel("Titel").fill("   ");await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("alert")).toBeVisible();
+  await captureState(page,testInfo,"calculation-header","invalid",form,async()=>{await expect(form.getByRole("alert")).toBeVisible();await expect(form.getByLabel("Titel")).toHaveValue("   ");});
   await form.getByLabel("Titel").fill(draft);await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByText("Kalkylen har sparats.")).toBeVisible();
 });
 
-test("P-6 CalculationList: lost create response recovers the same target after remount",async({page})=>{
+test("P-6 CalculationList: lost create response recovers the same target after remount",async({page,context},testInfo)=>{
   await signIn(page);await page.goto("/calculations");await hydrated(page.getByTestId("new-calculation"));await page.getByTestId("new-calculation").click();const form=page.getByTestId("new-calculation-form");await expect(form).toHaveAttribute("data-editor-ready","true");const title=`Lost create ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(title);await form.getByLabel("Kund",{exact:true}).selectOption({index:1});
-  const loss=await loseResponse(page,"**/calculations");await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect.poll(loss.count).toBe(1);await expect(form.getByRole("status")).toContainText(/obekräftat/i);await loss.remove();await page.reload();await page.getByTestId("new-calculation").click();const remounted=page.getByTestId("new-calculation-form");await remounted.getByRole("button",{name:"Kontrollera resultat"}).click();await remounted.getByRole("link",{name:"Öppna bekräftat resultat"}).click();await expect(headerForm(page).getByLabel("Titel")).toHaveValue(title);
+  const loss=await loseResponse(page,"**/calculations",async()=>captureState(page,testInfo,"calculation-list","submitting",form,async()=>{await expect(form.locator('button[type="submit"]')).toBeDisabled();await expect(form.getByLabel("Titel")).toHaveValue(title);}));
+  try {
+    await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect.poll(loss.count).toBe(1);await loss.completed;await expect(form.getByRole("status")).toContainText(/obekräftat/i);
+    await captureState(page,testInfo,"calculation-list","unconfirmed",form,async()=>{await expect(form.getByRole("status")).toContainText(/obekräftat/i);await expect(form.getByLabel("Titel")).toHaveValue(title);});
+    await loss.remove();await page.reload();await page.getByTestId("new-calculation").click();const remounted=page.getByTestId("new-calculation-form");await remounted.getByRole("button",{name:"Kontrollera resultat"}).click();
+    const resultLink=remounted.getByRole("link",{name:"Öppna bekräftat resultat"});await expect(resultLink).toBeVisible();
+    const target=await resultLink.getAttribute("href");if(!target)throw new Error("Missing confirmed calculation target");
+    const observer=await context.newPage();try{await observer.goto(target);await expect(headerForm(observer).getByLabel("Titel")).toHaveValue(title);}finally{await observer.close();}
+    await captureState(page,testInfo,"calculation-list","confirmed",remounted,async()=>{await expect(remounted.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await expect(resultLink).toBeVisible();});
+    await remounted.getByRole("link",{name:"Öppna bekräftat resultat"}).click();await expect(headerForm(page).getByLabel("Titel")).toHaveValue(title);
+  } finally { await loss.remove(); }
 });
 
 for(const host of ["section","row","tax","quote"] as const){
-  test(`P-6 ${host}: real lost response retains separate identity and explicit proof recovery`,async({page,context})=>{
-    const url=await ownCalculation(page);await addSection(page);await addRow(page);
+  test(`P-6 ${host}: real lost response retains separate identity and explicit proof recovery`,async({page,context},testInfo)=>{
+    const url=await ownCalculation(page);await addSection(page);
+    if(host==="section"){
+      const emptySection=page.getByTestId("section-editor").first();
+      await captureState(page,testInfo,"section-editor","empty",emptySection,async()=>{
+        await expect(emptySection.getByText("Inga rader ännu i den här sektionen.",{exact:true})).toBeVisible();
+        await expect(emptySection.getByTestId("row-edit-form")).toHaveCount(0);
+        await expect(emptySection.getByLabel("Sektionstitel",{exact:true})).toHaveValue("Safety section");
+      });
+    }
+    await addRow(page);
     if(host==="quote"){const tax=page.getByTestId("tax-document-settings").locator("form");await expect(tax).toHaveAttribute("data-editor-ready","true");await tax.getByRole("button",{name:"Spara skatte- och momsuppgifter"}).click();await expect(tax.getByRole("status")).toContainText(/sparats/);await page.getByTestId("create-quote").filter({visible:true}).click();}
     const form=host==="section"?page.getByTestId("section-editor").first().locator("form").filter({has:page.getByRole("button",{name:"Spara sektion"})}):host==="row"?page.getByTestId("row-edit-form").first():host==="tax"?page.getByTestId("tax-document-settings").locator("form"):page.getByTestId("pre-quote-preview").locator("form");
     await expect(form).toHaveAttribute("data-editor-ready","true");const value=`Uncertain ${host} ${crypto.randomUUID()}`;
     if(host==="section")await form.getByLabel("Sektionstitel").fill(value);if(host==="row")await form.getByLabel("Etikett (visas i offert)").fill(value);
-    const loss=await loseResponse(page,"**/calculations/**");const button=host==="quote"?form.getByTestId("confirm-create-quote-version"):form.getByRole("button",{name:host==="section"?"Spara sektion":host==="row"?"Spara rad":"Spara skatte- och momsuppgifter"});await button.click();await expect.poll(loss.count).toBe(1);await expect(form.getByRole("status")).toContainText(/obekräftat/i);
-    // Neighboring header form is never confirmed by this operation.
-    await expect(headerForm(page).getByText("Kalkylen har sparats.")).toHaveCount(0);
-    await form.getByRole("button",{name:"Kontrollera resultat"}).click();await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await loss.remove();
-    if(host==="quote"){await form.getByRole("link",{name:"Öppna bekräftat resultat"}).click();await expect(page).toHaveURL(/\/quotes\/[^/]+\/versions\/[^/]+$/);}
-    else {const observer=await context.newPage();try{await observer.goto(url);if(host==="section")await expect(observer.getByLabel("Sektionstitel").first()).toHaveValue(value);if(host==="row")await expect(observer.getByLabel("Etikett (visas i offert)").first()).toHaveValue(value);if(host==="tax")await expect(observer.getByLabel("Momshantering")).toHaveValue("STANDARD_VAT_25");}finally{await observer.close();}}
+    const captureHost:CaptureHost=host==="section"?"section-editor":host==="row"?"row-editor":host==="tax"?"tax-settings":"pre-quote-preview";
+    const assertValues=async()=>{if(host==="section")await expect(form.getByLabel("Sektionstitel")).toHaveValue(value);if(host==="row")await expect(form.getByLabel("Etikett (visas i offert)")).toHaveValue(value);if(host==="tax")await expect(form.getByLabel("Momshantering")).toHaveValue("STANDARD_VAT_25");if(host==="quote")await expect(form.getByTestId("confirm-create-quote-version")).toBeVisible();};
+    const button=host==="quote"?form.getByTestId("confirm-create-quote-version"):form.getByRole("button",{name:host==="section"?"Spara sektion":host==="row"?"Spara rad":"Spara skatte- och momsuppgifter"});
+    const loss=await loseResponse(page,"**/calculations/**",async()=>captureState(page,testInfo,captureHost,"submitting",form,async()=>{await expect(form.locator('button[type="submit"]')).toBeDisabled();await assertValues();}));
+    try {
+      await button.click();await expect.poll(loss.count).toBe(1);await loss.completed;await expect(form.getByRole("status")).toContainText(/obekräftat/i);
+      await captureState(page,testInfo,captureHost,"unconfirmed",form,async()=>{await expect(form.getByRole("status")).toContainText(/obekräftat/i);await assertValues();});
+      // Neighboring header form is never confirmed by this operation.
+      await expect(headerForm(page).getByText("Kalkylen har sparats.")).toHaveCount(0);
+      await form.getByRole("button",{name:"Kontrollera resultat"}).click();await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await loss.remove();
+      if(host==="quote"){
+        const resultLink=form.getByRole("link",{name:"Öppna bekräftat resultat"}),target=await resultLink.getAttribute("href");if(!target)throw new Error("Missing confirmed quote target");
+        const observer=await context.newPage();try{await observer.goto(target);await expect(observer).toHaveURL(/\/quotes\/[^/]+\/versions\/[^/]+$/);}finally{await observer.close();}
+        await captureState(page,testInfo,captureHost,"confirmed",form,async()=>{await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await expect(resultLink).toBeVisible();});
+        await form.getByRole("link",{name:"Öppna bekräftat resultat"}).click();await expect(page).toHaveURL(/\/quotes\/[^/]+\/versions\/[^/]+$/);
+      }
+      else {
+        const observer=await context.newPage();try{await observer.goto(url);if(host==="section")await expect(observer.getByLabel("Sektionstitel").first()).toHaveValue(value);if(host==="row")await expect(observer.getByLabel("Etikett (visas i offert)").first()).toHaveValue(value);if(host==="tax")await expect(observer.getByLabel("Momshantering")).toHaveValue("STANDARD_VAT_25");}finally{await observer.close();}
+        await captureState(page,testInfo,captureHost,"confirmed",form,async()=>{await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await assertValues();});
+      }
+    } finally { await loss.remove(); }
   });
 }
 async function addSection(page:Page){await page.getByTestId("add-section").click();const form=page.getByTestId("add-section-form");await expect(form).toHaveAttribute("data-editor-ready","true");await form.getByLabel("Sektionstitel").fill("Safety section");await form.getByRole("button",{name:"Skapa sektion"}).click();await expect(page.getByTestId("section-editor")).toHaveCount(1);}
 async function addRow(page:Page){await page.getByTestId("add-row").click();const form=page.getByTestId("row-create-form");await expect(form).toHaveAttribute("data-editor-ready","true");await form.getByLabel("Antal",{exact:true}).fill("1");await form.getByLabel("Enhet",{exact:true}).fill("h");await form.getByLabel("Kostnad (kr)").fill("20");await form.getByLabel("Pris (kr)").fill("100");await form.getByLabel("Moms (%)").fill("25");await form.getByRole("button",{name:"Lägg till rad",exact:true}).click();await expect(page.getByTestId("row-edit-form")).toHaveCount(1);}
-async function loseResponse(page:Page,pattern:string){let count=0;await page.route(pattern,async route=>{if(route.request().method()!=="POST"||!route.request().headers()["next-action"]||count||!route.request().postData()?.includes("operation_id"))return route.continue();count++;await route.fetch();await route.abort("failed");});return{count:()=>count,remove:()=>page.unroute(pattern)};}
+async function loseResponse(page:Page,pattern:string,beforeLoss?:()=>Promise<void>){
+  let count=0,complete!:()=>void,fail!:(error:unknown)=>void;
+  const completed=new Promise<void>((resolve,reject)=>{complete=resolve;fail=reject;});
+  void completed.catch(()=>{}); // Await the original promise in the body and cleanup.
+  const handler:Parameters<Page["route"]>[1]=async route=>{
+    if(route.request().method()!=="POST"||!route.request().headers()["next-action"]||count||!route.request().postData()?.includes("operation_id"))return route.continue();
+    count++;
+    try{await route.fetch();await beforeLoss?.();await route.abort("failed");complete();}
+    catch(error){fail(error);await route.abort("failed").catch(()=>{});}
+  };
+  await page.route(pattern,handler);
+  return{count:()=>count,completed,remove:async()=>{try{if(count)await completed;}finally{await page.unroute(pattern,handler);}}};
+}
 // Full downstream seventeen-state presentation acceptance remains separately owned.
 
 
@@ -220,7 +332,7 @@ for(const refusal of ["offline","unresolved-scope","storage-read","storage-write
   });
 }
 
-test("P-6 tax pending A revalidation preserves controlled allowance membership and newer B draft",async({page,context})=>{
+test("P-6 tax pending A revalidation preserves controlled allowance membership and newer B draft",async({page,context},testInfo)=>{
   const url=await ownCalculation(page),form=page.getByTestId("tax-document-settings").locator("form");await expect(form).toHaveAttribute("data-editor-ready","true");
   await form.getByLabel("Skatteavdrag",{exact:true}).selectOption("ROT");await form.getByLabel("Betalningsdatum för ROT",{exact:true}).fill("2026-11-13");
   await form.getByLabel("Person 1: ROT kvar (kr)").fill("1000");await form.getByLabel("Person 1: ROT/RUT kvar (kr)").fill("2000");
@@ -232,6 +344,7 @@ test("P-6 tax pending A revalidation preserves controlled allowance membership a
   }finally{release();}
   await expect(form.getByRole("status")).toContainText(/nya ändringar.*inte sparade/i);await expect(form.getByLabel("Person 3: ROT kvar (kr)")).toHaveValue("1234");await expect(form.getByLabel("Betalningsdatum för ROT",{exact:true})).toHaveValue("2026-11-14");await expect(form.getByLabel("Skatteavdrag",{exact:true})).toHaveValue("ROT");
   const observer=await context.newPage();try{await observer.goto(url);const persisted=observer.getByTestId("tax-document-settings");await expect(persisted.getByLabel("Betalningsdatum för ROT",{exact:true})).toHaveValue("2026-11-13");await expect(persisted.getByLabel("Person 3: ROT kvar (kr)")).toHaveCount(0);}finally{await observer.close();}
+  await captureState(page,testInfo,"tax-settings","late-draft",form,async()=>{await expect(form.getByRole("status")).toContainText(/nya ändringar.*inte sparade/i);await expect(form.getByLabel("Person 3: ROT kvar (kr)")).toHaveValue("1234");await expect(form.getByLabel("Betalningsdatum för ROT",{exact:true})).toHaveValue("2026-11-14");await expect(form.getByLabel("Skatteavdrag",{exact:true})).toHaveValue("ROT");});
 });
 
 
@@ -253,10 +366,11 @@ test("P-6 pending A then draft B cannot adopt concurrent C facts on a later serv
   }finally{release();await other.close();}
 });
 
-test("P-6 invalid new create is not admitted before correction",async({page})=>{
+test("P-6 invalid new create is not admitted before correction",async({page},testInfo)=>{
   await signIn(page);await page.goto("/calculations");await hydrated(page.getByTestId("new-calculation"));await page.getByTestId("new-calculation").click();const form=page.getByTestId("new-calculation-form");await expect(form).toHaveAttribute("data-editor-ready","true");let writes=0;
   page.on("request",request=>{if(request.method()==="POST"&&request.headers()["next-action"]&&request.postData()?.includes("operation_id"))writes++;});
   await form.getByLabel("Kund",{exact:true}).selectOption({index:1});await form.getByLabel("Titel").fill("   ");await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect(form.getByRole("alert").first()).toBeVisible();await expect(form.getByLabel("Titel")).toHaveValue("   ");expect(writes).toBe(0);
   expect(await page.evaluate(()=>Object.keys(sessionStorage).filter(key=>key.startsWith("kopplas/editor/v1/")).length)).toBe(0);
+  await captureState(page,testInfo,"calculation-list","invalid",form,async()=>{await expect(form.getByRole("alert").first()).toBeVisible();await expect(form.getByLabel("Titel")).toHaveValue("   ");expect(writes).toBe(0);});
   const corrected=`Corrected ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(corrected);await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect(page).toHaveURL(/\/calculations\/[a-f0-9-]+$/);await expect(headerForm(page).getByLabel("Titel")).toHaveValue(corrected);expect(writes).toBe(1);
 });

@@ -9,7 +9,7 @@ spec_folder: "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\wo
 story_id: 35-8-p
 branch: codex/parallel-e35-8-producer-safety-20261112
 status: in-progress
-updated_at: "2026-11-14T19:34:16Z"
+updated_at: "2026-11-14T20:30:59Z"
 started_at: "2026-11-13T14:19:23Z"
 completed_at: null
 active_seconds: 90972
@@ -26,7 +26,7 @@ selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Consolidates actual BEFORE-WRITE gen4 soleauthor routeed19/assignment566f/operativef16b; necessary baseline taxunitfixture consumer correction is sensitive money/transaction scope. Historicalactornamegen3 but actualgeneration4; sourceparent remainedreadonly untilterminal."
+escalation_reason: "Consolidates actualBEFORE-WRITE samegen4 SQL/capture route64b9/operativecce5 atH; SQLtransaction/security/money correctness and provenance requireSolHigh. Exact65/Rootphaseheartbeat/positivefence earned; oneexistingauthor then parentmetadata, no concurrentcandidatewriters."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"ATDD for tenant, authorization, money and transactional producer safety.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Approved producer transaction, tenant/auth/RLS and money invariants require sensitive High implementation/review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -34,6 +34,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Consolidates actual before-write generation3 routes150f/2e7c and exact64 authority; sensitive transaction/auth/RLS/money source work and provisional metadata were already independently routed High. Historical gen1/gen2 ledger retained.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual selected generation3 Phase6 automate dispatched High under853b route, original cb27 receipt and normal2f0f verification; source-only adoption, no product execution credit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Consolidates actual BEFORE-WRITE gen4 soleauthor routeed19/assignment566f/operativef16b; necessary baseline taxunitfixture consumer correction is sensitive money/transaction scope. Historicalactornamegen3 but actualgeneration4; sourceparent remainedreadonly untilterminal.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Consolidates actualBEFORE-WRITE samegen4 SQL/capture route64b9/operativecce5 atH; SQLtransaction/security/money correctness and provenance requireSolHigh. Exact65/Rootphaseheartbeat/positivefence earned; oneexistingauthor then parentmetadata, no concurrentcandidatewriters.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Authorization/RLS, money and atomic concurrent mutation/replay; one-story epic so no trace advisory."
@@ -59,7 +60,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [ff2ef300b18bd1c6d3ee607eb6487cdbbbbadcf9, 3a2fe5a565e2627b45b9b46880e26966ef0cd23f, bba6d6d99527a921e8f6c0021a27b1dfd3fa5202, 15d8210e79a044babb9255b5aebd73bec2c54ae6, f6789bc0278d0968ba79526ce43a4b34d78ad874, 80787f68231016979c6cb8e72f85da15a878bbdf, e7959e8addc0eee31261393dcab331a564de731e, e2e738efbb52354e90e99a7c21d8a6b939698798, 3b69b66495131feb90f3aa666244ec9a85898bef, e6a0bffcfed537099ad6e4219f2fea4fbb6df354, b5e1fd696ae688aebc76694d646a9a117f9f3fa7]
+commits: [ff2ef300b18bd1c6d3ee607eb6487cdbbbbadcf9, 3a2fe5a565e2627b45b9b46880e26966ef0cd23f, bba6d6d99527a921e8f6c0021a27b1dfd3fa5202, 15d8210e79a044babb9255b5aebd73bec2c54ae6, f6789bc0278d0968ba79526ce43a4b34d78ad874, 80787f68231016979c6cb8e72f85da15a878bbdf, e7959e8addc0eee31261393dcab331a564de731e, e2e738efbb52354e90e99a7c21d8a6b939698798, 3b69b66495131feb90f3aa666244ec9a85898bef, e6a0bffcfed537099ad6e4219f2fea4fbb6df354, b5e1fd696ae688aebc76694d646a9a117f9f3fa7, e31636da899a9eec39b7b2442ae9714e96a98551]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -76,7 +77,7 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/43622765309"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/43633641116"
 ci_status: failed
 pr_merged: false
 merge_method: null
@@ -84,14 +85,15 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work:
-  - "REQUIRED PENDING at finalH: currentunitfix+allmetadata targeted independentHigh applicability, actualsameHfullunit/static/DB/RLS/recovery/storage/fullbrowser/dashboard and relevantfailure disposition, all requiredcaptures/HUMAN/controller/UNCHANGEDfrontend-FIRSTwrapper on SAMEretained6b209delivery; no mandatoryduty is release-deferred."
-  - "LastobservedCI belongs to failedG b5e1fd69: ordinary43622765309 and release43622932579 verifytest:unit3959/3956pass/3fail0skip; all dependentDB/browserjobsSKIPPED0coverage. Currentworkingfixture9/9 is focusedproofonly, NOTGglobalPASS/Hfullqualification."
-  - "ExistingPhaseB release obligations unchanged, release_ready:false; liveapp/schema cutover remains separatelyearned."
+  - "REQUIRED PENDING on actual next fixedcandidate: targetedHigh currentSQL/E2E/metadata applicability; realPGinstall/compile/reset/fullDB/RLS/recovery/storage and allrequiredtechnicalCI; fullbrowser/dashboard; decode/inspectallactualPNGstates/viewports; HUMAN/controller acceptance and UNCHANGEDfrontend-FIRSTwrapper on SAME6b209delivery. No mandatoryduty release-deferred."
+  - "HistoricalH e316: BOTHwholeworkflow43633641116/43633847010FAILED duringnamedmigrationstartup statement12SQL42601; actualcandidate migrations DO execute beforeexplicitreset, productDB/browser assertions not reached. Registrypullretriesrecovered and are not terminalcause. BOTHHverify3959/3959unit103suites/build0 remainH-scoped, not newcandidatepasses."
+  - "ExistingPhaseBrelease obligations unchanged/release_ready:false; no liveapp/schema cutover, CRMrecovery, PR151adoption, workflow/pin/resource effect authorized."
 blockers: []
 overrides:
   worker_adapter: "Actual claimed assignment replaces picker/branching and matching-epic guard. E2 and approved ready spec adopted, not regenerated."
   gen3_completion_timing: "Owner00dc approval of351e packet permits only gen3 earned provisional P5-7 bookkeeping with original helper arguments, no intermediate wrapperPASS. Freeze finalG after trackedmetadata; earn all finalG gates and use unchanged final frontend-FIRST wrapper on SAME deliveryJSON before nativeaccepted handoff. Overall state remains in-progress."
   standing_completion_order: "Ownered773/operative56f0/qualified4d7 applies same35.8 admittedgen4 with actual65/ACK0cfe/operativef16b. Existing0-7 markers are source-stage PROVISIONAL history only; topstatein-progress/developmentUNACCEPTED. Preserve originalgen3history and exactretainedC5delivery6b209; actualHcurrent-result evidence/acceptance is private/canonical outsidefrozenW, finalunchangedfrontend-FIRSTwrapper stillmandatory."
+  same_gen4_sql_capture_correction: "ActualRootoperativecce5 and sourcewriterroute64b9/workerACK2daa permit minimal fiveCASEparenpairs plus originalPNGBuffer producers within unchanged19functionaltests, sourceparentsreadonlyuntilterminal. Same standinged773/operative56f0/provisionalordering; no intermediate wrapperPASS/release/nativehandoff. Privateactualnextcandidate evidence supplements remainoutsidefrozenworker; same6b209delivery unchanged."
 constraints:
   - "Historical initialization authority:61tokens (55product+6metadata),gen1; superseded by actual recoveredgen2 then actualgen3, histories retained."
   - "Historical pre-gen4 snapshot (superseded now): Current actual native gen3 assignment64tokens=58product+6metadata; baseD1c53833c70ad61a26cbfbc117a040b1f99d33f2e, sameworker/branch/plan c605; no aggregate writes or foreign-rights changes."
@@ -102,4 +104,6 @@ constraints:
   - "CURRENT actual nativegen4 RUNNING65tokens=59product+6ownmetadata; assignment566f8427/baseD/sameworkerbranchW/sourceworkflowchecks/contracts preserved; ONE audited3to4/rootfull8+normalheartbeat/ACK earned, operativef16b released onlycoveredunitfixture correction."
   - "Standingownered773/operative56f0/High4d7 covers necessary existingtestconsumers across separatelyqualified admittedgenerations, not foreignrights/newfeatures/cutover/workflow151. No newper-generationownerquestion required for coveredclass."
   - "Currentunitfixture+metadata delta independently UNREVIEWED atfreeze; latest-onlyHigh and all exactfinalHtechnical/runtime/visual/HUMAN/controller/unchangedSAME6b209wrapper remainREQUIREDpending. No fourthbroadsource review or counter reset."
+  - "Current SAMEgen4/65 correction atstartH e31636da under operativecce5/freshnormalassignment566f; diagnosed SQL42601 grammar and existingownedE2E captureproducer only, parentownmetadata afterauthorSTOP. No newclaim/generation/case replay or outsidepath."
+  - "Nextcandidate currentSQL/E2E/metadata is independentlyUNREVIEWED;50plannedcaptures are0actualPNG/19collected0browserexecuted, realPG/PLpgSQLbodycompileNOTRUN. Rootnewcheckpoint/targetedHigh/actualCI/PG/images/HUMAN/controller/SAME6b209wrapper stillrequired."
 parallel_run_id: e35-8-producer-safety-20261112

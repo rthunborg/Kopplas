@@ -142,13 +142,13 @@ begin
    if jsonb_typeof(value) is distinct from 'string' then raise exception 'invalid uuid' using errcode='23514';end if;
    domain:=jsonb_set(domain,array[k],to_jsonb((domain->>k)::uuid));
   elsif k in ('title','unit','label','description','internal_note','quote_note') then
-   if jsonb_typeof(value) is distinct from 'string' or length(domain->>k)>case when k in ('description','internal_note','quote_note') then 2000 else 256 end then raise exception 'invalid editor text' using errcode='23514';end if;
+   if jsonb_typeof(value) is distinct from 'string' or length(domain->>k)>(case when k in ('description','internal_note','quote_note') then 2000 else 256 end) then raise exception 'invalid editor text' using errcode='23514';end if;
    if k in ('title','unit') then
     if btrim(domain->>k)='' then raise exception 'empty editor text' using errcode='23514';end if;
     domain:=jsonb_set(domain,array[k],to_jsonb(btrim(domain->>k)));
    end if;
   elsif k in ('unit_cost_ore','unit_sell_ore','markup_bp','vat_rate_bp') then
-   if jsonb_typeof(value) is distinct from 'number' or (domain->>k)::numeric<0 or (domain->>k)::numeric<>trunc((domain->>k)::numeric) or (domain->>k)::numeric>case when k='markup_bp' then 1000000 when k='vat_rate_bp' then 10000 else 9007199254740991 end then raise exception 'invalid editor number' using errcode='23514';end if;
+   if jsonb_typeof(value) is distinct from 'number' or (domain->>k)::numeric<0 or (domain->>k)::numeric<>trunc((domain->>k)::numeric) or (domain->>k)::numeric>(case when k='markup_bp' then 1000000 when k='vat_rate_bp' then 10000 else 9007199254740991 end) then raise exception 'invalid editor number' using errcode='23514';end if;
   elsif k='quantity' then
    if jsonb_typeof(value) is distinct from 'number' or (domain->>k)::numeric<=0 then raise exception 'invalid quantity' using errcode='23514';end if;
   elsif k in ('is_hidden','is_optional','is_selected','included_in_invoice_total','source_clear') then
@@ -164,7 +164,7 @@ begin
  -- Every effective archive uses the dedicated complete-subtree contract.
  if kind='calculation.update' and domain->>'status'='archived' then raise exception 'use complete calculation archive contract' using errcode='23514';end if;
  if (domain?'source_kind') is distinct from (domain?'source_id') or ((domain->>'source_clear')::boolean is true and domain?'source_id') then raise exception 'invalid source pair' using errcode='23514';end if;
- if kind like 'calculation.row.%' and domain?'source_kind' and domain?'row_type' and domain->>'source_kind' is distinct from case domain->>'row_type' when 'labor' then 'work_role' when 'material' then 'article' else null end then raise exception 'invalid source type' using errcode='23514';end if;
+ if kind like 'calculation.row.%' and domain?'source_kind' and domain?'row_type' and domain->>'source_kind' is distinct from (case domain->>'row_type' when 'labor' then 'work_role' when 'material' then 'article' else null end) then raise exception 'invalid source type' using errcode='23514';end if;
  if kind like 'calculation.row.%' then
   select array_agg(key) into keys from jsonb_each(domain) where key not in ('source_clear');
   typed:=to_jsonb(jsonb_populate_record(null::public.calculation_rows,domain));
@@ -176,7 +176,7 @@ begin
  end if;
  foreach k in array array['ordered_section_ids','ordered_row_ids','attachment_file_ids'] loop
   if domain?k then
-   if jsonb_typeof(domain->k) is distinct from 'array' or jsonb_array_length(domain->k)>case when k='attachment_file_ids' then 100 else 1000 end or (k<>'attachment_file_ids' and jsonb_array_length(domain->k)=0) then raise exception 'invalid id list' using errcode='23514';end if;
+   if jsonb_typeof(domain->k) is distinct from 'array' or jsonb_array_length(domain->k)>(case when k='attachment_file_ids' then 100 else 1000 end) or (k<>'attachment_file_ids' and jsonb_array_length(domain->k)=0) then raise exception 'invalid id list' using errcode='23514';end if;
    select coalesce(jsonb_agg(to_jsonb(x.value::uuid) order by x.ord),'[]'::jsonb) into ids from jsonb_array_elements_text(domain->k) with ordinality x(value,ord);
    if (select count(*)<>count(distinct x.value) from jsonb_array_elements_text(ids) x(value)) then raise exception 'duplicate id' using errcode='23514';end if;
    domain:=jsonb_set(domain,array[k],ids);
@@ -352,7 +352,7 @@ begin
    if input?'vat_type' and input?'vat_rate_bp' then patch:=patch||jsonb_build_object('tax_reconciliation_required',false,'tax_reconciliation_reason',null);end if;
   end if;
   if input?'source_kind' then
-   if input->>'source_kind' is distinct from case patch->>'row_type' when 'labor' then 'work_role' when 'material' then 'article' end then raise exception 'source kind mismatch' using errcode='23514';end if;
+   if input->>'source_kind' is distinct from (case patch->>'row_type' when 'labor' then 'work_role' when 'material' then 'article' end) then raise exception 'source kind mismatch' using errcode='23514';end if;
    if input->>'source_kind'='work_role' then
     select * into role_source from public.work_roles x where x.tenant_id=p_tenant_id and x.id=(input->>'source_id')::uuid for share;
     if not found then raise exception 'source denied' using errcode='42501';end if;

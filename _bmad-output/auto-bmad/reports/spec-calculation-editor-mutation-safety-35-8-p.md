@@ -102,3 +102,38 @@ No worker globalledger harvest/reconcile/archive; no foreignrights/release/check
 **⚠️ Needs human:** (none)
 
 **Next:** Root validates exactfour-filefreeze/65scope and commits actualH; targetedindependentHigh actualunitfix+metadata, actualH ordinaryCI/fullrelease/captures and HUMAN/controller before unchangedfinalwrapper on SAME6b209. Root canonicalpublicationidentity/PR157/journalhistory preserved through normalfieldpatches; no receipt-only workercommit afterH. No merge/cutover/CRM151authority expanded.
+
+## Report — 2026-11-14T20:30:59Z (same-gen4 SQL and capture correction; qualification pending)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `e31636d`).
+**Pipeline status:** IN PROGRESS / DEVELOPMENT UNACCEPTED. Current corrections ready ONLY for Root checkpoint and targeted latest-delta High; actualPG/runtime/images/HUMAN/finalwrapper pending.
+**Continues:** Sameclaimedgen4/65/baseD/originalbranch; startH e31636da/freshnormalRootheartbeat20:06:22/operativecce5/fixerfence earned. No newadmission/replay/generation or source scope expansion.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 30h 11m (≈25h 16m AI-run, ≈4h 55m human/idle wait); resumed 3×.
+
+**Phases run:** Preserved prior0-7PROVISIONAL markers/3broadreviewrounds/14sourcefindings. This stage corrects actualruntimeSQLsyntax+missingcaptureproducer and runs boundedcheapchecks; no newphase-done/4thbroadreview/overallDone.
+**Skipped:** ActualPG/PLpgSQLbodycompile and currentbrowserexecution NOTRUN locally.19registered/executed0;50plannedPNGs/actual0. No managedresources or newfixture/case/businessflow, no fullunit/admission45/broadsuite rerun merelygreen.
+
+**Overrides:** Standinged773/operative56f0 plusactualsame4releasecce5; pendingprovisionalbookkeepingonly. Retaineddelivery6b209 staysC5-scoped/byteidentical; actualcurrentresults outsideworker. Existinghelpercounter90972 is oldphase-wallbracketsincludingwaits/unmeasuredintervals, notmodelprocessing; currentmodeldurationUNKNOWN.
+
+**TEA:** PriorselectedATDD/automate sourceadoption remainsrevision-limited. Original19browserfunctionalcase titles/ALLoriginalexpectASTs preserved; originalA/B/CwholeUTF8body unchanged andtaxbody onlycaptures/TestInfo. Staticoriginalactioncallcounts45click/40fill/5select/1requestSubmit unchanged, notexecutedDBeffectcounts. Existing31phasepaths/17downstreampresentationidentities/sixhosts are notimagecounts/newruntimeevidence.
+
+**Build:** Workingtree basedH, currentSQL6805938b/E2E508f1eff/storyd54c01fb (notcommittedH bytes): SQL exactlyfiveCASEparenpairs=10ASCIIbytes at145/151/167/179/355; inverse restores originalraw51ac andbounds/ACL/RLS/transaction/money semantics, realfunctionbodycompileNOTRUN. E2E originalPNGBuffer testInfo.attach body through existingJSONartifact, realpendingseams/ownedcompletion/error+finallycleanup, viewportrestore; sourceplanned50IDs includes2existingSectionemptyintermediateframes, no newcases/fixtures/mutations. Types/lint native0/no diagnostics, collection19/native0/execution0, source STATIC/SYNTHETIC11pass0fail/cancel/skip/TODO (fakepage/route/nonimagebytes, NOTbrowser/PG/PNGproof), trail1section27refs0errors, normalreaderprovisionaldone/blockingnull/followupfalse/historicalpatch0reject1. PrivateC4author terminal2edbf13f8c3ae608f933a9d94afa6bf69e598b132e1e1a89468c532421148cf2 containsactualargv/logs; plannedmanifestdfb8caa50dbafc37bea763551f0865d34a23a2f25edcfcdc31c92e122720787d isacyclicbrowser-source-only. Initialprivate terminalencodingchecknative1/defaultcp1252 retained; explicitUTF8metadata correctionfinal0 and exactHfrontmatter/historicalreviewlog preserved. Unit9ba/delivery6b209 unchanged.
+
+**Review:** WholeD..H chain/previous14sourcefindings+3completedbroadrounds retained. Hunitfixture+metadata targetedHigh3894/e947 passed atactualH; that doesnotapprove currentSQL/E2E/metadata. Currentdelta UNREVIEWED pending targetedHigh afterRootactualfixedcheckpoint; no sourceauthor selfapproval/4thbroadpass/reset. RuntimeSQLdefect andcapturegap recordedseparatelyfromprior14sourcefindings.
+
+**Retrospective:** Coordinator-only; not run by worker.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. REQUIRED PENDING on actual next fixedcandidate: targetedHigh currentSQL/E2E/metadata applicability; realPGinstall/compile/reset/fullDB/RLS/recovery/storage and allrequiredtechnicalCI; fullbrowser/dashboard; decode/inspectallactualPNGstates/viewports; HUMAN/controller acceptance and UNCHANGEDfrontend-FIRSTwrapper on SAME6b209delivery. No mandatoryduty release-deferred.
+2. HistoricalH e316: BOTHwholeworkflow43633641116/43633847010FAILED duringnamedmigrationstartup statement12SQL42601; actualcandidate migrations DO execute beforeexplicitreset, productDB/browser assertions not reached. Registrypullretriesrecovered and are not terminalcause. BOTHHverify3959/3959unit103suites/build0 remainH-scoped, not newcandidatepasses.
+3. ExistingPhaseBrelease obligations unchanged/release_ready:false; no liveapp/schema cutover, CRMrecovery, PR151adoption, workflow/pin/resource effect authorized.
+No workergloballedger/sibling/aggregate or privateadmissioncode operation.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Root exactfive-file/65scope checkpoint then independenttargetedHighSQL/E2E/metadata, ordinaryCI+one necessaryfullrelease actualPGinstall/reset/DB/RLS/recovery/browser/decodeimages; actualowner/controller and unchangedfrontend-FIRST SAME6b209wrapper onlyafterearned. Preserve PR157immutablecanonicalidentity/history via normalRootfieldpatches, no frozenworkerreceiptcommit. No merge/deploy/livecutoverauthority from this source result.
