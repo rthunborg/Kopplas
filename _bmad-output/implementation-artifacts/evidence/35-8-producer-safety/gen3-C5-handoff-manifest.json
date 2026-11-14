@@ -1,0 +1,63 @@
+{
+  "kind": "C5_PHYSICAL_AUTHOR_HANDOFF_NOT_COMMIT_OR_ACCEPTANCE",
+  "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+  "head": "3b69b66495131feb90f3aa666244ec9a85898bef",
+  "includes_ignored_raw_logs": true,
+  "excludes_self_to_avoid_circular_hash": true,
+  "files": [
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C5-browser-collection.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C5-browser-collection.log",
+      "bytes": 3246,
+      "sha256": "2798dc48c9ad9826eaf87b56198340dae15a406d01946e9987537ff9fbc507cf"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C5-browser-fixture-check.mjs",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C5-browser-fixture-check.mjs",
+      "bytes": 6266,
+      "sha256": "2b0a1bfd9ede657b9a2aaec7f7d3c2c123eb9c3af0f2d5839bec31d7fcd231e6"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C5-browser-fixture-check.tap",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C5-browser-fixture-check.tap",
+      "bytes": 1385,
+      "sha256": "684f2078c0b3ebd6b7a573e58eea636f3981aea66b6d7069c974d9bd46b9bc57"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C5-review-trail.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C5-review-trail.log",
+      "bytes": 289,
+      "sha256": "27487eadf574c773bf2287ae598102f31b33c448369ed109f07802747801abbf"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C5-targeted-lint.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C5-targeted-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C5-typecheck.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C5-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C5-verification.json",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C5-verification.json",
+      "bytes": 7444,
+      "sha256": "ca66cdcc4abc977d225d6da9cf978529c74c50d18577eefbb9b00f0c41f8d99f"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\specs\\spec-calculation-editor-mutation-safety\\stories\\35-8-p-calculation-editor-mutation-safety.md",
+      "relative_path": "_bmad-output/specs/spec-calculation-editor-mutation-safety/stories/35-8-p-calculation-editor-mutation-safety.md",
+      "bytes": 33223,
+      "sha256": "6b4256ef5a679d9095c8d0f05ff3c5ab1dca473fd531d2220f277def64156f4b"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\tests\\e2e\\calculations\\calculation-mutation-safety.e2e.spec.ts",
+      "relative_path": "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+      "bytes": 27423,
+      "sha256": "3100d93757e6848acad2e14c251a52c3400ef01a5ef8a261a7da62713a2dd142"
+    }
+  ]
+}

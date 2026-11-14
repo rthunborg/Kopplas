@@ -223,6 +223,7 @@ for(const refusal of ["offline","unresolved-scope","storage-read","storage-write
 test("P-6 tax pending A revalidation preserves controlled allowance membership and newer B draft",async({page,context})=>{
   const url=await ownCalculation(page),form=page.getByTestId("tax-document-settings").locator("form");await expect(form).toHaveAttribute("data-editor-ready","true");
   await form.getByLabel("Skatteavdrag",{exact:true}).selectOption("ROT");await form.getByLabel("Betalningsdatum för ROT",{exact:true}).fill("2026-11-13");
+  await form.getByLabel("Person 1: ROT kvar (kr)").fill("1000");await form.getByLabel("Person 1: ROT/RUT kvar (kr)").fill("2000");
   let held=false;let release!:()=>void;const released=new Promise<void>(resolve=>release=resolve);
   await page.route("**/calculations/**",async route=>{if(route.request().method()!=="POST"||!route.request().headers()["next-action"]||!route.request().postData()?.includes("operation_id")||held)return route.continue();held=true;const response=await route.fetch();await released;await route.fulfill({response});});
   try{
@@ -237,10 +238,11 @@ test("P-6 tax pending A revalidation preserves controlled allowance membership a
 test("P-6 pending A then draft B cannot adopt concurrent C facts on a later server refresh",async({page,context})=>{
   const url=await ownCalculation(page),form=headerForm(page),other=await context.newPage();
   await expect(form).toHaveAttribute("data-editor-ready","true");const a=`A ${crypto.randomUUID()}`,b=`B ${crypto.randomUUID()}`,c=`C ${crypto.randomUUID()}`;
-  let held=false;let release!:()=>void;const released=new Promise<void>(resolve=>release=resolve);
-  await page.route("**/calculations/**",async route=>{if(route.request().method()!=="POST"||!route.request().headers()["next-action"]||!route.request().postData()?.includes("operation_id")||held)return route.continue();held=true;const response=await route.fetch();await released;await route.fulfill({response});});
+  let intercepted=false;let release!:()=>void;const released=new Promise<void>(resolve=>release=resolve);
+  let upstreamComplete!:()=>void,upstreamFailed!:(error:unknown)=>void;const upstreamCompleted=new Promise<void>((resolve,reject)=>{upstreamComplete=resolve;upstreamFailed=reject;});
+  await page.route("**/calculations/**",async route=>{if(route.request().method()!=="POST"||!route.request().headers()["next-action"]||!route.request().postData()?.includes("operation_id")||intercepted)return route.continue();intercepted=true;try{const response=await route.fetch();upstreamComplete();await released;await route.fulfill({response});}catch(error){upstreamFailed(error);throw error;}});
   try{
-    await form.getByLabel("Titel").fill(a);await form.getByRole("button",{name:"Spara titel"}).click();await expect.poll(()=>held).toBe(true);await form.getByLabel("Titel").fill(b);
+    await form.getByLabel("Titel").fill(a);await form.getByRole("button",{name:"Spara titel"}).click();await expect.poll(()=>intercepted).toBe(true);await upstreamCompleted;await form.getByLabel("Titel").fill(b);
     await other.goto(url);const winner=headerForm(other);await expect(winner).toHaveAttribute("data-editor-ready","true");await winner.getByLabel("Titel").fill(c);await winner.getByRole("button",{name:"Spara titel"}).click();await expect(winner.getByText("Kalkylen har sparats.")).toBeVisible();
     release();await expect(form.getByRole("status")).toContainText(/nya ändringar.*inte sparade/i);await expect(form.getByLabel("Titel")).toHaveValue(b);
     // A separate admitted section operation refreshes current header props to C,
