@@ -56,6 +56,45 @@ async function reconcile(operation: string) {
 }
 
 describe("35.8-P calculation original-operation and atomic expected-content contract", () => {
+  it("P-2 checked row/section lists normalize UUIDs and reject duplicates before effects",async ctx=>{
+    if(skipUnlessStack(ctx,up))return;const s=await seed();
+    const second=await adminInsertSection({tenant_id:s.tenant,calculation_id:s.calc,title:"Second section",sort_order:1});
+    for(const [kind,domain,table,parent]of [
+      ["calculation.sections.reorder",{calculation_id:s.calc,ordered_section_ids:[second,s.section].map(id=>id.toUpperCase())},"calculation_sections","calculation_id"],
+      ["calculation.rows.reorder",{section_id:s.section,ordered_row_ids:[...s.rows].reverse().map(id=>id.toUpperCase())},"calculation_rows","section_id"],
+    ]as const){
+      const safety=await captureEditorTestIntent(kind,domain);
+      const result=await actor.rpc("mutate_calculation_editor",{p_tenant_id:s.tenant,p_actor_user_id:fixture.adminA.id,p_operation_id:safety.operation_id,p_kind:kind,p_input:{...domain,...safety},p_captured_at:new Date().toISOString()});
+      expect(result.error).toBeNull();expect(result.data).toMatchObject({status:"committed",operationId:safety.operation_id});
+      const expectedIds="ordered_section_ids"in domain?domain.ordered_section_ids:domain.ordered_row_ids;
+      expect((await adminQuery<{id:string}>(`select id from public.${table} where ${parent}=$1 and archived_at is null order by sort_order`,[parent==="calculation_id"?s.calc:s.section])).map(x=>x.id)).toEqual(expectedIds.map(id=>id.toLowerCase()));
+      const duplicateDomain=parent==="calculation_id"?{calculation_id:s.calc,ordered_section_ids:[s.section,s.section]}:{section_id:s.section,ordered_row_ids:[s.rows[0],s.rows[0]]};
+      const duplicate=await captureEditorTestIntent(kind,duplicateDomain),before=await domainState(s.customer);
+      const denied=await actor.rpc("mutate_calculation_editor",{p_tenant_id:s.tenant,p_actor_user_id:fixture.adminA.id,p_operation_id:duplicate.operation_id,p_kind:kind,p_input:{...duplicateDomain,...duplicate},p_captured_at:new Date().toISOString()});
+      expect(denied.error?.code).toBe("23514");expect(denied.error?.message).toMatch(/duplicate id/i);expect(await domainState(s.customer)).toEqual(before);
+      expect(await adminSelectAuditEvents({correlationId:duplicate.operation_id})).toEqual([]);
+    }
+  });
+
+  for(const descendantChange of ["section-add","row-edit"]as const)it(`P-2 alternate update archive cannot hide stale ${descendantChange}; dedicated archive still compares the complete original tree`,async ctx=>{
+    if(skipUnlessStack(ctx,up))return;const s=await seed(),originalHeader=await header(s.calc);
+    const archiveInput={id:s.calc},archiveSafety=await captureEditorTestIntent("calculation.archive",archiveInput);
+    if(descendantChange==="section-add"){
+      const input={calculation_id:s.calc,title:"Added after original archive decision"},safety=await captureEditorTestIntent("calculation.section.create",input);
+      expect(await runCommand(createSection,{client:actor as never,input:{...input,...safety},correlationId:safety.operation_id})).toMatchObject({ok:true});
+    }else{
+      const input={id:s.rows[0],label:"Edited after original archive decision"},safety=await captureEditorTestIntent("calculation.row.update",input);
+      expect(await runCommand(updateRow,{client:actor as never,input:{...input,...safety},correlationId:safety.operation_id})).toMatchObject({ok:true});
+    }
+    expect(await header(s.calc)).toEqual(originalHeader);
+    const before=await domainState(s.customer),operation=crypto.randomUUID();
+    const alternate=await actor.rpc("mutate_calculation_editor",{p_tenant_id:s.tenant,p_actor_user_id:fixture.adminA.id,p_operation_id:operation,p_kind:"calculation.update",p_input:{id:s.calc,status:"archived",title:"Must not partially apply",operation_id:operation,expected:{version:1,form:"calculation",header:originalHeader}},p_captured_at:new Date().toISOString()});
+    expect(alternate.error?.code).toBe("23514");expect(alternate.error?.message).toMatch(/complete calculation archive contract/i);
+    expect(await domainState(s.customer)).toEqual(before);expect(await adminSelectAuditEvents({correlationId:operation})).toEqual([]);
+    expect(await runCommand(archiveCalculation,{client:actor as never,input:{...archiveInput,...archiveSafety},correlationId:archiveSafety.operation_id})).toMatchObject({ok:false,code:"COMMAND_CONFLICT"});
+    expect(await domainState(s.customer)).toEqual(before);expect(await adminSelectAuditEvents({correlationId:archiveSafety.operation_id})).toEqual([]);
+  });
+
   it("P-2 accepts complete 501-section reorder and archives every section beyond 1000 without a new creation cap", async ctx => {
     if (skipUnlessStack(ctx,up)) return;
     const s=await seed();

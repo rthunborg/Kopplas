@@ -23,6 +23,7 @@ import {
   CALC_ACTION_INITIAL,
   isRetryableCalcError,
 } from "@/features/calculations/action-state";
+import { preflightEditorForm } from "@/features/calculations/form-parsing";
 import type { CalculationListRow } from "@/features/calculations/read";
 
 /** Swedish labels for the calc lifecycle status (presentational only). */
@@ -198,6 +199,7 @@ export function useEditorOperation<S extends EditorActionState>(
   const formElement = useRef<HTMLFormElement | null>(null);
   const draftExpected = useRef<Record<string, unknown> | null>(null);
   const currentKey = useRef<string | null>(null);
+  const originalRevision = useRef<number | null>(null);
   const [resultLink, setResultLink] = useState<string | null>(null);
   const key = scope ? `kopplas/editor/v1/${scope}/${formKey}` : null;
   useEffect(() => { let active = true;
@@ -213,13 +215,19 @@ export function useEditorOperation<S extends EditorActionState>(
       try { const raw = sessionStorage.getItem(key), saved = raw ? readEditorHandle(raw, `${scope}/${formKey}`) : null;
         handle.current = saved?.operationId ?? null; setRecoverable(Boolean(saved));
         replayContext.current = saved?.replay ?? null;
-        setHasOriginalRequest(false); original.current = null;
+        setHasOriginalRequest(false); original.current = null; originalRevision.current = null;
         if (saved) setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen.");
       } catch { setNotice("Sessionslagring krävs för att bevara åtgärdens identitet."); }
     });
     return () => { active = false; };
   }, [key, scope, formKey]);
-  function clear() { draftExpected.current = null; handle.current = null; original.current = null; replayContext.current = null; setHasOriginalRequest(false); setRecoverable(false); setChecked(false); if (key) { try { sessionStorage.removeItem(key); } catch { /* A stale handle remains safely reconcilable. */ } } }
+  function clearOperation() { originalRevision.current = null; handle.current = null; original.current = null; replayContext.current = null; setHasOriginalRequest(false); setRecoverable(false); setChecked(false); if (key) { try { sessionStorage.removeItem(key); } catch { /* A stale handle remains safely reconcilable. */ } } }
+  function confirmMatchingDraft(submittedRevision: number | null) {
+    // Operation A's proof cannot change unsent draft B's original facts.
+    if (submittedRevision !== null && submittedRevision === revision.current) {
+      draftExpected.current = null; setHasDraftChanges(false);
+    }
+  }
   const [state, dispatch, actionPending] = useActionState<S, FormData>(async (previous: S, form: FormData): Promise<S> => {
     if (busy.current) { submitting.current = false; return previous; }
     if (!navigator.onLine || !key || !scope) { setNotice("Anslutning krävs. Uppgifterna är inte skickade."); submitting.current = false; return { ...previous, status: "error", targetId: null }; }
@@ -234,7 +242,7 @@ export function useEditorOperation<S extends EditorActionState>(
           submitted.set("operation_id", handle.current);
           submitted.set("expected", JSON.stringify((formKey === "new/calculation" ? null : draftExpected.current) ?? expected(form)));
           if (await editorRequestFingerprint(submitted) === replayContext.current.requestFingerprint) {
-            original.current = submitted; setHasOriginalRequest(true);
+            original.current = submitted; originalRevision.current = revision.current; setHasOriginalRequest(true);
             setNotice("Underlaget matchar den ursprungliga åtgärden. Välj Försök samma åtgärd igen för att skicka det.");
           } else setNotice("Underlaget matchar inte den ursprungliga åtgärden. Behåll samma ursprungliga uppgifter och kontrollera igen.");
         } else setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen.");
@@ -246,6 +254,11 @@ export function useEditorOperation<S extends EditorActionState>(
     const operationId = crypto.randomUUID();
     submitted.set("operation_id", operationId);
     submitted.set("expected", JSON.stringify((formKey === "new/calculation" ? null : draftExpected.current) ?? expected(form)));
+    const preflight = preflightEditorForm(submitted);
+    if (!preflight.ok) {
+      setNotice("Kontrollera uppgifterna. Åtgärden har inte skickats."); submitting.current = false;
+      return { ...initial, status: "error", targetId: null, code: "VALIDATION_FAILED", form: preflight.form, formError: "Kontrollera uppgifterna. Åtgärden har inte skickats.", fieldErrors: preflight.fieldErrors, values: preflight.values };
+    }
     const intent = retainEditorIntent(`${scope}/${formKey}`, [...submitted.entries()], operationId);
     const submittedRevision = revision.current, submittedKey = key;
     busy.current = true;
@@ -253,14 +266,14 @@ export function useEditorOperation<S extends EditorActionState>(
       const context = { requestFingerprint: await editorRequestFingerprint(submitted) };
       try { sessionStorage.setItem(key, editorHandle(intent, context)); }
       catch { setNotice("Åtgärden skickades inte. Fliken kan inte bevara identiteten."); return { ...previous, status: "idle", targetId: null }; }
-      handle.current = operationId; original.current = submitted; replayContext.current = context;
+      handle.current = operationId; original.current = submitted; originalRevision.current = submittedRevision; replayContext.current = context;
       setHasOriginalRequest(true); setRecoverable(true); setChecked(false);
       const next = await action(previous, submitted);
       if (currentKey.current !== submittedKey) return initial;
       if(next.status === "unknown") { setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen."); return next; }
-      clear();
+      clearOperation();
       if(next.status === "success" && submittedRevision !== revision.current) { setNotice("Tidigare åtgärd bekräftad. Dina nya ändringar är inte sparade."); return { ...next, status: "idle", targetId: null }; }
-      if (next.status === "success") setHasDraftChanges(false);
+      if (next.status === "success") confirmMatchingDraft(submittedRevision);
       setNotice(null); return next;
     } catch {
       if (currentKey.current !== submittedKey) return initial;
@@ -274,14 +287,14 @@ export function useEditorOperation<S extends EditorActionState>(
       if (proof.status === "committed" && proof.targetAvailable !== false && proof.targetId) {
         setResultLink(proof.quoteId ? `/quotes/${proof.quoteId}/versions/${proof.targetId}` : formKey === "new/calculation" ? `/calculations/${proof.targetId}` : null);
       }
-      setNotice(proof.status === "committed" ? "Den ursprungliga åtgärden är bekräftad. Kontrollera aktuella uppgifter före nya ändringar." : "Åtgärden avvisades. Uppdatera underlaget före en ny åtgärd."); clear();
+      setNotice(proof.status === "committed" ? "Den ursprungliga åtgärden är bekräftad. Kontrollera aktuella uppgifter före nya ändringar." : "Åtgärden avvisades. Uppdatera underlaget före en ny åtgärd."); if (proof.status === "committed") confirmMatchingDraft(originalRevision.current); clearOperation();
     } catch { setNotice("Resultatet kunde inte kontrolleras. Försök kontrollera igen."); } finally { busy.current = false; setRecoveryPending(false); }
   }
   async function retry() { if(!checked || !original.current || busy.current) return; busy.current = true; setRecoveryPending(true);
     try { const next = await action(initial, original.current);
       if(next.status === "error") { setNotice(next.formError ?? "Resultatet kunde inte bekräftas. Kontrollera innan du fattar ett nytt beslut."); }
       else if(next.status !== "success") setNotice("Resultatet är fortfarande obekräftat. Kontrollera innan du fattar ett nytt beslut.");
-      else { setNotice("Den ursprungliga åtgärden är bekräftad. Nya ändringar är inte sparade."); if(next.targetId) setResultLink("quoteId" in next && typeof next.quoteId === "string" ? `/quotes/${next.quoteId}/versions/${next.targetId}` : formKey === "new/calculation" ? `/calculations/${next.targetId}` : null); clear(); }
+      else { setNotice("Den ursprungliga åtgärden är bekräftad. Nya ändringar är inte sparade."); if(next.targetId) setResultLink("quoteId" in next && typeof next.quoteId === "string" ? `/quotes/${next.quoteId}/versions/${next.targetId}` : formKey === "new/calculation" ? `/calculations/${next.targetId}` : null); confirmMatchingDraft(originalRevision.current); clearOperation(); }
     } catch { setNotice("Resultatet är fortfarande obekräftat."); } finally { busy.current = false; setRecoveryPending(false); }
   }
   function markChanged() {

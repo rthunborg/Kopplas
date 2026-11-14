@@ -125,7 +125,7 @@ test("E35-8-T-connection-required / submitting / error-retry: unsent draft survi
   const url=await ownCalculation(page);const form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");const draft=`Offline ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(draft);
   await context.setOffline(true);try{await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("status")).toContainText(/inte skickade/i);await expect(form.getByLabel("Titel")).toHaveValue(draft);}finally{await context.setOffline(false);}
   const observer=await context.newPage();try{await observer.goto(url);await expect(headerForm(observer).getByLabel("Titel")).not.toHaveValue(draft);}finally{await observer.close();}
-  await form.getByLabel("Titel").fill("");await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("alert")).toBeVisible();
+  await form.getByLabel("Titel").fill("   ");await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("alert")).toBeVisible();
   await form.getByLabel("Titel").fill(draft);await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByText("Kalkylen har sparats.")).toBeVisible();
 });
 
@@ -180,9 +180,13 @@ test("P-6 explicit original retry preserves later draft through reconcile and th
   expect(writes).toHaveLength(2);expect(writes[1]).toEqual(writes[0]);expect(writes[1]?.title).toBe(a);
   const observer=await context.newPage();try{
     await observer.goto(url);await expect(headerForm(observer).getByLabel("Titel")).toHaveValue(a);
-    await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByText("Kalkylen har sparats.")).toBeVisible();await expect(form.getByLabel("Titel")).toHaveValue(b2);
+    await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("alert")).toContainText(/ändrat|ändrats|inaktuell|uppdatera/i);await expect(form.getByLabel("Titel")).toHaveValue(b2);
     expect(writes).toHaveLength(3);expect(writes[2]?.title).toBe(b2);expect(writes[2]?.operationId).not.toBe(writes[0]?.operationId);
-    await observer.reload();await expect(headerForm(observer).getByLabel("Titel")).toHaveValue(b2);
+    await observer.reload();await expect(headerForm(observer).getByLabel("Titel")).toHaveValue(a);
+    // B was already unsent while A completed. Keep its old binding until an
+    // explicit reread/new decision, rather than silently adopting A or newer C.
+    await page.reload();const fresh=headerForm(page);await expect(fresh).toHaveAttribute("data-editor-ready","true");await fresh.getByLabel("Titel").fill(b2);await fresh.getByRole("button",{name:"Spara titel"}).click();await expect(fresh.getByText("Kalkylen har sparats.")).toBeVisible();
+    expect(writes).toHaveLength(4);expect(writes[3]?.operationId).not.toBe(writes[2]?.operationId);await observer.reload();await expect(headerForm(observer).getByLabel("Titel")).toHaveValue(b2);
   }finally{releaseCheck();await observer.close();}
 });
 
@@ -227,4 +231,30 @@ test("P-6 tax pending A revalidation preserves controlled allowance membership a
   }finally{release();}
   await expect(form.getByRole("status")).toContainText(/nya ändringar.*inte sparade/i);await expect(form.getByLabel("Person 3: ROT kvar (kr)")).toHaveValue("1234");await expect(form.getByLabel("Betalningsdatum för ROT",{exact:true})).toHaveValue("2026-11-14");await expect(form.getByLabel("Skatteavdrag",{exact:true})).toHaveValue("ROT");
   const observer=await context.newPage();try{await observer.goto(url);const persisted=observer.getByTestId("tax-document-settings");await expect(persisted.getByLabel("Betalningsdatum för ROT",{exact:true})).toHaveValue("2026-11-13");await expect(persisted.getByLabel("Person 3: ROT kvar (kr)")).toHaveCount(0);}finally{await observer.close();}
+});
+
+
+test("P-6 pending A then draft B cannot adopt concurrent C facts on a later server refresh",async({page,context})=>{
+  const url=await ownCalculation(page),form=headerForm(page),other=await context.newPage();
+  await expect(form).toHaveAttribute("data-editor-ready","true");const a=`A ${crypto.randomUUID()}`,b=`B ${crypto.randomUUID()}`,c=`C ${crypto.randomUUID()}`;
+  let held=false;let release!:()=>void;const released=new Promise<void>(resolve=>release=resolve);
+  await page.route("**/calculations/**",async route=>{if(route.request().method()!=="POST"||!route.request().headers()["next-action"]||!route.request().postData()?.includes("operation_id")||held)return route.continue();held=true;const response=await route.fetch();await released;await route.fulfill({response});});
+  try{
+    await form.getByLabel("Titel").fill(a);await form.getByRole("button",{name:"Spara titel"}).click();await expect.poll(()=>held).toBe(true);await form.getByLabel("Titel").fill(b);
+    await other.goto(url);const winner=headerForm(other);await expect(winner).toHaveAttribute("data-editor-ready","true");await winner.getByLabel("Titel").fill(c);await winner.getByRole("button",{name:"Spara titel"}).click();await expect(winner.getByText("Kalkylen har sparats.")).toBeVisible();
+    release();await expect(form.getByRole("status")).toContainText(/nya ändringar.*inte sparade/i);await expect(form.getByLabel("Titel")).toHaveValue(b);
+    // A separate admitted section operation refreshes current header props to C,
+    // without navigating away or turning retained title B into a new decision.
+    await addSection(page);await expect(page.getByTestId("calculation-header").getByRole("heading",{name:c,exact:true})).toBeVisible();await expect(form.getByLabel("Titel")).toHaveValue(b);
+    await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("alert")).toContainText(/ändrat|ändrats|inaktuell|uppdatera/i);await expect(form.getByLabel("Titel")).toHaveValue(b);await expect(form.getByText("Kalkylen har sparats.")).toHaveCount(0);
+    await other.reload();await expect(headerForm(other).getByLabel("Titel")).toHaveValue(c);
+  }finally{release();await other.close();}
+});
+
+test("P-6 invalid new create is not admitted before correction",async({page})=>{
+  await signIn(page);await page.goto("/calculations");await hydrated(page.getByTestId("new-calculation"));await page.getByTestId("new-calculation").click();const form=page.getByTestId("new-calculation-form");await expect(form).toHaveAttribute("data-editor-ready","true");let writes=0;
+  page.on("request",request=>{if(request.method()==="POST"&&request.headers()["next-action"]&&request.postData()?.includes("operation_id"))writes++;});
+  await form.getByLabel("Kund",{exact:true}).selectOption({index:1});await form.getByLabel("Titel").fill("   ");await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect(form.getByRole("alert").first()).toBeVisible();await expect(form.getByLabel("Titel")).toHaveValue("   ");expect(writes).toBe(0);
+  expect(await page.evaluate(()=>Object.keys(sessionStorage).filter(key=>key.startsWith("kopplas/editor/v1/")).length)).toBe(0);
+  const corrected=`Corrected ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(corrected);await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect(page).toHaveURL(/\/calculations\/[a-f0-9-]+$/);await expect(headerForm(page).getByLabel("Titel")).toHaveValue(corrected);expect(writes).toBe(1);
 });

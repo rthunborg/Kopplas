@@ -68,6 +68,22 @@ function interruptedClient(mode: "before-create" | "after-create") {
 }
 
 describe("35.8-P initial quote original review operation", () => {
+  it("P-4 checked quote normalizes empty attachment lists and rejects duplicate list identities before preparation",async ctx=>{
+    if(skipUnlessStack(ctx,up))return;const s=await originalIntent();
+    const fault=interruptedClient("before-create");
+    const lost=await runCommand(createQuoteVersionFromCalculation,{client:fault.client as never,input:s.input,correlationId:s.operation,clock:{now:()=>new Date(capturedAt)}});
+    expect(lost.ok).toBe(false);expect(fault.wasInterrupted()).toBe(true);
+    expect(fault.calls.find(call=>call.name==="authorize_calculation_editor_quote")?.args.p_input).toMatchObject({attachment_file_ids:[]});
+    const request={p_tenant_id:fixture.tenantA.id,p_actor_user_id:fixture.adminA.id,p_operation_id:s.operation,p_input:s.input};
+    expect(await adminQuery("select status from public.calculation_editor_operations where operation_id=$1",[s.operation])).toEqual([{status:"prepared"}]);
+    const committed=await actor.rpc("create_calculation_editor_quote",request);expect(committed.error).toBeNull();expect(committed.data).toMatchObject({status:"committed",operationId:s.operation});
+    expect(await adminSelectAuditEvents({correlationId:s.operation})).toHaveLength(1);
+    const operation=crypto.randomUUID(),duplicated=[crypto.randomUUID()];duplicated.push(duplicated[0]);
+    const rejected=await actor.rpc("authorize_calculation_editor_quote",{...request,p_operation_id:operation,p_input:{...s.input,operation_id:operation,attachment_file_ids:duplicated,expected:{...s.input.expected,attachment_file_ids:duplicated}},p_review:{}});
+    expect(rejected.error?.code).toBe("23514");expect(rejected.error?.message).toMatch(/duplicate id/i);
+    expect(await adminQuery("select operation_id from public.calculation_editor_operations where operation_id=$1",[operation])).toEqual([]);expect(await adminSelectAuditEvents({correlationId:operation})).toEqual([]);
+  });
+
   it("P-4 prepared retry uses original authorization/capture/correlation and read-only reconciliation changes nothing", async ctx => {
     if (skipUnlessStack(ctx, up)) return;
     const s = await originalIntent();

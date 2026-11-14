@@ -843,3 +843,55 @@ export function parseEditorSafetyFields(form: FormData): Record<string, unknown>
   }
   return safety;
 }
+
+
+// These existing validators are pure, browser-safe modules: their only runtime
+// dependencies are canonical money and editor-shape helpers. Their envelope
+// dependency is type-only; no database/auth/server-only code enters this graph.
+// money-input.ts already consumes this same calculation validation module.
+import {
+  validateCreateCalculation, validateUpdateCalculation, validateArchiveCalc,
+  validateCreateSection, validateUpdateSection, validateArchiveSection,
+  validateCreateRow, validateUpdateRow, validateArchiveRow,
+  validateReorderSections, validateReorderRows,
+} from "@/server/commands/calculations/validation";
+import { validateCreateReviewedQuoteVersionFromCalculation } from "@/server/commands/quotes/validation";
+
+export type EditorFormPreflight =
+  | { readonly ok: true }
+  | { readonly ok: false; readonly form: string; readonly fieldErrors: Readonly<Record<string, string>>; readonly values: Readonly<Record<string, string>> };
+/** NEW-intent admission only. This is never evidence about an earlier uncertain
+ * operation. Server validation/authorization and checked SQL remain authoritative. */
+export function preflightEditorForm(form: FormData): EditorFormPreflight {
+  const safety = parseEditorSafetyFields(form);
+  const expected = safety.expected;
+  const formKind = expected && typeof expected === "object" && "form" in expected && typeof expected.form === "string" ? expected.form : "";
+  let parsed: ParsedCalcForm;
+  let validate: (input: unknown) => { readonly ok: boolean };
+  switch (formKind) {
+    case "calculation":
+      parsed = form.has("id") ? parseUpdateCalculationForm(form) : parseCreateCalculationForm(form);
+      validate = form.has("id") ? validateUpdateCalculation : validateCreateCalculation;
+      // A lifecycle enum value is not an unchecked archive capability. Do not
+      // silently drop title/status from a combined update/archive request.
+      if (parsed.input.status === "archived") return { ok: false, form: formKind, fieldErrors: {status:"Använd Arkivera kalkyl så att hela underlaget kontrolleras."}, values: parsed.values };
+      break;
+    case "tax_input": parsed = parseUpdateTaxInputForm(form); validate = validateUpdateCalculation; break;
+    case "section": parsed = form.has("id") ? parseUpdateSectionForm(form) : parseCreateSectionForm(form); validate = form.has("id") ? validateUpdateSection : validateCreateSection; break;
+    case "row": parsed = form.has("id") ? parseUpdateRowForm(form) : parseCreateRowForm(form); validate = form.has("id") ? validateUpdateRow : validateCreateRow; break;
+    case "archive_calculation": parsed = parseArchiveForm(form); validate = validateArchiveCalc; break;
+    case "archive_section": parsed = parseArchiveForm(form); validate = validateArchiveSection; break;
+    case "archive_row": parsed = parseArchiveForm(form); validate = validateArchiveRow; break;
+    case "reorder_sections": parsed = parseReorderSectionsForm(form); validate = validateReorderSections; break;
+    case "reorder_rows": parsed = parseReorderRowsForm(form); validate = validateReorderRows; break;
+    case "reviewed-initial-quote":
+      parsed = { input: {...safety, calculation_id: form.get("calculation_id"), attachment_file_ids: form.getAll("attachment_file_ids"), reviewed_snapshot_digest: form.get("reviewed_snapshot_digest"), reviewed_quote_capture_date: form.get("reviewed_quote_capture_date")}, fieldErrors: {}, values: collectValues(form,["calculation_id"]) };
+      validate = validateCreateReviewedQuoteVersionFromCalculation; break;
+    default: return { ok: false, form: formKind, fieldErrors: {}, values: {} };
+  }
+  const list = parsed.input.ordered_section_ids ?? parsed.input.ordered_row_ids ?? parsed.input.attachment_file_ids;
+  const duplicateIds = Array.isArray(list) && new Set(list.map(id=>typeof id === "string" ? id.toLowerCase() : id)).size !== list.length;
+  return Object.keys(parsed.fieldErrors).length === 0 && !duplicateIds && validate(parsed.input).ok
+    ? { ok: true }
+    : { ok: false, form: formKind, fieldErrors: parsed.fieldErrors, values: parsed.values };
+}

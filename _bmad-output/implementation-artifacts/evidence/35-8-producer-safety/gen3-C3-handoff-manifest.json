@@ -1,0 +1,141 @@
+{
+  "kind": "C3_PHYSICAL_AUTHOR_HANDOFF_NOT_COMMIT_OR_ACCEPTANCE",
+  "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+  "head": "e7959e8addc0eee31261393dcab331a564de731e",
+  "includes_ignored_raw_logs": true,
+  "excludes_self_to_avoid_circular_hash": true,
+  "files": [
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-browser-collection.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-browser-collection.log",
+      "bytes": 3246,
+      "sha256": "3565bc98d480fcdb262b114aa5fd589aeb021b99c86162f03384f93fe386a6ff"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-build-process.json",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-build-process.json",
+      "bytes": 403,
+      "sha256": "1485a05d062f9ad8dfcb59712ab0c8ffa9beaa8cf12bfa86d1e2e9ccda010967"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-build.stderr.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-build.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-build.stdout.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-build.stdout.log",
+      "bytes": 1808,
+      "sha256": "3d6db8a50e93d8b4c91f76ba5baafb3bc65d38ae588d65bd3f846f115c06ca97"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-controller-check-first.tap",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-controller-check-first.tap",
+      "bytes": 4363,
+      "sha256": "401161e3478474c03fe812942696fc765c8c6a86ed6905e2b69253671cd60140"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-controller-check.mjs",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-controller-check.mjs",
+      "bytes": 12858,
+      "sha256": "acadb4797b054a1156bb2165dcbcb9f03fa222a0974adcf722912bbc7fdec141"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-focused-unit.tap",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-focused-unit.tap",
+      "bytes": 49885,
+      "sha256": "28d0569ba01b156483763f5ca7b8ed279b894aca176ebf919cea147bb7ab9d25"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-full-lint.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-full-lint.log",
+      "bytes": 7689,
+      "sha256": "f3993a0b6f456b65df970a3e8f8abc1627c9201b23e826f96d17779530ca0466"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-review-trail.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-review-trail.log",
+      "bytes": 289,
+      "sha256": "27487eadf574c773bf2287ae598102f31b33c448369ed109f07802747801abbf"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-targeted-lint.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-targeted-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-typecheck-final.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-typecheck-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-typecheck-first.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-typecheck-first.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-typecheck-tests.log",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-typecheck-tests.log",
+      "bytes": 1007,
+      "sha256": "af5d16e5cf0ab26296d8a7cdc345d326f133e2fb7c3bd72d500756201fe759bc"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C3-verification.json",
+      "relative_path": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-verification.json",
+      "bytes": 12010,
+      "sha256": "cc8e7899010117ae69d44c16c5218891a7b0f91de5eac09788d55ee1e4b115f4"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\specs\\spec-calculation-editor-mutation-safety\\stories\\35-8-p-calculation-editor-mutation-safety.md",
+      "relative_path": "_bmad-output/specs/spec-calculation-editor-mutation-safety/stories/35-8-p-calculation-editor-mutation-safety.md",
+      "bytes": 27705,
+      "sha256": "dcebfb0da3445562efb3025c2d0fcb0f996806abd929689c043e7285065a1f54"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\src\\components\\calculations\\CalculationList.tsx",
+      "relative_path": "src/components/calculations/CalculationList.tsx",
+      "bytes": 19136,
+      "sha256": "8d8cf8e17abea4e2f1ae3df98666a7ee873605a08437a166dc65b8cbabf71e87"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\src\\features\\calculations\\form-parsing.ts",
+      "relative_path": "src/features/calculations/form-parsing.ts",
+      "bytes": 40561,
+      "sha256": "13917d4bdb7bd6a948fc4d7e7287cffe768c8c7d04de60efa36b39f9430556e3"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\supabase\\migrations\\20261112120000_calculation_editor_mutation_safety.sql",
+      "relative_path": "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql",
+      "bytes": 54068,
+      "sha256": "51ac3c1944389a9080e7bee5cd6669f26e0638f5ed8cd37060978e839f08e50f"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\tests\\e2e\\calculations\\calculation-mutation-safety.e2e.spec.ts",
+      "relative_path": "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+      "bytes": 26985,
+      "sha256": "d2f5981e94eae6a3d40e94a744e3ce310fff8a5ad0c7e9f17781263dc8043be5"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\tests\\integration\\commands\\calculation-mutation-safety.int.test.ts",
+      "relative_path": "tests/integration/commands/calculation-mutation-safety.int.test.ts",
+      "bytes": 29823,
+      "sha256": "fac53297957a77e51e0ef595f2b211458b17b19d96beaa64ee72c3baef4b8135"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\tests\\integration\\commands\\quote-initial-mutation-safety.int.test.ts",
+      "relative_path": "tests/integration/commands/quote-initial-mutation-safety.int.test.ts",
+      "bytes": 17707,
+      "sha256": "1f62bc3f4b90f9e4f929548dfaf98c78bb58740b2e4d864db338a19cb5ba2e7c"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\tests\\unit\\features\\calculations\\form-parsing.test.ts",
+      "relative_path": "tests/unit/features/calculations/form-parsing.test.ts",
+      "bytes": 28228,
+      "sha256": "1451d8841b81a5e6527793e5da1e3cabcce81f81a3a5d669f3e55a7f81e995d5"
+    }
+  ]
+}

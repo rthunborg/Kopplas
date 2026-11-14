@@ -161,6 +161,8 @@ begin
   elsif k='source_kind' and domain->>k not in ('work_role','article') then raise exception 'invalid source kind' using errcode='23514';
   end if;
  end loop;
+ -- Every effective archive uses the dedicated complete-subtree contract.
+ if kind='calculation.update' and domain->>'status'='archived' then raise exception 'use complete calculation archive contract' using errcode='23514';end if;
  if (domain?'source_kind') is distinct from (domain?'source_id') or ((domain->>'source_clear')::boolean is true and domain?'source_id') then raise exception 'invalid source pair' using errcode='23514';end if;
  if kind like 'calculation.row.%' and domain?'source_kind' and domain?'row_type' and domain->>'source_kind' is distinct from case domain->>'row_type' when 'labor' then 'work_role' when 'material' then 'article' else null end then raise exception 'invalid source type' using errcode='23514';end if;
  if kind like 'calculation.row.%' then
@@ -175,8 +177,8 @@ begin
  foreach k in array array['ordered_section_ids','ordered_row_ids','attachment_file_ids'] loop
   if domain?k then
    if jsonb_typeof(domain->k) is distinct from 'array' or jsonb_array_length(domain->k)>case when k='attachment_file_ids' then 100 else 1000 end or (k<>'attachment_file_ids' and jsonb_array_length(domain->k)=0) then raise exception 'invalid id list' using errcode='23514';end if;
-   select coalesce(jsonb_agg(to_jsonb(value::uuid) order by ord),'[]'::jsonb) into ids from jsonb_array_elements_text(domain->k) with ordinality x(value,ord);
-   if (select count(*)<>count(distinct value) from jsonb_array_elements_text(ids)) then raise exception 'duplicate id' using errcode='23514';end if;
+   select coalesce(jsonb_agg(to_jsonb(x.value::uuid) order by x.ord),'[]'::jsonb) into ids from jsonb_array_elements_text(domain->k) with ordinality x(value,ord);
+   if (select count(*)<>count(distinct x.value) from jsonb_array_elements_text(ids) x(value)) then raise exception 'duplicate id' using errcode='23514';end if;
    domain:=jsonb_set(domain,array[k],ids);
   end if;
  end loop;
