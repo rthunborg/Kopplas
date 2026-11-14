@@ -9,46 +9,48 @@ spec_folder: "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\wo
 story_id: 35-8-p
 branch: codex/parallel-e35-8-producer-safety-20261112
 status: in-progress
-updated_at: "2026-11-13T17:09:13Z"
+updated_at: "2026-11-14T17:35:56Z"
 started_at: "2026-11-13T14:19:23Z"
 completed_at: null
-active_seconds: 3034
-timing_anchor: 1794589753
+active_seconds: 90972
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Explicit recoveredgen2 partialP5 continuation; tenant/auth/RLS/money/transaction invariants, exact57+6 only."
+escalation_reason: "Actual selected generation3 Phase6 automate dispatched High under853b route, original cb27 receipt and normal2f0f verification; source-only adoption, no product execution credit."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"ATDD for tenant, authorization, money and transactional producer safety.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Approved producer transaction, tenant/auth/RLS and money invariants require sensitive High implementation/review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit recoveredgen2 partialP5 continuation; tenant/auth/RLS/money/transaction invariants, exact57+6 only.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Consolidates actual before-write generation3 routes150f/2e7c and exact64 authority; sensitive transaction/auth/RLS/money source work and provisional metadata were already independently routed High. Historical gen1/gen2 ledger retained.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual selected generation3 Phase6 automate dispatched High under853b route, original cb27 receipt and normal2f0f verification; source-only adoption, no product execution credit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Authorization/RLS, money and atomic concurrent mutation/replay; one-story epic so no trace advisory."
 epic_story_count: 1
 stories_after_in_epic: 0
-completed_phases: [0, 1, 2, 3, 4]
+completed_phases: [0, 1, 2, 3, 4, 5, 6, 7]
 spec_path: "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\specs\\spec-calculation-editor-mutation-safety\\stories\\35-8-p-calculation-editor-mutation-safety.md"
 spec_approved: true
 build:
-  status: in-progress
+  status: done
   blocking_condition: null
   followup_review_recommended: false
-  review_loop_iteration: 0
+  review_loop_iteration: 3
   deferred_count: 0
   warnings: []
 followup_passes: 0
-hitl_halt: null
-review_unverified: true
+hitl_halt: "skipped (clean)"
+review_unverified: false
 story_trace: null
 legacy_review_resume: false
 legacy_review_iteration: null
@@ -56,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [ff2ef300b18bd1c6d3ee607eb6487cdbbbbadcf9, 3a2fe5a565e2627b45b9b46880e26966ef0cd23f, bba6d6d99527a921e8f6c0021a27b1dfd3fa5202, 15d8210e79a044babb9255b5aebd73bec2c54ae6, f6789bc0278d0968ba79526ce43a4b34d78ad874, 80787f68231016979c6cb8e72f85da15a878bbdf, e7959e8addc0eee31261393dcab331a564de731e, e2e738efbb52354e90e99a7c21d8a6b939698798, 3b69b66495131feb90f3aa666244ec9a85898bef, e6a0bffcfed537099ad6e4219f2fea4fbb6df354]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -81,12 +83,17 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work:
-  - "UNFINISHED REQUIRED: owned typing/count fixes and material test bodies/adapters, SQL/source/clock reconciliation, all final checks, independent review and frontend acceptance. No required gate waived."
+  - "REQUIRED PENDING before development acceptance/native handoff: exact-finalG hosted CI/unit/DB/RLS/recovery/storage/fullbrowser/dashboard execution and consequential failures disposition, six-host captures, HUMAN/controller acceptance, unchanged final frontend-FIRST wrapper on SAME deliveryJSON, independent currentG applicability. These mandatory duties are not waived or release-deferred."
+  - "Existing PhaseB release obligations remain unchanged, release_ready:false; no live app/schema cutover authority from this provisional stage."
 blockers: []
 overrides:
   worker_adapter: "Actual claimed assignment replaces picker/branching and matching-epic guard. E2 and approved ready spec adopted, not regenerated."
+  gen3_completion_timing: "Owner00dc approval of351e packet permits only gen3 earned provisional P5-7 bookkeeping with original helper arguments, no intermediate wrapperPASS. Freeze finalG after trackedmetadata; earn all finalG gates and use unchanged final frontend-FIRST wrapper on SAME deliveryJSON before nativeaccepted handoff. Overall state remains in-progress."
 constraints:
-  - "Exact actual schema2 assignment61tokens (55 product+6 metadata); gen1; no aggregate writes."
-  - "Prepared approved spec adopted without replan; E2 actually earned by coordinator32fd8bff and marker2 at7cdd8e0b."
-  - "No model-time inference from phase-wall counters; managed resources need own trusted guard context."
+  - "Historical initialization authority:61tokens (55product+6metadata),gen1; superseded by actual recoveredgen2 then actualgen3, histories retained."
+  - "Current actual native gen3 assignment64tokens=58product+6metadata; baseD1c53833c70ad61a26cbfbc117a040b1f99d33f2e, sameworker/branch/plan c605; no aggregate writes or foreign-rights changes."
+  - "Prepared approved spec adopted without replan; E2 earned32fd8bff and marker2 at7cdd8e0b; canonical companions unchanged."
+  - "PROVISIONAL IMPLEMENTATION-STAGE ONLY: source/selected-review metadata complete, visual pending and development UNACCEPTED; all mandatory finalG execution/human/controller/unchanged wrapper remain required."
+  - "Original frontend baseline3a2fe5a565e2627b45b9b46880e26966ef0cd23f retained, distinct from native/review baseD."
+  - "Phase-wall helper counters can include waits; model-processing duration UNKNOWN. Managed resources require own trusted guard context."
 parallel_run_id: e35-8-producer-safety-20261112

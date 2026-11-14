@@ -33,3 +33,37 @@
 1. Root owns exact two-path allocation/holder/native recovery decision. Existing legacy/CRM reservations retained; no eviction or unsupported helper bypass.
 
 **Next:** Keep blocked checkpoint frozen. Resume only through explicit validated assignment/checkpoint handoff under Root-authorized recovery; do not start another phase or change outside files.
+
+## Report — 2026-11-14T17:35:56Z (provisional implementation-stage; finalG qualification pending)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `e6a0bff`).
+**Pipeline status:** IN PROGRESS / DEVELOPMENT UNACCEPTED. Earned implementation/source-review/selectedTEA bookkeeping only; finalG mandatory technical and visual acceptance pending.
+**Continues:** Actual gen3 sameclaim/baseD; retained bba/15d/f678 and C..C5 history, no rebase or claim replacement.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 27h 16m (≈25h 16m AI-run, ≈2h 00m human/idle wait); resumed 1×.
+
+**Phases run:** P5 implementation and three source-review rounds provisionally recorded; P6 selected automate source-only adoption completed; P7 recommendation handled with actual final flagfalse (no new follow-up pass).
+**Skipped:** No newly selected P7 review pass because followup=recommended and final author flagfalse; no required layer waived. Worker aggregate8/9 excluded by schema2.
+
+**Overrides:** Exact owner00dc/351e generation3-only intermediate visual-timing substitution. No intermediate normal wrapperPASS/overallDone/nativeacceptance. Original baseline3a2fe5 retained distinct from native/reviewD. Root owns Git/provider/native/aggregate. Timing helper active90972 is cumulative phase-wall brackets including waits/unmeasured intervals, NOT model-processing duration; model-processing remains UNKNOWN.
+
+**TEA:** ATDD historical evidence preserved. Automate normal route verify2f0f native0/oktrue atC5 using originalcb27; summaryacfdabe1 and required API2819/E2Ecb5c High layers adopt existing bodies. 31 test hashes unchanged; zero newtests/fixtures/productexecutions. 17 design/state identities and sixhosts distinct from19 collected/0executed browser cases. Artifactchecks14pass0fail. Initial resolver cache-denied native1 and same-entry privateperprocess-temp native0 retained.
+
+**Build:** Current story reader7a00 native0: technical statusdone, blockingnull, finalfollowupfalse, patch0/reject1; explicitly PROVISIONAL implementation-stage/visualPENDING/developmentUNACCEPTED/releasefalse. C5-scoped delivery6b2092c6 retains actual check revision limits. Earlier190units/18controller synthetic/3fixture source checks keep original revisions/boundaries. No fullunit/DB/browser or standalone verifydevelopment pass invented. Bookkeeping first phase6 invocation omitted optionalJSON and native1 AttributeError occurred beforemutation; same helper explicit emptyJSON correction retained and succeeds, no helper/pin change or repeatedP5.
+
+**Review:** Complete D..C5 coverage chain retained: configured six layers, actualthree completed rounds,14 retained findings (8H/6M) resolved. FinalHigh677f and external-consumption/triage7e49 source-only closure. Raw final externalreviewfb6e has ONE tentative section-create finding rejected by actual caller/downstream enforced SQL guard; no15th retainedfinding, no broadfourthpass or reset. Historical old arithmetic footnote retained; cumulative score18 distinct finalpatch0/reject1. Initial metadata reader leaked oldblocker/selected old12patch; author corrected only historyH2/currenttriagegrammar and finalreader7a00 confirms correction; first output retained in author toolhistory.
+
+**Retrospective:** Coordinator-only future aggregate closeout; not run by worker.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. REQUIRED PENDING before development acceptance/native handoff: exact-finalG hosted CI/unit/DB/RLS/recovery/storage/fullbrowser/dashboard execution and consequential failures disposition, six-host captures, HUMAN/controller acceptance, unchanged final frontend-FIRST wrapper on SAME deliveryJSON, independent currentG applicability. These mandatory duties are not waived or release-deferred.
+2. Existing PhaseB release obligations remain unchanged, release_ready:false; no live app/schema cutover authority from this provisional stage.
+No worker global ledger harvest/reconcile/archive.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Root scope/hash/exact-record review, one clean frozenG after permitted trackedmetadata, existing ownstory publication and actual hosted normalCI plus release_validation=true. Earn sameG runtime/captures/HUMAN/controller/final unchanged wrapper before native submission. No current human visual request or merge/deploy claim.

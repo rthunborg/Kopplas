@@ -1,6 +1,7 @@
 ---
 title: "Story 35.8-P: Calculation Editor Mutation Safety"
-status: in-review
+status: done
+followup_review_recommended: false
 tracking_key: spec-calculation-editor-mutation-safety-35-8-p
 baseline_revision: 3a2fe5a565e2627b45b9b46880e26966ef0cd23f
 context:
@@ -51,6 +52,36 @@ Preparation: gpt-6.1-sol High for transactional integrity, quote/money invariant
 
 ## Auto Run Result
 
+### Current generation-3 provisional technical result at C5
+
+Status: done
+Blocking condition: none
+
+**PROVISIONAL IMPLEMENTATION-STAGE ONLY. Visual PENDING; development UNACCEPTED; release_ready=false.** The technical reader field is earned source implementation/selected source-check/review disposition under owner approval `00dc03d45f061cb7c14d1ae868cc7897ea76ef20be463e05106f3f9e3552f6ca` and exact packet `351e99651748b94eb5db0a9f8e93af6d2170eb6306157a79870e4df03d0c3cf9`, not overall/native Done or a successful frontend/completion wrapper. Evidence revision is exact qualified C5 `e6a0bffcfed537099ad6e4219f2fea4fbb6df354`; original story baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f` and admitted full-review base `1c53833c70ad61a26cbfbc117a040b1f99d33f2e` remain unchanged. Earlier preparation/blocked/partial statements remain historical and are not relabelled passes.
+
+Implemented source: thirteen action callers across twelve closed kinds retain original operation/expected facts, checked typed SQL effects and immutable operation proof; six hosts preserve truthful explicit recovery and unsent drafts; initial quote replay retains original review/capture/correlation and current authority. The reviewed source covers stale fields/tax/subtrees/reorders, source/file/money boundaries, direct-grant closure and the checked initial-quote path. Current implementation source has no unresolved retained review finding.
+
+Changed-file groups (actual implementation, not a claim that every allocated path changed):
+
+- Calculation action/state/parser/operation modules: mandatory identity/closed original content, client-safe NEW preflight and scoped explicit recovery.
+- Calculation command adapters and validation: checked transactional RPC routing, typed safety and retained correlation.
+- Quote action/state/command/validation adapters: original reviewed initial intent, checked authorization/create/proof mapping; legacy unreviewed create remains closed.
+- CalculationList, CalculationEditor, SectionEditor, RowEditor, TaxSettingsPanel and PreQuotePreview: per-form original intent, matching reentry, later-draft protection and explicit reconcile/retry.
+- The single named migration: forced-RLS proof store, typed normalization/root/source/subtree locks, immutable results, post-lock expiry and old DML/RPC grant closure; no live SQL application.
+- Manifest/table inventory and allocated role/grant/reset harness files: exact active-calculations enrollment and closed proof-table capability/projection contracts.
+- Allocated unit/command/RLS/browser suites and local safety fixture: preserved business/security assertions plus stale/replay/expiry/closure/controller and valid stage-fixture regressions. Browser bodies are registered, not executed here.
+- Own story, delivery and test-artifact/evidence records: revision/scoped execution/source-review provenance and explicit pending qualification.
+
+Source review: all three actual rounds are closed over the entire D..C5 source/test chain. Fourteen retained patches (high 8/medium 6/low 0, cumulative score 18) were source-resolved; no retained item was deferred. The final pass retained zero patches (high 0/medium 0/low 0, score 0), rejected one tentative external section.create/title-staleness claim using actual downstream predicates, and recommends no further source follow-up: `followup_review_recommended=false`. Earlier first-eight score14 was arithmetic error; correct9 and cumulative18 are preserved in the triage trail. Failed Core/transport attempts remain failed/unverified, never added as passing rounds. No fourth broad review or baseline reset is authorized.
+
+Selected Phase6 source-artifact adoption is complete provisionally: both High API/E2E layers generated zero new tests and executed zero product tests; all existing adopted test bodies remain unchanged. Normal artifact verification at C5 passed native0/oktrue against original receipt `cb27bd4d1fe8393e859c4d2e3932bd949f7ef3de1276d082f1f054444641a6d9`; verification SHA `2f0f06f20439bdfff5d0c64109c02ba674008aa5cf3574de8f7eb83c11b8c858`, retained automation-summary SHA `acfdabe1a435ffa656eeaebfb7569ec9d497255f5d9d02430a3396d8356b44b8`. This metadata amendment does not alter that frozen header/preimage/artifact. Three build/source review rounds are not three Phase7 followup passes; with final flag false, Root's normal configured followup disposition is skipped clean/followup_passes0, not an invented Phase7 pass.
+
+Executed C5-scoped checks: TypeScript native0; changed E2E/fixture-script lint native0 (0errors/0warnings); executable fixture/stage checks native0 (3passed/0failed/0skipped/0TODO); Playwright collection native0 (19registered/0executed); author reference checker native0 (one section/20references). They ran on the precommit C5 source tree with E2E SHA `3100d93757e6848acad2e14c251a52c3400ef01a5ef8a261a7da62713a2dd142`, committed unchanged at C5; no new product tests run in this metadata step. C3's190 focused units/build/full lint (40warnings) and C4's18 synthetic checks retain their original revision. The240000ms full-unit timeout/native-1/1283partial observations have UNKNOWN final totals and are NOT a full pass. Synthetic controller/stage checks are not real browser/DB/envelope execution. Six hosts and seventeen preserved logical Applies identities differ from nineteen collected concrete browser cases.
+
+The same retained delivery JSON records SOURCE-only independent review and actual scoped checks with `release_ready=false`. Its structural schema validity is not development acceptance. **Mandatory final-G duties remain PENDING, not passed or deferred:** full ordinary exact-candidate CI/static/build/full unit/verify-development; full required integration/RLS with `SUPABASE_TEST_REQUIRED=1` and both Vitest partitions; direct recovery/storage integrity and required source/money/tax/quote/PDF regressions; full configured production-browser plus separate dashboard (`release_validation=true`); actual six-host desktop/360×640 source/state-labelled captures and essential accessibility/shared-consumer evidence; authenticated HUMAN/controller acceptance; and the UNCHANGED frontend-FIRST wrapper on this SAME delivery JSON with the recorded full baseline. Root must finish permitted tracked metadata and freeze one actual clean published G first. No G hash, owner acceptance, current-runtime/visual PASS, normal wrapper PASS or standalone verify-development result is fabricated. Unchanged exhaustive REL-1/REL-2/REL-3 release obligations and E16/E20 caveats remain separately owned. Later factual matched app/schema pause/drain cutover, merge/deployment and release approval retain separate gates. Root owns all Git/native/provider/aggregate actions; this author made only the two metadata edits and no transition/helper/HALT/OnComplete call.
+
+## Historical blocked attempt (unchanged)
+
 Status: blocked
 Blocking condition: implementation verification failed
 
@@ -93,12 +124,12 @@ Root's operative generation-3 release and running assignment were independently 
 
 The approved addition is limited to the tax-reconciliation suite's INITIAL helper adapter and necessary imports/result mapping. Owner approval `00dc03d45f061cb7c14d1ae868cc7897ea76ef20be463e05106f3f9e3552f6ca` and packet `351e99651748b94eb5db0a9f8e93af6d2170eb6306157a79870e4df03d0c3cf9` permit the generation-3-only provisional completion order; they do not waive technical, DB/RLS/recovery, full browser, independent review or final visual/unchanged frontend-wrapper requirements. Historical blocked/incomplete results above remain unchanged. At that earlier checkpoint implementation status remained in progress; development/visual acceptance and release readiness remained false.
 
-The current working tree follows the workflow's `in-review` status; this is not development completion or readiness/acceptance. The full material source review completed with findings; current fixes still require targeted independent qualification, runtime and visual evidence. Root retains the checkpoint and publication boundary. Historical evidence is preserved; current execution is recorded separately below.
+The historical C3/C4/C5 implementation-stage entries below retain their original in-review/pending statements. The current generation-3 provisional result and final source-review closure counterrecord appear under Auto Run Result and the final triage entry. Technical status done is PROVISIONAL IMPLEMENTATION-STAGE ONLY; visual remains PENDING and development UNACCEPTED. Root retains the checkpoint and publication boundary. Historical evidence is preserved; current execution is recorded separately below.
 
 ## Suggested Review Order
 
 Authors: `/root/final_g_evidence_high/producer_safety_build/implementation_author_gen2` (inherited implementation) and `/root/final_g_evidence_high/producer_safety_build/implementation_author_gen3` (current implementation and reconciliation), both Sol High.
-Refreshed against the current generation-3 working tree on HEAD `3b69b66495131feb90f3aa666244ec9a85898bef` plus the current minimal uncommitted C5 browser-fixture fixes. Production source is unchanged from C4. Evaluate the full story delta from admitted base `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`, including inherited SQL, all thirteen callers, six hosts and ATDD. Preserve the original story baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f` for its recorded frontend gate. This guide is not development, visual or release acceptance.
+Refreshed against the current generation-3 working tree on qualified source C5 `e6a0bffcfed537099ad6e4219f2fea4fbb6df354` plus the current two-file provisional metadata amendment. No product/test/SQL source changed in this metadata step. Evaluate the full story delta from admitted base `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`, including inherited SQL, all thirteen callers, six hosts and ATDD. Preserve the original story baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f` for its recorded frontend gate. This guide is not development, visual or release acceptance.
 
 ### Original form intent and explicit recovery
 
@@ -214,3 +245,20 @@ The substantive configured C4 external follow-up consumed the complete targeted 
   - `[medium]` `[patch]` F2: Keep interception and actual upstream completion separate; await the completed real A response before C navigation while retaining client-response hold/B edit. Reject upstream failure and rethrow the route error; preserve finally release/close cleanup.
 
 Both C5 repairs are author-fixed and independently pending. The cumulative fourteen retained findings are high 8/medium 6/low 0, weighted medium/low score `3*6=18`. Next is round 3 targeted High and configured-external changed-line/fix-regression/serious-unresolved review only under the existing three-round cap, preserving the full-D chain; no broad review restart, baseline reset or independent acceptance is claimed. Real browser/DB/full hosted evidence, selected TEA, truthful delivery/bookkeeping and human/controller/final frontend acceptance remain pending.
+
+
+### 2026-11-14 — Review pass
+
+Round 3 source closure and provisional implementation-stage counterrecord.
+
+Actual final High result `677f311f791d5d5fcd79237e03f01bf086765b2a70f24886f9cd68e14a29017c` and substantive configured C5 external result `fb6ec09aa4e320d2aec6db7c2032dbb78788f8d160d744e91649cd436ab10bde`, qualified/triaged in `7e49c4b89177ebf2375825d68c91bdd91345455d6e35f828791a8fd44a55ceca`, close the three-round SOURCE review chain. F1/F2 source fixes are independently resolved. The sole final tentative external claim was rejected: C changes title only, while checked section.create compares parent id/status/archived_at; title/tax comparisons apply only to calculation.update and complete header/subtree comparisons only to archive. The legitimate section refresh therefore remains unchanged, with no fifteenth retained finding or C6 product fix.
+
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0: (high 0, medium 0, low 0)
+- defer: 0
+- reject: 1
+- addressed_findings:
+  - none
+
+Final-pass score is 0 and `followup_review_recommended=false`; cumulative fourteen resolved findings remain high8/medium6/score18. No fourth broad review or count reset follows. This closes source review only, not final candidate/runtime applicability, development or visual acceptance. Selected Phase6 source adoption and original-receipt provenance verification are retained; no new tests/fixtures/product execution occurred. Owner00dc/packet351e permit the explicitly provisional technical done reader fields and C delivery, while every mandatory final-G verification/capture/HUMAN/controller/unchanged-wrapper requirement stays pending. Parent/Root own subsequent normal bookkeeping and publication; no Phase7 followup pass or helper transition was executed by this author.
