@@ -67,3 +67,38 @@ No worker global ledger harvest/reconcile/archive.
 **⚠️ Needs human:** (none)
 
 **Next:** Root scope/hash/exact-record review, one clean frozenG after permitted trackedmetadata, existing ownstory publication and actual hosted normalCI plus release_validation=true. Earn sameG runtime/captures/HUMAN/controller/final unchanged wrapper before native submission. No current human visual request or merge/deploy claim.
+
+## Report — 2026-11-14T19:34:16Z (gen4 fixture correction; finalH qualification pending)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `b5e1fd6`).
+**Pipeline status:** IN PROGRESS / DEVELOPMENT UNACCEPTED. Unit-fixture correction ready ONLY for latest-delta independent High; all actual finalH technical/runtime/visual acceptance pending.
+**Continues:** Same nativeclaim, actualgen4 RUNNING65/baseD, ONE3to4/full8/normalheartbeat/ACK/operativeRootrelease earned. ExistingG sourceandCIhistories retained; no rebase/reanchor/reset.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 29h 14m (≈25h 16m AI-run, ≈3h 58m human/idle wait); resumed 2×.
+
+**Phases run:** Preserved historical/provisional0-7 markers. This continuation implements coveredgen4 test-consumer correction and focusedchecks only; no newphase-done mutation, fourthbroadsource review or inventedPhase7pass.
+**Skipped:** No newfullunit/DB/browser run locally; no coverage credited. GdependentDB/recovery/browser/dashboard/probejobs were physicallySKIPPEDafterverifyfail. ActualHchecks/targetedHigh remainpending.
+
+**Overrides:** Standinged773/operative56f0/High4d7 supersedes prior per-generationownerquestion for coverednecessarytestconsumer; exact65/nativeguards/positiveallocationstillrequiredandearned. Intermediateprovisionaltimingonly; no normalwrapperPASS/overallDone/acceptednativehandoff. Retaineddelivery6b209unchanged. Helperactive90972 is historicalphase-wall brackets includingwaits/unmeasuredintervals; currentcorrection not separately bracketed/modelprocessingUNKNOWN.
+
+**TEA:** ExistingselectedATDD/automate source-adoption/normalroute2f0f atC5 and31testhashes/17stateidentities/sixhosts/19collected0executed remainrevision-limited; not replayed/relabelled as currentruntime. Newnecessaryunitfixture correction has focused9/9physicalevidence; existing browser/APItestbodies unchanged.
+
+**Build:** Firstfocusedliteralfile ran on uncommittedgen4workingtree basedG with unitraw9ba61704/storyf45eb6a1, NOTcommittedG or speculativeH: node--experimental-strip-types--import./tests/support/register.mjs--test tests/unit/server/commands/tax-input-validation.test.ts native0/9tests1suite/9pass0fail/cancel/skip/TODO; logd365eaa497a086ae89b602c5c3e60d7051450c61ea58fbbfd64ac62ebc66eb03. TargetESLint0diagnostics and tsc--noEmit--incrementalfalse native0; trail1section23refs0errors/normalreaderprovisionaldone-blockingnull-followupfalse. Fullactualargv/logs/physicalmanifest in privateL4/unit-fixture-author-terminal-verification.json e1b5ef37fa6af68266e7e21bdfd91d71032b42e17c8e8afea641f8c0cb2956ba. All9protocolpositivecontrols precede realbusinessvalidators, hostilebusinessoverridesLAST. OriginalCRLFrawc1188/9154B distinct from GitG/reconstructedLF8854B/424e41cf533c22857ef28698998777c8c7e66e00a446b604443077f7cdc9f62e; completeoriginalbusinessvalues/assertionsexactlypreserved. b55a is preservationJSONreceiptSHA, not sourcehash. No productionSUT/SQL/API/helper/config changes or fulladmissiontests rerun.
+
+**Review:** WholeD..G source-reviewchain/metadata42e5 reused whereunchanged;14priorfindings(8H6M)/3completedbroadrounds retained, noreset/fourthbroadpass. Currentunitfixture+ownmetadata are independentlyUNREVIEWEDatfreeze; Root will obtain targetedlatest-lines/regressionHigh afteractualHcheckpoint and carrycompleteD..Hcoverageoutsideworker. HistoricalfinalReviewpasspatch0/reject1 remainshistorical, not PASS fornewunitdelta.
+
+**Retrospective:** Coordinator-only, not run by worker.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. REQUIRED PENDING at finalH: currentunitfix+allmetadata targeted independentHigh applicability, actualsameHfullunit/static/DB/RLS/recovery/storage/fullbrowser/dashboard and relevantfailure disposition, all requiredcaptures/HUMAN/controller/UNCHANGEDfrontend-FIRSTwrapper on SAMEretained6b209delivery; no mandatoryduty is release-deferred.
+2. LastobservedCI belongs to failedG b5e1fd69: ordinary43622765309 and release43622932579 verifytest:unit3959/3956pass/3fail0skip; all dependentDB/browserjobsSKIPPED0coverage. Currentworkingfixture9/9 is focusedproofonly, NOTGglobalPASS/Hfullqualification.
+3. ExistingPhaseB release obligations unchanged, release_ready:false; liveapp/schema cutover remains separatelyearned.
+No worker globalledger harvest/reconcile/archive; no foreignrights/release/checkwaiver.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Root validates exactfour-filefreeze/65scope and commits actualH; targetedindependentHigh actualunitfix+metadata, actualH ordinaryCI/fullrelease/captures and HUMAN/controller before unchangedfinalwrapper on SAME6b209. Root canonicalpublicationidentity/PR157/journalhistory preserved through normalfieldpatches; no receipt-only workercommit afterH. No merge/cutover/CRM151authority expanded.

@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
+import { validateEditorSafety } from "@/features/calculations/editor-operation";
+
 import {
   TAX_DEDUCTION_CHOICES,
   validateCreateRow,
@@ -26,15 +28,84 @@ const baseTaxInput = {
   fixedPriceRowIds: null,
 } as const;
 
+// Keep the original facts independent of every edited/hostile business field.
+// Each fixture proves protocol admission before the real validator checks its domain.
+function rowEditorInput(overrides: Record<string, unknown>, update: boolean) {
+  const expected = {
+    version: 1,
+    form: "row",
+    header: {
+      id: "33333333-3333-4333-8333-333333333333",
+      title: "Original calculation",
+      status: "draft",
+      archived_at: null,
+      tax_input_snapshot: null,
+    },
+    section: {
+      id: SECTION_ID,
+      title: "Original section",
+      display_mode: "detailed",
+      sort_order: 0,
+      archived_at: null,
+    },
+    ...(update ? { row: {
+      id: ROW_ID,
+      section_id: SECTION_ID,
+      row_type: "labor",
+      quantity: 1,
+      unit: "h",
+      unit_cost_ore: 10_000,
+      unit_sell_ore: 20_000,
+      markup_bp: 10_000,
+      vat_rate_bp: 2500,
+      included_in_invoice_total: true,
+      deduction_classification: "NONE",
+      vat_type: "STANDARD_VAT_25",
+      is_hidden: false,
+      is_optional: false,
+      is_selected: true,
+      label: "Original labor",
+      description: null,
+      internal_note: null,
+      quote_note: null,
+      sort_order: 0,
+      source_kind: null,
+      source_id: null,
+      source_name: null,
+      source_price_ore: null,
+      source_cost_ore: null,
+      source_updated_at: null,
+      source_captured_at: null,
+      source_sku: null,
+      source_unit: null,
+    } } : {}),
+  };
+  const input = {
+    operation_id: "44444444-4444-4444-8444-444444444444",
+    expected,
+    ...overrides,
+  };
+  assert.notEqual(
+    validateEditorSafety(input, update ? "calculation.row.update" : "calculation.row.create"),
+    null,
+    "every row fixture must reach business validation with complete original editor facts",
+  );
+  return input;
+}
+
+function updateRow(overrides: Record<string, unknown>) {
+  return rowEditorInput(overrides, true);
+}
+
 function baseRow(overrides: Record<string, unknown> = {}) {
-  return {
+  return rowEditorInput({
     section_id: SECTION_ID,
     row_type: "labor",
     quantity: 1,
     unit: "h",
     vat_rate_bp: 2500,
     ...overrides,
-  };
+  }, false);
 }
 
 describe("Story 10.6 Task 3 tax-input validation", () => {
@@ -246,19 +317,19 @@ describe("Story 10.6 Task 3 tax-input validation", () => {
   });
 
   test("accepts explicit exclusion/classification/VAT type and rejects out-of-domain values", () => {
-    const valid = validateUpdateRow({
+    const valid = validateUpdateRow(updateRow({
       id: ROW_ID,
       included_in_invoice_total: false,
       deduction_classification: "GREEN_STORAGE_MATERIAL",
       vat_type: "REVERSE_CHARGE_CONSTRUCTION",
       vat_rate_bp: 2500,
-    });
+    }));
     assert.equal(valid.ok, true);
     assert.equal(
-      validateUpdateRow({ id: ROW_ID, deduction_classification: "ROT_MATERIAL" }).ok,
+      validateUpdateRow(updateRow({ id: ROW_ID, deduction_classification: "ROT_MATERIAL" })).ok,
       false,
     );
-    assert.equal(validateUpdateRow({ id: ROW_ID, vat_type: "ZERO_PERCENT" }).ok, false);
+    assert.equal(validateUpdateRow(updateRow({ id: ROW_ID, vat_type: "ZERO_PERCENT" })).ok, false);
   });
 
   test("rejects impossible row-type and deduction-classification pairs", () => {
@@ -281,19 +352,19 @@ describe("Story 10.6 Task 3 tax-input validation", () => {
       true,
     );
     assert.equal(
-      validateUpdateRow({
+      validateUpdateRow(updateRow({
         id: ROW_ID,
         row_type: "material",
         deduction_classification: "ROT_LABOR",
-      }).ok,
+      })).ok,
       false,
     );
     assert.equal(
-      validateUpdateRow({
+      validateUpdateRow(updateRow({
         id: ROW_ID,
         row_type: "other",
         deduction_classification: "GREEN_SOLAR_LABOR",
-      }).ok,
+      })).ok,
       false,
     );
   });
