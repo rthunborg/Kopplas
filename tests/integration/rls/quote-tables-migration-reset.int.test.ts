@@ -427,7 +427,7 @@ describe("Quote migration reset green — six new tenant-owned tables (AC1)", ()
     expect(cols).toContain("vat_rate_bp");
   });
 
-  it("[P0/10.8] create_quote_version_from_calculation is the sole hardened authorization consumer", async (testCtx) => {
+  it("[P0/35.8-P] create_quote_version_from_calculation remains a private hardened authorization consumer", async (testCtx) => {
     if (skipUnlessStack(testCtx, stackUp)) return;
     const rows = await adminQuery<{
       prosecdef: boolean;
@@ -443,13 +443,13 @@ describe("Quote migration reset green — six new tenant-owned tables (AC1)", ()
       "create_quote_version_from_calculation",
       rows[0]?.proconfig ?? null,
     );
-    // Only the request-bound authenticated app role may consume an authority.
+    // Only the checked editor wrapper may invoke this private consumer.
     const grants = await adminQuery<{ grantee: string }>(
       `select grantee from information_schema.role_routine_grants
          where routine_name = 'create_quote_version_from_calculation'`,
     );
     const grantees = grants.map((g) => g.grantee);
-    expect(grantees).toContain("authenticated");
+    expect(grantees).not.toContain("authenticated");
     expect(grantees).not.toContain("service_role");
     expect(grantees).not.toContain("anon");
   });
@@ -474,7 +474,7 @@ describe("Quote migration reset green — six new tenant-owned tables (AC1)", ()
            where routine_name = '${fn}'`,
       );
       const grantees = grants.map((g) => g.grantee);
-      expect(grantees).toContain("authenticated");
+      expect(grantees).not.toContain("authenticated");
       expect(grantees).not.toContain("service_role");
       expect(grantees).not.toContain("anon");
     }

@@ -1,0 +1,154 @@
+TAP version 13
+# (node:49624) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/src/features/calculations/form-parsing.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual create controller binds title-first mutable selection at submit
+ok 1 - actual create controller binds title-first mutable selection at submit
+  ---
+  duration_ms: 12.7462
+  type: 'test'
+  ...
+# Subtest: actual controller preserves live unsent controls on offline
+ok 2 - actual controller preserves live unsent controls on offline
+  ---
+  duration_ms: 1.226
+  type: 'test'
+  ...
+# Subtest: actual controller preserves live unsent controls on scope
+ok 3 - actual controller preserves live unsent controls on scope
+  ---
+  duration_ms: 0.4509
+  type: 'test'
+  ...
+# Subtest: actual controller preserves live unsent controls on storage-read
+ok 4 - actual controller preserves live unsent controls on storage-read
+  ---
+  duration_ms: 0.3807
+  type: 'test'
+  ...
+# Subtest: actual controller preserves live unsent controls on storage-write
+ok 5 - actual controller preserves live unsent controls on storage-write
+  ---
+  duration_ms: 0.9393
+  type: 'test'
+  ...
+# Subtest: actual remounted controller requires whole matching reentry then explicit same-UUID retry
+ok 6 - actual remounted controller requires whole matching reentry then explicit same-UUID retry
+  ---
+  duration_ms: 3.3554
+  type: 'test'
+  ...
+# Subtest: actual remount cannot substitute changed expected facts into original reentry
+ok 7 - actual remount cannot substitute changed expected facts into original reentry
+  ---
+  duration_ms: 0.9987
+  type: 'test'
+  ...
+# Subtest: actual reconcile lifecycle cannot restore B1 over subsequent admitted B2
+ok 8 - actual reconcile lifecycle cannot restore B1 over subsequent admitted B2
+  ---
+  duration_ms: 1.1339
+  type: 'test'
+  ...
+# Subtest: actual tax panel keeps controller and field key through pending A/canonical refresh with B
+ok 9 - actual tax panel keeps controller and field key through pending A/canonical refresh with B
+  ---
+  duration_ms: 1.6672
+  type: 'test'
+  ...
+# Subtest: actual quote fault before-create ignores absent probe and targets prepared/committed stage
+ok 10 - actual quote fault before-create ignores absent probe and targets prepared/committed stage
+  ---
+  duration_ms: 0.6291
+  type: 'test'
+  ...
+# Subtest: actual quote fault after-create ignores absent probe and targets prepared/committed stage
+ok 11 - actual quote fault after-create ignores absent probe and targets prepared/committed stage
+  ---
+  duration_ms: 0.1887
+  type: 'test'
+  ...
+# Subtest: pending A completion preserves original B expectation after authoritative C refresh
+ok 12 - pending A completion preserves original B expectation after authoritative C refresh
+  ---
+  duration_ms: 1.0389
+  type: 'test'
+  ...
+# Subtest: invalid NEW input never admits a retained operation; correction remains usable
+ok 13 - invalid NEW input never admits a retained operation; correction remains usable
+  ---
+  duration_ms: 0.6272
+  type: 'test'
+  ...
+# Subtest: prior unknown survives current VALIDATION_FAILED retry and blocks corrected new intent
+ok 14 - prior unknown survives current VALIDATION_FAILED retry and blocks corrected new intent
+  ---
+  duration_ms: 0.9793
+  type: 'test'
+  ...
+# Subtest: prior unknown survives current TENANT_ACCESS_DENIED retry and blocks corrected new intent
+ok 15 - prior unknown survives current TENANT_ACCESS_DENIED retry and blocks corrected new intent
+  ---
+  duration_ms: 0.667
+  type: 'test'
+  ...
+# Subtest: prior unknown survives current SERVER_ERROR retry and blocks corrected new intent
+ok 16 - prior unknown survives current SERVER_ERROR retry and blocks corrected new intent
+  ---
+  duration_ms: 0.6527
+  type: 'test'
+  ...
+# Subtest: deferred reentry hash binds submitted A revision before B edit and retry
+not ok 17 - deferred reentry hash binds submitted A revision before B edit and retry
+  ---
+  duration_ms: 1.6869
+  type: 'test'
+  location: 'C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C4-controller-check.mjs:66:47'
+  failureType: 'testCodeFailure'
+  error: |-
+    A confirmation must not clear B dirty state
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C4-controller-check.mjs:75:9)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: deferred reentry hash binds submitted A revision before B edit and reconcile
+not ok 18 - deferred reentry hash binds submitted A revision before B edit and reconcile
+  ---
+  duration_ms: 1.5931
+  type: 'test'
+  location: 'C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\_bmad-output\\implementation-artifacts\\evidence\\35-8-producer-safety\\gen3-C4-controller-check.mjs:66:47'
+  failureType: 'testCodeFailure'
+  error: |-
+    A confirmation must not clear B dirty state
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C4-controller-check.mjs:75:9)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 16
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 435.0755

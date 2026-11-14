@@ -25,7 +25,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   validateCreateQuoteVersionFromCalculation,
-  validateCreateReviewedQuoteVersionFromCalculation,
+  validateCreateReviewedQuoteVersionFromCalculation as validateCreateReviewedQuoteVersionFromCalculationWithProtocol,
 } from "@/server/commands/quotes/validation";
 
 const UUID_A = "11111111-1111-1111-1111-111111111111";
@@ -238,3 +238,35 @@ test("the validated attachment array is a COPY (a later mutation of the raw inpu
   rawIds.push("33333333-3333-3333-3333-333333333333");
   assert.equal(r.data.attachment_file_ids.length, 2);
 });
+
+import { ROW_FACTS as EDITOR_ROW_FIELDS } from "@/features/calculations/editor-operation";
+
+// Supply an explicit intent to preserved pure domain assertions. The dedicated
+// editor-operation suite independently rejects every missing/extra safety shape.
+function withEditorIntent<T>(validate: (raw: unknown) => T, kind: string) {
+  return (raw: unknown): T => {
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return validate(raw);
+    const input = raw as Record<string, unknown>, id = "10000000-0000-4000-8000-000000000001";
+    const header = { id, title: "Original", status: "draft", archived_at: null, tax_input_snapshot: null };
+    const section = { id, title: "Original section", display_mode: "detailed", sort_order: 0, archived_at: null };
+    const row: Record<string, unknown> = Object.fromEntries(EDITOR_ROW_FIELDS.map(key => [key, null])); row.id = id; row.section_id = id;
+    const expected: Record<string, unknown> = { version: 1, header };
+    if (kind === "calculation.create") { delete expected.header; Object.assign(expected, { form: "calculation", customer_id: input.customer_id, facility_id: input.facility_id ?? null, contact_id: input.contact_id ?? null }); }
+    else if (kind === "quote.version.create") { delete expected.header; Object.assign(expected, { form: "reviewed-initial-quote", reviewed_snapshot_digest: input.reviewed_snapshot_digest, reviewed_quote_capture_date: input.reviewed_quote_capture_date, attachment_file_ids: input.attachment_file_ids ?? [] }); }
+    else if (kind === "calculation.update") expected.form = input.tax_input_snapshot === undefined ? "calculation" : "tax_input";
+    else if (kind === "calculation.archive") Object.assign(expected, { form: "archive_calculation", sections: [] });
+    else if (kind.endsWith("reorder")) Object.assign(expected, { form: kind.includes("rows") ? "reorder_rows" : "reorder_sections", siblings: [] });
+    else if (kind.includes(".section.")) { expected.form = kind.endsWith("archive") ? "archive_section" : "section"; if (!kind.endsWith("create")) expected.section = section; if(kind.endsWith("archive")) expected.rows=[]; }
+    else { Object.assign(expected, { form: kind.endsWith("archive") ? "archive_row" : "row", section }); if(!kind.endsWith("create")) expected.row = row; }
+    const result = validate({ ...input, operation_id: id, expected }) as T & { ok: boolean; data?: Record<string, unknown> };
+    if (result.ok && result.data) {
+      assert.equal(result.data.operation_id, id);
+      assert.deepEqual(result.data.expected, expected);
+      const { operation_id: _operation, expected: _expected, ...domain } = result.data;
+      return { ...result, data: domain } as T;
+    }
+    return result;
+  };
+}
+
+const validateCreateReviewedQuoteVersionFromCalculation = withEditorIntent(validateCreateReviewedQuoteVersionFromCalculationWithProtocol, "quote.version.create");

@@ -29,7 +29,7 @@ import { buildQuoteReviewProof } from "../../support/quote-review-proof";
 import { establishCurrentQuotePdf } from "../../support/quote-pdf";
 import { readJobDetail, type JobReadClient } from "@/features/jobs/read";
 import type { CommandClock } from "@/server/commands/clock";
-import { runCommand } from "@/server/commands/envelope";
+import { runEditorCommand as runCommand } from "./calculation-editor-safety-fixture";
 import {
   acceptQuoteAndCreateJob,
   createQuoteVersionFromCalculation,

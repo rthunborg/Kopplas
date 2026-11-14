@@ -1,0 +1,14 @@
+{
+  "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+  "executable": "C:\\nvm4w\\nodejs\\node.exe",
+  "argv": [
+    "node_modules/next/dist/bin/next",
+    "build"
+  ],
+  "pid": 44684,
+  "created_at": "2026-11-14T14:59:45.0827663Z",
+  "overall_timeout_ms": 180000,
+  "timed_out": false,
+  "native_exit": 0,
+  "completed_at": "2026-11-14T15:00:06.0875051Z"
+}

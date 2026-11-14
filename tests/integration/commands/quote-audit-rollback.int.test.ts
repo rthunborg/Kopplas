@@ -45,7 +45,7 @@ import {
   type SkippableTestContext,
 } from "../../support/stack-gate";
 import type { CommandClock } from "@/server/commands/clock";
-import { runCommand } from "@/server/commands/envelope";
+import { runEditorCommand as runCommand } from "./calculation-editor-safety-fixture";
 import {
   createNewQuoteVersion,
   createQuoteVersionFromCalculation,

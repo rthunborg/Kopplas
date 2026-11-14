@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "kind": "GEN3_C4_MINIMAL_AUTHOR_FIX_NOT_ACCEPTANCE",
+  "recorded_at": "2026-11-14T16:18:12.650097+00:00",
+  "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+  "head": "e2e738efbb52354e90e99a7c21d8a6b939698798",
+  "commits_by_this_author": [],
+  "story_baseline": "3a2fe5a565e2627b45b9b46880e26966ef0cd23f",
+  "full_review_baseline": "1c53833c70ad61a26cbfbc117a040b1f99d33f2e",
+  "development_complete": false,
+  "release_ready": false,
+  "frontend_accepted": false,
+  "source_change": "Capture reenteredRevision synchronously before awaiting editorRequestFingerprint; retain that captured revision instead of the live post-hash revision. No other production behavior changed.",
+  "commands": [
+    {
+      "argv": [
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C4-controller-check.mjs"
+      ],
+      "attempt": "before-source-fix",
+      "native_exit": 1,
+      "counts": {
+        "passed": 16,
+        "failed": 2,
+        "skipped": 0,
+        "todo": 0
+      },
+      "raw": "gen3-C4-controller-red.tap",
+      "scope": "Both new deferred-hash cases reproduce A confirmation clearing B dirty state, through retry and reconciliation."
+    },
+    {
+      "argv": [
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C4-controller-check.mjs"
+      ],
+      "attempt": "first-post-source-fix",
+      "native_exit": 1,
+      "counts": {
+        "passed": 16,
+        "failed": 2,
+        "skipped": 0,
+        "todo": 0
+      },
+      "raw": "gen3-C4-controller-green.tap",
+      "scope": "Despite filename this is FAILED. Both new deferred-hash cases pass; two copied cases assumed asynchronous action entry after four ticks and failed before action stage. The failures remain unchanged."
+    },
+    {
+      "argv": [
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C4-controller-check.mjs"
+      ],
+      "attempt": "final-stage-synchronized-harness",
+      "native_exit": 0,
+      "counts": {
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "raw": "gen3-C4-controller-final.tap",
+      "scope": "Copied cases now await actual action-stage entry with a bounded one-second predicate; no assertion removed or weakened."
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--pretty",
+        "false"
+      ],
+      "native_exit": 0,
+      "raw": "gen3-C4-typecheck.log"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/components/calculations/CalculationList.tsx",
+        "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C4-controller-check.mjs"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "raw": "gen3-C4-targeted-lint.log"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-review-order.mjs",
+        "_bmad-output/specs/spec-calculation-editor-mutation-safety/stories/35-8-p-calculation-editor-mutation-safety.md"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "sections": 1,
+        "references": 20,
+        "errors": 0
+      },
+      "raw": "gen3-C4-review-trail.log"
+    }
+  ],
+  "source_sha256": {
+    "src/components/calculations/CalculationList.tsx": "3e24d4f2103f357910572a10e7de2cfa25114b5acd8ea6d5561fcc10a30f0e3a"
+  },
+  "raw_evidence_sha256": {
+    "gen3-C4-controller-check.mjs": "92dbb1a60d920debdf89f6117892cc707a1ed15830d9a6337f890a60f9d412ab",
+    "gen3-C4-controller-final.tap": "972b0f4d4b20483611cffc4d0b86b7465a10afdc137ce0eb0ab90d3160857fca",
+    "gen3-C4-controller-green.tap": "e6d96a0e6fd61998668561ae2e5e761187c82a9f94c49e70e962708f6d0a9916",
+    "gen3-C4-controller-red.tap": "1ef61949ab4b15a6747e29b59545c2ee9ae9d67f0724eceea3a8a28c80a70b5b",
+    "gen3-C4-review-trail.log": "27487eadf574c773bf2287ae598102f31b33c448369ed109f07802747801abbf",
+    "gen3-C4-targeted-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gen3-C4-typecheck.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "retained_prior_provenance": {
+    "record": "gen3-C3-verification.json",
+    "raw_sha256": "cc8e7899010117ae69d44c16c5218891a7b0f91de5eac09788d55ee1e4b115f4",
+    "candidate": "e2e738efbb52354e90e99a7c21d8a6b939698798",
+    "source_hash_comparison": {
+      "src/components/calculations/CalculationList.tsx": {
+        "recorded_sha256": "8d8cf8e17abea4e2f1ae3df98666a7ee873605a08437a166dc65b8cbabf71e87",
+        "current_sha256": "3e24d4f2103f357910572a10e7de2cfa25114b5acd8ea6d5561fcc10a30f0e3a",
+        "unchanged": false
+      },
+      "src/features/calculations/form-parsing.ts": {
+        "recorded_sha256": "13917d4bdb7bd6a948fc4d7e7287cffe768c8c7d04de60efa36b39f9430556e3",
+        "current_sha256": "13917d4bdb7bd6a948fc4d7e7287cffe768c8c7d04de60efa36b39f9430556e3",
+        "unchanged": true
+      },
+      "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql": {
+        "recorded_sha256": "51ac3c1944389a9080e7bee5cd6669f26e0638f5ed8cd37060978e839f08e50f",
+        "current_sha256": "51ac3c1944389a9080e7bee5cd6669f26e0638f5ed8cd37060978e839f08e50f",
+        "unchanged": true
+      },
+      "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts": {
+        "recorded_sha256": "d2f5981e94eae6a3d40e94a744e3ce310fff8a5ad0c7e9f17781263dc8043be5",
+        "current_sha256": "d2f5981e94eae6a3d40e94a744e3ce310fff8a5ad0c7e9f17781263dc8043be5",
+        "unchanged": true
+      },
+      "tests/integration/commands/calculation-mutation-safety.int.test.ts": {
+        "recorded_sha256": "fac53297957a77e51e0ef595f2b211458b17b19d96beaa64ee72c3baef4b8135",
+        "current_sha256": "fac53297957a77e51e0ef595f2b211458b17b19d96beaa64ee72c3baef4b8135",
+        "unchanged": true
+      },
+      "tests/integration/commands/quote-initial-mutation-safety.int.test.ts": {
+        "recorded_sha256": "1f62bc3f4b90f9e4f929548dfaf98c78bb58740b2e4d864db338a19cb5ba2e7c",
+        "current_sha256": "1f62bc3f4b90f9e4f929548dfaf98c78bb58740b2e4d864db338a19cb5ba2e7c",
+        "unchanged": true
+      },
+      "tests/unit/features/calculations/form-parsing.test.ts": {
+        "recorded_sha256": "1451d8841b81a5e6527793e5da1e3cabcce81f81a3a5d669f3e55a7f81e995d5",
+        "current_sha256": "1451d8841b81a5e6527793e5da1e3cabcce81f81a3a5d669f3e55a7f81e995d5",
+        "unchanged": true
+      }
+    },
+    "observed_prior_checks": "190 focused units /16 synthetic, typecheck/build/full lint native0 with40 warnings, containment native0; browser19 collected/0executed; DB_UNRUN",
+    "limits": "C3 results preserved, not new C4 executions or current C4 build/runtime PASS. No broad unchanged unit/build/lint rerun. Final exact-candidate required qualification remains pending."
+  },
+  "bounded_async_assessment": "Matching reentry now captures before await. Existing NEW admission already captures submittedRevision before its asynchronous fingerprint; retry/reconcile consume stored revision and compare with live revision. No general controller/source audit performed.",
+  "regression_contract": "Actually execute current controller with deferred fingerprint: submit matching original A, edit unsent B while hash blocked, release hash, explicitly retry A or reconcile committed A, assert B stays dirty/visible. Then project concurrent C and submit B: original expected facts remain and simulated authoritative boundary conflicts. Reentry never automatically dispatches or rotates original identity.",
+  "limits": [
+    "Synthetic React/hooks/form/command seams are not browser/DB/envelope runtime",
+    "DB/RLS/recovery/storage and real browser execution remain unrun",
+    "Prior unknown/serverproof/current authorization constraints unchanged",
+    "Changed-lines High follow-up plus configured external ALL C2..C4 required; external C3 never started",
+    "No Done/Ready/reviewPASS/development/visual/release acceptance"
+  ],
+  "review_status": "Round2 continuation: actual C3 High source-resolved E1/E2/E4 but E3 unresolved; current minimal E3 author-fixed independently pending. Same12 retained findings, no cap or baseline reset.",
+  "pending_pre_G_tracked_metadata": [
+    "actual targeted High/configured external C2..C4 follow-up and truthful author log/trail reconciliation",
+    "selected project TEA automate provenance",
+    "truthful C-delivery only after actual required independent qualification, release_ready=false and missing G duties explicit",
+    "only earned selected provisional P5-P7 bookkeeping under owner00dc/packet351e",
+    "finish permitted tracked metadata before one clean published final G"
+  ],
+  "pending_final_G": [
+    "full ordinary exact-candidate CI/unit/verify-development",
+    "required full DB integration/RLS with SUPABASE_TEST_REQUIRED=1 and both Vitest projects",
+    "direct recovery/storage integrity",
+    "configured full browser/dashboard release_validation=true",
+    "six-host desktop/360x640 source/state-labelled captures",
+    "authenticated human/controller acceptance",
+    "unchanged frontend-FIRST wrapper on same delivery JSON"
+  ],
+  "own_runtime": "No managed resources, background services, browsers or delegated children launched. All bounded tool commands completed; no queued source writes.",
+  "source_writer_state": "Terminal/quiescent after physical-manifest handoff; available only for synchronous authorized fixes/trail reconciliation."
+}

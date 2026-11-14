@@ -312,10 +312,9 @@ describe("Calc migration reset green — calculations/sections/rows (AC1)", () =
 
   it("[P0] effective DML: calculation edits retain exact per-table grants; anon and authenticated DELETE are denied", async (testCtx) => {
     if (skipUnlessStack(testCtx, stackUp)) return;
-    // 20260702120000 grants calculation editing; 20260907171252 revokes only
-    // calculation INSERT. Checked wrappers own creation; section/row edits remain.
-    await expectEffectiveTableDml({ calculations: ["SELECT", "UPDATE"],
-      calculation_sections: ["SELECT", "INSERT", "UPDATE"], calculation_rows: ["SELECT", "INSERT", "UPDATE"] });
+    // 35.8-P closes all direct editor DML; checked wrappers own every mutation.
+    await expectEffectiveTableDml({ calculations: ["SELECT"],
+      calculation_sections: ["SELECT"], calculation_rows: ["SELECT"] });
   });
 
   it("[P0/AC7] no supplier/credential/sync/import/external-mapping/API column on any calc table", async (testCtx) => {
