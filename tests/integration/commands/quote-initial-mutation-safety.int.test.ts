@@ -67,6 +67,67 @@ function interruptedClient(mode: "before-create" | "after-create") {
   return { client, calls, wasInterrupted: () => interrupted };
 }
 
+// Closed diagnostic values only. These are separate privileged observations,
+// never proof that the original authenticated caller is authorized. Each SELECT
+// and adminSession cleanup completes before the original mutation is dispatched;
+// assertion functions may take transient locks and influence timing.
+type Point = "prepared-binding" | "purpose-unused-fresh" | "source-revision" | "line-sources" | "reviewed-source";
+type Code = null | "23514" | "QV401" | "QV409" | "42501" | "CE409" | "OTHER";
+type Mark = readonly [Point, boolean, Code];
+function code(value: unknown): Code {
+  try {
+    if (value !== null && typeof value === "object" && "code" in value) {
+      const item = value.code;
+      switch (item) {
+        case "23514": case "QV401": case "QV409": case "42501": case "CE409": return item;
+      }
+    }
+  } catch { /* Unknown error shapes still project to the same closed value. */ }
+  return "OTHER";
+}
+const reads: ReadonlyArray<readonly [Point, string]> = [
+  ["prepared-binding", `select exists(select 1 from public.calculation_editor_operations o
+    join public.quote_review_authorizations a on a.id=o.authorization_id
+    where o.operation_id=$1 and o.tenant_id=$2 and o.actor_user_id=$3
+    and a.tenant_id is not distinct from o.tenant_id and a.actor_user_id is not distinct from o.actor_user_id
+    and a.correlation_id is not distinct from o.operation_id and a.captured_at is not distinct from o.captured_at
+    and a.calculation_id is not distinct from o.calculation_id) ok`],
+  ["purpose-unused-fresh", `select exists(select 1 from public.calculation_editor_operations o
+    join public.quote_review_authorizations a on a.id=o.authorization_id
+    where o.operation_id=$1 and o.tenant_id=$2 and o.actor_user_id=$3
+    and a.purpose='initial_creation' and a.consumed_at is null and a.expires_at>clock_timestamp()) ok`],
+  ["source-revision", `select coalesce((select public.story_10_8_calculation_source_revision(a.tenant_id,
+    a.calculation_id,a.customer_id,a.facility_id,a.contact_id,a.attachments_payload)
+    is not distinct from a.source_revision from public.calculation_editor_operations o
+    join public.quote_review_authorizations a on a.id=o.authorization_id
+    where o.operation_id=$1 and o.tenant_id=$2 and o.actor_user_id=$3),false) ok`],
+  ["line-sources", `select true ok,public.assert_story_10_6_line_sources(a.tenant_id,a.calculation_id,a.lines_payload)
+    from public.calculation_editor_operations o join public.quote_review_authorizations a on a.id=o.authorization_id
+    where o.operation_id=$1 and o.tenant_id=$2 and o.actor_user_id=$3`],
+  ["reviewed-source", `select true ok,public.assert_story_10_6_reviewed_source(a.tenant_id,a.calculation_id,
+    a.customer_id,a.facility_id,a.contact_id,a.snapshot_payload,a.attachments_payload,repeat('0',64),
+    a.reviewed_quote_capture_date,a.reviewed_calculation_status,a.reviewed_readiness_rows,
+    (a.captured_at at time zone 'Europe/Stockholm')::date)
+    from public.calculation_editor_operations o join public.quote_review_authorizations a on a.id=o.authorization_id
+    where o.operation_id=$1 and o.tenant_id=$2 and o.actor_user_id=$3`],
+];
+async function points(value: string): Promise<Mark[]> {
+  const marks: Mark[] = [];
+  for (const [name, text] of reads) {
+    try {
+      const pass = await adminSession(async read => {
+        const rows = await read.query<{ ok: boolean }>(text, [value, fixture.tenantA.id, fixture.adminA.id]);
+        return rows[0]?.ok === true;
+      });
+      marks.push([name, pass, null]);
+    } catch (value: unknown) {
+      // Query, cleanup and connection failures never escape as raw PG errors.
+      marks.push([name, false, code(value)]);
+    }
+  }
+  return marks;
+}
+
 describe("35.8-P initial quote original review operation", () => {
   it("P-4 checked quote normalizes empty attachment lists and rejects duplicate list identities before preparation",async ctx=>{
     if(skipUnlessStack(ctx,up))return;const s=await originalIntent();
@@ -76,7 +137,11 @@ describe("35.8-P initial quote original review operation", () => {
     expect(fault.calls.find(call=>call.name==="authorize_calculation_editor_quote")?.args.p_input).toMatchObject({attachment_file_ids:[]});
     const request={p_tenant_id:fixture.tenantA.id,p_actor_user_id:fixture.adminA.id,p_operation_id:s.operation,p_input:s.input};
     expect(await adminQuery("select status from public.calculation_editor_operations where operation_id=$1",[s.operation])).toEqual([{status:"prepared"}]);
-    const committed=await actor.rpc("create_calculation_editor_quote",request);expect(committed.error).toBeNull();expect(committed.data).toMatchObject({status:"committed",operationId:s.operation});
+    const before = await points(s.operation);
+    const committed=await actor.rpc("create_calculation_editor_quote",request);
+    const after = await points(s.operation);
+    const detail = JSON.stringify([before, after]);
+    expect(committed.error, detail).toBeNull();expect(committed.data, detail).toMatchObject({status:"committed",operationId:s.operation});
     expect(await adminSelectAuditEvents({correlationId:s.operation})).toHaveLength(1);
     const operation=crypto.randomUUID(),duplicated=[crypto.randomUUID()];duplicated.push(duplicated[0]);
     const rejected=await actor.rpc("authorize_calculation_editor_quote",{...request,p_operation_id:operation,p_input:{...s.input,operation_id:operation,attachment_file_ids:duplicated,expected:{...s.input.expected,attachment_file_ids:duplicated}},p_review:{}});

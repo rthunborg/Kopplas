@@ -468,13 +468,13 @@ describe("Quote migration reset green — six new tenant-owned tables (AC1)", ()
       expect(rows[0]?.prosecdef).toBe(true);
       // Fixed EXACTLY-EMPTY search_path (the 6.1/6.4 RPC hardening shape).
       assertSearchPathExactlyEmpty(fn, rows[0]?.proconfig ?? null);
-      // anon has NO EXECUTE (revoke-from-public + grant-to-authenticated/service_role only).
+      // Checked execution belongs to authenticated; anon/service_role stay ungranted.
       const grants = await adminQuery<{ grantee: string }>(
         `select grantee from information_schema.role_routine_grants
            where routine_name = '${fn}'`,
       );
       const grantees = grants.map((g) => g.grantee);
-      expect(grantees).not.toContain("authenticated");
+      expect(grantees).toContain("authenticated");
       expect(grantees).not.toContain("service_role");
       expect(grantees).not.toContain("anon");
     }

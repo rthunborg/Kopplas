@@ -3,14 +3,21 @@ import { runCommand, type Command, type RunCommandOptions } from "@/server/comma
 import { EDITOR_KINDS, HEADER_FACTS, SECTION_FACTS, ROW_FACTS, projectEditorFacts, type EditorKind } from "@/features/calculations/editor-operation";
 import { adminQuery } from "../../factories/admin-sql";
 const uuid = /^[a-f0-9-]{36}$/i;
+// Only timestamp text crosses pg without Date's millisecond truncation. Every
+// other native column, including bigint strings, keeps its existing representation.
+function fields(table: string) {
+  return table === "calculation_rows"
+    ? "*, (to_jsonb(calculation_rows)->>'source_updated_at') as source_updated_at, (to_jsonb(calculation_rows)->>'source_captured_at') as source_captured_at"
+    : "*";
+}
 async function row(table: string, id: unknown): Promise<Record<string, unknown> | null> {
   if (typeof id !== "string" || !uuid.test(id)) return null;
   // Table names come exclusively from the fixed branches below.
-  return (await adminQuery<Record<string, unknown>>(`select * from public.${table} where id=$1`, [id]))[0] ?? null;
+  return (await adminQuery<Record<string, unknown>>(`select ${fields(table)} from public.${table} where id=$1`, [id]))[0] ?? null;
 }
 async function children(table: string, parent: string, id: unknown) {
   if (typeof id !== "string" || !uuid.test(id)) return [];
-  return adminQuery<Record<string, unknown>>(`select * from public.${table} where ${parent}=$1 and archived_at is null order by id`, [id]);
+  return adminQuery<Record<string, unknown>>(`select ${fields(table)} from public.${table} where ${parent}=$1 and archived_at is null order by id`, [id]);
 }
 export async function captureEditorTestIntent(kind: EditorKind, input: Record<string, unknown>, operationId = crypto.randomUUID()) {
   if (kind === "quote.version.create") return { operation_id: operationId, expected: { version: 1, form: "reviewed-initial-quote", reviewed_snapshot_digest: input.reviewed_snapshot_digest, reviewed_quote_capture_date: input.reviewed_quote_capture_date, attachment_file_ids: input.attachment_file_ids ?? [] } };

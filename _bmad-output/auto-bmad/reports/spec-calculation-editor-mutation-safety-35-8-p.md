@@ -171,3 +171,40 @@ No workergloballedger/sibling/aggregate or privateadmissioncode operation.
 **⚠️ Needs human:** (none)
 
 **Next:** Root checkpoint exact four paths, targeted independentHigh; actual required new matched-candidate hosted CI/runtime/captures then genuine HUMAN/controller/finalwrapper. No early accepted/nativeprready/merge/cutover from this source-only result.
+
+## Report — 2026-11-14T21:58:10Z (same-gen4 existing-consumer corrections and bounded P4 observation; unaccepted)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `71ba666`).
+**Pipeline status:** IN PROGRESS / PRODUCER IMPLEMENTATION AND FINAL VERIFICATION NOT ACCEPTED. Consumer/diagnostic delta frozen only for Root checkpoint+targetedHigh; quote/row/runtime facts pending.
+**Continues:** Same actualGen4/65/baseD/originalbranch at J71ba6661; operative7f7/plan14b2/ACK754a, no transition. Source author STOPc779 before parentstate/report. SQLd6ff/E2E508f/unit9ba/delivery6b209/Seller8a63 protected.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 31h 38m (≈25h 16m AI-run, ≈6h 22m human/idle wait); resumed 5×.
+
+**Phases run:** Prior0-7PROVISIONAL markers/three completed broadrounds/fourteen findings preserved. Only bounded existing-consumer correction/observational test code and cheapchecks; no new phase-done/4thbroadpass/overallDone.
+**Skipped:** No new product Vitest collection/integration/RLS/browser/PNG/PG execution locally; source declarations P4=7/ACL=17 are NOT collected/executed counts. Unaffected existing unit/build/browser evidence reused with original revision; no broadsuite rerun or managedresource/testDB.
+
+**Overrides:** Standing owner source: C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-standing-test-consumer-completion-owner-decision-20261114.json SHA256 ed773af37cf406619ae07fbf6737672ca5853fad81ef0e7b276a959e0b1dd481; operative source: C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/product-35-8-standing-authority-operative-counterrecord-20261114.json SHA256 56f0b42345deec86b84af1e422eaee5e34e9f385d49814d3e9173245bfd42b48. Qualified interpretation4d7e6f06 retained. Standing completion/allocation authority remains conditional case-qualified across admitted same-scope generations; no per-generation owner decision solelygenerationchange. This Kcase already65/noCAS. All actual final technical/sourceHigh/HUMAN/controller/unchangedfrontend-FIRST SAME6b209 wrapper duties unchanged. Historical phase-wall counter90972 includes waits; modelprocessing UNKNOWN.
+
+**TEA:** Prior selected ATDD/automate remains source/revision-limited. E2E508f and19registered/50plannedcapture IDs unchanged; no new calculation image acceptance.
+
+**Build:** Fixture only two server-JSON timestamp-text aliases in calculation_rows reads, samequerycount/keys/nulls/WHERE/order/params/all non-time nativevalues. ACL only checked successor/lifecycle authenticated matcher corrected, initialprivate/anon/service/definer/searchpath preserved. Existing P4 original authenticated calls/assertions retained with closed staticlabel/bool/whitelistedSQLSTATE-only before/after own-row SELECT probes; each existing-lock session settles before authcreate or after, no spanningtransaction/zero-timing-impact claim. No production SQL/guard/output/Seller change. Actualauthor terminal c7796a748f9516fbb2239a3c969dd46c8b9f93b05b4120062c8bf4c28c767c13 retains exactargv/logs. TypeScript noEmit incrementalfalse0, targeted3filelint0; ten actual-source OFFLINE checks pass10/fail0/cancel0/skip0/TODO0 for closed hostileerror/cleanup shapes, session ordering/originalerror propagation, source/read/query/codeframe preservation. These are NOT DB/PG/runtime proof. Final reader+oneSRO32refs0errors native0; provisional done/blocknull/followupfalse/historicalpatch0reject1, no warnings. First private metadata check guessed ACLcount15 and failed; original/current17 confirmed, corrected final0; preserved as metadata-check failure, not product failure.
+
+**Review:** Latest consumer/diagnostic/metadata code independentlyUNREVIEWED atfreeze. Qualified plan14b2 is not actualcode review; Root distinct latest-onlyHigh beforepublication. Existing wholeD source/fix chain and14findings/3rounds retained.
+
+**Retrospective:** Not this worker correction scope; Root aggregate later.
+
+**Open questions:**
+1. Exact closed quote guardedbranch/SQLSTATE remains unresolved; no guessed productionrepair.
+2. Actual four row expected/current timestamp mismatches unobserved; source-equivalent representation is not runtime cause proof.
+3. CalendarAPI019 emitter/relationship andAPI020pending/privacy/key-custody limits remain unknown; no sharedguard repair.
+
+**Deferred work:**
+1. REQUIRED current-candidate ordinaryCI/native integration predicates after targetedHigh; actual final repair fullrequired technical/PG/DB/RLS/recovery/storage/browser/dashboard/decodedPNGs/HUMAN/controller/unchanged SAME6b209wrapper still mandatory.
+2. J ordinary integration failed2289executed/2248pass/41fail/52skip+1pending,53unexecuted; nativepending52 discrepancy retained. J fullbrowser run is preserved; no cancellation or duplicatefullrelease from this correction.
+3. Live cutover/merge/CRM/PR151/sharedworkflow-pins/foreign rights remain outside this source result.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Root exactsix-path checkpoint→distinct targetedHigh→reviewed ordinary diagnosticCI for missing quote facts. No fullrelease until final repair can qualify; no producerDone/nativehandoff/HUMAN acceptance/cutover from this freeze.
