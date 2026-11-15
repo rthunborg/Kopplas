@@ -110,7 +110,7 @@ async function ownCalculation(page: Page, testInfo: TestInfo) {
   const title = `Safety ${crypto.randomUUID()}`;
   mark(testInfo, "create-input");
   await form.getByLabel("Titel").fill(title);
-  await form.getByLabel("Kund", { exact: true }).selectOption({ index: 1 });
+  await form.getByRole("combobox", { name: "Kund", exact: true }).selectOption({ index: 1 });
   mark(testInfo, "create-context-ready");
   await expect(form).toHaveAttribute("data-editor-ready", "true");
   mark(testInfo, "create-submit");
@@ -248,7 +248,7 @@ test("E35-8-T-connection-required / submitting / error-retry: unsent draft survi
 });
 
 test("P-6 CalculationList: lost create response recovers the same target after remount",async({page,context},testInfo)=>{
-  await signIn(page,testInfo);mark(testInfo,"create-page");await page.goto("/calculations");mark(testInfo,"create-open");await hydrated(page.getByTestId("new-calculation"));await page.getByTestId("new-calculation").click();const form=page.getByTestId("new-calculation-form");mark(testInfo,"create-context-ready");await expect(form).toHaveAttribute("data-editor-ready","true");mark(testInfo,"outside-setup");const title=`Lost create ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(title);await form.getByLabel("Kund",{exact:true}).selectOption({index:1});
+  await signIn(page,testInfo);mark(testInfo,"create-page");await page.goto("/calculations");mark(testInfo,"create-open");await hydrated(page.getByTestId("new-calculation"));await page.getByTestId("new-calculation").click();const form=page.getByTestId("new-calculation-form");mark(testInfo,"create-context-ready");await expect(form).toHaveAttribute("data-editor-ready","true");mark(testInfo,"outside-setup");const title=`Lost create ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(title);await form.getByRole("combobox",{name:"Kund",exact:true}).selectOption({index:1});
   const loss=await loseResponse(page,"**/calculations",async()=>captureState(page,testInfo,"calculation-list","submitting",form,async()=>{await expect(form.locator('button[type="submit"]')).toBeDisabled();await expect(form.getByLabel("Titel")).toHaveValue(title);}));
   try {
     await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect.poll(loss.count).toBe(1);await loss.completed;await expect(form.getByRole("status")).toContainText(/obekräftat/i);
@@ -421,7 +421,7 @@ test("P-6 pending A then draft B cannot adopt concurrent C facts on a later serv
 test("P-6 invalid new create is not admitted before correction",async({page},testInfo)=>{
   await signIn(page,testInfo);mark(testInfo,"create-page");await page.goto("/calculations");mark(testInfo,"create-open");await hydrated(page.getByTestId("new-calculation"));await page.getByTestId("new-calculation").click();const form=page.getByTestId("new-calculation-form");mark(testInfo,"create-context-ready");await expect(form).toHaveAttribute("data-editor-ready","true");mark(testInfo,"outside-setup");let writes=0;
   page.on("request",request=>{if(request.method()==="POST"&&request.headers()["next-action"]&&request.postData()?.includes("operation_id"))writes++;});
-  await form.getByLabel("Kund",{exact:true}).selectOption({index:1});await form.getByLabel("Titel").fill("   ");await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect(form.getByRole("alert").first()).toBeVisible();await expect(form.getByLabel("Titel")).toHaveValue("   ");expect(writes).toBe(0);
+  await form.getByRole("combobox",{name:"Kund",exact:true}).selectOption({index:1});await form.getByLabel("Titel").fill("   ");await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect(form.getByRole("alert").first()).toBeVisible();await expect(form.getByLabel("Titel")).toHaveValue("   ");expect(writes).toBe(0);
   expect(await page.evaluate(()=>Object.keys(sessionStorage).filter(key=>key.startsWith("kopplas/editor/v1/")).length)).toBe(0);
   await captureState(page,testInfo,"calculation-list","invalid",form,async()=>{await expect(form.getByRole("alert").first()).toBeVisible();await expect(form.getByLabel("Titel")).toHaveValue("   ");expect(writes).toBe(0);});
   const corrected=`Corrected ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(corrected);await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect(page).toHaveURL(/\/calculations\/[a-f0-9-]+$/);await expect(headerForm(page).getByLabel("Titel")).toHaveValue(corrected);expect(writes).toBe(1);

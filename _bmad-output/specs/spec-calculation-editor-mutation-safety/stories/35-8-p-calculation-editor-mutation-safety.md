@@ -52,7 +52,7 @@ Preparation: gpt-6.1-sol High for transactional integrity, quote/money invariant
 
 ## Auto Run Result
 
-Current same-generation-4 quote active-subtransaction correction: technical `done` retains only standing owner-authorized PROVISIONAL IMPLEMENTATION-STAGE meaning. At local M, the marker is source-qualified; this SQL/P4/story correction is author-implemented but independently UNREVIEWED. Real PG compilation/guard execution, the actual quote-closure cause and all current-candidate technical/PNG/HUMAN/controller/wrapper acceptance remain unproved. Parent state/report follows author STOP; Root alone owns checkpoint/publication. Development UNACCEPTED, visual PENDING, release_ready=false.
+Current same-generation-4 customer-selector correction: technical `done` retains only standing owner-authorized PROVISIONAL IMPLEMENTATION-STAGE meaning. At source parent N, the prior guard/backend qualification remains revision-bound; this E2E/story-only correction is author-implemented and independently UNREVIEWED. Its runtime first-await attribution and repair sufficiency remain unproved. Development UNACCEPTED, visual PENDING, release_ready=false; Parent state/report follows author STOP and Root alone owns checkpoint/publication.
 
 ### Retained generation-3 provisional technical result at C5
 
@@ -206,10 +206,26 @@ Actual final TypeScript and targeted lint pass native0. Twelve actual-source off
 
 Six protected files including M's E2E marker and SAME6b209 delivery remain unchanged. Standing ed773/full56f0 authority, original14 findings/three broad rounds and source pins are preserved. Actual latest-delta independent High, real PostgreSQL compile/checked35-cluster+successor/control execution and all final current-candidate technical/DB/RLS/recovery/storage/FULL browser/dashboard/original PNG/PII/HUMAN/controller/UNCHANGED frontend-FIRST SAME-delivery wrapper gates remain pending; no fourth broad review or acceptance is claimed.
 
+## Same-generation-4 exact customer-selector correction
+
+At N `a874b8e8c02aa78b8d25415ba2728edee91ce0df`, release `421a2aff5e1b3d6bf6958568851173d336a351caef1c586ba263ab7c0c488e7b` corrects exactly three form-scoped Kund selection receivers. Frozen diagnosis `999631d38b26f3b5059e526411c5a7d0a71e4becbc8942de96928cc337dea1f6` binds the actual component and installed Playwright1.61.1 engine: label text includes the aria-hidden required star, while native single-select role/accessibility naming exposes exact Kund. The corrected combobox receiver retains the same form, selectOption/index and selected customer. No app/shared field or other functional code changes.
+
+N's affected19 cases failed both original and retry; the general browser run was cancelled and supplies no earned calculation PNGs. This necessary source incompatibility is consistent with the coarse stages, but no original locator stack/first-await or repair sufficiency is proved. N's separately qualified PG/backend evidence (2b) remains N-scoped. The other29 displayed failures are separately classified by Parent, not declared harmless/waived here.
+
+Actual current TypeScript and targeted lint pass native0 with no diagnostics. Playwright collection passes native0,19 registered/0 executed. Exact inverse three-replacement comparison restores preimage f7b byte-for-byte, preserving every original statement/assertion/action/error/retry/timeout/cleanup, the M marker and all50 capture hooks/PNG adapter. No new case or mirroring test was added, no DB/browser/resource launched. SelectorDir's `selector-author-terminal-freeze.json` records exact source/log/command provenance. Seven protected files and Parent metadata remain unchanged until author STOP. Standing ed773/full56f0, original14 findings/three broad rounds/history and SAME6b209 provenance remain; latest-delta High/current-head browser/captures/HUMAN/controller/UNCHANGED frontend-FIRST wrapper and development acceptance stay pending.
+
 ## Suggested Review Order
 
 Authors: `/root/final_g_evidence_high/producer_safety_build/implementation_author_gen2` (inherited implementation) and `/root/final_g_evidence_high/producer_safety_build/implementation_author_gen3` (current implementation and reconciliation), both Sol High.
-Refreshed against local M `b319f9d46c4ef1a11beddd6c7c91fa77a88346b0` plus this same-generation-4 forward-SQL/P4/story correction. Six protected sources remain byte-identical. This latest delta is independently UNREVIEWED pending distinct targeted High; original14 findings/three broad rounds, admitted D `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`, original story baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f`, standing ed773/full56f0 and all13 callers/six hosts remain. This guide is not runtime, development, visual or release acceptance.
+Refreshed against source parent N `a874b8e8c02aa78b8d25415ba2728edee91ce0df` plus exactly three E2E Kund receivers and ownstory reconciliation. Seven protected sources remain byte-identical. Latest selector delta is independently UNREVIEWED; prior qualification remains bound to its actual revision. Preserve admitted D `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`, original story baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f`, standing ed773/full56f0, all13 callers/six hosts and original14 findings/three broad rounds. No fourth broad review or runtime/visual acceptance is claimed.
+
+### Select the required customer by its actual accessible control name
+
+Native single-select exposes combobox; its accessible name excludes the aria-hidden required star that exact label-text matching includes. These three same-form receiver substitutions keep customer selection and all later business assertions intact. Exact inverse bytes prove the narrow edit; collection is not browser execution or proof of sole cause/sufficiency.
+
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:113` — `getByRole("combobox"`: shared setup retains the same required customer choice before readiness/submit.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:251` — `getByRole("combobox"`: manual lost-create case preserves its selected customer and loss/reconcile assertions.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:424` — `getByRole("combobox"`: invalid-create case preserves preflight/nonadmission/correction expectations.
 
 ### Admit the active protected quote without admitting a historical parent
 
@@ -328,7 +344,7 @@ Retained consumer evidence: the previous type/lint/ten-check harness and inverse
 
 Current settlement evidence: the actual-source twelve-case red/green regression reproduces9fail/3pass before and12pass/0fail/skip/TODO after. Only points() changes, so original request/authenticated mutation/error identity/query text/functional assertions/timeouts/cleanup remain unchanged. Expected selected guard codes still observe; pre lifecycle failure stops RPC, post lifecycle failure fails, and original thrown RPC failure cannot be masked by a post-probe. No real DB/lock/physical settlement/privacy/browser evidence is earned.
 
-Current limits: this active-subtransaction SQL/P4/story delta still requires distinct targeted High and actual PostgreSQL compilation/capability/guard execution; its source-supported compatibility failure has not been directly traced as the hosted closure cause. No real wrap, physical cleanup, new browser/PNG, global privacy or overall acceptance evidence is earned locally. Earlier results retain their own source/runtime provenance. Final exact-candidate technical/DB/RLS/recovery/storage/money-tax-quote-PDF/FULL browser/dashboard/original-image/PII/HUMAN/controller and unchanged frontend-FIRST SAME6b209 wrapper gates remain required. Root owns checkpoint/publication; Parent folds state/report after author STOP. No fourth broad pass, native completion, visual N/A or deployment authority is invented.
+Current limits: the latest selector/story delta requires distinct targeted High and actual current-candidate browser execution. N backend qualification is retained at N; it does not qualify the changed E2E receivers. Original runtime failing-await attribution, repair sufficiency, other29 failure dispositions and actual calculation PNG evidence remain unproved here. Final current-candidate technical/DB/RLS/recovery/storage/money-tax-quote-PDF/FULL browser/dashboard/original-image/PII/HUMAN/controller and unchanged frontend-FIRST SAME6b209 wrapper requirements remain. Root owns checkpoint/publication; Parent folds state/report after author STOP. No fourth broad pass, native completion, visual N/A or deployment authority is invented.
 
 ## Review Triage Log
 

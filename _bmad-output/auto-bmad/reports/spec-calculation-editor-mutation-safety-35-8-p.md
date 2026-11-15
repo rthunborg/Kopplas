@@ -319,3 +319,40 @@ No workergloballedger/sibling/aggregate or privateadmissioncode operation.
 **⚠️ Needs human:** (none)
 
 **Next:** Freeze ALL5/sourceSTOP for Root opaque scope/Gitcheckpoint then actualtargetedHigh; no inferredpublication/developmentDone/acceptednativehandoff/merge/cutover.
+
+## Report — 2026-11-15T13:58:09Z (same-gen4 exact3 customer combobox selector correction; browser unverified)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `a874b8e`).
+**Pipeline status:** IN PROGRESS / PRODUCER IMPLEMENTATION AND FINAL VERIFICATION UNACCEPTED; source-ready for Rootcheckpoint+targetedHigh ONLY.
+**Continues:** ActualGen4/RUNNING65/baseD/HEADN underRoot421a and BEFORE-WRITEACK8bc191. AuthorSTOP0f06 beforeparentmetadata; no newgeneration/allocation.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 47h 38m (≈25h 16m AI-run, ≈22h 22m human/idle wait); resumed 9×.
+
+**Phases run:** No newdone marker or broadreview; historicalprovisional0-7/3completedrounds14findings retained.
+**Skipped:** 19casescollected/0browserexecutions locally; no DB/resources/broadsuites. ActualNDB52skips remainzero coverage.
+
+**Overrides:** Standingownered773af37cf406619ae07fbf6737672ca5853fad81ef0e7b276a959e0b1dd481 andoperative56f0b42345deec86b84af1e422eaee5e34e9f385d49814d3e9173245bfd42b48 fullsource refs retainedstate. Same admitted4/65/noCAS, truthfulpendingcompletion, SAME6b209/finalalltechnical+HUMAN/controller/unchangedwrapper andCRM/PR151/livecutoverholds unchanged.
+
+**TEA:** All19registrations/243historicalassertions/currentactions/errors/50captureIDs+bufferadapter/Mstagehelper conserved by exactinverse3-replacement to originalf7b. No newcase/testframework/mirrortest.
+
+**Build:** EXACT3 form.getByLabel Kund exact receivers -> sameform getByRole combobox/nameKund/exacttrue; same selectOption/index. Installedengine labeltextincludesrequiredhiddenstar while nativecombobox accessibleKund excludesit; actualruntimefirstawait/sufficiency remainUNPROVED. Type0/lint0diagnostics/19collection0execution; inversebytesexact; trail45refs0; normalreaderprovisionaldone/blocknull/followupfalse/patch0reject1/warnings[]. No failedcheapattempts. Author terminal C:\DEV\Kopplas\tmp\private\35-6-35-7-coordinator-2026-11-09\35-8-two-path-admission-evidence\gen4-live-1bfe9744-6fcf-45d9-ac30-b8cf1f7115d9\browser-customer-selector-correction-4f4d14d0-8d08-4bb0-a917-c5c61f2f29f5\selector-author-terminal-freeze.json SHA0f06b7de263ae3f12f4d046846f5bd2688ad469179f1ca18dff0173cac3147eb. Sevenbackendprotected bytes unchanged.
+
+**Review:** Ncodef36source/P4/SQL qualifiedhistory retained. Current3locator+metadata targetedHigh PENDING after Rootcheckpoint, not4thbroadpass. Diagnosis999631/sourceproof retained; no automaticpublicationGO.
+
+**Retrospective:** Root aggregate later/outside worker scope.
+
+**Open questions:**
+1. NfullCANCELLED45m;19calc original+retryfail/0earnedcalculationPNGs. Sourcecompatiblelocatorfix notclaimedsolecause/sufficient; nextactualcandidatebrowser required.
+2. Other29:23priorMfailedsameidentity plus6priorPASSnowFAILcalc/source/taxUIcases. Changedownedproduceronpath, no provedobsoleteconsumercontract; preserveallassertions/requiredregressions. Exactfailedawait unknown.
+3. Finalvisual/HUMAN/controller/frontend-FIRSTSAME6b209wrapper/nativehandoff/cutover not earned.
+
+**Deferred work:**
+1. Rootopaque4pathcheckpoint+distincttargetedHigh then nextjustifiedcurrentcandidate requiredCI/fullbrowser/nativeerrors/captures; no unchangedrerun/timeoutraise/newtarget.
+2. Bounded29classification C:\DEV\Kopplas\tmp\private\35-6-35-7-coordinator-2026-11-09\35-8-two-path-admission-evidence\gen4-live-1bfe9744-6fcf-45d9-ac30-b8cf1f7115d9\browser-customer-selector-correction-4f4d14d0-8d08-4bb0-a917-c5c61f2f29f5\N-other29-readonly-classification.json SHA6148a2a41609ed0247d84aa90c92275694af738c3e803640c449dbbfa8a7140b. No sourceoutside65/admission request without concretepreservingneed/ownership/qualifiedstandingcase.
+3. Nordinary+bothDB native/cleanup scopedproof2b662398 remainsvalid/separate. Fullpartial625records/557displaykeys isnotfinalaggregate; no fullgreen or prior35.14waiver transferred.
+
+**⚠️ Needs human:** (none)
+
+**Next:** ALLsourceSTOP/final4freeze; Rootcheckpoint+targetedHigh then justifiedcandidatequalification. No acceptance/nativehandoff/merge/cutover.
