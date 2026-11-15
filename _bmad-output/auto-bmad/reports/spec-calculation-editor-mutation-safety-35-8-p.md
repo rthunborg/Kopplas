@@ -282,3 +282,40 @@ No workergloballedger/sibling/aggregate or privateadmissioncode operation.
 **⚠️ Needs human:** (none)
 
 **Next:** SourceSTOP/localfreeze. Rootcheckpoint+High first; keep exactexistingruntimeevidence and pendingquoteguard diagnosis separate. No inferredpublisherauthority, productionrepair, developmentDone/nativehandoff/merge/cutover.
+
+## Report — 2026-11-15T12:42:45Z (same-gen4 active-subtransaction guard V2; source prepared/runtime unverified)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `b319f9d`).
+**Pipeline status:** IN PROGRESS / PRODUCER IMPLEMENTATION AND FINAL VERIFICATION UNACCEPTED. Narrow guard/P4 source frozen only for Root checkpoint and targeted actual-code High.
+**Continues:** Same Gen4 RUNNING65/baseD/originalbranch based on localM b319f9d4; Rootb8ca/ACK214ec5/plan1f571. Author STOP7f2200 before parent metadata. No CAS/newgeneration/native/provider/Git/CI/resource action by worker.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 46h 23m (≈25h 16m AI-run, ≈21h 07m human/idle wait); resumed 8×.
+
+**Phases run:** No new phase-done marker/broadreview/capreset. Historicalprovisional0-7/3broadrounds14findings retained; M marker actualcodeLOCALGOa371 preserved, not runtime/standalonepublication.
+**Skipped:** Integration collection NOTRUN and PGcontrols0 executed locally; no DB/browser/resource launch or wholeunit/build rerun. Existing3959unit/149smoke/runtime facts remain3498scoped.
+
+**Overrides:** Standing ownered773af37cf406619ae07fbf6737672ca5853fad81ef0e7b276a959e0b1dd481 and operative56f0b42345deec86b84af1e422eaee5e34e9f385d49814d3e9173245bfd42b48 explicit fullsource refs retainedstate. Original finite55/actual65 case-qualified effects/no allocationtransition. SAME6b209 delivery and finalalltechnical+independent+HUMAN+controller+unchangedfrontend-FIRSTwrapper required; no acceptance/nativehandoff/merge/livecutover. Unattendedgap and historicalactive counters not modelprocessing.
+
+**TEA:** Canonical prior readiness/design/CAP1-3 retained. Seven original P4 source-declared case titles unchanged/no newit(), controls within first checked authenticated commit/audit case. Top/nestedpositive/committed+endedsubQV409/foreignMVCC/rollbackcapabilitycontrols remain actualPG UNRUN. Existing E2E M marker/19cases/50plannedIDs unchanged, no PNGcredit.
+
+**Build:** Only ownedforwardmigration redefines existingchildguard preserving originalTop and allotherbodychecks. Additional active ownlock observation then isolated fixedU future22023 certificate; normalNULL refuses/unexpected propagates, legacyafterwraprefusal preserved. P4 uses existing operationUUID and donorchildPK/noextraUUID; twosessionsmax/allbarriers+ROLLBACKsettlement before DISCARD/release, finalownedrowabsence. First/finaltsc0 andtargetlint0diagnostics; offline first9pass3fail retained (participantfalseprojection), corrected12pass0fail/cancel/skip/TODO. Inverse migration/guard bytes and original P4 normalizedAST restore; original authenticated assertions/cleanup preserved. Trail42refs0; normalreaderprovisionaldone/blocknull/followupfalse/historicalpatch0reject1/warnings[]. Terminal evidence C:\DEV\Kopplas\tmp\private\35-6-35-7-coordinator-2026-11-09\35-8-two-path-admission-evidence\gen4-live-1bfe9744-6fcf-45d9-ac30-b8cf1f7115d9\quote-active-subtransaction-correction-129bea9c-f50c-40a7-8792-846dd528e8ed\guard-author-terminal-freeze.json SHA7f2200fcda67858e1509cebd5ee331ee16dafa0efa06db30eeeecca7cb06d21b.
+
+**Review:** V1e77 rejected135 retainedunapplied. ConditionalV2 planGO1f571 closes rawxmin-alias planfinding, NOT actualcode/runtimeGO. Actualsource+P4+metadata targetedHigh PENDING after Rootcheckpoint; no fourth broadpass.
+
+**Retrospective:** Root aggregate later; outside localcorrection scope.
+
+**Open questions:**
+1. Actual35quote closed/null-return innerbranch/solecause remainsunobserved despite source-compatible active-subXID guard defect; hostedPG must prove real repair.
+2. New certificate vendor capability/compile, actual checkedTop/nested/committedQV409/foreignisolation/rollback/closedproof/replay and quote-version tests remainUNVERIFIED. Foreignmissingparent is MVCCisolation, not ownpidbranchproof; no physical wrap/freeze evidence.
+3. Finalglobalprivacy/keyabsence and browserfailedstage/captures remain unresolved. M marker itself is only LOCALsourceGO; allhuman/controller/finalwrapper acceptance pending.
+
+**Deferred work:**
+1. Root fixedcheckpoint+distincttargetedactualcodeHigh, then Rootalone combinedM+realrepair publication and neededordinary/fullrelease CI; no standalonemarkerCI/unchangedgreenhunt.
+2. Actual3498 failure/nativecounts and previous attempts retained withsource revision; source/model/offlinechecks never transplant runtimePASS. All6protected including delivery6b209 remainbyteidentical.
+3. Finalcurrentcandidate technical/runtime/DB/RLS/recovery/storage/fullbrowser/PNGs/HUMAN/controller/unchangedSAMEJSONwrapper and nativehandoff mandatory; CRM/PR151/foreignrights/livecutoverheld.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Freeze ALL5/sourceSTOP for Root opaque scope/Gitcheckpoint then actualtargetedHigh; no inferredpublication/developmentDone/acceptednativehandoff/merge/cutover.

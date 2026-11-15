@@ -141,6 +141,132 @@ async function points(value: string): Promise<Mark[]> {
   return marks;
 }
 
+// All new controls use only this test's existing committed donor and operation
+// UUID: temporary parent/positive child IDs reuse that UUID in separate tables;
+// rejected children reuse the donor child PK as an additional persistence backstop.
+// Every transaction rolls back before adminSession performs DISCARD/release.
+type GuardSession = Parameters<Parameters<typeof adminSession>[0]>[0];
+function guardCode(value: unknown): "22023" | "QV409" | "OTHER" {
+  try {
+    if (value !== null && typeof value === "object" && "code" in value) {
+      if (value.code === "22023" || value.code === "QV409") return value.code;
+    }
+  } catch { /* Only the same closed value may escape. */ }
+  return "OTHER";
+}
+async function guardTransaction(run: (session: GuardSession) => Promise<void>) {
+  try {
+    await adminSession(async session => {
+      try { await session.query("begin"); await run(session); }
+      finally { await session.query("rollback"); }
+    });
+  } catch { throw new Error("FAIL"); }
+}
+function guardTrue(rows: { ok: boolean }[]) {
+  expect(Array.isArray(rows) && rows.length === 1 && rows[0]?.ok === true).toBe(true);
+}
+const guardParent = `insert into public.quote_versions
+  select (jsonb_populate_record(null::public.quote_versions,to_jsonb(v)||
+    jsonb_build_object('id',$1::uuid,'version_number',v.version_number+1))).*
+  from public.quote_versions v where v.calculation_id=$2 and v.tenant_id=$3
+    and v.snapshot_schema_version=2 and v.id<>$1 order by v.version_number limit 1
+  returning true ok`;
+const guardChild = `insert into public.quote_version_lines
+  select (jsonb_populate_record(null::public.quote_version_lines,to_jsonb(l)||
+    jsonb_build_object('id',$4::uuid,'quote_version_id',$1::uuid))).*
+  from public.quote_version_lines l join public.quote_versions v on v.id=l.quote_version_id
+  where v.calculation_id=$2 and v.tenant_id=$3 and l.tenant_id=$3 and v.id<>$1
+  order by v.version_number,l.sort_order,l.id limit 1 returning true ok`;
+const guardRejectedChild = `insert into public.quote_version_lines
+  select (jsonb_populate_record(null::public.quote_version_lines,to_jsonb(l)||
+    jsonb_build_object('quote_version_id',$1::uuid))).*
+  from public.quote_version_lines l join public.quote_versions v on v.id=l.quote_version_id
+  where v.calculation_id=$2 and v.tenant_id=$3 and l.tenant_id=$3
+  order by v.version_number,l.sort_order,l.id limit 1 returning true ok`;
+async function guardReject(session: GuardSession, text: string, params: readonly unknown[], wanted: "22023" | "QV409") {
+  await session.query("savepoint guard_rejection");
+  let observed: ReturnType<typeof guardCode> = "OTHER";
+  try { await session.query(text, params); }
+  catch (value: unknown) { observed = guardCode(value); }
+  finally {
+    await session.query("rollback to savepoint guard_rejection");
+    await session.query("release savepoint guard_rejection");
+  }
+  expect(observed === wanted).toBe(true);
+}
+function guardBarrier() {
+  let release!: () => void;
+  const wait = new Promise<void>(resolve => { release = resolve; });
+  return { wait, release };
+}
+async function guardForeign(params: readonly unknown[]) {
+  const ready = guardBarrier(), done = guardBarrier();
+  let parentReady = false, ownerPid = 0;
+  // Handlers are attached immediately; failures release both peer barriers.
+  const holder = guardTransaction(async session => {
+    const rows = await session.query<{pid:number}>("select pg_backend_pid() pid");
+    if (rows.length !== 1 || !Number.isInteger(rows[0]?.pid)) throw new Error("FAIL");
+    ownerPid = rows[0].pid;
+    guardTrue(await session.query<{ok:boolean}>(guardParent, params));
+    parentReady = true; ready.release(); await done.wait;
+  }).finally(() => { ready.release(); done.release(); });
+  const held = holder.then(() => true, () => false);
+  const visitor = guardTransaction(async session => {
+    await ready.wait;
+    if (!parentReady) throw new Error("FAIL");
+    guardTrue(await session.query<{ok:boolean}>("select pg_backend_pid()<>$1::int ok", [ownerPid]));
+    // MVCC invisibility is isolation evidence, not direct own-pid branch proof.
+    guardTrue(await session.query<{ok:boolean}>(
+      "select not exists(select 1 from public.quote_versions where id=$1 and calculation_id=$2 and tenant_id=$3) ok", params));
+    await guardReject(session, guardRejectedChild, params, "QV409");
+  }).finally(() => { ready.release(); done.release(); });
+  const visited = visitor.then(() => true, () => false);
+  const settled = await Promise.all([held, visited]);
+  if (!settled.every(Boolean)) throw new Error("FAIL");
+}
+async function guardControls(calc: string, operation: string) {
+  const params = [operation, calc, fixture.tenantA.id];
+  // Native capability observation: fixed future sentinel, closed SQLSTATE only.
+  await guardTransaction(async session => {
+    await guardReject(session, "select pg_catalog.pg_xact_status('4294967295'::pg_catalog.xid8)", [], "22023");
+  });
+  // The original authenticated checked create above remains the real positive
+  // authority/consume/audit control; these are privileged trigger-only controls.
+  for (const nested of [false, true]) {
+    await guardTransaction(async session => {
+      await session.query("select pg_catalog.pg_current_xact_id()");
+      if (nested) await session.query("savepoint active_guard");
+      guardTrue(await session.query<{ok:boolean}>(guardParent, params));
+      guardTrue(await session.query<{ok:boolean}>(`select
+        (xmin::text = pg_catalog.pg_current_xact_id()::text) = $4::boolean ok
+        from public.quote_versions where id=$1 and calculation_id=$2 and tenant_id=$3`, [...params, !nested]));
+      guardTrue(await session.query<{ok:boolean}>(guardChild, [...params, operation]));
+      guardTrue(await session.query<{ok:boolean}>(
+        "select exists(select 1 from public.quote_version_lines l join public.quote_versions v on v.id=l.quote_version_id where l.id=$1 and l.quote_version_id=$1 and v.calculation_id=$2 and l.tenant_id=$3) ok", params));
+    });
+  }
+  await guardTransaction(async session => {
+    // Committed donor; exact QV409 required, duplicate PK is never success.
+    await guardReject(session, `insert into public.quote_version_lines
+      select l.* from public.quote_version_lines l join public.quote_versions v on v.id=l.quote_version_id
+      where v.calculation_id=$1 and v.tenant_id=$2 and l.tenant_id=$2
+      order by v.version_number,l.sort_order,l.id limit 1`, params.slice(1), "QV409");
+  });
+  await guardTransaction(async session => {
+    await session.query("select pg_catalog.pg_current_xact_id()");
+    await session.query("savepoint ended_guard");
+    guardTrue(await session.query<{ok:boolean}>(guardParent, params));
+    await session.query("release savepoint ended_guard");
+    await guardReject(session, guardChild, [...params, operation], "QV409");
+  });
+  await guardForeign(params);
+  await guardTransaction(async session => {
+    guardTrue(await session.query<{ok:boolean}>(`select
+      not exists(select 1 from public.quote_versions where id=$1 and calculation_id=$2 and tenant_id=$3)
+      and not exists(select 1 from public.quote_version_lines where id=$1 and tenant_id=$3) ok`, params));
+  });
+}
+
 describe("35.8-P initial quote original review operation", () => {
   it("P-4 checked quote normalizes empty attachment lists and rejects duplicate list identities before preparation",async ctx=>{
     if(skipUnlessStack(ctx,up))return;const s=await originalIntent();
@@ -156,6 +282,7 @@ describe("35.8-P initial quote original review operation", () => {
     const detail = JSON.stringify([before, after]);
     expect(committed.error, detail).toBeNull();expect(committed.data, detail).toMatchObject({status:"committed",operationId:s.operation});
     expect(await adminSelectAuditEvents({correlationId:s.operation})).toHaveLength(1);
+    await guardControls(s.calc, s.operation);
     const operation=crypto.randomUUID(),duplicated=[crypto.randomUUID()];duplicated.push(duplicated[0]);
     const rejected=await actor.rpc("authorize_calculation_editor_quote",{...request,p_operation_id:operation,p_input:{...s.input,operation_id:operation,attachment_file_ids:duplicated,expected:{...s.input.expected,attachment_file_ids:duplicated}},p_review:{}});
     expect(rejected.error?.code).toBe("23514");expect(rejected.error?.message).toMatch(/duplicate id/i);

@@ -468,6 +468,144 @@ begin
  perform public.ce_gate_internal(tenant,actor,op.operation_kind);
  return public.ce_proof_internal(op);
 end $$;
+-- Active protected quote creation uses a subtransaction XID for its parent.
+-- The existing immutable child guard is copied here; only its birth predicate
+-- gains the source-qualified pre-first-wrap active-subtransaction fallback.
+create or replace function public.enforce_quote_version_child_sent_lock()
+returns trigger
+language plpgsql
+security invoker
+set search_path = ''
+as $$
+declare
+  v_old_parent_id uuid;
+  v_new_parent_id uuid;
+  v_parent record;
+  v_expected_count integer;
+  v_seen_count integer := 0;
+  v_old_parent_schema integer;
+  v_new_parent_schema integer;
+  v_new_parent_created_in_xact boolean := false;
+  v_new_parent_xmin xid;
+  v_top_xid_text text := pg_catalog.pg_current_xact_id()::text;
+  v_certified_before_wrap boolean := false;
+begin
+  if tg_op <> 'INSERT' then
+    v_old_parent_id := old.quote_version_id;
+  end if;
+  if tg_op <> 'DELETE' then
+    v_new_parent_id := new.quote_version_id;
+  end if;
+
+  v_expected_count := case
+    when v_old_parent_id is null or v_new_parent_id is null then 1
+    when v_old_parent_id = v_new_parent_id then 1
+    else 2
+  end;
+
+  for v_parent in
+    select qv.id, qv.status, qv.snapshot_schema_version, qv.xmin as parent_xmin,
+           qv.xmin::text = pg_current_xact_id()::text as created_in_current_transaction
+      from public.quote_versions qv
+     where qv.id in (v_old_parent_id, v_new_parent_id)
+     order by qv.id
+     for update
+  loop
+    v_seen_count := v_seen_count + 1;
+    if v_parent.id = v_new_parent_id then
+      v_new_parent_schema := v_parent.snapshot_schema_version;
+      v_new_parent_xmin := v_parent.parent_xmin;
+      v_new_parent_created_in_xact := v_parent.created_in_current_transaction;
+    end if;
+    if v_parent.id = v_old_parent_id then
+      v_old_parent_schema := v_parent.snapshot_schema_version;
+    end if;
+    if v_parent.status <> 'draft' then
+      raise exception
+        'quote_version child snapshot is immutable once either parent version is sent (architecture §11)'
+        using errcode = 'QV409';
+    end if;
+  end loop;
+
+  -- During an FK ON DELETE CASCADE the parent row is already invisible to this
+  -- child BEFORE DELETE trigger. Allow that referential cleanup only; a direct
+  -- child delete still sees/locks its parent and is rejected when frozen.
+  if tg_op = 'DELETE' and v_seen_count = 0 then
+    return old;
+  end if;
+
+  if v_seen_count <> v_expected_count then
+    raise exception
+      'quote_version child parent is missing or not visible'
+      using errcode = 'QV409';
+  end if;
+
+  -- A V2 child is born frozen inside an atomic creation RPC. There is no normal
+  -- application path that mutates line or attachment snapshots in place; economic
+  -- changes create a new quote version. Keep historical V1 draft behavior intact.
+  if tg_op in ('UPDATE', 'DELETE')
+     and (
+       v_old_parent_schema = 2
+       or coalesce(v_new_parent_schema = 2, false)
+     ) then
+    raise exception
+      'V2 quote-version child snapshots are immutable after creation'
+      using errcode = 'QV409';
+  end if;
+
+  -- Preserve the original top-XID branch. Only an already observed own ACTIVE
+  -- sub-XID may use the fallback, with a fresh certificate excluding all wraps.
+  if tg_op = 'INSERT' and v_new_parent_schema = 2
+     and not v_new_parent_created_in_xact
+     and v_new_parent_xmin::text::numeric > v_top_xid_text::numeric
+     and v_new_parent_xmin::text::numeric < 4294967295
+     and exists (
+       select 1 from pg_catalog.pg_locks l
+        where l.locktype = 'transactionid'
+          and l.transactionid = v_new_parent_xmin
+          and l.pid = pg_catalog.pg_backend_pid()
+          and l.mode = 'ExclusiveLock' and l.granted
+     ) then
+    -- Procedural order matters: same locked parent and own lock FIRST, then the
+    -- fixed volatile builtin reads shared nextFullXid, not an active snapshot.
+    v_certified_before_wrap := false;
+    begin
+      perform pg_catalog.pg_xact_status('4294967295'::pg_catalog.xid8);
+    exception when sqlstate '22023' then
+      v_certified_before_wrap := true;
+    end;
+    -- Normal result/NULL is no certificate; every unexpected error propagates.
+    v_new_parent_created_in_xact := v_certified_before_wrap;
+  end if;
+
+  if tg_op = 'INSERT'
+     and v_new_parent_schema = 2
+     and not v_new_parent_created_in_xact then
+    raise exception
+      'V2 quote-version children may only be inserted in the atomic parent-creation transaction'
+      using errcode = 'QV409';
+  end if;
+
+  if tg_op <> 'DELETE'
+     and tg_table_name = 'quote_version_lines'
+     and v_new_parent_schema = 2
+     and (
+       jsonb_typeof(to_jsonb(new) -> 'included_in_invoice_total') <> 'boolean'
+       or jsonb_typeof(to_jsonb(new) -> 'source_calculation_row_id') <> 'string'
+       or jsonb_typeof(to_jsonb(new) -> 'deduction_classification') <> 'string'
+       or jsonb_typeof(to_jsonb(new) -> 'vat_type') <> 'string'
+     ) then
+    raise exception
+      'V2 quote lines require frozen inclusion, deduction classification and VAT type'
+      using errcode = '23514';
+  end if;
+
+  if tg_op = 'DELETE' then
+    return old;
+  end if;
+  return new;
+end;
+$$;
 -- Exact matched-app/schema cutover: no old unchecked application route survives.
 revoke insert,update,delete on public.calculations,public.calculation_sections,public.calculation_rows from authenticated;
 do $$ declare f record; begin
