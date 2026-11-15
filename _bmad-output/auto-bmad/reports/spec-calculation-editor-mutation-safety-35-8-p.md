@@ -245,3 +245,40 @@ No workergloballedger/sibling/aggregate or privateadmissioncode operation.
 **⚠️ Needs human:** (none)
 
 **Next:** Root four-path checkpoint and distinct targetedsettlement followup, then ordinarydiagnosticCI only. No producerDone/publicationGO/nativehandoff/merge/cutover from localchecks.
+
+## Report — 2026-11-15T11:44:33Z (same-gen4 local E2E stage evidence; no publication authority)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `3498ecf`).
+**Pipeline status:** IN PROGRESS / PRODUCER IMPLEMENTATION AND FINAL VERIFICATION UNACCEPTED. Local marker code frozen only for Rootcheckpoint+actualcodeHigh; no cause/runtime/image acceptance.
+**Continues:** Same4/RUNNING65/baseD/originalbranch at3498; Root0888/ACKc5d107/plan3aada. AuthorSTOP56e0 thenparentmetadata. Unattendedgap46667.8815s onrequested35s is unmeasured/notmodelprocessing; no source/CI restart or newallocation.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 45h 25m (≈25h 16m AI-run, ≈20h 08m human/idle wait); resumed 7×.
+
+**Phases run:** No new phase-done/broadreview/capreset; historicalprovisional0-7/3broadrounds14findings retained. Ksettlementfinding independentlyCLOSED21f2 at3498; currentmarker actualcodeHighpending.
+**Skipped:** 19cases COLLECTED ONLY; actualnewbrowser/DB/RLS/PNG0. No managedresources/testDB or logger-onlyfullsuite. Existing unit/build/runtime results keep actual3498revision, not marker workingtree credit.
+
+**Overrides:** Standing owner source R/product-35-8-standing-test-consumer-completion-owner-decision-20261114.json SHAed773af37cf406619ae07fbf6737672ca5853fad81ef0e7b276a959e0b1dd481; operative source R/product-35-8-standing-authority-operative-counterrecord-20261114.json SHA56f0b42345deec86b84af1e422eaee5e34e9f385d49814d3e9173245bfd42b48, fullpaths retainedstate. Conditionalcase-qualifiedstandingfuturetransitions/provisionalcompletion unchanged; existing4/65/noCAS. SAME6b209/finalalltechnical+independent+HUMAN+controller+unchangedfrontend-FIRSTwrapper required. Historicalactive90972 and unattendedgap are not modelprocessing. Rootonlypublication;3498run preserved intact, no cancel/newCI byworker.
+
+**TEA:** Existing19functionalcase identities/alloriginalassertions/actions/cleanup and50captureIDs/states/viewports/originalPNGBufferadapter conserved; olddfb8/source508f historical, privateupdatedsource/hook supplementf9344414 bindsnewE2E. No actual image proof.
+
+**Build:** Onefilelocal WeakMap/WeakSet TestInfo stage checkpoint+failure afterEach, fixedenum only/max80ASCIIinclnewline/onceflagbefore synchronousstdout write. Successfulshared/manualsetup exitsoutside-setup; defaultunknown, hookordering/laterteardown/hardkill/association limits explicit. Originalawait/erroridentity unchanged; getter/proxy/format/outputfailure cannot alter originalstatus/error or add unhandledtask. Installed1.61rawstdoutpipe→reporter source verified, not runtimeproof. Type0/lint0warnings;12actual-sourceofflinechecks pass0fail/skip/TODO including inverse normalizedAST baseline508f restoration;19collection0execution, reader/trail1section36refs0errors native0 standingprovisionaldone/blocknull/followupfalse/historicalpatch0reject1. Firstlintwarning and private11pass1fail historical243-vs171 classifiercount preserved; finalbaseline/currentASTconservation corrected without droppingassertions. Author terminal56e0c7178de2194e2e452cc8bf19374019a54fb45ea3f07f87c8bc03afbea150 retainsallcommands/logs/physicalhashes. All7protectedunchanged.
+
+**Review:** Plan3aada conditionalGO is not actualcodeGO; RootdistincttargetedHigh beforeanypublication. No fourthbroadsourcepass. Separate exactlegacy/V2 guard diagnosis read-only, no SQL/P4write under thisstage release.
+
+**Retrospective:** Root aggregate later; outside localmarker scope.
+
+**Open questions:**
+1. 35quoteonly remain on3498: all10P4pre/postmarks true/null yetcreateclosed; exactinnerlegacycondition unproved.
+2. J38browserfailedattempts give no nativeJSON/stack/PNG or uniquecommonsetupcause; a stage will be checkpoint evidence only, ambiguous/missingUNKNOWN.
+3. Finalglobalprivacyrefusal/keyabsenceunknown persists althoughAPI019/020pass; no overallcleanup/calendar acceptance.
+
+**Deferred work:**
+1. Root localfourpathcheckpoint+targetedactualcodeHigh, then Rootalone decides nextpublication after3498neededresults interpretation; no logger-onlyduplicatefullsuite.
+2. 3498 native2303executed/2268pass/35fail/52skip; row4/ACL/API019/020pass, same35quotesremain. Nativeadditional13passing leaves vsJ have unexplained enumeration/sourceaddition cause; no forcedaudit/newtarget.
+3. All finalcandidate technical/runtime/sourceHigh/DB/RLS/recovery/storage/browser/dashboard/decodedPNGs/HUMAN/controller/SAME6b209wrapper remainrequired; CRM/PR151/workflowpins/foreignrights/livecutoverheld.
+
+**⚠️ Needs human:** (none)
+
+**Next:** SourceSTOP/localfreeze. Rootcheckpoint+High first; keep exactexistingruntimeevidence and pendingquoteguard diagnosis separate. No inferredpublisherauthority, productionrepair, developmentDone/nativehandoff/merge/cutover.

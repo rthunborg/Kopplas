@@ -52,7 +52,7 @@ Preparation: gpt-6.1-sol High for transactional integrity, quote/money invariant
 
 ## Auto Run Result
 
-Current same-generation-4 diagnostic settlement correction: the technical `done` field below retains only standing owner-authorized PROVISIONAL IMPLEMENTATION-STAGE meaning. Targeted High at local K `914f4c92a40bef736f59cc4d3d65133bdec9bc5d` found one consequential P2 observation-lifecycle defect. This two-file repair is author-fixed, independently UNCONFIRMED until targeted follow-up. Fixture/ACL corrections stay protected; production SQL/guards and the original authenticated mutation are unchanged. Quote closure cause, actual row mismatch and all final technical/runtime/PNG/HUMAN/controller/wrapper acceptance remain pending.
+Current same-generation-4 local E2E stage preparation: the technical `done` field below retains only standing owner-authorized PROVISIONAL IMPLEMENTATION-STAGE meaning. The two-file marker/story delta is independently UNREVIEWED and has no hosted marker, runtime, PNG, cause or acceptance credit. Parent state/report follows author STOP; Root alone owns checkpoint/publication. Development UNACCEPTED, visual PENDING, release_ready=false.
 
 ### Retained generation-3 provisional technical result at C5
 
@@ -186,10 +186,29 @@ Actual-source offline regression first reproduced9 failures/3pass of12, native1 
 
 Fixture77dc/ACL8253/SQLd6ff/E2E508f/unit9ba/delivery6b209/Seller8a63 remain protected. The fix is author-complete but targeted High follow-up and actual ordinary diagnostic CI remain required; original14 findings/three broad rounds and all pending final runtime/PNG/PII/HUMAN/controller/unchanged frontend-FIRST SAME-delivery wrapper duties remain. Browser cause is a separate Parent read-only task. Parent state/report follows author STOP; Root owns all Git/native/provider/checkpoint. Development UNACCEPTED, visual PENDING, release_ready=false; no fourth broad pass or acceptance is claimed.
 
+## Same-generation-4 local E2E stage preparation
+
+At `3498ecf306e8798e109bb9281d1f920413848732`, release `0888d3c8c22853a6a8bdbf07d5911aabdf77d2677865d5fca13739ca75abcef7` and qualified plan `3aada0e4ac01792298f5daa8e8d7dfd7c727e9dce664bd6ab0a5de93116a36cf` authorize only this E2E/story local preparation. Standing ed773/full56f0 authority above, original14 findings/three broad rounds, pins and protected seven files remain unchanged. No new broad review or generation is inferred.
+
+The fixtureless afterEach emits at most one closed ASCII failure line per TestInfo attempt, <=80 bytes including newline, from thirteen fixed stages. It claims once before synchronous output; passed/skipped attempts emit nothing. Marker/getter/proxy/output failure is isolated from the original error/status. Shared and manual successful setup explicitly becomes outside-setup before original body/cleanup. Hook ordering, later teardown failure, missing hooks, partial output and hard kills can omit a marker: absence/default is UNKNOWN, never cause proof. Installed Playwright1.61.1 raw-worker stdout forwarding is source-qualified, not exercised here.
+
+Actual TypeScript and final targeted E2E lint pass native0. Twelve actual-source offline checks pass with zero fail/cancel/skip/TODO; the first attempt's11pass/1fail hard-coded243 metric mismatch remains retained. The corrected classifier compares171 terminal matcher expressions on both baseline508f and current source, separately from historical243 provenance. Inverse normalized AST equality restores every original statement/assertion/action/cleanup apart from added marker machinery and TestInfo plumbing. All original awaited operations, titles, action counts and capture adapter/helper bodies are conserved. Nineteen cases are collected, zero browser cases executed. Private logs/source conservation are under the e2e-stage-correction case; no local resource, DB or browser was started.
+
+Private `stage-source-applicability-supplement.json` SHA `f934441484f718220fcf4b3e4535151e8a3ce97ad39e516e4f7a726a27cf7a53` binds the revised E2E source and updated hook lines to retained manifest dfb8's identical50 capture IDs, six hosts, states/viewports/conditions and narrow empty applicability. Fifty remain PLANNED, with zero PNGs earned here. This local preparation does not publish, cancel or rerun3498 hosted work. The separately frozen runtime endpoint packet `eb0b5393ec66d2cc6951436e693986941570bdaf2d3e4528ffcce499faa7cff2` records row4/ACL and API019/020 passing, with35 quote leaves still failing; P4 pre/post ten marks are true/null while checked create remains closed/COMMAND_CONFLICT. Exact internal cause and global privacy/key absence remain unproved; this marker delta was not part of that hosted source. Current delta targeted High and all final exact-candidate technical/DB/RLS/recovery/storage/browser/dashboard/original-image/PII/HUMAN/controller/UNCHANGED frontend-FIRST SAME6b209 wrapper qualification remain pending.
+
 ## Suggested Review Order
 
 Authors: `/root/final_g_evidence_high/producer_safety_build/implementation_author_gen2` (inherited implementation) and `/root/final_g_evidence_high/producer_safety_build/implementation_author_gen3` (current implementation and reconciliation), both Sol High.
-Refreshed against local K `914f4c92a40bef736f59cc4d3d65133bdec9bc5d` plus the same-generation-4 points()/story settlement repair. All seven protected sources remain byte-identical. K's targeted High identified one P2 lifecycle defect; this author-fixed delta is independently UNCONFIRMED until targeted follow-up, not a new broad review. Preserve admitted D `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`, original story baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f`, standing ed773/full56f0 references above, all13 callers/six hosts and14-finding/three-broad-round history. This guide is not development, visual or release acceptance.
+Refreshed against local `3498ecf306e8798e109bb9281d1f920413848732` plus same-generation-4 E2E stage/story preparation. All seven protected sources remain byte-identical. This delta is independently UNREVIEWED pending distinct targeted High; no fourth broad review or hosted acceptance is claimed. Preserve admitted D `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`, original story baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f`, standing ed773/full56f0 references above, all13 callers/six hosts and14-finding/three-broad-round history.
+
+### Closed attempt observation without changing the journey
+
+Fixed stages distinguish the last completed setup boundary from outside-setup; no dynamic test/DOM/auth/error values enter output. The once flag precedes synchronous output and every observer failure stays isolated. Fixtureless ordering intentionally provides no late-teardown/hard-kill guarantee. Baseline/current normalized AST and actual-source failure regressions bound this addition without runtime/cause credit.
+
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:9` — `const stageLines`: closed13-stage ASCII vocabulary and bounded complete lines.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:32` — `function emitFailure`: failed-attempt-only once-before-output isolation.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:45` — `test.afterEach`: synchronous metadata-only observer with no requested fixtures.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:86` — `async function signIn`: original awaits/errors preserved; successful shared setup marks outside-setup.
 
 ### Preserve original test facts and observe without changing authority
 
@@ -211,9 +230,9 @@ The actual startup error points to the local name `authorization`; a consistent 
 The runtime diagnosis showed the IF scanner meeting a bare CASE's THEN; five operand parentheses preserve the entire original expression and cutover security contract. Real PG body compilation remains unrun. The browser delta retains all existing functional cases/assertions and captures real feedback rather than inventing another business journey; upstream/capture failures fail the owning test, and original Buffer attachments survive the existing JSON route.
 
 - `supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql:145` — `length(domain->>k)>(case`: explicit text-bound operand grouping, with numeric/list/source comparisons handled identically.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:13` — `async function captureState`: typed original PNG-body attachment with per-viewport assertions and restoration.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:254` — `async function loseResponse`: real upstream then capture then abort, owned failure propagation and exact-route cleanup.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:218` — `"section-editor","empty"`: existing intermediate empty-row branch at both sizes, without another write or case.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:52` — `async function captureState`: typed original PNG-body attachment with per-viewport assertions and restoration.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:306` — `async function loseResponse`: real upstream then capture then abort, owned failure propagation and exact-route cleanup.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:270` — `"section-editor","empty"`: existing intermediate empty-row branch at both sizes, without another write or case.
 
 ### Checked tax-fixture admission without bypassing business rules
 
@@ -229,7 +248,7 @@ The six hosts dispatch their captured form explicitly inside a transition, preve
 
 - `src/components/calculations/CalculationList.tsx:310` — `onSubmit:`: captures and explicitly dispatches without an automatic form reset.
 - `src/components/calculations/TaxSettingsPanel.tsx:101` — `const taxOperation`: keeps the controller outside conditional clean-field remounts.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:351` — `pending A then draft B`: current C cannot replace B's original expected binding.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:403` — `pending A then draft B`: current C cannot replace B's original expected binding.
 - `src/features/calculations/form-parsing.ts:865` — `preflightEditorForm`: pure NEW admission never retires an earlier unknown operation.
 
 ### Complete expected content and atomic effects
@@ -266,7 +285,7 @@ P-1 has closed/missing/complete original shapes for thirteen callers. P-2/P-3 in
 - `tests/unit/features/calculations/editor-operation.test.ts:105` — `for(const [caller,validate,payload] of callers)`: thirteen original-fact validator contracts.
 - `tests/integration/commands/calculation-mutation-safety.int.test.ts:283` — `for(const effect`: every calculation effect retains replay/audit assertions.
 - `tests/integration/commands/quote-initial-mutation-safety.int.test.ts:233` — `real authorization lock`: current wall-clock expiry and terminal closure.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:335` — `tax pending A revalidation`: server refresh preserves controlled and uncontrolled later tax draft.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:387` — `tax pending A revalidation`: server refresh preserves controlled and uncontrolled later tax draft.
 
 Retained C3 execution at `e2e738efbb52354e90e99a7c21d8a6b939698798`: `gen3-C3-verification.json` and its raw evidence under `_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/` record focused units 190 passed, zero failed/skipped/TODO; sixteen actual-controller/panel/fault-function synthetic checks passed with zero failed/skipped/TODO; full TypeScript, production build, full lint and lockfile/service-role/built-bundle checks native 0. Full lint retains 40 warnings. Browser collection registers nineteen tests; browser execution is zero. The intermediate test typing failure is retained: fixture footprint helper names and an overly broad snapshot-client type were corrected by reusing the existing real command preparation seam, without a shared factory change. Earlier verification records remain historical; no unchanged full-unit diagnostic or superseded build qualifies changed source.
 
@@ -288,7 +307,7 @@ Retained consumer evidence: the previous type/lint/ten-check harness and inverse
 
 Current settlement evidence: the actual-source twelve-case red/green regression reproduces9fail/3pass before and12pass/0fail/skip/TODO after. Only points() changes, so original request/authenticated mutation/error identity/query text/functional assertions/timeouts/cleanup remain unchanged. Expected selected guard codes still observe; pre lifecycle failure stops RPC, post lifecycle failure fails, and original thrown RPC failure cannot be masked by a post-probe. No real DB/lock/physical settlement/privacy/browser evidence is earned.
 
-Limits: distinct targeted High follow-up and actual next ordinary diagnostic CI remain pending. Quote closure cause, four-row mismatch, calendar privacy/custody and separate Parent browser diagnosis are unresolved; protected SQL/E2E/fixture/ACL/unit/delivery/Seller do not change. Final technical/DB/RLS/recovery/storage/money-tax-quote-PDF/FULL browser/dashboard/original-image/PII/HUMAN/controller and unchanged frontend-FIRST SAME6b209 wrapper gates remain required. Source-round counts, standing owner/live-cutover/CRM/PR151/foreign holds are unchanged; no fourth broad review, native completion, visual N/A or deployment authority is invented.
+Current limits: this E2E-stage/story delta still requires distinct targeted High; no marker execution, new browser/PNG, physical cleanup, quote-cause or overall acceptance evidence is earned here. Earlier source/runtime observations retain their own revision and history. Final exact-candidate technical/DB/RLS/recovery/storage/money-tax-quote-PDF/FULL browser/dashboard/original-image/PII/HUMAN/controller and unchanged frontend-FIRST SAME6b209 wrapper gates remain required. Root owns checkpoint/publication; Parent folds state/report after author STOP. No fourth broad pass, native completion, visual N/A or deployment authority is invented.
 
 ## Review Triage Log
 

@@ -2,8 +2,47 @@
  * server + local fixture; no mocked successful command or browser-side money engine.
  */
 import { test, expect, type Page, type Locator, type TestInfo, type Request as BrowserRequest } from "@playwright/test";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeSync } from "node:fs";
 import path from "node:path";
+
+// Attempt-local checkpoints only; absence is UNKNOWN, never a root-cause claim.
+const stageLines = {
+  "before-marked-setup": "E35_8_STAGE before-marked-setup FAIL\n",
+  "login-open": "E35_8_STAGE login-open FAIL\n",
+  "login-ready": "E35_8_STAGE login-ready FAIL\n",
+  "login-submit": "E35_8_STAGE login-submit FAIL\n",
+  "login-destination": "E35_8_STAGE login-destination FAIL\n",
+  "create-page": "E35_8_STAGE create-page FAIL\n",
+  "create-open": "E35_8_STAGE create-open FAIL\n",
+  "create-input": "E35_8_STAGE create-input FAIL\n",
+  "create-context-ready": "E35_8_STAGE create-context-ready FAIL\n",
+  "create-submit": "E35_8_STAGE create-submit FAIL\n",
+  "editor-destination": "E35_8_STAGE editor-destination FAIL\n",
+  "editor-visible": "E35_8_STAGE editor-visible FAIL\n",
+  "outside-setup": "E35_8_STAGE outside-setup FAIL\n",
+} as const;
+type Stage = keyof typeof stageLines;
+const lastStage = new WeakMap<TestInfo, Stage>();
+const emitted = new WeakSet<TestInfo>();
+function mark(info: TestInfo, name: Stage) {
+  try {
+    if (typeof name === "string" && Object.hasOwn(stageLines, name)) lastStage.set(info, name);
+  } catch { /* Observation cannot change the original test outcome. */ }
+}
+function emitFailure(info: TestInfo) {
+  try {
+    if (emitted.has(info)) return;
+    const value = info.status;
+    if (value !== "failed" && value !== "timedOut" && value !== "interrupted") return;
+    emitted.add(info); // Claim once before any formatting/output attempt.
+    const name = lastStage.get(info);
+    const line = typeof name === "string" && Object.hasOwn(stageLines, name)
+      ? stageLines[name] : stageLines["before-marked-setup"];
+    writeSync(1, line); // Synchronous, bounded output: no callback or orphaned task.
+  } catch { /* Missing/partial marker remains UNKNOWN; never rethrow or retry. */ }
+}
+// Metadata-only hook intentionally requests no fixtures.
+test.afterEach(({}, info) => { emitFailure(info); });
 
 const captureViewports = [{ width: 1280, height: 900 }, { width: 360, height: 640 }] as const;
 type CaptureHost = "calculation-list" | "calculation-header" | "section-editor" | "row-editor" | "tax-settings" | "pre-quote-preview";
@@ -44,30 +83,43 @@ async function hydrated(locator: Locator) {
     tick();
   }));
 }
-async function signIn(page: Page) {
+async function signIn(page: Page, testInfo: TestInfo) {
   const account = fixture().adminA;
+  mark(testInfo, "login-open");
   await page.goto("/login");
   const submit = page.getByRole("button", { name: "Logga in" });
+  mark(testInfo, "login-ready");
   await hydrated(submit);
   await page.getByLabel("E-post").fill(account.email);
   await page.getByLabel("Lösenord").fill(account.password);
+  mark(testInfo, "login-submit");
   await submit.click();
+  mark(testInfo, "login-destination");
   await expect(page).toHaveURL(/\/dashboard/);
+  mark(testInfo, "outside-setup");
 }
-async function ownCalculation(page: Page) {
-  await signIn(page);
+async function ownCalculation(page: Page, testInfo: TestInfo) {
+  await signIn(page,testInfo);
+  mark(testInfo, "create-page");
   await page.goto("/calculations");
   const create = page.getByTestId("new-calculation");
+  mark(testInfo, "create-open");
   await hydrated(create);
   await create.click();
   const form = page.getByTestId("new-calculation-form");
   const title = `Safety ${crypto.randomUUID()}`;
+  mark(testInfo, "create-input");
   await form.getByLabel("Titel").fill(title);
   await form.getByLabel("Kund", { exact: true }).selectOption({ index: 1 });
+  mark(testInfo, "create-context-ready");
   await expect(form).toHaveAttribute("data-editor-ready", "true");
+  mark(testInfo, "create-submit");
   await form.getByRole("button", { name: "Skapa kalkyl" }).click();
+  mark(testInfo, "editor-destination");
   await expect(page).toHaveURL(/\/calculations\/[a-f0-9-]+$/);
+  mark(testInfo, "editor-visible");
   await expect(page.getByTestId("calculation-header")).toBeVisible();
+  mark(testInfo, "outside-setup");
   return page.url();
 }
 function headerForm(page: Page) { return page.getByTestId("calculation-header").locator("form").first(); }
@@ -75,7 +127,7 @@ function headerForm(page: Page) { return page.getByTestId("calculation-header").
 for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 }]) {
   test(`E35-8-T-unknown / confirmed: lost committed response retains original handle through remount (${viewport.width})`, async ({ page, context }, testInfo) => {
     await page.setViewportSize(viewport);
-    const url = await ownCalculation(page);
+    const url = await ownCalculation(page,testInfo);
     const form = headerForm(page);
     const title = `Committed ${crypto.randomUUID()}`;
     await hydrated(form.getByLabel("Titel"));
@@ -145,7 +197,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
 }
 
 test("E35-8-T-stale: an original header decision cannot overwrite the other tab's confirmed edit", async ({ page, context }, testInfo) => {
-  const url = await ownCalculation(page);
+  const url = await ownCalculation(page,testInfo);
   const other = await context.newPage();
   try {
     await other.goto(url);
@@ -173,7 +225,7 @@ test("E35-8-T-stale: an original header decision cannot overwrite the other tab'
 
 
 test("E35-8-T-late-result: original A cannot reset or save later unsent draft B",async({page,context},testInfo)=>{
-  const url=await ownCalculation(page);const form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");
+  const url=await ownCalculation(page,testInfo);const form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");
   const saved=`A ${crypto.randomUUID()}`,later=`B ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(saved);
   let release!:()=>void;const released=new Promise<void>(resolve=>release=resolve);let held=false, posts=0;
   await page.route("**/calculations/**",async route=>{if(route.request().method()!=="POST"||!route.request().headers()["next-action"]||!route.request().postData()?.includes("operation_id"))return route.continue();posts++;if(held)return route.continue();held=true;const response=await route.fetch();await released;await route.fulfill({response});});
@@ -187,7 +239,7 @@ test("E35-8-T-late-result: original A cannot reset or save later unsent draft B"
 });
 
 test("E35-8-T-connection-required / submitting / error-retry: unsent draft survives reconnect without automatic replay",async({page,context},testInfo)=>{
-  const url=await ownCalculation(page);const form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");const draft=`Offline ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(draft);
+  const url=await ownCalculation(page,testInfo);const form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");const draft=`Offline ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(draft);
   await context.setOffline(true);try{await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("status")).toContainText(/inte skickade/i);await expect(form.getByLabel("Titel")).toHaveValue(draft);await captureState(page,testInfo,"calculation-header","refused-unsent",form,async()=>{await expect(form.getByRole("status")).toContainText(/inte skickade/i);await expect(form.getByLabel("Titel")).toHaveValue(draft);});}finally{await context.setOffline(false);}
   const observer=await context.newPage();try{await observer.goto(url);await expect(headerForm(observer).getByLabel("Titel")).not.toHaveValue(draft);}finally{await observer.close();}
   await form.getByLabel("Titel").fill("   ");await form.getByRole("button",{name:"Spara titel"}).click();await expect(form.getByRole("alert")).toBeVisible();
@@ -196,7 +248,7 @@ test("E35-8-T-connection-required / submitting / error-retry: unsent draft survi
 });
 
 test("P-6 CalculationList: lost create response recovers the same target after remount",async({page,context},testInfo)=>{
-  await signIn(page);await page.goto("/calculations");await hydrated(page.getByTestId("new-calculation"));await page.getByTestId("new-calculation").click();const form=page.getByTestId("new-calculation-form");await expect(form).toHaveAttribute("data-editor-ready","true");const title=`Lost create ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(title);await form.getByLabel("Kund",{exact:true}).selectOption({index:1});
+  await signIn(page,testInfo);mark(testInfo,"create-page");await page.goto("/calculations");mark(testInfo,"create-open");await hydrated(page.getByTestId("new-calculation"));await page.getByTestId("new-calculation").click();const form=page.getByTestId("new-calculation-form");mark(testInfo,"create-context-ready");await expect(form).toHaveAttribute("data-editor-ready","true");mark(testInfo,"outside-setup");const title=`Lost create ${crypto.randomUUID()}`;await form.getByLabel("Titel").fill(title);await form.getByLabel("Kund",{exact:true}).selectOption({index:1});
   const loss=await loseResponse(page,"**/calculations",async()=>captureState(page,testInfo,"calculation-list","submitting",form,async()=>{await expect(form.locator('button[type="submit"]')).toBeDisabled();await expect(form.getByLabel("Titel")).toHaveValue(title);}));
   try {
     await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect.poll(loss.count).toBe(1);await loss.completed;await expect(form.getByRole("status")).toContainText(/obekräftat/i);
@@ -212,7 +264,7 @@ test("P-6 CalculationList: lost create response recovers the same target after r
 
 for(const host of ["section","row","tax","quote"] as const){
   test(`P-6 ${host}: real lost response retains separate identity and explicit proof recovery`,async({page,context},testInfo)=>{
-    const url=await ownCalculation(page);await addSection(page);
+    const url=await ownCalculation(page,testInfo);await addSection(page);
     if(host==="section"){
       const emptySection=page.getByTestId("section-editor").first();
       await captureState(page,testInfo,"section-editor","empty",emptySection,async()=>{
@@ -273,8 +325,8 @@ async function editorPostedRequest(request: BrowserRequest) {
   return {operationId:field("operation_id"),expected:JSON.parse(field("expected")),title:field("title")};
 }
 
-test("P-6 explicit original retry preserves later draft through reconcile and the next fresh submission",async({page,context})=>{
-  const url=await ownCalculation(page),form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");
+test("P-6 explicit original retry preserves later draft through reconcile and the next fresh submission",async({page,context},testInfo)=>{
+  const url=await ownCalculation(page,testInfo),form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");
   const a=`Original ${crypto.randomUUID()}`,b1=`During check ${crypto.randomUUID()}`,b2=`After check ${crypto.randomUUID()}`;
   const writes:Awaited<ReturnType<typeof editorPostedRequest>>[]=[];let lost=false,holdCheck=false,checkHeld=false;
   let releaseCheck!:()=>void;const released=new Promise<void>(resolve=>releaseCheck=resolve);
@@ -302,8 +354,8 @@ test("P-6 explicit original retry preserves later draft through reconcile and th
   }finally{releaseCheck();await observer.close();}
 });
 
-test("P-6 remount permits only matching reentered business request with original expected binding",async({page,context})=>{
-  const url=await ownCalculation(page),form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");
+test("P-6 remount permits only matching reentered business request with original expected binding",async({page,context},testInfo)=>{
+  const url=await ownCalculation(page,testInfo),form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");
   const original=`Reenter ${crypto.randomUUID()}`,later=`Different ${crypto.randomUUID()}`;let dropped=false;
   const writes:Awaited<ReturnType<typeof editorPostedRequest>>[]=[];
   await page.route("**/calculations/**",async route=>{const request=route.request();if(request.method()!=="POST"||!request.headers()["next-action"]||!request.postData()?.includes("operation_id"))return route.continue();writes.push(await editorPostedRequest(request));if(!dropped){dropped=true;return route.abort("failed");}return route.continue();});
@@ -318,8 +370,8 @@ test("P-6 remount permits only matching reentered business request with original
 });
 
 for(const refusal of ["offline","unresolved-scope","storage-read","storage-write"] as const){
-  test(`P-6 pre-dispatch ${refusal} preserves uncontrolled draft without issuing an operation`,async({page})=>{
-    const url=await ownCalculation(page);let writes=0;
+  test(`P-6 pre-dispatch ${refusal} preserves uncontrolled draft without issuing an operation`,async({page},testInfo)=>{
+    const url=await ownCalculation(page,testInfo);let writes=0;
     await page.route("**/calculations/**",async route=>{const r=route.request();if(r.method()!=="POST"||!r.headers()["next-action"])return route.continue();if(r.postData()?.includes("operation_id")){writes++;return route.continue();}return refusal==="unresolved-scope"?route.abort("failed"):route.continue();});
     if(refusal==="unresolved-scope")await page.reload();
     const form=headerForm(page);await hydrated(form.getByLabel("Titel"));
@@ -333,7 +385,7 @@ for(const refusal of ["offline","unresolved-scope","storage-read","storage-write
 }
 
 test("P-6 tax pending A revalidation preserves controlled allowance membership and newer B draft",async({page,context},testInfo)=>{
-  const url=await ownCalculation(page),form=page.getByTestId("tax-document-settings").locator("form");await expect(form).toHaveAttribute("data-editor-ready","true");
+  const url=await ownCalculation(page,testInfo),form=page.getByTestId("tax-document-settings").locator("form");await expect(form).toHaveAttribute("data-editor-ready","true");
   await form.getByLabel("Skatteavdrag",{exact:true}).selectOption("ROT");await form.getByLabel("Betalningsdatum för ROT",{exact:true}).fill("2026-11-13");
   await form.getByLabel("Person 1: ROT kvar (kr)").fill("1000");await form.getByLabel("Person 1: ROT/RUT kvar (kr)").fill("2000");
   let held=false;let release!:()=>void;const released=new Promise<void>(resolve=>release=resolve);
@@ -348,8 +400,8 @@ test("P-6 tax pending A revalidation preserves controlled allowance membership a
 });
 
 
-test("P-6 pending A then draft B cannot adopt concurrent C facts on a later server refresh",async({page,context})=>{
-  const url=await ownCalculation(page),form=headerForm(page),other=await context.newPage();
+test("P-6 pending A then draft B cannot adopt concurrent C facts on a later server refresh",async({page,context},testInfo)=>{
+  const url=await ownCalculation(page,testInfo),form=headerForm(page),other=await context.newPage();
   await expect(form).toHaveAttribute("data-editor-ready","true");const a=`A ${crypto.randomUUID()}`,b=`B ${crypto.randomUUID()}`,c=`C ${crypto.randomUUID()}`;
   let intercepted=false;let release!:()=>void;const released=new Promise<void>(resolve=>release=resolve);
   let upstreamComplete!:()=>void,upstreamFailed!:(error:unknown)=>void;const upstreamCompleted=new Promise<void>((resolve,reject)=>{upstreamComplete=resolve;upstreamFailed=reject;});
@@ -367,7 +419,7 @@ test("P-6 pending A then draft B cannot adopt concurrent C facts on a later serv
 });
 
 test("P-6 invalid new create is not admitted before correction",async({page},testInfo)=>{
-  await signIn(page);await page.goto("/calculations");await hydrated(page.getByTestId("new-calculation"));await page.getByTestId("new-calculation").click();const form=page.getByTestId("new-calculation-form");await expect(form).toHaveAttribute("data-editor-ready","true");let writes=0;
+  await signIn(page,testInfo);mark(testInfo,"create-page");await page.goto("/calculations");mark(testInfo,"create-open");await hydrated(page.getByTestId("new-calculation"));await page.getByTestId("new-calculation").click();const form=page.getByTestId("new-calculation-form");mark(testInfo,"create-context-ready");await expect(form).toHaveAttribute("data-editor-ready","true");mark(testInfo,"outside-setup");let writes=0;
   page.on("request",request=>{if(request.method()==="POST"&&request.headers()["next-action"]&&request.postData()?.includes("operation_id"))writes++;});
   await form.getByLabel("Kund",{exact:true}).selectOption({index:1});await form.getByLabel("Titel").fill("   ");await form.getByRole("button",{name:"Skapa kalkyl"}).click();await expect(form.getByRole("alert").first()).toBeVisible();await expect(form.getByLabel("Titel")).toHaveValue("   ");expect(writes).toBe(0);
   expect(await page.evaluate(()=>Object.keys(sessionStorage).filter(key=>key.startsWith("kopplas/editor/v1/")).length)).toBe(0);
