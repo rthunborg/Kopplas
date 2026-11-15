@@ -138,6 +138,7 @@ test.describe("Calculation editor UX (Story 5.2 E2E)", () => {
     const firstRowForm = page.getByTestId("row-edit-form").first();
     const sell = firstRowForm.getByLabel("Pris (kr)");
     await waitForHydrated(sell);
+    await expect(firstRowForm).toHaveAttribute("data-editor-ready", "true");
     await sell.fill("-50");
     await firstRowForm.getByRole("button", { name: /Spara rad/ }).click();
 
@@ -211,6 +212,7 @@ test.describe("Calculation editor UX (Story 5.2 E2E)", () => {
     const secondTitle = `Sektion B ${crypto.randomUUID().slice(0, 8)}`;
     await page.getByTestId("add-section").click();
     const addForm = page.getByTestId("add-section-form");
+    await expect(addForm).toHaveAttribute("data-editor-ready", "true");
     await addForm.getByLabel(/Sektionstitel/).fill(secondTitle);
     await addForm.getByRole("button", { name: /Skapa sektion/ }).click();
 
@@ -240,6 +242,7 @@ test.describe("Calculation editor UX (Story 5.2 E2E)", () => {
         }
       }
       if (idx <= 0) break; // already first (or not found) → done
+      await expect(page.getByTestId("section-move-up").nth(idx).locator("xpath=ancestor::form[1]")).toHaveAttribute("data-editor-ready", "true");
       await page.getByTestId("section-move-up").nth(idx).click();
       // Wait for the revalidated re-render before recomputing the index.
       await page.waitForTimeout(200);
@@ -261,6 +264,7 @@ test.describe("Calculation editor UX (Story 5.2 E2E)", () => {
     const uniqueTitle = `Ny sektion ${crypto.randomUUID().slice(0, 8)}`;
     await page.getByTestId("add-section").click();
     const addForm = page.getByTestId("add-section-form");
+    await expect(addForm).toHaveAttribute("data-editor-ready", "true");
     await addForm.getByLabel(/Sektionstitel/).fill(uniqueTitle);
     await addForm.getByRole("button", { name: /Skapa sektion/ }).click();
 

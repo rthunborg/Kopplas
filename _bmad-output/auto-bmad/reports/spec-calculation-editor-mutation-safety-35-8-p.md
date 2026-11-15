@@ -356,3 +356,39 @@ No workergloballedger/sibling/aggregate or privateadmissioncode operation.
 **⚠️ Needs human:** (none)
 
 **Next:** ALLsourceSTOP/final4freeze; Rootcheckpoint+targetedHigh then justifiedcandidatequalification. No acceptance/nativehandoff/merge/cutover.
+
+## Report — 2026-11-15T16:37:14Z (GEN5-CONSUMERS-PROVISIONAL)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `a4ed892`).
+**Pipeline status:** in-progress; release_ready:false; source corrections locally checked, actual current-candidate technical/visual/native completion UNVERIFIED. HEAD is existing P with an uncommitted six-file checkpoint pending Root; no speculative final SHA.
+**Continues:** Same original35.8/baseD/worker/claim, now actually admitted Gen5/68 under standinged773/full56f0. SourceauthorSTOPaf3d precedes sequential parent state/report only.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 50h 17m (≈25h 16m AI-run, ≈25h 01m human/idle wait); resumed 10×.
+
+**Phases run:** Normal state/report consolidation only. Existing provisional0-7/source-stage markers retained; no phase-done replay, Done transition, acceptance or completion wrapper.
+**Skipped:** No local managed runtime, PG/browser execution, artificialfixture/credentials, newtests or collection. Real fixture prerequisite retained; currentexecutedbrowser/PG/PNGs=0.
+
+**Overrides:** Existing standingcompletion ordering remains truthful across authorized/admitted generations; allfinalgates unchanged. Helper active_seconds90972 includes phase-wall waits; legacy AI-run/wait report labels are heuristics, model-processing duration UNKNOWN. Allearlier CURRENT annotations historical.
+
+**TEA:** Reuse adopted E2/ATDD/selectedautomate acfd sourcecoverage31paths; no redesign or executioncredit. Threechangedbaseline consumerfiles contain20originaldeclarations, not20newtests.
+
+**Build:** Gen5 source:11 per-write readybarriers plus separately qualified invalidVAT local-preflight/nodispatch/read-onlypersistedVAT hunk5858/plan2c4. First/final tsc0, targetedlint0 and sourceconservation0; SRO62references0 and normalreaderstandingprovisionaldone. PownedE2E420c/High566 source-only. Retained delivery6b209 byteunchanged/C5-scoped; no producerimplementation or finalqualificationPASS.
+
+**Review:** FullD..C5 source-reviewchain/3broadrounds/14findings preserved. Latest Gen5consumer+metadata targetedHigh and futureactualcandidateCI remainpending. No fourthbroadreview/counterreset.
+
+**Retrospective:** (none)
+
+**Open questions:**
+1. No newownerdecision solelyhash/phase; anyrealoutsideclass requirement mustbeconcretelyqualified. Existingpackagecontrolproposal remainsUNAPPLIED/no controlgrant.
+
+**Deferred work:**
+1. Existingfullbackend/runtime evidence is N/O-scoped; no transferofPASS. OINT04SQL23514+unitmissingVATnegative stayseparatefromlocalUIpreflightproof.
+2. CRM/PR151/foreignclaims/reservations/globalqueuesUNKNOWN andproductioncutoverholds retained.
+No globalledger/archive/aggregate/native/provider operation bythismetadatafold.
+
+**⚠️ Needs human:**
+1. Substantive exact-final-candidate visualacceptance only after actualtechnical/currentimages/package/controller readiness; not requested orgranted here. Liveapp/schema cutover remainsseparate.
+
+**Next:** Root freezes exactsixpaths, obtains targetedHigh, then normalexistingpublication/currentcandidateCI and necessaryfullbrowser/actual50frames. Retain OordinarySUCCESS vsOfullFAIL:496/40/22,new19=9pass10doublefail,sixlegacyfail,19of50frames. Currentruntimeunknown; alltechnical/HUMAN/controller/unchangedfrontend-FIRSTSAME6b209wrapper/nativehandoff stillrequired.
