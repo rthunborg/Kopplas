@@ -52,7 +52,7 @@ Preparation: gpt-6.1-sol High for transactional integrity, quote/money invariant
 
 ## Auto Run Result
 
-Current actual-generation-5 admitted consumer correction: technical `done` retains only standing owner-authorized PROVISIONAL IMPLEMENTATION-STAGE meaning. Native5/RUNNING68 and fresh author ACK precede Root release for three existing consumers plus ownstory. The readiness batch and separately qualified invalid-VAT consumer hunk are author-implemented and independently UNREVIEWED. Current-candidate browser behavior, cleanup and all final gates remain pending. Development UNACCEPTED, visual PENDING, release_ready=false; Parent state/report and core source remain protected.
+Current actual-generation-5 Q two-required runtime-consumer correction: technical `done` remains only standing owner-authorized PROVISIONAL IMPLEMENTATION-STAGE meaning. Q ordinary passed; Q full release failed, with owned17pass/two doubleFAIL and43of50 partial frames. This exact stale-copy/two-viewport quote source repair is author-implemented but independently UNREVIEWED and runtime UNVERIFIED. Development UNACCEPTED, visual PENDING, release_ready=false; Parent metadata/core/protected paths remain untouched until author STOP.
 
 ### Retained generation-3 provisional technical result at C5
 
@@ -238,10 +238,35 @@ The source-identified invalidSave/preflight conflict was held until distinct Hig
 
 Ten protected files, including the already-fixed owned E2E/SQL/P4/core/SAME6b209 and Parent state/report, remain exact. Standing full ed773/56f0, original14 findings/three broad rounds and all prior actual runtime/capture history remain. New delta targeted High, current-candidate required browser/DB/RLS/recovery/storage/full captures/PII/HUMAN/controller/UNCHANGED frontend-FIRST SAMEJSON wrapper and development acceptance remain pending; no fourth broad pass or native completion is claimed.
 
+## Actual generation-5 Q two-required runtime-consumer correction
+
+At Q `d0ea232b2ce12fb45ceab37e6185d8682e9f95b0`, frozen High plan `74221d92a56c642e8676e82df4c889c17bd5749c36feb6adfbf82e390b86e759` precedes fresh author ACK `d1be25b235135ebee18edb1ecbaa9d6ee75cb55799ece35325bd0d41fc0d8f48`, Root exact two-path release `532579e0f95ebf7a6df180ac50d0aba0442db7a25e4abe6fcfe873cdc3ffa1c9` and actual START `7342c544834fa8441f7a76a53528c0f864414a3f28675d1227f9617bb38d124d`. Current5/RUNNING68/baseD and standing full ed773/56f0 continue; no allocation, owner decision or fourth broad review is inferred.
+
+Actual Q ordinary PASS and full-release FAIL remain distinct: owned17 cases passed, stale-header and quote cases failed both attempts,43of50 required frame identities are partial, and all20 admitted-consumer cases/the six required regressions passed at Q. The stale failure reached the existing safe conflict sentence, not the old lexical regex; the quote failure reached desktop submitting capture, then hid that owning controller during mobile resize. Later assertions were not earned. Other24 full failures and22 skipped/unrun remain unwaived and are not diagnosed by this finite repair.
+
+Only stale-header's alert and its capture predicate now require the existing exact COMMAND_CONFLICT sentence; fresh winner/draft/no-success/independent reread assertions remain. The SAME logical quote case runs its complete original fresh owned calculation/section/row/tax-save/reviewed-quote journey separately at1280×900 and360×640, setting viewport BEFORE setup/open. Second setup reuses the same authenticated context; no new Auth user/sign-in, resource or target is added. Exactly one extra standard isolated journey per attempt is released (two total/maxfour with configured retry). Other host cases still run once. Quote submitting/unconfirmed/confirmed captures use existing currentViewportOnly, and the readonly target observer explicitly matches that journey viewport. No hidden controller state, prior quote or relabelled image is reused.
+
+Per-iteration route completion/removal and observer close settle before the next viewport; final exit restores the original viewport. The file-local cleanup wrapper preserves primary identity when cleanup succeeds or rethrows the same settled failure; distinct combined errors retain both original objects. No failed journey continues. Real fetch→pending capture→abort, error propagation, no-success/header isolation, explicit proof, independent target read and result-link assertions remain at EACH viewport.
+
+TypeScript/targeted lint and19-case collection pass native0 (zero browser execution). Exact inverse edits restore Q source bytes; original assertions/actions/titles are conserved except the two scoped copy replacements and three added viewport action sites. Five executions of the ACTUAL cleanup function verify ordering/primary/cleanup/combined/same-error behavior without a mirror implementation; these are not browser/PG/physical-cleanup evidence. `q-conservation.json` SHA `73d4b4447a8aa5d40594e93f66a8fea24ac1400921b6b432c5c5fc8d7940ccc7` and acyclic `q-capture-source-plan.json` SHA `903d4325e97ea90cd6764bacaf1842c98479e016f34918e1e5ecd761863a674e` bind the current source to the same50 planned IDs/six quote frames. Original PNG Buffer adapter/loss helper/closed marker remain byte-identical. First check/source-plan versions are retained privately.
+
+All101 protected paths, including three admitted consumers/SQL/P4/delivery6b209/Parent state-report and control/package/helper pins, remain exact. Package proposal is inactive/unapplied and outside this repair. Distinct targeted actual-code High and new-head runtime/all50 images/visual quality/HUMAN/controller/UNCHANGED frontend-FIRST SAME6b209 wrapper/final development gate remain required. No new-head runtime, image, cleanup, release-readiness or acceptance is claimed.
+
 ## Suggested Review Order
 
 Authors: `/root/final_g_evidence_high/producer_safety_build/implementation_author_gen2` (inherited implementation) and `/root/final_g_evidence_high/producer_safety_build/implementation_author_gen3` (current implementation and reconciliation), both Sol High.
-Refreshed against source parent P `a4ed892b27b276c64762b9838f011c1707cd7a5f`, actual generation5/RUNNING68 and admitted three-consumer readiness/story delta. Ten protected files remain byte-identical. This batch is independently UNREVIEWED; the exact invalid-VAT transport/preflight adaptation is separately source-qualified and still runtime UNVERIFIED. Preserve admitted D `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`, original story baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f`, standing full ed773/56f0, all13 producer callers/six hosts and original14 findings/three broad rounds. No fourth broad review or acceptance is claimed.
+Refreshed against Q `d0ea232b2ce12fb45ceab37e6185d8682e9f95b0`, current generation5/RUNNING68 and exact stale/quote two-path repair. All101 protected files remain byte-identical. Q17pass/two doubleFAIL/43of50 partial frames and20consumer/six-regression PASS retain Q provenance; this latest repair needs distinct targeted High and actual new-head runtime. Preserve baseD `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`, original story baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f`, standing full ed773/56f0,13 producer callers/six hosts and original14 findings/three broad rounds. No fourth broad review or acceptance is claimed.
+
+### Keep each quote operation on its actual owning viewport
+
+Desktop and mobile quote previews have distinct mounted controllers. A response-loss operation must stay on its actual visible form through pending, unconfirmed and explicit proof, so the second viewport gets a fresh complete journey before any opening/submission. The same test identity retains both full journeys, original PNG bytes and all six quote frame names. Cleanup is awaited before another viewport; failure cannot select a better attempt or suppress the primary error.
+
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:219` — `toHaveText`: exact stale-header safe conflict sentence, retaining the original winner/draft/no-success/reread assertions.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:224` — `toHaveText`: the actual stale-frame predicate matches the same existing contract.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:272` — `async function withProducerCleanup`: original/combined error objects propagate and every owned cleanup is awaited.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:289` — `for (const [journey, viewport]`: quote runs twice, other hosts once; each viewport is set before fresh setup.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:318` — `observer.setViewportSize`: independent quote read uses the same actual viewport, with owned close settled.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:319` — `captureState`: quote confirmed capture stays on the original visible owning form; submitting/unconfirmed use the same current-viewport option.
 
 ### Admit each existing consumer through its actual write form
 
@@ -266,10 +291,10 @@ Scope readiness is a server-projected operation prerequisite, distinct from hydr
 
 - `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:149` — `const original = await editorPostedRequest`: validates the selected operation/title before real fetch/capture/drop; scope actions continue normally.
 - `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:210` — `await expect(fresh)`: other-tab winner is operation-ready before its intentional write; stale original facts remain bound separately.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:311` — `async function addRow`: exact required Antal/Enhet textbox names retain original business values and row assertions.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:385` — `const tax=`: valid synthetic allowance pair precedes storage seam; unresolved-scope refusal remains intentionally exempt from readiness.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:353` — `toHaveText`: exact approved conflict copy leaves explicit original retry identity/draft/observer/fresh-decision assertions intact.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:426` — `toHaveText`: exact approved conflict copy retains A/B/C's existing no-success and independent C persistence assertions.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:334` — `async function addRow`: exact required Antal/Enhet textbox names retain original business values and row assertions.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:408` — `const tax=`: valid synthetic allowance pair precedes storage seam; unresolved-scope refusal remains intentionally exempt from readiness.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:376` — `toHaveText`: exact approved conflict copy leaves explicit original retry identity/draft/observer/fresh-decision assertions intact.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:449` — `toHaveText`: exact approved conflict copy retains A/B/C's existing no-success and independent C persistence assertions.
 
 ### Select the required customer by its actual accessible control name
 
@@ -277,7 +302,7 @@ Native single-select exposes combobox; its accessible name excludes the aria-hid
 
 - `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:113` — `getByRole("combobox"`: shared setup retains the same required customer choice before readiness/submit.
 - `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:257` — `getByRole("combobox"`: manual lost-create case preserves its selected customer and loss/reconcile assertions.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:434` — `getByRole("combobox"`: invalid-create case preserves preflight/nonadmission/correction expectations.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:457` — `getByRole("combobox"`: invalid-create case preserves preflight/nonadmission/correction expectations.
 
 ### Admit the active protected quote without admitting a historical parent
 
@@ -320,8 +345,8 @@ The runtime diagnosis showed the IF scanner meeting a bare CASE's THEN; five ope
 
 - `supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql:145` — `length(domain->>k)>(case`: explicit text-bound operand grouping, with numeric/list/source comparisons handled identically.
 - `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:52` — `async function captureState`: typed original PNG-body attachment with per-viewport assertions and restoration.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:312` — `async function loseResponse`: real upstream then capture then abort, owned failure propagation and exact-route cleanup.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:276` — `"section-editor","empty"`: existing intermediate empty-row branch at both sizes, without another write or case.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:335` — `async function loseResponse`: real upstream then capture then abort, owned failure propagation and exact-route cleanup.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:295` — `"section-editor","empty"`: existing intermediate empty-row branch at both sizes, without another write or case.
 
 ### Checked tax-fixture admission without bypassing business rules
 
@@ -337,7 +362,7 @@ The six hosts dispatch their captured form explicitly inside a transition, preve
 
 - `src/components/calculations/CalculationList.tsx:310` — `onSubmit:`: captures and explicitly dispatches without an automatic form reset.
 - `src/components/calculations/TaxSettingsPanel.tsx:101` — `const taxOperation`: keeps the controller outside conditional clean-field remounts.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:413` — `pending A then draft B`: current C cannot replace B's original expected binding.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:436` — `pending A then draft B`: current C cannot replace B's original expected binding.
 - `src/features/calculations/form-parsing.ts:865` — `preflightEditorForm`: pure NEW admission never retires an earlier unknown operation.
 
 ### Complete expected content and atomic effects
@@ -374,7 +399,7 @@ P-1 has closed/missing/complete original shapes for thirteen callers. P-2/P-3 in
 - `tests/unit/features/calculations/editor-operation.test.ts:105` — `for(const [caller,validate,payload] of callers)`: thirteen original-fact validator contracts.
 - `tests/integration/commands/calculation-mutation-safety.int.test.ts:283` — `for(const effect`: every calculation effect retains replay/audit assertions.
 - `tests/integration/commands/quote-initial-mutation-safety.int.test.ts:360` — `real authorization lock`: current wall-clock expiry and terminal closure.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:397` — `tax pending A revalidation`: server refresh preserves controlled and uncontrolled later tax draft.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:420` — `tax pending A revalidation`: server refresh preserves controlled and uncontrolled later tax draft.
 
 Retained C3 execution at `e2e738efbb52354e90e99a7c21d8a6b939698798`: `gen3-C3-verification.json` and its raw evidence under `_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/` record focused units 190 passed, zero failed/skipped/TODO; sixteen actual-controller/panel/fault-function synthetic checks passed with zero failed/skipped/TODO; full TypeScript, production build, full lint and lockfile/service-role/built-bundle checks native 0. Full lint retains 40 warnings. Browser collection registers nineteen tests; browser execution is zero. The intermediate test typing failure is retained: fixture footprint helper names and an overly broad snapshot-client type were corrected by reusing the existing real command preparation seam, without a shared factory change. Earlier verification records remain historical; no unchanged full-unit diagnostic or superseded build qualifies changed source.
 
@@ -396,7 +421,7 @@ Retained consumer evidence: the previous type/lint/ten-check harness and inverse
 
 Current settlement evidence: the actual-source twelve-case red/green regression reproduces9fail/3pass before and12pass/0fail/skip/TODO after. Only points() changes, so original request/authenticated mutation/error identity/query text/functional assertions/timeouts/cleanup remain unchanged. Expected selected guard codes still observe; pre lifecycle failure stops RPC, post lifecycle failure fails, and original thrown RPC failure cannot be masked by a post-probe. No real DB/lock/physical settlement/privacy/browser evidence is earned.
 
-Current limits: generation5 readiness/story delta still needs targeted High and actual current-candidate execution. The newly released invalid-VAT local non-dispatch/persistence observation is source-implemented but its real browser/cleanup behavior remains unverified; it does not substitute for server negatives. O558 inventory/O9pass10fail/six required legacy failures and partial captures retain their actual revisions; declaration conservation is not browser/PG proof. All final current-candidate technical/DB/RLS/recovery/storage/money-tax-quote-PDF/FULL browser/dashboard/original-image/PII/HUMAN/controller and unchanged frontend-FIRST SAME6b209 wrapper requirements remain. Root owns checkpoint/publication and Parent metadata follows author STOP; no fourth broad pass, native completion, visual N/A or deployment authority is invented.
+Current limits: Q stale/quote source repairs require distinct targeted High and actual new-head execution of later stale assertions, both quote journeys/all six quote frames, owned19/all50 images and final gates. Q ordinary PASS/full FAIL and all20consumer/six-regression PASS remain Q-scoped. Other24 failures and22 skipped/unrun are unwaived; no causal or package/method exception is inferred. Final technical/DB/RLS/recovery/storage/money-tax-quote-PDF/FULL browser/dashboard/original-image/PII/HUMAN/controller and unchanged frontend-FIRST SAME6b209 wrapper remain required. Root owns checkpoint/publication; Parent metadata follows author STOP. No fourth broad pass, native completion, visual N/A, live cutover or deployment authority is invented.
 
 ## Review Triage Log
 

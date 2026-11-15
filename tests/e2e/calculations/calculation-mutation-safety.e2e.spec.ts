@@ -98,8 +98,8 @@ async function signIn(page: Page, testInfo: TestInfo) {
   await expect(page).toHaveURL(/\/dashboard/);
   mark(testInfo, "outside-setup");
 }
-async function ownCalculation(page: Page, testInfo: TestInfo) {
-  await signIn(page,testInfo);
+async function ownCalculation(page: Page, testInfo: TestInfo, reuseAuthenticated = false) {
+  if (!reuseAuthenticated) await signIn(page,testInfo);
   mark(testInfo, "create-page");
   await page.goto("/calculations");
   const create = page.getByTestId("new-calculation");
@@ -216,12 +216,12 @@ test("E35-8-T-stale: an original header decision cannot overwrite the other tab'
     await expect(fresh.getByRole("status")).toContainText(/sparats/);
     await stale.getByRole("button", { name: "Spara titel" }).click();
     await expect(stale.getByText("Kalkylen har sparats.")).toHaveCount(0);
-    await expect(stale.getByRole("alert")).toContainText(/ändrat|ändrats|inaktuell|uppdatera/i);
+    await expect(stale.getByRole("alert")).toHaveText("Åtgärden kunde inte slutföras på grund av en konflikt. Försök igen.");
     await expect(stale.getByLabel("Titel")).toHaveValue("Retained unsent old decision");
     await other.reload();
     await expect(headerForm(other).getByLabel("Titel")).toHaveValue(winner);
     await captureState(page, testInfo, "calculation-header", "stale", stale, async () => {
-      await expect(stale.getByRole("alert")).toContainText(/ändrat|ändrats|inaktuell|uppdatera/i);
+      await expect(stale.getByRole("alert")).toHaveText("Åtgärden kunde inte slutföras på grund av en konflikt. Försök igen.");
       await expect(stale.getByLabel("Titel")).toHaveValue("Retained unsent old decision");
       await expect(stale.getByText("Kalkylen har sparats.")).toHaveCount(0);
     });
@@ -268,43 +268,66 @@ test("P-6 CalculationList: lost create response recovers the same target after r
   } finally { await loss.remove(); }
 });
 
+/** Settle owned cleanup without hiding a primary failure or continuing a failed journey. */
+async function withProducerCleanup(run: () => Promise<void>, cleanup: () => Promise<void>) {
+  let failed = false, primary: unknown;
+  try { await run(); } catch (error) { failed = true; primary = error; }
+  try { await cleanup(); }
+  catch (error) {
+    if (failed && error === primary) throw primary; // remove() can rethrow the same settled operation failure.
+    if (failed) throw new AggregateError([primary, error], "Producer journey and cleanup failed");
+    throw error;
+  }
+  if (failed) throw primary;
+}
+
 for(const host of ["section","row","tax","quote"] as const){
   test(`P-6 ${host}: real lost response retains separate identity and explicit proof recovery`,async({page,context},testInfo)=>{
-    const url=await ownCalculation(page,testInfo);await addSection(page);
-    if(host==="section"){
-      const emptySection=page.getByTestId("section-editor").first();
-      await captureState(page,testInfo,"section-editor","empty",emptySection,async()=>{
-        await expect(emptySection.getByText("Inga rader ännu i den här sektionen.",{exact:true})).toBeVisible();
-        await expect(emptySection.getByTestId("row-edit-form")).toHaveCount(0);
-        await expect(emptySection.getByLabel("Sektionstitel",{exact:true})).toHaveValue("Safety section");
-      });
-    }
-    await addRow(page);
-    if(host==="quote"){const tax=page.getByTestId("tax-document-settings").locator("form");await expect(tax).toHaveAttribute("data-editor-ready","true");await tax.getByRole("button",{name:"Spara skatte- och momsuppgifter"}).click();await expect(tax.getByRole("status")).toContainText(/sparats/);await page.getByTestId("create-quote").filter({visible:true}).click();}
-    const form=host==="section"?page.getByTestId("section-editor").first().locator("form").filter({has:page.getByRole("button",{name:"Spara sektion"})}):host==="row"?page.getByTestId("row-edit-form").first():host==="tax"?page.getByTestId("tax-document-settings").locator("form"):page.getByTestId("pre-quote-preview").locator("form");
-    await expect(form).toHaveAttribute("data-editor-ready","true");const value=`Uncertain ${host} ${crypto.randomUUID()}`;
-    if(host==="section")await form.getByLabel("Sektionstitel").fill(value);if(host==="row")await form.getByLabel("Etikett (visas i offert)").fill(value);
-    const captureHost:CaptureHost=host==="section"?"section-editor":host==="row"?"row-editor":host==="tax"?"tax-settings":"pre-quote-preview";
-    const assertValues=async()=>{if(host==="section")await expect(form.getByLabel("Sektionstitel")).toHaveValue(value);if(host==="row")await expect(form.getByLabel("Etikett (visas i offert)")).toHaveValue(value);if(host==="tax")await expect(form.getByLabel("Momshantering")).toHaveValue("STANDARD_VAT_25");if(host==="quote")await expect(form.getByTestId("confirm-create-quote-version")).toBeVisible();};
-    const button=host==="quote"?form.getByTestId("confirm-create-quote-version"):form.getByRole("button",{name:host==="section"?"Spara sektion":host==="row"?"Spara rad":"Spara skatte- och momsuppgifter"});
-    const loss=await loseResponse(page,"**/calculations/**",async()=>captureState(page,testInfo,captureHost,"submitting",form,async()=>{await expect(form.locator('button[type="submit"]')).toBeDisabled();await assertValues();}));
-    try {
-      await button.click();await expect.poll(loss.count).toBe(1);await loss.completed;await expect(form.getByRole("status")).toContainText(/obekräftat/i);
-      await captureState(page,testInfo,captureHost,"unconfirmed",form,async()=>{await expect(form.getByRole("status")).toContainText(/obekräftat/i);await assertValues();});
-      // Neighboring header form is never confirmed by this operation.
-      await expect(headerForm(page).getByText("Kalkylen har sparats.")).toHaveCount(0);
-      await form.getByRole("button",{name:"Kontrollera resultat"}).click();await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await loss.remove();
-      if(host==="quote"){
-        const resultLink=form.getByRole("link",{name:"Öppna bekräftat resultat"}),target=await resultLink.getAttribute("href");if(!target)throw new Error("Missing confirmed quote target");
-        const observer=await context.newPage();try{await observer.goto(target);await expect(observer).toHaveURL(/\/quotes\/[^/]+\/versions\/[^/]+$/);}finally{await observer.close();}
-        await captureState(page,testInfo,captureHost,"confirmed",form,async()=>{await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await expect(resultLink).toBeVisible();});
-        await form.getByRole("link",{name:"Öppna bekräftat resultat"}).click();await expect(page).toHaveURL(/\/quotes\/[^/]+\/versions\/[^/]+$/);
+    const originalViewport = page.viewportSize();
+    if (host === "quote" && !originalViewport) throw new Error("Producer quote requires a concrete viewport");
+    await withProducerCleanup(async () => {
+      for (const [journey, viewport] of (host === "quote" ? captureViewports : [null]).entries()) {
+        if (viewport) await page.setViewportSize(viewport);
+        // A fresh calculation/quote per viewport, using the same authenticated context.
+        const url=await ownCalculation(page,testInfo,journey > 0);await addSection(page);
+        if(host==="section"){
+          const emptySection=page.getByTestId("section-editor").first();
+          await captureState(page,testInfo,"section-editor","empty",emptySection,async()=>{
+            await expect(emptySection.getByText("Inga rader ännu i den här sektionen.",{exact:true})).toBeVisible();
+            await expect(emptySection.getByTestId("row-edit-form")).toHaveCount(0);
+            await expect(emptySection.getByLabel("Sektionstitel",{exact:true})).toHaveValue("Safety section");
+          });
+        }
+        await addRow(page);
+        if(host==="quote"){const tax=page.getByTestId("tax-document-settings").locator("form");await expect(tax).toHaveAttribute("data-editor-ready","true");await tax.getByRole("button",{name:"Spara skatte- och momsuppgifter"}).click();await expect(tax.getByRole("status")).toContainText(/sparats/);await page.getByTestId("create-quote").filter({visible:true}).click();}
+        const form=host==="section"?page.getByTestId("section-editor").first().locator("form").filter({has:page.getByRole("button",{name:"Spara sektion"})}):host==="row"?page.getByTestId("row-edit-form").first():host==="tax"?page.getByTestId("tax-document-settings").locator("form"):page.getByTestId("pre-quote-preview").locator("form");
+        await expect(form).toHaveAttribute("data-editor-ready","true");const value=`Uncertain ${host} ${crypto.randomUUID()}`;
+        if(host==="section")await form.getByLabel("Sektionstitel").fill(value);if(host==="row")await form.getByLabel("Etikett (visas i offert)").fill(value);
+        const captureHost:CaptureHost=host==="section"?"section-editor":host==="row"?"row-editor":host==="tax"?"tax-settings":"pre-quote-preview";
+        const assertValues=async()=>{if(host==="section")await expect(form.getByLabel("Sektionstitel")).toHaveValue(value);if(host==="row")await expect(form.getByLabel("Etikett (visas i offert)")).toHaveValue(value);if(host==="tax")await expect(form.getByLabel("Momshantering")).toHaveValue("STANDARD_VAT_25");if(host==="quote")await expect(form.getByTestId("confirm-create-quote-version")).toBeVisible();};
+        const button=host==="quote"?form.getByTestId("confirm-create-quote-version"):form.getByRole("button",{name:host==="section"?"Spara sektion":host==="row"?"Spara rad":"Spara skatte- och momsuppgifter"});
+        const loss=await loseResponse(page,"**/calculations/**",async()=>captureState(page,testInfo,captureHost,"submitting",form,async()=>{await expect(form.locator('button[type="submit"]')).toBeDisabled();await assertValues();},host==="quote"));
+        await withProducerCleanup(async () => {
+          await button.click();await expect.poll(loss.count).toBe(1);await loss.completed;await expect(form.getByRole("status")).toContainText(/obekräftat/i);
+          await captureState(page,testInfo,captureHost,"unconfirmed",form,async()=>{await expect(form.getByRole("status")).toContainText(/obekräftat/i);await assertValues();},host==="quote");
+          // Neighboring header form is never confirmed by this operation.
+          await expect(headerForm(page).getByText("Kalkylen har sparats.")).toHaveCount(0);
+          await form.getByRole("button",{name:"Kontrollera resultat"}).click();await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await loss.remove();
+          if(host==="quote"){
+            const resultLink=form.getByRole("link",{name:"Öppna bekräftat resultat"}),target=await resultLink.getAttribute("href");if(!target)throw new Error("Missing confirmed quote target");
+            const observer=await context.newPage();await withProducerCleanup(async()=>{if(viewport)await observer.setViewportSize(viewport);await observer.goto(target);await expect(observer).toHaveURL(/\/quotes\/[^/]+\/versions\/[^/]+$/);},async()=>{await observer.close();});
+            await captureState(page,testInfo,captureHost,"confirmed",form,async()=>{await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await expect(resultLink).toBeVisible();},true);
+            await form.getByRole("link",{name:"Öppna bekräftat resultat"}).click();await expect(page).toHaveURL(/\/quotes\/[^/]+\/versions\/[^/]+$/);
+          }
+          else {
+            const observer=await context.newPage();try{await observer.goto(url);if(host==="section")await expect(observer.getByLabel("Sektionstitel").first()).toHaveValue(value);if(host==="row")await expect(observer.getByLabel("Etikett (visas i offert)").first()).toHaveValue(value);if(host==="tax")await expect(observer.getByLabel("Momshantering")).toHaveValue("STANDARD_VAT_25");}finally{await observer.close();}
+            await captureState(page,testInfo,captureHost,"confirmed",form,async()=>{await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await assertValues();});
+          }
+        }, async () => { await loss.remove(); });
       }
-      else {
-        const observer=await context.newPage();try{await observer.goto(url);if(host==="section")await expect(observer.getByLabel("Sektionstitel").first()).toHaveValue(value);if(host==="row")await expect(observer.getByLabel("Etikett (visas i offert)").first()).toHaveValue(value);if(host==="tax")await expect(observer.getByLabel("Momshantering")).toHaveValue("STANDARD_VAT_25");}finally{await observer.close();}
-        await captureState(page,testInfo,captureHost,"confirmed",form,async()=>{await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);await assertValues();});
-      }
-    } finally { await loss.remove(); }
+    }, async () => {
+      if (host === "quote" && originalViewport) await page.setViewportSize(originalViewport);
+    });
   });
 }
 async function addSection(page:Page){await page.getByTestId("add-section").click();const form=page.getByTestId("add-section-form");await expect(form).toHaveAttribute("data-editor-ready","true");await form.getByLabel("Sektionstitel").fill("Safety section");await form.getByRole("button",{name:"Skapa sektion"}).click();await expect(page.getByTestId("section-editor")).toHaveCount(1);}
