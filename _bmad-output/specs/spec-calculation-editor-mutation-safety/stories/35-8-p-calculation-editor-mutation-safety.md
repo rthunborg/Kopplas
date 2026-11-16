@@ -286,27 +286,43 @@ Root reporting-only release `8afb3dd89fa6cdc02f8d469962bc5098d70d4716c3c8de126e6
 
 Typecheck/targeted lint/19-case collection pass native0 (zero execution). Private `reporting-source-conservation.json` SHA `aad577e1c1c0c35f7f374af2ea167a6bbc19c7fde2f7e68c605bb1b5e784ed01` proves exact reporting inverse, unchanged case bodies/17 capture calls/181 matcher identities/order and original50 IDs, PNG Buffer, all ratio1/control/container checks/scroll/transport/cleanup/timeouts/retry. Numeric context reads no values/HTML/Auth/traffic; header-only min-w-0 and all other source remain exact. Private command logs are in `U-header-framing-diagnostic-3b9f7cf8-2c5f-4782-a63d-a59fa1f03b0f`. Missing facts, targeted latest-delta High/new ordinary21/202/current50, physical/privacy settlement, required dashboard/final technical/PII/accessibility/HUMAN/controller and UNCHANGED frontend-FIRST SAME6b209 wrapper remain pending. Historical14 findings/three broad rounds/standing full ed773/56f0 persist; no fourth broad pass or acceptance is claimed.
 
+## Same-generation-6 measured vertical framing repair
+
+Actual V `05f34458719404969203bd0a59d8b9c53fde85f8` run43860698343 retains201 expected/one unexpected/zero skipped or flaky; both failed invalid360 attempts now contain original pixels and identical numeric bounds. Form height190.03125 fits viewport640, but form/input/save bottom640.28125 clips0.28125 CSSpx; horizontal bounds fit. This proves V's actual vertical clip, not a harmless ratio anomaly. U's earlier failing geometry remains unobserved rather than retrofilled. Failed V originals remain diagnostic/ineligible canonical, and later control/valid-save assertions remain unearned.
+
+Root release `2169be5f9e5fc19f2a7ec08d98b0e72016928acf7f133dfaaced9df1c3017b12`, independent measured engineeringGO `d6469c4aac0ec88c8f0944a85fb8e91eff6816ede82e1c0b3f0781b822a9654b` and BEFORE-WRITE START `cf8016fd83b058b28f35c6fb788dc884f4638e7629e63172dd7e8c39aa3b6870` bind unchanged actual6/RUNNING69/baseD. Only header capture framing changes: retain the stable form wait, then one awaited native scrollBy using the same form's actual top/height and viewport height, left0/instant. It centers vertically before state/PNG/snapshot/strict checks, preserves horizontal position and makes no DOM/style/value mutation. All ratio1/control/container guards stay exact; no centering after PNG/snapshot, new case/ID, tolerance, retry or timeout change is used.
+
+Current typecheck/targeted lint/19-case collection pass native0 (zero execution). Private `vertical-source-conservation.json` SHA `1455132dc4005e22af887b551595dd24b9213b9a195dc35c316827761f81746f` proves exact vertical-block inverse and unchanged181 full matcher expressions/messages/order, case bodies/17 capture hooks/50 IDs/PNG/context/transport/finally/cleanup. The observed-V arithmetic predicts top224.984375/bottom415.015625 only; it is not a browser result or permanent-cause claim. Private logs are in `V-header-vertical-centering-4479533e-d758-4995-bbcc-5930da1a94b1`. Appb721 and all protected source remain exact. U dashboard82 remains U execution: any reuse needs independent unchanged tracked-input closure to the final head; no retagging. Broader U511/25/22/unknown causes and prior failures remain disclosed. Latest-delta High/new-head ordinary21/202/current50/technical/physical+privacy settlement/PII/accessibility/HUMAN/controller/UNCHANGED frontend-FIRST SAME6b209 wrapper remain pending. Standing full ed773/56f0 and original14 findings/three broad rounds persist; no fourth broad review or acceptance is claimed.
+
 ## Suggested Review Order
 
 Authors: `/root/final_g_evidence_high/producer_safety_build/implementation_author_gen2` (inherited implementation) and `/root/final_g_evidence_high/producer_safety_build/implementation_author_gen3` (current implementation and reconciliation), both Sol High.
-Refreshed against source U `5a1ebe0104f3c2b53ead26457e34ba7cba06715d`, actual generation6/RUNNING69 and reporting-only captureState/story changes. Start with preserved failure evidence, then unchanged strict mobile/reorder/method and producer boundaries. U201 expected/one unexpected (two failed attempts) retain U provenance; missing invalid360 geometry is not a rounding diagnosis or framing PASS. Latest delta needs targeted High and actual missing-facts execution; all guards remain unchanged. Preserve baseD `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`, original baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f`, standing full ed773/56f0,13 callers/six hosts and original14 findings/three broad rounds. T202/50 and older failures retain exact scope; no fourth broad review or acceptance is claimed.
+Refreshed against source V `05f34458719404969203bd0a59d8b9c53fde85f8`, actual generation6/RUNNING69 and the measured vertical-only capture/story repair. Start with its actual0.28125px clip and deterministic framing, then unchanged failure reporting/strict mobile/reorder/method and producer boundaries. V201 expected/one unexpected/two failed attempts retain V scope; actual new-head sufficiency is pending. U's missing geometry is not retrofilled, dashboard82 remains U-only and reuse requires independent unchanged final-input closure. Preserve baseD `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`, original baseline `3a2fe5a565e2627b45b9b46880e26966ef0cd23f`, standing full ed773/56f0,13 callers/six hosts and original14 findings/three broad rounds. No fourth broad review or acceptance is claimed.
+
+### Center the actual form without relaxing its bounds
+
+V's real190.03125px form fits the640px viewport but native needed-scroll leaves0.28125px below its edge. One immediate vertical-only native centering step follows the stable wait; all original ratio1 and local/viewport checks still decide whether the actual frame fits. It neither changes app layout nor hides horizontal overflow.
+
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:65` — `form.scrollIntoViewIfNeeded`: retains the original stable readiness wait.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:68` — `window.scrollBy`: moves only vertically with actual bounds and instant behavior.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:96` — `Header framing`: retains strict ratio1 and its numeric diagnostic context.
 
 ### Retain the original frame when a strict guard fails
 
 A geometry assertion previously stopped before preserving its failing pixels. The same original PNG is retained after real-state assertions and before geometry; fixed numeric bounds contextualize the first strict check without reading business values. Early attachment is diagnostic, and failed attempts never become canonical image evidence.
 
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:69` — `page.screenshot`: retains original viewport pixels after real scroll/state assertions.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:72` — `const geometry`: snapshots only closed numeric rectangles and viewport/scroll facts.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:89` — `Header framing`: adds context while preserving the same form ratio1 guard.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:76` — `page.screenshot`: retains original viewport pixels after real scroll/state assertions.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:79` — `const geometry`: snapshots only closed numeric rectangles and viewport/scroll facts.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:96` — `Header framing`: adds context while preserving the same form ratio1 guard.
 
 ### Keep the mobile title action inside its real form
 
 The unchanged D title row allowed the input's intrinsic width to push save off-card. The existing field wrapper now permits shrinking; P-6/P-7 capture checks frame the full real form and retain strict actual control bounds; original PNGs are now attached early for failed-guard diagnosis, with acceptance gated on complete flow success. A passing click that auto-scrolls horizontally is insufficient responsive evidence.
 
 - `src/components/calculations/CalculationEditor.tsx:362` — `min-w-0 flex-1`: permits the title field to shrink beside save.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:64` — `form.scrollIntoViewIfNeeded`: frames real header feedback and controls together.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:89` — `toBeInViewport`: requires whole form and both controls visibly within viewport.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:105` — `inputInContainer`: checks native input/save bounds against form/header/viewport.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:65` — `form.scrollIntoViewIfNeeded`: frames real header feedback and controls together.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:96` — `toBeInViewport`: requires whole form and both controls visibly within viewport.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:112` — `inputInContainer`: checks native input/save bounds against form/header/viewport.
 
 ### Confirm every adjacent reorder before another intent
 
@@ -327,12 +343,12 @@ The existing ordinary CI command now includes the six approved calculation/quote
 
 Desktop and mobile quote previews have distinct mounted controllers. A response-loss operation must stay on its actual visible form through pending, unconfirmed and explicit proof, so the second viewport gets a fresh complete journey before any opening/submission. The same test identity retains both full journeys, original PNG bytes and all six quote frame names. Cleanup is awaited before another viewport; failure cannot select a better attempt or suppress the primary error.
 
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:262` — `toHaveText`: exact stale-header safe conflict sentence, retaining the original winner/draft/no-success/reread assertions.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:267` — `toHaveText`: the actual stale-frame predicate matches the same existing contract.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:315` — `async function withProducerCleanup`: original/combined error objects propagate and every owned cleanup is awaited.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:332` — `for (const [journey, viewport]`: quote runs twice, other hosts once; each viewport is set before fresh setup.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:361` — `observer.setViewportSize`: independent quote read uses the same actual viewport, with owned close settled.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:362` — `captureState`: quote confirmed capture stays on the original visible owning form; submitting/unconfirmed use the same current-viewport option.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:269` — `toHaveText`: exact stale-header safe conflict sentence, retaining the original winner/draft/no-success/reread assertions.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:274` — `toHaveText`: the actual stale-frame predicate matches the same existing contract.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:322` — `async function withProducerCleanup`: original/combined error objects propagate and every owned cleanup is awaited.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:339` — `for (const [journey, viewport]`: quote runs twice, other hosts once; each viewport is set before fresh setup.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:368` — `observer.setViewportSize`: independent quote read uses the same actual viewport, with owned close settled.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:369` — `captureState`: quote confirmed capture stays on the original visible owning form; submitting/unconfirmed use the same current-viewport option.
 
 ### Admit each existing consumer through its actual write form
 
@@ -355,20 +371,20 @@ The former consumers wait for hydration but the new mutation controller resolves
 
 Scope readiness is a server-projected operation prerequisite, distinct from hydrated listeners. Response loss must target the actual operation, not a same-route scope call. Valid tax data must precede an intended storage failure so preflight does not replace that seam. The exact two conflict sentences follow the existing central contract after separate High confirmation; all persistence/identity/draft assertions remain substantive runtime obligations.
 
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:192` — `const original = await editorPostedRequest`: validates the selected operation/title before real fetch/capture/drop; scope actions continue normally.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:253` — `await expect(fresh)`: other-tab winner is operation-ready before its intentional write; stale original facts remain bound separately.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:377` — `async function addRow`: exact required Antal/Enhet textbox names retain original business values and row assertions.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:451` — `const tax=`: valid synthetic allowance pair precedes storage seam; unresolved-scope refusal remains intentionally exempt from readiness.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:419` — `toHaveText`: exact approved conflict copy leaves explicit original retry identity/draft/observer/fresh-decision assertions intact.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:492` — `toHaveText`: exact approved conflict copy retains A/B/C's existing no-success and independent C persistence assertions.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:199` — `const original = await editorPostedRequest`: validates the selected operation/title before real fetch/capture/drop; scope actions continue normally.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:260` — `await expect(fresh)`: other-tab winner is operation-ready before its intentional write; stale original facts remain bound separately.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:384` — `async function addRow`: exact required Antal/Enhet textbox names retain original business values and row assertions.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:458` — `const tax=`: valid synthetic allowance pair precedes storage seam; unresolved-scope refusal remains intentionally exempt from readiness.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:426` — `toHaveText`: exact approved conflict copy leaves explicit original retry identity/draft/observer/fresh-decision assertions intact.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:499` — `toHaveText`: exact approved conflict copy retains A/B/C's existing no-success and independent C persistence assertions.
 
 ### Select the required customer by its actual accessible control name
 
 Native single-select exposes combobox; its accessible name excludes the aria-hidden required star that exact label-text matching includes. These three same-form receiver substitutions keep customer selection and all later business assertions intact. Exact inverse bytes prove the narrow edit; collection is not browser execution or proof of sole cause/sufficiency.
 
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:156` — `getByRole("combobox"`: shared setup retains the same required customer choice before readiness/submit.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:300` — `getByRole("combobox"`: manual lost-create case preserves its selected customer and loss/reconcile assertions.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:500` — `getByRole("combobox"`: invalid-create case preserves preflight/nonadmission/correction expectations.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:163` — `getByRole("combobox"`: shared setup retains the same required customer choice before readiness/submit.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:307` — `getByRole("combobox"`: manual lost-create case preserves its selected customer and loss/reconcile assertions.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:507` — `getByRole("combobox"`: invalid-create case preserves preflight/nonadmission/correction expectations.
 
 ### Admit the active protected quote without admitting a historical parent
 
@@ -388,7 +404,7 @@ Fixed stages distinguish the last completed setup boundary from outside-setup; n
 - `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:9` — `const stageLines`: closed13-stage ASCII vocabulary and bounded complete lines.
 - `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:32` — `function emitFailure`: failed-attempt-only once-before-output isolation.
 - `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:45` — `test.afterEach`: synchronous metadata-only observer with no requested fixtures.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:129` — `async function signIn`: original awaits/errors preserved; successful shared setup marks outside-setup.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:136` — `async function signIn`: original awaits/errors preserved; successful shared setup marks outside-setup.
 
 ### Preserve original test facts and observe without changing authority
 
@@ -411,8 +427,8 @@ The runtime diagnosis showed the IF scanner meeting a bare CASE's THEN; five ope
 
 - `supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql:145` — `length(domain->>k)>(case`: explicit text-bound operand grouping, with numeric/list/source comparisons handled identically.
 - `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:52` — `async function captureState`: typed original PNG-body attachment with per-viewport assertions and restoration.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:378` — `async function loseResponse`: real upstream then capture then abort, owned failure propagation and exact-route cleanup.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:338` — `"section-editor","empty"`: existing intermediate empty-row branch at both sizes, without another write or case.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:385` — `async function loseResponse`: real upstream then capture then abort, owned failure propagation and exact-route cleanup.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:345` — `"section-editor","empty"`: existing intermediate empty-row branch at both sizes, without another write or case.
 
 ### Checked tax-fixture admission without bypassing business rules
 
@@ -428,7 +444,7 @@ The six hosts dispatch their captured form explicitly inside a transition, preve
 
 - `src/components/calculations/CalculationList.tsx:310` — `onSubmit:`: captures and explicitly dispatches without an automatic form reset.
 - `src/components/calculations/TaxSettingsPanel.tsx:101` — `const taxOperation`: keeps the controller outside conditional clean-field remounts.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:479` — `pending A then draft B`: current C cannot replace B's original expected binding.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:486` — `pending A then draft B`: current C cannot replace B's original expected binding.
 - `src/features/calculations/form-parsing.ts:865` — `preflightEditorForm`: pure NEW admission never retires an earlier unknown operation.
 
 ### Complete expected content and atomic effects
@@ -465,7 +481,7 @@ P-1 has closed/missing/complete original shapes for thirteen callers. P-2/P-3 in
 - `tests/unit/features/calculations/editor-operation.test.ts:105` — `for(const [caller,validate,payload] of callers)`: thirteen original-fact validator contracts.
 - `tests/integration/commands/calculation-mutation-safety.int.test.ts:283` — `for(const effect`: every calculation effect retains replay/audit assertions.
 - `tests/integration/commands/quote-initial-mutation-safety.int.test.ts:360` — `real authorization lock`: current wall-clock expiry and terminal closure.
-- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:463` — `tax pending A revalidation`: server refresh preserves controlled and uncontrolled later tax draft.
+- `tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts:470` — `tax pending A revalidation`: server refresh preserves controlled and uncontrolled later tax draft.
 
 Retained C3 execution at `e2e738efbb52354e90e99a7c21d8a6b939698798`: `gen3-C3-verification.json` and its raw evidence under `_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/` record focused units 190 passed, zero failed/skipped/TODO; sixteen actual-controller/panel/fault-function synthetic checks passed with zero failed/skipped/TODO; full TypeScript, production build, full lint and lockfile/service-role/built-bundle checks native 0. Full lint retains 40 warnings. Browser collection registers nineteen tests; browser execution is zero. The intermediate test typing failure is retained: fixture footprint helper names and an overly broad snapshot-client type were corrected by reusing the existing real command preparation seam, without a shared factory change. Earlier verification records remain historical; no unchanged full-unit diagnostic or superseded build qualifies changed source.
 
@@ -487,7 +503,7 @@ Retained consumer evidence: the previous type/lint/ten-check harness and inverse
 
 Current settlement evidence: the actual-source twelve-case red/green regression reproduces9fail/3pass before and12pass/0fail/skip/TODO after. Only points() changes, so original request/authenticated mutation/error identity/query text/functional assertions/timeouts/cleanup remain unchanged. Expected selected guard codes still observe; pre lifecycle failure stops RPC, post lifecycle failure fails, and original thrown RPC failure cannot be masked by a post-probe. No real DB/lock/physical settlement/privacy/browser evidence is earned.
 
-Current limits: U ordinary201 expected/one unexpected/zero skip or flaky retains both failed attempts; invalid360 fails whole-form ratio1 before later control bounds and valid-save completion. The actual failing-frame pixels/geometry are missing, so rounding versus physical clip is UNKNOWN. This reporting-only delta has type/lint/19-collection/source-preservation evidence, zero new runtime or PNG credit, and changes no acceptance guard. U ordinary wrapper child1/retained key-custody remain UNVERIFIED/fail-closed; service stop does not prove privacy cleanup. U full release, T202/50, S recovery and Q558 failures retain their own scopes. Targeted High/new ordinary21/current original50/missing facts and final exact-head technical/DB/RLS/P4/recovery/storage/money-tax-PDF/required dashboard/physical/privacy settlement remain required. Preserved presentation ACs/PII/accessibility/HUMAN/controller and UNCHANGED frontend-FIRST SAME6b209 wrapper/current-results supplement remain mandatory. Root owns actual operations and Parent metadata follows author STOP; no fourth broad pass, acceptance, cleanup waiver, live cutover or deployment grant is inferred.
+Current limits: V actual201 expected/one unexpected/zero skipped or flaky retains both failed attempts; original pixels/closed bounds prove a0.28125px invalid360 bottom clip. This vertical-only source repair has type/lint/19-collection/exact conservation evidence, zero new runtime or PNG credit, and relaxes no guard. Actual new-head ordinary21/202/current50/strict geometry sufficiency and targeted High remain required. U earlier geometry remains unknown, ordinary wrapper child1/key-custody remain UNVERIFIED/fail-closed, and service stop is not privacy settlement. U dashboard82 may apply only through independently proven unchanged final tracked-input closure, never execution retagging; broader U511/25/22 and Q/S/T/U/V history remain unwaived. Final technical/DB/RLS/P4/recovery/storage/money-tax-PDF/required dashboard/physical+privacy qualification, preserved presentation ACs/PII/accessibility/HUMAN/controller and UNCHANGED frontend-FIRST SAME6b209 wrapper/current-results supplement remain mandatory. Root owns actual operations; Parent metadata follows author STOP. No fourth broad pass, acceptance, cleanup waiver, live cutover or deployment grant is inferred.
 
 ## Review Triage Log
 

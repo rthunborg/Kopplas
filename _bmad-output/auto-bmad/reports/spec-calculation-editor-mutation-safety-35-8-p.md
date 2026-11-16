@@ -536,3 +536,39 @@ No ledger/archive/aggregate/C55/native/provider/Git/CI/resources; source2STOP pr
 1. Finalqualifiedcandidateonlyneedscompleteactualtechnical/current50/privacy/HUMAN/controller/unchangedSAME6b209gate; no earlyask/waiver/merge-cutoverapproval.
 
 **Next:** Rootscope/checkpointonefourfilediagnosticdelta→targetedHigh→ONEordinary21Vcheckpointformissingfacts. NOextraVdashboard/full558. CurrentUfullreleasecontinues/terminaloutcomesmustretain; Vnotfinalqualification.
+
+## Report — 2026-11-16T12:20:15Z (GEN6-HEADER-MEASURED-VERTICAL-REPAIR-PROVISIONAL)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `05f3445`).
+**Pipeline status:** in-progress/release_ready:false; actualsourceparentV plus uncommittedverticalrepair2/Parent2; futurefinalheadtechnical/current50/HUMAN UNEARNED, no speculativeSHA.
+**Continues:** Same6RUNNING69/baseD/Root2169/fresh8554/asg440; sourceSTOP3a0c thenONLYParentWstate/report. No source/C55/Git/native/provider/CI/resources.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 70h 00m (≈25h 16m AI-run, ≈44h 44m human/idle wait); resumed 15×.
+
+**Phases run:** Normalroute-select/set/report-sectionfoldonly; phases0-7/builddone PROVISIONAL/historyunchanged, no replay/finalization/acceptedReady.
+**Skipped:** No runtime/DB/browser/newPNG/geometryPASShere. Authoractualtype/lint/list19zeroexecuted/ASTinverse/ref83/protected19 native0.
+
+**Overrides:** Standinged773/56f0/4d7+5188 carryadmitted6; Root2169 measuredrepair. Historical90972phasewallwaits/legacyAIhumanheuristics/modelprocessingUNKNOWN. OlderCURRENT annotations historical.
+
+**TEA:** Same181matcheridentities/order/19bodies17hooks50IDs/ALLstrictguards; no newcases/coverageclaim/framework/readinessredo.
+
+**Build:** ONEawaitednativeverticalscrollBy(left0/topactualformcenter/instant) beforestate/SAMEPNG/context/UNCHANGEDgeometryguards. Appb721unchanged; no DOM/style/ratio/tolerance/timeouts/retry/businesschanges. E2Eb100ce09/story725c1966/sourceSTOP3a0c, all19authorprotectedmatch; Parent101outside2match. Actualcheapchecks0/ref83; executionpending.
+
+**Review:** FullDsourcechain/e409/threebroadrounds14findings/targetedU526180 retained. CurrentfourfiletargetedHighpending, no fourthbroadreview/reset/selfapproval.
+
+**Retrospective:** (none)
+
+**Open questions:**
+1. Historicalunprovedcauses remainUNKNOWN. MeasuredV0.28125CSSpxclip known; newcenteringrequiresactualfinalheadexecution/50images, no predictedPASS.
+
+**Deferred work:**
+1. Actualnewheadtechnical21/new50framing/privacy/pixels/currentresults/independent/HUMAN/controller/unchangedfrontendFIRST/nativegate pending. No futureSHA/PASS.
+2. V43860698343FAIL201+oneownedtwofails/0.28125CSSpxbottomclip/failedcustody retained. Ufull511/25/22+dashboard82/required432separate; High377591categoriesunwaived, unknowncauses/T/S/Qhistory preserved. CRM/151/foreign/globalUNKNOWN/merge/livecutoverheld.
+No ledger/archive/aggregate/C55/native/provider/Git/CI/resources; source2STOP preserved.
+
+**⚠️ Needs human:**
+1. Actualfinalqualifiedhead/current50/privacy/HUMAN/controller/originalbaseline3a/SAME6b209frontendFIRST remainsmandatory; no earlyask/waiver/mergecutovergrant.
+
+**Next:** Rootonlyexact4scope/checkpoint/targetedHigh→normalpublication/ordinary21/new50. ExistingqualifiedU82unchangedclosurereuseonlyfreshwholetrackedtreeproof+independentreview/currentcontexts; noextraDashboard/fullrunproposedforunchangedapp and noUexecutionretag. Anyapp/runtime/dashboardchange invalidatesreuse.

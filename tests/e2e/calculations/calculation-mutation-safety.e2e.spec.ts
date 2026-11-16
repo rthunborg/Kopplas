@@ -61,8 +61,15 @@ async function captureState(page: Page, testInfo: TestInfo, host: CaptureHost, c
         : condition === "invalid" || condition === "stale" ? form.getByRole("alert").first()
         : form.getByRole("status").first();
       // Header feedback and the actual title/save controls must share a usable frame.
-      if (host === "calculation-header") await form.scrollIntoViewIfNeeded();
-      else await focus.scrollIntoViewIfNeeded();
+      if (host === "calculation-header") {
+        await form.scrollIntoViewIfNeeded();
+        await form.evaluate((element) => {
+          const bounds = element.getBoundingClientRect();
+          window.scrollBy({ left: 0,
+            top: bounds.top - (document.documentElement.clientHeight - bounds.height) / 2,
+            behavior: "instant" });
+        });
+      } else await focus.scrollIntoViewIfNeeded();
       await expect(focus).toBeVisible();
       await assertState();
       const captureId = `35-8-p-${host}-${condition}-${viewport.width}x${viewport.height}`;
