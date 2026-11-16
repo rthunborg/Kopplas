@@ -464,3 +464,39 @@ No globalledger/archive/aggregate/C55/native/provider/Git/CI/resource action byp
 1. Exactfinalcandidate HUMAN/controller acceptance afteractualtechnical/images/package readiness; notgranted/requestedhere. Merge/autoprod/liveDBcutover remainseparatefactualwindowdecision.
 
 **Next:** Root hashes/scopes/commitsonefourdelta, obtains targetedHigh then justifiednewheadordinary21CI202/Preview. PreserveSrun43835374215 actual202finalPASS/201first+REORDERretry0FAIL/retry1PASS,19+13firstPASS/50PNGIDsmetadata only. DB9d136 fresh2303PASS52SKIP/432required, recovery1 separate. No S execution/pixels/HUMAN transferredtonewhead.
+
+## Report — 2026-11-16T10:55:52Z (GEN6-MOBILE-HEADER-PROVISIONAL)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `e08a69b`).
+**Pipeline status:** in-progress/release_ready:false; actualparentT plus uncommittedsource3/Parent2. Futureheadtechnical/visual/nativeacceptance UNVERIFIED; no speculativeSHA.
+**Continues:** Same35.8/actual6RUNNING69/baseD/worker; Root27eb source3 STOP878f then sequential ParentWstate/report only. No C55/source/Git/native/provider/CI/resources.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 68h 36m (≈25h 16m AI-run, ≈43h 20m human/idle wait); resumed 13×.
+
+**Phases run:** Normalroute-select/set/report-section fold only; existing0-7/builddone PROVISIONAL. No phase-done replay/finalization/acceptedReady/nativehandoff.
+**Skipped:** No producttests/DB/browser/CI/resources here. Sourceauthor cheaptype/lint/19collection0executed/AST/reader77refs native0; no runtime/newPNGs.
+
+**Overrides:** Standinged773/56f0/4d7+owner5188 carryadmitted6/current27eb. Timing90972 phase-wall inclwaits; legacyAI/humanidleheuristics/modelprocessingUNKNOWN. AllolderCURRENT annotations historical.
+
+**TEA:** Completed E2/ATDD/selectedautomate retained. Same19registeredcases/50IDs; realcapturegeometry assertions awaitnextbrowser. No newcases/framework/readinessredo.
+
+**Build:** Exactlytitleflexchildmin-w-0 plus existingownedcaptureState actualwholeheaderformframing/read-onlyhorizontalDOMRectinput/save/form/header/viewport checks. Originalfunctionalstate/assertions/actions/cleanup/timeouts/retries preserved. STOP878f componentb721/E2E4b446/storyf514;18authorprotected match; Parent101outside2match. Tfirst50 originals/history retained, no newPNG/runtimeclaim.
+
+**Review:** Threecompletedbroadrounds14findings/wholeDsourcechain/e409RGO/targetedT27730 retained. Engineering4a1e planGO; actualfivefile targetedcodeHigh pending. No fourthbroadreview/reset/selfapproval.
+
+**Retrospective:** (none)
+
+**Open questions:**
+1. HistoricalSretrycauseUNKNOWN/Qfullfailures retained. Futurehead/framing/runtime mustactuallyqualify; no permanentfixclaim.
+
+**Deferred work:**
+1. Newheadactual21/unit/static/build/DB/RLS/recovery/dashboard/new50privacy/pixels/currentresult/independent/HUMAN/controller/wrapper/nativeproof pending. T202/50/DB2303+required432+c116cleanup Tonly; no futureheadcredit.
+2. TdashboardSKIP0coverage/Q82notcurrent. Separatefinalmerge/production/app-schema pause-drain/serverURL/DBcutoverwindow held; CRM/151/foreign/globalUNKNOWN unchanged.
+No ledger/archive/aggregate/C55/native/provider/Git/CI/resource action; source3 frozen.
+
+**⚠️ Needs human:**
+1. Actualfinalheadtechnical/images/package then HUMAN/controller acceptance and unchangedfrontendFIRST SAME6b209. No intermediatevisualreceipt/waiver/merge-cutovergrant.
+
+**Next:** Rootonlyscope/hash/checkpointfivefiledelta→targetedHigh→normalpublication/ordinary21 plus existingrelease_validationtrue dedicateddashboard. Incidentalfull558outcomes/ACrelevantfailures remain; actualnewheadproof outsidefrozenW supplements. Deliveryunchanged.

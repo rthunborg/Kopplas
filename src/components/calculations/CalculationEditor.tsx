@@ -359,7 +359,7 @@ export function CalculationEditor({
             </p>
           )}
           <div className="flex items-end gap-3">
-            <div className="flex-1">
+            <div className="min-w-0 flex-1">
               <TextField
                 name="title"
                 label="Titel"

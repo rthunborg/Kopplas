@@ -60,9 +60,35 @@ async function captureState(page: Page, testInfo: TestInfo, host: CaptureHost, c
         : condition === "submitting" ? form.locator('button[type="submit"]')
         : condition === "invalid" || condition === "stale" ? form.getByRole("alert").first()
         : form.getByRole("status").first();
-      await focus.scrollIntoViewIfNeeded();
+      // Header feedback and the actual title/save controls must share a usable frame.
+      if (host === "calculation-header") await form.scrollIntoViewIfNeeded();
+      else await focus.scrollIntoViewIfNeeded();
       await expect(focus).toBeVisible();
       await assertState();
+      if (host === "calculation-header") {
+        await expect(form).toBeInViewport({ ratio: 1 });
+        await expect(form.getByLabel("Titel", { exact: true })).toBeInViewport({ ratio: 1 });
+        await expect(form.getByRole("button", { name: "Spara titel", exact: true })).toBeInViewport({ ratio: 1 });
+        await expect.poll(() => form.evaluate((element) => {
+          const input = element.querySelector('input[name="title"]');
+          const save = element.querySelector('button[type="submit"]');
+          const header = element.closest('[data-testid="calculation-header"]');
+          if (!input || !save || !header) return null;
+          const formBounds = element.getBoundingClientRect();
+          const headerBounds = header.getBoundingClientRect();
+          const viewportWidth = document.documentElement.clientWidth;
+          const inside = (control: DOMRect, container: DOMRect) =>
+            control.left >= container.left && control.right <= container.right;
+          const inputBounds = input.getBoundingClientRect();
+          const saveBounds = save.getBoundingClientRect();
+          return {
+            inputInContainer: inside(inputBounds, formBounds) && inside(inputBounds, headerBounds),
+            inputInViewport: inputBounds.left >= 0 && inputBounds.right <= viewportWidth,
+            saveInContainer: inside(saveBounds, formBounds) && inside(saveBounds, headerBounds),
+            saveInViewport: saveBounds.left >= 0 && saveBounds.right <= viewportWidth,
+          };
+        })).toEqual({ inputInContainer: true, inputInViewport: true, saveInContainer: true, saveInViewport: true });
+      }
       const captureId = `35-8-p-${host}-${condition}-${viewport.width}x${viewport.height}`;
       const buffer = await page.screenshot({ fullPage: false });
       await testInfo.attach(captureId + ".png", { body: buffer, contentType: "image/png" });
