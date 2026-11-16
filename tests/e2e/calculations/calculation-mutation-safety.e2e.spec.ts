@@ -65,8 +65,28 @@ async function captureState(page: Page, testInfo: TestInfo, host: CaptureHost, c
       else await focus.scrollIntoViewIfNeeded();
       await expect(focus).toBeVisible();
       await assertState();
+      const captureId = `35-8-p-${host}-${condition}-${viewport.width}x${viewport.height}`;
+      const buffer = await page.screenshot({ fullPage: false });
+      await testInfo.attach(captureId + ".png", { body: buffer, contentType: "image/png" });
       if (host === "calculation-header") {
-        await expect(form).toBeInViewport({ ratio: 1 });
+        const geometry = await form.evaluate((element) => {
+          const rect = (node: Element | null) => {
+            if (!node) return null;
+            const bounds = node.getBoundingClientRect();
+            return { left: bounds.left, top: bounds.top, right: bounds.right, bottom: bounds.bottom,
+              width: bounds.width, height: bounds.height };
+          };
+          return {
+            viewport: { width: window.innerWidth, height: window.innerHeight,
+              clientWidth: document.documentElement.clientWidth, clientHeight: document.documentElement.clientHeight },
+            scroll: { x: window.scrollX, y: window.scrollY },
+            form: rect(element),
+            header: rect(element.closest('[data-testid="calculation-header"]')),
+            input: rect(element.querySelector('input[name="title"]')),
+            save: rect(element.querySelector('button[type="submit"]')),
+          };
+        });
+        await expect(form, `Header framing ${JSON.stringify(geometry)}`).toBeInViewport({ ratio: 1 });
         await expect(form.getByLabel("Titel", { exact: true })).toBeInViewport({ ratio: 1 });
         await expect(form.getByRole("button", { name: "Spara titel", exact: true })).toBeInViewport({ ratio: 1 });
         await expect.poll(() => form.evaluate((element) => {
@@ -89,9 +109,6 @@ async function captureState(page: Page, testInfo: TestInfo, host: CaptureHost, c
           };
         })).toEqual({ inputInContainer: true, inputInViewport: true, saveInContainer: true, saveInViewport: true });
       }
-      const captureId = `35-8-p-${host}-${condition}-${viewport.width}x${viewport.height}`;
-      const buffer = await page.screenshot({ fullPage: false });
-      await testInfo.attach(captureId + ".png", { body: buffer, contentType: "image/png" });
     }
   } finally {
     if (!currentViewportOnly) await page.setViewportSize(originalViewport);
