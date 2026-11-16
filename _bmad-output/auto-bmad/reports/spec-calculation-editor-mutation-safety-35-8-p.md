@@ -428,3 +428,39 @@ No globalledger/archive/aggregate/native/provider/CI/RootC55operation bythismeta
 1. Exactfinalcandidate substantiveHUMAN visualacceptance only after realtechnical/captures/package/controller readiness; not requested/granted here. Productionmerge/deploy/liveapp-schema cutover remainsoutside5188.
 
 **Next:** Root scope/hashchecks and commits allfour once, obtains targetedHigh, then normalauthorizedpublication/currentheadordinary21CI/Preview. Qordinary43737536544 old149SUCCESS vsfull43737708597FAIL510/26/22; owned17pass2doublefail/sixrequiredregressionsandall34callerspass/43of50PNG42passed retainedQ-only. Actualnewhead21/50/privacy/HUMAN/controller/SAME6b209finalwrapper/nativehandoff pending.
+
+## Report — 2026-11-16T09:53:35Z (GEN6-REORDER-CONSUMER-PROVISIONAL)
+
+**Story:** `spec-calculation-editor-mutation-safety-35-8-p` (spec calculation-editor-mutation-safety, story 35-8-p) — first-and-last-in-epic.
+**Spec:** `C:\DEV\Kopplas\tmp\private\e35-8-producer-safety-20261112\worker\_bmad-output\specs\spec-calculation-editor-mutation-safety\stories\35-8-p-calculation-editor-mutation-safety.md`
+**Branch:** `codex/parallel-e35-8-producer-safety-20261112` (HEAD `eb71e81`).
+**Pipeline status:** in-progress/release_ready:false; sourceparentS plus uncommitted four-file correction/metadata pendingRoot. Currentnewheadtechnical/visual/nativeacceptanceUNVERIFIED; no speculativeSHA.
+**Continues:** Sameoriginal35.8/6RUNNING69/baseD/worker; Root34bb necessaryownedconsumer correction/Highb8ed/STARTe4cd/sourceSTOP3330. Parent sequentialownstate/report only; C55 legitimatepublicationjournal not touched or compared tooldT.
+
+**Timing:** started 2026-11-13T14:19:23Z; completed in progress — elapsed 67h 34m (≈25h 16m AI-run, ≈42h 18m human/idle wait); resumed 12×.
+
+**Phases run:** Normal route-select/set/report-section fold only. Existing0-7/builddone remain PROVISIONAL; no phase-done replay/statusdone/acceptedReady/visualprecheckbypass/nativehandoff.
+**Skipped:** No newproducttests/DB/browser/Playwrightcollection/resources here. Cheaptype/lint/AST/ref/reader checks only; expected202 is notnewheadexecution. ReuseactualsourceS/runtimeproofwithbindings.
+
+**Overrides:** Standinged773/56f0/4d7 andowner5188 exactmethod retained acrossadmitted6. Actualtimecounter90972 includesphase-wall waits, legacyAI-run/humanidlelabels areheuristics/modelprocessingUNKNOWN. AllolderCURRENT annotations historical.
+
+**TEA:** AdoptedE2/ATDD/selectedautomate sourcecoverage preserved; same13legacyfiledeclarations/12otherbodies,19ownedcaseidentities and50plannedIDs unchanged. No newmirroredtests/harness/readinessrestart.
+
+**Build:** OnlyE2E06 server-projected adjacentmove consumer plus ownSRO: originalsetup/finalassertions preserved, no fixed12/200ms/blindreclick/hiddenNEXToracle/timeouts/retries/effectchanges. Actualtsc0/targetlint0/sourceinverseAST0/reader0/73refs0. Test raw303c98b0/LFdce501f7/storydcc14218/105581. Packagec99/ownedE2Eb49/SQL83b5/P4/unit/delivery6b209 protected. Parent2 nowfolds truthfulpendingfacts after authorSTOP.
+
+**Review:** Threecompletedbroadrounds14findings/fullD-sourcechain/e409RGO retained. Highb8ed identifies source-visibleconsumerprotocolgap, historicalruntimecauseUNKNOWN; no permanentfixclaim. Latestfour-file targetedHigh pending; no fourthbroadreview/reset.
+
+**Retrospective:** (none)
+
+**Open questions:**
+1. No newownerdecision solelyhash/phase/alreadyowned69 correction. Actualnewheadruntime mustqualify all21/sixregressions/50; unknowncause remainsunknown.
+
+**Deferred work:**
+1. Allfinalnewheadtechnical/current50privacy-pixel/independent/HUMAN/controller/UNCHANGEDfrontend-FIRSTSAME6b209/current-result/nativegates pending. Retaineddelivery remains C5-scoped; no receiptedit.
+2. Sbrowsercleanupkeydelete/dbcloseconfirmed but no physicalsettlement/perAuthallattemptabsence proof; historicalQfull558/otherunknownsnotwaived. CRM/151/foreign/globalUNKNOWN/merge-livecutoverholds unchanged.
+No globalledger/archive/aggregate/C55/native/provider/Git/CI/resource action byparent.
+
+**⚠️ Needs human:**
+1. Exactfinalcandidate HUMAN/controller acceptance afteractualtechnical/images/package readiness; notgranted/requestedhere. Merge/autoprod/liveDBcutover remainseparatefactualwindowdecision.
+
+**Next:** Root hashes/scopes/commitsonefourdelta, obtains targetedHigh then justifiednewheadordinary21CI202/Preview. PreserveSrun43835374215 actual202finalPASS/201first+REORDERretry0FAIL/retry1PASS,19+13firstPASS/50PNGIDsmetadata only. DB9d136 fresh2303PASS52SKIP/432required, recovery1 separate. No S execution/pixels/HUMAN transferredtonewhead.
