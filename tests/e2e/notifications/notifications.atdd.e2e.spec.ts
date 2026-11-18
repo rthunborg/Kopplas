@@ -46,14 +46,14 @@ async function waitForHydrated(locator: Locator): Promise<void> {
   );
 }
 
-async function signIn(page: Page, credentials: Credentials): Promise<void> {
+async function signIn(page: Page, credentials: Credentials, landing: "/dashboard" | "/my-day" = "/dashboard"): Promise<void> {
   await page.goto("/login");
   const submit = page.getByRole("button", { name: "Logga in" });
   await waitForHydrated(submit);
   await page.getByLabel("E-post").fill(credentials.email);
   await page.getByLabel("Lösenord").fill(credentials.password);
   await submit.click();
-  await expect(page).toHaveURL(/\/dashboard$/);
+  await expect(page).toHaveURL(landing);
 }
 
 async function openBell(page: Page): Promise<Locator> {
@@ -76,7 +76,7 @@ test.describe("Story 13.2 In-app-notiser — bell, center och inställningar (AT
 
   for (const [roleName, role] of validRoles) {
     test(`[P0] ${roleName} sees the personal bell with a capped 9+ unread count`, async ({ page }) => {
-      await signIn(page, fixture().notifications[role]);
+      await signIn(page, fixture().notifications[role], role === "installer" ? "/my-day" : "/dashboard");
       const bell = page.getByRole("button", { name: /notiser.*9\+/i });
       await expect(bell).toBeVisible();
       await expect(bell).toHaveAccessibleName(/9\+.*olästa notiser/i);
@@ -211,7 +211,7 @@ test.describe("Story 13.2 In-app-notiser — bell, center och inställningar (AT
   });
 
   test("[P2] Bell popover supports keyboard activation, semantic labels, and focus return", async ({ page }) => {
-    await signIn(page, fixture().notifications.installer);
+    await signIn(page, fixture().notifications.installer, "/my-day");
     const bell = page.getByRole("button", { name: /notiser/i });
     await bell.focus();
     await page.keyboard.press("Enter");

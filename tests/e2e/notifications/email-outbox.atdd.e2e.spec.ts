@@ -49,18 +49,18 @@ async function waitForHydrated(locator: Locator): Promise<void> {
   );
 }
 
-async function signIn(page: Page, credentials: Credentials): Promise<void> {
+async function signIn(page: Page, credentials: Credentials, landing: "/dashboard" | "/my-day" = "/dashboard"): Promise<void> {
   await page.goto("/login");
   const submit = page.getByRole("button", { name: "Logga in" });
   await waitForHydrated(submit);
   await page.getByLabel("E-post").fill(credentials.email);
   await page.getByLabel("Lösenord").fill(credentials.password);
   await submit.click();
-  await expect(page).toHaveURL(/\/dashboard$/);
+  await expect(page).toHaveURL(landing);
 }
 
-async function openNotifications(page: Page, credentials: Credentials): Promise<void> {
-  await signIn(page, credentials);
+async function openNotifications(page: Page, credentials: Credentials, landing: "/dashboard" | "/my-day" = "/dashboard"): Promise<void> {
+  await signIn(page, credentials, landing);
   await page.goto("/notifications");
   await expect(page.getByRole("heading", { name: "Notiser" })).toBeVisible();
 }
@@ -102,7 +102,7 @@ test.describe("Story 13.3 E-postutkö — Admin-projektion", () => {
   });
 
   test("[P0] non-Admin cannot read the email outbox projection through the existing notifications route", async ({ page }) => {
-    await openNotifications(page, fixture().emailOutbox.nonAdmin);
+    await openNotifications(page, fixture().emailOutbox.nonAdmin, "/my-day");
     await expect(page.getByTestId("email-outbox-queue")).toHaveCount(0);
     await expect(page.getByText(fixture().emailOutbox.queueReferences.queued)).toHaveCount(0);
     await expect(page.getByText(fixture().emailOutbox.queueReferences.failed)).toHaveCount(0);

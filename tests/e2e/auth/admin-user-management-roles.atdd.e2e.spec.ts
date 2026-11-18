@@ -24,14 +24,14 @@ async function waitForHydrated(locator: Locator): Promise<void> {
   }));
 }
 
-async function logIn(page: Page, credentials: RoleFixture): Promise<void> {
+async function logIn(page: Page, credentials: RoleFixture, landing: "/dashboard" | "/my-day" = "/dashboard"): Promise<void> {
   await page.goto("/login");
   const submit = page.getByRole("button", { name: "Logga in" });
   await waitForHydrated(submit);
   await page.getByLabel("E-post").fill(credentials.email);
   await page.getByLabel("Lösenord").fill(credentials.password);
   await submit.click();
-  await expect(page).toHaveURL(/\/dashboard$/);
+  await expect(page).toHaveURL(landing);
 }
 
 async function openAdminUsers(page: Page): Promise<void> {
@@ -75,7 +75,7 @@ test.describe("Story 11.4 Roller och effektiva behörigheter (ATDD, RED)", () =>
 
   test("[P1] Non-Admin receives neither Roles UI nor the Admin users direct route", async ({ page }) => {
     const fixture = getFixture();
-    await logIn(page, fixture.adminUserManagement.nonAdmin);
+    await logIn(page, fixture.adminUserManagement.nonAdmin, "/my-day");
     await openAdminUsers(page);
 
     await expect(page.getByRole("heading", { name: "Ingen åtkomst" })).toBeVisible();

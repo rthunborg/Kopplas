@@ -26,6 +26,17 @@ async function openToolbar(page: Page): Promise<void> {
   await expect(editor(page)).toHaveAttribute("aria-modal", "true");
   await expect(editor(page).getByTestId("booking-work-role-filter")).toBeFocused();
 }
+async function openJobSchedule(page: Page): Promise<void> {
+  const tab = page.getByRole("tab", { name: "Schema", exact: true });
+  await tab.waitFor({ state: "visible" });
+  await tab.evaluate((element) => new Promise<void>((resolve) => {
+    const tick = () => Object.keys(element).some((key) => key.startsWith("__react")) ? resolve() : requestAnimationFrame(tick);
+    tick();
+  }));
+  await tab.click();
+  await expect(tab).toHaveAttribute("aria-selected", "true");
+  await expect(page.getByRole("tabpanel", { name: "Schema", exact: true })).toBeVisible();
+}
 async function fillDraft(page: Page, scenario: Scenario, waitForPreview = true): Promise<void> {
   const sheet = editor(page);
   await sheet.getByTestId("booking-description").fill(scenario.description);
@@ -234,6 +245,7 @@ test.describe("Story 14.4 booking editor retained browser acceptance", () => {
       const createObserver = await h.observeNextConfirmedSave();
       await signIn(page, s);
       await page.goto(host === "job" ? "/jobs/" + s.jobId : "/customers/" + s.customerId);
+      if (host === "job") await openJobSchedule(page);
       await page.getByTestId("booking-entry-" + host).click();
       await expect(editor(page).getByTestId(host === "job" ? "booking-job" : "booking-customer"))
         .toHaveValue(host === "job" ? s.jobId : s.customerId);
@@ -251,6 +263,7 @@ test.describe("Story 14.4 booking editor retained browser acceptance", () => {
       expect(row.facility_id).toBeNull();
       expect(row.contact_id).toBeNull();
       await page.reload();
+      if (host === "job") await openJobSchedule(page);
       await summary(page, row.id).getByTestId("booking-edit").click();
       await expect(editor(page).getByTestId("booking-description")).toHaveValue(s.description);
       await expect(editor(page).getByTestId("booking-start")).toHaveValue(s.startsLocal);
@@ -266,6 +279,7 @@ test.describe("Story 14.4 booking editor retained browser acceptance", () => {
       expect(added(committed.bookings, updated.bookings)).toHaveLength(0);
       expect(added(committed.audit, updated.audit)).toHaveLength(1);
       await page.reload();
+      if (host === "job") await openJobSchedule(page);
       await summary(page, row.id).getByTestId("booking-edit").click();
       await expect(editor(page).getByTestId("booking-description")).toHaveValue(s.description + " edited");
       const clear=await h.observeNextConfirmedSave();
@@ -317,9 +331,11 @@ test.describe("Story 14.4 booking editor retained browser acceptance", () => {
     expect(s.expectedOpenLogicalCount).toBeGreaterThan(0);
     await signIn(page, s);
     await page.goto("/jobs/" + s.jobId);
+    await openJobSchedule(page);
     const chip = summary(page, s.persistedBookingId).getByTestId("booking-open-conflict-count");
     await expect(chip).toHaveAccessibleName(s.expectedOpenLogicalCount + " öppna konflikter");
     await page.reload();
+    await openJobSchedule(page);
     await expect(chip).toHaveAccessibleName(s.expectedOpenLogicalCount + " öppna konflikter");
     expect(await bookingSnapshot(s.tenantIds)).toEqual(durable);
   });
