@@ -9,18 +9,18 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-1-documentary-closeout-20261118/_bm
 story_id: 35-1
 branch: codex/35-1-documentary-closeout-20261118
 status: in-progress
-updated_at: "2026-11-18T12:03:40Z"
+updated_at: "2026-11-18T12:17:53Z"
 started_at: "2026-11-18T12:01:19Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: null
+active_seconds: 671
+timing_anchor: 1795004273
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: tea_triage
-selected_role: test-risk-triage
-selected_profile: light
+selected_phase: build
+selected_role: build-delegate
+selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: low
 selected_host: codex
@@ -29,12 +29,16 @@ selected_route: subagent
 escalation_reason: Ordinary task uses Low effort
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: low
 tea_selected: []
 tea_rationale: "Documentary adoption and formal closeout only; no runtime, migration, product behavior or sensitive boundary changes."
 epic_story_count: 1
 stories_after_in_epic: 0
-completed_phases: [0, 1]
+completed_phases: [0, 1, 2]
 spec_path: null
 spec_approved: true
 build:
@@ -54,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [033062ca]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -88,4 +92,5 @@ overrides:
   managed_review_context: "9a352369a7bfdc910a2765171618989b96e3e5ba3eb21e70b5f5c8b447d739ee; unchangednormalP0regenerationexpected8bb87199 onlynewcheckoutbinding"
   publication_integration: "Ordinarypublication/CI/Previewauthorized; actualqualifiedbase/mainintegration holdsandS→Q→Horderingremain; no newproduction/database/Auth/custody/CRM/151authority inferred."
   triage_evidence: "Phase0private dispatchrecord and completedtea-triage-result.json, no historicalpipelinebackfill."
+  p2_evidence: "Exacttwoallocateddocplans authored;7historicalP1inspection identities/4docrisks/0risks>=6/8links0missing;0executabletests. Plan82ce4c0d; manualdocumentedresolverfallback cachefailure recorded."
 constraints: []
