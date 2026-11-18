@@ -189,6 +189,7 @@ test.describe("Story 13.2 In-app-notiser — bell, center och inställningar (AT
     expect(initialPreferences.status()).toBe(200);
     const initialPreferenceRows = (await initialPreferences.json()).preferences as { category: string; channel: string; enabled: boolean }[];
     await expect(page.getByRole("heading", { name: "Notisinställningar" })).toBeVisible();
+    const preferenceAlerts = page.getByRole("heading", { name: "Notisinställningar", exact: true }).locator("..").getByRole("alert");
     const quotesGroup = page.getByRole("group", { name: /offerter/i });
     await expect(quotesGroup.getByRole("rowheader", { name: /viktig uppföljning av offert/i })).toBeVisible();
     await expect(quotesGroup.getByRole("switch", { name: "Viktig uppföljning av offert i appen", exact: true })).toBeDisabled();
@@ -285,7 +286,7 @@ test.describe("Story 13.2 In-app-notiser — bell, center och inställningar (AT
       expect((await recovery.json()).preferences).toContainEqual({ category: "booking.changed", channel: "in_app", enabled: originalEnabled });
       await expect(bookingPreference).toBeChecked({ checked: originalEnabled });
       await expect(bookingPreference).toBeEnabled();
-      const saveError = page.getByRole("alert");
+      const saveError = preferenceAlerts;
       await expect(saveError).toHaveText("Kunde inte spara inställningen. Försök igen.");
       for (const viewport of [{ name: "desktop-1280x800", width: 1280, height: 800 }, { name: "phone-360x640", width: 360, height: 640 }]) {
         await page.setViewportSize({ width: viewport.width, height: viewport.height });
@@ -324,7 +325,7 @@ test.describe("Story 13.2 In-app-notiser — bell, center och inställningar (AT
       } catch { cleanupFailures.push("reload-readback"); }
       try { await expect(bookingPreference).toBeChecked({ checked: originalEnabled }); } catch { cleanupFailures.push("original-control-state"); }
       try { await expect(bookingPreference).toBeEnabled(); } catch { cleanupFailures.push("finished-control-enabled"); }
-      try { await expect(page.getByRole("alert")).toHaveCount(0); } catch { cleanupFailures.push("finished-no-alert"); }
+      try { await expect(preferenceAlerts).toHaveCount(0); } catch { cleanupFailures.push("finished-no-alert"); }
       if (cleanupFailures.length) {
         try {
           await testInfo.attach("d4-preferences-cleanup-failures", { body: Buffer.from(JSON.stringify({ stages: cleanupFailures })), contentType: "application/json" });
