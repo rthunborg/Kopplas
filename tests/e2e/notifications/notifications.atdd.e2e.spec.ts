@@ -183,11 +183,51 @@ test.describe("Story 13.2 In-app-notiser — bell, center och inställningar (AT
   test("[P0] Profile preferences group the active category by module", async ({ page }) => {
     await signIn(page, fixture().notifications.projectManager);
     await page.getByRole("button", { name: /profil/i }).click();
+    const initialPreferencesResponse = page.waitForResponse((response) => new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "GET");
     await page.getByRole("link", { name: "Notisinställningar" }).click();
+    const initialPreferences = await initialPreferencesResponse;
+    expect(initialPreferences.status()).toBe(200);
+    const initialPreferenceRows = (await initialPreferences.json()).preferences as { category: string; channel: string; enabled: boolean }[];
     await expect(page.getByRole("heading", { name: "Notisinställningar" })).toBeVisible();
     const quotesGroup = page.getByRole("group", { name: /offerter/i });
     await expect(quotesGroup.getByRole("rowheader", { name: /viktig uppföljning av offert/i })).toBeVisible();
     await expect(quotesGroup.getByRole("switch", { name: "Viktig uppföljning av offert i appen", exact: true })).toBeDisabled();
+    const schedulingGroup = page.getByRole("group", { name: "Scheduling, Time Reporting & Calendar Feeds", exact: true });
+    await expect(schedulingGroup.getByRole("rowheader", { name: "Ändringar i planeringen", exact: true })).toBeVisible();
+    await expect(schedulingGroup.getByRole("rowheader", { name: "Påminnelse om tidrapport", exact: true })).toBeVisible();
+    await expect(quotesGroup.getByRole("rowheader", { name: "Ändringar i planeringen", exact: true })).toHaveCount(0);
+    await expect(quotesGroup.getByRole("rowheader", { name: "Påminnelse om tidrapport", exact: true })).toHaveCount(0);
+    await expect(schedulingGroup.getByRole("rowheader", { name: /viktig uppföljning av offert/i })).toHaveCount(0);
+    const bookingPreference = schedulingGroup.getByRole("switch", { name: "Ändringar i planeringen i appen", exact: true });
+    const originalEnabled = initialPreferenceRows.find((preference) => preference.category === "booking.changed" && preference.channel === "in_app")?.enabled ?? true;
+    await expect(bookingPreference).toBeChecked({ checked: originalEnabled });
+    const [saveResponse] = await Promise.all([
+      page.waitForResponse((response) => new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "PUT"),
+      bookingPreference.setChecked(!originalEnabled),
+    ]);
+    expect(saveResponse.request().postDataJSON()).toEqual({ category: "booking.changed", channel: "in_app", enabled: !originalEnabled });
+    expect(saveResponse.status()).toBe(200);
+    expect(await saveResponse.json()).toEqual({ ok: true });
+    await expect(bookingPreference).toBeEnabled();
+    const [reloadResponse] = await Promise.all([
+      page.waitForResponse((response) => new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "GET"),
+      page.reload(),
+    ]);
+    expect(reloadResponse.status()).toBe(200);
+    expect((await reloadResponse.json()).preferences).toContainEqual({ category: "booking.changed", channel: "in_app", enabled: !originalEnabled });
+    await expect(bookingPreference).toBeChecked({ checked: !originalEnabled });
+    const [restoreResponse, restoredPreferences] = await Promise.all([
+      page.waitForResponse((response) => new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "PUT"),
+      page.waitForResponse((response) => new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "GET"),
+      bookingPreference.setChecked(originalEnabled),
+    ]);
+    expect(restoreResponse.request().postDataJSON()).toEqual({ category: "booking.changed", channel: "in_app", enabled: originalEnabled });
+    expect(restoreResponse.status()).toBe(200);
+    expect(await restoreResponse.json()).toEqual({ ok: true });
+    expect(restoredPreferences.status()).toBe(200);
+    expect((await restoredPreferences.json()).preferences).toContainEqual({ category: "booking.changed", channel: "in_app", enabled: originalEnabled });
+    await expect(bookingPreference).toBeChecked({ checked: originalEnabled });
+    await expect(bookingPreference).toBeEnabled();
   });
 
   test("[P0] Essential in-app notification preference is visibly required and cannot be disabled", async ({ page }) => {
@@ -202,7 +242,7 @@ test.describe("Story 13.2 In-app-notiser — bell, center och inställningar (AT
   test("[P1] Quote delivery has no personal preference row while required notification controls remain visible", async ({ page }) => {
     await signIn(page, fixture().notifications.salesperson);
     await page.goto("/settings/notifications");
-    const emailColumn = page.getByRole("columnheader", { name: "E-post" });
+    const emailColumn = page.getByRole("group", { name: /offerter/i }).getByRole("columnheader", { name: "E-post" });
     await expect(emailColumn).toBeVisible();
     await expect(page.getByText(/e-postinställningar är tillgängliga när leverans är aktiverad på servern/i)).toBeVisible();
     await expect(page.getByRole("switch", { name: "Offertleverans i appen", exact: true })).toHaveCount(0);

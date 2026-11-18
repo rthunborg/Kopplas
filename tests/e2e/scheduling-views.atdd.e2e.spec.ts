@@ -401,7 +401,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     await guardedStage(() => page.getByRole("button", { name: "Logga in" }).click());
     lifecycle.mark(page, "login-submit", "fulfilled");
     lifecycle.mark(page, "dashboard-assert", "enter");
-    await guardedStage(() => expect(page).toHaveURL(/\/dashboard$/));
+    await guardedStage(() => expect(page).toHaveURL(identity === "montor" ? "/my-day" : "/dashboard"));
     lifecycle.mark(page, "dashboard-assert", "fulfilled");
   };
   const guardedSettle = async () => {
