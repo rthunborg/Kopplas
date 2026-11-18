@@ -603,7 +603,9 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation }}
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
-        run: pnpm run test:e2e --reporter=list,json
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+          CALENDAR_FEED_CI_BROWSER_SUITE: release
+        run: node scripts/ci/with-calendar-feed-runtime.mjs browser
 
       - name: Upload native general browser JSON
         if: ${{ !cancelled() }}

@@ -4,9 +4,10 @@ import { readFileSync } from "node:fs";
 import { projectCiPerformanceChanges } from "./ci-performance-contract";
 
 const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
-const wrapperSha256 = "f4c7d9416ede3239157adab24cfade0a8db8a83d33e4885d916c7387c28ad914";
+const wrapperSha256 = "52d9b270f66f9ec5e68b8d4398e817c42aeb55311504b72a2439383a7aeea2ab";
 const integrationArgs = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
 const browserArgs = ["run", "test:smoke"];
+const releaseBrowserArgs = ["run", "test:e2e", "--reporter=list,json"];
 const stackBinding = "          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}";
 const dbEntry = [
   "      - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)",
@@ -24,6 +25,17 @@ const browserEntry = [
   "        env:",
   "          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json",
   stackBinding,
+  "        run: node scripts/ci/with-calendar-feed-runtime.mjs browser",
+].join("\n") + "\n";
+
+// A single reviewed release entry is inverted; every unrelated byte survives.
+const releaseBrowserEntry = [
+  "      - name: Exhaustive browser validation (explicit opt-in)",
+  "        if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation }}",
+  "        env:",
+  "          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json",
+  stackBinding,
+  "          CALENDAR_FEED_CI_BROWSER_SUITE: release",
   "        run: node scripts/ci/with-calendar-feed-runtime.mjs browser",
 ].join("\n") + "\n";
 
@@ -100,7 +112,7 @@ function literalArgs(source: string, name: string, expected: string[]): string[]
 
 /**
  * Expose the real delegated commands to existing CI contract checks. Only the
- * two wrapper entries and finite diagnostic fragments are inverted; all other bytes survive.
+ * fixed wrapper entries and finite diagnostic fragments are inverted; all other bytes survive.
  * Reading pinned source (never importing/evaluating it) also rejects unrelated
  * wrapper edits instead of granting them the historical workflow inverse.
  */
@@ -108,6 +120,7 @@ export function projectCalendarFeedCiCommands(workflow: string, wrapperSource = 
   const source = wrapperSource.replaceAll("\r\n", "\n");
   const integration = literalArgs(source, "INTEGRATION_ARGS", integrationArgs);
   const browser = literalArgs(source, "BROWSER_ARGS", browserArgs);
+  const releaseBrowser = literalArgs(source, "RELEASE_BROWSER_ARGS", releaseBrowserArgs);
   assert.equal(createHash("sha256").update(source).digest("hex"), wrapperSha256, "calendar feed CI reviewed wrapper source");
   literalArgs(source, "CAUSE_PROOF_ARGS", ["exec","vitest","run","tests/integration/commands/calendar-feed.int.test.ts","--maxWorkers=1","--no-file-parallelism","--testNamePattern=^15[.]5-DIAG001$","--reporter=default","--reporter=github-actions","--reporter=json","--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
   // Compose independently reviewed finite inverses before the historical
@@ -121,6 +134,13 @@ export function projectCalendarFeedCiCommands(workflow: string, wrapperSource = 
     assert.equal(projected.split(entry).length - 1, 1, "calendar feed exact diagnostic workflow fragment");
     projected = projected.replace(entry, replacement);
   }
+  assert.equal(projected.split(releaseBrowserEntry).length - 1, 1, "calendar feed CI exact release workflow entry");
+  projected = projected.replace(releaseBrowserEntry, [
+    "      - name: Exhaustive browser validation (explicit opt-in)",
+    "        if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation }}",
+    "        env:", "          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json",
+    `        run: pnpm ${releaseBrowser.join(" ")}`,
+  ].join("\n") + "\n");
   for (const [entry, replacement] of [
     [dbEntry, [
       "      - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)",

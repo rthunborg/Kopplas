@@ -9,7 +9,7 @@ import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { INTEGRATION_ARGS, BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, createIntegrationChildDiagnostic, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { INTEGRATION_ARGS, BROWSER_ARGS, RELEASE_BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, createIntegrationChildDiagnostic, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 import { captureCalendarFeedTrace, recordCalendarFeedTrace, recordCalendarFeedContext, recordCalendarFeedMembership, executeCalendarFeed } from "../../../../src/server/commands/calendar-feed/calendar-feed-db";
 import { CommandError } from "../../../../src/server/commands/command-errors";
 import { validateCalendarFeedIntent } from "../../../../src/features/calendar-feed/validation";
@@ -64,6 +64,8 @@ test("CI command projection rejects entry and argv drift and cannot erase unrela
     ['"--outputFile=test-results/full-integration.json"', '"--outputFile=test-results/foreign.json"'],
     ['"run", "test:smoke"', '"run", "test:e2e"'],
     ["export const BROWSER_ARGS", "const BROWSER_ARGS"],
+    ['"run", "test:e2e", "--reporter=list,json"', '"run", "test:e2e", "--grep=feed"'],
+    ["export const RELEASE_BROWSER_ARGS", "const RELEASE_BROWSER_ARGS"],
   ]) {
     assert.ok(wrapper.includes(before));
     assert.throws(() => projectCalendarFeedCiCommands(workflow, wrapper.replace(before, after)), /declaration|argv/);
@@ -78,6 +80,29 @@ test("CI command projection rejects entry and argv drift and cannot erase unrela
   assert.ok(unrelated.startsWith("# unrelated workflow drift\n"));
   assert.notEqual(inverseHash(unrelated), originalHash);
 });
+test("release projection rejects command selector condition stack and duplicate-entry drift", () => {
+  const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const start = workflow.indexOf("      - name: Exhaustive browser validation (explicit opt-in)\n");
+  const end = workflow.indexOf("\n      - name:", start);
+  assert.ok(start > 0 && end > start);
+  const entry = workflow.slice(start, end);
+  for (const [before, after] of [
+    ["run: node scripts/ci/with-calendar-feed-runtime.mjs browser", "run: pnpm run test:e2e --reporter=list,json"],
+    [".mjs browser", ".mjs browser --grep feed"],
+    ["CALENDAR_FEED_CI_BROWSER_SUITE: release", "CALENDAR_FEED_CI_BROWSER_SUITE: smoke"],
+    [" && inputs.release_validation", ""],
+    ["github.event_name == 'workflow_dispatch'", "github.event_name == 'push'"],
+    ["${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}", "${{ github.run_id }}:1:e2e"],
+    ["PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json", "PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/other.json"],
+  ]) {
+    assert.ok(entry.includes(before));
+    assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(entry, entry.replace(before, after))), /exact release workflow entry/);
+  }
+  for (const replacement of ["", entry + "\n" + entry]) {
+    assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(entry, replacement)), /exact release workflow entry/);
+  }
+});
+
 test("Storage schema source excludes only Mailpit in its exact job and step", () => {
   const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
   const entry = "      - name: Start local schema source\n        run: supabase start --exclude mailpit\n";
@@ -1253,6 +1278,82 @@ test("browser mode runs only existing smoke and awaits its server group before k
   assert.equal(result.launches[0].childEnv.CALENDAR_FEED_TEST_BASE_URL, "http://127.0.0.1:3100");
   assert.ok(result.events.indexOf("commit") < result.events.indexOf("launch:0"));
   assert.ok(result.events.lastIndexOf("settled:0") < result.events.indexOf("delete"));
+});
+
+const releaseEnv = { ...env, GITHUB_EVENT_NAME: "workflow_dispatch", CALENDAR_FEED_CI_BROWSER_SUITE: "release" };
+
+test("release browser launches only fixed exhaustive argv with the same key endpoint and settled cleanup authority as smoke", async () => {
+  assert.ok(Object.isFrozen(RELEASE_BROWSER_ARGS));
+  assert.deepEqual([...RELEASE_BROWSER_ARGS], ["run", "test:e2e", "--reporter=list,json"]);
+  for (const [selectedEnv, expectedArgs] of [[env, BROWSER_ARGS], [releaseEnv, RELEASE_BROWSER_ARGS]] as const) {
+    const h = harness();
+    const result = await runCalendarFeedRuntime({ mode: "browser", env: selectedEnv, platform: "linux" }, h.deps);
+    assert.equal(result.exitCode, 0); assert.equal(h.launches.length, 1);
+    assert.equal(h.launches[0].command, "pnpm"); assert.deepEqual(h.launches[0].args, [...expectedArgs]);
+    const childEnv = h.launches[0].childEnv;
+    assert.equal(childEnv.CALENDAR_FEED_ATTESTATION_KEY_ID, `ci_${keyId}`);
+    assert.equal(childEnv.CALENDAR_FEED_ATTESTATION_SECRET, Buffer.alloc(32, 7).toString("base64url"));
+    assert.equal(childEnv.SUPABASE_TEST_REQUIRED, "1");
+    assert.equal(childEnv.SUPABASE_TEST_URL, status.API_URL); assert.equal(childEnv.SUPABASE_TEST_DB_URL, status.DB_URL);
+    assert.equal(childEnv.NEXT_PUBLIC_SUPABASE_URL, status.API_URL);
+    assert.equal(childEnv.CALENDAR_FEED_TEST_BASE_URL, "http://127.0.0.1:3100");
+    assert.equal(childEnv.NEXT_PUBLIC_APP_URL, "http://127.0.0.1:3100");
+    assert.equal(childEnv.CALENDAR_FEED_TEST_LOG_FILE, "/private/allowlisted.jsonl");
+    assert.ok(h.events.indexOf("commit") < h.events.indexOf("launch:0"));
+    assert.ok(h.events.lastIndexOf("settled:0") < h.events.indexOf("delete"));
+    assert.equal(result.receipt.keyDeleted, true); assert.equal(result.receipt.keyOutcome, "deleted-confirmed");
+  }
+});
+
+test("release selector rejects unknown suites nonbrowser modes events and local execution before qualification SQL or launch", async () => {
+  for (const [mode, selectedEnv, platform] of [
+    ...["", "smoke", "all", "release --grep feed"].map(suite => ["browser", { ...releaseEnv, CALENDAR_FEED_CI_BROWSER_SUITE: suite }, "linux"] as const),
+    ["db", releaseEnv, "linux"], ["cause-proof", releaseEnv, "linux"],
+    ["browser", { ...releaseEnv, GITHUB_EVENT_NAME: undefined }, "linux"],
+    ["browser", { ...releaseEnv, GITHUB_EVENT_NAME: "push" }, "linux"],
+    ["browser", { ...releaseEnv, GITHUB_EVENT_NAME: "pull_request" }, "linux"],
+    ["browser", { ...releaseEnv, CI: "false" }, "linux"], ["browser", releaseEnv, "win32"],
+  ] as const) {
+    const h = harness();
+    const result = await runCalendarFeedRuntime({ mode, env: selectedEnv, platform }, h.deps);
+    assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyOutcome, "not-attempted");
+    assert.deepEqual(h.events, []); assert.deepEqual(h.queries, []); assert.deepEqual(h.launches, []);
+  }
+});
+
+test("release unsuccessful forced and unverified teardown preserve exact key custody just as smoke does", async () => {
+  for (const selectedEnv of [env, releaseEnv]) {
+    for (const options of [{ failChild: 0 }, { forcedStop: true }, { failStops: true }]) {
+      const h = harness(options);
+      const result = await runCalendarFeedRuntime({ mode: "browser", env: selectedEnv, platform: "linux" }, h.deps);
+      assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyDeleted, false);
+      assert.equal(result.receipt.keyOutcome, "unverified");
+      assert.equal(result.receipt.custody?.vaultUuid, keyUuid);
+      assert.equal(result.receipt.custody?.ownedName, `calendar_feed_attestation_ci_${keyId}`);
+      assert.ok(!h.queries.some(call => call.sql.startsWith("delete")));
+      assert.ok(h.events.includes("settled:0"));
+      assert.ok(result.receipt.failures.includes(options.failStops ? "owned-child-cleanup-failed" : "browser-server-teardown-unverified"));
+    }
+  }
+});
+
+test("release verified-success waits for owned group settlement before deleting its own key", async () => {
+  const h = harness();
+  let enterStop!: () => void, finishStop!: () => void;
+  const entered = new Promise<void>(resolve => { enterStop = resolve; });
+  const gate = new Promise<void>(resolve => { finishStop = resolve; });
+  const running = runCalendarFeedRuntime({ mode: "browser", env: releaseEnv, platform: "linux" }, { ...h.deps,
+    launch(command: string, args: string[], childEnv: Record<string, string>) {
+      const handle = h.deps.launch(command, args, childEnv);
+      return { ...handle, async stop() { enterStop(); await gate; return handle.stop(); } };
+    },
+  });
+  await entered;
+  assert.ok(!h.queries.some(call => call.sql.startsWith("delete")));
+  finishStop();
+  const result = await running;
+  assert.equal(result.exitCode, 0); assert.equal(result.receipt.keyDeleted, true);
+  assert.ok(h.events.lastIndexOf("settled:0") < h.events.indexOf("delete"));
 });
 
 test("failed DB readiness build and integration retain the exact key despite frontend settlement", async () => {
