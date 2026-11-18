@@ -1,6 +1,6 @@
 # Epic 15 selected-interval and consumer repair - 2026-11-18
 
-Status at the five-path semantic-verification source freeze: local base018bec88036d44350896f3fadd2fce1824dedfb1 includes the reviewed D4 selector correction; it has no hosted/runtime evidence. The bounded read-lifecycle method and single phone endpoint frame below are implemented and locally checked, pending independent actual-source qualification and a separate Root runtime admission. They do not fix the UNKNOWN Dense cause. Actual660 General remains failed:539 unique,442 expected,2 unexpected,95 skipped,0 flaky;13 later Scheduling cases were unexecuted. `release_ready=false`. Frontend comparison baseline remains S and the gate APPLIES, including application changes after S. All25 release rows stay deferred; historical six-story/PR108 development-done status is unchanged. No publication, collection, main integration or production approval is inferred.
+Status at the two-path Dense no-op-filter source freeze: base `c94d3234a8e50398704f61bff908dd71a212ddcb` is the immutable failed hosted candidate, not a passing or frontend-completion baseline. Its General report has539 unique cases:522 expected,1 unexpected Dense,16 skipped,0 flaky/interrupted/global errors. D4 persistence/error/cleanup and the added lower phone endpoint frame actually passed;22 of37 planned capture names are present and15 missing. This source-only correction avoids redundant selects of already-correct shared filters while retaining strict actionability and desired-value checks. Seventeen actual-source local counterexamples, typecheck and scoped lint pass; the changed source has no hosted evidence and awaits distinct High targeted review. Dense cause remains UNKNOWN and `release_ready=false`. Frontend comparison baseline remains S; its gate APPLIES to both post-S application deltas. All25 release rows stay deferred, historical six-story/PR108 development-done status stays unchanged, and human/controller, final-head image/reference, main and production decisions remain pending.
 
 ## Why these corrections are necessary
 
@@ -12,7 +12,9 @@ Notification preferences were flat even though existing Story13.2 requires group
 
 ## Provenance and retained local evidence
 
-The repair branch is `codex/e15-selected-interval-repair-20261118`, based on frozen S `fe282c326b208788ef94a3717092057ab7e2e91e` from [draft PR158](https://github.com/rthunborg/Kopplas/pull/158). D1 caller plus two appended regressions received independent High review with zero findings and were committed as `2a0d032a72e64f63a1e8896f4c5ac5b17b6c7512`. The six consumer files were committed as `141b8081f99cd824fe69e4be7eed3b3c00db6cac`. The later preference-group/inline-landing/report candidate was published as `a45aaa4751c674239f8f564c49ee858fbcc0a978`. This follow-up owns only two existing test bodies and this author report; its two test postimages were frozen before this refresh. All earlier app corrections and the approved known-two booking/notification postimages remain unchanged. The latest continuation changes only the specifically allocated Scheduling test bodies and this report. The frozen S report and historical DONE specs remain untouched.
+The earlier sections and their source-freeze limitations below preserve historical repair provenance. The Current C94 section records the latest native outcome; none of those earlier results is retagged to the present changed source.
+
+The repair branch is `codex/e15-selected-interval-repair-20261118`, based on frozen S `fe282c326b208788ef94a3717092057ab7e2e91e` from [draft PR158](https://github.com/rthunborg/Kopplas/pull/158). D1 caller plus two appended regressions received independent High review with zero findings and were committed as `2a0d032a72e64f63a1e8896f4c5ac5b17b6c7512`. The six consumer files were committed as `141b8081f99cd824fe69e4be7eed3b3c00db6cac`. The later preference-group/inline-landing/report candidate was published as `a45aaa4751c674239f8f564c49ee858fbcc0a978`. That earlier follow-up owned two existing test bodies and this author report, with both test postimages frozen before its report refresh. All earlier app corrections and the approved known-two booking/notification postimages remain unchanged. The current continuation changes only the four shared-filter pairs inside the existing Dense Scheduling case and this report, based on published C94. Earlier allocated Scheduling bodies and their diagnostic/capture methods are unchanged. The frozen S report and historical DONE specs remain untouched.
 
 [Checkpoint44285601540](https://github.com/rthunborg/Kopplas/actions/runs/44285601540), attempt1 at the earlier candidate, failed: 11 unexpected, 1 flaky and22 skipped, with cleanup/key-custody uncertainty preserved. The later [a45 checkpoint44303175982](https://github.com/rthunborg/Kopplas/actions/runs/44303175982) also failed: 539 total,510 expected,3 unexpected,1 flaky,25 skipped including interrupted execution. Its dense scheduling cause remains UNKNOWN;13 later scheduling cases did not execute. These native failures, retries and skips remain immutable evidence. The previously admitted fresh full case was consumed by a45; this partial correction does not authorize another full run, publication or an attempt2 retry. Root must first batch and qualify the remaining necessary Scheduling diagnostic/capture case through its existing coordinator route.
 
@@ -27,7 +29,7 @@ Commands use Node22.23.2 and the checkout's locked dependencies. No local server
 | Current actual component and inline sign-in probes | 9 passed: active grouping, pending defaults, GET hydration, optional PUT/readback, failed PUT, failed GET, empty DTO projection and two exact role landings | Private actual-source hook/fetch/method ports; no browser/layout/image credit |
 | Current static checks | `node node_modules/typescript/bin/tsc --noEmit --incremental false` and scoped `node node_modules/eslint/bin/eslint.js` for the three changed sources: both exit0 | No build or full unchanged suite claimed |
 
-Private receipts retain preimages, exact patches, raw/LF hashes and logs under `release-validation-20261118/selected-interval-repair-author`, `six-consumer-repair-author` and `final-known-blocker-author`, and the follow-ups `known-two-corrections-author`, `known-two-corrections-cleanup-fix-author`, `scheduling-continuation-author`, `scheduling-pending-save-fix-author`, `D4-selector-author`, and `semantic-five-path-author`. Their scope/grant provenance is supplementary; the repository sources, commands and native checkpoint above make this report readable without private filesystem access.
+Private receipts retain preimages, exact patches, raw/LF hashes and logs under `release-validation-20261118/selected-interval-repair-author`, `six-consumer-repair-author` and `final-known-blocker-author`, and the follow-ups `known-two-corrections-author`, `known-two-corrections-cleanup-fix-author`, `scheduling-continuation-author`, `scheduling-pending-save-fix-author`, `D4-selector-author`, `semantic-five-path-author`, and `Dense-noop-filter-author`. Their scope/grant provenance is supplementary; the repository sources, commands and native checkpoint above make this report readable without private filesystem access.
 
 The previous grouping/inline correction retained exact component and scheduling inverse proofs. The latest two-body inverse restores both a45 test preimages: all165 original booking-editor assertion lines and72 original notification assertion lines remain byte-identical. Only the two asynchronous setChecked actions become normal clicks; all strict positive PUT/GET/body/status/reload/checked/restoration assertions remain. No test declaration is added or removed; only the existing D4 callback receives testInfo. Every byte outside the two allocated bodies is conserved. The latest Scheduling test continuation has its own exact inverse to the a45 e9 preimage:12 lexical test calls still generate the configured20 cases, every original matcher statement remains, and all11 original capture names are retained. Collection/source counts earn no execution credit.
 
@@ -145,6 +147,28 @@ Code postimages were frozen before this note. The original transport mechanism h
 
 The method can establish that the actual client read port returned a closed result class or the existing client catch observed a throw, and its ticket currency at that transition. Client await intervals include framework/server/network scheduling; publish/finish callback return is not React commit/paint or DB success. Missing return before observationClosed is right-censored, not a permanent hang. Exact server-action identity, SQL stage latency/commit and causal repair remain unproven. Dense cause stays UNKNOWN. Actual implemented-source High qualification and a separate Root publication/runtime purpose admission are still required. All25 rows, historical DONE records, final-base, human/controller, image/reference, main/production and custody holds remain.
 
+## Current C94 outcome and no-op-filter setup correction
+
+[Checkpoint44345214942](https://github.com/rthunborg/Kopplas/actions/runs/44345214942), attempt1 at `c94d3234a8e50398704f61bff908dd71a212ddcb`, failed. The independently qualified native General report contains539 unique cases:522 expected,1 unexpected Dense,16 skipped,0 flaky/interrupted/global errors. Thirteen skips are later serial Scheduling cases and three are explicit quote skips. Six already-passing Scheduling cases repeated on serial retry are not additional unique coverage. D4 completed real positive PUT/GET/reload/restoration, the controlled save-error/recovery and all cleanup checks. The lower Schema-drag endpoint frame passed, and all four pointer persistence cases passed on both serial attempts. These are C94 observations, not passes for this changed source. The selected inventory has22 of37 names present and15 missing; all25 release rows remain deferred.
+
+The browser child exited1 normally before its30-minute wrapper ceiling: `child-failed`, not `child-timeout`. General's Dense attempts timed out at180208ms and181793ms within the unchanged180-second case policy; these are whole-case harness outcomes, not a product SLO. Database close was confirmed, but individual key deletion and browser-server teardown remain unverified. The entire-disposable-hosted-job-ended custody alternative was met; it does not prove per-resource absence or deletion of retained data. The broader workflow, including its separate recovery result, remains failed. Supporting ordinary passes cannot erase that outcome. Existing native raw audit failure of6 Moderate/2 High remains governed by the exact-graph [temporary disposition](../security/temporary-picomatch-audit-disposition-2026-11-18.md) expiring2026-11-21T00:00:00Z; this is not a clean audit.
+
+Both Dense failures point to the existing h.open period-select/settle path and a still-visible loading indicator. Retained semantic tickets40-46 completed their client first-read intervals in approximately3.1-3.7 seconds; latest47 is right-censored/unobserved after its first-read start. Each bounded body retains73 events with omitted390 and cannot certify full history. Transport records cannot be joined to semantic tickets from matching ordinal/counts. No SQL latency, React paint, server-action identity, permanent hang, exact time saved or root-cause claim follows. Dense cause remains UNKNOWN. Story15.1 AC1 and15.6 AC6/7 are unchanged; representative performance volumes/thresholds and their approval remain Product/Architect work.
+
+The narrow setup correction uses the same four ordered exact labels and fixture IDs: Person, Arbetsroll, Jobb and Kund. For every control, including an already-correct one, it first requires one SELECT, visible and enabled. Only an actual DOM-value mismatch calls the existing h.filter helper, preserving its selectOption and idle/settle barriers for real changes. Every pair then receives a strict desired-value assertion. This avoids redundant selection without accepting hidden, disabled, ambiguous or wrong-type controls, and makes no application, helper, timeout, fixture or assertion-contract change. All11 view/period combinations, full501 fixture/expected-ID coverage, capacity output, toolbar cancellation/focus, SQL no-mutation assertions and37 capture names remain identical outside this one replacement.
+
+| Current source-only verification | Actual result | Limit |
+| --- | --- | --- |
+| Extracted actual four-filter loop with synthetic locator/helper/assertion ports | 17 passed,0 failed: already-correct/all-changed/mixed states; hidden, disabled, wrong-type, ambiguous and missing controls; wrong final value; eight exact-error-identity branches | No browser actionability-tree, network, SQL, PNG or performance credit |
+| `node node_modules/typescript/bin/tsc --noEmit --incremental false` | Exit0 | No build or hosted execution |
+| `node node_modules/eslint/bin/eslint.js tests/e2e/scheduling-views.atdd.e2e.spec.ts` | Exit0, no warnings/errors | Scoped to the one modified test source |
+| Whole raw inverse, actual AST boundaries and protected bindings | Dense376-551 becomes376-559; every other byte reconstructs exactly;12 lexical/20 configured cases, all assertions/captures and eight protected paths conserved | Counts/source parity are not execution |
+| Earlier19 read/bridge,24 recorder/lifetime/actual-transport and11 phone-source checks | Reused without rerun after exact relevant raw/body parity checks | Synthetic original evidence; not new cases or current hosted coverage |
+
+The actual four-pair loop was frozen before this note refresh. The app/read/unit protected postimages match the prior semantic-method freeze; both diagnostic setup/finalizers and the phone pointer body retain exact source parity. The existing500ms install/dispose/attach bounds, independent finalization, primary-error identity and closed privacy schema are unchanged. No broad unchanged suite was rerun, no tracked test helper/framework added, and no install, service, provider, capture or collection action occurred. The new17 checks do not add to the old registered11-test count. Independent review is limited to this changed case and final author trail; it is not a fourth broad story pass.
+
+The native QA receipt is retained with SHA256 `278576a95d689b2bcc27c284d815412b9fa4a978c2d2b8c676f031e0852b20f4`; exact local preimages, inverse, loop/case hashes, protected bindings, patch and command logs are in the supplementary Dense-noop-filter-author receipt package. The new source has no publication or runtime admission. Root must independently qualify the implemented diff and any subsequent purpose-bound new-head case; no green guarantee, new acceptance, release closure or production authority follows. Earlier660/a45 failures, skips, retries and consumed cases remain immutable.
+
 ## Frontend and final-head qualification
 
 The actual Kopplas DESIGN/EXPERIENCE spines, Phase B UX and existing13.2/15.1/16.4 contracts govern. No promoted Figma reference was supplied for this bounded change. Existing spacing/typography are reused; no redesign, new tokens, state-forcing hook or framework is introduced. Project connected360x640 governs the phone viewport.
@@ -193,49 +217,31 @@ Main ordering/readmission remains Coordinator-held. Product work remains paused 
 
 ## Suggested Review Order
 
-Author: `/root/e15_release_wiring_author_high`, explicit Sol High. Refreshed against the frozen five-path semantic-verification change on local base018bec88036d44350896f3fadd2fce1824dedfb1. S remains the frontend comparison baseline. Review targets the new method/phone diff and its preservation proofs; prior corrections are retained context, not a fourth broad historical-story pass.
+Author: `/root/e15_release_wiring_author_high`, explicit Sol High. Refreshed after the code freeze for the current two-path continuation on C94. Review the four-filter setup and its preserved boundaries; prior D1/consumer/semantic/capture work is retained context, not a fourth broad historical-story pass. S remains the frontend comparison baseline.
 
-### Follow the existing read boundary without changing its decisions
+### Preserve real control checks while avoiding redundant selections
 
-The optional bridge carries only the primitive event. The actual original awaits, latest guards and callback/exception order remain intact; observer failures never enter business failure handling.
+The exact four labels/IDs and locator semantics remain. Each SELECT must be unique, visible and enabled before reading its DOM value; only a mismatch invokes the original helper, and the desired value is always asserted.
 
-- `src/components/scheduling/SchedulingWorkspace.tsx:49` — `runSchedulingRead`: retains the actual readAction and existing business port object.
-- `src/components/scheduling/SchedulingWorkspace.tsx:51` — `observe:event`: forwards only to the optional static test-owned binding.
-- `src/features/scheduling/view-model.ts:102` — `const emit`: isolates classification/getter/clock/native-Promise handling without thenable assimilation.
-- `src/features/scheduling/view-model.ts:120` — `await ports.read(requested)`: keeps the original first await and subsequent latest guard.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:521` — `for(const [label,desired]`: retains all four original ordered label/fixture-ID pairs.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:524` — `toHaveJSProperty`: requires SELECT after uniqueness and before value inspection.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:527` — `if(await filter.inputValue()!==desired)`: calls the existing helper only for an actual mismatch.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:528` — `toHaveValue(desired)`: retains strict final-state validation even when no selection is needed.
 
-### Validate bounded correlation without exposing business data
+### Keep application, settle and persistence boundaries intact
 
-Only seven primitive fields enter the recorder. Owner/frame, schema, ordinal, clock and ticket checks preserve incomplete/discontinuous evidence rather than rebasing or certifying unseen settlement.
+The helper's changed-filter settle path is unchanged. Existing projection IDs, capacity, toolbar focus/cancellation and durable no-mutation checks remain after setup; optional diagnostics still cannot replace the original failure.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:458` — `semanticReceive`: validates ownership/closed fields and copies no raw values.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:496` — `semanticFinalize`: serializes only bounded ticket rows/counters into a body-backed attachment.
-- `tests/unit/features/scheduling/workspace-read.test.ts:23` — `overlapping read:`: proves stale reads cannot publish/fail/finish current loading across observer variants.
-- `tests/unit/features/scheduling/workspace-read.test.ts:55` — `reconciled second read:`: retains revised-input identity and latest protection across the second await.
+- `tests/e2e/support/scheduling-views-atdd.ts:118` — `async filter`: retains original selectOption and settle behavior for real changes.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:537` — `expect(await h.visibleIds()).toEqual(expected)`: retains exact projection identity checks.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:549` — `expect(await h.sqlBookings()).toEqual(before)`: retains the durable no-mutation barrier.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:558` — `if (denseHasPrimary) throw densePrimary`: preserves the exact original failure after independent finalization.
 
-### Keep optional binding I/O finitely owned and preserve primary failure
+### Verify the bounded correction without converting evidence into acceptance
 
-The500ms phases limit only diagnostic operations. Disable first, dispose only the eventual owned binding, contain late/rejected operations and independently run the unchanged transport finalizer before rethrowing the original sentinel.
+Seventeen actual-source counterexamples prove no-op, changed-value, actionability, final-state and sentinel behavior through synthetic ports. Exact raw inverse/body parity reuses19/24/11 unchanged method checks; typecheck and scoped lint pass. No browser, SQL, native PNG or performance pass is claimed for this changed source.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:437` — `semanticBounds`: records500/500/500ms and the1500ms maximum additional awaited overhead.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:447` — `semanticBound`: bounds native-Promise operations without arbitrary thenable assimilation.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:485` — `semanticInstall`: contains late installation and cleans up only its returned owner.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:546` — `semanticDisable()`: closes observation before finalization and independent transport cleanup.
+- `docs/quality/epic-15-selected-interval-and-consumer-repair-2026-11-18.md:150` — `## Current C94 outcome`: keeps actual failed native counts and diagnostic limits.
+- `docs/quality/epic-15-selected-interval-and-consumer-repair-2026-11-18.md:184` — `## Conserved release register`: preserves all25 deferred rows and existing owners.
 
-### Add only the missing phone endpoint proof
-
-The original assignment frame stays. Normal scrolling must show both complete unchanged endpoints above the footer; exact phone scroll and outer desktop restoration remain failure-sensitive.
-
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:300` — `endpointScroll`: captures exact dialog/page positions before ordinary scrolling.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:317` — `schema-drag-selected-editor-phone-endpoints`: adds the sole new resized-desktop-origin phone frame.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:320` — `dialog-scroll`: checks exact restoration while preserving the earlier capture/assertion failure.
-
-### Verify preserved exceptions and retain qualification limits
-
-Actual-function unit and VM evidence cover callback order, reference identity and finally precedence. Protected earlier consumer fixes remain unchanged; runtime/image/controller acceptance remains separate.
-
-- `tests/unit/features/scheduling/workspace-read.test.ts:87` — `latest transport exception`: checks observer isolation from existing failed/finish behavior.
-- `tests/unit/features/scheduling/workspace-read.test.ts:107` — `for(const observed`: compares exact start/failed/finish sentinel precedence with and without observation.
-- `tests/e2e/notifications/notifications.atdd.e2e.spec.ts:192` — `preferenceAlerts`: retains the reviewed component scope as an unchanged protected binding.
-
-Evidence:11 registered tests passed with30+8 inner evaluations;19 read/bridge,24 recorder/lifetime/actual-transport and11 phone VM canaries passed; typecheck/lint exit0. Exact raw inverses and actual AST normalization preserve business semantics and original capture/declaration/fixture boundaries. Limits: synthetic source ports/geometry/virtual clocks only, no hosted collection, browser/SQL/native PNG, server/DB stage causality, paint, independent image/reference or human/controller acceptance.37 frames are planned, Dense remains UNKNOWN and all25 release rows stay deferred under baselineS.
+C94 remains failed539/522 expected/1 Dense/16 skipped/0 flaky, with22 of37 planned capture names present. Latest semantic47 is censored and Dense cause UNKNOWN. Individual key deletion/server teardown, new-head runtime/images/reference review, final-base/human/controller acceptance and all25 release rows remain pending. Native audit6 Moderate/2 High retains its approved exact-graph fixed expiry. There is no publication, collection, release or production authority in this source freeze.

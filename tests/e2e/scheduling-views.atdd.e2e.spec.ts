@@ -518,7 +518,15 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
       denseContext = { view, mode, phase: "open" };
       await h.open(view, mode);
       denseContext = { view, mode, phase: "sharedFilters" };
-      await h.applySharedFilters();
+      for(const [label,desired] of [["Person",h.people[0]!],["Arbetsroll",h.scenario.workRoleId],["Jobb",h.scenario.jobId],["Kund",h.scenario.customerId]] as const){
+        const filter=h.page.getByLabel(label,{exact:true});
+        await expect(filter).toHaveCount(1);
+        await expect(filter).toHaveJSProperty("tagName","SELECT");
+        await expect(filter).toBeVisible();
+        await expect(filter).toBeEnabled();
+        if(await filter.inputValue()!==desired)await h.filter(label,desired);
+        await expect(filter).toHaveValue(desired);
+      }
       denseContext = { view, mode, phase: "assertions" };
       if (view === "Beläggning") await expect(visibleCell(h, DATE)).toContainText("Bokat 210 min / budget 480 min");
       else if (view === "Schema" && mode === "month") {
