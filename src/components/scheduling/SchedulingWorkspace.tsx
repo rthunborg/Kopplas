@@ -48,6 +48,10 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
 
   const read = useCallback((requested: SchedulingReadInput) => runSchedulingRead(requested, {
     sequence,read:readAction,
+    observe:event=>{
+      const binding=(window as Window & {readonly __kopplasSchedulingReadSemanticV1?:(observation:typeof event)=>unknown}).__kopplasSchedulingReadSemanticV1;
+      return typeof binding==="function"?binding(event):undefined;
+    },
     start:()=>{setLoading(true);setError(null);},
     reconcile:(value,current)=>{
       if (!value.data.error && value.data.canView) {

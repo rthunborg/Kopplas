@@ -295,6 +295,34 @@ for (const [host, gesture, id] of [["Schema", "click", "001"], ["Schema", "drag"
       await page.setViewportSize({ width: 360, height: 640 });
       await expectEditor(h, { ...i, assigneeIds: [h.people[0]!] });
       await attachVisual(page, testInfo, `${captureHost}-${gesture}-selected-editor-phone`);
+      if(host==="Schema"&&gesture==="drag"){
+        const endpointPane=h.editor.locator(".overflow-y-auto");
+        const endpointScroll={dialog:await endpointPane.evaluate(node=>({x:node.scrollLeft,y:node.scrollTop})),page:await page.evaluate(()=>({x:scrollX,y:scrollY}))};
+        let endpointError:unknown,endpointFailed=false;const endpointCleanup:string[]=[];
+        try {
+          const startInput=h.editor.getByTestId("booking-start"),endInput=h.editor.getByTestId("booking-end");
+          await startInput.scrollIntoViewIfNeeded();await endInput.scrollIntoViewIfNeeded();
+          const startLabel=startInput.locator(".."),endLabel=endInput.locator(".."),footer=h.editor.getByTestId("booking-save").locator("..");
+          const initialStart=await startLabel.boundingBox(),pane=await endpointPane.boundingBox();
+          expect(initialStart).not.toBeNull();expect(pane).not.toBeNull();
+          await endpointPane.evaluate((node,delta)=>node.scrollBy({top:delta,left:0,behavior:"instant"}),initialStart!.y-Math.max(0,pane!.y)-8);
+          await expect(startInput).toHaveValue("2026-10-12T14:30");await expect(endInput).toHaveValue("2026-10-12T16:00");
+          await expect(footer).toBeVisible();const footerBox=await footer.boundingBox();expect(footerBox).not.toBeNull();
+          expect(footerBox!.y).toBeGreaterThanOrEqual(0);expect(footerBox!.y+footerBox!.height).toBeLessThanOrEqual(640);
+          for(const target of [startLabel,startInput,endLabel,endInput]){
+            await expect(target).toBeVisible();const box=await target.boundingBox();expect(box).not.toBeNull();
+            expect(box!.x).toBeGreaterThanOrEqual(0);expect(box!.x+box!.width).toBeLessThanOrEqual(360);
+            expect(box!.y).toBeGreaterThanOrEqual(Math.max(0,pane!.y));expect(box!.y+box!.height).toBeLessThanOrEqual(Math.min(640,footerBox!.y));
+          }
+          await attachVisual(page,testInfo,"schema-drag-selected-editor-phone-endpoints");
+        } catch(error){endpointError=error;endpointFailed=true;}
+        finally {
+          try {await endpointPane.evaluate((node,position)=>node.scrollTo({left:position.x,top:position.y,behavior:"instant"}),endpointScroll.dialog);expect(await endpointPane.evaluate(node=>({x:node.scrollLeft,y:node.scrollTop}))).toEqual(endpointScroll.dialog);}catch{endpointCleanup.push("dialog-scroll");}
+          try {await page.evaluate(position=>window.scrollTo({left:position.x,top:position.y,behavior:"instant"}),endpointScroll.page);expect(await page.evaluate(()=>({x:scrollX,y:scrollY}))).toEqual(endpointScroll.page);}catch{endpointCleanup.push("page-scroll");}
+        }
+        if(endpointFailed)throw endpointError;
+        if(endpointCleanup.length)throw new Error(`Schema drag endpoint restoration failed: ${endpointCleanup.join(", ")}`);
+      }
     } catch (error) { pointerCaptureError = error; pointerCaptureFailed = true; }
     finally { try { await page.setViewportSize({ width: 1440, height: 1000 }); } catch (error) { if (!pointerCaptureFailed) { pointerCaptureError = error; pointerCaptureFailed = true; } } }
     if (pointerCaptureFailed) throw pointerCaptureError;
@@ -403,10 +431,87 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
       await testInfo.attach("scheduling-dense-read-transport", { body, contentType: "application/json" });
     } catch { denseIncrement("unavailable"); }
   };
+  // SEMANTIC-READ-BEGIN: test-owned bounded observation, never application control.
+  type SemanticEvent=Parameters<NonNullable<Parameters<typeof import("@/features/scheduling/view-model").runSchedulingRead>[1]["observe"]>>[0];
+  type SemanticOwner=Awaited<ReturnType<Page["exposeBinding"]>>;
+  const semanticBounds={installMs:500,disposeMs:500,attachMs:500} as const; // At most 1500ms awaited diagnostic overhead; test budget is unchanged.
+  const semanticKeys=["ticket","currentTicket","ordinal","operation","phase","outcome","timeMs"];
+  const semanticOperations=["lifecycle","first-read","reconcile","reconciled-read","publish","failed","finish"];
+  const semanticPhases=["start","returned","threw","discarded"],semanticOutcomes=["none","no-data-error","denied","invalid","retryable","other-data-error","thrown"];
+  const semanticCounters={ignoredFrame:0,invalid:0,oversized:0,omitted:0,ordinalGap:0,clockUnavailable:0,clockDiscontinuity:0,ticketDiscontinuity:0,uninstallUnavailable:0,attachUnavailable:0};
+  const semanticIncrement=(key:keyof typeof semanticCounters,count=1)=>{semanticCounters[key]=Math.min(1_000_000,semanticCounters[key]+count);};
+  const semanticTickets=new Map<number,{ticket:number;events:SemanticEvent[];incomplete:boolean}>();
+  let semanticActive=true,semanticAcceptInstall=true,semanticCorrelated=true;
+  let semanticLatest:number|null=null,semanticLastCurrent:number|null=null,semanticLastClock:number|null=null,semanticOwner:SemanticOwner|undefined;
+  const semanticDisable=()=>{semanticActive=false;semanticAcceptInstall=false;};
+  const semanticBound=<T,>(operation:()=>Promise<T>,milliseconds:number):Promise<{ok:true;value:T}|{ok:false}>=>new Promise(resolve=>{
+    let settled=false;
+    const complete=(outcome:{ok:true;value:T}|{ok:false})=>{if(settled)return;settled=true;clearTimeout(timer);resolve(outcome);};
+    const timer=setTimeout(()=>complete({ok:false}),milliseconds);
+    try { const pending=operation();Promise.prototype.then.call(pending,(value:T)=>complete({ok:true,value}),()=>complete({ok:false})); }
+    catch { complete({ok:false}); }
+  });
+  const semanticDispose=async(owned:SemanticOwner)=>{
+    const outcome=await semanticBound(()=>owned.dispose(),semanticBounds.disposeMs);
+    if(!outcome.ok)semanticIncrement("uninstallUnavailable");
+  };
+  const semanticReceive=(source:{page:Page;frame:import("@playwright/test").Frame},raw:unknown)=>{
+    try {
+      if(!semanticActive||!semanticCorrelated){semanticIncrement("omitted");return;}
+      if(source.page!==h.page||source.frame!==h.page.mainFrame()){semanticIncrement("ignoredFrame");return;}
+      if(!raw||typeof raw!=="object"||Array.isArray(raw)){semanticIncrement("invalid");return;}
+      const keys=Object.keys(raw);
+      if(keys.length!==7||keys.some(key=>!semanticKeys.includes(key))){semanticIncrement("invalid");return;}
+      const {ticket,currentTicket,ordinal,operation,phase,outcome,timeMs}=raw as Record<string,unknown>;
+      if([operation,phase,outcome].some(value=>typeof value==="string"&&value.length>512)){semanticIncrement("oversized");return;}
+      if(!Number.isSafeInteger(ticket)||Number(ticket)<1||Number(ticket)>1_000_000||!Number.isSafeInteger(currentTicket)||Number(currentTicket)<1||Number(currentTicket)>1_000_000||!Number.isSafeInteger(ordinal)||Number(ordinal)<1||Number(ordinal)>16||typeof operation!=="string"||!semanticOperations.includes(operation)||typeof phase!=="string"||!semanticPhases.includes(phase)||typeof outcome!=="string"||!semanticOutcomes.includes(outcome)||(timeMs!==null&&(typeof timeMs!=="number"||!Number.isFinite(timeMs)||timeMs<0||timeMs>3_600_000))){semanticIncrement("invalid");return;}
+      const event:SemanticEvent={ticket:ticket as number,currentTicket:currentTicket as number,ordinal:ordinal as number,operation:operation as SemanticEvent["operation"],phase:phase as SemanticEvent["phase"],outcome:outcome as SemanticEvent["outcome"],timeMs:timeMs as number|null};
+      if(Buffer.byteLength(JSON.stringify(event),"utf8")>512){semanticIncrement("oversized");return;}
+      if((semanticLastCurrent!==null&&event.currentTicket<semanticLastCurrent)||event.ticket>event.currentTicket){semanticIncrement("ticketDiscontinuity");semanticCorrelated=false;for(const row of semanticTickets.values())row.incomplete=true;return;}
+      if(event.timeMs!==null&&semanticLastClock!==null&&event.timeMs<semanticLastClock){semanticIncrement("clockDiscontinuity");semanticCorrelated=false;for(const row of semanticTickets.values())row.incomplete=true;return;}
+      semanticLastCurrent=event.currentTicket;if(event.timeMs!==null)semanticLastClock=event.timeMs;
+      let row=semanticTickets.get(event.ticket);
+      if(!row){
+        if(semanticTickets.size===8){const oldest=Math.min(...semanticTickets.keys());if(event.ticket<oldest){semanticIncrement("omitted");return;}semanticIncrement("omitted",semanticTickets.get(oldest)!.events.length||1);semanticTickets.delete(oldest);}
+        row={ticket:event.ticket,events:[],incomplete:false};semanticTickets.set(event.ticket,row);
+      }
+      const previous=row.events.at(-1)?.ordinal??0;
+      if(row.events.length>=16){row.incomplete=true;semanticIncrement("omitted");return;}
+      if(event.ordinal!==previous+1||(previous===0&&(event.operation!=="lifecycle"||event.phase!=="start"))){row.incomplete=true;semanticIncrement("ordinalGap");if(event.ordinal<=previous)return;}
+      if(event.timeMs===null){row.incomplete=true;semanticIncrement("clockUnavailable");}
+      row.events.push(event);semanticLatest=Math.max(semanticLatest??0,event.ticket);
+    } catch { semanticIncrement("invalid"); }
+  };
+  const semanticInstall=async()=>{
+    const outcome=await semanticBound(()=>{
+      const pending=h.page.exposeBinding("__kopplasSchedulingReadSemanticV1",semanticReceive);
+      Promise.prototype.then.call(pending,(owned:SemanticOwner)=>{
+        if(!semanticAcceptInstall||!semanticActive){void semanticDispose(owned).catch(()=>semanticIncrement("uninstallUnavailable"));}
+        else semanticOwner=owned;
+      },()=>{});
+      return pending;
+    },semanticBounds.installMs);
+    if(!outcome.ok){semanticDisable();semanticIncrement("uninstallUnavailable");}
+  };
+  const semanticFinalize=async()=>{
+    semanticDisable();
+    const owned=semanticOwner;semanticOwner=undefined;
+    if(owned)await semanticDispose(owned);
+    const envelope=()=>({schemaVersion:1,attribution:"owned-client-read-lifecycle-only",latestObservedTicket:semanticLatest,tickets:[...semanticTickets.values()].sort((a,b)=>a.ticket-b.ticket),counters:semanticCounters,observationClosed:true});
+    try {
+      let body=Buffer.from(JSON.stringify(envelope()));
+      while(body.byteLength>65536&&semanticTickets.size>1){const oldest=Math.min(...semanticTickets.keys());semanticIncrement("omitted",semanticTickets.get(oldest)!.events.length||1);semanticTickets.delete(oldest);body=Buffer.from(JSON.stringify(envelope()));}
+      if(body.byteLength>65536){semanticIncrement("attachUnavailable");return;}
+      const attached=await semanticBound(()=>testInfo.attach("scheduling-dense-read-semantic",{body,contentType:"application/json"}),semanticBounds.attachMs);
+      if(!attached.ok)semanticIncrement("attachUnavailable");
+    } catch { semanticIncrement("attachUnavailable"); }
+  };
+  // SEMANTIC-READ-END
   let densePrimary: unknown, denseHasPrimary = false;
   try {
     for (const listen of denseListen) { try { listen(); } catch { denseIncrement("unavailable"); } }
   // DENSE-TRANSPORT-END setup
+  try { await semanticInstall(); } catch { semanticDisable();semanticIncrement("uninstallUnavailable"); }
   const shared = [h.ids.role, h.ids.proposal, h.ids.collision, ...h.laterIds].sort();
   for (const [view, modes] of [["Schema", ["day", "week", "month"]], ["Resurser", ["day", "week"]], ["Team", ["week"]], ["Beläggning", ["day", "week", "month"]], ["Min kalender", ["day", "week"]]] as [View, ("day" | "week" | "month")[]][]) {
     for (const mode of modes) {
@@ -437,7 +542,11 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
     }
   }
   } catch (error) { densePrimary = error; denseHasPrimary = true; }
-  finally { try { await denseFinalize(); } catch { /* Optional diagnostics cannot replace the test failure. */ } }
+  finally {
+    semanticDisable();
+    try { await semanticFinalize(); } catch { semanticIncrement("uninstallUnavailable"); }
+    try { await denseFinalize(); } catch { /* Optional diagnostics cannot replace the test failure. */ }
+  }
   if (denseHasPrimary) throw densePrimary;
 });
 
