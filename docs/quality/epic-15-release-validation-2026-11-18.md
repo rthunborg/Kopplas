@@ -1,8 +1,41 @@
 # Epic 15 release-validation evidence — 2026-11-18
 
-Status: exact wrapper source approved by distinct High review, reviewed pin bound, and final local contract checks recorded; corrected hosted run NOT EXECUTED. Final independent binding/diff verification remains before publication. `release_ready=false`. Six stories and PR108 remain development done. All 25 required release checks below remain deferred; no row is closed by this report. The source baseline is `1c53833c70ad61a26cbfbc117a040b1f99d33f2e`; the uncommitted repair must receive a new reviewed commit identity before hosted qualification. Main integration remains Coordinator-held.
+Status at the DB-startup-facts source/offline freeze: isolated base `054490671e7b943d7ddf2a910ffae8e2e6b25437`, four allocated paths only. The existing DB start now has bounded closed PRE_START facts and, only after nonzero startup, one POST_FAILURE observation. Three code postimages and offline proofs are frozen; distinct actual-source High qualification remains pending. No startup-facts Docker/socket collection or new hosted run has executed. This is missing-evidence instrumentation, not a port-conflict fix or guaranteed-green route. The retained full case `f8a4915f-4621-4d27-ae26-9161f8d08523` on `8c7523f582685911ebc23f2e7ba0b0a769d23eb5` failed in DB startup and General, consumed its budget and earned acceptance0. All25 rows remain Deferred and `release_ready=false`; the six stories/PR108 and accepted retrospective remain development done. Main integration, production and release decisions stay Coordinator-held.
 
-## Scope and correction
+## Current bounded DB-startup facts and preserved native result
+
+The [full run44372802912](https://github.com/rthunborg/Kopplas/actions/runs/44372802912), attempt1, checked out8c7523f5 and failed required [DB job135048377687](https://github.com/rthunborg/Kopplas/actions/runs/44372802912/job/135048377687) before migrations/integration. After earlier registry-rate messages, its one Supabase CLI2.115.0 start could not publish host54322/tcp and returned nonzero. Full integration/RLS assertions executed0 and no integration JSON exists. The blocking listener's owner and causal origin remain UNKNOWN; no project-controlled repair is proved. A container attempt name, same project/port or different runner image does not establish ownership, duplicate startup or a shared daemon. The same-head ordinary DB job passed2253 assertions with52 skips, but cannot substitute for required full-job native success.
+
+General on that same full run remains failed:539 unique cases,522 expected,1 flaky,1 unexpected,15 skipped. Dense passed both serial attempts at166511/174984ms with its full workload/assertions intact; these are whole-case durations, not representative performance, SQL or paint certification. INT001 failed with admitted GET/RSC cancellation, while the corrected Montor landing fulfilled; navigation/request-window cause is not qualified here. Booking's first CDP interception failure and explicit retry pass remain flaky.24 of37 planned current-head capture names exist and13 are missing after later serial skips. These component facts do not make the run successful, retag earlier failures or close a release row. Key deletion/browser-server teardown remain unverified; completed-job/owned-stop custody is separate from physical resource or retained-data absence. No role, abort/privacy, native-success, timeout or acceptance waiver is introduced.
+
+This separate pure-S prerequisite changes only the DB job's existing Start local Supabase stack fragment, its strict literal projection, existing unit consumer and this S report. The existing audit policy/severe-exception region, security disposition, runtime wrapper/pin, other jobs, CLI version, ports/configuration, reset/migrate/seed, required1, full assertions, pilot, cleanup and timeouts remain unchanged. F application, booking, INT001, scheduling and selected-interval repair-note sources are outside this checkout/allocation and unchanged. No package/lock/workspace/Next patch or custody/claim change occurs.
+
+The original fixed `supabase start` argv executes exactly once with inherited output and its native exit preserved. Collector/read/write/timeout/owned-child-cleanup failures cannot prevent it or replace its result. Startup0 continues the original downstream job gates without POST_FAILURE; nonzero gets at most one POST_FAILURE before the same exit propagates. No retry or new acceptance stopwatch is added. Closed facts are JSON lines in the existing job output, not raw command output or a new unrestricted artifact.
+
+Only the fixed `ss -H -ltn '( sport = :54322 )'`, Docker publish54322 candidate listing and formatted Created/State.Status/HostConfig.PortBindings inspections are used. IDs remain transient command arguments. At most8 inspect attempts are shared across all candidate and exact attempted-container fallback reads. The count is bounded observed matching configuration hints, not a complete inventory or proof of an active publisher. No all-container alternative, active bind/connect probe, process list, broad inspect, new service, port change or Docker-resource mutation/adoption/cleanup is added.
+
+Primary [Moby v28.3.3 daemon source](https://github.com/moby/moby/blob/v28.3.3/daemon/list.go#L535-L545) compares publish against host-facing PublicPort, covering host54322 to a different container port; [v27.5.1](https://github.com/moby/moby/blob/v27.5.1/daemon/list.go#L496-L516) has the same predicate. The [Docker CLI documentation](https://docs.docker.com/reference/cli/docker/container/ls/#publish-and-expose) contains an inconsistent example. No future runner-daemon version is bound by those source reads. The chosen reviewed failure path therefore keeps discovery explicitly incomplete: collection status is UNAVAILABLE, TRUNCATED or TIMED_OUT, never COMPLETE. Socket NOT_OBSERVED means no matching row observed, not a free port or guaranteed later bind. Empty/partial hints prove no absence; ownership is always UNVERIFIED. Configured port bindings and nominal creation-time comparisons cannot identify a blocking owner or causal actor. Same-clock-bin, invalid or future creation relations remain UNKNOWN.
+
+Each phase has one5000ms whole envelope including worker startup, commands, parsing and owned-child settlement. A separate collector-owned process group contains only the read-only collector/CLI children, never the original Supabase start. Owned-group stop is requested at4800ms, reserving200ms for settlement and the bounded8KiB final parse; a hard5000ms completion also contains never-settling children/cleanup faults without claiming physical shutdown. Worker parsing checks4500ms. Failed startup can add at most two such diagnostic phase budgets (10000ms), while the original startup/job timeouts are unchanged. The aggregate1MiB internal stdout/stderr cap reserves16KiB for the worker's own output; all commands share the remainder. Oversize, malformed, duplicate/foreign fields, vanished state, unavailable tool, timeout and uncertain cleanup stay incomplete. Finalization disables late data/error cleanup callbacks before settling the phase, so late events cannot request a new stop.
+
+Output is a strict schema1 allowlist: bound source/run/attempt/db-job, fixed phase/54322, socket/bind enums, bounded observed count, candidate ordinal/state/creation-relation and UNVERIFIED ownership/status. No raw container/name/IP/PID, URL/header/SQL, environment/arguments/mounts/arbitrary labels, credentials/session or error/stack is logged or retained by diagnostics. Formatted reads exclude those fields; unrecognized input refuses rather than being copied. Source/run/job binding is validated before emission. Existing Supabase output is inherited unchanged as the original command's output, independently of the new diagnostics.
+
+| Actual source/offline qualification | Result | Limit |
+| --- | --- | --- |
+| Focused actual startup/policy/projection tests in the existing wrapper unit file | 18 passed,0 failed/skipped/cancelled:7 new registered startup cases plus11 existing relevant cases | Synthetic process/read/clock/write ports only; inner evaluations are not extra registered tests |
+| Seven existing contract-consumer files | 307 passed,0 failed/skipped/cancelled | Exact projection/pin/report/custody consumers; unchanged broad wrapper suite not rerun |
+| Actual complete inline entrypoint and nested worker program | 14 virtual-process canaries passed,0 failed | Native0/29, PRE/POST never-settle, cleanup/tool/parse/write failures; exact one inherited-output startup and conditional POST; no real CLI/socket/container execution |
+| Existing-body boundary failure combinations | 24 evaluations across native0/17/127/137 and secondary failures, plus original-error sentinel | Inside one registered case, not24 additional tests; no hosted native result |
+| Typecheck, scoped ESLint, actual Node/Bash syntax, locked YAML and lock guard | All exit0; lint0 errors/3 existing warnings | No production build, service, network audit, Docker/ss or port probe |
+| Exact inverse and protected bindings | All three raw code preimages reconstruct; entire audit region and six protected paths unchanged | Source conservation, not ownership/runtime/cleanup proof |
+
+The first focused result18/17pass/1fail is preserved: a synthetic container-ID canary collided with the permitted source-SHA fixture. A distinct canary fixed that test construction; no production guard was weakened. The first private whole-inline probe had a construction SyntaxError before evaluation, also retained with0 credit. Final source passes above use extracted actual functions and the actual generated nested worker program. No new framework, dependency or managed resource was installed/launched. The code freeze preceded this report refresh. Supplementary startup-facts-author receipts bind exact source/preimages/patches/logs, but this report states observable outcomes without requiring private filesystem access.
+
+Original wrapper and audit compatibility records remain historical authority: wrapper pin `52d9b270f66f9ec5e68b8d4398e817c42aeb55311504b72a2439383a7aeea2ab` stays unchanged; [temporary audit disposition](../security/temporary-picomatch-audit-disposition-2026-11-18.md) and its fixed November21 expiry are unrenewed. Current retained audit native1/six Moderate/no High/Critical is an ordinary High gate, not a clean audit or exception use. This startup-facts delta has no application UI, so its own frontend gate is inapplicable; the separate post-S F application/frontend, actual images/reference, human/controller and final-base obligations remain applicable and unearned.
+
+Distinct external Audit High actual-source/final-report review remains required. This source grant authorizes no commit, publication, ordinary CI, collection, new case or old-f8 retry; Root alone owns any later finite purpose admission and actual reviewed-head binding. No successful ordinary component substitutes for the full native-success criterion. Historical failures/attempts/skips,24-of37/13-missing image state and all25 deferred row owners remain. No host fix, root-cause resolution, performance/physical-cleanup certification, release or production approval is claimed.
+
+## Historical release-wrapper scope and correction
 
 Case `E15-release-validation-five-path-20261118` admits the existing CI workflow, calendar-feed runtime wrapper, its command-projection contract and unit file, and this report. The exhaustive General step previously invoked raw `test:e2e`, omitting the disposable attestation key/Vault/telemetry lifecycle that the smoke route already used. It now invokes that same wrapper in browser mode with a closed `release` selector and fixed `pnpm run test:e2e --reporter=list,json` argv. The default remains fixed `test:smoke`. Unknown selectors, non-browser modes and release selection outside `workflow_dispatch` refuse before qualification, SQL or child launch. Workflow exact-SHA/checkpoint admission and the existing explicit release condition remain authoritative.
 
@@ -18,7 +51,7 @@ No application UI, schema, migration, package, shared auth/support consumer or s
 
 Previously qualified offline evidence comprises 179 passes across 22 distinct dependency-free files (114 plus 65; no overlap, failures or skips), bound to the baseline. Those unchanged tests were not rerun merely for a new green result. Earlier per-attempt failures, retries and unexecuted matrices remain preserved in the story/delivery records.
 
-### Execution on this uncommitted repair
+### Historical execution on the original uncommitted wrapper repair
 
 Node: `C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe`. Dependencies installed in this checkout with `pnpm install --frozen-lockfile --ignore-scripts`: 398 packages, pnpm 10.24.0, no lockfile/package edits. All runtime unit tests inject qualification/SQL/launch seams; they start no DB, browser or server.
 
@@ -35,9 +68,9 @@ After reviewed pin binding, the full wrapper file was executed once more: **219 
 
 The seven contract-consumer files executed **307 tests, 307 passed, 0 failed/skipped/cancelled, exit 0**: `checkpoint-dispatch.test.ts`, `ci-performance.test.ts`, `auth-cleanup-collector.test.ts` under `tests/unit/scripts/ci/`; `ci-native-test-reports.test.ts`, `epic-11-pilot-ci-gate.test.ts`, `fixed-chromium-application-admission.test.ts` under `tests/unit/scripts/verify/`; and `tests/unit/docs/acceptance-gate-report-validators.test.ts`. No corrected hosted, full DB/RLS, production build, screenshot, real-device, AT or performance evidence is claimed here.
 
-### Next exact hosted checkpoint
+### Original hosted-checkpoint route — historical, not new admission
 
-Coordinator owns publication and the single admitted checkpoint after independent High source/pin review. Use the existing dispatcher with the actual reviewed branch/head, not the baseline SHA:
+The original wrapper lane used the route below after independent source/pin review. Its subsequently admitted cases and failures remain consumed on their own revisions; this command is historical routing context, not authority to dispatch or retry. Root must separately admit any new purpose-bound reviewed head:
 
 ```text
 node scripts/ci/checkpoint-dispatch.mjs dispatch --repo rthunborg/Kopplas --ref codex/epic-15-release-validation-20261118 --sha <reviewed-full-SHA> --state <new-exclusive-private-state.json> --release-validation true
@@ -92,7 +125,7 @@ Use a named UX/QA recorder, an admitted exact-candidate isolated environment, sy
 
 For every case record REL IDs, story/AC/design pointer, exact candidate, tester/role, UTC timestamp, environment, physical device/OS/browser/AT versions, CSS viewport/zoom/reduced motion, synthetic fixture and Stockholm date, steps, expected/actual result, pass/fail/blocked/not-run, screenshot/video/AT transcript path, actual timing/contrast value and method, issue owner/next action and retest reference. Never include secrets, live feed URLs or personal data. Supporting several rows requires explicit per-row scope; it does not automatically pass a whole row.
 
-No images were captured or reviewed in this repair. This packet is preparation, not a request for visual acceptance. Formal visual acceptance later needs exact-candidate images embedded or linked directly under AGENTS.md.
+No images were captured or reviewed by this pure-S startup-facts source/offline work. Separately bound F-run images are not evidence for the new diagnostic method. This packet is preparation, not a request for visual acceptance. Formal visual acceptance later needs exact-candidate images embedded or linked directly under AGENTS.md.
 
 ## Workloads and measurement decisions
 
@@ -104,18 +137,38 @@ Record fixture revision, actual database cardinalities (bookings/assignees/roles
 
 ## Suggested Review Order
 
-### Admit only the fixed exhaustive route
+Author: `/root/e15_release_wiring_author_high`, explicit Sol High. Refreshed after the three-code freeze for pure-S startup facts on054490671e7b943d7ddf2a910ffae8e2e6b25437. Review the new DB-only closed observation and its preservation proofs; original wrapper/audit qualifications are reused unchanged. This is one actual-source/final-report review, not another broad story pass.
 
-Review the workflow's existing opt-in/SHA boundary, then the selector before qualification and fixed child argv. Smoke remains the default and both routes share existing custody/cleanup.
+### Emit only bounded incomplete facts at the owned startup boundary
 
-- `.github/workflows/ci.yml:602` — `Exhaustive browser validation`: retains explicit opt-in and binds the disposable job.
-- `scripts/ci/with-calendar-feed-runtime.mjs:201` — `validateAdmission`: refuses unsupported suite, mode and event before side effects.
-- `scripts/ci/with-calendar-feed-runtime.mjs:14` — `RELEASE_BROWSER_ARGS`: freezes the exhaustive command without a filter interface.
+Validated immutable attribution and a closed projection prevent raw diagnostic data or ownership claims. The unchanged fixed read commands yield candidate hints only; absence is unproved.
 
-### Preserve drift detection and verify lifecycle limits
+- `.github/workflows/ci.yml:395` — `startupBinding`: validates source/run/attempt/db-job attribution before output.
+- `.github/workflows/ci.yml:447` — `INCOMPLETE candidate hints`: keeps publication discovery unavailable as an inventory.
+- `.github/workflows/ci.yml:505` — `observeDbStartupPhase`: isolates only the collector and read-only CLI children.
 
-Inspect the exact inverse and unchanged historical hash checks, then the injected release command/refusal/key-custody assertions. Contract execution after reviewed pin binding passed the new drift checks and all seven consumers; the two baseline Windows failures and still-unexecuted hosted release run remain explicit.
+### Share one finite budget across commands, parsing and settlement
 
-- `tests/support/calendar-feed-ci-contract.ts:32` — `releaseBrowserEntry`: permits only the literal reviewed workflow fragment.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:83` — `release projection rejects`: checks release command, condition, stack and duplicate drift.
-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1285` — `release browser launches`: checks exact command and generated-key environment.
+Eight attempted inspections include fallback, and stdout/stderr share one capped budget. Worker/group bounds include parsing and settlement; late events cannot trigger cleanup after closure.
+
+- `.github/workflows/ci.yml:408` — `byteLimit`: reserves worker-output bytes inside the aggregate1MiB envelope.
+- `.github/workflows/ci.yml:539` — `Reserve200ms`: bounds group settlement and final parsing inside5000ms.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:4376` — `actual phase bounds`: exercises never-close/cleanup faults and disabled late events.
+
+### Preserve the primary native result and every unrelated CI byte
+
+The exact original argv/output runs once despite secondary failures; only nonzero receives POST_FAILURE. The one-db literal inverse preserves all success continuation/audit/pin contracts and refuses unknown edits.
+
+- `.github/workflows/ci.yml:565` — `spawn("supabase", ["start"]`: inherits original startup output without changing argv.
+- `tests/support/calendar-feed-ci-contract.ts:435` — `projectDbStartupFacts`: enforces the exact single db region before historical projections.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:4389` — `actual boundary starts once`: retains native exits across collector/write faults.
+
+### Keep source proof separate from full-job and release acceptance
+
+18 focused/307 consumer passes and14 whole-inline virtual canaries qualify source behavior only. Original full DB/General failures, consumed f8 case, incomplete captures and all25 Deferred rows remain; no Docker/socket collection occurred.
+
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:4405` — `exact inverse is one-db`: refuses moved/duplicate/missing/cap/argv drift.
+- `docs/quality/epic-15-release-validation-2026-11-18.md:5` — `## Current bounded DB-startup facts`: records actual failures, bounded source proof and unresolved ownership.
+- `docs/quality/epic-15-release-validation-2026-11-18.md:83` — `## Existing 25-row release register`: retains every Deferred row and its original owner.
+
+Type/lint/syntax/YAML/lock checks pass; three code raw inverses, six protected bindings and the full audit region are conserved. The18/17/1 synthetic-canary and initial private SyntaxError attempts remain with0 credit for failed probes. Actual new-head metadata collection, distinct Audit final qualification, Root publication/purpose admission, resource ownership, full native success and release/human/controller decisions remain pending. No broad unchanged suite, service, port/network/audit, provider or Git action occurred.
