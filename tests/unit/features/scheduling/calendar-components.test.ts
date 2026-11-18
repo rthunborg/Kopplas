@@ -207,3 +207,49 @@ test("Round1 actual Workspace carries only explicit gesture proposal separately 
   assert.deepEqual({...editor.props.proposal as Record<string,unknown>},{startsAt:proposal.startsAt,endsAt:proposal.endsAt,assigneeIds:proposal.assigneeIds});
   assert.equal((editor.props.draft as Record<string,unknown>).description,b.description);
 });
+
+
+test("selected interval caller carries exact Schema Resources and dialog endpoints through the existing editor prefill",()=>{
+  for(const entry of ["schema","resources","dialog"] as const){
+    const c=components();
+    const selected={startsAt:"2026-10-12T12:30:00.000000Z",endsAt:"2026-10-12T13:00:00.000000Z",personId:"person"};
+    const props={initial:{data:{...data([]),options:{canManage:true,people:[],workRoles:[],jobs:[],customers:[],facilities:[],contacts:[],error:null}},entitlements:{withheld:[]}},
+      initialInput:{...input,view:entry==="resources"?"resources":"schema"},readAction:async()=>{throw new Error("not used by selection handlers");}};
+    const tree=c.render(()=>c.workspace(props));
+    if(entry==="dialog"){
+      const toolbar=children(tree).find(node=>typeof node.props.onInterval==="function")!;
+      invoke(toolbar,"onInterval");
+      const dialog=children(c.render(()=>c.workspace(props))).find(node=>node.props.initial&&typeof node.props.onSelect==="function")!;
+      invoke(dialog,"onSelect",selected);
+    }else{
+      const view=children(tree).find(node=>node.props.input&&typeof node.props.onSelect==="function")!;
+      invoke(view,"onSelect",selected);
+    }
+    const editor=children(c.render(()=>c.workspace(props))).find(node=>node.props.open===true&&node.props.draft)!;
+    assert.deepEqual({...editor.props.prefill as Record<string,unknown>},{startsAt:selected.startsAt,endsAt:selected.endsAt});
+    const draft=editor.props.draft as {startsAt:string;endsAt:string;assigneeIds:string[]};
+    assert.equal(draft.startsAt,selected.startsAt);assert.equal(draft.endsAt,selected.endsAt);
+    assert.deepEqual([...draft.assigneeIds],[selected.personId]);
+    assert.equal(editor.props.bookingId,undefined);
+  }
+});
+
+test("selected interval caller keeps generic toolbar create derived and existing edit proposals free of create prefill",()=>{
+  const c=components();
+  const props={initial:{data:{...data([]),options:{canManage:true,people:[],workRoles:[],jobs:[],customers:[],facilities:[],contacts:[],error:null}},entitlements:{withheld:[]}},
+    initialInput:input,readAction:async()=>{throw new Error("not used by create handler");}};
+  const toolbar=children(c.render(()=>c.workspace(props))).find(node=>typeof node.props.onCreate==="function")!;
+  invoke(toolbar,"onCreate");
+  const created=children(c.render(()=>c.workspace(props))).find(node=>node.props.open===true&&node.props.draft)!;
+  assert.equal(created.props.prefill,undefined);assert.equal(created.props.bookingId,undefined);
+  const b=booking({seriesId:"series",description:"Existing booking"});
+  const editing=components(new Map(),value=>({...value,seriesId:null,occurrenceIndex:null,isException:false}));
+  const editProps={...props,initial:{...props.initial,data:{...props.initial.data,bookings:[b]}}};
+  const view=children(editing.render(()=>editing.workspace(editProps))).find(node=>typeof node.props.onEdit==="function")!;
+  const proposal={booking:b,startsAt:"2026-10-13T09:00:00Z",endsAt:"2026-10-13T11:00:00Z",assigneeIds:["destination"]};
+  invoke(view,"onEdit",proposal);
+  const editor=children(editing.render(()=>editing.workspace(editProps))).find(node=>node.props.bookingId===b.id)!;
+  assert.equal(editor.props.prefill,undefined);assert.equal(editor.props.seriesId,b.seriesId);
+  assert.deepEqual({...editor.props.proposal as Record<string,unknown>},{startsAt:proposal.startsAt,endsAt:proposal.endsAt,assigneeIds:proposal.assigneeIds});
+  assert.equal((editor.props.draft as Record<string,unknown>).description,b.description);
+});

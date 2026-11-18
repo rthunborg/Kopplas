@@ -6,7 +6,7 @@ import { projectScheduling, normalizeSlotSelection, EMPTY_SCHEDULING_FILTERS, va
 import { stockholmLocalToUtc } from "@/features/scheduling/time-zone";
 import type { BookingFacts } from "@/features/resources/booking-types";
 import type { BookingEditProposal } from "@/features/resources/booking-editor-input";
-import { BookingEditor } from "../resources/BookingEditor";
+import { BookingEditor, type BookingPrefill } from "../resources/BookingEditor";
 import { bookingSummaryDraft } from "../resources/BookingEntry";
 import { SchedulingToolbar } from "./SchedulingToolbar";
 import { SchemaView, type SlotSelection } from "./SchemaView";
@@ -34,7 +34,7 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
   const [input, setInput] = useState(initialInput), [result, setResult] = useState(initial);
   const [toolbar, setToolbar] = useState(initial.data);
   const [loading, setLoading] = useState(false), [reset, setReset] = useState(false), [error, setError] = useState<string | null>(null);
-  const [editing, setEditing] = useState<{ draft: BookingFacts; bookingId?: string; seriesId?: string | null; proposal?: BookingEditProposal } | null>(null);
+  const [editing, setEditing] = useState<{ draft: BookingFacts; bookingId?: string; seriesId?: string | null; prefill?: BookingPrefill; proposal?: BookingEditProposal } | null>(null);
   const [interval, setInterval] = useState<SlotSelection | null>(null);
   const sequence = useRef(0), restored = useRef(false), invoker = useRef<HTMLElement | null>(null);
   const pendingFocus = useRef<FocusIntent | null>(null);
@@ -135,9 +135,9 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
     if (element) pendingFocus.current = { element, identity: focusIdentity(element), attempted: false };
   }
 
-  function select(slot: SlotSelection, preserveFocus = false) {
+  function select(slot: SlotSelection, preserveFocus = false, explicitInterval = true) {
     if (!preserveFocus) invoker.current = document.activeElement as HTMLElement;
-    setEditing({ draft: { startsAt: slot.startsAt, endsAt: slot.endsAt, allDay: false, workRoleId: null,
+    setEditing({ prefill: explicitInterval ? { startsAt: slot.startsAt, endsAt: slot.endsAt } : undefined, draft: { startsAt: slot.startsAt, endsAt: slot.endsAt, allDay: false, workRoleId: null,
       jobId: null, customerId: null, facilityId: null, contactId: null, description: "", status: "planned",
       assigneeIds: slot.personId ? [slot.personId] : [], seriesId: null, occurrenceIndex: null, isException: false } });
   }
@@ -159,7 +159,7 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
     <h1 className="text-xl font-semibold">Planering</h1>
     <SchedulingToolbar input={input} data={loading || failure ? { ...toolbar, openConflictCount: undefined } : toolbar} onChange={change}
       unavailable={loading||Boolean(failure)} onInvalid={()=>setError("Planeringens val är ogiltiga. Återställ och försök igen.")}
-      onCreate={() => select(newSlot())}
+      onCreate={() => select(newSlot(), false, false)}
       onInterval={() => { invoker.current = document.activeElement as HTMLElement; setInterval(newSlot()); }}
       onView={view => {
         let next = defaultSchedulingInput(view, input.date);
@@ -177,7 +177,7 @@ export function SchedulingWorkspace({ initial, initialInput, readAction }: {
     </>}
     {interval && data.canManage && <IntervalSelectionDialog initial={interval} data={data}
       onClose={() => { setInterval(null); invoker.current?.focus(); }} onSelect={slot => { setInterval(null); select(slot, true); }} />}
-    {editing && data.canManage && data.options && <BookingEditor key={`${editing.bookingId ?? "new"}:${editing.draft.startsAt}:${editing.draft.endsAt}`} open draft={editing.draft} bookingId={editing.bookingId} seriesId={editing.seriesId} proposal={editing.proposal} options={data.options}
+    {editing && data.canManage && data.options && <BookingEditor key={`${editing.bookingId ?? "new"}:${editing.draft.startsAt}:${editing.draft.endsAt}`} open draft={editing.draft} bookingId={editing.bookingId} seriesId={editing.seriesId} proposal={editing.proposal} prefill={editing.prefill} options={data.options}
       onClose={() => { restoreAfterRefresh(); setEditing(null); void read(input); }} />}
   </main>;
 }
