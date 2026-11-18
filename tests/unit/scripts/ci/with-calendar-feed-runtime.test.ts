@@ -3709,3 +3709,525 @@ test("integration child diagnostics uncertain launch retains unknown native comp
   assert.equal(safe.nativeEvent, "UNAVAILABLE"); assert.equal(safe.code, "UNKNOWN"); assert.equal(safe.shapeCounts, null);
   assert.equal(result.receipt.keyDeleted, false); assert.ok(result.receipt.custody); assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
 });
+
+// Actual pnpm10.24 report shape/copy/action/count projection from raw SHA fd8bd5af...
+// Advisory prose only is shortened; production consumes the untouched complete JSON.
+const picomatchAuditFixture = {
+  "actions": [
+    {
+      "action": "review",
+      "module": "vitest",
+      "resolves": [
+        {
+          "id": 1193683,
+          "path": ".>vitest",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ]
+    },
+    {
+      "action": "review",
+      "module": "@vitest/mocker",
+      "resolves": [
+        {
+          "id": 1193684,
+          "path": ".>vitest>@vitest/mocker",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        },
+        {
+          "id": 1242767,
+          "path": ".>vitest>@vitest/mocker",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ]
+    },
+    {
+      "action": "review",
+      "module": "minimatch",
+      "resolves": [
+        {
+          "id": 1244623,
+          "path": ".>eslint>@eslint/config-array>minimatch",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ]
+    },
+    {
+      "action": "review",
+      "module": "next",
+      "resolves": [
+        {
+          "id": 1247486,
+          "path": ".>next",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        },
+        {
+          "id": 1247712,
+          "path": ".>next",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ]
+    },
+    {
+      "action": "review",
+      "module": "picomatch",
+      "resolves": [
+        {
+          "id": 1247710,
+          "path": ".>eslint-config-next>@next/eslint-plugin-next>tinyglobby>picomatch",
+          "dev": false,
+          "bundled": false,
+          "optional": false
+        },
+        {
+          "id": 1247710,
+          "path": ".>vite>picomatch",
+          "dev": false,
+          "bundled": false,
+          "optional": false
+        }
+      ]
+    }
+  ],
+  "advisories": {
+    "1193683": {
+      "findings": [
+        {
+          "version": "4.1.9",
+          "paths": [
+            ".>vitest"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-09-08T20:46:45.000Z",
+      "id": 1193683,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-84373"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "vitest",
+      "vulnerable_versions": ">=2.1.0 <4.1.11",
+      "github_advisory_id": "GHSA-82fw-gwwq-j7x9",
+      "recommendation": "Upgrade to version 4.1.11 or later",
+      "patched_versions": ">=4.1.11",
+      "updated": "2026-09-08T20:46:47.000Z",
+      "cvss": {
+        "score": 5.9,
+        "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+      },
+      "cwe": [
+        "CWE-22"
+      ],
+      "url": "https://github.com/advisories/GHSA-82fw-gwwq-j7x9"
+    },
+    "1193684": {
+      "findings": [
+        {
+          "version": "4.1.9",
+          "paths": [
+            ".>vitest>@vitest/mocker"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-09-08T20:46:45.000Z",
+      "id": 1193684,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-84373"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "@vitest/mocker",
+      "vulnerable_versions": ">=2.1.0 <4.1.11",
+      "github_advisory_id": "GHSA-82fw-gwwq-j7x9",
+      "recommendation": "Upgrade to version 4.1.11 or later",
+      "patched_versions": ">=4.1.11",
+      "updated": "2026-09-08T20:46:47.000Z",
+      "cvss": {
+        "score": 5.9,
+        "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+      },
+      "cwe": [
+        "CWE-22"
+      ],
+      "url": "https://github.com/advisories/GHSA-82fw-gwwq-j7x9"
+    },
+    "1242767": {
+      "findings": [
+        {
+          "version": "4.1.9",
+          "paths": [
+            ".>vitest>@vitest/mocker"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-10-21T19:54:26.000Z",
+      "id": 1242767,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-112949"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "@vitest/mocker",
+      "vulnerable_versions": ">=2.1.0-beta.7 <4.1.12",
+      "github_advisory_id": "GHSA-qxg6-89mg-rqv8",
+      "recommendation": "Upgrade to version 4.1.12 or later",
+      "patched_versions": ">=4.1.12",
+      "updated": "2026-10-21T19:54:27.000Z",
+      "cvss": {
+        "score": 4.7,
+        "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N"
+      },
+      "cwe": [
+        "CWE-94",
+        "CWE-116",
+        "CWE-306"
+      ],
+      "url": "https://github.com/advisories/GHSA-qxg6-89mg-rqv8"
+    },
+    "1244623": {
+      "findings": [
+        {
+          "version": "10.2.5",
+          "paths": [
+            ".>eslint>@eslint/config-array>minimatch"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-10-30T23:09:55.000Z",
+      "id": 1244623,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-118764"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "minimatch",
+      "vulnerable_versions": ">=7.0.0 <11.0.1",
+      "github_advisory_id": "GHSA-g3hv-75wg-m249",
+      "recommendation": "Upgrade to version 11.0.1 or later",
+      "patched_versions": ">=11.0.1",
+      "updated": "2026-11-04T16:50:04.000Z",
+      "cvss": {
+        "score": 0,
+        "vectorString": null
+      },
+      "cwe": [
+        "CWE-405"
+      ],
+      "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249"
+    },
+    "1247486": {
+      "findings": [
+        {
+          "version": "16.4.1",
+          "paths": [
+            ".>next"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-11-16T18:51:22.000Z",
+      "id": 1247486,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-119790"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "next",
+      "vulnerable_versions": ">=16.3.0 <=16.4.4",
+      "github_advisory_id": "GHSA-mfr8-8qww-v76h",
+      "recommendation": "Upgrade to version 16.4.5 or later",
+      "patched_versions": ">=16.4.5",
+      "updated": "2026-11-16T18:51:23.000Z",
+      "cvss": {
+        "score": 0,
+        "vectorString": null
+      },
+      "cwe": [
+        "CWE-362"
+      ],
+      "url": "https://github.com/advisories/GHSA-mfr8-8qww-v76h"
+    },
+    "1247710": {
+      "findings": [
+        {
+          "version": "4.0.4",
+          "paths": [
+            ".>eslint-config-next>@next/eslint-plugin-next>tinyglobby>picomatch"
+          ]
+        },
+        {
+          "version": "4.0.7",
+          "paths": [
+            ".>vite>picomatch"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-10-19T18:32:12.000Z",
+      "id": 1247710,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-112366"
+      ],
+      "access": "public",
+      "severity": "high",
+      "module_name": "picomatch",
+      "vulnerable_versions": "<=4.0.7",
+      "github_advisory_id": "GHSA-fc5q-39xc-vjpf",
+      "recommendation": "None",
+      "patched_versions": "<0.0.0",
+      "updated": "2026-11-17T15:56:44.000Z",
+      "cvss": {
+        "score": 7.5,
+        "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      },
+      "cwe": [
+        "CWE-1333"
+      ],
+      "url": "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    },
+    "1247712": {
+      "findings": [
+        {
+          "version": "16.4.1",
+          "paths": [
+            ".>next"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-11-17T16:13:26.000Z",
+      "id": 1247712,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-119351"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "next",
+      "vulnerable_versions": ">=16.2.0 <=16.4.4",
+      "github_advisory_id": "GHSA-vc7v-qv4w-wrv8",
+      "recommendation": "Upgrade to version 16.4.5 or later",
+      "patched_versions": ">=16.4.5",
+      "updated": "2026-11-17T16:13:27.000Z",
+      "cvss": {
+        "score": 0,
+        "vectorString": null
+      },
+      "cwe": [
+        "CWE-362"
+      ],
+      "url": "https://github.com/advisories/GHSA-vc7v-qv4w-wrv8"
+    }
+  },
+  "muted": [],
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 6,
+      "high": 2,
+      "critical": 0
+    },
+    "dependencies": 509,
+    "devDependencies": 0,
+    "optionalDependencies": 0,
+    "totalDependencies": 509
+  }
+} as const;
+function actualTemporaryAuditPolicy() {
+  const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const begin = "          // AUDIT-POLICY-CLASSIFIER-BEGIN\n", end = "          // AUDIT-POLICY-CLASSIFIER-END";
+  assert.equal(workflow.split(begin).length, 2); assert.equal(workflow.split(end).length, 2);
+  const code = workflow.split(begin)[1].split(end)[0].split("\n").map(line => line.slice(10)).join("\n");
+  return new Function(code + ";return evaluateAuditPolicy;")() as (raw: string, nativeExit: number, stderr: string, now: number, identities: Record<string, string>) => {outcome: string; nativeExitCode: number; counts: Record<string, number>; expiresAt?: string};
+}
+function auditGraph() {
+  return Object.fromEntries(["pnpm-lock.yaml", "pnpm-workspace.yaml", "patches/@next__eslint-plugin-next@16.3.6.patch"].map(path =>
+    [path, createHash("sha256").update(readFileSync(new URL("../../../../" + path, import.meta.url), "utf8").replaceAll("\r\n", "\n")).digest("hex")]));
+}
+const auditBeforeExpiry = Date.parse("2026-11-18T10:00:00Z");
+const auditExpiry = Date.parse("2026-11-21T00:00:00Z");
+function auditReport() { return JSON.parse(JSON.stringify(picomatchAuditFixture)); }
+function runAuditPolicy(report = auditReport(), nativeExit = 1, now = auditBeforeExpiry, graph = auditGraph(), stderr = "") {
+  return actualTemporaryAuditPolicy()(JSON.stringify(report, null, 2) + "\n", nativeExit, stderr, now, graph);
+}
+function reconcileAudit(report: ReturnType<typeof auditReport>) {
+  report.metadata.vulnerabilities = {info: 0, low: 0, moderate: 0, high: 0, critical: 0};
+  const modules = new Map<string, {action: string; module: string; resolves: object[]}>();
+  for (const advisory of Object.values(report.advisories) as {id:number;module_name:string;severity:string;findings:{version:string;paths:string[]}[]}[]) {
+    report.metadata.vulnerabilities[advisory.severity] += advisory.findings.length;
+    for (const finding of advisory.findings) for (const path of finding.paths) {
+      if (!modules.has(advisory.module_name)) modules.set(advisory.module_name, {action: "review", module: advisory.module_name, resolves: []});
+      modules.get(advisory.module_name)!.resolves.push({id: advisory.id, path, dev: false, optional: false, bundled: false});
+    }
+  }
+  report.actions = [...modules.values()];
+  return report;
+}
+
+test("temporary audit actual classifier accepts only the approved unexpired copies and preserves raw native failure meaning", () => {
+  const result = runAuditPolicy();
+  assert.equal(result.outcome, "qualified-under-exception"); assert.equal(result.nativeExitCode, 1);
+  assert.deepEqual(result.counts, {info: 0, low: 0, moderate: 6, high: 2, critical: 0});
+  assert.equal(result.expiresAt, "2026-11-21T00:00:00Z");
+  assert.equal(runAuditPolicy(auditReport(), 1, auditExpiry - 1).outcome, "qualified-under-exception");
+  assert.throws(() => runAuditPolicy(auditReport(), 1, auditExpiry), /expired-or-clock/);
+  assert.throws(() => runAuditPolicy(auditReport(), 1, auditExpiry + 1), /expired-or-clock/);
+  assert.throws(() => runAuditPolicy(auditReport(), 1, NaN), /expired-or-clock/);
+  assert.throws(() => runAuditPolicy(auditReport(), 1, Date.parse("2026-11-18T09:52:14.239Z")), /expired-or-clock/);
+});
+
+test("temporary audit ordinary native0 with no High or Critical passes without exception even after expiry or graph change", () => {
+  const clean = auditReport(); delete clean.advisories["1247710"]; reconcileAudit(clean);
+  const result = runAuditPolicy(clean, 0, auditExpiry + 1, {changed: "graph"});
+  assert.equal(result.outcome, "ordinary-high-gate"); assert.equal(result.nativeExitCode, 0);
+  assert.equal(result.counts.moderate, 6); assert.equal(result.counts.high, 0);
+  const empty = auditReport(); empty.advisories = {}; reconcileAudit(empty);
+  assert.equal(runAuditPolicy(empty, 0, auditExpiry + 1).outcome, "ordinary-high-gate");
+  assert.throws(() => runAuditPolicy(clean, 1), /exit-report-conflict/);
+  assert.throws(() => runAuditPolicy(auditReport(), 0), /exit-report-conflict/);
+});
+
+test("temporary audit rejects every other High or Critical and exact ID package CVE URL version copy or graph drift", () => {
+  for (const mutate of [
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1193683"].severity = "high"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1193683"].severity = "critical"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].severity = "critical"; },
+    (report: ReturnType<typeof auditReport>) => { const a=report.advisories["1247710"]; delete report.advisories["1247710"]; a.id=1247719; report.advisories["1247719"]=a; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].github_advisory_id = "GHSA-aaaa-bbbb-cccc"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].module_name = "foreign-package"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].cves = ["CVE-2026-112367"]; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].url += "/foreign"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].vulnerable_versions = "<=4.0.8"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].patched_versions = ">=4.0.8"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings[1].version = "4.0.8"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings[0].paths = [".>foreign>picomatch"]; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings.pop(); },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings.push({...report.advisories["1247710"].findings[0]}); },
+  ]) { const report=auditReport(); mutate(report); reconcileAudit(report); assert.throws(() => runAuditPolicy(report)); }
+  for (const path of Object.keys(auditGraph())) {
+    const graph=auditGraph(); graph[path]="0".repeat(64); assert.throws(() => runAuditPolicy(auditReport(),1,auditBeforeExpiry,graph), /graph-refused/);
+  }
+  assert.throws(() => runAuditPolicy(auditReport(),1,auditBeforeExpiry,{}), /graph-refused/);
+});
+
+test("temporary audit rejects provider native JSON schema completeness count and action contradictions rather than treating them as empty", () => {
+  for (const nativeExit of [-1, 2, 127, NaN]) assert.throws(() => runAuditPolicy(auditReport(), nativeExit), /native-exit/);
+  assert.throws(() => runAuditPolicy(auditReport(),1,auditBeforeExpiry,auditGraph(),"registry network error"), /stderr-refused/);
+  for (const raw of ["", "{", "{}", "null", "[]", '{"error":{"code":"ENETUNREACH"}}', JSON.stringify(auditReport()), JSON.stringify(auditReport(),null,2).replace('"actions": [','"actions": [], "actions": [')]) {
+    assert.throws(() => actualTemporaryAuditPolicy()(raw,1,"",auditBeforeExpiry,auditGraph()));
+  }
+  for (const mutate of [
+    (report: ReturnType<typeof auditReport>) => { report.error={code:"REGISTRY_ERROR"}; },
+    (report: ReturnType<typeof auditReport>) => { report.muted=[1247710]; },
+    (report: ReturnType<typeof auditReport>) => { delete report.metadata; },
+    (report: ReturnType<typeof auditReport>) => { delete report.advisories; },
+    (report: ReturnType<typeof auditReport>) => { report.metadata.vulnerabilities.high=0; },
+    (report: ReturnType<typeof auditReport>) => { report.metadata.vulnerabilities.moderate=5; },
+    (report: ReturnType<typeof auditReport>) => { report.metadata.vulnerabilities.foreign=0; },
+    (report: ReturnType<typeof auditReport>) => { report.metadata.totalDependencies++; },
+    (report: ReturnType<typeof auditReport>) => { report.actions.pop(); },
+    (report: ReturnType<typeof auditReport>) => { report.actions.push(report.actions[0]); },
+    (report: ReturnType<typeof auditReport>) => { report.actions[0].resolves[0].id=1; },
+    (report: ReturnType<typeof auditReport>) => { report.actions[0].resolves[0].dev="false"; },
+    (report: ReturnType<typeof auditReport>) => { delete report.advisories["1247710"].cves; },
+    (report: ReturnType<typeof auditReport>) => { delete report.advisories["1247710"].findings; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings[0].paths=[]; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings[0].version="unknown"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].severity="HIGH"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].unknown=true; },
+  ]) { const report=auditReport(); mutate(report); assert.throws(() => runAuditPolicy(report)); }
+});
+
+test("temporary audit exact inverse is verify-job scoped and refuses moved duplicate command ID expiry graph retention and ignore drift", () => {
+  const workflow=readFileSync(new URL("../../../../.github/workflows/ci.yml",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const begin="      # TEMPORARY-PICOMATCH-AUDIT-BEGIN\n",end="      # TEMPORARY-PICOMATCH-AUDIT-END\n";
+  const block=workflow.slice(workflow.indexOf(begin),workflow.indexOf(end)+end.length);
+  assert.ok(block.startsWith(begin));
+  const projected=projectCalendarFeedCiCommands(workflow);
+  assert.equal(projectCalendarFeedCiCommands(workflow.replaceAll("\n", "\r\n")), projected);
+  assert.ok(projected.includes("      - name: Audit dependencies (blocking, high severity)\n        run: pnpm audit --audit-level=high\n"));
+  assert.ok(!projected.includes("TEMPORARY-PICOMATCH-AUDIT"));
+  for(const [before,after] of [
+    ["pnpm audit --audit-level=high --json","pnpm audit --audit-level=critical --json"],
+    ["--audit-level=high --json","--audit-level=high --json --ignore-unfixable"],
+    ["2026-11-21T00:00:00Z","2026-11-22T00:00:00Z"],
+    ["GHSA-fc5q-39xc-vjpf","GHSA-aaaa-bbbb-cccc"],
+    ["2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95","0".repeat(64)],
+    ["if: ${{ always() }}","if: ${{ success() }}"],
+    ["retention-days: 7","retention-days: 1"],
+    ["native-exit-code.txt","other-exit-code.txt"],
+  ]) {assert.ok(block.includes(before));assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,block.replaceAll(before,after))),/temporary picomatch/);}
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,block+block)),/temporary picomatch/);
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,"").replace("  e2e:\n","  e2e:\n"+block)),/verify-job/);
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace("  verify:\n","  verify:\n  verify:\n")),/CI performance exact reviewed job fragment: verify:|temporary picomatch exact verify job/);
+  const unrelated=projectCalendarFeedCiCommands(workflow+"\n# unrelated audit drift\n");
+  assert.notEqual(createHash("sha256").update(unrelated).digest("hex"),createHash("sha256").update(projected).digest("hex"));
+  assert.equal(block.includes("continue-on-error"),false); assert.equal(block.includes("|| true"),false);
+  assert.ok(block.includes("Date.now(), identities"));
+});
