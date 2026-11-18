@@ -659,6 +659,91 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     bodyStartMs: number | null; bodyEndMs: number | null; requestFailedMs: number | null;
   };
   const admitted = new WeakMap<import("@playwright/test").Request, NativeCapture>();
+  // Controlled-target association is observation only; no result changes admission.
+  type TargetAssociationRecord = {
+    kind: "scheduling-target-association-v1"; schemaVersion: 1;
+    navigation: "not-invoked" | "pending" | "fulfilled-response" | "fulfilled-null" | "rejected" | "unavailable";
+    failedRequest: "first-native-snapshot" | "none" | "unavailable";
+    targetRelation: "same-returned-target" | "different-returned-target-redirect-unresolved" | "no-failed-request" | "target-unavailable" | "internal-unavailable";
+    actionRead: "not-post" | "post-shape-unverified" | "method-unavailable" | "no-failed-request";
+    availability: "informative" | "unavailable"; emission: "attempt-finalization";
+  };
+  const validTargetAssociation = (record: TargetAssociationRecord) => {
+    if (Object.keys(record).join(",") !== "kind,schemaVersion,navigation,failedRequest,targetRelation,actionRead,availability,emission"
+      || record.kind !== "scheduling-target-association-v1" || record.schemaVersion !== 1 || record.emission !== "attempt-finalization"
+      || !["not-invoked","pending","fulfilled-response","fulfilled-null","rejected","unavailable"].includes(record.navigation)
+      || !["first-native-snapshot","none","unavailable"].includes(record.failedRequest)
+      || !["same-returned-target","different-returned-target-redirect-unresolved","no-failed-request","target-unavailable","internal-unavailable"].includes(record.targetRelation)
+      || !["not-post","post-shape-unverified","method-unavailable","no-failed-request"].includes(record.actionRead)
+      || !["informative","unavailable"].includes(record.availability)) return false;
+    if (record.failedRequest === "none") return record.targetRelation === "no-failed-request" && record.actionRead === "no-failed-request" && record.availability === "unavailable";
+    if (record.actionRead === "no-failed-request" || record.targetRelation === "no-failed-request") return false;
+    const related = record.targetRelation === "same-returned-target" || record.targetRelation === "different-returned-target-redirect-unresolved";
+    if (record.availability === "informative") return record.navigation === "fulfilled-response" && record.failedRequest === "first-native-snapshot" && related;
+    return !related && (record.failedRequest !== "unavailable" || record.actionRead === "method-unavailable");
+  };
+  const targetAssociation = (() => {
+    let enabled = true, selected = false, fault = false;
+    let navigation: TargetAssociationRecord["navigation"] = "not-invoked";
+    let failedRequest: import("@playwright/test").Request | null = null, returnedTarget: import("@playwright/test").Request | null = null;
+    let actionRead: TargetAssociationRecord["actionRead"] = "no-failed-request";
+    const select = (request: import("@playwright/test").Request) => {
+      if (!enabled || selected) return;
+      selected = true; actionRead = "method-unavailable";
+      try { failedRequest = request; } catch { fault = true; }
+    };
+    const method = (value: "GET" | "POST" | "other" | "unavailable") => {
+      if (!enabled || !selected) return;
+      actionRead = value === "POST" ? "post-shape-unverified" : value === "GET" || value === "other" ? "not-post" : "method-unavailable";
+    };
+    const observe = (original: Promise<import("@playwright/test").Response | null>) => {
+      if (!enabled) return;
+      navigation = "pending";
+      try {
+        const branch = Promise.prototype.then.call(original, (response: import("@playwright/test").Response | null) => {
+          if (!enabled) return;
+          try {
+            if (response === null) { navigation = "fulfilled-null"; return; }
+            navigation = "fulfilled-response";
+            const request = response.request();
+            if (!request || (typeof request !== "object" && typeof request !== "function")) { fault = true; return; }
+            returnedTarget = request;
+          } catch { fault = true; }
+        }, () => { if (enabled) navigation = "rejected"; });
+        // Consume derived rejection independently; the original Promise is returned by the caller.
+        Promise.prototype.then.call(branch, undefined, () => { if (enabled) fault = true; });
+      } catch { fault = true; }
+    };
+    const finish = () => {
+      if (!enabled) return;
+      enabled = false;
+      let relation: TargetAssociationRecord["targetRelation"] = selected ? "target-unavailable" : "no-failed-request";
+      let availability: TargetAssociationRecord["availability"] = "unavailable";
+      try {
+        if (selected && fault) relation = "internal-unavailable";
+        else if (selected && navigation === "fulfilled-response" && failedRequest && returnedTarget) {
+          const failedEntry = admitted.get(failedRequest), targetEntry = admitted.get(returnedTarget);
+          if (failedEntry?.request === failedRequest && targetEntry?.request === returnedTarget) {
+            relation = failedRequest === returnedTarget ? "same-returned-target" : "different-returned-target-redirect-unresolved";
+            availability = "informative";
+          }
+        }
+      } catch { relation = "internal-unavailable"; }
+      const record: TargetAssociationRecord = {
+        kind: "scheduling-target-association-v1", schemaVersion: 1, navigation,
+        failedRequest: selected ? failedRequest ? "first-native-snapshot" : "unavailable" : "none",
+        targetRelation: relation, actionRead, availability, emission: "attempt-finalization",
+      };
+      failedRequest = null; returnedTarget = null;
+      try {
+        if (!validTargetAssociation(record)) return;
+        const json = JSON.stringify(record);
+        if (typeof json !== "string" || Buffer.byteLength(json, "utf8") > 1024) return;
+        console.info("[scheduling-target-association] " + json);
+      } catch { /* Missing output is unavailable, never permission to retry or proceed. */ }
+    };
+    return { select, method, observe, finish };
+  })();
   // PASSIVE-NETWORK-BEGIN attempt
   const passive = createSchedulingPassiveMetadata(page, captureOrigin, request => admitted.get(request)?.requestOrdinal);
   schedulingPassiveShutdowns.set(testInfo, passive.stop);
@@ -678,6 +763,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   const snapshot = (entry: NativeCapture, trigger: "requestfailed" | "finished-rejected" | "body-rejected") => {
     if (!observerOpen || snapshotAttempted) return;
     snapshotAttempted = true;
+    try { targetAssociation.select(entry.request); } catch { /* Observation never changes snapshot selection. */ }
     try {
       updateTiming(() => {
         if (trigger === "requestfailed") entry.requestFailedMs = relativeTime();
@@ -686,6 +772,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
       });
       const rawMethod = entry.request.method();
       const method = typeof rawMethod !== "string" ? "unavailable" : rawMethod === "GET" || rawMethod === "POST" ? rawMethod : "other";
+      try { targetAssociation.method(method); } catch { /* Reuse only the existing closed classification. */ }
       const rawStatus = entry.response.status();
       const status = Number.isInteger(rawStatus) && rawStatus >= 200 && rawStatus <= 299 ? rawStatus : null;
       const rawContentType = entry.response.headers()["content-type"];
@@ -832,6 +919,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   };
   const shutdown = () => {
     if (shutdownStarted) return;
+    try { targetAssociation.finish(); } catch { /* Owned observation cannot block original cleanup. */ }
     lifecycle.mark(page, "shutdown", "requested");
     // PASSIVE-NETWORK-BEGIN shutdown
     passive.stop(hasFailure);
@@ -846,6 +934,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (cleanupFailed) throw cleanupFailure;
   };
   const closeCaptureWindow = async () => {
+    try { targetAssociation.finish(); } catch { /* Disable before any original cleanup can throw. */ }
     lifecycle.mark(page, "close-window", "enter");
     ensureActive();
     responseAdmissionOpen = false;
@@ -886,7 +975,9 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
       // Open only after the existing barrier drains post-login traffic, directly
       // before this controlled tampered navigation. Later failures remain fatal.
       openCaptureWindow();
-      return page.goto(`/scheduling?view=resources&person=${h.extraProfiles[2]}&tenant=${h.scenario.tenantIds[1]}`);
+      const originalNavigation = page.goto(`/scheduling?view=resources&person=${h.extraProfiles[2]}&tenant=${h.scenario.tenantIds[1]}`);
+      try { targetAssociation.observe(originalNavigation); } catch { /* Keep the exact original navigation Promise. */ }
+      return originalNavigation;
     }); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
     expect(targetResponse).not.toBeNull();
     expect(targetResponse!.ok()).toBe(true);
@@ -921,7 +1012,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   } catch (error) { if (error !== abandoned) throw error; }
   finally { if (!shutdownStarted) schedulingAttemptShutdowns.delete(testInfo); }
   // PASSIVE-NETWORK-BEGIN final
-  } finally { lifecycle.mark(page, "attempt-end", "event"); passive.stop(hasFailure); schedulingPassiveShutdowns.delete(testInfo); }
+  } finally { try { targetAssociation.finish(); } catch { /* Preserve the original primary carrier. */ } lifecycle.mark(page, "attempt-end", "event"); passive.stop(hasFailure); schedulingPassiveShutdowns.delete(testInfo); }
   // PASSIVE-NETWORK-END final
 });
 
