@@ -1,0 +1,36 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "Documentary-only 35.1 adopts the original seven criteria with dated proof and current inspections; no runtime/UI suite applies. No historical evidence relabelled; Root retains exact-candidate CI, frontend-first wrapper, delivery gate and completion. Actual P5 baseline supersedes historical P3 baseline by explicit Root correction.",
+  "evidence_revision": "2ec597aa2f2711341b9da29b66d8d0e5006f7133",
+  "development_checks": [
+    {
+      "name": "seven documentary inspections",
+      "status": "passed",
+      "evidence": "Author Verification in execution story; inline Python exited 0: four archive raw/LF hashes, seven original AC lines, 27 exact applicability IDs/reasons, 13 namespace file links, five retained-proof identities and frozen High-map identity. Baseline 2ec597aa2f2711341b9da29b66d8d0e5006f7133 plus owned working-tree delta. Dated eight-section proof reused, no fresh comparison."
+    },
+    {
+      "name": "author review-order reference validation",
+      "status": "passed",
+      "evidence": "node scripts/verify/check-review-order.mjs _bmad-output/specs/spec-design-35-1/stories/35-1-authority-and-base-contract.md exited 0: full-trail-candidate, six references, zero errors on author working-tree delta."
+    },
+    {
+      "name": "documentary diff whitespace",
+      "status": "passed",
+      "evidence": "git diff --check exited 0 on actual author working tree against P5 baseline 2ec597aa2f2711341b9da29b66d8d0e5006f7133."
+    }
+  ],
+  "independent_review": {
+    "status": "blocked",
+    "evidence": "Five foreground independent layers completed against P5-review-1.diff: blind no concrete consequential defects; edge []; verification no gaps; intent matches qualified documentary scope with dated AC6 proof reuse; mandatory Sol High security No findings. Configured external cmd.exe/codex review in actual checkout, read-only sandbox, gpt-6.1-sol Low, foreground session 42320 exited 1: The system cannot find the file specified. No verdict/no retry. Receipt C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/epic-35-completion-20261118/35-1-formal-closeout-route/P5-cross-model-failure-1.json; review diff P5-review-1.diff alongside it. configured cross-model review failed: exit 1 \u2014 The system cannot find the file specified. Completion wrapper/delivery gate not run; no completion claim."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Existing owning-story runtime/visual/manual/device release duties and final Phase B consolidation",
+      "owner": "Original implementation/UI/QA owners and Root Coordinator",
+      "status": "deferred",
+      "evidence": "Existing immutable adapter/common catalogue preserve E16/E20 and release ownership; 35.1 creates no UI release deliverable.",
+      "next_action": "Root consolidates existing owning-story delivery/deferred-ledger evidence at the required final Phase B checkpoint; no foreign ledger edited here."
+    }
+  ],
+  "release_ready": false
+}
