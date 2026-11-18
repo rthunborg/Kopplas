@@ -971,6 +971,13 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   try {
     try {
     await guardedSignIn("montor"); guardProgress();
+    // AC2 controls direct role entry after retiring the preceding landing document.
+    await guardedStage(() => page.goto("about:blank"));
+    await guardedStage(async () => {
+      let neutralDocument = false;
+      try { neutralDocument = page.url() === "about:blank"; } catch { /* Only the fixed closed assertion may escape. */ }
+      expect(neutralDocument, "Controlled role-read neutral document unavailable.").toBe(true);
+    }); guardProgress();
     const targetResponse = await navigateAfterBarrier(() => {
       // Open only after the existing barrier drains post-login traffic, directly
       // before this controlled tampered navigation. Later failures remain fatal.
