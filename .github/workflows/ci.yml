@@ -236,8 +236,10 @@ jobs:
               }
             }
             require(actualResolves.size === expectedResolves.size, "audit-actions-incomplete");
+            // Pinned pnpm10.24 JSON exits on all severities before applying audit-level.
+            const total = levels.reduce((sum, level) => sum + counts[level], 0);
+            require(nativeExit === (total === 0 ? 0 : 1), "audit-exit-report-conflict");
             if (severe.length === 0) {
-              require(nativeExit === 0, "audit-exit-report-conflict");
               return { schemaVersion: 1, outcome: "ordinary-high-gate", nativeExitCode: nativeExit, counts };
             }
             require(nativeExit === 1, "audit-exit-report-conflict");
@@ -274,7 +276,7 @@ jobs:
             writeFileSync(`${folder}/decision.json`, JSON.stringify(result, null, 2) + "\n");
             const message = result.outcome === "qualified-under-exception"
               ? `EXCEPTION ACTIVE: ${result.ghsa} / ${result.cve}, picomatch ${result.versions.join(", ")}, expires ${result.expiresAt}; qualified-under-exception; raw audit native exit 1 retained. Counts: ${JSON.stringify(result.counts)}.`
-              : `Ordinary High/Critical audit gate passed (no exception used). Counts: ${JSON.stringify(result.counts)}.`;
+              : `Ordinary High/Critical audit gate passed (no exception used); raw audit native exit ${result.nativeExitCode} retained. Counts: ${JSON.stringify(result.counts)}.`;
             console.log(message);
             appendFileSync(process.env.GITHUB_STEP_SUMMARY, message + "\n");
           } catch {

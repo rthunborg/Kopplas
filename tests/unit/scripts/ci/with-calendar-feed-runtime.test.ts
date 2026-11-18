@@ -4142,15 +4142,48 @@ test("temporary audit actual classifier accepts only the approved unexpired copi
   assert.throws(() => runAuditPolicy(auditReport(), 1, Date.parse("2026-11-18T09:52:14.239Z")), /expired-or-clock/);
 });
 
-test("temporary audit ordinary native0 with no High or Critical passes without exception even after expiry or graph change", () => {
-  const clean = auditReport(); delete clean.advisories["1247710"]; reconcileAudit(clean);
-  const result = runAuditPolicy(clean, 0, auditExpiry + 1, {changed: "graph"});
-  assert.equal(result.outcome, "ordinary-high-gate"); assert.equal(result.nativeExitCode, 0);
-  assert.equal(result.counts.moderate, 6); assert.equal(result.counts.high, 0);
+test("temporary audit coherent lower-only native1 and empty native0 pass the unchanged High gate without exception", () => {
+  // Same lower-only shape as the retained F4 report; no private artifact is needed by this suite.
+  const lower = auditReport(); delete lower.advisories["1247710"]; reconcileAudit(lower);
+  const result = runAuditPolicy(lower, 1, auditExpiry + 1, {changed: "graph"});
+  assert.equal(result.outcome, "ordinary-high-gate"); assert.equal(result.nativeExitCode, 1);
+  assert.deepEqual(result.counts, {info: 0, low: 0, moderate: 6, high: 0, critical: 0});
+  assert.equal(Object.hasOwn(result, "expiresAt"), false);
+  assert.equal(Object.hasOwn(result, "ownerApprovalSha256"), false);
+  assert.equal(runAuditPolicy(lower, 1, Date.parse("2026-11-18T09:52:14.239Z"), {}).outcome, "ordinary-high-gate");
   const empty = auditReport(); empty.advisories = {}; reconcileAudit(empty);
-  assert.equal(runAuditPolicy(empty, 0, auditExpiry + 1).outcome, "ordinary-high-gate");
-  assert.throws(() => runAuditPolicy(clean, 1), /exit-report-conflict/);
+  assert.equal(runAuditPolicy(empty, 0, auditExpiry + 1, {}).outcome, "ordinary-high-gate");
+  assert.throws(() => runAuditPolicy(empty, 1), /exit-report-conflict/);
+  assert.throws(() => runAuditPolicy(lower, 0), /exit-report-conflict/);
   assert.throws(() => runAuditPolicy(auditReport(), 0), /exit-report-conflict/);
+});
+
+test("temporary audit JSON native coherence includes every lower severity before the unchanged severe threshold", () => {
+  for (const severity of ["info", "low", "moderate"]) {
+    const report = auditReport();
+    report.advisories = {"1193683": report.advisories["1193683"]};
+    report.advisories["1193683"].severity = severity; reconcileAudit(report);
+    const result = runAuditPolicy(report, 1, auditExpiry + 1, {});
+    assert.equal(result.outcome, "ordinary-high-gate"); assert.equal(result.nativeExitCode, 1);
+    assert.ok(result.counts[severity] > 0);
+    assert.throws(() => runAuditPolicy(report, 0), /exit-report-conflict/);
+  }
+});
+
+test("temporary audit lower-only ordinary branch still refuses malformed incomplete and contradictory reports", () => {
+  for (const mutate of [
+    (report: ReturnType<typeof auditReport>) => { report.metadata.vulnerabilities.moderate--; },
+    (report: ReturnType<typeof auditReport>) => { report.actions.pop(); },
+    (report: ReturnType<typeof auditReport>) => { report.actions.push(report.actions[0]); },
+    (report: ReturnType<typeof auditReport>) => { report.muted = [1193683]; },
+    (report: ReturnType<typeof auditReport>) => { report.error = {code: "REGISTRY_ERROR"}; },
+  ]) {
+    const lower = auditReport(); delete lower.advisories["1247710"]; reconcileAudit(lower); mutate(lower);
+    assert.throws(() => runAuditPolicy(lower, 1, auditExpiry + 1, {}));
+  }
+  const lower = auditReport(); delete lower.advisories["1247710"]; reconcileAudit(lower);
+  assert.throws(() => runAuditPolicy(lower, 2), /native-exit/);
+  assert.throws(() => runAuditPolicy(lower, 1, auditBeforeExpiry, {}, "registry error"), /stderr-refused/);
 });
 
 test("temporary audit rejects every other High or Critical and exact ID package CVE URL version copy or graph drift", () => {
@@ -4222,6 +4255,9 @@ test("temporary audit exact inverse is verify-job scoped and refuses moved dupli
     ["if: ${{ always() }}","if: ${{ success() }}"],
     ["retention-days: 7","retention-days: 1"],
     ["native-exit-code.txt","other-exit-code.txt"],
+    ["total === 0 ? 0 : 1","total === 0 ? 1 : 0"],
+    ["levels.reduce((sum, level) => sum + counts[level], 0)","counts.high + counts.critical"],
+    ["raw audit native exit ${result.nativeExitCode} retained","audit clean"],
   ]) {assert.ok(block.includes(before));assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,block.replaceAll(before,after))),/temporary picomatch/);}
   assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,block+block)),/temporary picomatch/);
   assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,"").replace("  e2e:\n","  e2e:\n"+block)),/verify-job/);
