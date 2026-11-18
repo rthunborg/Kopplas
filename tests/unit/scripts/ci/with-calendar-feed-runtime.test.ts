@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import * as nodeModule from "node:module";
 import { EventEmitter } from "node:events";
+import { isIP } from "node:net";
 import { mkdtemp, mkdir, writeFile, readFile, rm, stat } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
@@ -4266,4 +4267,152 @@ test("temporary audit exact inverse is verify-job scoped and refuses moved dupli
   assert.notEqual(createHash("sha256").update(unrelated).digest("hex"),createHash("sha256").update(projected).digest("hex"));
   assert.equal(block.includes("continue-on-error"),false); assert.equal(block.includes("|| true"),false);
   assert.ok(block.includes("Date.now(), identities"));
+});
+
+// Pure extraction/ports only: these startup facts tests never invoke Docker, ss or Supabase.
+type StartupFacts = {schemaVersion:number;source:string;run:string;attempt:string;job:string;phase:string;port:number;socketStatus:string;bindCategory:string;matchingPublicationCount:number;ownership:string;collectionStatus:string;candidates:{ordinal:number;state:string;creationRelation:string;ownership:string}[]};
+function actualDbStartupFacts() {
+  const workflow=readFileSync(new URL("../../../../.github/workflows/ci.yml",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const begin="          // DB-STARTUP-FACTS-CODE-BEGIN\n",end="          // DB-STARTUP-FACTS-CODE-END";
+  assert.equal(workflow.split(begin).length,2);assert.equal(workflow.split(end).length,2);
+  const code=workflow.split(begin)[1].split(end)[0].split("\n").map(line=>line.slice(10)).join("\n");
+  return new Function(code+";return {startupBinding,unavailableStartupFacts,collectDbStartupFacts,validatedStartupFacts,observeDbStartupPhase,runDbStartupBoundary};")() as {
+    startupBinding:(env:object)=>object|null;unavailableStartupFacts:(...args:unknown[])=>StartupFacts;
+    collectDbStartupFacts:(...args:unknown[])=>Promise<StartupFacts>;validatedStartupFacts:(...args:unknown[])=>StartupFacts;
+    observeDbStartupPhase:(...args:unknown[])=>Promise<StartupFacts>;runDbStartupBoundary:(...args:unknown[])=>Promise<number>;
+  };
+}
+const startupFactsBinding={source:"a".repeat(40),run:"123",attempt:"1",job:"db"};
+function startupMockChild() {
+  return Object.assign(new EventEmitter(),{pid:81234,stdout:Object.assign(new EventEmitter(),{destroy(){}}),stderr:Object.assign(new EventEmitter(),{destroy(){}}),kill(){return true;},unref(){}});
+}
+type StartupStep={out?:string|string[];err?:string|string[];code?:number;error?:boolean;hang?:boolean};
+function startupReadPorts(steps:StartupStep[]) {
+  const calls:{command:string;args:string[];options:unknown}[]=[];let clock=0;
+  return {calls,advance:(ms:number)=>{clock+=ms;},ports:{clock:()=>clock,wall:()=>Date.parse("2026-11-18T19:00:00Z"),isIP,
+    spawn:(command:string,args:string[],options:unknown)=>{
+      calls.push({command,args,options});const step=steps.shift()??{error:true},child=startupMockChild();
+      queueMicrotask(()=>{if(step.hang)return;if(step.error){child.emit("error",new Error("FORBIDDEN-RAW-ERROR-CANARY"));return;}
+        for(const chunk of typeof step.out==="string"?[step.out]:step.out??[])child.stdout.emit("data",Buffer.from(chunk));
+        for(const chunk of typeof step.err==="string"?[step.err]:step.err??[])child.stderr.emit("data",Buffer.from(chunk));
+        child.emit("close",step.code??0);});return child;
+    }} };
+}
+function startupInspect(hostPort="54322",containerPort="5432/tcp",state="running") {
+  return JSON.stringify({Created:"2026-11-18T18:00:00Z",Status:state,PortBindings:{[containerPort]:[{HostIp:"127.0.0.1",HostPort:hostPort}]}});
+}
+
+test("DB startup facts actual collector recognizes host54322 on another container port but never certifies inventory or ownership",async()=>{
+  const actual=actualDbStartupFacts(),h=startupReadPorts([{out:"LISTEN 0 128 127.0.0.1:54322 0.0.0.0:*\n"},{out:"c0ffee000001\n"},{out:startupInspect()}]);
+  const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"PRE_START",null);
+  assert.equal(result.socketStatus,"LISTENING");assert.equal(result.bindCategory,"LOOPBACK");assert.equal(result.matchingPublicationCount,1);
+  assert.deepEqual(result.candidates,[{ordinal:1,state:"RUNNING",creationRelation:"PREEXISTING",ownership:"UNVERIFIED"}]);assert.equal(result.collectionStatus,"UNAVAILABLE");assert.equal(result.ownership,"UNVERIFIED");
+  assert.deepEqual(h.calls[0].args,["-H","-ltn","( sport = :54322 )"]);
+  assert.deepEqual(h.calls[1].args,["container","ls","--all","--filter","publish=54322","--format","{{.ID}}"]);
+  assert.equal(h.calls[2].args[3],'{"Created":{{json .Created}},"Status":{{json .State.Status}},"PortBindings":{{json .HostConfig.PortBindings}}}');
+  assert.ok(!JSON.stringify(result).includes("127.0.0.1"));assert.ok(!JSON.stringify(result).includes("c0ffee000001"));
+  const other=startupReadPorts([{out:""},{out:"a".repeat(12)},{out:startupInspect("65432","54322/tcp")}]);
+  const unrelated=await actual.collectDbStartupFacts(other.ports,startupFactsBinding,"PRE_START",null);
+  assert.equal(unrelated.socketStatus,"NOT_OBSERVED");assert.equal(unrelated.matchingPublicationCount,0);assert.equal(unrelated.collectionStatus,"UNAVAILABLE");
+});
+
+test("DB startup facts actual collector keeps foreign multiple vanished unavailable and malformed observations closed",async()=>{
+  const actual=actualDbStartupFacts();
+  for(const [socket,kind]of [["LISTEN 0 1 192.0.2.4:54322 0.0.0.0:*\n","OTHER"],["LISTEN 0 1 [::]:54322 [::]:*\n","WILDCARD"]]){
+    const h=startupReadPorts([{out:socket},{out:"a".repeat(12)+"\n"+"b".repeat(12)},{out:startupInspect()},{out:startupInspect("54322","15432/tcp","exited")}]);
+    const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"PRE_START",null);assert.equal(result.bindCategory,kind);assert.equal(result.matchingPublicationCount,2);assert.equal(result.collectionStatus,"UNAVAILABLE");assert.ok(result.candidates.every(row=>row.ownership==="UNVERIFIED"));
+  }
+  for(const step of [{error:true},{code:1,err:"FORBIDDEN-RAW-STDERR-CANARY"},{out:'{"Env":["FORBIDDEN-SECRET-CANARY"]}'},{out:startupInspect().replace('"Status":"running"','"Status":"foreign-state"')},{out:startupInspect().replace('"HostPort":"54322"','"HostPort":"54322","PID":1234')}]){
+    const h=startupReadPorts([{out:""},{out:"a".repeat(12)},step]);const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"PRE_START",null);
+    assert.equal(result.collectionStatus,"UNAVAILABLE");assert.equal(result.matchingPublicationCount,0);assert.ok(!JSON.stringify(result).includes("CANARY"));
+  }
+  for(const list of ["not-an-id","a".repeat(12)+"\n"+"a".repeat(12)]){
+    const h=startupReadPorts([{out:""},{out:list}]);const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"PRE_START",null);assert.equal(result.matchingPublicationCount,0);assert.equal(h.calls.length,2);
+  }
+  for(const socket of ["LISTEN 0 1 127.0.0.1:54322 FORBIDDEN-CANARY", "LISTEN x 1 127.0.0.1:54322 0.0.0.0:*"]){
+    const h=startupReadPorts([{out:socket}]);const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"PRE_START",null);assert.equal(result.socketStatus,"UNAVAILABLE");assert.equal(h.calls.length,1);assert.ok(!JSON.stringify(result).includes("CANARY"));
+  }
+  const absent=startupReadPorts([{out:""},{error:true}]);assert.equal((await actual.collectDbStartupFacts(absent.ports,startupFactsBinding,"PRE_START",null)).collectionStatus,"UNAVAILABLE");
+});
+
+test("DB startup facts actual collector caps eight aggregate inspect attempts including fallback and aggregate stdout plus stderr",async()=>{
+  const actual=actualDbStartupFacts();
+  for(const count of [7,8,9]){
+    const ids=Array.from({length:count},(_,i)=>(i+1).toString(16).padStart(12,"0"));
+    const h=startupReadPorts([{out:""},{out:ids.join("\n")},...Array.from({length:Math.min(count,8)},()=>({out:startupInspect("65432")})),{out:startupInspect()}]);
+    const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"POST_FAILURE",Date.parse("2026-11-18T18:30:00Z"));
+    const inspected=h.calls.filter(call=>call.args[1]==="inspect");assert.equal(inspected.length,8);
+    assert.equal(inspected.some(call=>call.args.at(-1)==="supabase_db_kopplas"),count===7);assert.equal(result.matchingPublicationCount,count===7?1:0);
+    assert.equal(result.collectionStatus,count===9?"TRUNCATED":"UNAVAILABLE");
+  }
+  const h=startupReadPorts([{out:" ".repeat(600_000)},{err:"x".repeat(500_000)}]);
+  const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"POST_FAILURE",0);assert.equal(result.collectionStatus,"TRUNCATED");assert.equal(h.calls.length,2);
+});
+
+test("DB startup facts actual output validator refuses raw foreign fields spoofed ownership complete inventory and attribution",()=>{
+  const actual=actualDbStartupFacts(),base=actual.unavailableStartupFacts(startupFactsBinding,"PRE_START");
+  assert.deepEqual(actual.validatedStartupFacts(JSON.stringify(base),startupFactsBinding,"PRE_START"),base);
+  for(const change of [(x:Record<string,unknown>)=>x.Env="FORBIDDEN-SECRET-CANARY",(x:Record<string,unknown>)=>x.ownership="OWNED",(x:Record<string,unknown>)=>x.collectionStatus="COMPLETE",(x:Record<string,unknown>)=>x.source="foreign",(x:Record<string,unknown>)=>x.matchingPublicationCount=1]){
+    const row=JSON.parse(JSON.stringify(base));change(row);assert.deepEqual(actual.validatedStartupFacts(JSON.stringify(row),startupFactsBinding,"PRE_START"),base);
+  }
+  assert.deepEqual(actual.validatedStartupFacts("{"+"x".repeat(9000),startupFactsBinding,"PRE_START"),base);
+  assert.deepEqual(actual.startupBinding({DB_STARTUP_FACTS_SOURCE:"a".repeat(40),GITHUB_RUN_ID:"123",GITHUB_RUN_ATTEMPT:"1",GITHUB_JOB:"db"}),startupFactsBinding);
+  assert.equal(actual.startupBinding({DB_STARTUP_FACTS_SOURCE:"raw-secret",GITHUB_RUN_ID:"123",GITHUB_RUN_ATTEMPT:"1",GITHUB_JOB:"db"}),null);
+});
+
+function startupPhasePorts(mode:"never-close"|"close-on-kill"|"valid"|"malformed"|"stderr"|"oversize"|"cleanup-throws"|"spawn-throws") {
+  const child=startupMockChild(),events:string[]=[],timers:{fn:()=>void;at:number;cancelled:boolean}[]=[];let clock=0;
+  const actual=actualDbStartupFacts();
+  const ports={execPath:"owned-node-only",clock:()=>clock,timer:(fn:()=>void,ms:number)=>{const timer={fn,at:clock+ms,cancelled:false};timers.push(timer);return timer;},clear:(timer:{cancelled:boolean}|undefined)=>{if(timer)timer.cancelled=true;},
+    killGroup:(pid:number)=>{assert.equal(pid,child.pid);events.push("owned-kill");if(mode==="cleanup-throws")throw new Error("private cleanup");if(mode==="close-on-kill")child.emit("close",137);},
+    spawn:(_command:string,args:string[],options:unknown)=>{events.push("spawn");assert.equal(args[0],"-e");assert.deepEqual(options,{detached:true,stdio:["ignore","pipe","pipe"]});if(mode==="spawn-throws")throw new Error("private spawn");
+      queueMicrotask(()=>{if(["valid","malformed","stderr","oversize"].includes(mode)){
+        if(mode==="stderr")child.stderr.emit("data",Buffer.from("FORBIDDEN-RAW-ERROR-CANARY"));else child.stdout.emit("data",Buffer.from(mode==="valid"?JSON.stringify(actual.unavailableStartupFacts(startupFactsBinding,"PRE_START")):mode==="oversize"?"x".repeat(17_000):'{"secret":"FORBIDDEN-CANARY"}'));
+        child.emit("close",0);
+      }});return child;}};
+  return {ports,events,child,advance:(time:number)=>{clock=time;for(const timer of timers)if(!timer.cancelled&&timer.at<=time){timer.cancelled=true;timer.fn();}},timers};
+}
+
+test("DB startup facts actual phase bounds include worker startup parsing and owned-child settlement within one five-second envelope",async()=>{
+  const actual=actualDbStartupFacts();
+  for(const mode of ["never-close","close-on-kill","cleanup-throws"] as const){
+    const h=startupPhasePorts(mode);const pending=actual.observeDbStartupPhase(h.ports,startupFactsBinding,"PRE_START",null);
+    h.advance(4800);h.advance(5000);const result=await pending;assert.equal(result.collectionStatus,"TIMED_OUT");assert.ok(h.events.includes("owned-kill"));assert.ok(h.timers.every(timer=>timer.cancelled));
+  }
+  for(const mode of ["valid","malformed","stderr","oversize","spawn-throws"] as const){
+    const h=startupPhasePorts(mode);const result=await actual.observeDbStartupPhase(h.ports,startupFactsBinding,"PRE_START",null);
+    assert.equal(result.collectionStatus,mode==="oversize"?"TRUNCATED":"UNAVAILABLE");assert.ok(!JSON.stringify(result).includes("CANARY"));assert.ok(h.timers.every(timer=>timer.cancelled));
+    if(mode==="valid") { const count=h.events.length;h.child.emit("error",new Error("late private"));h.child.stdout.emit("error",new Error("late private"));h.child.stderr.emit("error",new Error("late private"));h.child.stdout.emit("data",Buffer.from("FORBIDDEN-CANARY"));assert.equal(h.events.length,count); }
+  }
+});
+
+test("DB startup facts actual boundary starts once preserves native exit and continuation across every secondary collector and write failure",async()=>{
+  const actual=actualDbStartupFacts();
+  for(const nativeExit of [0,17,127,137])for(const failure of ["none","pre-collect","post-collect","pre-write","post-write","wall"]){
+    const events:string[]=[];let currentPhase="";
+    const result=await actual.runDbStartupBoundary({wall:()=>{if(failure==="wall")throw new Error("private clock");return 123;},
+      collect:async(_binding:unknown,phase:string)=>{currentPhase=phase;events.push(phase);if(failure===(phase==="PRE_START"?"pre-collect":"post-collect"))throw new Error("private collect");return actual.unavailableStartupFacts(startupFactsBinding,phase);},
+      record:()=>{events.push("write:"+currentPhase);if(failure===(currentPhase==="PRE_START"?"pre-write":"post-write"))throw new Error("private write");},
+      start:async()=>{events.push("native-output:unchanged");events.push("start");return nativeExit;},
+    },startupFactsBinding);
+    assert.equal(result,nativeExit);assert.equal(events.filter(x=>x==="start").length,1);assert.equal(events.filter(x=>x==="native-output:unchanged").length,1);
+    assert.equal(events.filter(x=>x==="POST_FAILURE").length,nativeExit===0?0:1);assert.ok(events.indexOf("PRE_START")<events.indexOf("start"));if(nativeExit!==0)assert.ok(events.indexOf("POST_FAILURE")>events.indexOf("start"));
+    if(result===0)events.push("unchanged-reset-seed-wrapper-pilot");assert.equal(events.includes("unchanged-reset-seed-wrapper-pilot"),nativeExit===0);
+  }
+  const sentinel=new Error("original-start-sentinel");await assert.rejects(actual.runDbStartupBoundary({wall:()=>0,collect:async()=>{throw new Error("secondary");},record:()=>{},start:async()=>{throw sentinel;}},startupFactsBinding),error=>error===sentinel);
+});
+
+test("DB startup facts exact inverse is one-db scoped and refuses moved duplicate missing unknown and cap or native argv drift",()=>{
+  const workflow=readFileSync(new URL("../../../../.github/workflows/ci.yml",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const begin="      # DB-STARTUP-CLOSED-FACTS-BEGIN\n",end="      # DB-STARTUP-CLOSED-FACTS-END\n";
+  const block=workflow.slice(workflow.indexOf(begin),workflow.indexOf(end)+end.length);assert.ok(block.startsWith(begin));
+  const projected=projectCalendarFeedCiCommands(workflow);assert.ok(projected.includes("      - name: Start local Supabase stack\n        run: supabase start\n"));assert.ok(!projected.includes("DB-STARTUP-CLOSED-FACTS"));
+  assert.equal(projectCalendarFeedCiCommands(workflow.replaceAll("\n","\r\n")),projected);
+  for(const [before,after]of [["attempts >= 8","attempts >= 9"],["1_048_576 - 16_384","2_097_152 - 16_384"],["5000 - (ports.clock() - began)","6000 - (ports.clock() - began)"],["publish=54322","publish=5432"],["spawn(\"supabase\", [\"start\"]","spawn(\"supabase\", [\"start\",\"--ignore-health-check\"]"],["collectionStatus: \"UNAVAILABLE\"","collectionStatus: \"COMPLETE\""]]){
+    assert.ok(block.includes(before));assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,block.replaceAll(before,after))),/DB startup facts/);
+  }
+  for(const replacement of ["",block+block])assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,replacement)),/DB startup facts/);
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,"").replace("  e2e:\n","  e2e:\n"+block)),/DB startup facts/);
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace("  db:\n","  db:\n  db:\n")),/DB startup facts exact single db job/);
+  assert.notEqual(projectCalendarFeedCiCommands(workflow+"\n# unrelated\n"),projected);
 });
