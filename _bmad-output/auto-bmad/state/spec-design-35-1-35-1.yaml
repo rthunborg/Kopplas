@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-1-documentary-closeout-20261118/_bm
 story_id: 35-1
 branch: codex/35-1-documentary-closeout-20261118
 status: in-progress
-updated_at: "2026-11-18T12:17:53Z"
+updated_at: "2026-11-18T12:25:39Z"
 started_at: "2026-11-18T12:01:19Z"
 completed_at: null
-active_seconds: 671
-timing_anchor: 1795004273
+active_seconds: 988
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -38,16 +38,16 @@ tea_selected: []
 tea_rationale: "Documentary adoption and formal closeout only; no runtime, migration, product behavior or sensitive boundary changes."
 epic_story_count: 1
 stories_after_in_epic: 0
-completed_phases: [0, 1, 2]
-spec_path: null
+completed_phases: [0, 1, 2, 3, 4]
+spec_path: "C:/DEV/Kopplas/tmp/private/e35-1-documentary-closeout-20261118/_bmad-output/specs/spec-design-35-1/stories/35-1-authority-and-base-contract.md"
 spec_approved: true
 build:
-  status: null
+  status: ready-for-dev
   blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
-  warnings: []
+  warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
 review_unverified: false
@@ -58,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [033062ca]
+commits: [033062ca, 97de99c1]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -93,4 +93,7 @@ overrides:
   publication_integration: "Ordinarypublication/CI/Previewauthorized; actualqualifiedbase/mainintegration holdsandS→Q→Horderingremain; no newproduction/database/Auth/custody/CRM/151authority inferred."
   triage_evidence: "Phase0private dispatchrecord and completedtea-triage-result.json, no historicalpipelinebackfill."
   p2_evidence: "Exacttwoallocateddocplans authored;7historicalP1inspection identities/4docrisks/0risks>=6/8links0missing;0executabletests. Plan82ce4c0d; manualdocumentedresolverfallback cachefailure recorded."
+  p3_halt: "Actualnormalfolder+idHALTready-for-dev; sevenoriginalACverbatim+7GWTbindings, nophase5work/acceptancetests. Sourcehash2bfbd5fb, noauthorGitcommits."
+  p5_serialization: "DoNOTfoldforwardP5timing/status. OrdinarysequentialDocimplementationrequiresfreshactualE15writer/delegateSTOP+Rootpositiveexclusivehandoff perHighac1e8291; otherwiseusequalifiednativeassignment, nohotupgrade."
+  p4_gate: "Notselected: tea.enabledtrue but perstoryrisklow/atddnotin[]; no ATDDexecution orcoverageclaimed."
 constraints: []
