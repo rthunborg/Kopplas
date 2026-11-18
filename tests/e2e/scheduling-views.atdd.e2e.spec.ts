@@ -276,7 +276,7 @@ async function save(h: SchedulingViewsHarness) {
 const visibleCell = (h: SchedulingViewsHarness, date: string) => h.page.locator(`[data-testid="capacity-cell"][data-person="${h.people[0]}"][data-date="${date}"]:visible`);
 
 for (const [host, gesture, id] of [["Schema", "click", "001"], ["Schema", "drag", "002"], ["Resurser", "click", "003"], ["Resurser", "drag", "004"]] as const) {
-  test(`[P0] 15.1-E2E-${id} AC4 actual ${host} ${gesture} persists selected person/start/end`, async ({ resourcePage: page, schedulingViews: h }) => {
+  test(`[P0] 15.1-E2E-${id} AC4 actual ${host} ${gesture} persists selected person/start/end`, async ({ resourcePage: page, schedulingViews: h, bookingEditor }, testInfo) => {
     await h.seed(); await page.setViewportSize({ width: 1440, height: 1000 }); await h.open(host, "day");
     const start = "2026-10-12T14:30", end = gesture === "click" ? "2026-10-12T15:00" : "2026-10-12T16:00";
     const schemaPerson = host === "Schema" && gesture === "click" ? h.people[0]! : "";
@@ -286,7 +286,43 @@ for (const [host, gesture, id] of [["Schema", "click", "001"], ["Schema", "drag"
     if (gesture === "click") { const point = await center(slot); await page.mouse.click(point.x, point.y); }
     else await selectDrag(page, slot, h.slot(host, "2026-10-12T15:30"));
     await expectEditor(h, i);
-    const before = await h.sqlBookings(); await h.fillRequired(); await save(h);
+    const before = await h.sqlBookings(); await h.fillRequired();
+    await expect(h.editor.getByTestId("booking-save")).toBeEnabled(); await expectEditor(h, { ...i, assigneeIds: [h.people[0]!] });
+    const captureHost = host === "Schema" ? "schema" : "resources";
+    let pointerCaptureError: unknown, pointerCaptureFailed = false;
+    try {
+      await attachVisual(page, testInfo, `${captureHost}-${gesture}-selected-editor-desktop`);
+      await page.setViewportSize({ width: 360, height: 640 });
+      await expectEditor(h, { ...i, assigneeIds: [h.people[0]!] });
+      await attachVisual(page, testInfo, `${captureHost}-${gesture}-selected-editor-phone`);
+    } catch (error) { pointerCaptureError = error; pointerCaptureFailed = true; }
+    finally { try { await page.setViewportSize({ width: 1440, height: 1000 }); } catch (error) { if (!pointerCaptureFailed) { pointerCaptureError = error; pointerCaptureFailed = true; } } }
+    if (pointerCaptureFailed) throw pointerCaptureError;
+    if (host === "Schema" && gesture === "click") {
+      const gate = await bookingEditor.holdNextSave();
+      let saving: Promise<void> | undefined;
+      let pendingError: unknown, pendingFailed = false;
+      const pendingCleanup: string[] = [];
+      try {
+        saving = save(h);
+        const saveRejected = new Promise<never>((_resolve, reject) => { void saving!.catch(reject); });
+        await Promise.race([gate.started, saveRejected]);
+        await expect(h.editor.getByTestId("booking-editor")).toHaveAttribute("aria-busy", "true");
+        await expect(h.editor.getByTestId("booking-save")).toBeDisabled();
+        await attachVisual(page, testInfo, "selected-editor-pending-desktop");
+        await page.setViewportSize({ width: 360, height: 640 });
+        await expect(h.editor.getByTestId("booking-editor")).toHaveAttribute("aria-busy", "true");
+        await expect(h.editor.getByTestId("booking-save")).toBeDisabled();
+        await attachVisual(page, testInfo, "selected-editor-pending-phone");
+      } catch (error) { pendingError = error; pendingFailed = true; }
+      finally {
+        try { await gate.release(); } catch { pendingCleanup.push("release"); }
+        try { await page.setViewportSize({ width: 1440, height: 1000 }); } catch { pendingCleanup.push("viewport"); }
+        try { if (saving) await saving; } catch (error) { pendingCleanup.push("save-settlement"); if (!pendingFailed) { pendingError = error; pendingFailed = true; } }
+      }
+      if (pendingFailed) throw pendingError;
+      if (pendingCleanup.length) throw new Error(`Selected editor capture cleanup failed: ${pendingCleanup.join(", ")}`);
+    } else await save(h);
     const created = (await h.sqlBookings()).filter(row => !before.some(old => old.id === row.id));
     expect(created).toHaveLength(1);
     expect(created[0]).toMatchObject({ startsAt: i.startsAt, endsAt: i.endsAt, assigneeIds: [h.people[0]] });
@@ -311,10 +347,74 @@ for (const host of ["Schema", "Resurser"] as const) {
 }
 test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and toolbar editor agree across later pages", async ({ schedulingViews: h }, testInfo) => {
   await h.seed(true); await h.signIn("manager"); await h.page.setViewportSize({ width: 1440, height: 1000 });
+  // DENSE-TRANSPORT-BEGIN bounded allowlist; raw input is inspected only ephemerally.
+  type DenseRow = { ordinal: number; view: View; mode: "day" | "week" | "month"; phase: "open" | "sharedFilters" | "assertions" | "toolbar"; startMs: number; endMs?: number; status?: number; terminal: "pending" | "finished" | "aborted" | "failed" };
+  const denseRows: DenseRow[] = [], denseRequests = new Map<import("@playwright/test").Request, DenseRow>();
+  const denseCounters = { ignored: 0, malformed: 0, oversized: 0, omitted: 0, unavailable: 0 };
+  const denseIncrement = (key: keyof typeof denseCounters) => { denseCounters[key] = Math.min(1_000_000, denseCounters[key] + 1); };
+  const denseOrigin = new URL(h.page.url()).origin, denseEpoch = performance.now();
+  let denseLastMs = 0, denseObserving = true;
+  let denseContext: Pick<DenseRow, "view" | "mode" | "phase"> | undefined;
+  const denseClock = () => {
+    const elapsed = performance.now() - denseEpoch;
+    if (!Number.isFinite(elapsed)) { denseIncrement("unavailable"); return undefined; }
+    denseLastMs = Math.max(denseLastMs, Math.min(3_600_000, Math.max(0, elapsed))); return denseLastMs;
+  };
+  const denseRequest = (request: import("@playwright/test").Request) => {
+    try {
+      if (!denseObserving) return;
+      if (request.method() !== "POST") { denseIncrement("ignored"); return; }
+      const rawUrl = request.url(); if (rawUrl.length > 4096) { denseIncrement("oversized"); return; }
+      const url = new URL(rawUrl);
+      if (url.origin !== denseOrigin || url.pathname !== "/scheduling" || !request.headers()["next-action"]) { denseIncrement("ignored"); return; }
+      const body = request.postData();
+      if (!body || body.length > 32768 || Buffer.byteLength(body, "utf8") > 65536) { denseIncrement(body ? "oversized" : "malformed"); return; }
+      let first: unknown;
+      try { const parsed: unknown = JSON.parse(body); first = Array.isArray(parsed) ? parsed[0] : undefined; } catch { denseIncrement("malformed"); return; }
+      if (!first || typeof first !== "object" || Array.isArray(first) || !("view" in first) || !("filters" in first) || !("mode" in first) || !denseContext) { denseIncrement("ignored"); return; }
+      if (denseRows.length >= 256 || denseRequests.size >= 256) { denseIncrement("omitted"); return; }
+      if (denseRequests.has(request)) return;
+      const startMs = denseClock(); if (startMs === undefined) return;
+      const row: DenseRow = { ordinal: denseRows.length + 1, ...denseContext, startMs, terminal: "pending" };
+      denseRows.push(row); denseRequests.set(request, row);
+    } catch { denseIncrement("unavailable"); }
+  };
+  const denseResponse = (response: import("@playwright/test").Response) => {
+    try { if (!denseObserving) return; const row = denseRequests.get(response.request()); if (!row) return; const status = response.status(); if (Number.isInteger(status) && status >= 100 && status <= 599) row.status = status; } catch { denseIncrement("unavailable"); }
+  };
+  const denseFinished = (request: import("@playwright/test").Request) => {
+    try { if (!denseObserving) return; const row = denseRequests.get(request); if (!row) return; row.terminal = "finished"; const endMs = denseClock(); if (endMs !== undefined) row.endMs = endMs; denseRequests.delete(request); } catch { denseIncrement("unavailable"); }
+  };
+  const denseFailed = (request: import("@playwright/test").Request) => {
+    try { if (!denseObserving) return; const row = denseRequests.get(request); if (!row) return; row.terminal = "failed"; try { if (request.failure()?.errorText === "net::ERR_ABORTED") row.terminal = "aborted"; } catch { denseIncrement("unavailable"); } const endMs = denseClock(); if (endMs !== undefined) row.endMs = endMs; denseRequests.delete(request); } catch { denseIncrement("unavailable"); }
+  };
+  const denseListen = [() => h.page.on("request", denseRequest), () => h.page.on("response", denseResponse), () => h.page.on("requestfinished", denseFinished), () => h.page.on("requestfailed", denseFailed)];
+  const denseDetach = [() => h.page.off("request", denseRequest), () => h.page.off("response", denseResponse), () => h.page.off("requestfinished", denseFinished), () => h.page.off("requestfailed", denseFailed)];
+  const denseFinalize = async () => {
+    denseObserving = false;
+    for (const detach of denseDetach) { try { detach(); } catch { denseIncrement("unavailable"); } }
+    denseRequests.clear();
+    let statusElements: number | null = null, alertElements: number | null = null;
+    try { if (!h.page.isClosed()) { const count = await h.page.getByRole("status").count(); if (Number.isSafeInteger(count) && count >= 0) statusElements = Math.min(1_000_000, count); } } catch { denseIncrement("unavailable"); }
+    try { if (!h.page.isClosed()) { const count = await h.page.getByRole("alert").count(); if (Number.isSafeInteger(count) && count >= 0) alertElements = Math.min(1_000_000, count); } } catch { denseIncrement("unavailable"); }
+    try {
+      let body = Buffer.from(JSON.stringify({ schemaVersion: 1, attribution: "read-shaped-transport-only", records: denseRows, counters: denseCounters, statusElements, alertElements }));
+      if (body.byteLength > 65536) { denseIncrement("omitted"); body = Buffer.from(JSON.stringify({ schemaVersion: 1, attribution: "read-shaped-transport-only", records: [], counters: denseCounters, statusElements, alertElements, outputTruncated: true })); }
+      await testInfo.attach("scheduling-dense-read-transport", { body, contentType: "application/json" });
+    } catch { denseIncrement("unavailable"); }
+  };
+  let densePrimary: unknown, denseHasPrimary = false;
+  try {
+    for (const listen of denseListen) { try { listen(); } catch { denseIncrement("unavailable"); } }
+  // DENSE-TRANSPORT-END setup
   const shared = [h.ids.role, h.ids.proposal, h.ids.collision, ...h.laterIds].sort();
   for (const [view, modes] of [["Schema", ["day", "week", "month"]], ["Resurser", ["day", "week"]], ["Team", ["week"]], ["Beläggning", ["day", "week", "month"]], ["Min kalender", ["day", "week"]]] as [View, ("day" | "week" | "month")[]][]) {
     for (const mode of modes) {
-      await h.open(view, mode); await h.applySharedFilters();
+      denseContext = { view, mode, phase: "open" };
+      await h.open(view, mode);
+      denseContext = { view, mode, phase: "sharedFilters" };
+      await h.applySharedFilters();
+      denseContext = { view, mode, phase: "assertions" };
       if (view === "Beläggning") await expect(visibleCell(h, DATE)).toContainText("Bokat 210 min / budget 480 min");
       else if (view === "Schema" && mode === "month") {
         await h.page.locator(`[data-testid="schema-density-day"][data-date="${DATE}"]`).click(); await h.settle();
@@ -330,11 +430,15 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
         }
         await attachVisual(h.page, testInfo, ({ Schema: "desktop-schema-week", Resurser: "desktop-resources-week", Team: "desktop-team-week", Beläggning: "desktop-capacity-week", "Min kalender": "desktop-personal-calendar-week" })[view]);
       }
+      denseContext = { view, mode, phase: "toolbar" };
       const before = await h.sqlBookings(), trigger = h.page.getByTestId("scheduling-new-booking");
       await trigger.click(); await expect(h.editor).toBeVisible(); await h.cancel(); await expect(trigger).toBeFocused();
       expect(await h.sqlBookings()).toEqual(before);
     }
   }
+  } catch (error) { densePrimary = error; denseHasPrimary = true; }
+  finally { try { await denseFinalize(); } catch { /* Optional diagnostics cannot replace the test failure. */ } }
+  if (denseHasPrimary) throw densePrimary;
 });
 
 test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycle and input tampering; denied role", async ({ schedulingViews: h, resourcePage: page }, testInfo) => {
@@ -810,10 +914,55 @@ test("[P1] 15.1-COMP-001 AC3 toolbar preferences isolate user/tenant/view and re
   await h.open("Schema", "week"); expect(await state()).toEqual(defaults);
   expect((await h.visibleIds()).length).toBe(7);
 });
-test("[P1] 15.1-COMP-001 AC3 observed real read transport failure hides stale/empty/count until retry", async ({ schedulingViews: h }) => {
+test("[P1] 15.1-COMP-001 AC3 observed real read transport failure hides stale/empty/count until retry", async ({ schedulingViews: h }, testInfo) => {
   await h.seed(); await h.open("Schema"); await h.filter("Jobb", h.scenario.jobId);
-  const failed = await h.failNextRead(); await h.page.getByRole("tab", { name: "Schema", exact: true }).click(); await failed.failed;
+  const readViewport = h.page.viewportSize()!, readOrigin = new URL(h.page.url()).origin;
+  const readMatcher = (url: URL) => url.origin === readOrigin && url.pathname === "/scheduling";
+  let releaseRead!: () => void, markReadStarted!: () => void;
+  const readGate = new Promise<void>(resolve => { releaseRead = resolve; }), readStarted = new Promise<void>(resolve => { markReadStarted = resolve; });
+  let readHeld = false, heldReadTask: Promise<void> | undefined;
+  const holdRead = (route: import("@playwright/test").Route) => {
+    const request = route.request();
+    if (readHeld || request.method() !== "POST" || !request.headers()["next-action"]) return route.fallback();
+    let first: unknown;
+    try { const body = request.postData(); if (!body || body.length > 32768 || Buffer.byteLength(body, "utf8") > 65536) return route.fallback(); const value = JSON.parse(body); first = Array.isArray(value) ? value[0] : undefined; } catch { return route.fallback(); }
+    if (!first || typeof first !== "object" || !("view" in first) || !("filters" in first) || !("mode" in first)) return route.fallback();
+    readHeld = true; markReadStarted();
+    heldReadTask = (async () => { await readGate; await route.fallback(); })();
+    void heldReadTask.catch(() => {}); return heldReadTask;
+  };
+  await h.page.route(readMatcher, holdRead);
+  const failed = await h.failNextRead();
+  let readCaptureError: unknown, readCaptureFailed = false;
+  const readCleanup: string[] = [];
+  try {
+    await h.page.getByRole("tab", { name: "Schema", exact: true }).click(); await readStarted;
+    for (const viewport of [{ width: 1440, height: 1000, suffix: "desktop" }, { width: 360, height: 640, suffix: "phone" }]) {
+      await h.page.setViewportSize({ width: viewport.width, height: viewport.height });
+      await expect(h.page.getByText("Läser planering…", { exact: true })).toBeVisible();
+      await attachVisual(h.page, testInfo, `workspace-read-loading-${viewport.suffix}`);
+    }
+  } catch (error) { readCaptureError = error; readCaptureFailed = true; }
+  finally {
+    try { releaseRead(); } catch { readCleanup.push("release"); }
+    try { await h.page.unroute(readMatcher, holdRead); } catch { readCleanup.push("unroute"); }
+    try { if (heldReadTask) await heldReadTask; } catch { readCleanup.push("read-settlement"); }
+    try { await h.page.setViewportSize(readViewport); } catch { readCleanup.push("viewport"); }
+  }
+  if (readCaptureFailed) throw readCaptureError;
+  if (readCleanup.length) throw new Error(`Read capture cleanup failed: ${readCleanup.join(", ")}`);
+  await failed.failed;
   await expect(h.page.getByTestId("scheduling-workspace").getByRole("alert")).toContainText("Planeringen kunde inte läsas");
+  let readErrorCapture: unknown, readErrorCaptureFailed = false;
+  try {
+    for (const viewport of [{ width: 1440, height: 1000, suffix: "desktop" }, { width: 360, height: 640, suffix: "phone" }]) {
+      await h.page.setViewportSize({ width: viewport.width, height: viewport.height });
+      await expect(h.page.getByTestId("scheduling-workspace").getByRole("alert")).toBeVisible();
+      await attachVisual(h.page, testInfo, `workspace-read-error-${viewport.suffix}`);
+    }
+  } catch (error) { readErrorCapture = error; readErrorCaptureFailed = true; }
+  finally { try { await h.page.setViewportSize(readViewport); } catch (error) { if (!readErrorCaptureFailed) { readErrorCapture = error; readErrorCaptureFailed = true; } } }
+  if (readErrorCaptureFailed) throw readErrorCapture;
   expect(await h.visibleIds()).toEqual([]); await expect(h.page.getByText(/Inga bokningar matchar/)).toHaveCount(0);
   await expect(h.page.getByText(/^Konflikter \(/)).toHaveCount(0);
   // An aborted action cannot confirm current planner authority; Retry must restore it.
@@ -869,6 +1018,11 @@ test("[P1] 15.1-COMP-003 AC8 360x640 connected agenda/summary and failed save re
   await dialog.getByLabel("Intervall start").fill("2026-10-12T14:30"); await dialog.getByLabel("Intervall slut").fill("2026-10-12T15:00"); await dialog.getByLabel("Intervall person").selectOption(h.people[0]!); await dialog.getByRole("button", { name: "Öppna bokningseditor" }).click();
   await h.fillRequired(); const draft = h.scenario.description + " phone unsent input"; await h.editor.getByTestId("booking-description").fill(draft);
   await attachVisual(page, testInfo, "phone-editor-draft");
+  let desktop_dialog_origin_draftError: unknown, desktop_dialog_origin_draftFailed = false;
+  try { await page.setViewportSize({ width: 1440, height: 1000 }); await attachVisual(page, testInfo, "desktop-dialog-origin-draft"); }
+  catch (error) { desktop_dialog_origin_draftError = error; desktop_dialog_origin_draftFailed = true; }
+  finally { try { await page.setViewportSize({ width: 360, height: 640 }); } catch (error) { if (!desktop_dialog_origin_draftFailed) { desktop_dialog_origin_draftError = error; desktop_dialog_origin_draftFailed = true; } } }
+  if (desktop_dialog_origin_draftFailed) throw desktop_dialog_origin_draftError;
   const attempts: Record<string, unknown>[] = [];
   const capture = (request: import("@playwright/test").Request) => {
     if (request.method() !== "POST" || !request.headers()["next-action"]) return;
@@ -879,10 +1033,20 @@ test("[P1] 15.1-COMP-003 AC8 360x640 connected agenda/summary and failed save re
   await expect(h.editor.getByTestId("booking-description")).toHaveValue(draft); await expect(page.getByTestId("booking-save-status")).toHaveCount(0); expect(await h.sqlBookings()).toEqual(before);
   await h.editor.getByTestId("booking-retry").scrollIntoViewIfNeeded();
   await attachVisual(page, testInfo, "phone-editor-save-failure");
+  let desktop_dialog_origin_save_failureError: unknown, desktop_dialog_origin_save_failureFailed = false;
+  try { await page.setViewportSize({ width: 1440, height: 1000 }); await attachVisual(page, testInfo, "desktop-dialog-origin-save-failure"); }
+  catch (error) { desktop_dialog_origin_save_failureError = error; desktop_dialog_origin_save_failureFailed = true; }
+  finally { try { await page.setViewportSize({ width: 360, height: 640 }); } catch (error) { if (!desktop_dialog_origin_save_failureFailed) { desktop_dialog_origin_save_failureError = error; desktop_dialog_origin_save_failureFailed = true; } } }
+  if (desktop_dialog_origin_save_failureFailed) throw desktop_dialog_origin_save_failureError;
   const confirmed = await h.observeConfirmedSave(); await h.editor.getByTestId("booking-retry").click(); await confirmed.confirmed;
   page.off("request", capture); expect(attempts).toHaveLength(2); expect(attempts[1]).toEqual(attempts[0]);
   await expect(page.getByTestId("booking-save-status")).toHaveText(/sparad/i); await expect(h.editor).toHaveCount(0); expect((await h.sqlBookings()).length).toBe(before.length + 1);
   await attachVisual(page, testInfo, "phone-confirmed-retry");
+  let desktop_dialog_origin_confirmed_retryError: unknown, desktop_dialog_origin_confirmed_retryFailed = false;
+  try { await page.setViewportSize({ width: 1440, height: 1000 }); await attachVisual(page, testInfo, "desktop-dialog-origin-confirmed-retry"); }
+  catch (error) { desktop_dialog_origin_confirmed_retryError = error; desktop_dialog_origin_confirmed_retryFailed = true; }
+  finally { try { await page.setViewportSize({ width: 360, height: 640 }); } catch (error) { if (!desktop_dialog_origin_confirmed_retryFailed) { desktop_dialog_origin_confirmed_retryError = error; desktop_dialog_origin_confirmed_retryFailed = true; } } }
+  if (desktop_dialog_origin_confirmed_retryFailed) throw desktop_dialog_origin_confirmed_retryError;
 });
 test("[P1] 15.1-COMP-003 AC8 month density drilldown and long multi-assignee labels at 360x640", async ({ schedulingViews: h, resourcePage: page }, testInfo) => {
   await h.seed(); await h.open("Schema", "month"); const density = page.locator(`[data-testid="schema-density-day"][data-date="${DATE}"]`); await expect(density).toHaveText("5 bokningar · öppna dag"); await density.click(); await h.settle();

@@ -323,6 +323,16 @@ test.describe("Story 14.4 booking editor retained browser acceptance", () => {
 
   test("[P1] E2E-002 reload chip counts persisted OPEN logical conflicts only", async ({ resourcePage: page, bookingEditor: h }) => {
     const s = await h.seed("persisted-conflict-states");
+    const adjustedShift = await adminQuery<{ id: string }>(
+      "update public.person_work_hours set ends_at='16:30' where tenant_id=$1 and person_profile_id=$2 and entry_kind='weekly_shift' and weekday=1 and starts_at='08:00' and ends_at='16:00' returning id",
+      [s.tenantId, s.assigneeIds[1]],
+    );
+    expect(adjustedShift).toHaveLength(1);
+    const correctedShift = await adminQuery<{ id: string; tenant_id: string; person_profile_id: string; entry_kind: string; weekday: number; starts_at: string; ends_at: string }>(
+      "select id,tenant_id,person_profile_id,entry_kind,weekday,starts_at::text,ends_at::text from public.person_work_hours where id=$1 and tenant_id=$2 and person_profile_id=$3",
+      [adjustedShift[0]!.id, s.tenantId, s.assigneeIds[1]],
+    );
+    expect(correctedShift).toEqual([{ id: adjustedShift[0]!.id, tenant_id: s.tenantId, person_profile_id: s.assigneeIds[1], entry_kind: "weekly_shift", weekday: 1, starts_at: "08:00:00", ends_at: "16:30:00" }]);
     const durable = await bookingSnapshot(s.tenantIds);
     const rows = durable.conflicts.filter((row) => row.booking_id === s.persistedBookingId || row.related_booking_id === s.persistedBookingId);
     expect(rows.filter((row) => row.status === "open")).toHaveLength(s.expectedOpenRowCount);

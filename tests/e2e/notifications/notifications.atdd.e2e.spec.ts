@@ -180,7 +180,7 @@ test.describe("Story 13.2 In-app-notiser — bell, center och inställningar (AT
     await expect(page.getByRole("button", { name: /notiser/i })).toHaveAccessibleName(/olästa notiser/i);
   });
 
-  test("[P0] Profile preferences group the active category by module", async ({ page }) => {
+  test("[P0] Profile preferences group the active category by module", async ({ page }, testInfo) => {
     await signIn(page, fixture().notifications.projectManager);
     await page.getByRole("button", { name: /profil/i }).click();
     const initialPreferencesResponse = page.waitForResponse((response) => new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "GET");
@@ -203,7 +203,7 @@ test.describe("Story 13.2 In-app-notiser — bell, center och inställningar (AT
     await expect(bookingPreference).toBeChecked({ checked: originalEnabled });
     const [saveResponse] = await Promise.all([
       page.waitForResponse((response) => new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "PUT"),
-      bookingPreference.setChecked(!originalEnabled),
+      bookingPreference.click(),
     ]);
     expect(saveResponse.request().postDataJSON()).toEqual({ category: "booking.changed", channel: "in_app", enabled: !originalEnabled });
     expect(saveResponse.status()).toBe(200);
@@ -219,7 +219,7 @@ test.describe("Story 13.2 In-app-notiser — bell, center och inställningar (AT
     const [restoreResponse, restoredPreferences] = await Promise.all([
       page.waitForResponse((response) => new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "PUT"),
       page.waitForResponse((response) => new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "GET"),
-      bookingPreference.setChecked(originalEnabled),
+      bookingPreference.click(),
     ]);
     expect(restoreResponse.request().postDataJSON()).toEqual({ category: "booking.changed", channel: "in_app", enabled: originalEnabled });
     expect(restoreResponse.status()).toBe(200);
@@ -228,6 +228,114 @@ test.describe("Story 13.2 In-app-notiser — bell, center och inställningar (AT
     expect((await restoredPreferences.json()).preferences).toContainEqual({ category: "booking.changed", channel: "in_app", enabled: originalEnabled });
     await expect(bookingPreference).toBeChecked({ checked: originalEnabled });
     await expect(bookingPreference).toBeEnabled();
+    const originalViewport = page.viewportSize();
+    expect(originalViewport).not.toBeNull();
+    const ownOrigin = new URL(page.url()).origin;
+    const routeMatcher = (url: URL) => url.origin === ownOrigin && url.pathname === "/api/notifications/preferences";
+    let releaseHeld!: () => void;
+    const held = new Promise<void>((resolve) => { releaseHeld = resolve; });
+    let markStarted!: () => void;
+    const started = new Promise<void>((resolve) => { markStarted = resolve; });
+    let intercepted = false;
+    let heldRouteTask: Promise<void> | undefined;
+    const controlledHandler = (route: import("@playwright/test").Route) => {
+      const request = route.request();
+      if (request.method() !== "PUT" || intercepted) return route.fallback();
+      const input = request.postDataJSON();
+      if (!input || Object.keys(input).length !== 3 || input.category !== "booking.changed" || input.channel !== "in_app" || input.enabled !== !originalEnabled) return route.fallback();
+      intercepted = true;
+      markStarted();
+      heldRouteTask = (async () => {
+        await held;
+        await route.fulfill({ status: 503, contentType: "application/json", body: JSON.stringify({ error: "Controlled test PUT rejection" }) });
+      })();
+      void heldRouteTask.catch(() => {});
+      return heldRouteTask;
+    };
+    await page.route(routeMatcher, controlledHandler);
+    let primaryFailure: unknown;
+    let hasPrimaryFailure = false;
+    const cleanupFailures: string[] = [];
+    try {
+      const rejectedResponse = page.waitForResponse((response) => new URL(response.url()).origin === ownOrigin && new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "PUT");
+      const recoveryResponse = page.waitForResponse((response) => new URL(response.url()).origin === ownOrigin && new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "GET");
+      void rejectedResponse.catch(() => {});
+      void recoveryResponse.catch(() => {});
+      await bookingPreference.click();
+      await started;
+      const { createHash } = await import("node:crypto");
+      for (const viewport of [{ name: "desktop-1280x800", width: 1280, height: 800 }, { name: "phone-360x640", width: 360, height: 640 }]) {
+        await page.setViewportSize({ width: viewport.width, height: viewport.height });
+        await bookingPreference.scrollIntoViewIfNeeded();
+        await expect(bookingPreference).toBeInViewport();
+        await expect(bookingPreference).toBeDisabled();
+        await expect(bookingPreference).toBeChecked({ checked: originalEnabled });
+        const png = await page.screenshot({ fullPage: false });
+        expect(png.subarray(1, 4).toString()).toBe("PNG");
+        expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([viewport.width, viewport.height]);
+        const id = `d4-preferences-put-pending-${viewport.name}`;
+        await testInfo.attach(id, { body: png, contentType: "image/png" });
+        await testInfo.attach(`${id}-metadata`, { body: Buffer.from(JSON.stringify({ id, state: "loading", control: "normal UI PUT held before upstream; original persisted checked value", category: "booking.changed", channel: "in_app", expectedEnabled: originalEnabled, requestedEnabled: !originalEnabled, viewport: page.viewportSize(), scroll: await page.evaluate(() => ({ x: scrollX, y: scrollY })), pngWidth: png.readUInt32BE(16), pngHeight: png.readUInt32BE(20), sha256: createHash("sha256").update(png).digest("hex"), pathname: new URL(page.url()).pathname, testId: testInfo.testId, retry: testInfo.retry, revision: process.env.GITHUB_SHA ?? null, runId: process.env.GITHUB_RUN_ID ?? null, runAttempt: process.env.GITHUB_RUN_ATTEMPT ?? null })), contentType: "application/json" });
+      }
+      releaseHeld();
+      const [rejected, recovery] = await Promise.all([rejectedResponse, recoveryResponse]);
+      expect(rejected.status()).toBe(503);
+      expect(rejected.request().postDataJSON()).toEqual({ category: "booking.changed", channel: "in_app", enabled: !originalEnabled });
+      expect(recovery.status()).toBe(200);
+      expect((await recovery.json()).preferences).toContainEqual({ category: "booking.changed", channel: "in_app", enabled: originalEnabled });
+      await expect(bookingPreference).toBeChecked({ checked: originalEnabled });
+      await expect(bookingPreference).toBeEnabled();
+      const saveError = page.getByRole("alert");
+      await expect(saveError).toHaveText("Kunde inte spara inställningen. Försök igen.");
+      for (const viewport of [{ name: "desktop-1280x800", width: 1280, height: 800 }, { name: "phone-360x640", width: 360, height: 640 }]) {
+        await page.setViewportSize({ width: viewport.width, height: viewport.height });
+        await saveError.scrollIntoViewIfNeeded();
+        await expect(saveError).toBeInViewport();
+        await expect(bookingPreference).toBeInViewport();
+        await expect(bookingPreference).toBeChecked({ checked: originalEnabled });
+        await expect(bookingPreference).toBeEnabled();
+        const png = await page.screenshot({ fullPage: false });
+        expect(png.subarray(1, 4).toString()).toBe("PNG");
+        expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([viewport.width, viewport.height]);
+        const id = `d4-preferences-controlled-put-error-${viewport.name}`;
+        await testInfo.attach(id, { body: png, contentType: "image/png" });
+        await testInfo.attach(`${id}-metadata`, { body: Buffer.from(JSON.stringify({ id, state: "error", control: "controlled client-network PUT503 without upstream write; actual recovery GET200", category: "booking.changed", channel: "in_app", expectedEnabled: originalEnabled, viewport: page.viewportSize(), scroll: await page.evaluate(() => ({ x: scrollX, y: scrollY })), pngWidth: png.readUInt32BE(16), pngHeight: png.readUInt32BE(20), sha256: createHash("sha256").update(png).digest("hex"), pathname: new URL(page.url()).pathname, testId: testInfo.testId, retry: testInfo.retry, revision: process.env.GITHUB_SHA ?? null, runId: process.env.GITHUB_RUN_ID ?? null, runAttempt: process.env.GITHUB_RUN_ATTEMPT ?? null })), contentType: "application/json" });
+      }
+    } catch (error) {
+      primaryFailure = error;
+      hasPrimaryFailure = true;
+    } finally {
+      try { releaseHeld(); } catch { cleanupFailures.push("release"); }
+      try { await page.unroute(routeMatcher, controlledHandler); } catch { cleanupFailures.push("unroute"); }
+      try { if (heldRouteTask) await heldRouteTask; } catch { cleanupFailures.push("held-settlement"); }
+      try { await expect(bookingPreference).toBeEnabled(); } catch { cleanupFailures.push("handler-enabled"); }
+      try { await page.setViewportSize(originalViewport!); } catch { cleanupFailures.push("viewport-restore"); }
+      let finishedResponse: import("@playwright/test").Response | undefined;
+      try {
+        [finishedResponse] = await Promise.all([
+          page.waitForResponse((response) => new URL(response.url()).origin === ownOrigin && new URL(response.url()).pathname === "/api/notifications/preferences" && response.request().method() === "GET"),
+          page.reload(),
+        ]);
+      } catch { cleanupFailures.push("reload"); }
+      try {
+        if (!finishedResponse) throw new Error("No finished preference response");
+        expect(finishedResponse.status()).toBe(200);
+        expect((await finishedResponse.json()).preferences).toContainEqual({ category: "booking.changed", channel: "in_app", enabled: originalEnabled });
+      } catch { cleanupFailures.push("reload-readback"); }
+      try { await expect(bookingPreference).toBeChecked({ checked: originalEnabled }); } catch { cleanupFailures.push("original-control-state"); }
+      try { await expect(bookingPreference).toBeEnabled(); } catch { cleanupFailures.push("finished-control-enabled"); }
+      try { await expect(page.getByRole("alert")).toHaveCount(0); } catch { cleanupFailures.push("finished-no-alert"); }
+      if (cleanupFailures.length) {
+        try {
+          await testInfo.attach("d4-preferences-cleanup-failures", { body: Buffer.from(JSON.stringify({ stages: cleanupFailures })), contentType: "application/json" });
+        } catch { cleanupFailures.push("cleanup-report"); }
+        try {
+          testInfo.annotations.push({ type: "cleanup-failure", description: cleanupFailures.join(", ") });
+        } catch { cleanupFailures.push("cleanup-annotation"); }
+      }
+    }
+    if (hasPrimaryFailure) throw primaryFailure;
+    if (cleanupFailures.length) throw new Error(`Notification preference cleanup failed at: ${cleanupFailures.join(", ")}`);
   });
 
   test("[P0] Essential in-app notification preference is visibly required and cannot be disabled", async ({ page }) => {
