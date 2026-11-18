@@ -2,7 +2,7 @@
 title: 'Authority And Base Contract'
 type: 'chore'
 created: '2026-11-18'
-status: 'blocked'
+status: 'done'
 review_loop_iteration: 0
 followup_review_recommended: false
 context:
@@ -96,6 +96,15 @@ Intent_gap: 0; bad_spec: 0; patch: 0; defer: 0; reject: 0. addressed_findings: n
 
 Configured cross-model review: actual checkout, read-only sandbox, gpt-6.1-sol Low, exact rendered cmd.exe/codex command; foreground session 42320 exited 1 with stdout `The system cannot find the file specified.` No verdict; no retry. Receipt: `C:/DEV/Kopplas/tmp/private/35-6-35-7-coordinator-2026-11-09/epic-35-completion-20261118/35-1-formal-closeout-route/P5-cross-model-failure-1.json`; reviewed delta retained beside it as `P5-review-1.diff`. Completion is blocked on unavailable configured review capability, with no product/source defect finding. Owner: parent/Root; next action: restore the configured external reviewer capability and obtain its actual verdict on the applicable exact delta before resuming normal gates. Frontend-first completion wrapper and delivery gate were not run; no gate PASS or DONE.
 
+
+### Same-round external result reconciliation - 2026-11-18
+
+Root authorized an exclusive reconciliation window in `Root-P5-reconciliation-exclusive-window.json` (SHA256 `3ecc7975a6bb51a2efecd9cbd5d9b01c6e133b40f79146498651e01af8ac6ee8`); E15/35.15 source STOP/no queue is supplied coordinator evidence. Clean reconciliation HEAD `0bbd7b4222bfec2ff4ae0b33318ea221fa0cc9af` directly resolved; both owned files matched reviewed candidate `85160225854052e6533b5ea5cb8180f97393c827` in Git before these metadata edits. Substantive baseline remains `2ec597aa2f2711341b9da29b66d8d0e5006f7133`.
+
+Actual independent external result `P5-equivalent-result-1.txt` is exactly `No findings.`; execution receipt `P5-equivalent-execution-receipt-1.json` SHA256 `f60af4487bc23ab16e8431aefd77f0866491c26f272990846ced069a3a31c2d9` and qualification `P5-equivalent-result-qualification-1.json` SHA256 `572e001bfb11d2b2bedfa5a6bec272d45ec6e26ca1e676d295943af3ff009a11` were read and their identities verified. All named receipts are in the existing private formal-closeout route. Transport authority `Root-P5-equivalent-external-input-route.json` SHA256 `80b308024a762aff7b0e5728a6e59c3221d8893f57e0934f1145c5c5c4a83d6e` permits this case-specific finite stdin substitution, preserving external independence, Sol Low, read-only sandbox and approval never. Actual process exit 0; complete 565686-byte packet, 41 sections/end marker and 180511 reported tokens; source/HEAD bindings stable before/after. No model-side hash recomputation, runtime verification or fresh foreign-original audit is claimed.
+
+Original failed launch and blocked receipt remain historical: the forward-slash TYPE file-not-found transport obscured output whose core file reads were blocked; no usable verdict was inferred from it. The qualified subsequent external verdict plus five completed internal layers now satisfy independent review for candidate 85160225 against baseline 2ec597aa. Existing triage counts remain all zero; this reconciliation changes review/evidence/status metadata only, uncommitted and not independently reviewed as a new substantive contract. Normal completion gates remain pending; parent runs the unchanged frontend-first wrapper with full baseline 2ec597aa before any DONE. No wrapper, delivery gate, commit, Root state or product change is performed here.
+
 ## Design Notes
 
 This run adopts an existing documentary contract; it creates no new runtime feature. Source qualification and all seven outputs already received the supplied frozen High assessment; this Low planning pass carries those judgments unchanged. Actual sensitive boundary changes require explicit Sol High, not reinterpretation as documentation.
@@ -142,7 +151,7 @@ Method: read the original contract/archive, adapter, P2 seven-row matrix, author
 | E35-1-T-AC6 | Passed dated-proof adoption inspection | Actual retained Oct23 validation and Oct26 applicability/design proof identities match adapter pins; Oct23/Oct26 records report all eight original/EP06 sections preserved. Frozen Nov18 High map hash also matches. Their original dates, unresolved technical blockers, completed evidence and follow-ups remain incorporated. Fresh eight-original-section comparison: not performed/could-not-measure in this scoped adoption; no such fresh claim is made. No foreign path, claim, tracking or E15 edit occurred. |
 | E35-1-T-AC7 | Passed evidence-wording inspection | Current documentary results are separated here from original planned IDs, historical proof and future runtime/release duties. Common catalogue and handoff preserve money/provenance/projection/transaction and release owner requirements. Seven inspected documentary identities are not seven executable tests or runtime/test-design PASS. |
 
-Evidence limits: retained original-custody spec-hashes, validation, applicability-validation, documentation-checks and amendment-validation files were available and all five exact SHA256 pins matched. No fresh 186-consumer audit, 42-file integration census or original-section re-comparison occurred. Two non-path Git blob table cells were encountered by the receipt's broad path regex and reported unavailable; these are not missing evidence files. No historical pin was changed. Application build/lint/unit/browser/DB/RLS/golden/storage and visual/manual/device acceptance are N/A because only documentary execution and delivery records change. Independent review is blocked by the configured external failure recorded in Review Triage Log; exact-candidate documentary CI, unchanged frontend-first completion wrapper/delivery gate, native status and finalization remain with Root. Wrapper/delivery gate were not run. No done or release-ready claim is made.
+Evidence limits: retained original-custody spec-hashes, validation, applicability-validation, documentation-checks and amendment-validation files were available and all five exact SHA256 pins matched. No fresh 186-consumer audit, 42-file integration census or original-section re-comparison occurred. Two non-path Git blob table cells were encountered by the receipt's broad path regex and reported unavailable; these are not missing evidence files. No historical pin was changed. Application build/lint/unit/browser/DB/RLS/golden/storage and visual/manual/device acceptance are N/A because only documentary execution and delivery records change. Independent review subsequently passed on the qualified frozen candidate as recorded in the same-round reconciliation; exact-candidate documentary CI, unchanged frontend-first completion wrapper/delivery gate, native status and finalization remain with Root. Wrapper/delivery gate were not run. No done or release-ready claim is made.
 
 ## Suggested Review Order
 
@@ -159,18 +168,35 @@ I retained the original seven acceptance criteria verbatim and reused qualified 
 
 ### Verify actual documentary results and remaining gates
 
-The current matrix records seven bounded inspections and explicitly reuses dated preservation evidence (AC2/4/5/6/7). I kept independent review blocked in delivery after the configured external command failed; completed foreground layers do not supply its missing verdict. The first triage entry and current blocked result preserve the exact failure and resume condition.
+The current matrix records seven bounded inspections and explicitly reuses dated preservation evidence (AC2/4/5/6/7). I retained the failed transport as history, then reconciled the qualified external No findings verdict against exact candidate 85160225 and substantive baseline 2ec597aa. The final two-file metadata delta records the qualified result, subsequent narrow metadata review and actual pre-DONE wrapper pass without extending review to fresh runtime or foreign audit claims. Parent reruns the wrapper for these final bytes.
 
 - `_bmad-output/test-artifacts/test-design-spec-design-35-1.md:90` — `## Test Coverage Plan`: seven original inspection identities, not executable tests.
-- `_bmad-output/specs/spec-design-35-1/stories/35-1-authority-and-base-contract.md:129` — `## Current Author Verification`: actual methods, per-AC results, receipt location and evidence limits.
-- `_bmad-output/auto-bmad/delivery/spec-design-35-1-35-1.json:1` — current non-product evidence; independent review and completion remain pending.
+- `_bmad-output/specs/spec-design-35-1/stories/35-1-authority-and-base-contract.md:138` — `## Current Author Verification`: actual methods, per-AC results, receipt location and evidence limits.
+- `_bmad-output/auto-bmad/delivery/spec-design-35-1-35-1.json:1` — current non-product evidence; qualified independent review passed on 85160225; actual pre-DONE completion gate receipt and final-result metadata are recorded below.
 
 Evidence: inline Python documentary inspection exited 0 (four raw/LF archive identities; seven verbatim criteria; 27 classifications; 13 resolved current file links; five retained-proof identities and frozen High-map identity). Targeted `node scripts/verify/check-review-order.mjs` passed (full-trail-candidate, six references, zero errors); `git diff --check` passed.
-Limits: no new runtime tests, fresh eight-section comparison, ancestry attestation, candidate CI, release approval or formal DONE; reviewer independently verifies this trail against the exact two-file delta. Root retains unchanged completion gates and deferred Phase B release consolidation.
+Limits: no new runtime tests, fresh eight-section comparison, ancestry attestation, candidate CI, release approval or formal DONE; reviewer independently verifies this trail against the exact two-file delta. Root retains unchanged completion gates and deferred Phase B release consolidation. The actual pre-DONE wrapper passed before final author status; parent reruns it for the final metadata reconciliation.
 
-## Auto Run Result
+## Historical Blocked Execution Result - 2026-11-18
 
 Status: blocked
 Blocking condition: configured cross-model review failed: exit 1 — The system cannot find the file specified.
 
 Current execution only: five foreground independent layers completed as recorded in Review Triage Log; configured external layer unavailable, no verdict. Independent review remains blocked. Completion wrapper and delivery gate not run; no development-complete, DONE or release-ready claim. Original planning result above is historical and unchanged in meaning. No resource launches; actual STOP with zero owned running handles and no queued writes. Remain available for synchronous author reconciliation after an authorized resume.
+
+## Historical In-Review Reconciliation Result - 2026-11-18
+
+Status: in-review
+Blocking condition: none from independent review; pending normal completion gates.
+
+Current reconciliation only: five foreground independent layers and the qualified equivalent external No findings result are recorded against candidate `85160225854052e6533b5ea5cb8180f97393c827` and substantive baseline `2ec597aa2f2711341b9da29b66d8d0e5006f7133`. Current uncommitted two-file delta updates review/status/evidence metadata only; original failure and planning receipts remain historical. Normal frontend-first completion wrapper, delivery gate, exact-candidate CI and Root transitions remain pending. No development-complete, DONE or release-ready claim, commit or state change. Actual author STOP; zero owned resource handles and queued writes; remain available for final-trail reconciliation.
+
+## Auto Run Result
+
+Status: done
+Summary: documentary development completion of the existing authority/base contract; all seven bounded documentary inspections recorded with preserved original criteria, dates and ownership. No runtime or release completion follows.
+Files: only this execution story and `_bmad-output/auto-bmad/delivery/spec-design-35-1-35-1.json` authored by this delegate.
+Review breakdown: intent_gap 0; bad_spec 0; patch 0; defer 0; reject 0; addressed_findings none. Five internal layers plus qualified external No findings bind candidate `85160225854052e6533b5ea5cb8180f97393c827` against substantive baseline `2ec597aa2f2711341b9da29b66d8d0e5006f7133`. Subsequent narrow independent verification_review checked metadata delta, receipts and review order: No findings (parent supplied result). No new broad review performed.
+Follow-up: patched high 0; medium 0; low 0; score 0; followup_review_recommended false.
+Verification: documentary identities/links/classifications and review-order checks recorded above. Actual pre-DONE command `node scripts/quality/completion-gate.mjs 2ec597aa2f2711341b9da29b66d8d0e5006f7133 delivery_gate.py C:/DEV/Kopplas/tmp/private/e35-1-documentary-closeout-20261118/_bmad-output/auto-bmad/delivery/spec-design-35-1-35-1.json` exited 0, stderr empty. Read actual `P5-completion-wrapper-1.json` in the existing private formal-closeout route: frontend-first status not-applicable at HEAD `0bbd7b4222bfec2ff4ae0b33318ea221fa0cc9af`, because complete baseline diff plus untracked inventory had no frontend-bearing paths; subsequent delivery result `{ok:true, development_complete:true, errors:[], approval_granted:false}`. This actual gate pass preceded the author done status. Parent reruns the unchanged wrapper for the final reconciled artifact before its own commit/transitions.
+Residual limits: development documentary completion only; release_ready false. No runtime tests, fresh eight-original-section audit, current-main qualification, Root exact-candidate CI claim, deployment or release approval. Reviewed substantive candidate and current uncommitted metadata delta remain distinguished; failed transport, blocked execution and planning receipts stay historical. Final author reconciliation adds gate/result metadata only. No child commit or Root state/report writes; actual author source STOP, zero queued writes and zero owned running handles. Remain available for final trail reconciliation.
