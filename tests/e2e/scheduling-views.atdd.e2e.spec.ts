@@ -569,6 +569,27 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   const captures: Promise<{ ok: true } | { ok: false; error: unknown } | { ok: "abandoned" }>[] = [];
   const abandoned = Symbol("scheduling attempt abandoned");
   let shutdownStarted = false, captureActivated = false, responseAdmissionOpen = false, trackerOpen = true;
+  type RequestEventWindow = "before-open" | "while-open" | "after-close" | "unobserved" | "capacity-unavailable" | "internal-unavailable";
+  let requestEventWindows: WeakMap<import("@playwright/test").Request, RequestEventWindow> | null = null;
+  let requestEventObserved = 0, requestEventUnavailable = false, requestEventHasOpened = false;
+  try { requestEventWindows = new WeakMap(); } catch { requestEventUnavailable = true; }
+  const observeRequestEvent = (request: import("@playwright/test").Request) => {
+    if (shutdownStarted || !trackerOpen) return;
+    try {
+      if (!requestEventWindows || requestEventWindows.has(request) || requestEventUnavailable || requestEventObserved >= 256) return;
+      const window = captureActivated && responseAdmissionOpen ? "while-open" : requestEventHasOpened ? "after-close" : "before-open";
+      requestEventWindows.set(request, window); requestEventObserved++;
+    } catch { requestEventUnavailable = true; }
+  };
+  const observedRequestEventWindow = (request: import("@playwright/test").Request): RequestEventWindow => {
+    try {
+      if (!requestEventWindows) return "internal-unavailable";
+      const known = requestEventWindows.get(request);
+      if (known === "before-open" || known === "while-open" || known === "after-close") return known;
+      if (known !== undefined) { requestEventUnavailable = true; return "internal-unavailable"; }
+      return requestEventUnavailable ? "internal-unavailable" : requestEventObserved >= 256 ? "capacity-unavailable" : "unobserved";
+    } catch { requestEventUnavailable = true; return "internal-unavailable"; }
+  };
   let notifyCancellation!: () => void;
   const cancellation = new Promise<void>(resolve => { notifyCancellation = resolve; });
   const live = new Set<import("@playwright/test").Request>();
@@ -684,6 +705,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
         phase: entry.phase, responseMs: entry.responseMs, finishedStartMs: entry.finishedStartMs, finishedEndMs: entry.finishedEndMs,
         bodyStartMs: entry.bodyStartMs, bodyEndMs: entry.bodyEndMs, requestFailedMs: entry.requestFailedMs,
         captureCount, fulfilledCount, rejectedCount, pendingCount,
+        requestEventWindow: observedRequestEventWindow(entry.request),
       });
       if (typeof json !== "string" || Buffer.byteLength(json, "utf8") > 1024) return;
       console.info("[scheduling-native-response-failure] " + json);
@@ -712,6 +734,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (shutdownStarted || !trackerOpen) return;
     const url = new URL(request.url());
     if (url.origin !== captureOrigin || url.pathname !== "/scheduling") return;
+    try { observeRequestEvent(request); } catch { /* Observation cannot alter existing live tracking. */ }
     lifecycle.mark(page, "request-admitted", "event", request, undefined, undefined, "scheduling");
     live.add(request); generation++; wake();
   };
@@ -846,6 +869,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     // Post-login background cancellations are diagnostic, never privacy evidence.
     console.info("[scheduling-pre-admission] " + JSON.stringify({ cancellationCount: preAdmissionCancellationCount, privacyCredit: false }));
     captureActivated = true; responseAdmissionOpen = true; page.on("response", read);
+    requestEventHasOpened = true;
   };
   schedulingAttemptShutdowns.set(testInfo, shutdown);
   page.on("request", readRequest);
