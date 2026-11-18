@@ -1,0 +1,46 @@
+# Story 35.1: Authority And Base Contract â€” test-design preparation
+
+**Classification:** concrete plan (Lane A). Proposed test IDs below are plans, not executable tests or run evidence. No story approval or implementation admission.
+
+**Source identity:** [spec-35-1-authority-and-base-contract.md](../../implementation-artifacts/spec-35-1-authority-and-base-contract.md), SHA-256 `9a79f7917251deb44fbcbc6173d021032533900b84aac114989a03f246c7765e`. Historical consumer base `99104d0ffa0360cf7d4ce4de174789c4a4605224` observed 2026-10-23. [Identity inspection](input-identity.json) records drift and exact consumer hashes; this is not todayâ€™s integrated main.
+
+**Actual consumer/caller:** Planning reviewer; package index/authority-crosswalk/route-allocation.
+
+**Route disposition:** Documentation only; no runtime route
+
+**Authoritative fixture family:** All 27 corrected specs, 17 MAIN/eight FIELD/five frozen journeys/B1â€“B7; historical hashes and eight original copied requirement sections. Numeric/permission/lifecycle expectations come only from pinned assessed contracts and existing tests; examples do not create policy.
+
+**Existing regression/evidence reuse:** Authority/route/applicability/preservation/hash registers; no application regression executes for 35.1. Source/test presence is not executed coverage; preserve original test IDs and original reviewed revision/counts/skips in delivery artifacts.
+
+**Missing dependency/decision/owner:** No runtime prerequisite for this document design; current base/ownership remains future admission work. Coordinator owns base/allocation; source owner owns shared reconciliation. For Lane C see [decision-to-assertion map](decision-gaps.md); owner/PM and Architect/High must resolve named material gates before final binding.
+
+## Numbered acceptance bindings
+
+P0/P1/P2 describe importance, not scheduling. This slice owns documentation inspection only. Downstream runtime obligations stay with actual implementation owners.
+
+| AC â†’ proposed test ID | Classification / level / priority | Scenario and meaningful assertion | Authoritative input / reuse | Gap / evidence owner |
+| --- | --- | --- | --- | --- |
+| `E35-1-AC1` â†’ `E35-1-T-AC1` | concrete plan; documentation inspection; P1 | Compare each crosswalk source row to its retained/future/excluded/owned disposition and real route allocation; reject silent retirement or prototype ID used as URL; retain incoming-link proof requirement. | Slice fixture family above; existing regression list | Documentation check now; documentation reviewer owns result/limits |
+| `E35-1-AC2` â†’ `E35-1-T-AC2` | concrete plan; documentation inspection; P1 | Check checkout/integrated/remote-observation SHA, date and provenance remain distinct; DT-B15 and current ownership stay unverified. No historical reservation becomes allocation. | Slice fixture family above; existing regression list | Documentation check now; documentation reviewer owns result/limits |
+| `E35-1-AC3` â†’ `E35-1-T-AC3` | concrete plan; documentation inspection; P1 | Check lane classification assigns independent E35 now, DT-B15-only migration binding and material E17/E18 gaps without a global wait. | Slice fixture family above; existing regression list | Documentation check now; documentation reviewer owns result/limits |
+| `E35-1-AC4` â†’ `E35-1-T-AC4` | concrete plan; documentation inspection; P1 | Recompute registered SHA-256, resolve package/spec index identities and relative file links. Record epics input drift without replacing its historical hash. | Slice fixture family above; existing regression list | Documentation check now; documentation reviewer owns result/limits |
+| `E35-1-AC5` â†’ `E35-1-T-AC5` | concrete plan; documentation inspection; P1 | Join all 27 applicability IDs to exact spec IDs; owned rows alone get new state tests; inherited/N/A reasons stay explicit and 35.1 has no live-state tests. | Slice fixture family above; existing regression list | Documentation check now; documentation reviewer owns result/limits |
+| `E35-1-AC6` â†’ `E35-1-T-AC6` | concrete plan; documentation inspection; P1 | Compare each original E17/E18 sketch plus design/readiness addition verbatim against source; preserve blockers and completed evidence; no claim/tracking/order edit. | Slice fixture family above; existing regression list | Documentation check now; documentation reviewer owns result/limits |
+| `E35-1-AC7` â†’ `E35-1-T-AC7` | concrete plan; documentation inspection; P1 | Inspect evidence wording: documentation identity results are distinct from planned tests, historical run evidence and future release duties; no readiness approval implied. | Slice fixture family above; existing regression list | Documentation check now; documentation reviewer owns result/limits |
+
+## Common applicability bindings
+
+Every owned row below uses the actual caller and slice fixture family above; delays/failures are controlled at that existing seam. Denied/revoked cases reuse the admitted role harness, not an invented grant. For read-only consumers, command language applies only to the actual listed command (for example notification acknowledgement); no command is added.
+
+| State / proposed ID | Classification / test level | Input and assertion at this slice | Binding limitation |
+| --- | --- | --- | --- |
+| downstream implementation requirements represented, not executed | Inherited regression | Reuse source-owner obligation at the above actual consumer only when affected; retain original regression ID and reviewed revision. | Documentation-only output. |
+| all common live UI/state/file/runtime suites | N/A | No proposed executable test. | Documentation-only output. |
+
+**Files:** {'classification': 'N/A', 'reason': 'Documentation only'}. [File scenarios](file-and-inheritance-bindings.md) select only actual operations; generic upload/camera states are not automatically instantiated.
+
+## Development evidence versus release ownership
+
+Documentation inspection only: crosswalk/index/hash/link/preservation/handoff checks. No UI, dialog, upload, browser, database, build or application suite/release deliverable belongs to 35.1.
+
+Broader visual/device/manual/accessibility release work remains with actual UI and QA/accessibility owners; Coordinator assigns named people/exact candidate and final Phase B checkpoint via existing delivery records/deferred ledger. 35.1/17.4 acquire no UI release work. E16â€™s 14 deferred checks and E20 caveats retain their original provenance. Next action is binding/allocation after the named prerequisites, not a tracking update.
