@@ -595,14 +595,17 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
   if (denseHasPrimary) throw densePrimary;
 });
 
-test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycle and input tampering; denied role", async ({ schedulingViews: h, resourcePage: page }, testInfo) => {
-  lifecycle.activate(page, testInfo.retry); lifecyclePages.set(testInfo, page);
-  lifecycle.mark(page, "seed", "enter");
-  await h.seed(); lifecycle.mark(page, "seed", "fulfilled"); lifecycle.mark(page, "initial-signin", "enter"); await h.signIn("manager"); lifecycle.mark(page, "initial-signin", "fulfilled"); lifecycle.mark(page, "initial-open", "enter"); await h.open("Resurser"); lifecycle.mark(page, "initial-open", "fulfilled");
-  await expect(page.getByRole("tab")).toHaveCount(5);
-  await expect(page.locator('[aria-label="Behöver omfördelas"]')).toContainText(h.scenario.description);
+test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycle and input tampering; denied role", async ({ schedulingViews: h, resourcePage: managerPage }, testInfo) => {
+  lifecycle.activate(managerPage, testInfo.retry); lifecyclePages.set(testInfo, managerPage);
+  lifecycle.mark(managerPage, "seed", "enter");
+  await h.seed(); lifecycle.mark(managerPage, "seed", "fulfilled"); lifecycle.mark(managerPage, "initial-signin", "enter"); await h.signIn("manager"); lifecycle.mark(managerPage, "initial-signin", "fulfilled"); lifecycle.mark(managerPage, "initial-open", "enter"); await h.open("Resurser"); lifecycle.mark(managerPage, "initial-open", "fulfilled");
+  await expect(managerPage.getByRole("tab")).toHaveCount(5);
+  await expect(managerPage.locator('[aria-label="Behöver omfördelas"]')).toContainText(h.scenario.description);
+  // Preserve the established HTTP fixture origin before the original target is retired.
+  const captureOrigin = new URL(managerPage.url()).origin;
+  const page = await h.openOwnRolePage();
+  lifecyclePages.set(testInfo, page);
   const payloads: string[] = [];
-  const captureOrigin = new URL(page.url()).origin;
   const captures: Promise<{ ok: true } | { ok: false; error: unknown } | { ok: "abandoned" }>[] = [];
   const abandoned = Symbol("scheduling attempt abandoned");
   let shutdownStarted = false, captureActivated = false, responseAdmissionOpen = false, trackerOpen = true;
@@ -1199,11 +1202,12 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (!roleReleased) throw new Error("Required scheduling client release unverified.");
     await guardedSignIn("denied"); guardProgress(); await guardedStage(() => page.goto("/scheduling"));
     await guardedStage(() => expect(page.getByRole("heading", { name: "Ingen åtkomst", exact: true })).toBeVisible()); await guardedStage(() => expect(page.getByTestId("scheduling-workspace")).toHaveCount(0));
+    await guardedStage(() => h.closeOwnRolePage()); guardProgress();
   } catch (error) { if (error === abandoned) throw error; recordFailure(error); }
   ensureActive();
   if (hasFailure) throw firstFailure;
   } catch (error) { if (error !== abandoned) throw error; }
-  finally { beginRoleCleanup(false); if (!shutdownStarted) schedulingAttemptShutdowns.delete(testInfo); }
+  finally { beginRoleCleanup(false); void h.closeOwnRolePage().catch(error => recordFailure(error)); if (!shutdownStarted) schedulingAttemptShutdowns.delete(testInfo); }
   // PASSIVE-NETWORK-BEGIN final
   } finally { try { targetAssociation.finish(); } catch { /* Preserve the original primary carrier. */ } lifecycle.mark(page, "attempt-end", "event"); passive.stop(hasFailure); schedulingPassiveShutdowns.delete(testInfo); }
   // PASSIVE-NETWORK-END final

@@ -67,7 +67,7 @@ test("actual native snapshot retains exact20 fields plus one bounded observation
   function harness(options:{map?:"constructor"|"has"|"set"|"get"|"foreign";sink?:boolean;json?:boolean;oversize?:boolean}={}){
     const output:string[]=[],handlers=new Map<string,unknown>();let maps=0;
     class ObserverMap extends WeakMap<object,unknown>{readonly index:number;constructor(){super();this.index=++maps;if(this.index===1&&options.map==="constructor")throw new Error("private map");}override has(key:object){if(this.index===1&&options.map==="has")throw new Error("private map");return super.has(key);}override set(key:object,value:unknown){if(this.index===1&&options.map==="set")throw new Error("private map");return super.set(key,value);}override get(key:object){if(this.index===1&&options.map==="get")throw new Error("private map");if(this.index===1&&options.map==="foreign")return "FORBIDDEN-CANARY";return super.get(key);}}
-    const context=vm.createContext({URL,Buffer:options.oversize?{byteLength:()=>1025}:Buffer,WeakMap:ObserverMap,performance:{now:()=>1},page:{url:()=>"http://localhost/scheduling",on:(n:string,f:unknown)=>handlers.set(n,f),off:(n:string)=>handlers.delete(n)},
+    const context=vm.createContext({captureOrigin:"http://localhost",URL,Buffer:options.oversize?{byteLength:()=>1025}:Buffer,WeakMap:ObserverMap,performance:{now:()=>1},page:{url:()=>"http://localhost/scheduling",on:(n:string,f:unknown)=>handlers.set(n,f),off:(n:string)=>handlers.delete(n)},
       lifecycle:{mark(){}},testInfo:{},createSchedulingPassiveMetadata:()=>({stop(){}}),schedulingPassiveShutdowns:new Map(),schedulingAttemptShutdowns:new Map(),
       console:{info:(text:string)=>{if(options.sink)throw new Error("private sink");output.push(text);}},...(options.json?{JSON:{stringify:()=>{throw new Error("private JSON");}}}:{})});
     vm.runInContext(compile(actualSetup),context);
@@ -199,4 +199,238 @@ test("actual unchanged duration reporter counts retry durations and keeps overbu
   const exports: Record<string, any> = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
   vm.runInNewContext(compile(source("tests/e2e/ci-duration-budget-reporter.ts")), { exports, require: () => ({ assertDurationWithinBudget: ({ elapsedMs, maxMs }: { elapsedMs: number; maxMs: number }) => { if (elapsedMs > maxMs) throw new Error("overbudget"); } }), console: { log() {}, error() {} } });
   const reporter = new exports.default({ maxMs: 800000 }); reporter.onTestEnd({}, { duration: 800000 }); reporter.onTestEnd({}, { duration: 54328 }); assert.equal((await reporter.onEnd()).status, "failed"); assert.match(source("playwright.config.ts"), /maxMs: 800_000/);
+});
+
+// Owned Page retirement regressions: actual extracted functions, offline ports only.
+function ownedBookingPorts(options: { unroute?: () => Promise<void>; sqlFailure?: unknown; authFailure?: unknown } = {}) {
+  const file = parsed(support + "booking-editor-atdd.ts");
+  const fn = file.statements.find((n): n is ts.FunctionDeclaration => ts.isFunctionDeclaration(n) && n.name?.text === "bindBookingEditorHarness");
+  assert.ok(fn?.body);
+  const selected = new Set(["deferred", "releases", "pendingRoutes", "handlerCompletions", "transportOptIn", "transportRetirement", "hasOwnedFailure", "retainOwnedFailure", "retireTransport", "transportDiagnostics", "previewFetchCount", "confirmations", "transports", "observedSaveTimeout", "optionsFailure", "saveHold", "saveFailure", "saveLoss", "previewFailure", "previewRace", "actionInput", "routeWork", "routeHandler", "cleanupScenario"]);
+  const declarations = fn.body.statements.filter(n => ts.isVariableStatement(n) && n.declarationList.declarations.some(d => selected.has(d.name.getText(file)))).map(n => n.getText(file)).join("\n");
+  const returned = fn.body.statements.find((n): n is ts.ReturnStatement => ts.isReturnStatement(n) && !!n.expression && ts.isObjectLiteralExpression(n.expression));
+  assert.ok(returned?.expression && ts.isObjectLiteralExpression(returned.expression));
+  const methods = ["dispose", "holdNextSave", "failNextSaveOnce"].map(name => {
+    const method = returned.expression!.getChildren(file).flatMap(n => n.getChildren(file)).find(n => ts.isMethodDeclaration(n) && n.name.getText(file) === name);
+    assert.ok(method, name); return method.getText(file);
+  }).join(",\n");
+  const events: string[] = [], auth: string[] = []; let deletes = 0;
+  const page = { isClosed: () => false, unroute: async () => { events.push("unroute"); await options.unroute?.(); } };
+  const api = evaluate(`(()=>{${declarations};return {retireTransport,${methods},handle:routeHandler,
+    addRelease(fn:()=>void){releases.push(fn);}};})()`, {
+    page, Promise, Buffer, process: { env: {} }, tenantId: "synthetic-tenant", token: "synthetic-owned", owned: { workRoleId: "synthetic-role" }, users: ["synthetic-a", "synthetic-b"], profiles: [], memberships: [],
+    lifecycle: { mark() {}, observeAbort: (_p: unknown, _reason: unknown, operation: () => Promise<unknown>) => operation() },
+    adminSession: async (operation: (ports: { query: (sql: string) => Promise<void> }) => Promise<void>) => { events.push("data"); await operation({ query: async sql => { if (sql.startsWith("delete ")) deletes++; if (options.sqlFailure && sql === "begin") throw options.sqlFailure; } }); },
+    deleteAuthUser: async (id: string) => { auth.push(id); if (options.authFailure && id === "synthetic-a") throw options.authFailure; },
+  });
+  return { api, events, auth, deletes: () => deletes };
+}
+function ownedRoute(events: string[], body = "[]", method = "GET") {
+  return {
+    request: () => ({ method: () => method, headers: () => ({ "next-action": "synthetic-presence" }), postData: () => body }),
+    continue: async () => { events.push("continue"); }, fallback: async () => { events.push("fallback"); }, abort: async () => { events.push("abort"); },
+    fetch: async () => { events.push("fetch"); return { ok: () => false, status: () => 503 }; }, fulfill: async () => { events.push("fulfill"); },
+  };
+}
+function ownedSchedulingPorts(options: { oldClose?: () => Promise<void>; newPage?: () => Promise<unknown>; oldCloses?: boolean; unroute?: () => Promise<void>; transportRetire?: () => Promise<void> } = {}) {
+  const file = parsed(support + "scheduling-views-atdd.ts");
+  const klass = file.statements.find((n): n is ts.ClassDeclaration => ts.isClassDeclaration(n) && n.name?.text === "SchedulingViewsHarness"); assert.ok(klass);
+  const events: string[] = [], auth: string[] = []; let oldClosed = false, freshClosed = false, creates = 0, data = 0, delegates = 0;
+  const context = { newPage: async () => { creates++; events.push("new"); return options.newPage ? await options.newPage() : fresh; } };
+  const old = { isClosed: () => oldClosed, context: () => context,
+    unroute: async () => { events.push("old-unroute"); await options.unroute?.(); },
+    close: async () => { events.push("old-close"); await options.oldClose?.(); if (options.oldCloses !== false) oldClosed = true; },
+    getByRole: () => { throw new Error("Retired locator used"); },
+  };
+  const fresh = { isClosed: () => freshClosed, context: () => context, route: async () => { events.push("fresh-route"); }, unroute: async () => { events.push("fresh-unroute"); }, close: async () => { events.push("fresh-close"); freshClosed = true; },
+    getByTestId: () => ({ locator: () => ({ evaluateAll: async () => { events.push("fresh-visible"); return ["synthetic-booking"]; } }) }),
+  };
+  const Constructor = evaluate(`(()=>{${klass.getText(file).replace(/^export /, "")};return SchedulingViewsHarness;})()`, {
+    randomUUID: () => "synthetic-owned", Promise, URL, Buffer, Date,
+    lifecycle: { mark() {}, retireOwnedTarget: () => { events.push("lifecycle-retire"); return { attach: () => { events.push("lifecycle-attach"); } }; } },
+    adminSession: async (operation: (ports: { query: () => Promise<void> }) => Promise<void>) => { data++; await operation({ query: async () => {} }); }, deleteAuthUser: async (id: string) => { auth.push(id); },
+  });
+  const editor = { retireTransport: async () => { events.push("transport-retire"); await options.transportRetire?.(); }, observeNextConfirmedSave: () => { delegates++; }, failNextSaveOnce: () => { delegates++; } };
+  const api = new Constructor(old, editor);
+  api.scenario = { tenantId: "synthetic-tenant", description: "synthetic-owned" }; api.users = [{ id: "synthetic-user" }];
+  return { api, old, fresh, context, events, auth, creates: () => creates, data: () => data, delegates: () => delegates };
+}
+
+test("owned transport retirement releases a real held port without deleting the scenario", async () => {
+  const f = ownedBookingPorts(), events: string[] = [], hold = await f.api.holdNextSave();
+  const work = f.api.handle(ownedRoute(events, JSON.stringify([{ commandId: "synthetic-command", assigneeIds: [], editorReview: {} }]), "POST"));
+  await hold.started;
+  const retirement = f.api.retireTransport(); await retirement; await work;
+  assert.deepEqual(events, ["fetch", "fulfill"]); assert.deepEqual(f.events, ["unroute"]); assert.equal(f.deletes(), 0); assert.deepEqual(f.auth, []);
+  await f.api.dispose(); await f.api.dispose();
+  assert.equal(f.events.filter(e => e === "data").length, 1); assert.equal(f.auth.length, 2); assert.ok(f.deletes() > 0);
+});
+
+test("owned retirement refuses pending failures and keeps default routing and disposal semantics", async () => {
+  const plain = ownedBookingPorts(), routes: string[] = [];
+  await plain.api.handle(ownedRoute(routes)); await plain.api.failNextSaveOnce();
+  await plain.api.handle(ownedRoute(routes, JSON.stringify([{ commandId: "synthetic-command", assigneeIds: [], editorReview: {} }]), "POST"));
+  assert.deepEqual(routes, ["continue", "abort"]);
+  await plain.api.dispose(); assert.deepEqual(plain.events.slice(0, 2), ["unroute", "data"]); assert.equal(plain.auth.length, 2);
+  const failed = ownedBookingPorts(), sentinel = {}; let reject!: (e: unknown) => void;
+  const pending = new Promise<void>((_yes, no) => { reject = no; });
+  const handling = failed.api.handle({ ...ownedRoute([]), continue: () => pending }); void handling.catch(() => {});
+  const retiring = failed.api.retireTransport(); reject(sentinel);
+  await assert.rejects(handling, e => e === sentinel);
+  await assert.rejects(retiring, e => e === sentinel); assert.equal(failed.deletes(), 0);
+  await assert.rejects(failed.api.dispose(), e => e === sentinel); assert.equal(failed.auth.length, 2);
+});
+
+test("owned final data cleanup is once-only when transport never settles or cleanup throws", async () => {
+  const stuck = ownedBookingPorts();
+  void stuck.api.handle({ ...ownedRoute([]), continue: () => new Promise<void>(() => {}) }).catch(() => {});
+  void stuck.api.retireTransport().catch(() => {});
+  await assert.rejects(stuck.api.dispose(), /retirement unverified/); await assert.rejects(stuck.api.dispose(), /retirement unverified/);
+  assert.equal(stuck.events.filter(e => e === "data").length, 1); assert.equal(stuck.auth.length, 2);
+  const sentinel = {}, failed = ownedBookingPorts({ unroute: async () => { throw sentinel; }, authFailure: {} });
+  await assert.rejects(failed.api.retireTransport(), e => e === sentinel); await assert.rejects(failed.api.dispose(), e => e === sentinel);
+  assert.equal(failed.auth.length, 2); assert.equal(failed.events.filter(e => e === "data").length, 1);
+  const sql = ownedBookingPorts({ sqlFailure: sentinel }); await sql.api.retireTransport(); await assert.rejects(sql.api.dispose(), e => e === sentinel); assert.equal(sql.auth.length, 2);
+});
+
+test("one owned lifecycle handoff retains original Request map rows flags and sole finalizer", () => {
+  let clock = 0; const f = fixture({ clock: () => ++clock }), old = Object.assign(f.page, { isClosed: () => closed }); let closed = false;
+  const handlers = new Map<string, unknown>(), fresh = { on: (n: string, fn: unknown) => handlers.set(n, fn), off: (n: string) => handlers.delete(n), context: old.context, isClosed: () => false, mainFrame: () => ({}), url: () => "http://localhost/scheduling" };
+  f.api.activate(old, 0); const request = {}; f.api.mark(old, "response-admitted", "event", request, 7, 2); f.api.mark(old, "unknown-event");
+  const transfer = f.api.retireOwnedTarget(old); assert.equal(f.handlers.size, 0); assert.equal(f.output.length, 0); closed = true; transfer.attach(fresh);
+  f.api.mark(fresh, "request-failed", "event", request); f.api.mark(fresh, "request-failed", "event", {}); f.api.mark(old, "booking-dispose", "enter");
+  f.api.finish(fresh); assert.equal(f.output.length, 0); f.api.mark(old, "fixture-release", "event"); f.api.finish(old); f.api.finish(fresh); f.api.finish(old);
+  assert.equal(f.output.length, 1); const row = decoded(f); assert.equal(row.rows.filter((r: { event: string }) => r.event === "attempt-start").length, 1);
+  assert.equal(row.rows[2].requestOrdinal, 7); assert.equal(row.rows[3].requestOrdinal, null); assert.equal(row.flags.privacyRejected, true);
+  assert.deepEqual(row.rows.map((r: { seq: number }) => r.seq), row.rows.map((_r: unknown, i: number) => i + 1));
+  assert.equal(handlers.size, 0); assert.equal(f.contextHandlers.size, 0); assert.equal(f.browserHandlers.size, 0);
+});
+
+test("handoff listener faults remain visible and original caps are never reset", () => {
+  const f = fixture(), old = Object.assign(f.page, { isClosed: () => true }); f.api.activate(old, 0);
+  for (let i = 0; i < 32; i++) f.api.mark(old, "request-admitted", "event", {});
+  const transfer = f.api.retireOwnedTarget(old), fresh = { on: (name: string) => { if (name === "crash") throw new Error("synthetic-listener"); }, off() {}, context: old.context, isClosed: () => false, mainFrame: () => ({}), url: () => "http://localhost/scheduling" };
+  assert.throws(() => transfer.attach(fresh)); assert.throws(() => f.api.retireOwnedTarget(old)); f.api.mark(fresh, "request-admitted", "event", {}); f.api.finish(old);
+  const row = decoded(f); assert.equal(row.flags.listenerUnavailable, true); assert.equal(row.flags.overflow, true); assert.equal(f.output.length, 1);
+});
+
+test("owned helper confirms original close before one same-context child and refuses retired delegates", async () => {
+  const f = ownedSchedulingPorts(); assert.equal(await f.api.openOwnRolePage(), f.fresh);
+  assert.ok(f.events.indexOf("old-close") < f.events.indexOf("new")); assert.ok(f.events.indexOf("new") < f.events.indexOf("fresh-route")); assert.equal(f.creates(), 1);
+  assert.deepEqual(Array.from(await f.api.visibleIds()), ["synthetic-booking"]); assert.throws(() => f.api.editor); assert.throws(() => f.api.observeConfirmedSave()); assert.throws(() => f.api.failNextSaveOnce()); await assert.rejects(f.api.seed(), /Retired booking editor delegate/); assert.equal(f.delegates(), 0);
+  await assert.rejects(f.api.openOwnRolePage()); await f.api.closeOwnRolePage(); await f.api.dispose(); await f.api.dispose();
+  assert.equal(f.data(), 1); assert.equal(f.auth.length, 1); assert.equal(f.events.filter(e => e === "old-close").length, 1); assert.equal(f.events.filter(e => e === "fresh-close").length, 1);
+});
+
+test("uncertain old close forbids creation and late child creation is owned and closed", async () => {
+  let settle!: () => void, oldStarted!: () => void; const closeStarted = new Promise<void>(yes => { oldStarted = yes; });
+  const f = ownedSchedulingPorts({ oldClose: () => new Promise<void>(yes => { settle = yes; oldStarted(); }) });
+  const opening = f.api.openOwnRolePage(); void opening.catch(() => {}); await closeStarted;
+  await assert.rejects(f.api.dispose()); assert.equal(f.creates(), 0); assert.equal(f.data(), 1); settle(); await assert.rejects(opening); assert.equal(f.creates(), 0);
+  let deliver!: (page: unknown) => void, newStarted!: () => void; const creationStarted = new Promise<void>(yes => { newStarted = yes; });
+  const late = ownedSchedulingPorts({ newPage: () => new Promise(yes => { deliver = yes; newStarted(); }) });
+  const creating = late.api.openOwnRolePage(); void creating.catch(() => {}); await creationStarted;
+  await assert.rejects(late.api.dispose()); deliver(late.fresh); await assert.rejects(creating); await Promise.resolve();
+  assert.equal(late.events.filter(e => e === "fresh-close").length, 1); assert.equal(late.data(), 1);
+});
+
+test("owned handoff failure retains first error and caller keeps origin and one final passive instance", async () => {
+  const sentinel = {}, f = ownedSchedulingPorts({ unroute: async () => { throw sentinel; } });
+  await assert.rejects(f.api.openOwnRolePage(), e => e === sentinel); await assert.rejects(f.api.dispose(), e => e === sentinel); assert.equal(f.data(), 1); assert.equal(f.auth.length, 1); assert.equal(f.creates(), 0);
+  const file = source(spec), start = file.indexOf('test("[P0] 15.1-INT-001'), end = file.indexOf("// Focus regression:", start), body = file.slice(start, end);
+  assert.ok(body.indexOf("new URL(managerPage.url()).origin") < body.indexOf("await h.openOwnRolePage()"));
+  assert.ok(body.indexOf("await h.openOwnRolePage()") < body.indexOf("const passive = createSchedulingPassiveMetadata"));
+  assert.equal((body.match(/const passive = createSchedulingPassiveMetadata/g) ?? []).length, 1); assert.equal((body.match(/passive.start\(\)/g) ?? []).length, 1);
+  assert.ok(body.indexOf('if (!roleReleased)') < body.indexOf('guardedSignIn("denied")')); assert.ok(body.indexOf('guardedSignIn("denied")') < body.indexOf("await guardedStage(() => h.closeOwnRolePage())"));
+});
+
+test("retirement release faults and late pass-through cannot be mistaken for a completed handoff", async () => {
+  const sentinel = {}, f = ownedBookingPorts(); let released = 0;
+  f.api.addRelease(() => { throw sentinel; }); f.api.addRelease(() => { released++; });
+  await assert.rejects(f.api.retireTransport(), e => e === sentinel); assert.equal(released, 1); assert.equal(f.deletes(), 0);
+  await assert.rejects(f.api.dispose(), e => e === sentinel); assert.equal(f.auth.length, 2);
+  const stuck = ownedBookingPorts({ unroute: () => new Promise<void>(() => {}) }); void stuck.api.retireTransport().catch(() => {});
+  await assert.rejects(stuck.api.dispose(), /retirement unverified/); assert.equal(stuck.auth.length, 2);
+  const late = ownedBookingPorts(); await late.api.retireTransport();
+  await assert.rejects(late.api.handle({ fallback: () => { throw sentinel; } }), e => e === sentinel);
+  await assert.rejects(late.api.retireTransport(), e => e === sentinel); await assert.rejects(late.api.dispose(), e => e === sentinel);
+  const original = ownedBookingPorts(); original.api.addRelease(() => { throw sentinel; });
+  await assert.rejects(original.api.dispose(), e => e === sentinel); assert.equal(original.auth.length, 2);
+});
+
+/** A regressed microtask spin must not starve the parent test runner's timeout. */
+async function ownedHandlerAbortChild(mode: "resolve" | "reject" | "pending" | "default") {
+  const { spawn } = await import("node:child_process");
+  const file = parsed("tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts");
+  const helperText = ["ownedBookingPorts", "ownedSchedulingPorts"].map(name => {
+    const fn = file.statements.find((node): node is ts.FunctionDeclaration => ts.isFunctionDeclaration(node) && node.name?.text === name);
+    assert.ok(fn); return fn.getText(file);
+  }).join("\n");
+  const script = String.raw`
+    const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),ts=require('typescript');
+    const mode=__MODE__,helperText=__HELPERS__,support='tests/e2e/support/';
+    const source=p=>fs.readFileSync(p,'utf8'),parsed=p=>ts.createSourceFile(p,source(p),99,true);
+    const compile=text=>ts.transpileModule(text,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;
+    const evaluate=(text,bindings)=>{const exports={};vm.runInNewContext(compile('const evaluated='+text+';exports.value=evaluated;'),{...bindings,exports});return exports.value};
+    const ports=evaluate('(()=>{'+helperText+';return {ownedBookingPorts,ownedSchedulingPorts};})()',{ts,assert,parsed,evaluate,URL,Buffer,Date,Promise,support});
+    const deferred=()=>{let resolve,reject;const promise=new Promise((yes,no)=>{resolve=yes;reject=no});return{promise,resolve,reject}};
+    let stage='start',finished=false;
+    process.on('beforeExit',()=>{if(!finished){process.stderr.write('incomplete-owned-handler-case');process.exitCode=2;}});
+    (async()=>{
+      const f=ports.ownedBookingPorts(),inner=deferred(),abort=deferred(),entered=deferred(),sentinel={},abortFailure={};
+      const handling=f.api.handle({request:()=>({method:()=> 'GET'}),continue:()=>inner.promise,abort:()=>{entered.resolve();return abort.promise}});
+      void handling.catch(()=>{});
+      const helper=mode==='default'?undefined:ports.ownedSchedulingPorts({transportRetire:()=>f.api.retireTransport()});
+      const opening=helper?.api.openOwnRolePage();if(opening)void opening.catch(()=>{});
+      const retirement=mode==='default'?undefined:f.api.retireTransport();let settled=false;
+      if(retirement)void retirement.then(()=>{settled=true},()=>{settled=true});
+      inner.reject(sentinel);stage='abort-enter';await entered.promise;
+      // The real handler is now inside catch, awaiting its abort before finally.
+      await new Promise(resolve=>setImmediate(resolve));stage='later-turn';
+      assert.equal(settled,false);assert.equal(f.events.includes('unroute'),false);
+      if(helper){assert.equal(helper.creates(),0);assert.equal(helper.events.includes('old-close'),false)}
+      if(mode==='default'){
+        await f.api.dispose();assert.equal(f.auth.length,2);assert.equal(f.events[0],'unroute');
+        abort.resolve();await assert.rejects(handling,e=>e===sentinel);
+      }else if(mode==='pending'){
+        // Original data cleanup must progress even while full handler cleanup never settles.
+        await assert.rejects(f.api.dispose(),e=>e===sentinel);assert.equal(f.auth.length,2);assert.equal(settled,false);
+      }else{
+        if(mode==='reject')abort.reject(abortFailure);else abort.resolve();
+        await assert.rejects(handling,e=>e===sentinel);await assert.rejects(retirement,e=>e===sentinel);await assert.rejects(opening,e=>e===sentinel);
+        assert.equal(f.events[0],'unroute');assert.equal(helper.creates(),0);
+        await assert.rejects(f.api.dispose(),e=>e===sentinel);assert.equal(f.auth.length,2);
+        await assert.rejects(helper.api.dispose(),e=>e===sentinel);assert.equal(helper.data(),1);
+      }
+      stage='complete';finished=true;
+      process.stdout.write(JSON.stringify({mode,laterTurn:true,noEarlyDetach:true,noEarlyClose:true,noEarlyChild:true,originalError:true,dataAuth:f.auth.length,pending:mode==='pending',defaultLegacy:mode==='default'})+'\n');
+    })().catch(()=>{finished=true;process.stderr.write('owned-handler-case-failed:'+stage);process.exitCode=1});
+  `.replace("__MODE__", JSON.stringify(mode)).replace("__HELPERS__", JSON.stringify(helperText));
+  return await new Promise<{ mode: string; laterTurn: boolean; noEarlyDetach: boolean; noEarlyClose: boolean; noEarlyChild: boolean; originalError: boolean; dataAuth: number; pending: boolean; defaultLegacy: boolean }>((resolve, reject) => {
+    const child = spawn(process.execPath, ["-e", script], { cwd: process.cwd(), windowsHide: true, stdio: ["ignore", "pipe", "pipe"] });
+    let output = "", bytes = 0, timedOut = false, settled = false;
+    const timeout = setTimeout(() => { timedOut = true; child.kill(); }, 5000);
+    const collect = (part: Buffer, stdout: boolean) => { bytes += part.byteLength; if (bytes > 16384) { timedOut = true; child.kill(); return; } if (stdout) output += part.toString("utf8"); };
+    child.stdout.on("data", (part: Buffer) => collect(part, true)); child.stderr.on("data", (part: Buffer) => collect(part, false));
+    child.once("error", () => { clearTimeout(timeout); if (!settled) { settled = true; reject(new Error("Owned handler child could not start.")); } });
+    child.once("close", code => {
+      clearTimeout(timeout); if (settled) return; settled = true;
+      if (timedOut || code !== 0) { reject(new Error("Owned handler child failed or did not settle.")); return; }
+      try { resolve(JSON.parse(output)); } catch { reject(new Error("Owned handler child result unavailable.")); }
+    });
+  });
+}
+
+test("real registered handler drain yields to I/O and rejects only after delayed abort completion", async () => {
+  const result = await ownedHandlerAbortChild("resolve");
+  assert.equal(result.laterTurn, true); assert.equal(result.noEarlyDetach, true); assert.equal(result.noEarlyClose, true); assert.equal(result.noEarlyChild, true); assert.equal(result.originalError, true); assert.equal(result.dataAuth, 2);
+});
+test("real handler abort rejection cannot replace the original admitted-work failure", async () => {
+  const result = await ownedHandlerAbortChild("reject"); assert.equal(result.originalError, true); assert.equal(result.laterTurn, true); assert.equal(result.dataAuth, 2);
+});
+test("pending full handler cleanup cannot starve independent original data cleanup", async () => {
+  const result = await ownedHandlerAbortChild("pending"); assert.equal(result.pending, true); assert.equal(result.laterTurn, true); assert.equal(result.noEarlyDetach, true); assert.equal(result.dataAuth, 2);
+});
+test("non-opt-in default disposal still uses original inner-work ordering during pending abort", async () => {
+  const result = await ownedHandlerAbortChild("default"); assert.equal(result.defaultLegacy, true); assert.equal(result.laterTurn, true); assert.equal(result.originalError, true); assert.equal(result.dataAuth, 2);
 });

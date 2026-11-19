@@ -80,9 +80,82 @@ export class SchedulingViewsHarness {
     } else await route.fallback();
   };
   constructor(readonly page: Page, private readonly bookingEditor: BookingEditorHarness) {}
-  get editor(): Locator { return this.page.getByRole("dialog").filter({ has: this.page.getByTestId("booking-start") }); }
+  // page remains the original fixture/finalizer owner; only this opt-in path owns one child.
+  private ownRoleTransition = false;
+  private transitionAccept = true;
+  private rolePage: Page | undefined;
+  private oldClosing: Promise<void> | undefined;
+  private roleClosing: Promise<void> | undefined;
+  private oldClosed = false;
+  private roleClosed = false;
+  private roleData: Promise<void> | undefined;
+  private roleRouteRelease: Promise<void> | undefined;
+  private roleRouteReleased = false;
+  private roleHasFailure = false;
+  private roleFailure: unknown;
+  private retainRoleFailure(error: unknown) { if (!this.roleHasFailure) { this.roleHasFailure = true; this.roleFailure = error; } }
+  private closeOriginalPage(): Promise<void> {
+    if (!this.oldClosing) {
+      lifecycle.mark(this.page, "page-close", "invoked");
+      try {
+        this.oldClosing = this.page.close().then(() => {
+          lifecycle.mark(this.page, "page-close", "fulfilled");
+          if (!this.page.isClosed()) throw new Error("Owned original Page close unverified.");
+          this.oldClosed = true;
+        });
+      } catch (error) { this.oldClosing = Promise.reject(error); }
+      void this.oldClosing.catch(error => this.retainRoleFailure(error));
+    }
+    return this.oldClosing;
+  }
+  closeOwnRolePage(): Promise<void> {
+    const owned = this.rolePage;
+    if (!owned) return Promise.reject(new Error("Owned role Page unavailable."));
+    if (!this.roleClosing) {
+      lifecycle.mark(owned, "page-close", "invoked");
+      try {
+        this.roleClosing = owned.close().then(() => {
+          lifecycle.mark(owned, "page-close", "fulfilled");
+          if (!owned.isClosed()) throw new Error("Owned role Page close unverified.");
+          this.roleClosed = true;
+        });
+      } catch (error) { this.roleClosing = Promise.reject(error); }
+      void this.roleClosing.catch(error => this.retainRoleFailure(error));
+    }
+    return this.roleClosing;
+  }
+  async openOwnRolePage(): Promise<Page> {
+    if (this.ownRoleTransition || this.page.isClosed()) throw new Error("Owned role Page transition unavailable.");
+    this.ownRoleTransition = true;
+    const context = this.page.context();
+    try {
+      await this.bookingEditor.retireTransport();
+      if (!this.transitionAccept) throw new Error("Owned role Page transition cancelled.");
+      await this.page.unroute("**/*", this.readRoute);
+      if (!this.transitionAccept) throw new Error("Owned role Page transition cancelled.");
+      const lifecycleTarget = lifecycle.retireOwnedTarget(this.page);
+      await this.closeOriginalPage();
+      await this.bookingEditor.retireTransport(); // Late old-target work cannot be borrowed by the fresh child.
+      if (!this.transitionAccept || !this.oldClosed) throw new Error("Owned original Page close unverified.");
+      const creating = context.newPage();
+      // A caller race cannot cancel creation. Own and close a late returned child.
+      void creating.then(owned => {
+        this.rolePage = owned;
+        if (!this.transitionAccept) void this.closeOwnRolePage().catch(error => this.retainRoleFailure(error));
+      }, error => this.retainRoleFailure(error)).catch(error => this.retainRoleFailure(error));
+      const owned = await creating;
+      if (!this.transitionAccept || owned.context() !== context || owned.isClosed()) throw new Error("Owned role Page transition unverified.");
+      lifecycleTarget.attach(owned);
+      await owned.route("**/*", this.readRoute);
+      if (!this.transitionAccept) throw new Error("Owned role Page transition cancelled.");
+      return owned;
+    } catch (error) { this.retainRoleFailure(error); throw this.roleFailure; }
+  }
+  private requireEditorPage() { if (this.ownRoleTransition) throw new Error("Retired booking editor delegate unavailable."); }
+  get editor(): Locator { this.requireEditorPage(); return this.page.getByRole("dialog").filter({ has: this.page.getByTestId("booking-start") }); }
   block(id: string): Locator { return this.page.locator(`[data-testid="scheduling-booking-${id}"]:visible`).first(); }
   async seed(laterPages = false): Promise<void> {
+    this.requireEditorPage();
     this.scenario = await this.bookingEditor.seed("conflict-free"); this.people = [...this.scenario.assigneeIds];
     // Dedicated PL/self, Montör and denied Säljare; shared fixture roles never change.
     for (const role of ["projektledare", "montor", "saljare"] as const) {
@@ -159,7 +232,7 @@ export class SchedulingViewsHarness {
     await this.filter("Person", this.people[0]!); await this.filter("Arbetsroll", this.scenario.workRoleId);
     await this.filter("Jobb", this.scenario.jobId); await this.filter("Kund", this.scenario.customerId);
   }
-  async visibleIds(root: Locator = this.page.getByTestId("scheduling-workspace")): Promise<string[]> {
+  async visibleIds(root: Locator = (this.rolePage ?? this.page).getByTestId("scheduling-workspace")): Promise<string[]> {
     return [...new Set(await root.locator('article[data-testid^="scheduling-booking-"]:visible').evaluateAll(nodes => nodes.map(n => n.getAttribute("data-testid")!.slice("scheduling-booking-".length))))].sort();
   }
   slot(host: Host, local: string, person = this.people[0]!, schemaPerson = ""): Locator {
@@ -228,8 +301,8 @@ export class SchedulingViewsHarness {
       from public.bookings b left join public.booking_assignees a on a.booking_id=b.id and a.tenant_id=b.tenant_id where b.tenant_id=$1 and b.description like $2 group by b.id order by b.id`, [this.scenario.tenantId, this.scenario.description + "%"]);
     return rows.map(row => ({ ...row, startsAt: new Date(row.startsAt).toISOString(), endsAt: new Date(row.endsAt).toISOString() }));
   }
-  observeConfirmedSave() { return this.bookingEditor.observeNextConfirmedSave(); }
-  failNextSaveOnce() { return this.bookingEditor.failNextSaveOnce(); }
+  observeConfirmedSave() { this.requireEditorPage(); return this.bookingEditor.observeNextConfirmedSave(); }
+  failNextSaveOnce() { this.requireEditorPage(); return this.bookingEditor.failNextSaveOnce(); }
   async reloadAndOpen(id: string, host: Host, expected: Interval): Promise<void> {
     await this.page.reload();
     // Reload restores application defaults, which can use today's date. Re-establish
@@ -260,11 +333,7 @@ export class SchedulingViewsHarness {
   async addProposalPeer(): Promise<void> {
     await this.insert(randomUUID(), "12:30", "13:00", [this.people[1]!], this.scenario.workRoleId);
   }
-  async dispose(): Promise<void> {
-    lifecycle.mark(this.page, "scheduling-dispose", "enter");
-    if (!this.scenario) return; await this.page.unroute("**/*", this.readRoute);
-    // Delete our dependent bookings before extra profiles. Base fixture owns
-    // its two original people, CRM/work role and removes them afterwards.
+  private async cleanupRows(): Promise<void> {
     await adminSession(async ({ query }) => {
       await query("begin");
       try {
@@ -280,6 +349,46 @@ export class SchedulingViewsHarness {
         await query("commit");
       } catch (error) { await query("rollback"); throw error; }
     });
+  }
+  private async disposeOwnRolePage(): Promise<void> {
+    this.transitionAccept = false;
+    lifecycle.mark(this.rolePage ?? this.page, "scheduling-dispose", "enter");
+    if (this.roleReadPhase) { this.roleReadPhase.active = false; this.roleReadPhase.requests.clear(); this.roleReadPhase = undefined; }
+    // Start every owned Page/transport release before awaiting data; never await a pending handoff here.
+    const initiate = (operation: () => Promise<void>) => {
+      try { void operation().catch(error => this.retainRoleFailure(error)); } catch (error) { this.retainRoleFailure(error); }
+    };
+    initiate(() => this.bookingEditor.retireTransport());
+    initiate(() => this.closeOriginalPage());
+    if (this.rolePage) initiate(() => this.closeOwnRolePage());
+    if (!this.roleRouteRelease) {
+      this.roleRouteRelease = (async () => {
+        if (this.rolePage && !this.rolePage.isClosed()) await this.rolePage.unroute("**/*", this.readRoute);
+        this.roleRouteReleased = true;
+      })();
+      void this.roleRouteRelease.catch(error => this.retainRoleFailure(error));
+    }
+    this.roleData ??= (async () => {
+      if (this.scenario) {
+        try { await this.cleanupRows(); } catch (error) { this.retainRoleFailure(error); }
+        for (const user of this.users) { try { await deleteAuthUser(user.id); } catch (error) { this.retainRoleFailure(error); } }
+      }
+    })();
+    void this.roleData.catch(error => this.retainRoleFailure(error));
+    await this.roleData;
+    if (this.roleHasFailure) throw this.roleFailure;
+    if (!this.oldClosed || !this.rolePage || !this.roleClosed || !this.roleRouteReleased) {
+      this.retainRoleFailure(new Error("Owned role Page release unverified."));
+      throw this.roleFailure;
+    }
+  }
+  async dispose(): Promise<void> {
+    if (this.ownRoleTransition) return this.disposeOwnRolePage();
+    lifecycle.mark(this.page, "scheduling-dispose", "enter");
+    if (!this.scenario) return; await this.page.unroute("**/*", this.readRoute);
+    // Delete our dependent bookings before extra profiles. Base fixture owns
+    // its two original people, CRM/work role and removes them afterwards.
+    await this.cleanupRows();
     for (const user of this.users) await deleteAuthUser(user.id);
   }
 }

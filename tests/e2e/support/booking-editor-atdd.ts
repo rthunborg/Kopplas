@@ -92,6 +92,8 @@ export interface BookingEditorHarness {
   failNextPreviewOnce(): Promise<{ readonly failed: Promise<void> }>;
   failNextOptionsReadOnce(): Promise<{ readonly failed: Promise<void> }>;
   observeNextSaveTransport(timeoutMs?: number): Promise<{ readonly observed: Promise<{bodyBytes: number;status: number}> }>;
+  /** Opt-in once-only transport retirement; never delete scenario data at handoff. */
+  retireTransport(): Promise<void>;
   /** Remove routes/holds/listeners and only per-test SQL rows; never stop browser. */
   dispose(): Promise<void>;
 }
@@ -117,6 +119,34 @@ async function bindBookingEditorHarness(
   let scenario: Scenario | undefined;
   const releases: (() => void)[] = [];
   const pendingRoutes = new Set<Promise<void>>();
+  const handlerCompletions = new Set<Promise<void>>();
+  let transportOptIn = false, transportAccept = true, transportDone = false;
+  let transportRetirement: Promise<void> | undefined, finalData: Promise<void> | undefined;
+  let hasOwnedFailure = false, ownedFailure: unknown;
+  const retainOwnedFailure = (error: unknown) => { if (!hasOwnedFailure) { hasOwnedFailure = true; ownedFailure = error; } };
+  const retireTransport = (): Promise<void> => {
+    if (transportRetirement) return transportRetirement.then(() => {
+      if (hasOwnedFailure) throw ownedFailure;
+      if (!transportDone || handlerCompletions.size) throw new Error("Owned booking transport retirement unverified.");
+    });
+    transportOptIn = true; transportAccept = false; // Stop admission synchronously, before releasing any hold.
+    transportRetirement = (async () => {
+      for (const release of releases) { try { release(); } catch (error) { retainOwnedFailure(error); } }
+      const drain = async () => {
+        while (handlerCompletions.size) {
+          const settled = await Promise.allSettled([...handlerCompletions]);
+          for (const result of settled) if (result.status === "rejected") retainOwnedFailure(result.reason);
+        }
+      };
+      await drain();
+      try { if (!page.isClosed()) await page.unroute("**/*", routeHandler); } catch (error) { retainOwnedFailure(error); }
+      await drain(); // Include any callback already dispatched before exact detach completed.
+      if (hasOwnedFailure) throw ownedFailure;
+      transportDone = true;
+    })();
+    void transportRetirement.catch(retainOwnedFailure);
+    return transportRetirement;
+  };
   const transportDiagnostics = process.env.E2E_BOOKING_TRANSPORT_DIAGNOSTICS === "1";
   let previewFetchCount = 0;
   const confirmations: (() => void)[] = [];
@@ -190,16 +220,58 @@ async function bindBookingEditorHarness(
     await route.fulfill({ response });
   };
   const routeHandler = async (route: import("@playwright/test").Route) => {
-    const pending = routeWork(route); pendingRoutes.add(pending);
-    try { await pending; }
-    catch (error) {
-      // Fetching a response does not settle the intercepted browser request.
-      // Preserve the real failure, but release the action queue even on timeout.
-      await lifecycle.observeAbort(page, "booking-route-work-rejection", () => route.abort("failed")).catch(() => {});
-      throw error;
-    } finally { pendingRoutes.delete(pending); }
+    let completed!: () => void, rejected!: (error: unknown) => void;
+    const completion = new Promise<void>((yes, no) => { completed = yes; rejected = no; });
+    void completion.catch(() => {});
+    handlerCompletions.add(completion); // Register BEFORE work, including any asynchronous abort cleanup.
+    let failed = false, failure: unknown;
+    try {
+      const admitted = transportAccept;
+      if (!admitted) transportDone = false;
+      // Pass-through is still owned pending work for retirement, not a new booking admission.
+      let pending: Promise<void>;
+      try { pending = admitted ? routeWork(route) : route.fallback(); }
+      catch (error) { if (transportOptIn) retainOwnedFailure(error); throw error; }
+      pendingRoutes.add(pending);
+      try { await pending; }
+      catch (error) {
+        if (transportOptIn) retainOwnedFailure(error);
+        if (!admitted) throw error;
+        // Fetching a response does not settle the intercepted browser request.
+        // Preserve the real failure, but release the action queue even on timeout.
+        await lifecycle.observeAbort(page, "booking-route-work-rejection", () => route.abort("failed")).catch(() => {});
+        throw error;
+      } finally { pendingRoutes.delete(pending); }
+    } catch (error) { failed = true; failure = error; throw error; }
+    finally {
+      // Remove before settling: a drain can never spin on an already-settled inner Promise.
+      handlerCompletions.delete(completion);
+      if (failed) rejected(failure); else completed();
+    }
   };
   await page.route("**/*", routeHandler);
+  const cleanupScenario = async () => {
+        if (owned.workRoleId) await adminSession(async ({ query }) => {
+        await query("begin");
+        try {
+          await query("set local session_replication_role=replica");
+          await query("delete from public.audit_events where tenant_id=$1 and target_id in(select id from public.bookings where tenant_id=$1 and description like $2)", [tenantId, `${token}%`]);
+          await query("delete from public.booking_conflicts where tenant_id=$1 and (booking_id in(select id from public.bookings where tenant_id=$1 and description like $2) or related_booking_id in(select id from public.bookings where tenant_id=$1 and description like $2))", [tenantId, `${token}%`]);
+          await query("delete from public.booking_assignees where tenant_id=$1 and booking_id in(select id from public.bookings where tenant_id=$1 and description like $2)", [tenantId, `${token}%`]);
+          await query("delete from public.bookings where tenant_id=$1 and description like $2", [tenantId, `${token}%`]);
+          await query("delete from public.jobs where tenant_id=$1 and id=$2", [tenantId, owned.jobId || null]);
+          await query("delete from public.contacts where tenant_id=$1 and id=$2", [tenantId, owned.contactId || null]);
+          await query("delete from public.facilities where tenant_id=$1 and id=$2", [tenantId, owned.facilityId || null]);
+          await query("delete from public.customers where tenant_id=$1 and id=$2", [tenantId, owned.customerId || null]);
+          await query("delete from public.person_work_hours where tenant_id=$1 and person_profile_id=any($2::uuid[])", [tenantId, profiles]);
+          await query("delete from public.person_profiles where tenant_id=$1 and id=any($2::uuid[])", [tenantId, profiles]);
+          await query("delete from public.membership_roles where tenant_id=$1 and membership_id=any($2::uuid[])", [tenantId, memberships]);
+          await query("delete from public.tenant_memberships where tenant_id=$1 and id=any($2::uuid[])", [tenantId, memberships]);
+          await query("delete from public.work_roles where tenant_id=$1 and id=$2", [tenantId, owned.workRoleId]);
+          await query("commit");
+        } catch (error) { await query("rollback"); throw error; }
+        });
+  };
   const createReviewed = async (input: ReturnType<typeof bookingInput> & { proposedBookingId: string }, selectedRule?: string) => {
     const client = await makeAuthedServerClient(fixture.adminA);
     const authority = await resolveTenantContext({ client: client as never });
@@ -289,34 +361,29 @@ async function bindBookingEditorHarness(
         releaseNewerAndWaitForRender: async () => { race.releaseNewer.resolve(); await race.newerDone.promise; await expect(page.getByTestId("booking-conflict-panel")).toContainText(scenario!.newerWarning.window); },
         releaseOlderAndWaitForSettlement: async () => { race.releaseOlder.resolve(); await race.olderDone.promise; await page.evaluate(() => new Promise<void>((done) => requestAnimationFrame(() => requestAnimationFrame(() => done())))); } };
     },
+    retireTransport,
     async dispose() {
       lifecycle.mark(page, "booking-dispose", "enter");
+      if (transportOptIn) {
+        // Initiate both obligations independently. A stuck retirement never blocks original data cleanup.
+        void retireTransport().catch(retainOwnedFailure);
+        finalData ??= (async () => {
+          try { await cleanupScenario(); } catch (error) { retainOwnedFailure(error); }
+          for (const id of users) { try { await deleteAuthUser(id); } catch (error) { retainOwnedFailure(error); } }
+        })();
+        void finalData.catch(retainOwnedFailure);
+        await finalData;
+        if (hasOwnedFailure) throw ownedFailure;
+        if (!transportDone) throw new Error("Owned booking transport retirement unverified.");
+        return;
+      }
       try {
         for (const release of releases) release();
         await Promise.allSettled([...pendingRoutes]);
         if (!page.isClosed()) await page.unroute("**/*", routeHandler);
       } finally {
         // Page closure can race unroute; it must not skip owned fixture cleanup.
-        if (owned.workRoleId) await adminSession(async ({ query }) => {
-        await query("begin");
-        try {
-          await query("set local session_replication_role=replica");
-          await query("delete from public.audit_events where tenant_id=$1 and target_id in(select id from public.bookings where tenant_id=$1 and description like $2)", [tenantId, `${token}%`]);
-          await query("delete from public.booking_conflicts where tenant_id=$1 and (booking_id in(select id from public.bookings where tenant_id=$1 and description like $2) or related_booking_id in(select id from public.bookings where tenant_id=$1 and description like $2))", [tenantId, `${token}%`]);
-          await query("delete from public.booking_assignees where tenant_id=$1 and booking_id in(select id from public.bookings where tenant_id=$1 and description like $2)", [tenantId, `${token}%`]);
-          await query("delete from public.bookings where tenant_id=$1 and description like $2", [tenantId, `${token}%`]);
-          await query("delete from public.jobs where tenant_id=$1 and id=$2", [tenantId, owned.jobId || null]);
-          await query("delete from public.contacts where tenant_id=$1 and id=$2", [tenantId, owned.contactId || null]);
-          await query("delete from public.facilities where tenant_id=$1 and id=$2", [tenantId, owned.facilityId || null]);
-          await query("delete from public.customers where tenant_id=$1 and id=$2", [tenantId, owned.customerId || null]);
-          await query("delete from public.person_work_hours where tenant_id=$1 and person_profile_id=any($2::uuid[])", [tenantId, profiles]);
-          await query("delete from public.person_profiles where tenant_id=$1 and id=any($2::uuid[])", [tenantId, profiles]);
-          await query("delete from public.membership_roles where tenant_id=$1 and membership_id=any($2::uuid[])", [tenantId, memberships]);
-          await query("delete from public.tenant_memberships where tenant_id=$1 and id=any($2::uuid[])", [tenantId, memberships]);
-          await query("delete from public.work_roles where tenant_id=$1 and id=$2", [tenantId, owned.workRoleId]);
-          await query("commit");
-        } catch (error) { await query("rollback"); throw error; }
-        });
+        await cleanupScenario();
         for (const id of users) await deleteAuthUser(id);
       }
     },
