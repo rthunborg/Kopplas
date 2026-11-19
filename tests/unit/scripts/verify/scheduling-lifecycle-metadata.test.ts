@@ -555,8 +555,8 @@ function roleInitialStepPorts(fault?: { at: "navigate" | "settle" | "drain" | "q
 }
 test("actual initial role step wrappers retain fixed nesting navigation identity values and all guards", async () => {
   const f = roleInitialStepPorts(); await f.run();
-  assert.deepEqual(f.titles, ["Role initial required flow", "Role initial controlled navigation", "Role initial UI settlement", "Role initial native drain", "Role initial complete client and native qualification"]);
-  assert.deepEqual(f.calls, ["barrier", "open", "goto", "observe", "guard", "settle", "guard", "drain", "guard", "response-present", "response-check", "response-check", "qualify", "guard"]); assert.equal(f.errors.length, 0);
+  assert.deepEqual(f.titles, ["Role initial required flow", "Role initial controlled navigation", "Role initial native drain", "Role initial complete client and native qualification", "Role initial UI settlement"]);
+  assert.deepEqual(f.calls, ["barrier", "open", "goto", "observe", "guard", "drain", "guard", "response-present", "response-check", "response-check", "qualify", "guard", "settle", "guard"]); assert.equal(f.errors.length, 0);
 });
 test("actual initial await wrappers preserve primitive object and earlier asynchronous firstFailure identities", async () => {
   for (const at of ["navigate", "settle", "drain", "qualify"] as const) for (const error of ["net::ERR_ABORTED", {}]) {

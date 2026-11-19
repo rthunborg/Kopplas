@@ -1350,7 +1350,6 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
         });
         guardProgress(); return response;
       });
-      await test.step("Role initial UI settlement", async () => { await guardedSettle(); guardProgress(); });
       await test.step("Role initial native drain", async () => { await drain(); guardProgress(); });
       await test.step("Role initial complete client and native qualification", async () => {
         expect(targetResponse).not.toBeNull();
@@ -1359,6 +1358,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
         expect(admitted.get(targetResponse!.request())?.phase).toBe("complete");
         await qualifyRolePhase(); guardProgress();
       });
+      await test.step("Role initial UI settlement", async () => { await guardedSettle(); guardProgress(); });
     });
     rolePhase.close(); rolePhase = undefined;
     await guardedStage(() => roleEvaluate("arm")); guardProgress();
