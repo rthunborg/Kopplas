@@ -688,6 +688,136 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     await guardedStage(() => page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))));
     await guardedStage(() => expect(page.getByText("Läser planering…", { exact: true })).toHaveCount(0));
   };
+  // Functional phase completion stays in this document; no lifecycle stream is exported.
+  type RoleGate = { readonly owner: string; wait: () => Promise<1 | 2>; arm: () => void; check: (count: number) => void; disable: (complete: boolean, count: number) => void };
+  let roleOwner: string | undefined; // Created only on actual install; never returned or logged.
+  let roleScript: { dispose: () => Promise<void> } | undefined, roleAccept = true, roleReleased = false;
+  let rolePhase: ReturnType<typeof h.beginRoleReadPhase> | undefined, roleLastCount = 0;
+  let roleCleanup: { clear: Promise<unknown>; script: Promise<unknown> } | undefined;
+  const roleEvaluate = (operation: "wait" | "arm" | "check" | "disable", count = 0, complete = false) => {
+    const pending = page.evaluate(({ operation, count, complete, owner }) => {
+      const gate = (window as Window & { __kopplasSchedulingRoleGateV1?: RoleGate }).__kopplasSchedulingRoleGateV1;
+      if (typeof owner !== "string" || !gate || Object.getOwnPropertyDescriptor(gate, "owner")?.value !== owner) throw new Error("Required scheduling client phase unavailable.");
+      if (operation === "wait") return gate.wait();
+      if (operation === "arm") { gate.arm(); return 0; }
+      if (operation === "check") { gate.check(count); return 0; }
+      gate.disable(complete, count); return 0;
+    }, { operation, count, complete, owner: roleOwner }).catch(() => { throw new Error("Required scheduling client command unavailable."); });
+    void pending.catch(() => {}); // A caller race never cancels this command.
+    return pending;
+  };
+  const beginRoleCleanup = (complete: boolean) => {
+    roleAccept = false;
+    if (complete) {
+      try {
+        const requests = rolePhase?.requests();
+        if (!requests || requests.length !== roleLastCount || requests.some(request => admitted.get(request)?.phase !== "complete")) throw new Error("Required scheduling native phase unavailable.");
+      } catch (error) { recordFailure(error); complete = false; }
+    }
+    const phase = rolePhase; rolePhase = undefined;
+    try { phase?.close(); } catch { recordFailure(new Error("Required scheduling phase release unavailable.")); complete = false; }
+    if (!roleCleanup) {
+      const initiate = (operation: () => Promise<unknown>) => {
+        let pending: Promise<unknown>;
+        try { pending = operation(); } catch { pending = Promise.reject(new Error("Required scheduling owned cleanup unavailable.")); }
+        pending = pending.catch(() => { throw new Error("Required scheduling owned cleanup unavailable."); });
+        void pending.catch(error => { recordFailure(error); });
+        return pending;
+      };
+      // Initiate BOTH commands now, before awaiting either; the existing shutdown is independent.
+      const clear = initiate(() => roleEvaluate("disable", roleLastCount, complete));
+      const owned = roleScript; roleScript = undefined;
+      const script = initiate(() => owned ? owned.dispose() : Promise.reject(new Error("Required scheduling init removal unverified.")));
+      roleCleanup = { clear, script };
+    }
+    return roleCleanup;
+  };
+  const installRoleGate = () => {
+    roleOwner ??= globalThis.crypto.randomUUID();
+    const pending = page.addInitScript(({ origin, owner }) => {
+      if (window !== window.top || window.location.origin !== origin || window.location.pathname !== "/scheduling") return;
+      const target = window as Window & { __kopplasSchedulingReadSemanticV1?: (event: unknown) => unknown; __kopplasSchedulingRoleGateV1?: RoleGate };
+      const key = "__kopplasSchedulingReadSemanticV1", stateKey = "__kopplasSchedulingRoleGateV1";
+      const unavailable = () => new Error("Required scheduling client phase unavailable.");
+      if (stateKey in target) return; // Never overwrite foreign/ambiguous ownership.
+      const prior = Object.getOwnPropertyDescriptor(target, key);
+      let fault = false, disabled = false, ticket = 1, step = 0, revised = false, complete = false;
+      let resolve!: (count: 1 | 2) => void, reject!: (error: Error) => void;
+      let waiter: Promise<1 | 2>;
+      const resetWaiter = () => { waiter = new Promise<1 | 2>((yes, no) => { resolve = yes; reject = no; }); void waiter.catch(() => {}); };
+      resetWaiter();
+      const poison = () => { fault = true; reject(unavailable()); };
+      const owns = () => Object.getOwnPropertyDescriptor(target, stateKey)?.value === gate && Object.getOwnPropertyDescriptor(target, key)?.value === wrapper;
+      const check = (count: number) => { if (fault || disabled || !owns() || !complete || count !== (revised ? 2 : 1)) throw unavailable(); };
+      const gate: RoleGate = {
+        owner,
+        wait: () => { if (fault || disabled || !owns()) throw unavailable(); return waiter; },
+        arm: () => { check(revised ? 2 : 1); if (ticket !== 1) throw unavailable(); ticket = 2; step = 0; revised = false; complete = false; resetWaiter(); },
+        check,
+        disable: (requireComplete, count) => {
+          let valid = false;
+          try { if (requireComplete) check(count); else if (!owns()) throw unavailable(); valid = true; } catch { /* Still disable and restore owned state independently. */ }
+          disabled = true; reject(unavailable());
+          try {
+            if (Object.getOwnPropertyDescriptor(target, key)?.value === wrapper) {
+              if (prior) Object.defineProperty(target, key, prior); else delete target.__kopplasSchedulingReadSemanticV1;
+            } else valid = false;
+          } catch { valid = false; }
+          try { if (Object.getOwnPropertyDescriptor(target, stateKey)?.value === gate) delete target.__kopplasSchedulingRoleGateV1; else valid = false; } catch { valid = false; }
+          step = 0; complete = false; revised = false; ticket = 0;
+          if (!valid) throw unavailable();
+        },
+      };
+      const receive = (raw: unknown) => {
+        try {
+          if (disabled || fault || !owns() || complete || !raw || typeof raw !== "object" || Array.isArray(raw)) { poison(); return; }
+          const descriptors = Object.getOwnPropertyDescriptors(raw), keys = ["ticket", "currentTicket", "ordinal", "operation", "phase", "outcome", "timeMs"];
+          if (Reflect.ownKeys(descriptors).length !== 7 || keys.some(key => !descriptors[key] || !("value" in descriptors[key]!))) { poison(); return; }
+          const event = raw as { ticket: number; currentTicket: number; ordinal: number; operation: string; phase: string; outcome: string; timeMs: number | null };
+          if (event.ticket !== ticket || event.currentTicket !== ticket || event.ordinal !== step + 1 || !Number.isSafeInteger(event.ordinal) ||
+            !(typeof event.timeMs === "number" && Number.isFinite(event.timeMs) && event.timeMs >= 0 && event.timeMs <= 3_600_000)) { poison(); return; }
+          if (step === 6 && event.operation === "reconciled-read" && event.phase === "start") revised = true;
+          const order = ["lifecycle/start", "lifecycle/returned", "first-read/start", "first-read/returned", "reconcile/start", "reconcile/returned",
+            ...(revised ? ["reconciled-read/start", "reconciled-read/returned"] : []), "publish/start", "publish/returned", "finish/start", "finish/returned"];
+          const expectedOutcome = event.phase === "returned" && (event.operation === "first-read" || event.operation === "reconciled-read") ? "no-data-error" : "none";
+          if (typeof event.operation !== "string" || typeof event.phase !== "string" || `${event.operation}/${event.phase}` !== order[step] || event.outcome !== expectedOutcome) { poison(); return; }
+          step++;
+          if (step === order.length) { complete = true; resolve(revised ? 2 : 1); }
+        } catch { poison(); }
+      };
+      const wrapper = function(this: unknown, event: unknown) {
+        "use strict";
+        receive(event);
+        try {
+          const returned: unknown = prior ? Reflect.apply(prior.value, this, [event]) : undefined;
+          if (returned !== undefined) {
+            // Native Promise observation only; no arbitrary thenable assimilation.
+            try { void Promise.prototype.then.call(returned, () => {}, () => { poison(); }).catch(() => {}); } catch { poison(); }
+          }
+          return returned;
+        } catch (error) { poison(); throw error; }
+      };
+      Object.freeze(gate);
+      Object.defineProperty(target, stateKey, { value: gate, configurable: true });
+      if ((!prior && key in target) || (prior && (!("value" in prior) || typeof prior.value !== "function" || !prior.configurable))) { poison(); return; }
+      try { Object.defineProperty(target, key, { value: wrapper, writable: true, configurable: true }); } catch { poison(); }
+    }, { origin: captureOrigin, owner: roleOwner }).catch(() => { throw new Error("Required scheduling client installation unavailable."); });
+    // Register before the caller can race: late installation still owns a disposal obligation.
+    void pending.then(owned => {
+      if (roleAccept) roleScript = owned;
+      else { try { void owned.dispose().catch(() => {}); } catch { /* Failure remains unverified; never success. */ } }
+    }, error => { recordFailure(error); }).catch(error => { recordFailure(error); });
+    return pending;
+  };
+  const qualifyRolePhase = async () => {
+    const count = await guardedStage(() => roleEvaluate("wait"));
+    if (count !== 1 && count !== 2) throw new Error("Required scheduling client phase unavailable.");
+    roleLastCount = count;
+    await drain(); guardProgress(); await guardedSettle(); guardProgress();
+    const requests = rolePhase?.requests();
+    if (!requests || requests.length !== count || requests.some(request => admitted.get(request)?.phase !== "complete")) throw new Error("Required scheduling native phase unavailable.");
+    await guardedStage(() => roleEvaluate("check", count)); guardProgress();
+  };
   type NativeCapture = {
     request: import("@playwright/test").Request; response: import("@playwright/test").Response;
     requestOrdinal: number; captureOrdinal: number; queryPresent: boolean | null;
@@ -956,6 +1086,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   };
   const shutdown = () => {
     if (shutdownStarted) return;
+    beginRoleCleanup(false);
     try { targetAssociation.finish(); } catch { /* Owned observation cannot block original cleanup. */ }
     lifecycle.mark(page, "shutdown", "requested");
     // PASSIVE-NETWORK-BEGIN shutdown
@@ -1015,6 +1146,9 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
       try { neutralDocument = page.url() === "about:blank"; } catch { /* Only the fixed closed assertion may escape. */ }
       expect(neutralDocument, "Controlled role-read neutral document unavailable.").toBe(true);
     }); guardProgress();
+    await guardedStage(installRoleGate); guardProgress();
+    const mountedDate = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Stockholm", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+    rolePhase = h.beginRoleReadPhase(captureOrigin, mountedDate);
     const targetResponse = await navigateAfterBarrier(() => {
       // Open only after the existing barrier drains post-login traffic, directly
       // before this controlled tampered navigation. Later failures remain fatal.
@@ -1027,8 +1161,13 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     expect(targetResponse!.ok()).toBe(true);
     // A background/partial body cannot substitute for the actual target payload.
     expect(admitted.get(targetResponse!.request())?.phase).toBe("complete");
+    await qualifyRolePhase(); guardProgress();
+    rolePhase.close(); rolePhase = undefined;
+    await guardedStage(() => roleEvaluate("arm")); guardProgress();
+    rolePhase = h.beginRoleReadPhase(captureOrigin, DATE);
     lifecycle.mark(page, "date-fill", "enter");
     await navigateAfterBarrier(() => page.getByLabel("Datum", { exact: true }).fill(DATE)); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
+    await qualifyRolePhase(); guardProgress();
     await guardedStage(() => expect(page.getByRole("tab")).toHaveCount(1)); await guardedStage(() => expect(page.getByRole("tab")).toHaveText("Min kalender"));
     const visibleIds = await guardedStage(() => h.visibleIds()); guardProgress(); expect(visibleIds).toEqual([h.ids.role, h.ids.collision].sort());
     await guardedStage(() => expect(page.getByLabel("Person", { exact: true })).toHaveCount(0)); await guardedStage(() => expect(page.getByTestId("scheduling-new-booking")).toHaveCount(0));
@@ -1038,6 +1177,15 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (error === abandoned) throw error;
     recordFailure(error);
   } finally {
+    if (hasFailure || shutdownStarted) beginRoleCleanup(false);
+    else {
+      try {
+        const cleanup = beginRoleCleanup(true);
+        await guardedStage(() => cleanup.clear);
+        await guardedStage(() => cleanup.script);
+        roleReleased = true;
+      } catch (error) { if (error !== abandoned) recordFailure(error); }
+    }
     // A failing test keeps all rejection handlers attached but never waits on
     // another unresolved capture. Success must drain the detached final buffer.
     if (!shutdownStarted) await closeCaptureWindow();
@@ -1048,13 +1196,14 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     ensureActive();
     expect(payloads.length).toBeGreaterThan(0);
     for (const payload of payloads) { ensureActive(); expect(payload).not.toContain(h.users[2]!.email); ensureActive(); expect(payload).not.toContain('"needsReassignment":'); }
+    if (!roleReleased) throw new Error("Required scheduling client release unverified.");
     await guardedSignIn("denied"); guardProgress(); await guardedStage(() => page.goto("/scheduling"));
     await guardedStage(() => expect(page.getByRole("heading", { name: "Ingen åtkomst", exact: true })).toBeVisible()); await guardedStage(() => expect(page.getByTestId("scheduling-workspace")).toHaveCount(0));
   } catch (error) { if (error === abandoned) throw error; recordFailure(error); }
   ensureActive();
   if (hasFailure) throw firstFailure;
   } catch (error) { if (error !== abandoned) throw error; }
-  finally { if (!shutdownStarted) schedulingAttemptShutdowns.delete(testInfo); }
+  finally { beginRoleCleanup(false); if (!shutdownStarted) schedulingAttemptShutdowns.delete(testInfo); }
   // PASSIVE-NETWORK-BEGIN final
   } finally { try { targetAssociation.finish(); } catch { /* Preserve the original primary carrier. */ } lifecycle.mark(page, "attempt-end", "event"); passive.stop(hasFailure); schedulingPassiveShutdowns.delete(testInfo); }
   // PASSIVE-NETWORK-END final

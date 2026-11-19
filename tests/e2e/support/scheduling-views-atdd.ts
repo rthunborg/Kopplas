@@ -31,12 +31,51 @@ export class SchedulingViewsHarness {
   laterIds: string[] = [];
   private readFailureArmed = false;
   private failedReadResolve: (() => void) | undefined;
+  // Only the owned INT001 mounted/Date read family is accepted, never generic POST identity.
+  private roleReadPhase: { origin: string; date: string; requests: Set<import("@playwright/test").Request>; failed: boolean; active: boolean } | undefined;
+  beginRoleReadPhase(origin: string, date: string) {
+    if (this.roleReadPhase?.active) throw new Error("Required scheduling read phase overlaps.");
+    const phase = { origin, date, requests: new Set<import("@playwright/test").Request>(), failed: false, active: true };
+    this.roleReadPhase = phase;
+    return {
+      requests: () => {
+        if (!phase.active || phase.failed || phase.requests.size < 1 || phase.requests.size > 2) throw new Error("Required scheduling read qualification unavailable.");
+        return [...phase.requests];
+      },
+      close: () => { phase.active = false; phase.requests.clear(); if (this.roleReadPhase === phase) this.roleReadPhase = undefined; },
+    };
+  }
   private readonly readRoute = async (route: import("@playwright/test").Route) => {
-    const request = route.request(); let input: unknown;
-    try { input = JSON.parse(request.postData() ?? "null"); } catch { /* Unrelated request. */ }
-    const first = Array.isArray(input) ? input[0] : null;
-    if (this.readFailureArmed && request.method() === "POST" && request.headers()["next-action"] && first &&
-        typeof first === "object" && "view" in first && "filters" in first && "mode" in first) {
+    const request = route.request(); let input: unknown, raw: string | null = null, acquired = false;
+    try { raw = request.postData(); acquired = true; input = JSON.parse(raw ?? "null"); } catch { /* Original unrelated/injection recognition remains unchanged. */ }
+    let first = Array.isArray(input) ? input[0] : null;
+    // One provisional acquisition serves the old armed branch and the owned functional phase.
+    let action: boolean | undefined;
+    const inject = this.readFailureArmed && request.method() === "POST" &&
+      (action = Boolean(request.headers()["next-action"])) && first && typeof first === "object" && "view" in first && "filters" in first && "mode" in first;
+    const phase = this.roleReadPhase;
+    if (phase?.active) {
+      try {
+        const url = new URL(request.url());
+        if (url.origin === phase.origin && url.pathname === "/scheduling" && request.method() === "POST") {
+          action ??= Boolean(request.headers()["next-action"]);
+          if (action) {
+            const exactKeys = (value: unknown, keys: string[]): value is Record<string, unknown> => !!value && typeof value === "object" && !Array.isArray(value) && Object.keys(value).length === keys.length && keys.every(key => Object.hasOwn(value, key));
+            // The full getter/legacy parse precedes this accepted functional cap; legacy injection is not capped.
+            if (!acquired || raw === null || Buffer.byteLength(raw, "utf8") > 4096 || raw.trim() !== JSON.stringify(input) || !Array.isArray(input) || input.length !== 1 ||
+              !exactKeys(first, ["view", "mode", "date", "filters"]) || first.view !== "personal" || first.mode !== "week" ||
+              typeof first.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(first.date) || first.date !== phase.date ||
+              new Date(`${first.date}T00:00:00Z`).toISOString().slice(0, 10) !== first.date ||
+              !exactKeys(first.filters, ["personIds", "workRoleIds", "jobIds", "customerIds", "status"]) || first.filters.status !== "planned" ||
+              !["personIds", "workRoleIds", "jobIds", "customerIds"].every(key => Array.isArray(first.filters[key]) && first.filters[key].length === 0) ||
+              phase.requests.has(request) || phase.requests.size >= 2) phase.failed = true;
+            else phase.requests.add(request);
+          }
+        }
+      } catch { phase.failed = true; /* Fixed qualification failure; never suppress original routing/fatality. */ }
+    }
+    raw = null; input = null; first = null;
+    if (inject) {
       this.readFailureArmed = false; await lifecycle.observeAbort(this.page, "scheduling-injected-read", () => route.abort("failed")); this.failedReadResolve?.();
     } else await route.fallback();
   };
