@@ -4436,8 +4436,9 @@ test("complete-route budget Dense setup changes only its first case ceiling befo
   await assert.rejects(actual({ schedulingViews: { seed: async (later: boolean) => { calls.push(["seed", later]); throw stop; } } }, { setTimeout: (ms: number) => { calls.push(["budget", ms]); } }), error => error === stop);
   assert.deepEqual(calls, [["budget", 360_000], ["seed", true]]);
   assert.match(text, /test\.setTimeout\(180_000\)/);
-  const denseStart = text.indexOf('test("[P1] 15.1-E2E-006'), denseEnd = text.indexOf('test("[P0] 15.1-INT-001');
-  const inverse = text.slice(denseStart, denseEnd).replace("  testInfo.setTimeout(360_000);\n", "");
+  assert.ok(ts.isCallExpression(callback.parent) && ts.isExpressionStatement(callback.parent.parent));
+  assert.ok(callback.parent.parent.parent === parsed);
+  const inverse = (callback.parent.parent.getText(parsed) + "\n\n").replace("  testInfo.setTimeout(360_000);\n", "");
   assert.equal(createHash("sha256").update(inverse).digest("hex"), "99e40ebbb4cd977ea2b51da876c6ca128d07ad435ccd55c0c00e26a0b4614788");
   const config = readFileSync("playwright.config.ts", "utf8");
   assert.match(config, /expect: \{ timeout: 15_000 \}/); assert.match(config, /actionTimeout: 15_000/); assert.match(config, /navigationTimeout: 30_000/);
