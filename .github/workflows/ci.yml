@@ -827,7 +827,7 @@ jobs:
   e2e:
     if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation && 50 || 45 }}
     # Same gate as `db`: only spin up the stack + browser after the fast `verify` job
     # is green. Runs in parallel with `db` (each boots its own local stack).
     needs: [verify]

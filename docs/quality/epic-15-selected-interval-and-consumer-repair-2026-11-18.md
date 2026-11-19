@@ -1,6 +1,7 @@
 # Epic 15 selected-interval and consumer repair - 2026-11-18
 
-Status at the owned-child release/fixed-step source freeze: published base `afe9cf321601b03cbebc95960edc489afeac36bc` remains the failed, consumed full-validation candidate. The helper's exact child registration/release/close anchors, INT001 initial-role step wrappers, append-only verifier regressions and this factual note are UNCOMMITTED. Child close now waits for possible registration to settle and required exact unroute to settle; failed removal still attempts close while retaining the earliest error. This corrects the independently identified child-cleanup ordering defect, not the unknown primary abort. Standard fixed Playwright steps provide active await/rethrow context only. Current focused execution is41 PASS (unchanged29 plus12 new cases); five separate private actual-fixture/installed-step checks pass; typecheck/scoped lint exit0. Currentafe Dense passed both occurrences including all11 tuples; INT001 failed3970/5095ms with primitive net::ERR_ABORTED and no exposed primary caller. General539 =523 expected/1 unexpected/15 skipped; images24/37 with13 missing. Initial complete role qualification and later Date/own/payload/release/denied gates remain unearned. Key/physical cleanup and earlier MyDay response-body flaky/release dispositions remain their recorded evidence, not new fixes or waivers. Qualified current25 mapping has0 whole-row passes; all original25 Deferred row bytes remain exact and `release_ready=false`. Frontend baseline remains S `fe282c326b208788ef94a3717092057ab7e2e91e`, so its gate APPLIES to both post-S app deltas. Historical failures, six-story/PR108 Done, reference/images, human/controller, main/production, CRM/PR151 and ownership holds remain.
+Status at the c93-based complete-route budget SOURCE PREPARATION freeze: published base `c93c9bded6f29f95a6d7499836f5d5fea2470715` remains the failed, consumed full-validation candidate. Five code postimages are frozen locally; they and this note are uncommitted preparation, with no future commit, run or acceptance result assumed. The exact code freeze is `f746727208c0730c7d7676a35a08cd477e1be2a2e5d4797790512504b05bb129`. Dense alone receives a 360-second mechanical case ceiling; release General receives 40 minutes and its e2e job 50 minutes. Ordinary/default ceilings, substantive criteria, all coverage and bounded teardown remain as specified below. Core source review and reviewed wrapper pin precede the CRLF correction and four exact negative-consumer matcher adaptations; those latest changes still require narrow independent High qualification. Local results are distinct attempts, including actual failures; none is a whole-suite or runtime success certificate. Original25 Deferred row bytes, zero whole-row closures, `release_ready=false`, frontend baseline S and human/controller/manual/performance/ownership holds remain. Earlier sections retain their historical revision and as-of outcomes; the current c93 preparation section supersedes their former current-status wording.
+
 
 ## Why these corrections are necessary
 
@@ -394,11 +395,57 @@ Current native receipt `af3d11deeb6c8994cfd6a09fed1ce3a8aa4205335be21365448d3b24
 
 Distinct High actual-source qualification is pending. Root alone may later publish and admit one fresh exact-head ordinary full cohort under unchanged180s/30-minute/configured-retry/37-name limits. No consumed afe retry, primary-abort fix/cause, performance, new-head images, human/controller or release success is authorized or claimed here.
 
+## Current c93 complete-route mechanical budget preparation
+
+This continuation addresses an execution ceiling that stopped required coverage; it establishes no timeout, loading, DENIED, focus, SQL or primary-abort cause and no product performance fix. The existing representative pilot workload/threshold decision remains open. Fixture501, recurrence/byte safety caps and other epics' figures do not create a performance target.
+
+The ordinary c93 checkpoint's3969 unit passes and149 first-attempt smoke passes remain historical. The [c93 full run44492619468](https://github.com/rthunborg/Kopplas/actions/runs/44492619468) failed and is consumed: Dense timed out at180283/181289ms under its then-current180-second ceiling. Loading1 was observed at the first global deadline; the retry operation parameter remained unexposed. Those observations do not establish cause. Role INT001, its12 dependent cases, current child-cleanup flow and five initial-role steps were NOT RUN;21+8 role records provide no execution credit there. The actual image set is22/37, with15 missing. Neither prior afe Dense passes nor conserved source retags this current failure.
+
+### Bounded equivalent execution and unchanged criteria
+
+| Layer | Prepared release-validation value | Preserved ordinary/default value |
+| --- | --- | --- |
+| Dense006 existing callback only |360000ms, before its unchanged seed | Every other case remains180000ms |
+| Existing fixed General browser command |2400000ms | Smoke and DB child bounds remain1800000ms |
+| Existing e2e job |50 minutes only for explicit dispatch plus release_validation |45 minutes for ordinary events |
+| Root/cohort/resource boundary |60 minutes; at most2 resources | No increase or automatic retry ladder |
+
+These are mechanical execution ceilings, not substantive acceptance/performance criteria or a guarantee that the whole route fits. Existing15-second operation/assertion and30-second navigation limits remain. The full539 General cases,20 configured scheduling cases,501-record fixture,11 state tuples, four filters, exact projections/IDs/capacity, SQL/focus/denial/business assertions, initial/mounted/Date/own/payload/denied client10/12 plus independent native Request/input/body/cardinality gates, configured retries and37 capture IDs remain mandatory. No partition, skip, case removal, new diagnostic label or additional retry was introduced. A future admitted candidate must execute the entire required route, including the presently unexecuted role/dependent cases; reaching a revised ceiling still fails and stops within the same outer limits.
+
+The [workflow](../../.github/workflows/ci.yml), [fixed-argv runtime](../../scripts/ci/with-calendar-feed-runtime.mjs) and [Dense caller](../../tests/e2e/scheduling-views.atdd.e2e.spec.ts) implement only those mechanical deltas. Core independent High source review `8273c988c8bf2e546eb404f801aabe9a95d7a99719248f95c2ca9723fd988f86` qualified the frozen wrapper before express pin binding. The exact wrapper LF SHA-256 and active pin are `d9a01e97ab0da21bfbc11769698a8a429e75c7cdd6f9bff4e3075f86e2cad615`. The pin, source argv/selector checks and all historical expected digests remain strict.
+
+The [contract projection](../../tests/support/calendar-feed-ci-contract.ts) now applies its already-supported CRLF normalization before the new exact single-e2e budget inverse. LF/CRLF therefore recover the same historical contract; unknown, moved, missing, duplicated, reversed or foreign fragments still fail or remain visible to the unchanged historical hash. Four [negative consumers](../../tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts) retain identical invalid fixtures and unchanged assert.throws calls but expect the exact earlier `release budget exact e2e fragment` rejection: the invalid e2e runner and the Storage, audit and DB-startup fragments moved into its header. All77 assert.throws calls and component-specific command/job/cap/schema/native/security guard coverage remain. No validator was changed merely to restore undocumented diagnostic precedence. This CRLF/four-matcher completion remains pending narrow final High review.
+
+### Actual local evidence, without summed pass claims
+
+All commands below used the existing locked installation and explicit Node22.23.2, with source/extracted fake ports only. The runtime unit command is `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts`. Selected calls used its recorded test-name pattern; they are not full-file execution.
+
+| Actual attempt | Executed/reported result | Qualification and limitation |
+| --- | --- | --- |
+| Initial selected budget/runtime checks |9 executed:8 pass,1 fail,0 skip | New test incorrectly assumed key deletion after native failure; its expectation was corrected to preserve existing retained-key custody safety. Failure retained. |
+| Corrected selected budget/runtime checks |9 executed:9 pass,0 fail/skip | Fake child selector, bounds, native-error and cleanup behavior; not browser/performance credit. |
+| Old-pin strict ci-performance consumer |7 executed:5 pass,2 refused failures | Intentional old pin remained fail-closed until exact source review and express pin permission. Retained, not later relabeled. |
+| First post-pin seven-file historical batch |303 reported entries:294 pass,9 fail,0 skip |8 assertion failures plus1 module-bootstrap failure; not303 independent executed case bodies. Raw CRLF reached the new inverse before normalization. |
+| Corrected seven-file historical batch |307 executed:307 pass,0 fail/skip/bootstrap | Exact evidence reused after later matcher-only edits because contract bytes are identical; no new307-case execution claimed. |
+| CRLF-selected runtime/source batch |14 executed:12 pass,2 fail,0 skip | Two unchanged invalid fixtures already rejected, with earlier specific diagnostic categories. Retained. |
+| Complete runtime unit file, once |240 executed:236 pass,4 fail,0 skip/cancel/bootstrap | Two more moved-fragment diagnostic consumers plus two unchanged Windows migration/owner assertions failed. This whole-file result remains failed. |
+| After all four matcher adaptations |4 affected cases executed:4 pass,0 fail/skip | No whole-file rerun; do not synthesize238/240,240/240 or a full-pass claim. |
+| Final TypeScript and scoped ESLint |Exit0 for both | `node node_modules/typescript/bin/tsc --noEmit --incremental false`; scoped lint of the changed contract/unit file. |
+| Actual-source inverse/guard/binding proof |PASS | Exact four matcher inverse, identical invalid fixtures,77 throws, supported LF/CRLF projection, unchanged historical hash, five-code/base inverses and protected source; no native acceptance. |
+
+The seven strict files were acceptance-gate-report-validators, epic-11-pilot-ci-gate, ci-native-test-reports, fixed-chromium-application-admission, ci-performance, checkpoint-dispatch and auth-cleanup-collector under tests/unit. Their exact commands/results and the immutable failed attempts are bound in private `Dense-complete-route-budget-author-c93` evidence. The public counts, commands, source links and limitations above stand independently of that private storage.
+
+The two Windows migration assertions remain FAILED locally. Existing clean-D `1c53833c70ad61a26cbfbc117a040b1f99d33f2e` baseline proof `d0b1259763f05fbfd4eef19557034a38957b11789ca53dae9e16761f0ed2fb18` binds an actual2-failure/0-pass/0-skip reproduction, qualified TAP `6ad82f76a3b4b8a0dd301e604526917d9110ec1c73bb7dd9d2c13d9bcfbb8a33`. Current entire failing test calls, their three direct extraction helpers, both migration fixtures and calendar-feed-atdd source are byte-identical to that retained baseline. This establishes attribution, not a waiver or Linux pass. No migration, old assertion or fixture normalization changed, and no fallback P run was executed. Final canonical Linux ordinary CI must execute and pass every mandatory unchanged assertion before qualification.
+
+Raw audit findings/native exits, strict lower-severity coherence, exact graph/severe/malformed refusals and the historical2026-11-21T00:00:00Z exception expiry remain unchanged. A below-High disposition is not a clean audit, installed fix or renewal. DB-startup closed-facts bounds, setup/security/privacy, original Auth/SQL/Booking cleanup, key custody and teardown limitations are also unchanged. Current source preparation proves no physical absence or future cleanup success.
+
+Root retains final equality/readback, narrow independent actual-source High review, normal publication and separately admitted exact-head execution. Manual representative performance, physical phone/daylight/one-hand/assistive review, image/state review, human/controller acceptance and all25 release conditions remain open. Main ordering P to qualified W close to F sync, paused product writers, production/cutover, CRM/PR151, native claims and ownership holds remain; no future SHA/run or release outcome is invented here.
+
 ## Frontend and final-head qualification
 
 The actual Kopplas DESIGN/EXPERIENCE spines, Phase B UX and existing13.2/15.1/16.4 contracts govern. No promoted Figma reference was supplied for this bounded change. Existing spacing/typography are reused; no redesign, new tokens, state-forcing hook or framework is introduced. Project connected360x640 governs the phone viewport.
 
-Root owns distinct High review limited to the latest changed case and unresolved consequential findings; the three-round broad review cap remains intact. Prior diagnostic/capture/no-op, compatibility, qualified P and published b154 source records remain bound to their own revisions. The earlier opt-in retirement/lifecycle handoff/helper/INT001/unit changes retain their independently qualified076 provenance. The Dense gate retains its reviewed afe provenance and actual two-occurrence pass. The latest owned-child release/fixed-step/append-only-regression change and placed note require distinct High actual-source qualification; no broad historical pass or duplicate review is added. This local freeze grants no publication/CI, acceptance or method expansion. Current completion/controller evidence, applicable final-head runtime/image qualification and separate Root purpose admission remain required. The existing real scheduling regression at `tests/e2e/scheduling-views.atdd.e2e.spec.ts:292`, all20 configured scheduling cases/11 captures, seven diagnosed login cases, two workspace cases and amended D4 case still require actual appropriate new-head execution. Retain all first attempts/retries/skips/interruption/failures and cleanup/key-custody receipts; source corrections and local ports waive none of them.
+Root owns distinct High review limited to the latest changed case and unresolved consequential findings; the three-round broad cap remains intact. Prior source/native/capture records retain their own revisions. The current c93-based mechanical budget, CRLF consumer correction, four finite negative-message adaptations and this placed note require narrow final actual-source qualification. No broad historical review or duplicate review is added. Frontend baseline remains S `fe282c326b208788ef94a3717092057ab7e2e91e`; its gate APPLIES to the SchedulingWorkspace and NotificationPreferences app deltas introduced after S, even though this latest batch changes verification wiring only. Applicable exact-head runtime/images, completion/controller evidence and separate Root purpose admission remain required. The original selected-interval browser regression, all20 scheduling cases,37 capture IDs, role/dependent cases and every retained business/fatal/privacy/cleanup assertion still require their actual qualified-head outcomes. Preserve all first attempts, retries, skips, interruptions, failures and key-custody/teardown receipts; local source proofs waive none.
 
 The existing owned-connected-context test at `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:792` already captures authenticated GET200/no-alert/default preferences at1280x800 and360x640, named `owned-original-notification-preferences-real-defaults-{viewport}-released-after-auth-delete`. It must run on the final combined head and depict the new groups. No capture file was changed. Existing screenshots from an older head cannot be relabeled. Pending GET still displays defaults, failed GET/PUT still displays the existing alert, and absent stored rows still resolve defaults; local probes preserve those behaviors without inventing rendered-state passes. Independent image/state review and applicable authenticated human acceptance remain unearned at source freeze.
 
@@ -442,30 +489,32 @@ Main ordering/readmission remains Coordinator-held. Product work remains paused 
 
 ## Suggested Review Order
 
-Author: `/root/e15_release_wiring_author_high`, explicit Sol High. Refreshed after all three code paths froze. Review the exact child-cleanup correction and fixed context/latest regressions; Dense and earlier business/diagnostic contracts remain protected. Phase context supplies no abort-origin or native-success claim.
+Author: `/root/e15_release_wiring_author_high`, explicit Sol High. Refreshed after the five code/pin postimages froze. This guide covers the six-path mechanical-budget preparation and necessary consumer compatibility; older business, role, diagnostic and cleanup implementations retain their historical evidence and limits.
 
-### Own the child registration before removing its handler
+### Follow the explicit release entry through bounded execution
 
-Invocation can install before acknowledgement. Exact release waits for settlement and distinguishes proven never-invoked cancellation from failure or closed/unreleased state.
+The existing operator entry selects a larger finite release job and fixed General child budget. Dense alone changes its case ceiling; every substantive/per-operation criterion and ordinary default remains.
 
-- `tests/e2e/support/scheduling-views-atdd.ts:185` — `this.roleRegistrationState = "pending";`: records possible installation before invocation.
-- `tests/e2e/support/scheduling-views-atdd.ts:114` — `releaseOwnRoleRoute`: caches exact ordered handler release.
-- `tests/e2e/support/scheduling-views-atdd.ts:129` — `owned.unroute("**/*", this.readRoute)`: requires confirmed exact removal.
+- `.github/workflows/ci.yml:830` — `timeout-minutes:`: limits the explicit release job to50 minutes and ordinary jobs to45.
+- `scripts/ci/with-calendar-feed-runtime.mjs:739` — `2_400_000`: selects40-minute release or30-minute smoke child bounds.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:377` — `testInfo.setTimeout(360_000);`: changes only Dense before its unchanged seed.
 
-### Close only after release settles while keeping data independent
+### Keep the source pin and finite historical inverse strict
 
-Removal rejection still attempts the cached close and retains the earliest failure. Pending transport never becomes success or prevents original dependent data cleanup.
+Exact source review precedes pin binding. Supported CRLF normalization restores existing caller compatibility while unknown fragments and unrelated bytes remain visible to strict guards.
 
-- `tests/e2e/support/scheduling-views-atdd.ts:143` — `releaseOwnRoleRoute()`: precedes the cached child close.
-- `tests/e2e/support/scheduling-views-atdd.ts:410` — `this.roleData ??=`: preserves independent once-only data cleanup.
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:503` — `pending exact unroute`: checks pending release and independent data.
+- `tests/support/calendar-feed-ci-contract.ts:7` — `wrapperSha256`: binds the exact reviewed d9a wrapper.
+- `tests/support/calendar-feed-ci-contract.ts:50` — `workflow = workflow.replaceAll`: normalizes supported line endings before matching.
+- `tests/support/calendar-feed-ci-contract.ts:54` — `release budget exact e2e fragment`: refuses unqualified job-header drift.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:4515` — `complete-route budget CRLF callers`: verifies actual LF/CRLF historical projection and strict drift behavior.
 
-### Preserve the native navigation and report only its active boundary
+### Retain invalid fixtures, cleanup safety and truthful test outcomes
 
-Literal standard steps surround the same awaits and guards; original firstFailure and independent client/native checks remain. Their titles identify an active rethrow boundary, not the asynchronous source.
+Four matchers identify the same invalid fixtures' exact earlier rejection; no assertion is removed. The actual full-file failure and separately passing affected cases remain distinct, and unchanged Windows failures still need canonical Linux execution.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1340` — `Role initial required flow`: encloses the unchanged initial awaits.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1347` — `targetAssociation.observe(originalNavigation)`: retains the exact original navigation Promise.
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:567` — `installed standard step`: checks installed rethrow and nested serialization.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:50` — `release budget exact e2e fragment`: retains invalid-runner rejection.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:124` — `release budget exact e2e fragment`: retains moved-Storage rejection.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:4264` — `release budget exact e2e fragment`: retains moved-audit rejection.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:4415` — `release budget exact e2e fragment`: retains moved-startup rejection.
 
-Focused41 cases pass (original29 plus12 appended), as do five separate private actual-fixture checks and type/scoped lint. Original29/16 prefix, Dense, all business/diagnostic/capture contracts and38 protected bindings are exact; no old result is summed or retagged. The private source-GO display error has0 proof credit. Current afe role failure,13 missing images, original25 Deferred rows/0 whole-row passes, frontendS applicability, key/physical cleanup, MyDay flaky/release history and human/controller/manual/hosted/cross-epic holds remain. Root alone controls publication and separately admitted full execution.
+Actual local evidence is recorded separately above: selected9 pass after its retained8P1F first attempt; old-pin5P2refused; post-pin303 reported294P9F including bootstrap; corrected307 pass reused under identical contract bytes; complete Windows240=236P4F; later four affected cases4P. Final type/scoped lint and actual-source/inverse checks pass. No sum is a whole-file pass, native browser result or performance certificate. Existing cleanup failure/retained-key semantics are unchanged. The current c93 full failure, Role+12/five initial steps NOT RUN,22/37 images with15 missing, original25 Deferred rows/zero closures, frontendS applicability, raw audit/expiry, physical cleanup/key custody, prior MyDay flaky evidence and human/controller/manual/cross-epic holds remain. Root alone carries subsequent review/publication and separately admitted execution.

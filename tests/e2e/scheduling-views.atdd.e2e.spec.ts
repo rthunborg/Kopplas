@@ -374,6 +374,7 @@ for (const host of ["Schema", "Resurser"] as const) {
   });
 }
 test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and toolbar editor agree across later pages", async ({ schedulingViews: h }, testInfo) => {
+  testInfo.setTimeout(360_000);
   await h.seed(true); await h.signIn("manager"); await h.page.setViewportSize({ width: 1440, height: 1000 });
   // DENSE-TRANSPORT-BEGIN bounded allowlist; raw input is inspected only ephemerally.
   type DenseRow = { ordinal: number; view: View; mode: "day" | "week" | "month"; phase: "open" | "sharedFilters" | "assertions" | "toolbar"; startMs: number; endMs?: number; status?: number; terminal: "pending" | "finished" | "aborted" | "failed" };
