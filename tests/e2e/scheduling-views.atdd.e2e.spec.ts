@@ -4,6 +4,7 @@ import { test, expect, interval, DATE, type View, type Interval, type Scheduling
 import type { Locator, Page, TestInfo } from "@playwright/test";
 import { adminQuery } from "../factories/admin-sql";
 import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import path from "node:path";
 import playwrightPackage from "@playwright/test/package.json";
 import * as lifecycle from "./support/scheduling-lifecycle-metadata";
@@ -1714,7 +1715,45 @@ for (const host of ["Schema", "Resurser"] as const) for (const operation of ["mo
     }
   });
 }
-test("[P1] 15.1-E2E-008 AC6 arbetsroll/no-role lanes, multi-assignee rows and current reassignment lifecycle", async ({ schedulingViews: h }) => {
+
+// Only the qualified empty-phone producer changes lineage; existing Role recorder is inherited unchanged.
+const ownedRetirementTest = roleResponseTest.extend<{ schedulingViews: SchedulingViewsHarness }>({
+  schedulingViews: async ({ schedulingViews: h }, provide, testInfo) => {
+    const retirement = h.prepareOwnedEmptyPhone(body => testInfo.attach("scheduling-empty-phone", { body, contentType: "image/png" }));
+    let present = false, error: unknown;
+    try { await provide(h); } catch (failure) { present = true; error = failure; }
+    await retirement.complete({ present, error, passed: testInfo.status === "passed" && testInfo.errors.length === 0 });
+  },
+});
+
+
+/** Arm inside the original test runnable, not a potentially paused fixture-setup slot. */
+function ownedExpiryBody(run: (fixtures: { schedulingViews: SchedulingViewsHarness }, info: TestInfo) => Promise<void>) {
+  return async ({ schedulingViews: h }: { schedulingViews: SchedulingViewsHarness }, info: TestInfo) => {
+    const fixtures = { schedulingViews: h };
+    try {
+      type Slot = { timeout: number; elapsed: number };
+      type Manager = { defaultSlot: () => Slot; currentSlotDeadline: () => number; _running?: { slot: Slot; start: number; runnable: { type: string; fixture?: unknown } } };
+      const manager = (info as unknown as { _timeoutManager?: Manager })._timeoutManager;
+      if (playwrightPackage.version !== "1.61.1" || !manager || typeof manager.defaultSlot !== "function" || typeof manager.currentSlotDeadline !== "function") throw new Error("Owned scheduling expiry pinned API unavailable.");
+      const slot = manager.defaultSlot(), running = manager._running;
+      if (!running || running.slot !== slot || running.runnable.type !== "test" || running.runnable.fixture !== undefined || slot.timeout !== 180_000 || !Number.isFinite(slot.elapsed) || slot.elapsed < 0 || !Number.isFinite(running.start)) throw new Error("Owned scheduling expiry functional slot unavailable.");
+      const requireRoot = createRequire(path.join(process.cwd(), "package.json"));
+      const requireTest = createRequire(requireRoot.resolve("@playwright/test/package.json"));
+      const requirePlaywright = createRequire(requireTest.resolve("playwright/package.json"));
+      const clock = requirePlaywright("playwright-core/lib/coreBundle").iso.monotonicTime as () => number;
+      if (typeof clock !== "function") throw new Error("Owned scheduling expiry clock unavailable.");
+      const deadline = manager.currentSlotDeadline();
+      if (deadline !== running.start + (slot.timeout - slot.elapsed)) throw new Error("Owned scheduling expiry deadline ownership unavailable.");
+      fixtures.schedulingViews.armOwnedEmptyPhoneExpiry(deadline, clock, (callback, delay) => setTimeout(callback, delay), handle => clearTimeout(handle as ReturnType<typeof setTimeout>));
+      const value = await run(fixtures, info);
+      fixtures.schedulingViews.finishOwnedEmptyPhoneFunctional();
+      return value;
+    } catch (error) { fixtures.schedulingViews.failOwnedEmptyPhone(error); throw error; }
+  };
+}
+
+ownedRetirementTest("[P1] 15.1-E2E-008 AC6 arbetsroll/no-role lanes, multi-assignee rows and current reassignment lifecycle", ownedExpiryBody(async ({ schedulingViews: h }) => {
   await h.seed(); await h.signIn("manager"); await h.open("Team");
   const roleLane = h.page.getByRole("heading", { name: h.scenario.description, exact: true }).locator("..");
   expect(await h.visibleIds(roleLane)).toEqual([h.ids.role, h.ids.proposal, h.ids.collision].sort());
@@ -1744,7 +1783,7 @@ test("[P1] 15.1-E2E-008 AC6 arbetsroll/no-role lanes, multi-assignee rows and cu
     await expect.poll(() => h.visibleIds(lane)).toEqual(expected ? [h.ids.inactive] : []);
     if (!expected) await expect(lane).toContainText("Inga bokningar behöver omfördelas.");
   }
-});
+}));
 
 test("[P1] 15.1-COMP-001 AC3 toolbar preferences isolate user/tenant/view and reset corrupt/unavailable storage", async ({ schedulingViews: h, resourcePage: page }) => {
   await h.seed(); await h.open("Schema", "day"); await h.filter("Person", h.people[0]!); await h.filter("Jobb", h.scenario.jobId);

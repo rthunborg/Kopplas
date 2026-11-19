@@ -206,7 +206,7 @@ function ownedBookingPorts(options: { unroute?: () => Promise<void>; sqlFailure?
   const file = parsed(support + "booking-editor-atdd.ts");
   const fn = file.statements.find((n): n is ts.FunctionDeclaration => ts.isFunctionDeclaration(n) && n.name?.text === "bindBookingEditorHarness");
   assert.ok(fn?.body);
-  const selected = new Set(["deferred", "releases", "pendingRoutes", "handlerCompletions", "transportOptIn", "transportRetirement", "hasOwnedFailure", "retainOwnedFailure", "retireTransport", "transportDiagnostics", "previewFetchCount", "confirmations", "transports", "observedSaveTimeout", "optionsFailure", "saveHold", "saveFailure", "saveLoss", "previewFailure", "previewRace", "actionInput", "routeWork", "routeHandler", "cleanupScenario"]);
+  const selected = new Set(["deferred", "releases", "pendingRoutes", "handlerCompletions", "transportOptIn", "transportRetirement", "ownedRetirementOnly", "hasOwnedFailure", "retainOwnedFailure", "retireTransport", "transportDiagnostics", "previewFetchCount", "confirmations", "transports", "observedSaveTimeout", "optionsFailure", "saveHold", "saveFailure", "saveLoss", "previewFailure", "previewRace", "actionInput", "routeWork", "routeHandler", "cleanupScenario"]);
   const declarations = fn.body.statements.filter(n => ts.isVariableStatement(n) && n.declarationList.declarations.some(d => selected.has(d.name.getText(file)))).map(n => n.getText(file)).join("\n");
   const returned = fn.body.statements.find((n): n is ts.ReturnStatement => ts.isReturnStatement(n) && !!n.expression && ts.isObjectLiteralExpression(n.expression));
   assert.ok(returned?.expression && ts.isObjectLiteralExpression(returned.expression));
@@ -725,4 +725,279 @@ test("actual lifecycle caller reopens Resources after every unchanged tuple befo
     if(mode==="positive"||mode==="pending"){await run();assert.deepEqual(tuples,expectedTuples.map(([status,archived])=>[status,archived]));assert.equal(events.filter(event=>event==="open:Resurser").length,5);assert.equal(events.filter(event=>event==="empty").length,2);const starts=events.flatMap((event,index)=>event==="lifecycle"?[index]:[]);for(let n=0;n<5;n++){const segment=events.slice(starts[n],starts[n+1]??events.length);assert.deepEqual(segment.slice(0,3),["lifecycle","open:Resurser","poll"]);assert.ok(segment.includes("ids"));assert.equal(segment.includes("empty"),!expectedTuples[n]![2]);}}
     else await assert.rejects(run(),error=>["read-error","open-error","lifecycle-error","poll-error"].includes(mode)?error===sentinel:true);
   }
+});
+
+
+// E2E008 owned empty-phone: actual proposed definitions, never browser/native credit.
+function ownedPhoneDefinitions() {
+  const result: string[] = [];
+  for (const [fileName, name] of [[support + "booking-editor-atdd.ts", "createOwnedBookingSeedAdmission"], [support + "booking-editor-atdd.ts", "createOwnedBookingRetirement"], [support + "scheduling-views-atdd.ts", "createOwnedSchedulingSeedAdmission"], [support + "scheduling-views-atdd.ts", "createSchedulingEmptyPhoneRetirement"]]) {
+    const file = parsed(fileName!), matches = file.statements.filter(node => ts.isFunctionDeclaration(node) && node.name?.text === name);
+    assert.equal(matches.length, 1, name); result.push(matches[0]!.getText(file));
+  }
+  return result.join("\n");
+}
+function ownedPhonePorts(faults: Record<string, () => Promise<unknown>> = {}, autoArm = true) {
+  const api = evaluate("(()=>{" + ownedPhoneDefinitions() + ";return {createOwnedBookingSeedAdmission,createOwnedSchedulingSeedAdmission,createOwnedBookingRetirement,createSchedulingEmptyPhoneRetirement};})()", { Promise, Buffer, Set, Error });
+  const events: string[] = [], retained: Buffer[] = [];
+  const png = Buffer.alloc(32, 7); Buffer.from("89504e470d0a1a0a", "hex").copy(png); png.writeUInt32BE(360, 16); png.writeUInt32BE(640, 20);
+  const invoke = (label: string): Promise<any> => { events.push(label); return faults[label]?.() ?? Promise.resolve(); }; // eslint-disable-line @typescript-eslint/no-explicit-any
+  const file = parsed(support + "booking-editor-atdd.ts"), factory = file.statements.find((node): node is ts.FunctionDeclaration => ts.isFunctionDeclaration(node) && node.name?.text === "bindBookingEditorHarness"); assert.ok(factory?.body);
+  const returned = factory.body.statements.find((node): node is ts.ReturnStatement => ts.isReturnStatement(node) && !!node.expression && ts.isObjectLiteralExpression(node.expression)); assert.ok(returned?.expression && ts.isObjectLiteralExpression(returned.expression));
+  const methods = ["ownedRetirementCleanup", "dispose"].map(name => { const found = returned.expression!.getChildren(file).flatMap(node => node.getChildren(file)).filter(node => ts.isMethodDeclaration(node) && node.name.getText(file) === name); assert.equal(found.length, 1, name); return found[0]!.getText(file); }).join(",");
+  let retirement: any, transport: Promise<void> | undefined; // eslint-disable-line @typescript-eslint/no-explicit-any
+  const original = evaluate("(()=>{let ownedRetirementOnly,ownedRetirementSeed,finalData,hasOwnedFailure=false,ownedFailure;const transportOptIn=true,transportDone=true;const retainOwnedFailure=e=>{if(!hasOwnedFailure){hasOwnedFailure=true;ownedFailure=e;}};return {" + methods + "};})()", {
+    createOwnedBookingSeedAdmission: (remove: (id: string) => Promise<void>) => { const ledger=api.createOwnedBookingSeedAdmission(remove); ledger.begin(); const ops=["inert-owned-a","inert-owned-b"].map((id,index)=>ledger.acquire(index,async()=>({data:{user:{id}}})).then(()=>ledger.link(index))); void Promise.allSettled(ops).then(()=>ledger.finish()); return ledger; }, createOwnedBookingRetirement: api.createOwnedBookingRetirement, cleanupScenario: () => invoke("booking-sql"), users: ["inert-owned-a", "inert-owned-b"], deleteAuthUser: (id: string, mode?: string) => { if (retirement) assert.equal(mode, "redacted"); return invoke(id.endsWith("a") ? "booking-auth-0" : "booking-auth-1"); },
+    lifecycle: { mark() {} }, page: {}, retireTransport: () => transport ??= invoke("booking-transport"), Promise, Error,
+  });
+  const ports = {
+    retireBookings: () => invoke("retire-bookings"), scene: async () => { await invoke("scene"); return png; },
+    releaseTransport: () => invoke("release"), closeContext: () => invoke("close"), schedulingSql: () => invoke("scheduling-sql"),
+    schedulingAuth: [0, 1, 2].map(index => () => invoke("scheduling-auth-" + index)),
+    ordinaryBookingCleanup: () => original.dispose(), booking: (permitted: () => boolean) => { events.push("booking-handle"); retirement = original.ownedRetirementCleanup(permitted); return retirement; },
+    attach: async (body: Buffer) => { events.push("attach"); if (faults["attach-before"]) await invoke("attach-before"); retained.push(body); await invoke("attach-result"); },
+  };
+  const controller = api.createSchedulingEmptyPhoneRetirement(ports); if (autoArm) controller.armExpiry(180000, () => 0, () => 1, () => {});
+  return { controller, api, original, png, events, retained, retirement: () => retirement };
+}
+const ownedPhoneTurn = () => new Promise<void>(resolve => setImmediate(resolve));
+function ownedPhoneDeferred() { let resolve!: () => void, reject!: (error: unknown) => void; const promise = new Promise<void>((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; }
+test("owned empty phone new Booking cleanup caches every private obligation and preserves default old modes", async () => {
+  const f = ownedPhonePorts(), events: string[] = [], pending = ownedPhoneDeferred();
+  const handle: any = f.api.createOwnedBookingRetirement(() => { events.push("sql"); return pending.promise; }, ["synthetic-a", "synthetic-b"], (id: string) => { events.push(id); handle.startRemaining(); return Promise.resolve(); }, () => true); // eslint-disable-line @typescript-eslint/no-explicit-any
+  const sql = handle.startSql(); assert.equal(sql, handle.startSql()); handle.startRemaining(); handle.startRemaining();
+  assert.deepEqual(events, ["sql", "synthetic-a", "synthetic-b"]); assert.throws(() => handle.requireComplete()); pending.resolve(); await handle.wait(); handle.requireComplete(); assert.equal(events.length, 3); assert.equal(JSON.stringify(handle).includes("synthetic-a"), false);
+  for (const carrier of [0, false, {}]) {
+    const later = ownedPhoneDeferred(), calls: string[] = [];
+    const h = f.api.createOwnedBookingRetirement(() => { calls.push("sql"); return later.promise; }, ["a", "b"], (id: string) => { calls.push(id); return Promise.reject(id === "a" ? carrier : "secondary"); }, () => true);
+    void h.startSql(); h.startRemaining(); await ownedPhoneTurn(); assert.deepEqual(calls, ["sql", "a", "b"]); later.reject(carrier); await assert.rejects(h.wait(), (error: unknown) => error === carrier);
+  }
+  for (const fault of ["sql", "a", "b"]) {
+    const sentinel = {}, calls: string[] = [], h = f.api.createOwnedBookingRetirement(() => { calls.push("sql"); if (fault === "sql") throw sentinel; return Promise.resolve(); }, ["a", "b"], (id: string) => { calls.push(id); if (fault === id) throw sentinel; return Promise.resolve(); }, () => true);
+    void h.startSql(); h.startRemaining(); await assert.rejects(h.wait(), (error: unknown) => error === sentinel); assert.deepEqual(calls, ["sql", "a", "b"]);
+  }
+  const fixed = ownedPhoneDeferred(), sqlCarrier = {}, authCarrier = false;
+  const ordered = f.api.createOwnedBookingRetirement(() => fixed.promise, ["a", "b"], async () => { throw authCarrier; }, () => true);
+  void ordered.startSql(); ordered.startRemaining(); await ownedPhoneTurn(); fixed.reject(sqlCarrier);
+  await assert.rejects(ordered.wait(), (error: unknown) => error === sqlCarrier);
+  let deletes = 0; const denied = f.api.createOwnedBookingRetirement(async () => {}, ["a", "b"], async () => { deletes++; }, () => false); void denied.startSql(); assert.throws(() => denied.startRemaining()); assert.equal(deletes, 0);
+  const originalFile = source(support + "booking-editor-atdd.ts"); assert.ok(originalFile.includes('if (transportOptIn) {')); assert.ok(originalFile.includes('for (const id of users) { try { await deleteAuthUser(id); } catch (error) { retainOwnedFailure(error); } }'));
+});
+test("owned empty phone actual retirement positive path and phase failures keep publication truthful", async () => {
+  const positive = ownedPhonePorts(); await positive.controller.complete({ present: false, passed: true }); positive.controller.parentDispose();
+  assert.equal(positive.controller.status().done, true); assert.equal(positive.retained.length, 1); assert.equal(positive.retained[0], positive.png); assert.equal(positive.png[31], 7);
+  const all = ["scheduling-auth-0", "scheduling-auth-1", "scheduling-auth-2", "booking-auth-0", "booking-auth-1"];
+  for (const name of all) { assert.equal(positive.events.filter(event => event === name).length, 1); assert.ok(positive.events.indexOf(name) < positive.events.indexOf("attach")); }
+  assert.ok(positive.events.indexOf("booking-handle") < positive.events.indexOf("booking-sql")); assert.ok(positive.events.indexOf("close") < positive.events.indexOf("booking-auth-0")); assert.ok(positive.events.indexOf("booking-sql") < positive.events.indexOf("booking-auth-0"));
+  for (const fault of ["retire-bookings", "scene", "release", "close", "scheduling-sql", ...all, "booking-sql", "attach-before", "attach-result"]) {
+    const f = ownedPhonePorts({ [fault]: async () => { throw false; } }); await assert.rejects(f.controller.complete({ present: false, passed: true }));
+    await ownedPhoneTurn(); assert.throws(() => f.controller.parentDispose()); await ownedPhoneTurn();
+    if (fault === "attach-result" || fault === "attach-before") { assert.equal(f.retained.length, fault === "attach-result" ? 1 : 0); assert.equal(f.controller.status().publishUnknown, true); }
+    else assert.equal(f.retained.length, 0);
+    if (!["retire-bookings", "scene"].includes(fault)) assert.equal(f.png.every(value => value === 0), true);
+    for (const name of all) assert.equal(f.events.filter(event => event === name).length, fault === "close" && name.startsWith("booking-auth") ? 0 : 1, fault + ":" + name);
+    assert.equal(f.events.filter(event => event === "close").length, 1);
+  }
+  for (const carrier of [0, false, {}]) {
+    const f = ownedPhonePorts(); await assert.rejects(f.controller.complete({ present: true, error: carrier, passed: false }), (error: unknown) => error === carrier); await ownedPhoneTurn(); assert.throws(() => f.controller.parentDispose(), (error: unknown) => error === carrier); assert.equal(f.retained.length, 0);
+  }
+});
+test("owned empty phone pending cancellation starts eligible independent cleanup and contains late publication", async () => {
+  for (const held of ["retire-bookings", "scene", "release", "close", "scheduling-sql", "booking-sql", "scheduling-auth-0", "booking-auth-0", "booking-auth-1", "attach-result"]) {
+    const gate = ownedPhoneDeferred(), f = ownedPhonePorts({ [held]: () => gate.promise });
+    const work = f.controller.complete({ present: false, passed: true }); void work.catch(() => {}); await ownedPhoneTurn();
+    assert.equal(f.retained.length, held === "attach-result" ? 1 : 0); assert.throws(() => f.controller.parentDispose());
+    const status = f.controller.status(); assert.equal(status.cancelled, true); if (held !== "retire-bookings" && held !== "scene") assert.equal(f.png.every(value => value === 0), true);
+    if (["scheduling-sql", "booking-sql", "booking-auth-0", "booking-auth-1"].includes(held)) for (const name of ["scheduling-auth-0", "scheduling-auth-1", "scheduling-auth-2", "booking-auth-0", "booking-auth-1"]) assert.equal(f.events.filter(event => event === name).length, 1, held + name);
+    gate.resolve(); await assert.rejects(work); await ownedPhoneTurn();
+    assert.equal(f.events.filter(event => event === "close").length, 1); assert.equal(f.retained.length, held === "attach-result" ? 1 : 0); if (held === "retire-bookings") { assert.equal(f.events.includes("scene"), false); assert.equal(f.png[31], 7); } else assert.equal(f.png.every(value => value === 0), true, held);
+    assert.throws(() => f.controller.parentDispose()); assert.equal(f.events.filter(event => event === "attach").length, held === "attach-result" ? 1 : 0);
+  }
+});
+test("owned empty phone exact alias and scene wiring retain Dense Role original case and no automatic recorder", async () => {
+  const file = parsed(spec), aliases = file.statements.filter(node => ts.isVariableStatement(node) && node.declarationList.declarations.some(decl => decl.name.getText(file) === "ownedRetirementTest")); assert.equal(aliases.length, 1);
+  const decl = (aliases[0] as ts.VariableStatement).declarationList.declarations[0]!, expression = decl.initializer as ts.CallExpression; assert.equal(expression.expression.getText(file), "roleResponseTest.extend");
+  const fixture = expression.arguments[0] as ts.ObjectLiteralExpression; assert.equal(fixture.properties.length, 1); assert.equal(fixture.properties[0]!.name!.getText(file), "schedulingViews");
+  let cases = 0; const walk = (node: ts.Node) => { if (ts.isCallExpression(node) && node.expression.getText(file) === "ownedRetirementTest") { cases++; assert.ok(node.arguments[0]!.getText(file).includes("15.1-E2E-008")); } ts.forEachChild(node, walk); }; walk(file); assert.equal(cases, 1);
+  const events: string[] = [], sentinel = {}, controller = { complete: async (state: { present: boolean; error: unknown; passed: boolean }) => { events.push("complete"); assert.equal(state.present, true); assert.equal(state.error, sentinel); throw state.error; } };
+  const run = evaluate((fixture.properties[0] as ts.PropertyAssignment).initializer.getText(file), {});
+  await assert.rejects(run({ schedulingViews: { prepareOwnedEmptyPhone: () => { events.push("prepare"); return controller; } } }, async () => { events.push("body"); throw sentinel; }, { status: "failed", errors: [{}], attach: async () => { events.push("attach"); } }), (error: unknown) => error === sentinel); assert.deepEqual(events, ["prepare", "body", "complete"]);
+  const supportSource = source(support + "scheduling-views-atdd.ts");
+  assert.ok(supportSource.includes('select count(*)::text as count from public.bookings where tenant_id=$1')); assert.ok(supportSource.includes('await status.selectOption("all")')); assert.ok(supportSource.includes('bounds.x + bounds.width > 360')); assert.ok(supportSource.includes('id => deleteAuthUser(id, "redacted")')); assert.ok(supportSource.includes('await this.ownedEmptySeed!.auth(index)'));
+});
+
+
+function ownedExpiryFakeClock(start = 1_000) {
+  let now = start, serial = 0;
+  const active = new Map<object, { at: number; callback: () => void; kind: string }>(), records: { handle: object; kind: string; delay: number; clears: number }[] = [];
+  const set = (kind: string, callback: () => void, delay: number) => { const handle = { id: ++serial }; active.set(handle, { at: now + delay, callback, kind }); records.push({ handle, kind, delay, clears: 0 }); return handle; };
+  const clear = (handle: object) => { active.delete(handle); const record = records.find(row => row.handle === handle); if (record) record.clears++; };
+  return { now: () => now, set, clear, records, active, advance: async (to: number) => {
+    assert.ok(to >= now);
+    for (;;) { const due = [...active].filter(([, value]) => value.at <= to).sort((a, b) => a[1].at - b[1].at)[0]; if (!due) break; now = due[1].at; active.delete(due[0]); due[1].callback(); await ownedPhoneTurn(); }
+    now = to; await ownedPhoneTurn();
+  } };
+}
+async function ownedExpiryPinnedPorts(clock: ReturnType<typeof ownedExpiryFakeClock>) {
+  const { createRequire } = await import("node:module"), requireRoot = createRequire(process.cwd() + "/package.json"), requireTest = createRequire(requireRoot.resolve("@playwright/test/package.json")), requirePinned = createRequire(requireTest.resolve("playwright/package.json")), iso = requirePinned("playwright-core/lib/coreBundle").iso;
+  const TimeoutManager = evaluate(roleCompatibilityWorkerClass("TimeoutManager"), { ManualPromise2: iso.ManualPromise, monotonicTime: clock.now, kMaxDeadline: 2147483647, setTimeout: (fn: () => void, delay: number) => clock.set("framework", fn, delay), clearTimeout: clock.clear, debugTest: { enabled: false }, colors: { red: (value: string) => value }, TimeoutManagerError: class extends Error {} });
+  const Fixture = evaluate(roleCompatibilityWorkerClass("Fixture"), {});
+  const file = parsed(spec), found = file.statements.filter(node => ts.isFunctionDeclaration(node) && node.name?.text === "ownedExpiryBody"); assert.equal(found.length, 1);
+  const wrap = evaluate(found[0]!.getText(file), { playwrightPackage: { version: "1.61.1" }, createRequire: () => Object.assign(() => ({ iso: { monotonicTime: clock.now } }), { resolve: () => "inert-pinned-package" }), path: { join: (...parts: string[]) => parts.join("/") }, process: { cwd: () => "inert" }, setTimeout: (fn: () => void, delay: number) => clock.set("expiry", fn, delay), clearTimeout: clock.clear, Error, Number, Math });
+  return { TimeoutManager, Fixture, wrap };
+}
+test("owned empty phone primary finite expiry survives pinned skipped teardown without manual parent fallback", async () => {
+  const clock = ownedExpiryFakeClock(), pinned = await ownedExpiryPinnedPorts(clock), manager = new pinned.TimeoutManager(180_000);
+  manager.defaultSlot().elapsed = 20_000;
+  const gate = ownedPhoneDeferred(), f = ownedPhonePorts({ "booking-sql": () => gate.promise }, false);
+  const h = { armOwnedEmptyPhoneExpiry: (...args: unknown[]) => f.controller.armExpiry(...args), failOwnedEmptyPhone: (error: unknown) => f.controller.failOriginal(error), finishOwnedEmptyPhoneFunctional: () => f.controller.markOriginalComplete() };
+  const info = { _timeoutManager: manager }, events: string[] = [];
+  const body = pinned.wrap(async () => { events.push("original-body"); });
+  await manager.withRunnable({ type: "test" }, () => body({ schedulingViews: h }, info));
+  assert.deepEqual(events, ["original-body"]);
+  const timer = clock.records.filter(row => row.kind === "expiry"); assert.equal(timer.length, 1); assert.equal(timer[0]!.delay, 160_000);
+  const work = f.controller.complete({ present: false, passed: true }); void work.catch(() => {}); await ownedPhoneTurn();
+  await clock.advance(160_999); assert.equal(f.controller.status().cancelled, false); assert.equal(f.png[31], 7); assert.equal(f.events.includes("booking-auth-0"), false);
+  await clock.advance(161_000); assert.equal(f.controller.status().cancelled, true); assert.equal(f.png.every(value => value === 0), true); assert.equal(f.retained.length, 0); assert.equal(timer[0]!.clears, 1);
+  for (const name of ["scheduling-auth-0", "scheduling-auth-1", "scheduling-auth-2", "booking-auth-0", "booking-auth-1"]) assert.equal(f.events.filter(event => event === name).length, 1, name);
+  let callbacks = 0;
+  for (const name of ["schedulingViews-parent", "bookingEditor-parent"]) {
+    const parent = Object.create(pinned.Fixture.prototype); parent._teardownDescription = { title: name }; parent._deps = new Set(); parent._usages = new Set(); parent.registration = { id: name, fn: async () => {} }; parent.runner = { instanceForId: new Map([[name, parent]]) }; parent._selfTeardownComplete = Promise.resolve(); parent._useFuncFinished = { resolve: () => { callbacks++; } };
+    await parent.teardown({ _timeoutManager: manager, _runWithTimeout: async (_r: unknown, run: () => Promise<void>) => run() }, { type: "test", slot: { timeout: 180_000, elapsed: 180_000 } });
+  }
+  assert.equal(callbacks, 0); assert.equal(f.retained.length, 0); gate.resolve(); await assert.rejects(work); await ownedPhoneTurn(); assert.equal(timer[0]!.clears, 1); assert.equal(f.retained.length, 0);
+});
+
+test("owned empty phone expiry preserves exact functional window and records prebody limitations", async () => {
+  const { createRequire } = await import("node:module");
+  const common = createRequire(process.cwd() + "/package.json")(process.cwd() + "/node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/common/index.js");
+  const loc = { file: "inert-expiry.ts", line: 1, column: 1 }, errors: unknown[] = [];
+  const clock0 = ownedExpiryFakeClock(), pp = await ownedExpiryPinnedPorts(clock0);
+  const pool = new common.fixtures.FixturePool([{ fixtures: { schedulingViews: async ({}, provide: (v: unknown) => Promise<void>) => provide({}) }, location: loc }], (e: unknown) => errors.push(e), undefined, false);
+  const wrapped = pp.wrap(async () => {}); pool.validateFunction(wrapped, "Test", loc); assert.equal(errors.length, 0); assert.equal(JSON.stringify(common.fixtures.fixtureParameterNames(wrapped, loc, (e: unknown) => errors.push(e))), JSON.stringify(["schedulingViews"]));
+  for (const carrier of [0, false, {}]) {
+    const clock = ownedExpiryFakeClock(), pinned = await ownedExpiryPinnedPorts(clock), manager = new pinned.TimeoutManager(180_000), f = ownedPhonePorts({}, false);
+    const h = { armOwnedEmptyPhoneExpiry: (...a: unknown[]) => f.controller.armExpiry(...a), failOwnedEmptyPhone: (e: unknown) => f.controller.failOriginal(e), finishOwnedEmptyPhoneFunctional: () => f.controller.markOriginalComplete() };
+    await assert.rejects(manager.withRunnable({ type: "test" }, () => pinned.wrap(async () => { throw carrier; })({ schedulingViews: h }, { _timeoutManager: manager })), (e: unknown) => e === carrier);
+    await assert.rejects(f.controller.complete({ present: false, passed: true }), (e: unknown) => e === carrier); await ownedPhoneTurn();
+    assert.equal(f.events.includes("scene"), false); assert.equal(f.retained.length, 0); assert.equal(clock.records.filter(r => r.kind === "expiry")[0]!.clears, 1);
+  }
+  for (const carrier of [0, false, {}]) {
+    const clock = ownedExpiryFakeClock(), pinned = await ownedExpiryPinnedPorts(clock), manager = new pinned.TimeoutManager(180_000), original = ownedPhoneDeferred(), f = ownedPhonePorts({}, false); manager.defaultSlot().elapsed = 20_000;
+    const h = { armOwnedEmptyPhoneExpiry: (...a: unknown[]) => f.controller.armExpiry(...a), failOwnedEmptyPhone: (e: unknown) => f.controller.failOriginal(e), finishOwnedEmptyPhoneFunctional: () => f.controller.markOriginalComplete() };
+    const running = manager.withRunnable({ type: "test" }, () => pinned.wrap(async () => original.promise)({ schedulingViews: h }, { _timeoutManager: manager })); void running.catch(() => {});
+    await clock.advance(160_999); assert.equal(f.events.includes("close"), false);
+    await clock.advance(161_000); assert.equal(f.controller.status().cancelled, true); original.reject(carrier);
+    await assert.rejects(running, (e: unknown) => e === carrier); await assert.rejects(f.controller.complete({ present: true, error: carrier, passed: false }), (e: unknown) => e === carrier); assert.equal(f.retained.length, 0); assert.equal(clock.records.filter(r => r.kind === "expiry")[0]!.clears, 1);
+  }
+  // A real successful body result is returned unchanged; its expiry remains at the original D through afterEach.
+  {
+    const clock = ownedExpiryFakeClock(), pinned = await ownedExpiryPinnedPorts(clock), manager = new pinned.TimeoutManager(180_000); manager.defaultSlot().elapsed = 20_000;
+    const sql = ownedPhoneDeferred(), after = ownedPhoneDeferred(), f = ownedPhonePorts({ "booking-sql": () => sql.promise }, false), value = {};
+    const h = { armOwnedEmptyPhoneExpiry: (...a: unknown[]) => f.controller.armExpiry(...a), failOwnedEmptyPhone: (e: unknown) => f.controller.failOriginal(e), finishOwnedEmptyPhoneFunctional: () => f.controller.markOriginalComplete() };
+    assert.equal(await manager.withRunnable({ type: "test" }, () => pinned.wrap(async () => { await clock.advance(11_000); return value; })({ schedulingViews: h }, { _timeoutManager: manager })), value);
+    assert.equal(manager.defaultSlot().elapsed, 30_000);
+    const work = f.controller.complete({ present: false, passed: true }); void work.catch(() => {}); await ownedPhoneTurn();
+    const shared = { timeout: 180_000, elapsed: 0 }, afterWork = manager.withRunnable({ type: "afterEach", slot: shared }, () => after.promise); void afterWork.catch(() => {});
+    await clock.advance(160_999); assert.equal(f.controller.status().cancelled, false);
+    await clock.advance(161_000); assert.equal(f.controller.status().cancelled, true); assert.equal(f.png.every(v => v === 0), true);
+    for (const n of ["scheduling-auth-0", "scheduling-auth-1", "scheduling-auth-2", "booking-auth-0", "booking-auth-1"]) assert.equal(f.events.filter(e => e === n).length, 1);
+    // Advance the same clock through the pinned shared-slot timeout, rather than inventing an exhausted elapsed value at time zero.
+    await clock.advance(191_001); await assert.rejects(afterWork); assert.ok(shared.elapsed >= 180_000);
+    let teardownCallbacks = 0;
+    for (const name of ["sched", "booking"]) { const fixture = Object.create(pinned.Fixture.prototype); Object.assign(fixture, { _teardownDescription: { title: name }, _deps: new Set(), _usages: new Set(), registration: { id: name, fn: async () => {} }, runner: { instanceForId: new Map() }, _selfTeardownComplete: Promise.resolve(), _useFuncFinished: { resolve: () => { teardownCallbacks++; } } }); await fixture.teardown({ _timeoutManager: manager, _runWithTimeout: async (_r: unknown, run: () => Promise<void>) => run() }, { type: "test", slot: shared }); }
+    assert.equal(teardownCallbacks, 0); assert.equal(f.retained.length, 0); sql.resolve(); after.resolve(); await assert.rejects(work); assert.equal(clock.records.filter(r => r.kind === "expiry")[0]!.clears, 1);
+  }
+  // Setup can already own identities. No body entry means no new expiry/PNG/mode, NOT absence of existing obligations.
+  {
+    const clock = ownedExpiryFakeClock(), pinned = await ownedExpiryPinnedPorts(clock), manager = new pinned.TimeoutManager(180_000), knownExistingObligations = [0, 0, 0, 0, 0]; let callbacks = 0;
+    const fixture = Object.create(pinned.Fixture.prototype); Object.assign(fixture, { _teardownDescription: { title: "owned-setup", slot: { timeout: 100, elapsed: 100 } }, _deps: new Set(), _usages: new Set(), registration: { id: "owned-setup", fn: async () => {} }, runner: { instanceForId: new Map() }, _selfTeardownComplete: Promise.resolve(), _useFuncFinished: { resolve: () => { callbacks++; knownExistingObligations.fill(1); } } });
+    // The pinned guard chooses the fixture slot, so parent cleanup remains unverified here.
+    await fixture.teardown({ _timeoutManager: manager, _runWithTimeout: async (_r: unknown, run: () => Promise<void>) => run() }, { type: "test", slot: { timeout: 180_000, elapsed: 0 } });
+    assert.equal(callbacks, 0); assert.deepEqual(knownExistingObligations, [0, 0, 0, 0, 0]); assert.equal(clock.records.length, 0);
+  }
+  for (const held of ["retire-bookings", "scene", "release", "close", "scheduling-sql", "booking-sql", "scheduling-auth-0", "booking-auth-0", "attach-result"]) {
+    const clock = ownedExpiryFakeClock(0), gate = ownedPhoneDeferred(), f = ownedPhonePorts({ [held]: () => gate.promise }, false);
+    f.controller.armExpiry(100, clock.now, (fn: () => void, delay: number) => clock.set("expiry", fn, delay), clock.clear);
+    const work = f.controller.complete({ present: false, passed: true }); void work.catch(() => {}); await ownedPhoneTurn();
+    await clock.advance(99); assert.equal(f.controller.status().cancelled, false);
+    await clock.advance(100); assert.equal(f.controller.status().cancelled, true); assert.equal(clock.records[0]!.clears, 1);
+    for (const n of ["scheduling-auth-0", "scheduling-auth-1", "scheduling-auth-2"]) assert.equal(f.events.filter(e => e === n).length, 1);
+    if (held === "close") assert.equal(f.events.includes("booking-auth-0"), false); // close remains unconfirmed, not eligible
+    if (!["retire-bookings", "scene"].includes(held)) assert.equal(f.png.every(v => v === 0), true);
+    const attached = held === "attach-result" ? 1 : 0; assert.equal(f.retained.length, attached); if (attached) assert.equal(f.controller.status().publishUnknown, true);
+    gate.resolve(); await assert.rejects(work); await ownedPhoneTurn(); assert.equal(f.png.every(v => v === 0), held !== "retire-bookings"); assert.equal(f.retained.length, attached);
+  }
+  {
+    const clock = ownedExpiryFakeClock(0), f = ownedPhonePorts({}, false); f.controller.armExpiry(100, clock.now, (fn: () => void, delay: number) => clock.set("expiry", fn, delay), clock.clear); await f.controller.complete({ present: false, passed: true });
+    assert.equal(clock.records[0]!.clears, 1); await clock.advance(100); assert.equal(f.png[31], 7); assert.equal(f.retained[0], f.png); assert.equal(f.controller.status().done, true); assert.equal(clock.active.size, 0);
+  }
+  for (const kind of ["sync-fire", "undefined-handle", "schedule-throw", "early-fire", "clock-throw"]) {
+    const f = ownedPhonePorts({}, false); let fire: (() => void) | undefined, clears = 0; const now = 0;
+    const clock = () => { if (kind === "clock-throw" && fire) throw false; return now; };
+    const schedule = (cb: () => void) => { fire = cb; if (kind === "sync-fire") cb(); if (kind === "schedule-throw") throw 0; return kind === "undefined-handle" ? undefined : 1; };
+    if (["sync-fire", "undefined-handle", "schedule-throw"].includes(kind)) assert.throws(() => f.controller.armExpiry(100, clock, schedule, () => { clears++; }));
+    else { f.controller.armExpiry(100, clock, schedule, () => { clears++; }); fire!(); assert.throws(() => f.controller.markOriginalComplete()); }
+    assert.equal(f.events.includes("scene"), false); assert.equal(f.retained.length, 0); assert.equal(f.events.includes("close"), kind === "early-fire" || kind === "clock-throw"); assert.ok(clears <= 1);
+  }
+});
+
+
+test("owned empty phone actual seed adopts late owned identities across expiry and parent teardown", async () => {
+  function method(fileName: string, name: string) {
+    const f=parsed(fileName); const found: ts.MethodDeclaration[]=[];
+    const walk=(n: ts.Node) => { if(ts.isMethodDeclaration(n)&&n.name.getText(f)===name) found.push(n); ts.forEachChild(n,walk); }; walk(f); assert.equal(found.length,1,name); return found[0]!.getText(f);
+  }
+  function declaration(fileName: string, name: string) {
+    const f=parsed(fileName);let found: string|undefined;const walk=(n: ts.Node)=>{if(ts.isVariableDeclaration(n)&&n.name.getText(f)===name) found=n.initializer!.getText(f);ts.forEachChild(n,walk);};walk(f);assert.ok(found,name);return found;
+  }
+  const defs=ownedPhoneDefinitions(), api=evaluate("(()=>{"+defs+";return {createOwnedBookingSeedAdmission,createOwnedSchedulingSeedAdmission,createOwnedBookingRetirement,createSchedulingEmptyPhoneRetirement};})()",{Promise,Buffer,Set,Map,Error});
+  async function fixture(heldOwner: string, heldKind: string, newMode=true, carrier?: unknown) {
+    const events: string[]=[], removals: string[]=[], gate=ownedPhoneDeferred();let sequence=0, held=false, closed=false;
+    let capturedPorts: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    const query=(owner: string) => async (sql: string) => { const label=sql.startsWith("insert into public.tenant_memberships")?"member":sql.startsWith("delete")?"delete":sql.startsWith("select")?"read":"other"; events.push(owner+":sql:"+label); if(!held&&owner===heldOwner&&heldKind==="sql"&&label==="member"){held=true;await gate.promise;events.push(owner+":sql-settled");} return sql.startsWith("select")?[{id:"owned-actor"}]:[]; };
+    const remove=(owner: string) => async (id: string) => { events.push(owner+":auth-delete");removals.push(id); };
+    const create=(owner: string) => async () => {events.push(owner+":create"); if(!held&&owner===heldOwner&&heldKind==="create"){held=true;await gate.promise;if(carrier!==undefined)throw carrier;} return {data:{user:{id:owner+"-owned-"+(++sequence),email:"inert@example.test"}},error:null};};
+    const clock=ownedExpiryFakeClock(), pinned=await ownedExpiryPinnedPorts(clock), manager=new pinned.TimeoutManager(180_000);
+    const bookingFile=support+"booking-editor-atdd.ts",schedulingFile=support+"scheduling-views-atdd.ts";
+    const book=evaluate("(()=>{let ownedRetirementOnly,ownedRetirementSeed,finalData,scenario,hasOwnedFailure=false,ownedFailure;const retainOwnedFailure=e=>{if(!hasOwnedFailure){hasOwnedFailure=true;ownedFailure=e;}};const labels=[],users=[],memberships=[],profiles=[],owned={},tenantId='inert-tenant',token='inert-token',fixture={adminA:{id:'actor',email:'inert@example.test',password:'inert'},tenantB:{id:'other'}};const transportOptIn=true,transportDone=true,retireTransport=async()=>{};const cleanupScenario="+declaration(bookingFile,"cleanupScenario")+";return {"+["seed","ownedRetirementCleanup","dispose"].map(n=>method(bookingFile,n)).join(",")+"};})()",{...api,adminQuery:query("booking"),adminSession:async(run: (p: unknown)=>Promise<void>)=>run({query:query("booking-cleanup")}),admin:()=>({auth:{admin:{createUser:create("booking")}}}),deleteAuthUser:remove("booking"),randomUUID:()=>"owned-key-"+(++sequence),adminInsertCustomer:async()=>"customer",adminInsertFacility:async()=>"facility",adminInsertContact:async()=>"contact",formatBookingTime:()=>"inert",lifecycle:{mark(){}},page:{},Promise,Map,Set,Error});
+    book.retireTransport=async()=>{events.push("transport-release");};
+    const context={pages:()=>closed?[]:[page],close:async()=>{events.push("context-close");closed=true;}};
+    const page={context:()=>context,isClosed:()=>closed,unroute:async()=>{events.push("unroute");},route:async()=>{events.push("page-route");}};
+    const h=evaluate("({"+["seed","insert","cleanupRows","prepareOwnedEmptyPhone","armOwnedEmptyPhoneExpiry","failOwnedEmptyPhone","finishOwnedEmptyPhoneFunctional","dispose"].map(n=>method(schedulingFile,n)).join(",")+"})",{...api,createSchedulingEmptyPhoneRetirement:(ports:unknown)=>{capturedPorts=ports;return api.createSchedulingEmptyPhoneRetirement(ports);},adminQuery:query("scheduling"),adminSession:async(run:(p:unknown)=>Promise<void>)=>run({query:query("scheduling-cleanup")}),admin:()=>({auth:{admin:{createUser:create("scheduling")}}}),deleteAuthUser:remove("scheduling"),randomUUID:()=>"owned-key-"+(++sequence),lifecycle:{mark(){}},interval:()=>({startsAt:"inert-start",endsAt:"inert-end"}),DATE:"2026-10-12",Promise,Map,Set,Error});
+    Object.assign(h,{page,bookingEditor:book,users:[],people:[],memberships:[],extraProfiles:[],ids:{role:"r",noRole:"n",inactive:"i",proposal:"p",collision:"c",zero:"z",hidden:"h"},requireEditorPage(){},signIn:async()=>{events.push("sign-in");}});
+    let retirement: any, run: Promise<void>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    if(newMode){retirement=h.prepareOwnedEmptyPhone(async()=>{events.push("ATTACH");});run=manager.withRunnable({type:"test"},()=>pinned.wrap(async()=>h.seed())({schedulingViews:h},{_timeoutManager:manager}));}
+    else run=h.seed();
+    void run.catch(()=>{});await ownedPhoneTurn();return {h,book,retirement,clock,pinned,manager,events,removals,gate,run,held:()=>held,ports:()=>capturedPorts};
+  }
+  for(const owner of ["scheduling","booking"]) for(const afterParent of [false,true]) {
+    const f=await fixture(owner,"create");assert.equal(f.held(),true);await f.clock.advance(181_000);assert.equal(f.retirement.status().cancelled,true);assert.equal(f.events.includes("ATTACH"),false);
+    if(afterParent){let resolve!:()=>void,reject!:(e:unknown)=>void;const finish=new Promise<void>((y,n)=>{resolve=y;reject=n;});void finish.catch(()=>{});const parent=Object.create(f.pinned.Fixture.prototype);Object.assign(parent,{_teardownDescription:{title:"scheduling-parent"},_deps:new Set(),_usages:new Set(),registration:{id:"parent",fn:async()=>{}},runner:{instanceForId:new Map()},_selfTeardownComplete:finish,_useFuncFinished:{resolve:()=>{Promise.resolve().then(()=>f.h.dispose()).then(resolve,reject);}}});await assert.rejects(parent.teardown({_timeoutManager:f.manager,_runWithTimeout:async(_r:unknown,op:()=>Promise<void>)=>op()},{type:"test",slot:{timeout:180_000,elapsed:0}}));}
+    const checkpoint=f.events.length;f.gate.resolve();await assert.rejects(f.run);await ownedPhoneTurn();
+    const later=f.events.slice(checkpoint);assert.equal(later.some(e=>e.endsWith(":create")||e.endsWith(":sql:member")||e==="page-route"||e==="sign-in"),false);assert.equal(f.removals.filter(id=>id.startsWith(owner+"-owned-")).length,1);assert.equal(new Set(f.removals).size,f.removals.length);assert.equal(f.events.includes("ATTACH"),false);
+    const count=f.removals.length;for(let i=0;i<2;i++){await assert.rejects(Promise.resolve().then(()=>f.h.dispose()));let rejected=false;try {await f.book.dispose();} catch {rejected=true;} assert.equal(rejected,f.book.ownedRetirementCleanup(()=>true).status().some((state:string)=>state!=="fulfilled"));}await ownedPhoneTurn();assert.equal(f.removals.length,count);
+  }
+  for(const owner of ["scheduling","booking"]) {
+    const f=await fixture(owner,"sql");assert.equal(f.held(),true);await f.clock.advance(181_000);assert.equal(f.events.some(e=>e===owner+"-cleanup:sql:delete"),false);const at=f.events.length;f.gate.resolve();await assert.rejects(f.run);await ownedPhoneTurn();assert.equal(f.events.slice(at).some(e=>e.endsWith(":create")||e.endsWith(":sql:member")),false);assert.ok(f.events.indexOf(owner+":sql-settled")<f.events.findIndex(e=>e===owner+"-cleanup:sql:delete"));assert.equal(new Set(f.removals).size,f.removals.length);assert.equal(f.events.includes("ATTACH"),false);
+  }
+  // A rejection returns no confirmed new identity. Preserve the falsy functional carrier, never fabricate a delete.
+  for(const carrier of [0,false]) {
+    const f=await fixture("scheduling","create",true,carrier);await f.clock.advance(181_000);f.gate.resolve();await assert.rejects(f.run,(e:unknown)=>e===carrier);await assert.rejects(Promise.resolve().then(()=>f.h.dispose()),(e:unknown)=>e===carrier);assert.equal(f.removals.some(id=>id.startsWith("scheduling-owned-")),false);assert.equal(f.events.includes("ATTACH"),false);
+  }
+  const positive=await fixture("none","none",true);await positive.run;const image=Buffer.alloc(32,9);Buffer.from("89504e470d0a1a0a","hex").copy(image);image.writeUInt32BE(360,16);image.writeUInt32BE(640,20);positive.ports().scene=async()=>image;await positive.retirement.complete({present:false,passed:true});assert.equal(positive.removals.length,5);assert.equal(new Set(positive.removals).size,5);assert.equal(positive.events.filter(e=>e==="ATTACH").length,1);assert.ok(positive.events.indexOf("context-close")<positive.events.indexOf("ATTACH"));assert.equal(image[31],9);assert.equal(positive.clock.records.filter(r=>r.kind==="expiry")[0]!.clears,1);
+  const normal=await fixture("none","none",false);await normal.run;assert.equal(normal.events.filter(e=>e==="booking:create").length,2);assert.equal(normal.events.filter(e=>e==="scheduling:create").length,3);assert.ok(normal.events.includes("page-route")&&normal.events.includes("sign-in"));assert.equal(normal.events.includes("context-close"),false);
+});
+
+
+test("owned empty phone seed ledger distinguishes pending unknown refused and actual once-only deletion", async()=>{
+ const api=evaluate("(()=>{"+ownedPhoneDefinitions()+";return {createOwnedBookingSeedAdmission,createOwnedSchedulingSeedAdmission};})()",{Promise,Buffer,Set,Map,Error});
+ for(const name of ["createOwnedBookingSeedAdmission","createOwnedSchedulingSeedAdmission"]) {
+  const calls: string[]=[], late=ownedPhoneDeferred(), ledger=api[name](async(id:string)=>{calls.push(id);});ledger.begin();
+  const acquisition=ledger.acquire(0,async()=>{await late.promise;return {data:{user:{id:"inert-confirmed-owned"}}};});void acquisition.catch(()=>{});const deletion=ledger.auth(0);assert.equal(deletion,ledger.auth(0));ledger.close();assert.equal(calls.length,0);assert.equal(ledger.status()[0],"creating");
+  assert.throws(()=>ledger.guard());await assert.rejects(ledger.acquire(1,async()=>{throw Error("must not invoke another creation");}));late.resolve();await assert.rejects(acquisition);ledger.finish();await deletion;assert.deepEqual(calls,["inert-confirmed-owned"]);await ledger.auth(0);ledger.close();assert.equal(calls.length,1);assert.equal(ledger.status()[1],"not-created-refused");await assert.rejects(ledger.auth(1));
+  const failed=api[name](async()=>{throw Error("no known identity should reach remove");});failed.begin();const sentinel={};await assert.rejects(failed.acquire(0,async()=>{throw sentinel;}),(e:unknown)=>e===sentinel);failed.finish();assert.equal(failed.status()[0],"unknown-rejected");await assert.rejects(failed.auth(0));
+  const missing=api[name](async()=>{throw Error("no returned identity should reach remove");});missing.begin();await missing.acquire(0,async()=>({data:{user:null}}));missing.finish();assert.equal(missing.status()[0],"unavailable");await assert.rejects(missing.auth(0));
+  let attempts=0;const authCarrier=false, strict=api[name](async()=>{attempts++;throw authCarrier;});strict.begin();await strict.acquire(0,async()=>({data:{user:{id:"inert-owned-rejected-delete"}}}));strict.finish();const work=strict.auth(0);await assert.rejects(work,(e:unknown)=>e===authCarrier);assert.equal(work,strict.auth(0));await assert.rejects(strict.auth(0),(e:unknown)=>e===authCarrier);assert.equal(attempts,1);
+ }
 });

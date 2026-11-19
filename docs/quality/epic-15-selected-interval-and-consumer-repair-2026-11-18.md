@@ -1,5 +1,39 @@
 # Epic 15 selected-interval and consumer repair - 2026-11-18
 
+Status at the owned-phone V5 placed-source/local freeze: published base `07d898024d935e78ee241239be46b914524ac5c7` remains HEAD/origin; the four code postimages and this factual note are uncommitted. No future commit, CI run, image, cleanup or acceptance result is implied. The actual complete lifecycle verifier now passes **55 executed, 55 passed, 0 failed/skipped/cancelled/todo** after the retained first attempt of54 passed/1 failed. Semantic TypeScript passes with0 diagnostics; no-cache scoped lint over all four TS files passes with0 errors/0 warnings after retained initial failures. Seven specifically affected complete-route budget consumers also pass; other entries in that file were filter-excluded/unexecuted.
+
+## Current owned-phone placement and retained conditions
+
+The E2E008-only derivative of the existing Role recorder seam preserves the same manager Page/context and unchanged original callback, five lifecycle tuples, assertions and restoration. It prepares only the qualified `scheduling-empty-phone` state at360x640 with truthful E2E008/PL-manager/five-owned-identity lineage. The other36 mappings and historical Auth producer evidence are unchanged; no historical ten-delete proof is borrowed for the new five. Auth-reserved source, product layout, BookingEditor defaults, global options, cohort, retries, budgets, controller and app/producer code are unchanged.
+
+After the original body succeeds, the opt-in method retires only its owned bookings/dependents while authorized, proves whole-tenant and unfiltered authorized-projection zero, requires the exact empty message/no alert and fully visible phone content, then holds one bounded original PNG in memory. Unexpected foreign rows refuse; no filter/date guess, masking or denied-zero shortcut is used. Same-context close, all five actual strict Auth outcomes and all remaining normal SQL cleanup must succeed before one irreversible attachment to the current test's own TestInfo. No such browser/SQL/Auth/capture operation was executed in these local checks.
+
+The one case-local expiry uses the original active default180000ms test-runnable deadline D and the pinned1.61.1 monotonic clock. It arms before the unchanged callback, never resets/rearms/adds grace, and uses only the original remaining wall window through body/afterEach/fixture cleanup. At expiry or terminal failure, it closes later acquisition/publication, zeroizes method-owned held prepublication buffers and initiates every eligible cached cleanup independently. Pending/refused/failed cleanup is never success. A successful attachment retains the same framework-owned Buffer intact; an attachment-attempt throw is **UNKNOWN_MAY_HAVE_EXPORTED** plus failure, not a retraction. Timer delivery is not a backend cancellation, process-death or physical-cleanup guarantee.
+
+Both reachable Scheduling and Booking new-mode seeds register pending ownership before creation, adopt actual returned IDs before checking cancellation, and refuse later memberships/profiles/bookings, new identities or Page admissions after cancellation. Cleanup waits the in-flight seed's finally settlement before existing SQL cleanup, retaining late returned customer/facility/contact ownership. Unknown/no-user/unstarted slots do not become synthetic deletion success; actual deletion is cached once. Booking's context/retired-booking eligibility gate remains. Default and old opt-in disposal/seed behavior, whole Dense99e40/501/11/fourfilters/SQL/focus, Role/native/client10-or12/21+8/fatal firstError and independent finalizers remain conserved. Before-wrapper partial setup can still own existing resources with unverified default cleanup; no ALL5, absence or zero credit is claimed for it. Pre-existing lower SDK logging is not certified globally redacted.
+
+### Current placed-source checks and exact provenance
+
+All commands used Node22.23.2 in isolated F. The full verifier command was `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts`; the55 actual named leaves and native outputs are retained. Type used `node node_modules/typescript/lib/tsc.js --noEmit --incremental false`. Lint used `node node_modules/eslint/bin/eslint.js --no-cache` on the spec, both support files and lifecycle verifier. The strict budget consumer selector `^complete-route budget ` positively executed the same seven named tests with native7P/0F/0S/C/T; that summary is selected-only coverage.
+
+Initial placed checks are preserved separately: verifier54P/1F (the new test used require in ESM), TypeScript6 diagnostics (five from narrowing the copied conflict-free branch and one assertion narrowing), lint5 errors/1 warning in appended regressions. The correction keeps the exact one-value mode guard without narrowing unreachable copied branches, uses an ESM-safe createRequire, retains an equivalent empty-error assertion, and corrects only new local declarations/fixture parameter names. No original assertion or guard input set is weakened. The changed inputs require the distinct placed-source follow-up review.
+
+The exact reviewed placement freeze `43e1874f3c66f09dc6c048beb4c30357a0add25ee3ed84a0e547544f2a12c116` preceded first checks. There is **no separate corrected pre-check freeze file**: correction01/02 record the two corrected hashes before successful checks; the other two inputs retain placement hashes. Corrected code freeze `36a45283ac7a26ef37b1fb65399a8ee1e309c8703e78a8fa75c4671983f02080` is after earned checks and before this note. Full patch inverses and seven conservation checks bind12 declarations/20 expanded cases, original callback,17 original visual-call expressions, original47 unit prefix, Dense/Role/default/OLD behavior,40 protected paths/APIs and original25 raw rows. Checker-only failures and its initial insufficient zero-match capture selector are retained; final capture conservation positively matches attachVisual. Private8/prior47/privateV3/V4/V5 proof categories are not summed with actual55 or retagged as native evidence.
+
+Evidence is frozen under `Owned-phone-capture-author-07d89802` in the existing private release-validation directory: actual-author-restart-ACK, exact/corrected code freezes, correction receipts, all native stdout/stderr, named check results, conservation, final patch/postimages and manifest. No source was staged, committed or published by this author.
+
+### Native history and remaining current-candidate gates
+
+The [07 ordinary run44612304267](https://github.com/rthunborg/Kopplas/actions/runs/44612304267) is exact07 native SUCCESS:3982 actual unit passes, DB2253P/52 skipped, RLS904P/14 skipped subset,149 smoke first passes, Recovery1 and entry2. Type/build/source guards passed; ordinary lint retained32 warnings/0 errors. It did not execute SchedulingRole/new retirement/full20+12/539/37 acceptance. Its separately blocked frontend controllers and missing-current-head-evidence-or-ambiguous-volume result remain separate from ordinary CI success. The retained ordinary receipt is `07d89802-ordinary-controller-qualification/receipt.json`, SHA-256 `8166098bba4a10c27f72f60925a0d8e590464e69799164e7ef32f77f46d3d4ab`.
+
+The [936 full44591832787](https://github.com/rthunborg/Kopplas/actions/runs/44591832787) remains **FAILED/consumed**. Every Role record is retained:0 SKIP,1 whole-body PASS4827ms,2 FAIL4703ms ERR_ABORTED; both executed attempts passed all four initial steps, and the later abort cause remains unknown. The whole-body pass is earned once, not a permanent fix. The lifecycle tuple that expected an inactive ID and received[] is unknown. New-method source/offline success neither erases these failures nor proves a new candidate runtime. Historical cause resolution is not prerequisite to independently testing the changed candidate, but **all actual INT001 executions under unchanged configured retries must be reported and qualify**. No forced second attempt, first-only rule, hidden retry failure, waiver, unchanged redispatch, second ceiling raise or annotation/transport cycle follows.
+
+No new full case or frame is earned here. Historical24/37 IDs and13 missing do not establish final current-head visual evidence. New candidate ordinary/full539/20/12/37-state, exact final-base synchronization, controller, human/reference/manual phone/accessibility and pilot-performance gates remain pending. Frontend gates still apply against product baselineS `fe282c326b208788ef94a3717092057ab7e2e91e`, including synchronized-head desktop/360x640 states. Audit remains6Moderate/0High/0Critical/native1 with an ordinary-high gate, **not clean** or renewed; fixed expiry, raw/native/severe/graph/privacy conditions remain. Original25 Deferred rows have0 whole-row closures. Per-delete/key/physical cleanup limits, P160/35.8/F integration order, main/production/cutover/CRM/PR151, paused business writers and native/foreign reservations remain held.
+
+## Historical core compatibility freeze on936
+
+The following core sections retain their original source-freeze status and exclusions. They are historical records, not the current V5 placement or runtime qualification.
+
 Status at the core compatibility placed-source/offline freeze: base `936c0f9796d6403c2cf5cd4e34b87402921c36ed` remains the published candidate. The two reviewed core code files are uncommitted postimages on that base; no future commit or run is implied. Actual full lifecycle verifier **47 executed/passed, 0 failed/skipped/cancelled/todo**, full typecheck **0 diagnostics**, and scoped two-file lint **0 errors/0 warnings** all passed on their first placed-source attempts. Code froze before those checks and this note. These Node/source/fake-port results do not earn browser, protocol, SQL/Auth, capture, physical cleanup or release acceptance.
 
 ## Current core compatibility and lifecycle caller correction
@@ -618,36 +652,34 @@ Main ordering/readmission remains Coordinator-held. Product work remains paused 
 
 ## Suggested Review Order
 
-Author: `/root/e15_release_wiring_author_high`, explicit Sol6.1 High. Refreshed after exact V1 code freeze and actual47/type/lint first-attempt gates. Code remains frozen while this factual note changes. This trail covers the narrow compatibility/caller correction and its preserved boundaries; no broad historical review or abort-cause claim.
+Author: `/root/e15_release_wiring_author_high`, explicit Sol6.1 High. Refreshed after corrected four-code freeze and actual55/type/four-file lint/selected7 checks. Code is frozen while this factual note changes. Follow only this new-mode placement, its diagnosed local-check corrections and preserved boundaries.
 
-### Keep Role recorder suppression compatible with the worker pool
+### Keep the original functional case and truthful one-state capture
 
-The alias inherits all worker recorder registrations and applies test-scoped effective OFF before provide. Prior initialization is possible; OFF alone does not clear events or suppress API recording.
+The derivative preserves the original callback and recorder/worker defaults. A genuine authorized empty scene is required; the mapping amendment does not create native credit.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:971` — `const roleResponseTest = test.extend`: inherits the existing worker registrations.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:979` — `await tracing.startIfNeeded("off");`: disables tracing before sensitive work.
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:655` — `test("pinned worker pool and serial retry expansion keep base Role base compatible without worker recorder overrides"`: checks pinned registration and retry transitions.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1756` — `ownedRetirementTest("[P1] 15.1-E2E-008`: wraps only the existing lifecycle case.
+- `tests/e2e/support/scheduling-views-atdd.ts:660` — `prepareOwnedEmptyPhone(attach:`: owns the qualified empty scene and strict publication gates.
 
-### Re-establish Resources before each lifecycle equality
+### Own the original deadline and every cleanup outcome
 
-Every original tuple retains its data operation and exact IDs; the caller restores the intended view before the existing-limit strict poll. No product/SQL or expected-value change is made.
+The one timer uses the unchanged original functional D. Pending cleanup prevents publication; successful framework buffer ownership and irreversible-attempt uncertainty remain distinct.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1743` — `await h.lifecycle(status, archived); await h.open("Resurser");`: restores Resources after each reload.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1744` — `await expect.poll(() => h.visibleIds(lane)).toEqual(expected ? [h.ids.inactive] : []);`: retains exact one-or-zero IDs.
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:717` — `test("actual lifecycle caller reopens Resources after every unchanged tuple before strict eventual lane equality"`: covers tuple order and refusal paths.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1731` — `function ownedExpiryBody(`: validates the pinned active test-slot deadline before the body.
+- `tests/e2e/support/scheduling-views-atdd.ts:77` — `function createSchedulingEmptyPhoneRetirement(`: caches independent cleanup and expiry publication refusal.
 
-### Preserve public evidence, handle ownership and fatal cleanup
+### Adopt late seed ownership without changing default consumers
 
-The Role scenario/controller and earliest-error rules are unchanged. Bounded delivery never replaces independent native/client qualification or original finalizers.
+Each newly returned identity remains owned after cancellation, and subsequent admission stops. Original default/OLD paths and the strict one-mode guard remain; unavailable is not deleted.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1208` — `const qualifyRolePhase = async`: retains native and client qualification.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:866` — `const register = (reply: { stream: string })`: retains owned stream-close registration.
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:616` — `test("actual Role acquisition registers cached close before broken or expired state rejection"`: retains both handle-arrival regressions.
+- `tests/e2e/support/scheduling-views-atdd.ts:26` — `function createOwnedSchedulingSeedAdmission(`: retains Scheduling creation and strict cached deletion.
+- `tests/e2e/support/booking-editor-atdd.ts:106` — `function createOwnedBookingSeedAdmission(`: retains analogous Booking ownership and pending SQL settlement.
+- `tests/e2e/support/booking-editor-atdd.ts:437` — `if (!["conflict-free"].includes(mode))`: preserves the exact accepted new-mode input without type narrowing.
 
-### Keep earned offline checks separate from native and visual gates
+### Review actual changed-case evidence and unearned native gates
 
-All47 actual verifier leaves passed first attempt; type/lint passed without diagnostics. Source-only recorder evidence, historical936 failures and the held capture method remain distinct from future synchronized-head/native/human qualification.
+The complete55 verifier, semantic typecheck, four-file lint and selected7 consumers pass after preserved first failures. These local results do not certify new runtime, physical cleanup, final images or release acceptance.
 
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:681` — `test("pinned retry tracing is disabled before sensitive data while case recorder guards fail closed"`: checks inherited tracing and closed refusals.
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:561` — `test("actual initial await wrappers preserve primitive object and earlier asynchronous firstFailure identities"`: retains exact prior error identities.
-- `docs/quality/epic-15-selected-interval-and-consumer-repair-2026-11-18.md:13` — `### Current core evidence and remaining gates`: preserves actual results and pending gates.
+- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:946` — `test("owned empty phone actual seed adopts late owned identities across expiry and parent teardown"`: checks actual extracted seed/controller late results and cleanup ordering.
+- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:871` — `test("owned empty phone expiry preserves exact functional window and records prebody limitations"`: checks pinned phase accounting with an ESM-safe loader.
+- `docs/quality/epic-15-selected-interval-and-consumer-repair-2026-11-18.md:25` — `### Native history and remaining current-candidate gates`: separates07/936 evidence and pending actual candidate gates.

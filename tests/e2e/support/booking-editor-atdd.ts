@@ -94,8 +94,91 @@ export interface BookingEditorHarness {
   observeNextSaveTransport(timeoutMs?: number): Promise<{ readonly observed: Promise<{bodyBytes: number;status: number}> }>;
   /** Opt-in once-only transport retirement; never delete scenario data at handoff. */
   retireTransport(): Promise<void>;
+  /** New E2E008-only mode; current caller proves closed context and owned booking retirement. */
+  ownedRetirementCleanup(permitted: () => boolean): OwnedBookingRetirement;
   /** Remove routes/holds/listeners and only per-test SQL rows; never stop browser. */
   dispose(): Promise<void>;
+}
+
+
+
+/** Fixed 2 owned identities for this new retirement mode only; no public IDs. */
+function createOwnedBookingSeedAdmission(remove: (id: string) => Promise<void>) {
+  type Slot = { phase: string; linked: boolean; id?: string; identity: Promise<string>; yes: (id: string) => void; no: (error: unknown) => void; deletion?: Promise<void> };
+  let closed = false, started = false, finish!: () => void;
+  const settled = new Promise<void>(yes => { finish = yes; });
+  const slots: Slot[] = Array.from({ length: 2 }, () => { let yes!: (id: string) => void, no!: (error: unknown) => void; const identity = new Promise<string>((y,n) => {yes=y;no=n;}); void identity.catch(() => {}); return { phase: "unstarted", linked: false, identity, yes, no }; });
+  const removed = new Map<string, Promise<void>>();
+  const refused = () => new Error("Owned seed identity unavailable.");
+  const guard = () => { if (closed) throw new Error("Owned seed admission closed."); };
+  const auth = (index: number): Promise<void> => {
+    const slot = slots[index]!; if (slot.deletion) return slot.deletion;
+    let finishDelete!: () => void, failDelete!: (e: unknown) => void;
+    slot.deletion = new Promise<void>((yes,no) => {finishDelete=yes;failDelete=no;}); void slot.deletion.catch(() => {});
+    const invoke = (id: string) => { let work = removed.get(id); if (!work) { let yes!: () => void, no!: (e: unknown) => void; work = new Promise<void>((y,n) => {yes=y;no=n;}); removed.set(id,work); void work.catch(() => {}); try { void remove(id).then(yes,no); } catch (error) {no(error);} } void work.then(finishDelete,failDelete); };
+    if (slot.id) invoke(slot.id); else void slot.identity.then(invoke,failDelete).catch(failDelete);
+    return slot.deletion;
+  };
+  const close = () => { closed = true; for (const slot of slots) { if (slot.phase === "unstarted") {slot.phase="not-created-refused";slot.no(refused());} } };
+  return {
+    begin() { guard(); if (started) throw new Error("Owned seed already invoked."); started=true; },
+    guard,
+    close,
+    link(index: number) { guard(); slots[index]!.linked=true; },
+    async acquire<T extends { data?: { user?: { id?: string } | null }; error?: unknown }>(index: number, create: () => Promise<T>): Promise<T> {
+      guard(); const slot=slots[index]; if (!slot || slot.phase !== "unstarted") throw refused(); slot.phase="creating";
+      let result: T; try { result=await create(); } catch(error) {slot.phase="unknown-rejected";slot.no(refused());throw error;}
+      const id=result.data?.user?.id;
+      if (typeof id === "string" && id.length) {slot.phase="known";slot.id=id;slot.yes(id);} else {slot.phase="unavailable";slot.no(refused());}
+      // Adopt actual returned ownership BEFORE observing cancellation; no membership/profile/booking admission follows.
+      guard(); return result;
+    },
+    async mutation<T>(run: () => Promise<T>, adopt?: (value: T) => void): Promise<T> { guard(); const value=await run(); adopt?.(value); guard(); return value; },
+    finish() { for(const slot of slots) if(slot.phase === "unstarted") {slot.phase="not-created-refused";slot.no(refused());} finish(); },
+    async cleanup(run: () => Promise<void>) { closed=true; if(started) await settled; await run(); },
+    auth,
+    status: () => slots.map(slot => slot.phase),
+  };
+}
+
+export type OwnedBookingRetirement = {
+  closeAdmission?: () => void;
+  startSql: () => Promise<void>;
+  startRemaining: () => void;
+  wait: () => Promise<void>;
+  requireComplete: () => void;
+  status: () => readonly string[];
+};
+/** Only E2E008 retirement. Identities remain in this private closure. */
+function createOwnedBookingRetirement(cleanup: () => Promise<void>, users: readonly string[], remove: (id: string) => Promise<void>, permitted: () => boolean, seed?: { close: () => void; auth: readonly [() => Promise<void>, () => Promise<void>] }): OwnedBookingRetirement {
+  if (!seed && (users.length !== 2 || new Set(users).size !== 2)) throw new Error("Owned booking retirement identity count unavailable.");
+  type Job = { state: "not-started" | "pending" | "fulfilled" | "rejected"; promise?: Promise<void>; error?: unknown };
+  const jobs: Job[] = Array.from({ length: 3 }, () => ({ state: "not-started" }));
+  const begin = (index: number, operation: () => Promise<void>): Promise<void> => {
+    const job = jobs[index]!;
+    if (job.promise) return job.promise;
+    let resolve!: () => void, reject!: (error: unknown) => void;
+    job.state = "pending";
+    job.promise = new Promise<void>((yes, no) => { resolve = yes; reject = no; });
+    // Register ownership and rejection observation before invocation/reentry/throw.
+    void job.promise.catch(() => {});
+    const failed = (error: unknown) => { job.error = error; job.state = "rejected"; reject(error); };
+    try { void operation().then(() => { job.state = "fulfilled"; resolve(); }, failed); } catch (error) { failed(error); }
+    return job.promise;
+  };
+  const startSql = () => begin(0, cleanup);
+  const startRemaining = () => {
+    if (!permitted()) throw new Error("Owned booking retirement gates unverified.");
+    void startSql(); // SQL is invoked first, never a prediction that it will hang.
+    for (let i = 0; i < 2; i++) void begin(i + 1, seed ? seed.auth[i]! : () => remove(users[i]!));
+  };
+  const requireComplete = () => {
+    if (seed && (users.length !== 2 || new Set(users).size !== 2)) throw new Error("Owned booking retirement identity count unavailable.");
+    // Fixed declared SQL/Auth0/Auth1 priority, never settlement order; falsy values are retained.
+    for (const job of jobs) if (job.state === "rejected") throw job.error;
+    if (jobs.some(job => job.state !== "fulfilled")) throw new Error("Owned booking retirement incomplete.");
+  };
+  return { closeAdmission: seed?.close, startSql, startRemaining, wait: async () => { await Promise.allSettled(jobs.map(job => job.promise ?? Promise.reject(new Error("Owned booking retirement not invoked.")))); requireComplete(); }, requireComplete, status: () => jobs.map(job => job.state) };
 }
 
 /** Actual Next action requests and responses; durable assertions use SQL readback. */
@@ -122,6 +205,8 @@ async function bindBookingEditorHarness(
   const handlerCompletions = new Set<Promise<void>>();
   let transportOptIn = false, transportAccept = true, transportDone = false;
   let transportRetirement: Promise<void> | undefined, finalData: Promise<void> | undefined;
+  let ownedRetirementOnly: OwnedBookingRetirement | undefined;
+  let ownedRetirementSeed: ReturnType<typeof createOwnedBookingSeedAdmission> | undefined;
   let hasOwnedFailure = false, ownedFailure: unknown;
   const retainOwnedFailure = (error: unknown) => { if (!hasOwnedFailure) { hasOwnedFailure = true; ownedFailure = error; } };
   const retireTransport = (): Promise<void> => {
@@ -291,6 +376,8 @@ async function bindBookingEditorHarness(
   };
   return {
     async seed(mode) {
+    const ownedSeed = ownedRetirementSeed;
+    if (!ownedSeed) {
       const [actor] = await adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, fixture.adminA.id]);
       const workRoleId = randomUUID();
       owned.workRoleId = workRoleId;
@@ -345,7 +432,68 @@ async function bindBookingEditorHarness(
         await adminQuery("update public.booking_conflicts set status='resolved',resolution_outcome='Synthetic fixture resolved',resolved_by_membership_id=$3,resolved_at=statement_timestamp() where tenant_id=$1 and booking_id=$2 and affected_person_profile_id=$4 and conflict_type='outside_work_hours'", [tenantId, saved.id, actor.id, profiles[1]]);
       }
       return scenario;
-    },
+
+    }
+    if (!["conflict-free"].includes(mode)) throw new Error("Owned retirement seed mode unavailable.");
+    ownedSeed.begin();
+    try {
+      const [actor] = await ownedSeed.mutation(() => adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, fixture.adminA.id]));
+      const workRoleId = randomUUID();
+      owned.workRoleId = workRoleId;
+      await ownedSeed.mutation(() => adminQuery("insert into public.work_roles(id,tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,$2,$3,20000,40000)", [workRoleId, tenantId, token]));
+      for (let index = 0; index < 2; index++) {
+        const { data, error } = await ownedSeed.acquire(index, () => admin().auth.admin.createUser({ email: `${token}-${index}@example.test`, password: `Synthetic-${randomUUID()}-Aa1!`, email_confirm: true }));
+        if (error || !data.user) throw new Error("Dedicated browser resource user setup failed");
+        labels.push(data.user.email!); users.push(data.user.id); ownedSeed.link(index); const member = randomUUID(), profile = randomUUID(); memberships.push(member); profiles.push(profile);
+        await ownedSeed.mutation(() => adminQuery("insert into public.tenant_memberships(id,tenant_id,user_id,role,status) values($1,$2,$3,'montor','active')", [member, tenantId, data.user.id]));
+        await ownedSeed.mutation(() => adminQuery("insert into public.person_profiles(id,tenant_id,membership_id,default_work_role_id) values($1,$2,$3,$4)", [profile, tenantId, member, workRoleId]));
+        for (let weekday = 1; weekday <= 5; weekday++) await ownedSeed.mutation(() => adminQuery("insert into public.person_work_hours(tenant_id,person_profile_id,entry_kind,weekday,starts_at,ends_at) values($1,$2,'weekly_shift',$3,'08:00','16:00')", [tenantId, profile, weekday]));
+      }
+      const customerId = await ownedSeed.mutation(() => adminInsertCustomer({ tenant_id: tenantId, customer_type: "company", display_name: token }), value => { owned.customerId = value; });
+      owned.customerId = customerId;
+      const facilityId = await ownedSeed.mutation(() => adminInsertFacility({ tenant_id: tenantId, customer_id: customerId, name: token }), value => { owned.facilityId = value; });
+      owned.facilityId = facilityId;
+      const contactId = await ownedSeed.mutation(() => adminInsertContact({ tenant_id: tenantId, customer_id: customerId, facility_id: facilityId, name: token }), value => { owned.contactId = value; });
+      owned.contactId = contactId;
+      const jobId = randomUUID();
+      owned.jobId = jobId;
+      await ownedSeed.mutation(() => adminQuery("insert into public.jobs(id,tenant_id,customer_id,title) values($1,$2,$3,$4)", [jobId, tenantId, customerId, token]));
+      const conflicted = mode === "conflicted" || mode === "persisted-conflict-states";
+      const start = conflicted ? "2026-10-12T13:00:00.000000Z" : "2026-10-12T07:00:00.000000Z";
+      const end = conflicted ? "2026-10-12T14:30:00.000000Z" : "2026-10-12T08:00:00.000000Z";
+      const person = labels[0]!;
+      const warning = (startsAt: string, endsAt: string) => ({ text: `Utanför arbetstid · ${person}`,
+        timelineName: `Utanför arbetstid: ${person}, ${formatBookingTime(startsAt)} till ${formatBookingTime(endsAt)}`,
+        rule: "Utanför arbetstid", person, window: `${formatBookingTime(startsAt)} – ${formatBookingTime(endsAt)}`, collision: "Den här bokningen" });
+      scenario = { credentials: { email: fixture.adminA.email, password: fixture.adminA.password }, tenantIds: [tenantId, fixture.tenantB.id],
+        tenantId, actorMembershipId: actor.id, actorUserId: fixture.adminA.id, assigneeIds: profiles,
+        assigneeLabels: labels, description: token,
+        startsLocal: conflicted ? "2026-10-12T15:00" : "2026-10-12T09:00", endsLocal: conflicted ? "2026-10-12T16:30" : "2026-10-12T10:00",
+        expectedStartsAt: start.replace(".000000Z", "+00:00"), expectedEndsAt: end.replace(".000000Z", "+00:00"),
+        jobId, customerId, facilityId, contactId, workRoleId, persistedBookingId: "", expectedOpenLogicalCount: 1,
+        expectedConflictRowCount: 3, expectedAcceptedRowCount: 1, expectedOpenRowCount: mode === "persisted-conflict-states" ? 1 : 2,
+        selectedLogicalId: "", olderWarning: warning("2026-10-12T14:00:00Z", end), newerWarning: warning("2026-10-12T14:00:00Z", "2026-10-12T15:00:00Z") };
+      (scenario.olderWarning as { text: string }).text = scenario.olderWarning.window;
+      if (mode === "large-review") {
+        await ownedSeed.mutation(() => adminQuery(`insert into public.bookings(id,tenant_id,starts_at,ends_at,description,create_command_id,create_payload_digest,create_result)
+          select id,$1,'2026-10-12T07:00:00Z'::timestamptz+n*interval '1 second',
+          '2026-10-12T07:00:00Z'::timestamptz+(n+1)*interval '1 second',$2,gen_random_uuid(),repeat('a',64),jsonb_build_object('bookingId',id::text)
+          from (select gen_random_uuid() id,generate_series(0,999) n) peers`,[tenantId,`${token} large peer`]));
+        await ownedSeed.mutation(() => adminQuery("insert into public.booking_assignees(tenant_id,booking_id,person_profile_id) select tenant_id,id,$3 from public.bookings where tenant_id=$1 and description=$2",[tenantId,`${token} large peer`,profiles[0]]));
+        scenario={...scenario,endsLocal:"2026-10-12T09:20",expectedEndsAt:"2026-10-12T07:20:00+00:00",expectedConflictRowCount:1000,expectedAcceptedRowCount:1,expectedOpenRowCount:999};
+      }
+      if (conflicted) {
+        await ownedSeed.mutation(() => createReviewed({ ...bookingInput([profiles[0]!], { startsAt: "2026-10-12T13:15:00.000000Z", endsAt: "2026-10-12T13:45:00.000000Z", description: `${token}-peer` }), proposedBookingId: randomUUID() }));
+      }
+      if (mode === "persisted-conflict-states") {
+        const saved = await ownedSeed.mutation(() => createReviewed({ ...bookingInput(profiles, { startsAt: start, endsAt: end, description: token, jobId, customerId, workRoleId }), proposedBookingId: randomUUID() }, "Dubbelbokning"));
+        (scenario as { persistedBookingId: string }).persistedBookingId = saved.id;
+        await ownedSeed.mutation(() => adminQuery("update public.booking_conflicts set status='resolved',resolution_outcome='Synthetic fixture resolved',resolved_by_membership_id=$3,resolved_at=statement_timestamp() where tenant_id=$1 and booking_id=$2 and affected_person_profile_id=$4 and conflict_type='outside_work_hours'", [tenantId, saved.id, actor.id, profiles[1]]));
+      }
+      return scenario;
+
+    } finally { ownedSeed.finish(); }
+  },
     async observeNextConfirmedSave() { const done = deferred(); confirmations.push(done.resolve); return { confirmed: done.promise }; },
     async holdNextSave() { const started = deferred(), gate = deferred(); releases.push(gate.resolve); saveHold = { started: started.resolve, wait: gate.promise }; return { started: started.promise, release: async () => gate.resolve() }; },
     async failNextSaveOnce() { const done = deferred(); saveFailure = done.resolve; return { failed: done.promise }; },
@@ -362,7 +510,14 @@ async function bindBookingEditorHarness(
         releaseOlderAndWaitForSettlement: async () => { race.releaseOlder.resolve(); await race.olderDone.promise; await page.evaluate(() => new Promise<void>((done) => requestAnimationFrame(() => requestAnimationFrame(() => done())))); } };
     },
     retireTransport,
+    ownedRetirementCleanup(permitted) { if (finalData) throw new Error("Owned booking cleanup already belongs to original disposal."); ownedRetirementSeed ??= createOwnedBookingSeedAdmission(id => deleteAuthUser(id, "redacted")); return ownedRetirementOnly ??= createOwnedBookingRetirement(() => ownedRetirementSeed!.cleanup(cleanupScenario), users, id => deleteAuthUser(id, "redacted"), permitted, { close: ownedRetirementSeed.close, auth: [() => ownedRetirementSeed!.auth(0), () => ownedRetirementSeed!.auth(1)] }); },
     async dispose() {
+      if (ownedRetirementOnly) {
+        void ownedRetirementOnly.startSql();
+        ownedRetirementOnly.startRemaining();
+        ownedRetirementOnly.requireComplete();
+        return;
+      }
       lifecycle.mark(page, "booking-dispose", "enter");
       if (transportOptIn) {
         // Initiate both obligations independently. A stuck retirement never blocks original data cleanup.
