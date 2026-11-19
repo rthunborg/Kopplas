@@ -5,6 +5,7 @@ import type { Locator, Page, TestInfo } from "@playwright/test";
 import { adminQuery } from "../factories/admin-sql";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import playwrightPackage from "@playwright/test/package.json";
 import * as lifecycle from "./support/scheduling-lifecycle-metadata";
 const lifecyclePages = new WeakMap<TestInfo, Page>();
 
@@ -781,7 +782,206 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
   if (functionalFailure) throw functionalFailure;
 });
 
-test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycle and input tampering; denied role", async ({ schedulingViews: h, resourcePage: managerPage }, testInfo) => {
+
+// This delivery controller never supplies native identity or functional evidence.
+// Original public Request/Response, finished()->text(), phase gates and failures remain authoritative.
+function roleDeliveryRequire(ok: unknown): asserts ok { if (!ok) throw new Error("Required scheduling response delivery unavailable."); }
+async function roleDeliveryWithin<T>(work: Promise<T>, ms = 3000): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try { return await Promise.race([work, new Promise<never>((_, no) => { timer = setTimeout(() => no(new Error("Required scheduling response delivery unavailable.")), Math.max(0, ms)); })]); }
+  finally { clearTimeout(timer); }
+}
+function roleDeliveryBytes(text: string, encoded: boolean, cap: number) {
+  if (encoded) {
+    roleDeliveryRequire(text.length <= 4 * Math.ceil(cap / 3) && /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(text));
+    const bytes = Buffer.from(text, "base64");
+    roleDeliveryRequire(bytes.length <= cap && bytes.toString("base64") === text); return bytes;
+  }
+  roleDeliveryRequire(text.length <= cap && Buffer.byteLength(text, "utf8") <= cap);
+  const bytes = Buffer.from(text, "utf8"); roleDeliveryRequire(bytes.toString("utf8") === text); return bytes;
+}
+function roleDeliveryHeaders(input: { name: string; value: string }[] | undefined) {
+  roleDeliveryRequire(input && input.length <= 64);
+  const selected = new Map<string, string>(); let total = 0;
+  for (const { name, value } of input) {
+    roleDeliveryRequire(typeof name === "string" && typeof value === "string"); total += Buffer.byteLength(name) + Buffer.byteLength(value) + 4;
+    roleDeliveryRequire(total <= 16384 && /^[!#$%&'*+.^_\x60|~0-9A-Za-z-]+$/.test(name) && !/[^\t\x20-\x7e]/.test(value));
+    const key = name.toLowerCase();
+    roleDeliveryRequire(!["set-cookie", "set-cookie2", "location", "x-action-redirect", "trailer", "upgrade"].includes(key));
+    if (!["content-type", "content-encoding", "content-length", "transfer-encoding", "x-action-revalidated", "x-nextjs-postponed", "x-nextjs-stale-time", "x-action-not-found"].includes(key)) continue;
+    roleDeliveryRequire(!selected.has(key)); selected.set(key, value.trim());
+  }
+  roleDeliveryRequire(/^text\/x-component(?:;\s*charset=utf-8)?$/i.test(selected.get("content-type") ?? ""));
+  const encoding = selected.get("content-encoding")?.toLowerCase() ?? "identity", length = selected.get("content-length"), transfer = selected.get("transfer-encoding");
+  roleDeliveryRequire(["identity", "gzip", "br"].includes(encoding) && (length === undefined || /^(0|[1-9][0-9]{0,8})$/.test(length)));
+  roleDeliveryRequire(transfer === undefined || (transfer.toLowerCase() === "chunked" && length === undefined));
+  roleDeliveryRequire(encoding === "identity" || length === undefined);
+  roleDeliveryRequire(!selected.has("x-nextjs-postponed") && !selected.has("x-action-not-found"));
+  const expected = length === undefined ? undefined : Number(length); roleDeliveryRequire(expected === undefined || expected <= 262144);
+  for (const key of ["content-encoding", "transfer-encoding", "content-length"]) selected.delete(key);
+  return { expected, headers: [...selected].map(([name, value]) => ({ name, value })) };
+}
+function createRoleResponseDelivery(session: import("@playwright/test").CDPSession, origin: string, frame: string, retain: (error: unknown) => void, closeOwnedPage: () => Promise<void>) {
+  const unavailable = new Error("Required scheduling response delivery unavailable.");
+  let accepting = true, enabled = false, broken = false, phase: { date: string; admitted: number; fulfilled: number } | undefined;
+  let phases = 0, totalBytes = 0, reads = 0, nonTargets = 0, pendingTargets = 0, taking = 0, closed = false;
+  const pending = new Set<Promise<void>>(), streams = new Set<string>(), ids = new Set<string>();
+  const streamClosers = new Set<() => Promise<void>>(); // Bounded by the existing four eligible acquisitions.
+  let releasing: Promise<void> | undefined, serial: Promise<void> = Promise.resolve();
+  const fail = () => { broken = true; try { retain(unavailable); } catch { /* Existing arbiter cannot be replaced by optional diagnostics. */ } };
+  const check = () => { roleDeliveryRequire(accepting && enabled && !broken); };
+  const onClose = () => { closed = true; if (accepting) fail(); };
+  // Parse and discard event-only raw request/header fields synchronously; retain only bounded command/control input.
+  const classify = (event: { requestId: string; frameId: string; request: { url: string; method: string; headers: Record<string, string>; postData?: string }; responseStatusCode?: number; responseErrorReason?: string; redirectedRequestId?: string; responseHeaders?: {name:string;value:string}[] }) => {
+    roleDeliveryRequire(typeof event.requestId === "string" && event.requestId.length > 0 && event.requestId.length <= 256);
+    const id = event.requestId, url = new URL(event.request.url);
+    if (url.origin !== origin || url.pathname !== "/scheduling" || event.request.method !== "POST") return { id, target: false as const };
+    const keys = Object.keys(event.request.headers); roleDeliveryRequire(keys.length <= 64);
+    const action = keys.filter(key => key.toLowerCase() === "next-action");
+    if (!action.length) return { id, target: false as const };
+    roleDeliveryRequire(action.length === 1 && !!event.request.headers[action[0]!]);
+    // This is independent eligibility only. The helper's original expected-input public Request Set remains the authority.
+    const raw = event.request.postData; roleDeliveryRequire(typeof raw === "string" && Buffer.byteLength(raw) <= 4096);
+    const input: unknown = JSON.parse(raw), first = Array.isArray(input) ? input[0] : undefined;
+    const exact = (value: unknown, names: string[]): value is Record<string, unknown> => !!value && typeof value === "object" && !Array.isArray(value) && Object.keys(value).length === names.length && names.every(key => Object.hasOwn(value, key));
+    roleDeliveryRequire(Array.isArray(input) && input.length === 1 && raw.trim() === JSON.stringify(input) && exact(first, ["view", "mode", "date", "filters"]));
+    roleDeliveryRequire(phase && event.frameId === frame && !event.redirectedRequestId && !event.responseErrorReason && event.responseStatusCode === 200);
+    roleDeliveryRequire(first.view === "personal" && first.mode === "week" && first.date === phase.date);
+    const filters = first.filters; roleDeliveryRequire(exact(filters, ["personIds", "workRoleIds", "jobIds", "customerIds", "status"]) && filters.status === "planned");
+    roleDeliveryRequire(["personIds", "workRoleIds", "jobIds", "customerIds"].every(key => Array.isArray(filters[key]) && filters[key].length === 0));
+    roleDeliveryRequire(!ids.has(id) && ids.size < 4 && phase.admitted < 2); const headers = roleDeliveryHeaders(event.responseHeaders);
+    ids.add(id); phase.admitted++; return { id, target: true as const, ownedPhase: phase, ...headers };
+  };
+  const onPaused = (event: Parameters<typeof classify>[0]) => {
+    if (!accepting) { fail(); return; }
+    let selected: ReturnType<typeof classify>;
+    try { check(); roleDeliveryRequire(pending.size < 64); selected = classify(event); }
+    catch { fail(); return; } // Unknown ownership is never guessed or silently continued.
+    let bodyTaken = false;
+    const run = async () => {
+      check(); // A queued/late body cannot start acquisition after disable.
+      if (!selected.target) { roleDeliveryRequire(++nonTargets <= 64); await roleDeliveryWithin(session.send("Fetch.continueRequest", { requestId: selected.id })); return; }
+      pendingTargets++; taking++; let body: Buffer | undefined, expired = false;
+      let acquired: { handle: string; close: () => Promise<void> } | undefined;
+      const register = (reply: { stream: string }) => {
+        const handle = reply.stream;
+        roleDeliveryRequire(typeof handle === "string" && handle.length > 0 && handle.length <= 256);
+        if (acquired) { roleDeliveryRequire(acquired.handle === handle); return acquired; }
+        roleDeliveryRequire(!streams.has(handle)); streams.add(handle);
+        let closing: Promise<void> | undefined;
+        const close = (): Promise<void> => {
+          if (!closing) {
+            try {
+              closing = roleDeliveryWithin(session.send("IO.close", { handle })).then(() => {
+                streams.delete(handle); streamClosers.delete(close);
+              }, () => { fail(); throw unavailable; });
+            } catch { fail(); closing = Promise.reject(unavailable); }
+            void closing.catch(() => fail());
+          }
+          return closing;
+        };
+        acquired = { handle, close }; streamClosers.add(close); return acquired;
+      };
+      try {
+        const acquisition = session.send("Fetch.takeResponseBodyAsStream", { requestId: selected.id });
+        // Register the owned close obligation BEFORE state rejection. Timeout does not cancel acquisition.
+        void acquisition.then(reply => {
+          let owned: ReturnType<typeof register>;
+          try { owned = register(reply); } catch { fail(); return; }
+          if (!accepting || broken || expired) void owned.close().catch(() => fail());
+        }, () => fail()).catch(() => fail());
+        const reply = await roleDeliveryWithin(acquisition);
+        const owned = register(reply); // Same cached registration as the settlement handler, even when broken/expired.
+        check(); bodyTaken = true;
+        const handle = owned.handle;
+        body = Buffer.alloc(262144); let used = 0, eof = false; const deadline = performance.now() + 10000;
+        while (!eof) {
+          check(); roleDeliveryRequire(++reads <= 32); const remaining = deadline - performance.now(); roleDeliveryRequire(remaining > 0);
+          const chunk = await roleDeliveryWithin(session.send("IO.read", { handle, size: 16384 }), Math.min(3000, remaining));
+          check(); roleDeliveryRequire(typeof chunk.data === "string" && typeof chunk.eof === "boolean" && (chunk.base64Encoded === undefined || typeof chunk.base64Encoded === "boolean"));
+          const bytes = roleDeliveryBytes(chunk.data, chunk.base64Encoded === true, 16384);
+          roleDeliveryRequire((bytes.length > 0 || chunk.eof) && totalBytes + bytes.length <= 262144 && used + bytes.length <= body.length);
+          totalBytes += bytes.length; bytes.copy(body, used); used += bytes.length; eof = chunk.eof;
+        }
+        await owned.close(); taking--;
+        check(); roleDeliveryRequire(used > 0 && (selected.expected === undefined || selected.expected === used));
+        const data = body.subarray(0, used).toString("base64"); roleDeliveryRequire(data.length <= 4 * Math.ceil(262144 / 3));
+        // Release is independent ofâ€”and precedes the client result that waits forâ€”this delivery.
+        await roleDeliveryWithin(session.send("Fetch.fulfillRequest", { requestId: selected.id, responseCode: 200, responseHeaders: [...selected.headers, { name: "content-length", value: String(used) }], body: data }));
+        check(); roleDeliveryRequire(phase === selected.ownedPhase); selected.ownedPhase.fulfilled++;
+      } catch (error) {
+        expired = true;
+        if (acquired) void acquired.close().catch(() => fail());
+        throw error;
+      } finally { body?.fill(0); pendingTargets--; }
+    };
+    // At most two response bodies are eligible in a phase. Serialize acquisition, not client completion,
+    // so only one fixed256KiB held buffer exists; aggregate bytes/reads remain shared across both phases.
+    const task = selected.target ? serial.then(run) : run();
+    const work = task.catch(() => { fail(); if (!bodyTaken && accepting) { /* No speculative command on an uncertain takeover. Original finalizer closes the owned Page. */ } });
+    if (selected.target) serial = work;
+    pending.add(work); void work.then(() => pending.delete(work), () => pending.delete(work));
+  };
+  session.on("Fetch.requestPaused", onPaused); session.on("close", onClose);
+  return {
+    async enable() { try { await roleDeliveryWithin(session.send("Fetch.enable", { patterns: [{ urlPattern: origin + "/scheduling*", requestStage: "Response" }] })); enabled = true; check(); } catch { fail(); throw unavailable; } },
+    arm(date: string) { check(); roleDeliveryRequire(!phase && pendingTargets === 0 && phases < 2 && /^\d{4}-\d{2}-\d{2}$/.test(date) && new Date(date + "T00:00:00Z").toISOString().slice(0,10) === date); phase = { date, admitted: 0, fulfilled: 0 }; phases++; },
+    async complete() { check(); const owned = phase; roleDeliveryRequire(owned); await roleDeliveryWithin(Promise.all([...pending])); check(); roleDeliveryRequire(phase === owned && pendingTargets === 0 && owned.admitted >= 1 && owned.admitted <= 2 && owned.fulfilled === owned.admitted); phase = undefined; },
+    dispose(success: boolean) {
+      if (!releasing) {
+        const valid = !broken && enabled && !phase && pendingTargets === 0 && pending.size === 0 && taking === 0 && streams.size === 0 && phases === 2;
+        accepting = false; // Disable synchronously before invoking any owned cleanup.
+        let detachFault = false;
+        try { session.off("Fetch.requestPaused", onPaused); } catch { detachFault = true; fail(); }
+        try { session.off("close", onClose); } catch { detachFault = true; fail(); }
+        releasing = (async () => {
+          if (!success || taking > 0 || pendingTargets > 0 || !valid) {
+            // Initiate every registered owned stream close independently; cached close prevents duplicate IO.close.
+            void Promise.allSettled([...streamClosers].map(close => close())).then(results => {
+              if (results.some(result => result.status === "rejected")) fail();
+            }).catch(() => fail());
+            // Stream takeover forbids continuation while incomplete. Initiate the SAME cached original owned close;
+            // independent original gate/SQL/Auth/Booking finalizers must already be started by the caller.
+            let closing: Promise<void>;
+            try { closing = closeOwnedPage(); } catch (error) { try { retain(error); } catch {} fail(); throw unavailable; }
+            // Late close settlement still owns detach, but an unconfirmed close cannot authorize changing an incomplete request.
+            void closing.then(() => session.detach(), error => { try { retain(error); } catch {} fail(); }).catch(() => fail());
+            try { await roleDeliveryWithin(closing); } catch (error) { try { retain(error); } catch {} fail(); }
+            // Closed-target cleanup is not successful method release; always refuse this branch.
+            throw unavailable;
+          }
+          // Both phases and original native/client gates completed. No pending body command may be disabled.
+          const results = await Promise.allSettled([
+            ...[...streamClosers].map(close => close()),
+            roleDeliveryWithin(session.send("Fetch.disable")),
+          ]);
+          const removed = results.every(result => result.status === "fulfilled");
+          try { await roleDeliveryWithin(session.detach()); } catch { fail(); }
+          if (!removed || detachFault || broken || closed) throw unavailable;
+        })();
+        void releasing.catch(() => fail());
+      }
+      return releasing;
+    },
+  };
+}
+
+
+// The transport owns raw in-memory protocol data. Apply the already-qualified E09 recorder boundary only to this case.
+const roleResponseTest = test.extend<{ _setupArtifacts: void; _combinedContextOptions: Record<string, unknown> }>({
+  trace: "off", screenshot: "off", video: "off",
+  _setupArtifacts: async ({ playwright, _combinedContextOptions }, provide) => {
+    const version = playwrightPackage.version;
+    if (version !== "1.61.1" || process.env.DEBUG || process.env.DEBUG_FILE || process.env.PWDEBUG || process.env.NODE_DEBUG || process.env.PW_TEST_REUSE_CONTEXT) throw new Error("Required scheduling response recording boundary unavailable.");
+    type Listener = { runBeforeCreateBrowserContext: (options: Record<string, unknown>) => Promise<void> };
+    const hooks = (playwright as unknown as { _instrumentation?: { addListener: (value: Listener) => void; removeListener: (value: Listener) => void } })._instrumentation;
+    if (!hooks || typeof hooks.addListener !== "function" || typeof hooks.removeListener !== "function") throw new Error("Required scheduling response recording boundary unavailable.");
+    const listener: Listener = { async runBeforeCreateBrowserContext(options) { for (const [key, value] of Object.entries(_combinedContextOptions)) if (!(key in options)) options[key] = value; if (options.recordHar || options.recordVideo) throw new Error("Required scheduling response recording boundary unavailable."); } };
+    hooks.addListener(listener); try { await provide(); } finally { hooks.removeListener(listener); }
+  },
+});
+
+roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycle and input tampering; denied role", async ({ schedulingViews: h, resourcePage: managerPage }, testInfo) => {
   lifecycle.activate(managerPage, testInfo.retry); lifecyclePages.set(testInfo, managerPage);
   lifecycle.mark(managerPage, "seed", "enter");
   await h.seed(); lifecycle.mark(managerPage, "seed", "fulfilled"); lifecycle.mark(managerPage, "initial-signin", "enter"); await h.signIn("manager"); lifecycle.mark(managerPage, "initial-signin", "fulfilled"); lifecycle.mark(managerPage, "initial-open", "enter"); await h.open("Resurser"); lifecycle.mark(managerPage, "initial-open", "fulfilled");
@@ -842,6 +1042,8 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (shutdownStarted || hasFailure) return;
     hasFailure = true; firstFailure = error; notifyFailure();
   };
+  let responseDelivery: ReturnType<typeof createRoleResponseDelivery> | undefined;
+  const releaseResponseDelivery = (success: boolean) => responseDelivery?.dispose(success) ?? Promise.resolve();
   const guardProgress = () => { ensureActive(); if (hasFailure) throw firstFailure; };
   const guardedStage = async <T,>(operation: () => Promise<T>): Promise<T> => {
     guardProgress();
@@ -1276,6 +1478,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   const shutdown = () => {
     if (shutdownStarted) return;
     beginRoleCleanup(false);
+    void releaseResponseDelivery(false).catch(error => recordFailure(error));
     try { targetAssociation.finish(); } catch { /* Owned observation cannot block original cleanup. */ }
     lifecycle.mark(page, "shutdown", "requested");
     // PASSIVE-NETWORK-BEGIN shutdown
@@ -1336,7 +1539,24 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
       expect(neutralDocument, "Controlled role-read neutral document unavailable.").toBe(true);
     }); guardProgress();
     await guardedStage(installRoleGate); guardProgress();
+    const attaching = page.context().newCDPSession(page);
+    let acceptSession = true, transferredSession = false;
+    let detachingSession: Promise<void> | undefined;
+    const detachUntransferred = (owned: import("@playwright/test").CDPSession) => detachingSession ??= owned.detach();
+    const responseSetupFailure = new Error("Required scheduling response delivery unavailable.");
+    void attaching.then(owned => { if (!acceptSession && !transferredSession) void detachUntransferred(owned).catch(() => recordFailure(responseSetupFailure)); }, () => {}).catch(() => recordFailure(responseSetupFailure));
+    try {
+      const owned = await guardedStage(() => roleDeliveryWithin(attaching).catch(() => { throw responseSetupFailure; }));
+      const runtime = await guardedStage(() => roleDeliveryWithin(owned.send("Browser.getVersion")).catch(() => { throw responseSetupFailure; }));
+      roleDeliveryRequire(/^(?:Headless)?Chrome\/149\.0\.7827\.55$/.test(runtime.product));
+      const { frameTree: { frame } } = await guardedStage(() => roleDeliveryWithin(owned.send("Page.getFrameTree")).catch(() => { throw responseSetupFailure; }));
+      roleDeliveryRequire(!!frame.id && !frame.parentId);
+      responseDelivery = createRoleResponseDelivery(owned, captureOrigin, frame.id, recordFailure, () => h.closeOwnRolePage());
+      transferredSession = true;
+      await guardedStage(() => responseDelivery!.enable()); guardProgress();
+    } finally { acceptSession = false; if (!transferredSession) void attaching.then(detachUntransferred).catch(() => recordFailure(responseSetupFailure)); }
     const mountedDate = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Stockholm", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+    responseDelivery!.arm(mountedDate);
     rolePhase = h.beginRoleReadPhase(captureOrigin, mountedDate);
     await test.step("Role initial required flow", async () => {
       const targetResponse = await test.step("Role initial controlled navigation", async () => {
@@ -1360,12 +1580,15 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
       });
       await test.step("Role initial UI settlement", async () => { await guardedSettle(); guardProgress(); });
     });
+    await guardedStage(() => responseDelivery!.complete()); guardProgress();
     rolePhase.close(); rolePhase = undefined;
     await guardedStage(() => roleEvaluate("arm")); guardProgress();
+    responseDelivery!.arm(DATE);
     rolePhase = h.beginRoleReadPhase(captureOrigin, DATE);
     lifecycle.mark(page, "date-fill", "enter");
     await navigateAfterBarrier(() => page.getByLabel("Datum", { exact: true }).fill(DATE)); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
     await qualifyRolePhase(); guardProgress();
+    await guardedStage(() => responseDelivery!.complete()); guardProgress();
     await guardedStage(() => expect(page.getByRole("tab")).toHaveCount(1)); await guardedStage(() => expect(page.getByRole("tab")).toHaveText("Min kalender"));
     const visibleIds = await guardedStage(() => h.visibleIds()); guardProgress(); expect(visibleIds).toEqual([h.ids.role, h.ids.collision].sort());
     await guardedStage(() => expect(page.getByLabel("Person", { exact: true })).toHaveCount(0)); await guardedStage(() => expect(page.getByTestId("scheduling-new-booking")).toHaveCount(0));
@@ -1375,12 +1598,13 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     if (error === abandoned) throw error;
     recordFailure(error);
   } finally {
-    if (hasFailure || shutdownStarted) beginRoleCleanup(false);
+    if (hasFailure || shutdownStarted) { beginRoleCleanup(false); void releaseResponseDelivery(false).catch(error => recordFailure(error)); }
     else {
       try {
         const cleanup = beginRoleCleanup(true);
         await guardedStage(() => cleanup.clear);
         await guardedStage(() => cleanup.script);
+        await guardedStage(() => releaseResponseDelivery(true)); guardProgress();
         roleReleased = true;
       } catch (error) { if (error !== abandoned) recordFailure(error); }
     }
@@ -1402,7 +1626,7 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
   ensureActive();
   if (hasFailure) throw firstFailure;
   } catch (error) { if (error !== abandoned) throw error; }
-  finally { beginRoleCleanup(false); void h.closeOwnRolePage().catch(error => recordFailure(error)); if (!shutdownStarted) schedulingAttemptShutdowns.delete(testInfo); }
+  finally { beginRoleCleanup(false); void releaseResponseDelivery(false).catch(error => recordFailure(error)); void h.closeOwnRolePage().catch(error => recordFailure(error)); if (!shutdownStarted) schedulingAttemptShutdowns.delete(testInfo); }
   // PASSIVE-NETWORK-BEGIN final
   } finally { try { targetAssociation.finish(); } catch { /* Preserve the original primary carrier. */ } lifecycle.mark(page, "attempt-end", "event"); passive.stop(hasFailure); schedulingPassiveShutdowns.delete(testInfo); }
   // PASSIVE-NETWORK-END final

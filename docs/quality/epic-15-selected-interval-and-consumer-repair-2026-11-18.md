@@ -1,5 +1,40 @@
 # Epic 15 selected-interval and consumer repair - 2026-11-18
 
+Status at the owned-response-delivery placed-source/offline freeze: base `01bb3b5646f072e41f9259b43b466fdeb054116a` remains the published failing/consumed candidate; the two reviewed code files are uncommitted postimages on that base. Actual full lifecycle verifier **44 passed, 0 failed, 0 skipped/cancelled/todo** on its first placed-source attempt; actual full typecheck and scoped lint passed with zero diagnostics/errors/warnings. Code froze before this note. These are pure Node/source/fake-port results, not browser/CDP/native/SQL/Auth or release acceptance. No new commit, ordinary/full CI run or capture is implied. The retained [01bb full run44548200950](https://github.com/rthunborg/Kopplas/actions/runs/44548200950) remains FAILED/consumed; its complete initial Role qualification and later twelve tails/008 remain unearned, with 24/37 retained frames and 13 missing. The original25 Deferred rows, zero whole-row closure, frontend baselineS, manual/human/controller/performance/cleanup and integration/custody holds remain.
+
+## Placed owned-response delivery and offline qualification
+
+This is a qualified verification-method implementation, not an identified product/routing defect or historical abort fix. The [INT001 source](../../tests/e2e/scheduling-views.atdd.e2e.spec.ts) retains its original public goto Promise, actual targetResponse/Request references, independent expected-input Request Set1-or-2, SAME public Response.finished-before-text, body/cardinality and client10/12/current-state checks. Both initial frame/loading waits, Date/own/payload/confirmed release-before-denied/denied, every admitted-or-live fatal error and exact earliest object/falsy carrier remain. GET traffic, including the controlled initial target, is continued unchanged and remains under the original fatal/public capture rules. All Dense501/11 tuples/four filters/SQL/focus, full539/20 scheduling,37 required captures and configured retries/budgets remain.
+
+The new response-stage controller would prepare genuine bounded bytes and fulfill each eligible read independently before client completion can depend on delivery. It cannot supply public identity or replace the original checks. The original BookingEditor save/preview fetch/fulfill handler is retired before the fresh Role child; that child retains its existing readRoute/fallback. This distinction proves no missing routing guard or abort cause. Real request-stage routing/response-stage interception coexistence is still unqualified.
+
+Every valid acquired stream now gets a cached explicit close obligation before broken/expired/disabled rejection. The settlement and awaited paths share registration and IO.close, including a reply arriving after another refusal or deadline but before disposal. Refused work cannot read/fulfill; known closers and all original owned finalizers start independently, preserve the original first error and never wait for pending client completion. Target close/detach is not a substitute for explicit stream-close acknowledgement or physical cleanup evidence.
+
+The prospective DATA contract permits only the exact reviewed nine commands: Browser.getVersion(no arguments), Fetch.enable/disable/continueRequest/takeResponseBodyAsStream/fulfillRequest, IO.read/close and Page.getFrameTree. Fetch.requestPaused is the sole protocol-data event; CDPSession.close is same-owned-session lifetime notification with ignored payload. The entire public runtime reply precedes the pinned product check. Native header/postData/frame/control/encoded envelopes may contain uninspected Cookie/Auth/session fields before validation; neither ingress nor the runtime reply is claimed value-free, secret-free or wire-capped. No such operation or acquisition ran in this offline phase.
+
+Requested and accepted decoded chunks are16KiB, with encoded length checked before base64 decode. Accepted decoded bytes are bounded to256KiB and reads to32 across BOTH initial/Date phases, not per response. Target acquisition is serialized with one fixed256KiB held buffer; each phase accepts1-or-2 reads, at most4 control IDs,64 pending/non-target continuations,64/16KiB selected headers and4KiB accepted input. Command/read deadlines remain3s/10s refusal bounds inside unchanged existing test budgets. No fixture-fit/performance claim, automatic cap raise, whole getResponseBody or identity/clock/ordinal join follows.
+
+The INT001-only roleResponseTest fixture uses the pinned canonical E09 recorder boundary: automatic channel.params/failure snapshots/trace/HAR/video/debug/context reuse are suppressed or refused while context defaults and explicit literal steps remain. Other cases keep their configuration. No explicit37-name capture criterion is removed. The [existing lifecycle verifier](../../tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts) changes only the exact case-prefix selector for that explicit alias and appends three actual-definition/regression tests; the original41 assertions/other40 bodies/shared ports remain. No E09 permission or dependency-audit risk acceptance transfers automatically.
+
+Executed with Node22.23.2 in the isolated F checkout; receipts retain the absolute executable and complete argv. These commands ran against the placed source:
+
+| Actual offline gate | Command | Result and limit |
+| --- | --- | --- |
+| Full affected lifecycle verifier | `node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=tap tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts` | 44 executed/passed;0 failed/skipped/cancelled/todo. Includes both pre-dispose ownership intervals; fake ports, no real protocol/browser or SQL/Auth. |
+| Actual full typecheck | `node node_modules/typescript/bin/tsc --noEmit --incremental false` | Exit0,0 diagnostics; no generated/build output. |
+| Actual scoped lint | `node node_modules/eslint/bin/eslint.js tests/e2e/scheduling-views.atdd.e2e.spec.ts tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts --format json --no-cache` | Exit0,0 errors/0 warnings; no fixes/cache. |
+| Focused placed-source conservation | Author static AST/byte/inverse check of the reviewed patch | Raw forward/inverse and exact reviewed LF/gitblobs;42 protected plus10 additional source/API bindings;20 original functional bodies,188 expect calls,12 declaration templates and4 capture-bearing call texts unchanged. These are source counts, not browser/image execution. |
+
+The code postimages are LF `e391ccb55a834d30c2acd15960618bd214c2d74ce37474876f19f382ba88570a` and `64979df4e6763f06965b3ecefc7b0c6e300c6f744deb49b8a200b54d4ff8917c`, with code CRLF preserved. The immutable actual two-code freeze receipt is `8e95fe849317a9da873c36bbbc1fbf6dfdcda98d95b33f4ea30f3ee37aa28cd9`. The private16 method-design scenarios remain separate predecessor evidence and are not added to44 or relabelled native coverage. A failed optional metadata-only runner lookup executed0 tests; the declared native Node runner was used. Every earlier failed/successful attempt remains retained in its own namespace.
+
+### Remaining qualification
+
+Root still owns final placed-source/note/privacy binding, publication and any separately admitted exact-head ordinary/full CI purpose. The actual browser must prove original public finished/text, complete initial/Date client-plus-native gates, own/payload/denied flow, all12 dependent cases, every configured retry, full539/20/37 and verified owned cleanup. Current01bb failed both initial-qualification attempts after navigation/native drain; outer UI settlement was not reached. No historical first-carrier/cancel cause is claimed or made prerequisite to independently supported changed-candidate testing. All actual INT executions under unchanged retries must qualify/report: no manufactured second, first-only criterion, hidden failure, waiver or unchanged diagnostic redispatch.
+
+No new audit, build, integration/RLS, physical cleanup, performance or human/controller/reference comparison ran here. Existing raw audit/native/severity/graph/expiry guards remain; no clean-audit, risk-renewal or cap/timeout claim is made. Frontend completion still APPLIES from baselineS `fe282c326b208788ef94a3717092057ab7e2e91e`; fresh-head desktop/360x640 images and required human/manual/reference/controller decisions remain unearned. Business writers remain paused; main/production/database cutover, CRM recovery/custody and PR151 adoption remain held. Native/foreign reservations remain retained, and finite512 remains parked.
+
+### Historical conservative-order preparation
+
 Status at the conservative initial Role-order SOURCE PREPARATION freeze: published base `9db1351329437354eee435399422859fff452718` and full run44529028441 remain FAILED and consumed. The only new code change moves the unchanged top-level initial UI-settlement statement after existing native drain and complete qualification; two verifier expected-order arrays follow that exact permutation. The qualifier's own internal frame/loading wait still precedes final native cardinality/current-client checks, and BOTH original initial waits remain. Two code files froze before this factual note; no future commit/run/success is assumed. Actual extracted caller/qualifier/producer/gate/native-validator/cleanup fake-port checks18/18 and full verifier41/41 pass separately, with type/lint and exact inverses; earlier private port/parser failures remain preserved. Neither semantic completion nor those checks certify DOM paint, abort cause, actual browser availability, physical cleanup or performance. Current9db INT001 failed both actual configured attempts;12 dependent cases including the unchanged Team-reentry008 body were NOT RUN. Dense passed both occurrences, current frames remain24/37 with13 missing, and all25 Deferred rows/zero closures, frontendS, manual/human/controller/performance/custody and integration holds remain. Historical cause resolution is not prerequisite to separately testing this changed-order candidate; ALL actual INT001 executions produced by unchanged configured retries must qualify/report, with no manufactured second attempt, first-only criterion, hidden failure or waiver. Earlier sections retain their own revisions/as-of outcomes.
 
 
@@ -550,32 +585,36 @@ Main ordering/readmission remains Coordinator-held. Product work remains paused 
 
 ## Suggested Review Order
 
-Author: `/root/e15_release_wiring_author_high`, explicit Sol High. Refreshed after both code postimages froze. Review only the conservative outer statement permutation and its two exact expected-order arrays; original semantics, internal waits and earlier business/diagnostic implementations remain protected.
+Author: `/root/e15_release_wiring_author_high`, explicit Sol6.1 High. Refreshed after the ACTUAL two-code freeze and actual44/type/lint/conservation gates; code remains frozen while this factual note changes. Review the qualified delivery/privacy/caller change and focused ownership correction, not a historical story reopening or abort-cause claim.
 
-### Establish the existing completion gate before outer UI settlement
+### Keep public Role evidence authoritative
 
-The original controlled navigation/Promise and all existing statements remain. Moving the same outer wait after qualification prevents it from standing in for initial-read completion; Date still follows the entire initial flow.
+The controller only releases genuine bounded responses; original Request/native/client evidence still determines success. Both waits and every Date/own/payload/release/denied condition remain.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1353` — `Role initial native drain`: retains the existing native drain first.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1359` — `await qualifyRolePhase();`: retains complete initial qualification.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1361` — `Role initial UI settlement`: relocates the unchanged outer wait.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1363` — `rolePhase.close();`: leaves mounted closure and Date later.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:984` — `roleResponseTest("[P0] 15.1-INT-001`: enters the same required Role scenario.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1567` — `const originalNavigation = page.goto`: retains the original navigation Promise.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1203` — `const qualifyRolePhase = async`: retains complete native/client qualification.
 
-### Preserve the internal frame and final native/current checks
+### Own handles before any refusal
 
-Semantic completion is not React commit or paint. The unchanged qualifier still performs its internal frame/loading wait before final Request/cardinality/current-client checks, while the moved outer wait follows all of them.
+Settlement and awaited paths share cached registration/IO.close. Broken or expired replies before disposal cannot leak a handle, read/fulfill, replace the primary error or block original cleanup.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1002` — `roleEvaluate("wait")`: awaits the actual owned legal10/12 phase.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1005` — `await guardedSettle();`: retains internal frame/loading settlement.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1007` — `requests.length !== count`: retains exact native cardinality/completion.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1008` — `roleEvaluate("check", count)`: rechecks current owned client state.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:866` — `const register = (reply: { stream: string })`: records ownership before state checks.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:891` — `if (!accepting || broken || expired)`: closes refused arrivals through the cache.
+- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:616` — `test("actual Role acquisition registers cached close before broken or expired state rejection"`: covers both previously missing intervals.
 
-### Adapt only the named order consumer, keeping errors and evidence honest
+### Bound data and isolate automatic recording
 
-The two expected arrays retain the same titles/calls/guards and navigation Promise. Actual extracted-source probes and the41-case verifier are separate local results; all original native failures and unexecuted criteria remain.
+Pre-cap native ingress can contain raw Cookie/Auth/session/runtime fields. The INT001-only pinned recorder override prevents automatic parameter/snapshot artifacts; it does not certify actual runtime privacy or make data value-free.
 
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:558` — `assert.deepEqual(f.titles`: updates only fixed title order.
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:559` — `assert.deepEqual(f.calls`: updates only the same call/guard members' order.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:841` — `const recordFailure`: retains the first actual fatal carrier.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:971` — `const roleResponseTest = test.extend`: isolates recording changes to INT001.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:902` — `const bytes = roleDeliveryBytes(chunk.data`: checks chunk bounds before retention.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1550` — `const runtime = await guardedStage(() => roleDeliveryWithin(owned.send("Browser.getVersion"))`: uses only the qualified pinned-runtime operation.
 
-Current integrated proof18/18, verifier41/41, type/scoped lint and corrected conservation pass; initial private17P1F and static-parser failure remain retained. Fake ports, including actual cleanup methods, establish source behavior only, not browser/SQL/Auth/paint/performance or physical teardown. Both original initial frame/loading waits remain. Current9db fullFAIL/consumed, bothINTERR_ABORTED,12 dependent008/tails NOTRUN,24/37 images13missing, original25 Deferred rows/zero closures, frontendS and audit/cleanup/manual/reference/human/controller/integration holds remain. Historical cause resolution is not prerequisite to separately testing this changed-order candidate; all actual INT executions under unchanged retries must qualify/report, without forced extras, first-only rules, hidden failure or waiver. Root alone owns later actual-source review/publication and separately admitted changed-candidate normal/full execution.
+### Separate offline proof from remaining runtime gates
+
+Actual44 passed first attempt with0 failure/skip/cancel/todo, actual type/lint exited0, and static raw inverses/protected bodies/captures matched. Private16 is separate. Browser/CDP/SQL/Auth/native cleanup/full539/20/37, frontend/human/controller/performance and release decisions remain unearned.
+
+- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:590` — `test("Role bounded response decoder checks encoded bytes before decoding and preserves exact chunk cap"`: tests bounded decoding and framing refusal.
+- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:597` — `test("actual Role delivery serializes bounded bodies and releases before client validation without replacing native observations"`: tests independent release while public checks remain.
+- `docs/quality/epic-15-selected-interval-and-consumer-repair-2026-11-18.md:30` — `### Remaining qualification`: retains native, publication and owner holds.

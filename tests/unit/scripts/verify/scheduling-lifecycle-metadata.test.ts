@@ -337,7 +337,7 @@ test("uncertain old close forbids creation and late child creation is owned and 
 test("owned handoff failure retains first error and caller keeps origin and one final passive instance", async () => {
   const sentinel = {}, f = ownedSchedulingPorts({ unroute: async () => { throw sentinel; } });
   await assert.rejects(f.api.openOwnRolePage(), e => e === sentinel); await assert.rejects(f.api.dispose(), e => e === sentinel); assert.equal(f.data(), 1); assert.equal(f.auth.length, 1); assert.equal(f.creates(), 0);
-  const file = source(spec), start = file.indexOf('test("[P0] 15.1-INT-001'), end = file.indexOf("// Focus regression:", start), body = file.slice(start, end);
+  const file = source(spec), start = file.indexOf('roleResponseTest("[P0] 15.1-INT-001'), end = file.indexOf("// Focus regression:", start), body = file.slice(start, end);
   assert.ok(body.indexOf("new URL(managerPage.url()).origin") < body.indexOf("await h.openOwnRolePage()"));
   assert.ok(body.indexOf("await h.openOwnRolePage()") < body.indexOf("const passive = createSchedulingPassiveMetadata"));
   assert.equal((body.match(/const passive = createSchedulingPassiveMetadata/g) ?? []).length, 1); assert.equal((body.match(/passive.start\(\)/g) ?? []).length, 1);
@@ -578,4 +578,61 @@ test("installed standard step and nested JSON serializer retain fixed context an
   const serializer = evaluate(`({${runner.slice(serializerStart, serializerEnd)}})`, {});
   const nested = serializer._serializeTestStep({ ...steps[0], steps: [steps[1], { title: "not-a-user-step", category: "pw:api", steps: [] }] });
   assert.equal(nested.title, "Role initial required flow"); assert.equal(nested.steps.length, 1); assert.equal(nested.steps[0].title, "Role initial native drain"); assert.equal(nested.steps[0].error, sentinel); assert.deepEqual(Object.keys(nested).sort(), ["duration", "error", "steps", "title"]);
+});
+
+
+// Role response delivery regressions: original assertions above remain unchanged except the explicit INT test alias selector.
+function roleDeliveryDefinitions() {
+  const file = parsed(spec), names = ["roleDeliveryRequire", "roleDeliveryWithin", "roleDeliveryBytes", "roleDeliveryHeaders", "createRoleResponseDelivery"], parts: string[] = [];
+  const walk = (node: ts.Node) => { if (ts.isFunctionDeclaration(node) && names.includes(node.name?.text ?? "")) parts.push(node.getText(file)); ts.forEachChild(node, walk); }; walk(file);
+  assert.equal(parts.length, names.length); return parts.join("\n");
+}
+test("Role bounded response decoder checks encoded bytes before decoding and preserves exact chunk cap", () => {
+  const api = evaluate('(()=>{' + roleDeliveryDefinitions() + ';return {roleDeliveryBytes,roleDeliveryHeaders};})()', {Buffer, URL, Promise, Map, Set, Error, Date, performance, setTimeout, clearTimeout});
+  assert.throws(() => api.roleDeliveryBytes("A".repeat(21849), true, 16384));
+  assert.equal(api.roleDeliveryBytes(Buffer.alloc(16384).toString("base64"), true, 16384).length, 16384);
+  assert.throws(() => api.roleDeliveryBytes(Buffer.alloc(16385).toString("base64"), true, 16384));
+  assert.throws(() => api.roleDeliveryHeaders([{name:"content-type",value:"text/x-component"},{name:"set-cookie",value:"no-export"}]));
+});
+test("actual Role delivery serializes bounded bodies and releases before client validation without replacing native observations", async () => {
+  const api = evaluate('(()=>{' + roleDeliveryDefinitions() + ';return {createRoleResponseDelivery};})()', {Buffer, URL, Promise, Map, Set, Error, Date, performance, setTimeout, clearTimeout});
+  const events: string[] = [], handlers = new Map<string, (value: unknown) => void>(); let stream = 0;
+  const session = {
+    on: (name: string, callback: (value: unknown) => void) => handlers.set(name, callback), off: (name: string) => handlers.delete(name),
+    send: async (name: string, params: {size?:number}) => { events.push(name); if (name === "Fetch.takeResponseBodyAsStream") return {stream:"owned-" + (++stream)}; if (name === "IO.read") {assert.equal(params.size,16384);return {data:"genuine body",eof:true};} return {}; },
+    detach: async () => { events.push("detach"); },
+  };
+  const errors: unknown[] = [], delivery = api.createRoleResponseDelivery(session,"http://localhost","owned-frame",(error:unknown)=>errors.push(error),async()=>{events.push("owned-close");});
+  await delivery.enable();
+  for (const date of ["2026-10-16", "2026-10-17"]) {
+    delivery.arm(date);
+    for (let n=0;n<2;n++) handlers.get("Fetch.requestPaused")!({requestId:date+"-"+n,frameId:"owned-frame",request:{url:"http://localhost/scheduling",method:"POST",headers:{"next-action":"not-exported"},postData:JSON.stringify([{view:"personal",mode:"week",date,filters:{personIds:[],workRoleIds:[],jobIds:[],customerIds:[],status:"planned"}}])},responseStatusCode:200,responseHeaders:[{name:"content-type",value:"text/x-component"}]});
+    await delivery.complete(); events.push("original-client-native-validation-remains-required");
+  }
+  await delivery.dispose(true); assert.equal(errors.length,0); assert.equal(events.filter(event=>event==="Fetch.fulfillRequest").length,4);
+  assert.ok(events.indexOf("Fetch.fulfillRequest")<events.indexOf("original-client-native-validation-remains-required")); assert.equal(events.includes("owned-close"),false); assert.equal(handlers.size,0);
+});
+
+test("actual Role acquisition registers cached close before broken or expired state rejection", async () => {
+  for (const mode of ["broken", "expired"] as const) {
+    const timers = new Map<number, () => void>(); let timerId = 0;
+    const setTimer = (callback: () => void, ms: number) => { assert.equal(ms, 3000); const id = ++timerId; timers.set(id, callback); return id; };
+    const api = evaluate('(()=>{' + roleDeliveryDefinitions() + ';return {createRoleResponseDelivery};})()', {Buffer, URL, Promise, Map, Set, Error, Date, performance, setTimeout:setTimer, clearTimeout:(id:number)=>timers.delete(id)});
+    const first = evaluate('(()=>{let shutdownStarted=false,hasFailure=false,firstFailure;const notifyFailure=()=>{};const recordFailure=' + arrow(spec,"recordFailure") + ';return {recordFailure,first:()=>firstFailure};})()', {});
+    let deliver!: (reply: {stream:string}) => void; const acquisition = new Promise<{stream:string}>(yes=>{deliver=yes;});
+    const events: string[] = [], handlers = new Map<string,(value:unknown)=>void>();
+    const session = { on:(name:string,callback:(value:unknown)=>void)=>handlers.set(name,callback), off:(name:string)=>handlers.delete(name),
+      send:async(name:string)=>{events.push(name);if(name==="Fetch.takeResponseBodyAsStream")return acquisition;return {};}, detach:async()=>{events.push("detach");} };
+    const delivery = api.createRoleResponseDelivery(session,"http://localhost","owned-frame",first.recordFailure,async()=>{events.push("owned-close");});
+    const pause = (id:string,date:string) => handlers.get("Fetch.requestPaused")!({requestId:id,frameId:"owned-frame",request:{url:"http://localhost/scheduling",method:"POST",headers:{"next-action":"not-exported"},postData:JSON.stringify([{view:"personal",mode:"week",date,filters:{personIds:[],workRoleIds:[],jobIds:[],customerIds:[],status:"planned"}}])},responseStatusCode:200,responseHeaders:[{name:"content-type",value:"text/x-component"}]});
+    await delivery.enable(); delivery.arm("2026-10-16"); pause("first","2026-10-16");
+    for(let n=0;n<16;n++)await Promise.resolve(); assert.equal(events.filter(e=>e==="Fetch.takeResponseBodyAsStream").length,1);
+    first.recordFailure(false);
+    if(mode==="broken")pause("invalid","2026-10-17");else {assert.equal(timers.size,1);timers.values().next().value!();}
+    for(let n=0;n<16;n++)await Promise.resolve(); assert.equal(events.includes("owned-close"),false);
+    deliver({stream:"owned-"+mode});for(let n=0;n<24;n++)await Promise.resolve();
+    assert.equal(events.filter(e=>e==="IO.close").length,1);assert.equal(events.includes("IO.read"),false);assert.equal(events.includes("Fetch.fulfillRequest"),false);assert.equal(events.includes("Fetch.disable"),false);assert.equal(events.includes("owned-close"),false);
+    const cleanup=delivery.dispose(false);assert.equal(cleanup,delivery.dispose(false));await assert.rejects(cleanup);for(let n=0;n<8;n++)await Promise.resolve();
+    assert.equal(events.filter(e=>e==="IO.close").length,1);assert.equal(events.filter(e=>e==="owned-close").length,1);assert.equal(first.first(),false);assert.equal(timers.size,0);
+  }
 });
