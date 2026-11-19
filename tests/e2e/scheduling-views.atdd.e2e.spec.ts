@@ -968,11 +968,16 @@ function createRoleResponseDelivery(session: import("@playwright/test").CDPSessi
 
 
 // The transport owns raw in-memory protocol data. Apply the already-qualified E09 recorder boundary only to this case.
-const roleResponseTest = test.extend<{ _setupArtifacts: void; _combinedContextOptions: Record<string, unknown> }>({
-  trace: "off", screenshot: "off", video: "off",
-  _setupArtifacts: async ({ playwright, _combinedContextOptions }, provide) => {
+const roleResponseTest = test.extend<{ _setupArtifacts: void; _combinedContextOptions: Record<string, unknown>; _optionContextReuseMode: string }>({
+  _setupArtifacts: async ({ playwright, _combinedContextOptions, _optionContextReuseMode }, provide, testInfo) => {
     const version = playwrightPackage.version;
-    if (version !== "1.61.1" || process.env.DEBUG || process.env.DEBUG_FILE || process.env.PWDEBUG || process.env.NODE_DEBUG || process.env.PW_TEST_REUSE_CONTEXT) throw new Error("Required scheduling response recording boundary unavailable.");
+    if (version !== "1.61.1" || process.env.DEBUG || process.env.DEBUG_FILE || process.env.PWDEBUG || process.env.NODE_DEBUG || process.env.PW_TEST_REUSE_CONTEXT || _optionContextReuseMode !== "none") throw new Error("Required scheduling response recording boundary unavailable.");
+    // The runner may already have initialized in-memory retry tracing. Disable it before any context or sensitive command.
+    type CaseTracing = { startIfNeeded: (value: "off") => Promise<void>; traceOptions: () => unknown; _shouldCaptureTrace: () => boolean; _options?: unknown; _liveTraceFile?: unknown; _temporaryTraceFiles: unknown[]; _traceEvents: unknown[] };
+    const tracing = (testInfo as unknown as { _tracing?: CaseTracing })._tracing;
+    if (!tracing || typeof tracing.startIfNeeded !== "function" || typeof tracing.traceOptions !== "function" || typeof tracing._shouldCaptureTrace !== "function" || !Array.isArray(tracing._temporaryTraceFiles) || !Array.isArray(tracing._traceEvents) || !_combinedContextOptions || typeof _combinedContextOptions !== "object" || Array.isArray(_combinedContextOptions)) throw new Error("Required scheduling response recording boundary unavailable.");
+    await tracing.startIfNeeded("off");
+    if (tracing.traceOptions() !== undefined || tracing._options !== undefined || tracing._shouldCaptureTrace() !== false || tracing._liveTraceFile !== undefined || tracing._temporaryTraceFiles.length !== 0) throw new Error("Required scheduling response recording boundary unavailable.");
     type Listener = { runBeforeCreateBrowserContext: (options: Record<string, unknown>) => Promise<void> };
     const hooks = (playwright as unknown as { _instrumentation?: { addListener: (value: Listener) => void; removeListener: (value: Listener) => void } })._instrumentation;
     if (!hooks || typeof hooks.addListener !== "function" || typeof hooks.removeListener !== "function") throw new Error("Required scheduling response recording boundary unavailable.");
@@ -1735,7 +1740,8 @@ test("[P1] 15.1-E2E-008 AC6 arbetsroll/no-role lanes, multi-assignee rows and cu
   await expect(h.row(h.people[1]).getByTestId(`scheduling-booking-${h.ids.role}`)).toBeVisible();
   const lane = h.page.locator('[aria-label="Behöver omfördelas"]');
   for (const [status, archived, expected] of [["disabled", false, true], ["ended", false, true], ["active", false, false], ["active", true, true], ["active", false, false]] as const) {
-    await h.lifecycle(status, archived); expect(await h.visibleIds(lane)).toEqual(expected ? [h.ids.inactive] : []);
+    await h.lifecycle(status, archived); await h.open("Resurser");
+    await expect.poll(() => h.visibleIds(lane)).toEqual(expected ? [h.ids.inactive] : []);
     if (!expected) await expect(lane).toContainText("Inga bokningar behöver omfördelas.");
   }
 });

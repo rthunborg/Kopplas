@@ -636,3 +636,93 @@ test("actual Role acquisition registers cached close before broken or expired st
     assert.equal(events.filter(e=>e==="IO.close").length,1);assert.equal(events.filter(e=>e==="owned-close").length,1);assert.equal(first.first(),false);assert.equal(timers.size,0);
   }
 });
+
+
+// Pinned case-recorder/worker-pool compatibility and lifecycle caller regressions.
+function roleCompatibilityVariable(text: string, name: string) {
+  const file = ts.createSourceFile("compatibility.ts", text, ts.ScriptTarget.Latest, true), found: string[] = [];
+  const walk = (node: ts.Node) => { if (ts.isVariableDeclaration(node) && node.name.getText(file) === name && node.initializer) found.push(node.initializer.getText(file)); ts.forEachChild(node, walk); }; walk(file);
+  assert.equal(found.length, 1, name); return found[0]!;
+}
+function roleCompatibilityAlias(version = "1.61.1", env: Record<string, string> = {}) {
+  const declaration = roleCompatibilityVariable(source(spec), "roleResponseTest"), file = ts.createSourceFile("alias.ts", "const alias=" + declaration, ts.ScriptTarget.Latest, true);
+  const value = (file.statements[0] as ts.VariableStatement).declarationList.declarations[0]!.initializer as ts.CallExpression;
+  return evaluate(value.arguments[0]!.getText(file), { playwrightPackage: { version }, process: { env } });
+}
+function roleCompatibilityWorkerClass(name: string) {
+  return roleCompatibilityVariable(source("node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/worker/workerProcessEntry.js"), name);
+}
+test("pinned worker pool and serial retry expansion keep base Role base compatible without worker recorder overrides", async () => {
+  const { createRequire } = await import("node:module"), pinnedRequire = createRequire(process.cwd() + "/package.json");
+  assert.equal((pinnedRequire("@playwright/test/package.json") as {version:string}).version,"1.61.1");
+  const common = pinnedRequire(process.cwd() + "/node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/common/index.js");
+  const installed = source("node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/index.js");
+  const utility = evaluate(roleCompatibilityVariable(installed,"utilityFixtures"),{}), browser = evaluate(roleCompatibilityVariable(installed,"playwrightFixtures"),{});
+  const location={file:"inert-fixture.ts",line:1,column:1}, errors: unknown[]=[];
+  const base = new common.fixtures.FixturePool([{fixtures:utility,location},{fixtures:browser,location}],(error:unknown)=>errors.push(error),undefined,false,{overrides:{trace:"on-first-retry"},location});
+  const alias=roleCompatibilityAlias(); assert.deepEqual(Object.keys(alias),["_setupArtifacts"]);
+  const role = new common.fixtures.FixturePool([{fixtures:alias,location}],(error:unknown)=>errors.push(error),base,false);
+  const old = new common.fixtures.FixturePool([{fixtures:{...alias,trace:"off",screenshot:"off",video:"off"},location}],(error:unknown)=>errors.push(error),base,false);
+  assert.deepEqual(errors,[]); assert.equal(base.resolve("_optionContextReuseMode").fn,"none"); assert.equal(base.resolve("video").fn,"off"); assert.equal(base.resolve("screenshot").fn,"off"); assert.equal(role.digest,base.digest); assert.notEqual(old.digest,base.digest);
+  for(const key of ["trace","screenshot","video"]){assert.equal(role.resolve(key),base.resolve(key));assert.equal(base.resolve(key).scope,"worker");assert.notEqual(old.resolve(key),base.resolve(key));}
+  const FixtureRunner = evaluate(roleCompatibilityWorkerClass("FixtureRunner"),{});
+  const runnerSource=source("node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/runner/index.js"), start=runnerSource.indexOf("    const retryCandidates ="), end=runnerSource.indexOf("    const newJob =",start); assert.ok(start>=0&&end>start);
+  const expand=evaluate("function(){"+runnerSource.slice(start,end)+"return remaining;}",{});
+  for(const attempt of [1,2]){
+    const suite:{_parallelMode:string;parent:undefined;allTests:()=>unknown[]}={_parallelMode:"serial",parent:undefined,allTests:()=>tests};
+    const tests=[{id:"before",parent:suite,results:Array(attempt),retries:2,pool:base},{id:"role",parent:suite,results:Array(attempt),retries:2,pool:role},{id:"after",parent:suite,results:Array(attempt),retries:2,pool:base}];
+    const remaining=new Map(tests.map(test=>[test.id,test]));
+    const expanded=expand.call({_failedTests:new Set([tests[2]]),_failedWithNonRetriableError:new Set(),_remainingByTestId:remaining,_massSkipTestsFromRemaining:(ids:Set<string>)=>{for(const id of ids)remaining.delete(id);}}) as typeof tests;
+    assert.equal(expanded.length,3);assert.deepEqual(new Set(expanded.map(test=>test.id)),new Set(tests.map(test=>test.id)));
+    const runner=new FixtureRunner();for(const test of expanded)runner.setPool(test.pool);
+    const oldRunner=new FixtureRunner();oldRunner.setPool(base);assert.throws(()=>oldRunner.setPool(old),/inconsistent test.use/);
+  }
+});
+test("pinned retry tracing is disabled before sensitive data while case recorder guards fail closed", async () => {
+  let archiveCalls=0;
+  const workerSource=source("node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/worker/workerProcessEntry.js"), workerFile=ts.createSourceFile("worker.js",workerSource,ts.ScriptTarget.Latest,true);
+  const preview=workerFile.statements.find(node=>ts.isFunctionDeclaration(node)&&node.name?.text==="generatePreview")!;assert.ok(preview);
+  const generatePreview=evaluate(preview.getText(workerFile),{});
+  const TestTracing=evaluate(roleCompatibilityWorkerClass("TestTracing"),{generatePreview,import_path2:{default:{join:(...values:string[])=>values.join("/")}},import_coreBundle:{getPlaywrightVersion:()=>"1.61.1"},version:8,process:{platform:"synthetic"},monotonicTime2:()=>0,Date,yazl:{ZipFile:class{constructor(){archiveCalls++;throw new Error("unexpected archive");}}}});
+  const fresh=async(retry:number,mode="on-first-retry")=>{const tracing=new TestTracing({retry,timeout:180000,status:"passed",expectedStatus:"passed"},"inert-artifacts");await tracing.startIfNeeded(mode);return tracing;};
+  // Actual pinned default API-listener control demonstrates why inheriting trace without suppression is insufficient.
+  const control=await fresh(1), baseListeners=new Set<{onApiCallBegin:(data:unknown,channel:unknown)=>void}>(), marker="INERT_PRIVATE_MARKER_NOT_ACTUAL_DATA";
+  const info={project:{timeout:180000},setTimeout:()=>{},_addStep:(options:Record<string,unknown>)=>{control.appendBeforeActionForStep({...options,stepId:"fixed-control"});return {stepId:"fixed-control"};}};
+  const library=source("node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/index.js"), utility=evaluate(roleCompatibilityVariable(library,"utilityFixtures"),{ArtifactsRecorder:class{async willStartTest(){}async didFinishTest(){}},tracing:()=>control,globals:{currentTestInfo:()=>info},currentZone:()=>({data:()=>undefined}),renderTitle:()=>"fixed-control",getActionGroup:()=>undefined});
+  await utility._setupArtifacts[0]({playwright:{_instrumentation:{addListener:(listener:typeof baseListeners extends Set<infer T>?T:never)=>baseListeners.add(listener),removeListener:(listener:typeof baseListeners extends Set<infer T>?T:never)=>baseListeners.delete(listener)}},screenshot:"off",_combinedContextOptions:{}},async()=>{assert.equal(baseListeners.size,1);for(const listener of baseListeners)listener.onApiCallBegin({apiName:"synthetic.command",frames:[]},{type:"Synthetic",method:"command",params:{body:marker}});},info);
+  assert.equal(baseListeners.size,0);assert.equal(JSON.stringify(control._traceEvents).includes(marker),true);assert.equal(archiveCalls,0);
+  for(const [retry,inherited] of [[1,"on-first-retry"],[2,"on-first-retry"],[2,"on-all-retries"]] as const){
+    const tracing=await fresh(retry,inherited);if(retry===1||inherited==="on-all-retries")assert.equal(tracing.traceOptions().mode,inherited);
+    const listeners=new Set<{runBeforeCreateBrowserContext:(options:Record<string,unknown>)=>Promise<void>;onApiCallBegin?:(data:unknown)=>void}>(), events:string[]=[], defaults={viewport:{width:360,height:640},serviceWorkers:"block"};
+    const alias=roleCompatibilityAlias(), fn=alias._setupArtifacts;
+    await fn({playwright:{_instrumentation:{addListener:(listener:typeof listeners extends Set<infer T>?T:never)=>listeners.add(listener),removeListener:(listener:typeof listeners extends Set<infer T>?T:never)=>listeners.delete(listener)}},_combinedContextOptions:defaults,_optionContextReuseMode:"none"},async()=>{
+      assert.equal(tracing.traceOptions(),undefined);assert.equal(tracing._options,undefined);assert.equal(tracing._shouldCaptureTrace(),false);events.push("effective-off");
+      const options:Record<string,unknown>={};for(const listener of listeners)await listener.runBeforeCreateBrowserContext(options);assert.equal(options.viewport,defaults.viewport);assert.equal(options.serviceWorkers,"block");assert.equal(options.recordHar,undefined);assert.equal(options.recordVideo,undefined);
+      const marker="INERT_PRIVATE_MARKER_NOT_ACTUAL_DATA";for(const listener of listeners)listener.onApiCallBegin?.({params:{body:marker}});events.push("synthetic-command");assert.equal(JSON.stringify(tracing._traceEvents).includes(marker),false);
+      tracing.appendBeforeActionForStep({stepId:"fixed",category:"test.step",title:"Role initial required flow",params:{}});
+    },{_tracing:tracing});
+    assert.deepEqual(events,["effective-off","synthetic-command"]);assert.equal(listeners.size,0);await tracing.stopIfNeeded();assert.equal(archiveCalls,0);assert.equal(tracing._liveTraceFile,undefined);assert.deepEqual(Array.from(tracing._temporaryTraceFiles),[]);
+  }
+  for(const mode of ["version","missing","method","events","effective","live","temporary","reuse","DEBUG","DEBUG_FILE","PWDEBUG","NODE_DEBUG","PW_TEST_REUSE_CONTEXT","instrumentation","defaults","recordHar","recordVideo","defaultsHar","defaultsVideo","start-throw","start-reject","options-throw"]){
+    const fault={}, tracing=await fresh(1), env:Record<string,string>={}, alias=roleCompatibilityAlias(mode==="version"?"1.62.0":"1.61.1",env);
+    if(["DEBUG","DEBUG_FILE","PWDEBUG","NODE_DEBUG","PW_TEST_REUSE_CONTEXT"].includes(mode))env[mode]="inert";
+    if(mode==="start-throw")tracing.startIfNeeded=()=>{throw fault;};if(mode==="start-reject")tracing.startIfNeeded=async()=>{throw fault;};if(mode==="options-throw")tracing.traceOptions=()=>{throw fault;};if(mode==="method")tracing.startIfNeeded=undefined;if(mode==="events")tracing._traceEvents=undefined;if(mode==="effective")tracing.startIfNeeded=async()=>{};if(mode==="live")tracing._liveTraceFile={};if(mode==="temporary")tracing._temporaryTraceFiles.push("inert");
+    const listeners=new Set<{runBeforeCreateBrowserContext:(options:Record<string,unknown>)=>Promise<void>}>();let sensitive=false;
+    await assert.rejects(alias._setupArtifacts({playwright:mode==="instrumentation"?{}:{_instrumentation:{addListener:(listener:typeof listeners extends Set<infer T>?T:never)=>listeners.add(listener),removeListener:(listener:typeof listeners extends Set<infer T>?T:never)=>listeners.delete(listener)}},_combinedContextOptions:mode==="defaults"?undefined:mode==="defaultsHar"?{recordHar:{path:"inert"}}:mode==="defaultsVideo"?{recordVideo:{dir:"inert"}}:{},_optionContextReuseMode:mode==="reuse"?"when-possible":"none"},async()=>{const options=mode==="recordHar"?{recordHar:{path:"inert"}}:mode==="recordVideo"?{recordVideo:{dir:"inert"}}:{};for(const listener of listeners)await listener.runBeforeCreateBrowserContext(options);sensitive=true;},{_tracing:mode==="missing"?undefined:tracing}),error=>["start-throw","start-reject","options-throw"].includes(mode)?error===fault:true);
+    assert.equal(sensitive,false);assert.equal(listeners.size,0);
+  }
+  const tracing=await fresh(1), sentinel={}, listeners=new Set<unknown>(), alias=roleCompatibilityAlias();
+  await assert.rejects(alias._setupArtifacts({playwright:{_instrumentation:{addListener:(listener:unknown)=>listeners.add(listener),removeListener:(listener:unknown)=>listeners.delete(listener)}},_combinedContextOptions:{},_optionContextReuseMode:"none"},async()=>{throw sentinel;},{_tracing:tracing}),error=>error===sentinel);assert.equal(listeners.size,0);assert.equal(archiveCalls,0);
+});
+test("actual lifecycle caller reopens Resources after every unchanged tuple before strict eventual lane equality", async () => {
+  const file=parsed(spec), loops:string[]=[];const walk=(node:ts.Node)=>{if(ts.isForOfStatement(node)&&node.getText(file).includes("await h.lifecycle(status, archived)"))loops.push(node.getText(file));ts.forEachChild(node,walk);};walk(file);assert.equal(loops.length,1);
+  const expectedTuples=[["disabled",false,true],["ended",false,true],["active",false,false],["active",true,true],["active",false,false]];
+  for(const mode of ["positive","pending","wrong-view","missing","extra","wrong-id","read-error","open-error","lifecycle-error","poll-error"]){
+    const events:string[]=[],tuples:unknown[]=[],sentinel={};let view="Schema",expected=false,polls=0;
+    const h={ids:{inactive:"owned-inactive"},lifecycle:async(status:string,archived:boolean)=>{events.push("lifecycle");tuples.push([status,archived]);view="Schema";expected=status!=="active"||archived;polls=0;if(mode==="lifecycle-error")throw sentinel;},open:async(name:string)=>{events.push("open:"+name);if(mode==="open-error")throw sentinel;view=mode==="wrong-view"?"Schema":name;},visibleIds:async()=>{events.push("ids");if(mode==="read-error")throw sentinel;if(mode==="extra")return ["owned-inactive","extra"];if(mode==="wrong-id")return ["wrong"];if(view!=="Resurser"||mode==="missing")return [];if(mode==="pending"&&polls++===0)return expected?[]:["owned-inactive"];return expected?["owned-inactive"]:[];}};
+    const lane={}, expectPort=Object.assign((value:unknown)=>({toContainText:async(text:string)=>{assert.equal(value,lane);assert.equal(text,"Inga bokningar beh\u00f6ver omf\u00f6rdelas.");events.push("empty");}}),{poll:(read:()=>Promise<unknown>)=>({toEqual:async(value:unknown)=>{events.push("poll");if(mode==="poll-error")throw sentinel;let actual;for(let n=0;n<3;n++){actual=await read();try{assert.deepEqual(Array.from(actual as string[]),Array.from(value as string[]));return;}catch{}}assert.deepEqual(actual,value);}})});
+    const run=evaluate("async function(){"+loops[0]+"}",{h,lane,expect:expectPort});
+    if(mode==="positive"||mode==="pending"){await run();assert.deepEqual(tuples,expectedTuples.map(([status,archived])=>[status,archived]));assert.equal(events.filter(event=>event==="open:Resurser").length,5);assert.equal(events.filter(event=>event==="empty").length,2);const starts=events.flatMap((event,index)=>event==="lifecycle"?[index]:[]);for(let n=0;n<5;n++){const segment=events.slice(starts[n],starts[n+1]??events.length);assert.deepEqual(segment.slice(0,3),["lifecycle","open:Resurser","poll"]);assert.ok(segment.includes("ids"));assert.equal(segment.includes("empty"),!expectedTuples[n]![2]);}}
+    else await assert.rejects(run(),error=>["read-error","open-error","lifecycle-error","poll-error"].includes(mode)?error===sentinel:true);
+  }
+});

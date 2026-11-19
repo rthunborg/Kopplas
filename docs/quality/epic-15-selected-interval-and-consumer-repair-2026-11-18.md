@@ -1,5 +1,38 @@
 # Epic 15 selected-interval and consumer repair - 2026-11-18
 
+Status at the core compatibility placed-source/offline freeze: base `936c0f9796d6403c2cf5cd4e34b87402921c36ed` remains the published candidate. The two reviewed core code files are uncommitted postimages on that base; no future commit or run is implied. Actual full lifecycle verifier **47 executed/passed, 0 failed/skipped/cancelled/todo**, full typecheck **0 diagnostics**, and scoped two-file lint **0 errors/0 warnings** all passed on their first placed-source attempts. Code froze before those checks and this note. These Node/source/fake-port results do not earn browser, protocol, SQL/Auth, capture, physical cleanup or release acceptance.
+
+## Current core compatibility and lifecycle caller correction
+
+The [INT001-only alias](../../tests/e2e/scheduling-views.atdd.e2e.spec.ts) removes only its three worker-scoped trace/screenshot/video registrations. The inherited worker pool is retained, avoiding the pinned runner's rejected base/Role pool transition during serialized retries. The test-scoped `_setupArtifacts` replacement still suppresses the automatic API-parameter/ArtifactsRecorder/snapshot listener. It checks exact Playwright1.61.1, debug/reuse flags, the unchanged worker reuse mode and private tracing structure, then awaits `startIfNeeded("off")` and verifies effective OFF/no live or temporary trace file before provide/context/sensitive work. Context defaults and HAR/video refusals remain.
+
+The runner may initialize tracing and fixed in-memory events before the fixture. OFF does not clear `_traceEvents` or independently stop appending: the case-only listener suppression is essential. This is a qualified source correction and offline mechanism proof, not actual candidate privacy certification. The exact nine protocol commands, separate ignored-payload CDPSession.close lifecycle, original public Request/goto/SAME finished-before-text/expected input/cardinality/client10-or12 checks, fatal admitted-or-live errors, earliest object/falsy carrier and all independent finalizers remain unchanged. No native pre-cap Cookie/Auth/session/header/postData/control ingress is claimed value-free, secret-free or wire-capped.
+
+E2E008 now reopens the existing Resources view after **each** of the same five lifecycle reload tuples, then polls the **same exact one-or-zero inactive-ID equality** under the existing15s expectation limit. The empty-lane text remains. Initial Team3/4 IDs, retired labels, inactive picker exclusion and two-assignee checks are preserved. No expected ID, filter, SQL, helper, app, timeout, retry, cohort or product behavior is changed. The [existing verifier](../../tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts) preserves all original44 bodies byte-for-byte and appends three pinned-pool/tracing/caller regressions; the separate private capture callback is not placed.
+
+### Current core evidence and remaining gates
+
+Executed with `C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe` in the isolated F checkout:
+
+| Actual core gate | Command | First-attempt result and limit |
+| --- | --- | --- |
+| Full lifecycle verifier | `node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=tap tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts` | 47 named leaves passed;0 failed/skipped/cancelled/todo; native0. Actual placed source, pure fake ports/pinned code, no browser or Auth/DB operation. |
+| Full typecheck | `node node_modules/typescript/bin/tsc --noEmit --incremental false` | Native0,0 diagnostics, no generated/incremental output. |
+| Scoped lint | `node node_modules/eslint/bin/eslint.js tests/e2e/scheduling-views.atdd.e2e.spec.ts tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts --format json --no-cache` | Native0,0 errors/0 warnings, no fixes/cache. |
+| Conservation | Exact reviewed V1 patch, raw/LF/git-blob and whole inverse/protected-prefix checks | Original44 verifier prefix, Dense/controller/Role callbacks, CIguard87fe, helpers/configs/budgets and original25 row bytes preserved; source evidence, not native coverage. |
+
+The pre-check actual two-code freeze is `9bfbf6da383bc75b60abc6776dc5a336268a5453ea0b4370d41ead72c622ba67`. Reviewed normalized code postimages are spec `b5553e1c88a73cc0cbb6ccc9b88023dfd15000dd71f77a2c63d07b1c7d366f18` and verifier `1b406924a7b58f4b1cb98343d887b62830792c58fda8577c8d1bdc8f321a2a38`; CRLF is preserved. Receipts retain all47 names, complete argv/native outputs and protected bindings in `Core-compatibility-author-936c`. Private3, prior44/private16 and every earlier failed/bootstrap attempt remain separate; they are not added to47 or retagged as native success. No actual core check failed in this source phase.
+
+The [936 ordinary run44589914008](https://github.com/rthunborg/Kopplas/actions/runs/44589914008) is historical native SUCCESS at936 only. The [936 full run44591832787](https://github.com/rthunborg/Kopplas/actions/runs/44591832787) remains **FAILED/consumed**: General539 unique =528 expected/8 skipped/2 flaky/1 unexpected;537 pass/34 skip/4 fail result occurrences are separate counts. Role's actual serialized records remain0 SKIP,1 whole-body PASS4827ms,2 FAIL4703ms ERR_ABORTED. Both executed attempts passed all four initial nested steps; the later failing origin/caller remains unknown. The one whole-body pass is earned once, not a permanent abort fix. E2E008's lifecycle failure expected its inactive ID and received[]; the tuple is unknown, and its0ms fixture-pool retry executed no body. Current verify3979 and other earned native components remain head936 evidence, not new candidate results.
+
+Historical first-carrier/cause resolution is not a prerequisite for independently testing this changed core candidate. **Every actual INT001 execution under unchanged configured retries must be reported and qualify**; no forced extra attempt, new first-only rule, hidden failure, waiver, unchanged redispatch, second ceiling increase or new transport/annotation cycle is authorized.
+
+Auth capture source, the V2 fourth callback and the new retirement-capture method are excluded and unchanged. Existing phone ID presence is not empty-state pixel proof; native24/37 literal IDs and13 missing at the retained full freeze do not certify a complete visual package. No new frame is produced here. Frontend gates continue to apply against actual product baselineS `fe282c326b208788ef94a3717092057ab7e2e91e`; synchronized-head desktop/360x640 states, controller/human/manual/performance and final37-state qualification remain pending. The retained audit is6Moderate/0High/0Critical with native1/ordinary-high gate, not a clean audit or renewed allowance. Physical/key/per-delete cleanup limits, all original25 Deferred rows/zero whole-row closures, P160/35.8/F integration order, main/production/cutover/CRM/PR151/business-writer and native/foreign custody holds remain.
+
+## Historical owned-response delivery freeze on01bb
+
+The following01bb status and all later chronological records retain their original revision-specific evidence; their results are not the current core postimages or a new runtime qualification.
+
 Status at the owned-response-delivery placed-source/offline freeze: base `01bb3b5646f072e41f9259b43b466fdeb054116a` remains the published failing/consumed candidate; the two reviewed code files are uncommitted postimages on that base. Actual full lifecycle verifier **44 passed, 0 failed, 0 skipped/cancelled/todo** on its first placed-source attempt; actual full typecheck and scoped lint passed with zero diagnostics/errors/warnings. Code froze before this note. These are pure Node/source/fake-port results, not browser/CDP/native/SQL/Auth or release acceptance. No new commit, ordinary/full CI run or capture is implied. The retained [01bb full run44548200950](https://github.com/rthunborg/Kopplas/actions/runs/44548200950) remains FAILED/consumed; its complete initial Role qualification and later twelve tails/008 remain unearned, with 24/37 retained frames and 13 missing. The original25 Deferred rows, zero whole-row closure, frontend baselineS, manual/human/controller/performance/cleanup and integration/custody holds remain.
 
 ## Placed owned-response delivery and offline qualification
@@ -585,36 +618,36 @@ Main ordering/readmission remains Coordinator-held. Product work remains paused 
 
 ## Suggested Review Order
 
-Author: `/root/e15_release_wiring_author_high`, explicit Sol6.1 High. Refreshed after the ACTUAL two-code freeze and actual44/type/lint/conservation gates; code remains frozen while this factual note changes. Review the qualified delivery/privacy/caller change and focused ownership correction, not a historical story reopening or abort-cause claim.
+Author: `/root/e15_release_wiring_author_high`, explicit Sol6.1 High. Refreshed after exact V1 code freeze and actual47/type/lint first-attempt gates. Code remains frozen while this factual note changes. This trail covers the narrow compatibility/caller correction and its preserved boundaries; no broad historical review or abort-cause claim.
 
-### Keep public Role evidence authoritative
+### Keep Role recorder suppression compatible with the worker pool
 
-The controller only releases genuine bounded responses; original Request/native/client evidence still determines success. Both waits and every Date/own/payload/release/denied condition remain.
+The alias inherits all worker recorder registrations and applies test-scoped effective OFF before provide. Prior initialization is possible; OFF alone does not clear events or suppress API recording.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:984` — `roleResponseTest("[P0] 15.1-INT-001`: enters the same required Role scenario.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1567` — `const originalNavigation = page.goto`: retains the original navigation Promise.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1203` — `const qualifyRolePhase = async`: retains complete native/client qualification.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:971` — `const roleResponseTest = test.extend`: inherits the existing worker registrations.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:979` — `await tracing.startIfNeeded("off");`: disables tracing before sensitive work.
+- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:655` — `test("pinned worker pool and serial retry expansion keep base Role base compatible without worker recorder overrides"`: checks pinned registration and retry transitions.
 
-### Own handles before any refusal
+### Re-establish Resources before each lifecycle equality
 
-Settlement and awaited paths share cached registration/IO.close. Broken or expired replies before disposal cannot leak a handle, read/fulfill, replace the primary error or block original cleanup.
+Every original tuple retains its data operation and exact IDs; the caller restores the intended view before the existing-limit strict poll. No product/SQL or expected-value change is made.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:866` — `const register = (reply: { stream: string })`: records ownership before state checks.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:891` — `if (!accepting || broken || expired)`: closes refused arrivals through the cache.
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:616` — `test("actual Role acquisition registers cached close before broken or expired state rejection"`: covers both previously missing intervals.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1743` — `await h.lifecycle(status, archived); await h.open("Resurser");`: restores Resources after each reload.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1744` — `await expect.poll(() => h.visibleIds(lane)).toEqual(expected ? [h.ids.inactive] : []);`: retains exact one-or-zero IDs.
+- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:717` — `test("actual lifecycle caller reopens Resources after every unchanged tuple before strict eventual lane equality"`: covers tuple order and refusal paths.
 
-### Bound data and isolate automatic recording
+### Preserve public evidence, handle ownership and fatal cleanup
 
-Pre-cap native ingress can contain raw Cookie/Auth/session/runtime fields. The INT001-only pinned recorder override prevents automatic parameter/snapshot artifacts; it does not certify actual runtime privacy or make data value-free.
+The Role scenario/controller and earliest-error rules are unchanged. Bounded delivery never replaces independent native/client qualification or original finalizers.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:971` — `const roleResponseTest = test.extend`: isolates recording changes to INT001.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:902` — `const bytes = roleDeliveryBytes(chunk.data`: checks chunk bounds before retention.
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1550` — `const runtime = await guardedStage(() => roleDeliveryWithin(owned.send("Browser.getVersion"))`: uses only the qualified pinned-runtime operation.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1208` — `const qualifyRolePhase = async`: retains native and client qualification.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:866` — `const register = (reply: { stream: string })`: retains owned stream-close registration.
+- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:616` — `test("actual Role acquisition registers cached close before broken or expired state rejection"`: retains both handle-arrival regressions.
 
-### Separate offline proof from remaining runtime gates
+### Keep earned offline checks separate from native and visual gates
 
-Actual44 passed first attempt with0 failure/skip/cancel/todo, actual type/lint exited0, and static raw inverses/protected bodies/captures matched. Private16 is separate. Browser/CDP/SQL/Auth/native cleanup/full539/20/37, frontend/human/controller/performance and release decisions remain unearned.
+All47 actual verifier leaves passed first attempt; type/lint passed without diagnostics. Source-only recorder evidence, historical936 failures and the held capture method remain distinct from future synchronized-head/native/human qualification.
 
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:590` — `test("Role bounded response decoder checks encoded bytes before decoding and preserves exact chunk cap"`: tests bounded decoding and framing refusal.
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:597` — `test("actual Role delivery serializes bounded bodies and releases before client validation without replacing native observations"`: tests independent release while public checks remain.
-- `docs/quality/epic-15-selected-interval-and-consumer-repair-2026-11-18.md:30` — `### Remaining qualification`: retains native, publication and owner holds.
+- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:681` — `test("pinned retry tracing is disabled before sensitive data while case recorder guards fail closed"`: checks inherited tracing and closed refusals.
+- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:561` — `test("actual initial await wrappers preserve primitive object and earlier asynchronous firstFailure identities"`: retains exact prior error identities.
+- `docs/quality/epic-15-selected-interval-and-consumer-repair-2026-11-18.md:13` — `### Current core evidence and remaining gates`: preserves actual results and pending gates.
