@@ -507,11 +507,172 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
     } catch { semanticIncrement("attachUnavailable"); }
   };
   // SEMANTIC-READ-END
+  // DENSE-FUNCTIONAL-BEGIN: same-document continuous closure; no functional event stream leaves the page.
+  type DenseGate = { readonly owner: string; baseline: () => Promise<1>; arm: () => 0; wait: () => Promise<1>; check: (complete: boolean) => 0; disable: () => 0 };
+  let functionalOwner: string | undefined, functionalAccept = true;
+  let functionalInstallPending: Promise<{ dispose: () => Promise<void> }> | undefined, functionalScript: { dispose: () => Promise<void> } | undefined;
+  let functionalDisposal: Promise<void> | undefined, functionalCleanup: { clear: Promise<unknown>; script: Promise<unknown> } | undefined;
+  let functionalFailure: Error | undefined;
+  const functionalUnavailable = () => new Error("Required Dense scheduling phase unavailable.");
+  const functionalRecordFailure = () => { functionalFailure ??= functionalUnavailable(); };
+  const functionalEvaluate = (operation: "baseline" | "arm" | "wait" | "check" | "complete" | "disable") => {
+    const pending = h.page.evaluate(({ operation, owner }) => {
+      const target = window as Window & { __kopplasSchedulingDenseGateV1?: DenseGate };
+      const descriptor = Object.getOwnPropertyDescriptor(target, "__kopplasSchedulingDenseGateV1");
+      const gate = descriptor && "value" in descriptor ? descriptor.value as DenseGate : undefined;
+      if (typeof owner !== "string" || !gate || Object.getOwnPropertyDescriptor(gate, "owner")?.value !== owner) throw new Error("Required Dense scheduling phase unavailable.");
+      if (operation === "baseline") return gate.baseline();
+      if (operation === "arm") return gate.arm();
+      if (operation === "wait") return gate.wait();
+      if (operation === "check" || operation === "complete") return gate.check(operation === "complete");
+      return gate.disable();
+    }, { operation, owner: functionalOwner }).catch(() => { throw functionalUnavailable(); });
+    void pending.catch(() => {}); // Rejection observation does not cancel an evaluate command.
+    return pending;
+  };
+  const functionalDispose = (owned: { dispose: () => Promise<void> }) => {
+    if (!functionalDisposal) {
+      try { functionalDisposal = owned.dispose(); } catch { functionalDisposal = Promise.reject(functionalUnavailable()); }
+      void functionalDisposal.catch(functionalRecordFailure);
+    }
+    return functionalDisposal;
+  };
+  const functionalBeginCleanup = () => {
+    functionalAccept = false;
+    if (!functionalCleanup) {
+      const initiate = (operation: () => Promise<unknown>) => {
+        let pending: Promise<unknown>;
+        try { pending = operation(); } catch { pending = Promise.reject(functionalUnavailable()); }
+        void pending.catch(functionalRecordFailure);
+        return pending;
+      };
+      // Start current-state release and future-script removal independently, without awaiting a phase.
+      const clear = initiate(() => functionalEvaluate("disable"));
+      const script = initiate(async () => {
+        const owned = functionalScript ?? await functionalInstallPending;
+        if (!owned) throw functionalUnavailable();
+        await functionalDispose(owned);
+      });
+      functionalCleanup = { clear, script };
+    }
+    return functionalCleanup;
+  };
+  const installDenseGate = () => {
+    functionalOwner ??= globalThis.crypto.randomUUID();
+    const pending = h.page.addInitScript(({ origin, owner }) => {
+      if (window !== window.top || window.location.origin !== origin || window.location.pathname !== "/scheduling") return;
+      const target = window as Window & { __kopplasSchedulingReadSemanticV1?: (event: unknown) => unknown; __kopplasSchedulingDenseGateV1?: DenseGate };
+      const key = "__kopplasSchedulingReadSemanticV1", stateKey = "__kopplasSchedulingDenseGateV1", document = window.document;
+      if (stateKey in target) return; // A foreign state is never overwritten or adopted.
+      const prior = Object.getOwnPropertyDescriptor(target, key);
+      const unavailable = () => new Error("Required Dense scheduling phase unavailable.");
+      type Ticket = { step: number; revised: boolean };
+      const active = new Map<number, Ticket>(); // Never evict unfinished work to manufacture availability.
+      let fault = false, disabled = false, started = 0, successful = 0, armed: number | undefined;
+      let waiter: { kind: "baseline" | "action"; promise: Promise<1>; resolve: (value: 1) => void; reject: (error: Error) => void } | undefined;
+      const poison = () => { fault = true; waiter?.reject(unavailable()); waiter = undefined; };
+      const owns = () => window.document === document && window === window.top && window.location.origin === origin && window.location.pathname === "/scheduling"
+        && Object.getOwnPropertyDescriptor(target, stateKey)?.value === gate && Object.getOwnPropertyDescriptor(target, key)?.value === wrapper;
+      const guard = () => { if (fault || disabled || !owns()) throw unavailable(); };
+      const idle = () => started > 0 && active.size === 0 && successful === started;
+      const actionComplete = () => armed !== undefined && started === armed && idle();
+      const flush = () => {
+        if (waiter && (waiter.kind === "baseline" ? armed === undefined && idle() : actionComplete())) {
+          const owned = waiter; waiter = undefined; owned.resolve(1);
+        }
+      };
+      const wait = (kind: "baseline" | "action") => {
+        guard();
+        if (started === 0 || (kind === "baseline" ? armed !== undefined : armed === undefined)) throw unavailable();
+        if (kind === "baseline" ? idle() : actionComplete()) return Promise.resolve<1>(1);
+        if (waiter) throw unavailable();
+        let resolve!: (value: 1) => void, reject!: (error: Error) => void;
+        const promise = new Promise<1>((yes, no) => { resolve = yes; reject = no; });
+        void promise.catch(() => {});
+        waiter = { kind, promise, resolve, reject }; return promise;
+      };
+      const gate: DenseGate = {
+        owner,
+        baseline: () => wait("baseline"),
+        arm: () => { guard(); if (!idle() || armed !== undefined || waiter) throw unavailable(); armed = started + 1; return 0; },
+        wait: () => wait("action"),
+        check: complete => { guard(); if (!actionComplete() || waiter) throw unavailable(); if (complete) armed = undefined; return 0; },
+        disable: () => {
+          let valid = !fault && !disabled && owns() && armed === undefined && idle() && !waiter;
+          disabled = true; waiter?.reject(unavailable()); waiter = undefined; active.clear(); started = 0; successful = 0; armed = undefined;
+          try {
+            if (Object.getOwnPropertyDescriptor(target, key)?.value === wrapper && prior) Object.defineProperty(target, key, prior);
+            else valid = false;
+          } catch { valid = false; }
+          try { if (Object.getOwnPropertyDescriptor(target, stateKey)?.value === gate) delete target.__kopplasSchedulingDenseGateV1; else valid = false; } catch { valid = false; }
+          if (!valid) throw unavailable(); return 0;
+        },
+      };
+      const receive = (raw: unknown) => {
+        try {
+          if (fault || disabled || !owns() || !raw || typeof raw !== "object" || Array.isArray(raw)) { poison(); return; }
+          const descriptors = Object.getOwnPropertyDescriptors(raw), keys = ["ticket", "currentTicket", "ordinal", "operation", "phase", "outcome", "timeMs"];
+          if (Reflect.ownKeys(descriptors).length !== 7 || keys.some(key => !descriptors[key] || !("value" in descriptors[key]!))) { poison(); return; }
+          const event = raw as { ticket: number; currentTicket: number; ordinal: number; operation: string; phase: string; outcome: string; timeMs: number | null };
+          if (!Number.isSafeInteger(event.ticket) || event.ticket < 1 || event.ticket > 1_000_000 || !Number.isSafeInteger(event.currentTicket) || !Number.isSafeInteger(event.ordinal) || event.ordinal < 1 || event.ordinal > 16
+            || !(event.timeMs === null || typeof event.timeMs === "number" && Number.isFinite(event.timeMs) && event.timeMs >= 0 && event.timeMs <= 3_600_000)) { poison(); return; }
+          if (event.operation === "lifecycle" && event.phase === "start") {
+            if (event.ordinal !== 1 || event.ticket !== started + 1 || event.currentTicket !== event.ticket || active.size >= 32 || (armed !== undefined && event.ticket !== armed)) { poison(); return; }
+            started = event.ticket; active.set(event.ticket, { step: 0, revised: false });
+          }
+          const row = active.get(event.ticket);
+          if (!row || event.currentTicket !== started || event.ordinal !== row.step + 1) { poison(); return; }
+          if (event.operation === "lifecycle" && event.phase === "discarded" && event.ticket < started && event.outcome === "none"
+            && (row.step === 4 || row.revised && row.step === 8)) {
+            if (armed === event.ticket) { poison(); return; }
+            active.delete(event.ticket); flush(); return;
+          }
+          if (row.step === 6 && event.operation === "reconciled-read" && event.phase === "start") row.revised = true;
+          const order = ["lifecycle/start", "lifecycle/returned", "first-read/start", "first-read/returned", "reconcile/start", "reconcile/returned",
+            ...(row.revised ? ["reconciled-read/start", "reconciled-read/returned"] : []), "publish/start", "publish/returned", "finish/start", "finish/returned"];
+          const expectedOutcome = event.phase === "returned" && (event.operation === "first-read" || event.operation === "reconciled-read") ? "no-data-error" : "none";
+          if (typeof event.operation !== "string" || typeof event.phase !== "string" || `${event.operation}/${event.phase}` !== order[row.step] || event.outcome !== expectedOutcome) { poison(); return; }
+          row.step++;
+          if (row.step === order.length) {
+            if (event.ticket !== started) { poison(); return; }
+            successful = event.ticket; active.delete(event.ticket); flush();
+          }
+        } catch { poison(); }
+      };
+      const wrapper = function(this: unknown, event: unknown) {
+        "use strict";
+        receive(event);
+        try {
+          const returned: unknown = Reflect.apply(prior!.value, this, [event]);
+          if (returned !== undefined) {
+            try {
+              const branch = Promise.prototype.then.call(returned, () => {}, () => { poison(); });
+              void Promise.prototype.then.call(branch, undefined, () => { poison(); });
+            } catch { poison(); } // No arbitrary thenable getter/call or assimilation.
+          }
+          return returned;
+        } catch (error) { poison(); throw error; }
+      };
+      Object.freeze(gate);
+      Object.defineProperty(target, stateKey, { value: gate, configurable: true });
+      if (!prior || !("value" in prior) || typeof prior.value !== "function" || !prior.configurable) { poison(); return; }
+      try { Object.defineProperty(target, key, { ...prior, value: wrapper }); } catch { poison(); }
+    }, { origin: denseOrigin, owner: functionalOwner });
+    functionalInstallPending = pending;
+    void pending.then(owned => {
+      functionalScript = owned;
+      if (!functionalAccept) { void functionalDispose(owned).catch(functionalRecordFailure); }
+    }, functionalRecordFailure).catch(functionalRecordFailure);
+    return pending;
+  };
+  // DENSE-FUNCTIONAL-END
   let densePrimary: unknown, denseHasPrimary = false;
   try {
     for (const listen of denseListen) { try { listen(); } catch { denseIncrement("unavailable"); } }
   // DENSE-TRANSPORT-END setup
   try { await semanticInstall(); } catch { semanticDisable();semanticIncrement("uninstallUnavailable"); }
+  if (!semanticActive || !semanticOwner) throw functionalUnavailable();
+  await installDenseGate();
   const shared = [h.ids.role, h.ids.proposal, h.ids.collision, ...h.laterIds].sort();
   for (const [view, modes] of [["Schema", ["day", "week", "month"]], ["Resurser", ["day", "week"]], ["Team", ["week"]], ["Beläggning", ["day", "week", "month"]], ["Min kalender", ["day", "week"]]] as [View, ("day" | "week" | "month")[]][]) {
     for (const mode of modes) {
@@ -561,8 +722,15 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
         await expect(filter).toHaveJSProperty("tagName","SELECT");
         await expect(filter).toBeVisible();
         await expect(filter).toBeEnabled();
-        if(await filter.inputValue()!==desired)await h.filter(label,desired);
+        const changed = await filter.inputValue()!==desired;
+        if(changed) {
+          await functionalEvaluate("baseline"); await functionalEvaluate("arm");
+          await h.page.getByLabel(label,{exact:true}).selectOption(desired);
+          await functionalEvaluate("wait"); await functionalEvaluate("check");
+          await h.settle();
+        }
         await expect(filter).toHaveValue(desired);
+        if(changed) await functionalEvaluate("complete");
       }
       denseContext = { view, mode, phase: "assertions" };
       if (view === "Beläggning") await expect(visibleCell(h, DATE)).toContainText("Bokat 210 min / budget 480 min");
@@ -582,17 +750,34 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
       }
       denseContext = { view, mode, phase: "toolbar" };
       const before = await h.sqlBookings(), trigger = h.page.getByTestId("scheduling-new-booking");
-      await trigger.click(); await expect(h.editor).toBeVisible(); await h.cancel(); await expect(trigger).toBeFocused();
+      await trigger.click(); await expect(h.editor).toBeVisible();
+      await functionalEvaluate("baseline"); await functionalEvaluate("arm");
+      await h.editor.getByTestId("booking-close").click();
+      const discard = h.page.getByTestId("booking-discard");
+      if (await discard.isVisible()) await discard.click();
+      await expect(h.editor).toHaveCount(0);
+      await functionalEvaluate("wait"); await functionalEvaluate("check");
+      await h.settle();
+      await expect(trigger).toBeFocused();
+      await functionalEvaluate("complete");
       expect(await h.sqlBookings()).toEqual(before);
     }
   }
+  const released = functionalBeginCleanup();
+  await Promise.all([released.clear, released.script]); // Confirm owned restoration before diagnostic binding disposal on success.
+  if (functionalFailure) throw functionalFailure;
   } catch (error) { densePrimary = error; denseHasPrimary = true; }
   finally {
+    const released = functionalBeginCleanup();
     semanticDisable();
-    try { await semanticFinalize(); } catch { semanticIncrement("uninstallUnavailable"); }
-    try { await denseFinalize(); } catch { /* Optional diagnostics cannot replace the test failure. */ }
+    // Start every original finalizer even if an owned release or another finalizer never settles.
+    const semanticFinal = semanticFinalize().catch(() => { semanticIncrement("uninstallUnavailable"); });
+    const transportFinal = denseFinalize().catch(() => { /* Optional diagnostics cannot replace the test failure. */ });
+    try { await Promise.all([released.clear, released.script]); } catch { functionalRecordFailure(); }
+    await Promise.all([semanticFinal, transportFinal]);
   }
   if (denseHasPrimary) throw densePrimary;
+  if (functionalFailure) throw functionalFailure;
 });
 
 test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycle and input tampering; denied role", async ({ schedulingViews: h, resourcePage: managerPage }, testInfo) => {
