@@ -1337,19 +1337,28 @@ test("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycl
     await guardedStage(installRoleGate); guardProgress();
     const mountedDate = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Stockholm", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
     rolePhase = h.beginRoleReadPhase(captureOrigin, mountedDate);
-    const targetResponse = await navigateAfterBarrier(() => {
-      // Open only after the existing barrier drains post-login traffic, directly
-      // before this controlled tampered navigation. Later failures remain fatal.
-      openCaptureWindow();
-      const originalNavigation = page.goto(`/scheduling?view=resources&person=${h.extraProfiles[2]}&tenant=${h.scenario.tenantIds[1]}`);
-      try { targetAssociation.observe(originalNavigation); } catch { /* Keep the exact original navigation Promise. */ }
-      return originalNavigation;
-    }); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
-    expect(targetResponse).not.toBeNull();
-    expect(targetResponse!.ok()).toBe(true);
-    // A background/partial body cannot substitute for the actual target payload.
-    expect(admitted.get(targetResponse!.request())?.phase).toBe("complete");
-    await qualifyRolePhase(); guardProgress();
+    await test.step("Role initial required flow", async () => {
+      const targetResponse = await test.step("Role initial controlled navigation", async () => {
+        const response = await navigateAfterBarrier(() => {
+          // Open only after the existing barrier drains post-login traffic, directly
+          // before this controlled tampered navigation. Later failures remain fatal.
+          openCaptureWindow();
+          const originalNavigation = page.goto(`/scheduling?view=resources&person=${h.extraProfiles[2]}&tenant=${h.scenario.tenantIds[1]}`);
+          try { targetAssociation.observe(originalNavigation); } catch { /* Keep the exact original navigation Promise. */ }
+          return originalNavigation;
+        });
+        guardProgress(); return response;
+      });
+      await test.step("Role initial UI settlement", async () => { await guardedSettle(); guardProgress(); });
+      await test.step("Role initial native drain", async () => { await drain(); guardProgress(); });
+      await test.step("Role initial complete client and native qualification", async () => {
+        expect(targetResponse).not.toBeNull();
+        expect(targetResponse!.ok()).toBe(true);
+        // A background/partial body cannot substitute for the actual target payload.
+        expect(admitted.get(targetResponse!.request())?.phase).toBe("complete");
+        await qualifyRolePhase(); guardProgress();
+      });
+    });
     rolePhase.close(); rolePhase = undefined;
     await guardedStage(() => roleEvaluate("arm")); guardProgress();
     rolePhase = h.beginRoleReadPhase(captureOrigin, DATE);

@@ -91,6 +91,9 @@ export class SchedulingViewsHarness {
   private roleData: Promise<void> | undefined;
   private roleRouteRelease: Promise<void> | undefined;
   private roleRouteReleased = false;
+  private roleRouteNotRequired = false;
+  private roleRegistrationState: "not-invoked" | "pending" | "succeeded" | "failed" = "not-invoked";
+  private roleRegistration: Promise<void> | undefined;
   private roleHasFailure = false;
   private roleFailure: unknown;
   private retainRoleFailure(error: unknown) { if (!this.roleHasFailure) { this.roleHasFailure = true; this.roleFailure = error; } }
@@ -108,18 +111,51 @@ export class SchedulingViewsHarness {
     }
     return this.oldClosing;
   }
+  private releaseOwnRoleRoute(): Promise<void> {
+    if (!this.roleRouteRelease) {
+      this.roleRouteRelease = (async () => {
+        const owned = this.rolePage;
+        if (!owned) throw new Error("Owned role route release unavailable.");
+        if (this.roleRegistrationState === "not-invoked" && !this.roleRegistration && !this.transitionAccept) {
+          this.roleRouteNotRequired = true; // Source-proven cancellation before registration, not Pageclosed.
+          return;
+        }
+        if (!this.roleRegistration || this.roleRegistrationState === "not-invoked") throw new Error("Owned role route registration unverified.");
+        try { await this.roleRegistration; } catch (error) { this.retainRoleFailure(error); }
+        // A closed child cannot retroactively prove that its still-owned handler was released.
+        try { if (owned.isClosed()) this.retainRoleFailure(new Error("Owned role route release unverified.")); }
+        catch (error) { this.retainRoleFailure(error); }
+        // Invocation may install a handler even when its acknowledgement rejects.
+        try { await owned.unroute("**/*", this.readRoute); this.roleRouteReleased = true; }
+        catch (error) { this.retainRoleFailure(error); throw this.roleFailure; }
+        // This acknowledges exact removal, not completion of active route callbacks.
+        if (this.roleHasFailure) throw this.roleFailure;
+      })();
+      void this.roleRouteRelease.catch(error => this.retainRoleFailure(error));
+    }
+    return this.roleRouteRelease;
+  }
   closeOwnRolePage(): Promise<void> {
     const owned = this.rolePage;
     if (!owned) return Promise.reject(new Error("Owned role Page unavailable."));
+    this.transitionAccept = false;
     if (!this.roleClosing) {
-      lifecycle.mark(owned, "page-close", "invoked");
-      try {
-        this.roleClosing = owned.close().then(() => {
+      const release = this.releaseOwnRoleRoute();
+      const close = async () => {
+        lifecycle.mark(owned, "page-close", "invoked");
+        try {
+          await owned.close();
           lifecycle.mark(owned, "page-close", "fulfilled");
           if (!owned.isClosed()) throw new Error("Owned role Page close unverified.");
           this.roleClosed = true;
-        });
-      } catch (error) { this.roleClosing = Promise.reject(error); }
+        } catch (error) { this.retainRoleFailure(error); }
+        if (this.roleHasFailure) throw this.roleFailure;
+      };
+      // A never-registered canceled child has no pending registration/removal to await.
+      this.roleClosing = this.roleRouteNotRequired ? close() : (async () => {
+        try { await release; } catch (error) { this.retainRoleFailure(error); }
+        await close();
+      })();
       void this.roleClosing.catch(error => this.retainRoleFailure(error));
     }
     return this.roleClosing;
@@ -146,7 +182,17 @@ export class SchedulingViewsHarness {
       const owned = await creating;
       if (!this.transitionAccept || owned.context() !== context || owned.isClosed()) throw new Error("Owned role Page transition unverified.");
       lifecycleTarget.attach(owned);
-      await owned.route("**/*", this.readRoute);
+      this.roleRegistrationState = "pending"; // Record possible installation BEFORE invocation.
+      try {
+        this.roleRegistration = owned.route("**/*", this.readRoute).then(() => {
+          this.roleRegistrationState = "succeeded";
+        }, error => { this.roleRegistrationState = "failed"; this.retainRoleFailure(error); throw error; });
+      } catch (error) {
+        this.roleRegistrationState = "failed"; this.retainRoleFailure(error);
+        this.roleRegistration = Promise.reject(error);
+      }
+      void this.roleRegistration.catch(error => this.retainRoleFailure(error));
+      await this.roleRegistration;
       if (!this.transitionAccept) throw new Error("Owned role Page transition cancelled.");
       return owned;
     } catch (error) { this.retainRoleFailure(error); throw this.roleFailure; }
@@ -361,13 +407,6 @@ export class SchedulingViewsHarness {
     initiate(() => this.bookingEditor.retireTransport());
     initiate(() => this.closeOriginalPage());
     if (this.rolePage) initiate(() => this.closeOwnRolePage());
-    if (!this.roleRouteRelease) {
-      this.roleRouteRelease = (async () => {
-        if (this.rolePage && !this.rolePage.isClosed()) await this.rolePage.unroute("**/*", this.readRoute);
-        this.roleRouteReleased = true;
-      })();
-      void this.roleRouteRelease.catch(error => this.retainRoleFailure(error));
-    }
     this.roleData ??= (async () => {
       if (this.scenario) {
         try { await this.cleanupRows(); } catch (error) { this.retainRoleFailure(error); }
@@ -377,7 +416,7 @@ export class SchedulingViewsHarness {
     void this.roleData.catch(error => this.retainRoleFailure(error));
     await this.roleData;
     if (this.roleHasFailure) throw this.roleFailure;
-    if (!this.oldClosed || !this.rolePage || !this.roleClosed || !this.roleRouteReleased) {
+    if (!this.oldClosed || !this.rolePage || !this.roleClosed || !(this.roleRouteReleased || this.roleRouteNotRequired)) {
       this.retainRoleFailure(new Error("Owned role Page release unverified."));
       throw this.roleFailure;
     }

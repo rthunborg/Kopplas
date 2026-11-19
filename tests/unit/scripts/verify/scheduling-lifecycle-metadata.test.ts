@@ -434,3 +434,148 @@ test("pending full handler cleanup cannot starve independent original data clean
 test("non-opt-in default disposal still uses original inner-work ordering during pending abort", async () => {
   const result = await ownedHandlerAbortChild("default"); assert.equal(result.defaultLegacy, true); assert.equal(result.laterTurn, true); assert.equal(result.originalError, true); assert.equal(result.dataAuth, 2);
 });
+
+
+// Appended role-child release regressions; the original29-case prefix stays byte-exact.
+function childReleaseDeferred() {
+  let resolve!: () => void, reject!: (error: unknown) => void;
+  const promise = new Promise<void>((yes, no) => { resolve = yes; reject = no; });
+  void promise.catch(() => {}); return { promise, resolve, reject };
+}
+const childReleaseTurn = () => new Promise<void>(resolve => setImmediate(resolve));
+function childReleasePorts(options: { register?: () => Promise<void>; unroute?: () => Promise<void>; close?: () => Promise<void> } = {}) {
+  const f = ownedSchedulingPorts(), registration = childReleaseDeferred();
+  const fresh = f.fresh as unknown as { route: (pattern: string, handler: unknown) => Promise<void>; unroute: (pattern: string, handler: unknown) => Promise<void>; close: () => Promise<void>; isClosed: () => boolean };
+  const originalClose = fresh.close; let handler: unknown, invoked = false, removalSettled = false, externalClosed = false;
+  const originalIsClosed = fresh.isClosed;
+  fresh.isClosed = () => externalClosed || originalIsClosed();
+  fresh.route = (pattern, callback) => {
+    assert.equal(pattern, "**/*"); assert.equal(invoked, false);
+    invoked = true; handler = callback; f.events.push("child-register-invoked"); registration.resolve();
+    return options.register ? options.register() : Promise.resolve();
+  };
+  fresh.unroute = (pattern, callback) => {
+    assert.equal(pattern, "**/*"); assert.equal(invoked, true); assert.equal(callback, handler);
+    f.events.push("child-exact-unroute");
+    try {
+      return (options.unroute ? options.unroute() : Promise.resolve()).then(() => { removalSettled = true; }, error => { removalSettled = true; throw error; });
+    } catch (error) { removalSettled = true; throw error; }
+  };
+  fresh.close = async () => {
+    if (invoked) assert.equal(removalSettled, true, "Child closed before owned unroute settled");
+    f.events.push("child-close"); await options.close?.(); await originalClose();
+  };
+  return { ...f, registration, closeExternally: () => { externalClosed = true; } };
+}
+test("child route release precedes one cached close and repeated data cleanup", async () => {
+  const f = childReleasePorts(); await f.api.openOwnRolePage();
+  const a = f.api.closeOwnRolePage(), b = f.api.closeOwnRolePage(); assert.equal(a, b); await a;
+  await f.api.dispose(); await f.api.dispose();
+  assert.ok(f.events.indexOf("child-exact-unroute") < f.events.indexOf("child-close"));
+  assert.equal(f.events.filter(e => e === "child-exact-unroute").length, 1); assert.equal(f.events.filter(e => e === "child-close").length, 1);
+  assert.equal(f.data(), 1); assert.equal(f.auth.length, 1);
+});
+test("pending child registration blocks removal and close while independent data progresses", async () => {
+  const registration = childReleaseDeferred(), f = childReleasePorts({ register: () => registration.promise });
+  const opening = f.api.openOwnRolePage(); void opening.catch(() => {}); await f.registration.promise;
+  const closing = f.api.closeOwnRolePage(); void closing.catch(() => {});
+  await childReleaseTurn(); assert.equal(f.events.includes("child-exact-unroute"), false); assert.equal(f.events.includes("child-close"), false);
+  await assert.rejects(f.api.dispose(), /release unverified/); assert.equal(f.data(), 1); assert.equal(f.auth.length, 1);
+  registration.resolve(); await assert.rejects(opening); await assert.rejects(closing);
+  assert.equal(f.events.filter(e => e === "child-exact-unroute").length, 1); assert.equal(f.events.filter(e => e === "child-close").length, 1);
+});
+test("failed or throwing possibly-installed child registration still removes the exact handler before close", async () => {
+  for (const synchronous of [false, true]) {
+    const sentinel = {}, f = childReleasePorts({ register: () => { if (synchronous) throw sentinel; return Promise.reject(sentinel); } });
+    await assert.rejects(f.api.openOwnRolePage(), error => error === sentinel);
+    await assert.rejects(f.api.closeOwnRolePage(), error => error === sentinel);
+    await assert.rejects(f.api.dispose(), error => error === sentinel);
+    assert.ok(f.events.indexOf("child-exact-unroute") < f.events.indexOf("child-close")); assert.equal(f.data(), 1); assert.equal(f.auth.length, 1);
+  }
+});
+test("release requested before delayed registration rejection retains the original carrier", async () => {
+  const registration = childReleaseDeferred(), sentinel = {}, f = childReleasePorts({ register: () => registration.promise });
+  const opening = f.api.openOwnRolePage(); void opening.catch(() => {}); await f.registration.promise;
+  const closing = f.api.closeOwnRolePage(); void closing.catch(() => {});
+  registration.reject(sentinel); await assert.rejects(opening, error => error === sentinel); await assert.rejects(closing, error => error === sentinel);
+  await assert.rejects(f.api.dispose(), error => error === sentinel); assert.equal(f.data(), 1);
+});
+test("pending exact unroute prevents early close but never starves original SQL and Auth cleanup", async () => {
+  const removal = childReleaseDeferred(), f = childReleasePorts({ unroute: () => removal.promise }); await f.api.openOwnRolePage();
+  const closing = f.api.closeOwnRolePage(); void closing.catch(() => {}); await childReleaseTurn();
+  assert.equal(f.events.includes("child-close"), false); await assert.rejects(f.api.dispose(), /release unverified/);
+  assert.equal(f.data(), 1); assert.equal(f.auth.length, 1); assert.equal(f.events.includes("child-close"), false);
+  removal.resolve(); await assert.rejects(closing, /release unverified/);
+  assert.equal(f.events.filter(e => e === "child-close").length, 1); await assert.rejects(f.api.dispose()); assert.equal(f.data(), 1);
+});
+test("rejected exact unroute still attempts close and retains earliest failure through data cleanup", async () => {
+  const first = {}, later = {}, f = childReleasePorts({ unroute: () => Promise.reject(first), close: () => Promise.reject(later) }); await f.api.openOwnRolePage();
+  await assert.rejects(f.api.closeOwnRolePage(), error => error === first); await assert.rejects(f.api.dispose(), error => error === first);
+  assert.equal(f.events.filter(e => e === "child-close").length, 1); assert.equal(f.data(), 1); assert.equal(f.auth.length, 1);
+});
+test("externally closed unreleased child cannot turn a removal acknowledgement into success", async () => {
+  const f = childReleasePorts(); await f.api.openOwnRolePage(); f.closeExternally();
+  await assert.rejects(f.api.closeOwnRolePage(), /route release unverified/); await assert.rejects(f.api.dispose(), /route release unverified/);
+  assert.equal(f.events.filter(e => e === "child-exact-unroute").length, 1); assert.equal(f.events.filter(e => e === "child-close").length, 1); assert.equal(f.data(), 1);
+});
+test("canceled late never-routed child closes without an invented removal obligation", async () => {
+  let deliver!: (page: unknown) => void; const started = childReleaseDeferred();
+  const f = ownedSchedulingPorts({ newPage: () => { started.resolve(); return new Promise(yes => { deliver = yes; }); } });
+  const opening = f.api.openOwnRolePage(); void opening.catch(() => {}); await started.promise;
+  await assert.rejects(f.api.dispose()); deliver(f.fresh); await assert.rejects(opening); await childReleaseTurn();
+  assert.equal(f.events.includes("fresh-route"), false); assert.equal(f.events.includes("fresh-unroute"), false); assert.equal(f.events.filter(e => e === "fresh-close").length, 1);
+  assert.equal(f.data(), 1); assert.equal(f.auth.length, 1);
+});
+test("unchanged default manager cleanup and failed child creation preserve their original owners", async () => {
+  const plain = ownedSchedulingPorts(); await plain.api.dispose(); assert.equal(plain.events.includes("old-unroute"), true); assert.equal(plain.events.includes("fresh-unroute"), false); assert.equal(plain.data(), 1);
+  const sentinel = {}, failed = ownedSchedulingPorts({ newPage: () => Promise.reject(sentinel) });
+  await assert.rejects(failed.api.openOwnRolePage(), error => error === sentinel); await assert.rejects(failed.api.dispose(), error => error === sentinel);
+  assert.equal(failed.creates(), 1); assert.equal(failed.events.includes("fresh-route"), false); assert.equal(failed.data(), 1); assert.equal(failed.auth.length, 1);
+});
+function roleInitialStepCall() {
+  const file = parsed(spec); let text = "";
+  const walk = (node: ts.Node) => { if (ts.isCallExpression(node) && node.expression.getText(file) === "test.step" && node.arguments[0]?.getText(file) === '"Role initial required flow"') { assert.equal(node.arguments.length, 2); text = node.getText(file); } ts.forEachChild(node, walk); };
+  walk(file); assert.ok(text); return text;
+}
+function roleInitialStepPorts(fault?: { at: "navigate" | "settle" | "drain" | "qualify"; error: unknown; asynchronous?: boolean }) {
+  const calls: string[] = [], errors: { title: string; error: unknown }[] = [], titles: string[] = []; let first: unknown, hasFirst = false;
+  const req = {}, response = { ok: () => true, request: () => req }, original = Promise.resolve(response);
+  const fail = (at: string) => { if (fault?.at === at) { if (fault.asynchronous) { hasFirst = true; first = fault.error; } else throw fault.error; } };
+  const bindings = {
+    test: { step: async (title: string, body: () => Promise<unknown>) => { titles.push(title); try { return await body(); } catch (error) { errors.push({ title, error }); throw error; } } },
+    page: { goto: () => { calls.push("goto"); fail("navigate"); return original; } }, h: { extraProfiles: ["", "", "synthetic-peer"], scenario: { tenantIds: ["", "synthetic-tenant"] } },
+    openCaptureWindow: () => { calls.push("open"); }, targetAssociation: { observe: (value: unknown) => { calls.push("observe"); assert.equal(value, original); } },
+    navigateAfterBarrier: async (operation: () => Promise<unknown>) => { calls.push("barrier"); return await operation(); },
+    guardProgress: () => { calls.push("guard"); if (hasFirst) throw first; }, guardedSettle: async () => { calls.push("settle"); fail("settle"); }, drain: async () => { calls.push("drain"); fail("drain"); },
+    qualifyRolePhase: async () => { calls.push("qualify"); fail("qualify"); }, admitted: new Map([[req, { phase: "complete" }]]),
+    expect: (value: unknown) => ({ not: { toBeNull: () => { calls.push("response-present"); assert.equal(value, response); } }, toBe: (expected: unknown) => { calls.push("response-check"); assert.equal(value, expected); } }),
+  };
+  const run = evaluate(`(async()=>{await ${roleInitialStepCall()};})`, bindings);
+  return { run, calls, errors, titles, original };
+}
+test("actual initial role step wrappers retain fixed nesting navigation identity values and all guards", async () => {
+  const f = roleInitialStepPorts(); await f.run();
+  assert.deepEqual(f.titles, ["Role initial required flow", "Role initial controlled navigation", "Role initial UI settlement", "Role initial native drain", "Role initial complete client and native qualification"]);
+  assert.deepEqual(f.calls, ["barrier", "open", "goto", "observe", "guard", "settle", "guard", "drain", "guard", "response-present", "response-check", "response-check", "qualify", "guard"]); assert.equal(f.errors.length, 0);
+});
+test("actual initial await wrappers preserve primitive object and earlier asynchronous firstFailure identities", async () => {
+  for (const at of ["navigate", "settle", "drain", "qualify"] as const) for (const error of ["net::ERR_ABORTED", {}]) {
+    const f = roleInitialStepPorts({ at, error }); await assert.rejects(f.run(), value => value === error); assert.equal(f.errors[0]!.error, error); assert.equal(f.errors.at(-1)!.title, "Role initial required flow");
+  }
+  const sentinel = {}, f = roleInitialStepPorts({ at: "settle", error: sentinel, asynchronous: true }); await assert.rejects(f.run(), value => value === sentinel); assert.equal(f.errors[0]!.title, "Role initial UI settlement"); assert.equal(f.errors[0]!.error, sentinel);
+});
+test("installed standard step and nested JSON serializer retain fixed context and exact rethrow", async () => {
+  const version = (JSON.parse(source("node_modules/@playwright/test/package.json")) as { version: string }).version;
+  const installed = `node_modules/.pnpm/playwright@${version}/node_modules/playwright/lib/`;
+  const common = source(installed + "common/index.js"), runner = source(installed + "runner/index.js");
+  const start = common.indexOf("  async _step(expectation, title, body, options = {}) {"); const end = common.indexOf("  _extend(", start); assert.ok(start >= 0 && end > start);
+  const steps: { title: string; duration: number; error?: unknown; category: string; steps: unknown[] }[] = [];
+  const info = { _addStep: (options: { title: string; category: string }) => { const row = { title: options.title, category: options.category, duration: 0, steps: [], error: undefined as unknown }; steps.push(row); return { info: { _runStepBody: async (_skip: boolean, body: () => Promise<unknown>) => await body() }, complete: (result: { error?: unknown }) => { row.error = result.error; } }; } };
+  const method = evaluate(`({${common.slice(start, end)}})._step`, { import_globals2: { currentTestInfo: () => info }, currentZone: () => ({ with: () => ({ run: (body: () => Promise<unknown>) => body() }) }), raceAgainstDeadline: async (body: () => Promise<unknown>, deadline: number) => { assert.equal(deadline, 0); return { result: await body(), timedOut: false }; } });
+  assert.equal(await method("pass", "Role initial required flow", async () => 7), 7);
+  const sentinel = {}; await assert.rejects(method("pass", "Role initial native drain", async () => { throw sentinel; }), value => value === sentinel); assert.equal(steps[1]!.error, sentinel);
+  const serializerStart = runner.indexOf("  _serializeTestStep(step) {"); const serializerEnd = runner.indexOf("\n  }", serializerStart) + 4; assert.ok(serializerStart >= 0 && serializerEnd > serializerStart);
+  const serializer = evaluate(`({${runner.slice(serializerStart, serializerEnd)}})`, {});
+  const nested = serializer._serializeTestStep({ ...steps[0], steps: [steps[1], { title: "not-a-user-step", category: "pw:api", steps: [] }] });
+  assert.equal(nested.title, "Role initial required flow"); assert.equal(nested.steps.length, 1); assert.equal(nested.steps[0].title, "Role initial native drain"); assert.equal(nested.steps[0].error, sentinel); assert.deepEqual(Object.keys(nested).sort(), ["duration", "error", "steps", "title"]);
+});
