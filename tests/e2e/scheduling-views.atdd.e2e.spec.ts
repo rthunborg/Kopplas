@@ -516,7 +516,44 @@ test("[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and too
   for (const [view, modes] of [["Schema", ["day", "week", "month"]], ["Resurser", ["day", "week"]], ["Team", ["week"]], ["Beläggning", ["day", "week", "month"]], ["Min kalender", ["day", "week"]]] as [View, ("day" | "week" | "month")[]][]) {
     for (const mode of modes) {
       denseContext = { view, mode, phase: "open" };
-      await h.open(view, mode);
+      if (view === "Schema" && mode === "day") {
+        await h.open(view, mode);
+      } else {
+        const viewIds: Record<View, string> = { Schema: "schema", Resurser: "resources", Team: "team", Beläggning: "capacity", "Min kalender": "personal" };
+        const tab = h.page.getByTestId(`scheduling-view-${viewIds[view]}`);
+        await expect(tab).toHaveCount(1);
+        await expect(tab).toHaveJSProperty("tagName", "BUTTON");
+        await expect(tab).toHaveAttribute("role", "tab");
+        await expect(tab).toBeVisible();
+        await expect(tab).toBeEnabled();
+        const selected = await tab.getAttribute("aria-selected");
+        expect(selected === "true" || selected === "false").toBe(true);
+        if (selected === "false") await tab.click();
+        await h.settle();
+        await expect(tab).toHaveAttribute("aria-selected", "true");
+        const date = h.page.getByLabel("Datum", { exact: true });
+        await expect(date).toHaveCount(1);
+        await expect(date).toHaveJSProperty("tagName", "INPUT");
+        await expect(date).toHaveJSProperty("type", "date");
+        await expect(date).toBeVisible();
+        await expect(date).toBeEnabled();
+        const currentDate = await date.inputValue();
+        expect(typeof currentDate === "string").toBe(true);
+        if (currentDate !== DATE) await date.fill(DATE);
+        await h.settle();
+        await expect(date).toHaveValue(DATE);
+        const period = h.page.getByLabel("Period", { exact: true });
+        await expect(period).toHaveCount(1);
+        await expect(period).toHaveJSProperty("tagName", "SELECT");
+        await expect(period).toBeVisible();
+        await expect(period).toBeEnabled();
+        const currentMode = await period.inputValue();
+        const allowedModes: readonly string[] = view === "Team" ? ["week"] : view === "Resurser" || view === "Min kalender" ? ["day", "week"] : ["day", "week", "month"];
+        expect(allowedModes.includes(currentMode)).toBe(true);
+        if (currentMode !== mode) await period.selectOption(mode);
+        await h.settle();
+        await expect(period).toHaveValue(mode);
+      }
       denseContext = { view, mode, phase: "sharedFilters" };
       for(const [label,desired] of [["Person",h.people[0]!],["Arbetsroll",h.scenario.workRoleId],["Jobb",h.scenario.jobId],["Kund",h.scenario.customerId]] as const){
         const filter=h.page.getByLabel(label,{exact:true});
