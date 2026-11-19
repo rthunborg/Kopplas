@@ -1496,8 +1496,9 @@ test("[P1] 15.1-E2E-008 AC6 arbetsroll/no-role lanes, multi-assignee rows and cu
   const retired = await adminQuery<{ id: string }>("update public.work_roles set is_active=false where id=$1 and tenant_id=$2 and display_name=$3 returning id", [h.scenario.workRoleId, h.scenario.tenantId, h.scenario.description]);
   expect(retired).toEqual([{ id: h.scenario.workRoleId }]);
   await h.page.reload(); await h.settle();
-  expect(await h.visibleIds(roleLane)).toEqual([h.ids.role, h.ids.proposal, h.ids.collision].sort());
-  expect(await h.visibleIds(noRole)).toEqual([h.ids.noRole, h.ids.inactive, h.ids.zero, h.ids.hidden].sort());
+  await h.open("Team");
+  await expect.poll(() => h.visibleIds(roleLane)).toEqual([h.ids.role, h.ids.proposal, h.ids.collision].sort());
+  await expect.poll(() => h.visibleIds(noRole)).toEqual([h.ids.noRole, h.ids.inactive, h.ids.zero, h.ids.hidden].sort());
   const roleText = (id: string) => h.block(id).locator("p").filter({ has: h.page.locator('span[aria-hidden="true"]') });
   await expect(roleText(h.ids.role)).toHaveText(`◇ ${h.scenario.description}`);
   await expect(roleText(h.ids.noRole)).toHaveText("◇ Ingen arbetsroll");
