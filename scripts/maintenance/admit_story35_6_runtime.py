@@ -134,13 +134,102 @@ def artifact_state(repo, ref, snapshots):
     return cache[token]
 
 
-def stopped_receipt(r, c, p, snapshots):
+def stopped_receipt(r, c, p, snapshots, db=None, repo=None):
     q = r['quiescence']
-    keys(q, ['coordinator', 'attested', 'complete_writer_inventory', 'evidence_path', 'evidence_sha256'])
+    protocol = isinstance(q, dict) and q.get('kind') == 'committed-protocol-quarantine'
+    fields = ['coordinator', 'attested', 'complete_writer_inventory', 'evidence_path', 'evidence_sha256']
+    keys(q, fields + (['kind', 'cold_request_id', 'cold_request_digest'] if protocol else []))
     data = capture(None, {'path': q['evidence_path'], 'sha256': q['evidence_sha256']}, snapshots)
-    stopped = engine.stopped_writers(r, c, p)
+    current_request = {**r, 'quiescence': {key: q[key] for key in fields}}
+    stopped = engine.stopped_writers(current_request, c, p)
     require(stopped == parse_raw_json(data), 'Stopped-writer receipt differs from captured raw bytes')
+    if protocol:
+        require(db is not None and repo is not None, 'Committed protocol proof needs the native transaction')
+        stopped = {**stopped, 'protocol_fence': committed_protocol_fence(db, repo, r, p, c, snapshots)}
     return stopped
+
+
+def qualified_cold_adapter(repo, r, snapshots):
+    relative = 'scripts/maintenance/adopt_stopped_coordinator_context.py'
+    ref = {'commit': r['reviewed_tooling_sha'], 'path': relative, 'sha256': '0' * 64}
+    data = source_bytes(repo, ref)
+    ref['sha256'] = hashlib.sha256(data).hexdigest()
+    capture(repo, ref, snapshots)
+    module_path = ROOT / relative
+    require(module_path.read_bytes().replace(b'\r\n', b'\n') == data,
+            'Cold proof validator must match reviewed tooling source')
+    spec = importlib.util.spec_from_file_location('runtime_committed_cold_proof', module_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def committed_protocol_fence(db, repo, r, p, c, snapshots):
+    """Consume the immutable committed cold audit within this native transaction."""
+    cold = qualified_cold_adapter(repo, r, snapshots)
+    q = r['quiescence']
+    try:
+        require(cold.audit_schema(db), 'Committed cold protocol audit required')
+        rows = list(db.execute('SELECT * FROM coordinator_successions'))
+        require(len(rows) == 1, 'Exact single cold succession required')
+        row = rows[0]
+        require(row['run'] == RUN and row['request_id'] == q['cold_request_id'] and
+                row['request_hash'] == q['cold_request_digest'], 'Cold request binding changed')
+        request = parse_raw_json(row['request'].encode())
+        context = parse_raw_json(row['context'].encode())
+        before = parse_raw_json(row['before_snapshot'].encode())
+        after = parse_raw_json(row['after_snapshot'].encode())
+        response = parse_raw_json(row['response'].encode())
+        keys(context, ['proposal', 'original_plan_raw', 'old_state', 'new_state',
+                       'after_plan', 'after_claim', 'protocol_eligibility'])
+        require(engine.digest(request) == row['request_hash'] and
+                request['request_id'] == row['request_id'] and context['proposal'] == request['proposal'] and
+                engine.digest(before) == request['proposal']['expected_snapshot'], 'Cold audit digest changed')
+        require(after == cold.expected_after(before, context), 'Cold audit conservation failed')
+        old_run, _, old_plan = cold.target(before)
+        new_run, new_claim, new_plan = cold.target(after)
+        original_plan = parse_raw_json(base64.b64decode(context['original_plan_raw'], validate=True))
+        old_state = base64.b64decode(context['old_state'], validate=True)
+        new_state = base64.b64decode(context['new_state'], validate=True)
+        require(original_plan == old_plan and context['after_plan'] == new_plan and
+                context['after_claim'] == new_claim and
+                cold.reassessed(old_state, request['proposal']['old_base'], request['proposal']['main']) == new_state,
+                'Cold state or plan conservation changed')
+        cold_revision = request['proposal']['tool_revision']
+        exact_sha(repo, cold_revision)
+        require(engine.ancestor(repo, cold_revision, r['qualified_main_sha']), 'Cold tooling is outside qualified main')
+        cold_source = capture(repo, {'commit': cold_revision,
+            'path': 'scripts/maintenance/adopt_stopped_coordinator_context.py',
+            'sha256': request['proposal']['tool_sha256']}, snapshots)
+        require(cold_source == Path(cold.__file__).read_bytes().replace(b'\r\n', b'\n'),
+                'Cold audit requires the qualified protocol validator source')
+        require(old_run['owner'] == cold.OLD and old_plan['workflow_version'] == cold.BEFORE_PIN and
+                new_run['owner'] == p['coordinator'] == cold.NEW and new_plan == p and
+                new_claim == dict(c) and c['worker'] == cold.WORKER and c['generation'] == 1,
+                'Cold audit does not bind this current assignment')
+        proof = response.get('protocol_fence')
+        require(isinstance(proof, dict), 'Committed protocol fence receipt required')
+        expected = dict(kind='committed-protocol-quarantine', run=RUN, story=STORY,
+                        old_owner=cold.OLD, coordinator=cold.NEW, worker=cold.WORKER,
+                        generation=1, state='blocked', request_digest=row['request_hash'],
+                        **context['protocol_eligibility'])
+        require(proof == expected and proof['scheduler_queue'] == 'UNKNOWN' and
+                proof['before_workflow'] == cold.BEFORE_PIN and
+                proof['after_workflow'] == cold.AFTER_PIN == p['workflow_version'] and
+                proof['custody_sha256'] == request['proposal']['custody']['sha256'] and
+                cold.BEFORE_PIN != cold.AFTER_PIN, 'Cold protocol proof changed')
+        require(response['admitted'] is False and response['status'] == 'locally-adopted-publication-pending' and
+                response['request_digest'] == row['request_hash'], 'Cold protocol result changed')
+        packet = engine.story_pr_assignment(p, c)
+        packet.update(effective_plan_hash=engine.digest(p), succession_request=row['request_id'])
+        require(response['packet'] == packet, 'Cold assignment packet changed')
+        require(all(w['identity'] not in {cold.OLD, cold.RETIRED_SUCCESSOR}
+                    for w in parse_raw_json(capture(None, {'path': q['evidence_path'],
+                        'sha256': q['evidence_sha256']}, snapshots))['writers']),
+                'Protocol-refused retired identities cannot be attested scheduler-stopped')
+        return proof
+    except cold.Refusal as error:
+        require(False, 'Cold protocol proof refused: ' + str(error))
 
 
 def exact_sha(repo, value):
@@ -945,7 +1034,7 @@ def validate_request(db, repo, a, request_path, raw_request, r):
         require(not any(x.startswith(('120000 ', '160000 ')) for x in tree.split('\x00')), 'Runtime symlink/submodule ownership refused')
     engine.validate_plan(repo, revised)
     snapshots = Captures()
-    stopped = stopped_receipt(r, c, p, snapshots)
+    stopped = stopped_receipt(r, c, p, snapshots, db, repo)
     forbidden = {p['coordinator']} | {writer['identity'] for writer in stopped['writers']}
     independent_review(admission['review'], r['checkpoint_sha'], r['tooling_author'], forbidden)
     qualify_tooling(repo, p, c, r, snapshots, forbidden)
@@ -955,7 +1044,7 @@ def validate_request(db, repo, a, request_path, raw_request, r):
     git_facts()
     qualify_tooling(repo, p, c, r, snapshots, forbidden)
     require(inventory['snapshot'] == store_snapshot(db, repo), 'Ownership changed immediately before CAS')
-    require(engine.stopped_writers(r, c, p) == stopped, 'Stopped-writer evidence changed')
+    require(stopped_receipt(r, c, p, snapshots, db, repo) == stopped, 'Stopped-writer evidence changed')
     require(request_path.read_bytes() == raw_request, 'Request changed during admission')
     for ref, data in snapshots:
         require(source_bytes(repo, ref) == data, 'Bound evidence changed immediately before CAS')

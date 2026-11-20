@@ -1124,3 +1124,37 @@ first failures and all35.6/35.7/live-adoption/merge/deployment holds. Actual nor
 first-clean gates may earn exact-source evidence, never cause, historical repair
 or automatic hold release. Current E09 mode/jobs/observer, ci.yml, cold four,
 tests/readers/helpers, dependencies and PRIMARY remain unchanged.
+
+## CRM committed protocol-quarantine proof
+
+The fixed-run private recovery amendment of 2026-11-20 adds an executable custody
+alternative only for `e35-6-20261102` / `spec-design-35-6-35-6`. Its development and
+qualification authority preserves the separate live cold-transfer decision.
+
+For runtime admission, `quiescence.kind = committed-protocol-quarantine` adds
+`cold_request_id` and `cold_request_digest` to the existing coordinator,
+attestation, complete-writer inventory and evidence fields. The referenced
+writer evidence retains the ordinary strict shape and actual current worker /
+delegate closure. It cannot describe OLD or the retired successor as stopped
+based on an unavailable scheduler record.
+
+The runtime validator reads the single append-only `coordinator_successions` row
+from the same transaction used for its own admission. It binds the exact cold
+request/digest, original and resulting native snapshots, original plan and
+byte-preserving publication-state reassessment, qualified cold-tool source,
+committed protocol receipt and unchanged current generation-1 assignment.
+Missing, altered, wrong-run or stale proof refuses. Source and external evidence
+are captured and independently rechecked immediately before compare-and-swap.
+The ordinary stopped-quiescence request shape remains available.
+
+A valid cold proof carries the scheduler state `UNKNOWN` and the distinct old /
+installed workflow pins. The current owner/pin checks reject the retired old
+assignment. The subsequent runtime transition increments the existing claim to
+generation 2 through its existing audit and request/review gates. Old generation
+validation continues through the generic helper. The proof neither releases
+unrelated reservations nor resolves their ownership classifications.
+
+Current boot, named actor/command/handle observations and independently reviewed
+exact requests are real execution inputs. Synthetic adapter fixtures establish
+code behavior only. Runtime tests, visual acceptance, PR qualification and
+release validation retain their recorded requirements.

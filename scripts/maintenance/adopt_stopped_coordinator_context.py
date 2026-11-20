@@ -7,6 +7,7 @@ fixed codes and digests only. Caller-supplied identities are not authentication.
 import argparse
 import base64
 import contextlib
+import contextvars
 import copy
 import hashlib
 import json
@@ -49,6 +50,9 @@ B07_RETAINED_BLOB = '6bc1918e89823a5f580e8988c438d77a9a78447f'
 B07_COMBINED_BLOB = 'abd27711a7a952da97a204dce498fd6e3bf5542e'
 AUDIT = 'coordinator_successions'
 MAX_FILE = 4 * 1024 * 1024
+PROTOCOL_KIND = 'conditional-protocol-quarantine'
+CRITICAL_SECONDS = 30
+CRITICAL_DEADLINE = contextvars.ContextVar('cold_adoption_deadline', default=None)
 DDL = [
     'CREATE TABLE coordinator_successions(request_id TEXT PRIMARY KEY, run TEXT NOT NULL UNIQUE, request_hash TEXT NOT NULL, before_snapshot TEXT NOT NULL, after_snapshot TEXT NOT NULL, request TEXT NOT NULL, context TEXT NOT NULL, response TEXT NOT NULL, created REAL NOT NULL)',
     "CREATE TRIGGER immutable_coordinator_successions_update BEFORE UPDATE ON coordinator_successions BEGIN SELECT RAISE(ABORT, 'Coordinator succession audit is append-only'); END",
@@ -111,14 +115,22 @@ def environment():
 
 
 def command(argv, data=None):
-    proc = subprocess.run(argv, input=data, capture_output=True, timeout=120, env=environment())
+    deadline = CRITICAL_DEADLINE.get()
+    timeout = 120 if deadline is None else deadline - time.monotonic()
+    need(timeout > 0, 'CRITICAL_SECTION_EXPIRED')
+    try:
+        proc = subprocess.run(argv, input=data, capture_output=True, timeout=timeout, env=environment())
+    except subprocess.TimeoutExpired:
+        if deadline is not None:
+            raise Refusal('CRITICAL_SECTION_EXPIRED') from None
+        raise
     need(proc.returncode == 0, 'NATIVE_OPERATION_REFUSED')
     return proc.stdout
 
 
-def git(repo, *args):
+def git(repo, *args, data=None):
     return command(['git', '-c', 'core.hooksPath=' + str(Path(repo)/'.no-adoption-hooks'),
-                    '-c', 'core.fsmonitor=false', '-c', 'gc.auto=0', '-c', 'maintenance.auto=false', '-C', str(repo), *args])
+                    '-c', 'core.fsmonitor=false', '-c', 'gc.auto=0', '-c', 'maintenance.auto=false', '-C', str(repo), *args], data)
 
 
 def gittext(repo, *args):
@@ -189,6 +201,34 @@ def tree(repo, commit):
     return entries
 
 
+def committed_workflow_pin(ctx, commit):
+    """The pinned engine's exact digest, using one bounded object batch."""
+    prefixes = ['.agents/skills/auto-bmad/', '.claude/skills/auto-bmad/', '_bmad/custom/',
+                '_bmad-output/auto-bmad/config.yaml', '_bmad/bmm/config.yaml',
+                '_bmad/core/config.yaml', '.codex/config.toml', '.claude/settings.json']
+    names = gittext(ctx['repository'], 'ls-tree', '-r', '--name-only', commit, '--', *prefixes).splitlines()
+    need(names and names == sorted(set(names)), 'PROTOCOL_WORKFLOW_PATHS')
+    query = ''.join(commit + ':' + name + '\n' for name in names).encode()
+    data = git(ctx['repository'], 'cat-file', '--batch', data=query)
+    offset, hashes = 0, []
+    need(len(data) <= 32 * MAX_FILE, 'PROTOCOL_WORKFLOW_SIZE')
+    for name in names:
+        end = data.find(b'\n', offset)
+        need(end >= offset, 'PROTOCOL_WORKFLOW_OBJECT')
+        header = data[offset:end].split()
+        need(len(header) == 3 and header[1] == b'blob' and header[2].isdigit(), 'PROTOCOL_WORKFLOW_OBJECT')
+        size = int(header[2]); offset = end + 1
+        need(size <= MAX_FILE and len(data) > offset + size and data[offset + size:offset + size + 1] == b'\n',
+             'PROTOCOL_WORKFLOW_OBJECT')
+        content = data[offset:offset + size]
+        need(hashlib.sha1(b'blob ' + str(size).encode() + b'\0' + content).hexdigest().encode() == header[0],
+             'PROTOCOL_WORKFLOW_OBJECT')
+        hashes.append([name, rawhash(content.replace(b'\r\n', b'\n'))])
+        offset += size + 1
+    need(offset == len(data), 'PROTOCOL_WORKFLOW_OBJECT')
+    return digest(hashes)
+
+
 def evidence(ref, private):
     exact(ref, 'path sha256')
     p = path(ref['path'])
@@ -236,6 +276,8 @@ def database(store, write=False):
             db.execute('PRAGMA query_only=ON')
         db.execute('BEGIN IMMEDIATE' if write else 'BEGIN')
         yield db
+        deadline = CRITICAL_DEADLINE.get()
+        need(deadline is None or time.monotonic() < deadline, 'CRITICAL_SECTION_EXPIRED')
         db.execute('COMMIT' if write else 'ROLLBACK')
     except BaseException:
         if db.in_transaction:
@@ -279,15 +321,20 @@ DRIVER = r'''
 import importlib.util,json,sys
 spec=importlib.util.spec_from_file_location('adoption_pinned_helper',sys.argv[1]); h=importlib.util.module_from_spec(spec); spec.loader.exec_module(h)
 x=json.load(sys.stdin); p=x['plan']; c=x['claim']; repo=x['repo']
+if x['operation']=='workflow-pin':
+    print(h.canonical(h.workflow_version(repo, x['revision']))); sys.exit(0)
 h.require(h.workflow_version(repo) in {x['old_pin'],p['workflow_version']},'Operative workflow drift')
 h.require(h.workflow_version(x['staging'])==p['workflow_version'],'Staging workflow drift')
 if x['operation']=='candidate':
+    original_integration=(p['integration_worktree'],p['integration_branch'])
     p['integration_worktree']=x['staging']; p['integration_branch']=h.branch(x['staging'])
     h.validate_plan(repo,p)
     h.require(h.workflow_version(repo,x['worker_head'])==p['workflow_version'],'Candidate worker pin')
     h.source_pins(repo,p,False,x['worker_head'])
     h.validate_diff(repo,p,c,x['old_base'],x['selected_checkpoint'])
     h.validate_diff(repo,p,c,p['base_sha'],x['worker_head'])
+    if x['protocol']: h.story_pr_current_main(repo,p)
+    p['integration_worktree'],p['integration_branch']=original_integration
 elif x['operation']=='settled':
     h.validate_plan(repo,p); h.story_pr_current_main(repo,p)
     h.require(h.workflow_version(c['worktree'])==p['workflow_version'],'Worker pin')
@@ -296,10 +343,15 @@ print(h.canonical(h.story_pr_assignment(p,c)))
 '''
 
 
-def native(ctx, operation):
+def native(ctx, operation, revision=None):
+    if operation == 'settled' and ctx.get('custody_kind') == PROTOCOL_KIND:
+        need('_settled_packet' in ctx and
+             head(ctx['integration']) == ctx['proposal']['integration_candidate'] and
+             head(ctx['worker']) == ctx['proposal']['worker_candidate'], 'PROTOCOL_SETTLED_BINDING')
+        return copy.deepcopy(ctx['_settled_packet'])
     p = copy.deepcopy(ctx['after_plan'])
     c = copy.deepcopy(ctx['after_claim'])
-    payload = dict(operation=operation, plan=p, claim=c, repo=str(ctx['integration']),
+    payload = dict(operation=operation, revision=revision, protocol=ctx.get('custody_kind') == PROTOCOL_KIND, plan=p, claim=c, repo=str(ctx['integration']),
                    staging=str(ctx['integration_staging']),
                    worker_head=ctx['proposal']['worker_candidate'], old_pin=BEFORE_PIN,
                    old_base=ctx['proposal']['old_base'], selected_checkpoint=ctx['proposal']['selected_checkpoint'])
@@ -483,7 +535,7 @@ def validate(request_path, allow_hot_recovery=False):
                new_state=base64.b64encode(new_state).decode(),
                original_plan_raw=base64.b64encode(read(p['original_plan']['path'])).decode(), **paths)
     authorities(ctx)
-    native(ctx, 'candidate')
+    ctx['_settled_packet'] = native(ctx, 'candidate')
     return ctx
 
 
@@ -499,16 +551,26 @@ def authorities(ctx):
         need(type(exclusions) is dict and exclusions.get('synthetic') is True and
              [exclusions.get(k) for k in ['tokens', 'domains', 'allocations']] == [57, 7, 3], 'EXCLUSIONS_CHANGED')
     custody = evidence(p['custody'], private)
-    exact(custody, 'kind run story coordinator worker old_archived writers_stopped no_reopen delegates queued_operations native_operations holds issued expires provenance')
-    need(custody['kind'] == 'current-stopped-custody' and custody['run'] == RUN and custody['story'] == STORY and
+    protocol = type(custody) is dict and custody.get('kind') == PROTOCOL_KIND
+    common_fields = 'kind run story coordinator worker old_archived no_reopen holds issued expires provenance'
+    exact(custody, common_fields + (' scheduler_queue entry_model boot_observation writer_observations historical_stops before_workflow after_workflow' if protocol else
+                                    ' writers_stopped delegates queued_operations native_operations'))
+    need(custody['run'] == RUN and custody['story'] == STORY and
          custody['coordinator'] == NEW and custody['worker'] == WORKER and custody['old_archived'] is True and
-         custody['writers_stopped'] == list(STOPPED_WRITERS) and custody['no_reopen'] is True and
-         custody['delegates'] == custody['queued_operations'] == custody['native_operations'] == [] and
+         custody['no_reopen'] is True and
          custody['holds'] == ['35.6', '35.7', '35.7-P-producer-reservation'] and
          type(custody['provenance']) is str and bool(custody['provenance']), 'CUSTODY_INCOMPLETE')
     now = time.time()
     need(type(custody['issued']) in {int, float} and type(custody['expires']) in {int, float} and
          custody['issued'] <= now < custody['expires'] <= custody['issued'] + 900, 'CUSTODY_EXPIRED')
+    if protocol:
+        protocol_eligibility(ctx, custody, now)
+    else:
+        need(custody['kind'] == 'current-stopped-custody' and
+             custody['writers_stopped'] == list(STOPPED_WRITERS) and
+             custody['delegates'] == custody['queued_operations'] == custody['native_operations'] == [],
+             'CUSTODY_INCOMPLETE')
+    ctx['custody_kind'] = custody['kind']
     observed = evidence(p['main_observation'], private)
     exact(observed, 'kind repository branch head issued expires provenance')
     need(observed['kind'] == 'current-provider-main-observation' and observed['repository'] == 'rthunborg/Kopplas' and
@@ -547,6 +609,98 @@ def authorities(ctx):
         ancestor(ctx['repository'], p['tool_revision'], gittext(ctx['repository'], 'rev-parse', 'refs/remotes/origin/main'))
         need(rawhash(blob(ctx['repository'], p['tool_revision'], 'scripts/maintenance/adopt_stopped_coordinator_context.py')) ==
              p['tool_sha256'], 'TOOL_UNQUALIFIED')
+
+
+def protocol_eligibility(ctx, custody, now):
+    """Fresh scoped observations authorize only a conditional attempt."""
+    need(custody['scheduler_queue'] == 'UNKNOWN' and
+         custody['entry_model'] == 'truthful-identity-before-phase-validation' and
+         custody['before_workflow'] == BEFORE_PIN and custody['after_workflow'] == AFTER_PIN and
+         BEFORE_PIN != AFTER_PIN, 'PROTOCOL_ENTRY_MODEL')
+    boot = evidence(custody['boot_observation'], ctx['private_root'])
+    exact(boot, 'kind boot_id booted_at observed_at provenance')
+    need(boot['kind'] == 'host-boot-observation' and type(boot['boot_id']) is str and boot['boot_id'] and
+         type(boot['booted_at']) in {int, float} and type(boot['observed_at']) in {int, float} and
+         boot['booted_at'] <= custody['issued'] <= boot['observed_at'] <= now and
+         type(boot['provenance']) is str and boot['provenance'], 'PROTOCOL_BOOT_OBSERVATION')
+    need(type(custody['writer_observations']) is list and
+         len(custody['writer_observations']) == len(STOPPED_WRITERS) and
+         type(custody['historical_stops']) is list and
+         len(custody['historical_stops']) == len(STOPPED_WRITERS), 'PROTOCOL_WRITER_INVENTORY')
+    observed, historical = [], []
+    for ref in custody['writer_observations']:
+        item = evidence(ref, ctx['private_root'])
+        exact(item, 'kind identity scope observed_at state pending_commands relevant_handles direct_entry provenance')
+        need(item['kind'] == 'current-protocol-writer-observation' and
+             item['scope'] == 'retained-crm-phase-work' and
+             item['state'] == 'no-admitted-phase-or-command' and
+             item['pending_commands'] == item['relevant_handles'] == [] and
+             item['direct_entry'] == 'phase-validation-required' and
+             type(item['observed_at']) in {int, float} and
+             max(boot['booted_at'], custody['issued']) <= item['observed_at'] <= now and
+             type(item['provenance']) is str and item['provenance'], 'PROTOCOL_WRITER_UNSETTLED')
+        observed.append(item['identity'])
+    for ref in custody['historical_stops']:
+        item = evidence(ref, ctx['private_root'])
+        exact(item, 'kind identity scope completed no_reopen provenance')
+        need(item['kind'] == 'historical-writer-stop' and item['scope'] == 'retained-crm-phase-work' and
+             item['completed'] is True and item['no_reopen'] is True and
+             type(item['provenance']) is str and item['provenance'], 'PROTOCOL_STOP_RECEIPT')
+        historical.append(item['identity'])
+    need(sorted(observed) == sorted(historical) == sorted(STOPPED_WRITERS), 'PROTOCOL_WRITER_INVENTORY')
+    ctx['protocol_eligibility'] = {
+        'custody_sha256': ctx['proposal']['custody']['sha256'],
+        'before_workflow': BEFORE_PIN, 'after_workflow': AFTER_PIN,
+        'scheduler_queue': 'UNKNOWN', 'expires': custody['expires'],
+    }
+
+
+@contextlib.contextmanager
+def adoption_database(ctx, write=False):
+    if '_native_db' in ctx:
+        yield ctx['_native_db']
+    else:
+        with database(ctx['store'], write=write) as db:
+            yield db
+
+
+@contextlib.contextmanager
+def protocol_budget(ctx):
+    remaining = ctx['protocol_eligibility']['expires'] - time.time()
+    need(remaining > 0, 'CUSTODY_EXPIRED')
+    token = CRITICAL_DEADLINE.set(time.monotonic() + min(CRITICAL_SECONDS, remaining))
+    started = time.monotonic()
+    try:
+        yield
+    finally:
+        ctx['_protocol_critical_ms'] = (time.monotonic() - started) * 1000
+        CRITICAL_DEADLINE.reset(token)
+    need(ctx['_protocol_critical_ms'] <= CRITICAL_SECONDS * 1000, 'CRITICAL_SECTION_OVERRUN')
+
+
+@contextlib.contextmanager
+def protocol_transaction(ctx, prepare_only=False):
+    if ctx.get('custody_kind') != PROTOCOL_KIND or prepare_only:
+        yield
+        return
+    with protocol_budget(ctx):
+        with database(ctx['store'], write=True) as db:
+            db.set_progress_handler(lambda: int(time.monotonic() >= CRITICAL_DEADLINE.get()), 1000)
+            need(snapshot(db) == ctx['snapshot'], 'NATIVE_SNAPSHOT_CHANGED')
+            need(committed_workflow_pin(ctx, ctx['proposal']['before_integration']) == BEFORE_PIN and
+                 committed_workflow_pin(ctx, ctx['proposal']['integration_candidate']) == AFTER_PIN,
+                 'PROTOCOL_PIN_TRANSITION')
+            expected_pin = BEFORE_PIN if head(ctx['integration']) == ctx['proposal']['before_integration'] else AFTER_PIN
+            need(native(ctx, 'workflow-pin') == expected_pin, 'PROTOCOL_INSTALLED_PIN')
+            ctx['_native_db'] = db
+            try:
+                yield
+            finally:
+                ctx.pop('_native_db', None)
+                db.set_progress_handler(None, 0)
+    completion = ctx.pop('_protocol_completion', None)
+    if completion:
+        append(*completion, 'native-done')
 
 
 def durable(destination, value):
@@ -619,7 +773,10 @@ def verify_journal(j, ctx):
 
 
 def context(ctx):
-    return {k: ctx[k] for k in ['proposal', 'original_plan_raw', 'old_state', 'new_state', 'after_plan', 'after_claim']}
+    result = {k: ctx[k] for k in ['proposal', 'original_plan_raw', 'old_state', 'new_state', 'after_plan', 'after_claim']}
+    if ctx.get('custody_kind') == PROTOCOL_KIND:
+        result['protocol_eligibility'] = ctx['protocol_eligibility']
+    return result
 
 
 def recover_hot_store(preliminary, request_path, original):
@@ -643,6 +800,8 @@ def recover_hot_store(preliminary, request_path, original):
         ctx.update(after_claim=after_claim, old_state=base64.b64encode(old_state).decode(),
                    new_state=base64.b64encode(new_state).decode(),
                    original_plan_raw=base64.b64encode(read(ctx['proposal']['original_plan']['path'])).decode())
+        if ctx.get('custody_kind') == PROTOCOL_KIND:
+            ctx['_settled_packet'] = native(ctx, 'candidate')
         verify_journal(j, ctx)
         need(len(j['events']) == 6 and j['events'][-1]['phase'] == 'native-intent', 'HOT_RECOVERY_PHASE')
         recheck(ctx, request_path)
@@ -652,7 +811,8 @@ def recover_hot_store(preliminary, request_path, original):
         recheck(ctx, request_path)
         # BEGIN IMMEDIATE lets SQLite recover its own uncommitted rollback
         # journal. Afterwards only the exact recorded before/after state is valid.
-        with database(ctx['store'], write=True) as db:
+        budget = protocol_budget(ctx) if ctx.get('custody_kind') == PROTOCOL_KIND else contextlib.nullcontext()
+        with budget, database(ctx['store'], write=True) as db:
             current = snapshot(db)
             need(current in [j['before_snapshot'], expected_after(j['before_snapshot'], ctx)], 'HOT_RECOVERY_STATE_DRIFT')
             audit_schema(db)
@@ -685,15 +845,21 @@ def expected_after(before, ctx):
 def receipt(ctx):
     packet = native(ctx, 'settled')
     packet.update(effective_plan_hash=digest(ctx['after_plan']), succession_request=ctx['request']['request_id'])
-    return {'status': 'locally-adopted-publication-pending', 'admitted': False, 'packet': packet,
-            'request_digest': ctx['request_digest'], 'holds': ['35.6', '35.7']}
+    result = {'status': 'locally-adopted-publication-pending', 'admitted': False, 'packet': packet,
+              'request_digest': ctx['request_digest'], 'holds': ['35.6', '35.7']}
+    if ctx.get('custody_kind') == PROTOCOL_KIND:
+        need(native(ctx, 'workflow-pin') == AFTER_PIN, 'PROTOCOL_INSTALLED_PIN')
+        result['protocol_fence'] = dict(kind='committed-protocol-quarantine', run=RUN, story=STORY,
+            old_owner=OLD, coordinator=NEW, worker=WORKER, generation=1, state='blocked',
+            request_digest=ctx['request_digest'], **ctx['protocol_eligibility'])
+    return result
 
 
 def recover(ctx, request_path, prepare_only=False, create=True):
     dest = journal_path(ctx)
     need(not redirected(dest), 'UNSAFE_PATH')
     need(create or dest.is_file(), 'JOURNAL_REQUIRED')
-    with operation_lock(dest):
+    with operation_lock(dest), protocol_transaction(ctx, prepare_only):
         if dest.exists():
             j = decode(read(dest))
             verify_journal(j, ctx)
@@ -711,7 +877,7 @@ def recover(ctx, request_path, prepare_only=False, create=True):
         before = j['before_snapshot']
         need(digest(before) == ctx['proposal']['expected_snapshot'], 'JOURNAL_SNAPSHOT_CHANGED')
         # A committed audit is authoritative for response-loss replay, never a new admission.
-        with database(ctx['store']) as db:
+        with adoption_database(ctx) as db:
             if audit_schema(db):
                 row = db.execute('SELECT * FROM coordinator_successions WHERE run=?', (RUN,)).fetchone()
                 if row:
@@ -724,14 +890,17 @@ def recover(ctx, request_path, prepare_only=False, create=True):
                     fresh = receipt(ctx)
                     need(canonical(fresh) == row['response'], 'AUDIT_REPLAY_CONFLICT')
                     if len(j['events']) == 6:
-                        append(j, dest, 'native-done')
+                        if ctx.get('custody_kind') == PROTOCOL_KIND:
+                            ctx['_protocol_completion'] = (j, dest)
+                        else:
+                            append(j, dest, 'native-done')
                     return {'status': 'historical-replay', 'admitted': False, 'replayed': True,
                             'request_digest': ctx['request_digest']}
             need(snapshot(db) == before, 'NATIVE_SNAPSHOT_CHANGED')
         need(len(j['events']) <= 6, 'AUDIT_MISSING')
         def cold_recheck():
             recheck(ctx, request_path)
-            with database(ctx['store']) as db:
+            with adoption_database(ctx) as db:
                 need(snapshot(db) == before, 'NATIVE_SNAPSHOT_CHANGED')
         for key, before_key, candidate_key, intent, done in [
             ('integration', 'before_integration', 'integration_candidate', 'integration-intent', 'integration-done'),
@@ -757,7 +926,7 @@ def recover(ctx, request_path, prepare_only=False, create=True):
         response = receipt(ctx)
         if len(j['events']) == 5:
             append(j, dest, 'native-intent')
-        with database(ctx['store'], write=True) as db:
+        with adoption_database(ctx, write=True) as db:
             need(snapshot(db) == before, 'NATIVE_SNAPSHOT_CHANGED')
             need(not audit_schema(db) or not db.execute('SELECT 1 FROM coordinator_successions').fetchone(), 'SECOND_SUCCESSION')
             recheck(ctx, request_path)
@@ -783,7 +952,10 @@ def recover(ctx, request_path, prepare_only=False, create=True):
             need(audit_schema(db), 'AUDIT_SCHEMA_CONFLICT')
             need(snapshot(db) == after, 'CONSERVATION_FAILED')
             recheck(ctx, request_path)
-        append(j, dest, 'native-done')
+        if ctx.get('custody_kind') == PROTOCOL_KIND:
+            ctx['_protocol_completion'] = (j, dest)
+        else:
+            append(j, dest, 'native-done')
         # Private audit holds the packet; public stdout never exposes native paths.
         return {'status': 'locally-adopted-publication-pending', 'admitted': False, 'replayed': False,
                 'request_digest': ctx['request_digest'], 'plan_hash': digest(ctx['after_plan'])}
@@ -810,6 +982,11 @@ def main():
                       'generation': 1, 'state': 'blocked', 'conserved_unrelated_digest': ctx['snapshot']['unrelated_state_digest']}
         else:
             result = recover(ctx, path(args.request), args.operation == 'prepare', args.operation != 'recover')
+        if ctx.get('custody_kind') == PROTOCOL_KIND:
+            result['custody_kind'] = PROTOCOL_KIND
+            result['protocol_fence_committed'] = result['status'] in {'locally-adopted-publication-pending', 'historical-replay'}
+            if '_protocol_critical_ms' in ctx:
+                result['critical_section_ms'] = ctx['_protocol_critical_ms']
         print(canonical(result))
         return 0
     except (Refusal, ValueError, TypeError, KeyError, OSError, sqlite3.Error, subprocess.SubprocessError) as error:
