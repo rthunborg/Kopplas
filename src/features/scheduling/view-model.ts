@@ -89,19 +89,49 @@ export async function runSchedulingRead(requested: SchedulingReadInput, ports: {
   sequence:{current:number}; read:(input:SchedulingReadInput)=>Promise<SchedulingReadResult>;
   start:()=>void; reconcile:(value:SchedulingReadResult,input:SchedulingReadInput)=>SchedulingReadInput | undefined;
   publish:(value:SchedulingReadResult)=>void; failed:()=>void; finish:()=>void;
+  readonly observe?:(event:Readonly<{ ticket:number; currentTicket:number; ordinal:number;
+    operation:"lifecycle"|"first-read"|"reconcile"|"reconciled-read"|"publish"|"failed"|"finish";
+    phase:"start"|"returned"|"threw"|"discarded";
+    outcome:"none"|"no-data-error"|"denied"|"invalid"|"retryable"|"other-data-error"|"thrown";
+    timeMs:number|null }>)=>unknown;
 }): Promise<void> {
   const ticket=++ports.sequence.current;
   const latest=()=>ticket===ports.sequence.current;
+  type Observation=Parameters<NonNullable<typeof ports.observe>>[0];
+  let ordinal=0,operation:Observation["operation"]="lifecycle";
+  const emit=(stage:Observation["operation"],phase:Observation["phase"],classify:()=>Observation["outcome"]=()=>"none")=>{
+    try {
+      const observe=ports.observe; if(typeof observe!=="function")return;
+      ordinal+=1;
+      const currentTicket=ports.sequence.current;
+      if(!Number.isSafeInteger(ticket)||ticket<1||ticket>1_000_000||!Number.isSafeInteger(currentTicket)||currentTicket<1||currentTicket>1_000_000||ordinal>16)return;
+      const outcome=classify(),clock=performance.now();
+      const timeMs=Number.isFinite(clock)&&clock>=0&&clock<=3_600_000?clock:null;
+      const delivery=observe({ticket,currentTicket,ordinal,operation:stage,phase,outcome,timeMs});
+      if(delivery!==undefined)Promise.prototype.then.call(delivery,()=>{},()=>{});
+    } catch { /* Optional observation cannot enter business failure handling. */ }
+  };
+  const classify=(value:SchedulingReadResult):Observation["outcome"]=>value.data.error===null?"no-data-error":value.data.errorKind==="denied"?"denied":value.data.errorKind==="invalid"?"invalid":value.data.errorKind==="retryable"?"retryable":"other-data-error";
+  emit("lifecycle","start");
   ports.start();
+  emit("lifecycle","returned");
   try {
+    operation="first-read";emit(operation,"start");
     let value=await ports.read(requested);
-    if (!latest()) return;
+    emit(operation,"returned",()=>classify(value));
+    if (!latest()) { emit("lifecycle","discarded"); return; }
+    operation="reconcile";emit(operation,"start");
     const revised=ports.reconcile(value,requested);
+    emit(operation,"returned");
     if (revised) {
+      operation="reconciled-read";emit(operation,"start");
       value=await ports.read(revised);
-      if (!latest()) return;
+      emit(operation,"returned",()=>classify(value));
+      if (!latest()) { emit("lifecycle","discarded"); return; }
     }
+    operation="publish";emit(operation,"start");
     ports.publish(value);
-  } catch { if (latest()) ports.failed(); }
-  finally { if (latest()) ports.finish(); }
+    emit(operation,"returned");
+  } catch { emit(operation,"threw",()=>"thrown");if (latest()) { emit("failed","start");ports.failed();emit("failed","returned"); } }
+  finally { if (latest()) { emit("finish","start");ports.finish();emit("finish","returned"); } }
 }
