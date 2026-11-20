@@ -1,5 +1,35 @@
 # Epic 15 selected-interval and consumer repair - 2026-11-18
 
+## Current four-phone framing placement on e50
+
+At this source/local freeze, HEAD and origin remain `e50da0ee791c568ddd70d9bc561b648fbdaa5493`; only the reviewed spec framing and this factual note are uncommitted. Exact spec raw SHA-256 is `d0d44e830908c849e62780d728c07eb34ccd30a993528bd095726af3aefb7bd0`, LF `fd9a2c8a2773eb8cddc89071c69fd5730063eafa5671408a319ef14b32a13593`. It froze before checks and before this note. No future commit, run, frame or release result is implied.
+
+Four existing capture sites now require their intended360x640 content: `workspace-read-loading-phone` targets the exact loading message; `phone-agenda` the actual owned Agenda booking/assignee; `phone-capacity-summary` the current person/date card with booked/balance text; `phone-editor-save-failure` the full error sentence within the dialog pane above its footer. These are representative existing states, not an entire agenda/period fitting claim. Independent main/window/pane scroll restoration preserves the primary-error presence flag. Existing input, focus, viewport, action order and server-confirmed retry assertions remain. Bounds refuse invalid framing; actual pixels/occlusion remain unverified.
+
+### Earned checks and source conservation
+
+Actual Node22.23.2 complete lifecycle verifier: **55 executed/55 passed/0 failed, skipped, cancelled or todo**, native0. Full semantic TypeScript `--noEmit --incremental false`: native0/0 diagnostics. Spec-only ESLint `--no-cache`: native0/0 errors/0 warnings. All three first placed-source checks passed against pre-check code-input-freeze SHA-256 `84788a2185bf59faca4d1c8de52843dd0782ff30c5541f6697a2888cf283b247`.
+
+Whole CRLF patch inverse is exact. AST checks positively match12 declarations expanding20 cases,17 original capture calls/arguments/order, all510 original awaits and187 original expect expressions in order. Ten whole registrations, including Dense/Role/E2E008, are unchanged; only COMP001 read-failure and COMP003 phone framing change. Dense's historical inverse remains `99e40ebbb4cd977ea2b51da876c6ca128d07ad435ccd55c0c00e26a0b4614788`; capture/expiry helpers and43 protected source/API rows remain exact. The unchanged strict Dense consumer is reused by exact case/input binding, not counted as a new execution. Two checker-only extraction failures are retained: initial title selection omitted templates/focus; initial Dense normalization omitted the consumer's two terminal newlines. Corrected conservation passes without source changes. No private proof counts are summed with actual55.
+
+Evidence is under `Four-phone-framing-author-e50da0ee` in the existing private release-validation directory: restart ACK, pre-check freeze, native commands/stdout/stderr/55 named leaves, conservation attempts/results, note/SRO check, final patch/inverses and manifest. This author ran no browser/protocol/SQL/Auth/image/resource operation. Original25 Deferred row bytes remain exact with0 whole-row closures.
+
+### Current e50 native evidence and remaining gates
+
+The [e50 ordinary run44637258418](https://github.com/rthunborg/Kopplas/actions/runs/44637258418) is separately frozen native SUCCESS:3990 unit passes, DB2253 passes/52 skips (RLS904 passes/14 skips is a subset),149 first-pass smoke, Recovery1 and entry2. Receipt SHA-256 `51228eda39a09dc8bc7f0f2fa96b9ec64df387465c72b3a9c3d22ce787e0c9f5`. Its separate trusted-main frontend controllers were blocked ASOF for missing current-head visual evidence OR ambiguous evidence volume; ordinary success does not resolve that gate.
+
+The [e50 full run44638492617](https://github.com/rthunborg/Kopplas/actions/runs/44638492617) is frozen **SUCCESS/consumed under unchanged configured retries**, receipt SHA-256 `c717421ee9b3082780d147c5cdb8fdcda081428a21915a831c89bb3eb39e6500`. General539 unique comprises534 expected,2 flaky and3 intentional skips;536 unique execute. All20 Scheduling cases and12 dependent bodies eventually execute/pass. Dense passes both139693/153031ms with501/11/four-filter/projection/focus/SQL checks; timings are not performance certification. Role first3754ms ERR_ABORTED at outer UI settlement remains failed after navigation/drain/complete qualification returned; later first-attempt tails are unearned. Retry4733ms passes the whole original role flow. CRM B03 first17325ms heading-wait failure/retry3529ms pass also remains flaky. Neither cause is established or waived.
+
+Historical first-carrier/cause resolution is not prerequisite to separately testing this changed candidate, but **all actual INT001 executions under unchanged configured retries must be reported and qualify**. No manufactured extra attempt, first-only criterion, hidden failure, waiver, unchanged redispatch, second ceiling raise or annotation/transport cycle follows.
+
+All37 planned IDs were delivered at the required geometries on e50, but Low left these four phone state conditions unobserved/offscreen; delivery is not37 fully observed states. Passing E2E008 retry/source guards establish its whole-tenant/projection empty, context and strict3Scheduling+2Booking Auth gates, not independent per-delete physical absence. Strict7/21+8/lifecycle history remains partial/overflow-limited, not first-carrier/cause/comprehensive cleanup or semantic identity/clock/ordinal proof. All historical failed/consumed packets remain intact.
+
+Changed-head ordinary/full browser execution, four intended visible frames/restoration, final-base synchronization, frontend controller/reference/human/manual-phone/accessibility and pilot-performance gates remain **PENDING**. Frontend gates apply against product baselineS `fe282c326b208788ef94a3717092057ab7e2e91e`. Audit remains6Moderate/0High/0Critical/native1/ordinary-high-gate, **not clean**, renewed or an installed fix; graph/severe/raw/native/privacy/expiry conditions persist. PerAuth/SQL/key/physical-cleanup limits, all25 closures, P160/35.8/F integration, main/production/cutover/CRM/PR151, paused business writers and native/foreign reservations remain held.
+
+## Historical owned-phone V5 source freeze on07
+
+The following original placement/check/native-history sections retain their then-pending status as historical records. Current e50 evidence above does not rewrite or erase them.
+
 Status at the owned-phone V5 placed-source/local freeze: published base `07d898024d935e78ee241239be46b914524ac5c7` remains HEAD/origin; the four code postimages and this factual note are uncommitted. No future commit, CI run, image, cleanup or acceptance result is implied. The actual complete lifecycle verifier now passes **55 executed, 55 passed, 0 failed/skipped/cancelled/todo** after the retained first attempt of54 passed/1 failed. Semantic TypeScript passes with0 diagnostics; no-cache scoped lint over all four TS files passes with0 errors/0 warnings after retained initial failures. Seven specifically affected complete-route budget consumers also pass; other entries in that file were filter-excluded/unexecuted.
 
 ## Current owned-phone placement and retained conditions
@@ -652,34 +682,28 @@ Main ordering/readmission remains Coordinator-held. Product work remains paused 
 
 ## Suggested Review Order
 
-Author: `/root/e15_release_wiring_author_high`, explicit Sol6.1 High. Refreshed after corrected four-code freeze and actual55/type/four-file lint/selected7 checks. Code is frozen while this factual note changes. Follow only this new-mode placement, its diagnosed local-check corrections and preserved boundaries.
+Author: `/root/e15_release_wiring_author_high`, explicit Sol6.1 High. Refreshed after exact pre-check spec freeze, actual55/type/scoped-lint passes and conservation. Review only four local framing/restoration blocks and this factual note; helpers/units/app/privacy/budgets remain conserved.
 
-### Keep the original functional case and truthful one-state capture
+### Require the intended existing phone content
 
-The derivative preserves the original callback and recorder/worker defaults. A genuine authorized empty scene is required; the mapping amendment does not create native credit.
+Capture IDs and calls remain exact. Content, viewport and footer bounds refuse invalid framing; source preparation does not earn pixels.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1756` — `ownedRetirementTest("[P1] 15.1-E2E-008`: wraps only the existing lifecycle case.
-- `tests/e2e/support/scheduling-views-atdd.ts:660` — `prepareOwnedEmptyPhone(attach:`: owns the qualified empty scene and strict publication gates.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1838` — `const phoneLoadingMain =`: phone-only loading framing preserves the desktop branch.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1933` — `const phoneAgendaTarget =`: scope the real owned Agenda card and assignee.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1959` — `const phoneCapacityTarget =`: require the current person/date card and booked/balance text.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:2002` — `const phoneSaveFailureTarget =`: require the full error inside the pane above the footer.
 
-### Own the original deadline and every cleanup outcome
+### Restore owned scroll and retain primary error identity
 
-The one timer uses the unchanged original functional D. Pending cleanup prevents publication; successful framework buffer ownership and irreversible-attempt uncertainty remain distinct.
+Pane/main/window cleanup attempts remain independent. Original viewport, retry, focus and persistence checks stay authoritative.
 
-- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1731` — `function ownedExpiryBody(`: validates the pinned active test-slot deadline before the body.
-- `tests/e2e/support/scheduling-views-atdd.ts:77` — `function createSchedulingEmptyPhoneRetirement(`: caches independent cleanup and expiry publication refusal.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:1859` — `if (phoneLoadingFailed) throw phoneLoadingError;`: retain falsy/object primary failure after restoration.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:2021` — `if (phoneSaveFailureFailed) throw phoneSaveFailureError;`: retain primary save-capture error before cleanup failure.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:2029` — `const confirmed = await h.observeConfirmedSave();`: preserve original confirmed retry and persistence sequence.
 
-### Adopt late seed ownership without changing default consumers
+### Bind conservation and earned evidence limits
 
-Each newly returned identity remains owned after cancellation, and subsequent admission stops. Original default/OLD paths and the strict one-mode guard remain; unavailable is not deleted.
+Actual55/type/lint pass. Other33 mappings,17 capture expressions, whole Dense/Role/008 and43 protected bindings are unchanged. New browser/four-frame/reference/human/final-base/whole-row acceptance is pending.
 
-- `tests/e2e/support/scheduling-views-atdd.ts:26` — `function createOwnedSchedulingSeedAdmission(`: retains Scheduling creation and strict cached deletion.
-- `tests/e2e/support/booking-editor-atdd.ts:106` — `function createOwnedBookingSeedAdmission(`: retains analogous Booking ownership and pending SQL settlement.
-- `tests/e2e/support/booking-editor-atdd.ts:437` — `if (!["conflict-free"].includes(mode))`: preserves the exact accepted new-mode input without type narrowing.
-
-### Review actual changed-case evidence and unearned native gates
-
-The complete55 verifier, semantic typecheck, four-file lint and selected7 consumers pass after preserved first failures. These local results do not certify new runtime, physical cleanup, final images or release acceptance.
-
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:946` — `test("owned empty phone actual seed adopts late owned identities across expiry and parent teardown"`: checks actual extracted seed/controller late results and cleanup ordering.
-- `tests/unit/scripts/verify/scheduling-lifecycle-metadata.test.ts:871` — `test("owned empty phone expiry preserves exact functional window and records prebody limitations"`: checks pinned phase accounting with an ESM-safe loader.
-- `docs/quality/epic-15-selected-interval-and-consumer-repair-2026-11-18.md:25` — `### Native history and remaining current-candidate gates`: separates07/936 evidence and pending actual candidate gates.
+- `tests/e2e/scheduling-views.atdd.e2e.spec.ts:378` — `test("[P1] 15.1-E2E-006 SCOPE-001`: whole Dense registration and historical99e40 digest stay exact.
+- `docs/quality/epic-15-selected-interval-and-consumer-repair-2026-11-18.md:17` — `### Current e50 native evidence and remaining gates`: separate configured-retry success and delivered IDs from remaining visible-state and acceptance gates.

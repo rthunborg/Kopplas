@@ -1834,7 +1834,31 @@ test("[P1] 15.1-COMP-001 AC3 observed real read transport failure hides stale/em
     for (const viewport of [{ width: 1440, height: 1000, suffix: "desktop" }, { width: 360, height: 640, suffix: "phone" }]) {
       await h.page.setViewportSize({ width: viewport.width, height: viewport.height });
       await expect(h.page.getByText("Läser planering…", { exact: true })).toBeVisible();
-      await attachVisual(h.page, testInfo, `workspace-read-loading-${viewport.suffix}`);
+      {
+        const phoneLoadingMain = viewport.suffix === "phone" ? h.page.getByRole("main") : undefined;
+        const phoneLoadingScroll = phoneLoadingMain ? { main: await phoneLoadingMain.evaluate(node => ({ x: node.scrollLeft, y: node.scrollTop })), page: await h.page.evaluate(() => ({ x: scrollX, y: scrollY })) } : undefined;
+        let phoneLoadingError: unknown, phoneLoadingFailed = false; const phoneLoadingCleanup: string[] = [];
+        try {
+          if (phoneLoadingMain) {
+            const phoneLoadingTarget = h.page.getByText("Läser planering…", { exact: true });
+            await expect(phoneLoadingTarget).toHaveCount(1);
+            await phoneLoadingTarget.scrollIntoViewIfNeeded();
+            await expect(phoneLoadingTarget).toBeInViewport({ ratio: 1 });
+            const phoneLoadingBox = await phoneLoadingTarget.boundingBox(); expect(phoneLoadingBox).not.toBeNull();
+            expect(phoneLoadingBox!.x).toBeGreaterThanOrEqual(0); expect(phoneLoadingBox!.x + phoneLoadingBox!.width).toBeLessThanOrEqual(360);
+            expect(phoneLoadingBox!.y).toBeGreaterThanOrEqual(0); expect(phoneLoadingBox!.y + phoneLoadingBox!.height).toBeLessThanOrEqual(640);
+          }
+          await attachVisual(h.page, testInfo, `workspace-read-loading-${viewport.suffix}`);
+        } catch (failure) { phoneLoadingFailed = true; phoneLoadingError = failure; }
+        finally {
+          if (phoneLoadingMain && phoneLoadingScroll) {
+            try { await phoneLoadingMain.evaluate((node, position) => node.scrollTo({ left: position.x, top: position.y, behavior: "instant" }), phoneLoadingScroll!.main); expect(await phoneLoadingMain.evaluate(node => ({ x: node.scrollLeft, y: node.scrollTop }))).toEqual(phoneLoadingScroll!.main); } catch { phoneLoadingCleanup.push("main-scroll"); }
+            try { await h.page.evaluate(position => window.scrollTo({ left: position.x, top: position.y, behavior: "instant" }), phoneLoadingScroll!.page); expect(await h.page.evaluate(() => ({ x: scrollX, y: scrollY }))).toEqual(phoneLoadingScroll!.page); } catch { phoneLoadingCleanup.push("page-scroll"); }
+          }
+        }
+        if (phoneLoadingFailed) throw phoneLoadingError;
+        if (phoneLoadingCleanup.length) throw new Error(`phoneLoading restoration failed: ${phoneLoadingCleanup.join(", ")}`);
+      }
     }
   } catch (error) { readCaptureError = error; readCaptureFailed = true; }
   finally {
@@ -1901,12 +1925,55 @@ test("[P1] 15.1-COMP-002 AC7 numeric capacity/zero budget/color/full hidden dema
 test("[P1] 15.1-COMP-003 AC8 360x640 connected agenda/summary and failed save retry preserve unsent input", async ({ schedulingViews: h, resourcePage: page }, testInfo) => {
   await h.seed(); await page.setViewportSize({ width: 360, height: 640 }); await h.open("Schema");
   await expect(page.locator('[aria-label="Agenda"]:visible')).toBeVisible(); await expect(h.block(h.ids.role)).toContainText(h.scenario.assigneeLabels[0]!);
-  await attachVisual(page, testInfo, "phone-agenda");
+  {
+    const phoneAgendaMain = page.getByRole("main");
+    const phoneAgendaScroll = { main: await phoneAgendaMain.evaluate(node => ({ x: node.scrollLeft, y: node.scrollTop })), page: await page.evaluate(() => ({ x: scrollX, y: scrollY })) };
+    let phoneAgendaError: unknown, phoneAgendaFailed = false; const phoneAgendaCleanup: string[] = [];
+    try {
+      const phoneAgendaTarget = page.locator('[aria-label="Agenda"]:visible').getByTestId(`scheduling-booking-${h.ids.role}`);
+      await expect(phoneAgendaTarget).toHaveCount(1);
+      await expect(phoneAgendaTarget).toContainText(h.scenario.assigneeLabels[0]!);
+      await phoneAgendaTarget.scrollIntoViewIfNeeded();
+      await expect(phoneAgendaTarget).toBeInViewport({ ratio: 1 });
+      const phoneAgendaBox = await phoneAgendaTarget.boundingBox(); expect(phoneAgendaBox).not.toBeNull();
+      expect(phoneAgendaBox!.x).toBeGreaterThanOrEqual(0); expect(phoneAgendaBox!.x + phoneAgendaBox!.width).toBeLessThanOrEqual(360);
+      expect(phoneAgendaBox!.y).toBeGreaterThanOrEqual(0); expect(phoneAgendaBox!.y + phoneAgendaBox!.height).toBeLessThanOrEqual(640);
+      await attachVisual(page, testInfo, "phone-agenda");
+    } catch (failure) { phoneAgendaFailed = true; phoneAgendaError = failure; }
+    finally {
+      try { await phoneAgendaMain.evaluate((node, position) => node.scrollTo({ left: position.x, top: position.y, behavior: "instant" }), phoneAgendaScroll.main); expect(await phoneAgendaMain.evaluate(node => ({ x: node.scrollLeft, y: node.scrollTop }))).toEqual(phoneAgendaScroll.main); } catch { phoneAgendaCleanup.push("main-scroll"); }
+      try { await page.evaluate(position => window.scrollTo({ left: position.x, top: position.y, behavior: "instant" }), phoneAgendaScroll.page); expect(await page.evaluate(() => ({ x: scrollX, y: scrollY }))).toEqual(phoneAgendaScroll.page); } catch { phoneAgendaCleanup.push("page-scroll"); }
+    }
+    if (phoneAgendaFailed) throw phoneAgendaError;
+    if (phoneAgendaCleanup.length) throw new Error(`phoneAgenda restoration failed: ${phoneAgendaCleanup.join(", ")}`);
+  }
   for (const control of [page.getByRole("tab", { name: "Schema", exact: true }), page.getByLabel("Person", { exact: true }), page.getByTestId("scheduling-new-booking")]) {
     await control.scrollIntoViewIfNeeded(); const box = await control.boundingBox(); expect(box).not.toBeNull(); expect(box!.x).toBeGreaterThanOrEqual(0); expect(box!.x + box!.width).toBeLessThanOrEqual(360); await control.focus(); await expect(control).toBeFocused();
   }
   await h.open("Beläggning"); await expect(page.locator('[aria-label="Kapacitetssammanfattning"]:visible')).toBeVisible();
-  await attachVisual(page, testInfo, "phone-capacity-summary");
+  {
+    const phoneCapacityMain = page.getByRole("main");
+    const phoneCapacityScroll = { main: await phoneCapacityMain.evaluate(node => ({ x: node.scrollLeft, y: node.scrollTop })), page: await page.evaluate(() => ({ x: scrollX, y: scrollY })) };
+    let phoneCapacityError: unknown, phoneCapacityFailed = false; const phoneCapacityCleanup: string[] = [];
+    try {
+      const phoneCapacityTarget = visibleCell(h, DATE);
+      await expect(phoneCapacityTarget).toHaveCount(1);
+      await expect(phoneCapacityTarget).toContainText("Bokat ");
+      await expect(phoneCapacityTarget).toContainText("Balans ");
+      await phoneCapacityTarget.scrollIntoViewIfNeeded();
+      await expect(phoneCapacityTarget).toBeInViewport({ ratio: 1 });
+      const phoneCapacityBox = await phoneCapacityTarget.boundingBox(); expect(phoneCapacityBox).not.toBeNull();
+      expect(phoneCapacityBox!.x).toBeGreaterThanOrEqual(0); expect(phoneCapacityBox!.x + phoneCapacityBox!.width).toBeLessThanOrEqual(360);
+      expect(phoneCapacityBox!.y).toBeGreaterThanOrEqual(0); expect(phoneCapacityBox!.y + phoneCapacityBox!.height).toBeLessThanOrEqual(640);
+      await attachVisual(page, testInfo, "phone-capacity-summary");
+    } catch (failure) { phoneCapacityFailed = true; phoneCapacityError = failure; }
+    finally {
+      try { await phoneCapacityMain.evaluate((node, position) => node.scrollTo({ left: position.x, top: position.y, behavior: "instant" }), phoneCapacityScroll.main); expect(await phoneCapacityMain.evaluate(node => ({ x: node.scrollLeft, y: node.scrollTop }))).toEqual(phoneCapacityScroll.main); } catch { phoneCapacityCleanup.push("main-scroll"); }
+      try { await page.evaluate(position => window.scrollTo({ left: position.x, top: position.y, behavior: "instant" }), phoneCapacityScroll.page); expect(await page.evaluate(() => ({ x: scrollX, y: scrollY }))).toEqual(phoneCapacityScroll.page); } catch { phoneCapacityCleanup.push("page-scroll"); }
+    }
+    if (phoneCapacityFailed) throw phoneCapacityError;
+    if (phoneCapacityCleanup.length) throw new Error(`phoneCapacity restoration failed: ${phoneCapacityCleanup.join(", ")}`);
+  }
   const before = await h.sqlBookings(); await page.getByRole("button", { name: "Välj intervall", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Välj bokningsintervall" });
   await dialog.getByLabel("Intervall start").fill("2026-10-12T14:30"); await dialog.getByLabel("Intervall slut").fill("2026-10-12T15:00"); await dialog.getByLabel("Intervall person").selectOption(h.people[0]!); await dialog.getByRole("button", { name: "Öppna bokningseditor" }).click();
@@ -1926,7 +1993,34 @@ test("[P1] 15.1-COMP-003 AC8 360x640 connected agenda/summary and failed save re
   const failure = await h.failNextSaveOnce(); await h.editor.getByTestId("booking-save").click(); await failure.failed;
   await expect(h.editor.getByTestId("booking-description")).toHaveValue(draft); await expect(page.getByTestId("booking-save-status")).toHaveCount(0); expect(await h.sqlBookings()).toEqual(before);
   await h.editor.getByTestId("booking-retry").scrollIntoViewIfNeeded();
-  await attachVisual(page, testInfo, "phone-editor-save-failure");
+  {
+    const phoneSaveFailureMain = page.getByRole("main");
+    const phoneSaveFailurePane = h.editor.locator(".overflow-y-auto");
+    const phoneSaveFailureScroll = { main: await phoneSaveFailureMain.evaluate(node => ({ x: node.scrollLeft, y: node.scrollTop })), page: await page.evaluate(() => ({ x: scrollX, y: scrollY })), pane: await phoneSaveFailurePane.evaluate(node => ({ x: node.scrollLeft, y: node.scrollTop })) };
+    let phoneSaveFailureError: unknown, phoneSaveFailureFailed = false; const phoneSaveFailureCleanup: string[] = [];
+    try {
+      const phoneSaveFailureTarget = h.editor.getByTestId("booking-save-error");
+      await expect(phoneSaveFailureTarget).toHaveCount(1);
+      await expect(phoneSaveFailureTarget).toHaveText("Bokningen kunde inte sparas. Behåll utkastet och försök igen.");
+      await phoneSaveFailureTarget.scrollIntoViewIfNeeded();
+      await expect(phoneSaveFailureTarget).toBeInViewport({ ratio: 1 });
+      const phoneSaveFailureBox = await phoneSaveFailureTarget.boundingBox(); expect(phoneSaveFailureBox).not.toBeNull();
+      expect(phoneSaveFailureBox!.x).toBeGreaterThanOrEqual(0); expect(phoneSaveFailureBox!.x + phoneSaveFailureBox!.width).toBeLessThanOrEqual(360);
+      expect(phoneSaveFailureBox!.y).toBeGreaterThanOrEqual(0); expect(phoneSaveFailureBox!.y + phoneSaveFailureBox!.height).toBeLessThanOrEqual(640);
+      const phoneSaveFailurePaneBox = await phoneSaveFailurePane.boundingBox(), phoneSaveFailureFooterBox = await h.editor.getByTestId("booking-retry").locator("..").boundingBox();
+      expect(phoneSaveFailurePaneBox).not.toBeNull(); expect(phoneSaveFailureFooterBox).not.toBeNull();
+      expect(phoneSaveFailureBox!.y).toBeGreaterThanOrEqual(Math.max(0, phoneSaveFailurePaneBox!.y));
+      expect(phoneSaveFailureBox!.y + phoneSaveFailureBox!.height).toBeLessThanOrEqual(Math.min(640, phoneSaveFailurePaneBox!.y + phoneSaveFailurePaneBox!.height, phoneSaveFailureFooterBox!.y));
+      await attachVisual(page, testInfo, "phone-editor-save-failure");
+    } catch (failure) { phoneSaveFailureFailed = true; phoneSaveFailureError = failure; }
+    finally {
+      try { await phoneSaveFailurePane.evaluate((node, position) => node.scrollTo({ left: position.x, top: position.y, behavior: "instant" }), phoneSaveFailureScroll.pane); expect(await phoneSaveFailurePane.evaluate(node => ({ x: node.scrollLeft, y: node.scrollTop }))).toEqual(phoneSaveFailureScroll.pane); } catch { phoneSaveFailureCleanup.push("dialog-scroll"); }
+      try { await phoneSaveFailureMain.evaluate((node, position) => node.scrollTo({ left: position.x, top: position.y, behavior: "instant" }), phoneSaveFailureScroll.main); expect(await phoneSaveFailureMain.evaluate(node => ({ x: node.scrollLeft, y: node.scrollTop }))).toEqual(phoneSaveFailureScroll.main); } catch { phoneSaveFailureCleanup.push("main-scroll"); }
+      try { await page.evaluate(position => window.scrollTo({ left: position.x, top: position.y, behavior: "instant" }), phoneSaveFailureScroll.page); expect(await page.evaluate(() => ({ x: scrollX, y: scrollY }))).toEqual(phoneSaveFailureScroll.page); } catch { phoneSaveFailureCleanup.push("page-scroll"); }
+    }
+    if (phoneSaveFailureFailed) throw phoneSaveFailureError;
+    if (phoneSaveFailureCleanup.length) throw new Error(`phoneSaveFailure restoration failed: ${phoneSaveFailureCleanup.join(", ")}`);
+  }
   let desktop_dialog_origin_save_failureError: unknown, desktop_dialog_origin_save_failureFailed = false;
   try { await page.setViewportSize({ width: 1440, height: 1000 }); await attachVisual(page, testInfo, "desktop-dialog-origin-save-failure"); }
   catch (error) { desktop_dialog_origin_save_failureError = error; desktop_dialog_origin_save_failureFailed = true; }
