@@ -4,12 +4,13 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import * as nodeModule from "node:module";
 import { EventEmitter } from "node:events";
+import { isIP } from "node:net";
 import { mkdtemp, mkdir, writeFile, readFile, rm, stat } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { INTEGRATION_ARGS, BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, createIntegrationChildDiagnostic, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { INTEGRATION_ARGS, BROWSER_ARGS, RELEASE_BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, createIntegrationChildDiagnostic, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 import { captureCalendarFeedTrace, recordCalendarFeedTrace, recordCalendarFeedContext, recordCalendarFeedMembership, executeCalendarFeed } from "../../../../src/server/commands/calendar-feed/calendar-feed-db";
 import { CommandError } from "../../../../src/server/commands/command-errors";
 import { validateCalendarFeedIntent } from "../../../../src/features/calendar-feed/validation";
@@ -64,6 +65,8 @@ test("CI command projection rejects entry and argv drift and cannot erase unrela
     ['"--outputFile=test-results/full-integration.json"', '"--outputFile=test-results/foreign.json"'],
     ['"run", "test:smoke"', '"run", "test:e2e"'],
     ["export const BROWSER_ARGS", "const BROWSER_ARGS"],
+    ['"run", "test:e2e", "--reporter=list,json"', '"run", "test:e2e", "--grep=feed"'],
+    ["export const RELEASE_BROWSER_ARGS", "const RELEASE_BROWSER_ARGS"],
   ]) {
     assert.ok(wrapper.includes(before));
     assert.throws(() => projectCalendarFeedCiCommands(workflow, wrapper.replace(before, after)), /declaration|argv/);
@@ -78,6 +81,29 @@ test("CI command projection rejects entry and argv drift and cannot erase unrela
   assert.ok(unrelated.startsWith("# unrelated workflow drift\n"));
   assert.notEqual(inverseHash(unrelated), originalHash);
 });
+test("release projection rejects command selector condition stack and duplicate-entry drift", () => {
+  const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const start = workflow.indexOf("      - name: Exhaustive browser validation (explicit opt-in)\n");
+  const end = workflow.indexOf("\n      - name:", start);
+  assert.ok(start > 0 && end > start);
+  const entry = workflow.slice(start, end);
+  for (const [before, after] of [
+    ["run: node scripts/ci/with-calendar-feed-runtime.mjs browser", "run: pnpm run test:e2e --reporter=list,json"],
+    [".mjs browser", ".mjs browser --grep feed"],
+    ["CALENDAR_FEED_CI_BROWSER_SUITE: release", "CALENDAR_FEED_CI_BROWSER_SUITE: smoke"],
+    [" && inputs.release_validation", ""],
+    ["github.event_name == 'workflow_dispatch'", "github.event_name == 'push'"],
+    ["${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}", "${{ github.run_id }}:1:e2e"],
+    ["PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json", "PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/other.json"],
+  ]) {
+    assert.ok(entry.includes(before));
+    assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(entry, entry.replace(before, after))), /exact release workflow entry/);
+  }
+  for (const replacement of ["", entry + "\n" + entry]) {
+    assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(entry, replacement)), /exact release workflow entry/);
+  }
+});
+
 test("Storage schema source excludes only Mailpit in its exact job and step", () => {
   const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
   const entry = "      - name: Start local schema source\n        run: supabase start --exclude mailpit\n";
@@ -1253,6 +1279,82 @@ test("browser mode runs only existing smoke and awaits its server group before k
   assert.equal(result.launches[0].childEnv.CALENDAR_FEED_TEST_BASE_URL, "http://127.0.0.1:3100");
   assert.ok(result.events.indexOf("commit") < result.events.indexOf("launch:0"));
   assert.ok(result.events.lastIndexOf("settled:0") < result.events.indexOf("delete"));
+});
+
+const releaseEnv = { ...env, GITHUB_EVENT_NAME: "workflow_dispatch", CALENDAR_FEED_CI_BROWSER_SUITE: "release" };
+
+test("release browser launches only fixed exhaustive argv with the same key endpoint and settled cleanup authority as smoke", async () => {
+  assert.ok(Object.isFrozen(RELEASE_BROWSER_ARGS));
+  assert.deepEqual([...RELEASE_BROWSER_ARGS], ["run", "test:e2e", "--reporter=list,json"]);
+  for (const [selectedEnv, expectedArgs] of [[env, BROWSER_ARGS], [releaseEnv, RELEASE_BROWSER_ARGS]] as const) {
+    const h = harness();
+    const result = await runCalendarFeedRuntime({ mode: "browser", env: selectedEnv, platform: "linux" }, h.deps);
+    assert.equal(result.exitCode, 0); assert.equal(h.launches.length, 1);
+    assert.equal(h.launches[0].command, "pnpm"); assert.deepEqual(h.launches[0].args, [...expectedArgs]);
+    const childEnv = h.launches[0].childEnv;
+    assert.equal(childEnv.CALENDAR_FEED_ATTESTATION_KEY_ID, `ci_${keyId}`);
+    assert.equal(childEnv.CALENDAR_FEED_ATTESTATION_SECRET, Buffer.alloc(32, 7).toString("base64url"));
+    assert.equal(childEnv.SUPABASE_TEST_REQUIRED, "1");
+    assert.equal(childEnv.SUPABASE_TEST_URL, status.API_URL); assert.equal(childEnv.SUPABASE_TEST_DB_URL, status.DB_URL);
+    assert.equal(childEnv.NEXT_PUBLIC_SUPABASE_URL, status.API_URL);
+    assert.equal(childEnv.CALENDAR_FEED_TEST_BASE_URL, "http://127.0.0.1:3100");
+    assert.equal(childEnv.NEXT_PUBLIC_APP_URL, "http://127.0.0.1:3100");
+    assert.equal(childEnv.CALENDAR_FEED_TEST_LOG_FILE, "/private/allowlisted.jsonl");
+    assert.ok(h.events.indexOf("commit") < h.events.indexOf("launch:0"));
+    assert.ok(h.events.lastIndexOf("settled:0") < h.events.indexOf("delete"));
+    assert.equal(result.receipt.keyDeleted, true); assert.equal(result.receipt.keyOutcome, "deleted-confirmed");
+  }
+});
+
+test("release selector rejects unknown suites nonbrowser modes events and local execution before qualification SQL or launch", async () => {
+  for (const [mode, selectedEnv, platform] of [
+    ...["", "smoke", "all", "release --grep feed"].map(suite => ["browser", { ...releaseEnv, CALENDAR_FEED_CI_BROWSER_SUITE: suite }, "linux"] as const),
+    ["db", releaseEnv, "linux"], ["cause-proof", releaseEnv, "linux"],
+    ["browser", { ...releaseEnv, GITHUB_EVENT_NAME: undefined }, "linux"],
+    ["browser", { ...releaseEnv, GITHUB_EVENT_NAME: "push" }, "linux"],
+    ["browser", { ...releaseEnv, GITHUB_EVENT_NAME: "pull_request" }, "linux"],
+    ["browser", { ...releaseEnv, CI: "false" }, "linux"], ["browser", releaseEnv, "win32"],
+  ] as const) {
+    const h = harness();
+    const result = await runCalendarFeedRuntime({ mode, env: selectedEnv, platform }, h.deps);
+    assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyOutcome, "not-attempted");
+    assert.deepEqual(h.events, []); assert.deepEqual(h.queries, []); assert.deepEqual(h.launches, []);
+  }
+});
+
+test("release unsuccessful forced and unverified teardown preserve exact key custody just as smoke does", async () => {
+  for (const selectedEnv of [env, releaseEnv]) {
+    for (const options of [{ failChild: 0 }, { forcedStop: true }, { failStops: true }]) {
+      const h = harness(options);
+      const result = await runCalendarFeedRuntime({ mode: "browser", env: selectedEnv, platform: "linux" }, h.deps);
+      assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyDeleted, false);
+      assert.equal(result.receipt.keyOutcome, "unverified");
+      assert.equal(result.receipt.custody?.vaultUuid, keyUuid);
+      assert.equal(result.receipt.custody?.ownedName, `calendar_feed_attestation_ci_${keyId}`);
+      assert.ok(!h.queries.some(call => call.sql.startsWith("delete")));
+      assert.ok(h.events.includes("settled:0"));
+      assert.ok(result.receipt.failures.includes(options.failStops ? "owned-child-cleanup-failed" : "browser-server-teardown-unverified"));
+    }
+  }
+});
+
+test("release verified-success waits for owned group settlement before deleting its own key", async () => {
+  const h = harness();
+  let enterStop!: () => void, finishStop!: () => void;
+  const entered = new Promise<void>(resolve => { enterStop = resolve; });
+  const gate = new Promise<void>(resolve => { finishStop = resolve; });
+  const running = runCalendarFeedRuntime({ mode: "browser", env: releaseEnv, platform: "linux" }, { ...h.deps,
+    launch(command: string, args: string[], childEnv: Record<string, string>) {
+      const handle = h.deps.launch(command, args, childEnv);
+      return { ...handle, async stop() { enterStop(); await gate; return handle.stop(); } };
+    },
+  });
+  await entered;
+  assert.ok(!h.queries.some(call => call.sql.startsWith("delete")));
+  finishStop();
+  const result = await running;
+  assert.equal(result.exitCode, 0); assert.equal(result.receipt.keyDeleted, true);
+  assert.ok(h.events.lastIndexOf("settled:0") < h.events.indexOf("delete"));
 });
 
 test("failed DB readiness build and integration retain the exact key despite frontend settlement", async () => {
@@ -3607,4 +3709,710 @@ test("integration child diagnostics uncertain launch retains unknown native comp
   assert.equal(safe.launchState, "ATTEMPTED_UNVERIFIED"); assert.equal(safe.waitOutcome, "LAUNCH_THROWN");
   assert.equal(safe.nativeEvent, "UNAVAILABLE"); assert.equal(safe.code, "UNKNOWN"); assert.equal(safe.shapeCounts, null);
   assert.equal(result.receipt.keyDeleted, false); assert.ok(result.receipt.custody); assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
+});
+
+// Actual pnpm10.24 report shape/copy/action/count projection from raw SHA fd8bd5af...
+// Advisory prose only is shortened; production consumes the untouched complete JSON.
+const picomatchAuditFixture = {
+  "actions": [
+    {
+      "action": "review",
+      "module": "vitest",
+      "resolves": [
+        {
+          "id": 1193683,
+          "path": ".>vitest",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ]
+    },
+    {
+      "action": "review",
+      "module": "@vitest/mocker",
+      "resolves": [
+        {
+          "id": 1193684,
+          "path": ".>vitest>@vitest/mocker",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        },
+        {
+          "id": 1242767,
+          "path": ".>vitest>@vitest/mocker",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ]
+    },
+    {
+      "action": "review",
+      "module": "minimatch",
+      "resolves": [
+        {
+          "id": 1244623,
+          "path": ".>eslint>@eslint/config-array>minimatch",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ]
+    },
+    {
+      "action": "review",
+      "module": "next",
+      "resolves": [
+        {
+          "id": 1247486,
+          "path": ".>next",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        },
+        {
+          "id": 1247712,
+          "path": ".>next",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ]
+    },
+    {
+      "action": "review",
+      "module": "picomatch",
+      "resolves": [
+        {
+          "id": 1247710,
+          "path": ".>eslint-config-next>@next/eslint-plugin-next>tinyglobby>picomatch",
+          "dev": false,
+          "bundled": false,
+          "optional": false
+        },
+        {
+          "id": 1247710,
+          "path": ".>vite>picomatch",
+          "dev": false,
+          "bundled": false,
+          "optional": false
+        }
+      ]
+    }
+  ],
+  "advisories": {
+    "1193683": {
+      "findings": [
+        {
+          "version": "4.1.9",
+          "paths": [
+            ".>vitest"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-09-08T20:46:45.000Z",
+      "id": 1193683,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-84373"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "vitest",
+      "vulnerable_versions": ">=2.1.0 <4.1.11",
+      "github_advisory_id": "GHSA-82fw-gwwq-j7x9",
+      "recommendation": "Upgrade to version 4.1.11 or later",
+      "patched_versions": ">=4.1.11",
+      "updated": "2026-09-08T20:46:47.000Z",
+      "cvss": {
+        "score": 5.9,
+        "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+      },
+      "cwe": [
+        "CWE-22"
+      ],
+      "url": "https://github.com/advisories/GHSA-82fw-gwwq-j7x9"
+    },
+    "1193684": {
+      "findings": [
+        {
+          "version": "4.1.9",
+          "paths": [
+            ".>vitest>@vitest/mocker"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-09-08T20:46:45.000Z",
+      "id": 1193684,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-84373"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "@vitest/mocker",
+      "vulnerable_versions": ">=2.1.0 <4.1.11",
+      "github_advisory_id": "GHSA-82fw-gwwq-j7x9",
+      "recommendation": "Upgrade to version 4.1.11 or later",
+      "patched_versions": ">=4.1.11",
+      "updated": "2026-09-08T20:46:47.000Z",
+      "cvss": {
+        "score": 5.9,
+        "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+      },
+      "cwe": [
+        "CWE-22"
+      ],
+      "url": "https://github.com/advisories/GHSA-82fw-gwwq-j7x9"
+    },
+    "1242767": {
+      "findings": [
+        {
+          "version": "4.1.9",
+          "paths": [
+            ".>vitest>@vitest/mocker"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-10-21T19:54:26.000Z",
+      "id": 1242767,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-112949"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "@vitest/mocker",
+      "vulnerable_versions": ">=2.1.0-beta.7 <4.1.12",
+      "github_advisory_id": "GHSA-qxg6-89mg-rqv8",
+      "recommendation": "Upgrade to version 4.1.12 or later",
+      "patched_versions": ">=4.1.12",
+      "updated": "2026-10-21T19:54:27.000Z",
+      "cvss": {
+        "score": 4.7,
+        "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N"
+      },
+      "cwe": [
+        "CWE-94",
+        "CWE-116",
+        "CWE-306"
+      ],
+      "url": "https://github.com/advisories/GHSA-qxg6-89mg-rqv8"
+    },
+    "1244623": {
+      "findings": [
+        {
+          "version": "10.2.5",
+          "paths": [
+            ".>eslint>@eslint/config-array>minimatch"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-10-30T23:09:55.000Z",
+      "id": 1244623,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-118764"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "minimatch",
+      "vulnerable_versions": ">=7.0.0 <11.0.1",
+      "github_advisory_id": "GHSA-g3hv-75wg-m249",
+      "recommendation": "Upgrade to version 11.0.1 or later",
+      "patched_versions": ">=11.0.1",
+      "updated": "2026-11-04T16:50:04.000Z",
+      "cvss": {
+        "score": 0,
+        "vectorString": null
+      },
+      "cwe": [
+        "CWE-405"
+      ],
+      "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249"
+    },
+    "1247486": {
+      "findings": [
+        {
+          "version": "16.4.1",
+          "paths": [
+            ".>next"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-11-16T18:51:22.000Z",
+      "id": 1247486,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-119790"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "next",
+      "vulnerable_versions": ">=16.3.0 <=16.4.4",
+      "github_advisory_id": "GHSA-mfr8-8qww-v76h",
+      "recommendation": "Upgrade to version 16.4.5 or later",
+      "patched_versions": ">=16.4.5",
+      "updated": "2026-11-16T18:51:23.000Z",
+      "cvss": {
+        "score": 0,
+        "vectorString": null
+      },
+      "cwe": [
+        "CWE-362"
+      ],
+      "url": "https://github.com/advisories/GHSA-mfr8-8qww-v76h"
+    },
+    "1247710": {
+      "findings": [
+        {
+          "version": "4.0.4",
+          "paths": [
+            ".>eslint-config-next>@next/eslint-plugin-next>tinyglobby>picomatch"
+          ]
+        },
+        {
+          "version": "4.0.7",
+          "paths": [
+            ".>vite>picomatch"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-10-19T18:32:12.000Z",
+      "id": 1247710,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-112366"
+      ],
+      "access": "public",
+      "severity": "high",
+      "module_name": "picomatch",
+      "vulnerable_versions": "<=4.0.7",
+      "github_advisory_id": "GHSA-fc5q-39xc-vjpf",
+      "recommendation": "None",
+      "patched_versions": "<0.0.0",
+      "updated": "2026-11-17T15:56:44.000Z",
+      "cvss": {
+        "score": 7.5,
+        "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      },
+      "cwe": [
+        "CWE-1333"
+      ],
+      "url": "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    },
+    "1247712": {
+      "findings": [
+        {
+          "version": "16.4.1",
+          "paths": [
+            ".>next"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "fixture prose; full native advisory retained separately",
+      "created": "2026-11-17T16:13:26.000Z",
+      "id": 1247712,
+      "npm_advisory_id": null,
+      "overview": "fixture prose; full native advisory retained separately",
+      "reported_by": null,
+      "title": "fixture prose; full native advisory retained separately",
+      "metadata": null,
+      "cves": [
+        "CVE-2026-119351"
+      ],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "next",
+      "vulnerable_versions": ">=16.2.0 <=16.4.4",
+      "github_advisory_id": "GHSA-vc7v-qv4w-wrv8",
+      "recommendation": "Upgrade to version 16.4.5 or later",
+      "patched_versions": ">=16.4.5",
+      "updated": "2026-11-17T16:13:27.000Z",
+      "cvss": {
+        "score": 0,
+        "vectorString": null
+      },
+      "cwe": [
+        "CWE-362"
+      ],
+      "url": "https://github.com/advisories/GHSA-vc7v-qv4w-wrv8"
+    }
+  },
+  "muted": [],
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 6,
+      "high": 2,
+      "critical": 0
+    },
+    "dependencies": 509,
+    "devDependencies": 0,
+    "optionalDependencies": 0,
+    "totalDependencies": 509
+  }
+} as const;
+function actualTemporaryAuditPolicy() {
+  const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const begin = "          // AUDIT-POLICY-CLASSIFIER-BEGIN\n", end = "          // AUDIT-POLICY-CLASSIFIER-END";
+  assert.equal(workflow.split(begin).length, 2); assert.equal(workflow.split(end).length, 2);
+  const code = workflow.split(begin)[1].split(end)[0].split("\n").map(line => line.slice(10)).join("\n");
+  return new Function(code + ";return evaluateAuditPolicy;")() as (raw: string, nativeExit: number, stderr: string, now: number, identities: Record<string, string>) => {outcome: string; nativeExitCode: number; counts: Record<string, number>; expiresAt?: string};
+}
+function auditGraph() {
+  return Object.fromEntries(["pnpm-lock.yaml", "pnpm-workspace.yaml", "patches/@next__eslint-plugin-next@16.3.6.patch"].map(path =>
+    [path, createHash("sha256").update(readFileSync(new URL("../../../../" + path, import.meta.url), "utf8").replaceAll("\r\n", "\n")).digest("hex")]));
+}
+const auditBeforeExpiry = Date.parse("2026-11-18T10:00:00Z");
+const auditExpiry = Date.parse("2026-11-21T00:00:00Z");
+function auditReport() { return JSON.parse(JSON.stringify(picomatchAuditFixture)); }
+function runAuditPolicy(report = auditReport(), nativeExit = 1, now = auditBeforeExpiry, graph = auditGraph(), stderr = "") {
+  return actualTemporaryAuditPolicy()(JSON.stringify(report, null, 2) + "\n", nativeExit, stderr, now, graph);
+}
+function reconcileAudit(report: ReturnType<typeof auditReport>) {
+  report.metadata.vulnerabilities = {info: 0, low: 0, moderate: 0, high: 0, critical: 0};
+  const modules = new Map<string, {action: string; module: string; resolves: object[]}>();
+  for (const advisory of Object.values(report.advisories) as {id:number;module_name:string;severity:string;findings:{version:string;paths:string[]}[]}[]) {
+    report.metadata.vulnerabilities[advisory.severity] += advisory.findings.length;
+    for (const finding of advisory.findings) for (const path of finding.paths) {
+      if (!modules.has(advisory.module_name)) modules.set(advisory.module_name, {action: "review", module: advisory.module_name, resolves: []});
+      modules.get(advisory.module_name)!.resolves.push({id: advisory.id, path, dev: false, optional: false, bundled: false});
+    }
+  }
+  report.actions = [...modules.values()];
+  return report;
+}
+
+test("temporary audit actual classifier accepts only the approved unexpired copies and preserves raw native failure meaning", () => {
+  const result = runAuditPolicy();
+  assert.equal(result.outcome, "qualified-under-exception"); assert.equal(result.nativeExitCode, 1);
+  assert.deepEqual(result.counts, {info: 0, low: 0, moderate: 6, high: 2, critical: 0});
+  assert.equal(result.expiresAt, "2026-11-21T00:00:00Z");
+  assert.equal(runAuditPolicy(auditReport(), 1, auditExpiry - 1).outcome, "qualified-under-exception");
+  assert.throws(() => runAuditPolicy(auditReport(), 1, auditExpiry), /expired-or-clock/);
+  assert.throws(() => runAuditPolicy(auditReport(), 1, auditExpiry + 1), /expired-or-clock/);
+  assert.throws(() => runAuditPolicy(auditReport(), 1, NaN), /expired-or-clock/);
+  assert.throws(() => runAuditPolicy(auditReport(), 1, Date.parse("2026-11-18T09:52:14.239Z")), /expired-or-clock/);
+});
+
+test("temporary audit coherent lower-only native1 and empty native0 pass the unchanged High gate without exception", () => {
+  // Same lower-only shape as the retained F4 report; no private artifact is needed by this suite.
+  const lower = auditReport(); delete lower.advisories["1247710"]; reconcileAudit(lower);
+  const result = runAuditPolicy(lower, 1, auditExpiry + 1, {changed: "graph"});
+  assert.equal(result.outcome, "ordinary-high-gate"); assert.equal(result.nativeExitCode, 1);
+  assert.deepEqual(result.counts, {info: 0, low: 0, moderate: 6, high: 0, critical: 0});
+  assert.equal(Object.hasOwn(result, "expiresAt"), false);
+  assert.equal(Object.hasOwn(result, "ownerApprovalSha256"), false);
+  assert.equal(runAuditPolicy(lower, 1, Date.parse("2026-11-18T09:52:14.239Z"), {}).outcome, "ordinary-high-gate");
+  const empty = auditReport(); empty.advisories = {}; reconcileAudit(empty);
+  assert.equal(runAuditPolicy(empty, 0, auditExpiry + 1, {}).outcome, "ordinary-high-gate");
+  assert.throws(() => runAuditPolicy(empty, 1), /exit-report-conflict/);
+  assert.throws(() => runAuditPolicy(lower, 0), /exit-report-conflict/);
+  assert.throws(() => runAuditPolicy(auditReport(), 0), /exit-report-conflict/);
+});
+
+test("temporary audit JSON native coherence includes every lower severity before the unchanged severe threshold", () => {
+  for (const severity of ["info", "low", "moderate"]) {
+    const report = auditReport();
+    report.advisories = {"1193683": report.advisories["1193683"]};
+    report.advisories["1193683"].severity = severity; reconcileAudit(report);
+    const result = runAuditPolicy(report, 1, auditExpiry + 1, {});
+    assert.equal(result.outcome, "ordinary-high-gate"); assert.equal(result.nativeExitCode, 1);
+    assert.ok(result.counts[severity] > 0);
+    assert.throws(() => runAuditPolicy(report, 0), /exit-report-conflict/);
+  }
+});
+
+test("temporary audit lower-only ordinary branch still refuses malformed incomplete and contradictory reports", () => {
+  for (const mutate of [
+    (report: ReturnType<typeof auditReport>) => { report.metadata.vulnerabilities.moderate--; },
+    (report: ReturnType<typeof auditReport>) => { report.actions.pop(); },
+    (report: ReturnType<typeof auditReport>) => { report.actions.push(report.actions[0]); },
+    (report: ReturnType<typeof auditReport>) => { report.muted = [1193683]; },
+    (report: ReturnType<typeof auditReport>) => { report.error = {code: "REGISTRY_ERROR"}; },
+  ]) {
+    const lower = auditReport(); delete lower.advisories["1247710"]; reconcileAudit(lower); mutate(lower);
+    assert.throws(() => runAuditPolicy(lower, 1, auditExpiry + 1, {}));
+  }
+  const lower = auditReport(); delete lower.advisories["1247710"]; reconcileAudit(lower);
+  assert.throws(() => runAuditPolicy(lower, 2), /native-exit/);
+  assert.throws(() => runAuditPolicy(lower, 1, auditBeforeExpiry, {}, "registry error"), /stderr-refused/);
+});
+
+test("temporary audit rejects every other High or Critical and exact ID package CVE URL version copy or graph drift", () => {
+  for (const mutate of [
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1193683"].severity = "high"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1193683"].severity = "critical"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].severity = "critical"; },
+    (report: ReturnType<typeof auditReport>) => { const a=report.advisories["1247710"]; delete report.advisories["1247710"]; a.id=1247719; report.advisories["1247719"]=a; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].github_advisory_id = "GHSA-aaaa-bbbb-cccc"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].module_name = "foreign-package"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].cves = ["CVE-2026-112367"]; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].url += "/foreign"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].vulnerable_versions = "<=4.0.8"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].patched_versions = ">=4.0.8"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings[1].version = "4.0.8"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings[0].paths = [".>foreign>picomatch"]; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings.pop(); },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings.push({...report.advisories["1247710"].findings[0]}); },
+  ]) { const report=auditReport(); mutate(report); reconcileAudit(report); assert.throws(() => runAuditPolicy(report)); }
+  for (const path of Object.keys(auditGraph())) {
+    const graph=auditGraph(); graph[path]="0".repeat(64); assert.throws(() => runAuditPolicy(auditReport(),1,auditBeforeExpiry,graph), /graph-refused/);
+  }
+  assert.throws(() => runAuditPolicy(auditReport(),1,auditBeforeExpiry,{}), /graph-refused/);
+});
+
+test("temporary audit rejects provider native JSON schema completeness count and action contradictions rather than treating them as empty", () => {
+  for (const nativeExit of [-1, 2, 127, NaN]) assert.throws(() => runAuditPolicy(auditReport(), nativeExit), /native-exit/);
+  assert.throws(() => runAuditPolicy(auditReport(),1,auditBeforeExpiry,auditGraph(),"registry network error"), /stderr-refused/);
+  for (const raw of ["", "{", "{}", "null", "[]", '{"error":{"code":"ENETUNREACH"}}', JSON.stringify(auditReport()), JSON.stringify(auditReport(),null,2).replace('"actions": [','"actions": [], "actions": [')]) {
+    assert.throws(() => actualTemporaryAuditPolicy()(raw,1,"",auditBeforeExpiry,auditGraph()));
+  }
+  for (const mutate of [
+    (report: ReturnType<typeof auditReport>) => { report.error={code:"REGISTRY_ERROR"}; },
+    (report: ReturnType<typeof auditReport>) => { report.muted=[1247710]; },
+    (report: ReturnType<typeof auditReport>) => { delete report.metadata; },
+    (report: ReturnType<typeof auditReport>) => { delete report.advisories; },
+    (report: ReturnType<typeof auditReport>) => { report.metadata.vulnerabilities.high=0; },
+    (report: ReturnType<typeof auditReport>) => { report.metadata.vulnerabilities.moderate=5; },
+    (report: ReturnType<typeof auditReport>) => { report.metadata.vulnerabilities.foreign=0; },
+    (report: ReturnType<typeof auditReport>) => { report.metadata.totalDependencies++; },
+    (report: ReturnType<typeof auditReport>) => { report.actions.pop(); },
+    (report: ReturnType<typeof auditReport>) => { report.actions.push(report.actions[0]); },
+    (report: ReturnType<typeof auditReport>) => { report.actions[0].resolves[0].id=1; },
+    (report: ReturnType<typeof auditReport>) => { report.actions[0].resolves[0].dev="false"; },
+    (report: ReturnType<typeof auditReport>) => { delete report.advisories["1247710"].cves; },
+    (report: ReturnType<typeof auditReport>) => { delete report.advisories["1247710"].findings; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings[0].paths=[]; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].findings[0].version="unknown"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].severity="HIGH"; },
+    (report: ReturnType<typeof auditReport>) => { report.advisories["1247710"].unknown=true; },
+  ]) { const report=auditReport(); mutate(report); assert.throws(() => runAuditPolicy(report)); }
+});
+
+test("temporary audit exact inverse is verify-job scoped and refuses moved duplicate command ID expiry graph retention and ignore drift", () => {
+  const workflow=readFileSync(new URL("../../../../.github/workflows/ci.yml",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const begin="      # TEMPORARY-PICOMATCH-AUDIT-BEGIN\n",end="      # TEMPORARY-PICOMATCH-AUDIT-END\n";
+  const block=workflow.slice(workflow.indexOf(begin),workflow.indexOf(end)+end.length);
+  assert.ok(block.startsWith(begin));
+  const projected=projectCalendarFeedCiCommands(workflow);
+  assert.equal(projectCalendarFeedCiCommands(workflow.replaceAll("\n", "\r\n")), projected);
+  assert.ok(projected.includes("      - name: Audit dependencies (blocking, high severity)\n        run: pnpm audit --audit-level=high\n"));
+  assert.ok(!projected.includes("TEMPORARY-PICOMATCH-AUDIT"));
+  for(const [before,after] of [
+    ["pnpm audit --audit-level=high --json","pnpm audit --audit-level=critical --json"],
+    ["--audit-level=high --json","--audit-level=high --json --ignore-unfixable"],
+    ["2026-11-21T00:00:00Z","2026-11-22T00:00:00Z"],
+    ["GHSA-fc5q-39xc-vjpf","GHSA-aaaa-bbbb-cccc"],
+    ["2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95","0".repeat(64)],
+    ["if: ${{ always() }}","if: ${{ success() }}"],
+    ["retention-days: 7","retention-days: 1"],
+    ["native-exit-code.txt","other-exit-code.txt"],
+    ["total === 0 ? 0 : 1","total === 0 ? 1 : 0"],
+    ["levels.reduce((sum, level) => sum + counts[level], 0)","counts.high + counts.critical"],
+    ["raw audit native exit ${result.nativeExitCode} retained","audit clean"],
+  ]) {assert.ok(block.includes(before));assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,block.replaceAll(before,after))),/temporary picomatch/);}
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,block+block)),/temporary picomatch/);
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,"").replace("  e2e:\n","  e2e:\n"+block)),/verify-job/);
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace("  verify:\n","  verify:\n  verify:\n")),/CI performance exact reviewed job fragment: verify:|temporary picomatch exact verify job/);
+  const unrelated=projectCalendarFeedCiCommands(workflow+"\n# unrelated audit drift\n");
+  assert.notEqual(createHash("sha256").update(unrelated).digest("hex"),createHash("sha256").update(projected).digest("hex"));
+  assert.equal(block.includes("continue-on-error"),false); assert.equal(block.includes("|| true"),false);
+  assert.ok(block.includes("Date.now(), identities"));
+});
+
+// Pure extraction/ports only: these startup facts tests never invoke Docker, ss or Supabase.
+type StartupFacts = {schemaVersion:number;source:string;run:string;attempt:string;job:string;phase:string;port:number;socketStatus:string;bindCategory:string;matchingPublicationCount:number;ownership:string;collectionStatus:string;candidates:{ordinal:number;state:string;creationRelation:string;ownership:string}[]};
+function actualDbStartupFacts() {
+  const workflow=readFileSync(new URL("../../../../.github/workflows/ci.yml",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const begin="          // DB-STARTUP-FACTS-CODE-BEGIN\n",end="          // DB-STARTUP-FACTS-CODE-END";
+  assert.equal(workflow.split(begin).length,2);assert.equal(workflow.split(end).length,2);
+  const code=workflow.split(begin)[1].split(end)[0].split("\n").map(line=>line.slice(10)).join("\n");
+  return new Function(code+";return {startupBinding,unavailableStartupFacts,collectDbStartupFacts,validatedStartupFacts,observeDbStartupPhase,runDbStartupBoundary};")() as {
+    startupBinding:(env:object)=>object|null;unavailableStartupFacts:(...args:unknown[])=>StartupFacts;
+    collectDbStartupFacts:(...args:unknown[])=>Promise<StartupFacts>;validatedStartupFacts:(...args:unknown[])=>StartupFacts;
+    observeDbStartupPhase:(...args:unknown[])=>Promise<StartupFacts>;runDbStartupBoundary:(...args:unknown[])=>Promise<number>;
+  };
+}
+const startupFactsBinding={source:"a".repeat(40),run:"123",attempt:"1",job:"db"};
+function startupMockChild() {
+  return Object.assign(new EventEmitter(),{pid:81234,stdout:Object.assign(new EventEmitter(),{destroy(){}}),stderr:Object.assign(new EventEmitter(),{destroy(){}}),kill(){return true;},unref(){}});
+}
+type StartupStep={out?:string|string[];err?:string|string[];code?:number;error?:boolean;hang?:boolean};
+function startupReadPorts(steps:StartupStep[]) {
+  const calls:{command:string;args:string[];options:unknown}[]=[];let clock=0;
+  return {calls,advance:(ms:number)=>{clock+=ms;},ports:{clock:()=>clock,wall:()=>Date.parse("2026-11-18T19:00:00Z"),isIP,
+    spawn:(command:string,args:string[],options:unknown)=>{
+      calls.push({command,args,options});const step=steps.shift()??{error:true},child=startupMockChild();
+      queueMicrotask(()=>{if(step.hang)return;if(step.error){child.emit("error",new Error("FORBIDDEN-RAW-ERROR-CANARY"));return;}
+        for(const chunk of typeof step.out==="string"?[step.out]:step.out??[])child.stdout.emit("data",Buffer.from(chunk));
+        for(const chunk of typeof step.err==="string"?[step.err]:step.err??[])child.stderr.emit("data",Buffer.from(chunk));
+        child.emit("close",step.code??0);});return child;
+    }} };
+}
+function startupInspect(hostPort="54322",containerPort="5432/tcp",state="running") {
+  return JSON.stringify({Created:"2026-11-18T18:00:00Z",Status:state,PortBindings:{[containerPort]:[{HostIp:"127.0.0.1",HostPort:hostPort}]}});
+}
+
+test("DB startup facts actual collector recognizes host54322 on another container port but never certifies inventory or ownership",async()=>{
+  const actual=actualDbStartupFacts(),h=startupReadPorts([{out:"LISTEN 0 128 127.0.0.1:54322 0.0.0.0:*\n"},{out:"c0ffee000001\n"},{out:startupInspect()}]);
+  const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"PRE_START",null);
+  assert.equal(result.socketStatus,"LISTENING");assert.equal(result.bindCategory,"LOOPBACK");assert.equal(result.matchingPublicationCount,1);
+  assert.deepEqual(result.candidates,[{ordinal:1,state:"RUNNING",creationRelation:"PREEXISTING",ownership:"UNVERIFIED"}]);assert.equal(result.collectionStatus,"UNAVAILABLE");assert.equal(result.ownership,"UNVERIFIED");
+  assert.deepEqual(h.calls[0].args,["-H","-ltn","( sport = :54322 )"]);
+  assert.deepEqual(h.calls[1].args,["container","ls","--all","--filter","publish=54322","--format","{{.ID}}"]);
+  assert.equal(h.calls[2].args[3],'{"Created":{{json .Created}},"Status":{{json .State.Status}},"PortBindings":{{json .HostConfig.PortBindings}}}');
+  assert.ok(!JSON.stringify(result).includes("127.0.0.1"));assert.ok(!JSON.stringify(result).includes("c0ffee000001"));
+  const other=startupReadPorts([{out:""},{out:"a".repeat(12)},{out:startupInspect("65432","54322/tcp")}]);
+  const unrelated=await actual.collectDbStartupFacts(other.ports,startupFactsBinding,"PRE_START",null);
+  assert.equal(unrelated.socketStatus,"NOT_OBSERVED");assert.equal(unrelated.matchingPublicationCount,0);assert.equal(unrelated.collectionStatus,"UNAVAILABLE");
+});
+
+test("DB startup facts actual collector keeps foreign multiple vanished unavailable and malformed observations closed",async()=>{
+  const actual=actualDbStartupFacts();
+  for(const [socket,kind]of [["LISTEN 0 1 192.0.2.4:54322 0.0.0.0:*\n","OTHER"],["LISTEN 0 1 [::]:54322 [::]:*\n","WILDCARD"]]){
+    const h=startupReadPorts([{out:socket},{out:"a".repeat(12)+"\n"+"b".repeat(12)},{out:startupInspect()},{out:startupInspect("54322","15432/tcp","exited")}]);
+    const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"PRE_START",null);assert.equal(result.bindCategory,kind);assert.equal(result.matchingPublicationCount,2);assert.equal(result.collectionStatus,"UNAVAILABLE");assert.ok(result.candidates.every(row=>row.ownership==="UNVERIFIED"));
+  }
+  for(const step of [{error:true},{code:1,err:"FORBIDDEN-RAW-STDERR-CANARY"},{out:'{"Env":["FORBIDDEN-SECRET-CANARY"]}'},{out:startupInspect().replace('"Status":"running"','"Status":"foreign-state"')},{out:startupInspect().replace('"HostPort":"54322"','"HostPort":"54322","PID":1234')}]){
+    const h=startupReadPorts([{out:""},{out:"a".repeat(12)},step]);const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"PRE_START",null);
+    assert.equal(result.collectionStatus,"UNAVAILABLE");assert.equal(result.matchingPublicationCount,0);assert.ok(!JSON.stringify(result).includes("CANARY"));
+  }
+  for(const list of ["not-an-id","a".repeat(12)+"\n"+"a".repeat(12)]){
+    const h=startupReadPorts([{out:""},{out:list}]);const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"PRE_START",null);assert.equal(result.matchingPublicationCount,0);assert.equal(h.calls.length,2);
+  }
+  for(const socket of ["LISTEN 0 1 127.0.0.1:54322 FORBIDDEN-CANARY", "LISTEN x 1 127.0.0.1:54322 0.0.0.0:*"]){
+    const h=startupReadPorts([{out:socket}]);const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"PRE_START",null);assert.equal(result.socketStatus,"UNAVAILABLE");assert.equal(h.calls.length,1);assert.ok(!JSON.stringify(result).includes("CANARY"));
+  }
+  const absent=startupReadPorts([{out:""},{error:true}]);assert.equal((await actual.collectDbStartupFacts(absent.ports,startupFactsBinding,"PRE_START",null)).collectionStatus,"UNAVAILABLE");
+});
+
+test("DB startup facts actual collector caps eight aggregate inspect attempts including fallback and aggregate stdout plus stderr",async()=>{
+  const actual=actualDbStartupFacts();
+  for(const count of [7,8,9]){
+    const ids=Array.from({length:count},(_,i)=>(i+1).toString(16).padStart(12,"0"));
+    const h=startupReadPorts([{out:""},{out:ids.join("\n")},...Array.from({length:Math.min(count,8)},()=>({out:startupInspect("65432")})),{out:startupInspect()}]);
+    const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"POST_FAILURE",Date.parse("2026-11-18T18:30:00Z"));
+    const inspected=h.calls.filter(call=>call.args[1]==="inspect");assert.equal(inspected.length,8);
+    assert.equal(inspected.some(call=>call.args.at(-1)==="supabase_db_kopplas"),count===7);assert.equal(result.matchingPublicationCount,count===7?1:0);
+    assert.equal(result.collectionStatus,count===9?"TRUNCATED":"UNAVAILABLE");
+  }
+  const h=startupReadPorts([{out:" ".repeat(600_000)},{err:"x".repeat(500_000)}]);
+  const result=await actual.collectDbStartupFacts(h.ports,startupFactsBinding,"POST_FAILURE",0);assert.equal(result.collectionStatus,"TRUNCATED");assert.equal(h.calls.length,2);
+});
+
+test("DB startup facts actual output validator refuses raw foreign fields spoofed ownership complete inventory and attribution",()=>{
+  const actual=actualDbStartupFacts(),base=actual.unavailableStartupFacts(startupFactsBinding,"PRE_START");
+  assert.deepEqual(actual.validatedStartupFacts(JSON.stringify(base),startupFactsBinding,"PRE_START"),base);
+  for(const change of [(x:Record<string,unknown>)=>x.Env="FORBIDDEN-SECRET-CANARY",(x:Record<string,unknown>)=>x.ownership="OWNED",(x:Record<string,unknown>)=>x.collectionStatus="COMPLETE",(x:Record<string,unknown>)=>x.source="foreign",(x:Record<string,unknown>)=>x.matchingPublicationCount=1]){
+    const row=JSON.parse(JSON.stringify(base));change(row);assert.deepEqual(actual.validatedStartupFacts(JSON.stringify(row),startupFactsBinding,"PRE_START"),base);
+  }
+  assert.deepEqual(actual.validatedStartupFacts("{"+"x".repeat(9000),startupFactsBinding,"PRE_START"),base);
+  assert.deepEqual(actual.startupBinding({DB_STARTUP_FACTS_SOURCE:"a".repeat(40),GITHUB_RUN_ID:"123",GITHUB_RUN_ATTEMPT:"1",GITHUB_JOB:"db"}),startupFactsBinding);
+  assert.equal(actual.startupBinding({DB_STARTUP_FACTS_SOURCE:"raw-secret",GITHUB_RUN_ID:"123",GITHUB_RUN_ATTEMPT:"1",GITHUB_JOB:"db"}),null);
+});
+
+function startupPhasePorts(mode:"never-close"|"close-on-kill"|"valid"|"malformed"|"stderr"|"oversize"|"cleanup-throws"|"spawn-throws") {
+  const child=startupMockChild(),events:string[]=[],timers:{fn:()=>void;at:number;cancelled:boolean}[]=[];let clock=0;
+  const actual=actualDbStartupFacts();
+  const ports={execPath:"owned-node-only",clock:()=>clock,timer:(fn:()=>void,ms:number)=>{const timer={fn,at:clock+ms,cancelled:false};timers.push(timer);return timer;},clear:(timer:{cancelled:boolean}|undefined)=>{if(timer)timer.cancelled=true;},
+    killGroup:(pid:number)=>{assert.equal(pid,child.pid);events.push("owned-kill");if(mode==="cleanup-throws")throw new Error("private cleanup");if(mode==="close-on-kill")child.emit("close",137);},
+    spawn:(_command:string,args:string[],options:unknown)=>{events.push("spawn");assert.equal(args[0],"-e");assert.deepEqual(options,{detached:true,stdio:["ignore","pipe","pipe"]});if(mode==="spawn-throws")throw new Error("private spawn");
+      queueMicrotask(()=>{if(["valid","malformed","stderr","oversize"].includes(mode)){
+        if(mode==="stderr")child.stderr.emit("data",Buffer.from("FORBIDDEN-RAW-ERROR-CANARY"));else child.stdout.emit("data",Buffer.from(mode==="valid"?JSON.stringify(actual.unavailableStartupFacts(startupFactsBinding,"PRE_START")):mode==="oversize"?"x".repeat(17_000):'{"secret":"FORBIDDEN-CANARY"}'));
+        child.emit("close",0);
+      }});return child;}};
+  return {ports,events,child,advance:(time:number)=>{clock=time;for(const timer of timers)if(!timer.cancelled&&timer.at<=time){timer.cancelled=true;timer.fn();}},timers};
+}
+
+test("DB startup facts actual phase bounds include worker startup parsing and owned-child settlement within one five-second envelope",async()=>{
+  const actual=actualDbStartupFacts();
+  for(const mode of ["never-close","close-on-kill","cleanup-throws"] as const){
+    const h=startupPhasePorts(mode);const pending=actual.observeDbStartupPhase(h.ports,startupFactsBinding,"PRE_START",null);
+    h.advance(4800);h.advance(5000);const result=await pending;assert.equal(result.collectionStatus,"TIMED_OUT");assert.ok(h.events.includes("owned-kill"));assert.ok(h.timers.every(timer=>timer.cancelled));
+  }
+  for(const mode of ["valid","malformed","stderr","oversize","spawn-throws"] as const){
+    const h=startupPhasePorts(mode);const result=await actual.observeDbStartupPhase(h.ports,startupFactsBinding,"PRE_START",null);
+    assert.equal(result.collectionStatus,mode==="oversize"?"TRUNCATED":"UNAVAILABLE");assert.ok(!JSON.stringify(result).includes("CANARY"));assert.ok(h.timers.every(timer=>timer.cancelled));
+    if(mode==="valid") { const count=h.events.length;h.child.emit("error",new Error("late private"));h.child.stdout.emit("error",new Error("late private"));h.child.stderr.emit("error",new Error("late private"));h.child.stdout.emit("data",Buffer.from("FORBIDDEN-CANARY"));assert.equal(h.events.length,count); }
+  }
+});
+
+test("DB startup facts actual boundary starts once preserves native exit and continuation across every secondary collector and write failure",async()=>{
+  const actual=actualDbStartupFacts();
+  for(const nativeExit of [0,17,127,137])for(const failure of ["none","pre-collect","post-collect","pre-write","post-write","wall"]){
+    const events:string[]=[];let currentPhase="";
+    const result=await actual.runDbStartupBoundary({wall:()=>{if(failure==="wall")throw new Error("private clock");return 123;},
+      collect:async(_binding:unknown,phase:string)=>{currentPhase=phase;events.push(phase);if(failure===(phase==="PRE_START"?"pre-collect":"post-collect"))throw new Error("private collect");return actual.unavailableStartupFacts(startupFactsBinding,phase);},
+      record:()=>{events.push("write:"+currentPhase);if(failure===(currentPhase==="PRE_START"?"pre-write":"post-write"))throw new Error("private write");},
+      start:async()=>{events.push("native-output:unchanged");events.push("start");return nativeExit;},
+    },startupFactsBinding);
+    assert.equal(result,nativeExit);assert.equal(events.filter(x=>x==="start").length,1);assert.equal(events.filter(x=>x==="native-output:unchanged").length,1);
+    assert.equal(events.filter(x=>x==="POST_FAILURE").length,nativeExit===0?0:1);assert.ok(events.indexOf("PRE_START")<events.indexOf("start"));if(nativeExit!==0)assert.ok(events.indexOf("POST_FAILURE")>events.indexOf("start"));
+    if(result===0)events.push("unchanged-reset-seed-wrapper-pilot");assert.equal(events.includes("unchanged-reset-seed-wrapper-pilot"),nativeExit===0);
+  }
+  const sentinel=new Error("original-start-sentinel");await assert.rejects(actual.runDbStartupBoundary({wall:()=>0,collect:async()=>{throw new Error("secondary");},record:()=>{},start:async()=>{throw sentinel;}},startupFactsBinding),error=>error===sentinel);
+});
+
+test("DB startup facts exact inverse is one-db scoped and refuses moved duplicate missing unknown and cap or native argv drift",()=>{
+  const workflow=readFileSync(new URL("../../../../.github/workflows/ci.yml",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const begin="      # DB-STARTUP-CLOSED-FACTS-BEGIN\n",end="      # DB-STARTUP-CLOSED-FACTS-END\n";
+  const block=workflow.slice(workflow.indexOf(begin),workflow.indexOf(end)+end.length);assert.ok(block.startsWith(begin));
+  const projected=projectCalendarFeedCiCommands(workflow);assert.ok(projected.includes("      - name: Start local Supabase stack\n        run: supabase start\n"));assert.ok(!projected.includes("DB-STARTUP-CLOSED-FACTS"));
+  assert.equal(projectCalendarFeedCiCommands(workflow.replaceAll("\n","\r\n")),projected);
+  for(const [before,after]of [["attempts >= 8","attempts >= 9"],["1_048_576 - 16_384","2_097_152 - 16_384"],["5000 - (ports.clock() - began)","6000 - (ports.clock() - began)"],["publish=54322","publish=5432"],["spawn(\"supabase\", [\"start\"]","spawn(\"supabase\", [\"start\",\"--ignore-health-check\"]"],["collectionStatus: \"UNAVAILABLE\"","collectionStatus: \"COMPLETE\""]]){
+    assert.ok(block.includes(before));assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,block.replaceAll(before,after))),/DB startup facts/);
+  }
+  for(const replacement of ["",block+block])assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,replacement)),/DB startup facts/);
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,"").replace("  e2e:\n","  e2e:\n"+block)),/DB startup facts/);
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace("  db:\n","  db:\n  db:\n")),/DB startup facts exact single db job/);
+  assert.notEqual(projectCalendarFeedCiCommands(workflow+"\n# unrelated\n"),projected);
 });
