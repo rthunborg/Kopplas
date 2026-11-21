@@ -45,7 +45,7 @@ function emitFailure(info: TestInfo) {
 test.afterEach(({}, info) => { emitFailure(info); });
 
 const captureViewports = [{ width: 1280, height: 900 }, { width: 360, height: 640 }] as const;
-type CaptureHost = "calculation-list" | "calculation-header" | "section-editor" | "row-editor" | "tax-settings" | "pre-quote-preview";
+type CaptureHost = "calculation-list" | "calculation-header" | "section-editor" | "row-editor" | "tax-settings" | "pre-quote-preview" | "calculation-totals";
 type CaptureCondition = "confirmed" | "submitting" | "unconfirmed" | "stale" | "refused-unsent" | "late-draft" | "invalid" | "empty";
 /** Attach the original viewport PNG bytes: the existing JSON reporter retains body.
  * Assertions run at each real viewport, before capture; resizing never creates a request. */
@@ -408,8 +408,9 @@ async function editorPostedRequest(request: BrowserRequest) {
   return {operationId:field("operation_id"),expected:JSON.parse(field("expected")),title:field("title")};
 }
 
-test("P-6 same-mounted committed reconciliation refreshes totals without saving or rebinding a later row draft",async({page,context},testInfo)=>{
-  await page.setViewportSize({width:1280,height:900});
+for (const viewport of captureViewports) {
+test(`P-6 same-mounted committed reconciliation refreshes totals without saving or rebinding a later row draft (${viewport.width}x${viewport.height})`,async({page,context},testInfo)=>{
+  await page.setViewportSize(viewport);
   const url=await ownCalculation(page,testInfo);await addSection(page);await addRow(page);
   const form=page.getByTestId("row-edit-form"),summary=page.getByTestId("totals-summary").filter({visible:true});
   await expect(form).toHaveAttribute("data-editor-ready","true");
@@ -449,6 +450,27 @@ test("P-6 same-mounted committed reconciliation refreshes totals without saving 
     await expect(form.getByLabel("Pris (kr)",{exact:true})).toHaveValue("130");
     await expect(form.getByTestId("row-saved")).toHaveCount(0);
     expect(await mount.evaluate(node=>node.isConnected)).toBe(true);expect(page.url()).toBe(url);expect(writes).toHaveLength(1);
+    // The phone summary is below the tall row form. Record two original viewport
+    // frames at this same checkpoint; scrolling never submits or reloads the editor.
+    const assertRecovered = async () => {
+      await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);
+      await expect(form.getByLabel("Pris (kr)",{exact:true})).toHaveValue("130");
+      await expect(form.getByTestId("row-saved")).toHaveCount(0);
+      await expect(summary.getByTestId("summary-net")).toContainText("120,00");
+      await expect(summary.getByTestId("summary-gross")).toContainText("150,00");
+      expect(await mount.evaluate(node=>node.isConnected)).toBe(true);expect(page.url()).toBe(url);expect(writes).toHaveLength(1);
+    };
+    await captureState(page,testInfo,"row-editor","late-draft",form,async()=>{
+      const price=form.getByLabel("Pris (kr)",{exact:true});
+      await price.scrollIntoViewIfNeeded();await expect(price).toBeInViewport({ratio:1});
+      await assertRecovered();
+    },true);
+    await captureState(page,testInfo,"calculation-totals","confirmed",form,async()=>{
+      await summary.scrollIntoViewIfNeeded();
+      await expect(summary.getByTestId("summary-net")).toBeInViewport({ratio:1});
+      await expect(summary.getByTestId("summary-gross")).toBeInViewport({ratio:1});
+      await assertRecovered();
+    },true);
     // Only this explicit next Save issues another operation. Draft B must keep
     // its original row facts, not silently adopt the refreshed committed A.
     await form.getByRole("button",{name:"Spara rad",exact:true}).click();
@@ -466,6 +488,7 @@ test("P-6 same-mounted committed reconciliation refreshes totals without saving 
     });
   });
 });
+}
 
 test("P-6 explicit original retry preserves later draft through reconcile and the next fresh submission",async({page,context},testInfo)=>{
   const url=await ownCalculation(page,testInfo),form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");
