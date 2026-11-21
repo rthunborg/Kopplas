@@ -693,3 +693,18 @@ test("10.6 tax form: fixed-price row scope is required, unique, canonical, and s
     null,
   );
 });
+
+
+import { preflightEditorForm } from "@/features/calculations/form-parsing";
+test("NEW preflight rejects invalid original input without admitting an operation; correction uses existing validators",()=>{
+  const form=fd({customer_id:CUST,title:"   ",operation_id:ROW,expected:JSON.stringify({version:1,form:"calculation",customer_id:CUST,facility_id:null,contact_id:null})});
+  const invalid=preflightEditorForm(form);assert.equal(invalid.ok,false);if(!invalid.ok)assert.ok(invalid.fieldErrors.title);
+  form.set("title","Corrected original input");assert.deepEqual(preflightEditorForm(form),{ok:true});
+  form.set("customer_id","not-a-uuid");assert.equal(preflightEditorForm(form).ok,false);
+  form.set("customer_id",CUST);form.set("title","x".repeat(257));assert.equal(preflightEditorForm(form).ok,false);
+});
+test("NEW preflight rejects combined header/archive route rather than silently dropping fields",()=>{
+  const form=fd({id:CUST,status:"archived",title:"Must not partially apply",operation_id:ROW,expected:JSON.stringify({version:1,form:"calculation",header:{id:CUST,title:"Original",status:"draft",archived_at:null,tax_input_snapshot:null}})});
+  const denied=preflightEditorForm(form);assert.equal(denied.ok,false);if(!denied.ok)assert.match(denied.fieldErrors.status!,/Arkivera/);assert.equal(form.get("title"),"Must not partially apply");assert.equal(form.get("status"),"archived");
+  form.set("status","ready");assert.equal(preflightEditorForm(form).ok,true);
+});

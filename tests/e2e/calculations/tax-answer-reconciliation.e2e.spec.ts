@@ -69,6 +69,7 @@ function waitForCalculationMutation(page: Page, calculationId: string) {
 async function saveRow(page: Page, calculationId: string, form: Locator): Promise<void> {
   const button = form.getByRole("button", { name: "Spara rad" });
   await waitForHydrated(button);
+  await expect(form).toHaveAttribute("data-editor-ready", "true");
   const response = waitForCalculationMutation(page, calculationId);
   await button.click();
   expect((await response).ok()).toBeTruthy();
@@ -89,6 +90,7 @@ async function saveTaxSettings(
 ): Promise<void> {
   const button = settings.getByRole("button", { name: "Spara skatte- och momsuppgifter" });
   await waitForHydrated(button);
+  await expect(settings.locator("form")).toHaveAttribute("data-editor-ready", "true");
   const response = waitForCalculationMutation(page, calculationId);
   await button.click();
   expect((await response).ok()).toBeTruthy();
@@ -144,6 +146,7 @@ test.describe("Story 10.6 — tax answer reconciliation", () => {
 
     const settings = page.getByTestId("tax-document-settings");
     await expect(settings).toBeVisible();
+    await expect(settings.locator("form")).toHaveAttribute("data-editor-ready", "true");
     await expect(settings.getByLabel("Momshantering")).toHaveValue(
       "REVERSE_CHARGE_CONSTRUCTION",
     );
@@ -153,14 +156,53 @@ test.describe("Story 10.6 — tax answer reconciliation", () => {
     const readiness = page.getByTestId("readiness-summary").first();
     await expect(readiness).toHaveAttribute("data-can-create-quote", "true");
 
-    await buyerVatNumber.fill("");
-    const invalidSave = waitForCalculationMutation(page, calculation.id);
-    await settings.getByRole("button", { name: "Spara skatte- och momsuppgifter" }).click();
-    expect((await invalidSave).ok()).toBeTruthy();
-    await expect(settings).toContainText(
-      "Ange köparens momsregistreringsnummer vid omvänd betalningsskyldighet.",
-    );
-    await expect(readiness).toHaveAttribute("data-can-create-quote", "true");
+    // NEW invalid input is refused locally before operation dispatch. Observe
+    // only this page's exact calculation mutation, never raw network traffic.
+    const invalidRoute = new URL(`/calculations/${calculation.id}`, page.url());
+    let invalidWrites = 0;
+    const observeInvalidWrite = (candidate: import("@playwright/test").Request) => {
+      const destination = new URL(candidate.url());
+      if (candidate.method() === "POST" && destination.origin === invalidRoute.origin &&
+          destination.pathname === invalidRoute.pathname && candidate.headers()["next-action"] &&
+          candidate.postData()?.includes("operation_id")) invalidWrites += 1;
+    };
+    let observer: Page | undefined;
+    let primaryFailed = false, primaryError: unknown, cleanupFailed = false;
+    try {
+      page.on("request", observeInvalidWrite);
+      await buyerVatNumber.fill("");
+      await settings.getByRole("button", { name: "Spara skatte- och momsuppgifter" }).click();
+      await expect(settings).toContainText(
+        "Ange köparens momsregistreringsnummer vid omvänd betalningsskyldighet.",
+      );
+      await expect(buyerVatNumber).toHaveAttribute("aria-invalid", "true");
+      await expect(buyerVatNumber).toHaveAccessibleDescription(
+        "Ange köparens momsregistreringsnummer vid omvänd betalningsskyldighet.",
+      );
+      await expect(buyerVatNumber).toHaveValue("");
+      await expect(readiness).toHaveAttribute("data-can-create-quote", "true");
+      expect(invalidWrites).toBe(0);
+      // Separate authenticated read: persisted facts remain valid while the
+      // original page keeps its invalid draft. This is not SQL rollback proof.
+      observer = await page.context().newPage();
+      await observer.goto(`/calculations/${calculation.id}`);
+      const persisted = observer.getByTestId("tax-document-settings");
+      await expect(persisted.getByLabel("Köparens momsregistreringsnummer")).toHaveValue(calculation.buyerVatNumber);
+      await expect(persisted.getByLabel("Momshantering")).toHaveValue("REVERSE_CHARGE_CONSTRUCTION");
+      await expect(observer.getByTestId("readiness-summary").first()).toHaveAttribute("data-can-create-quote", "true");
+      await expect(buyerVatNumber).toHaveValue("");
+    } catch (error) { primaryFailed = true; primaryError = error; }
+    finally {
+      try { page.off("request", observeInvalidWrite); } catch { cleanupFailed = true; }
+      if (observer) {
+        try { await observer.close(); } catch { cleanupFailed = true; }
+      }
+    }
+    if (primaryFailed) {
+      if (cleanupFailed) throw new AggregateError([primaryError, new Error("Invalid VAT observer cleanup failed")], "Invalid VAT validation and cleanup failed");
+      throw primaryError;
+    }
+    if (cleanupFailed) throw new Error("Invalid VAT observer cleanup failed");
 
     await settings.getByLabel("Köparens momsregistreringsnummer").fill(calculation.buyerVatNumber);
     await saveTaxSettings(page, calculation.id, settings);
@@ -187,6 +229,7 @@ test.describe("Story 10.6 — tax answer reconciliation", () => {
     );
 
     const quoteNavigation = page.waitForURL(/\/quotes\/[^/]+\/versions\/[^/]+$/);
+    await expect(preview.locator("form")).toHaveAttribute("data-editor-ready", "true");
     await preview.getByTestId("confirm-create-quote-version").click();
     await quoteNavigation;
 
@@ -238,6 +281,7 @@ test.describe("Story 10.6 — tax answer reconciliation", () => {
 
     const subject = rowForm(page, calculation.subjectRowId);
     await expect(subject).toHaveCount(1);
+    await expect(subject).toHaveAttribute("data-editor-ready", "true");
     const hidden = subject.getByRole("checkbox", { name: "Dold rad" });
     const included = subject.getByRole("checkbox", { name: "Ingår i fakturasumman" });
     const classification = subject.getByLabel("Avdragsklassificering");

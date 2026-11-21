@@ -528,6 +528,7 @@ describe("Cross-tenant RLS isolation — data-driven over the shared inventory (
   // SELECT privilege, so denial occurs before RLS row filtering.
   const directReadRevokedTables = new Set([
     "settings_pricing_operations",
+    "calculation_editor_operations",
     "calendar_feed_tokens",
     "tenant_provisioning_requests",
     "tenant_provisioning_invites",

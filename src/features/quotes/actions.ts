@@ -37,6 +37,7 @@ import {
 } from "@/server/commands/quotes";
 import { loadQuoteVersionAnchor } from "@/server/commands/quotes/quote-db";
 import { validateCreateReviewedQuoteVersionFromCalculation } from "@/server/commands/quotes/validation";
+import { parseEditorSafetyFields } from "@/features/calculations/form-parsing";
 import { kronorStringToOre } from "@/features/calculations/money-input";
 import {
   ACCEPTANCE_ACTION_INITIAL,
@@ -772,6 +773,7 @@ async function runCreateQuoteVersionAction(
   const result = await runCommand(createQuoteVersionFromCalculation, {
     client,
     input,
+    correlationId: typeof input === "object" && input !== null && "operation_id" in input && typeof input.operation_id === "string" ? input.operation_id : undefined,
   });
 
   if (result.ok) {
@@ -780,14 +782,15 @@ async function runCreateQuoteVersionAction(
     return {
       ...CREATE_QUOTE_ACTION_INITIAL,
       status: "success",
-      targetId: result.data.targetId,
+      targetId: result.data.targetId || null,
+      operationId: result.data.operationId,
       quoteId: result.data.quoteId,
     };
   }
 
   return {
     ...CREATE_QUOTE_ACTION_INITIAL,
-    status: "error",
+    status: result.code === "SERVER_ERROR" ? "unknown" : "error",
     code: result.code,
     formError: result.message || COMMAND_MESSAGES[result.code],
     values,
@@ -822,6 +825,8 @@ export async function createReviewedQuoteVersionFromCalculationAction(
   const values: Record<string, string> = {};
   if (typeof calculationId === "string") values.calculation_id = calculationId;
   const validated = validateCreateReviewedQuoteVersionFromCalculation({
+    ...parseEditorSafetyFields(form),
+    attachment_file_ids: form.getAll("attachment_file_ids"),
     calculation_id: calculationId,
     reviewed_snapshot_digest: form.get("reviewed_snapshot_digest"),
     reviewed_quote_capture_date: form.get("reviewed_quote_capture_date"),
