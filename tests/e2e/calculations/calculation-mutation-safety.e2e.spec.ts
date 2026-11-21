@@ -398,11 +398,74 @@ async function loseResponse(page:Page,pattern:string,beforeLoss?:()=>Promise<voi
 // Full downstream seventeen-state presentation acceptance remains separately owned.
 
 
-async function editorPostedRequest(request: BrowserRequest) {
+async function editorPostedFields(request: BrowserRequest) {
   const parsed=await new Request("http://localhost",{method:"POST",headers:{"content-type":request.headers()["content-type"]??""},body:request.postData()??""}).formData();
   const field=(name:string)=>{const found=[...parsed].find(([key])=>key===name||key.endsWith(`_${name}`));if(!found||typeof found[1]!=="string")throw new Error(`Missing actual editor field ${name}`);return found[1];};
+  return field;
+}
+async function editorPostedRequest(request: BrowserRequest) {
+  const field=await editorPostedFields(request);
   return {operationId:field("operation_id"),expected:JSON.parse(field("expected")),title:field("title")};
 }
+
+test("P-6 same-mounted committed reconciliation refreshes totals without saving or rebinding a later row draft",async({page,context},testInfo)=>{
+  await page.setViewportSize({width:1280,height:900});
+  const url=await ownCalculation(page,testInfo);await addSection(page);await addRow(page);
+  const form=page.getByTestId("row-edit-form"),summary=page.getByTestId("totals-summary").filter({visible:true});
+  await expect(form).toHaveAttribute("data-editor-ready","true");
+  await expect(summary.getByTestId("summary-net")).toContainText("100,00");
+  const mount=await form.elementHandle();if(!mount)throw new Error("Missing mounted row editor");
+  const writes:BrowserRequest[]=[];
+  const record=(request:BrowserRequest)=>{if(request.method()==="POST"&&request.headers()["next-action"]&&request.postData()?.includes("operation_id"))writes.push(request);};
+  page.on("request",record);
+  const loss=await loseResponse(page,"**/calculations/**");
+  const observer=await context.newPage();
+  let checkRequested=false,checkHeld=false,releaseCheck!:()=>void,checkComplete!:()=>void,checkFailed!:(error:unknown)=>void;
+  const released=new Promise<void>(resolve=>releaseCheck=resolve);
+  const checked=new Promise<void>((resolve,reject)=>{checkComplete=resolve;checkFailed=reject;});void checked.catch(()=>{});
+  const holdCheck:Parameters<Page["route"]>[1]=async route=>{
+    const request=route.request();
+    if(checkRequested||request.method()!=="POST"||!request.headers()["next-action"]||request.postData()?.includes("operation_id"))return route.continue();
+    checkRequested=true;
+    try{const response=await route.fetch();checkHeld=true;await released;await route.fulfill({response});checkComplete();}
+    catch(error){checkFailed(error);await route.abort("failed").catch(()=>{});}
+  };
+  await withProducerCleanup(async()=>{
+    await form.getByLabel("Pris (kr)",{exact:true}).fill("120");await form.getByRole("button",{name:"Spara rad",exact:true}).click();
+    await expect.poll(loss.count).toBe(1);await loss.completed;
+    await expect(form.getByRole("status")).toContainText(/obekräftat/i);expect(writes).toHaveLength(1);
+    const original=await editorPostedFields(writes[0]!);
+    const expected=JSON.parse(original("expected"));expect(original("unit_sell_kronor")).toBe("120");expect(expected.row.unit_sell_ore).toBe(10000);
+    // The actual committed write is visible elsewhere while this original
+    // mounted projection still shows the pre-write total.
+    await observer.goto(url);await expect(observer.getByTestId("row-edit-form").getByLabel("Pris (kr)",{exact:true})).toHaveValue("120,00");
+    await expect(summary.getByTestId("summary-net")).toContainText("100,00");
+    await loss.remove();await page.route("**/calculations/**",holdCheck);
+    await form.getByRole("button",{name:"Kontrollera resultat",exact:true}).click();await expect.poll(()=>checkHeld).toBe(true);
+    await form.getByLabel("Pris (kr)",{exact:true}).fill("130");releaseCheck();await checked;
+    await expect(form.getByRole("status")).toContainText(/ursprungliga.*bekräftad/i);
+    await expect(summary.getByTestId("summary-net")).toContainText("120,00");
+    await expect(summary.getByTestId("summary-gross")).toContainText("150,00");
+    await expect(form.getByLabel("Pris (kr)",{exact:true})).toHaveValue("130");
+    await expect(form.getByTestId("row-saved")).toHaveCount(0);
+    expect(await mount.evaluate(node=>node.isConnected)).toBe(true);expect(page.url()).toBe(url);expect(writes).toHaveLength(1);
+    // Only this explicit next Save issues another operation. Draft B must keep
+    // its original row facts, not silently adopt the refreshed committed A.
+    await form.getByRole("button",{name:"Spara rad",exact:true}).click();
+    await expect(form.getByRole("alert")).toHaveText("Åtgärden kunde inte slutföras på grund av en konflikt. Försök igen.");
+    await expect(form.getByLabel("Pris (kr)",{exact:true})).toHaveValue("130");await expect(form.getByTestId("row-saved")).toHaveCount(0);
+    expect(writes).toHaveLength(2);const later=await editorPostedFields(writes[1]!);
+    expect(later("operation_id")).not.toBe(original("operation_id"));expect(later("unit_sell_kronor")).toBe("130");expect(JSON.parse(later("expected"))).toEqual(expected);
+    await observer.goto(url);await expect(observer.getByTestId("totals-summary").filter({visible:true}).getByTestId("summary-net")).toContainText("120,00");
+  },async()=>{
+    releaseCheck();page.off("request",record);
+    await withProducerCleanup(async()=>{if(checkRequested)await checked;},async()=>{
+      const cleanup=await Promise.allSettled([page.unroute("**/calculations/**",holdCheck),loss.remove(),mount.dispose(),observer.close()]);
+      const failures=cleanup.filter((result):result is PromiseRejectedResult=>result.status==="rejected").map(result=>result.reason);
+      if(failures.length)throw new AggregateError(failures,"Recovered-save owned cleanup failed");
+    });
+  });
+});
 
 test("P-6 explicit original retry preserves later draft through reconcile and the next fresh submission",async({page,context},testInfo)=>{
   const url=await ownCalculation(page,testInfo),form=headerForm(page);await expect(form).toHaveAttribute("data-editor-ready","true");
