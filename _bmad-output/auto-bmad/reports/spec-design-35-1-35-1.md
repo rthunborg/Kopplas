@@ -65,3 +65,36 @@
 1. Existing PR158 exactS main/automatic-deployment decision is pending; no repeat objective approval or desktop action requested.
 
 **Next:** Preserve frozen source and await qualified integration boundary, then carry already-authorized normal publication and applicable CI forward. Other eligible E15 development continues.
+
+## Report — 2026-11-21T09:04:04Z (checkpoint â€” documentary publication pending)
+
+**Story:** `spec-design-35-1-35-1` (spec design-35-1, story 35-1) — first-and-last-in-epic.
+**Spec:** `C:/DEV/Kopplas/tmp/private/e35-1-documentary-closeout-20261118/_bmad-output/specs/spec-design-35-1/stories/35-1-authority-and-base-contract.md`
+**Branch:** `codex/35-1-documentary-closeout-20261118` (HEAD `baef33d`).
+**Pipeline status:** Phase 8 documentary acceptance and retrospective remain complete. Exact qualified main has been integrated into the documentary branch. Hosted CI and publication closeout are pending.
+**Continues:** 2026-11-18T13:28:26Z (qualified prerequisite integration pending)
+
+**Timing:** started 2026-11-18T12:01:19Z; completed in progress — elapsed 69h 02m (≈55m AI-run, ≈68h 07m human/idle wait); resumed 2×.
+
+**Phases run:** Reused previously completed phases and Phase 8. Phase 9 synchronized the completed documentary branch to merged and verified main 262df358.
+**Skipped:** 6 automate not selected; Phase7 follow-up pass not selected because configured recommended and actual recommendation false; test-quality review gate false with complete changed executable-testfile set empty.
+
+**Overrides:** Existing documentary-only scope, original review and evidence. Checkout-specific launcher retained privately and excluded from delivery. No runtime checks are claimed by the documentary story.
+
+**TEA:** Trace PASS for7/7 documentary P1 inspections;0 executable/runtime tests. NFR PASS for2 documentary findings,20 runtime N/A,0concerns/FAIL. AC6 uses datedOct23/26proof, no fresh8section comparison. No broad suite quality score invented.
+
+**Build:** Actualstoryreader done; own2filecommitf233a7f2, three completion wrappers passed frontend-computedNA/deliveryvalid/developmentcomplete/approvalfalse. release_ready remainsfalse.
+
+**Review:** Required external actualNo findings on frozen85160225 vs2ec via completepacket; originalCore/read and TYPE failures retained. Narrow finalmetadata and retrospective3lenses foundno consequences. Source/candidate bindings and limitations retained.
+
+**Retrospective:** Accepted by unchangedreader; two proposed process-preservation actions. P8closeoutcheckpoint9f888206.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Ordinary exact-candidate CI, merge authority and delivery bookkeeping remain.
+0 current-story entries marked or archived;204 global entries and existing archive retained unchanged under explicit scoped override.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Publish the exact documentary candidate for normal hosted CI, then continue existing delivery and integration authority.
