@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "kind": "GEN3_C5_MINIMAL_BROWSER_TESTFIX_AUTHOR_CHECKPOINT_NOT_ACCEPTANCE",
+  "recorded_at": "2026-11-14T16:39:57.161718+00:00",
+  "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+  "head": "3b69b66495131feb90f3aa666244ec9a85898bef",
+  "commits_by_this_author": [],
+  "story_baseline": "3a2fe5a565e2627b45b9b46880e26966ef0cd23f",
+  "full_review_baseline": "1c53833c70ad61a26cbfbc117a040b1f99d33f2e",
+  "development_complete": false,
+  "release_ready": false,
+  "frontend_accepted": false,
+  "scope": "Only allocated calculation-mutation-safety browser test plus own story/check evidence. No production/app/schema/helper/config changes.",
+  "repairs": {
+    "F1": "Actual tax test fills valid Person1ROT1000/combinedROT-RUT2000 pair before A; existing later-B membership/date and persisted-A assertions unchanged.",
+    "F2": "Separate intercepted guard and actual upstream-completion promise. Await route.fetch completion before B/C navigation while holding A delivery; upstream fetch failure rejects body and is rethrown by route; existing finally release/other-page cleanup unchanged."
+  },
+  "commands": [
+    {
+      "argv": [
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C5-browser-fixture-check.mjs"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "raw": "gen3-C5-browser-fixture-check.tap",
+      "scope": "Extracted actual tax setup/body plus real pure preflight and controlled browser-route/locator seams; old C4 behavior compared read-only against exact commit. Not real browser/domain/DB execution."
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--pretty",
+        "false"
+      ],
+      "native_exit": 0,
+      "raw": "gen3-C5-typecheck.log"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+        "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C5-browser-fixture-check.mjs"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "raw": "gen3-C5-targeted-lint.log"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+        "--project=chromium",
+        "--list"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "registered": 19,
+        "executed": 0
+      },
+      "raw": "gen3-C5-browser-collection.log"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-review-order.mjs",
+        "_bmad-output/specs/spec-calculation-editor-mutation-safety/stories/35-8-p-calculation-editor-mutation-safety.md"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "sections": 1,
+        "references": 20,
+        "errors": 0
+      },
+      "raw": "gen3-C5-review-trail.log"
+    }
+  ],
+  "source_sha256": {
+    "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts": "3100d93757e6848acad2e14c251a52c3400ef01a5ef8a261a7da62713a2dd142"
+  },
+  "raw_evidence_sha256": {
+    "gen3-C5-browser-collection.log": "2798dc48c9ad9826eaf87b56198340dae15a406d01946e9987537ff9fbc507cf",
+    "gen3-C5-browser-fixture-check.mjs": "2b0a1bfd9ede657b9a2aaec7f7d3c2c123eb9c3af0f2d5839bec31d7fcd231e6",
+    "gen3-C5-browser-fixture-check.tap": "684f2078c0b3ebd6b7a573e58eea636f3981aea66b6d7069c974d9bd46b9bc57",
+    "gen3-C5-review-trail.log": "27487eadf574c773bf2287ae598102f31b33c448369ed109f07802747801abbf",
+    "gen3-C5-targeted-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gen3-C5-typecheck.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "meaningful_check_results": [
+    "Exact original tax setup fails real preflight; fixed setup passes with real parsed paired allowance slots.",
+    "Exact original A/B/C body may navigate C after interception before upstream completion; fixed body cannot, retains B and holds A delivery before C.",
+    "Actual fixed body and route both reject the identical upstream error; no swallowed failure or sleep."
+  ],
+  "same_path_pattern_scan": "Inspected held/fetch/poll patterns only in allocated browser file. Other markers gate B editing without a foreign C read dependent on A completion; no additional identical ordering correction made.",
+  "retained_prior_provenance": {
+    "record": "gen3-C4-verification.json",
+    "raw_sha256": "455f2875668a06eb59cf776657cb5c2518b36ff4ef3a7965e9c4da3c06020159",
+    "candidate": "3b69b66495131feb90f3aa666244ec9a85898bef",
+    "production_source_hashes_unchanged": {
+      "src/components/calculations/CalculationList.tsx": "3e24d4f2103f357910572a10e7de2cfa25114b5acd8ea6d5561fcc10a30f0e3a"
+    },
+    "limits": "C4/C3 checks retained with exact provenance, not new C5 execution. No broad unchanged unit/build/full-lint repeats. Browser19 collection remains zero actual executions; DB unrun."
+  },
+  "review_status": {
+    "round2": "Completed WITH two MEDIUM test gaps, notPASS",
+    "named_production_findings": "E1-E4 source-resolved by actual focused High and substantive configured C4 external follow-up, not runtime qualification",
+    "author_status": "F1/F2 author-fixed independently pending",
+    "cumulative_retained": 14,
+    "high": 8,
+    "medium": 6,
+    "low": 0,
+    "weighted_medium_low_score": 18,
+    "next": "Round3 targetedHigh+configured external changed-lines/fix-regression/serious unresolved ONLY, fullD chain/cap3 retained",
+    "triage_sha256": "71dc63bf4c5d7f04c56200b90b4f0fb644908e76d7e9147898fc9e447b9c6230"
+  },
+  "pending_pre_G_tracked_metadata": [
+    "actual round3 targeted qualification and author log/trail refresh if needed",
+    "selected project TEA automate provenance",
+    "truthful C-delivery only earned checks/review, release_ready=false and missing G duties explicit",
+    "only earned selected gen3 provisional P5-P7 bookkeeping under owner00dc/packet351e",
+    "finish all permitted tracked metadata before one clean final published G"
+  ],
+  "pending_final_G": [
+    "full exact-candidate ordinary hosted CI/unit/verify-development",
+    "required full integration/RLS with SUPABASE_TEST_REQUIRED=1 and both Vitest projects",
+    "direct recovery/storage integrity",
+    "full configured production browser/dashboard release_validation=true",
+    "six-host desktop/360x640 source/state-labelled captures",
+    "authenticated human/controller acceptance",
+    "unchanged frontend-FIRST wrapper on same delivery JSON"
+  ],
+  "limits": "Synthetic browser locator/domain assertions are not rendered/persisted evidence; actual browser and DB remain unrun. Valid fixture/stage source checks do not establish runtime PASS. No review/development/visual/release acceptance.",
+  "own_runtime": "No managed resource, child, background service, browser or queued source command launched. All bounded tool commands completed.",
+  "source_writer_state": "Terminal/quiescent after physical handoff; available only for synchronous authorized fixes/trail reconciliation."
+}

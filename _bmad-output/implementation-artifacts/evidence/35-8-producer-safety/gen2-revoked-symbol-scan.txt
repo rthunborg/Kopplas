@@ -1,0 +1,24 @@
+tests\integration\rls\calculation-editor-operation-contract.rls.test.ts:19:const oldEntries = ["create_calculation_with_audit", "update_calculation_with_audit", "archive_calculation_with_audit", "reorder_calculation_rows", "reorder_calculation_sections", "authorize_quote_initial_review", "authorize_quote_initial_customer_visible_review", "create_quote_version_from_calculation"];
+tests\integration\commands\calculation-commands.int.test.ts:487:    }).rpc("update_calculation_with_audit", {
+tests\integration\rls\quote-review-authorization-migration-reset.int.test.ts:65:      ["authorize_quote_initial_review", "uuid, uuid, timestamp with time zone, uuid, uuid, uuid, jsonb, jsonb, jsonb, date, text, jsonb, uuid, uuid"],
+tests\integration\rls\quote-review-authorization-migration-reset.int.test.ts:68:      ["create_quote_version_from_calculation", "uuid, uuid, timestamp with time zone, uuid, uuid"],
+tests\integration\rls\quote-review-authorization-migration-reset.int.test.ts:94:        "authorize_quote_initial_review",
+tests\integration\rls\quote-review-authorization-migration-reset.int.test.ts:108:      expect(privilege[0]).toEqual({ authed: !["authorize_quote_initial_review", "create_quote_version_from_calculation"].includes(row.proname), anon: false, public_role: false });
+tests\integration\rls\quote-review-authorization-migration-reset.int.test.ts:118:            'public.create_quote_version_from_calculation(uuid,uuid,timestamptz,uuid,uuid)'::regprocedure,
+tests\integration\rls\quote-review-authorization-migration-reset.int.test.ts:124:      { function_name: "create_quote_version_from_calculation", service: false },
+tests\integration\rls\quote-review-authorization-migration-reset.int.test.ts:141:         to_regprocedure('public.create_quote_version_from_calculation(uuid,uuid,timestamptz,uuid,uuid,uuid,jsonb,jsonb,jsonb,text,date,text,jsonb)')::text as old_initial,
+tests\integration\rls\quote-tables-migration-reset.int.test.ts:430:  it("[P0/35.8-P] create_quote_version_from_calculation remains a private hardened authorization consumer", async (testCtx) => {
+tests\integration\rls\quote-tables-migration-reset.int.test.ts:437:         where proname = 'create_quote_version_from_calculation'`,
+tests\integration\rls\quote-tables-migration-reset.int.test.ts:443:      "create_quote_version_from_calculation",
+tests\integration\rls\quote-tables-migration-reset.int.test.ts:449:         where routine_name = 'create_quote_version_from_calculation'`,
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:315:  const authorization = await rpc.rpc("authorize_quote_initial_review", {
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:332:  return rpc.rpc("create_quote_version_from_calculation", {
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:496:        "create_quote_version_from_calculation",
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:1822:         'public.create_quote_version_from_calculation(uuid,uuid,timestamptz,uuid,uuid,uuid,jsonb,jsonb,jsonb,text,date,text,jsonb)'
+tests\integration\commands\quote-version.int.test.ts:521:    const authorization = await rpc.rpc("authorize_quote_initial_review", {
+tests\integration\commands\quote-version.int.test.ts:541:    const { error } = await rpc.rpc("create_quote_version_from_calculation", {
+tests\integration\commands\quote-initial-non-admin-audit.int.test.ts:109:        where n.nspname='public' and p.proname in ('read_quote_initial_customer_visible_source','authorize_quote_initial_customer_visible_review','authorize_quote_initial_review')`,
+tests\integration\commands\quote-initial-non-admin-audit.int.test.ts:141:    const stale = await seller.rpc("authorize_quote_initial_customer_visible_review", {
+tests\integration\commands\quote-initial-non-admin-audit.int.test.ts:156:    const nullCorrelation = await seller.rpc("authorize_quote_initial_customer_visible_review", {
+tests\integration\commands\quote-initial-non-admin-audit.int.test.ts:168:    const legacy = await seller.rpc("authorize_quote_initial_review", {
+tests\integration\commands\quote-initial-non-admin-audit.int.test.ts:180:    const denied = await montor.rpc("authorize_quote_initial_customer_visible_review", {

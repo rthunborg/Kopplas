@@ -94,7 +94,8 @@ async function run(
   }
 
   const client = (await createSupabaseServerClient()) as unknown as CommandDbClient;
-  const result = await runCommand(command, { client, input: parsed.input });
+  const operationId = typeof parsed.input.operation_id === "string" ? parsed.input.operation_id : undefined;
+  const result = await runCommand(command, { client, input: parsed.input, correlationId: operationId });
 
   if (result.ok) {
     revalidatePath(editorPath(revalidateId));
@@ -102,7 +103,8 @@ async function run(
       ...CALC_ACTION_INITIAL,
       status: "success",
       form,
-      targetId: result.data.targetId,
+      targetId: result.data.targetId || null,
+      operationId: result.data.operationId,
     };
   }
 
@@ -118,7 +120,8 @@ function mapErrorToState(
 ): CalcActionState {
   return {
     ...CALC_ACTION_INITIAL,
-    status: "error",
+    status: code === "SERVER_ERROR" ? "unknown" : "error",
+    operationId: typeof parsed.input.operation_id === "string" ? parsed.input.operation_id : null,
     form,
     code,
     formError: message || COMMAND_MESSAGES[code],
@@ -278,4 +281,21 @@ export async function reorderRowsAction(
     "reorder_rows",
     calcIdOf(form, "calculation_id"),
   );
+}
+
+/** Read-only reconciliation never converts absence/preparation into a noncommit. */
+export async function reconcileCalculationEditorOperationAction(operationId: string) {
+  const { isEditorUuid } = await import("./editor-operation");
+  if (!isEditorUuid(operationId)) throw new Error("Invalid operation identity");
+  const { editorOperationRpc } = await import("@/server/commands/calculations/editor-operation-db");
+  const client = (await createSupabaseServerClient()) as unknown as CommandDbClient;
+  return editorOperationRpc(client, "reconcile_calculation_editor_operation", { p_operation_id: operationId });
+}
+
+/** Opaque UI handle partition; every mutation/reconcile independently reauthorizes. */
+export async function calculationEditorScopeAction(): Promise<string> {
+  const { resolveTenantContext } = await import("@/server/auth/resolve-tenant-context");
+  const context = await resolveTenantContext();
+  if (!context.ok) throw new Error("Editor access denied");
+  return `${context.data.userId}/${context.data.tenantId}`;
 }

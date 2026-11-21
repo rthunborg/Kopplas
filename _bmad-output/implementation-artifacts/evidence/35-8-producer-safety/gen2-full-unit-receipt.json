@@ -1,0 +1,45 @@
+{
+  "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+  "executable": "C:\\nvm4w\\nodejs\\node.exe",
+  "argv": [
+    "--experimental-strip-types",
+    "--import",
+    "./tests/support/register.mjs",
+    "--test",
+    "tests/unit/**/*.test.ts"
+  ],
+  "overall_timeout_ms": 240000,
+  "timed_out": true,
+  "native_exit": -1,
+  "owned_identities": [
+    {
+      "pid": 36688,
+      "created_at": "2026-11-13T17:26:38.7033869Z"
+    },
+    {
+      "pid": 43320,
+      "created_at": "2026-11-13T17:26:38.7100900Z"
+    },
+    {
+      "pid": 43352,
+      "created_at": "2026-11-13T17:26:45.0424350Z"
+    },
+    {
+      "pid": 58256,
+      "created_at": "2026-11-13T17:30:03.6413140Z"
+    },
+    {
+      "pid": 11948,
+      "created_at": "2026-11-13T17:30:22.4691040Z"
+    },
+    {
+      "pid": 55944,
+      "created_at": "2026-11-13T17:30:38.8791460Z"
+    },
+    {
+      "pid": 49176,
+      "created_at": "2026-11-13T17:30:38.8983560Z"
+    }
+  ],
+  "completed_at": "2026-11-13T17:30:39.1292516Z"
+}

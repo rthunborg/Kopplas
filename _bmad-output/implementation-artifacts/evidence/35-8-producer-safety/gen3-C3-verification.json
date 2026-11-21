@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "kind": "GEN3_C3_AUTHOR_FIX_CHECKPOINT_NOT_ACCEPTANCE",
+  "recorded_at": "2026-11-14T16:02:16.257661+00:00",
+  "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+  "head": "e7959e8addc0eee31261393dcab331a564de731e",
+  "commits_by_this_author": [],
+  "story_baseline": "3a2fe5a565e2627b45b9b46880e26966ef0cd23f",
+  "full_review_baseline": "1c53833c70ad61a26cbfbc117a040b1f99d33f2e",
+  "development_complete": false,
+  "release_ready": false,
+  "frontend_accepted": false,
+  "commands": [
+    {
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--pretty",
+        "false"
+      ],
+      "attempt": "initial-product",
+      "native_exit": 0,
+      "raw": "gen3-C3-typecheck-first.log"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--pretty",
+        "false"
+      ],
+      "attempt": "test-additions",
+      "native_exit": 2,
+      "raw": "gen3-C3-typecheck-tests.log",
+      "cause": "Local fixture footprint helper name and raw TestServerClient/snapshot structural typing; corrected using actual existing domainState helper and real command preparation seam, without shared factory or unsafe signature changes."
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--pretty",
+        "false"
+      ],
+      "attempt": "final",
+      "native_exit": 0,
+      "raw": "gen3-C3-typecheck-final.log"
+    },
+    {
+      "argv": [
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "--test-timeout=30000",
+        "tests/unit/features/calculations/editor-operation.test.ts",
+        "tests/unit/features/calculations/action-state.test.ts",
+        "tests/unit/features/calculations/form-parsing.test.ts",
+        "tests/unit/server/commands/calc-validation.test.ts",
+        "tests/unit/server/commands/calc-validation-coverage.test.ts",
+        "tests/unit/server/commands/calc-source-validation.test.ts",
+        "tests/unit/server/commands/calculation-row-limit-command.test.ts",
+        "tests/unit/server/commands/quote-validation.test.ts",
+        "tests/unit/scope/manifest-shape.test.ts",
+        "tests/unit/scope/manifest-derivations.test.ts"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "passed": 190,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "raw": "gen3-C3-focused-unit.tap",
+      "scope": "focused only, not full ordinary unit gate"
+    },
+    {
+      "argv": [
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C3-controller-check.mjs"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "cancelled": 0
+      },
+      "raw": "gen3-C3-controller-check-first.tap",
+      "scope": "Actual current controller/Tax/fault functions + real pure preflight, with simulated React/hooks/form/RPC seams; not browser/SQL/envelope execution."
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "."
+      ],
+      "native_exit": 0,
+      "counts": {
+        "errors": 0,
+        "warnings": 40
+      },
+      "raw": "gen3-C3-full-lint.log"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/next/dist/bin/next",
+        "build"
+      ],
+      "native_exit": 0,
+      "raw": [
+        "gen3-C3-build.stdout.log",
+        "gen3-C3-build.stderr.log"
+      ],
+      "identity_receipt": "gen3-C3-build-process.json",
+      "scope": "bounded production build, no server started"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-lockfiles.mjs"
+      ],
+      "native_exit": 0,
+      "output": "Only pnpm-lock.yaml present"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-service-role-containment.mjs"
+      ],
+      "native_exit": 0,
+      "output": "No service-role material in client paths"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-bundle-containment.mjs"
+      ],
+      "native_exit": 0,
+      "output": "Current production .next artifact contains no forbidden service-role material"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+        "--project=chromium",
+        "--list"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "registered": 19,
+        "executed": 0
+      },
+      "raw": "gen3-C3-browser-collection.log"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-review-order.mjs",
+        "_bmad-output/specs/spec-calculation-editor-mutation-safety/stories/35-8-p-calculation-editor-mutation-safety.md"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "sections": 1,
+        "references": 20,
+        "errors": 0
+      },
+      "raw": "gen3-C3-review-trail.log"
+    }
+  ],
+  "source_sha256": {
+    "src/components/calculations/CalculationList.tsx": "8d8cf8e17abea4e2f1ae3df98666a7ee873605a08437a166dc65b8cbabf71e87",
+    "src/features/calculations/form-parsing.ts": "13917d4bdb7bd6a948fc4d7e7287cffe768c8c7d04de60efa36b39f9430556e3",
+    "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql": "51ac3c1944389a9080e7bee5cd6669f26e0638f5ed8cd37060978e839f08e50f",
+    "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts": "d2f5981e94eae6a3d40e94a744e3ce310fff8a5ad0c7e9f17781263dc8043be5",
+    "tests/integration/commands/calculation-mutation-safety.int.test.ts": "fac53297957a77e51e0ef595f2b211458b17b19d96beaa64ee72c3baef4b8135",
+    "tests/integration/commands/quote-initial-mutation-safety.int.test.ts": "1f62bc3f4b90f9e4f929548dfaf98c78bb58740b2e4d864db338a19cb5ba2e7c",
+    "tests/unit/features/calculations/form-parsing.test.ts": "1451d8841b81a5e6527793e5da1e3cabcce81f81a3a5d669f3e55a7f81e995d5"
+  },
+  "raw_evidence_sha256": {
+    "gen3-C3-browser-collection.log": "3565bc98d480fcdb262b114aa5fd589aeb021b99c86162f03384f93fe386a6ff",
+    "gen3-C3-build-process.json": "1485a05d062f9ad8dfcb59712ab0c8ffa9beaa8cf12bfa86d1e2e9ccda010967",
+    "gen3-C3-build.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gen3-C3-build.stdout.log": "3d6db8a50e93d8b4c91f76ba5baafb3bc65d38ae588d65bd3f846f115c06ca97",
+    "gen3-C3-controller-check-first.tap": "401161e3478474c03fe812942696fc765c8c6a86ed6905e2b69253671cd60140",
+    "gen3-C3-controller-check.mjs": "acadb4797b054a1156bb2165dcbcb9f03fa222a0974adcf722912bbc7fdec141",
+    "gen3-C3-focused-unit.tap": "28d0569ba01b156483763f5ca7b8ed279b894aca176ebf919cea147bb7ab9d25",
+    "gen3-C3-full-lint.log": "f3993a0b6f456b65df970a3e8f8abc1627c9201b23e826f96d17779530ca0466",
+    "gen3-C3-review-trail.log": "27487eadf574c773bf2287ae598102f31b33c448369ed109f07802747801abbf",
+    "gen3-C3-targeted-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gen3-C3-typecheck-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gen3-C3-typecheck-first.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gen3-C3-typecheck-tests.log": "af5d16e5cf0ab26296d8a7cdc345d326f133e2fb7c3bd72d500756201fe759bc"
+  },
+  "author_repairs": {
+    "E1": "Both ce_input_internal array-column references explicitly qualified x.value/x.ord; checked row/section/empty-attachment/duplicate regressions added. No variable_conflict policy introduced.",
+    "E2": "SQL rejects calculation.update status archived, including combined title/status requests; client NEW preflight mirrors restriction. UI header has no archive choice; existing dedicated archive action remains full-subtree checked. Authenticated stale-descendant/no-effect/audit bodies added.",
+    "E3": "Operation cleanup does not touch per-draft expected facts. Only matching confirmed draft revision clears them. Completion/reconcile/retry of A preserves unsent B binding across C refresh; synthetic and real-browser bodies added.",
+    "E4": "NEW-only feature preflight reuses existing pure parsers/validators before retention, with client/server duplicate/archive coherence. Existing unknowns remain retained on current validation/auth/generic errors or read-only absent/prepared. Invalid original/correction and protected-unknown synthetic/browser bodies added."
+  },
+  "review": {
+    "rounds_completed_with_findings": 1,
+    "total_retained": 12,
+    "high": 8,
+    "medium": 4,
+    "low": 0,
+    "weighted_medium_low_score": 12,
+    "status": "WITH_FINDINGS_NOT_PASS; original8 C2 source bridge retained within stated scope; current4 author-fixed and all C3 changes await targeted High/configured external follow-up",
+    "scope": "Full D..final coverage retained; no broad-five restart or baseline reset",
+    "actual_external_qualification_sha256": "d467eba3b78f73ad614d098656cf02c175a9df48c00cc0647ea750004d04ee44",
+    "actual_external_review_sha256": "ce67f90dd22603aa9e366f2ac0db8b53e745c5094873e14b685afb2fff20b742",
+    "failed_attempts": "Earlier Core and transport-size failures preserved as failed/unverified, never passing reviews"
+  },
+  "limits": [
+    "DB integration/RLS/recovery/storage and new checked SQL bodies remain DB_UNRUN",
+    "Browser19 registration has zero executions; synthetic harness does not exercise React internals/real DOM/network/database",
+    "Complete original fingerprint matching is required after remount; changed expected facts cannot become old intent",
+    "Prior unknowns may not be retired by current validation/auth/generic errors or absent/prepared lookup",
+    "All full ordinary unit/runtime/frontend/human gates remain actual pending requirements"
+  ],
+  "pending_pre_G_tracked_metadata": [
+    "targeted High plus configured external changed-line/unresolved follow-up and author triage/trail refresh if needed",
+    "existing selected project TEA automate route/evidence",
+    "truthful C-delivery after actual required independent qualification, release_ready=false and missing G duties explicit",
+    "only earned selected provisional P5-P7 bookkeeping under owner00dc/packet351e, no false pending check PASS",
+    "finalize all permitted tracked metadata before one clean final published G"
+  ],
+  "pending_final_G": [
+    "full ordinary exact-candidate CI including full unit/verify-development",
+    "full integration/RLS with SUPABASE_TEST_REQUIRED=1 preserving both Vitest projects",
+    "direct recovery/storage integrity",
+    "configured full browser plus dashboard release_validation=true",
+    "six-host desktop/360x640 source/state-labelled captures",
+    "authenticated human/controller acceptance",
+    "unchanged frontend-FIRST wrapper on same delivery JSON"
+  ],
+  "own_runtime": {
+    "managed_resources": [],
+    "build_identity": {
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+      "executable": "C:\\nvm4w\\nodejs\\node.exe",
+      "argv": [
+        "node_modules/next/dist/bin/next",
+        "build"
+      ],
+      "pid": 54236,
+      "created_at": "2026-11-14T15:58:24.3832316Z",
+      "overall_timeout_ms": 180000,
+      "timed_out": false,
+      "native_exit": 0,
+      "completed_at": "2026-11-14T15:58:33.6174606Z"
+    },
+    "other_tool_sessions": "Full lint80587 completed native0; all other bounded commands completed. No delegated children or queued source writes."
+  },
+  "source_writer_state": "Quiescent after physical manifest/terminal handoff; available only for synchronous fixes/trail reconciliation.",
+  "rollout": "Same named migration only; unapplied. Later factual matched app/schema pause/drain cutover remains separately authorized."
+}
