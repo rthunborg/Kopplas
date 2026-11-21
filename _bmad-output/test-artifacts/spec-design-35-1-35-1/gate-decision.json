@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1.0",
+  "evaluated_at": "2026-11-18T13:08:43.137722+00:00",
+  "repo": "Kopplas",
+  "target": {
+    "type": "epic",
+    "id": "spec-design-35-1",
+    "label": "Sole existing 35-1 documentary contract"
+  },
+  "collection_status": "COLLECTED",
+  "gate_basis": "priority_thresholds",
+  "gate_status": "PASS",
+  "rationale": "P0 coverage is 100% (no P0 criteria), P1 documentary coverage is 100% (7/7; target 90%), and overall documentary coverage is 100% (minimum 80%). All seven original criteria have inspected documentary evidence, including explicitly dated AC6 preservation-proof adoption. Zero executable or runtime tests are claimed; this is not production approval.",
+  "p0_status": "MET",
+  "p1_status": "MET",
+  "overall_status": "MET",
+  "critical_open": 0,
+  "links": {
+    "trace_report_path": "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\test-artifacts\\spec-design-35-1-35-1\\traceability-matrix.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  },
+  "approval_granted": false,
+  "release_ready": false
+}
