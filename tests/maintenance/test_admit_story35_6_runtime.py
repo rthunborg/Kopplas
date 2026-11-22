@@ -1712,5 +1712,293 @@ class NativeAllocationMetadata(unittest.TestCase):
                 adapter.allocation_arrays(value, e15_main=True)
 
 
+
+
+class ColdProtocolCommitBoundary(unittest.TestCase):
+    """Real rollback-journal lock/commit behavior, with bounded owned readers."""
+
+    def setUp(self):
+        import tempfile
+        spec = importlib.util.spec_from_file_location('cold_commit_boundary',
+            ROOT / 'scripts/maintenance/adopt_stopped_coordinator_context.py')
+        self.cold = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.cold)
+        self.temporary = tempfile.TemporaryDirectory(prefix='crm-commit-')
+        self.addCleanup(self.temporary.cleanup)
+        self.store = Path(self.temporary.name) / 'native.sqlite3'
+        with contextlib.closing(sqlite3.connect(self.store, isolation_level=None)) as db:
+            db.execute('CREATE TABLE native_owner(value INTEGER)')
+            db.execute('INSERT INTO native_owner VALUES(0)')
+            db.execute('CREATE TABLE audit(value INTEGER)')
+        self.clock = {'wall': 1000.0, 'mono': 50.0}
+
+    @contextlib.contextmanager
+    def budget(self, custody=900, critical=30):
+        ctx = {'protocol_eligibility': {'expires': self.clock['wall'] + custody}}
+        with patch.object(self.cold.time, 'time', side_effect=lambda: self.clock['wall']), \
+             patch.object(self.cold.time, 'monotonic', side_effect=lambda: self.clock['mono']), \
+             patch.object(self.cold, 'CRITICAL_SECONDS', critical), self.cold.protocol_budget(ctx):
+            yield ctx
+
+    @contextlib.contextmanager
+    def reader(self):
+        import threading
+        ready, release, errors = threading.Event(), threading.Event(), []
+        def hold():
+            try:
+                with self.cold.database(self.store) as db:
+                    db.execute('SELECT * FROM native_owner').fetchall()
+                    ready.set()
+                    if not release.wait(5):
+                        raise AssertionError('Owned reader release timed out')
+            except BaseException as error:
+                errors.append(error)
+                ready.set()
+        thread = threading.Thread(target=hold)
+        thread.start()
+        try:
+            self.assertTrue(ready.wait(5))
+            self.assertEqual(errors, [])
+            yield release, thread
+        finally:
+            release.set()
+            thread.join(5)
+            self.assertFalse(thread.is_alive(), 'Owned reader did not settle')
+            self.assertEqual(errors, [])
+
+    def write_pair(self, db):
+        db.execute('UPDATE native_owner SET value=1')
+        db.execute('INSERT INTO audit VALUES(1)')
+
+    def assert_pair(self, expected):
+        with contextlib.closing(sqlite3.connect(self.store, isolation_level=None)) as db:
+            self.assertEqual(db.execute('SELECT value FROM native_owner').fetchone()[0], expected)
+            self.assertEqual(db.execute('SELECT count(*) FROM audit').fetchone()[0], expected)
+        self.assertFalse(self.store.with_name(self.store.name + '-journal').exists())
+        self.assertIsNone(self.cold.CRITICAL_DEADLINE.get())
+        self.assertIsNone(self.cold.PROTOCOL_COMMIT_STATE.get())
+
+    def test_active_reader_keeps_begin_immediate_compatible_but_commit_refuses_without_wait(self):
+        for custody, critical in [(0.15, 30), (900, 0.15)]:
+            with self.subTest(custody=custody, critical=critical):
+                with self.reader(), self.assertRaisesRegex(sqlite3.OperationalError, 'locked'):
+                    with self.budget(custody, critical), self.cold.database(self.store, write=True) as db:
+                        self.assertEqual(db.execute('PRAGMA busy_timeout').fetchone()[0], 0)
+                        self.write_pair(db)
+                        # BEGIN IMMEDIATE still permits an independent reader during Git work.
+                        with contextlib.closing(sqlite3.connect(self.store, isolation_level=None, timeout=0)) as reader:
+                            self.assertEqual(reader.execute('SELECT value FROM native_owner').fetchone()[0], 0)
+                self.assert_pair(0)
+
+    def test_reader_released_before_commit_and_unlocked_within_budget_succeed(self):
+        with self.reader() as (release, thread):
+            with self.budget(custody=0.15), self.cold.database(self.store, write=True) as db:
+                self.write_pair(db)
+                release.set()
+                thread.join(5)
+                self.assertFalse(thread.is_alive())
+                self.clock.update(wall=1000.149, mono=50.149)
+        self.assert_pair(1)
+
+    def test_each_precommit_deadline_rolls_back_native_and_audit_together(self):
+        cases = [('custody-monotonic', 0.15, 30, 1000.2, 50.2, 'CRITICAL_SECTION_EXPIRED'),
+                 ('critical', 900, 30, 1030.0, 80.0, 'CRITICAL_SECTION_EXPIRED'),
+                 ('custody-wall-jump', 0.15, 30, 1000.15, 50.0, 'CUSTODY_EXPIRED')]
+        for name, custody, critical, wall, mono, reason in cases:
+            with self.subTest(case=name):
+                self.clock.update(wall=1000.0, mono=50.0)
+                with self.assertRaisesRegex(self.cold.Refusal, reason):
+                    with self.budget(custody, critical), self.cold.database(self.store, write=True) as db:
+                        self.write_pair(db)
+                        self.clock.update(wall=wall, mono=mono)
+                self.assert_pair(0)
+
+    def test_deadline_recheck_after_actual_begin_prevents_entering_mutation_body(self):
+        clock, connect = self.clock, sqlite3.connect
+        class ExpiredAfterBegin(sqlite3.Connection):
+            def execute(self, statement, *values):
+                result = super().execute(statement, *values)
+                if statement == 'BEGIN IMMEDIATE':
+                    clock['mono'] = 81.0
+                return result
+        with self.assertRaisesRegex(self.cold.Refusal, 'CRITICAL_SECTION_EXPIRED'):
+            with patch.object(self.cold.sqlite3, 'connect',
+                    side_effect=lambda *args, **kw: connect(*args, **kw, factory=ExpiredAfterBegin)), \
+                 self.budget(), self.cold.database(self.store, write=True):
+                self.fail('Expired BEGIN entered mutation body')
+        self.assert_pair(0)
+
+    def test_actual_commit_success_is_not_relabelled_refused_by_delayed_return(self):
+        clock, connect = self.clock, sqlite3.connect
+        class DelayedCommitReturn(sqlite3.Connection):
+            def execute(self, statement, *values):
+                result = super().execute(statement, *values)
+                if statement == 'COMMIT':
+                    clock.update(wall=1031.0, mono=81.0)
+                return result
+        with patch.object(self.cold.sqlite3, 'connect',
+                side_effect=lambda *args, **kw: connect(*args, **kw, factory=DelayedCommitReturn)), \
+             self.budget() as ctx, self.cold.database(self.store, write=True) as db:
+            self.write_pair(db)
+        self.assertEqual(ctx['_protocol_critical_ms'], 31000)
+        self.assert_pair(1)
+
+    def test_uncommitted_budget_overrun_still_refuses_and_resets_context(self):
+        with self.assertRaisesRegex(self.cold.Refusal, 'CRITICAL_SECTION_OVERRUN'):
+            with self.budget():
+                self.clock['mono'] = 81.0
+        self.assert_pair(0)
+
+    def test_stopped_mode_keeps_existing_timeout_and_atomic_commit(self):
+        with self.reader() as (release, thread):
+            with self.cold.database(self.store, write=True) as db:
+                self.assertEqual(db.execute('PRAGMA busy_timeout').fetchone()[0], 2000)
+                self.write_pair(db)
+                release.set()
+                thread.join(5)
+                self.assertFalse(thread.is_alive())
+        self.assert_pair(1)
+
+
+class ColdProtocolRuntimeConsumption(unittest.TestCase):
+    """Actual cold adapter -> immutable audit -> runtime validate/CAS, all synthetic."""
+
+    def test_malformed_quiescence_keeps_structured_refusal(self):
+        for malformed in [None, [], True, 'not-an-object']:
+            with self.subTest(value=malformed), self.assertRaisesRegex(adapter.engine.Refusal, 'Expected JSON object'):
+                adapter.stopped_receipt({'quiescence': malformed}, None, None, adapter.Captures())
+
+    def test_committed_fence_consumption_and_exact_generation_two(self):
+        import pathlib
+        import tempfile
+        import time
+        cold_relative = 'scripts/maintenance/adopt_stopped_coordinator_context.py'
+        cold_bytes = (ROOT / cold_relative).read_bytes().replace(b'\r\n', b'\n')
+        scratch = ROOT / 'tmp'
+        scratch.mkdir(exist_ok=True)
+        cold_source = tempfile.TemporaryDirectory(prefix='crm-cold-source-', dir=scratch)
+        self.addCleanup(cold_source.cleanup)
+        cold_path = Path(cold_source.name) / 'adopt_stopped_coordinator_context.py'
+        cold_path.write_bytes(cold_bytes)
+        self.assertEqual(cold_path.resolve().parents[2], ROOT.resolve())
+        cold_spec = importlib.util.spec_from_file_location('synthetic_cold_pipeline', cold_path)
+        cold = importlib.util.module_from_spec(cold_spec)
+        cold_spec.loader.exec_module(cold)
+        source = (ROOT / 'tests/unit/scripts/adopt-stopped-coordinator-context.test.ts').read_text()
+        setup = source.split('const setup = String.raw`', 1)[1].split('`;', 1)[0]
+        namespace = dict(m=cold, pathlib=pathlib, sys=sys, json=json, sqlite3=sqlite3,
+                         time=time, importlib=importlib)
+        output = io.StringIO()
+        with patch.object(sys, 'argv', ['synthetic', str(cold_path), str(ROOT), 'protocol-runtime']), contextlib.redirect_stdout(output):
+            exec(compile(setup, '<existing-synthetic-cold-fixture>', 'exec'), namespace)
+        cold_fixture = json.loads(output.getvalue())
+        cold_request = Path(cold_fixture['request'])
+        ctx = cold.validate(cold_request)
+        self.assertEqual(ctx['proposal']['tool_sha256'], hashlib.sha256(cold_bytes).hexdigest())
+        self.assertEqual(cold.blob(ctx['repository'], ctx['proposal']['tool_revision'], cold_relative), cold_bytes)
+        adopted = cold.recover(ctx, cold_request)
+        self.assertEqual(adopted['status'], 'locally-adopted-publication-pending')
+        with cold.database(ctx['store']) as db:
+            before_runtime = cold.snapshot(db)
+            succession = dict(db.execute('SELECT * FROM coordinator_successions').fetchone())
+        self.assertEqual(before_runtime['tables']['claims'][0]['generation'], 1)
+        self.assertEqual(before_runtime['tables']['claims'][0]['state'], 'blocked')
+
+        # The existing runtime fixture builder supplies its ordinary authorities.
+        # Point it at the genuinely cold-adopted disposable run and fixed identities.
+        harness = RuntimeAdmission(methodName='runTest')
+        harness.repo = ctx['integration']
+        harness.a = ctx['worker']
+        harness.c = ctx['integration_staging']
+        harness.root = ctx['private_root'] / 'runtime-evidence'
+        harness.root.mkdir()
+        harness.plan = ctx['after_plan']
+        harness.base = ctx['proposal']['main']
+        identity = {'base_branch': 'main', 'base_revision': harness.base,
+                    'branch': engine.branch(harness.a), 'repository': adapter.REPOSITORY,
+                    'run_id': adapter.RUN, 'story_key': adapter.STORY, 'worktree': str(harness.a)}
+        operation = {'pr_url': 'https://github.com/rthunborg/Kopplas/pull/127', 'base': 'main',
+                     'head': harness.base, 'evidence': 'SYNTHETIC same-PR publication after cold adoption',
+                     'story_key': adapter.STORY, 'repository': adapter.REPOSITORY, 'run_id': adapter.RUN,
+                     'pr_number': 127, 'operation': 'push', 'status': 'confirmed', 'branch': identity['branch']}
+        harness.state = {'story_key': adapter.STORY, 'story_source': 'stories', 'story_id': '35-6',
+                         'spec_folder': str(harness.a / adapter.FOLDER), 'branch': identity['branch'],
+                         'status': 'in-progress', 'parallel_run_id': adapter.RUN, 'merge_state': 'not-requested',
+                         'pr_number': 127, 'pr_url': operation['pr_url'],
+                         'publication_identity_json': json.dumps(identity), 'publication_operation_json': json.dumps(operation)}
+        harness.save_state()
+        engine.git(harness.a, 'add', adapter.OWN_STATE)
+        engine.git(harness.a, 'commit', '-m', 'Synthetic same-PR cold publication record')
+        harness.checkpoint_sha = engine.sha(harness.a, 'HEAD')
+        with patch.object(adapter, 'ROOT', harness.c.resolve()), patch.object(adapter, '__file__', str(harness.c / 'scripts/maintenance/admit_story35_6_runtime.py')):
+            harness.request = harness.make_request()
+            r = harness.request
+            r.update(owner=cold.NEW, worker=cold.WORKER)
+            writers = {'schema_version': 1, 'run_id': adapter.RUN, 'story_id': adapter.STORY,
+                       'worker': cold.WORKER, 'generation': 1, 'branch': identity['branch'],
+                       'worktree': str(harness.a), 'checkpoint_sha': harness.checkpoint_sha,
+                       'writers': [{'identity': cold.WORKER, 'role': 'worker', 'state': 'stopped',
+                                    'evidence_ref': 'SYNTHETIC current authorized-worker closure'}]}
+            ref = harness.raw('protocol-current-writers', writers)
+            r['quiescence'] = {'kind': 'committed-protocol-quarantine', 'coordinator': cold.NEW,
+                               'attested': True, 'complete_writer_inventory': True,
+                               'evidence_path': ref['path'], 'evidence_sha256': ref['sha256'],
+                               'cold_request_id': succession['request_id'], 'cold_request_digest': succession['request_hash']}
+            inventory = harness.inventory()
+            inventory['coordinator'] = cold.NEW
+            r['ownership_inventory'] = harness.raw('protocol-inventory', inventory)
+            observed = adapter.artifact_json(r['publication'], adapter.Captures())
+            observed['head_branch'] = identity['branch']
+            r['publication'] = harness.raw('protocol-publication', observed)
+            harness.refresh_review()
+            request_path = harness.file('protocol-runtime-request', r)
+            args = adapter.parser().parse_args(['--repo', str(harness.repo), '--run', adapter.RUN,
+                '--owner', cold.NEW, '--story', adapter.STORY, '--worker', cold.WORKER,
+                '--generation', '1', '--request', str(request_path)])
+            cold_cache = harness.c / 'scripts/maintenance/__pycache__'
+            self.assertFalse(cold_cache.exists())
+            with adapter.readonly_database(harness.repo) as db:
+                c = engine.get_claim(db, args, worker=True)
+                for key in ['cold_request_id', 'cold_request_digest']:
+                    altered = copy.deepcopy(r)
+                    altered['quiescence'][key] = 'forged'
+                    with self.subTest(key=key), self.assertRaises(adapter.engine.Refusal):
+                        adapter.committed_protocol_fence(db, harness.repo, altered, harness.plan, c, adapter.Captures())
+                # Assert forged stored proof/context is refused without modifying the append-only audit.
+                for field in ['response', 'context', 'after_snapshot']:
+                    corrupted = dict(succession)
+                    value = json.loads(corrupted[field])
+                    if field == 'response':
+                        value['protocol_fence']['scheduler_queue'] = 'EMPTY'
+                    elif field == 'context':
+                        value['new_state'] = base64.b64encode(b'corrupted state').decode()
+                    else:
+                        value['unrelated_state_digest'] = 'forged'
+                    corrupted[field] = engine.canonical(value)
+                    class ForgedView:
+                        def execute(self, sql, *values):
+                            return [corrupted] if sql == 'SELECT * FROM coordinator_successions' else db.execute(sql, *values)
+                    with self.subTest(field=field), self.assertRaises(adapter.engine.Refusal):
+                        adapter.committed_protocol_fence(ForgedView(), harness.repo, r, harness.plan, c, adapter.Captures())
+            self.assertFalse(cold_cache.exists())
+            native_bytes = ctx['store'].read_bytes()
+            checked = adapter.validate_only(args)
+            self.assertTrue(checked['validated'])
+            self.assertFalse(checked['admitted'])
+            self.assertEqual(ctx['store'].read_bytes(), native_bytes)
+            result = adapter.admit(args)
+            self.assertEqual(result['generation'], 2)
+            self.assertEqual(result['worker'], cold.WORKER)
+            self.assertEqual(adapter.admit(args)['replayed'], True)
+            self.assertFalse(cold_cache.exists())
+            with engine.database(harness.repo) as db:
+                self.assertEqual([dict(x) for x in db.execute('SELECT * FROM coordinator_successions')], [succession])
+                audit = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])
+                self.assertEqual(audit['quiescence']['protocol_fence']['scheduler_queue'], 'UNKNOWN')
+                # Current coordinator with a stale worker generation is isolated from old-owner refusal.
+                with self.assertRaisesRegex(engine.Refusal, 'Stale generation'):
+                    engine.get_claim(db, args, worker=True)
+
+
 if __name__ == '__main__':
     unittest.main()
