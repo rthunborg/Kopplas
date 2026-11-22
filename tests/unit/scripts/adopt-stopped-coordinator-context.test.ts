@@ -23,7 +23,7 @@ function py(code: string, args: string[] = []) {
 type Fixture = { root: string; request: string; repo: string; integration: string; worker: string;
   base: string; main: string; checkpoint: string; published: string; candidate: string; private: string; store: string };
 const setup = String.raw`
-import uuid,subprocess,shutil
+import re,uuid,subprocess,shutil
 src=pathlib.Path(sys.argv[2]); dest=src/'tmp/private/adoption-fixtures'/str(uuid.uuid4()); dest.mkdir(parents=True)
 repo=dest/'repository'; repo.mkdir(); private=dest/'private'; private.mkdir()
 integration=dest/'integration'; worker=dest/'worker'; stage=dest/'integration-staging'
@@ -43,7 +43,19 @@ for name in paths:
 for name in ['scripts/maintenance/adopt_stopped_coordinator_context.py','scripts/maintenance/admit_story35_6_runtime.py']:
     put(name,(src/name).read_bytes().replace(b'\r\n',b'\n'))
 folder='_bmad-output/specs/spec-design-35-6'; storyfile=folder+'/stories/35-6-crm-record-journeys.md'
-for name in [folder+'/SPEC.md',folder+'/stories.yaml',storyfile]: put(name,(src/name).read_bytes().replace(b'\r\n',b'\n'))
+for name in [folder+'/SPEC.md',folder+'/stories.yaml']: put(name,(src/name).read_bytes().replace(b'\r\n',b'\n'))
+# Keep the synthetic story eligible independently of the live story's status.
+story_data=(src/storyfile).read_bytes().replace(b'\r\n',b'\n')
+opening=b'---\n'
+assert story_data.startswith(opening), 'Expected story frontmatter at the start of the fixture source'
+frontmatter,closing,body=story_data[len(opening):].partition(b'\n---\n')
+assert closing, 'Expected a closing story frontmatter delimiter'
+frontmatter,replacements=re.subn(rb'(?m)^status:[^\n]*$',b'status: ready-for-dev',frontmatter)
+assert replacements==1, 'Expected exactly one status field in the story frontmatter'
+if len(sys.argv)>3 and sys.argv[3]=='blocked-source':
+    frontmatter,replacements=re.subn(rb'(?m)^status: ready-for-dev$',b'status: blocked',frontmatter)
+    assert replacements==1
+put(storyfile,opening+frontmatter+closing+body)
 owned=['src/app/(app)/customers/[customerId]/page.tsx','src/components/crm/CustomerDetail.tsx','src/components/crm/FacilityDialog.tsx','src/components/crm/ContactDialog.tsx','src/components/crm/ArchiveButton.tsx','tests/e2e/crm/customers.e2e.spec.ts',storyfile,m.STATE,'_bmad-output/auto-bmad/reports/'+m.STORY+'.md','_bmad-output/auto-bmad/delivery/'+m.STORY+'.json','_bmad-output/test-artifacts/atdd-checklist-35-6-crm-record-journeys.md']
 for name in owned:
     if name not in {storyfile,m.STATE}: put(name,b'synthetic original\n')
@@ -242,6 +254,35 @@ review['evidence']=bind('review',accepted)
 request=private/'changed-authority-request.json'; request.write_text(m.canonical(q),encoding='utf-8')
 print(json.dumps(str(request)))`, [f.request, JSON.stringify(custodyPatch), reviewer ?? ""]);
 }
+
+test("synthetic blocked source stays ineligible and preserves the complete before-image", { timeout: 180000 }, () => {
+  const realStory = resolve(sourceRoot, "_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md");
+  const realBefore = readFileSync(realStory);
+  const f = fixture("blocked-source"), before = state(f), storeBefore = readFileSync(f.store), privateBefore = disk(f.private);
+  const reason = py(String.raw`
+q=m.decode(m.read(sys.argv[2])); repo=pathlib.Path(q['proposal']['integration'])
+spec=importlib.util.spec_from_file_location('blocked_fixture_native',repo/m.HELPER)
+h=importlib.util.module_from_spec(spec); spec.loader.exec_module(h)
+with m.database(pathlib.Path(q['proposal']['repository'])/'.git/auto-bmad-parallel.sqlite3') as db:
+    plan=json.loads(db.execute('SELECT plan FROM runs WHERE run=?',(m.RUN,)).fetchone()[0])
+try:
+    h.stories_pr_plan(repo,plan); result='unexpected-success'
+except h.Refusal as error:
+    result=str(error)
+print(json.dumps(result))`, [f.request]);
+  assert.equal(reason, "Source story is not ready for development");
+  const refused = cli(f);
+  assert.equal(refused.code, 2, refused.stdout + refused.stderr);
+  assert.equal(refused.result.reason, "NATIVE_OPERATION_REFUSED");
+  assert.deepEqual(state(f), before);
+  assert.deepEqual(readFileSync(f.store), storeBefore);
+  assert.deepEqual(disk(f.private), privateBefore);
+  assert.deepEqual(py(String.raw`
+f=json.loads(sys.argv[2])
+print(m.canonical({key:m.head(pathlib.Path(f[key])) for key in ['integration','worker']}))`, [JSON.stringify(f)]),
+    { integration: f.base, worker: f.checkpoint });
+  assert.deepEqual(readFileSync(realStory), realBefore);
+});
 
 test("V01 V02 V12 P01: physical RO validation, exact native refusals and strict private input", { timeout: 240000 }, async t => {
   const f = fixture();
