@@ -1044,6 +1044,45 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
   let hasFailure = false, firstFailure: unknown;
   let notifyFailure!: () => void;
   const failed = new Promise<void>(resolve => { notifyFailure = resolve; });
+  // Optional finite facts about the SAME first-error Request and the helper's already-owned input-qualified Set.
+  // This is a phase-owner witness, never a join to CDP control IDs, the first snapshot or a business-success claim.
+  let rolePhaseName: "initial" | "date" | null = null;
+  const fatalPhaseIdentity = (() => {
+    type Facts = { phase: "initial" | "date" | "none" | "unavailable";
+      ownership: "exact-phase-member" | "unassociated" | "closed" | "no-request" | "unavailable";
+      completion: "native-complete-at-latch" | "capture-not-complete-at-latch" | "unavailable";
+      release: "active-at-latch" | "closed-at-latch" | "unavailable" };
+    const unknown = (): Facts => ({ phase: "unavailable", ownership: "unavailable", completion: "unavailable", release: "unavailable" });
+    let enabled = true, latched = false, facts = unknown();
+    return {
+      capture(request: import("@playwright/test").Request | null) {
+        if (!enabled || latched) return;
+        latched = true;
+        if (!request) { facts = { phase: "none", ownership: "no-request", completion: "unavailable", release: "unavailable" }; return; }
+        try {
+          if (!rolePhase || (rolePhaseName !== "initial" && rolePhaseName !== "date")) return;
+          const relation = rolePhase.identify(request);
+          if (relation === "closed") { facts = { phase: rolePhaseName, ownership: "closed", completion: "unavailable", release: "closed-at-latch" }; return; }
+          if (relation !== "owned" && relation !== "unassociated") return;
+          facts = { phase: rolePhaseName, ownership: relation === "owned" ? "exact-phase-member" : "unassociated",
+            completion: relation === "owned" ? admitted.get(request)?.phase === "complete" ? "native-complete-at-latch" : "capture-not-complete-at-latch" : "unavailable",
+            release: "active-at-latch" };
+        } catch { facts = unknown(); } // Optional facts cannot change the original error carrier.
+      },
+      finish() {
+        if (!enabled) return;
+        enabled = false;
+        const owned = facts; facts = unknown(); // No Request/phase reference is retained by this observer.
+        try {
+          const json = JSON.stringify({ kind: "scheduling-fatal-phase-identity-v1", schemaVersion: 1,
+            subject: "first-error-latch-request", ...owned,
+            availability: latched && (owned.ownership === "exact-phase-member" || owned.ownership === "unassociated") ? "informative" : "unavailable",
+            emission: "attempt-finalization" });
+          if (Buffer.byteLength(json, "utf8") <= 512) console.info("[scheduling-fatal-phase-identity] " + json);
+        } catch { /* Missing output is unavailable, with no retry or failure replacement. */ }
+      },
+    };
+  })();
   const recordFailure = (error: unknown, request: import("@playwright/test").Request | null = null,
     source: "requestfailed-event" | "capture-rejection" | "no-request-at-latch" = "no-request-at-latch") => {
     if (shutdownStarted || hasFailure) return;
@@ -1058,6 +1097,7 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
           value: { request: owned ? request : null, source: owned ? source : "no-request-at-latch", closed: false } });
       }
     } catch { /* Preserve original arbitration even if optional identity retention is unavailable. */ }
+    try { fatalPhaseIdentity.capture(source === "requestfailed-event" || source === "capture-rejection" ? request : null); } catch { /* Preserve the same original firstError and notify order. */ }
     notifyFailure();
   };
   let responseDelivery: ReturnType<typeof createRoleResponseDelivery> | undefined;
@@ -1322,6 +1362,7 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
     const finish = () => {
       if (!enabled) return;
       enabled = false;
+      try { fatalPhaseIdentity.finish(); } catch { /* Optional phase facts cannot block existing finalization. */ }
       let relation: TargetAssociationRecord["targetRelation"] = selected ? "target-unavailable" : "no-failed-request";
       let availability: TargetAssociationRecord["availability"] = "unavailable";
       try {
@@ -1626,7 +1667,7 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
     } finally { acceptSession = false; if (!transferredSession) void attaching.then(detachUntransferred).catch(() => recordFailure(responseSetupFailure)); }
     const mountedDate = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Stockholm", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
     responseDelivery!.arm(mountedDate);
-    rolePhase = h.beginRoleReadPhase(captureOrigin, mountedDate);
+    rolePhase = h.beginRoleReadPhase(captureOrigin, mountedDate); rolePhaseName = "initial";
     await test.step("Role initial required flow", async () => {
       const targetResponse = await test.step("Role initial controlled navigation", async () => {
         const response = await navigateAfterBarrier(() => {
@@ -1653,7 +1694,7 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
     rolePhase.close(); rolePhase = undefined;
     await guardedStage(() => roleEvaluate("arm")); guardProgress();
     responseDelivery!.arm(DATE);
-    rolePhase = h.beginRoleReadPhase(captureOrigin, DATE);
+    rolePhase = h.beginRoleReadPhase(captureOrigin, DATE); rolePhaseName = "date";
     lifecycle.mark(page, "date-fill", "enter");
     await navigateAfterBarrier(() => page.getByLabel("Datum", { exact: true }).fill(DATE)); guardProgress(); await guardedSettle(); guardProgress(); await drain(); guardProgress();
     await qualifyRolePhase(); guardProgress();

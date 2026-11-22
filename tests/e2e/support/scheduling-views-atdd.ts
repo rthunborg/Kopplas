@@ -226,6 +226,12 @@ export class SchedulingViewsHarness {
         if (!phase.active || phase.failed || phase.requests.size < 1 || phase.requests.size > 2) throw new Error("Required scheduling read qualification unavailable.");
         return [...phase.requests];
       },
+      // Read-only exact-object witness at the existing fatal latch; never admits or retains another Request.
+      identify: (request: import("@playwright/test").Request): "owned" | "unassociated" | "closed" | "unavailable" => {
+        if (!phase.active) return "closed";
+        if (this.roleReadPhase !== phase || phase.failed || phase.requests.size > 2) return "unavailable";
+        return phase.requests.has(request) ? "owned" : "unassociated";
+      },
       close: () => { phase.active = false; phase.requests.clear(); if (this.roleReadPhase === phase) this.roleReadPhase = undefined; },
     };
   }
