@@ -186,6 +186,7 @@ export function useEditorOperation<S extends EditorActionState>(
   action: (previous: S, form: FormData) => Promise<S>, initial: S, formKey: string,
   expected: (form: FormData) => Record<string, unknown>,
 ) {
+  const router = useRouter();
   const [scope, setScope] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [recoverable, setRecoverable] = useState(false);
@@ -219,7 +220,7 @@ export function useEditorOperation<S extends EditorActionState>(
         if (saved) setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen.");
       } catch { setNotice("Sessionslagring krävs för att bevara åtgärdens identitet."); }
     });
-    return () => { active = false; };
+    return () => { active = false; if (currentKey.current === key) currentKey.current = null; };
   }, [key, scope, formKey]);
   function clearOperation() { originalRevision.current = null; handle.current = null; original.current = null; replayContext.current = null; setHasOriginalRequest(false); setRecoverable(false); setChecked(false); if (key) { try { sessionStorage.removeItem(key); } catch { /* A stale handle remains safely reconcilable. */ } } }
   function confirmMatchingDraft(submittedRevision: number | null) {
@@ -282,14 +283,21 @@ export function useEditorOperation<S extends EditorActionState>(
       return handle.current ? { ...previous, status: "unknown", operationId, targetId: null } : { ...previous, status: "idle", targetId: null };
     } finally { busy.current = false; submitting.current = false; }
   }, initial as Awaited<S>);
-  async function reconcile() { if(!handle.current || busy.current) return; busy.current = true; setRecoveryPending(true);
-    try { const proof = await reconcileCalculationEditorOperationAction(handle.current); setChecked(true);
+  async function reconcile() { if(!key || !handle.current || busy.current) return;
+    const reconciledKey = key, operationId = handle.current;
+    busy.current = true; setRecoveryPending(true);
+    try { const proof = await reconcileCalculationEditorOperationAction(operationId);
+      if (currentKey.current !== reconciledKey || handle.current !== operationId) return;
+      setChecked(true);
       if(proof.status === "unconfirmed") { setNotice(original.current ? "Resultatet är fortfarande obekräftat. Du kan försöka samma ursprungliga åtgärd igen." : replayContext.current ? "Resultatet är fortfarande obekräftat. Ange samma ursprungliga uppgifter och välj Spara för att kontrollera underlaget före samma åtgärd." : "Resultatet är fortfarande obekräftat. Det ursprungliga underlaget finns inte kvar i fliken."); return; }
       if (proof.status === "committed" && proof.targetAvailable !== false && proof.targetId) {
         setResultLink(proof.quoteId ? `/quotes/${proof.quoteId}/versions/${proof.targetId}` : formKey === "new/calculation" ? `/calculations/${proof.targetId}` : null);
       }
       setNotice(proof.status === "committed" ? "Den ursprungliga åtgärden är bekräftad. Kontrollera aktuella uppgifter före nya ändringar." : "Åtgärden avvisades. Uppdatera underlaget före en ny åtgärd."); if (proof.status === "committed") confirmMatchingDraft(originalRevision.current); clearOperation();
-    } catch { setNotice("Resultatet kunde inte kontrolleras. Försök kontrollera igen."); } finally { busy.current = false; setRecoveryPending(false); }
+      // A read-only receipt carries no refreshed server projection. Preserve
+      // later drafts and their expected facts while rereading committed data.
+      if (proof.status === "committed") router.refresh();
+    } catch { if (currentKey.current === reconciledKey && handle.current === operationId) setNotice("Resultatet kunde inte kontrolleras. Försök kontrollera igen."); } finally { busy.current = false; setRecoveryPending(false); }
   }
   async function retry() { if(!checked || !original.current || busy.current) return; busy.current = true; setRecoveryPending(true);
     try { const next = await action(initial, original.current);
