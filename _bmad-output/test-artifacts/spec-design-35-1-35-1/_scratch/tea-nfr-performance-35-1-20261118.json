@@ -1,0 +1,61 @@
+{
+  "domain": "performance",
+  "risk_level": "NONE",
+  "findings": [
+    {
+      "category": "Response times",
+      "status": "N/A",
+      "description": "No owned runtime/code/dependency behavior changed; actual implementation obligations remain with existing owners.",
+      "threshold": "N/A",
+      "evidence": [
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\test-artifacts\\test-design-spec-design-35-1.md",
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md",
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\existing-evidence.md"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Throughput",
+      "status": "N/A",
+      "description": "No owned runtime/code/dependency behavior changed; actual implementation obligations remain with existing owners.",
+      "threshold": "N/A",
+      "evidence": [
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\test-artifacts\\test-design-spec-design-35-1.md",
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md",
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\existing-evidence.md"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Resource usage",
+      "status": "N/A",
+      "description": "No owned runtime/code/dependency behavior changed; actual implementation obligations remain with existing owners.",
+      "threshold": "N/A",
+      "evidence": [
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\test-artifacts\\test-design-spec-design-35-1.md",
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md",
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\existing-evidence.md"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Optimization",
+      "status": "N/A",
+      "description": "No owned runtime/code/dependency behavior changed; actual implementation obligations remain with existing owners.",
+      "threshold": "N/A",
+      "evidence": [
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\test-artifacts\\test-design-spec-design-35-1.md",
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md",
+        "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\existing-evidence.md"
+      ],
+      "recommendations": []
+    }
+  ],
+  "compliance": {},
+  "priority_actions": [],
+  "summary": "N/A to owned documentary change; no runtime guarantee asserted.",
+  "source_sha": "f233a7f2d4815d3190649f0010b9fcc956308719",
+  "execution_mode": "sequential",
+  "evidence_kind": "documentary_scope_audit",
+  "advisory": true
+}
