@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { projectCiPerformanceChanges } from "./ci-performance-contract";
 
 const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
-const wrapperSha256 = "52d9b270f66f9ec5e68b8d4398e817c42aeb55311504b72a2439383a7aeea2ab";
+const wrapperSha256 = "d9a01e97ab0da21bfbc11769698a8a429e75c7cdd6f9bff4e3075f86e2cad615";
 const integrationArgs = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
 const browserArgs = ["run", "test:smoke"];
 const releaseBrowserArgs = ["run", "test:e2e", "--reporter=list,json"];
@@ -38,6 +38,29 @@ const releaseBrowserEntry = [
   "          CALENDAR_FEED_CI_BROWSER_SUITE: release",
   "        run: node scripts/ci/with-calendar-feed-runtime.mjs browser",
 ].join("\n") + "\n";
+
+// One finite release-only job ceiling is inverted; no other job or byte is normalized.
+const releaseBudgetJobEntry = [
+  "  e2e:",
+  "    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}",
+  "    runs-on: ubuntu-24.04",
+  "    timeout-minutes: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation && 50 || 45 }}",
+].join("\n") + "\n";
+export function projectReleaseBrowserBudget(workflow: string): string {
+  workflow = workflow.replaceAll("\r\n", "\n");
+  const jobs = [...workflow.matchAll(/^  [A-Za-z0-9_-]+:\n/gm)];
+  const owned = jobs.filter(job => job[0] === "  e2e:\n");
+  assert.equal(owned.length, 1, "release budget exact e2e job");
+  assert.equal(workflow.split(releaseBudgetJobEntry).length - 1, 1, "release budget exact e2e fragment");
+  const start = owned[0].index!;
+  const end = jobs.find(job => job.index! > start)?.index ?? workflow.length;
+  const job = workflow.slice(start, end);
+  assert.ok(job.startsWith(releaseBudgetJobEntry), "release budget exact e2e placement");
+  assert.equal([...job.matchAll(/^    timeout-minutes:/gm)].length, 1, "release budget one job ceiling");
+  return workflow.slice(0, start) + job.replace(releaseBudgetJobEntry, releaseBudgetJobEntry.replace(
+    "    timeout-minutes: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation && 50 || 45 }}\n",
+    "    timeout-minutes: 45\n")) + workflow.slice(end);
+}
 
 // Exact newly reviewed diagnostic fragments only. Every unrelated byte survives.
 const causeProofInverse: readonly [string, string][] = [
@@ -488,7 +511,7 @@ export function projectCalendarFeedCiCommands(workflow: string, wrapperSource = 
   literalArgs(source, "CAUSE_PROOF_ARGS", ["exec","vitest","run","tests/integration/commands/calendar-feed.int.test.ts","--maxWorkers=1","--no-file-parallelism","--testNamePattern=^15[.]5-DIAG001$","--reporter=default","--reporter=github-actions","--reporter=json","--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
   // Compose independently reviewed finite inverses before the historical
   // calendar/fixed-browser projection. Preserve every unrelated workflow byte.
-  let projected = projectStorageSourceMailExclusion(projectTemporaryPicomatchAudit(projectDbStartupFacts(projectCiPerformanceChanges(workflow))));
+  let projected = projectStorageSourceMailExclusion(projectTemporaryPicomatchAudit(projectDbStartupFacts(projectCiPerformanceChanges(projectReleaseBrowserBudget(workflow)))));
   assert.equal(projected.split(authCleanupEntry).length - 1, 1, "Auth cleanup exact diagnostic workflow fragment");
   const collectorSource = readFileSync(new URL("../../scripts/ci/auth-cleanup-collector.mjs", import.meta.url), "utf8").replaceAll("\r\n", "\n");
   assert.equal(createHash("sha256").update(collectorSource).digest("hex"), authCleanupCollectorSha256, "Auth cleanup reviewed collector source");

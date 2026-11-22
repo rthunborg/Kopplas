@@ -311,11 +311,11 @@ test.describe("Story 15.2 essential connected series smoke — RED", () => {
     const s = await h.seed("clean");
     await signIn(page, s);
     const before = await h.snapshot();
-    const loss = await h.loseNextCommittedSaveResponseOnce();
     await scheduling(page);
     await page.getByTestId("scheduling-new-booking").click();
     await draft(page, s, 8);
     await ready(page, 8);
+    const loss = await h.loseNextCommittedSaveResponseOnce();
     await editor(page).getByTestId("booking-save").click();
     const attempt = await loss.committed;
     await expect(editor(page).getByTestId("booking-unresolved-save")).toBeVisible();

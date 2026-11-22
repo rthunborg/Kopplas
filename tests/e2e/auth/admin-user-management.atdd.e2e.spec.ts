@@ -25,14 +25,14 @@ async function waitForHydrated(locator: Locator): Promise<void> {
   }));
 }
 
-async function logIn(page: Page, credentials: RoleFixture): Promise<void> {
+async function logIn(page: Page, credentials: RoleFixture, landing: "/dashboard" | "/my-day" | "/" = "/dashboard"): Promise<void> {
   await page.goto("/login");
   const submit = page.getByRole("button", { name: "Logga in" });
   await waitForHydrated(submit);
   await page.getByLabel("E-post").fill(credentials.email);
   await page.getByLabel("Lösenord").fill(credentials.password);
   await submit.click();
-  await expect(page).toHaveURL(/\/dashboard$/);
+  await expect(page).toHaveURL(landing);
 }
 
 test.describe("Story 11.3 administrativ användarhantering", () => {
@@ -50,7 +50,7 @@ test.describe("Story 11.3 administrativ användarhantering", () => {
 
   test("[P1] Non-Admin receives neither Users navigation nor the Admin users direct route", async ({ page }) => {
     const fixture = getFixture();
-    await logIn(page, fixture.adminUserManagement.nonAdmin);
+    await logIn(page, fixture.adminUserManagement.nonAdmin, "/my-day");
     await page.goto("/admin/users");
     await expect(page.getByRole("heading", { name: "Ingen åtkomst" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Användare & roller" })).toHaveCount(0);
@@ -85,7 +85,7 @@ test.describe("Story 11.3 administrativ användarhantering", () => {
 
   test("[P0] authenticated acceptance shows confirmation only after the database result", async ({ page }) => {
     const fixture = getFixture();
-    await logIn(page, fixture.adminUserManagement.invitationAcceptance.user);
+    await logIn(page, fixture.adminUserManagement.invitationAcceptance.user, "/");
     const { membershipId, attemptToken } = fixture.adminUserManagement.invitationAcceptance;
     await page.goto(`/invite/accept?membershipId=${membershipId}&attempt=${attemptToken}`);
     await page.getByRole("button", { name: "Aktivera åtkomst" }).click();

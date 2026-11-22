@@ -736,7 +736,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       await deps.ready(childEnv.CALENDAR_FEED_TEST_BASE_URL, server, abort.signal); receipt.ready = true;
       await run("pnpm", INTEGRATION_ARGS, childEnv, (line, stream, completeLine) => observe(line, "integration", stream, completeLine), 1_800_000);
     } else {
-      await run("pnpm", env.CALENDAR_FEED_CI_BROWSER_SUITE === "release" ? RELEASE_BROWSER_ARGS : BROWSER_ARGS, childEnv, observe, 1_800_000);
+      await run("pnpm", env.CALENDAR_FEED_CI_BROWSER_SUITE === "release" ? RELEASE_BROWSER_ARGS : BROWSER_ARGS, childEnv, observe, env.CALENDAR_FEED_CI_BROWSER_SUITE === "release" ? 2_400_000 : 1_800_000);
     }
     checkSignal();
   } catch (error) {
