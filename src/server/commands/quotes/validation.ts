@@ -1,3 +1,4 @@
+import { validateEditorSafety, type EditorSafetyInput } from "@/features/calculations/editor-operation";
 /**
  * PURE quote command input validators (Story 6.1, Task 3.2; architecture §5 step 4).
  *
@@ -90,7 +91,7 @@ export function validateCreateQuoteVersionFromCalculation(
 export type CreateReviewedQuoteVersionInput = Omit<
   CreateQuoteVersionInput,
   "reviewed_snapshot_digest" | "reviewed_quote_capture_date"
-> & {
+> & EditorSafetyInput & {
   readonly reviewed_snapshot_digest: string;
   readonly reviewed_quote_capture_date: string;
 };
@@ -98,6 +99,8 @@ export type CreateReviewedQuoteVersionInput = Omit<
 export function validateCreateReviewedQuoteVersionFromCalculation(
   raw: unknown,
 ): ValidationResult<CreateReviewedQuoteVersionInput> {
+  const safety = validateEditorSafety(raw, "quote.version.create");
+  if (!safety) return fail;
   const validated = validateCreateQuoteVersionFromCalculation(raw);
   if (
     !validated.ok ||
@@ -110,6 +113,7 @@ export function validateCreateReviewedQuoteVersionFromCalculation(
     ok: true,
     data: {
       ...validated.data,
+      ...safety,
       reviewed_snapshot_digest: validated.data.reviewed_snapshot_digest,
       reviewed_quote_capture_date: validated.data.reviewed_quote_capture_date,
     },

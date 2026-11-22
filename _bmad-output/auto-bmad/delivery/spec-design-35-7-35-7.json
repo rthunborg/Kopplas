@@ -1,0 +1,65 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "The approved Story 35.7 overlay and its frozen AC1–AC7, fifteen state identities and Applies/Inherited/N/A distinctions remain intact. The approved source base was f225e3e27c67ce5af2fc81156610e87c8c6ebd90. The separate 35.7-P producer was qualified by PR #126 and exact-main run 42647750664. PR #147 merged its exact accepted candidate 9e2c412dd30a03f9ab7fb8690ab41d06bb30da5f as 8c85e054613304e06c05aa268a238299d36b5d47 with identical product tree. Earlier post-merge browser runs 42815222678 and 42817980458 did not meet the required first-attempt criterion. The bounded four-file pricing correction in PR #148 merged separately and has identical tree to its exact accepted candidate 3d7d2b3672995b63e2a34170ffeece6f12d27922. The new merged main 91635d3ddfc130df12d299a5743280dcbf5817f5 passed ordinary push CI 42829233035. The October 26 frontend development gate was satisfied by revision-bound owner acceptance for both candidates. The October 19 policy leaves the wider manual and device matrix and Phase B consolidation deferred. Schema-2 verification and native finalization were recorded at 91635d3d; historical PR #147 remains the story publication. The later process checkout base a53c30a2113666d061ba84bc6a1e0e16d9ac6bfe includes a separate CRM harness and smoke-list change. Product evidence below remains bound to 91635d3d. This record is submitted for the guarded delivery check. Phase 8 trace and any story status transition are separate.",
+  "evidence_revision": "91635d3ddfc130df12d299a5743280dcbf5817f5",
+  "development_checks": [
+    {
+      "name": "Static checks and unit integrity",
+      "status": "passed",
+      "evidence": "Ordinary main push CI 42829233035 attempt 1, checkpoint-admission job 129874576298 and verify job 129874646831. Hosted Verify ran pnpm install --frozen-lockfile, pnpm run verify:lockfiles, pnpm audit --audit-level=high, pnpm run verify:service-role-containment, pnpm typecheck, pnpm lint, pnpm run test:unit, pnpm run test:bmad-focused and pnpm run test:auto-bmad-focused. Unit terminal output reports 3,910 passed, zero failed, cancelled or skipped."
+    },
+    {
+      "name": "Production build and bundle containment",
+      "status": "passed",
+      "evidence": "Verify job 129874646831 on exact 91635d3d passed node scripts/ci/timed-build.mjs and pnpm run verify:bundle-containment. The schema-2 verify:development entry projects nine executed checks from the ordinary hosted steps. Its gh run view --job --log command inspected the actual logs. The interrupted earlier local wrapper receives no execution credit."
+    },
+    {
+      "name": "Required database integration and RLS",
+      "status": "passed",
+      "evidence": "Exact main CI DB job 129877818054 ran node scripts/ci/with-calendar-feed-runtime.mjs db with SUPABASE_TEST_REQUIRED=1. Native full-integration.json SHA-256 d8f485475231164b62c25e90e94c0a398f7bc63910e7f289a35f9a16a31327a1 records 2,253 passed, zero failed and 52 explicitly pending across 557 suites. Pending cases contribute no coverage. The six settings/pricing suites account for 138 passes with zero failures or skips: pricing commands 17, settings commands 14, settings/pricing operation contract 75, pricing migration/reset 10, operation-contract RLS 7 and settings RLS 15. These executed checks cover checked authority, tenant isolation, persisted integer amounts, locked revisions, exact replay and mutation/audit/receipt integrity."
+    },
+    {
+      "name": "Configured production browser and bounded transaction recovery",
+      "status": "passed",
+      "evidence": "Exact main CI e2e job 129877817713 ran node scripts/ci/with-calendar-feed-runtime.mjs browser against the configured production server. Native general-browser.json SHA-256 bf87c277e4ae2c3a5a61d6cf48f109ddc4fefcdb2c2535882b8370a6a3ae3918 records 116 first-attempt passes, zero failed, skipped or flaky. The relevant desktop and connected 360×640 flows exercise company VAT persistence and saved/approved terms; manual pricing identities, stored öre and invalid input; protected link, Back/Forward and pending navigation; explicit stale-draft adoption; and distinct failed, unknown, revoked and confirmed states. The narrow #148 checks bind exact input, a matching POST, the authorized stored row and receipt, and one rendered rate. The P-E5 bounded-method-journal.jsonl SHA-256 e61d16873798a4c75eb2f933a8be6f3141e72974f5916c5bf2cce796bd0fbac0 ends all-effects-and-restoration-verified after four verified restores and one authorized deletion of a test-owned row. The run used isolated synthetic tenants. Chromium keyboard/focus and reduced-height assertions do not establish actual device or assistive-technology behavior."
+    },
+    {
+      "name": "Isolated recovery Storage integrity",
+      "status": "passed",
+      "evidence": "Exact main recovery-storage-loader job 129877817645 ran the direct physical-loader proof with ISOLATED_RECOVERY_STORAGE_PROOF=1. The native isolated-storage-recovery.json SHA-256 dd119360b2e0e12857e233fdaf604d904680bf9b9dd20c920854cba72e3011c2 records one pass, zero failed or pending. The proof serves loader-materialized bytes without changing logical rows and rejects generic and quote-PDF overwrite attempts."
+    },
+    {
+      "name": "Exact candidate frontend visual acceptance",
+      "status": "passed",
+      "evidence": "PR #147 owner comment 6765978222 accepts exact 9e2c412d and evidence digest 18e7b1654cc009fd2a6c296624b46c453e738fcf4af116c1ed9f3f9be4285e60. The accepted package has 78 actual production captures, 39 each at 360×640 and 1440×900, across the hub, company, terms and manual pricing. Controller run 42810371142 and check 129810065057 retained owner-manual acceptance. PR #148 owner comment 6768991121 separately accepts exact 3d7d2b36 and pricing digest d1a8275ffd6992b70a1bb0199fd47cdca5b84fba2561bfd47d97a5c8a949eb69, with 40 affected-surface captures and exact trusted controller run 42828298472 and check 129871389872. The accepted #148 tree 59a668ee25679ab9f88540d31c5f18a48d7d24bf equals the new main tree. Development captures cover the bounded affected surfaces. The wider manual/device checks stay open."
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "evidence": "The 35.7 product review trail records the three original Sol High rounds and the targeted final presentation, authorization and diagnostic carry-forward on exact PR #147 head 9e2c412d. Independent /root/settings_presentation_worker/phase6_acceptance_review checked that candidate and its scoped exact CI evidence. PR #148 had a distinct independent Sol High source review and targeted follow-ups for the four changed files, with separate pricing image comparison and owner acceptance. The exact combined 91635 evidence records /root/pricing_verifygap, gpt-6.1-sol High, approved with no unresolved findings. The combined evidence SHA-256 is c095c439d8416a862aeebfb2a75de350eb69bf3b1b3082fbada564cd1e85b4f4. The configured external CLI review exited before reading the diff and supplies no review evidence. This delivery refresh relies on those recorded reviews."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "E35-7-REL-1 | wider device and composite visual validation",
+      "owner": "UI owner (named human pending)",
+      "status": "deferred",
+      "evidence": "Exact owner-manual acceptance covers the selected production-build desktop and 360×640 states. Wider physical device coverage and composite contrast and reflow remain outstanding.",
+      "next_action": "Assign the named UI owner in the deferred-work ledger, pin the release candidate and record wider device, composite contrast and reflow findings."
+    },
+    {
+      "item": "E35-7-REL-2 | manual accessibility and field-device walkthrough",
+      "owner": "QA/accessibility owner (named human pending)",
+      "status": "deferred",
+      "evidence": "Chromium exercises the bounded keyboard and focus flow and reduced layout height. Manual keyboard, actual virtual keyboard, screen reader and daylight behavior on devices remain outstanding.",
+      "next_action": "Assign the named QA/accessibility owner, run the manual journeys on the pinned release candidate with actual devices and assistive technology, and file results and follow-up findings."
+    },
+    {
+      "item": "E35-7-REL-3 | Phase B release consolidation",
+      "owner": "Coordinator (named human pending)",
+      "status": "deferred",
+      "evidence": "The Phase B release validation and stabilization checkpoint remains separate. E16's 14-item release evidence and E20 caveats remain open to that consolidation.",
+      "next_action": "Consolidate REL-1 and REL-2 and the outstanding E16 and E20 caveats at the Phase B release checkpoint, then seek separate release approval once its gates pass."
+    }
+  ],
+  "release_ready": false
+}

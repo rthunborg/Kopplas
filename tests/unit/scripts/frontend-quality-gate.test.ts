@@ -60,6 +60,112 @@ function fixture() {
   return { input, evidence, policy, blobs, submit, establish, independent };
 }
 
+// Unit-only boundary data, never application screenshots or human acceptance.
+function captureBudgetFixture() {
+  const f = fixture();
+  const published = new Map<string, string>();
+  const checkedPublications = new Map<string, string>();
+  const checkedImages = new Set<string>();
+  const image = (viewport: {width: number; height: number}, color: number) => {
+    const bytes = png(viewport.width, viewport.height, color);
+    const gitBlob = createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex");
+    f.blobs.set(gitBlob, bytes);
+    return {gitBlob, sha256: hash(bytes)};
+  };
+  const capture = (surface: string, state: string, viewport: {width: number; height: number}, id: string, index: number) => ({
+    id, surface, state, viewport, fullViewport: true,
+    actual: image(viewport, index + 1), reference: image(viewport, index + 129),
+  });
+  const template = structuredClone(f.evidence.surfaces[0]);
+  f.evidence.surfaces.splice(0); f.evidence.captures.splice(0);
+  for (let surface = 0; surface < 11; surface++) {
+    const entry = {...structuredClone(template), id: `b${surface}`, component: `Boundary component ${surface}`, route: `/boundary/${surface}`, referenceId: `boundary-${surface}`};
+    for (const state of ["loading", "error", "empty"]) Reflect.deleteProperty(entry.notApplicable, state);
+    f.evidence.surfaces.push(entry);
+    for (const state of ["finished", "loading", "error", "empty"]) {
+      for (const [name, viewport] of [["phone", {width: 360, height: 640}], ["desktop", {width: 1280, height: 720}]] as const) {
+        f.evidence.captures.push(capture(entry.id, state, viewport, `${entry.id}-${state}-${name}`, f.evidence.captures.length));
+      }
+    }
+  }
+  // Two named additional views on an already fully covered surface; no partial
+  // twelfth surface or new not-applicable declarations to reach the boundary.
+  for (const [name, viewport] of [["phone", {width: 360, height: 640}], ["desktop", {width: 1280, height: 720}]] as const) {
+    f.evidence.captures.push(capture("b0", "finished", viewport, `b0-finished-${name}-additional`, f.evidence.captures.length));
+  }
+  const loadBlob = f.input.loadBlob;
+  f.input.loadBlob = async (oid: string) => { checkedImages.add(oid); return loadBlob(oid); };
+  f.input.loadPublication = async (request: {path: string; commit?: string; ref?: string}) => {
+    assert.equal(request.commit, f.evidence.presentation.evidenceCommit);
+    assert.equal(request.ref, f.evidence.presentation.evidenceRef);
+    const oid = published.get(request.path);
+    assert.ok(oid, `Unexpected or missing retained publication ${request.path}`);
+    checkedPublications.set(request.path, oid);
+    return {retained: true, gitBlob: oid};
+  };
+  function submit() {
+    published.clear(); checkedPublications.clear(); checkedImages.clear();
+    for (const item of f.evidence.captures) {
+      const path = publicationPath(head, item);
+      assert.equal(published.has(path), false);
+      published.set(path, item.actual.gitBlob);
+    }
+    const input = f.submit(); // Recompute digest, rendered body and exact owner acceptance.
+    for (const comment of input.comments) assert.ok(Buffer.byteLength(comment.body, "utf8") <= 60000);
+    assert.equal(input.comments[1].body, `/visual-accept ${head} ${evidenceDigest(f.evidence)}`);
+    return input;
+  }
+  return {f, submit, published, checkedPublications, checkedImages,
+    extra: () => capture("b0", "finished", {width: 360, height: 640}, "b0-finished-phone-extra", 90)};
+}
+
+test("capture budget accepts 90 valid published images", async (context) => {
+  const b = captureBudgetFixture();
+  assert.equal(b.f.evidence.surfaces.length, 11);
+  assert.equal(b.f.evidence.captures.length, 90);
+  assert.equal(new Set(b.f.evidence.captures.map(c => c.id)).size, 90);
+  const result = await evaluateFrontend(b.submit()) as Awaited<ReturnType<typeof evaluateFrontend>> & {
+    presentation?: Awaited<ReturnType<typeof import("../../../scripts/quality/frontend-presentation.mjs").validatePresentation>>;
+  };
+  assert.equal(result.status, "accepted"); assert.equal(result.mode, "owner-manual");
+  assert.ok(result.presentation);
+  assert.equal(result.presentation.status, "published");
+  assert.deepEqual([...result.presentation.shownCaptures].sort(), b.f.evidence.captures.map(c => c.id).sort());
+  assert.equal(b.checkedPublications.size, 90);
+  assert.deepEqual([...b.checkedPublications].sort(), [...b.published].sort());
+  assert.equal(b.checkedImages.size, 180);
+  assert.deepEqual([...b.checkedImages].sort(), b.f.evidence.captures.flatMap(c => [c.actual.gitBlob, c.reference.gitBlob]).sort());
+  context.diagnostic(`Unit fixture 90-capture package: ${Buffer.byteLength(b.f.input.comments[0].body, "utf8")} bytes; all90 retained publications and180 image inputs checked.`);
+});
+
+test("capture budget rejects 91 otherwise valid images at count bound", async (context) => {
+  const b = captureBudgetFixture();
+  const original = b.f.evidence.captures[0];
+  // Prove the new image's complete surface/state/viewport/publication/auth data
+  // is otherwise acceptable at90, rather than relying on an invalid91th input.
+  b.f.evidence.captures[0] = b.extra();
+  assert.equal((await evaluateFrontend(b.submit())).status, "accepted");
+  assert.equal(b.checkedPublications.size, 90);
+  const previousDigest = evidenceDigest(b.f.evidence);
+  b.f.evidence.captures.push(original);
+  assert.equal(b.f.evidence.captures.length, 91);
+  assert.equal(new Set(b.f.evidence.captures.map(c => c.id)).size, 91);
+  const input = b.submit();
+  assert.notEqual(evidenceDigest(b.f.evidence), previousDigest);
+  assert.equal(b.published.size, 91);
+  for (const item of b.f.evidence.captures) for (const image of [item.actual, item.reference]) {
+    const bytes = b.f.blobs.get(image.gitBlob)!;
+    assert.deepEqual(inspectPng(bytes), item.viewport);
+    assert.equal(hash(bytes), image.sha256);
+    assert.equal(createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex"), image.gitBlob);
+  }
+  await assert.rejects(evaluateFrontend(input), {message: "Missing or duplicated actual/reference captures."});
+  // Count rejection precedes image/publication loading; identity/auth/presentation
+  // were rebuilt for91 and both comments remain below the independent60KB bound.
+  assert.equal(b.checkedImages.size, 0); assert.equal(b.checkedPublications.size, 0);
+  context.diagnostic(`Unit fixture 91-capture package: ${Buffer.byteLength(input.comments[0].body, "utf8")} bytes; rejected at capture-count predicate.`);
+});
+
 test("docs/backend tooling gets explicit N/A from complete path inventory", async () => {
   const f = fixture(); f.input.files = ["docs/process/example.md", "scripts/tool.mjs"];
   const result = await evaluateFrontend(f.input); assert.equal(result.status, "not-applicable"); assert.match(result.reason!, /No frontend/);

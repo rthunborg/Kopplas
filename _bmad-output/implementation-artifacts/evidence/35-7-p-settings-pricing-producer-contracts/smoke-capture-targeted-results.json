@@ -1,0 +1,60 @@
+{
+  "task": "35.7-P",
+  "kind": "targeted implemented approved smoke and nonprivileged capture confirmation",
+  "base_head": "deb14ba0f9250c4e02f6d43011acc79ab475f613",
+  "source_inventory_sha256": "c9538e142264aa5ec7d12b570af4783128e9ebb1a0959ed7d8d7b1d1cf4444bd",
+  "diff_sha256": "6d1f1d5924ecaf40785e9e1c6785268ab0f81c5bd84ad797bb58d576c7425e4d",
+  "verdict": "FIX_CONFIRMED",
+  "findings": [],
+  "broad_review_rounds_completed": 1,
+  "layers": [
+    {
+      "reviewer": "/root/producer_build/review_r1_edges",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "verdict": "FIX_CONFIRMED",
+      "scope": "Two E2E nonprivileged capture and wait changes",
+      "basis": [
+        "All48rawpins/fullfixdiffSHA match.",
+        "Loading captures wait actual disabled Sparar and form before transport release.",
+        "Recovery/refresh barriers observe real requests, release+settle finally, unregister exacthandler.",
+        "Finished requires active restoredrow, archivedabsence and currentconfirmedtext.",
+        "VATerror/phone retaineddraft+price/approvalguard/restorecontrols explicitanchors/visibilityasserts.",
+        "All135previousliteralexpects/23cases6producer/120stimeouts/fourneighboroverviews retained."
+      ],
+      "limits": "Readonlysourceconfirmation; no tests/runtime/images.74definitions not future-image/provider/visualgate/completionPASS."
+    },
+    {
+      "reviewer": "/root/producer_build/review_r1_verification",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "verdict": "FIX_CONFIRMED",
+      "scope": "Exact implemented human-approved package/scope/evidence delta",
+      "basis": [
+        "Packageexactapprovedaftervalue/rawSHA1d5892751389476587a49d1a2bec486ce0bb692d35186a087eb72fcd1cfc5472;12orderedoldfiles/reporter retained2approvedappended.",
+        "All48source/package and9canonicalpins zero mismatches; production27/45of47oldsourceunchanged.",
+        "Complete436linediff examined; oldassertionsstillinexercisedflows, no swallowedfailure/skip from barriers/finally.135oldliteralexpects178current.",
+        "Onlypackage+2allocatedE2Es+ownmetadata; noDCL/deletion/prodauthority/helper/config/dependency/workflowchange.",
+        "Historicaldeb14runtime distinctfromunexecuteddelta;23/6source registrations74definitions0newruntime/PNG; heldgapsexplicit."
+      ],
+      "limits": "No writes/tests/resources/CIpoll; final-head CI/images/authenticatedvisualacceptance unearned."
+    }
+  ],
+  "actual_human_package_approval": "smoke-line-owner-approval.json; actual Root async reply 'Approve the one-line addition' bound to exact pinned privateproposal",
+  "held_methods": "All DCL faults and new physical business-target deletion HOLD pending explicit human method admission. Package approval does not grant either; no fault implementation present.",
+  "remaining_gaps": [
+    "read-unavailable/currentunavailable",
+    "currentmissing",
+    "historicalcurrentnewer"
+  ],
+  "runtime_credit_new_batch": 0,
+  "planned_PNGs": 74,
+  "source_registrations": 23,
+  "producer_registrations": 6,
+  "production27_unchanged": true,
+  "canonical9_unchanged": true,
+  "Step5_done": false,
+  "development_complete": false,
+  "release_ready": false,
+  "provenance": "Actual completed same-context independent SolHigh final results; no fabricated message IDs or acceptance. Reviewer outputs retained faithfully in summary; no trusted-provider visual review."
+}

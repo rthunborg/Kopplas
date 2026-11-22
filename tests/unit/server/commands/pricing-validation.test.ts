@@ -46,7 +46,8 @@ type ValidationResult =
   | { ok: true; data: Record<string, unknown> }
   | { ok: false; code: string };
 
-const mod = validation as unknown as PricingValidation;
+const protocolFixture=(raw:unknown)=>raw && typeof raw==="object"?{operationId:"aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",targetId:typeof (raw as {id?:unknown}).id==="string"?(raw as {id:string}).id:"bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",expectedRevision:(raw as {id?:unknown}).id?"cccccccc-cccc-4ccc-8ccc-cccccccccccc":null,...raw}:raw;
+const mod:PricingValidation={isOreAmount:validation.isOreAmount,validateUpsertWorkRole:raw=>validation.validateUpsertWorkRole(protocolFixture(raw)) as ValidationResult,validateUpsertArticle:raw=>validation.validateUpsertArticle(protocolFixture(raw)) as ValidationResult,validateArchive:raw=>validation.validateArchive(protocolFixture(raw)) as ValidationResult};
 
 /** Register `body` with the (now real) pricing validation module. */
 function pending(name: string, body: (m: PricingValidation) => void): void {
@@ -316,5 +317,5 @@ pending("archive: the validated value carries ONLY the id (no smuggled fields su
     tenant_id: "99999999-9999-4999-8999-999999999999",
   });
   assert.equal(r.ok, true);
-  if (r.ok) assert.deepEqual(Object.keys(r.data), ["id"]);
+  if (r.ok) assert.deepEqual(Object.keys(r.data), ["operationId", "targetId", "expectedRevision", "id"]);
 });

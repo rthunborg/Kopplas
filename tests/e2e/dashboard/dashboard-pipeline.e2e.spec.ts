@@ -8,13 +8,33 @@
  * period/completion-clock coverage is in unit tests. No production fault switch.
  */
 import { test, expect } from "./guarded-test";
-import type { Locator, Page } from "@playwright/test";
+import type { Locator, Page, Request, TestInfo } from "@playwright/test";
 import { armReadPlan, releaseRead } from "./read-plan";
-import { readFileSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { adminQuery } from "../../factories/admin-sql";
 import { aggregateQuotePipeline, resolvePipelinePeriod, type PipelineEventRow } from "../../../src/server/read-models/quote-pipeline-aggregate";
 import { formatOreAsKronor } from "../../../src/lib/money";
+
+// Only the genuine RSC transport case suppresses capture; other cases retain lane/CLI options.
+const lateResultTest = test.extend({ trace: "off", video: "off", screenshot: "off" });
+
+
+/** Preserve full-page context and attach an explicitly whole-viewport original. */
+async function attachDashboardView(page: Page, testInfo: TestInfo, name: string, wholeViewportOnly = false) {
+  const viewport = page.viewportSize();
+  if (!viewport) throw new Error("Dashboard capture requires an explicit viewport");
+  if (wholeViewportOnly) {
+    await testInfo.attach(name, { body: await page.screenshot({ fullPage: false }), contentType: "image/png" });
+    return;
+  }
+  const context = await page.screenshot({ fullPage: true });
+  await testInfo.attach(name, { body: context, contentType: "image/png" });
+  // Reuse the original when its actual PNG dimensions already equal the viewport.
+  const whole = context.readUInt32BE(16) === viewport.width && context.readUInt32BE(20) === viewport.height
+    ? context : await page.screenshot({ fullPage: false });
+  await testInfo.attach(`${name}-whole-viewport-${viewport.width}x${viewport.height}`, { body: whole, contentType: "image/png" });
+}
 
 type User = { id: string; email: string; password: string };
 type Scenario = {
@@ -123,7 +143,7 @@ test.describe("19.1-E2E-001 current roles and live card set", () => {
   }
   for (const role of ["montor", "ekonomi"] as const) {
     // Contract: new eligibility contract; uses EXISTING per-run role fixtures.
-    test("[P0] " + role + " has no pipeline, skeleton, false totals or deep link [AC2]", async ({ page }) => {
+    test("[P0] " + role + " has no pipeline, skeleton, false totals or deep link [AC2]", async ({ page }, testInfo) => {
       const f = fixture();
       await login(page, role === "montor" ? f.roleAware.montor : f.notifications.finance, role === "montor" ? "/my-day" : "/dashboard");
       await expect(page).toHaveURL(/\/dashboard$/);
@@ -132,13 +152,22 @@ test.describe("19.1-E2E-001 current roles and live card set", () => {
       await expect(card(page)).toHaveCount(0);
       await expect(page.getByRole("link", { name: "Visa offerter", exact: true })).toHaveCount(0);
       await expect(page.getByText(/Kunde inte läsa offertpipeline|Inga offerthändelser under perioden/)).toHaveCount(0);
+      if (role === "ekonomi") {
+        for (const viewport of [{ name: "phone", width: 360, height: 640 }, { name: "desktop", width: 1280, height: 900 }]) {
+          await page.setViewportSize(viewport);
+          await expect(page.getByRole("heading", { name: "Dashboard", exact: true })).toBeVisible();
+          await expect(card(page)).toHaveCount(0);
+          await expect(page.getByRole("link", { name: "Visa offerter", exact: true })).toHaveCount(0);
+          await attachDashboardView(page, testInfo, `dashboard-denied-pipeline-${viewport.name}-whole-viewport-${viewport.width}x${viewport.height}`, true);
+        }
+      }
     });
   }
 });
 
 test.describe("19.1 actual source consistency and money delivery", () => {
   // Contract: card absent; pinned real source-history/clock fixture required.
-  test("[P1] 19.1-E2E-002 source counts, adjusted commitment, dates, rate and read time [AC3,9]", async ({ page }) => {
+  test("[P1] 19.1-E2E-002 source counts, adjusted commitment, dates, rate and read time [AC3,9]", async ({ page }, testInfo) => {
     const startedAt = Date.now();
     const data = scenario("source-history");
     const expected = await source(data);
@@ -162,6 +191,12 @@ test.describe("19.1 actual source consistency and money delivery", () => {
     expect(completed).toBeLessThanOrEqual(Date.now());
     await expect(pipeline.getByText(/^Hämtad /)).toBeVisible();
     await expect(pipeline.getByText(/realtid|senast ändrad/i)).toHaveCount(0);
+    // Capture the same verified source facts only after all existing functional assertions.
+    for (const viewport of [{ width: 360, height: 640 }, { width: 1440, height: 900 }]) {
+      await page.setViewportSize(viewport);
+      await pipeline.getByRole("heading", { name: "Offertpipeline", exact: true }).scrollIntoViewIfNeeded();
+      await attachDashboardView(page, testInfo, `dashboard-permitted-loaded-${viewport.width}`);
+    }
   });
   // Contract: dedicated actual accepted-value sentinel + seller fixture required.
   test("[P0] 19.1-E2E-003 seller amount absent in initial HTML, RSC, DOM/attributes [AC4]", async ({ page }) => {
@@ -282,7 +317,7 @@ test.describe("19.1 real server-failure recovery and current authority", () => {
   }
   for (const revoked of ["quote", "money"] as const) {
     // Contract: success→real failure→retry plan and unique membership fixture required.
-    test("[P0] 19.1-E2E-007 " + revoked + " revoked in same session before retry [AC7]", async ({ page }) => {
+    test("[P0] 19.1-E2E-007 " + revoked + " revoked in same session before retry [AC7]", async ({ page }, testInfo) => {
       const data = scenario("revoke-" + revoked);
       const memberships = await adminQuery<{ id: string; role: string }>(
         "select id,role from public.tenant_memberships where tenant_id=$1 and user_id=$2 and status='active'", [data.tenantId, data.user.id]);
@@ -318,6 +353,15 @@ test.describe("19.1 real server-failure recovery and current authority", () => {
           }
           expect(await page.content()).not.toContain(formatOreAsKronor(data.acceptedSentinelOre));
           await expect(page.getByRole("heading", { name: "Dashboard", exact: true })).toBeVisible();
+          if (revoked === "quote") {
+            for (const viewport of [{ name: "phone", width: 360, height: 640 }, { name: "desktop", width: 1280, height: 900 }]) {
+              await page.setViewportSize(viewport);
+              await expect(page.getByRole("heading", { name: "Dashboard", exact: true })).toBeVisible();
+              await expect(card(page)).toHaveCount(0);
+              await expect(page.getByRole("link", { name: "Visa offerter", exact: true })).toHaveCount(0);
+              await attachDashboardView(page, testInfo, `dashboard-quote-revoked-pipeline-${viewport.name}-whole-viewport-${viewport.width}x${viewport.height}`, true);
+            }
+          }
         } finally { await observed.close(); }
       } finally {
         await adminQuery("update public.tenant_memberships set role=$3 where tenant_id=$1 and id=$2", [data.tenantId, memberships[0].id, memberships[0].role]);
@@ -358,7 +402,8 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
     }
   }
   // Contract: new mask absent; only EXISTING seller credentials needed.
-  test("[P1] 19.1-E2E-009 keyboard reaches mask explanation and authorized quotes [AC9]", async ({ page }) => {
+  test("[P1] 19.1-E2E-009 keyboard reaches mask explanation and authorized quotes [AC9]", async ({ page }, testInfo) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
     await login(page, fixture().roleAware.saljare);
     const mask = card(page).getByRole("button", { name: "Dolt för din roll", exact: true });
     await hydrated(mask);
@@ -366,6 +411,7 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
     await expect(mask).toBeFocused();
     await page.keyboard.press("Enter");
     await expect(page.getByRole("tooltip", { name: "Din roll ser inte belopp", exact: true })).toBeVisible();
+    await attachDashboardView(page, testInfo, "dashboard-open-role-tooltip-desktop-whole-viewport-1280x900", true);
     await page.keyboard.press("Escape");
     await expect(page.getByRole("tooltip")).toHaveCount(0);
     const link = card(page).getByRole("link", { name: "Visa offerter", exact: true });
@@ -406,17 +452,19 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
     await expect(elsewhere).toBeFocused();
   });
   // Contract: new mask absent; clock controls gesture duration, not server read clock.
-  test("[P1] 19.1-E2E-009 mobile long press shows role explanation [AC4,9]", async ({ page }) => {
+  test("[P1] 19.1-E2E-009 mobile long press shows role explanation [AC4,9]", async ({ page }, testInfo) => {
     await page.setViewportSize({ width: 360, height: 640 });
     await login(page, fixture().roleAware.saljare);
     const mask = card(page).getByRole("button", { name: "Dolt för din roll", exact: true });
     await hydrated(mask);
     await page.clock.install();
+    await mask.scrollIntoViewIfNeeded();
     await mask.dispatchEvent("pointerdown", { pointerType: "touch", pointerId: 1, isPrimary: true, button: 0, buttons: 1 });
     await page.clock.fastForward(1000); // controlled user gesture timer, no sleep
     await mask.dispatchEvent("pointerup", { pointerType: "touch", pointerId: 1, isPrimary: true, button: 0, buttons: 0 });
     await expect(page.getByRole("tooltip", { name: "Din roll ser inte belopp", exact: true })).toBeVisible();
     await expect(card(page).getByText("Dold", { exact: true })).toBeVisible();
+    await attachDashboardView(page, testInfo, "dashboard-open-role-tooltip-phone");
   });
   for (const viewport of [
     { name: "mobile", width: 360, height: 640 },
@@ -458,6 +506,7 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
       await expect(notifications).toHaveCount(0);
       await expect(bell).toBeFocused();
       const profile = header.getByRole("button", { name: "Profil", exact: true });
+      await hydrated(profile);
       await profile.click();
       const preferences = header.getByRole("link", { name: "Notisinställningar", exact: true });
       await expect(preferences).toBeVisible();
@@ -465,6 +514,10 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
       expect(menuBounds.x).toBeGreaterThanOrEqual(0);
       expect(menuBounds.x + menuBounds.width).toBeLessThanOrEqual(viewport.width);
       await profile.click();
+      await expect(profile).toHaveAttribute("aria-expanded", "false");
+      await expect(preferences).toHaveCount(0);
+      await expect(page).toHaveURL(/\/dashboard$/);
+      await expect(card(page)).toBeVisible();
       const box = await card(page).boundingBox();
       expect(box).not.toBeNull();
       expect(box!.x).toBeGreaterThanOrEqual(0);
@@ -477,7 +530,7 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
     });
     for (const state of ["loading", "error", "empty", "withheld"] as const) {
       // Contract: contained state fixture required, including a held actual loading read.
-      test("[P1] 19.1-E2E-010 " + viewport.name + " " + state + " fits with useful dimensions [AC9]", async ({ page }) => {
+      test("[P1] 19.1-E2E-010 " + viewport.name + " " + state + " fits with useful dimensions [AC9]", async ({ page }, testInfo) => {
         const data = scenario("layout-" + state);
         await page.setViewportSize({ width: viewport.width, height: viewport.height });
         await login(page, data.user);
@@ -495,6 +548,8 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
         await expect(card(page).getByText("Kunde inte läsa offertpipeline")).toHaveCount(state === "error" ? 1 : 0);
         await expect(card(page).getByText("Inga offerthändelser under perioden")).toHaveCount(state === "empty" ? 1 : 0);
         await expect(card(page).getByText("Dold", { exact: true })).toHaveCount(state === "withheld" ? 1 : 0);
+        // Real production UI with synthetic fixtures; fault states are controlled source failures.
+        await attachDashboardView(page, testInfo, `dashboard-source-${state}-${viewport.name}`);
         if (state === "loading") {
           await expect(card(page)).toHaveAttribute("aria-busy", "true");
           await expect(card(page).getByRole("status")).toHaveAttribute("aria-live", "polite");
@@ -507,7 +562,7 @@ test.describe("19.1 onboarding composition and accessible responsive layout", ()
   }
 });
 
-test("[P1] 19.1-E2E-011 successive failed retries recover in the same session [AC7]", async ({ page }) => {
+test("[P1] 19.1-E2E-011 successive failed retries recover in the same session [AC7]", async ({ page }, testInfo) => {
   const data = scenario("retry-failure");
   const expected = await source(data);
   const before = await mutations(data.tenantId);
@@ -556,11 +611,404 @@ test("[P1] 19.1-E2E-011 successive failed retries recover in the same session [A
         const completed = Date.parse((await pipeline.locator("time").getAttribute("datetime"))!);
         expect(completed).toBeGreaterThanOrEqual(releasedAt);
         expect(completed).toBeLessThanOrEqual(Date.now());
+        await attachDashboardView(page, testInfo, "dashboard-recovered-retry");
       }
     }
     expect(await mutations(data.tenantId)).toEqual(before);
+    await page.setViewportSize({ width: 360, height: 640 });
+    await pipeline.getByRole("heading", { name: "Offertpipeline", exact: true }).scrollIntoViewIfNeeded();
+    await attachDashboardView(page, testInfo, "dashboard-recovered-retry-phone");
   } finally {
     // Keep this synthetic subject unavailable for any later repeat without retaining a hold.
     armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
   }
+});
+// 35.14 presentation extension; existing source/role/payload oracles above remain unchanged.
+test("E35-14-T-AC4 E35-14-T-AC6 E35-14-T-connection-required disconnected retry stays honest and explicitly recovers", async ({ page, context }) => {
+  const data = scenario("retry-failure");
+  await page.setViewportSize({ width: 360, height: 640 });
+  armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
+  await login(page, data.user);
+  const pipeline = card(page);
+  const retry = pipeline.getByRole("button", { name: "Försök igen", exact: true });
+  await expect(pipeline.getByRole("alert")).toContainText("Kunde inte läsa offertpipeline");
+  await hydrated(retry);
+  await context.setOffline(true);
+  try {
+    await retry.click();
+    await expect(pipeline.getByRole("alert")).toContainText("Kunde inte läsa offertpipeline");
+    await expect(retry).toBeEnabled();
+    await expect(pipeline.locator("time")).toHaveCount(0);
+    await expect(pipeline.getByLabel("Skickade", { exact: true })).toHaveCount(0);
+    const bounds = (await retry.boundingBox())!;
+    expect(bounds.height).toBeGreaterThanOrEqual(44);
+    expect(bounds.width).toBeGreaterThanOrEqual(44);
+  } finally {
+    await context.setOffline(false);
+  }
+  armReadPlan(data.user.id, { quote_events: [{ outcome: "pass" }] });
+  await retry.click();
+  await expect(pipeline.getByRole("alert")).toHaveCount(0);
+  await expect(pipeline.locator("time")).toBeVisible();
+  await expect(pipeline.getByRole("link", { name: "Visa offerter", exact: true })).toHaveAttribute("href", "/quotes");
+});
+
+test("E35-14-T-AC4 E35-14-T-error-retry enlarged phone error retains keyboard recovery", async ({ page }, testInfo) => {
+  const data = scenario("retry-failure");
+  await page.setViewportSize({ width: 360, height: 640 });
+  armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
+  try {
+    await login(page, data.user);
+    const pipeline = card(page);
+    const alert = pipeline.getByRole("alert");
+    const retry = pipeline.getByRole("button", { name: "Försök igen", exact: true });
+    await expect(alert).toContainText("Kontrollera anslutningen och försök igen.");
+    await hydrated(retry);
+    const rootSize = await page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).fontSize));
+    const initialFontSize = await retry.evaluate(element => parseFloat(getComputedStyle(element).fontSize));
+    await page.addStyleTag({ content: `html { font-size: ${rootSize * 2}px !important; }` });
+    expect(await retry.evaluate(element => parseFloat(getComputedStyle(element).fontSize))).toBeCloseTo(initialFontSize * 2, 1);
+    await expect(alert).toBeVisible();
+    await retry.scrollIntoViewIfNeeded();
+    await retry.click({ trial: true });
+    const bounds = (await retry.boundingBox())!;
+    expect(bounds.height).toBeGreaterThanOrEqual(44);
+    expect(bounds.width).toBeGreaterThanOrEqual(44);
+    expect(bounds.x).toBeGreaterThanOrEqual(0);
+    expect(bounds.x + bounds.width).toBeLessThanOrEqual(360);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+    await retry.focus();
+    await page.keyboard.press("Shift+Tab");
+    await page.keyboard.press("Tab");
+    await expect(retry).toBeFocused();
+    expect(await retry.evaluate(element => {
+      const style = getComputedStyle(element);
+      return style.outlineStyle !== "none" && parseFloat(style.outlineWidth) > 0;
+    })).toBe(true);
+    await attachDashboardView(page, testInfo, "dashboard-enlarged-error-phone");
+    armReadPlan(data.user.id, { quote_events: [{ outcome: "pass" }] });
+    await page.keyboard.press("Enter");
+    await expect(alert).toHaveCount(0);
+    await expect(retry).toHaveCount(0);
+    await expect(pipeline.locator("time")).toBeVisible();
+    await expect(pipeline.getByRole("link", { name: "Visa offerter", exact: true })).toHaveAttribute("href", "/quotes");
+  } finally {
+    armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
+  }
+});
+
+lateResultTest("E35-14-T-AC6 E35-14-T-late-result completed refresh cannot replace newer quote navigation", async ({ page }, testInfo) => {
+  const data = scenario("retry-failure");
+  await page.setViewportSize({ width: 1280, height: 900 });
+  armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] });
+  type ObserverResult = { cloneFinished: boolean; bytes: number; reason: "complete" | "fetch-failed" | "redirect" | "missing-body" | "size-limit" | "deadline" | "cleanup" | "reader-failed" };
+  type ResponseObserver = {
+    binding: (expected: { url: string; get: boolean; rsc: boolean; routerStatePresent: boolean; prefetch: boolean; segmentPrefetch: boolean }) => { unique: boolean; exactRequest: boolean; redirected: boolean };
+    restore: () => boolean;
+    cancel: () => void;
+    done: Promise<ObserverResult>;
+  };
+  let observerInstalled = false;
+  let cloneResult: ObserverResult | undefined;
+  let armed = false;
+  let heldRequestId: number | null = null;
+  let heldRequest: Request | undefined;
+  let heldPlan: string | undefined;
+  let heldSince = 0;
+  let readFinished = false;
+  let readFailed = false;
+  let releasedAt = 0;
+  type ReadCompletion = { transportSucceeded: boolean; status: number | null; successfulResult: boolean; freshCompletion: boolean };
+  let readWork: Promise<ReadCompletion> | undefined;
+  type RequestFacts = { requestId: number; path: string | null; afterArm: boolean; get: boolean; rsc: boolean; routerStatePresent: boolean; prefetch: boolean; segmentPrefetch: boolean };
+  const requestFacts = new Map<Request, RequestFacts>();
+  const lifecycle: (RequestFacts & { phase: string; status?: number; category?: string })[] = [];
+  const observedPath = (value: string) => {
+    const pathname = new URL(value).pathname;
+    return pathname === "/dashboard" || pathname === "/quotes" ? pathname : null;
+  };
+  const facts = (request: Request): RequestFacts => {
+    const existing = requestFacts.get(request);
+    if (existing) return existing;
+    const headers = request.headers();
+    const value = { requestId: requestFacts.size + 1, path: observedPath(request.url()), afterArm: armed,
+      get: request.method() === "GET", rsc: headers["rsc"] === "1",
+      routerStatePresent: "next-router-state-tree" in headers,
+      prefetch: "next-router-prefetch" in headers, segmentPrefetch: "next-router-segment-prefetch" in headers };
+    requestFacts.set(request, value);
+    return value;
+  };
+  const record = (request: Request, phase: string, status?: number, category?: string) => {
+    const value = facts(request);
+    if (value.path) lifecycle.push({ ...value, phase, ...(status === undefined ? {} : { status }), ...(category === undefined ? {} : { category }) });
+  };
+  let settleRead!: () => void;
+  const readSettled = new Promise<void>(resolve => { settleRead = resolve; });
+  const onRequest = (request: Request) => {
+    record(request, "start");
+    const value = facts(request);
+    if (heldRequest || !value.afterArm || !value.get || value.path !== "/dashboard" || !value.rsc || !value.routerStatePresent || value.prefetch || value.segmentPrefetch) return;
+    heldRequest = request;
+    heldRequestId = value.requestId;
+    record(request, "selected-live-refresh");
+    // Observe before completion. Keep real body/header values memory-only and failures bounded.
+    readWork = (async (): Promise<ReadCompletion> => {
+      try {
+        const response = await request.response();
+        await readSettled;
+        if (!response || readFailed || !readFinished) return { transportSucceeded: false, status: response?.status() ?? null, successfulResult: false, freshCompletion: false };
+        const transportSucceeded = await response.finished() === null;
+        if (!transportSucceeded) return { transportSucceeded: false, status: response.status(), successfulResult: false, freshCompletion: false };
+        const body = await response.body();
+        const completion = /"completedAt":"([^"\\]+)"/.exec(body.toString("utf8"));
+        const completedAt = completion ? Date.parse(completion[1]) : NaN;
+        return { transportSucceeded, status: response.status(),
+          successfulResult: response.ok() && new URL(response.url()).pathname === "/dashboard" &&
+            body.includes(Buffer.from('"ok":true')) && body.includes(Buffer.from('"descriptor":')) && Number.isFinite(completedAt),
+          freshCompletion: releasedAt > 0 && Number.isFinite(completedAt) && completedAt >= releasedAt && completedAt <= Date.now() };
+      } catch {
+        return { transportSucceeded: false, status: null, successfulResult: false, freshCompletion: false };
+      }
+    })();
+  };
+  const onResponse = (response: import("@playwright/test").Response) => record(response.request(), "status", response.status());
+  const onFinished = (request: Request) => {
+    record(request, "finish");
+    if (request === heldRequest) { readFinished = true; settleRead(); }
+  };
+  const onFailed = (request: Request) => {
+    record(request, "failure", undefined, request.failure()?.errorText.includes("ABORTED") ? "aborted" : "transport-failed");
+    if (request === heldRequest) { readFailed = true; settleRead(); }
+  };
+  page.on("request", onRequest);
+  page.on("response", onResponse);
+  page.on("requestfinished", onFinished);
+  page.on("requestfailed", onFailed);
+  let sameDocumentBeforeRelease: boolean | null = null;
+  let quoteHeadingBeforeRelease: boolean | null = null;
+  let nonce: string | undefined;
+  const failures: unknown[] = [];
+  try {
+    await login(page, data.user);
+    const retry = card(page).getByRole("button", { name: "Försök igen", exact: true });
+    await expect(retry).toBeVisible();
+    await hydrated(retry);
+    // Existing proxy holds the actual widget read BELOW Suspense; shared RSC streams normally.
+    heldPlan = armReadPlan(data.user.id, { quote_events: [{ outcome: "pass", hold: true }] });
+    const heldMarker = path.join(process.cwd(), "tests/e2e/.auth/dashboard-control", heldPlan + ".held");
+    // Controlled tee lifetime intervention: one native fetch, same Response returned promptly.
+    // Clone EOF is an additional witness, NEVER a substitute for the original HTTP/body gates.
+    await page.evaluate(() => {
+      type Result = { cloneFinished: boolean; bytes: number; reason: "complete" | "fetch-failed" | "redirect" | "missing-body" | "size-limit" | "deadline" | "cleanup" | "reader-failed" };
+      const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+      if (host.__dashboardLateResponseObserver) throw new Error("Late response observer already installed");
+      const priorFetch = window.fetch;
+      let matches = 0;
+      let selectedURL: string | undefined;
+      let selectedFacts: { get: boolean; rsc: boolean; routerStatePresent: boolean; prefetch: boolean; segmentPrefetch: boolean } | undefined;
+      let redirected = false;
+      let bytes = 0;
+      let terminal = false;
+      let reason: Result["reason"] = "reader-failed";
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      let drainAbort: AbortController | undefined;
+      let complete!: (result: Result) => void;
+      const done = new Promise<Result>(resolve => { complete = resolve; });
+      const finish = (cloneFinished: boolean, resultReason: Result["reason"]) => {
+        if (terminal) return;
+        terminal = true;
+        if (timer) clearTimeout(timer);
+        complete({ cloneFinished, bytes, reason: resultReason });
+      };
+      const wrapper: typeof fetch = function (this: typeof globalThis, ...args: Parameters<typeof fetch>) {
+        // Preserve the actual native invocation, receiver, Request/init and signal exactly.
+        const nativeResult = Reflect.apply(priorFetch, this, args) as ReturnType<typeof fetch>;
+        const [input, init] = args;
+        let selected = false;
+        let inputURL = "";
+        let inputFacts: typeof selectedFacts;
+        try {
+          inputURL = new URL(input instanceof Request ? input.url : String(input), location.href).href;
+          const method = (init?.method ?? (input instanceof Request ? input.method : "GET")).toUpperCase();
+          const headers = new Headers(init?.headers ?? (input instanceof Request ? input.headers : undefined));
+          inputFacts = { get: method === "GET", rsc: headers.get("rsc") === "1", routerStatePresent: headers.has("next-router-state-tree"),
+            prefetch: headers.has("next-router-prefetch"), segmentPrefetch: headers.has("next-router-segment-prefetch") };
+          selected = new URL(inputURL).pathname === "/dashboard" && method === "GET" && headers.get("rsc") === "1" &&
+            headers.has("next-router-state-tree") && !headers.has("next-router-prefetch") && !headers.has("next-router-segment-prefetch");
+        } catch { /* The native request remains authoritative; missing selection fails binding. */ }
+        if (!selected) return nativeResult;
+        matches++;
+        if (matches !== 1) return nativeResult; // Extra eligible requests fail the unique-binding assertion.
+        selectedURL = inputURL;
+        selectedFacts = inputFacts;
+        return nativeResult.then(response => {
+          redirected = response.redirected;
+          if (redirected) { finish(false, "redirect"); return response; }
+          try {
+            const clone = response.clone();
+            if (!clone.body) { finish(false, "missing-body"); return response; }
+            drainAbort = new AbortController(); // Controls ONLY the owned clone drain, never native fetch.
+            timer = setTimeout(() => { reason = "deadline"; drainAbort!.abort(); }, 15000);
+            // Discard chunks after counting: bounded retained memory; no payload leaves this closure.
+            const drain = clone.body.pipeTo(new WritableStream<Uint8Array>({
+              write(chunk) {
+                bytes += chunk.byteLength;
+                if (bytes > 8 * 1024 * 1024) { reason = "size-limit"; throw new Error("Clone size limit"); }
+              },
+            }), { signal: drainAbort.signal });
+            void drain.then(() => finish(true, "complete"), () => finish(false, reason));
+          } catch { finish(false, "reader-failed"); }
+          return response; // SAME ORIGINAL object; never await clone data or completion here.
+        }, error => { finish(false, "fetch-failed"); throw error; });
+      };
+      window.fetch = wrapper;
+      host.__dashboardLateResponseObserver = {
+        binding: expected => ({ unique: matches === 1, exactRequest: selectedURL === expected.url && selectedFacts !== undefined &&
+          selectedFacts.get === expected.get && selectedFacts.rsc === expected.rsc && selectedFacts.routerStatePresent === expected.routerStatePresent &&
+          selectedFacts.prefetch === expected.prefetch && selectedFacts.segmentPrefetch === expected.segmentPrefetch, redirected }),
+        restore: () => {
+          const owned = window.fetch === wrapper;
+          if (owned) window.fetch = priorFetch;
+          return owned;
+        },
+        cancel: () => {
+          if (terminal) return;
+          reason = "cleanup";
+          if (drainAbort) drainAbort.abort();
+          else if (matches === 0) finish(false, "cleanup");
+        },
+        done,
+      };
+    });
+    observerInstalled = true;
+    armed = true;
+    await retry.click();
+    await expect(card(page)).toHaveAttribute("aria-busy", "true");
+    await expect.poll(() => {
+      try {
+        if (readFileSync(heldMarker, "utf8") !== "held") return false;
+        heldSince = statSync(heldMarker).mtimeMs;
+        return true;
+      } catch { return false; }
+    }, { timeout: 15000, message: "The original widget read must reach its revision-specific hold" }).toBe(true);
+    expect(heldRequest !== undefined).toBe(true);
+    const request = heldRequest!;
+    const response = await request.response(); // Headers/shared shell, never the held full body.
+    expect(response !== null).toBe(true);
+    expect(response?.status()).toBe(200);
+    expect(readFinished || readFailed).toBe(false);
+    record(request, "producer-held");
+    const binding = await page.evaluate(expected => {
+      const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+      return host.__dashboardLateResponseObserver?.binding(expected);
+    }, { url: request.url(), ...facts(request) });
+    expect(binding?.unique).toBe(true);
+    expect(binding?.exactRequest).toBe(true);
+    expect(binding?.redirected).toBe(false);
+    nonce = `dashboard-late-result-${Date.now()}`;
+    await page.evaluate(value => { document.documentElement.dataset.dashboardLateResultNonce = value; }, nonce);
+    const quoteLink = page.getByRole("navigation", { name: "Huvudnavigation", exact: true })
+      .getByRole("link", { name: "Offerter", exact: true });
+    await hydrated(quoteLink);
+    await expect(quoteLink).toHaveAttribute("href", "/quotes");
+    await quoteLink.click();
+    await expect.poll(() => new URL(page.url()).pathname, { timeout: 15000 }).toBe("/quotes");
+    await expect(page.getByRole("heading", { name: "Offerter", exact: true })).toBeVisible();
+    quoteHeadingBeforeRelease = true;
+    sameDocumentBeforeRelease = await page.evaluate(value => document.documentElement.dataset.dashboardLateResultNonce === value, nonce);
+    expect(sameDocumentBeforeRelease).toBe(true);
+    expect(readFinished || readFailed).toBe(false);
+    releasedAt = Date.now();
+    expect(releasedAt - heldSince < 15000, "The real read must be released before the proxy deadline").toBe(true);
+    record(request, "release-after-quotes");
+    releaseRead(heldPlan);
+    // Only genuine successful completion of THIS original browser request proves late delivery.
+    await expect.poll(() => readFinished || readFailed, { timeout: 15000, message: "The original dashboard browser request must settle after read release" }).toBe(true);
+    const completed = await readWork!;
+    expect(completed.transportSucceeded).toBe(true);
+    expect(completed.status).toBe(200);
+    expect(completed.successfulResult).toBe(true);
+    expect(completed.freshCompletion).toBe(true);
+    record(request, "successful-late-result", completed.status!);
+    cloneResult = await page.evaluate(async () => {
+      const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+      return host.__dashboardLateResponseObserver!.done;
+    });
+    expect(cloneResult.cloneFinished).toBe(true);
+    expect(cloneResult.reason).toBe("complete");
+    expect(cloneResult.bytes > 0 && cloneResult.bytes <= 8 * 1024 * 1024).toBe(true);
+    const finalBinding = await page.evaluate(expected => {
+      const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+      return host.__dashboardLateResponseObserver?.binding(expected);
+    }, { url: request.url(), ...facts(request) });
+    expect(finalBinding?.unique && finalBinding.exactRequest && !finalBinding.redirected).toBe(true);
+    await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+    await expect.poll(() => new URL(page.url()).pathname, { timeout: 15000 }).toBe("/quotes");
+    await expect(page.getByRole("heading", { name: "Offerter", exact: true })).toBeVisible();
+    await expect(card(page)).toHaveCount(0);
+    expect(await page.evaluate(() => document.documentElement.dataset.dashboardLateResultNonce)).toBe(nonce);
+  } catch (error) {
+    failures.push(error);
+  } finally {
+    if (nonce !== undefined && !page.isClosed() && sameDocumentBeforeRelease === null) {
+      sameDocumentBeforeRelease = await page.evaluate(value => document.documentElement.dataset.dashboardLateResultNonce === value, nonce).catch(() => null);
+      quoteHeadingBeforeRelease = await page.getByRole("heading", { name: "Offerter", exact: true }).isVisible().catch(() => null);
+    }
+    try { if (heldPlan) releaseRead(heldPlan); } catch { failures.push(new Error("Late read release cleanup failed")); }
+    if (readWork) {
+      // Give released work a bounded chance to settle; close our own page on timeout and await it.
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      try {
+        await Promise.race([readWork, new Promise<never>((_, reject) => {
+          timer = setTimeout(() => reject(new Error("Late read cleanup did not settle")), 15000);
+        })]);
+      } catch {
+        failures.push(new Error("Late read cleanup did not settle successfully"));
+        try { await page.close(); } catch { failures.push(new Error("Late read page cleanup failed")); }
+        settleRead();
+        await readWork;
+      } finally { if (timer) clearTimeout(timer); }
+    }
+    if (observerInstalled) {
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      try {
+        const restored = await page.evaluate(() => {
+          const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+          const observer = host.__dashboardLateResponseObserver;
+          const owned = observer?.restore() ?? false;
+          observer?.cancel();
+          return owned;
+        });
+        if (!restored) failures.push(new Error("Late response fetch restoration failed"));
+        cloneResult = await Promise.race([page.evaluate(async () => {
+          const host = window as typeof window & { __dashboardLateResponseObserver?: ResponseObserver };
+          const result = await host.__dashboardLateResponseObserver!.done;
+          delete host.__dashboardLateResponseObserver;
+          return result;
+        }), new Promise<never>((_, reject) => {
+          timer = setTimeout(() => reject(new Error("Clone cleanup deadline")), 15000);
+        })]);
+        if (!cloneResult.cloneFinished) failures.push(new Error("Late response clone did not finish successfully"));
+      } catch {
+        failures.push(new Error("Late response clone cleanup failed"));
+        // Closing only our own page destroys any outstanding page-scoped reader/task.
+        try { if (!page.isClosed()) await page.close(); } catch { failures.push(new Error("Clone page cleanup failed")); }
+      } finally { if (timer) clearTimeout(timer); }
+    }
+    page.off("request", onRequest);
+    page.off("response", onResponse);
+    page.off("requestfinished", onFinished);
+    page.off("requestfailed", onFailed);
+    try {
+      await testInfo.attach("late-refresh-bounded-lifecycle", {
+        body: Buffer.from(JSON.stringify({ lifecycle: lifecycle.slice(0, 64), omittedEvents: Math.max(0, lifecycle.length - 64), heldRequestId,
+          sameDocumentBeforeRelease, quoteHeadingBeforeRelease, readFinished, readFailed, releasedBeforeDeadline: releasedAt > 0 && heldSince > 0 && releasedAt - heldSince < 15000,
+          cloneFinished: cloneResult?.cloneFinished ?? false, cloneBytes: cloneResult?.bytes ?? 0, cloneReason: cloneResult?.reason ?? "unobserved" })),
+        contentType: "application/json",
+      });
+    } catch { failures.push(new Error("Late read bounded attachment failed")); }
+    try { armReadPlan(data.user.id, { quote_events: [{ outcome: "error" }] }); }
+    catch { failures.push(new Error("Late read scenario restoration failed")); }
+  }
+  if (failures.length) throw new AggregateError(failures, "Late-result verification or awaited cleanup failed");
 });

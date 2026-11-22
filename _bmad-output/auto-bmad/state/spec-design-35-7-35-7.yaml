@@ -1,0 +1,112 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: spec-design-35-7-35-7
+epic_num: null
+story_num: null
+story_suffix: ""
+story_source: stories
+spec_folder: "_bmad-output/specs/spec-design-35-7"
+story_id: 35-7
+branch: codex/story-35-7-settings-manual-pricing
+status: done
+updated_at: "2026-11-10T14:55:30Z"
+started_at: "2026-11-09T20:54:57Z"
+completed_at: "2026-11-10T14:55:30Z"
+active_seconds: 3402
+timing_anchor: null
+is_first_in_epic: true
+is_last_in_epic: true
+git_mode: remote
+base_branch: main
+selected_phase: tea_per_story
+selected_role: tea-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Phase 6 must prove real tenant authority, pricing persistence, transaction recovery, and fail-closed disposable database admission."
+routing_ledger:
+  - "{\"effort\":\"low\",\"escalation_reason\":\"\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Owned scenarios exercise tenant authority, persisted manual pricing, audit and transaction reconciliation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Presentation must preserve actual tenant authority, integer prices, immutable transaction recovery and locked revisions.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Phase 6 must prove real tenant authority, pricing persistence, transaction recovery, and fail-closed disposable database admission.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: "Persisted manual prices and hard-to-reproduce ambiguous, stale, revoked and late-operation outcomes require pre- and post-development tests."
+epic_story_count: 1
+stories_after_in_epic: 0
+completed_phases: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+spec_path: "_bmad-output/specs/spec-design-35-7/stories/35-7-settings-and-manual-pricing.md"
+spec_approved: true
+build:
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: [The configured external review invocation returned nonzero without reading the diff. Distinct context-free in-tool Sol High exact review supplied independent review coverage.]
+followup_passes: 0
+hitl_halt: null
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: []
+phase8_steps:
+  trace_gate: done
+  nfr: done
+  test_review: done
+  reconcile: done
+  archive: done
+  retro: done
+gate_decision: PASS
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: "_bmad-output/specs/spec-design-35-7/RETROSPECTIVE.md"
+  verdict: accepted-with-open-items
+  open_action_items: null
+bmad_status_flipped_at: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/147"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/42803037275"
+ci_status: passed
+pr_merged: true
+merge_method: merge
+merge_commit: 8c85e054613304e06c05aa268a238299d36b5d47
+branch_deleted: false
+open_questions: []
+deferred_work:
+  - E35-7-REL-1
+  - E35-7-REL-2
+  - E35-7-REL-3
+blockers: []
+overrides:
+  scoped_story_tea: "atdd, automate"
+  provider_actions: coordinator custody
+  phase_4_timing: "Recovered stale timing anchor after hosted CI and chat interruption; original active effort unknown."
+  closeout_evidence: Retains prior reviews. Phase 5 uses exact qualified 91635d3d and verified deployed PRs 147 and 148. Phase 6 reconciles named evidence. Phase 7 adopts existing independent reviews with no new review pass.
+  closeout_source_adoption: Existing approved stories-mode test design and PR 144 readiness satisfy phases 2 and 3. The process checkpoint reuses those records.
+constraints: []
+parallel_run_id: e35-7-presentation-20261109
+development_state: complete
+candidate_revision: 9e2c412dd30a03f9ab7fb8690ab41d06bb30da5f
+visual_state: accepted
+publication_identity_json: "{\"base_branch\": \"main\", \"base_revision\": \"f225e3e27c67ce5af2fc81156610e87c8c6ebd90\", \"branch\": \"codex/story-35-7-settings-manual-pricing\", \"repository\": \"rthunborg/Kopplas\", \"run_id\": \"e35-7-presentation-20261109\", \"story_key\": \"spec-design-35-7-35-7\", \"worktree\": \"C:\\\\DEV\\\\Kopplas\\\\tmp\\\\private\\\\e35-presentation-35-7-worker\"}"
+publication_state: published
+pr_number: 147
+ci_revision: 9e2c412dd30a03f9ab7fb8690ab41d06bb30da5f
+review_revision: 9e2c412dd30a03f9ab7fb8690ab41d06bb30da5f
+review_state: passed
+visual_revision: 9e2c412dd30a03f9ab7fb8690ab41d06bb30da5f
+merge_state: merged
+merge_target: main
+merge_revision: 8c85e054613304e06c05aa268a238299d36b5d47
+release_ready: false
+verification_revision: 91635d3ddfc130df12d299a5743280dcbf5817f5
+verification_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/42829233035"

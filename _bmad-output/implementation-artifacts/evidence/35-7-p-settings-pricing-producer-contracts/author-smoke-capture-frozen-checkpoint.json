@@ -1,0 +1,506 @@
+{
+  "task_id": "35.7-P",
+  "captured_at_utc": "2026-11-02T16:45:36.993247+00:00",
+  "candidate_before": "deb14ba0f9250c4e02f6d43011acc79ab475f613",
+  "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "source_writes_stopped": true,
+  "all_author_writes_stopped_after_this_checkpoint": true,
+  "scope": "Exactly approved package test:smoke line + two allocated E2E capture-only tests + own spec/descriptive delivery/evidence. No production/migration/security/authority change.",
+  "source47_plus_package": [
+    {
+      "path": "src/app/(app)/settings/company/page.tsx",
+      "raw_sha256": "11087b2bb0bd4c09207849058b9598e05bfda371be0da186b2a2a4bff075b58a",
+      "deb14_blob_oid": "64042ec5a425040b11c5e4ccaeb63377de0674f8",
+      "effective_git_blob_oid": "64042ec5a425040b11c5e4ccaeb63377de0674f8",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/app/(app)/settings/pricing/page.tsx",
+      "raw_sha256": "194198e1edc1ce67a5f7e5fc575ab7e6934933ee3da5871bfb7f3a1dbe7d4904",
+      "deb14_blob_oid": "acbdd4d419b1df2c60a8aa4c7efabc1f38c4a720",
+      "effective_git_blob_oid": "acbdd4d419b1df2c60a8aa4c7efabc1f38c4a720",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/app/(app)/settings/quote-terms/page.tsx",
+      "raw_sha256": "2e4b02ac87a47b76e1ca3bb0e36d7e4dc0df0cd8e4d26ce56ae2ac7bea7473d4",
+      "deb14_blob_oid": "14b78a75804ef8c108d16efccb6c03d89aa88e01",
+      "effective_git_blob_oid": "14b78a75804ef8c108d16efccb6c03d89aa88e01",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "raw_sha256": "0708240a30a0364567026d130ed9d2ff5a9dc62ba4cc579030f39135a8fc1b44",
+      "deb14_blob_oid": "00a91118c9b4247d4c787cd21d03eef896636229",
+      "effective_git_blob_oid": "00a91118c9b4247d4c787cd21d03eef896636229",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "raw_sha256": "7eafddf8eb185ddf971aec91095513585e0e967197bad6534db03ff54b7f384e",
+      "deb14_blob_oid": "15a007d0913fc48f2178a511ec1a24c612945a47",
+      "effective_git_blob_oid": "15a007d0913fc48f2178a511ec1a24c612945a47",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/components/settings/CompanySettingsForm.tsx",
+      "raw_sha256": "1c3adbfd07e82843a6db078df89c034a606b39204090c75229573360573e424e",
+      "deb14_blob_oid": "294cf899d75a053a2bc73495fe2d7899ea02f908",
+      "effective_git_blob_oid": "294cf899d75a053a2bc73495fe2d7899ea02f908",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "raw_sha256": "7f0b62cbfb11407588507c3c810264cadc7ee08096d163c6e8a3963af6a27e16",
+      "deb14_blob_oid": "94e42877a3f48bd32f3a4a4942dd90b5d6081e33",
+      "effective_git_blob_oid": "94e42877a3f48bd32f3a4a4942dd90b5d6081e33",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/features/pricing/action-state.ts",
+      "raw_sha256": "fbd741d75460bd33247ee3aed9da7fdb84800844636da2e513bfb4b72244655c",
+      "deb14_blob_oid": "d082a040d8707f1f57787af505f22402bd53e6df",
+      "effective_git_blob_oid": "d082a040d8707f1f57787af505f22402bd53e6df",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "raw_sha256": "cb7d115ea49cfaaa24464c66a52fd126e67d836edb9936125a1999f4388eb529",
+      "deb14_blob_oid": "2fd256ce4c38091f37c7249c9cab77f368429545",
+      "effective_git_blob_oid": "2fd256ce4c38091f37c7249c9cab77f368429545",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/features/pricing/form-parsing.ts",
+      "raw_sha256": "3719ae06f871fe73c256f287a6ec5ef72c1a3ad03d47ad123283b94078a45a9c",
+      "deb14_blob_oid": "d113abf2315bf4256dd93c6d1dc9c9b2779b3fae",
+      "effective_git_blob_oid": "d113abf2315bf4256dd93c6d1dc9c9b2779b3fae",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/features/pricing/read.ts",
+      "raw_sha256": "cd7a04cf1503076e8a6eb696fd94182bd5360cb8f0f811ee90689044b5d4f9d8",
+      "deb14_blob_oid": "ce2f4a51678247f64d243368c8e46c35cfb57b08",
+      "effective_git_blob_oid": "ce2f4a51678247f64d243368c8e46c35cfb57b08",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/features/settings/action-state.ts",
+      "raw_sha256": "e6f36ce75bf441fe3e7fab3eda974ffcf0ff6ce65c8c9d31e799488a9bb67477",
+      "deb14_blob_oid": "0a58fecebf597d5dcb50937852e945d1583da2a4",
+      "effective_git_blob_oid": "0a58fecebf597d5dcb50937852e945d1583da2a4",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "raw_sha256": "d62f86a5ae2f946c2871e71af654dfb1b744fa403fcb4532f6ef96d39bb4415f",
+      "deb14_blob_oid": "e58e3e0292b6bc100a04963e954a8238cc4bb4fa",
+      "effective_git_blob_oid": "e58e3e0292b6bc100a04963e954a8238cc4bb4fa",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/features/settings/form-parsing.ts",
+      "raw_sha256": "c65df864d6466a9eaafad1bcdd1d8db1950a849a02b1804db60917b1615f75d8",
+      "deb14_blob_oid": "6aac84e7adc7dba2957fba6c6bc03cdc300946ca",
+      "effective_git_blob_oid": "6aac84e7adc7dba2957fba6c6bc03cdc300946ca",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/features/settings/mutation-attempt.ts",
+      "raw_sha256": "08cf728f179e5f46460ae25b0a2cff560911a26c558ce9393ca04b6038c5cb7a",
+      "deb14_blob_oid": "8e32a6e38da163332eb42500c47e8b1ced5331d6",
+      "effective_git_blob_oid": "8e32a6e38da163332eb42500c47e8b1ced5331d6",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/features/settings/read.ts",
+      "raw_sha256": "e74b7fba575426e4dad33c1e011cc7b6ee66449a8492fd42f9d778ce43152c46",
+      "deb14_blob_oid": "ae769ecf10942f83da63497531db9e82bb90ee64",
+      "effective_git_blob_oid": "ae769ecf10942f83da63497531db9e82bb90ee64",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "raw_sha256": "a773473789c83d5074ce3e86efb21f748774f471c58b189ae72ae3142cb7ff62",
+      "deb14_blob_oid": "fabc0d6fdc0f7348218380f17dc1e3a4d8c05767",
+      "effective_git_blob_oid": "fabc0d6fdc0f7348218380f17dc1e3a4d8c05767",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "raw_sha256": "d6186842b73c983e02aec387e8058cc2d4b91149908f27a390eff10cd953a79a",
+      "deb14_blob_oid": "8370150ea5b632f63c601d1b5b90b40dce7ddb26",
+      "effective_git_blob_oid": "8370150ea5b632f63c601d1b5b90b40dce7ddb26",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "raw_sha256": "4b75cf42175c900540abae70f6e186807033e6693d79243cfbdea085932c02e1",
+      "deb14_blob_oid": "99f38f4cd12797def16766635a8698a68317731e",
+      "effective_git_blob_oid": "99f38f4cd12797def16766635a8698a68317731e",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/server/commands/pricing/pricing-db.ts",
+      "raw_sha256": "3685765993515b2bfef373cf282124f4839f42e609f27e7150478c1789c4fc47",
+      "deb14_blob_oid": "0e7da0908d751c20391c30984e7df4aa26d840b9",
+      "effective_git_blob_oid": "0e7da0908d751c20391c30984e7df4aa26d840b9",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/server/commands/pricing/validation.ts",
+      "raw_sha256": "39084403ed9aa0f5011fab4504f0f8264a80ccc3a303bae4fa926e9e8ac8ed2c",
+      "deb14_blob_oid": "cb798fb68c34b7baef308322e54044e6f0f426e1",
+      "effective_git_blob_oid": "cb798fb68c34b7baef308322e54044e6f0f426e1",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "raw_sha256": "740b6711cad49071f60b34c62497bb39858b3593254a83d175dc74b6942433ad",
+      "deb14_blob_oid": "d93e3230407957c18ade4d06888389bd30780c6b",
+      "effective_git_blob_oid": "d93e3230407957c18ade4d06888389bd30780c6b",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "raw_sha256": "1e144a7618e45b207c33d990204fd66e1ca53a72d599f8f1700e9f5aa28ae84f",
+      "deb14_blob_oid": "585412dd9b5a96bffa5a7bcfc3a57eaaab5b685e",
+      "effective_git_blob_oid": "585412dd9b5a96bffa5a7bcfc3a57eaaab5b685e",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/server/commands/settings/operation-recovery.ts",
+      "raw_sha256": "5a76decb31059f7e9572e120dfa3b74e76ea25d8a00e8a554805de9bc4e1e848",
+      "deb14_blob_oid": "e76d578631c380fdc856e76538ecbfdbd39e6c3f",
+      "effective_git_blob_oid": "e76d578631c380fdc856e76538ecbfdbd39e6c3f",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "raw_sha256": "07aeeacfb8d2300acad75c75127090bec2f31e1f21b022dd80f41c2103a9f005",
+      "deb14_blob_oid": "303f37644f8f3696f631a6c829d6d705c2928771",
+      "effective_git_blob_oid": "303f37644f8f3696f631a6c829d6d705c2928771",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/server/commands/settings/settings-db.ts",
+      "raw_sha256": "2365f40cc1d064fb0ed4cfbb43221e6499c0ed518bfb345b172202c393b540ea",
+      "deb14_blob_oid": "964c1f3fe520f30c73038e8fa09bb7b7b2bfdcb0",
+      "effective_git_blob_oid": "964c1f3fe520f30c73038e8fa09bb7b7b2bfdcb0",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "src/server/commands/settings/validation.ts",
+      "raw_sha256": "0859642e57b2fb45935b29c2f57ee0b23ee990b9255f3234a514d59f4f02afc4",
+      "deb14_blob_oid": "09961eea2be82781ccb443bf18bcd4759edef847",
+      "effective_git_blob_oid": "09961eea2be82781ccb443bf18bcd4759edef847",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "supabase/migrations/20261102121057_settings_pricing_operation_contract.sql",
+      "raw_sha256": "7f02c36c4ac03a7c6de9e2b4e34048c80e617ac42067398f6fa06d9ae0a299df",
+      "deb14_blob_oid": "73f343a4724c1b55365c40fcebfce6095d92a580",
+      "effective_git_blob_oid": "73f343a4724c1b55365c40fcebfce6095d92a580",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+      "raw_sha256": "dc4bdebb8f9b3cd332d0a42bcb4880e6428155b5334f7dc2fadbb1ed65fc170b",
+      "deb14_blob_oid": "2a97a8c2203e25191502943c98224abb3e624216",
+      "effective_git_blob_oid": "5dd073bc1be9962683c4c7a5e60726e8935fc0b0",
+      "unchanged_from_deb14": false
+    },
+    {
+      "path": "tests/e2e/settings/settings.e2e.spec.ts",
+      "raw_sha256": "69f30ac2c9e4c02781a41e945c24277ed87c7822090af3b99d66cd12a6719201",
+      "deb14_blob_oid": "654b7feb961ba8a303cc8cf479aa1480f5fe4ddc",
+      "effective_git_blob_oid": "7cb1da141ca63767da0a0eebbf8a0b991912182d",
+      "unchanged_from_deb14": false
+    },
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "raw_sha256": "fed58b73ba50b51d4f577b2b418fc17a771e0001ada794325003b6a93f1e58c4",
+      "deb14_blob_oid": "e741247270a1402a5a811582c57cdecb5d1e992c",
+      "effective_git_blob_oid": "e741247270a1402a5a811582c57cdecb5d1e992c",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "raw_sha256": "4f334d16deb7f93fbb3c74e5ebf3c221ad30a7b510fd2d026f13d763c3cf1291",
+      "deb14_blob_oid": "94dc92416bae43f503052fbc2fe6101b1e4eda65",
+      "effective_git_blob_oid": "94dc92416bae43f503052fbc2fe6101b1e4eda65",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "raw_sha256": "4bf2f70a50a3419e5e3fd550ad9042e1c656eb0c5c1eca413aedf1968ecd3fd5",
+      "deb14_blob_oid": "3b8e91e443af693bd9c853063cc31954271af6e0",
+      "effective_git_blob_oid": "3b8e91e443af693bd9c853063cc31954271af6e0",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+      "raw_sha256": "9c5eec77b5417ea18cdc3be083618805f2a97c63d8640e0962a4acb084803912",
+      "deb14_blob_oid": "1b476d671a0a2f3426272a570cade8738a45a684",
+      "effective_git_blob_oid": "1b476d671a0a2f3426272a570cade8738a45a684",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "raw_sha256": "f1851ec2e178f8550105a0383e60da5ea986f3560c62877535e6b221229a5cdb",
+      "deb14_blob_oid": "2d8c3aabd7730c0228ce1ca7e5844a0a4805f9f2",
+      "effective_git_blob_oid": "2d8c3aabd7730c0228ce1ca7e5844a0a4805f9f2",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "raw_sha256": "38d81b9c53e908791f2bd89add3c7e715954bfd1b15ad2176aa8d188a5a98ffe",
+      "deb14_blob_oid": "9b00d5977a48880b78a535d6b94e32cecf97dfba",
+      "effective_git_blob_oid": "9b00d5977a48880b78a535d6b94e32cecf97dfba",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "raw_sha256": "8ad4e955267095a47d2ea7a1f124f3924f3f83e0e3dfd8a56a3b217efda78444",
+      "deb14_blob_oid": "0a568d85b2affbff3d6142420f78092da9d43342",
+      "effective_git_blob_oid": "0a568d85b2affbff3d6142420f78092da9d43342",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+      "raw_sha256": "96082dc1c0ee2954ca6d8d2f2084c966b33bd3826324a87ebb3889ee3a389aa7",
+      "deb14_blob_oid": "b0163a0674eb6c3cc379a4edb40be9e09f8b4413",
+      "effective_git_blob_oid": "b0163a0674eb6c3cc379a4edb40be9e09f8b4413",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "raw_sha256": "04626c68d6dde8c408fa68e309d4ff3b7533301cf3f5254ab8da9a4d8caa1f2c",
+      "deb14_blob_oid": "a5f042d566d55732ab53ccdd603b20847289aa90",
+      "effective_git_blob_oid": "a5f042d566d55732ab53ccdd603b20847289aa90",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "raw_sha256": "d5897875f3a2016bc5b3c0741773a42d88ee16c3c04a19083dc2e8244aa03741",
+      "deb14_blob_oid": "4416eb5966f1f392e92cdef2c1491bfc8bec6674",
+      "effective_git_blob_oid": "4416eb5966f1f392e92cdef2c1491bfc8bec6674",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "raw_sha256": "bf5b5ad1efa3b7ecd347494daf990a8224dc67c3a2e2e97eea0157fd3538b5f1",
+      "deb14_blob_oid": "e492f0829a462cc02ac14a493d21d3f61e2eff8d",
+      "effective_git_blob_oid": "e492f0829a462cc02ac14a493d21d3f61e2eff8d",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/unit/features/settings/mutation-attempt.test.ts",
+      "raw_sha256": "2c9b584c0de6db6c1c0373bf3de88cf26c8b0e230e5aabf6713576da70875eeb",
+      "deb14_blob_oid": "06aff4b319960d71cc783c2bcd637086fc580059",
+      "effective_git_blob_oid": "06aff4b319960d71cc783c2bcd637086fc580059",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "raw_sha256": "2919ff514ee3a5943b5d5bcddb79b9d032bb654bbbab149db39f8238d6114bc6",
+      "deb14_blob_oid": "826e8ec62be471e42649ee51c376d84e7d360d9c",
+      "effective_git_blob_oid": "826e8ec62be471e42649ee51c376d84e7d360d9c",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "raw_sha256": "f8b3a69d50a621896b9b5e96fc7da523472d9fd3732ef3a4fb9d3650f71d3a47",
+      "deb14_blob_oid": "66dcb7b732be1e54582bf5507d86c61786cea6ac",
+      "effective_git_blob_oid": "66dcb7b732be1e54582bf5507d86c61786cea6ac",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/unit/server/commands/pricing-validation-edges.test.ts",
+      "raw_sha256": "0e2eb837a1bffb55914798f809072459b21cb816ac80aec1f407cbaa543272db",
+      "deb14_blob_oid": "75956d6c1d7b42ef581e498fdadf0612f8d77bf4",
+      "effective_git_blob_oid": "75956d6c1d7b42ef581e498fdadf0612f8d77bf4",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/unit/server/commands/pricing-validation.test.ts",
+      "raw_sha256": "3adbb57055dd632003da7f0d319e9afae30724cfdfc061b27b0e7f094333b949",
+      "deb14_blob_oid": "6dc721deb057474cfce5f0eff7a7d2f7cc5bb513",
+      "effective_git_blob_oid": "6dc721deb057474cfce5f0eff7a7d2f7cc5bb513",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "tests/unit/server/commands/settings-validation.test.ts",
+      "raw_sha256": "a3ac0538a21faa93193a007462c573192781cf01f09df3125d40202c6defa6b7",
+      "deb14_blob_oid": "2490ecade3ca127a45c887563cd6f4333d246d57",
+      "effective_git_blob_oid": "2490ecade3ca127a45c887563cd6f4333d246d57",
+      "unchanged_from_deb14": true
+    },
+    {
+      "path": "package.json",
+      "raw_sha256": "1d5892751389476587a49d1a2bec486ce0bb692d35186a087eb72fcd1cfc5472",
+      "deb14_blob_oid": "756a7413549a8cc9dd7f962458a5214c917242ed",
+      "effective_git_blob_oid": "8cce451257420153c03bebbcdf58eb5744a6977e",
+      "unchanged_from_deb14": false
+    }
+  ],
+  "source47_plus_package_digest": "c9538e142264aa5ec7d12b570af4783128e9ebb1a0959ed7d8d7b1d1cf4444bd",
+  "digest_scheme": "SHA256 canonical compact UTF8 JSON array in recorded order, object keys sorted; each entry pins rawsha + effective GitOID.",
+  "production27_raw_and_git_equal_deb14": true,
+  "source45_of47_unchanged": true,
+  "canonical9": [
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/.memlog.md",
+      "raw_sha256": "c67220076bd2a84d5827fabc02cee0e2e1b4b224d9d34ad8b820c4640fffdd43",
+      "effective_git_blob_oid": "ad41aa89d2e5b36fc581742426f0cf97d3652719"
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/allocation-and-admission.md",
+      "raw_sha256": "ccf0ac78d7f4595218d145cc6d9d3b5351be368896df17f1933643fdf383845d",
+      "effective_git_blob_oid": "ffc6377e6a6f53c5e9e884e0f8957fbce905f150"
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-review.json",
+      "raw_sha256": "c0f7362346077f868f27cfdb36dab5495ef043b3386d279117fe15cef9386317",
+      "effective_git_blob_oid": "cb1b83e16c6096cb582a8094399003c6b4c4b004"
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-review.md",
+      "raw_sha256": "a11c5cca98a8422492dab57888ea7a183062b331cc522b9560a656baff4ac203",
+      "effective_git_blob_oid": "97169e29759d43caf77951d66f82b32a3d773a64"
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-routing.json",
+      "raw_sha256": "3263c1e9ebcc158c363596211ccf1e44097ea0e721a9e970a3217d6a313df12c",
+      "effective_git_blob_oid": "93147e887c180739cfe6ff53300d3fce86991d82"
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.json",
+      "raw_sha256": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408",
+      "effective_git_blob_oid": "510c18d89e78540bc5b0fdd2d15b013c3ca5f06c"
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "raw_sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+      "effective_git_blob_oid": "711cdd03a2e044b6038783d865b725f66616b945"
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/source-binding.json",
+      "raw_sha256": "5e1d4dd2b3f45f4efb2ce0bfe7fa8619921da9ff7f6992c210fc06c6849c7677",
+      "effective_git_blob_oid": "80a223dda5c9b557baa9d68d7254962e01f6125a"
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/SPEC.md",
+      "raw_sha256": "24e384be5b2d3a3723fa61d1a76c6a090ef98dd0450626e3032ea62d200cdf74",
+      "effective_git_blob_oid": "35447bace28fb1d7bedceb6a90ae3d5f77e7e276"
+    }
+  ],
+  "canonical9_raw_and_git_unchanged": true,
+  "exact_author_changed_paths_excluding_this_checkpoint": [
+    "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+    "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+    "package.json",
+    "tests/e2e/pricing/pricing.e2e.spec.ts",
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-smoke-capture-definition-inventory.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-smoke-capture-plan.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-smoke-capture-resume-integrity.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-smoke-capture-review-order-check.json"
+  ],
+  "author_changed_file_pins_excluding_this_checkpoint": [
+    {
+      "path": "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+      "raw_sha256": "6641880314be820a20b7433e48a256120ad367335a435e40b6b0e5b90910813c",
+      "effective_git_blob_oid": "800bcfbd33914505a0723c5a477eb46d998717e5"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+      "raw_sha256": "d7f6b0a45ca075283ead5cfb1fc04df69d03a92eda23e2994a2312324a0a3e1e",
+      "effective_git_blob_oid": "512c0a0b7c119a4b7863a7868dcee259013ad1cd"
+    },
+    {
+      "path": "package.json",
+      "raw_sha256": "1d5892751389476587a49d1a2bec486ce0bb692d35186a087eb72fcd1cfc5472",
+      "effective_git_blob_oid": "8cce451257420153c03bebbcdf58eb5744a6977e"
+    },
+    {
+      "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+      "raw_sha256": "dc4bdebb8f9b3cd332d0a42bcb4880e6428155b5334f7dc2fadbb1ed65fc170b",
+      "effective_git_blob_oid": "5dd073bc1be9962683c4c7a5e60726e8935fc0b0"
+    },
+    {
+      "path": "tests/e2e/settings/settings.e2e.spec.ts",
+      "raw_sha256": "69f30ac2c9e4c02781a41e945c24277ed87c7822090af3b99d66cd12a6719201",
+      "effective_git_blob_oid": "7cb1da141ca63767da0a0eebbf8a0b991912182d"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-smoke-capture-definition-inventory.json",
+      "raw_sha256": "90120c0b777156cef8ab7c26f765e7da82915c315c0ff587c37e3ff33d61e079",
+      "effective_git_blob_oid": "64afbfbf21814882f206f3764467637d784c056e"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-smoke-capture-plan.json",
+      "raw_sha256": "972349d792c104d2646ee9cf8a2a772d18b1f06e6c316c09f6412b9a4b49b20f",
+      "effective_git_blob_oid": "d104e895653ae7dd03001f03f724a3a42ddb4bd1"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-smoke-capture-resume-integrity.json",
+      "raw_sha256": "03b402879a4d1e25185e1416edb9edb0eaef0212e9c170c1daaf4a24d95ec443",
+      "effective_git_blob_oid": "f7fce3ea82d92aed84aa0bd1b12869963913f5d6"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-smoke-capture-review-order-check.json",
+      "raw_sha256": "3ca861141065725079d7af77aeff857697b32f9b3f04d94f038561a2515e6c36",
+      "effective_git_blob_oid": "3490327adfe1bc64229fde24cfa61c98c009ceb6"
+    }
+  ],
+  "preserved_other_writer_paths": [
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/effective-allocation-admission.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/smoke-line-owner-approval.json"
+  ],
+  "checks": [
+    {
+      "name": "typecheck",
+      "native_exit": 0,
+      "log": "author-smoke-capture-typecheck-final.log",
+      "initial_failure_retained": "author-smoke-capture-typecheck.log"
+    },
+    {
+      "name": "changed E2E ESLint",
+      "native_exit": 0,
+      "log": "author-smoke-capture-eslint-final.log"
+    },
+    {
+      "name": "single author SRO checker",
+      "native_exit": 0,
+      "output": "author-smoke-capture-review-order-check.json",
+      "refs": 24
+    },
+    {
+      "name": "source-only registration/assertion preservation",
+      "native_exit": 0,
+      "output": "author-smoke-capture-definition-inventory.json",
+      "defined": 23,
+      "producer": 6,
+      "original_literal_expects_retained": 135,
+      "current_literal_expects": 178,
+      "runtime_executed": 0
+    }
+  ],
+  "script_selection": "Existing12files/old80case selection preserved; add2ownedfiles/current23 source registrations =>103 prior-count arithmetic only; no new native collection/pass.",
+  "nominal_capture_definitions": 74,
+  "new_pngs": 0,
+  "native_collection": "Not launched: existing tests/e2e/.auth/fixture.json absent. No fake fixture or local service.",
+  "prior_actual_deb14": "Parent-qualified23owned/6producer first-attemptPASS;52actualframes have independently observed visual coverage gaps. Historical only.",
+  "review": "New bounded package/twoE2E delta awaits targeted independent High confirmation; earlier source/fix reviews remain earned historical evidence.",
+  "holds_and_limits": [
+    "All DCL/readfault/newphysicaltargetdeletion methods remain HOLD; no new code/execution.",
+    "Historical receipt current-missing/unavailable/newer coverage not falsely replaced by stale/neighbor frames; actual gaps retained in plan.",
+    "No CI/build/browser/new images/authenticated visual/completion gate executed here. Final exact-head gates remain blocking."
+  ],
+  "build_status": "in-progress",
+  "step5_done": false,
+  "producer_prerequisite_earned": false,
+  "release_ready": false
+}

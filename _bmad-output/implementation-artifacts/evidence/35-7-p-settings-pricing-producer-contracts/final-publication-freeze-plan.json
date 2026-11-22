@@ -1,0 +1,18 @@
+{
+  "task_id": "35.7-P",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "source_review_commit": "7f6a7be9e0544844b43842b46d498f7539602dde",
+  "branch": "codex/35-7-p-settings-pricing-producer-contracts",
+  "source47_git_blob_digest": "71463c560099227967b8814fe12393bd733377c9cdde410ce3fc4f221d934aca",
+  "source47_unchanged_before_bookkeeping_commit": true,
+  "author_stopped": true,
+  "independent_results": "implementation-review-round-1-fix-results.json",
+  "spec": "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+  "delivery": "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+  "next_owner": "Root owns push/separate producer PR/exacthead native CI checkpoint release-validation true, and actual visual acceptance route. This workflow owner stops all writes after final bookkeeping commit.",
+  "postcommit_checks": "Read-only SRO/frontend-controller/completion-gate original fullbaseline; native stdout returned to Root without new tracked evidence writes. Frontend expected blocked for exact published PR/visual acceptance, never dirty-source pass.",
+  "runtime": "No workflowowner managed launch. Author resource Stop accepted; retaineddata/not assumedactive/no verifiedshutdown claimed. No refs needed for publication.",
+  "development_complete": false,
+  "producer_prerequisite_earned": false,
+  "release_ready": false
+}

@@ -1,0 +1,51 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "PROVISIONAL IMPLEMENTATION-STAGE C RECORD ONLY for generation 3, authorized by owner approval00dc03d45f061cb7c14d1ae868cc7897ea76ef20be463e05106f3f9e3552f6ca and exact packet351e99651748b94eb5db0a9f8e93af6d2170eb6306157a79870e4df03d0c3cf9. Source implementation, listed scoped checks, closed independent full-D..C5 SOURCE review and selected Phase6 source-artifact adoption are complete provisionally. Development remains UNACCEPTED; visual remains PENDING; release_ready=false. Technical story status done is an intermediate source-stage reader field, not overall/native Done, review-ready/development acceptance, deployment approval or successful frontend/completion wrapper. Historical blocked/partial attempts and failures are preserved. P-1..P-7/CAP-1..CAP-3, thirteen callers/twelve kinds, six hosts and all seventeen preserved Applies identities remain unchanged. C5 browser collection registered19 with0executed and does NOT satisfy browser verification. C3's190 focused units and build/full lint(native0,40warnings), C4's18 synthetic controller checks, and other earlier results retain their original revision/provenance; they were NOT executed at C5. The historical240000ms full-unit attempt timed out(native-1), observed1283 partial passes, with UNKNOWN final totals; it is NOT a full-unit PASS. Selected TEA adopted existing bodies, generated0new tests and executed0product tests; normal artifact verification passed against original prephase receiptcb27bd4d1fe8393e859c4d2e3932bd949f7ef3de1276d082f1f054444641a6d9 at C5 before this metadata amendment. MANDATORY FINAL-G DUTIES ARE PENDING, NOT PASSED AND NOT DEFERRED: one actual clean published frozen G must earn full ordinary exact-candidate CI/static/build/full-unit/verify-development; full DB integration/RLS with SUPABASE_TEST_REQUIRED=1 and both existing Vitest partitions; direct recovery/storage integrity plus required money/tax/source/quote/PDF regressions; FULL configured production-browser plus separate dashboard via release_validation=true; actual affected six-host desktop and360x640/source-state-labelled captures, required essential accessibility and shared-consumer evidence; authenticated HUMAN/controller visual acceptance; and the UNCHANGED frontend-FIRST completion wrapper on THIS SAME delivery JSON using the recorded full baseline3a2fe5a565e2627b45b9b46880e26966ef0cd23f. No G hash, execution, human approval or wrapper PASS is invented. Any changed final head requires its applicable requalification. Separate exhaustive REL-1/REL-2/REL-3 release obligations and E16/E20 ownership caveats remain unchanged; no mandatory G work is moved into that deferral. Root owns Git/native/provider/aggregate transitions. The factual matched app/schema pause/drain cutover, merge/deployment and release approval remain separate. This record's structural validity alone is NOT development acceptance.",
+  "evidence_revision": "e6a0bffcfed537099ad6e4219f2fea4fbb6df354",
+  "development_checks": [
+    {
+      "name": "C5 scoped TypeScript source check",
+      "status": "passed",
+      "evidence": "node node_modules/typescript/bin/tsc --noEmit --pretty false; native0. gen3-C5-typecheck.log and gen3-C5-verification.json(rawSHAca66cdcc4abc977d225d6da9cf978529c74c50d18577eefbb9b00f0c41f8d99f), under _bmad-output/implementation-artifacts/evidence/35-8-producer-safety/. Executed on the precommit C5 tree based on3b69b66495131feb90f3aa666244ec9a85898bef; E2E rawSHA3100d93757e6848acad2e14c251a52c3400ef01a5ef8a261a7da62713a2dd142 committed unchanged at evidence_revision. Not a hosted/final-G gate."
+    },
+    {
+      "name": "C5 changed-test and fixture-check lint",
+      "status": "passed",
+      "evidence": "node node_modules/eslint/bin/eslint.js tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts _bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C5-browser-fixture-check.mjs; native0,0errors/0warnings. gen3-C5-targeted-lint.log and C5 verification record bind the unchanged C5 source; not a newly executed full lint or final-G check."
+    },
+    {
+      "name": "C5 executable fixture/preflight and controlled upstream-stage checks",
+      "status": "passed",
+      "evidence": "node --experimental-strip-types --import ./tests/support/register.mjs --test _bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen3-C5-browser-fixture-check.mjs; native0,3passed/0failed/0skipped/0TODO. gen3-C5-browser-fixture-check.tap. Actual tax setup uses real pure preflight; actual A/B/C body uses synthetic route/locator boundaries. This is NOT real React/browser/domain/DB execution."
+    },
+    {
+      "name": "C5 Playwright test registration only",
+      "status": "passed",
+      "evidence": "node node_modules/@playwright/test/cli.js test tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts --project=chromium --list; native0,19registered/0executed. gen3-C5-browser-collection.log. Collection passed ONLY; mandatory final production-browser/dashboard execution remains pending."
+    },
+    {
+      "name": "C5 author-trail references",
+      "status": "passed",
+      "evidence": "node scripts/verify/check-review-order.mjs _bmad-output/specs/spec-calculation-editor-mutation-safety/stories/35-8-p-calculation-editor-mutation-safety.md; retained C5 native0,one section/20validreferences, gen3-C5-review-trail.log. Current provisional metadata receives a separate low-cost reference check; no source/runtime acceptance is granted."
+    },
+    {
+      "name": "Selected Phase6 source-artifact provenance verification",
+      "status": "passed",
+      "evidence": "Normal story-tea-route.py verify --phase automate at exactC5 using original receiptcb27bd4d1fe8393e859c4d2e3932bd949f7ef3de1276d082f1f054444641a6d9: native0/oktrue; product-35-8-gen3-C5-automate-postphase-verification-20261114.json SHA2f0f06f20439bdfff5d0c64109c02ba674008aa5cf3574de8f7eb83c11b8c858. Frozen automation-summary.md SHAacfdabe1a435ffa656eeaebfb7569ec9d497255f5d9d02430a3396d8356b44b8; changed_test_sha256={}. API/E2E High source adoption generated0new tests, executed0product tests. Header remains bound to C5/pre-metadata story preimage6b4256ef5a679d9095c8d0f05ff3c5ab1dca473fd531d2220f277def64156f4b; artifact is unchanged."
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "evidence": "PASSED SOURCE REVIEW ONLY at C5e6a0bffcfed537099ad6e4219f2fea4fbb6df354 over full admitted D1c53833c70ad61a26cbfbc117a040b1f99d33f2e..C5 SQL/thirteen callers/six hosts/test chain. Three actual build/source rounds are closed through five initial qualified layers, recorded focused repair bridges and substantive configured external follow-ups; final High SHA677f311f791d5d5fcd79237e03f01bf086765b2a70f24886f9cd68e14a29017c, final external raw review SHAfb6ec09aa4e320d2aec6db7c2032dbb78788f8d160d744e91649cd436ab10bde, consumption/triage record product-35-8-gen3-C5-external-consumption-and-triage-20261114.json SHA7e49c4b89177ebf2375825d68c91bdd91345455d6e35f828791a8fd44a55ceca. All14retained findings(8high/6medium,score18) source-resolved. Final tentative section.create stale-title claim rejected after actual downstream proof: section.create compares parentid/status/archived_at; title/tax comparisons belong only to calculation.update and fullheader/subtree only to archive. No15thretained/sourcefix. Final pass retainedpatch0(high0/medium0/low0),score0,followup_review_recommended=false. Three source rounds do NOT mean three Phase7followup passes; configured followup may be skipped clean/followup_passes0 under Root bookkeeping. Earlier failed Core/transport attempts remain failures, not passes. This source-review status grants NO DB/browser/runtime, final-G applicability, visual, development or release acceptance; mandatory final duties remain explicit pending in contract_reconciliation."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Preserved exhaustive release obligations: REL-1 wider device/reflow comparisons, REL-2 extended manual/keyboard/screen-reader/daylight review, REL-3 Phase B product-wide consolidation; E16/E20 caveats retain their existing owners/provenance. Mandatory final-G browser/capture/accessibility/HUMAN/controller requirements are EXCLUDED from this deferral.",
+      "owner": "Existing originating release owners; Coordinator accountable for the Phase B release-validation checkpoint. No new owner assignment.",
+      "status": "deferred",
+      "evidence": "Unchanged test-design.md final preservation paragraph and docs/quality/phase-b-release-validation-checkpoint.md. No release execution or approval claimed; this provisional record preserves those obligations without adding a waiver or moving mandatory G work.",
+      "next_action": "Existing owners retain originating scope/evidence and execute the separate exhaustive program through the Phase B checkpoint after its documented trigger; record actual outcomes and obtain separate release approval. Complete every mandatory final-G duty first where applicable."
+    }
+  ],
+  "release_ready": false
+}

@@ -1,0 +1,854 @@
+{
+  "task_id": "35.7-P",
+  "assignment_kind": "ordinary-exclusive-ADR-task",
+  "owner_chat": "01a19bf5-183b-7ae1-ab86-8bd5804dcb6f",
+  "coordinator_chat": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "authority": "Explicit Coordinator assignment in task handoff: sole sequential producer owner. 35.6/35.7 workers unstarted; prep finished process-only; tooling paused limited to helper/contracts/docs. No v2 claim or fabricated story identity.",
+  "captured_at_utc": "2026-11-02T11:14:19.630904+00:00",
+  "remote_main": "9533e969c1981647e26c33774a9327f842ad299a",
+  "local_main_preserved": "bbf7cef7515da7d3cd1d39a70cb73eab1856d3ad",
+  "branch": "codex/35-7-p-settings-pricing-producer-contracts",
+  "worktree": "C:\\DEV\\K35-7-P-producer",
+  "post_import_head": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "imports": [
+    {
+      "original": "fc3f7f8f4ba34b3ee91c7f7b6841d070b55b3c4f",
+      "imported": "89d36053f095cca12be37b040e0d15d422b60227"
+    },
+    {
+      "original": "f5d60d68fab853290adcf5b54f3aa27e12260ab6",
+      "imported": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657"
+    }
+  ],
+  "source_preimages": [
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/.memlog.md",
+      "sha256": "c67220076bd2a84d5827fabc02cee0e2e1b4b224d9d34ad8b820c4640fffdd43",
+      "git_blob_sha256": "3c010a06132f1c3471a3f3b0dcd9bf6b2231de27d9ab303f4afffcd7c376b6fd",
+      "imported_raw_bytes_equal": false,
+      "lf_equal": true,
+      "line_ending_note": "Default Git checkout CRLF conversion only for .memlog; left untouched"
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/allocation-and-admission.md",
+      "sha256": "ccf0ac78d7f4595218d145cc6d9d3b5351be368896df17f1933643fdf383845d",
+      "git_blob_sha256": "ccf0ac78d7f4595218d145cc6d9d3b5351be368896df17f1933643fdf383845d",
+      "imported_raw_bytes_equal": true,
+      "lf_equal": true,
+      "line_ending_note": null
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-review.json",
+      "sha256": "c0f7362346077f868f27cfdb36dab5495ef043b3386d279117fe15cef9386317",
+      "git_blob_sha256": "c0f7362346077f868f27cfdb36dab5495ef043b3386d279117fe15cef9386317",
+      "imported_raw_bytes_equal": true,
+      "lf_equal": true,
+      "line_ending_note": null
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-review.md",
+      "sha256": "a11c5cca98a8422492dab57888ea7a183062b331cc522b9560a656baff4ac203",
+      "git_blob_sha256": "a11c5cca98a8422492dab57888ea7a183062b331cc522b9560a656baff4ac203",
+      "imported_raw_bytes_equal": true,
+      "lf_equal": true,
+      "line_ending_note": null
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-routing.json",
+      "sha256": "3263c1e9ebcc158c363596211ccf1e44097ea0e721a9e970a3217d6a313df12c",
+      "git_blob_sha256": "3263c1e9ebcc158c363596211ccf1e44097ea0e721a9e970a3217d6a313df12c",
+      "imported_raw_bytes_equal": true,
+      "lf_equal": true,
+      "line_ending_note": null
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.json",
+      "sha256": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408",
+      "git_blob_sha256": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408",
+      "imported_raw_bytes_equal": true,
+      "lf_equal": true,
+      "line_ending_note": null
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+      "git_blob_sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+      "imported_raw_bytes_equal": true,
+      "lf_equal": true,
+      "line_ending_note": null
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/source-binding.json",
+      "sha256": "5e1d4dd2b3f45f4efb2ce0bfe7fa8619921da9ff7f6992c210fc06c6849c7677",
+      "git_blob_sha256": "5e1d4dd2b3f45f4efb2ce0bfe7fa8619921da9ff7f6992c210fc06c6849c7677",
+      "imported_raw_bytes_equal": true,
+      "lf_equal": true,
+      "line_ending_note": null
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/SPEC.md",
+      "sha256": "24e384be5b2d3a3723fa61d1a76c6a090ef98dd0450626e3032ea62d200cdf74",
+      "git_blob_sha256": "24e384be5b2d3a3723fa61d1a76c6a090ef98dd0450626e3032ea62d200cdf74",
+      "imported_raw_bytes_equal": true,
+      "lf_equal": true,
+      "line_ending_note": null
+    }
+  ],
+  "allocated_preimages": [
+    {
+      "path": "src/features/settings/actions.ts",
+      "exists": true,
+      "sha256": "24f2621a11b724b80877f74dad42384292553101141f87ea651aa19e1e0cfa2a",
+      "git_blob": "89324859378cae57e4739f4d2236f1b6a004505e"
+    },
+    {
+      "path": "src/features/settings/read.ts",
+      "exists": true,
+      "sha256": "cb5fa1b255a2c28ccb27332c2d19fb200a9d2e6f59ca19f4bc0bc12744204355",
+      "git_blob": "c7c6ca6b43cc83002c539313fd13f16b7cd161b9"
+    },
+    {
+      "path": "src/features/settings/form-parsing.ts",
+      "exists": true,
+      "sha256": "9be3063e96037b4a48c82ad43ef7067e1090422e681822aebe356aa8424e49b1",
+      "git_blob": "4647d4f186ffe3353443c9cc3e97738ee0c8e4ce"
+    },
+    {
+      "path": "src/features/settings/action-state.ts",
+      "exists": true,
+      "sha256": "f5954971d1c387d2f839ab2a69bc5dbaa8d3bb80335b34ca4c397c10e40da46e",
+      "git_blob": "78e3182980398ea29e31a55346dd9459e3a83896"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "exists": true,
+      "sha256": "099b6e68f10ce0c309529adb18405906f61594425efa2680963b3fe83b6f9b5e",
+      "git_blob": "fc3d04153c3e9f19db71e349332cd200314f49e0"
+    },
+    {
+      "path": "src/features/pricing/read.ts",
+      "exists": true,
+      "sha256": "36549c0203e9c166144d81d90c0e62cad0b2612285c257e0df323b47898a0f44",
+      "git_blob": "2341f362d77388632692d0afae0d9a21da8828b0"
+    },
+    {
+      "path": "src/features/pricing/form-parsing.ts",
+      "exists": true,
+      "sha256": "3fad07478643d6b1d0271e93f021efcf74885df4f1699ea221d658d66ecb7dc5",
+      "git_blob": "9b8293d874cac7c70ab2d04e1fcc4cb965c0b40a"
+    },
+    {
+      "path": "src/features/pricing/action-state.ts",
+      "exists": true,
+      "sha256": "c2f22c837d69b2a4025afa4195808d9daf424a41b670c96a7cfb70beff0909f7",
+      "git_blob": "3ccbeee3e886858a6548eeed897696777e458d5f"
+    },
+    {
+      "path": "src/server/commands/settings/validation.ts",
+      "exists": true,
+      "sha256": "52b169efa1e90849fdd2b47f3c24d2100b4a8ab47623f0a734be5a4c4e1d0a8d",
+      "git_blob": "433ed96fbc4a9aa0bc1cd6357d77079e483be035"
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "exists": true,
+      "sha256": "03c5ab7e1fe9bdee2f66c001bf1e0899342cc725a2a83a0730e2ce3712f5aedc",
+      "git_blob": "c1e43dcf1226fc2ef7b030970b69afe9aa59717a"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "exists": true,
+      "sha256": "ce3d6e53c2577145606d9810fedaeef382b23254ff792e69ca7268eb576e8dda",
+      "git_blob": "18ff9516c76dc47c1a3e3689f75930e63813db96"
+    },
+    {
+      "path": "src/server/commands/settings/settings-db.ts",
+      "exists": true,
+      "sha256": "f1249d9b44d2b5a1f762995c6daa2b9226779aa9aa802c0cd38ab34b2bf0db38",
+      "git_blob": "58b3100dffe646cac74d53768f5e0748efa369b7"
+    },
+    {
+      "path": "src/server/commands/pricing/validation.ts",
+      "exists": true,
+      "sha256": "8f7108787289c2cac82adadc194be42400a56bfdff9b6fb6ae5e6f65a710086d",
+      "git_blob": "d1322126b7166f5da65cb07fac46b35a3312819b"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "exists": true,
+      "sha256": "26eb8676d38a4c980e65ec790e72439e49721e4d8c69f2fe7f70e160cd3b995b",
+      "git_blob": "b7a3e3894fa8e780fff17dc3c8d7bb47c23bdebc"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "exists": true,
+      "sha256": "a3f1c27f7430605f1ac206d3da7e1ac01580a3a7913a169b4d1cdad86da7b1c0",
+      "git_blob": "640f371f8c32e74b4549ea1fdc86453b8e87c194"
+    },
+    {
+      "path": "src/server/commands/pricing/pricing-db.ts",
+      "exists": true,
+      "sha256": "971d1dc77025563f56a4b0d72000694662437ebcde167fb4154c1fde69ec12e9",
+      "git_blob": "573fde2e2dc1153fd3483dc05925aa256f058b30"
+    },
+    {
+      "path": "src/features/settings/mutation-attempt.ts",
+      "exists": false,
+      "sha256": null,
+      "git_blob": null
+    },
+    {
+      "path": "src/server/commands/settings/operation-recovery.ts",
+      "exists": false,
+      "sha256": null,
+      "git_blob": null
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "exists": true,
+      "sha256": "718028b4d77799f99381f29e0e442e8148660e8b9357d758aea8caf5e8e4dd0a",
+      "git_blob": "61cd95ccf52a65e78c914ce0665b96c02662eaa3"
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "exists": true,
+      "sha256": "cc19cafd97a7e88be653c06835586c6dbe874cc5d0a5f00a549c394d92e82383",
+      "git_blob": "a198edfcc4c2ad09ae276316ca5404974bad7326"
+    },
+    {
+      "path": "src/components/settings/CompanySettingsForm.tsx",
+      "exists": true,
+      "sha256": "d86b827db1c9f7110a76089886ed1678b2eb9fc68e970ae9e3d371854fbd6b6c",
+      "git_blob": "b37b6e9424feb4d8f75dfad757428d551a2849c3"
+    },
+    {
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "exists": true,
+      "sha256": "2a4510a3ff2c864c8d76c0b023a2ed93a857052dec2e4b7ef83c07f6d045b452",
+      "git_blob": "fddd3c0f0e05b3ad90124a2243284840e2ad84a6"
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "exists": true,
+      "sha256": "1577784577702a580b6772dbab6193a82b9d5f349b9d8f3a0cfaf08ebd90582b",
+      "git_blob": "3e3e2e1d23d8b5da245cdca4a770974ca09e31c5"
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "exists": true,
+      "sha256": "bbb05c35cfadb529b35bc83941ceb352b770e7d3da2a19ee833e36de1afc5ad5",
+      "git_blob": "f7a05f1da7340e3a68de91bdeb409beafc02aac4"
+    },
+    {
+      "path": "src/app/(app)/settings/company/page.tsx",
+      "exists": true,
+      "sha256": "d7cb1b1a88435f3151f17ea0100153fd0764a3f29c0247167b87c0a856c9efe2",
+      "git_blob": "0bb6fe61406bd1f08e362ee2658683491ca1ea63"
+    },
+    {
+      "path": "src/app/(app)/settings/quote-terms/page.tsx",
+      "exists": true,
+      "sha256": "f1933c5cedaa9b3dcbe5bf2d0a0c6e2f649d6f9db01c97ff41b14e9be81c90cd",
+      "git_blob": "713fa92d7ac8c333270db48ce8c2d878c5e6db2b"
+    },
+    {
+      "path": "src/app/(app)/settings/pricing/page.tsx",
+      "exists": true,
+      "sha256": "da7663f45727d8397d56604a4395de82c0cdb6b6c0940f3c26ff047e94d288b4",
+      "git_blob": "789b7d2279adf41adacf9a48769fb2ae0670fdf5"
+    },
+    {
+      "path": "tests/unit/features/settings/form-parsing.test.ts",
+      "exists": true,
+      "sha256": "8b7522ac3f94cd07292cfa639255b5bceadddb1785e19f3704ca3764fa56014d",
+      "git_blob": "a2dac9641fb95e47a6015441b0ce5f0f91e07898"
+    },
+    {
+      "path": "tests/unit/features/settings/action-state.test.ts",
+      "exists": true,
+      "sha256": "bf816023ebd3060fc4841fa1eefa1caa7c8688b5cd985dc675b58b0ebb55dab5",
+      "git_blob": "6ed1f35a7b7c12af0df16948cfc0ed07e2b5d6b7"
+    },
+    {
+      "path": "tests/unit/features/settings/mutation-attempt.test.ts",
+      "exists": false,
+      "sha256": null,
+      "git_blob": null
+    },
+    {
+      "path": "tests/unit/features/pricing/form-parsing.test.ts",
+      "exists": true,
+      "sha256": "74957445b4ed0bb59cf26cc2b92ad62f3995a12f43ca8901477cb35e5cda7a4c",
+      "git_blob": "02c9594d2cf457f228a28b40a30fae9415f6f87b"
+    },
+    {
+      "path": "tests/unit/features/pricing/action-state.test.ts",
+      "exists": true,
+      "sha256": "cfb218e25203192f4f9a1eb856af7019f0a8d5e799671f161e5be45f1ef8d045",
+      "git_blob": "5552bd67b1161dc751503a9de01c0ba85eb5fde2"
+    },
+    {
+      "path": "tests/unit/server/commands/settings-validation.test.ts",
+      "exists": true,
+      "sha256": "5f62f6d46d3a082551e8ff98b817010429ee8de17a39fc60849485cb65f59e86",
+      "git_blob": "8d0ca4c5305638e5d54fbe68d10ec89692f5c4ca"
+    },
+    {
+      "path": "tests/unit/server/commands/pricing-validation.test.ts",
+      "exists": true,
+      "sha256": "4f7333b1ae5e48d7411c93d1e36af99310a6d20f508101e4e312f806b7066ebb",
+      "git_blob": "69a24b94c79552ad82d00698bae4d0ae7be1fdb1"
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "exists": true,
+      "sha256": "0670f0aa5077845ad94e6cf8898eea4700be59c01bcdb33d5bd01f4566d5f228",
+      "git_blob": "992c0c122a1fb50909f646e78404bdb8c286281e"
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "exists": true,
+      "sha256": "8f8afd4af32a56d2d1f8f6b804aca4d1fa86d4ed7d57f29271e4939333479504",
+      "git_blob": "705a8a92c06a5593f152e1295dd8012f3d7e8f25"
+    },
+    {
+      "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+      "exists": false,
+      "sha256": null,
+      "git_blob": null
+    },
+    {
+      "path": "tests/integration/rls/settings-rls.int.test.ts",
+      "exists": true,
+      "sha256": "a942a11bb185c78df67041d40636cb1e557b1cda442d688474560354dc079ed3",
+      "git_blob": "842aa6805f5cbf5542e0735ff58230d6e910e93c"
+    },
+    {
+      "path": "tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+      "exists": false,
+      "sha256": null,
+      "git_blob": null
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "exists": true,
+      "sha256": "b3a5a39551a97c868eedda6a3895a0d53bee31a3ed2ffd7d07e0c867df76cc26",
+      "git_blob": "d242773f4b126b66f64acad65036b9c87190aee4"
+    },
+    {
+      "path": "tests/e2e/settings/settings.e2e.spec.ts",
+      "exists": true,
+      "sha256": "24e053ba0ce0f09ac85c427362da557f73ba68ace37831cf26adb754f2609f72",
+      "git_blob": "ed7551d446473ac487fda570c31cc66ee8fe0bf6"
+    },
+    {
+      "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+      "exists": true,
+      "sha256": "d3f8ec6880f7b9289edf73021542380843be4f63e7ff8409d60a7557f420a52f",
+      "git_blob": "d9e95ff0953c45fc0df64cdd205cdca72e0ceda0"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+      "exists": false,
+      "sha256": null,
+      "git_blob": null
+    },
+    {
+      "path": "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+      "exists": false,
+      "sha256": null,
+      "git_blob": null
+    }
+  ],
+  "additional_evidence_directory": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/",
+  "migration_allocation": {
+    "count": 1,
+    "template": "supabase/migrations/<CLI-generated-timestamp>_settings_pricing_operation_contract.sql",
+    "forward_only": true
+  },
+  "semantic_exclusivity": [
+    "schema:migrations",
+    "registry:scope-manifest",
+    "auth:command-enrollment",
+    "tests:shared-fixtures-resources"
+  ],
+  "sqlite_read_only_snapshot": {
+    "runs": [
+      {
+        "run": "documents-e20-readiness-2026-10-09",
+        "epic": "20",
+        "owner": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+        "plan": "{\"base_sha\":\"a034b772d415748f021fdd7fdefad5948a7c7826\",\"coordinator\":\"01a1160d-b5b1-7623-a8e8-54ef3dc537ed\",\"epic\":\"20\",\"final_required_checks\":[\"documents-source-unit\",\"documents-integration-rls\",\"files-signed-access-integration\",\"documents-browser\",\"unit\",\"typecheck\",\"lint\",\"production-build\",\"service-role-containment\",\"bundle-containment\",\"lockfiles\",\"documents-baseline-storage-boundary\",\"documents-selected-link-unit\",\"documents-selected-link-lock-races-integration\",\"documents20-2-filter-unit\",\"documents20-2-lifecycle-integration\",\"documents20-2-browser\",\"documents20-3-context-unit\",\"documents20-3-context-integration\",\"documents20-3-browser\",\"full-integration-rls\",\"empty-migration-seed-reset\",\"isolated-storage-recovery-integration\",\"general-browser\",\"dashboard-browser\",\"epic11-pilot-performance\",\"scope-manifest-coherence\",\"epic20-trace-gate\",\"epic20-nfr\",\"epic20-test-review\",\"epic20-deferred-reconciliation\",\"epic20-deferred-archive\",\"epic20-retrospective\",\"epic20-completion-report\",\"exact-head-required-ci\",\"ci-verify\",\"ci-db\",\"ci-recovery-storage-loader\",\"ci-e2e\",\"ci-dashboard-e2e\"],\"integrated_prerequisites\":[{\"checks_passed\":true,\"commit\":\"a9d5269e0e3762255e1cc992bb2465883508dc21\",\"contracts\":[\"phase-b-private-files-current-authority-baseline\"],\"id\":\"phase-b-integrated-files-base\"}],\"integration_branch\":\"codex/documents-resume-admission-2026-10-09\",\"integration_worktree\":\"C:/Users/Rasmus/.codex/worktrees/dbe6/ElproSaas\",\"legacy_reservations\":[{\"conflict_domains\":[\"planning:epic15-specs-and-test-design\"],\"epic\":\"15\",\"reason\":\"Explicit owner temporary release of shared product/schema/permission/API/test resource scope while E15 performs specs and epic test planning; own planning artifacts remain reserved. Root-relayed authorization; not inferred from idle/oracle status.\",\"stories\":[\"15-1-the-five-scheduling-views\",\"15-2-recurring-bookings-series-materialized-occurrences-exceptions\",\"15-3-conflict-resolver\",\"15-4-time-reporting-filing-timesheet-review\",\"15-5-personal-calendar-feed-adr-b004-surface-1\",\"15-6-min-dag-the-field-landing\"],\"worktree\":\"C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas\",\"write_paths\":[\"_bmad-output/auto-bmad/state/epic/epic-15.yaml\",\"_bmad-output/auto-bmad/reports/epic-15.md\",\"_bmad-output/test-artifacts/test-design-epic-15.md\",\"_bmad-output/test-artifacts/test-design-progress-epic-15.md\",\"_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views.md\",\"_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md\",\"_bmad-output/implementation-artifacts/spec-15-3-conflict-resolver.md\",\"_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md\",\"_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md\",\"_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md\",\"_bmad-output/implementation-artifacts/epic-15-context.md\",\"docs/decisions/epic-15-scheduling-ux-disposition-2026-10-09.md\"]}],\"max_workers\":1,\"run_id\":\"documents-e20-readiness-2026-10-09\",\"schema_version\":1,\"shared_paths\":[\"_bmad-output/auto-bmad/preparation/story-20-1/\",\"_bmad-output/auto-bmad/orchestration/phase-b-lanes-2026-10-08.md\"],\"stories\":[{\"approved\":true,\"conflict_domains\":[\"registry:scope-manifest\",\"registry:navigation\",\"auth:permission-matrix\",\"auth:current-source-authority\",\"storage:checked-signing-attestation\",\"tests:shared-file-fixtures\",\"schema:migrations\",\"documents:shared-read-page-actions\",\"auth:command-enrollment\",\"tests:shared-fixtures-resources\",\"documents:shared-read-page-contract\"],\"contracts\":[\"documents-selected-link-current-authority\",\"documents-seven-source-safe-read-and-pagination\",\"documents-activation-and-files-role-matrix\"],\"id\":\"20.1\",\"prerequisites\":[\"phase-b-integrated-files-base\"],\"required_checks\":[\"documents-source-unit\",\"documents-integration-rls\",\"files-signed-access-integration\",\"documents-browser\",\"unit\",\"typecheck\",\"lint\",\"production-build\",\"service-role-containment\",\"bundle-containment\",\"lockfiles\",\"documents-baseline-storage-boundary\",\"documents-selected-link-unit\",\"documents-selected-link-lock-races-integration\"],\"requires_contracts\":[{\"contract\":\"phase-b-private-files-current-authority-baseline\",\"story\":\"phase-b-integrated-files-base\"}],\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"],\"spec_path\":\"_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md\",\"spec_revision\":\"63b9e8c20cbb5f116da0a66d6e0ffe27cdc61a9e1f01b11d7f3720fd4e3bc7ea\",\"write_paths\":[\"_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md\",\"src/scope/manifest.ts\",\"src/server/authz/permission-matrix.ts\",\"src/app/(app)/files/layout.tsx\",\"src/app/(app)/files/page.tsx\",\"src/features/files/read.ts\",\"src/features/files/file-index.ts\",\"src/server/read-models/documents.ts\",\"src/server/read-models/document-sources.ts\",\"src/features/documents/actions.ts\",\"src/server/commands/documents/signed-access.ts\",\"src/components/files/FileIndexList.tsx\",\"src/components/files/FilePreviewRow.tsx\",\"tests/unit/server/read-models/documents.test.ts\",\"tests/unit/server/read-models/document-sources.test.ts\",\"tests/integration/rls/documents.rls.test.ts\",\"tests/integration/commands/documents-signed-access.int.test.ts\",\"tests/e2e/files/documents.e2e.spec.ts\",\"src/components/app-shell/nav-items.ts\",\"src/server/commands/documents/db.ts\",\"src/server/storage/document-signed-access-attestation.ts\",\"src/server/commands/envelope.ts\",\"tests/unit/server/storage/document-signed-access-attestation.test.ts\",\"tests/unit/server/commands/documents-signed-access.test.ts\",\"tests/integration/commands/documents-signed-access-lock-races.int.test.ts\",\"supabase/migrations/20261009091120_story_20_1_documents_selected_link_access.sql\",\"_bmad-output/auto-bmad/state/20-1-documents-activation-and-source-authorized-aggregation.yaml\",\"_bmad-output/auto-bmad/reports/20-1-documents-activation-and-source-authorized-aggregation.md\",\"tests/unit/scope/manifest-shape.test.ts\",\"tests/e2e/files/file-index-scope.e2e.spec.ts\",\"tests/e2e/files/entity-file-preview.e2e.spec.ts\",\"src/components/files/FileIndexUpload.tsx\"]},{\"approved\":true,\"conflict_domains\":[\"schema:migrations\",\"files:lifecycle-provenance\",\"auth:command-enrollment\",\"documents:shared-read-page-actions\",\"quotes:source-revision-proof-shape\",\"tests:shared-fixtures-resources\",\"documents:shared-read-page-contract\",\"auth:current-source-authority\"],\"contracts\":[\"documents-filter-url-state-and-archived-mode\",\"documents-checked-lifecycle-and-preview-reset\"],\"id\":\"20.2\",\"prerequisites\":[\"20.1\"],\"required_checks\":[\"documents20-2-filter-unit\",\"documents20-2-lifecycle-integration\",\"documents20-2-browser\",\"unit\",\"typecheck\",\"lint\",\"production-build\",\"service-role-containment\",\"bundle-containment\",\"lockfiles\",\"documents-selected-link-unit\",\"documents-selected-link-lock-races-integration\",\"files-signed-access-integration\",\"documents-baseline-storage-boundary\"],\"requires_contracts\":[{\"contract\":\"documents-selected-link-current-authority\",\"story\":\"20.1\"},{\"contract\":\"documents-seven-source-safe-read-and-pagination\",\"story\":\"20.1\"},{\"contract\":\"documents-activation-and-files-role-matrix\",\"story\":\"20.1\"}],\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"],\"spec_path\":\"_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md\",\"spec_revision\":\"5b1ef70a7323f4a0878db8b26ca5ce428bd73de130d64d169c3207dc45e391e8\",\"write_paths\":[\"_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md\",\"src/features/documents/filters.ts\",\"src/features/documents/date-bounds.ts\",\"src/features/documents/actions.ts\",\"src/server/read-models/documents.ts\",\"src/server/read-models/document-sources.ts\",\"src/server/commands/documents/lifecycle.ts\",\"src/server/commands/documents/lifecycle-db.ts\",\"src/server/commands/envelope.ts\",\"src/components/documents/DocumentFilters.tsx\",\"src/components/documents/DocumentPreviewPane.tsx\",\"src/components/documents/DocumentLifecycleActions.tsx\",\"src/app/(app)/files/page.tsx\",\"tests/unit/features/documents/filters.test.ts\",\"tests/unit/features/documents/date-bounds.test.ts\",\"tests/unit/features/documents/preview-state.test.ts\",\"tests/unit/server/commands/documents-lifecycle.test.ts\",\"tests/integration/commands/documents-lifecycle.int.test.ts\",\"tests/integration/commands/documents-lifecycle-lock-races.int.test.ts\",\"tests/integration/rls/documents-filter-archive.rls.test.ts\",\"tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts\",\"supabase/migrations/20261009091121_story_20_2_documents_lifecycle_origin_and_restore.sql\",\"_bmad-output/auto-bmad/state/20-2-search-filters-preview-and-archive-restore.yaml\",\"_bmad-output/auto-bmad/reports/20-2-search-filters-preview-and-archive-restore.md\",\"tests/e2e/files/documents.e2e.spec.ts\"]},{\"approved\":true,\"conflict_domains\":[\"documents:shared-read-page-filters\",\"auth:source-context-navigation\",\"entity-panels:crm-calculation-job-quotes\",\"tests:shared-fixtures-resources\",\"documents:shared-read-page-contract\",\"auth:current-source-authority\"],\"contracts\":[\"documents-authorized-atomic-context-and-entity-links\"],\"id\":\"20.3\",\"prerequisites\":[\"20.1\",\"20.2\"],\"required_checks\":[\"documents20-3-context-unit\",\"documents20-3-context-integration\",\"documents20-3-browser\",\"unit\",\"typecheck\",\"lint\",\"production-build\",\"service-role-containment\",\"bundle-containment\",\"lockfiles\",\"documents-selected-link-unit\",\"documents-selected-link-lock-races-integration\",\"files-signed-access-integration\",\"documents-baseline-storage-boundary\",\"documents20-2-filter-unit\",\"documents20-2-lifecycle-integration\"],\"requires_contracts\":[{\"contract\":\"documents-selected-link-current-authority\",\"story\":\"20.1\"},{\"contract\":\"documents-seven-source-safe-read-and-pagination\",\"story\":\"20.1\"},{\"contract\":\"documents-activation-and-files-role-matrix\",\"story\":\"20.1\"},{\"contract\":\"documents-filter-url-state-and-archived-mode\",\"story\":\"20.2\"},{\"contract\":\"documents-checked-lifecycle-and-preview-reset\",\"story\":\"20.2\"}],\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"],\"spec_path\":\"_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md\",\"spec_revision\":\"55c997e11bd09d5f5b384b70d8bf4a65827993274ce347ae6711efbebbfe255b\",\"write_paths\":[\"_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md\",\"src/features/documents/context-navigation.ts\",\"src/server/read-models/document-context.ts\",\"src/components/documents/EntityDocumentsLink.tsx\",\"src/features/documents/filters.ts\",\"src/server/read-models/documents.ts\",\"src/components/documents/DocumentFilters.tsx\",\"src/app/(app)/files/page.tsx\",\"src/app/(app)/customers/[customerId]/page.tsx\",\"src/app/(app)/calculations/[calculationId]/page.tsx\",\"src/app/(app)/jobs/[jobId]/page.tsx\",\"src/features/files/quote-files-panel.tsx\",\"src/features/files/acceptance-panel.tsx\",\"tests/unit/features/documents/context-navigation.test.ts\",\"tests/unit/server/read-models/document-context.test.ts\",\"tests/unit/components/documents/entity-documents-link.test.ts\",\"tests/integration/rls/documents-context.rls.test.ts\",\"tests/e2e/files/documents-context-navigation.e2e.spec.ts\",\"_bmad-output/auto-bmad/state/20-3-entity-panel-links-and-contextual-navigation.yaml\",\"_bmad-output/auto-bmad/reports/20-3-entity-panel-links-and-contextual-navigation.md\"]}],\"story_source\":\"sprint\",\"workflow_version\":\"95bf1053f665699aa1e44ee4711c6941ea8f2851c8bb8debd1ca9203acc7ad93\"}",
+        "plan_hash": "a95443b3d705191f88416f0f24ff8698b35bbfd7ff888b553655786b4fc9901a",
+        "state": "finalized",
+        "final_sha": "9929431b981f8f5cf733d09278465b044052de52"
+      }
+    ],
+    "claims": [
+      {
+        "run": "documents-e20-readiness-2026-10-09",
+        "story": "20.1",
+        "worker": "01a11ae8-4100-7042-9c22-d1aca188e683",
+        "generation": 2,
+        "branch": "codex/parallel-documents-e20-readiness-2026-10-09-20-1",
+        "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-1\\Kopplas",
+        "base_sha": "e2de5902d9e83f4c0fb132a5db274a575168bfe7",
+        "heartbeat": 1791813344.9345987,
+        "state": "integrated",
+        "result_sha": "df4d706a0648804b97f123e76eb4ccfc6f3727a3",
+        "integration_sha": "6e1aaf94a16a2d386b8f410f56e57c3039b2aeff",
+        "block_reason": null,
+        "evidence_present": true
+      },
+      {
+        "run": "documents-e20-readiness-2026-10-09",
+        "story": "20.2",
+        "worker": "01a11ae8-4100-7042-9c22-d1aca188e683",
+        "generation": 2,
+        "branch": "codex/parallel-documents-e20-readiness-2026-10-09-20-2",
+        "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-2\\Kopplas",
+        "base_sha": "5e00b3a844d488b61002f02c2f6c97e80708dda5",
+        "heartbeat": 1791877843.1498318,
+        "state": "integrated",
+        "result_sha": "863ccaa1c6377f76ade2bfebf0b1e6a601950a86",
+        "integration_sha": "3350d9f7999ef1a2a6ffff3fc91a15150250ab22",
+        "block_reason": null,
+        "evidence_present": true
+      },
+      {
+        "run": "documents-e20-readiness-2026-10-09",
+        "story": "20.3",
+        "worker": "01a11ae8-4100-7042-9c22-d1aca188e683",
+        "generation": 1,
+        "branch": "codex/parallel-documents-e20-readiness-2026-10-09-20-3",
+        "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-3\\Kopplas",
+        "base_sha": "9d64861989dfedb46b901fe1c3710f310199e828",
+        "heartbeat": 1791893887.0366821,
+        "state": "integrated",
+        "result_sha": "1fb9a3a10be5027b68b36b9eab6ed945a19f5a34",
+        "integration_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+        "block_reason": null,
+        "evidence_present": true
+      }
+    ],
+    "journal": [
+      {
+        "run": "documents-e20-readiness-2026-10-09",
+        "story": "20.1",
+        "before_sha": "77d5b3b8e2c4c534c65b981d0b617240ee0c5cba",
+        "result_sha": "df4d706a0648804b97f123e76eb4ccfc6f3727a3",
+        "after_sha": "6e1aaf94a16a2d386b8f410f56e57c3039b2aeff",
+        "state": "merged"
+      },
+      {
+        "run": "documents-e20-readiness-2026-10-09",
+        "story": "20.2",
+        "before_sha": "270b8a169d84b2b71615883f23a0cec8d8492156",
+        "result_sha": "863ccaa1c6377f76ade2bfebf0b1e6a601950a86",
+        "after_sha": "3350d9f7999ef1a2a6ffff3fc91a15150250ab22",
+        "state": "merged"
+      },
+      {
+        "run": "documents-e20-readiness-2026-10-09",
+        "story": "20.3",
+        "before_sha": "8fd80ce0f2e89670106b3e6095f554b22349b5ef",
+        "result_sha": "1fb9a3a10be5027b68b36b9eab6ed945a19f5a34",
+        "after_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+        "state": "merged"
+      }
+    ]
+  },
+  "worktree_inventory": [
+    {
+      "worktree": "C:\\DEV\\Kopplas",
+      "head": "bbf7cef7515da7d3cd1d39a70cb73eab1856d3ad",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\private\\epic11-pilot-operations",
+      "head": "1edcab4466f588fdaf5c3502e32aa8d437795738",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\private\\pr59-review-fixes",
+      "head": "a435c6e7bff5f9200e06fbcd7852d447c4ec8e87",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\private\\review-order-main",
+      "head": "958f3ae165b11886bcc2d576c93b4e37a2a5f4ab",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\private\\review-order-pr47",
+      "head": "c06757d27cb1e84cb9298a21d71ce39158b2c21f",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\epic-12-console-verification-20260920",
+      "head": "661dfd33a2f9992254a521ac71b64ef885eda862",
+      "overlapping_uncommitted_paths": [
+        "supabase/migrations/20260920100000_operator_console_projection.sql",
+        "supabase/migrations/20260920101500_operator_console_resume_state.sql",
+        "supabase/migrations/20260920102000_operator_console_resume_target.sql",
+        "supabase/migrations/20260920110000_first_admin_onboarding_dismissal.sql",
+        "supabase/migrations/20260921090000_onboarding_dismissal_ready_gate.sql",
+        "supabase/migrations/20260921170545_repair_provisioning_idempotency_conflict.sql"
+      ],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\fix-backup-db-url-stdin",
+      "head": "1de84866fe891e39e48b7139baf97d192665997a",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\ops-isolated-recovery-stack",
+      "head": "bb910b16c8fd26c2e6205e14f840a2f400c67c8a",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-onboarding-base-repro",
+      "head": "0b4e37e8f76998282573599b3543751538dd5fdc",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-auth-callback",
+      "head": "2fb018a8af185525dad1d94043dae7703c7c88ed",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-checkpoint",
+      "head": "a435c6e7bff5f9200e06fbcd7852d447c4ec8e87",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-identity",
+      "head": "fc2a85e4e615653c812a002eb48a63c6820e2823",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-lifecycle",
+      "head": "64af003a6f9fd1bee6f7494b6b52b819d071198c",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-nfr-evidence",
+      "head": "23b379a97969160ac9fffb34913648303b1e9e70",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-reset",
+      "head": "7c543525f6b60ea3d76fb5c189af714f9c9ce0a7",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-test-quality",
+      "head": "9b2aaed410b610e0781ad1d3578cdb9ed0407373",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\K-pr-strategy",
+      "head": "c34f7b727a729332c3284227ef5fd00279c09e58",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\K35-4-preparation",
+      "head": "07d24236961ae14619411c1c05fc199de568dde7",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\K35-5-preparation",
+      "head": "8e49ad39494eda8a1f28f5725c21471956437f87",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\K35-5-shell",
+      "head": "246a29d52d0228dc17211f1a90bcd7f32cf1ebce",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\K35-7-P-producer",
+      "head": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\K35-admission",
+      "head": "65be26c5e6e2923ea0298160f4da54a987bed0fe",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\K35-closeout",
+      "head": "b74a25c1a8055e58bb53cdef85e2b0eb85236b25",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\K35-implementation",
+      "head": "f598bb18b4322bf55ac89db6db69a41f3eb6bfd8",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\K35-pair-preparation",
+      "head": "f5d60d68fab853290adcf5b54f3aa27e12260ab6",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\K35-records",
+      "head": "207ee7a5ce8517bc472c60c807472b63f5d09832",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-pilot112-third-slot",
+      "head": "3412c72670138f30cfa9d5e7c299ea6a32400fbc",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-pr103-preflight",
+      "head": "ccf633ecf84ba64a8a7828424c6b58acbcadfa0c",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-prfix-pilot",
+      "head": "324b6beb9c035b91b8fba27664664377ed1e97d0",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-quality-gate",
+      "head": "45434139c567e268f54bf0c6fa71f4530b7f043e",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-r001",
+      "head": "a5aa32a4abecb4b639c5b369ee53aca186c43764",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-visual-status-binding",
+      "head": "e828f46173d25b209b984541a64be722ea1e8843",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\DEV\\kp-parallel-v2",
+      "head": "9533e969c1981647e26c33774a9327f842ad299a",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas",
+      "head": "9242c43ec2fed71ae48e788fd052ce81969b058c",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\ci-cold-start\\Kopplas",
+      "head": "12989400abd97d6520356f8d6531dec18707f16d",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\ci-delivery-lane\\Kopplas",
+      "head": "636f8e86229d57e7920c2d51eba47995c1c20ae5",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-1\\Kopplas",
+      "head": "df4d706a0648804b97f123e76eb4ccfc6f3727a3",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [
+        {
+          "path": "epic-20.yaml",
+          "branch": "codex/documents-resume-admission-2026-10-09",
+          "status": "in-progress",
+          "parallel_run_id": "documents-e20-readiness-2026-10-09",
+          "active_story": "20-1-documents-activation-and-source-authorized-aggregation"
+        }
+      ],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-2\\Kopplas",
+      "head": "863ccaa1c6377f76ade2bfebf0b1e6a601950a86",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [
+        {
+          "path": "epic-20.yaml",
+          "branch": "codex/documents-resume-admission-2026-10-09",
+          "status": "in-progress",
+          "parallel_run_id": "documents-e20-readiness-2026-10-09",
+          "active_story": "null"
+        }
+      ],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-3\\Kopplas",
+      "head": "1fb9a3a10be5027b68b36b9eab6ed945a19f5a34",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [
+        {
+          "path": "epic-20.yaml",
+          "branch": "codex/documents-resume-admission-2026-10-09",
+          "status": "in-progress",
+          "parallel_run_id": "documents-e20-readiness-2026-10-09",
+          "active_story": "20-2-search-filters-preview-and-archive-restore"
+        }
+      ],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-closeout\\Kopplas",
+      "head": "ac569d51a433aceb5d0055e522f17a801b58ac2e",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "head": "d190feb91d7af10f59e7681265b06d42a4945cc6",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas",
+      "head": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [
+        {
+          "path": "epic-15.yaml",
+          "branch": "codex/epic-15-scheduling-time-calendar",
+          "status": "in-progress",
+          "active_story": "15-5-personal-calendar-feed-adr-b004-surface-1"
+        }
+      ],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-original-failure-debug\\Kopplas",
+      "head": "687b1af9e4dfbe0560ee63fc46e31f42b5c5aae1",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [
+        {
+          "path": "epic-15.yaml",
+          "branch": "codex/epic-15-scheduling-time-calendar",
+          "status": "in-progress",
+          "active_story": "15-5-personal-calendar-feed-adr-b004-surface-1"
+        }
+      ],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas",
+      "head": "29a6524a40ad9b7c4d5b65bd6bf7e9acba70e5fb",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\parallel-claim-recovery\\Kopplas",
+      "head": "aa4e4575e71a6b250ab811d34a9f3c637df49dbd",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\pr-feedback-runtime-home\\Kopplas",
+      "head": "3b5dda81d397752ee2c0a5a93b8f010b21841173",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\pr-feedback-variable-scope\\Kopplas",
+      "head": "b55e1a8692ebe490eb56d92417c3c51559136125",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\release-validation-checkpoint\\Kopplas",
+      "head": "8577a2cc094678fb99634d954de4f154061aac5b",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\story19-1-dashboard\\ElproSaas",
+      "head": "bbf7cef7515da7d3cd1d39a70cb73eab1856d3ad",
+      "overlapping_uncommitted_paths": [],
+      "unfinished_legacy_anchors": [],
+      "native_exit": 0
+    }
+  ],
+  "chat_inventory": "Read-only list_threads: only this task active in Kopplas; Coordinator/prep/tooling/35.5/reviewer idle; no presentation worker. Idle alone does not retire ownership.",
+  "reconciliation_pending": "High delegate must reconcile inherited dirty E12 migrations and copied E15/E20 anchors with current source/Coordinator facts before product writes; unresolved actual writer requires Coordinator blocker.",
+  "release_ready": false
+}

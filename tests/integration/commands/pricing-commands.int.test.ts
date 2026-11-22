@@ -57,7 +57,7 @@ import { adminQuery } from "../../factories/admin-sql";
 import { adminSelectAuditEvents } from "../../factories/audit-events";
 import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
-import { runCommand } from "@/server/commands/envelope";
+import { runCommand as runEnvelopeCommand, type Command, type RunCommandOptions } from "@/server/commands/envelope";
 import {
   upsertWorkRole,
   archiveWorkRole,
@@ -71,6 +71,20 @@ import {
 import type { CommandClock } from "@/server/commands/clock";
 
 // ── GREEN PHASE (Story 3.4 dev): the commands + migration have landed (Tasks 1-2). ──
+
+async function runCommand<I,R>(command:Command<I,R>,options:RunCommandOptions) {
+ const client=options.client as unknown as TestServerClient;
+ const raw=options.input && typeof options.input==="object"?options.input as Record<string,unknown>:{};
+ const name=command.config.command;
+ const table=name.startsWith("company_settings")?"company_settings":name.startsWith("quote_terms")?"quote_terms":name.startsWith("work_role")?"work_roles":"articles";
+ let read=client.from(table).select("*");
+ if(raw.id)read=read.eq("id",String(raw.id));
+ const existing=(table==="company_settings" || table==="quote_terms" || raw.id)?await read.maybeSingle():{data:null,error:null};
+ if(existing.error)throw new Error("Authenticated operation baseline fixture read failed");
+ const operationId=options.correlationId??crypto.randomUUID();
+ const input={...raw,operationId,targetId:raw.id??existing.data?.id??crypto.randomUUID(),expectedRevision:existing.data?.write_revision??(raw.id?crypto.randomUUID():null),...(name==="quote_terms.approve"?{terms_text:existing.data?.terms_text??"Unseen target"}:{})};
+ return runEnvelopeCommand(command,{...options,correlationId:operationId,input});
+}
 
 const FIXED_ISO = "2026-06-30T12:00:00.000Z";
 const fixedClock: CommandClock = { now: () => new Date(FIXED_ISO) };

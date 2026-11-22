@@ -1,0 +1,123 @@
+{
+  "task_id": "35.7-P",
+  "captured_at_utc": "2026-11-02T15:17:18.149256+00:00",
+  "kind": "Metadata-only integrated execution reconciliation; no new checks or audit",
+  "integrated_head": "e7429112380ea398dffcea8e550a3a91639d8c2f",
+  "source_checkpoint": "36d75438b9b3f484373666970dbc5ee0e5fcf278",
+  "integrated_main": "824bed4a92eb388db669ffb60492a7b1dd9fc038",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "source47_equal_checkpoint": true,
+  "canonical9_unchanged": true,
+  "source_blob_digest_root_qualified": "afa64fc36b2be0952e03beb07604b84df338697dc692fbe8fa588c352ab32576",
+  "source_inventory_sha256": "be74b39bea7d48fc36c8c9df371a1a602e74ee89e4ecc73ef8dc3c6423da0644",
+  "inherited_35_6_main_blobs": [
+    {
+      "path": "_bmad-output/specs/spec-design-35-6/ready-planning-receipt-2026-11-02.json",
+      "git_blob_oid": "c9570a381accf1fc419be4787acc9c9f210a7a96"
+    },
+    {
+      "path": "_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md",
+      "git_blob_oid": "02f56df57143704fa12e9cbabc3704f4cb8144af"
+    }
+  ],
+  "review": {
+    "status": "FIX_CONFIRMED",
+    "evidence": "browser-fix-targeted-results.json",
+    "evidence_sha256": "c880944a1430c6595f168757ea5ea996559738d42e30b945822d4d4c1c2d5ece",
+    "broad_rounds_completed": 1,
+    "targeted_high_layers": 2,
+    "remaining_consequential_findings": [],
+    "limits": "Source/fix confirmation only; no new-head runtime/visual acceptance"
+  },
+  "actual_CI_A": {
+    "head": "a24060287cb9e3bbea236741e74315b72785e4a7",
+    "Ubuntu_units": {
+      "total": 3808,
+      "passed": 3808,
+      "failed": 0,
+      "skipped": 0
+    },
+    "recovery_loader": {
+      "passed": 1,
+      "failed": 0
+    },
+    "dashboard": {
+      "passed": 79,
+      "failed": 0,
+      "flaky": 0
+    },
+    "DB": {
+      "total": 2305,
+      "passed": 2253,
+      "failed": 0,
+      "skipped": 52,
+      "skip_detail": "51 unchanged BookingSeries RED cases: no execution credit;1 recovery case separately actually executed/passed in recovery-loader lane"
+    },
+    "producer_DB": {
+      "passed": 82,
+      "failed": 0,
+      "skipped": 0
+    },
+    "task_migration_applied": "Fresh disposable GitHub CI database only; no application on local115/120partial target/demo/production",
+    "ordinary_PR_CI": {
+      "run": 41455530933,
+      "five_jobs": "success",
+      "browser_expected": 79,
+      "browser_flaky": 1,
+      "flaky_scope": "my-day",
+      "browser_unexpected": 0,
+      "browser_skipped": 0,
+      "limit": "12 auth/calendar/jobs/time/my-day files; excludes new producer. Not clean80, no producer browser proof."
+    },
+    "optional_exhaustive": {
+      "run": 41455681949,
+      "job": 125313470420,
+      "expected": 470,
+      "unexpected": 29,
+      "flaky": 1,
+      "flaky_scope": "CRM",
+      "skipped": 22,
+      "explicit_skips": 3,
+      "serial_not_run": 19,
+      "new_producer_passed": 3,
+      "new_producer_failed": 2,
+      "captures": 34,
+      "status": "failed",
+      "audit": "author-browser-failure-audit.json",
+      "limits": "Only2 terms failures proven introduced and now source-fixed; other27 remain unproven/unowned, not baseline PASS. All52 nonpassing records retained; release/Coordinator owns next causal dispositions."
+    }
+  },
+  "current_fix_local": {
+    "owned_unit_passed": 29,
+    "failed": 0,
+    "skipped": 0,
+    "internal_regression_scenarios": 4,
+    "typecheck_native": 0,
+    "seven_file_lint_native": 0,
+    "limits": "Actual controller/parser/validator/terms SSR with mocked hook-state/effects/router/action/browser globals. No fresh full-unit/build/browser assumption."
+  },
+  "collection": {
+    "native_list_exit": 1,
+    "native_collected": 0,
+    "reason": "Existing .auth/fixture.json absent; no fabricated fixture/global setup",
+    "source_only_defined": 23,
+    "source_only_producer_defined": 6,
+    "limits": "Mocked registration/fixture-read model, not native collection or execution"
+  },
+  "capture_definitions": {
+    "nominal": 52,
+    "new_PNGs": 0,
+    "plan": "author-browser-capture-plan.json",
+    "potential_limit_groups": 5,
+    "owner": "Workflow owner qualifies actual final-head frames/package; no new visual audit in this reconciliation"
+  },
+  "history_preserved": "Prior failed Windows unit/calendar/xattr execution remains historical; no skipped coverage credited or old result relabeled current head PASS.",
+  "current_head_runtime": "unearned",
+  "current_head_images": "unearned",
+  "authenticated_visual_acceptance": "unearned",
+  "build_status": "in-progress",
+  "step5_done": false,
+  "producer_prerequisite": "unearned",
+  "release_ready": false,
+  "commands_not_run": "No wrapper, unit/integration/browser/build/review/service/resource/gate/dispatch/publication; named SRO checker only follows metadata edits."
+}

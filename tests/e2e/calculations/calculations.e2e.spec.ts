@@ -138,6 +138,7 @@ test.describe("Calculation editor UX (Story 5.2 E2E)", () => {
     const firstRowForm = page.getByTestId("row-edit-form").first();
     const sell = firstRowForm.getByLabel("Pris (kr)");
     await waitForHydrated(sell);
+    await expect(firstRowForm).toHaveAttribute("data-editor-ready", "true");
     await sell.fill("-50");
     await firstRowForm.getByRole("button", { name: /Spara rad/ }).click();
 
@@ -211,6 +212,7 @@ test.describe("Calculation editor UX (Story 5.2 E2E)", () => {
     const secondTitle = `Sektion B ${crypto.randomUUID().slice(0, 8)}`;
     await page.getByTestId("add-section").click();
     const addForm = page.getByTestId("add-section-form");
+    await expect(addForm).toHaveAttribute("data-editor-ready", "true");
     await addForm.getByLabel(/Sektionstitel/).fill(secondTitle);
     await addForm.getByRole("button", { name: /Skapa sektion/ }).click();
 
@@ -222,27 +224,52 @@ test.describe("Calculation editor UX (Story 5.2 E2E)", () => {
     // The first section's move-up is always disabled (it is already first).
     await expect(page.getByTestId("section-move-up").first()).toBeDisabled();
 
-    // Move the newly-added section (rendered LAST) up to the FRONT via the atomic
-    // reorderSections command. The shared baseline calc may already carry sections added by
-    // sibling specs (this serial fixture is shared), so repeat move-up until the new section
-    // is first — the reorder CONTRACT is that move-up steps a section toward the front; the
-    // number of steps depends on how many sections precede it. Move-up buttons and
-    // section-editors are in the SAME document order, so the button at the section's current
-    // index moves that section. Guard the loop with a bound.
-    for (let step = 0; step < 12; step += 1) {
-      const editors = page.getByTestId("section-editor");
-      const count = await editors.count();
-      let idx = -1;
-      for (let i = 0; i < count; i += 1) {
-        if (await editors.nth(i).getByText(secondTitle).count()) {
-          idx = i;
-          break;
-        }
-      }
-      if (idx <= 0) break; // already first (or not found) → done
-      await page.getByTestId("section-move-up").nth(idx).click();
-      // Wait for the revalidated re-render before recomputing the index.
-      await page.waitForTimeout(200);
+    // Read identities from each existing section's rename form, in server-projected order.
+    // Its parent wrapper also owns that section's move-up form; NEXT ordered_section_ids
+    // is deliberately not used as evidence of the current order.
+    const editors = page.getByTestId("section-editor");
+    const readSectionOrder = () => editors.evaluateAll((sections) =>
+      sections.map((section) =>
+        section.querySelector<HTMLInputElement>('form input[name="id"]')?.value ?? "",
+      ),
+    );
+    await expect(secondSection).toHaveCount(1);
+    await expect(addForm.getByRole("button", { name: /Skapa sektion/ })).toBeEnabled();
+    const targetId = await secondSection.locator('form input[name="id"]').first().inputValue();
+    const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    expect(targetId).toMatch(uuid);
+    const startingOrder = await readSectionOrder();
+    expect(startingOrder.every((id) => uuid.test(id))).toBe(true);
+    expect(new Set(startingOrder).size).toBe(startingOrder.length);
+    expect(startingOrder.filter((id) => id === targetId)).toHaveLength(1);
+    const intendedMoves = startingOrder.indexOf(targetId);
+    expect(intendedMoves).toBeGreaterThan(0);
+    const reorderForms = page.getByTestId("section-move-up").locator("xpath=ancestor::form[1]");
+    const expectNoReorderRecovery = async () => {
+      await expect(page.getByTestId("section-reorder-error")).toHaveCount(0);
+      await expect(reorderForms.getByRole("button", { name: "Kontrollera resultat", exact: true })).toHaveCount(0);
+      await expect(reorderForms.getByRole("button", { name: "Försök samma åtgärd igen", exact: true })).toHaveCount(0);
+    };
+
+    let confirmedOrder = startingOrder;
+    for (let step = 0; step < intendedMoves; step += 1) {
+      await expectNoReorderRecovery();
+      const currentOrder = await readSectionOrder();
+      expect(currentOrder).toEqual(confirmedOrder);
+      const index = currentOrder.indexOf(targetId);
+      expect(index).toBe(intendedMoves - step);
+      const expectedOrder = [...currentOrder];
+      [expectedOrder[index - 1], expectedOrder[index]] = [expectedOrder[index], expectedOrder[index - 1]];
+      const moveUp = editors.nth(index).locator("xpath=..").getByTestId("section-move-up");
+      await expect(moveUp.locator("xpath=ancestor::form[1]")).toHaveAttribute("data-editor-ready", "true");
+      await moveUp.click();
+      // Poll reads only: exactly one adjacent server-projected swap must finish before another click.
+      await expect.poll(async () => {
+        const order = await readSectionOrder();
+        return { order, targetIndex: order.indexOf(targetId) };
+      }).toEqual({ order: expectedOrder, targetIndex: index - 1 });
+      await expectNoReorderRecovery();
+      confirmedOrder = expectedOrder;
     }
     await expect(
       page.getByTestId("section-editor").first(),
@@ -261,6 +288,7 @@ test.describe("Calculation editor UX (Story 5.2 E2E)", () => {
     const uniqueTitle = `Ny sektion ${crypto.randomUUID().slice(0, 8)}`;
     await page.getByTestId("add-section").click();
     const addForm = page.getByTestId("add-section-form");
+    await expect(addForm).toHaveAttribute("data-editor-ready", "true");
     await addForm.getByLabel(/Sektionstitel/).fill(uniqueTitle);
     await addForm.getByRole("button", { name: /Skapa sektion/ }).click();
 

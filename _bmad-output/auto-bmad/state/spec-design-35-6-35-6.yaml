@@ -93,7 +93,7 @@ overrides:
   aggregate_work: coordinator-only
 constraints: []
 parallel_run_id: e35-6-20261102
-publication_identity_json: "{\"base_branch\": \"main\", \"base_revision\": \"824bed4a92eb388db669ffb60492a7b1dd9fc038\", \"branch\": \"codex/story-35-6-crm-record-journeys\", \"repository\": \"rthunborg/Kopplas\", \"run_id\": \"e35-6-20261102\", \"story_key\": \"spec-design-35-6-35-6\", \"worktree\": \"C:/DEV/Kopplas/tmp/private/e35-worker-35-6\"}"
+publication_identity_json: "{\"base_branch\": \"main\", \"base_revision\": \"9a47b3fa2d593803ae4d780dba3b4c7c7cd10f16\", \"branch\": \"codex/story-35-6-crm-record-journeys\", \"repository\": \"rthunborg/Kopplas\", \"run_id\": \"e35-6-20261102\", \"story_key\": \"spec-design-35-6-35-6\", \"worktree\": \"C:/DEV/Kopplas/tmp/private/e35-worker-35-6\"}"
 development_state: checkpoint_pending
 publication_state: checkpoint-open-evidence-pending
 review_state: "initial-and-targeted-high-reviewed; followup-pending"

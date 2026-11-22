@@ -1,0 +1,8 @@
+{
+  "task_id": "35.7-P",
+  "scan": "public-protocol-consumer-scan.txt",
+  "scan_sha256": "461b43fe10ed39124bbb41a64ff506e1c5192ddb56d834c31ce4227cb3c20ded",
+  "symbols": "All action-state exports/types/initials/retry helpers/signoff helper; all new pure attempt public symbols and import paths; src and tests TS/TSX",
+  "result": "Every actual matching settings/pricing action-state or new pure-attempt consumer is within current allocated product/test paths or already approved three-site booking helper. No further unallocated consumer is found. The separately retained all-validator/result/adapter/DTO trace identified only supplementary pricing-validation-edges outside current allocation.",
+  "unit_evidence": "author-unit.log actual3794/pass3781/fail12/skipped1; five pending-enrollment dependent failures, five supplementary pricing positive-fixture failures, two unchanged local CRLF-sensitive calendar source tests. No skipped suite claimed passing."
+}

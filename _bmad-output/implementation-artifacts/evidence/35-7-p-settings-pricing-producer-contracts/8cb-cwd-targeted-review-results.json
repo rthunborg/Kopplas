@@ -1,0 +1,1057 @@
+{
+  "recorded_at_utc": "2026-11-02T19:30:22.6007648Z",
+  "verdict": "FIX_CONFIRMED",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reviewers": [
+    "/root/producer_build/review_r1_verification",
+    "/root/producer_build/review_r1_edges"
+  ],
+  "scope": "Only latest parse-first/lazy-cwd security and25-input retained proof, no broad qualifier/image/proposal audit",
+  "freeze_sha256": "c9fc42dbf5713d08110f09943f29f82afa66f3162e6832122173d3fbcc91458c",
+  "source48_digest": "81b6d13ee378d53aab54296247237ce1eb430e7df66b9fa8c0dbc553c4c5fd79",
+  "pricing_sha256": "551106ee1047d7d2405c076f5f480aa5508b3b5ab3f4fd3df09fb8da10d6037f",
+  "pricing_git_blob": "e986fab62d6f64b711e59fa4a0c1effc5285ab08",
+  "patch_sha256": "0b940424cebc23557e0ef749fe10260ca306dd84daa7320f3db2c9e1d3d2fb89",
+  "findings": [],
+  "security_confirmation": "Actual script/subcommand parsed before cwd; absolute scripts retain real identity without cwd; non-test invocations excluded before cwd; relative test/ambiguous launches still refuse. No blanketcontainer/EPERM exemption. Knownfamily/canonicalinstalledowner/foreigncount/soleowner/privilegedeffectguards retained. Diagnostics fixedcategories+numericPID only, no argv/env/cwdpayload.",
+  "proof_confirmation": "All10 proof files match; completeargv/cwd/fakefs/package/bin retained; exactsource/extraction/transpilation/harness/results bindings; previous17inputsfixturesoutcomesunchanged+8lazycwdcases. Absscripts/non-test/nonCLI cwdreads0; relativeknown/opaque EPERMreads1/refuses. Saved25P0F read, reviewers didnotrerun.",
+  "proof_manifest_sha256": "341a7063c7b3f98beb14b8b91703a9b7e262426739cf355d83912180394e47f4",
+  "late_readonly_DB_supplement": {
+    "native_path": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-8cbdb4ca/native/native-full-integration/full-integration.json",
+    "sha256": "9468c738f53f21ebc51e3e25ec382ab1213a3e5c70ac1fa4e042dc295b732f10",
+    "records": 2305,
+    "passed": 2251,
+    "failed": 2,
+    "explicit_skip": 52,
+    "success": false,
+    "nested_failed_suites": 4,
+    "failed_files": 2,
+    "producer_commands_passed": 75,
+    "producer_RLS_passed": 7,
+    "producer_skipped": 0,
+    "first_callers": [
+      "job-scheduling-consumers.int.test.ts216 fixture→seedRoleAwarePhaseAUsers Promiseall index2 role-saljare→tests/factories/tenants/core.ts135",
+      "booking-series.rls.test.ts92→withBookingFixture188→createTwoTenantFixture Promiseall index2 orphan→same Auth create"
+    ],
+    "business_callbacks_entered": false,
+    "partial_fixture_setup_possible": true,
+    "raw_error": "{} with no HTTPstatus/SQLcode/underlyingcause",
+    "source_equality": "Exactfailedfiles/factory/wrappers/setup/env/config/package/lock/runtime/migration/commands/API/integration/CI matchb8, no causal/baseline/flakeclaim",
+    "whole_DB_PASS": false,
+    "author_postfreeze_write": false
+  },
+  "limits": "Pureproof notactualprocadmission; old8cbPID/errno/argv unknown.25purecases/capture103/24owned7producer/SRO37 unchanged. All23methodframes/newheadCI/effects/images/visual/completion unearned; live80 cap private88/90proposalsunapplied/humanHELD.",
+  "broad_rounds_completed": 1,
+  "no_reviewer_tests_writes_resources_CI": true,
+  "step5_done": false,
+  "release_ready": false,
+  "current_1ddb_exact_role_followup": {
+    "recorded_at_utc": "2026-11-03T06:24:25.259978+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "restart_recovery": "Verification resent its previously completed final; edges completed only its interrupted bounded patch/pin check. No duplicated review or test execution.",
+    "scope": "Only exact-owned-role source-risk and retained 41-case proof confirmation; broad implementation rounds remain 1.",
+    "freeze_sha256": "b6a46e107ca8b08af7d24c5c50fa091aa850519b2943b84c524430addac9a22c",
+    "source48_digest": "d452dcf364cc5ad69e3c9d4e0e5e40c4bfb1af8904bf2f316170f3ea7c5ae68e",
+    "pricing_sha256": "bf605d727423f58315c69d3ebd2365994622697d26fd196fc6931fda83185a6d",
+    "pricing_git_blob": "b660eeed978e57910e521295edca8641a4377e41",
+    "patch_sha256": "fd36256b859dc47da8a29f7e1080c0a1da6e6e35557c38e0898a0e5f58fc3196",
+    "findings": [],
+    "verification_confirmation": "Confirmed Node with opaque argv refuses unless exact validated server or exact job-owned browser launcher. Parsed/opaque test-token veto precedes role exceptions. Launcher binds validated container/image/exact command to one init direct-child PID, with parent/namespace corroboration and unchanged start ticks. Exact installed-owner CLI and sole-owner equality remain enforced. Controlled fresh-job boundary only; no universal host attestation.",
+    "edges_confirmation": "All 48 raw/effective source pins and patch match; all 12 proof files match. Four extracted functions and transpilation independently match retained source. Prior 25 inputs, filesystem fixtures and helper outcomes unchanged; 16 concrete role/opacity/namespace/PID-instance/foreign cases added. Both saved runs record 41 passed, 0 failed; reviewers did not rerun.",
+    "negative_proof_precision": "Strengthened harness rejects unrelated exceptions through a three-reason allowlist plus exact synthetic-disappearance message; it does not assert a unique expected reason for each role case. Launcher-helper negatives use its single fixed refusal reason.",
+    "proof_manifest_sha256": "10a44f9ef5478873f7a82cb76454414128d02bd10d526579777819f52797825e",
+    "proof_limits": "Kernel executable confirmation is mocked true in relevant wrapper cases. Receipt authority, actual /proc, Docker state and old PID10067 identity are not proven by the model. Rejected provisional32 receives zero credit.",
+    "unchanged_boundaries": "103 capture definitions / 24 owned / 7 producer declarations; actions, registrations, timeouts, effect budget, restoration and ONE-delete limits unchanged. SRO 39 stops. Private88/90 packets unchanged and unapplied; human cap approval held.",
+    "actual_1ddb_browser": {
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "failure": "P-E5 EACCES / consumer-cwd-unavailable PID10067, 1418/1428ms, before DB client/fixtures/journal/effects; role remains UNKNOWN",
+      "historical_PNGs": 80,
+      "method_journal": false,
+      "method_frames_absent": 23
+    },
+    "actual_1ddb_DB": {
+      "native_sha256": "416a998a3928833698d41ddfa7dd382b748b7301fc4a65d10a5379671dc811b8",
+      "success": false,
+      "total": 2257,
+      "passed": 2195,
+      "failed": 1,
+      "explicit_skip": 52,
+      "failed_suites": 2,
+      "failed_files": 1,
+      "absent_planned": 48,
+      "producer75_RLS7": "PASS0skip",
+      "failure": "15.4-NUDGE-004 FixtureAuthCleanupError retryable-fetchHTTP500/codeunavailable; masked-bodyPASSunknown",
+      "diagnostics": "6741ms23503x12/53300x1/delete500x13 DIAGNOSTICONLY0credit/nocauseproof"
+    },
+    "no_new_tests_resources_DB_effects_CI_images": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Fresh exact-head required CI, actual method runtime and all image inputs, truthful complete package within live bounds or separately approved trusted prerequisite, authenticated visual acceptance and completion gates remain unearned.",
+    "step5_done": false,
+    "release_ready": false
+  },
+  "current_fb6_tristate_followup": {
+    "recorded_at_utc": "2026-11-03T06:48:38.534280+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Only minimal executable-tristate parser dispatch/source risk and retained58-case proof. Broad implementation rounds remain1.",
+    "freeze_sha256": "10f46ee36aa34fc3a389cfb19d8a26b2e11ba7d461dc6f8fef884e5b06836fcc",
+    "source48_digest": "3c1b0daa59a36f8d9f5a83398f8ed62f4904713af90fe7f53dfa03d862cbb94c",
+    "pricing_sha256": "056080a0df3070372ac1ecc26a2d6cbcd436fa27ce404eee71000b0067a0da16",
+    "pricing_git_blob": "43ca04ad2846d30412cedcf117aaa049c91cf612",
+    "patch_sha256": "b9f23bb894a945a477c2107c92ae99c4ed263ff0f73c38771da42970dda0265f",
+    "findings": [],
+    "source_confirmation": "Owner executable contradictions refuse before exceptions. Confirmed non-Node bypasses Node grammar; unavailable executables enter only with affirmative Node/npm/npx/pnpm launch or structural Playwright evidence, never an exemption. Confirmed-Node opacity, known-family ambiguity, foreign consumers, test vetoes, exact role proof and sole-owner equality retained. Fixed diagnostics expose no argv/environment/cwd payloads. Controlled fresh-job boundary, not universal host attestation.",
+    "proof_confirmation": "All48 raw/effective source pins match. All16 proof files match; five extracted functions/transpilation match source. Seventeen new real-driver fixtures use cwd/identity spies; retained outcomes and lookup counts match. All41 previous input/result records value-identical. Saved final58 passed/0failed, no reviewer rerun.",
+    "proof_manifest_sha256": "1c6d2de78e8b767c232b7feaa833d9ee6f41fba4ab4cf6499c2a96ae93a93ce1",
+    "harness_sha256": "fdab26cf5c6c1a0478d9fb5772551b7e5c027263831993457b3926bb87fa448f",
+    "proof_limits": [
+      "Initial56 uses an earlier source snapshot and earns no final-source credit.",
+      "Negatives use fixed reason allowlists, not unique per-case expected-reason equality; actual reasons retained. New dispatch block has six reasons, prior role block three.",
+      "Explicit npm-title/npx argv fixtures exist; no dedicated pnpm-launch argv fixture. Filesystem .pnpm coverage is distinct.",
+      "Executable kinds are synthetic inputs; no actual /proc, oldPID1001/10067 attribution or universal host absence proved."
+    ],
+    "unchanged_boundaries": "103 raw captures,24 owned/7 producer declarations,business assertions/actions/timeouts/effect budget/ONE-delete/restoration unchanged. SRO40 stops. Production27/canonical9/other47 source/package/settings/integration/private88+90 unchanged.",
+    "actual_fb6_browser": {
+      "native_sha256": "49ccc7f40c70d5a2997732447e1fb2b035f4f54dfa9f52ff5cebbd50580ec5fe",
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "owned_failure": "P-E5 PID1001 EACCES consumer-cwd-unavailable1309/1287ms before DB client/fixtures/journal/effects; identity UNKNOWN",
+      "historical_PNGs": 80,
+      "method_journal": false,
+      "method_frames_absent": 23
+    },
+    "late_root_DB_supplement": {
+      "provenance": "Root supplied actual terminal native fb6 DB result after author freeze. Captured author PENDING history remains unchanged; this supplement gives no successor-head credit.",
+      "run": "41589760207",
+      "native_json_sha256": "c2193a2d17df407ae19fa48438191bf9be9119fca72588857fdb82f288ed7a07",
+      "total": 2305,
+      "passed": 2253,
+      "failed": 0,
+      "explicit_skipped": 52,
+      "success": true,
+      "failed_suites": 0,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "wrapper_child_exit_codes": [
+        0,
+        0
+      ],
+      "key_deleted": true,
+      "db_closed": true,
+      "wrapper_failures": [],
+      "pilot_step": "PASS",
+      "full_log_bytes": 103005,
+      "full_log_sha256": "1fbb120d96dbba58dbbdb91a7dc8d45589b85cf8fb4c0a4fd10b362648bc70fb",
+      "absent_failure_only_auth_cleanup_artifact": "Expected on success; no extra credit",
+      "whole_current_CI": "FAILED because browser P-E5 refused before effects"
+    },
+    "no_reviewer_tests_process_DB_queries_resources_writes_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Fresh successor-head required CI, genuine method effects and complete103 image inputs, truthful qualified package/live80 admission, authenticated visual acceptance and completion gates unearned.",
+    "step5_done": false,
+    "release_ready": false
+  },
+  "current_0ff_namespace_followup": {
+    "recorded_at_utc": "2026-11-03T07:26:51.304924+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Only constrained membership-first namespace-correct identity inspection and exact retained91-case proof; broad implementation rounds remain1.",
+    "freeze_sha256": "91fd0152bdd1ea2ee73514876f7e575a410dba89697ab471d1ea31db51f9ecbb",
+    "source48_digest": "3c1649a8084610bf472d7eff5388b867ec68fc1a018d0f72fcdc6894a0eae5a3",
+    "pricing_sha256": "2ae286925ba74c705dc0b13e724ffc321e61719b2b6acfa2d92bad3d138766f0",
+    "pricing_git_blob": "594242358d27be6c338084a1dd287d50fd48a5ad",
+    "patch_sha256": "e2ef5c66bda7181da9b3a4c863aa06d35c3d87098759432a8bf6dc98857b649b",
+    "findings": [],
+    "verification_confirmation": "Exact validated container/command membership with host-to-namespace PID,parent,starttick proof precedes the fixed configured-user probe. Bounded input/output and sanitized failures; membership/cmdline rechecked afterward. Same identity classification within correct filesystem namespace, canonical package/bin checks and repeated reads. Tests count as consumers; opaque/blocked refuse. Membership grants no exemption. Installed-owner identity,sole-owner equality,effect budget,restoration/deletion guards unchanged.",
+    "edges_confirmation": "All48 source pins and all25 proof files match. Independent static reconstruction confirms nine functions,transpilation/import aliases,constructed probe bytes and exact nested host inspector. Prior58 input/result records exact. Saved final91passed0failed;33 additions exercise membership-before-exec,bounds/sanitization,permission/identity/package/version/races,foreignTEST and six host closure modes. Reviewers executed no tests.",
+    "proof_manifest_sha256": "d4b9172d58f3ef6e32b55dcaff826060ed8900049fb6959b6c780dbb36f86b86",
+    "harness_sha256": "3e4cd861a14ad850bab9bc4352d05ab719db2942dae86762b6d1ae14fd755603",
+    "constructed_probe_sha256": "4891cf42eb0e2342ddc363dad5e7187f280c3edc89e609dc8e4a191c6069ca55",
+    "proof_limits": [
+      "Seventeen standalone VM fixtures plus two host-delegated executions reusing fixture0;19 executions are not19 independent fixtures.",
+      "Earlier negatives retain three-/six-reason allowlists; namespace refusals use two reasons and exact host error/stage checks, not universally unique per-case expected reasons.",
+      "Kernel,engine and authority inputs are mocked; actual namespace execution and oldPID11066/1001/10067 roles remain unproven.",
+      "Source confirmation applies within controlled fresh-job scope, not universal host attestation."
+    ],
+    "unchanged_boundaries": "103 capture definitions,24 owned/7 producer statements,business assertions/actions/timeouts/effect budget/ONEdelete/restoration unchanged. SRO44 verified stops. Production27/canonical9/other47/package/settings/integration/private88+90 unchanged. Private caps unapplied and human approval held; live80 unresolved.",
+    "actual_0ff_browser": {
+      "native_sha256": "732a006ac81edd9e7ad3f9cb35e0c9883acbfa1b9f3dd62872d50a06e88cea1b",
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "owned_failure": "P-E5 PID11066 unknown-executable EACCES/non-test-script/testVeto=false/validated-launcher-pid-mismatch1791/1780ms, beforeDBclient/fixtures/journal/effects; role/membership UNKNOWN",
+      "historical_PNGs": 80,
+      "method_journal": false,
+      "method_frames_absent": 23
+    },
+    "actual_0ff_DB": {
+      "provenance": "Actual root-reported terminal0ff result only, not successor-head credit.",
+      "run": "41592311674",
+      "job": "125772646094",
+      "native_json_sha256": "ad6ef27ead5cfb8d33d72ba0d61b59145b19d91d115fcd6f9c9690f4453783da",
+      "total": 2305,
+      "passed": 2253,
+      "failed": 0,
+      "explicit_skipped": 52,
+      "success": true,
+      "failed_suites": 0,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "wrapper_child_exit_codes": [
+        0,
+        0
+      ],
+      "key_deleted": true,
+      "db_closed": true,
+      "wrapper_failures": [],
+      "pilot_step": "PASS",
+      "full_log_bytes": 102748,
+      "full_log_sha256": "6d5e720875b10431b643a73dd14fd53598367fb4b9290b0adf165a27fb1ba2c5",
+      "failure_only_auth_cleanup_artifact": "Absent as expected on success; no extra credit.",
+      "whole_0ff_CI": "FAILED, browser only"
+    },
+    "no_reviewer_tests_process_Docker_DB_queries_resources_writes_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Fresh successor-head required CI and actual namespace/method execution; all103 actual frames; truthful complete qualified package/live80 prerequisite; authenticated visual acceptance and completion unearned.",
+    "step5_done": false,
+    "release_ready": false
+  },
+  "current_b99_closed_service_followup": {
+    "recorded_at_utc": "2026-11-03T08:10:21.557135+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Only closed three-service ownership/default provenance, namespace-first identity classification, separately exact-main handoff fallback and retained132-case proof; broad implementation rounds remain1.",
+    "freeze_sha256": "77fe9601fedc87e0a8259421cc379c159af512c849b0852ec9b9d6f7c4f37a3b",
+    "source48_digest": "2a9374c4ee8d32d35e34083e577d29c8238826c7fa7a74d58839454c4ec97cba",
+    "pricing_sha256": "5eb024e2bfb77ced523ef42050c9f9152ca0f7f45cf59cc80227be805b0601e7",
+    "pricing_git_blob": "87654d16e491df1e40d3733a186ddf0a4eda1e28",
+    "patch_sha256": "79a0937f66ea52f8f22a6315b20de279819df84c052f14e1af858f3f4c14b069",
+    "findings": [],
+    "verification_confirmation": "Inspection restricted to configured Studio/Storage/PGMeta with exact references,immutable image/default bindings,freshness,project,network,endpoints and stable candidate membership/PIDmapping before fixed probe. Ordinary namespace classifier first. Opaque-main fallback requires exact service main,namespacePID1/parent0,kernelNode,stable identity,testveto and reviewed entrypoint hash. Descendants gain no exemption. Tests count; blocked refuse; existing owner/exclusivity/effect/restore/delete guards intact. Controlled-job boundary only.",
+    "edges_confirmation": "All48 source and25 proof files match. Independent reconstruction matches14functions,transpilation/import aliases,probe bytes,browser-host andclosed-host closures. Saved132passed0failed; all91 prior records exact;41additions cover policy/default contradictions,exactmain,TESTveto,handofftamper/races,sixclosedhost modes. Disabled/nonmember/usercontradictions zeroexec; errors sanitized. No review execution.",
+    "proof_manifest_sha256": "1c8b82145b0bf709a0dbe09fd9743c19d38a84a17f2d36fba9881467e55d4b41",
+    "harness_sha256": "ab359d11ffa3dea030d09a89893c19854ce53599eb762ced69dd4691c85f329a",
+    "constructed_probe_sha256": "c988aae22885000ff1ecdf7c882c7d794d6887efad73fa192906af292bdcae86",
+    "proof_limits": [
+      "33modeledprobeexecutions comprise29standalonefixtures+4delegatedruns,not33independentenvironments.",
+      "Negative cases use fixed reason allowlists and host stage/binding assertions,not unique per-case expected reasons.",
+      "Engine,authority,kernel,image-default fixtures are synthetic; neither actual image bytes nor PID10448/oldPID roles are proven.",
+      "Entrypoint bytes match reviewed immutable source pin,not actual live image qualification."
+    ],
+    "source_provenance": {
+      "CLI_commit": "18ae43a34a2257458197b62f74e2a97e2b5cf7f9",
+      "CLI_manifest_sha256": "a386c05c6b4f34c9b9553668cbe3b38d19bba72528d82758ff8ea2a39572be07",
+      "Node_entrypoint_commit": "3101ce6b5b3a0308b58d464eef141e0043c3bf5b",
+      "Node_entrypoint_sha256": "a15ac9589c04baf9da95b08e0e79b5cf1d75ab8dc64e06a5e68e4ceb0ad7c8ea",
+      "Node_installation_Dockerfiles_commit": "14b1d124e21d312c46b30db98985ab7e58a89594"
+    },
+    "unchanged_boundaries": "103captures,24owned/7producer,teststatements/assertions/actions/timeouts/effectbudget/ONEdelete/restoration unchanged. SRO47. Production27/canonical9/other47/package/settings/integration/workflow/config/private88+90 unchanged. Privatecaps unapplied/unapproved; live80 unresolved.",
+    "actual_b99_browser": {
+      "native_sha256": "850ecf8c62eb2a301fa28e1a7a525f4601f1a7c591080a8894f9e172123446bc",
+      "total": 104,
+      "expected": 102,
+      "unexpected": 1,
+      "flaky": 1,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "owned_failure": "P-E5 PID10448 unknown executableEACCES/node-launch/non-test-script/testVetofalse/namespace-nonmember1296/1310ms BEFOREDBfixturesjournal/effects; actual identity UNKNOWN. Browser nonmembership only proved.",
+      "unallocated_flaky": "MyDay15.6-E09 transportafterrelease abortedvsfinished2163ms/retry2762pass; no edits or causal claim.",
+      "historical_PNGs": 80,
+      "method_journal": false,
+      "method_frames_absent": 23
+    },
+    "actual_b99_DB": {
+      "provenance": "Root actual terminal b99 result only; no successor-head credit.",
+      "run": "41596462669",
+      "job": "125786035478",
+      "native_json_sha256": "d835dba39351e69655062adb01cfe9c0429841c7779cd0416c32e4ff00871044",
+      "total": 2305,
+      "passed": 2253,
+      "failed": 0,
+      "explicit_skipped": 52,
+      "success": true,
+      "failed_suites": 0,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "wrapper_child_exit_codes": [
+        0,
+        0
+      ],
+      "key_deleted": true,
+      "db_closed": true,
+      "wrapper_failures": [],
+      "pilot_step": "PASS",
+      "full_log_bytes": 101469,
+      "full_log_sha256": "563489249cacfd1b95d84e53a5a02c110a237b0990eb0520418ae4e668045dbd",
+      "whole_b99_CI": "FAILED, browser only"
+    },
+    "no_reviewer_tests_runtime_queries_writes_resources_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Fresh successor-head CI/service-image-handoff-probe/method execution,all103images,truthful complete qualifiedpackage/live80admission,authenticatedvisualacceptance/completion unearned.",
+    "step5_done": false,
+    "release_ready": false
+  },
+  "current_fadc_column_ACL_SQL_followup": {
+    "recorded_at_utc": "2026-11-03T08:34:53.766375+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewer": "/root/producer_build/review_r1_verification",
+    "scope": "Only three column ACL aclexplode substitutions; unchanged admission132 evidence reused, no broad review or proof rerun.",
+    "freeze_sha256": "286aee6b9bb632f22d2486f8f23c791a97290dfc276771b62502406815bb5b09",
+    "source48_digest": "058cb006bc253b6a5da83df09404ed26d1bbcc5754330328bacf8d3d6f14f19f",
+    "pricing_sha256": "120e8141c6af080c7343611f6212ca179c8950b372031467d84d8df9416020c0",
+    "pricing_git_blob": "16e9210ca567d5130f483eda23ce3f242dd6a16f",
+    "patch_sha256": "2accdb9deedff217daee90f33583b7e14cf5313f4f1a9a3233c91348b95c970b",
+    "findings": [],
+    "confirmation": "Actual diff equals frozen patch and contains only three column aclexplode(coalesce(attacl,generic-empty)) to aclexplode(attacl) substitutions. PG17 function is STRICT;NULL column contributes no tuples,no extra default column privileges. Real grantor/grantee/options remain;malformed non-NULL arrays still validate/fail. Table default coalesce/column NULLflags/alternative-dependent grant detection/full before-fault-current-restored equality unchanged.",
+    "primary_sources": [
+      "https://github.com/postgres/postgres/blob/REL_17_0/src/include/catalog/pg_proc.dat#L2033",
+      "https://github.com/postgres/postgres/blob/REL_17_0/src/include/catalog/pg_proc.h#L63",
+      "https://github.com/postgres/postgres/blob/REL_17_0/src/backend/utils/adt/acl.c#L540"
+    ],
+    "review_evidence": "All48source/9canonical pins match; native failure hash and exact one matching claimed-no-effects/no-intents journal plus EEXIST retry independently checked.",
+    "actual_fadc_browser": {
+      "run": "41601429674",
+      "head": "fadc5da3aa2bf3989c7740d3865b98d7d32a130a",
+      "native_json_sha256": "c41a726be3d655b1f4a8838abdb0ead7c2f9190e73e6d0b711a72a6d1fec0dc7",
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "admission": "PASSED at fadc only",
+      "first_attempt_ms": 5086,
+      "first_failure": "First producerAclSnapshot: ACL arrays must be one-dimensional",
+      "retry_ms": 3051,
+      "retry": "EEXIST durable claim refused correctly",
+      "journal_records": 1,
+      "journal_stage": "claimed-no-effects",
+      "journal_binding": {
+        "head": "fadc5da3aa2bf3989c7740d3865b98d7d32a130a",
+        "run": "41601429674",
+        "nonce": "584da488-48dd-4371-b3a1-98fceeb00c90",
+        "runner": 11907,
+        "server": 12334
+      },
+      "revoke_intents": 0,
+      "delete_intents": 0,
+      "DCL_effects": 0,
+      "delete_effects": 0,
+      "normal_PNGs": 80,
+      "method_PNGs": 0,
+      "DB_status": "PENDING per last root report; no outcome inferred"
+    },
+    "unchanged_boundaries": "Prior132/source admission guards,captures103/24owned7producer,business assertions,tabledefaults,full ACL comparison,effectbudget,restoration andONEdelete unchanged. Production27/canonical9/other47/package/workflow/config/privatecaps unchanged. SRO47;no new tests or local SQL.",
+    "retained_prior_review": "current_b99_closed_service_followup; unchanged132 proof NOT rerun or relabeled as new SQL evidence.",
+    "no_reviewer_SQL_tests_runtime_queries_writes_resources_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Fresh SQL/method execution and all103images,complete qualifiedpackage/live80admission,authenticatedvisualacceptance/completion unearned.",
+    "step5_done": false,
+    "release_ready": false,
+    "late_root_DB_supplement": {
+      "recorded_at_utc": "2026-11-03T08:35:16.985909+00:00",
+      "provenance": "Root actual terminal fadc result arrived after stopped author freeze; author captured-PENDING bytes/pins remain unchanged.",
+      "head": "fadc5da3aa2bf3989c7740d3865b98d7d32a130a",
+      "run": "41601429674",
+      "native_json_sha256": "a80ce24597a5e3427deb7c99eafd867bfe07845eae8319bea14c82d15655141a",
+      "total": 2305,
+      "passed": 2253,
+      "failed": 0,
+      "explicit_skipped": 52,
+      "success": true,
+      "failed_suites": 0,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "wrapper_child_exit_codes": [
+        0,
+        0
+      ],
+      "key_deleted": true,
+      "db_closed": true,
+      "wrapper_failures": [],
+      "pilot_step": "PASS",
+      "full_log_bytes": 101509,
+      "full_log_sha256": "382c556e8f8f22a3f58c45c45b501c1b0aa4679f4496922c4e87af67e9e568d9",
+      "whole_current_CI": "TERMINAL FAILURE,browser ACL snapshot failure only",
+      "limits": "fadc-only earned result; no new-head SQL fix/method/visual qualification."
+    }
+  },
+  "current_566_terminal_lifecycle_followup": {
+    "recorded_at_utc": "2026-11-03T09:08:59.166487+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Only exactRequest terminal lifecycle fix and retained22-case proof;unchanged14admission bodies/prior132 retained without rerun or broad review.",
+    "freeze_sha256": "947496cace10d10e8198242862decd9ddab63432c5d410b7313aaa90e568489c",
+    "source48_digest": "2fcf1c05ce5b27bc94dcf0464396df0469a4fdd6275f6550e277cfcf31fb0cea",
+    "pricing_sha256": "3a18c8d2795051854a4b0fe45b995f94952d66044debf74501812815e16d8a4d",
+    "pricing_git_blob": "0a472dc059d946897cb88608b548874e1361f7be",
+    "patch_sha256": "657a26b13272711d9215b582c557ac757b2c4aec6d1e98db24499727685b4323",
+    "findings": [],
+    "verification_confirmation": "Observer arms before routing/action and binds exact heldRequest,retains failure whileheld. Cachedtagged settlement keeps10s,observes terminal despite release errors,disposes listeners/timers. Scenario rejects failed/nonheld beforecaptures,preserves identity+nonnullresponseassertions,removes serialresponse.finished. Failed cleanupsettled only. Allerrors/exactACLrecovery/damagedcustody/failstop/durableclaim intact.",
+    "edges_confirmation": "All48source and10proof files match. Independent reconstruction matches threefunctions,transpilation,delivered-response assertion span,registration-disposal caller. Saved22passed0failed;exactRequestevents,cancellation/unrelated/races/cache/errors/aggregation/10s/disposal genuinely exercised. All14admission bodies exact;132notrerun.",
+    "proof_manifest_sha256": "0952448a90c21f083bdaf5105645457b03af1a28a29550a05f8e182ca8188145",
+    "harness_sha256": "4ca6d75aa045bd10ed387e3f307a53fb9d40810f75446938dbb99f569787d6fc",
+    "proof_limits": [
+      "Response.finished is a throwing must-not-be-used trap,not literally a never-resolving promise.",
+      "Headers are represented by a supplied response object;no native network behavior simulated.",
+      "Injectedclock validates configured10s bound/phases,not wall-clockbrowser behavior.",
+      "No tests/helpers executed during independent review;no actual566cause attribution."
+    ],
+    "unchanged_boundaries": "103capture definitions,24owned/7producer cases,businessactions/assertions/timeouts/effectbudgets/ACLrestore/ONEdelete/claim preserved. SRO49. Production27/canonical9/other47/package/workflow/config/privatecaps unchanged andcaps unapproved.",
+    "actual_566_browser": {
+      "head": "566bb80428a7af75cfee62ff42cef65a6ae40a9c",
+      "run": "41604657072",
+      "browser_native_sha256": "2ac35f7ddf3307c422ce3321aafba599bdafa077e5ecc934a54030c089f51797",
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "earned": "Admission,snapshot,first company_settings revoke and exact full-ACL/ordinary-read restoration passed at566 only.",
+      "journal_records": 4,
+      "journal_stages": [
+        "claimed-no-effects",
+        "revoke-intent(company_settings)",
+        "revoke-committed(company_settings)",
+        "restore-verified(company_settings)"
+      ],
+      "journal_binding": "Matching566 head/run per native evidence;no other fault table or deletion intent.",
+      "first_attempt_ms": 14376,
+      "failure": "Released read terminal settlement timed out; duplicated via same memoized rejection in scenario/cleanup aggregates. Actual hung substage/cause UNKNOWN.",
+      "retry_ms": 2576,
+      "retry": "EEXIST correctly refused durable claim",
+      "historical_PNGs": 82,
+      "normal_PNGs": 80,
+      "method_PNGs": 2,
+      "method_PNG_scope": "Company receipt/current-read-pending,desktop andphone;validated by root.",
+      "method_frames_missing": 21,
+      "deletion_intents": 0
+    },
+    "actual_566_DB": {
+      "native_json_sha256": "d411c48732e698170bfd19a3916ca4b1a8dac8130e36479b48414621d2a96d2a",
+      "total": 2305,
+      "passed": 2252,
+      "failed": 1,
+      "explicit_skipped": 52,
+      "success": false,
+      "failed_suites": 2,
+      "failed_files": 1,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "sole_failure": "16.4-INT-C08 earliest_date in job-scheduling-consumers.int.test.ts",
+      "first_caller": "fixture Auth creation role-ekonomi{} at core.ts135 -> Promise.all index3 -> seedRoleAwarePhaseAUsers278 -> createJobsDepthFixture112 -> withJobsDepthFixture237",
+      "business_callback_entered": false,
+      "partial_fixture_setup_possible": true,
+      "status_code_cause": "Unreported/UNKNOWN;no baseline,flake or causation claim.",
+      "ownership": "Unallocated global fixture unchanged;root owns retained native diagnostics.",
+      "whole566_CI": "DB and browser FAILURE;terminal, no overlap."
+    },
+    "no_reviewer_tests_runtime_queries_writes_resources_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Fresh candidate transport/DB/browser/method qualification;21missingmethodframes/all103freshimages;truthfulcompletepackage/live80admission;humanvisualacceptance/completion unearned.",
+    "step5_done": false,
+    "release_ready": false
+  },
+  "initial_f4c_disposal_review": {
+    "recorded_at_utc": "2026-11-03T09:45:48.707522+00:00",
+    "freeze_sha256": "981353a9179859561c6aced02f837cdebb267c3b34e3ec93140ebafba341c0f3",
+    "source48_digest": "2fb5f802763bc1c6e0d26d700e73c85b3c3a3b0e24326150e410e29db9baaec6",
+    "pricing_sha256": "d38d40e5a50f62acc9080a744a7ed7a6535f1aabd52c93cac62f8ba454f6cb33",
+    "pricing_git_blob": "079e2e4b14507ff7d2204b5e48c6f9f8f6bcf0d8",
+    "patch_sha256": "ca725d91d83ba4197d7d00a89e9311dbf0874f75110c494d79d94b6465508f95",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "verification_verdict": "CHANGES_REQUIRED",
+    "verification_finding": "P2 diagnostic only:marker1-only classification misses Next16.4.1 markers2/3 and absence forFullprefetch;nonPrefetch label/counter falsely claims known non-prefetch. Use fixedmarker categories and unmarked/undetermined absence;selector unchanged.",
+    "primary_source": "https://github.com/vercel/next.js/blob/v16.4.1/packages/next/src/client/components/segment-cache/cache.ts#L2438",
+    "verification_other_scope": "Lifecycle release-terminal-unroute,singledeadline,expiredunverifieddisposal,afterACLdiagnosticpersistence,failed-deliveryfatal separately confirmed.",
+    "edges_verdict": "FIX_CONFIRMED for retained proof and source bindings ONLY;overall diagnostic semantics explicitly pending.",
+    "edges_evidence": "All48source/18proof files match;fourfunctions/transpilation/assertion+registration caller;14admissionbodies andselector exact;26saved passes,no review execution.",
+    "proof_manifest_sha256": "1702c1282cf21d8b94cffe1870811712ab85ca5f1e429de4faa5f52041d26058",
+    "harness_sha256": "7d00051e42319adc916bef89f5cc2d83fe9fe44479342d642c898e438b131c96",
+    "limits": "Marker1fixture not proof absence means nonprefetch. Throwing finishedtrap/mockedRequesteventsclock;no nativecause/class/runtime claim.",
+    "disposition": "Same-author bounded marker correction required before publication;no overall PASS.",
+    "broad_rounds_completed": 1,
+    "step5_done": false,
+    "release_ready": false
+  },
+  "current_f4c_disposal_marker_fix_followup": {
+    "recorded_at_utc": "2026-11-03T09:54:57.386342+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Markerfindingfix-only source and32-case proof/history confirmation;priorordering confirmation reused,no broadrepeat. Initial981CHANGES_REQUIRED retained separately.",
+    "freeze_sha256": "711919f54be0e310b324002fe0fb37904cb92f6690b4df2c7de51ed738bdbf88",
+    "source48_digest": "9a85bdc99b58bd88f19e010341a8a0bcbbc10b2879a769ce32ac3254742c9b42",
+    "pricing_sha256": "5fb942222b62acf9c8fd9d5adb13473d6aee97b1054ba03229b63a4f80714fa7",
+    "pricing_git_blob": "9443180940f34ad14728bbf1696ea68dc854cc99",
+    "patch_sha256": "fc9b0d09b072ae44e23177e3b18b8093991df39be18ecfce84a7c5ff098b542a",
+    "findings": [],
+    "verification_confirmation": "Markers1/2/3 recognized;absence unmarkedUndetermined;unexpected fixedcategory,notrawvalue.Counters align. Directold981source comparison onlycounterkeys/markerblockchanged;selector,lifecycle,singledeadline,recovery,budgetsunchanged. All48source/9canonical pins match.",
+    "edges_confirmation": "All19currentproof and26history files match.Prior26input/result records exact withincurrent32.AST/transpilation/registration+deliveredcaller reproduce.Sixnewactualclassification/counter fixtures cover1/2/3/absent/unexpected/segment withpreciseprivacy/cleanupassertions. No testsrerun.",
+    "proof_manifest_sha256": "56bc7aa33b5a80dad5634f36e06694a6a00b1e18179a658f8a72890012c3c459",
+    "harness_sha256": "dc2b739e17115c201c3c34c83772e20f86c7ccd8a47d0fd40bdd83a1cae7d0e6",
+    "history_manifest_sha256": "75d33f9970e1415ca50fa11f4dd36a5b60ccaafcd8d4fdae52b547d73171e905",
+    "history_provenance": "Author reportscopybeforeedit;independentreviewconfirmsretainedbyteconsistency,notindependentlyobservedcopytiming.",
+    "canonical_context_reconciliation": {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-routing.json",
+      "raw_sha256": "3263c1e9ebcc158c363596211ccf1e44097ea0e721a9e970a3217d6a313df12c",
+      "raw_path_filtered_HEAD_index_oid": "93147e887c180739cfe6ff53300d3fce86991d82",
+      "product_CWD": "C:/DEV/K35-7-P-producer",
+      "attributes": "text unset;whitespace cr-at-eol",
+      "result": "All9canonical raw/effectivepins match;no normalizationexception.",
+      "reviewer_amendment": "Initial d287LF observation used primaryCWD withgit-dir/work-tree but noexplicitCWD;reviewer retracted product-normalization characterization. ManualLFhypothetical isnotactualproduct filteredOID. No bytes/config changed."
+    },
+    "proof_limits": [
+      "SyntheticRequest/EventEmitter/clock inputs,notnativeNextheaders/cancellationevidence.",
+      "Response.finished remainsunused-callthrowingtrap;no live network promise behavior.",
+      "Retainedsource/history establishesconsistency,notactualruntime/imagequalification."
+    ],
+    "unchanged_boundaries": "14admissionbodies/prior132 retainedwithout rerun;firstmatchingRSCselector unchanged,no rebind;release-terminal-unroute underoneshared10s;failed-deliveryfatal;completeACL/ordinaryreadrestore/failstop/damagedcustody/claim/deletebudgets unchanged.103captures/24owned7producer/businessactionsassertions unchanged.SRO49.Production27/canonical9/other47/package/privatecaps unchanged;all8cappacket pins match/unapproved.",
+    "actual_f4c_browser": {
+      "head": "f4c2b8da6521af0a99ffbd33debc42086fda2445",
+      "run": "41608859578",
+      "browser_native_sha256": "063372d841457a5621d0d8216c1d869816f234de314e086c4890d36a43910a59",
+      "browser_full_log_bytes": 107371,
+      "browser_full_log_sha256": "6f029319ced594b9fd9eca822c25bc1f94decedba9df2816fd783c38dc444215",
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0,
+      "prior_owned23_producer6_first_attempt_pass": true,
+      "first_attempt_ms": 4288,
+      "failure": "ExactheldRequest terminalFAILED,required completed response absent. Cancellationcause/requestclass UNKNOWN.",
+      "retry_ms": 2480,
+      "retry": "EEXIST correctlyrefuseddurableclaim",
+      "journal_records": 4,
+      "journal_stages": [
+        "claimed-no-effects",
+        "revoke-intent(company_settings)",
+        "revoke-committed(company_settings)",
+        "restore-verified(company_settings)"
+      ],
+      "ACL_restoration": "Complete semanticACL andsameordinaryread match before;f4conly earned.",
+      "other_fault_tables": 0,
+      "delete_intents": 0,
+      "historical_PNGs": 82,
+      "normal_PNGs": 80,
+      "method_PNGs": 2,
+      "method_frames_missing": 21,
+      "root_capture_validation": "82PNG hash/CRC/dimensions/Gitblob/head/build/config/runner11278/server11638 match;0issues",
+      "limits": "No firstattempttrace;retryEEXIST beforepage. Do notinfernativecause/class fromsourceor models."
+    },
+    "actual_f4c_DB": {
+      "job": "125826898997",
+      "native_json_sha256": "527e9fc71486f158d13161e357b463ccbf1262ef3c634a222c9e49bba05c4886",
+      "total": 2305,
+      "passed": 2253,
+      "failed": 0,
+      "explicit_skipped": 52,
+      "success": true,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "wrapper_child_exit_codes": [
+        0,
+        0
+      ],
+      "key_deleted": true,
+      "db_closed": true,
+      "key_outcome": "deleted-confirmed",
+      "wrapper_failures": [],
+      "pilot_step": "PASS",
+      "full_log_bytes": 101358,
+      "full_log_sha256": "a4589ed204d9f906af3c568d0c729977ab51e5b6ade26a5e42169413b4e7345f",
+      "whole_f4c_CI": "Terminalbrowser-onlyFAIL;noactiveCIoverlap.",
+      "limits": "f4conly earned,notnewcandidateDBqualification."
+    },
+    "no_reviewer_tests_runtime_queries_writes_resources_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "FreshcandidateDB/browser/transport/methodqualification;21missingmethodframes/all103freshimages;truthfulqualifiedcompletepackage/live80admission;humanvisualacceptance/completion unearned.",
+    "step5_done": false,
+    "release_ready": false
+  },
+  "current_b276_domain_proof_followup": {
+    "recorded_at_utc": "2026-11-03T10:33:03.598908+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Only original-authority/source DOMAIN-proof correction andretained34modelcases;no broadreview/unchangedproofreruns.",
+    "freeze_sha256": "3cf987ab7eb9a59c6fe3f16a156d73e34a9816f48b780444ea8ae585fb94ead8",
+    "source48_digest": "d03a76f85d86a6af06b0bf8a2f06f324d76ffe36347f148c45cfa3aeb48733ab",
+    "pricing_sha256": "9f43405f539716a2f75aecacf4235b5060890ee0afa40193e9e06a8e73fe9f3e",
+    "pricing_git_blob": "93a96d94182482e0758832e527fedf0f9498a5b9",
+    "patch_sha256": "aa54978ba0886a6f4d283926782b70ec731ed08f69ab6fd1bee4926b93f303f4",
+    "findings": [],
+    "authority_references": [
+      {
+        "path": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.md",
+        "sha256": "945d53b539013c51ab5f89f08a14a2ff539ecc97f992f56dd2951f9a1f67d995",
+        "verified_lines": [
+          12,
+          20
+        ],
+        "meaning": "Original realproductionserverread+actualunavailable/disabledUI;controlledtransports separatelysettled;noEOFmandate."
+      },
+      {
+        "path": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.json",
+        "sha256": "d44b50c3d04adb4326b901064fb6adc79df05316bc2c77787903efbd04c621f4",
+        "meaning": "Retained approved bounded-effect proposal;notmodified."
+      },
+      {
+        "path": "C:/DEV/K35-7-P-producer/_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+        "sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+        "verified_lines": [
+          53
+        ],
+        "meaning": "Historicalreceipt/currentauthorizedfacts distinction;no HTTP EOF requirement."
+      },
+      {
+        "path": "C:/DEV/K35-7-P-producer/tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/authority-mapping.json",
+        "sha256": "8eb4b21dd22d738b093574cff2471ad862516074544e150ed5b4df571f84ea24",
+        "meaning": "Source/approval/methodmapping;independentroot owns parent/Coordinator PROCEED receipt."
+      }
+    ],
+    "verified_source_guards": [
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 359,
+        "meaning": "Healthybaseline"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 1390,
+        "meaning": "Serverreaderrorabsence recheckedbeforeREVOKE"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 384,
+        "meaning": "ExactRequestidentity andactualterminalsettlement;failedsettlementnotdomaincredit"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 365,
+        "meaning": "Newserverunavailable/disabled/retainedreceipt+draft/negativeconjunction"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 1403,
+        "meaning": "Readonlyexactcommitted-operationproof underfault"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 1422,
+        "meaning": "Repeateddomainchecks arounddesktop/phonecaptures through1431"
+      }
+    ],
+    "verification_confirmation": "Originalmethod/canonical allowrealproductionserver-page read+actualserverderivedunavailableUI andseparatetransportsettlement;EOFwaslaterimplementationchoice. Healthybaseline/errorabsentbeforerevoke;verifiedfaultactive;exactRequestsettledfinishedORfailed(cleanupONLY);newservererror/disabled/committednonbusy/nonunknown/retainedreceipt+draft/no-current/missing/adoptionconjunction before/afterbothcaptures. Repeatedexistingreadonlycommittedreceiptproof. SourceonlyserverreadErrorprops across4surfaces;clientrejectioncannotmanufacturethem;genuineaction-drivenpagerenderpermitted. NoGETdelivery/causeclaim/proxy/buffering/selector/lifecycle/privilegeexpansion. ExactACLrecovery/failstop intact.",
+    "edges_confirmation": "All20proof hashes andsource48/canonical9effectivepins match inproductCWD.AST/transpilation/committed-proof+domaincallers reproduce.34savedpasses:eightfinished/failedsurfacecombos,onehealthybaseline,25refusals.14admission/observer/selector/settlement/holdlifecycle/captureexpressions/120stimeout andprior32manifestunchanged;no reruns.",
+    "proof_manifest_sha256": "3207fdc5fd336cca3c9a3e86d0533a9be6a6c05e7a72f11ab3314fa5b8e5dd52",
+    "harness_sha256": "3e198af143884f2ed70367fa830c8921f075d3bba7fc4fa9b6609b55dd93fc0c",
+    "proof_limits": [
+      "Mockspecs omittablenames;fakeDBreturnsfixturesindependentofSQL.Proofchecksboundargs/recheckcomparison/order/helperconjunction,notrealSQLtable-routing/serverprops/DOM/RLS/faults.",
+      "Negatives useisolatedstate mutations+genericassert.rejects,notexactfailuremessagepredicates;positivesuse sharedmodel.",
+      "Two retainedREDsarecrossrealmRegExp/arraymatchercorrections;extractedsourceunchanged.",
+      "Models donotestablish actualfreshserverUItransition,transportcause,GETcausation orruntimeacceptance."
+    ],
+    "method_clarification": "Failedterminalprovescleanupsettlementonly. GenuineproductionpagerenderedunavailableUI isseparatemandatorydomainproof,notEOF;abort/2xxaloneNOTproof.No retroactiveb276credit ornormalabort/exactGETdelivery/opsuccessclaim.",
+    "actual_b276_browser": {
+      "head": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
+      "run": "41615029035",
+      "browser_total": 104,
+      "browser_expected": 103,
+      "browser_unexpected": 1,
+      "browser_flaky": 0,
+      "browser_skipped": 0,
+      "observed": "ONEunmarkedmatchingGET;2xx→net::ERR_ABORTED BEFOREunroute;nocausalattribution.",
+      "order": [
+        "action-response",
+        "exact-held",
+        "release-start",
+        "fallback-complete",
+        "exact-response",
+        "terminal-failed",
+        "unroute-start",
+        "disposal-verified",
+        "observers-disposed"
+      ],
+      "journal_records": 4,
+      "journal_stages": [
+        "claimed-no-effects",
+        "revoke-intent(company_settings)",
+        "revoke-committed(company_settings)",
+        "restore-verified(company_settings)"
+      ],
+      "other_fault_tables": 0,
+      "delete_intents": 0,
+      "historical_PNGs": 82,
+      "normal_PNGs": 80,
+      "method_PNGs": 2,
+      "method_frames_missing": 21,
+      "limits": "Currentb276stillfailsitsfinished-onlyassertion;no actualunavailableDOM/domaincredit or retroactivePASS.",
+      "browser_native": {
+        "path": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-b276cab0/native-general-browser/general-browser.json",
+        "sha256": "31343998dc22c3c25e6e1d6a0703b86157b5940ae3abad7f1c5da3cc7ac9690b"
+      },
+      "released_read_diagnostics": {
+        "path": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-b276cab0/browser-current/playwright-report/35-7-p/released-read-diagnostics.jsonl",
+        "sha256": "e12321f9254024773023b20f1808a089bc2ec1cee1d3f8dca32df45d8d03a912"
+      }
+    },
+    "actual_b276_DB": {
+      "native_json_sha256": "0c34f7b73962b48915514066d27447cf1565a6d3da0e291a7ea813420169de51",
+      "total": 2292,
+      "passed": 2228,
+      "failed": 1,
+      "explicit_skipped": 52,
+      "pending_not_executed": 11,
+      "success": false,
+      "failed_suites": 2,
+      "failed_files": 1,
+      "producer_commands_passed": 75,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "sole_failure": "15.5-API009 AC4/AC5/AC7 public-feed.int.ts204 fx.http issuedURL+forwardedheader intended429",
+      "status_cause": "Unreported/UNKNOWN;unallocatedunchanged,nofix/diagnostic/retryhere.",
+      "first_caller": "calendarFixtureOrigin282->Proxy37->public-feed204->calendarFixtureStep342->workscope780->withOwnedUnknownWindow722->withCalendarFeedFixture377",
+      "wrapper_child_exit_codes": [
+        0,
+        1
+      ],
+      "key_deleted": false,
+      "db_closed": true,
+      "key_outcome": "unverified",
+      "diagnostic": "runtimeguard-refusal",
+      "pilot_step": "NOT_REACHED",
+      "Auth_diagnostic": "NOT_APPLICABLE,0credit",
+      "full_log_bytes": 101719,
+      "full_log_sha256": "e07b221c9c916a1790e3d7bc54c25fa8eeca8a8bde773086f0d2f397127e0929",
+      "whole_b276_CI": "DB+BROWSERFAIL;ended,nooldstateadoption."
+    },
+    "unchanged_boundaries": "Production27/other47/canonical9/package/workflow/config/privatecaps unchanged.103capturedefinitions,24owned7producer/businessactions/assertions/effectbudget/fullACL+ordinaryreadrestore/failstop/damagedcustody/claim/ONEdelete preserved.SRO53;prior132/32notrerun.",
+    "coordinator_assessment_required_before_publication_CI": true,
+    "no_reviewer_tests_runtime_queries_writes_resources_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Coordinatorassessmentofexactfrozendiff/authorityrefsBEFOREpublicationCI;freshnativeDB/browser/domain/methods/all103images/packagefit/live80admission/humanvisual/completionunearned.",
+    "step5_done": false,
+    "release_ready": false
+  },
+  "initial_df063_terms_DB_review": {
+    "recorded_at_utc": "2026-11-03T11:16:23.781107+00:00",
+    "freeze_sha256": "f6c03218b79b1f77233414ada98b8a623f28d4354dc256e247f30ec325d24787",
+    "source48_digest": "d6e71bb0f2791b33817ddbb122324c52697cb13e6615448638b97c678268bac5",
+    "patch_sha256": "3ecc66a40a19f36f3e8793f77c6d96f055382672c7d78923fe4959a668e64362",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "verification_verdict": "CHANGES_REQUIRED",
+    "edges_verdict": "CHANGES_REQUIRED",
+    "finding": "P2 terms absent-baseline comparison expects emptystring,while actualcanonical mountedserialization sends absent andproducerCapturedFacts preservesrawfield. Harnesssuppliesemptystringandmirrorsbug;absentmodelpositive isnotmountedwirecompatibilityproof. Fixcomparison+source-derivedwirefixture beforepublication.",
+    "source_refs": [
+      "tests/e2e/pricing/pricing.e2e.spec.ts:1392",
+      "src/features/settings/mutation-attempt.ts:65",
+      "tests/e2e/pricing/pricing.e2e.spec.ts:1309"
+    ],
+    "proof_manifest_sha256": "05932cf656b4ffc4957fd35d1ae995b23bd4eaf248bd5be2c3753a47063432bf",
+    "other_scope_confirmation": "TermsotherguardsandownedDBfixedphases/dependencyfailstop/original+cleanup errorpreservationfollowapprovedproposal.All48source/9canonical/7authorpinsand20proofhashesmatch;22protectedhelpers,businesssuffix,captures,timeouts/privatecaps unchanged. No deadlockcure orruntimeclaim.",
+    "proof_limits": "40retainedpassescomprise modelwithwrongabsentfixture;no retroactivePASS.MocksdoNOTproveReact/server/geometry/SQL/custody/deadlockcause.",
+    "disposition": "Sameauthoroneboundedactualsentinelfix+wire-derivedregression required;bothfixconfirmationsandCoordinatorassessmentbeforecommit/publicationCI.",
+    "broad_rounds_completed": 1,
+    "step5_done": false,
+    "release_ready": false
+  },
+  "current_df063_terms_DB_sentinel_fix_followup": {
+    "recorded_at_utc": "2026-11-03T11:26:12.432804+00:00",
+    "verdict": "FIX_CONFIRMED",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewers": [
+      "/root/producer_build/review_r1_verification",
+      "/root/producer_build/review_r1_edges"
+    ],
+    "scope": "Fix-onlyactualabsentserialization/testcomparison+sourceboundwireproof;reuseearnedremainingterms+ownedhookconfirmation,notbroadrepeat.",
+    "freeze_sha256": "a786042c996073e9ba9a6d5d3b155fcc94c7350b01071d66c30959481162a8db",
+    "source48_digest": "b8c4f7d9c991d9c52644f592f921c68cadc7a3cd422401bd8b3a9e554b745e65",
+    "source_file_pins": [
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "raw_sha256": "eb3ff43ea5d00a27a7b7baee9066146608609d482a3733664a04d8c387dac567",
+        "effective_git_blob_oid": "878d0647cbb065f98590b1c8f54159d83a070334",
+        "candidate_blob_oid": "93a96d94182482e0758832e527fedf0f9498a5b9",
+        "unchanged_from_df063c19": false
+      },
+      {
+        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+        "raw_sha256": "35dbeb27fefa11cb011b263b55e0abc9b6ffd07094a94ea982bb2870e0173126",
+        "effective_git_blob_oid": "f9f59722654b7e753930476db2109f30e310442a",
+        "candidate_blob_oid": "c112e304e4ced62d39a3d7349263d6ce2fa8ac88",
+        "unchanged_from_df063c19": false
+      }
+    ],
+    "exact_two_file_patch_sha256": "89df4be682a7424d5a5c3b65d12d81645ad8a258aceadc2eab1e62b1961b8911",
+    "findings": [],
+    "initial_rejected_review": "initial_df063_terms_DB_review retainsBOTHCHANGES_REQUIRED;old40wrongfixturegetsNORETROACTIVEPASS.",
+    "verification_confirmation": "Onlypricingdeltafromf6 is emptystring→absent inexpectedbaselineidentity;actualTerms saveAction70→mountedsubmit/capturedattempt→attemptForm65→rawFormDatacapture→guard matchesit. Existingrevisioncomparisonexact. Integrationbytesexactf6;otherreviewedtermsbaseline/approval/panel/receipt/pendingandDBphase/dependencyfailstop/errorpreservation/privacyconfirmationscarryforward.",
+    "edges_confirmation": "All31currentproofand29historyhashesmatch.ProductCWDsource48/canonical9/7authorpinsmatch.Sourcecallback,submit/invoke,serializers,capturehelpers/AST/transpilation/callerbindings reproduce.NativeNodemultipart modelprovespositiveabsent;missingfailscapturecardinality;empty/mutatedreachguardandfailwithspecificpredicates.Saved43passes.",
+    "proof_manifest_sha256": "c8c723ae6fca58b80309486addc0b6e67880afcecb2c623226a7beea8c865fc5",
+    "history_manifest_sha256": "5ad34bbfa270081a8c336fb64e5903bbef22a26f4ad7c0ff229e922104c60f53",
+    "history_limits": "Rejectedf6all8authorfiles/old40proofrestorebyteforbyte;copytimingnotindependentlyobserved.Correctedrawfixturesnotunchanged-inputorretroPASS.",
+    "proof_limits": [
+      "Reactrefs/lifecycle,validation,locatorstate,ordinaryreadsandactionresults remaininjected/mocked.",
+      "Sourceboundserialization/controlflow+nativeNodemultipart doesNOTprove mountedReact/browsertransport/DOM/SQL/cleanup/deadlockbehavior.",
+      "Pendingnativebranchstillunknown;strengthenedguardsmustrejectconfirmed/adopted/newer/panelmismatch,notrelabelforpass.",
+      "Hookdiagnosticsidentifyownedawaitedphase+allowlistedACTUALcodeonly,notdeadlockremedy;sharedcleanupreturned/rejectednotinternalverifiedcustody."
+    ],
+    "authority_references": [
+      {
+        "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+        "sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+        "verified_lines": [
+          53,
+          105
+        ],
+        "meaning": "Independentcurrentfacts/termsapproval obligations;no refreshedpropsrequirementforpending."
+      },
+      {
+        "path": "src/components/settings/QuoteTermsEditor.tsx",
+        "sha256": "7f0b62cbfb11407588507c3c810264cadc7ee08096d163c6e8a3963af6a27e16",
+        "verified_lines": [
+          55,
+          57,
+          74,
+          112
+        ],
+        "meaning": "Baselinechangedpanelconditional;dirtyapprovalbranches;confirmedfreshunapprovedcontrolactionable."
+      },
+      {
+        "path": "src/features/settings/mutation-attempt.ts",
+        "sha256": "08cf728f179e5f46460ae25b0a2cff560911a26c558ce9393ca04b6038c5cb7a",
+        "verified_lines": [
+          65,
+          96
+        ],
+        "meaning": "Actualabsencefieldserializationandtrim-onlycanonicalequality."
+      },
+      {
+        "path": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.md",
+        "sha256": "945d53b539013c51ab5f89f08a14a2ff539ecc97f992f56dd2951f9a1f67d995",
+        "verified_lines": [
+          12,
+          20
+        ],
+        "meaning": "Originalbounded-effectmethod/realserverUI+separatetransportsettlementunchanged."
+      }
+    ],
+    "verified_guard_references": [
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 398,
+        "meaning": "Ordinaryauthorizedpre-savebaseline/display/differentdraft"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 410,
+        "meaning": "Fullpendingreceipt/draft/error/nonbusy/nonunknown/nonterminal/approval/panelguards"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 1306,
+        "meaning": "Rawactualmultipartfacts capture/cardinality"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 1392,
+        "meaning": "Correctactualabsencesentinel/existingrevisionidentity"
+      },
+      {
+        "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "line": 1417,
+        "meaning": "Repeatedpendingguardaroundcaptures"
+      },
+      {
+        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+        "line": 55,
+        "meaning": "Fixedownedhookphase/nativecodeprojection,preserveoriginalerror"
+      },
+      {
+        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+        "line": 64,
+        "meaning": "Dependencyorderedteardown+independentavailablefixturecleanup/erroraggregation"
+      },
+      {
+        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+        "line": 68,
+        "meaning": "ThreeunchangedseparateawaitedDROPsthrough70"
+      },
+      {
+        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+        "line": 81,
+        "meaning": "Ownedsetupfixedphases"
+      },
+      {
+        "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+        "line": 96,
+        "meaning": "OwnedafterAllentry"
+      }
+    ],
+    "actual_df_browser": {
+      "head": "df063c194a5abfbbb92705bca7ad05707603aef8",
+      "run": "41620489004",
+      "browser_native_sha256": "422e1cfab28b21859165a077b42a66b3b4fcb34dda2475bca2ddb7099c68467b",
+      "browser_total": 104,
+      "browser_expected": 103,
+      "browser_unexpected": 1,
+      "browser_flaky": 0,
+      "browser_skipped": 0,
+      "first_attempt_ms": 22343,
+      "failure": "TermsPENDINGpaneltextpreconditionbeforeTERMSDCL;nativepanelabsent/differenttext/alreadyconfirmedalternativesUNKNOWN.",
+      "retry_ms": 3154,
+      "retry": "EEXISTcorrect",
+      "company_domain_evidence": "dfONLYactualunavailablebothviewports+retaineddraft,fullACL+sameordinaryreadexactrestore.",
+      "journal_records": 4,
+      "journal_stages": [
+        "claimed-no-effects",
+        "revoke-intent(company_settings)",
+        "revoke-committed(company_settings)",
+        "restore-verified(company_settings)"
+      ],
+      "quote_terms_revoke_intents": 0,
+      "other_fault_tables": 0,
+      "delete_intents": 0,
+      "historical_PNGs": 85,
+      "normal_PNGs": 80,
+      "method_PNGs": 5,
+      "method_frames_missing": 18,
+      "root_capture_validation": "85originalPNGCRC/hash/Gitblob/head/build/configmatch0issues;nonce318b87d9-b1ff-43af-b0cd-dd236a432041/runner12349/server12744",
+      "browser_log_bytes": 109489,
+      "browser_log_sha256": "b53296e3c2898045846ff13852b87d14c9049fba88dc916741b77b44b8729a0e",
+      "limits": "No termsfault/pending successinferred,no retroactiveornewcandidatecredit."
+    },
+    "actual_df_DB": {
+      "native_json_sha256": "baf1f2e335530c1078598f11d46fbd3999401edd2107780f1866cf2752b4d9a3",
+      "total": 2305,
+      "passed_assertions": 2253,
+      "failed_assertions": 0,
+      "explicit_skipped": 52,
+      "success": false,
+      "failed_suites": 1,
+      "failed_file": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+      "failed_suite_message": "deadlock detected",
+      "owned_command_assertions_passed": 75,
+      "owned_command_SUITE_PASS": false,
+      "producer_RLS_passed": 7,
+      "producer_skipped": 0,
+      "actual_failing_SQL_state_statement_lock_graph": "UNKNOWN;notretainedinnative",
+      "wrapper_child_exit_codes": [
+        0,
+        1
+      ],
+      "key_deleted": false,
+      "db_closed": true,
+      "key_outcome": "unverified",
+      "diagnostic": "runtimeguard-refusal",
+      "pilot": "NOT_REACHED",
+      "Auth_diagnostic": "NOT_APPLICABLE0credit",
+      "calendar": "assertionspassatdfONLY;historicalAPI009unresolved,nodiagnosticadmitted",
+      "log_bytes": 101243,
+      "log_sha256": "23270c5ff8e6d6c2c2a32ec14755466d592a9bfabc620ffab69ce64510b12bf2",
+      "whole_df_CI": "TERMINALDB+BROWSERFAIL,nooldjobadoption"
+    },
+    "unchanged_boundaries": "Other46source/production27/canonical9/package/workflow/config/privatecaps unchanged;22protectedhelpersincl14admission/selector/observer/lifecycle/domain unchanged;75businessauthassertions/concurrency/captures103/24owned7producer/deadlines/ACLrestore/failstop/claim/deletebudgets preserved.Prior132/32/34notrerun.SRO60.",
+    "coordinator_assessment_required_before_commit_publication_CI": true,
+    "no_reviewer_tests_runtime_queries_writes_resources_or_CI": true,
+    "broad_rounds_completed": 1,
+    "remaining": "Coordinatorassessexactstoppeddiff/pins/authority/receiptsBEFOREcommitpushCI;freshDBsuite/browser/terms+remainingmethods/all103images/packagefit/live80humanvisual/completionpending.",
+    "step5_done": false,
+    "release_ready": false
+  },
+  "current_d99_framing_TimeReport_followup": {
+    "phase": "Current d99 article-phone framing and admitted additive TimeReport diagnostic actual-source confirmation",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "verdict": "FIX_CONFIRMED",
+    "broad_rounds_completed": 1,
+    "freeze_sha256": "6e8849d439da29966527e48b074f6237777d246426766a657a8f13d816293b66",
+    "source49_digest": "7f068e22f9291b8f51431cfc3a15f1ee893bfef834d772a436ebf113e4f63da6",
+    "patch_sha256": "7bd29375931abae49a0a8a4e5b297067b8859da3f9102def8d6faae451d4a285",
+    "authority_sha256": "c0cfc0374950f83eef7631209a53332c6f9b8a0f6caca841540cb219f03b5365",
+    "reviews": [
+      {
+        "actor": "/root/producer_build/review_r1_edges",
+        "verdict": "FIX_CONFIRMED",
+        "scope": "Actual pricing framing and authorized callback type-only correction; source/evidence bindings",
+        "result": "No concrete introduced defect found. Actual pricing equals approved private copy after removing only callback annotation block: center|start. Article360 centers at both scroll points; desktop/others start. Joint ratio1/domain/full viewport/draft/capture/effect definitions preserved. Product-CWD source49/canonical9/author raw/effective pins matched; integration/private caps unchanged. Initial TS2322 retained; final retained typecheck/lint0/SRO65. Sole textual type-only difference independently confirmed; emitted-JS comparison retained SHA66a39df511154e2179e3effbbf8fa6d531ea79ac844f276ae62c71a18a0de3c7. Compilation/proofs not rerun.43/132 bindings preserved; no successor geometry/runtime/image/visual/completion acceptance."
+      },
+      {
+        "actor": "/root/producer_build/review_r1_verification",
+        "verdict": "FIX_CONFIRMED",
+        "scope": "Actual TimeReport diagnostic and additive allocation",
+        "result": "No new consequential defect found. Actual TimeReport byte-identical to reviewed proposal. Selected Response/predicate/body once/fixed diagnostic categories and status/unobserved remains unknown/original error/listener finally/assertions/registrations/cleanup/waits/effects retained. Coordinator authority under standing human authorization recorded without invented direct human quote. Sole added path tests/e2e/time-reports.e2e.spec.ts; old grants/domains/generated evidence retained and56-file digest7cd272d1ec70e654c9d49b1850290abc6c8b079039110470b3a4bad12d6f0a45 matched. Source49 pins zero mismatches. No tests/runtime operations; no successor denial/geometry/deadlock-cure/completion credit."
+      }
+    ],
+    "limits": [
+      "Targeted consequential latest-fix reviews only, not new broad rounds.",
+      "No reviewer source writes, tests, resources, SQL or CI.",
+      "Exact frozen batch still requires Coordinator assessment before commit/push/CI.",
+      "No successor runtime, denial, geometry, images, trusted visual acceptance, completion or release qualification."
+    ],
+    "step5_done": false,
+    "release_ready": false,
+    "recorded_at_utc": "2026-11-03T12:25:01.706343+00:00"
+  }
+}

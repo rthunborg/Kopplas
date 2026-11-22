@@ -1,0 +1,53 @@
+{
+  "candidate": "b8a9b0ea8f28be5b01a625aa6d7e9fe416cc7d59",
+  "browser_run": "41499889316",
+  "browser_native_path": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-b8a9b0ea/browser-current/native-general-browser/general-browser.json",
+  "browser_native_sha256": "b48d34574c9265d842ccb25104a194de2febd2b02a92d3e3e5d54b39bc37208d",
+  "browser_native_stats": {
+    "startTime": "2026-11-02T18:28:27.546Z",
+    "duration": 508511.86600000004,
+    "expected": 102,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 1
+  },
+  "browser_native_cases": 104,
+  "P_E5failed_attempts": 2,
+  "failure": "consumer[] expectedrunner12061 at626; both attempts beforeDBclient/fixtures/journal/effects. Preceding actual server-env/admission/ancestry/config/socket predicates completed. No old-jobargvrecord, exact spelling unproven.",
+  "old_owned23_producer6_first_attempt_pass": true,
+  "unowned_flaky": "One Myday15.6-E03route.abort flaky case; unchanged/no author fix or baseline waiver.",
+  "installed_source_proof": "Local installed pnpm shim execs node basedir/../@playwright/test/cli.js; raw .bin/../ misses literal old regex. Package/bin/canonical normalization fixes demonstrated hole; no invented nativeargv.",
+  "fix": "Bind executed Node script position/subcommand, normalizecwd/dot/realpath symlinks, verify containing @playwright/test orplaywright package/bin. Owner must equal checkoutinstalledCLI; samefamilyotherproject remainsforeignconsumer and strictsoleownerassertion retained. Unsupportedreal-family launches refuse; fixedfamily/reason diagnostics only.",
+  "DB_native_path": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-b8a9b0ea/db-native/native-full-integration/full-integration.json",
+  "DB_native_sha256": "2cddb2059dd3bb2059d569f2850cb47d059b62b052faacdb4513caa44d7f243a",
+  "DB_native": {
+    "success": true,
+    "numTotalTests": 2305,
+    "numPassedTests": 2253,
+    "numFailedTests": 0,
+    "numPendingTests": 52,
+    "numFailedTestSuites": 0
+  },
+  "producer75_RLS7_and_teardown_passed": true,
+  "root_terminal_DB_job_proof": {
+    "job": "125466092110",
+    "status": "SUCCESS",
+    "ready": true,
+    "childExitCodes": [
+      0,
+      0
+    ],
+    "keyDeleted": true,
+    "dbClosed": true,
+    "failures": [],
+    "diagnostics": [],
+    "keyOutcome": "deleted-confirmed",
+    "custody": null,
+    "pilot_performance": "RAN and completedSUCCESS",
+    "provenance": "Actual terminal receipt/step/job verified and relayed by Root; author made no runtime query."
+  },
+  "historical473": "Deadlock suite failure remains recorded; exact cycle/failingDROP unproven. Do not relabel b8success as futureheadDBPASS.",
+  "root_targeted_image_proof": "Edges opened exact6 corrected b8PNG originals and returned TARGETED_ACTUAL_FIX_CONFIRMED. Historicalb8only; all23method/pending originals absent. Author performed no imageaudit/capturechange.",
+  "private_cap_proposal": "Ignored frozen proposal passed independent PASS_FOR_ALLOCATION_DECISION only, actualownerapprovalHELD/toolingcap80unchanged.",
+  "current_corrected_head_runtime": "UNEARNED; actualproc classifier/runtime/newframes and acceptance require finalheadCI."
+}

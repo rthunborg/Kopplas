@@ -1,0 +1,412 @@
+[
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 company.save/absent: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 company.save/absent: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 company.save/absent: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 company.save/existing: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 company.save/existing: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 company.save/existing: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 company.save/same actor: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 company.save/second admin: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 terms.save/absent: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 terms.save/absent: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 terms.save/absent: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 terms.save/existing: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 terms.save/existing: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 terms.save/existing: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 terms.save/same actor: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 terms.save/second admin: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 terms.approve/existing: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 terms.approve/existing: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 terms.approve/existing: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 terms.approve/same actor: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 terms.approve/second admin: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 work_role.create/absent: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 work_role.create/absent: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 work_role.create/absent: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 work_role.update/existing: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 work_role.update/existing: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 work_role.update/existing: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 work_role.update/same actor: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 work_role.update/second admin: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 work_role.archive/existing: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 work_role.archive/existing: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 work_role.archive/existing: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 work_role.archive/same actor: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 work_role.archive/second admin: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 work_role.reactivate/existing: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 work_role.reactivate/existing: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 work_role.reactivate/existing: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 work_role.reactivate/same actor: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 work_role.reactivate/second admin: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 article.create/absent: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 article.create/absent: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 article.create/absent: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 article.update/existing: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 article.update/existing: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 article.update/existing: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 article.update/same actor: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 article.update/second admin: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 article.archive/existing: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 article.archive/existing: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 article.archive/existing: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 article.archive/same actor: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 article.archive/second admin: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I1/P-I2 article.reactivate/existing: missing before dispatch, lost committed response, concurrent same-ID retry and exact historical receipt",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 article.reactivate/existing: audit failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 article.reactivate/existing: receipt failure rolls back business/revision/audit/receipt and same attempt can commit after proven rollback",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 article.reactivate/same actor: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4/P-I5 article.reactivate/second admin: changed revision rejects stale with zero effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I2 work_role.create: deliberate identical creates with distinct captured identities produce two exact targets",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I2 article.create: deliberate identical creates with distinct captured identities produce two exact targets",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4 company.save: two successfully absent singleton readers race; loser never overwrites winner",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4 terms.save: two successfully absent singleton readers race; loser never overwrites winner",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I3 binding changes to operation/target/revision/payload/logo omission never disclose or add effects",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4 company.save: alternate same-value and ABA writes renew opaque revision and reject original facts",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4 terms.save: alternate same-value and ABA writes renew opaque revision and reject original facts",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4 work_role.update: alternate same-value and ABA writes renew opaque revision and reject original facts",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I4 article.update: alternate same-value and ABA writes renew opaque revision and reject original facts",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I5 exact reviewed currently-unapproved terms, save/approval ordering and historical replay preserve newer facts",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I5 dirty reviewed wording, two approvals and concurrent save-vs-approve reject stale without reapproval",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I6 deleted target and later changes keep completion historical and never recreate",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "35.7-P checked producer permutations > P-I2/P-I3 delayed original before tenant lock; revoke, denied retry, restore, original plus retry commit exactly once",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-I5 concurrent approval and wording save from same valid unapproved revision have one valid winner",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-I3 company.save/disable: waiting writer protects current membership through commit before real admin revocation",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-I3 company.save/re_role: waiting writer protects current membership through commit before real admin revocation",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-I3 work_role.update/disable: waiting writer protects current membership through commit before real admin revocation",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-I3 work_role.update/re_role: waiting writer protects current membership through commit before real admin revocation",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-R1/P-R3 forced private receipt RLS, no policies/grants, helper closure and explicit checked owner ACLs",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-R1 tenant_admin: current exact pricing/company capability and no direct receipt access",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-R1 projektledare: current exact pricing/company capability and no direct receipt access",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-R1 montor: current exact pricing/company capability and no direct receipt access",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-R1 saljare: current exact pricing/company capability and no direct receipt access",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-R1 ekonomi: current exact pricing/company capability and no direct receipt access",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+    "projectName": "integration-parallel"
+  },
+  {
+    "name": "P-R3 anonymous/service-role cannot execute checked RPCs, missing preconditions cannot use v2",
+    "file": "C:/DEV/K35-7-P-producer/tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+    "projectName": "integration-parallel"
+  }
+]

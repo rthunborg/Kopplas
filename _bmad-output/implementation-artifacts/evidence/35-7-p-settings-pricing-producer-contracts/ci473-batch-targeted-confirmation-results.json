@@ -1,0 +1,34 @@
+{
+  "recorded_at_utc": "2026-11-02T18:21:09.1265065Z",
+  "disposition": "FIX_CONFIRMED",
+  "scope": "Targeted latest three-test-file source batch, not a broad source/design review",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reviewers": [
+    "/root/producer_build/review_r1_verification",
+    "/root/producer_build/review_r1_edges"
+  ],
+  "freeze_sha256": "14c9aaae1ced3ab68a6181b07966abffd5e7c70c60fa9451fd1d69686f5154a6",
+  "source48_digest": "da9d01338f9ca955c47cf85d211f9e6b0e3734c1bed868f4cf4a0c5ddc7aae82",
+  "patch_sha256s": [
+    "c1979199a2f049258227bdc1041775a342277945e9c72ca97bc96bee0991907d",
+    "df583ca020fd4f402287bf263d360a5954d9e6a0c0499aa79d76bcdc577e64fd",
+    "f2940b71cb4c3504b2d155502b7988f4111f5cd6374ce36673363a39a59de6de"
+  ],
+  "findings": [],
+  "verification": "Actual server OWNER_PID/STARTUP launch-field proof retains nonce/ancestry/socket/exclusive/fresh-stack/budget/ACL/one-delete guards; other environment unlogged. Three separate autocommit helper pool DROP calls preserve exact statements/order and unconditional fixture cleanup; native deadlock cycle/failingDROP remains unproven. Native104 browser failure and DBsuccessfalse faithfully retained.",
+  "edges": "Exact actual473 framing fixes and prospective method primary notice/receipt/controls guarded. Eight existing-cycle receipt-present/nonterminalGET pending captures use own route/domain renderer guards; company/pricing exclude read-error/confirmed branch, terms exact current wording/noapproval excludes matching confirmed. All95 old definitions/actions/120s preserved;103raw.",
+  "pin_provenance": "Both reviewers matched all48 raw/effective pins/patches and unchanged production/package/canonical preimages; workflow owner final match48+9",
+  "remaining_runtime_qualifications": [
+    "Viewport fit/currentpending renderer and fresh-cache availability must execute; missing cached terms wording fails closed, no invented guarantee",
+    "Actual method ownership/ACL shape/exactrestore/one-delete runtime unearned",
+    "All15 method+8pending originals and corrected frames require actual next-head production-server execution/opening",
+    "Publication<=80 unresolved, provisional88 not accepted, no gate/framework waiver",
+    "Human visual/provider/completion/release readiness unearned"
+  ],
+  "no_tests_queries_resources_CI_writes_by_reviewers": true,
+  "broad_rounds_completed": 1,
+  "build_status": "in-progress",
+  "step5_done": false,
+  "release_ready": false
+}

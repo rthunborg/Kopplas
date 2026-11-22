@@ -1,0 +1,31 @@
+{
+  "recorded_at_utc": "2026-11-02T18:59:55.2635040Z",
+  "disposition": "FIX_CONFIRMED",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reviewers": [
+    "/root/producer_build/review_r1_verification",
+    "/root/producer_build/review_r1_edges"
+  ],
+  "scope": "Only latest original-family refusal fix and retained input/extraction provenance; not a broad source review",
+  "freeze_sha256": "031b4dac9f43c57dccef71f8948b98ee965fd136e8047469b7d69f2311633a56",
+  "source48_digest": "f6b2d23c8cf734f833e7d2ebd304b4a50063f121807e47619f0dbd5b19b53eb9",
+  "pricing_sha256": "42badc478ac0594882e888b08b24ecfc3d3cd277933f985353b2411a10f47e03",
+  "pricing_git_blob": "be0b0e452879197f4a0fa5bcce81485fa07777c4",
+  "latest_patch_sha256": "3d8aba45f394b499c711245e31468c40e8cab5f98fda57b00283305b585a5718",
+  "full_patch_sha256": "3009ae43c08dbf6aa289291b9cf42e9a7c6680f64c5184be04f09675d7abaabc",
+  "findings": [],
+  "source_confirmation": "Original resolved family/.bin hint retained before normalization; missing entrypoints, unexpected canonical names and unavailable/mismatched package identities refuse fixed reasons; unrelated nonfamily scripts ignorable; strictowner/foreignconsumer/soleowner/effectguards unchanged",
+  "proof_confirmation": "All14 private proof files match; actual argv/cwd/fake filesystem/package/bin fixtures retained; extracted functions match current source snapshot; source/extraction/transpilation/harness/results hashes match. Original15 inputs plus2 regressions; native17P0F read, reviewer did not rerun.",
+  "proof_manifest_sha256": "664461142dea67e6526cfcd310197af28e44a392312c34b14f6ae1716cb926ff",
+  "harness_sha256": "2cbd2d18d49e2fc3605e956533f11ad66ae704d19957a3e39ba62a9296e6672a",
+  "results_sha256": "6b88b826c0c6ebbca9983d2f2e983f933396285256b8cf8c9489e2757c5dc9c7",
+  "historical_original_c80159_execution_independently_authenticated": false,
+  "historical_limit": "Historical bytes auditable; original execution/retention chronology not independently authenticated from tool history, flag remainsfalse",
+  "unchanged": "All48/canonical9 matched; captures/actions/timeouts103raw/24owned7producer unchanged,37SROstops0errors; private88packet4pins/3unappliedtargets unchanged",
+  "limits": "Mock proof not Linux/proc admission. Historical b8 DB/pilot/keycleanup and images not successorhead credit.23methodframes/freshCI/effects/fullimages/humanvisual/completion unearned; livecap80 unresolved/private88humanHELD",
+  "broad_review_rounds_completed": 1,
+  "no_reviewer_tests_writes_resources_CI": true,
+  "step5_done": false,
+  "release_ready": false
+}

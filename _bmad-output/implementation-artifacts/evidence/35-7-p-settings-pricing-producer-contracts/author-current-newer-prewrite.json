@@ -1,0 +1,30 @@
+{
+  "candidate_before": "4d46b29a87d29b5a31ec08cf2d65a164d3f640c7",
+  "captured_at_utc": "2026-11-02T17:00:52.370539+00:00",
+  "worktree_status_before": " M _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json\n",
+  "SQLite_mode": "ro",
+  "claims": [
+    {
+      "story": "20.1",
+      "state": "integrated",
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-1\\Kopplas"
+    },
+    {
+      "story": "20.2",
+      "state": "integrated",
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-2\\Kopplas"
+    },
+    {
+      "story": "20.3",
+      "state": "integrated",
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-3\\Kopplas"
+    },
+    {
+      "story": "spec-design-35-6-35-6",
+      "state": "blocked",
+      "worktree": "C:\\DEV\\Kopplas\\tmp\\private\\e35-worker-35-6"
+    }
+  ],
+  "scope": "Only normal current-newer appended to existing pricing R1 browser flow and own metadata; all production27/canonical9/package remain unchanged. No DCL/newphysicaltargetdeletion code.",
+  "all48_reviewed_source_pins_verified": true
+}

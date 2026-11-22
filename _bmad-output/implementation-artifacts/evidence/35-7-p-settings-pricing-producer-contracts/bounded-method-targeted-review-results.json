@@ -1,0 +1,43 @@
+{
+  "recorded_at_utc": "2026-11-02T17:31:25.2158807Z",
+  "disposition": "CHANGES_REQUIRED",
+  "review_kind": "Targeted consequential latest-delta source and risk confirmation, not another broad review",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reviewers": [
+    "/root/producer_build/review_r1_verification",
+    "/root/producer_build/review_r1_edges"
+  ],
+  "source_freeze_sha256": "3a13423a89ef748679d6d5ba8fb93cb84482ee473d4394cf058561107f34cb47",
+  "inventory_sha256": "b8fbb8a125454be54ad3c33e33d2e5072b3acb5ee696fca85e540f30089c6c67",
+  "pricing_sha256": "62ceb901b91bbbf2f274e9cd170d73629f756bb7ec867e6c8410218d30ba9b2e",
+  "patch_sha256": "050f2dfaa8ee28bd4072d0716bbc33c2961c0424f3f0ed006fc1ef10cf835b0f",
+  "pin_verification": "Both reviewers independently matched all48 raw/effective pins; production27 equal deb14 and canonical9 unchanged",
+  "findings": [
+    {
+      "owner": "Verification reviewer; edges independently agrees, one finding",
+      "file": "tests/e2e/pricing/pricing.e2e.spec.ts",
+      "lines": "258-261,763-779",
+      "trigger": "An assertion fails after committed REVOKE while the owned refresh GET remains held",
+      "consequence": "hold.clear waits for route.fallback handler completion only, then ACL restoration/fixture cleanup may precede released request terminal completion",
+      "required_fix": "Retain intercepted Request; boundedly await response.finished or requestfailed after release on every exit before restoration/fixture cleanup; preserve settlement plus scenario plus restoration errors"
+    }
+  ],
+  "remaining_review_basis": "Other reviewed source authority, sequential ACL, exact restoration, durable retry refusal and guarded one-delete conditions consistent; actual ACL shape/restoration remain runtime preconditions",
+  "runtime_qualification_point": "Article-phone newer frame centers receipt below three active rows; ratio1 current41 guard fails closed, actual new frame must prove visibility. Not a proven rendered defect.",
+  "provisional_selection": {
+    "raw": 95,
+    "candidate": 79,
+    "omit": [
+      "6 repeated stable-unknown frames mapped to company common recovery",
+      "4 pricing reconcile-pending frames mapped to company common pending",
+      "6 repeated initial-loading frames mapped to company common initial-loading"
+    ],
+    "retain": "All raw95; all domain errors/restores/unavailable drafts, newer/neighbor/missing and terms retry-pending",
+    "conditions": "Open all actual originals and confirm exact render/component equivalence; not route-state N/A or accepted package. Reject cross-domain error/restore/draft cuts"
+  },
+  "no_tests_queries_resources_writes_or_CI": true,
+  "runtime_credit": 0,
+  "visual_acceptance": false,
+  "broad_review_rounds_completed": 1
+}

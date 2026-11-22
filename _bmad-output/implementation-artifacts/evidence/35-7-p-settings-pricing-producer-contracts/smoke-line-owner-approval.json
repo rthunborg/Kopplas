@@ -1,0 +1,21 @@
+{
+  "task_id": "35.7-P",
+  "date": "2026-11-02",
+  "actual_human_quote": "Approve the one-line addition",
+  "source": "Actual direct human asynchronous reply in Root; parent relayed question call_b369996f7b44456a8ca4615a040173d9. This is the supplied call reference, not an invented message ID.",
+  "approved_additional_path": "package.json",
+  "approved_key": "scripts.test:smoke",
+  "proposal_md_sha256": "2774aa7e3c87b8a683d79037af4bac72e400dddbf21973d82a99efa15070e7d8",
+  "proposal_json_sha256": "f2af4974746d3210051bd51123b45263277ac2a97ae3d3ac74c373b73ba50b42",
+  "package_raw_preimage_sha256": "e3af9ff0fd9b23336337fad233ef0fd9b9d1c71ffc0c302d8ec7381fabb544fc",
+  "package_git_blob": "756a7413549a8cc9dd7f962458a5214c917242ed",
+  "scope": "Exact two existing producer E2E file arguments appended before existing reporter suffix; all old arguments unchanged. Existing two allocated E2E files may receive nonprivileged capture-only fixes. Production27 source bytes remain deb14. No other new path.",
+  "held": "All DCL faults and NEW physical business-target deletions for capture remain unadmitted; package approval is not fault authority.",
+  "protected": "Canonical9/source-binding/globalfactories/workflow/dependencies/lockfile/secrets/globalsetup unchanged",
+  "implementation_runtime_or_visual_pass": false,
+  "release_ready": false,
+  "added_existing_e2e_arguments": [
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "tests/e2e/pricing/pricing.e2e.spec.ts"
+  ]
+}

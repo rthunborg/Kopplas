@@ -1,0 +1,76 @@
+{
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "source_digest_sha256": "16c353e37912ed6f50b9a723f2ff092dede95bdba0e6bc1564261932997660db",
+  "checks": [
+    {
+      "command": "focused seven Node unit files",
+      "native_exit": 0,
+      "executed": 118,
+      "passed": 118,
+      "failed": 0,
+      "skipped": 0,
+      "log": "author-focused-unit-final.log",
+      "revision_scope": "final owned source checkpoint"
+    },
+    {
+      "command": "pnpm lint",
+      "native_exit": 0,
+      "errors": 0,
+      "warnings": 31,
+      "log": "author-lint-final.log",
+      "revision_scope": "final owned source checkpoint"
+    },
+    {
+      "command": "pnpm typecheck",
+      "native_exit": 2,
+      "errors": 1,
+      "error": "pending role-harness exhaustive receipt mapping TS2741",
+      "log": "author-typecheck-final.log"
+    },
+    {
+      "command": "pnpm run test:unit",
+      "native_exit": 1,
+      "executed": 3794,
+      "passed": 3781,
+      "failed": 12,
+      "skipped": 1,
+      "log": "author-unit.log",
+      "revision_scope": "progress tree before final owned edge fixes and additional focused test; not exact-final full-lane proof"
+    },
+    {
+      "command": "pnpm build",
+      "native_exit": 1,
+      "bundler_compiled": true,
+      "typecheck_error": "pending role-harness TS2741",
+      "log": "author-build.log",
+      "revision_scope": "progress tree before final owned edge fixes; no final build PASS"
+    },
+    {
+      "command": "pnpm exec vitest list [two new files] --json",
+      "native_exit": 0,
+      "collected": 82,
+      "executed": 0,
+      "log": "author-integration-collection.json"
+    },
+    {
+      "command": "verify:lockfiles / verify:service-role-containment / verify:bundle-containment / git diff --check",
+      "combined_native_exit": 0,
+      "result": "all three emitted success and whitespace check passed in actual tool output; compiled artifacts inspected despite failed full build"
+    },
+    {
+      "command": "frontend-controller local and completion-gate delivery_gate.py",
+      "native_exits": [
+        1,
+        1
+      ],
+      "log": "author-final-gate-results.json",
+      "reason": "uncommitted frontend candidate; authenticated acceptance absent"
+    }
+  ],
+  "runtime_tests_executed": 0,
+  "browser_tests_executed": 0,
+  "captures_created": 0,
+  "independent_implementation_review_rounds": 0,
+  "development_complete": false,
+  "release_ready": false
+}

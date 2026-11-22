@@ -6,23 +6,456 @@ on:
       - ".agents/skills/auto-bmad/**"
       - ".claude/skills/auto-bmad/**"
       - ".github/workflows/auto-bmad-parallel.yml"
+      - "scripts/maintenance/admit_story35_6_runtime.py"
+      - "tests/maintenance/test_admit_story35_6_runtime.py"
   push:
     branches: [main]
     paths:
       - ".agents/skills/auto-bmad/**"
       - ".claude/skills/auto-bmad/**"
       - ".github/workflows/auto-bmad-parallel.yml"
+      - "scripts/maintenance/admit_story35_6_runtime.py"
+      - "tests/maintenance/test_admit_story35_6_runtime.py"
   workflow_dispatch:
+    inputs:
+      my_day_e09_observation:
+        description: Nonqualifying E09 observation only; ordinary contract cells stay skipped
+        type: boolean
+        required: false
+        default: false
+      expected_sha:
+        description: Exact lowercase source SHA required only for E09 mode
+        type: string
+        required: false
+        default: ""
+      checkpoint_id:
+        description: Persisted UUIDv4 required only for the single authorized E09 dispatch
+        type: string
+        required: false
+        default: ""
 
 permissions:
   contents: read
 
 concurrency:
-  group: auto-bmad-parallel-${{ github.ref }}
+  group: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation && format('auto-bmad-e09-{0}', inputs.checkpoint_id) || format('auto-bmad-parallel-{0}', github.ref) }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  runtime-admission:
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.my_day_e09_observation }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            group: all
+          - os: windows-latest
+            group: "0"
+          - os: windows-latest
+            group: "1"
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: ${{ matrix.os == 'windows-latest' && 30 || 15 }}
+    steps:
+      - name: Prepare Windows checkout Git environment
+        id: windows_checkout_git
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $raw = [Environment]::GetEnvironmentVariable('GIT_CONFIG_COUNT', 'Process')
+          $count = 0
+          if ($null -ne $raw -and $raw -ne '') {
+            if ($raw -notmatch '\A[0-9]+\z' -or -not [int]::TryParse($raw, [ref]$count) -or $count -eq [int]::MaxValue) {
+              throw 'Unsupported inherited GIT_CONFIG_COUNT; checkout environment was not changed.'
+            }
+          }
+          $key = "GIT_CONFIG_KEY_$count"
+          $value = "GIT_CONFIG_VALUE_$count"
+          if ((Test-Path -LiteralPath "Env:$key") -or (Test-Path -LiteralPath "Env:$value")) {
+            throw 'The Git configuration append slot is already occupied; no existing entry was changed.'
+          }
+          $overlay = [ordered]@{ GIT_CONFIG_COUNT = [string]($count + 1) }
+          $overlay[$key] = 'core.longpaths'
+          $overlay[$value] = 'true'
+          Add-Content -LiteralPath $env:GITHUB_OUTPUT -Value ('env=' + ($overlay | ConvertTo-Json -Compress)) -Encoding utf8
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        env: ${{ fromJSON(steps.windows_checkout_git.outputs.env || '{}') }}
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Exact Story 35.6 blocked runtime admission
+        shell: python
+        env:
+          ADMISSION_OS: ${{ matrix.os }}
+          ADMISSION_GROUP: ${{ matrix.group }}
+        run: |
+          # ADMISSION_GUARD_BEGIN
+          import hashlib
+          import importlib.util
+          import json
+          import os
+          from pathlib import Path
+          import re
+          import subprocess
+          import sys
+          import threading
+          import time
+          import unittest
+
+          MODULE = Path("tests/maintenance/test_admit_story35_6_runtime.py")
+          PREFIX = "admission_inventory."
+          CASE = r"[A-Za-z_][A-Za-z0-9_]*\.test[A-Za-z0-9_]*"
+
+          def require(value, message):
+              if not value:
+                  raise RuntimeError(message)
+
+          def git(*args):
+              return subprocess.check_output(["git", *args])
+
+          def diagnostic_empty(state="NOT_RUN", reason="NONE", code=None, settlement="NOT_STARTED"):
+              return {"state": state, "reason": reason, "native_returncode": code,
+                      "settlement": settlement, "count": None, "records": None}
+
+
+          def diagnostic_parse(raw, allowed=None):
+              # Validate the ENTIRE capture before returning any displayable row.
+              limit = 2_097_152 if allowed is None else 262_144
+              if len(raw) > limit:
+                  return None, "BYTE_LIMIT"
+              if raw and not raw.endswith(b"\0"):
+                  return None, "INVALID_NUL"
+              fields = raw[:-1].split(b"\0") if raw else []
+              if any(not field for field in fields) or (allowed is not None and len(fields) % 2):
+                  return None, "INVALID_NUL"
+              paths = fields if allowed is None else fields[1::2]
+              if len(paths) > (16_384 if allowed is None else 256):
+                  return None, "PATH_LIMIT" if allowed is None else "RECORD_LIMIT"
+              if len(paths) != len(set(paths)):
+                  return None, "DUPLICATE_PATH"
+              for path in paths:
+                  try:
+                      path.decode("utf8")
+                  except UnicodeDecodeError:
+                      return None, "UNSAFE_PATH"
+                  parts = path.split(b"/")
+                  if (not 1 <= len(path) <= 512 or len(parts) > 64 or
+                          any(not part or part in (b".", b"..") or len(part) > 255 or
+                              part.strip(b" ") != part for part in parts) or
+                          any(byte < 32 or byte == 127 or byte in (58, 92) for byte in path)):
+                      return None, "UNSAFE_PATH"
+                  if allowed is not None and path not in allowed:
+                      return None, "UNKNOWN_PATH"
+                  if allowed is not None and not re.fullmatch(rb"[A-Za-z0-9._/@+()\[\]{} -]+", path):
+                      return None, "UNSAFE_PATH"
+              if allowed is None:
+                  return set(paths), "NONE" if paths else "ALLOWLIST_UNAVAILABLE"
+              if any(status not in (b"A", b"D", b"M", b"T", b"U") for status in fields[::2]):
+                  return None, "INVALID_STATUS"
+              if len(paths) > 16:
+                  return None, "RECORD_LIMIT"
+              return [{"status": status.decode("ascii"), "path": path.decode("ascii")}
+                      for path, status in sorted(zip(paths, fields[::2]))], "NONE"
+
+
+          def diagnostic_capture(argv, limit, deadline, closed):
+              # Only the controller owns Popen; the raw reader owns its transferred fd.
+              read_fd = write_fd = child = None
+              transferred = False
+              done, overflow = threading.Event(), threading.Event()
+              output = [None]
+              def read_pipe(fd):
+                  try:
+                      data, complete = bytearray(), False
+                      while chunk := os.read(fd, 4096):
+                          if len(data) + len(chunk) > limit:
+                              overflow.set()
+                              break
+                          data.extend(chunk)
+                      else:
+                          complete = True
+                  except BaseException:
+                      pass
+                  finally:
+                      try:
+                          os.close(fd)
+                      except BaseException:
+                          pass
+                      try:
+                          output[0] = (bytes(data), complete)
+                          done.set()
+                      except BaseException:
+                          pass
+              try:
+                  if closed.is_set() or time.monotonic() >= deadline:
+                      return None, diagnostic_empty("TIMEOUT", "DEADLINE")
+                  read_fd, write_fd = os.pipe()
+                  child = subprocess.Popen(argv, stdin=subprocess.DEVNULL, stdout=write_fd,
+                                           stderr=subprocess.DEVNULL, shell=False, bufsize=0)
+                  os.close(write_fd)
+                  write_fd = None
+                  if closed.is_set() or time.monotonic() >= deadline:
+                      return None, diagnostic_empty("TIMEOUT", "DEADLINE", settlement="UNVERIFIED")
+                  reader = threading.Thread(target=read_pipe, args=(read_fd,), daemon=True)
+                  reader.start()
+                  transferred = True
+                  try:
+                      code = child.wait(timeout=max(0, min(1.5, deadline - time.monotonic())))
+                  except subprocess.TimeoutExpired:
+                      return None, diagnostic_empty("TIMEOUT", "DEADLINE", settlement="UNVERIFIED")
+                  if closed.is_set():
+                      return None, diagnostic_empty("UNAVAILABLE", "OUTPUT_UNSETTLED", settlement="UNVERIFIED")
+                  if not done.wait(max(0, min(0.05, deadline - time.monotonic()))):
+                      return None, diagnostic_empty("UNAVAILABLE", "OUTPUT_UNSETTLED", code, "UNVERIFIED")
+                  if overflow.is_set():
+                      return None, diagnostic_empty("TRUNCATED", "BYTE_LIMIT", code, "EXITED")
+                  if not output[0][1]:
+                      return None, diagnostic_empty("UNAVAILABLE", "OUTPUT_UNSETTLED", code, "UNVERIFIED")
+                  if code != 0:
+                      return None, diagnostic_empty("UNAVAILABLE", "COMMAND_ERROR", code, "EXITED")
+                  return output[0][0], diagnostic_empty("COMPLETE", code=code, settlement="EXITED")
+              except BaseException:
+                  return None, diagnostic_empty("UNAVAILABLE", "LAUNCH_ERROR", settlement="UNVERIFIED" if child else "NOT_STARTED")
+              finally:
+                  if child is not None and child.returncode is None:
+                      try:
+                          child.kill()
+                          child.wait(timeout=max(0, min(0.25, deadline + 0.25 - time.monotonic())))
+                      except BaseException:
+                          pass
+                  for fd in (write_fd, read_fd if not transferred else None):
+                      if fd is not None:
+                          try:
+                              os.close(fd)
+                          except BaseException:
+                              pass
+
+
+          def source_refusal(head, code, phase):
+              # Metadata only: a later observation can NEVER replace the original refusal.
+              deadline = time.monotonic() + 6.0
+              closed, finished, emitted = threading.Event(), threading.Event(), threading.Event()
+              lock, record = threading.Lock(), [None]
+              cell = {("Linux", "ubuntu-latest", "all"): "UBUNTU_ALL",
+                      ("Windows", "windows-latest", "0"): "WINDOWS_0",
+                      ("Windows", "windows-latest", "1"): "WINDOWS_1"}.get(
+                          tuple(os.environ.get(key) for key in ("RUNNER_OS", "ADMISSION_OS", "ADMISSION_GROUP")), "UNKNOWN")
+              def fallback():
+                  return {"event": "admission-source-refusal-diagnostic", "schema_version": 1,
+                          "captured_source_sha": head, "phase": phase if phase in
+                          ("BEFORE_COLLECTION", "AFTER_COLLECTION", "AFTER_EXECUTION") else "UNKNOWN",
+                          "cell": cell, "original_git_returncode": code, "original_nonzero": True,
+                          "original_refusal": "TRACKED_SOURCE_PREDICATE_NONZERO",
+                          "observation_relation": "AFTER_ORIGINAL_NONZERO_NON_ATOMIC", "cause": "UNKNOWN",
+                          "allowlist": {"state": "UNAVAILABLE", "count": None, "digest": None},
+                          "comparisons": {key: diagnostic_empty("UNAVAILABLE", "INTERNAL_ERROR", settlement="UNVERIFIED")
+                                          for key in ("HEAD_INDEX", "INDEX_WORKTREE")}, "later_pattern": "UNKNOWN"}
+              def collect():
+                  try:
+                      result = fallback()
+                      result["comparisons"] = {key: diagnostic_empty() for key in ("HEAD_INDEX", "INDEX_WORKTREE")}
+                      prefix = ["git", "--no-optional-locks", "--no-pager", "--no-replace-objects", "--no-lazy-fetch"]
+                      raw, status = diagnostic_capture(prefix + ["ls-tree", "-r", "--name-only", "-z", "--full-tree", head, "--"],
+                                                       2_097_152, deadline - 0.1, closed)
+                      allowed, reason = diagnostic_parse(raw) if raw is not None and not closed.is_set() else (None, "ALLOWLIST_UNAVAILABLE")
+                      if allowed is not None and reason == "NONE":
+                          result["allowlist"] = {"state": "COMPLETE", "count": len(allowed),
+                                                "digest": hashlib.sha256(raw).hexdigest()}
+                          commands = [("HEAD_INDEX", ["diff-index", "--cached"], [head, "--"]),
+                                      ("INDEX_WORKTREE", ["diff-files"], ["--"])]
+                          for key, command_args, tail in commands:
+                              if closed.is_set() or time.monotonic() >= deadline - 0.1:
+                                  break
+                              raw, status = diagnostic_capture(prefix + command_args + ["--name-status", "-z", "--no-ext-diff",
+                                                               "--no-textconv", "--no-renames"] + tail, 262_144, deadline - 0.1, closed)
+                              if closed.is_set():
+                                  return
+                              if raw is not None:
+                                  rows, reason = diagnostic_parse(raw, allowed)
+                                  if reason == "NONE":
+                                      status.update(count=len(rows), records=rows)
+                                  else:
+                                      status.update(state="TRUNCATED" if reason.endswith("LIMIT") else "UNAVAILABLE", reason=reason)
+                              result["comparisons"][key] = status
+                              if status["state"] != "COMPLETE":
+                                  break
+                          index, worktree = result["comparisons"].values()
+                          if all(item["state"] == "COMPLETE" for item in (index, worktree)):
+                              result["later_pattern"] = {(False, False): "NO_LATER_DIFFERENCES_REPORTED",
+                                  (True, False): "INDEX_REPORTED_ONLY", (False, True): "WORKTREE_REPORTED_ONLY",
+                                  (True, True): "BOTH_REPORTED"}[(bool(index["count"]), bool(worktree["count"]))]
+                      if not closed.is_set() and lock.acquire(blocking=False):
+                          try:
+                              if not closed.is_set():
+                                  record[0] = result
+                          finally:
+                              lock.release()
+                  except BaseException:
+                      pass
+                  finally:
+                      try:
+                          finished.set()
+                      except BaseException:
+                          pass
+              def write_once(payload):
+                  try:
+                      if time.monotonic() < deadline:
+                          os.write(1, payload)
+                  except BaseException:
+                      pass
+                  finally:
+                      try:
+                          emitted.set()
+                      except BaseException:
+                          pass
+              try:
+                  threading.Thread(target=collect, daemon=True).start()
+                  finished.wait(max(0, deadline - 0.1 - time.monotonic()))
+              finally:
+                  closed.set()
+              selected = None
+              if lock.acquire(blocking=False):
+                  try:
+                      selected = record[0]
+                  finally:
+                      lock.release()
+              try:
+                  payload = (json.dumps(selected or fallback(), ensure_ascii=True, separators=(",", ":")) + "\n").encode("ascii")
+                  if len(payload) > 32_768:
+                      payload = (json.dumps(fallback(), ensure_ascii=True, separators=(",", ":")) + "\n").encode("ascii")
+              except BaseException:
+                  payload = (json.dumps(fallback(), ensure_ascii=True, separators=(",", ":")) + "\n").encode("ascii")
+              if time.monotonic() < deadline:
+                  threading.Thread(target=write_once, args=(payload,), daemon=True).start()
+                  emitted.wait(max(0, min(0.05, deadline - time.monotonic())))
+
+          def binding(expected, phase="UNKNOWN"):
+              require(re.fullmatch(r"[0-9a-f]{40}", expected), "Missing immutable GitHub source SHA")
+              head = git("rev-parse", "HEAD").decode().strip()
+              require(head == expected, "Checkout differs from immutable GitHub source SHA")
+              code = subprocess.run(["git", "diff", "--quiet", head]).returncode
+              if code != 0:
+                  try:
+                      source_refusal(head, code, phase)
+                  finally:
+                      raise RuntimeError("Tracked source changed") from None
+              committed = git("show", head + ":" + MODULE.as_posix()).replace(b"\r\n", b"\n")
+              require(MODULE.read_bytes().replace(b"\r\n", b"\n") == committed, "Admission module differs from committed source")
+              return {"commit": head, "tree": git("rev-parse", head + "^{tree}").decode().strip(),
+                      "module": MODULE.as_posix(), "module_sha256": hashlib.sha256(committed).hexdigest()}
+
+          def canonical(ids):
+              require(ids and all(isinstance(value, str) and re.fullmatch(CASE, value) for value in ids), "Empty or invalid case inventory")
+              require(len(ids) == len(set(ids)), "Duplicate case inventory")
+              return sorted(ids)
+
+          def inventory(path=MODULE):
+              spec = importlib.util.spec_from_file_location(PREFIX[:-1], path)
+              module = importlib.util.module_from_spec(spec)
+              sys.modules[spec.name] = module
+              spec.loader.exec_module(module)
+              loader = unittest.TestLoader()
+              suite = loader.loadTestsFromModule(module)
+              require(not loader.errors, "Unittest collection error")
+              def flatten(node):
+                  if isinstance(node, unittest.TestSuite):
+                      return [case for part in node for case in flatten(part)]
+                  require(isinstance(node, unittest.TestCase), "Unknown collected test type")
+                  value = node.id()
+                  require(value.startswith(PREFIX), "Unexpected collected module identity")
+                  return [value[len(PREFIX):]]
+              return canonical(flatten(suite))
+
+          def partition(ids):
+              require(ids == canonical(ids), "Inventory is not canonical")
+              groups = [ids[::2], ids[1::2]]
+              validate_partition(ids, groups)
+              return groups
+
+          def validate_partition(ids, groups):
+              require(len(groups) == 2 and all(groups), "Empty or missing Windows group")
+              require(all(group == canonical(group) for group in groups), "Invalid Windows group")
+              require(not set(groups[0]) & set(groups[1]), "Overlapping Windows groups")
+              require(sorted(groups[0] + groups[1]) == ids, "Incomplete or extra Windows group")
+              require(groups == [ids[::2], ids[1::2]], "Nondeterministic Windows partition")
+
+          def selection(ids, groups, runner, platform, group):
+              allowed = {("Linux", "ubuntu-latest", "all"), ("Windows", "windows-latest", "0"), ("Windows", "windows-latest", "1")}
+              require((runner, platform, group) in allowed, "Unknown admission cell")
+              return ids if group == "all" else groups[int(group)]
+
+          def command(group, selected):
+              return [sys.executable, "-X", "utf8", MODULE.as_posix(), "-v", *([] if group == "all" else selected)]
+
+          def native_child(argv):
+              child = subprocess.Popen(argv, stderr=subprocess.PIPE, bufsize=0)
+              captured, complete = bytearray(), True
+              while chunk := os.read(child.stderr.fileno(), 4096):
+                  sys.stderr.buffer.write(chunk); sys.stderr.buffer.flush()
+                  if len(captured) + len(chunk) <= 1_048_576:
+                      captured.extend(chunk)
+                  else:
+                      complete = False
+              child.stderr.close()
+              code = child.wait()
+              try:
+                  output = captured.decode("utf8")
+              except UnicodeDecodeError:
+                  output, complete = "", False
+              result = subprocess.CompletedProcess(argv, code, stderr=output)
+              result.capture_complete = complete
+              return result
+
+          def native_result(result, argv, selected):
+              require(result.args == argv and result.returncode == 0, "Native command or exit mismatch")
+              require(result.capture_complete and result.stderr.endswith("\n"), "Incomplete native output capture")
+              records = []
+              lines = result.stderr.splitlines()
+              for line in lines:
+                  if " ... " in line:
+                      match = re.fullmatch(r"(test[A-Za-z0-9_]*) \(__main__\.([A-Za-z_][A-Za-z0-9_]*)\.\1\) \.\.\. ok", line)
+                      require(match is not None, "Nonpassing or malformed native case result")
+                      records.append(match[2] + "." + match[1])
+              require(records == selected and len(set(records)) == len(records), "Actual native cases differ from selected group")
+              summaries = [line for line in lines if line.startswith("Ran ")]
+              require(len(summaries) == 1, "Missing or duplicate native terminal summary")
+              match = re.fullmatch(r"Ran ([0-9]+) tests? in [0-9]+(?:\.[0-9]+)?s", summaries[0])
+              require(match is not None and int(match[1]) == len(selected), "Native terminal count mismatch")
+              terminal = lines[lines.index(summaries[0]) + 1:]
+              require([line for line in terminal if line] == ["OK"], "Missing complete zero-skip success")
+              return {"executed_ids": records, "executed": len(records), "skipped": 0,
+                      "failures": 0, "errors": 0, "expected_failures": 0, "unexpected_successes": 0}
+
+          def emit(event, **facts):
+              print(json.dumps({"event": event, **facts}, sort_keys=True), flush=True)
+
+          def main():
+              expected = os.environ["GITHUB_SHA"]
+              before = binding(expected, "BEFORE_COLLECTION")
+              ids = inventory()
+              require(binding(expected, "AFTER_COLLECTION") == before, "Source changed during collection")
+              groups = partition(ids)
+              group = os.environ["ADMISSION_GROUP"]
+              selected = selection(ids, groups, os.environ["RUNNER_OS"], os.environ["ADMISSION_OS"], group)
+              shared = {**before, "inventory_count": len(ids), "inventory_sha256": hashlib.sha256(json.dumps(ids, separators=(",", ":")).encode()).hexdigest()}
+              argv = command(group, selected)
+              emit("admission-before", **shared, group=group, windows_groups=groups, selected_ids=selected, argv=argv)
+              result = native_child(argv)
+              emit("admission-native", argv=result.args, native_exit=result.returncode)
+              after = binding(expected, "AFTER_EXECUTION")
+              require(after == before and inventory() == ids, "Source or full inventory changed during execution")
+              emit("admission-after", **shared, group=group)
+              outcome = native_result(result, argv, selected)
+              emit("admission-complete", **shared, group=group, argv=argv, **outcome)
+
+          if __name__ == "__main__":
+              main()
+          # ADMISSION_GUARD_END
   contracts:
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.my_day_e09_observation }}
+    needs: runtime-admission
     strategy:
       fail-fast: false
       matrix:
@@ -76,3 +509,260 @@ jobs:
           exit $testExit
       - name: Existing external CLI process behavior
         run: python -X utf8 .agents/skills/auto-bmad/scripts/tests/test_cli_delegate_windows_pid.py
+
+  # E09 mode never declares ordinary main required-context names or runs their jobs.
+  e09-admission:
+    name: e09-diagnostic-admission
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Bind E09 dispatch to immutable source and checkpoint
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_EVENT_NAME" = workflow_dispatch
+          [[ "$EXPECTED_SHA" =~ ^[a-f0-9]{40}$ ]]
+          [[ "$CHECKPOINT_ID" =~ ^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$ ]]
+          test "$EXPECTED_SHA" = "$GITHUB_SHA"
+          test "$GITHUB_RUN_ATTEMPT" = 1
+          test "$GITHUB_REF_TYPE" = branch
+
+  # Explicitly nonqualifying: even a passing E09 case must end this run in failure.
+  my-day-e09-observation:
+    name: e09-diagnostic-observation
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.my_day_e09_observation }}
+    needs: [e09-admission]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      SUPABASE_TEST_REQUIRED: "1"
+      BOOKING_CONFLICT_ATTESTATION_KEY_ID: "test_v1"
+      BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET: "local-test-only-booking-conflict-attestation-secret-v1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        id: node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Intermediates only: never restore a .next build, auth state or test data.
+      # Source-specific writes; restore only within the same toolchain/config/env.
+      - name: Cache Next build intermediates
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-${{ hashFiles('src/**') }}
+          restore-keys: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-
+
+      # Browser + Linux dependencies are preinstalled in the reviewed official
+      # image. Keep the host Node/Next/Supabase topology and use a loopback protocol.
+      - name: Start pinned Playwright browser service
+        timeout-minutes: 6
+        run: node scripts/ci/browser-runtime.mjs start
+
+      - name: Install Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          # Pin the same explicit version as the `db` job (see its note).
+          version: 2.115.0
+
+      - name: Start local Supabase stack
+        run: supabase start
+
+      - name: Migration reset (empty DB → migrate → seed)
+        # Bounded retry (added 2026-07-26): `supabase db reset` intermittently fails with
+        # "Error status 502: An invalid response was received from the upstream server" during its
+        # FINAL "Restarting containers..." step — i.e. AFTER every migration applied and seed.sql ran.
+        # The same exact-ledger + seed + auth verifier used by `db` distinguishes completed recovery
+        # from a real migration/seed failure before any retry or Playwright execution.
+        run: |
+          for attempt in 1 2 3; do
+            echo "::group::supabase db reset (attempt $attempt/3)"
+            if supabase db reset; then
+              echo "::endgroup::"
+              exit 0
+            fi
+            echo "::endgroup::"
+            echo "db reset attempt $attempt failed"
+            if node scripts/verify/check-local-supabase-reset.mjs; then
+              echo "db reset completed; recovered from the CLI's final restart error"
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              sleep 15
+            fi
+          done
+          echo "supabase db reset failed after 3 attempts — treating as a REAL failure"
+          exit 1
+
+      - name: Observe exactly the existing E09 case
+        id: e09_case
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/e09-native.json
+        shell: bash
+        run: |
+          set +e
+          pnpm exec playwright test tests/e2e/my-day.e2e.spec.ts --grep '15[.]6-E09' --project=chromium --workers=1 --retries=1 --reporter=list,json > "$RUNNER_TEMP/e09-native.stdout" 2> "$RUNNER_TEMP/e09-native.stderr"
+          native=$?
+          printf 'native_exit=%s\n' "$native" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$native" > "$RUNNER_TEMP/e09-native-exit"
+          printf 'E09_NATIVE_EXIT=%s\n' "$native"
+          exit "$native"
+
+      - name: Capture only bounded E09 enums and native counts
+        if: ${{ always() && !cancelled() && steps.e09_case.outcome != 'skipped' }}
+        timeout-minutes: 2
+        env:
+          E09_CAPTURE_RUN: "true"
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
+        shell: bash
+        run: |
+          node --input-type=module <<'E09_CAPTURE'
+          import * as fs from 'node:fs';
+          import path from 'node:path';
+
+          const TITLE = '[P0] 15.6-E09 a real tenant-switch RSC navigation discards the prior report owner and ignores its late read';
+          const EVENTS = ['attempt-start','held-selected','fetch-start','fetch-complete','body-validated','navigation-start',
+            'navigation-response','current-ui-verified','release','fulfill-start','fulfill-complete','fulfill-failed',
+            'request-finished','request-failed','cleanup-enter','listeners-removed','unroute-start','unroute-complete',
+            'unroute-failed','cleanup-start','cleanup-complete','cleanup-failed','scope-exit'];
+          const REQUIRED = EVENTS.filter(x => !['fulfill-failed','request-finished','request-failed','unroute-failed','cleanup-failed'].includes(x));
+          const fact = value => { if (!value) throw new Error('E09_CAPTURE_UNAVAILABLE'); };
+          const exact = (value, keys) => fact(value && typeof value === 'object' && !Array.isArray(value)
+            && Object.keys(value).sort().join('|') === [...keys].sort().join('|'));
+
+          export function safeObservation(value, attempt) {
+            exact(value,['version','attempt','state','reason','events']);
+            fact(value.version === 1 && value.attempt === attempt && ['COMPLETE','INCOMPLETE'].includes(value.state));
+            fact(['none','clock','overflow','record','retry','missing'].includes(value.reason));
+            fact(Array.isArray(value.events) && value.events.length <= 32 && Buffer.byteLength(JSON.stringify(value)) <= 4096);
+            let previous = 0;
+            for (const [index,row] of value.events.entries()) {
+              exact(row,['seq','ms','event','phase','category']);
+              fact(row.seq === index + 1 && Number.isSafeInteger(row.ms) && row.ms >= previous && row.ms <= 2700000);
+              fact(EVENTS.includes(row.event) && ['none','before-release','after-release'].includes(row.phase)
+                && ['none','aborted','content-length','decoding','connection','other'].includes(row.category));
+              previous = row.ms;
+            }
+            if (value.state === 'COMPLETE') fact(value.reason === 'none'
+              && REQUIRED.every(event => value.events.some(row => row.event === event))
+              && value.events.some(row => row.event === 'request-finished' || row.event === 'request-failed'));
+            else fact(value.reason !== 'none');
+            // Reconstruct fixed keys only, never propagate reporter objects/prototypes.
+            return {version:1,attempt,state:value.state,reason:value.reason,events:value.events.map(row =>
+              ({seq:row.seq,ms:row.ms,event:row.event,phase:row.phase,category:row.category}))};
+          }
+
+          export function parseSafeReport(report, native, source, checkpoint, runId) {
+            fact(/^[a-f0-9]{40}$/.test(source) && /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(checkpoint));
+            fact(/^[0-9]{1,20}$/.test(runId) && Number.isInteger(native) && native >= 0 && native <= 255);
+            fact(Array.isArray(report.errors) && report.errors.length === 0 && Array.isArray(report.suites));
+            const specs = []; let nodes = 0;
+            function visit(suites, depth) {
+              fact(depth <= 12 && Array.isArray(suites));
+              for (const suite of suites) {
+                fact(++nodes <= 256);
+                if (suite.specs !== undefined) { fact(Array.isArray(suite.specs)); specs.push(...suite.specs); fact(specs.length <= 1); }
+                if (suite.suites !== undefined) visit(suite.suites,depth + 1);
+              }
+            }
+            visit(report.suites,0); fact(specs.length === 1);
+            const spec = specs[0]; fact(spec.title === TITLE && ['my-day.e2e.spec.ts','tests/e2e/my-day.e2e.spec.ts'].includes(spec.file));
+            fact(Array.isArray(spec.tests) && spec.tests.length === 1);
+            const test = spec.tests[0]; fact(test.projectName === 'chromium' && ['expected','unexpected','flaky'].includes(test.status));
+            fact(Array.isArray(test.results) && test.results.length >= 1 && test.results.length <= 2);
+            if (test.results.length === 2) fact(test.results[0].status !== 'passed');
+            const observations = []; let passed = 0, failed = 0;
+            for (const [attempt,result] of test.results.entries()) {
+              fact(result.retry === attempt && ['passed','failed','timedOut','interrupted'].includes(result.status));
+              if (result.status === 'passed') passed++; else failed++;
+              fact(Array.isArray(result.attachments) && result.attachments.length <= 16);
+              const matches = result.attachments.filter(item => item.name === 'my-day-e09-observation-v1'); fact(matches.length === 1);
+              const attachment = matches[0];
+              fact(attachment.contentType === 'application/json' && typeof attachment.body === 'string' && attachment.path === undefined);
+              fact(attachment.body.length <= 5464 && /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(attachment.body));
+              const bytes = Buffer.from(attachment.body,'base64'); fact(bytes.length <= 4096 && bytes.toString('base64') === attachment.body);
+              observations.push(safeObservation(JSON.parse(bytes.toString('utf8')),attempt));
+            }
+            const lastPassed = test.results.at(-1).status === 'passed', flaky = test.status === 'flaky';
+            fact((native === 0) === lastPassed && (test.status === 'expected') === (lastPassed && failed === 0)
+              && flaky === (lastPassed && failed > 0) && (test.status === 'unexpected') === !lastPassed);
+            fact(report.stats && report.stats.expected === Number(test.status === 'expected') && report.stats.unexpected === Number(!lastPassed)
+              && report.stats.flaky === Number(flaky) && report.stats.skipped === 0);
+            fact(Buffer.byteLength(JSON.stringify(observations)) <= 8192);
+            const summary = {schema_version:1,mode:'DIAGNOSTIC_ONLY_NOT_QUALIFICATION',source,checkpoint,run_id:runId,run_attempt:1,
+              job:'my-day-e09-observation',case:'15.6-E09',cause:'UNKNOWN',native_exit:native,
+              counts:{cases:1,passed:Number(lastPassed),failed:Number(!lastPassed),skipped:0,flaky:Number(flaky),attempts:passed+failed,
+                passed_attempts:passed,failed_attempts:failed},
+              observation_state:observations.every(item => item.state === 'COMPLETE') ? 'COMPLETE' : 'INCOMPLETE',observations};
+            fact(Buffer.byteLength(JSON.stringify(summary)) <= 10240);
+            return summary;
+          }
+
+          function boundedRead(file,limit) {
+            let fd;
+            try {
+              fd = fs.openSync(file,fs.constants.O_RDONLY | fs.constants.O_NOFOLLOW);
+              const before = fs.fstatSync(fd); fact(before.isFile() && before.size >= 0 && before.size <= limit);
+              const buffer = Buffer.alloc(limit + 1), count = fs.readSync(fd,buffer,0,limit + 1,0), after = fs.fstatSync(fd);
+              fact(count === before.size && after.size === before.size && after.mtimeMs === before.mtimeMs && after.ctimeMs === before.ctimeMs);
+              return buffer.subarray(0,count).toString('utf8');
+            } finally { if (fd !== undefined) fs.closeSync(fd); }
+          }
+
+          export function capture() {
+            const env = process.env; fact(env.GITHUB_SHA === env.EXPECTED_SHA && env.GITHUB_RUN_ATTEMPT === '1');
+            const nativeText = boundedRead(path.join(env.RUNNER_TEMP,'e09-native-exit'),4); fact(/^(?:0|[1-9][0-9]{0,2})\n$/.test(nativeText));
+            const report = JSON.parse(boundedRead('test-results/e09-native.json',1048576));
+            const summary = parseSafeReport(report,Number(nativeText.trim()),env.EXPECTED_SHA,env.CHECKPOINT_ID,env.GITHUB_RUN_ID);
+            fs.writeFileSync(path.join(env.RUNNER_TEMP,'e09-safe-observation.json'),JSON.stringify(summary)+'\n',{encoding:'utf8',flag:'wx',mode:0o600});
+            if (summary.observation_state !== 'COMPLETE') throw new Error('E09_CAPTURE_INCOMPLETE');
+          }
+          if (process.env.E09_CAPTURE_RUN === 'true') {
+            try { capture(); } catch { console.error('E09_OBSERVATION_CAPTURE_UNAVAILABLE'); process.exitCode = 1; }
+          }
+          E09_CAPTURE
+
+      - name: Preserve only safe nonqualification evidence
+        if: ${{ always() && !cancelled() && steps.e09_case.outcome != 'skipped' }}
+        timeout-minutes: 2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-e09-observation
+          path: ${{ runner.temp }}/e09-safe-observation.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Stop owned Playwright browser service
+        if: always()
+        timeout-minutes: 1
+        run: node scripts/ci/browser-runtime.mjs stop
+
+      - name: Stop local Supabase stack
+        if: always()
+        run: supabase stop
+
+      - name: E09 observation cannot qualify
+        if: ${{ always() && !cancelled() && steps.e09_case.outcome == 'success' }}
+        shell: bash
+        run: |
+          printf 'E09_DIAGNOSTIC_NOT_QUALIFICATION\n'
+          exit 77

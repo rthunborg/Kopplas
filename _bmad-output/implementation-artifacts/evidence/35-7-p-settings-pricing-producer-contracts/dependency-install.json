@@ -1,0 +1,21 @@
+{
+  "command": [
+    "pnpm",
+    "install",
+    "--frozen-lockfile"
+  ],
+  "working_directory": "C:/DEV/K35-7-P-producer",
+  "native_exit": 0,
+  "result": "Done in 26.4s using pnpm v10.24.0",
+  "log": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/dependency-install.log",
+  "package_lock_diff_command": [
+    "git",
+    "diff",
+    "--exit-code",
+    "--",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "package_lock_diff_native_exit": 0,
+  "package_or_lock_modified": false
+}

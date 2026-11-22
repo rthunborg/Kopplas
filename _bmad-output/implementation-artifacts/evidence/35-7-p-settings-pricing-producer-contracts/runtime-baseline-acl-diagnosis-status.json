@@ -1,0 +1,28 @@
+{
+  "captured_at_utc": "2026-11-02T12:06:08.625122+00:00",
+  "scope": "Current author/Root-relayed runtime diagnostic facts only; no independent implementation review or product finding",
+  "author_task": "/root/producer_build/implementation_author",
+  "author_resource_id": "2ba7e47e-97d4-473c-b68a-054087248373",
+  "original_baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "baseline_source_count": 120,
+  "initial_attempt": "TLS refusal proved before mutation; corrected local sslmode=disable before ordered application",
+  "actual_target_after_failure": {
+    "applied_ledger_count": 115,
+    "max_applied": "20261021102151",
+    "failed_migration": "20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "failure": "SOURCE_ACL_NOT_COMPARABLE",
+    "outcome": "Failing migration transaction atomic; no blind retry/reset/history edit or new task migration generated"
+  },
+  "author_readonly_comparison": "All8calendar canonical functions owned calendar_feed_owner inherit image default function ACL PUBLIC+owner+anon+authenticated+service_role. Migration permits PUBLIC+owner or exact intended owner+single-role ACL. No ACL mutation/retry yet.",
+  "root_diagnosis_route": {
+    "task_name_as_reported": "sql_investigation",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "scope": "READ-ONLY exact failing/prior calendar SQL body+ACL provenance and narrowly justified synthetic bootstrap disposition; no product or DB mutation",
+    "route_provenance": "Root reported actual High selection in its dispatch message; this supplemental file is recorded AFTER that report, not a fabricated before-dispatch file timestamp"
+  },
+  "root_preliminary_facts": "Source intentionally compares body AND ACL. Original20261020220000 creates aspostgres, transfers ownercalendar_feed_owner then REVOKE/GRANTaspostgres. Need exactprosrc/aclexplodegrantor/grantee/grantable/defaultACL comparison before disposition.",
+  "pending": "Independent High source investigator returns precise metadata query bundle/disposition; author retains DB mutation ownership. No concurrent Root query/writer ref needed while author collects metadata.",
+  "unaffected_work": "Author TS protocol/validators implemented and continues admitted application work; taskmigration generation waits verified target/source.",
+  "release_ready": false
+}

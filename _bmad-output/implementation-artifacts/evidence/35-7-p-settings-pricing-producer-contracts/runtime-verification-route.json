@@ -1,0 +1,23 @@
+{
+  "captured_at_utc": "2026-11-02T12:11:17.894450+00:00",
+  "decision_source": "Actual Root/Coordinator disposition relayed in task message2026-11-02; existing hosted CI permitted when materially faster; no new human approval claimed",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "local_target": "Verified known partial115of120 migrations, atomicSOURCE_ACL_NOT_COMPARABLE at20261021102723 and exact knowndefaultACLdelta; no taskmigration applied, no reset/rewrite/ACLfix/retry withoutnewfacts",
+  "disposition": "Use existing supported exact-head PR/checkpoint CI to earn DB/RLS/recovery and actual essential settings/pricing browser evidence. No canonical localcalendarACLbootstrap or unallocated calendar fix. SolHigh author may adopt verified knownpartial source-target state and generate exactlyoneCLI-forward taskmigration/file during admitted implementation without applying it to blockedlocaltarget. No invented local120PASS.",
+  "official_ci_source": {
+    "path": ".github/workflows/ci.yml",
+    "db": "PinnedSupabaseCLI2.115.0; fresh isolatedstart/reset/seed;SUPABASE_TEST_REQUIRED=1; fullintegrationwrapper/nativeJSON and pilotperformance",
+    "recovery": "Existing required recovery-storage-loader actual isolatedschema/storage proof",
+    "browser": "Ordinary e2e is authsmoke only; existing release-validation true fullbrowser lane needed if it supplies newessential settings/pricing cases. No workflowchange; capture neededscreens/provenance from owned2e2efiles to existing artifacts."
+  },
+  "evidence_limits": "Assessment of actual checked-in lane only, no dispatch/run/pass. Prior mainCIgreen/collection/sourceinspections are not candidate runtimeproof. Root owns publication/exactSHA/nativecounts/artifacttree binding and authenticated humanvisual checkpoint; author keeps full baseline for every localgate.",
+  "task_constraints_retained": [
+    "fulloriginalapproved9actions11forms/allP-ACpermutations",
+    "oneCLI-generatedforwardmigration and appliedhistoryimmutability",
+    "currentauthority/receipt/revision/atomicity/money/audit boundaries",
+    "requiredstatic/build/focused+fullDBRLS/recovery/browserproof",
+    "frontendauthenticated exactcandidateacceptance before completion",
+    "release_ready=false; no selfmerge/deploy"
+  ],
+  "author_notified": true
+}

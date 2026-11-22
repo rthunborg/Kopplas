@@ -1,0 +1,128 @@
+{
+  "kind": "Pure source-function normalization examples; fake filesystem/Linux paths, no application/process/DB runtime",
+  "source": "tests/e2e/pricing/pricing.e2e.spec.ts",
+  "sourceSha256": "2bdc48175cc53680cfb94eed63723f2638a41a75302df7acd175e659ffd45c38",
+  "executedSourceFunctions": [
+    "producerPlaywrightEntry",
+    "producerPlaywrightInvocation"
+  ],
+  "examples": [
+    {
+      "name": "absolute-owned",
+      "expected": "owned",
+      "outcome": "owned",
+      "family": "@playwright/test",
+      "reason": null
+    },
+    {
+      "name": "dot-segment-shim",
+      "expected": "owned",
+      "outcome": "owned",
+      "family": "@playwright/test",
+      "reason": null
+    },
+    {
+      "name": "relative-shim",
+      "expected": "owned",
+      "outcome": "owned",
+      "family": "@playwright/test",
+      "reason": null
+    },
+    {
+      "name": "pnpm-canonical",
+      "expected": "owned",
+      "outcome": "owned",
+      "family": "@playwright/test",
+      "reason": null
+    },
+    {
+      "name": "symlink-bin",
+      "expected": "owned",
+      "outcome": "owned",
+      "family": "@playwright/test",
+      "reason": null
+    },
+    {
+      "name": "foreign-playwright",
+      "expected": "foreign",
+      "outcome": "foreign",
+      "family": "playwright",
+      "reason": null
+    },
+    {
+      "name": "foreign-same-test-family",
+      "expected": "foreign",
+      "outcome": "foreign",
+      "family": "@playwright/test",
+      "reason": null
+    },
+    {
+      "name": "keyword-payload-not-entry",
+      "expected": "none",
+      "outcome": "none",
+      "family": null,
+      "reason": null
+    },
+    {
+      "name": "non-playwright-cli",
+      "expected": "none",
+      "outcome": "none",
+      "family": null,
+      "reason": null
+    },
+    {
+      "name": "test-not-subcommand",
+      "expected": "none",
+      "outcome": "none",
+      "family": null,
+      "reason": null
+    },
+    {
+      "name": "preload-option",
+      "expected": "owned",
+      "outcome": "owned",
+      "family": "@playwright/test",
+      "reason": null
+    },
+    {
+      "name": "inline-not-script",
+      "expected": "none",
+      "outcome": "none",
+      "family": null,
+      "reason": null
+    },
+    {
+      "name": "unknown-option-real-family",
+      "expected": "refused",
+      "outcome": "refused",
+      "family": null,
+      "reason": "P-E5 family=playwright reason=unsupported-node-launch"
+    },
+    {
+      "name": "missing-node-option-value",
+      "expected": "refused",
+      "outcome": "refused",
+      "family": null,
+      "reason": "P-E5 family=node reason=missing-startup-option-value"
+    },
+    {
+      "name": "known-family-package-unavailable",
+      "expected": "refused",
+      "outcome": "refused",
+      "family": null,
+      "reason": "P-E5 family=playwright reason=package-identity-unavailable"
+    }
+  ],
+  "passed": 15,
+  "failed": 0,
+  "oldRawRegexRejectsInstalledShimDotSpelling": true,
+  "nativeOldJobArgvAvailable": false,
+  "causalLimit": "Installed local pnpm shim demonstrably emits .bin/../@playwright/test/cli.js; actual terminated b8 CI argv spelling not recorded. Normalization hole is proven, exact native spelling not invented.",
+  "foreignPolicy": "Foreign package families recognized outside project root; original consumers==[boot.ownerPid] assertion retained; owner canonical identity checked separately.",
+  "diagnostics": "Fixed allowlisted family/reason only, no runtime argv/environment payload",
+  "installedShim": {
+    "path": "node_modules/.bin/playwright",
+    "sha256": "3786dbf18f599eb9841599120656c6b95938289bbca24f929fe3d75c72f9c3d0"
+  },
+  "methodEffects": 0
+}

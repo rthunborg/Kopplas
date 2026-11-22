@@ -1,0 +1,2880 @@
+{
+  "task_id": "35.7-P",
+  "captured_at_utc": "2026-11-02T14:43:44.341025+00:00",
+  "native_run": 41455681949,
+  "native_job": 125313470420,
+  "candidate_commit": "a24060287cb9e3bbea236741e74315b72785e4a7",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "artifact": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-a2406028\\general-browser\\general-browser.json",
+  "artifact_sha256": "651a2e8b655e98537d6b9a03f2ef69076dd8c4d90e6a2edd263a68047529ac36",
+  "native_stats": {
+    "startTime": "2026-11-02T13:52:30.040Z",
+    "duration": 2416488.269,
+    "expected": 470,
+    "skipped": 22,
+    "unexpected": 29,
+    "flaky": 1
+  },
+  "counts_reconciled": {
+    "native_expected": 470,
+    "unexpected": 29,
+    "flaky": 1,
+    "explicit_skipped": 3,
+    "serial_not_run": 19,
+    "native_skipped_total": 22,
+    "mismatch_with_root_aggregate": false
+  },
+  "failure_groups": {
+    "login-dashboard-wait": 7,
+    "booking-hidden-entry": 1,
+    "booking-conflict-count": 1,
+    "calendar-closed-aggregate": 10,
+    "crm-missing-contrast-dir": 4,
+    "crm-dashboard-heading-flaky": 1,
+    "crm-detached-city": 1,
+    "my-day-late-transport": 1,
+    "notification-rowheader": 1,
+    "explicit-native-skip": 3,
+    "scheduling-interval": 1,
+    "serial-not-run": 19,
+    "terms-local-validation": 2
+  },
+  "proven_introduced_failure_cases": 2,
+  "proven_introduced_root_causes": 1,
+  "other_unexpected_cases_unproven_unowned": 27,
+  "baseline_runtime_failure_claim": false,
+  "all_cases": [
+    {
+      "native_case_id": "ad496afb1429e11b031e-509ea32c97bae4dbf4af",
+      "file": "tests/e2e/auth/admin-user-management-roles.atdd.e2e.spec.ts",
+      "line": 76,
+      "title": "[P1] Non-Admin receives neither Roles UI nor the Admin users direct route",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "login-dashboard-wait",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "First login helper URL expectation waits for /dashboard, actual URL is /my-day or /. No current proof this producer introduced navigation discrepancy.",
+        "action": "Retain failure; owner must assess caller and actual landing behavior. No assertion/path change or baseline failure claim."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "f9fc9a41270ee575755c67844f266e11ff814aea",
+        "candidate_oid": "f9fc9a41270ee575755c67844f266e11ff814aea",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 15384,
+          "first_location": {
+            "file": "tests/e2e/auth/admin-user-management-roles.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 34
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/my-day\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    - unexpected value \"http://127.0.0.1:3100/\"\n    29 × unexpected value \"http://127.0.0.1:3100/my-day\"\n\n\n  32 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  33 |   await submit.click();\n> 34 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  35 | }\n  36 |\n  37 | async function openAdminUsers(page: Page): Promise<void> {\n    at logIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management-roles.atdd.e2e.spec.ts:34:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management-roles.atdd.e2e.spec.ts:78:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:53:15.664Z",
+          "worker_index": 0,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 15798,
+          "first_location": {
+            "file": "tests/e2e/auth/admin-user-management-roles.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 34
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/my-day\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    - unexpected value \"http://127.0.0.1:3100/\"\n    29 × unexpected value \"http://127.0.0.1:3100/my-day\"\n\n\n  32 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  33 |   await submit.click();\n> 34 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  35 | }\n  36 |\n  37 | async function openAdminUsers(page: Page): Promise<void> {\n    at logIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management-roles.atdd.e2e.spec.ts:34:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management-roles.atdd.e2e.spec.ts:78:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:53:31.534Z",
+          "worker_index": 1,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "1629b0764d33efbe15c2-8ba0f7dc7de8b81fa4d5",
+      "file": "tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts",
+      "line": 51,
+      "title": "[P1] Non-Admin receives neither Users navigation nor the Admin users direct route",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "login-dashboard-wait",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "First login helper URL expectation waits for /dashboard, actual URL is /my-day or /. No current proof this producer introduced navigation discrepancy.",
+        "action": "Retain failure; owner must assess caller and actual landing behavior. No assertion/path change or baseline failure claim."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "7261fb1ca998d1865ef97a16c3448fdbf51fb09f",
+        "candidate_oid": "7261fb1ca998d1865ef97a16c3448fdbf51fb09f",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 15327,
+          "first_location": {
+            "file": "tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 35
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/my-day\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    - unexpected value \"http://127.0.0.1:3100/\"\n    29 × unexpected value \"http://127.0.0.1:3100/my-day\"\n\n\n  33 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  34 |   await submit.click();\n> 35 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  36 | }\n  37 |\n  38 | test.describe(\"Story 11.3 administrativ användarhantering\", () => {\n    at logIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts:35:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts:53:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:53:50.293Z",
+          "worker_index": 2,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 15742,
+          "first_location": {
+            "file": "tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 35
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/my-day\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    - unexpected value \"http://127.0.0.1:3100/\"\n    29 × unexpected value \"http://127.0.0.1:3100/my-day\"\n\n\n  33 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  34 |   await submit.click();\n> 35 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  36 | }\n  37 |\n  38 | test.describe(\"Story 11.3 administrativ användarhantering\", () => {\n    at logIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts:35:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts:53:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:54:06.145Z",
+          "worker_index": 3,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "1629b0764d33efbe15c2-3d9aab30bf0872e8237d",
+      "file": "tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts",
+      "line": 86,
+      "title": "[P0] authenticated acceptance shows confirmation only after the database result",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "login-dashboard-wait",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "First login helper URL expectation waits for /dashboard, actual URL is /my-day or /. No current proof this producer introduced navigation discrepancy.",
+        "action": "Retain failure; owner must assess caller and actual landing behavior. No assertion/path change or baseline failure claim."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "7261fb1ca998d1865ef97a16c3448fdbf51fb09f",
+        "candidate_oid": "7261fb1ca998d1865ef97a16c3448fdbf51fb09f",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 15362,
+          "first_location": {
+            "file": "tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 35
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    30 × unexpected value \"http://127.0.0.1:3100/\"\n\n\n  33 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  34 |   await submit.click();\n> 35 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  36 | }\n  37 |\n  38 | test.describe(\"Story 11.3 administrativ användarhantering\", () => {\n    at logIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts:35:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts:88:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:54:26.003Z",
+          "worker_index": 4,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 15775,
+          "first_location": {
+            "file": "tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 35
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    30 × unexpected value \"http://127.0.0.1:3100/\"\n\n\n  33 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  34 |   await submit.click();\n> 35 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  36 | }\n  37 |\n  38 | test.describe(\"Story 11.3 administrativ användarhantering\", () => {\n    at logIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts:35:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts:88:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:54:41.865Z",
+          "worker_index": 5,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "79a0be44fa1762647fa3-fcde111736b2e07a0900",
+      "file": "tests/e2e/auth/operator-console.atdd.e2e.spec.ts",
+      "line": 55,
+      "title": "[P1] 12.2-E2E-001 allow-listed operators reach isolated /operator with no tenant navigation",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "login-dashboard-wait",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "First login helper URL expectation waits for /dashboard, actual URL is /my-day or /. No current proof this producer introduced navigation discrepancy.",
+        "action": "Retain failure; owner must assess caller and actual landing behavior. No assertion/path change or baseline failure claim."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "a77b9a33de69be2690c9672f930ed03a2f047a62",
+        "candidate_oid": "a77b9a33de69be2690c9672f930ed03a2f047a62",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 17247,
+          "first_location": {
+            "file": "tests/e2e/auth/operator-console.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 34
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard/\nReceived string:  \"http://127.0.0.1:3100/\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    30 × unexpected value \"http://127.0.0.1:3100/\"\n\n\n  32 |   // dashboard navigation. Wait for that navigation before testing another\n  33 |   // server-rendered protected route.\n> 34 |   await expect(page).toHaveURL(/\\/dashboard/);\n     |                      ^\n  35 | }\n  36 |\n  37 | function uniqueOrganisationNumber(): string {\n    at signIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/auth/operator-console.atdd.e2e.spec.ts:34:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/auth/operator-console.atdd.e2e.spec.ts:71:7",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:54:58.433Z",
+          "worker_index": 6,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 18038,
+          "first_location": {
+            "file": "tests/e2e/auth/operator-console.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 34
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard/\nReceived string:  \"http://127.0.0.1:3100/\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    30 × unexpected value \"http://127.0.0.1:3100/\"\n\n\n  32 |   // dashboard navigation. Wait for that navigation before testing another\n  33 |   // server-rendered protected route.\n> 34 |   await expect(page).toHaveURL(/\\/dashboard/);\n     |                      ^\n  35 | }\n  36 |\n  37 | function uniqueOrganisationNumber(): string {\n    at signIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/auth/operator-console.atdd.e2e.spec.ts:34:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/auth/operator-console.atdd.e2e.spec.ts:71:7",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:55:16.408Z",
+          "worker_index": 7,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "5cbc46a2219367c6da4a-26d342c19e4f5503f029",
+      "file": "tests/e2e/booking-editor.e2e.spec.ts",
+      "line": 231,
+      "title": "[P0] E2E-006 job entry persists preconnection then reopens and edits",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "booking-hidden-entry",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "booking-entry-job resolves but remains invisible at first click. Native trace does not prove a producer cause.",
+        "action": "Retain failure; inspect visibility/host state within that owner allocation."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "69e2f3d2ea43cd50990622baaace47a6d2fceefd",
+        "candidate_oid": "69e2f3d2ea43cd50990622baaace47a6d2fceefd",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 17004,
+          "first_location": {
+            "file": "tests/e2e/booking-editor.e2e.spec.ts",
+            "column": 55,
+            "line": 237
+          },
+          "first_error": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n  - waiting for getByTestId('booking-entry-job')\n    - locator resolved to <button type=\"button\" data-testid=\"booking-entry-job\" class=\"min-h-11 rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600\">Boka</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    29 × waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n\n\n  235 |       await signIn(page, s);\n  236 |       await page.goto(host === \"job\" ? \"/jobs/\" + s.jobId : \"/customers/\" + s.customerId);\n> 237 |       await page.getByTestId(\"booking-entry-\" + host).click();\n      |                                                       ^\n  238 |       await expect(editor(page).getByTestId(host === \"job\" ? \"booking-job\" : \"booking-customer\"))\n  239 |         .toHaveValue(host === \"job\" ? s.jobId : s.customerId);\n  240 |       await fillDraft(page, s);\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/booking-editor.e2e.spec.ts:237:55",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:56:39.737Z",
+          "worker_index": 8,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 17568,
+          "first_location": {
+            "file": "tests/e2e/booking-editor.e2e.spec.ts",
+            "column": 55,
+            "line": 237
+          },
+          "first_error": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n  - waiting for getByTestId('booking-entry-job')\n    - locator resolved to <button type=\"button\" data-testid=\"booking-entry-job\" class=\"min-h-11 rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600\">Boka</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    29 × waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n\n\n  235 |       await signIn(page, s);\n  236 |       await page.goto(host === \"job\" ? \"/jobs/\" + s.jobId : \"/customers/\" + s.customerId);\n> 237 |       await page.getByTestId(\"booking-entry-\" + host).click();\n      |                                                       ^\n  238 |       await expect(editor(page).getByTestId(host === \"job\" ? \"booking-job\" : \"booking-customer\"))\n  239 |         .toHaveValue(host === \"job\" ? s.jobId : s.customerId);\n  240 |       await fillDraft(page, s);\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/booking-editor.e2e.spec.ts:237:55",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:56:57.465Z",
+          "worker_index": 9,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "5cbc46a2219367c6da4a-1bec7eb51a30dbba247a",
+      "file": "tests/e2e/booking-editor.e2e.spec.ts",
+      "line": 310,
+      "title": "[P1] E2E-002 reload chip counts persisted OPEN logical conflicts only",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "booking-conflict-count",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "Expected accessible name1 open conflict; resolved link reports2. No producer cause or baseline execution proven.",
+        "action": "Retain exact count assertion and inspect actual seeded/current logical conflicts."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "69e2f3d2ea43cd50990622baaace47a6d2fceefd",
+        "candidate_oid": "69e2f3d2ea43cd50990622baaace47a6d2fceefd",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 17292,
+          "first_location": {
+            "file": "tests/e2e/booking-editor.e2e.spec.ts",
+            "column": 24,
+            "line": 321
+          },
+          "first_error": "Error: expect(locator).toHaveAccessibleName(expected) failed\n\nLocator:  getByTestId('booking-summary-591ae4ad-9457-4c94-8436-8fd1c8f31b52').getByTestId('booking-open-conflict-count')\nExpected: \"1 öppna konflikter\"\nReceived: \"\"\nTimeout:  15000ms\n\nCall log:\n  - Expect \"toHaveAccessibleName\" with timeout 15000ms\n  - waiting for getByTestId('booking-summary-591ae4ad-9457-4c94-8436-8fd1c8f31b52').getByTestId('booking-open-conflict-count')\n    33 × locator resolved to <a aria-label=\"2 öppna konflikter\" data-testid=\"booking-open-conflict-count\" href=\"/scheduling/conflicts?bookingId=591ae4ad-9457-4c94-8436-8fd1c8f31b52\" class=\"inline-flex min-h-11 items-center rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-sm text-amber-900 focus-visible:ring-2 focus-visible:ring-blue-600\">…</a>\n       - unexpected value \"\"\n\n\n  319 |     await page.goto(\"/jobs/\" + s.jobId);\n  320 |     const chip = summary(page, s.persistedBookingId).getByTestId(\"booking-open-conflict-count\");\n> 321 |     await expect(chip).toHaveAccessibleName(s.expectedOpenLogicalCount + \" öppna konflikter\");\n      |                        ^\n  322 |     await page.reload();\n  323 |     await expect(chip).toHaveAccessibleName(s.expectedOpenLogicalCount + \" öppna konflikter\");\n  324 |     expect(await bookingSnapshot(s.tenantIds)).toEqual(durable);\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/booking-editor.e2e.spec.ts:321:24",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:57:26.851Z",
+          "worker_index": 10,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 17934,
+          "first_location": {
+            "file": "tests/e2e/booking-editor.e2e.spec.ts",
+            "column": 24,
+            "line": 321
+          },
+          "first_error": "Error: expect(locator).toHaveAccessibleName(expected) failed\n\nLocator:  getByTestId('booking-summary-c2779d88-90b4-4dfd-8b84-79be41deabe4').getByTestId('booking-open-conflict-count')\nExpected: \"1 öppna konflikter\"\nReceived: \"\"\nTimeout:  15000ms\n\nCall log:\n  - Expect \"toHaveAccessibleName\" with timeout 15000ms\n  - waiting for getByTestId('booking-summary-c2779d88-90b4-4dfd-8b84-79be41deabe4').getByTestId('booking-open-conflict-count')\n    33 × locator resolved to <a aria-label=\"2 öppna konflikter\" data-testid=\"booking-open-conflict-count\" href=\"/scheduling/conflicts?bookingId=c2779d88-90b4-4dfd-8b84-79be41deabe4\" class=\"inline-flex min-h-11 items-center rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-sm text-amber-900 focus-visible:ring-2 focus-visible:ring-blue-600\">…</a>\n       - unexpected value \"\"\n\n\n  319 |     await page.goto(\"/jobs/\" + s.jobId);\n  320 |     const chip = summary(page, s.persistedBookingId).getByTestId(\"booking-open-conflict-count\");\n> 321 |     await expect(chip).toHaveAccessibleName(s.expectedOpenLogicalCount + \" öppna konflikter\");\n      |                        ^\n  322 |     await page.reload();\n  323 |     await expect(chip).toHaveAccessibleName(s.expectedOpenLogicalCount + \" öppna konflikter\");\n  324 |     expect(await bookingSnapshot(s.tenantIds)).toEqual(durable);\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/booking-editor.e2e.spec.ts:321:24",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T13:57:44.852Z",
+          "worker_index": 11,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "aed1892857cea31f6064-c90768e23662178aae4d",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "line": 73,
+      "title": "[P0] 15.5-E2E-001 [AC1 AC3 AC4 AC6 AC7 AC9] Planering → own issue → anonymous feed → physical last-use → rotate/revoke",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "calendar-closed-aggregate",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_CLOSED_CAUSE",
+        "cause": "First surfaced error is sanitized AggregateError at calendarFailures143; JSON intentionally omits underlying causal error. Some safe source labels identify response/readback failures, which differ between cases. No single shared cause inferred.",
+        "action": "Preserve redaction; calendar owner uses existing safe diagnostics for a bounded causal investigation. No secret/raw-error disclosure or baseline waiver."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "candidate_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 17806,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:75:11",
+          "all_error_count": 5,
+          "safe_stderr": [
+            "calendar-source-label-v3 case=E2E001 snapshot=PRE_CLEANUP site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=MATCHED readback=SETTLED_FAILURE completion=SETTLED_SUCCESS completionPhase=DONE observation=SETTLED_FAILURE terminalAtDrain=NOT_SAMPLED\n",
+            "calendar-source-label-v3 case=E2E001 snapshot=FINAL site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=MATCHED readback=SETTLED_FAILURE completion=SETTLED_SUCCESS completionPhase=DONE observation=SETTLED_FAILURE terminalAtDrain=END_WITHOUT_FAILURE_OPEN\n"
+          ],
+          "start_time": "2026-11-02T14:24:38.657Z",
+          "worker_index": 42,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 18224,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:75:11",
+          "all_error_count": 5,
+          "safe_stderr": [
+            "calendar-source-label-v3 case=E2E001 snapshot=PRE_CLEANUP site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=MATCHED readback=SETTLED_FAILURE completion=SETTLED_SUCCESS completionPhase=DONE observation=SETTLED_FAILURE terminalAtDrain=NOT_SAMPLED\n",
+            "calendar-source-label-v3 case=E2E001 snapshot=FINAL site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=MATCHED readback=SETTLED_FAILURE completion=SETTLED_SUCCESS completionPhase=DONE observation=SETTLED_FAILURE terminalAtDrain=END_WITHOUT_FAILURE_OPEN\n"
+          ],
+          "start_time": "2026-11-02T14:24:57.354Z",
+          "worker_index": 43,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "aed1892857cea31f6064-23dfa5d006f40b0ceb49",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "line": 186,
+      "title": "[P1] 15.5-E2E-004 [AC1 AC6] never-used, clipboard denial selectable fallback and revisit never recover the one-time URL",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "calendar-closed-aggregate",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_CLOSED_CAUSE",
+        "cause": "First surfaced error is sanitized AggregateError at calendarFailures143; JSON intentionally omits underlying causal error. Some safe source labels identify response/readback failures, which differ between cases. No single shared cause inferred.",
+        "action": "Preserve redaction; calendar owner uses existing safe diagnostics for a bounded causal investigation. No secret/raw-error disclosure or baseline waiver."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "candidate_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 17551,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:187:5",
+          "all_error_count": 5,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:25:30.821Z",
+          "worker_index": 44,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 17866,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:187:5",
+          "all_error_count": 5,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:25:49.151Z",
+          "worker_index": 45,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "aed1892857cea31f6064-216b7d89994fa1333c8f",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "line": 211,
+      "title": "[P0] 15.5-E2E-005 [AC2 AC6] confirmation cancellation, pending persistence and failed rotation retry preserve old generation",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "calendar-closed-aggregate",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_CLOSED_CAUSE",
+        "cause": "First surfaced error is sanitized AggregateError at calendarFailures143; JSON intentionally omits underlying causal error. Some safe source labels identify response/readback failures, which differ between cases. No single shared cause inferred.",
+        "action": "Preserve redaction; calendar owner uses existing safe diagnostics for a bounded causal investigation. No secret/raw-error disclosure or baseline waiver."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "candidate_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 17851,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:212:5",
+          "all_error_count": 5,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:26:07.912Z",
+          "worker_index": 46,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 18225,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:212:5",
+          "all_error_count": 5,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:26:26.656Z",
+          "worker_index": 47,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "aed1892857cea31f6064-2ea70e2cade20a080d3a",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "line": 269,
+      "title": "[P0] 15.5-E2E-006 [AC1 AC2 AC6] lost committed issuance reconciles sanitized metadata and needs separate explicit rotation",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "calendar-closed-aggregate",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_CLOSED_CAUSE",
+        "cause": "First surfaced error is sanitized AggregateError at calendarFailures143; JSON intentionally omits underlying causal error. Some safe source labels identify response/readback failures, which differ between cases. No single shared cause inferred.",
+        "action": "Preserve redaction; calendar owner uses existing safe diagnostics for a bounded causal investigation. No secret/raw-error disclosure or baseline waiver."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "candidate_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 18331,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:270:5",
+          "all_error_count": 6,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:26:45.753Z",
+          "worker_index": 48,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 17926,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:270:5",
+          "all_error_count": 6,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:27:04.957Z",
+          "worker_index": 49,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "aed1892857cea31f6064-cfff93ee0c4daa57a65f",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "line": 349,
+      "title": "[P0] 15.5-E2E-008 [AC1 AC5 AC6 AC9] manager self-service cannot read Admin aggregate or peer capability",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "calendar-closed-aggregate",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_CLOSED_CAUSE",
+        "cause": "First surfaced error is sanitized AggregateError at calendarFailures143; JSON intentionally omits underlying causal error. Some safe source labels identify response/readback failures, which differ between cases. No single shared cause inferred.",
+        "action": "Preserve redaction; calendar owner uses existing safe diagnostics for a bounded causal investigation. No secret/raw-error disclosure or baseline waiver."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "candidate_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 19079,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:350:5",
+          "all_error_count": 5,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:28:01.166Z",
+          "worker_index": 52,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 19208,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:350:5",
+          "all_error_count": 5,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:28:21.151Z",
+          "worker_index": 53,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "aed1892857cea31f6064-1c8c07d91fe19a55adf8",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "line": 366,
+      "title": "[P0] 15.5-E2E-009 [AC5 AC6 AC9] Admin sees only sanitized own-tenant abuse counters and separate own lifecycle",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "calendar-closed-aggregate",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_CLOSED_CAUSE",
+        "cause": "First surfaced error is sanitized AggregateError at calendarFailures143; JSON intentionally omits underlying causal error. Some safe source labels identify response/readback failures, which differ between cases. No single shared cause inferred.",
+        "action": "Preserve redaction; calendar owner uses existing safe diagnostics for a bounded causal investigation. No secret/raw-error disclosure or baseline waiver."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "candidate_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 19358,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:367:5",
+          "all_error_count": 5,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:28:41.263Z",
+          "worker_index": 54,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 19241,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:367:5",
+          "all_error_count": 5,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:29:01.530Z",
+          "worker_index": 55,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "aed1892857cea31f6064-9c716f33bc35737798f6",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "line": 388,
+      "title": "[P0] 15.5-E2E-010-rotate [AC2 AC6] automatic refresh removes a superseded issuance and success announcement after concurrent rotate",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "calendar-closed-aggregate",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_CLOSED_CAUSE",
+        "cause": "First surfaced error is sanitized AggregateError at calendarFailures143; JSON intentionally omits underlying causal error. Some safe source labels identify response/readback failures, which differ between cases. No single shared cause inferred.",
+        "action": "Preserve redaction; calendar owner uses existing safe diagnostics for a bounded causal investigation. No secret/raw-error disclosure or baseline waiver."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "candidate_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 32865,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:390:13",
+          "all_error_count": 7,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:29:21.691Z",
+          "worker_index": 56,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 33284,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:390:13",
+          "all_error_count": 7,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:29:55.460Z",
+          "worker_index": 57,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "aed1892857cea31f6064-ab363d0a0bb2abb522a1",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "line": 388,
+      "title": "[P0] 15.5-E2E-010-revoke [AC2 AC6] automatic refresh removes a superseded issuance and success announcement after concurrent revoke",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "calendar-closed-aggregate",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_CLOSED_CAUSE",
+        "cause": "First surfaced error is sanitized AggregateError at calendarFailures143; JSON intentionally omits underlying causal error. Some safe source labels identify response/readback failures, which differ between cases. No single shared cause inferred.",
+        "action": "Preserve redaction; calendar owner uses existing safe diagnostics for a bounded causal investigation. No secret/raw-error disclosure or baseline waiver."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "candidate_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 33405,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:390:13",
+          "all_error_count": 7,
+          "safe_stderr": [
+            "calendar-source-label-v3 case=E2E010-revoke snapshot=PRE_CLEANUP site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=SETTLED_FAILURE readback=NOT_STARTED completion=NOT_APPLICABLE completionPhase=NOT_STARTED observation=SETTLED_FAILURE terminalAtDrain=NOT_SAMPLED\n",
+            "calendar-source-label-v3 case=E2E010-revoke snapshot=FINAL site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=SETTLED_FAILURE readback=NOT_STARTED completion=NOT_APPLICABLE completionPhase=NOT_STARTED observation=SETTLED_FAILURE terminalAtDrain=UNAVAILABLE\n"
+          ],
+          "start_time": "2026-11-02T14:30:29.612Z",
+          "worker_index": 58,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 33019,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:390:13",
+          "all_error_count": 7,
+          "safe_stderr": [
+            "calendar-source-label-v3 case=E2E010-revoke snapshot=PRE_CLEANUP site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=SETTLED_FAILURE readback=NOT_STARTED completion=NOT_APPLICABLE completionPhase=NOT_STARTED observation=SETTLED_FAILURE terminalAtDrain=NOT_SAMPLED\n",
+            "calendar-source-label-v3 case=E2E010-revoke snapshot=FINAL site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=SETTLED_FAILURE readback=NOT_STARTED completion=NOT_APPLICABLE completionPhase=NOT_STARTED observation=SETTLED_FAILURE terminalAtDrain=UNAVAILABLE\n"
+          ],
+          "start_time": "2026-11-02T14:31:03.948Z",
+          "worker_index": 59,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "aed1892857cea31f6064-b61796e8dda181b1c3b5",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "line": 456,
+      "title": "[P0] 15.5-E2E-011 [AC2 AC6] automatic refresh retains the current issuance, copy control and success announcement",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "calendar-closed-aggregate",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_CLOSED_CAUSE",
+        "cause": "First surfaced error is sanitized AggregateError at calendarFailures143; JSON intentionally omits underlying causal error. Some safe source labels identify response/readback failures, which differ between cases. No single shared cause inferred.",
+        "action": "Preserve redaction; calendar owner uses existing safe diagnostics for a bounded causal investigation. No secret/raw-error disclosure or baseline waiver."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "candidate_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 33494,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:457:5",
+          "all_error_count": 7,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:31:37.852Z",
+          "worker_index": 60,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 33386,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:457:5",
+          "all_error_count": 7,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:32:12.270Z",
+          "worker_index": 61,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "aed1892857cea31f6064-7368d6d02e9b2f6d3886",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "line": 308,
+      "title": "[P1] 15.5-E2E-007 [AC1 AC6] 360×640 keyboard entry, touch issue and revoke confirmation remain usable",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "calendar-closed-aggregate",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_CLOSED_CAUSE",
+        "cause": "First surfaced error is sanitized AggregateError at calendarFailures143; JSON intentionally omits underlying causal error. Some safe source labels identify response/readback failures, which differ between cases. No single shared cause inferred.",
+        "action": "Preserve redaction; calendar owner uses existing safe diagnostics for a bounded causal investigation. No secret/raw-error disclosure or baseline waiver."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "candidate_oid": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 17809,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:319:13",
+          "all_error_count": 5,
+          "safe_stderr": [
+            "calendar-source-label-v3 case=E2E007 snapshot=PRE_CLEANUP site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=MATCHED readback=SETTLED_FAILURE completion=SETTLED_FAILURE completionPhase=UNKNOWN observation=SETTLED_FAILURE terminalAtDrain=NOT_SAMPLED\n",
+            "calendar-source-label-v3 case=E2E007 snapshot=FINAL site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=MATCHED readback=SETTLED_FAILURE completion=SETTLED_FAILURE completionPhase=UNKNOWN observation=SETTLED_FAILURE terminalAtDrain=FAILED_OPEN\n"
+          ],
+          "start_time": "2026-11-02T14:27:23.782Z",
+          "worker_index": 50,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 17779,
+          "first_location": {
+            "file": "tests/e2e/support/calendar-feed-atdd.ts",
+            "column": 16,
+            "line": 143
+          },
+          "first_error": "AggregateError: Calendar browser scenario or cleanup failed (closed diagnostics only)\n\n   at support/calendar-feed-atdd.ts:143\n\n  141 | }\n  142 | function calendarFailures(errors: Error[]): AggregateError {\n> 143 |   const safe = new AggregateError(errors, \"Calendar browser scenario or cleanup failed (closed diagnostics only)\");\n      |                ^\n  144 |   safeCalendarErrors.add(safe); return safe;\n  145 | }\n  146 | export async function calendarBrowserStep<T>(stage: CalendarDiagnosticStage, run: () => Promise<T>): Promise<T> {\n    at calendarFailures (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:143:16)\n    at withCalendarBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/calendar-feed-atdd.ts:867:71)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts:319:13",
+          "all_error_count": 5,
+          "safe_stderr": [
+            "calendar-source-label-v3 case=E2E007 snapshot=PRE_CLEANUP site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=MATCHED readback=SETTLED_FAILURE completion=SETTLED_SUCCESS completionPhase=DONE observation=SETTLED_FAILURE terminalAtDrain=NOT_SAMPLED\n",
+            "calendar-source-label-v3 case=E2E007 snapshot=FINAL site=observation scenario=SETTLED_FAILURE action=create ordinal=1 registration=REGISTERED request=MATCHED response=MATCHED readback=SETTLED_FAILURE completion=SETTLED_SUCCESS completionPhase=DONE observation=SETTLED_FAILURE terminalAtDrain=END_WITHOUT_FAILURE_OPEN\n"
+          ],
+          "start_time": "2026-11-02T14:27:42.489Z",
+          "worker_index": 51,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "ae96551e905b85d5ddc6-6d5e2b5683a7d7722574",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 416,
+      "title": "B01 E35-3-T-AC1/AC2 loaded/no-match: independent selection, sort and reset preserve identity",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "crm-missing-contrast-dir",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_TEST_INFRA",
+        "cause": "First actual error ENOENT opening tmp/private/story35-3/round1-rendered-contrast.jsonl from existing appendFileSync; preceding contrast checks reached this file write. Missing directory setup is observed, but introduction/baseline execution is unproven.",
+        "action": "Retain assertions; exact existing test-output-directory preparation needs owner disposition, no new path written by producer."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "candidate_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 1685,
+          "first_location": {
+            "file": "tests/e2e/crm/customers.e2e.spec.ts",
+            "column": 17,
+            "line": 68
+          },
+          "first_error": "Error: ENOENT: no such file or directory, open '/home/runner/work/Kopplas/Kopplas/tmp/private/story35-3/round1-rendered-contrast.jsonl'\n\n  66 |   if(!disabled) expect(measured.ratio,`${state} rendered composite`).toBeGreaterThanOrEqual(outline?3:4.5);\n  67 |   const file=path.resolve(\"tmp/private/story35-3/round1-rendered-contrast.jsonl\");\n> 68 |   appendFileSync(file,JSON.stringify({state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??\"uncommitted Round1 source\",kind:outline?\"nontext focus\":\"text\",disabled,threshold:disabled?\"inactive control exempt\":outline?3:4.5,...measured,limits:\"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit\"})+\"\\n\");\n     |                 ^\n  69 | }\n  70 |\n  71 | interface CrmFixture {\n    at renderedContrast (/home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:68:17)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:425:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:00:58.042Z",
+          "worker_index": 12,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 2677,
+          "first_location": {
+            "file": "tests/e2e/crm/customers.e2e.spec.ts",
+            "column": 17,
+            "line": 68
+          },
+          "first_error": "Error: ENOENT: no such file or directory, open '/home/runner/work/Kopplas/Kopplas/tmp/private/story35-3/round1-rendered-contrast.jsonl'\n\n  66 |   if(!disabled) expect(measured.ratio,`${state} rendered composite`).toBeGreaterThanOrEqual(outline?3:4.5);\n  67 |   const file=path.resolve(\"tmp/private/story35-3/round1-rendered-contrast.jsonl\");\n> 68 |   appendFileSync(file,JSON.stringify({state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??\"uncommitted Round1 source\",kind:outline?\"nontext focus\":\"text\",disabled,threshold:disabled?\"inactive control exempt\":outline?3:4.5,...measured,limits:\"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit\"})+\"\\n\");\n     |                 ^\n  69 | }\n  70 |\n  71 | interface CrmFixture {\n    at renderedContrast (/home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:68:17)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:425:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:01:00.399Z",
+          "worker_index": 13,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "ae96551e905b85d5ddc6-2b464a807b9d0110bc38",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 475,
+      "title": "B03 E35-3-T-error-retry AC3/AC7: archive cancel and confirm retain customer identity and soft archive",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "crm-missing-contrast-dir",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_TEST_INFRA",
+        "cause": "First actual error ENOENT opening tmp/private/story35-3/round1-rendered-contrast.jsonl from existing appendFileSync; preceding contrast checks reached this file write. Missing directory setup is observed, but introduction/baseline execution is unproven.",
+        "action": "Retain assertions; exact existing test-output-directory preparation needs owner disposition, no new path written by producer."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "candidate_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 2347,
+          "first_location": {
+            "file": "tests/e2e/crm/customers.e2e.spec.ts",
+            "column": 17,
+            "line": 68
+          },
+          "first_error": "Error: ENOENT: no such file or directory, open '/home/runner/work/Kopplas/Kopplas/tmp/private/story35-3/round1-rendered-contrast.jsonl'\n\n  66 |   if(!disabled) expect(measured.ratio,`${state} rendered composite`).toBeGreaterThanOrEqual(outline?3:4.5);\n  67 |   const file=path.resolve(\"tmp/private/story35-3/round1-rendered-contrast.jsonl\");\n> 68 |   appendFileSync(file,JSON.stringify({state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??\"uncommitted Round1 source\",kind:outline?\"nontext focus\":\"text\",disabled,threshold:disabled?\"inactive control exempt\":outline?3:4.5,...measured,limits:\"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit\"})+\"\\n\");\n     |                 ^\n  69 | }\n  70 |\n  71 | interface CrmFixture {\n    at renderedContrast (/home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:68:17)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:485:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:01:06.470Z",
+          "worker_index": 14,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 3433,
+          "first_location": {
+            "file": "tests/e2e/crm/customers.e2e.spec.ts",
+            "column": 17,
+            "line": 68
+          },
+          "first_error": "Error: ENOENT: no such file or directory, open '/home/runner/work/Kopplas/Kopplas/tmp/private/story35-3/round1-rendered-contrast.jsonl'\n\n  66 |   if(!disabled) expect(measured.ratio,`${state} rendered composite`).toBeGreaterThanOrEqual(outline?3:4.5);\n  67 |   const file=path.resolve(\"tmp/private/story35-3/round1-rendered-contrast.jsonl\");\n> 68 |   appendFileSync(file,JSON.stringify({state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??\"uncommitted Round1 source\",kind:outline?\"nontext focus\":\"text\",disabled,threshold:disabled?\"inactive control exempt\":outline?3:4.5,...measured,limits:\"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit\"})+\"\\n\");\n     |                 ^\n  69 | }\n  70 |\n  71 | interface CrmFixture {\n    at renderedContrast (/home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:68:17)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:485:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:01:09.478Z",
+          "worker_index": 15,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "ae96551e905b85d5ddc6-e20c8c97d5431a7fa6d2",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 523,
+      "title": "B03 R1 archive: pending edit exclusion and requested Back history survive one real archive",
+      "project": "chromium",
+      "native_status": "flaky",
+      "expected_status": "passed",
+      "group": "crm-dashboard-heading-flaky",
+      "classification": {
+        "finding": "FLAKY_UNPROVEN_UNOWNED",
+        "cause": "Attempt0 misses Dashboard heading at551; retry1 passes. Not clean first-attempt PASS or proven baseline/producer cause.",
+        "action": "Retain flaky outcome and first wait; no test weakening."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "candidate_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 18286,
+          "first_location": {
+            "file": "tests/e2e/crm/customers.e2e.spec.ts",
+            "column": 77,
+            "line": 551
+          },
+          "first_error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'Dashboard', exact: true })\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 15000ms\n  - waiting for getByRole('heading', { name: 'Dashboard', exact: true })\n\n\n  549 |       await gate.dispose();\n  550 |       await expect(page).toHaveURL(/\\/dashboard$/);\n> 551 |       await expect(page.getByRole(\"heading\",{name:\"Dashboard\",exact:true})).toBeVisible();\n      |                                                                             ^\n  552 |       expect(await historyState()).toEqual(requested);\n  553 |       expect(gate.attempts()).toBe(1);\n  554 |       const row=(await customerSnapshot(marker))[0]; expect(row.archived_at).not.toBeNull(); expect(row.audits).toBe(2);\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:551:77",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:01:17.311Z",
+          "worker_index": 16,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "passed",
+          "duration_ms": 5635,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:01:36.270Z",
+          "worker_index": 17,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "ae96551e905b85d5ddc6-b969aa660029ef97d227",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 624,
+      "title": "B04 E35-3-T-submitting/confirmed AC3/AC5: one real attempt and busy Escape/close protection",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "crm-missing-contrast-dir",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_TEST_INFRA",
+        "cause": "First actual error ENOENT opening tmp/private/story35-3/round1-rendered-contrast.jsonl from existing appendFileSync; preceding contrast checks reached this file write. Missing directory setup is observed, but introduction/baseline execution is unproven.",
+        "action": "Retain assertions; exact existing test-output-directory preparation needs owner disposition, no new path written by producer."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "candidate_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 2138,
+          "first_location": {
+            "file": "tests/e2e/crm/customers.e2e.spec.ts",
+            "column": 17,
+            "line": 68
+          },
+          "first_error": "Error: ENOENT: no such file or directory, open '/home/runner/work/Kopplas/Kopplas/tmp/private/story35-3/round1-rendered-contrast.jsonl'\n\n  66 |   if(!disabled) expect(measured.ratio,`${state} rendered composite`).toBeGreaterThanOrEqual(outline?3:4.5);\n  67 |   const file=path.resolve(\"tmp/private/story35-3/round1-rendered-contrast.jsonl\");\n> 68 |   appendFileSync(file,JSON.stringify({state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??\"uncommitted Round1 source\",kind:outline?\"nontext focus\":\"text\",disabled,threshold:disabled?\"inactive control exempt\":outline?3:4.5,...measured,limits:\"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit\"})+\"\\n\");\n     |                 ^\n  69 | }\n  70 |\n  71 | interface CrmFixture {\n    at renderedContrast (/home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:68:17)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:636:7",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:01:48.980Z",
+          "worker_index": 17,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 3215,
+          "first_location": {
+            "file": "tests/e2e/crm/customers.e2e.spec.ts",
+            "column": 17,
+            "line": 68
+          },
+          "first_error": "Error: ENOENT: no such file or directory, open '/home/runner/work/Kopplas/Kopplas/tmp/private/story35-3/round1-rendered-contrast.jsonl'\n\n  66 |   if(!disabled) expect(measured.ratio,`${state} rendered composite`).toBeGreaterThanOrEqual(outline?3:4.5);\n  67 |   const file=path.resolve(\"tmp/private/story35-3/round1-rendered-contrast.jsonl\");\n> 68 |   appendFileSync(file,JSON.stringify({state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??\"uncommitted Round1 source\",kind:outline?\"nontext focus\":\"text\",disabled,threshold:disabled?\"inactive control exempt\":outline?3:4.5,...measured,limits:\"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit\"})+\"\\n\");\n     |                 ^\n  69 | }\n  70 |\n  71 | interface CrmFixture {\n    at renderedContrast (/home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:68:17)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:636:7",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:01:51.750Z",
+          "worker_index": 18,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "ae96551e905b85d5ddc6-35a83d3937450173b47f",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 771,
+      "title": "B07 E35-3-T-dirty-navigation/focus-dialog AC5: forward is cancelled before URL/history commit",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "crm-detached-city",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "First Ort fill resolves an input then detaches; locator does not complete. No producer causal path proven.",
+        "action": "Retain caller and inspect existing dialog/navigation lifecycle."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "candidate_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 17522,
+          "first_location": {
+            "file": "tests/e2e/crm/customers.e2e.spec.ts",
+            "column": 38,
+            "line": 781
+          },
+          "first_error": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n  - waiting for getByRole('dialog', { name: 'Redigera kund' }).getByLabel('Ort')\n    - locator resolved to <input value=\"\" id=\"_r_c_\" type=\"text\" name=\"city\" class=\"min-h-control-lg rounded-control border-0 bg-sunken in-[.bg-sunken]:bg-card px-3 py-2 text-body text-text-primary focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-ink\"/>\n    - fill(\"Unsent 35.3 draft\")\n  - attempting fill action\n    - waiting for element to be visible, enabled and editable\n  - element was detached from the DOM, retrying\n\n\n  779 |       }\n  780 |       const editor = await openCustomerEditor(page, fixture.crm.company.id, false);\n> 781 |       await editor.getByLabel(\"Ort\").fill(\"Unsent 35.3 draft\");\n      |                                      ^\n  782 |       const before = await page.evaluate(() => {\n  783 |         const nav = (window as unknown as { navigation?: { currentEntry?: { key: string } } }).navigation;\n  784 |         return { url: location.href, length: history.length, key: nav?.currentEntry?.key };\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:781:38",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:02:11.331Z",
+          "worker_index": 19,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 17946,
+          "first_location": {
+            "file": "tests/e2e/crm/customers.e2e.spec.ts",
+            "column": 38,
+            "line": 781
+          },
+          "first_error": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n  - waiting for getByRole('dialog', { name: 'Redigera kund' }).getByLabel('Ort')\n\n\n  779 |       }\n  780 |       const editor = await openCustomerEditor(page, fixture.crm.company.id, false);\n> 781 |       await editor.getByLabel(\"Ort\").fill(\"Unsent 35.3 draft\");\n      |                                      ^\n  782 |       const before = await page.evaluate(() => {\n  783 |         const nav = (window as unknown as { navigation?: { currentEntry?: { key: string } } }).navigation;\n  784 |         return { url: location.href, length: history.length, key: nav?.currentEntry?.key };\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:781:38",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:02:29.485Z",
+          "worker_index": 20,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "ae96551e905b85d5ddc6-d8721394e9b68d164ff0",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 915,
+      "title": "B08 E35-3-T-AC4: connected 360×640 targets, labeled overflow and visible actions/errors",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "crm-missing-contrast-dir",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED_TEST_INFRA",
+        "cause": "First actual error ENOENT opening tmp/private/story35-3/round1-rendered-contrast.jsonl from existing appendFileSync; preceding contrast checks reached this file write. Missing directory setup is observed, but introduction/baseline execution is unproven.",
+        "action": "Retain assertions; exact existing test-output-directory preparation needs owner disposition, no new path written by producer."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "candidate_oid": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 2120,
+          "first_location": {
+            "file": "tests/e2e/crm/customers.e2e.spec.ts",
+            "column": 17,
+            "line": 68
+          },
+          "first_error": "Error: ENOENT: no such file or directory, open '/home/runner/work/Kopplas/Kopplas/tmp/private/story35-3/round1-rendered-contrast.jsonl'\n\n  66 |   if(!disabled) expect(measured.ratio,`${state} rendered composite`).toBeGreaterThanOrEqual(outline?3:4.5);\n  67 |   const file=path.resolve(\"tmp/private/story35-3/round1-rendered-contrast.jsonl\");\n> 68 |   appendFileSync(file,JSON.stringify({state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??\"uncommitted Round1 source\",kind:outline?\"nontext focus\":\"text\",disabled,threshold:disabled?\"inactive control exempt\":outline?3:4.5,...measured,limits:\"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit\"})+\"\\n\");\n     |                 ^\n  69 | }\n  70 |\n  71 | interface CrmFixture {\n    at renderedContrast (/home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:68:17)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:930:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:02:59.006Z",
+          "worker_index": 21,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 2729,
+          "first_location": {
+            "file": "tests/e2e/crm/customers.e2e.spec.ts",
+            "column": 17,
+            "line": 68
+          },
+          "first_error": "Error: ENOENT: no such file or directory, open '/home/runner/work/Kopplas/Kopplas/tmp/private/story35-3/round1-rendered-contrast.jsonl'\n\n  66 |   if(!disabled) expect(measured.ratio,`${state} rendered composite`).toBeGreaterThanOrEqual(outline?3:4.5);\n  67 |   const file=path.resolve(\"tmp/private/story35-3/round1-rendered-contrast.jsonl\");\n> 68 |   appendFileSync(file,JSON.stringify({state,viewport:page.viewportSize(),candidate:process.env.E35_CAPTURE_REVISION??\"uncommitted Round1 source\",kind:outline?\"nontext focus\":\"text\",disabled,threshold:disabled?\"inactive control exempt\":outline?3:4.5,...measured,limits:\"Solid computed sRGB ancestor composites; no pixel/image/physical-device/color-vision or full-page audit\"})+\"\\n\");\n     |                 ^\n  69 | }\n  70 |\n  71 | interface CrmFixture {\n    at renderedContrast (/home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:68:17)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/crm/customers.e2e.spec.ts:930:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:03:01.755Z",
+          "worker_index": 22,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "86d73d00709e420723bd-51b7e94bc93c0d866395",
+      "file": "tests/e2e/my-day.e2e.spec.ts",
+      "line": 629,
+      "title": "[P0] 15.6-E09 a real tenant-switch RSC navigation discards the prior report owner and ignores its late read",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "my-day-late-transport",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "Expected post-release transport finished/none, actual failed/aborted. This intentionally asserts real delivered late response; must not relabel aborted as coverage.",
+        "action": "Retain assertion and inspect actual controlled transport lifecycle."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "9bc0d4af589da582fb893a5945f025b3cc43332d",
+        "candidate_oid": "9bc0d4af589da582fb893a5945f025b3cc43332d",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 3120,
+          "first_location": {
+            "file": "tests/e2e/my-day.e2e.spec.ts",
+            "column": 103,
+            "line": 770
+          },
+          "first_error": "Error: Only a completed transport after release proves a delivered late response\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  - 2\n+ Received  + 2\n\n  Object {\n-   \"category\": \"none\",\n-   \"event\": \"finished\",\n+   \"category\": \"aborted\",\n+   \"event\": \"failed\",\n    \"phase\": \"after-release\",\n  }\n\n  768 |         expect(attempts).toHaveLength(1);\n  769 |         expect(await f.snapshot()).toEqual(durable);\n> 770 |         expect(terminal, \"Only a completed transport after release proves a delivered late response\").toEqual({ event: \"finished\", phase: \"after-release\", category: \"none\" });\n      |                                                                                                       ^\n  771 |       } finally {\n  772 |         page.off(\"requestfinished\", onFinished);\n  773 |         page.off(\"requestfailed\", onFailed);\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/my-day.e2e.spec.ts:770:103\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/my-day.e2e.spec.ts:80:7\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/support/time-reports-atdd.ts:96:7\n    at withBookingFixture (/home/runner/work/Kopplas/Kopplas/tests/support/bookings-atdd.ts:189:9)\n    at withTimeReportBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/time-reports-atdd.ts:58:3)\n    at withMyDayFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/my-day.e2e.spec.ts:57:3)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/my-day.e2e.spec.ts:630:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:16:32.436Z",
+          "worker_index": 23,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 4237,
+          "first_location": {
+            "file": "tests/e2e/my-day.e2e.spec.ts",
+            "column": 103,
+            "line": 770
+          },
+          "first_error": "Error: Only a completed transport after release proves a delivered late response\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  - 2\n+ Received  + 2\n\n  Object {\n-   \"category\": \"none\",\n-   \"event\": \"finished\",\n+   \"category\": \"aborted\",\n+   \"event\": \"failed\",\n    \"phase\": \"after-release\",\n  }\n\n  768 |         expect(attempts).toHaveLength(1);\n  769 |         expect(await f.snapshot()).toEqual(durable);\n> 770 |         expect(terminal, \"Only a completed transport after release proves a delivered late response\").toEqual({ event: \"finished\", phase: \"after-release\", category: \"none\" });\n      |                                                                                                       ^\n  771 |       } finally {\n  772 |         page.off(\"requestfinished\", onFinished);\n  773 |         page.off(\"requestfailed\", onFailed);\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/my-day.e2e.spec.ts:770:103\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/my-day.e2e.spec.ts:80:7\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/support/time-reports-atdd.ts:96:7\n    at withBookingFixture (/home/runner/work/Kopplas/Kopplas/tests/support/bookings-atdd.ts:189:9)\n    at withTimeReportBrowserFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/support/time-reports-atdd.ts:58:3)\n    at withMyDayFixture (/home/runner/work/Kopplas/Kopplas/tests/e2e/my-day.e2e.spec.ts:57:3)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/my-day.e2e.spec.ts:630:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:16:36.334Z",
+          "worker_index": 24,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "0215f03aa5c7d0c3e8bc-a0c32b515c71508e2799",
+      "file": "tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts",
+      "line": 104,
+      "title": "[P0] non-Admin cannot read the email outbox projection through the existing notifications route",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "login-dashboard-wait",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "First login helper URL expectation waits for /dashboard, actual URL is /my-day or /. No current proof this producer introduced navigation discrepancy.",
+        "action": "Retain failure; owner must assess caller and actual landing behavior. No assertion/path change or baseline failure claim."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "58312bb106ae2e3b4edc295b31795046333b4bd2",
+        "candidate_oid": "58312bb106ae2e3b4edc295b31795046333b4bd2",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 15382,
+          "first_location": {
+            "file": "tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 59
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/my-day\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    - unexpected value \"http://127.0.0.1:3100/\"\n    29 × unexpected value \"http://127.0.0.1:3100/my-day\"\n\n\n  57 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  58 |   await submit.click();\n> 59 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  60 | }\n  61 |\n  62 | async function openNotifications(page: Page, credentials: Credentials): Promise<void> {\n    at signIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts:59:22)\n    at openNotifications (/home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts:63:3)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts:105:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:16:44.669Z",
+          "worker_index": 25,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 15755,
+          "first_location": {
+            "file": "tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 59
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/my-day\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    - unexpected value \"http://127.0.0.1:3100/\"\n    29 × unexpected value \"http://127.0.0.1:3100/my-day\"\n\n\n  57 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  58 |   await submit.click();\n> 59 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  60 | }\n  61 |\n  62 | async function openNotifications(page: Page, credentials: Credentials): Promise<void> {\n    at signIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts:59:22)\n    at openNotifications (/home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts:63:3)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts:105:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:17:00.551Z",
+          "worker_index": 26,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "1fa24acd163daf0d0393-b5e9f143fb5818e5ffc5",
+      "file": "tests/e2e/notifications/notifications.atdd.e2e.spec.ts",
+      "line": 78,
+      "title": "[P0] Montör sees the personal bell with a capped 9+ unread count",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "login-dashboard-wait",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "First login helper URL expectation waits for /dashboard, actual URL is /my-day or /. No current proof this producer introduced navigation discrepancy.",
+        "action": "Retain failure; owner must assess caller and actual landing behavior. No assertion/path change or baseline failure claim."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "556d4e43256a48820276cd318b5e8237c148e2c6",
+        "candidate_oid": "556d4e43256a48820276cd318b5e8237c148e2c6",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 15315,
+          "first_location": {
+            "file": "tests/e2e/notifications/notifications.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 56
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/my-day\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    - unexpected value \"http://127.0.0.1:3100/\"\n    29 × unexpected value \"http://127.0.0.1:3100/my-day\"\n\n\n  54 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  55 |   await submit.click();\n> 56 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  57 | }\n  58 |\n  59 | async function openBell(page: Page): Promise<Locator> {\n    at signIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/notifications.atdd.e2e.spec.ts:56:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/notifications.atdd.e2e.spec.ts:79:7",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:17:24.010Z",
+          "worker_index": 27,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 15778,
+          "first_location": {
+            "file": "tests/e2e/notifications/notifications.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 56
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/my-day\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    - unexpected value \"http://127.0.0.1:3100/\"\n    29 × unexpected value \"http://127.0.0.1:3100/my-day\"\n\n\n  54 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  55 |   await submit.click();\n> 56 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  57 | }\n  58 |\n  59 | async function openBell(page: Page): Promise<Locator> {\n    at signIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/notifications.atdd.e2e.spec.ts:56:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/notifications.atdd.e2e.spec.ts:79:7",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:17:39.835Z",
+          "worker_index": 28,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "1fa24acd163daf0d0393-3340d55d4ce391bc92ee",
+      "file": "tests/e2e/notifications/notifications.atdd.e2e.spec.ts",
+      "line": 183,
+      "title": "[P0] Profile preferences group the active category by module",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "notification-rowheader",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "Expected essential quote-follow-up rowheader is absent inside Offerter group. Earlier page heading resolves; this is not the login URL failure. No producer cause proven.",
+        "action": "Retain semantic assertion; assess current preference projection/markup in owning scope."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "556d4e43256a48820276cd318b5e8237c148e2c6",
+        "candidate_oid": "556d4e43256a48820276cd318b5e8237c148e2c6",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 16341,
+          "first_location": {
+            "file": "tests/e2e/notifications/notifications.atdd.e2e.spec.ts",
+            "column": 97,
+            "line": 189
+          },
+          "first_error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('group', { name: /offerter/i }).getByRole('rowheader', { name: /viktig uppföljning av offert/i })\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 15000ms\n  - waiting for getByRole('group', { name: /offerter/i }).getByRole('rowheader', { name: /viktig uppföljning av offert/i })\n\n\n  187 |     await expect(page.getByRole(\"heading\", { name: \"Notisinställningar\" })).toBeVisible();\n  188 |     const quotesGroup = page.getByRole(\"group\", { name: /offerter/i });\n> 189 |     await expect(quotesGroup.getByRole(\"rowheader\", { name: /viktig uppföljning av offert/i })).toBeVisible();\n      |                                                                                                 ^\n  190 |     await expect(quotesGroup.getByRole(\"switch\", { name: \"Viktig uppföljning av offert i appen\", exact: true })).toBeDisabled();\n  191 |   });\n  192 |\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/notifications.atdd.e2e.spec.ts:189:97",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:18:10.424Z",
+          "worker_index": 29,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 16972,
+          "first_location": {
+            "file": "tests/e2e/notifications/notifications.atdd.e2e.spec.ts",
+            "column": 97,
+            "line": 189
+          },
+          "first_error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('group', { name: /offerter/i }).getByRole('rowheader', { name: /viktig uppföljning av offert/i })\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 15000ms\n  - waiting for getByRole('group', { name: /offerter/i }).getByRole('rowheader', { name: /viktig uppföljning av offert/i })\n\n\n  187 |     await expect(page.getByRole(\"heading\", { name: \"Notisinställningar\" })).toBeVisible();\n  188 |     const quotesGroup = page.getByRole(\"group\", { name: /offerter/i });\n> 189 |     await expect(quotesGroup.getByRole(\"rowheader\", { name: /viktig uppföljning av offert/i })).toBeVisible();\n      |                                                                                                 ^\n  190 |     await expect(quotesGroup.getByRole(\"switch\", { name: \"Viktig uppföljning av offert i appen\", exact: true })).toBeDisabled();\n  191 |   });\n  192 |\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/notifications.atdd.e2e.spec.ts:189:97",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:18:27.292Z",
+          "worker_index": 30,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "1fa24acd163daf0d0393-4730146d88148c44bf18",
+      "file": "tests/e2e/notifications/notifications.atdd.e2e.spec.ts",
+      "line": 213,
+      "title": "[P2] Bell popover supports keyboard activation, semantic labels, and focus return",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "login-dashboard-wait",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "First login helper URL expectation waits for /dashboard, actual URL is /my-day or /. No current proof this producer introduced navigation discrepancy.",
+        "action": "Retain failure; owner must assess caller and actual landing behavior. No assertion/path change or baseline failure claim."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "556d4e43256a48820276cd318b5e8237c148e2c6",
+        "candidate_oid": "556d4e43256a48820276cd318b5e8237c148e2c6",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 15374,
+          "first_location": {
+            "file": "tests/e2e/notifications/notifications.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 56
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/my-day\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    - unexpected value \"http://127.0.0.1:3100/\"\n    29 × unexpected value \"http://127.0.0.1:3100/my-day\"\n\n\n  54 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  55 |   await submit.click();\n> 56 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  57 | }\n  58 |\n  59 | async function openBell(page: Page): Promise<Locator> {\n    at signIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/notifications.atdd.e2e.spec.ts:56:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/notifications.atdd.e2e.spec.ts:214:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:18:48.158Z",
+          "worker_index": 31,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 15762,
+          "first_location": {
+            "file": "tests/e2e/notifications/notifications.atdd.e2e.spec.ts",
+            "column": 22,
+            "line": 56
+          },
+          "first_error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected pattern: /\\/dashboard$/\nReceived string:  \"http://127.0.0.1:3100/my-day\"\nTimeout: 15000ms\n\nCall log:\n  - Expect \"toHaveURL\" with timeout 15000ms\n    4 × unexpected value \"http://127.0.0.1:3100/login\"\n    - unexpected value \"http://127.0.0.1:3100/\"\n    29 × unexpected value \"http://127.0.0.1:3100/my-day\"\n\n\n  54 |   await page.getByLabel(\"Lösenord\").fill(credentials.password);\n  55 |   await submit.click();\n> 56 |   await expect(page).toHaveURL(/\\/dashboard$/);\n     |                      ^\n  57 | }\n  58 |\n  59 | async function openBell(page: Page): Promise<Locator> {\n    at signIn (/home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/notifications.atdd.e2e.spec.ts:56:22)\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/notifications/notifications.atdd.e2e.spec.ts:214:5",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:19:04.051Z",
+          "worker_index": 32,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "a74968eca7a02618e3c1-3a73039e5fe07a462cb5",
+      "file": "tests/e2e/quotes/quote-follow-up-retry-safety.e2e.spec.ts",
+      "line": 37,
+      "title": "[P1][10.5-E2E-02] a retry plans a follow-up on its own untouched sent quote and proves the chip",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "skipped",
+      "group": "explicit-native-skip",
+      "classification": {
+        "finding": "EXPLICIT_SKIP_ZERO_COVERAGE",
+        "cause": "Native expectedStatus=skipped, skipped attempt.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "8656eecdc2b13a94cf7922d703c1483cab8fb999",
+        "candidate_oid": "8656eecdc2b13a94cf7922d703c1483cab8fb999",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:20:16.702Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "a74968eca7a02618e3c1-a477ed37ef5471d6db89",
+      "file": "tests/e2e/quotes/quote-follow-up-retry-safety.e2e.spec.ts",
+      "line": 56,
+      "title": "[P1][10.5-E2E-03] a retry completes its own open follow-up and retains decide-here assertions",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "skipped",
+      "group": "explicit-native-skip",
+      "classification": {
+        "finding": "EXPLICIT_SKIP_ZERO_COVERAGE",
+        "cause": "Native expectedStatus=skipped, skipped attempt.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "8656eecdc2b13a94cf7922d703c1483cab8fb999",
+        "candidate_oid": "8656eecdc2b13a94cf7922d703c1483cab8fb999",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:20:16.702Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "fc001ed08c3b20890e3c-dd727171dc2f68c3112a",
+      "file": "tests/e2e/quotes/quote-lost-reason-retry-safety.e2e.spec.ts",
+      "line": 36,
+      "title": "[P1][10.5-E2E-01] each retry uses a fresh lost-reason target and still proves the terminal result",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "skipped",
+      "group": "explicit-native-skip",
+      "classification": {
+        "finding": "EXPLICIT_SKIP_ZERO_COVERAGE",
+        "cause": "Native expectedStatus=skipped, skipped attempt.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "c41f3a0494b6ce923813b15503bca88e66052074",
+        "candidate_oid": "c41f3a0494b6ce923813b15503bca88e66052074",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:20:23.378Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-61902875264d6d5748cc",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 279,
+      "title": "[P0] 15.1-E2E-001 AC4 actual Schema click persists selected person/start/end",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "scheduling-interval",
+      "classification": {
+        "finding": "UNPROVEN_UNOWNED",
+        "cause": "Actual newly persisted booking ends13:30Z, expected13:00Z with matching12:30Z start; DB readback assertion fails. Serial suite then leaves19 cases unexecuted. No producer cause or baseline runtime proof.",
+        "action": "Retain persisted interval assertion; separate scheduling owner diagnosis required before coverage credit."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 5133,
+          "first_location": {
+            "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+            "column": 24,
+            "line": 292
+          },
+          "first_error": "Error: expect(received).toMatchObject(expected)\n\n- Expected  - 1\n+ Received  + 1\n\n  Object {\n    \"assigneeIds\": Array [\n      \"dcae7f97-5813-40e5-836c-5c4f961c1613\",\n    ],\n-   \"endsAt\": \"2026-10-12T13:00:00.000Z\",\n+   \"endsAt\": \"2026-10-12T13:30:00.000Z\",\n    \"startsAt\": \"2026-10-12T12:30:00.000Z\",\n  }\n\n  290 |     const created = (await h.sqlBookings()).filter(row => !before.some(old => old.id === row.id));\n  291 |     expect(created).toHaveLength(1);\n> 292 |     expect(created[0]).toMatchObject({ startsAt: i.startsAt, endsAt: i.endsAt, assigneeIds: [h.people[0]] });\n      |                        ^\n  293 |     await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(created[0]!.id, host, i);\n  294 |     await expectEditor(h, { ...i, assigneeIds: [h.people[0]!] });\n  295 |   });\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/scheduling-views.atdd.e2e.spec.ts:292:24",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:17.217Z",
+          "worker_index": 33,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 6163,
+          "first_location": {
+            "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+            "column": 24,
+            "line": 292
+          },
+          "first_error": "Error: expect(received).toMatchObject(expected)\n\n- Expected  - 1\n+ Received  + 1\n\n  Object {\n    \"assigneeIds\": Array [\n      \"a7d66791-546a-434b-9eab-8dc9b7659b49\",\n    ],\n-   \"endsAt\": \"2026-10-12T13:00:00.000Z\",\n+   \"endsAt\": \"2026-10-12T13:30:00.000Z\",\n    \"startsAt\": \"2026-10-12T12:30:00.000Z\",\n  }\n\n  290 |     const created = (await h.sqlBookings()).filter(row => !before.some(old => old.id === row.id));\n  291 |     expect(created).toHaveLength(1);\n> 292 |     expect(created[0]).toMatchObject({ startsAt: i.startsAt, endsAt: i.endsAt, assigneeIds: [h.people[0]] });\n      |                        ^\n  293 |     await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(created[0]!.id, host, i);\n  294 |     await expectEditor(h, { ...i, assigneeIds: [h.people[0]!] });\n  295 |   });\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/scheduling-views.atdd.e2e.spec.ts:292:24",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:23.144Z",
+          "worker_index": 34,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-1e7726ed8e02e55f8b39",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 279,
+      "title": "[P0] 15.1-E2E-002 AC4 actual Schema drag persists selected person/start/end",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-97ac4fdabf2ca9b84b2b",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 279,
+      "title": "[P0] 15.1-E2E-003 AC4 actual Resurser click persists selected person/start/end",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-a934e1adfcc940d553ac",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 279,
+      "title": "[P0] 15.1-E2E-004 AC4 actual Resurser drag persists selected person/start/end",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-1d01586ed87487158cf2",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 298,
+      "title": "[P0] 15.1-E2E-005 AC5 Schema keyboard and interval dialog cancel without writes and return focus",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-df2ea73014130220c5b6",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 298,
+      "title": "[P0] 15.1-E2E-005 AC5 Resurser keyboard and interval dialog cancel without writes and return focus",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-cf824aa50b6fcbd1660f",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 312,
+      "title": "[P1] 15.1-E2E-006 SCOPE-001 AC1 five projections, periods, filters and toolbar editor agree across later pages",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-0fd1705b2ad3737ad645",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 340,
+      "title": "[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects peer lifecycle and input tampering; denied role",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-17c66eb96e34cfecf24d",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 685,
+      "title": "[P1] 15.1 focus restoration Schema day/week origins and disappeared source",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-8d37e9e27fb8c7ee2148",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 685,
+      "title": "[P1] 15.1 focus restoration Resurser day/week origins and disappeared source",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-522630de75db6a63848f",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 724,
+      "title": "[P1] 15.1-E2E-007 AC5 Schema actual move and keyboard/click alternatives preserve review and cancellation",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-fcf759a5e29520f14c15",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 724,
+      "title": "[P1] 15.1-E2E-007 AC5 Schema actual resize and keyboard/click alternatives preserve review and cancellation",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-9e94a873ef09d6837181",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 724,
+      "title": "[P1] 15.1-E2E-007 AC5 Resurser actual move and keyboard/click alternatives preserve review and cancellation",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-62939f40ce2d442107d5",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 724,
+      "title": "[P1] 15.1-E2E-007 AC5 Resurser actual resize and keyboard/click alternatives preserve review and cancellation",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-6c63b410f3ea88230347",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 760,
+      "title": "[P1] 15.1-E2E-008 AC6 arbetsroll/no-role lanes, multi-assignee rows and current reassignment lifecycle",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-eac01b5a673570378398",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 790,
+      "title": "[P1] 15.1-COMP-001 AC3 toolbar preferences isolate user/tenant/view and reset corrupt/unavailable storage",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-1e7cf8480c4dc83fe8b6",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 813,
+      "title": "[P1] 15.1-COMP-001 AC3 observed real read transport failure hides stale/empty/count until retry",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.396Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-843a303926e86ffb5c1b",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 844,
+      "title": "[P1] 15.1-COMP-002 AC7 numeric capacity/zero budget/color/full hidden demand drilldown",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.397Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-18cc18325725858609cc",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 858,
+      "title": "[P1] 15.1-COMP-003 AC8 360x640 connected agenda/summary and failed save retry preserve unsent input",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.397Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "e17ed7bc58d5aa76eeac-ca00100c6ac090ecd265",
+      "file": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "line": 887,
+      "title": "[P1] 15.1-COMP-003 AC8 month density drilldown and long multi-assignee labels at 360x640",
+      "project": "chromium",
+      "native_status": "skipped",
+      "expected_status": "passed",
+      "group": "serial-not-run",
+      "classification": {
+        "finding": "SERIAL_NOT_RUN_ZERO_COVERAGE",
+        "cause": "Expected passed but both native attempts are skipped duration0 after scheduling serial failure; source scheduling-views line11 configures mode serial.",
+        "action": "No execution/coverage credit; preserve reason and owning suite."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "candidate_oid": "b3b113450a38bec62bce9f58de0089a2333ed581",
+        "unchanged": true,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:22.397Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        },
+        {
+          "retry": 1,
+          "native_status": "skipped",
+          "duration_ms": 0,
+          "first_location": {},
+          "first_error": "",
+          "all_error_count": 0,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:29.624Z",
+          "worker_index": -1,
+          "parallel_index": -1
+        }
+      ]
+    },
+    {
+      "native_case_id": "2d02792d0c4cd553df08-b531211a2bfbb889aff6",
+      "file": "tests/e2e/settings/settings.e2e.spec.ts",
+      "line": 258,
+      "title": "P-E1/E2/E3/E4 settings capture/recover/stale 1440x900",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "terms-local-validation",
+      "classification": {
+        "finding": "PROVEN_INTRODUCED_PRODUCT_DEFECT",
+        "cause": "Local validation returns before setAttemptKind; QuoteTermsEditor filters saveState by kind, hiding real required-field error. noValidate disproves native-required blocking. Server validator rejects; no invalid write is dispatched.",
+        "action": "One original allocated shared-controller setter; preserve E2E empty-input assertion. Focused RED→GREEN actual controller/terms markup regression."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "ed7551d446473ac487fda570c31cc66ee8fe0bf6",
+        "candidate_oid": "cfc4de1d8b0b744aec70907079b703d3de994dd0",
+        "unchanged": false,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 21357,
+          "first_location": {
+            "file": "tests/e2e/settings/settings.e2e.spec.ts",
+            "column": 60,
+            "line": 334
+          },
+          "first_error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  getByLabel('Offertvillkor')\nExpected: \"true\"\nReceived: \"\"\nTimeout:  15000ms\n\nCall log:\n  - Expect \"toHaveAttribute\" with timeout 15000ms\n  - waiting for getByLabel('Offertvillkor')\n    34 × locator resolved to <textarea rows=\"10\" required=\"\" name=\"terms_text\" id=\"quote-terms-text\" class=\"rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 border-zinc-300\"></textarea>\n       - unexpected value \"null\"\n\n\n  332 |             await producerCapture(page, info, \"terms\", \"empty\");\n  333 |             await page.getByRole(\"button\", { name: \"Spara villkor\" }).click();\n> 334 |             await expect(page.getByLabel(\"Offertvillkor\")).toHaveAttribute(\"aria-invalid\", \"true\");\n      |                                                            ^\n  335 |             await producerCapture(page, info, \"terms\", \"error\");\n  336 |             await page.getByLabel(\"Offertvillkor\").fill(\" \\nExact reviewed synthetic wording\\n \");\n  337 |             const saveLoss = await loseCommittedReply(page, \"/settings/quote-terms\");\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/settings/settings.e2e.spec.ts:334:60",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:21:42.792Z",
+          "worker_index": 35,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 23427,
+          "first_location": {
+            "file": "tests/e2e/settings/settings.e2e.spec.ts",
+            "column": 60,
+            "line": 334
+          },
+          "first_error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  getByLabel('Offertvillkor')\nExpected: \"true\"\nReceived: \"\"\nTimeout:  15000ms\n\nCall log:\n  - Expect \"toHaveAttribute\" with timeout 15000ms\n  - waiting for getByLabel('Offertvillkor')\n    34 × locator resolved to <textarea rows=\"10\" required=\"\" name=\"terms_text\" id=\"quote-terms-text\" class=\"rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 border-zinc-300\"></textarea>\n       - unexpected value \"null\"\n\n\n  332 |             await producerCapture(page, info, \"terms\", \"empty\");\n  333 |             await page.getByRole(\"button\", { name: \"Spara villkor\" }).click();\n> 334 |             await expect(page.getByLabel(\"Offertvillkor\")).toHaveAttribute(\"aria-invalid\", \"true\");\n      |                                                            ^\n  335 |             await producerCapture(page, info, \"terms\", \"error\");\n  336 |             await page.getByLabel(\"Offertvillkor\").fill(\" \\nExact reviewed synthetic wording\\n \");\n  337 |             const saveLoss = await loseCommittedReply(page, \"/settings/quote-terms\");\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/settings/settings.e2e.spec.ts:334:60",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:22:04.748Z",
+          "worker_index": 36,
+          "parallel_index": 0
+        }
+      ]
+    },
+    {
+      "native_case_id": "2d02792d0c4cd553df08-a2321ba1974a1f6f7f3e",
+      "file": "tests/e2e/settings/settings.e2e.spec.ts",
+      "line": 258,
+      "title": "P-E1/E2/E3/E4 settings capture/recover/stale 360x640",
+      "project": "chromium",
+      "native_status": "unexpected",
+      "expected_status": "passed",
+      "group": "terms-local-validation",
+      "classification": {
+        "finding": "PROVEN_INTRODUCED_PRODUCT_DEFECT",
+        "cause": "Local validation returns before setAttemptKind; QuoteTermsEditor filters saveState by kind, hiding real required-field error. noValidate disproves native-required blocking. Server validator rejects; no invalid write is dispatched.",
+        "action": "One original allocated shared-controller setter; preserve E2E empty-input assertion. Focused RED→GREEN actual controller/terms markup regression."
+      },
+      "test_caller_blob": {
+        "baseline_oid": "ed7551d446473ac487fda570c31cc66ee8fe0bf6",
+        "candidate_oid": "cfc4de1d8b0b744aec70907079b703d3de994dd0",
+        "unchanged": false,
+        "limit": "Source equality is not baseline execution proof."
+      },
+      "attempts": [
+        {
+          "retry": 0,
+          "native_status": "failed",
+          "duration_ms": 19737,
+          "first_location": {
+            "file": "tests/e2e/settings/settings.e2e.spec.ts",
+            "column": 60,
+            "line": 334
+          },
+          "first_error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  getByLabel('Offertvillkor')\nExpected: \"true\"\nReceived: \"\"\nTimeout:  15000ms\n\nCall log:\n  - Expect \"toHaveAttribute\" with timeout 15000ms\n  - waiting for getByLabel('Offertvillkor')\n    34 × locator resolved to <textarea rows=\"10\" required=\"\" name=\"terms_text\" id=\"quote-terms-text\" class=\"rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 border-zinc-300\"></textarea>\n       - unexpected value \"null\"\n\n\n  332 |             await producerCapture(page, info, \"terms\", \"empty\");\n  333 |             await page.getByRole(\"button\", { name: \"Spara villkor\" }).click();\n> 334 |             await expect(page.getByLabel(\"Offertvillkor\")).toHaveAttribute(\"aria-invalid\", \"true\");\n      |                                                            ^\n  335 |             await producerCapture(page, info, \"terms\", \"error\");\n  336 |             await page.getByLabel(\"Offertvillkor\").fill(\" \\nExact reviewed synthetic wording\\n \");\n  337 |             const saveLoss = await loseCommittedReply(page, \"/settings/quote-terms\");\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/settings/settings.e2e.spec.ts:334:60",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:22:29.111Z",
+          "worker_index": 37,
+          "parallel_index": 0
+        },
+        {
+          "retry": 1,
+          "native_status": "failed",
+          "duration_ms": 21106,
+          "first_location": {
+            "file": "tests/e2e/settings/settings.e2e.spec.ts",
+            "column": 60,
+            "line": 334
+          },
+          "first_error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  getByLabel('Offertvillkor')\nExpected: \"true\"\nReceived: \"\"\nTimeout:  15000ms\n\nCall log:\n  - Expect \"toHaveAttribute\" with timeout 15000ms\n  - waiting for getByLabel('Offertvillkor')\n    34 × locator resolved to <textarea rows=\"10\" required=\"\" name=\"terms_text\" id=\"quote-terms-text\" class=\"rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 border-zinc-300\"></textarea>\n       - unexpected value \"null\"\n\n\n  332 |             await producerCapture(page, info, \"terms\", \"empty\");\n  333 |             await page.getByRole(\"button\", { name: \"Spara villkor\" }).click();\n> 334 |             await expect(page.getByLabel(\"Offertvillkor\")).toHaveAttribute(\"aria-invalid\", \"true\");\n      |                                                            ^\n  335 |             await producerCapture(page, info, \"terms\", \"error\");\n  336 |             await page.getByLabel(\"Offertvillkor\").fill(\" \\nExact reviewed synthetic wording\\n \");\n  337 |             const saveLoss = await loseCommittedReply(page, \"/settings/quote-terms\");\n    at /home/runner/work/Kopplas/Kopplas/tests/e2e/settings/settings.e2e.spec.ts:334:60",
+          "all_error_count": 1,
+          "safe_stderr": [],
+          "start_time": "2026-11-02T14:22:49.558Z",
+          "worker_index": 38,
+          "parallel_index": 0
+        }
+      ]
+    }
+  ],
+  "limits": "Read-only audit of actual native JSON and exact source callers. No runtime/test rerun, image audit, credential operation, external source fix, assertion weakening or approval inferred. Closed calendar aggregate causes remain closed/unproven. No new full run authorized or performed.",
+  "new_producer_fixture_trace": {
+    "definitions": [
+      "tests/e2e/settings/settings.e2e.spec.ts:259",
+      "tests/e2e/pricing/pricing.e2e.spec.ts:266",
+      "tests/e2e/pricing/pricing.e2e.spec.ts:339"
+    ],
+    "ownership": "Each new test obtains fresh own=createTwoTenantFixture(), signs in only own.adminA and creates/settings/prices only through that cookie-bound actor. Original shared fixture consumers remain unchanged.",
+    "factory": "tests/factories/tenants/core.ts:105 uniqueSuffix includes UUID;124 creates distinct email/authuser;143 inserts fresh tenant;224 creates only fixture memberships. No company/terms row seeded by base factory.",
+    "write_scope": "Page/command envelope resolves actual cookie actor/tenant. Task SQL gates tenant/current actor, checks target tenant and expected revision. Unique per-call fixture IDs are not borrowed from global tests/e2e/.auth/fixture.json.",
+    "cleanup": "core405–474 uses only fixture.tenantA/B and own adminA/adminB/orphan IDs; deletes scoped protocol rows, own auth users, own tenant roots. Replica setting is transaction-local; adminSession discards session state. No shared singleton restoration is relied on.",
+    "browser_scope": "Playwright default page/context per test; newPage stays inside own context. Route interception, event handlers and offline toggling apply only to those pages/context; settings finally restores offline=false and cleans own fixture. No global storageState/config/factory writes added.",
+    "parallelism": "playwright.config.ts39–42: fullyParallel=false, workers=1, CI retry1. Native new producer attempts have parallelIndex0; workerIndex changes reflect process/retry replacement, not concurrent workers. Exhaustive workflow ci.yml602–606 invokes ordinary test:e2e without workers override.",
+    "landing_and_onboarding": "Login refreshes cookie then router.replace(/). src/app/page.tsx resolves current roles only; phase-a-surface33–37 pure montor prefers /my-day, otherwise allowed dashboard/first route. App layout uses resolver membership and job admission, not company/terms. Onboarding checklist20–50 scopes company/terms/workroles to context.tenantId and controls checklist visibility, never root routing.",
+    "native_ordering": "First new producer P-E begins14:19:41.199Z. All7 dashboard URL failures ended before then; those cannot result from later new-P-E fixture writes. Calendar10 occurs14:24–14:32 after producer tests, so timing does not exclude an effect there.",
+    "remaining_limits": "Static unique/scoped write and cleanup paths rule out intentional shared singleton overwrite. Actual before/after shared-state snapshots and global service/resource pollution measurements were not captured; calendar closed causes remain unproven, not baseline. No new runtime/DB read was performed.",
+    "source_dependency_provenance": [
+      {
+        "path": "tests/factories/tenants/core.ts",
+        "baseline_blob_oid": "283ed0c6ef175025530f4ebf0ed32e5796d8e97f",
+        "candidate_blob_oid": "283ed0c6ef175025530f4ebf0ed32e5796d8e97f",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "playwright.config.ts",
+        "baseline_blob_oid": "84e4938d445adde1cc7fbd4b5f422ad6096122bd",
+        "candidate_blob_oid": "84e4938d445adde1cc7fbd4b5f422ad6096122bd",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "src/app/page.tsx",
+        "baseline_blob_oid": "db90079cc85af1a3d17032097e25b229f25b11c1",
+        "candidate_blob_oid": "db90079cc85af1a3d17032097e25b229f25b11c1",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "src/app/(app)/layout.tsx",
+        "baseline_blob_oid": "6a076dafa715218cf6596e4bb495ad9bf6c77e96",
+        "candidate_blob_oid": "6a076dafa715218cf6596e4bb495ad9bf6c77e96",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "src/app/(auth)/login/page.tsx",
+        "baseline_blob_oid": "8c09a5df985dff4e47856a72607aed5988f9e502",
+        "candidate_blob_oid": "8c09a5df985dff4e47856a72607aed5988f9e502",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "src/server/auth/resolve-tenant-context.ts",
+        "baseline_blob_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+        "candidate_blob_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "src/server/authz/phase-a-surface.ts",
+        "baseline_blob_oid": "b91e8e207ee62b9c3080c0e4c23df30dbc69d930",
+        "candidate_blob_oid": "b91e8e207ee62b9c3080c0e4c23df30dbc69d930",
+        "unchanged_from_baseline": true
+      },
+      {
+        "path": "src/server/read-models/onboarding-checklist.ts",
+        "baseline_blob_oid": "e5d6a2ca38da21fbe580f7b50bccd58fb66bdd38",
+        "candidate_blob_oid": "e5d6a2ca38da21fbe580f7b50bccd58fb66bdd38",
+        "unchanged_from_baseline": true
+      }
+    ],
+    "actual_new_producer_cases": [
+      {
+        "native_case_id": "150afd692465fed18502-9b0e0df733e63fa20a9c",
+        "file": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "title": "P-E1/E2/E3 pricing all eight operation forms 1440x900",
+        "status": "expected",
+        "attempts": [
+          {
+            "retry": 0,
+            "status": "passed",
+            "start_time": "2026-11-02T14:19:41.199Z",
+            "duration_ms": 6882,
+            "worker_index": 33,
+            "parallel_index": 0
+          }
+        ]
+      },
+      {
+        "native_case_id": "150afd692465fed18502-6e4048131345156aec06",
+        "file": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "title": "P-E1/E2/E3 pricing all eight operation forms 360x640",
+        "status": "expected",
+        "attempts": [
+          {
+            "retry": 0,
+            "status": "passed",
+            "start_time": "2026-11-02T14:19:48.097Z",
+            "duration_ms": 5060,
+            "worker_index": 33,
+            "parallel_index": 0
+          }
+        ]
+      },
+      {
+        "native_case_id": "150afd692465fed18502-b7fcb9ee74c78d44dc79",
+        "file": "tests/e2e/pricing/pricing.e2e.spec.ts",
+        "title": "R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success",
+        "status": "expected",
+        "attempts": [
+          {
+            "retry": 0,
+            "status": "passed",
+            "start_time": "2026-11-02T14:19:53.171Z",
+            "duration_ms": 9220,
+            "worker_index": 33,
+            "parallel_index": 0
+          }
+        ]
+      },
+      {
+        "native_case_id": "2d02792d0c4cd553df08-b531211a2bfbb889aff6",
+        "file": "tests/e2e/settings/settings.e2e.spec.ts",
+        "title": "P-E1/E2/E3/E4 settings capture/recover/stale 1440x900",
+        "status": "unexpected",
+        "attempts": [
+          {
+            "retry": 0,
+            "status": "failed",
+            "start_time": "2026-11-02T14:21:42.792Z",
+            "duration_ms": 21357,
+            "worker_index": 35,
+            "parallel_index": 0
+          },
+          {
+            "retry": 1,
+            "status": "failed",
+            "start_time": "2026-11-02T14:22:04.748Z",
+            "duration_ms": 23427,
+            "worker_index": 36,
+            "parallel_index": 0
+          }
+        ]
+      },
+      {
+        "native_case_id": "2d02792d0c4cd553df08-a2321ba1974a1f6f7f3e",
+        "file": "tests/e2e/settings/settings.e2e.spec.ts",
+        "title": "P-E1/E2/E3/E4 settings capture/recover/stale 360x640",
+        "status": "unexpected",
+        "attempts": [
+          {
+            "retry": 0,
+            "status": "failed",
+            "start_time": "2026-11-02T14:22:29.111Z",
+            "duration_ms": 19737,
+            "worker_index": 37,
+            "parallel_index": 0
+          },
+          {
+            "retry": 1,
+            "status": "failed",
+            "start_time": "2026-11-02T14:22:49.558Z",
+            "duration_ms": 21106,
+            "worker_index": 38,
+            "parallel_index": 0
+          }
+        ]
+      }
+    ],
+    "actual_new_producer_outcome": {
+      "expected": 3,
+      "unexpected": 2,
+      "clean_pass_claim_for_partial_company_flow": false
+    }
+  }
+}

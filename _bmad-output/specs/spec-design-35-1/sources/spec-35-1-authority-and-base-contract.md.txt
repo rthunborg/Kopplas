@@ -1,0 +1,87 @@
+---
+title: "Story 35.1: Authority And Base Contract"
+status: preparation-only-not-approved
+tracking_key: 35-1-authority-and-base-contract
+provisional_slice: DT-0
+context:
+  - docs/process/review-order.md
+  - _bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/common-contract.md
+---
+
+# Story 35.1: Authority And Base Contract
+
+## Status
+
+Documentation/readiness preparation only; not approved or ready-for-dev. No implementation admission, code allocation or tracking transition. This 2026-10-26 applicability correction replaces the live-UI template obligations formerly attached to AC4–AC7; IDs remain stable and refer to the documentation checks below.
+
+## Story
+
+As the planning/test-design reviewer, I want a source-pinned authority, dependency and applicability handoff, so that each slice receives appropriate test design without unrelated runtime requirements.
+
+## Intent and scope
+
+IN: documentation, authority-crosswalk consistency, dated base evidence, source/spec hashes, route inventory, per-slice applicability and scoped handoff. Retain incorporated detailed requirements and historical evidence. No UI, server action, schema, upload or application test is delivered by 35.1. Actual implementation requirements remain with E35.2–35.19 and applicable E17/E18 owners.
+
+## Acceptance Criteria
+
+1. **E35-1-AC1 — Authority coverage.** Account for 17 MAIN rows, eight FIELD rows, five frozen Phase A journeys and B1–B7 through authority/screen-state crosswalk and actual route allocation. Each has an owner/destination or explicit retained, future or excluded disposition. Preserve detailed rules/deep links; no retirement without atomic destination/incoming-link proof.
+
+2. **E35-1-AC2 — Dated base evidence.** Distinguish authoring checkout, integrated inventory and dated remote observations. Record revision/date/provenance/hashes and missing evidence. Do not relabel the 2026-10-23 snapshot as current on 2026-10-26. Unverified ancestry/ownership/DT-B15 remains a later admission dependency; historical reservations allocate no paths.
+
+3. **E35-1-AC3 — Scoped handoff.** Classify slices as documentation checks, concrete test design now, material-decision-blocked contracts or dependency-bound migrations. E17/E18 gaps do not block unrelated E35 design. Name inputs, outputs, boundaries and next owners without approving or starting implementation.
+
+4. **E35-1-AC4 — Link/hash/index consistency.** Validate new relative file links, output hashes and index/spec identities. Recompute changed output hashes while preserving historical input hashes. Record source drift rather than concealing it. Hash identity is not readiness or product correctness.
+
+5. **E35-1-AC5 — Applicability.** Every generated spec distinguishes requirements applying to its own changes, inherited regression obligations and N/A with scope reasons. Add no dialog, form, file operation, command, viewport or application suite merely to satisfy a template.
+
+6. **E35-1-AC6 — Preservation and ownership.** Compare all eight original E17/E18 sketch/EP-06 sections verbatim; retain their unresolved blockers. Keep completed evidence and linked follow-ups intact. Record code conflicts without claiming/releasing paths or changing E15/tracking.
+
+7. **E35-1-AC7 — Honest evidence.** Publish documentation-check results/limitations separately from downstream runtime/release evidence. Preserve actual owner requirements for money/provenance/projections/transactions and release checks; no source mapping is a runtime/test-design PASS, release approval or implementation admission.
+
+## Tasks / Subtasks
+
+- [ ] Check authority/route dispositions and incorporated references (AC1).
+- [ ] Qualify dated base/ownership/dependency observations (AC2).
+- [ ] Produce per-slice applicability and scoped Prompt 4 handoff (AC3/AC5).
+- [ ] Check links/indices/hashes and original requirements (AC4/AC6).
+- [ ] Report gaps and downstream evidence owners without approval/tracking changes (AC7).
+
+## Dev Notes
+
+### Base, authority and hashes
+
+Approved DT package is the prerequisite; E15 integration is not a documentation dependency. [base-and-consumers.json](../planning-artifacts/design-transition-2026-10-23/story-preparation/base-and-consumers.json) preserves the 2026-10-23 snapshot: checkout `bbf7cef7515da7d3cd1d39a70cb73eab1856d3ad`, integrated source `99104d0ffa0360cf7d4ce4de174789c4a4605224`, remote observation `0ae48a243fce47cb42e0998aae319f00c796dc85`. These are historical inputs, not a newly verified migration base. Actual admission later pins current base/ancestry, ownership, evidence and DT-B15 where relevant. [spec-hashes.json](../planning-artifacts/design-transition-2026-10-23/story-preparation/spec-hashes.json) pins corrected outputs independently.
+
+### Common requirement applicability
+
+**Applies:** documentation coverage, authority/scope classification, dated evidence provenance, links/hashes/indices, preserved requirements, per-slice blockers and actionable handoff.
+
+**Inherited downstream obligations:** viewport/keyboard/focus/dialog/draft protection, feature states/files, checked commands/permissions, money/provenance and runtime/release gates remain with owning implementation specs. 35.1 checks that they remain represented; it does not deliver or execute them.
+
+**N/A to 35.1 acceptance:** live UI at 360×640, touch/capture targets, dialogs/animations, upload/download/signing, persistent command recovery, application build/lint/unit/browser/DB/RLS/golden/storage execution, and visual/manual/device release checks. Reason: this story produces planning documents only. Common live-state/file test IDs do not instantiate under E35-1.
+
+### Documentation checks and test IDs
+
+`E35-1-T-AC1`: crosswalk/route dispositions and references. `T-AC2`: revision/date/provenance and missing-evidence labels. `T-AC3`: handoff classifications and non-global blockers. `T-AC4`: new file links/index identities/output hashes. `T-AC5`: applicability across all 27 specs against actual owned behavior. `T-AC6`: eight retained original sections and ownership/tracking boundaries. `T-AC7`: evidence wording and downstream obligation links. These are documentation checks, not executable application tests. Normal documentation diff/format checks apply; no new harness or application run is required solely for 35.1.
+
+### File impact and conflicts
+
+Only authorized planning package/spec applicability documents and output-hash/check records are in scope. Application components/actions/schema/dependencies/.env and tracking files are N/A. Record shared ownership as a later admission concern; documenting it requires neither taking E15 paths nor waiting for its integration.
+
+### Handoff and release responsibilities
+
+Prompt 4 consumes [the scoped handoff](../planning-artifacts/design-transition-2026-10-23/story-preparation/prompt-4-handoff.md). Preserve future delivery-record/existing deferred-ledger references and E16/E20 caveats. Former E35-1-REL-1/2 visual/device/accessibility obligations are N/A for this documentation story and remain with actual UI owners. Final Phase B release consolidation remains Coordinator-owned, not a 35.1 runtime deliverable. No release or implementation evidence is claimed.
+
+### References
+
+- [Package index](../planning-artifacts/design-transition-2026-10-23/story-preparation/README.md), [applicability](../planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.md), [authority crosswalk](../planning-artifacts/design-transition-2026-10-23/authority-crosswalk.md), [route allocation](../planning-artifacts/design-transition-2026-10-23/story-preparation/route-allocation.md).
+- [Phase B epics](../planning-artifacts/epics-phase-b.md), [PRD](../planning-artifacts/prd-phase-b.md), [architecture](../planning-artifacts/architecture-phase-b.md), [DESIGN](../planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md), [EXPERIENCE](../planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md), [detailed annex](../planning-artifacts/ux-design-specification-phase-b.md).
+- [AGENTS](../../AGENTS.md), [project context](../project-context.md), [review convention](../../docs/process/review-order.md).
+
+## Implementation-author Suggested Review Order scaffold
+
+For a future completed documentation change, the author starts at handoff, then authority/base/applicability reasoning, then actual document checks/remaining gaps. Cite verified document headings/lines, not nonexistent UI or commands. No completed trail or implementation result is created here.
+
+## Dev Agent Record
+
+Documentation correction only. No product implementation, approval or tracking change. Prior sensitive assessment remains a historical input; no material decision changed.

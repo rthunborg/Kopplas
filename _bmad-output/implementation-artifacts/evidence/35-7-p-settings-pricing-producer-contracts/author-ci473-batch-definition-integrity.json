@@ -1,0 +1,39 @@
+{
+  "candidateBefore": "473067d47d5f883008d95bd426a3d8383f87395a",
+  "kind": "Focused source AST preservation; no test callbacks/native runtime/DB execution",
+  "definedOwnedCases": 24,
+  "definedProducerCases": 7,
+  "rawCaptureDefinitions": 103,
+  "newPNGs": 0,
+  "methodEffects": 0,
+  "files": [
+    {
+      "file": "tests/e2e/settings/settings.e2e.spec.ts",
+      "sha256": "d12401ccee3ac3cd3af428b33c3473b248226c9338eef37368c1c3277dfb17b2",
+      "oldExpects": 93,
+      "currentExpects": 100,
+      "oldBusinessAssertsRetained": true,
+      "intentionalAuthorityAssertionReplacement": null,
+      "testDeclarationsAndBusinessActionsUnchanged": true
+    },
+    {
+      "file": "tests/e2e/pricing/pricing.e2e.spec.ts",
+      "sha256": "b936252c4ae3d5979876fb9024efe8d9dea28d6725f1b318f9ed88a20a201fc2",
+      "oldExpects": 197,
+      "currentExpects": 229,
+      "oldBusinessAssertsRetained": true,
+      "intentionalAuthorityAssertionReplacement": "Only wrong worker-config owner equality replaced with exact actual server startup OWNER_PID/STARTUP binding",
+      "testDeclarationsAndBusinessActionsUnchanged": true
+    },
+    {
+      "file": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+      "sha256": "fb7ea0ce132042396951ce08403f96194573a202608f8b0f3a533242141339f6",
+      "oldExpects": 80,
+      "currentExpects": 80,
+      "oldBusinessAssertsRetained": true,
+      "intentionalAuthorityAssertionReplacement": null,
+      "testDeclarationsAndBusinessActionsUnchanged": true
+    }
+  ],
+  "pendingBranch": "All four existing cycles capture both viewports after accept(committed), exact heldGET still nonterminal. Company/pricing separate-copy+no error excludes confirmed/newer/missing/unavailable. Terms also requires exact saved wording in current-facts/no approval form; matching confirmation adopts defaults/hides that panel, newer changes copy. Conservative false-branch guards, no extra action/effect/timeout."
+}

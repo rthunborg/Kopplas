@@ -1,0 +1,47 @@
+{
+  "recorded_at_utc": "2026-11-02T12:24:23.795578+00:00",
+  "reviewer_task": "/root/fixture_extension_review",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "verdict": "PASS_FOR_ALLOCATION_DECISION",
+  "scope": "Relateddelta confirmation of complete five receipt metadata/fixture/pinned-set consumer proposal, then ONLY latest2proposalcorrections; prior sound5metadataassessment/sixcall/helperreviews reused, no broadproducerreview",
+  "provenance": "Actual independent review outcome relayed by Root2026-11-02; faithful stored relay, not implementation-author/workflow-owner performed independent review",
+  "reviewed_proposal_md_sha256": "67169a4aac9ad305d51fe7eec26bce2177629eeabed303b33ccf98fb462194d9",
+  "reviewed_proposal_json_sha256": "fe20e3449c43df5f2f102d02855c195bd8918f527109069aa0460f9b456954c3",
+  "source_preimages": [
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "sha256": "75688b1a77bc851a764bbbc485f5be3ad3306fd55ff7f309c261d144eed0444a"
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "sha256": "23a1897cc8fb9cda711f5fc3c95d86f68680f7c7bcba41ac3d484e394fbf1dc9"
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "sha256": "471ec572624326090089b3d3afdcef3963f7f4a3844923037b93d50af9ad572f"
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "sha256": "4a516ad9d25a6effaa0e07156f9388491510640ac76f62c87249cf47cf114296"
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "sha256": "9a0a5e50e00cb6d6e254cd4c37e2f73850b55cd0e9725030a7faa9d7f364b870"
+    }
+  ],
+  "initial_proposal_findings": [
+    "Pinned set addition also needs exact58to59 totals and matchingcounttitle/diagnostics; blanketassertionbytepreservation needed explicit limitedexception.",
+    "Cited typecheckprogresslog showed6ownedParserErrorTS2339 plus1blockedTS2741; sole-error claim unsupported."
+  ],
+  "corrections_verified": [
+    "Tableliteral+58to59 count/title-diagnostic exceptions explicit; complete pinnedset equality/uniqueness/fail-loud assertions retained.",
+    "Accurate6ownedTS2339+1TS2741 provenance; earlierlogoverwrite disclosed and current7diag preserved, no unsupportedsole-error claim.",
+    "All5sourcepreimages unchanged; receiptfixture schema/actualIDs/revision and currentactor; editmetadata/emptydirectroles/privateprojection;42501/null directdenial mapping sound."
+  ],
+  "owner_approval_for_five_paths": "PENDING; prior3extra-path approvals do not cover these5; review grants no authorization",
+  "implementation_review_rounds": 0,
+  "runtime_tests_by_reviewer": 0,
+  "services_by_reviewer": 0,
+  "release_ready": false
+}

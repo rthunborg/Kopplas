@@ -133,10 +133,56 @@ test.describe("15.4 essential production-host time reporting", () => {
         expect(memberships).toHaveLength(1);
         const membership=memberships[0];
         await adminQuery("update public.tenant_memberships set status='disabled' where id=$1",[membership.id]);
+        const denialTerminals = new WeakMap<import("@playwright/test").Request, "finished" | "failed" | "conflicting">();
+        const recordDenialTerminal = (request: import("@playwright/test").Request, kind: "finished" | "failed") => {
+          const prior = denialTerminals.get(request);
+          denialTerminals.set(request, prior && prior !== kind ? "conflicting" : kind);
+        };
+        const denialFinished = (request: import("@playwright/test").Request) => recordDenialTerminal(request, "finished");
+        const denialFailed = (request: import("@playwright/test").Request) => recordDenialTerminal(request, "failed");
+        type DenialTransportFailure = "aborted" | "content-length" | "decoding" | "connection" | "other" | "unobserved" | "none";
+        const denialTransportFailure = (request: import("@playwright/test").Request | undefined): DenialTransportFailure => {
+          const terminal = request ? denialTerminals.get(request) : undefined;
+          if (terminal === "finished") return "none";
+          if (!request || terminal !== "failed") return "unobserved";
+          try {
+            const text = request.failure()?.errorText;
+            if (typeof text !== "string" || !text) return "unobserved";
+            switch (text) {
+              case "net::ERR_ABORTED": return "aborted";
+              case "net::ERR_CONTENT_LENGTH_MISMATCH": return "content-length";
+              case "net::ERR_CONTENT_DECODING_FAILED": return "decoding";
+              case "net::ERR_CONNECTION_CLOSED": case "net::ERR_CONNECTION_RESET":
+              case "net::ERR_CONNECTION_REFUSED": case "net::ERR_CONNECTION_ABORTED":
+              case "net::ERR_CONNECTION_FAILED": case "net::ERR_CONNECTION_TIMED_OUT":
+              case "net::ERR_TIMED_OUT": return "connection";
+              default: return "other";
+            }
+          } catch { return "unobserved"; }
+        };
+        let selectedDenialResponse: import("@playwright/test").Response | undefined;
+        let denialPhase: "wait-for-response" | "body-read" | "denial-assertions" = "wait-for-response";
+        const emitDenialDiagnostic = (outcome: "returned" | "rejected", error?: unknown) => {
+          try {
+            const name = error instanceof Error ? error.name : "unknown";
+            const request = selectedDenialResponse?.request();
+            console.info(JSON.stringify({ diagnostic: "time-report-denied-body", phase: denialPhase, outcome,
+              status: selectedDenialResponse ? selectedDenialResponse.status() : null,
+              terminal: request ? denialTerminals.get(request) ?? "unobserved" : "unobserved",
+              transportFailure: denialTransportFailure(request),
+              errorCategory: outcome === "returned" ? "none" : ["Error", "TimeoutError", "TargetClosedError"].includes(name) ? name : "unknown" }));
+          } catch { /* Diagnostic failure must never replace the original scenario error. */ }
+        };
         try {
-          const deniedResponse=page.waitForResponse((reply)=>isFilingRequest(reply.request(),f.marker));
-          await retry.focus();await page.keyboard.press("Enter");
-          const deniedBody=await(await deniedResponse).text();
+          try {
+            // Observe before the original wait/click; only the exact selected Request is emitted.
+            page.on("requestfinished", denialFinished); page.on("requestfailed", denialFailed);
+            const deniedResponse=page.waitForResponse((reply)=>isFilingRequest(reply.request(),f.marker));
+            await retry.focus();await page.keyboard.press("Enter");
+            selectedDenialResponse = await deniedResponse;
+            denialPhase = "body-read";
+            const deniedBody=await selectedDenialResponse.text();
+            denialPhase = "denial-assertions";
           expect(deniedBody).toContain('"status":"error"');
           expect(deniedBody).toContain('"uncertain":false');
           await expect(form.getByText("Osänd",{exact:true})).toBeVisible();
@@ -145,6 +191,13 @@ test.describe("15.4 essential production-host time reporting", () => {
           await expect(retry).toBeEnabled();
           expect(fault.attempts).toHaveLength(3);expect(fault.attempts[2]).toEqual(fault.attempts[0]);
           expect(await f.snapshot()).toEqual(committed);
+            emitDenialDiagnostic("returned");
+          } catch (error) {
+            emitDenialDiagnostic("rejected", error);
+            throw error; // Same original object; no body substitution, retry or changed denial assertions.
+          } finally {
+            page.off("requestfinished", denialFinished); page.off("requestfailed", denialFailed);
+          }
         } finally {
           await adminQuery("update public.tenant_memberships set status=$2 where id=$1",[membership.id,membership.status]);
         }

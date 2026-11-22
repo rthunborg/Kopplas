@@ -1,0 +1,118 @@
+tests\unit\features\settings\mutation-attempt.test.ts:4:import { validateUpdateCompanySettings, validateUpdateQuoteTerms, validateApproveQuoteTerms } from "@/server/commands/settings/validation";
+tests\unit\features\settings\mutation-attempt.test.ts:5:import { validateUpsertWorkRole, validateUpsertArticle, validateArchive } from "@/server/commands/pricing/validation";
+tests\unit\features\settings\mutation-attempt.test.ts:51:    for (const [validate, payload] of [[validateUpdateCompanySettings, { company_name: "A", default_vat_display: "company_excl", vat_rate_bp: 2500 }], [validateUpdateQuoteTerms, { terms_text: "Reviewed" }], [validateUpsertWorkRole, { display_name: "A", cost_rate_ore: 0, sell_rate_ore: 1 }], [validateUpsertArticle, { name: "A", unit_price_ore: 1 }]] as const) {
+tests\unit\features\settings\mutation-attempt.test.ts:55:    assert.equal(validateArchive({ id: target }).ok, false);
+tests\unit\features\settings\mutation-attempt.test.ts:56:    assert.equal(validateArchive(existing).ok, true);
+tests\unit\features\settings\mutation-attempt.test.ts:57:    assert.equal(validateArchive({ ...existing, expectedRevision: null }).ok, false);
+tests\unit\features\settings\mutation-attempt.test.ts:58:    assert.equal(validateApproveQuoteTerms(existing).ok, false);
+tests\unit\features\settings\mutation-attempt.test.ts:59:    assert.equal(validateApproveQuoteTerms({ ...existing, terms_text: "Reviewed" }).ok, true);
+tests\unit\features\settings\mutation-attempt.test.ts:60:    assert.equal(validateUpsertArticle({ ...existing, targetId: op, name: "A", unit_price_ore: 1 }).ok, false);
+tests\unit\server\commands\crm-validation.test.ts:24:  validateArchive,
+tests\unit\server\commands\crm-validation.test.ts:398:test("validateArchive rejects a non-UUID id and accepts a UUID id", () => {
+tests\unit\server\commands\crm-validation.test.ts:400:    assertRejected(validateArchive({ id: bad }), `archive id ${JSON.stringify(bad)}`);
+tests\unit\server\commands\crm-validation.test.ts:403:    validateArchive({ id: VALID_UUID }),
+tests\unit\server\commands\crm-validation.test.ts:564:    validateArchive,
+tests\unit\server\commands\files\validate-archive-file.test.ts:2: * Story 8.4 — PURE branch coverage for the `validateArchiveFile` input validator (Task 3.3 /
+tests\unit\server\commands\files\validate-archive-file.test.ts:28: * [Source: src/server/commands/files/validation.ts (validateArchiveFile + ArchiveFileInput —
+tests\unit\server\commands\files\validate-archive-file.test.ts:36:  validateArchiveFile,
+tests\unit\server\commands\files\validate-archive-file.test.ts:47:  const result = validateArchiveFile({ id });
+tests\unit\server\commands\files\validate-archive-file.test.ts:59:  const result = validateArchiveFile(validRaw({ reason: "  superseded by a new version  " }));
+tests\unit\server\commands\files\validate-archive-file.test.ts:65:  const result = validateArchiveFile(validRaw({ hardDelete: true }));
+tests\unit\server\commands\files\validate-archive-file.test.ts:72:    const result = validateArchiveFile(raw as unknown);
+tests\unit\server\commands\files\validate-archive-file.test.ts:80:    const result = validateArchiveFile({ id });
+tests\unit\server\commands\files\validate-archive-file.test.ts:88:    const result = validateArchiveFile(validRaw({ reason }));
+tests\unit\server\commands\files\validate-archive-file.test.ts:95:  const result = validateArchiveFile(validRaw({ reason: "x".repeat(129) }));
+tests\unit\server\commands\files\validate-archive-file.test.ts:102:    const result = validateArchiveFile(validRaw({ hardDelete }));
+tests\unit\server\commands\files\validate-archive-file.test.ts:109:  const result = validateArchiveFile(
+tests\unit\server\commands\pricing-validation-edges.test.ts:12:  validateUpsertArticle,
+tests\unit\server\commands\pricing-validation-edges.test.ts:13:  validateUpsertWorkRole,
+tests\unit\server\commands\pricing-validation-edges.test.ts:28:  const r = validateUpsertArticle({
+tests\unit\server\commands\pricing-validation-edges.test.ts:63:    validateUpsertArticle({ id: "not-a-uuid", name: "Kabel", unit_price_ore: 1250 }),
+tests\unit\server\commands\pricing-validation-edges.test.ts:71:    validateUpsertArticle({ name: "Kabel", sku: tooLong, unit_price_ore: 1250 }),
+tests\unit\server\commands\pricing-validation-edges.test.ts:75:    validateUpsertArticle({ name: "Kabel", unit: tooLong, unit_price_ore: 1250 }),
+tests\unit\server\commands\pricing-validation-edges.test.ts:82:    validateUpsertArticle({ name: "x".repeat(257), unit_price_ore: 1250 }),
+tests\unit\server\commands\pricing-validation-edges.test.ts:88:  const r = validateUpsertArticle({ name: "Kabel", unit_price_ore: 1250 });
+tests\unit\server\commands\pricing-validation-edges.test.ts:99:  const r = validateUpsertWorkRole({
+tests\unit\server\commands\pricing-validation-edges.test.ts:124:    validateUpsertWorkRole({
+tests\unit\server\commands\pricing-validation-edges.test.ts:136:    validateUpsertWorkRole({
+tests\unit\server\commands\pricing-validation-edges.test.ts:146:  const r = validateUpsertWorkRole({
+tests\unit\server\commands\pricing-validation-edges.test.ts:159:  const r = validateUpsertWorkRole({
+tests\unit\server\commands\pricing-validation.test.ts:41:  validateUpsertWorkRole: (input: unknown) => ValidationResult;
+tests\unit\server\commands\pricing-validation.test.ts:42:  validateUpsertArticle: (input: unknown) => ValidationResult;
+tests\unit\server\commands\pricing-validation.test.ts:43:  validateArchive: (input: unknown) => ValidationResult;
+tests\unit\server\commands\pricing-validation.test.ts:50:const mod:PricingValidation={isOreAmount:validation.isOreAmount,validateUpsertWorkRole:raw=>validation.validateUpsertWorkRole(protocolFixture(raw)) as ValidationResult,validateUpsertArticle:raw=>validation.validateUpsertArticle(protocolFixture(raw)) as ValidationResult,validateArchive:raw=>validation.validateArchive(protocolFixture(raw)) as ValidationResult};
+tests\unit\server\commands\pricing-validation.test.ts:124:// ── validateUpsertWorkRole — display_name + cost/sell öre rates ──────────────────
+tests\unit\server\commands\pricing-validation.test.ts:127:  const r = m.validateUpsertWorkRole({
+tests\unit\server\commands\pricing-validation.test.ts:141:  const r = m.validateUpsertWorkRole({
+tests\unit\server\commands\pricing-validation.test.ts:154:      m.validateUpsertWorkRole({
+tests\unit\server\commands\pricing-validation.test.ts:167:      m.validateUpsertWorkRole({
+tests\unit\server\commands\pricing-validation.test.ts:179:    m.validateUpsertWorkRole({ cost_rate_ore: 45000, sell_rate_ore: 85000 }),
+tests\unit\server\commands\pricing-validation.test.ts:183:    m.validateUpsertWorkRole({ display_name: "", cost_rate_ore: 45000, sell_rate_ore: 85000 }),
+tests\unit\server\commands\pricing-validation.test.ts:187:    m.validateUpsertWorkRole({ display_name: "   ", cost_rate_ore: 45000, sell_rate_ore: 85000 }),
+tests\unit\server\commands\pricing-validation.test.ts:194:    m.validateUpsertWorkRole({ display_name: "Montör", sell_rate_ore: 85000 }),
+tests\unit\server\commands\pricing-validation.test.ts:198:    m.validateUpsertWorkRole({ display_name: "Montör", cost_rate_ore: 45000 }),
+tests\unit\server\commands\pricing-validation.test.ts:204:  const r = m.validateUpsertWorkRole({
+tests\unit\server\commands\pricing-validation.test.ts:215:  assertRejected(m.validateUpsertWorkRole(null), "null");
+tests\unit\server\commands\pricing-validation.test.ts:216:  assertRejected(m.validateUpsertWorkRole("x"), "string");
+tests\unit\server\commands\pricing-validation.test.ts:219:// ── validateUpsertArticle — name + optional sku/unit + unit_price_ore ────────────
+tests\unit\server\commands\pricing-validation.test.ts:222:  const r = m.validateUpsertArticle({ name: "Kabel 3G1.5", unit_price_ore: 1250 });
+tests\unit\server\commands\pricing-validation.test.ts:228:  const r = m.validateUpsertArticle({
+tests\unit\server\commands\pricing-validation.test.ts:244:      m.validateUpsertArticle({ name: "Kabel", unit_price_ore: bad as unknown }),
+tests\unit\server\commands\pricing-validation.test.ts:251:  assertRejected(m.validateUpsertArticle({ unit_price_ore: 1250 }), "missing name");
+tests\unit\server\commands\pricing-validation.test.ts:252:  assertRejected(m.validateUpsertArticle({ name: "   ", unit_price_ore: 1250 }), "blank name");
+tests\unit\server\commands\pricing-validation.test.ts:259:  const r = m.validateUpsertArticle({
+tests\unit\server\commands\pricing-validation.test.ts:294:  const r = m.validateUpsertArticle({
+tests\unit\server\commands\pricing-validation.test.ts:303:// ── validateArchive — id-only guard (work roles + articles share the shape) ──────
+tests\unit\server\commands\pricing-validation.test.ts:306:  const r = m.validateArchive({ id: "11111111-1111-4111-8111-111111111111" });
+tests\unit\server\commands\pricing-validation.test.ts:308:  assertRejected(m.validateArchive({ id: "not-a-uuid" }), "bad id");
+tests\unit\server\commands\pricing-validation.test.ts:309:  assertRejected(m.validateArchive({}), "missing id");
+tests\unit\server\commands\pricing-validation.test.ts:310:  assertRejected(m.validateArchive(null), "null");
+tests\unit\server\commands\pricing-validation.test.ts:314:  const r = m.validateArchive({
+tests\unit\server\commands\settings-validation.test.ts:18:  validateApproveQuoteTerms as actualvalidateApproveQuoteTerms,
+tests\unit\server\commands\settings-validation.test.ts:19:  validateUpdateCompanySettings as actualvalidateUpdateCompanySettings,
+tests\unit\server\commands\settings-validation.test.ts:20:  validateUpdateQuoteTerms as actualvalidateUpdateQuoteTerms,
+tests\unit\server\commands\settings-validation.test.ts:24:const validateUpdateCompanySettings=(raw:unknown)=>actualvalidateUpdateCompanySettings(operationFixture(raw,false));
+tests\unit\server\commands\settings-validation.test.ts:25:const validateUpdateQuoteTerms=(raw:unknown)=>actualvalidateUpdateQuoteTerms(operationFixture(raw,false));
+tests\unit\server\commands\settings-validation.test.ts:26:const validateApproveQuoteTerms=(raw:unknown)=>actualvalidateApproveQuoteTerms(operationFixture(raw,true));
+tests\unit\server\commands\settings-validation.test.ts:40:  const r = validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:55:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:63:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:72:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:81:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:91:  const r = validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:102:    const r = validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:113:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:123:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:130:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:140:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:147:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:157:    const r = validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:168:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:175:  const r = validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:184:  const r = validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:197:  assertRejected(validateUpdateCompanySettings(null), "null");
+tests\unit\server\commands\settings-validation.test.ts:198:  assertRejected(validateUpdateCompanySettings("x"), "string");
+tests\unit\server\commands\settings-validation.test.ts:203:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:211:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:218:  const ok = validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:231:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:240:  const ok = validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:248:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:260:    validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:271:    validateUpdateCompanySettings({ vat_rate_bp: 2500 }),
+tests\unit\server\commands\settings-validation.test.ts:278:    validateUpdateCompanySettings({ default_vat_display: "company_togglable" }),
+tests\unit\server\commands\settings-validation.test.ts:284:  const r = validateUpdateCompanySettings({
+tests\unit\server\commands\settings-validation.test.ts:308:    validateUpdateQuoteTerms({ terms_text: "x".repeat(20001) }),
+tests\unit\server\commands\settings-validation.test.ts:312:  const ok = validateUpdateQuoteTerms({ terms_text: "x".repeat(20000) });
+tests\unit\server\commands\settings-validation.test.ts:318:    validateUpdateQuoteTerms({ terms_text: 42 as unknown as string }),
+tests\unit\server\commands\settings-validation.test.ts:324:  assertRejected(validateApproveQuoteTerms(null), "null");
+tests\unit\server\commands\settings-validation.test.ts:325:  assertRejected(validateApproveQuoteTerms({ id: 123 as unknown }), "numeric id");
+tests\unit\server\commands\settings-validation.test.ts:327:    validateApproveQuoteTerms({ id: `${VALID_UUID}x` }),
+tests\unit\server\commands\settings-validation.test.ts:333:  const r = validateApproveQuoteTerms({
+tests\unit\server\commands\settings-validation.test.ts:347:  const r = validateUpdateQuoteTerms({
+tests\unit\server\commands\settings-validation.test.ts:361:  assertRejected(validateUpdateQuoteTerms({ terms_text: "   " }), "blank");
+tests\unit\server\commands\settings-validation.test.ts:362:  assertRejected(validateUpdateQuoteTerms({}), "missing");
+tests\unit\server\commands\settings-validation.test.ts:363:  assertRejected(validateUpdateQuoteTerms(null), "null");
+tests\unit\server\commands\settings-validation.test.ts:369:  const r = validateApproveQuoteTerms({ id: VALID_UUID });
+tests\unit\server\commands\settings-validation.test.ts:371:  assertRejected(validateApproveQuoteTerms({ id: "not-a-uuid" }), "bad id");
+tests\unit\server\commands\settings-validation.test.ts:372:  assertRejected(validateApproveQuoteTerms({}), "missing id");

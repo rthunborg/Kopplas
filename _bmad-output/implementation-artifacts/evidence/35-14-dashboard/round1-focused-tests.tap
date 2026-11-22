@@ -1,0 +1,764 @@
+TAP version 13
+# (node:37732) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/tests/unit/components/dashboard/widget-state.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-14-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 19.1-UNIT-013 actual pipeline component states (SSR)
+    # Subtest: [P1] loading announces progress without fabricated values or success time [AC9]
+    ok 1 - [P1] loading announces progress without fabricated values or success time [AC9]
+      ---
+      duration_ms: 272.5634
+      type: 'test'
+      ...
+    # Subtest: [P1] loaded value uses shared integer-öre presentation and honest completion time [AC3,9]
+    ok 2 - [P1] loaded value uses shared integer-öre presentation and honest completion time [AC3,9]
+      ---
+      duration_ms: 13.6695
+      type: 'test'
+      ...
+    # Subtest: [P1] successful empty is period-specific, null rate and entitled zero [AC4,5]
+    ok 3 - [P1] successful empty is period-specific, null rate and entitled zero [AC4,5]
+      ---
+      duration_ms: 1.6782
+      type: 'test'
+      ...
+    # Subtest: [P1] sent-only success is active but has no decided-deal rate [AC5]
+    ok 4 - [P1] sent-only success is active but has no decided-deal rate [AC5]
+      ---
+      duration_ms: 1.1196
+      type: 'test'
+      ...
+    # Subtest: [P1] absent-withheld money renders Dold and SR description, never zero [AC4]
+    ok 5 - [P1] absent-withheld money renders Dold and SR description, never zero [AC4]
+      ---
+      duration_ms: 1.7362
+      type: 'test'
+      ...
+    # Subtest: [P1] failure has accessible local error/retry and no values or success stamp [AC6,9]
+    ok 6 - [P1] failure has accessible local error/retry and no values or success stamp [AC6,9]
+      ---
+      duration_ms: 0.9685
+      type: 'test'
+      ...
+    1..6
+ok 1 - 19.1-UNIT-013 actual pipeline component states (SSR)
+  ---
+  duration_ms: 292.6114
+  type: 'suite'
+  ...
+# Subtest: 19.1-UNIT-014 card isolation in the real grid
+    # Subtest: [P1] loaded pipeline preserves a healthy sibling in the shared grid [AC6]
+    ok 1 - [P1] loaded pipeline preserves a healthy sibling in the shared grid [AC6]
+      ---
+      duration_ms: 5.0326
+      type: 'test'
+      ...
+    # Subtest: [P1] error pipeline preserves a healthy sibling in the shared grid [AC6]
+    ok 2 - [P1] error pipeline preserves a healthy sibling in the shared grid [AC6]
+      ---
+      duration_ms: 1.2766
+      type: 'test'
+      ...
+    1..2
+ok 2 - 19.1-UNIT-014 card isolation in the real grid
+  ---
+  duration_ms: 6.526
+  type: 'suite'
+  ...
+# (node:45048) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/tests/unit/scope/widget-registry.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-14-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [P1] 19.1-UNIT-001 AC1 actual loader/component registrations equal the active manifest union
+ok 3 - [P1] 19.1-UNIT-001 AC1 actual loader/component registrations equal the active manifest union
+  ---
+  duration_ms: 57.9928
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-002 AC1 rejects missing implementation for a declared widget
+ok 4 - [P1] 19.1-UNIT-002 AC1 rejects missing implementation for a declared widget
+  ---
+  duration_ms: 2.3604
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-002 AC1 rejects orphan registration absent from the manifest
+ok 5 - [P1] 19.1-UNIT-002 AC1 rejects orphan registration absent from the manifest
+  ---
+  duration_ms: 0.7608
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-002 AC1 rejects duplicate actual registration
+ok 6 - [P1] 19.1-UNIT-002 AC1 rejects duplicate actual registration
+  ---
+  duration_ms: 0.8411
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-002 AC1 rejects registration uses pending producer with no declared live surface
+ok 7 - [P1] 19.1-UNIT-002 AC1 rejects registration uses pending producer with no declared live surface
+  ---
+  duration_ms: 1.4007
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-002 AC1 rejects registration names an unknown producer
+ok 8 - [P1] 19.1-UNIT-002 AC1 rejects registration names an unknown producer
+  ---
+  duration_ms: 0.8815
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-002 AC1 rejects capability absent from producing module
+ok 9 - [P1] 19.1-UNIT-002 AC1 rejects capability absent from producing module
+  ---
+  duration_ms: 0.9396
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-002 AC1 rejects capability belongs only to another module
+ok 10 - [P1] 19.1-UNIT-002 AC1 rejects capability belongs only to another module
+  ---
+  duration_ms: 0.9551
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-002 AC1 rejects platform capability masquerades as tenant content
+ok 11 - [P1] 19.1-UNIT-002 AC1 rejects platform capability masquerades as tenant content
+  ---
+  duration_ms: 1.07
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-002 AC1 rejects missing registered loader
+ok 12 - [P1] 19.1-UNIT-002 AC1 rejects missing registered loader
+  ---
+  duration_ms: 1.1457
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-002 AC1 rejects missing registered presentation
+ok 13 - [P1] 19.1-UNIT-002 AC1 rejects missing registered presentation
+  ---
+  duration_ms: 0.5131
+  type: 'test'
+  ...
+# (node:12324) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/tests/unit/server/read-models/dashboard.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-14-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [P0] 19.1-UNIT-003/004 AC2/4 current server tenant_admin loads one correctly projected widget
+ok 14 - [P0] 19.1-UNIT-003/004 AC2/4 current server tenant_admin loads one correctly projected widget
+  ---
+  duration_ms: 67.1665
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003/004 AC2/4 current server projektledare loads one correctly projected widget
+ok 15 - [P0] 19.1-UNIT-003/004 AC2/4 current server projektledare loads one correctly projected widget
+  ---
+  duration_ms: 1.6368
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003/004 AC2/4 current server saljare loads one correctly projected widget
+ok 16 - [P0] 19.1-UNIT-003/004 AC2/4 current server saljare loads one correctly projected widget
+  ---
+  duration_ms: 1.938
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003 AC2 no quote loader for current server roles ["montor"]
+ok 17 - [P0] 19.1-UNIT-003 AC2 no quote loader for current server roles ["montor"]
+  ---
+  duration_ms: 1.0019
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003 AC2 no quote loader for current server roles ["ekonomi"]
+ok 18 - [P0] 19.1-UNIT-003 AC2 no quote loader for current server roles ["ekonomi"]
+  ---
+  duration_ms: 0.6254
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003 AC2 no quote loader for current server roles ["unknown-role"]
+ok 19 - [P0] 19.1-UNIT-003 AC2 no quote loader for current server roles ["unknown-role"]
+  ---
+  duration_ms: 0.5286
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003 AC2 no quote loader for current server roles []
+ok 20 - [P0] 19.1-UNIT-003 AC2 no quote loader for current server roles []
+  ---
+  duration_ms: 0.3878
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003 AC2 authority UNAUTHENTICATED blocks reads independently of page layout
+ok 21 - [P0] 19.1-UNIT-003 AC2 authority UNAUTHENTICATED blocks reads independently of page layout
+  ---
+  duration_ms: 2.0162
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003 AC2 authority TENANT_MEMBERSHIP_REQUIRED blocks reads independently of page layout
+ok 22 - [P0] 19.1-UNIT-003 AC2 authority TENANT_MEMBERSHIP_REQUIRED blocks reads independently of page layout
+  ---
+  duration_ms: 0.5123
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003 AC2 authority SERVER_ERROR blocks reads independently of page layout
+ok 23 - [P0] 19.1-UNIT-003 AC2 authority SERVER_ERROR blocks reads independently of page layout
+  ---
+  duration_ms: 0.8259
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003 AC2 union normalizes valid roles and deduplicates the one actual widget
+ok 24 - [P0] 19.1-UNIT-003 AC2 union normalizes valid roles and deduplicates the one actual widget
+  ---
+  duration_ms: 0.9908
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003 AC2 omitted caller roles are irrelevant; current server resolver remains authority
+ok 25 - [P0] 19.1-UNIT-003 AC2 omitted caller roles are irrelevant; current server resolver remains authority
+  ---
+  duration_ms: 1.0061
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003/004 AC2/4 hostile caller role/tenant/money properties cannot widen current server authority
+ok 26 - [P0] 19.1-UNIT-003/004 AC2/4 hostile caller role/tenant/money properties cannot widen current server authority
+  ---
+  duration_ms: 2.4118
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-004 AC4 browser DTO allowlist excludes follow-ups, raw rows, roles and private resolver metadata
+ok 27 - [P0] 19.1-UNIT-004 AC4 browser DTO allowlist excludes follow-ups, raw rows, roles and private resolver metadata
+  ---
+  duration_ms: 1.2233
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-011 AC4/6 absent money not listed as withheld rejects malformed descriptor
+ok 28 - [P0] 19.1-UNIT-011 AC4/6 absent money not listed as withheld rejects malformed descriptor
+  ---
+  duration_ms: 1.1073
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-011 AC4/6 contradictory present-and-withheld money cannot cross the DTO boundary
+ok 29 - [P0] 19.1-UNIT-011 AC4/6 contradictory present-and-withheld money cannot cross the DTO boundary
+  ---
+  duration_ms: 2.0075
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-011 AC6 malformed completion time cannot claim a fresh loaded result
+ok 30 - [P0] 19.1-UNIT-011 AC6 malformed completion time cannot claim a fresh loaded result
+  ---
+  duration_ms: 0.8826
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-008 AC6 reader error remains card-local and sanitizes unexpected provider detail
+ok 31 - [P0] 19.1-UNIT-008 AC6 reader error remains card-local and sanitizes unexpected provider detail
+  ---
+  duration_ms: 0.4796
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-008 AC6 thrown reader error becomes card-local unavailable
+ok 32 - [P0] 19.1-UNIT-008 AC6 thrown reader error becomes card-local unavailable
+  ---
+  duration_ms: 0.4913
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003 AC2 thrown authority resolution blocks all quote reads
+ok 33 - [P0] 19.1-UNIT-003 AC2 thrown authority resolution blocks all quote reads
+  ---
+  duration_ms: 6.1651
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003/004 AC7 retry resolves revoked quote capability before a second loader
+ok 34 - [P0] 19.1-UNIT-003/004 AC7 retry resolves revoked quote capability before a second loader
+  ---
+  duration_ms: 1.1489
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-004 AC7 retry retains quote access but immediately removes revoked money
+ok 35 - [P0] 19.1-UNIT-004 AC7 retry retains quote access but immediately removes revoked money
+  ---
+  duration_ms: 1.6748
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-003 AC7 stale session on retry does not reuse a prior success
+ok 36 - [P0] 19.1-UNIT-003 AC7 stale session on retry does not reuse a prior success
+  ---
+  duration_ms: 0.9886
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-004 AC2/4 sequential request identities cannot share prior entitled data
+ok 37 - [P0] 19.1-UNIT-004 AC2/4 sequential request identities cannot share prior entitled data
+  ---
+  duration_ms: 1.8634
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-015 AC7 repeated failed reads repeat authority without any success fallback
+ok 38 - [P1] 19.1-UNIT-015 AC7 repeated failed reads repeat authority without any success fallback
+  ---
+  duration_ms: 0.8603
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-AUTO-API-001-admin AC2/4/5 overlapping identities finish in reverse order without sharing authority, counts or serialized money
+ok 39 - [P0] 19.1-AUTO-API-001-admin AC2/4/5 overlapping identities finish in reverse order without sharing authority, counts or serialized money
+  ---
+  duration_ms: 1.8615
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-AUTO-API-001-seller AC2/4/5 overlapping identities finish in reverse order without sharing authority, counts or serialized money
+ok 40 - [P0] 19.1-AUTO-API-001-seller AC2/4/5 overlapping identities finish in reverse order without sharing authority, counts or serialized money
+  ---
+  duration_ms: 1.3747
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-AUTO-API-002-failure-first AC6 overlapping failed read cannot corrupt another identity's healthy result or serialized DTO
+ok 41 - [P1] 19.1-AUTO-API-002-failure-first AC6 overlapping failed read cannot corrupt another identity's healthy result or serialized DTO
+  ---
+  duration_ms: 1.129
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-AUTO-API-002-failure-last AC6 overlapping failed read cannot corrupt another identity's healthy result or serialized DTO
+ok 42 - [P1] 19.1-AUTO-API-002-failure-last AC6 overlapping failed read cannot corrupt another identity's healthy result or serialized DTO
+  ---
+  duration_ms: 2.1552
+  type: 'test'
+  ...
+# (node:54200) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/tests/unit/server/read-models/quote-pipeline-aggregate-atdd.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-14-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [P0][10.5-UNIT-01] accepted commitments sum exactly at Number.MAX_SAFE_INTEGER
+ok 43 - [P0][10.5-UNIT-01] accepted commitments sum exactly at Number.MAX_SAFE_INTEGER
+  ---
+  duration_ms: 14.4548
+  type: 'test'
+  ...
+# Subtest: [P0][10.5-UNIT-02] overflow of accepted commitments fails closed and never returns rounded ore
+ok 44 - [P0][10.5-UNIT-02] overflow of accepted commitments fails closed and never returns rounded ore
+  ---
+  duration_ms: 0.8713
+  type: 'test'
+  ...
+# (node:3816) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/tests/unit/server/read-models/quote-pipeline-aggregate.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-14-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 10.4-UNIT-02: counts derive from in-window quote_events (distinct versions per event_type)
+ok 45 - 10.4-UNIT-02: counts derive from in-window quote_events (distinct versions per event_type)
+  ---
+  duration_ms: 14.2149
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: hit rate = accepted / (accepted + lost)
+ok 46 - 10.4-UNIT-02: hit rate = accepted / (accepted + lost)
+  ---
+  duration_ms: 0.5793
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: ZERO decided ⇒ hitRate is null (never 0, never NaN)
+ok 47 - 10.4-UNIT-02: ZERO decided ⇒ hitRate is null (never 0, never NaN)
+  ---
+  duration_ms: 0.2652
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: EMPTY input ⇒ all counts 0, hitRate null, acceptedValueOre 0
+ok 48 - 10.4-UNIT-02: EMPTY input ⇒ all counts 0, hitRate null, acceptedValueOre 0
+  ---
+  duration_ms: 0.0722
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: acceptedValueOre is the INTEGER öre sum of frozen accepted prices (no new money path)
+ok 49 - 10.4-UNIT-02: acceptedValueOre is the INTEGER öre sum of frozen accepted prices (no new money path)
+  ---
+  duration_ms: 0.2931
+  type: 'test'
+  ...
+# Subtest: 10.5: accepted commitment sum permits the exact MAX_SAFE_INTEGER boundary
+ok 50 - 10.5: accepted commitment sum permits the exact MAX_SAFE_INTEGER boundary
+  ---
+  duration_ms: 0.1811
+  type: 'test'
+  ...
+# Subtest: 10.5: an unsafe accepted commitment aggregate fails closed instead of returning rounded öre
+ok 51 - 10.5: an unsafe accepted commitment aggregate fails closed instead of returning rounded öre
+  ---
+  duration_ms: 0.4928
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: the accepted value formats for display via the single @/lib/money authority only
+ok 52 - 10.4-UNIT-02: the accepted value formats for display via the single @/lib/money authority only
+  ---
+  duration_ms: 0.5079
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: open/overdue follow-up counts (open only; overdue via classifyFollowUp on the Stockholm boundary)
+ok 53 - 10.4-UNIT-02: open/overdue follow-up counts (open only; overdue via classifyFollowUp on the Stockholm boundary)
+  ---
+  duration_ms: 0.5493
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: resolvePipelinePeriod is deterministic over an injected instant (no Date.now on the pure path)
+ok 54 - 10.4-UNIT-02: resolvePipelinePeriod is deterministic over an injected instant (no Date.now on the pure path)
+  ---
+  duration_ms: 0.854
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: the period boundary is computed on the Europe/Stockholm calendar day of the injected instant
+ok 55 - 10.4-UNIT-02: the period boundary is computed on the Europe/Stockholm calendar day of the injected instant
+  ---
+  duration_ms: 0.1612
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: repeated events for the same version+type collapse to ONE (distinct-version count, not row count)
+ok 56 - 10.4-UNIT-02: repeated events for the same version+type collapse to ONE (distinct-version count, not row count)
+  ---
+  duration_ms: 0.2295
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: an accepted version with NO frozen price row contributes 0 to acceptedValueOre (never NaN)
+ok 57 - 10.4-UNIT-02: an accepted version with NO frozen price row contributes 0 to acceptedValueOre (never NaN)
+  ---
+  duration_ms: 0.1817
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: acceptedValueOre sums ONLY in-window accepted versions (an out-of-window accepted price is excluded)
+ok 58 - 10.4-UNIT-02: acceptedValueOre sums ONLY in-window accepted versions (an out-of-window accepted price is excluded)
+  ---
+  duration_ms: 0.2258
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: a COMPLETED follow-up with a PAST due date is neither open NOR overdue (status-gated before classify)
+ok 59 - 10.4-UNIT-02: a COMPLETED follow-up with a PAST due date is neither open NOR overdue (status-gated before classify)
+  ---
+  duration_ms: 0.0789
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: an OPEN follow-up on an ALREADY-DECIDED quote (accepted/lost/rejected/expired latest) is EXCLUDED from the counts
+ok 60 - 10.4-UNIT-02: an OPEN follow-up on an ALREADY-DECIDED quote (accepted/lost/rejected/expired latest) is EXCLUDED from the counts
+  ---
+  duration_ms: 0.1763
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: a SUPERSEDED latest status DOES exclude its open follow-up (Codex review — superseded is reachable as latest)
+ok 61 - 10.4-UNIT-02: a SUPERSEDED latest status DOES exclude its open follow-up (Codex review — superseded is reachable as latest)
+  ---
+  duration_ms: 0.0548
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: a follow-up with NO quoteLatestVersionStatus (undefined/null) is counted (not-decided default)
+ok 62 - 10.4-UNIT-02: a follow-up with NO quoteLatestVersionStatus (undefined/null) is counted (not-decided default)
+  ---
+  duration_ms: 0.1907
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: a DUE-TODAY open follow-up counts as open but NOT overdue (the overdue boundary is strict <)
+ok 63 - 10.4-UNIT-02: a DUE-TODAY open follow-up counts as open but NOT overdue (the overdue boundary is strict <)
+  ---
+  duration_ms: 0.1074
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: resolvePipelinePeriod honours a custom trailing window and rolls the year back correctly
+ok 64 - 10.4-UNIT-02: resolvePipelinePeriod honours a custom trailing window and rolls the year back correctly
+  ---
+  duration_ms: 0.1077
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: a MONTH-END anchor does NOT overflow — the day is clamped to the target month's last day
+ok 65 - 10.4-UNIT-02: a MONTH-END anchor does NOT overflow — the day is clamped to the target month's last day
+  ---
+  duration_ms: 0.1052
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: the default 12-month window is safe at the Feb-29 leap anchor (no forward overflow)
+ok 66 - 10.4-UNIT-02: the default 12-month window is safe at the Feb-29 leap anchor (no forward overflow)
+  ---
+  duration_ms: 0.1178
+  type: 'test'
+  ...
+# Subtest: 10.4-UNIT-02: a month-end anchor into a 31-day target keeps the full day (no needless clamp)
+ok 67 - 10.4-UNIT-02: a month-end anchor into a 31-day target keeps the full day (no needless clamp)
+  ---
+  duration_ms: 0.1233
+  type: 'test'
+  ...
+# (node:41860) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/tests/unit/server/read-models/quote-pipeline-result.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-14-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [P0] 19.1-UNIT-007/008 AC6 quote_events error never yields partial totals
+ok 68 - [P0] 19.1-UNIT-007/008 AC6 quote_events error never yields partial totals
+  ---
+  duration_ms: 167.8715
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007/008 AC6 quote_events throw never yields partial totals
+ok 69 - [P0] 19.1-UNIT-007/008 AC6 quote_events throw never yields partial totals
+  ---
+  duration_ms: 0.7458
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007/008 AC6 quote_acceptances error never yields partial totals
+ok 70 - [P0] 19.1-UNIT-007/008 AC6 quote_acceptances error never yields partial totals
+  ---
+  duration_ms: 1.5363
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007/008 AC6 quote_acceptances throw never yields partial totals
+ok 71 - [P0] 19.1-UNIT-007/008 AC6 quote_acceptances throw never yields partial totals
+  ---
+  duration_ms: 0.463
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007/008 AC6 quote_follow_ups error never yields partial totals
+ok 72 - [P0] 19.1-UNIT-007/008 AC6 quote_follow_ups error never yields partial totals
+  ---
+  duration_ms: 0.532
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007/008 AC6 quote_follow_ups throw never yields partial totals
+ok 73 - [P0] 19.1-UNIT-007/008 AC6 quote_follow_ups throw never yields partial totals
+  ---
+  duration_ms: 0.4535
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007/008 AC6 quote_versions error never yields partial totals
+ok 74 - [P0] 19.1-UNIT-007/008 AC6 quote_versions error never yields partial totals
+  ---
+  duration_ms: 0.5061
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007/008 AC6 quote_versions throw never yields partial totals
+ok 75 - [P0] 19.1-UNIT-007/008 AC6 quote_versions throw never yields partial totals
+  ---
+  duration_ms: 1.2394
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007 AC6 event second page error discards already-read prefixes
+ok 76 - [P0] 19.1-UNIT-007 AC6 event second page error discards already-read prefixes
+  ---
+  duration_ms: 1.3977
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007 AC6 event second page throw discards already-read prefixes
+ok 77 - [P0] 19.1-UNIT-007 AC6 event second page throw discards already-read prefixes
+  ---
+  duration_ms: 1.3295
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007 AC6 follow-up second page error discards already-read prefixes
+ok 78 - [P0] 19.1-UNIT-007 AC6 follow-up second page error discards already-read prefixes
+  ---
+  duration_ms: 4.0771
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007 AC6 follow-up second page throw discards already-read prefixes
+ok 79 - [P0] 19.1-UNIT-007 AC6 follow-up second page throw discards already-read prefixes
+  ---
+  duration_ms: 1.1849
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007 AC6 latest-version second page error discards already-read prefixes
+ok 80 - [P0] 19.1-UNIT-007 AC6 latest-version second page error discards already-read prefixes
+  ---
+  duration_ms: 0.6394
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007 AC6 latest-version second page throw discards already-read prefixes
+ok 81 - [P0] 19.1-UNIT-007 AC6 latest-version second page throw discards already-read prefixes
+  ---
+  duration_ms: 0.5938
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007 AC6 acceptance second ID batch error discards already-read prefixes
+ok 82 - [P0] 19.1-UNIT-007 AC6 acceptance second ID batch error discards already-read prefixes
+  ---
+  duration_ms: 0.7329
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007 AC6 acceptance second ID batch throw discards already-read prefixes
+ok 83 - [P0] 19.1-UNIT-007 AC6 acceptance second ID batch throw discards already-read prefixes
+  ---
+  duration_ms: 0.6533
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007 AC6 latest-version second ID batch error discards already-read prefixes
+ok 84 - [P0] 19.1-UNIT-007 AC6 latest-version second ID batch error discards already-read prefixes
+  ---
+  duration_ms: 0.5927
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-007 AC6 latest-version second ID batch throw discards already-read prefixes
+ok 85 - [P0] 19.1-UNIT-007 AC6 latest-version second ID batch throw discards already-read prefixes
+  ---
+  duration_ms: 0.4953
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-008 AC6 synchronous query construction throws become generic failures
+ok 86 - [P0] 19.1-UNIT-008 AC6 synchronous query construction throws become generic failures
+  ---
+  duration_ms: 0.605
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-008 AC6 actual cookie-client construction outside a request fails safely
+ok 87 - [P0] 19.1-UNIT-008 AC6 actual cookie-client construction outside a request fails safely
+  ---
+  duration_ms: 0.5035
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-005 AC3 lifecycle history and adjusted accepted commitment equal the existing aggregate
+ok 88 - [P0] 19.1-UNIT-005 AC3 lifecycle history and adjusted accepted commitment equal the existing aggregate
+  ---
+  duration_ms: 12.1216
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-006 AC4/5 empty successful period remains successful for tenant_admin
+ok 89 - [P1] 19.1-UNIT-006 AC4/5 empty successful period remains successful for tenant_admin
+  ---
+  duration_ms: 0.7399
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-006 AC4/5 empty successful period remains successful for saljare
+ok 90 - [P1] 19.1-UNIT-006 AC4/5 empty successful period remains successful for saljare
+  ---
+  duration_ms: 0.4757
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-006 AC5 sent-only activity is loaded activity with null rate and entitled zero
+ok 91 - [P1] 19.1-UNIT-006 AC5 sent-only activity is loaded activity with null rate and entitled zero
+  ---
+  duration_ms: 0.9316
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-009 AC6 malformed clock is unavailable, never fresh safe-date zeros
+ok 92 - [P0] 19.1-UNIT-009 AC6 malformed clock is unavailable, never fresh safe-date zeros
+  ---
+  duration_ms: 0.9635
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-009 AC6 impossible clock calendar day is unavailable, never fresh safe-date zeros
+ok 93 - [P0] 19.1-UNIT-009 AC6 impossible clock calendar day is unavailable, never fresh safe-date zeros
+  ---
+  duration_ms: 0.3658
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-009 AC6 malformed clock with explicit valid period is unavailable, never fresh safe-date zeros
+ok 94 - [P0] 19.1-UNIT-009 AC6 malformed clock with explicit valid period is unavailable, never fresh safe-date zeros
+  ---
+  duration_ms: 0.3063
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-009 AC6 impossible period day is unavailable, never fresh safe-date zeros
+ok 95 - [P0] 19.1-UNIT-009 AC6 impossible period day is unavailable, never fresh safe-date zeros
+  ---
+  duration_ms: 0.2936
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-009 AC6 reversed period is unavailable, never fresh safe-date zeros
+ok 96 - [P0] 19.1-UNIT-009 AC6 reversed period is unavailable, never fresh safe-date zeros
+  ---
+  duration_ms: 0.2694
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-009 AC6 non-date period field is unavailable, never fresh safe-date zeros
+ok 97 - [P0] 19.1-UNIT-009 AC6 non-date period field is unavailable, never fresh safe-date zeros
+  ---
+  duration_ms: 0.274
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-010 AC3/6 synthetic unsafe integer cannot become a fresh accepted total
+ok 98 - [P0] 19.1-UNIT-010 AC3/6 synthetic unsafe integer cannot become a fresh accepted total
+  ---
+  duration_ms: 0.3412
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-010 AC3/6 synthetic fractional ore cannot become a fresh accepted total
+ok 99 - [P0] 19.1-UNIT-010 AC3/6 synthetic fractional ore cannot become a fresh accepted total
+  ---
+  duration_ms: 0.5631
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-010 AC3/6 synthetic malformed bigint string cannot become a fresh accepted total
+ok 100 - [P0] 19.1-UNIT-010 AC3/6 synthetic malformed bigint string cannot become a fresh accepted total
+  ---
+  duration_ms: 0.3385
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-010 AC3/6 synthetic non-finite ore cannot become a fresh accepted total
+ok 101 - [P0] 19.1-UNIT-010 AC3/6 synthetic non-finite ore cannot become a fresh accepted total
+  ---
+  duration_ms: 0.295
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-010 AC3/6 synthetic missing accepted money cannot become a fresh accepted total
+ok 102 - [P0] 19.1-UNIT-010 AC3/6 synthetic missing accepted money cannot become a fresh accepted total
+  ---
+  duration_ms: 0.2711
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-010 AC6 aggregate overflow is unavailable after individually safe accepted rows
+ok 103 - [P0] 19.1-UNIT-010 AC6 aggregate overflow is unavailable after individually safe accepted rows
+  ---
+  duration_ms: 0.5645
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-010 AC3 exact safe integer ore boundary remains successful
+ok 104 - [P0] 19.1-UNIT-010 AC3 exact safe integer ore boundary remains successful
+  ---
+  duration_ms: 0.5777
+  type: 'test'
+  ...
+# Subtest: [P0] 19.1-UNIT-004 AC4 seller result is projected before return, not CSS-hidden
+ok 105 - [P0] 19.1-UNIT-004 AC4 seller result is projected before return, not CSS-hidden
+  ---
+  duration_ms: 0.5185
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-009 AC3 default period equals existing Stockholm authority at 2024-02-29T09:00:00.000Z
+ok 106 - [P1] 19.1-UNIT-009 AC3 default period equals existing Stockholm authority at 2024-02-29T09:00:00.000Z
+  ---
+  duration_ms: 2.1203
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-009 AC3 default period equals existing Stockholm authority at 2026-03-29T00:30:00.000Z
+ok 107 - [P1] 19.1-UNIT-009 AC3 default period equals existing Stockholm authority at 2026-03-29T00:30:00.000Z
+  ---
+  duration_ms: 3.6353
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-009 AC3 default period equals existing Stockholm authority at 2026-07-19T23:30:00.000Z
+ok 108 - [P1] 19.1-UNIT-009 AC3 default period equals existing Stockholm authority at 2026-07-19T23:30:00.000Z
+  ---
+  duration_ms: 0.9652
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-012 AC6 old wrapper signature/fallback stays compatible while new entry distinguishes faults
+ok 109 - [P1] 19.1-UNIT-012 AC6 old wrapper signature/fallback stays compatible while new entry distinguishes faults
+  ---
+  duration_ms: 0.9513
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-015 AC3/6 real result consumes all bounded pages/chunks with no health query: 101 IDs
+ok 110 - [P1] 19.1-UNIT-015 AC3/6 real result consumes all bounded pages/chunks with no health query: 101 IDs
+  ---
+  duration_ms: 24.6404
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-015 AC3/6 real result consumes all bounded pages/chunks with no health query: 501 IDs
+ok 111 - [P1] 19.1-UNIT-015 AC3/6 real result consumes all bounded pages/chunks with no health query: 501 IDs
+  ---
+  duration_ms: 41.5233
+  type: 'test'
+  ...
+# Subtest: [P1] 19.1-UNIT-015 AC3/6 real result consumes all bounded pages/chunks with no health query: 1001 IDs
+ok 112 - [P1] 19.1-UNIT-015 AC3/6 real result consumes all bounded pages/chunks with no health query: 1001 IDs
+  ---
+  duration_ms: 66.1026
+  type: 'test'
+  ...
+# (node:41860) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [P1] 19.1-UNIT-013 AC9 completion instant is stamped after the final successful read
+ok 113 - [P1] 19.1-UNIT-013 AC9 completion instant is stamped after the final successful read
+  ---
+  duration_ms: 7.1035
+  type: 'test'
+  ...
+1..113
+# tests 119
+# suites 2
+# pass 119
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 555.6777

@@ -1,0 +1,232 @@
+tests\support\booking-conflicts-atdd.ts:1:import { readOperationReceipt, type OperationRpcArguments } from "@/server/commands/settings/settings-db";
+tests\support\booking-conflicts-atdd.ts:111:  return readOperationReceipt(saved.data,{operationId,targetId,expectedRevision:null}).targetId;
+tests\unit\features\settings\mutation-attempt.test.ts:3:import { OPERATION_KINDS, captureAttempt, attemptForm, settleAttempt, attemptBlocksReplacement, operationPreconditions, operationFormFields } from "@/features/settings/mutation-attempt";
+tests\unit\features\settings\mutation-attempt.test.ts:7:for (const kind of OPERATION_KINDS)
+tests\unit\features\settings\mutation-attempt.test.ts:11:        const a = captureAttempt({ kind, generation: 4, context: "tenant:actor", operationId: op, targetId: target, expectedRevision: kind.endsWith("create") ? null : revision, form, candidate: { name: "captured" } });
+tests\unit\features\settings\mutation-attempt.test.ts:17:        assert.equal(attemptBlocksReplacement(a), true);
+tests\unit\features\settings\mutation-attempt.test.ts:18:        const neighbor = settleAttempt(a, { status: "success", operationId: target, targetId: target, committedRevision: revision });
+tests\unit\features\settings\mutation-attempt.test.ts:20:        const unknown = settleAttempt(a, { status: "error", code: "SERVER_ERROR", operationId: op, targetId: target });
+tests\unit\features\settings\mutation-attempt.test.ts:23:            const denied = settleAttempt(unknown, { status: "error", code, operationId: op, targetId: target });
+tests\unit\features\settings\mutation-attempt.test.ts:26:            assert.equal(attemptBlocksReplacement(denied), true);
+tests\unit\features\settings\mutation-attempt.test.ts:28:        const missing = settleAttempt(unknown, { status: "unconfirmed", operationId: op, targetId: target });
+tests\unit\features\settings\mutation-attempt.test.ts:30:        const committed = settleAttempt(missing, { status: "success", operationId: op, targetId: target, committedRevision: revision });
+tests\unit\features\settings\mutation-attempt.test.ts:32:        assert.equal(attemptBlocksReplacement(committed), false);
+tests\unit\features\settings\mutation-attempt.test.ts:33:        assert.equal(settleAttempt(committed, { status: "error", code: "SERVER_ERROR", operationId: op, targetId: target }), committed);
+tests\unit\features\settings\mutation-attempt.test.ts:36:    const a = captureAttempt({ kind: "company.save", generation: 1, context: "t:a", operationId: op, targetId: target, expectedRevision: null, form: new FormData(), candidate: { company_name: "A" } });
+tests\unit\features\settings\mutation-attempt.test.ts:37:    assert.equal(settleAttempt(a, { status: "error", code: "COMMAND_CONFLICT", operationId: op, targetId: target }).phase, "rejected");
+tests\unit\features\settings\mutation-attempt.test.ts:38:    assert.equal(settleAttempt(a, { status: "success", operationId: op, targetId: target, committedRevision: null }).phase, "unknown");
+tests\unit\features\settings\mutation-attempt.test.ts:41:    assert.equal(operationPreconditions({}), null);
+tests\unit\features\settings\mutation-attempt.test.ts:42:    assert.equal(operationPreconditions({ operationId: op, targetId: target }), null);
+tests\unit\features\settings\mutation-attempt.test.ts:47:    assert.deepEqual(operationPreconditions(operationFormFields(f)), { operationId: op, targetId: target, expectedRevision: null });
+src\features\settings\mutation-attempt.ts:2:export const OPERATION_KINDS = ["company.save", "terms.save", "terms.approve", "work_role.create", "work_role.update", "work_role.archive", "work_role.reactivate", "article.create", "article.update", "article.archive", "article.reactivate"] as const;
+src\features\settings\mutation-attempt.ts:3:export type OperationKind = typeof OPERATION_KINDS[number];
+src\features\settings\mutation-attempt.ts:4:export interface OperationPreconditions {
+src\features\settings\mutation-attempt.ts:12:export interface OperationReceipt {
+src\features\settings\mutation-attempt.ts:20:export function operationPreconditions(raw: Record<string, unknown>): OperationPreconditions | null {
+src\features\settings\mutation-attempt.ts:27:export function operationFormFields(form: FormData): Record<string, unknown> {
+src\features\settings\mutation-attempt.ts:30:export interface MutationAttempt extends OperationPreconditions {
+src\features\settings\mutation-attempt.ts:31:    readonly kind: OperationKind;
+src\features\settings\mutation-attempt.ts:41:export function captureAttempt(input: {
+src\features\settings\mutation-attempt.ts:42:    kind: OperationKind;
+src\features\settings\mutation-attempt.ts:50:}): MutationAttempt {
+src\features\settings\mutation-attempt.ts:59:export function attemptForm(attempt: MutationAttempt): FormData {
+src\features\settings\mutation-attempt.ts:68:export function settleAttempt(attempt: MutationAttempt, result: {
+src\features\settings\mutation-attempt.ts:74:}): MutationAttempt {
+src\features\settings\mutation-attempt.ts:85:export function attemptBlocksReplacement(attempt: MutationAttempt | null): boolean { return attempt?.phase === "pending" || attempt?.phase === "unknown"; }
+src\features\settings\mutation-attempt.ts:86:export interface EditorOperationContext {
+tests\unit\features\settings\action-state.test.ts:3: * (`resolveTermsApproved` in `src/features/settings/action-state.ts`) and the
+tests\unit\features\settings\action-state.test.ts:17:  resolveTermsApproved,
+tests\unit\features\settings\action-state.test.ts:18:  isRetryableSettingsError,
+tests\unit\features\settings\action-state.test.ts:19:  SETTINGS_ACTION_INITIAL,
+tests\unit\features\settings\action-state.test.ts:20:  type SettingsActionState,
+tests\unit\features\settings\action-state.test.ts:21:} from "@/features/settings/action-state";
+tests\unit\features\settings\action-state.test.ts:25:// ── resolveTermsApproved: the approve-vs-save precedence ────────────────────────
+tests\unit\features\settings\action-state.test.ts:29:    resolveTermsApproved({
+tests\unit\features\settings\action-state.test.ts:40:    resolveTermsApproved({
+tests\unit\features\settings\action-state.test.ts:52:    resolveTermsApproved({
+tests\unit\features\settings\action-state.test.ts:65:    resolveTermsApproved({
+tests\unit\features\settings\action-state.test.ts:76:    resolveTermsApproved({
+tests\unit\features\settings\action-state.test.ts:90:    resolveTermsApproved({
+tests\unit\features\settings\action-state.test.ts:100:    resolveTermsApproved({
+tests\unit\features\settings\action-state.test.ts:116:        resolveTermsApproved({ serverApprovedAt, justSavedText, justApproved: true }),
+tests\unit\features\settings\action-state.test.ts:128:    resolveTermsApproved({
+tests\unit\features\settings\action-state.test.ts:136:    resolveTermsApproved({
+tests\unit\features\settings\action-state.test.ts:145:// ── isRetryableSettingsError ────────────────────────────────────────────────────
+tests\unit\features\settings\action-state.test.ts:148:  const serverError: SettingsActionState = {
+tests\unit\features\settings\action-state.test.ts:149:    ...SETTINGS_ACTION_INITIAL,
+tests\unit\features\settings\action-state.test.ts:153:  assert.equal(isRetryableSettingsError(serverError), true);
+tests\unit\features\settings\action-state.test.ts:155:  const validation: SettingsActionState = {
+tests\unit\features\settings\action-state.test.ts:156:    ...SETTINGS_ACTION_INITIAL,
+tests\unit\features\settings\action-state.test.ts:160:  assert.equal(isRetryableSettingsError(validation), false);
+tests\unit\features\settings\action-state.test.ts:162:  const denied: SettingsActionState = {
+tests\unit\features\settings\action-state.test.ts:163:    ...SETTINGS_ACTION_INITIAL,
+tests\unit\features\settings\action-state.test.ts:167:  assert.equal(isRetryableSettingsError(denied), false);
+tests\unit\features\settings\action-state.test.ts:172:  const state: SettingsActionState = {
+tests\unit\features\settings\action-state.test.ts:173:    ...SETTINGS_ACTION_INITIAL,
+tests\unit\features\settings\action-state.test.ts:177:  assert.equal(isRetryableSettingsError(state), false);
+tests\unit\features\settings\action-state.test.ts:181:  assert.equal(isRetryableSettingsError(SETTINGS_ACTION_INITIAL), false);
+src\features\settings\form-parsing.ts:1:import { operationFormFields } from "@/features/settings/mutation-attempt";
+src\features\settings\form-parsing.ts:75:        ...operationFormFields(form),
+src\features\settings\form-parsing.ts:102:    return { input: { ...operationFormFields(form), terms_text: termsText }, fieldErrors, values };
+src\features\settings\form-parsing.ts:110:    return { input: { ...operationFormFields(form), id, terms_text: field(form, "terms_text") }, fieldErrors, values: collectValues(form, ["id"]) };
+src\features\settings\actions.ts:7:import { type OperationKind, type OperationReceipt, isOperationUuid } from "@/features/settings/mutation-attempt";
+src\features\settings\actions.ts:11:import { SETTINGS_ACTION_INITIAL, type SettingsActionState } from "./action-state";
+src\features\settings\actions.ts:13:async function run(command: Command<never, OperationReceipt>, parsed: ParsedSettingsForm, formData: FormData, kind: OperationKind, path: string): Promise<SettingsActionState> {
+src\features\settings\actions.ts:15:    const base = { ...SETTINGS_ACTION_INITIAL, ...identity, values: parsed.values };
+src\features\settings\actions.ts:32:export async function saveCompanySettingsAction(_prev: SettingsActionState, form: FormData): Promise<SettingsActionState> { return run(updateCompanySettings as unknown as Command<never, OperationReceipt>, parseCompanySettingsForm(form), form, "company.save", "/settings/company"); }
+src\features\settings\actions.ts:33:export async function saveQuoteTermsAction(_prev: SettingsActionState, form: FormData): Promise<SettingsActionState> { return run(updateQuoteTerms as unknown as Command<never, OperationReceipt>, parseQuoteTermsForm(form), form, "terms.save", "/settings/quote-terms"); }
+src\features\settings\actions.ts:34:export async function approveTermsAction(_prev: SettingsActionState, form: FormData): Promise<SettingsActionState> { return run(approveQuoteTerms as unknown as Command<never, OperationReceipt>, parseApproveTermsForm(form), form, "terms.approve", "/settings/quote-terms"); }
+src\features\settings\action-state.ts:21:export type SettingsActionStatus = "idle" | "success" | "error" | "unconfirmed";
+src\features\settings\action-state.ts:23:export interface SettingsActionState {
+src\features\settings\action-state.ts:24:    readonly status: SettingsActionStatus;
+src\features\settings\action-state.ts:41:export const SETTINGS_ACTION_INITIAL: SettingsActionState = {
+src\features\settings\action-state.ts:54:export function isRetryableSettingsError(state: SettingsActionState): boolean {
+src\features\settings\action-state.ts:64:export interface SignoffInputs {
+src\features\settings\action-state.ts:87:export function resolveTermsApproved(inputs: SignoffInputs): boolean {
+tests\unit\features\pricing\action-state.test.ts:3: * (`src/features/pricing/action-state.ts`). Pin the LOAD-BEARING retryable-vs-denial
+tests\unit\features\pricing\action-state.test.ts:12:  isRetryablePricingError,
+tests\unit\features\pricing\action-state.test.ts:13:  PRICING_ACTION_INITIAL,
+tests\unit\features\pricing\action-state.test.ts:14:  type PricingActionState,
+tests\unit\features\pricing\action-state.test.ts:15:} from "@/features/pricing/action-state";
+tests\unit\features\pricing\action-state.test.ts:17:// ── PRICING_ACTION_INITIAL: the pristine state ──────────────────────────────────
+tests\unit\features\pricing\action-state.test.ts:20:  assert.equal(PRICING_ACTION_INITIAL.status, "idle");
+tests\unit\features\pricing\action-state.test.ts:21:  assert.equal(PRICING_ACTION_INITIAL.form, null);
+tests\unit\features\pricing\action-state.test.ts:22:  assert.equal(PRICING_ACTION_INITIAL.code, null);
+tests\unit\features\pricing\action-state.test.ts:23:  assert.equal(PRICING_ACTION_INITIAL.formError, null);
+tests\unit\features\pricing\action-state.test.ts:24:  assert.equal(PRICING_ACTION_INITIAL.targetId, null);
+tests\unit\features\pricing\action-state.test.ts:25:  assert.deepEqual(PRICING_ACTION_INITIAL.fieldErrors, {});
+tests\unit\features\pricing\action-state.test.ts:26:  assert.deepEqual(PRICING_ACTION_INITIAL.values, {});
+tests\unit\features\pricing\action-state.test.ts:29:// ── isRetryablePricingError: retryable (transient) vs denial (permanent) ──────────
+tests\unit\features\pricing\action-state.test.ts:32:  const serverError: PricingActionState = {
+tests\unit\features\pricing\action-state.test.ts:33:    ...PRICING_ACTION_INITIAL,
+tests\unit\features\pricing\action-state.test.ts:37:  assert.equal(isRetryablePricingError(serverError), true);
+tests\unit\features\pricing\action-state.test.ts:39:  const validation: PricingActionState = {
+tests\unit\features\pricing\action-state.test.ts:40:    ...PRICING_ACTION_INITIAL,
+tests\unit\features\pricing\action-state.test.ts:44:  assert.equal(isRetryablePricingError(validation), false);
+tests\unit\features\pricing\action-state.test.ts:46:  const denied: PricingActionState = {
+tests\unit\features\pricing\action-state.test.ts:47:    ...PRICING_ACTION_INITIAL,
+tests\unit\features\pricing\action-state.test.ts:51:  assert.equal(isRetryablePricingError(denied), false);
+tests\unit\features\pricing\action-state.test.ts:61:    const state: PricingActionState = { ...PRICING_ACTION_INITIAL, status: "error", code };
+tests\unit\features\pricing\action-state.test.ts:62:    assert.equal(isRetryablePricingError(state), false, `${code} must not be retryable`);
+tests\unit\features\pricing\action-state.test.ts:69:  const idle: PricingActionState = {
+tests\unit\features\pricing\action-state.test.ts:70:    ...PRICING_ACTION_INITIAL,
+tests\unit\features\pricing\action-state.test.ts:74:  assert.equal(isRetryablePricingError(idle), false);
+tests\unit\features\pricing\action-state.test.ts:76:  const success: PricingActionState = {
+tests\unit\features\pricing\action-state.test.ts:77:    ...PRICING_ACTION_INITIAL,
+tests\unit\features\pricing\action-state.test.ts:81:  assert.equal(isRetryablePricingError(success), false);
+tests\unit\features\pricing\action-state.test.ts:85:  assert.equal(isRetryablePricingError(PRICING_ACTION_INITIAL), false);
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:6:import { readOperationReceipt, type OperationRpcArguments } from "@/server/commands/settings/settings-db";
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:7:import { captureAttempt, settleAttempt, attemptBlocksReplacement, type OperationKind } from "@/features/settings/mutation-attempt";
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:13:    kind: OperationKind;
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:18:function operation(kind: OperationKind, targetId = crypto.randomUUID(), revision: string | null = null, payload?: Readonly<Record<string, unknown>>): Op {
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:26:async function committed(op: Op, client = a) { const r = await call(op, client); expect(r.error).toBeNull(); return readOperationReceipt(r.data, { operationId: op.args.p_operation_id, targetId: op.args.p_target_id, expectedRevision: op.args.p_expected_revision }); }
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:29:async function prepare(kind: OperationKind, existing = false): Promise<Op> {
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:51:    OperationKind,
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:89:            const receipt = readOperationReceipt(results[0].data, { operationId: op.args.p_operation_id, targetId: op.args.p_target_id, expectedRevision: op.args.p_expected_revision });
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:285:                const attempt = captureAttempt({ kind: op.kind, generation: 1, context: "actual tenant actor", operationId: op.args.p_operation_id, targetId: op.args.p_target_id, expectedRevision: null, form: new FormData(), candidate: op.args.p_payload });
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:286:                let unknown = settleAttempt(attempt, { status: "unconfirmed", operationId: attempt.operationId, targetId: attempt.targetId });
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:290:                unknown = settleAttempt(unknown, { status: "error", code: "TENANT_ACCESS_DENIED", operationId: attempt.operationId, targetId: attempt.targetId });
+tests\integration\commands\settings-pricing-operation-contract.int.test.ts:293:                expect(attemptBlocksReplacement(unknown)).toBe(true);
+src\features\pricing\action-state.ts:3: * Task 4.4). Mirrors the settings `SettingsActionState` shape EXACTLY (the established
+src\features\pricing\action-state.ts:20:export type PricingActionStatus = "idle" | "success" | "error" | "unconfirmed";
+src\features\pricing\action-state.ts:26:export type PricingFormKind = "work_role" | "article";
+src\features\pricing\action-state.ts:28:export interface PricingActionState {
+src\features\pricing\action-state.ts:29:    readonly status: PricingActionStatus;
+src\features\pricing\action-state.ts:31:    readonly form: PricingFormKind | null;
+src\features\pricing\action-state.ts:48:export const PRICING_ACTION_INITIAL: PricingActionState = {
+src\features\pricing\action-state.ts:62:export function isRetryablePricingError(state: PricingActionState): boolean {
+src\features\pricing\form-parsing.ts:1:import { operationFormFields } from "@/features/settings/mutation-attempt";
+src\features\pricing\form-parsing.ts:73:        ...operationFormFields(form),
+src\features\pricing\form-parsing.ts:105:        ...operationFormFields(form),
+src\features\pricing\form-parsing.ts:121:    return { input: { ...operationFormFields(form), id }, fieldErrors, values: collectValues(form, ["id"]) };
+src\features\pricing\actions.ts:7:import { type OperationKind, type OperationReceipt, isOperationUuid } from "@/features/settings/mutation-attempt";
+src\features\pricing\actions.ts:11:import { PRICING_ACTION_INITIAL, type PricingActionState } from "./action-state";
+src\features\pricing\actions.ts:13:async function run(command: Command<never, OperationReceipt>, parsed: ParsedPricingForm, formData: FormData, kind: OperationKind, path: string): Promise<PricingActionState> {
+src\features\pricing\actions.ts:15:    const base = { ...PRICING_ACTION_INITIAL, ...identity, values: parsed.values, form: kind.startsWith("work_role") ? "work_role" as const : "article" as const };
+src\features\pricing\actions.ts:32:export async function saveWorkRoleAction(_prev: PricingActionState, form: FormData): Promise<PricingActionState> { return run(upsertWorkRole as unknown as Command<never, OperationReceipt>, parseWorkRoleForm(form), form, form.get("id") ? "work_role.update" : "work_role.create", "/settings/pricing"); }
+src\features\pricing\actions.ts:33:export async function archiveWorkRoleAction(_prev: PricingActionState, form: FormData): Promise<PricingActionState> { return run(archiveWorkRole as unknown as Command<never, OperationReceipt>, parseArchiveForm(form), form, "work_role.archive", "/settings/pricing"); }
+src\features\pricing\actions.ts:34:export async function reactivateWorkRoleAction(_prev: PricingActionState, form: FormData): Promise<PricingActionState> { return run(reactivateWorkRole as unknown as Command<never, OperationReceipt>, parseArchiveForm(form), form, "work_role.reactivate", "/settings/pricing"); }
+src\features\pricing\actions.ts:35:export async function saveArticleAction(_prev: PricingActionState, form: FormData): Promise<PricingActionState> { return run(upsertArticle as unknown as Command<never, OperationReceipt>, parseArticleForm(form), form, form.get("id") ? "article.update" : "article.create", "/settings/pricing"); }
+src\features\pricing\actions.ts:36:export async function archiveArticleAction(_prev: PricingActionState, form: FormData): Promise<PricingActionState> { return run(archiveArticle as unknown as Command<never, OperationReceipt>, parseArchiveForm(form), form, "article.archive", "/settings/pricing"); }
+src\features\pricing\actions.ts:37:export async function reactivateArticleAction(_prev: PricingActionState, form: FormData): Promise<PricingActionState> { return run(reactivateArticle as unknown as Command<never, OperationReceipt>, parseArchiveForm(form), form, "article.reactivate", "/settings/pricing"); }
+src\server\commands\settings\company-settings.ts:2:import type { OperationReceipt } from "@/features/settings/mutation-attempt";
+src\server\commands\settings\company-settings.ts:3:import { asSettingsAuditRpcClient, companyPayload, operationRpcArguments, readOperationReceipt, throwMappedWriteError } from "./settings-db";
+src\server\commands\settings\company-settings.ts:5:export type SettingsCommandResult = OperationReceipt;
+src\server\commands\settings\company-settings.ts:15:        return readOperationReceipt(data, ctx.input);
+src\server\commands\settings\validation.ts:1:import { operationPreconditions, type OperationPreconditions } from "@/features/settings/mutation-attempt";
+src\server\commands\settings\validation.ts:106:export interface UpdateCompanySettingsInput extends OperationPreconditions {
+src\server\commands\settings\validation.ts:126:    const operation = operationPreconditions(raw);
+src\server\commands\settings\validation.ts:187:export interface UpdateQuoteTermsInput extends OperationPreconditions {
+src\server\commands\settings\validation.ts:193:    const operation = operationPreconditions(raw);
+src\server\commands\settings\validation.ts:204:export interface ApproveQuoteTermsInput extends OperationPreconditions {
+src\server\commands\settings\validation.ts:211:    const operation = operationPreconditions(raw);
+src\server\commands\settings\settings-db.ts:4:import { isOperationUuid, type OperationPreconditions, type OperationReceipt } from "@/features/settings/mutation-attempt";
+src\server\commands\settings\settings-db.ts:27:export function operationRpcArguments(input: OperationPreconditions, tenantId: string, actorId: string, correlationId: string, payload: Readonly<Record<string, unknown>>): OperationRpcArguments {
+src\server\commands\settings\settings-db.ts:37:export function readOperationReceipt(data: unknown, input: OperationPreconditions): OperationReceipt {
+src\server\commands\settings\quote-terms.ts:3:import { asSettingsAuditRpcClient, operationRpcArguments, readOperationReceipt, throwMappedWriteError } from "./settings-db";
+src\server\commands\settings\quote-terms.ts:8:        throwMappedWriteError(error); return readOperationReceipt(data, ctx.input); }, auditFields: (_ctx, result) => ({ targetId: result.targetId })
+src\server\commands\settings\quote-terms.ts:13:        throwMappedWriteError(error); return readOperationReceipt(data, ctx.input); }, auditFields: (_ctx, result) => ({ targetId: result.targetId })
+src\server\commands\settings\operation-recovery.ts:3:import { OPERATION_KINDS, type OperationKind, type OperationPreconditions, type OperationReceipt } from "@/features/settings/mutation-attempt";
+src\server\commands\settings\operation-recovery.ts:6:import { companyPayload, operationRpcArguments, readOperationReceipt, throwMappedWriteError, type OperationRpcArguments, type OperationRpcResult } from "./settings-db";
+src\server\commands\settings\operation-recovery.ts:7:interface RecoveryInput extends OperationPreconditions {
+src\server\commands\settings\operation-recovery.ts:8:    readonly kind: OperationKind;
+src\server\commands\settings\operation-recovery.ts:11:export type RecoveryResult = OperationReceipt | {
+src\server\commands\settings\operation-recovery.ts:22:    if (typeof kind !== "string" || !(OPERATION_KINDS as readonly string[]).includes(kind) || /^(work_role|article)\./.test(kind) !== pricing)
+src\server\commands\settings\operation-recovery.ts:41:    return v.ok ? { ok: true, data: { ...v.data, kind: kind as OperationKind, payload: { is_active: kind.endsWith("reactivate") } } } : fail;
+src\server\commands\settings\operation-recovery.ts:45:        p_operation_kind: OperationKind;
+src\server\commands\settings\operation-recovery.ts:56:        return readOperationReceipt(data, ctx.input);
+src\server\commands\settings\operation-recovery.ts:66:        return readOperationReceipt(data, ctx.input);
+src\server\commands\pricing\work-roles.ts:2:import type { OperationReceipt } from "@/features/settings/mutation-attempt";
+src\server\commands\pricing\work-roles.ts:3:import { asPricingAuditRpcClient, operationRpcArguments, readOperationReceipt, throwMappedWriteError } from "./pricing-db";
+src\server\commands\pricing\work-roles.ts:5:export type PricingCommandResult = OperationReceipt;
+src\server\commands\pricing\work-roles.ts:9:        throwMappedWriteError(error); return readOperationReceipt(data, ctx.input); }, auditFields: (_ctx, result) => ({ targetId: result.targetId })
+src\server\commands\pricing\work-roles.ts:14:        throwMappedWriteError(error); return readOperationReceipt(data, ctx.input); }, auditFields: (_ctx, result) => ({ targetId: result.targetId })
+src\server\commands\pricing\work-roles.ts:19:        throwMappedWriteError(error); return readOperationReceipt(data, ctx.input); }, auditFields: (_ctx, result) => ({ targetId: result.targetId })
+src\server\commands\pricing\validation.ts:1:import { operationPreconditions, type OperationPreconditions } from "@/features/settings/mutation-attempt";
+src\server\commands\pricing\validation.ts:90:export interface UpsertWorkRoleInput extends OperationPreconditions {
+src\server\commands\pricing\validation.ts:99:    const operation = operationPreconditions(raw);
+src\server\commands\pricing\validation.ts:136:export interface UpsertArticleInput extends OperationPreconditions {
+src\server\commands\pricing\validation.ts:146:    const operation = operationPreconditions(raw);
+src\server\commands\pricing\validation.ts:186:export interface ArchiveInput extends OperationPreconditions {
+src\server\commands\pricing\validation.ts:192:    const operation = operationPreconditions(raw);
+src\server\commands\pricing\pricing-db.ts:3:export { operationRpcArguments, readOperationReceipt, throwMappedWriteError } from "../settings/settings-db";
+src\server\commands\pricing\articles.ts:2:import type { OperationReceipt } from "@/features/settings/mutation-attempt";
+src\server\commands\pricing\articles.ts:3:import { asPricingAuditRpcClient, operationRpcArguments, readOperationReceipt, throwMappedWriteError } from "./pricing-db";
+src\server\commands\pricing\articles.ts:5:export type PricingCommandResult = OperationReceipt;
+src\server\commands\pricing\articles.ts:9:        throwMappedWriteError(error); return readOperationReceipt(data, ctx.input); }, auditFields: (_ctx, result) => ({ targetId: result.targetId })
+src\server\commands\pricing\articles.ts:14:        throwMappedWriteError(error); return readOperationReceipt(data, ctx.input); }, auditFields: (_ctx, result) => ({ targetId: result.targetId })
+src\server\commands\pricing\articles.ts:19:        throwMappedWriteError(error); return readOperationReceipt(data, ctx.input); }, auditFields: (_ctx, result) => ({ targetId: result.targetId })
+src\components\settings\QuoteTermsEditor.tsx:20:import type { EditorOperationContext } from "@/features/settings/mutation-attempt";
+src\components\settings\QuoteTermsEditor.tsx:25:import { SETTINGS_ACTION_INITIAL, } from "@/features/settings/action-state";
+src\components\settings\QuoteTermsEditor.tsx:30:    readonly operationContext: EditorOperationContext | null;
+src\components\settings\QuoteTermsEditor.tsx:50:    const operation = useMountedSettingsPricingAttempt(SETTINGS_ACTION_INITIAL, defaults.operationContext, defaults.readToken);
+src\components\settings\QuoteTermsEditor.tsx:53:    const saveState = operation.kind === "terms.save" ? operation.state : SETTINGS_ACTION_INITIAL;
+src\components\settings\QuoteTermsEditor.tsx:54:    const approveState = operation.kind === "terms.approve" ? operation.state : SETTINGS_ACTION_INITIAL;
+src\components\settings\CompanySettingsForm.tsx:25:import { attemptBlocksReplacement, attemptForm, captureAttempt, settleAttempt, type MutationAttempt, type OperationKind, type EditorOperationContext } from "@/features/settings/mutation-attempt";
+src\components\settings\CompanySettingsForm.tsx:26:import type { SettingsActionState } from "@/features/settings/action-state";
+src\components\settings\CompanySettingsForm.tsx:29:import { SETTINGS_ACTION_INITIAL } from "@/features/settings/action-state";
+src\components\settings\CompanySettingsForm.tsx:36:    readonly operationContext: EditorOperationContext | null;
+src\components\settings\CompanySettingsForm.tsx:53:    const operation = useMountedSettingsPricingAttempt(SETTINGS_ACTION_INITIAL, defaults.operationContext, defaults.readToken);
+src\components\settings\CompanySettingsForm.tsx:99:export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(initial: S, context: EditorOperationContext | null, readToken: string) {
+src\components\settings\CompanySettingsForm.tsx:101:    const attempt = useRef<MutationAttempt | null>(null);
+src\components\settings\CompanySettingsForm.tsx:109:    const [phase, setPhase] = useState<MutationAttempt["phase"] | "idle">("idle");
+src\components\settings\CompanySettingsForm.tsx:114:        const before = (e: BeforeUnloadEvent) => { if (attemptBlocksReplacement(attempt.current)) {
+src\components\settings\CompanySettingsForm.tsx:118:        const click = (e: MouseEvent) => { const a = (e.target as Element).closest?.("a[href]"); if (a && attemptBlocksReplacement(attempt.current)) {
+src\components\settings\CompanySettingsForm.tsx:133:        const back = () => { if (attemptBlocksReplacement(attempt.current))
+src\components\settings\CompanySettingsForm.tsx:161:            const next = settleAttempt(attempt.current, result);
+src\components\settings\CompanySettingsForm.tsx:183:    const submit = async (action: (s: S, f: FormData) => Promise<S>, kind: OperationKind, form: FormData, targetId: string | null, revision: string | null, readError = false) => {
+src\components\settings\CompanySettingsForm.tsx:184:        if (busy.current || attemptBlocksReplacement(attempt.current) || needsRefresh)
+src\components\settings\CompanySettingsForm.tsx:207:        attempt.current = captureAttempt({ operationId, kind, generation: ++serial.current, context: context.tenantId + ":" + context.actorId + ":" + window.location.pathname, targetId: proposedTarget, expectedRevision: revision, form, candidate: { ...checked.data } });
+src\components\settings\CompanySettingsForm.tsx:213:    const reset = () => { if (attemptBlocksReplacement(attempt.current))
+src\components\pricing\ArticlesEditor.tsx:20:import type { EditorOperationContext } from "@/features/settings/mutation-attempt";
+src\components\pricing\ArticlesEditor.tsx:25:import { PRICING_ACTION_INITIAL } from "@/features/pricing/action-state";
+src\components\pricing\ArticlesEditor.tsx:29:    readonly operationContext: EditorOperationContext | null;
+src\components\pricing\ArticlesEditor.tsx:34:    const operation = useMountedSettingsPricingAttempt(PRICING_ACTION_INITIAL, operationContext, readToken);
+src\components\pricing\ArticlesEditor.tsx:38:    const archiveState = operation.kind === "article.archive" ? state : PRICING_ACTION_INITIAL;
+src\components\pricing\ArticlesEditor.tsx:39:    const reactivateState = operation.kind === "article.reactivate" ? state : PRICING_ACTION_INITIAL;
+src\components\pricing\WorkRolesEditor.tsx:19:import type { EditorOperationContext } from "@/features/settings/mutation-attempt";
+src\components\pricing\WorkRolesEditor.tsx:24:import { PRICING_ACTION_INITIAL } from "@/features/pricing/action-state";
+src\components\pricing\WorkRolesEditor.tsx:28:    readonly operationContext: EditorOperationContext | null;
+src\components\pricing\WorkRolesEditor.tsx:33:    const operation = useMountedSettingsPricingAttempt(PRICING_ACTION_INITIAL, operationContext, readToken);
+src\components\pricing\WorkRolesEditor.tsx:37:    const archiveState = operation.kind === "work_role.archive" ? state : PRICING_ACTION_INITIAL;
+src\components\pricing\WorkRolesEditor.tsx:38:    const reactivateState = operation.kind === "work_role.reactivate" ? state : PRICING_ACTION_INITIAL;

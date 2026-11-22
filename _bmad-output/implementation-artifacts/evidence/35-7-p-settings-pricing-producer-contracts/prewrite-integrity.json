@@ -1,0 +1,369 @@
+{
+  "captured_at_utc": "2026-11-02T11:22:54.144090+00:00",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "source_files": [
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/.memlog.md",
+      "expected_raw_sha256": "c67220076bd2a84d5827fabc02cee0e2e1b4b224d9d34ad8b820c4640fffdd43",
+      "actual_raw_sha256": "c67220076bd2a84d5827fabc02cee0e2e1b4b224d9d34ad8b820c4640fffdd43",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/allocation-and-admission.md",
+      "expected_raw_sha256": "ccf0ac78d7f4595218d145cc6d9d3b5351be368896df17f1933643fdf383845d",
+      "actual_raw_sha256": "ccf0ac78d7f4595218d145cc6d9d3b5351be368896df17f1933643fdf383845d",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-review.json",
+      "expected_raw_sha256": "c0f7362346077f868f27cfdb36dab5495ef043b3386d279117fe15cef9386317",
+      "actual_raw_sha256": "c0f7362346077f868f27cfdb36dab5495ef043b3386d279117fe15cef9386317",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-review.md",
+      "expected_raw_sha256": "a11c5cca98a8422492dab57888ea7a183062b331cc522b9560a656baff4ac203",
+      "actual_raw_sha256": "a11c5cca98a8422492dab57888ea7a183062b331cc522b9560a656baff4ac203",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/evidence/source-routing.json",
+      "expected_raw_sha256": "3263c1e9ebcc158c363596211ccf1e44097ea0e721a9e970a3217d6a313df12c",
+      "actual_raw_sha256": "3263c1e9ebcc158c363596211ccf1e44097ea0e721a9e970a3217d6a313df12c",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.json",
+      "expected_raw_sha256": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408",
+      "actual_raw_sha256": "ffea1663cd548a0cdeeb912e10333a3d0e94cae5363df20a4f335f517aa7b408",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "expected_raw_sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+      "actual_raw_sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/source-binding.json",
+      "expected_raw_sha256": "5e1d4dd2b3f45f4efb2ce0bfe7fa8619921da9ff7f6992c210fc06c6849c7677",
+      "actual_raw_sha256": "5e1d4dd2b3f45f4efb2ce0bfe7fa8619921da9ff7f6992c210fc06c6849c7677",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/SPEC.md",
+      "expected_raw_sha256": "24e384be5b2d3a3723fa61d1a76c6a090ef98dd0450626e3032ea62d200cdf74",
+      "actual_raw_sha256": "24e384be5b2d3a3723fa61d1a76c6a090ef98dd0450626e3032ea62d200cdf74",
+      "unchanged": true
+    }
+  ],
+  "canonical_unchanged_count": 9,
+  "product_test_preimages": [
+    {
+      "path": "src/features/settings/actions.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/features/settings/read.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/features/settings/form-parsing.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/features/settings/action-state.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/features/pricing/read.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/features/pricing/form-parsing.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/features/pricing/action-state.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/server/commands/settings/validation.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/server/commands/settings/settings-db.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/server/commands/pricing/validation.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/server/commands/pricing/pricing-db.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/features/settings/mutation-attempt.ts",
+      "expected_exists": false,
+      "actual_exists": false,
+      "unchanged": true
+    },
+    {
+      "path": "src/server/commands/settings/operation-recovery.ts",
+      "expected_exists": false,
+      "actual_exists": false,
+      "unchanged": true
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/components/settings/CompanySettingsForm.tsx",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/app/(app)/settings/company/page.tsx",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/app/(app)/settings/quote-terms/page.tsx",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/app/(app)/settings/pricing/page.tsx",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/unit/features/settings/form-parsing.test.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/unit/features/settings/action-state.test.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/unit/features/settings/mutation-attempt.test.ts",
+      "expected_exists": false,
+      "actual_exists": false,
+      "unchanged": true
+    },
+    {
+      "path": "tests/unit/features/pricing/form-parsing.test.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/unit/features/pricing/action-state.test.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/unit/server/commands/settings-validation.test.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/unit/server/commands/pricing-validation.test.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+      "expected_exists": false,
+      "actual_exists": false,
+      "unchanged": true
+    },
+    {
+      "path": "tests/integration/rls/settings-rls.int.test.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+      "expected_exists": false,
+      "actual_exists": false,
+      "unchanged": true
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/e2e/settings/settings.e2e.spec.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+      "expected_exists": true,
+      "actual_exists": true,
+      "unchanged": true
+    }
+  ],
+  "unchanged_product_test_count": 42,
+  "existing_migration_count": 120,
+  "generated_task_migration_count": 0,
+  "old_rpc_production_calls": [
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 47,
+      "rpc": "upsert_article_with_audit"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 75,
+      "rpc": "set_article_active_with_audit"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "line": 109,
+      "rpc": "set_article_active_with_audit"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 67,
+      "rpc": "upsert_work_role_with_audit"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 95,
+      "rpc": "set_work_role_active_with_audit"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "line": 129,
+      "rpc": "set_work_role_active_with_audit"
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "line": 71,
+      "rpc": "upsert_company_settings_with_audit"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "line": 54,
+      "rpc": "upsert_quote_terms_with_audit"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "line": 86,
+      "rpc": "approve_quote_terms_with_audit"
+    }
+  ],
+  "distinct_old_rpc_count": 7,
+  "target_migration_state": "not inspected: no isolated target launched due prewrite allocation hold",
+  "runtime_tests_executed": 0,
+  "implementation_review_performed": false
+}

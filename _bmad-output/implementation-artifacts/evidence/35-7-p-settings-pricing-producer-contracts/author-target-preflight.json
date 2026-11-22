@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-02T12:03:16.844Z",
+  "sourceMigrationCount": 120,
+  "target": [
+    {
+      "db": "postgres",
+      "port": 5432,
+      "current_user": "postgres",
+      "version": "PostgreSQL 17.6 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+      "ledger": null,
+      "company": null
+    }
+  ]
+}

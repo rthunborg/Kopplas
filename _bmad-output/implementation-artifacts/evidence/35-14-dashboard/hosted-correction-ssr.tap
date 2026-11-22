@@ -1,0 +1,76 @@
+TAP version 13
+# (node:45772) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-14-20261112/worker/tests/unit/components/dashboard/widget-state.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-14-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 19.1-UNIT-013 actual pipeline component states (SSR)
+    # Subtest: [P1] loading announces progress without fabricated values or success time [AC9]
+    ok 1 - [P1] loading announces progress without fabricated values or success time [AC9]
+      ---
+      duration_ms: 270.9392
+      type: 'test'
+      ...
+    # Subtest: [P1] loaded value uses shared integer-öre presentation and honest completion time [AC3,9]
+    ok 2 - [P1] loaded value uses shared integer-öre presentation and honest completion time [AC3,9]
+      ---
+      duration_ms: 14.0485
+      type: 'test'
+      ...
+    # Subtest: [P1] successful empty is period-specific, null rate and entitled zero [AC4,5]
+    ok 3 - [P1] successful empty is period-specific, null rate and entitled zero [AC4,5]
+      ---
+      duration_ms: 1.5363
+      type: 'test'
+      ...
+    # Subtest: [P1] sent-only success is active but has no decided-deal rate [AC5]
+    ok 4 - [P1] sent-only success is active but has no decided-deal rate [AC5]
+      ---
+      duration_ms: 1.078
+      type: 'test'
+      ...
+    # Subtest: [P1] absent-withheld money renders Dold and SR description, never zero [AC4]
+    ok 5 - [P1] absent-withheld money renders Dold and SR description, never zero [AC4]
+      ---
+      duration_ms: 1.6051
+      type: 'test'
+      ...
+    # Subtest: [P1] failure has accessible local error/retry and no values or success stamp [AC6,9]
+    ok 6 - [P1] failure has accessible local error/retry and no values or success stamp [AC6,9]
+      ---
+      duration_ms: 0.7557
+      type: 'test'
+      ...
+    1..6
+ok 1 - 19.1-UNIT-013 actual pipeline component states (SSR)
+  ---
+  duration_ms: 290.6844
+  type: 'suite'
+  ...
+# Subtest: 19.1-UNIT-014 card isolation in the real grid
+    # Subtest: [P1] loaded pipeline preserves a healthy sibling in the shared grid [AC6]
+    ok 1 - [P1] loaded pipeline preserves a healthy sibling in the shared grid [AC6]
+      ---
+      duration_ms: 5.5098
+      type: 'test'
+      ...
+    # Subtest: [P1] error pipeline preserves a healthy sibling in the shared grid [AC6]
+    ok 2 - [P1] error pipeline preserves a healthy sibling in the shared grid [AC6]
+      ---
+      duration_ms: 1.4719
+      type: 'test'
+      ...
+    1..2
+ok 2 - 19.1-UNIT-014 card isolation in the real grid
+  ---
+  duration_ms: 7.2517
+  type: 'suite'
+  ...
+1..2
+# tests 8
+# suites 2
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 504.662

@@ -1,0 +1,814 @@
+{
+  "task_id": "35.7-P",
+  "captured_at_utc": "2026-11-02T16:36:47.692575+00:00",
+  "head": "deb14ba0f9250c4e02f6d43011acc79ab475f613",
+  "kind": "Fresh read-only approval/key/SQLite/worktree writer inventory before approved smoke/capture writes",
+  "new_exact_key": "package.json scripts.test:smoke",
+  "author_owned_paths": [
+    "package.json",
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "tests/e2e/pricing/pricing.e2e.spec.ts"
+  ],
+  "approval": "smoke-line-owner-approval.json actual human approval, exact proposal only",
+  "package_preimage_verified": true,
+  "SQLite_mode": "ro",
+  "runs": [
+    {
+      "run": "documents-e20-readiness-2026-10-09",
+      "epic": "20",
+      "owner": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+      "state": "finalized"
+    },
+    {
+      "run": "e35-6-20261102",
+      "epic": "spec-design-35-6",
+      "owner": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+      "state": "active"
+    }
+  ],
+  "claims": [
+    {
+      "run": "documents-e20-readiness-2026-10-09",
+      "story": "20.1",
+      "worker": "01a11ae8-4100-7042-9c22-d1aca188e683",
+      "generation": 2,
+      "branch": "codex/parallel-documents-e20-readiness-2026-10-09-20-1",
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-1\\Kopplas",
+      "base_sha": "e2de5902d9e83f4c0fb132a5db274a575168bfe7",
+      "heartbeat": 1791813344.9345987,
+      "state": "integrated",
+      "evidence": "{\"base_sha\":\"e2de5902d9e83f4c0fb132a5db274a575168bfe7\",\"changed_paths\":[\"_bmad-output/auto-bmad/reports/20-1-documents-activation-and-source-authorized-aggregation.md\",\"_bmad-output/auto-bmad/state/20-1-documents-activation-and-source-authorized-aggregation.yaml\",\"_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md\",\"src/components/files/FileIndexList.tsx\",\"src/components/files/FileIndexUpload.tsx\",\"tests/e2e/files/documents.e2e.spec.ts\",\"tests/e2e/files/entity-file-preview.e2e.spec.ts\",\"tests/e2e/files/file-index-scope.e2e.spec.ts\",\"tests/unit/scope/manifest-shape.test.ts\"],\"checks\":[{\"argv\":[\"node\",\"--experimental-strip-types\",\"--import\",\"./tests/support/register.mjs\",\"--test\",\"tests/unit/server/read-models/documents.test.ts\",\"tests/unit/server/read-models/document-sources.test.ts\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":94,\"name\":\"documents-source-unit\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"pnpm\",\"exec\",\"vitest\",\"run\",\"tests/integration/rls/documents.rls.test.ts\",\"tests/integration/commands/documents-signed-access.int.test.ts\",\"--reporter=json\",\"--outputFile=C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\Temp\\\\Kopplas-documents20-1-generation2-final-repaired-2026-10-12\\\\checks\\\\documents-integration-rls.vitest.json\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":99,\"name\":\"documents-integration-rls\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"pnpm\",\"exec\",\"vitest\",\"run\",\"tests/integration/commands/file-signed-access.int.test.ts\",\"tests/integration/commands/file-signed-access-refresh.int.test.ts\",\"--reporter=json\",\"--outputFile=C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\Temp\\\\Kopplas-documents20-1-generation2-final-repaired-2026-10-12\\\\checks\\\\files-signed-access-integration.vitest.json\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":20,\"name\":\"files-signed-access-integration\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"pnpm\",\"exec\",\"playwright\",\"test\",\"tests/e2e/files/documents.e2e.spec.ts\",\"tests/e2e/files/file-index-scope.e2e.spec.ts\",\"tests/e2e/files/entity-file-preview.e2e.spec.ts\",\"--reporter=json\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"cdp_origin\":\"http://127.0.0.1:55623\",\"db_origin\":\"127.0.0.1:55622\",\"flaky\":0,\"production_origin\":\"http://127.0.0.1:3100\"},\"executed\":41,\"name\":\"documents-browser\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"wsl.exe\",\"--distribution\",\"Ubuntu-24.04\",\"--cd\",\"/mnt/c/Users/Rasmus/.codex/worktrees/documents-e20-20-1/Kopplas\",\"--exec\",\"env\",\"NODE_PATH=/tmp/kopplas-documents20-1-linux-native/node_modules\",\"PATH=/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"SUPABASE_TEST_REQUIRED=1\",\"SUPABASE_TEST_URL=http://127.0.0.1:55621\",\"SUPABASE_TEST_DB_URL=postgresql://postgres:postgres@127.0.0.1:55622/postgres\",\"/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin/node\",\"--experimental-strip-types\",\"--import\",\"./tests/support/register.mjs\",\"--test\",\"tests/unit/**/*.test.ts\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"NODE_PATH\":\"/tmp/kopplas-documents20-1-linux-native/node_modules\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\",\"provenance_file\":\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\Temp\\\\Kopplas-documents20-1-generation2-final-repaired-2026-10-12\\\\checks\\\\linux-provenance.json\",\"runtime\":\"Linux official Node v22.23.2, SHA256 verified\"},\"executed\":2432,\"name\":\"unit\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"pnpm\",\"run\",\"typecheck\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":1,\"name\":\"typecheck\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"pnpm\",\"run\",\"lint\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":1,\"name\":\"lint\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"pnpm\",\"run\",\"build\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":1,\"name\":\"production-build\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"pnpm\",\"run\",\"verify:service-role-containment\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":1,\"name\":\"service-role-containment\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"pnpm\",\"run\",\"verify:bundle-containment\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":1,\"name\":\"bundle-containment\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"pnpm\",\"run\",\"verify:lockfiles\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":1,\"name\":\"lockfiles\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"pnpm\",\"exec\",\"vitest\",\"run\",\"tests/integration/rls/documents.rls.test.ts\",\"tests/integration/commands/documents-signed-access.int.test.ts\",\"tests/integration/commands/file-signed-access.int.test.ts\",\"tests/integration/commands/file-signed-access-refresh.int.test.ts\",\"--reporter=json\",\"--outputFile=C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\Temp\\\\Kopplas-documents20-1-generation2-final-repaired-2026-10-12\\\\checks\\\\documents-baseline-storage-boundary.vitest.json\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":119,\"name\":\"documents-baseline-storage-boundary\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"node\",\"--experimental-strip-types\",\"--import\",\"./tests/support/register.mjs\",\"--test\",\"tests/unit/server/storage/document-signed-access-attestation.test.ts\",\"tests/unit/server/commands/documents-signed-access.test.ts\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":100,\"name\":\"documents-selected-link-unit\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"pnpm\",\"exec\",\"vitest\",\"run\",\"tests/integration/commands/documents-signed-access-lock-races.int.test.ts\",\"--reporter=json\",\"--outputFile=C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\Temp\\\\Kopplas-documents20-1-generation2-final-repaired-2026-10-12\\\\checks\\\\documents-selected-link-lock-races-integration.vitest.json\"],\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"environment\":{\"SUPABASE_TEST_REQUIRED\":\"1\",\"api_origin\":\"http://127.0.0.1:55621\",\"db_origin\":\"127.0.0.1:55622\"},\"executed\":38,\"name\":\"documents-selected-link-lock-races-integration\",\"result\":\"passed\",\"skipped\":0}],\"generation\":2,\"result_sha\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"review\":{\"approved\":true,\"commit\":\"df4d706a0648804b97f123e76eb4ccfc6f3727a3\",\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"reviewer\":\"codex-exec:01a13061-3c4b-7f50-a9e9-42094df18fb0\",\"unresolved\":[]},\"routes\":[{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"reason\":\"Current source authorization, checked signing, public tokens and transactional integrity; retained High for original-author targeted upload-reset repair\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"reason\":\"Source-authority, loading, expiry and exact Storage-byte test verification under existing authorization boundary\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"independent-review\",\"reason\":\"Runtime-resolved external read-only latest-fix confirmation; original three broad rounds preserved\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"final-verification\",\"reason\":\"All14 required real native gates replayed on exact repaired candidate with enforced local DB/RLS execution and zero skips\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]}],\"run_id\":\"documents-e20-readiness-2026-10-09\",\"schema_version\":1,\"spec_revision\":\"63b9e8c20cbb5f116da0a66d6e0ffe27cdc61a9e1f01b11d7f3720fd4e3bc7ea\",\"story_id\":\"20.1\",\"worker\":\"01a11ae8-4100-7042-9c22-d1aca188e683\",\"workflow_version\":\"95bf1053f665699aa1e44ee4711c6941ea8f2851c8bb8debd1ca9203acc7ad93\"}",
+      "result_sha": "df4d706a0648804b97f123e76eb4ccfc6f3727a3",
+      "integration_sha": "6e1aaf94a16a2d386b8f410f56e57c3039b2aeff",
+      "block_reason": null
+    },
+    {
+      "run": "documents-e20-readiness-2026-10-09",
+      "story": "20.2",
+      "worker": "01a11ae8-4100-7042-9c22-d1aca188e683",
+      "generation": 2,
+      "branch": "codex/parallel-documents-e20-readiness-2026-10-09-20-2",
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-2\\Kopplas",
+      "base_sha": "5e00b3a844d488b61002f02c2f6c97e80708dda5",
+      "heartbeat": 1791877843.1498318,
+      "state": "integrated",
+      "evidence": "{\"base_sha\":\"5e00b3a844d488b61002f02c2f6c97e80708dda5\",\"changed_paths\":[\"_bmad-output/auto-bmad/reports/20-2-search-filters-preview-and-archive-restore.md\",\"_bmad-output/auto-bmad/state/20-2-search-filters-preview-and-archive-restore.yaml\",\"_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md\",\"src/app/(app)/files/page.tsx\",\"src/components/documents/DocumentFilters.tsx\",\"src/components/documents/DocumentLifecycleActions.tsx\",\"src/components/documents/DocumentPreviewPane.tsx\",\"src/features/documents/date-bounds.ts\",\"src/features/documents/filters.ts\",\"src/server/commands/documents/lifecycle-db.ts\",\"src/server/commands/documents/lifecycle.ts\",\"src/server/commands/envelope.ts\",\"src/server/read-models/document-sources.ts\",\"src/server/read-models/documents.ts\",\"supabase/migrations/20261009091121_story_20_2_documents_lifecycle_origin_and_restore.sql\",\"tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts\",\"tests/e2e/files/documents.e2e.spec.ts\",\"tests/integration/commands/documents-lifecycle-lock-races.int.test.ts\",\"tests/integration/commands/documents-lifecycle.int.test.ts\",\"tests/integration/rls/documents-filter-archive.rls.test.ts\",\"tests/unit/features/documents/date-bounds.test.ts\",\"tests/unit/features/documents/filters.test.ts\",\"tests/unit/features/documents/preview-state.test.ts\",\"tests/unit/server/commands/documents-lifecycle.test.ts\"],\"checks\":[{\"argv\":[\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"--experimental-strip-types\",\"--import\",\"./tests/support/register.mjs\",\"--test\",\"tests/unit/features/documents/filters.test.ts\",\"tests/unit/features/documents/date-bounds.test.ts\",\"tests/unit/features/documents/preview-state.test.ts\",\"tests/unit/server/commands/documents-lifecycle.test.ts\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:55821\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":23,\"name\":\"documents20-2-filter-unit\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"vitest\",\"run\",\"tests/integration/commands/documents-lifecycle.int.test.ts\",\"tests/integration/commands/documents-lifecycle-lock-races.int.test.ts\",\"tests/integration/rls/documents-filter-archive.rls.test.ts\",\"--no-file-parallelism\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:60421\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"127.0.0.1:60422\",\"secret_values\":\"never serialized\"},\"executed\":51,\"name\":\"documents20-2-lifecycle-integration\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"playwright\",\"test\",\"tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts\",\"tests/e2e/files/documents.e2e.spec.ts\",\"tests/e2e/files/file-index-scope.e2e.spec.ts\",\"tests/e2e/files/entity-file-preview.e2e.spec.ts\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:60421\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"127.0.0.1:60422\",\"secret_values\":\"never serialized\"},\"executed\":117,\"name\":\"documents20-2-browser\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"wsl.exe\",\"--distribution\",\"Ubuntu-24.04\",\"--cd\",\"/mnt/c/Users/Rasmus/.codex/worktrees/documents-e20-20-2/Kopplas\",\"--exec\",\"env\",\"NODE_PATH=/tmp/kopplas-documents20-1-linux-native/node_modules\",\"PATH=/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"SUPABASE_TEST_REQUIRED=1\",\"SUPABASE_TEST_URL=http://127.0.0.1:55821\",\"/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin/node\",\"--experimental-strip-types\",\"--import\",\"./tests/support/register.mjs\",\"--test\",\"tests/unit/**/*.test.ts\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:55821\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":2455,\"name\":\"unit\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"tsc\",\"--noEmit\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:60421\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"typecheck\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"lint\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:55821\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"lint\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"build\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:60421\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"production-build\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"run\",\"verify:service-role-containment\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:55821\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"service-role-containment\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"run\",\"verify:bundle-containment\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:60421\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"bundle-containment\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"run\",\"verify:lockfiles\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:55821\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"lockfiles\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"wsl.exe\",\"--distribution\",\"Ubuntu-24.04\",\"--cd\",\"/mnt/c/Users/Rasmus/.codex/worktrees/documents-e20-20-2/Kopplas\",\"--exec\",\"env\",\"NODE_PATH=/tmp/kopplas-documents20-1-linux-native/node_modules\",\"PATH=/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"SUPABASE_TEST_REQUIRED=1\",\"SUPABASE_TEST_URL=http://127.0.0.1:55821\",\"/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin/node\",\"--experimental-strip-types\",\"--import\",\"./tests/support/register.mjs\",\"--test\",\"tests/unit/server/storage/document-signed-access-attestation.test.ts\",\"tests/unit/server/commands/documents-signed-access.test.ts\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:55821\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":100,\"name\":\"documents-selected-link-unit\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"vitest\",\"run\",\"tests/integration/commands/documents-signed-access-lock-races.int.test.ts\",\"--no-file-parallelism\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:60421\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"127.0.0.1:60422\",\"secret_values\":\"never serialized\"},\"executed\":38,\"name\":\"documents-selected-link-lock-races-integration\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"vitest\",\"run\",\"tests/integration/commands/file-signed-access.int.test.ts\",\"tests/integration/commands/file-signed-access-refresh.int.test.ts\",\"--no-file-parallelism\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:60421\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"127.0.0.1:60422\",\"secret_values\":\"never serialized\"},\"executed\":20,\"name\":\"files-signed-access-integration\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"vitest\",\"run\",\"tests/integration/rls/documents.rls.test.ts\",\"tests/integration/commands/documents-signed-access.int.test.ts\",\"tests/integration/commands/file-signed-access.int.test.ts\",\"tests/integration/commands/file-signed-access-refresh.int.test.ts\",\"--no-file-parallelism\"],\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:60421\",\"node_windows\":\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe\",\"postgres\":\"127.0.0.1:60422\",\"secret_values\":\"never serialized\"},\"executed\":119,\"name\":\"documents-baseline-storage-boundary\",\"result\":\"passed\",\"skipped\":0}],\"generation\":2,\"result_sha\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"review\":{\"approved\":true,\"commit\":\"863ccaa1c6377f76ade2bfebf0b1e6a601950a86\",\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"reviewer\":\"/root/worker20_2_final_acceptance_review\",\"unresolved\":[]},\"routes\":[{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"final_convergence\",\"reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity; Settle meaningful completed four-fix follow-up under owner standing autonomous recommendation; third and final broad round\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"worker-final-verification\",\"reason\":\"Exact clean-candidate acceptance for permissions, authentication, authorization, security, rls, public-tokens, transactional-integrity; after three broad rounds review is limited to latest-fix regressions/unresolved serious findings\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"worker-final-independent-review\",\"reason\":\"Exact clean-candidate acceptance for permissions, authentication, authorization, security, rls, public-tokens, transactional-integrity; after three broad rounds review is limited to latest-fix regressions/unresolved serious findings\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]}],\"run_id\":\"documents-e20-readiness-2026-10-09\",\"schema_version\":1,\"spec_revision\":\"5b1ef70a7323f4a0878db8b26ca5ce428bd73de130d64d169c3207dc45e391e8\",\"story_id\":\"20.2\",\"worker\":\"01a11ae8-4100-7042-9c22-d1aca188e683\",\"workflow_version\":\"95bf1053f665699aa1e44ee4711c6941ea8f2851c8bb8debd1ca9203acc7ad93\"}",
+      "result_sha": "863ccaa1c6377f76ade2bfebf0b1e6a601950a86",
+      "integration_sha": "3350d9f7999ef1a2a6ffff3fc91a15150250ab22",
+      "block_reason": null
+    },
+    {
+      "run": "documents-e20-readiness-2026-10-09",
+      "story": "20.3",
+      "worker": "01a11ae8-4100-7042-9c22-d1aca188e683",
+      "generation": 1,
+      "branch": "codex/parallel-documents-e20-readiness-2026-10-09-20-3",
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-3\\Kopplas",
+      "base_sha": "9d64861989dfedb46b901fe1c3710f310199e828",
+      "heartbeat": 1791893887.0366821,
+      "state": "integrated",
+      "evidence": "{\"base_sha\":\"9d64861989dfedb46b901fe1c3710f310199e828\",\"changed_paths\":[\"_bmad-output/auto-bmad/reports/20-3-entity-panel-links-and-contextual-navigation.md\",\"_bmad-output/auto-bmad/state/20-3-entity-panel-links-and-contextual-navigation.yaml\",\"_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md\",\"src/app/(app)/calculations/[calculationId]/page.tsx\",\"src/app/(app)/customers/[customerId]/page.tsx\",\"src/app/(app)/files/page.tsx\",\"src/app/(app)/jobs/[jobId]/page.tsx\",\"src/components/documents/DocumentFilters.tsx\",\"src/components/documents/EntityDocumentsLink.tsx\",\"src/features/documents/context-navigation.ts\",\"src/features/documents/filters.ts\",\"src/features/files/acceptance-panel.tsx\",\"src/features/files/quote-files-panel.tsx\",\"src/server/read-models/document-context.ts\",\"src/server/read-models/documents.ts\",\"tests/e2e/files/documents-context-navigation.e2e.spec.ts\",\"tests/integration/rls/documents-context.rls.test.ts\",\"tests/unit/components/documents/entity-documents-link.test.ts\",\"tests/unit/features/documents/context-navigation.test.ts\",\"tests/unit/server/read-models/document-context.test.ts\"],\"checks\":[{\"argv\":[\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2\\\\node.exe\",\"--experimental-strip-types\",\"--import\",\"./tests/support/register.mjs\",\"--test\",\"tests/unit/features/documents/filters.test.ts\",\"tests/unit/features/documents/date-bounds.test.ts\",\"tests/unit/features/documents/preview-state.test.ts\",\"tests/unit/server/commands/documents-lifecycle.test.ts\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":23,\"name\":\"documents20-2-filter-unit\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"vitest\",\"run\",\"tests/integration/commands/documents-lifecycle.int.test.ts\",\"tests/integration/commands/documents-lifecycle-lock-races.int.test.ts\",\"tests/integration/rls/documents-filter-archive.rls.test.ts\",\"--no-file-parallelism\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"127.0.0.1:61422\",\"secret_values\":\"never serialized\"},\"executed\":51,\"name\":\"documents20-2-lifecycle-integration\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"playwright\",\"test\",\"tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts\",\"tests/e2e/files/documents.e2e.spec.ts\",\"tests/e2e/files/file-index-scope.e2e.spec.ts\",\"tests/e2e/files/entity-file-preview.e2e.spec.ts\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"127.0.0.1:61422\",\"secret_values\":\"never serialized\"},\"executed\":117,\"name\":\"documents20-2-browser\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"wsl.exe\",\"--distribution\",\"Ubuntu-24.04\",\"--cd\",\"/mnt/c/Users/Rasmus/.codex/worktrees/documents-e20-20-3/Kopplas\",\"--exec\",\"env\",\"NODE_PATH=/tmp/kopplas-documents20-1-linux-native/node_modules\",\"PATH=/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"SUPABASE_TEST_REQUIRED=1\",\"SUPABASE_TEST_URL=http://127.0.0.1:61421\",\"/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin/node\",\"--experimental-strip-types\",\"--import\",\"./tests/support/register.mjs\",\"--test\",\"tests/unit/**/*.test.ts\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":2508,\"name\":\"unit\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"tsc\",\"--noEmit\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"typecheck\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"lint\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"lint\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"build\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"production-build\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"run\",\"verify:service-role-containment\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"service-role-containment\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"run\",\"verify:bundle-containment\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"bundle-containment\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"run\",\"verify:lockfiles\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":1,\"name\":\"lockfiles\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"wsl.exe\",\"--distribution\",\"Ubuntu-24.04\",\"--cd\",\"/mnt/c/Users/Rasmus/.codex/worktrees/documents-e20-20-3/Kopplas\",\"--exec\",\"env\",\"NODE_PATH=/tmp/kopplas-documents20-1-linux-native/node_modules\",\"PATH=/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"SUPABASE_TEST_REQUIRED=1\",\"SUPABASE_TEST_URL=http://127.0.0.1:61421\",\"/tmp/kopplas-documents20-1-linux-node-v22.23.2/node-v22.23.2-linux-x64/bin/node\",\"--experimental-strip-types\",\"--import\",\"./tests/support/register.mjs\",\"--test\",\"tests/unit/server/storage/document-signed-access-attestation.test.ts\",\"tests/unit/server/commands/documents-signed-access.test.ts\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":100,\"name\":\"documents-selected-link-unit\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"vitest\",\"run\",\"tests/integration/commands/documents-signed-access-lock-races.int.test.ts\",\"--no-file-parallelism\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"127.0.0.1:61422\",\"secret_values\":\"never serialized\"},\"executed\":38,\"name\":\"documents-selected-link-lock-races-integration\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"vitest\",\"run\",\"tests/integration/commands/file-signed-access.int.test.ts\",\"tests/integration/commands/file-signed-access-refresh.int.test.ts\",\"--no-file-parallelism\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"127.0.0.1:61422\",\"secret_values\":\"never serialized\"},\"executed\":20,\"name\":\"files-signed-access-integration\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:\\\\Users\\\\Rasmus\\\\AppData\\\\Local\\\\pnpm\\\\bin\\\\pnpm.CMD\",\"exec\",\"vitest\",\"run\",\"tests/integration/rls/documents.rls.test.ts\",\"tests/integration/commands/documents-signed-access.int.test.ts\",\"tests/integration/commands/file-signed-access.int.test.ts\",\"tests/integration/commands/file-signed-access-refresh.int.test.ts\",\"--no-file-parallelism\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"127.0.0.1:61422\",\"secret_values\":\"never serialized\"},\"executed\":119,\"name\":\"documents-baseline-storage-boundary\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:/Users/Rasmus/AppData/Local/nvm/v22.23.2\\\\node.exe\",\"--experimental-strip-types\",\"--import\",\"./tests/support/register.mjs\",\"--test\",\"tests/unit/features/documents/context-navigation.test.ts\",\"tests/unit/server/read-models/document-context.test.ts\",\"tests/unit/components/documents/entity-documents-link.test.ts\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"not used\",\"secret_values\":\"never serialized\"},\"executed\":53,\"name\":\"documents20-3-context-unit\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:/Users/Rasmus/AppData/Local/pnpm/bin\\\\pnpm.CMD\",\"exec\",\"vitest\",\"run\",\"tests/integration/rls/documents-context.rls.test.ts\",\"--no-file-parallelism\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"127.0.0.1:61422\",\"secret_values\":\"never serialized\"},\"executed\":28,\"name\":\"documents20-3-context-integration\",\"result\":\"passed\",\"skipped\":0},{\"argv\":[\"C:/Users/Rasmus/AppData/Local/pnpm/bin\\\\pnpm.CMD\",\"exec\",\"playwright\",\"test\",\"tests/e2e/files/documents-context-navigation.e2e.spec.ts\",\"--reporter=list,json\"],\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"environment\":{\"CI\":\"unset\",\"SUPABASE_TEST_REQUIRED\":\"1\",\"api\":\"http://127.0.0.1:61421\",\"postgres\":\"127.0.0.1:61422\",\"secret_values\":\"never serialized\"},\"executed\":53,\"name\":\"documents20-3-browser\",\"result\":\"passed\",\"skipped\":0}],\"generation\":1,\"result_sha\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"review\":{\"approved\":true,\"commit\":\"1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\",\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"reviewer\":\"/root/worker20_3_final_review\",\"unresolved\":[]},\"routes\":[{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]},{\"effort\":\"high\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"reason\":\"Automatic sensitive-task escalation: authentication, authorization, permissions, public-tokens, rls, security, transactional-integrity\",\"risk_domains\":[\"permissions\",\"authentication\",\"authorization\",\"security\",\"rls\",\"public-tokens\",\"transactional-integrity\"]}],\"run_id\":\"documents-e20-readiness-2026-10-09\",\"schema_version\":1,\"spec_revision\":\"55c997e11bd09d5f5b384b70d8bf4a65827993274ce347ae6711efbebbfe255b\",\"story_id\":\"20.3\",\"worker\":\"01a11ae8-4100-7042-9c22-d1aca188e683\",\"workflow_version\":\"95bf1053f665699aa1e44ee4711c6941ea8f2851c8bb8debd1ca9203acc7ad93\"}",
+      "result_sha": "1fb9a3a10be5027b68b36b9eab6ed945a19f5a34",
+      "integration_sha": "c65c18649ac5641f9520b12e03a8b3f20af8f610",
+      "block_reason": null
+    },
+    {
+      "run": "e35-6-20261102",
+      "story": "spec-design-35-6-35-6",
+      "worker": "01a19c88-3c36-76f1-918b-88a00e4d222f",
+      "generation": 1,
+      "branch": "codex/story-35-6-crm-record-journeys",
+      "worktree": "C:\\DEV\\Kopplas\\tmp\\private\\e35-worker-35-6",
+      "base_sha": "824bed4a92eb388db669ffb60492a7b1dd9fc038",
+      "heartbeat": 1793635852.426185,
+      "state": "running",
+      "evidence": null,
+      "result_sha": null,
+      "integration_sha": null,
+      "block_reason": null
+    }
+  ],
+  "worktrees": [
+    {
+      "worktree": "C:\\DEV\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "bbf7cef7515da7d3cd1d39a70cb73eab1856d3ad\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\private\\epic11-pilot-operations",
+      "head": {
+        "exit": 0,
+        "stdout": "1edcab4466f588fdaf5c3502e32aa8d437795738\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\private\\pr59-review-fixes",
+      "head": {
+        "exit": 0,
+        "stdout": "a435c6e7bff5f9200e06fbcd7852d447c4ec8e87\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\private\\review-order-main",
+      "head": {
+        "exit": 0,
+        "stdout": "958f3ae165b11886bcc2d576c93b4e37a2a5f4ab\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\private\\review-order-pr47",
+      "head": {
+        "exit": 0,
+        "stdout": "c06757d27cb1e84cb9298a21d71ce39158b2c21f\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\epic-12-console-verification-20260920",
+      "head": {
+        "exit": 0,
+        "stdout": "661dfd33a2f9992254a521ac71b64ef885eda862\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": [
+        " M playwright.config.ts",
+        " M tests/factories/platform-operators.ts",
+        " M tests/factories/tenants/core.ts",
+        " M tests/support/authz/role-harness.ts",
+        "?? supabase/migrations/20260920100000_operator_console_projection.sql",
+        "?? supabase/migrations/20260920101500_operator_console_resume_state.sql",
+        "?? supabase/migrations/20260920102000_operator_console_resume_target.sql",
+        "?? supabase/migrations/20260920110000_first_admin_onboarding_dismissal.sql",
+        "?? supabase/migrations/20260921090000_onboarding_dismissal_ready_gate.sql",
+        "?? supabase/migrations/20260921170545_repair_provisioning_idempotency_conflict.sql"
+      ]
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\fix-backup-db-url-stdin",
+      "head": {
+        "exit": 0,
+        "stdout": "1de84866fe891e39e48b7139baf97d192665997a\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas\\tmp\\worktrees\\ops-isolated-recovery-stack",
+      "head": {
+        "exit": 0,
+        "stdout": "bb910b16c8fd26c2e6205e14f840a2f400c67c8a\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-onboarding-base-repro",
+      "head": {
+        "exit": 0,
+        "stdout": "0b4e37e8f76998282573599b3543751538dd5fdc\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-auth-callback",
+      "head": {
+        "exit": 0,
+        "stdout": "2fb018a8af185525dad1d94043dae7703c7c88ed\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-checkpoint",
+      "head": {
+        "exit": 0,
+        "stdout": "a435c6e7bff5f9200e06fbcd7852d447c4ec8e87\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-identity",
+      "head": {
+        "exit": 0,
+        "stdout": "fc2a85e4e615653c812a002eb48a63c6820e2823\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-lifecycle",
+      "head": {
+        "exit": 0,
+        "stdout": "64af003a6f9fd1bee6f7494b6b52b819d071198c\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-nfr-evidence",
+      "head": {
+        "exit": 0,
+        "stdout": "23b379a97969160ac9fffb34913648303b1e9e70\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-reset",
+      "head": {
+        "exit": 0,
+        "stdout": "7c543525f6b60ea3d76fb5c189af714f9c9ce0a7\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\ElproSaas-worktrees\\epic11-test-quality",
+      "head": {
+        "exit": 0,
+        "stdout": "9b2aaed410b610e0781ad1d3578cdb9ed0407373\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\K-pr-strategy",
+      "head": {
+        "exit": 0,
+        "stdout": "c34f7b727a729332c3284227ef5fd00279c09e58\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\K35-4-preparation",
+      "head": {
+        "exit": 0,
+        "stdout": "07d24236961ae14619411c1c05fc199de568dde7\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\K35-5-preparation",
+      "head": {
+        "exit": 0,
+        "stdout": "8e49ad39494eda8a1f28f5725c21471956437f87\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\K35-5-shell",
+      "head": {
+        "exit": 0,
+        "stdout": "246a29d52d0228dc17211f1a90bcd7f32cf1ebce\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\K35-7-P-producer",
+      "head": {
+        "exit": 0,
+        "stdout": "deb14ba0f9250c4e02f6d43011acc79ab475f613\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": [
+        " M _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/effective-allocation-admission.json",
+        " M _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
+        "?? _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/smoke-line-owner-approval.json"
+      ]
+    },
+    {
+      "worktree": "C:\\DEV\\K35-admission",
+      "head": {
+        "exit": 0,
+        "stdout": "65be26c5e6e2923ea0298160f4da54a987bed0fe\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\K35-closeout",
+      "head": {
+        "exit": 0,
+        "stdout": "b74a25c1a8055e58bb53cdef85e2b0eb85236b25\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\K35-implementation",
+      "head": {
+        "exit": 0,
+        "stdout": "f598bb18b4322bf55ac89db6db69a41f3eb6bfd8\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\K35-pair-preparation",
+      "head": {
+        "exit": 0,
+        "stdout": "f5d60d68fab853290adcf5b54f3aa27e12260ab6\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\K35-records",
+      "head": {
+        "exit": 0,
+        "stdout": "207ee7a5ce8517bc472c60c807472b63f5d09832\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\K35-source-publication",
+      "head": {
+        "exit": 0,
+        "stdout": "7b204869503eebf24893f6dd6af903a1b21e4641\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-unit-baseline",
+      "head": {
+        "exit": 0,
+        "stdout": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-visual-evidence",
+      "head": {
+        "exit": 0,
+        "stdout": "deb14ba0f9250c4e02f6d43011acc79ab475f613\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas\\tmp\\private\\e35-control",
+      "head": {
+        "exit": 0,
+        "stdout": "824bed4a92eb388db669ffb60492a7b1dd9fc038\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas\\tmp\\private\\e35-worker-35-6",
+      "head": {
+        "exit": 0,
+        "stdout": "809ff2fd8dd0aaf8a762b6ff78b8608b6507abfc\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-pilot112-third-slot",
+      "head": {
+        "exit": 0,
+        "stdout": "3412c72670138f30cfa9d5e7c299ea6a32400fbc\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-pr103-preflight",
+      "head": {
+        "exit": 0,
+        "stdout": "ccf633ecf84ba64a8a7828424c6b58acbcadfa0c\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-prfix-pilot",
+      "head": {
+        "exit": 0,
+        "stdout": "324b6beb9c035b91b8fba27664664377ed1e97d0\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-quality-gate",
+      "head": {
+        "exit": 0,
+        "stdout": "45434139c567e268f54bf0c6fa71f4530b7f043e\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-r001",
+      "head": {
+        "exit": 0,
+        "stdout": "a5aa32a4abecb4b639c5b369ee53aca186c43764\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\Kopplas-visual-status-binding",
+      "head": {
+        "exit": 0,
+        "stdout": "e828f46173d25b209b984541a64be722ea1e8843\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\DEV\\kp-parallel-v2",
+      "head": {
+        "exit": 0,
+        "stdout": "849e6cd1c5b1140b99c76e524297e1b4d4ce6252\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "9242c43ec2fed71ae48e788fd052ce81969b058c\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\ci-cold-start\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "12989400abd97d6520356f8d6531dec18707f16d\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\ci-delivery-lane\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "636f8e86229d57e7920c2d51eba47995c1c20ae5\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-1\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "df4d706a0648804b97f123e76eb4ccfc6f3727a3\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-2\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "863ccaa1c6377f76ade2bfebf0b1e6a601950a86\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-3\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "1fb9a3a10be5027b68b36b9eab6ed945a19f5a34\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-closeout\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "ac569d51a433aceb5d0055e522f17a801b58ac2e\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "d190feb91d7af10f59e7681265b06d42a4945cc6\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-original-failure-debug\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "687b1af9e4dfbe0560ee63fc46e31f42b5c5aae1\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-16-jobs\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "29a6524a40ad9b7c4d5b65bd6bf7e9acba70e5fb\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\parallel-claim-recovery\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "aa4e4575e71a6b250ab811d34a9f3c637df49dbd\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\pr-feedback-runtime-home\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "3b5dda81d397752ee2c0a5a93b8f010b21841173\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\pr-feedback-variable-scope\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "b55e1a8692ebe490eb56d92417c3c51559136125\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\release-validation-checkpoint\\Kopplas",
+      "head": {
+        "exit": 0,
+        "stdout": "8577a2cc094678fb99634d954de4f154061aac5b\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    },
+    {
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\story19-1-dashboard\\ElproSaas",
+      "head": {
+        "exit": 0,
+        "stdout": "bbf7cef7515da7d3cd1d39a70cb73eab1856d3ad\n",
+        "stderr": ""
+      },
+      "status_exit": 0,
+      "relevant": []
+    }
+  ],
+  "prod27_unchanged_pins": [
+    {
+      "path": "src/app/(app)/settings/company/page.tsx",
+      "raw_sha256": "11087b2bb0bd4c09207849058b9598e05bfda371be0da186b2a2a4bff075b58a",
+      "deb14_blob_oid": "64042ec5a425040b11c5e4ccaeb63377de0674f8",
+      "effective_oid": "64042ec5a425040b11c5e4ccaeb63377de0674f8"
+    },
+    {
+      "path": "src/app/(app)/settings/pricing/page.tsx",
+      "raw_sha256": "194198e1edc1ce67a5f7e5fc575ab7e6934933ee3da5871bfb7f3a1dbe7d4904",
+      "deb14_blob_oid": "acbdd4d419b1df2c60a8aa4c7efabc1f38c4a720",
+      "effective_oid": "acbdd4d419b1df2c60a8aa4c7efabc1f38c4a720"
+    },
+    {
+      "path": "src/app/(app)/settings/quote-terms/page.tsx",
+      "raw_sha256": "2e4b02ac87a47b76e1ca3bb0e36d7e4dc0df0cd8e4d26ce56ae2ac7bea7473d4",
+      "deb14_blob_oid": "14b78a75804ef8c108d16efccb6c03d89aa88e01",
+      "effective_oid": "14b78a75804ef8c108d16efccb6c03d89aa88e01"
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "raw_sha256": "0708240a30a0364567026d130ed9d2ff5a9dc62ba4cc579030f39135a8fc1b44",
+      "deb14_blob_oid": "00a91118c9b4247d4c787cd21d03eef896636229",
+      "effective_oid": "00a91118c9b4247d4c787cd21d03eef896636229"
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "raw_sha256": "7eafddf8eb185ddf971aec91095513585e0e967197bad6534db03ff54b7f384e",
+      "deb14_blob_oid": "15a007d0913fc48f2178a511ec1a24c612945a47",
+      "effective_oid": "15a007d0913fc48f2178a511ec1a24c612945a47"
+    },
+    {
+      "path": "src/components/settings/CompanySettingsForm.tsx",
+      "raw_sha256": "1c3adbfd07e82843a6db078df89c034a606b39204090c75229573360573e424e",
+      "deb14_blob_oid": "294cf899d75a053a2bc73495fe2d7899ea02f908",
+      "effective_oid": "294cf899d75a053a2bc73495fe2d7899ea02f908"
+    },
+    {
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "raw_sha256": "7f0b62cbfb11407588507c3c810264cadc7ee08096d163c6e8a3963af6a27e16",
+      "deb14_blob_oid": "94e42877a3f48bd32f3a4a4942dd90b5d6081e33",
+      "effective_oid": "94e42877a3f48bd32f3a4a4942dd90b5d6081e33"
+    },
+    {
+      "path": "src/features/pricing/action-state.ts",
+      "raw_sha256": "fbd741d75460bd33247ee3aed9da7fdb84800844636da2e513bfb4b72244655c",
+      "deb14_blob_oid": "d082a040d8707f1f57787af505f22402bd53e6df",
+      "effective_oid": "d082a040d8707f1f57787af505f22402bd53e6df"
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "raw_sha256": "cb7d115ea49cfaaa24464c66a52fd126e67d836edb9936125a1999f4388eb529",
+      "deb14_blob_oid": "2fd256ce4c38091f37c7249c9cab77f368429545",
+      "effective_oid": "2fd256ce4c38091f37c7249c9cab77f368429545"
+    },
+    {
+      "path": "src/features/pricing/form-parsing.ts",
+      "raw_sha256": "3719ae06f871fe73c256f287a6ec5ef72c1a3ad03d47ad123283b94078a45a9c",
+      "deb14_blob_oid": "d113abf2315bf4256dd93c6d1dc9c9b2779b3fae",
+      "effective_oid": "d113abf2315bf4256dd93c6d1dc9c9b2779b3fae"
+    },
+    {
+      "path": "src/features/pricing/read.ts",
+      "raw_sha256": "cd7a04cf1503076e8a6eb696fd94182bd5360cb8f0f811ee90689044b5d4f9d8",
+      "deb14_blob_oid": "ce2f4a51678247f64d243368c8e46c35cfb57b08",
+      "effective_oid": "ce2f4a51678247f64d243368c8e46c35cfb57b08"
+    },
+    {
+      "path": "src/features/settings/action-state.ts",
+      "raw_sha256": "e6f36ce75bf441fe3e7fab3eda974ffcf0ff6ce65c8c9d31e799488a9bb67477",
+      "deb14_blob_oid": "0a58fecebf597d5dcb50937852e945d1583da2a4",
+      "effective_oid": "0a58fecebf597d5dcb50937852e945d1583da2a4"
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "raw_sha256": "d62f86a5ae2f946c2871e71af654dfb1b744fa403fcb4532f6ef96d39bb4415f",
+      "deb14_blob_oid": "e58e3e0292b6bc100a04963e954a8238cc4bb4fa",
+      "effective_oid": "e58e3e0292b6bc100a04963e954a8238cc4bb4fa"
+    },
+    {
+      "path": "src/features/settings/form-parsing.ts",
+      "raw_sha256": "c65df864d6466a9eaafad1bcdd1d8db1950a849a02b1804db60917b1615f75d8",
+      "deb14_blob_oid": "6aac84e7adc7dba2957fba6c6bc03cdc300946ca",
+      "effective_oid": "6aac84e7adc7dba2957fba6c6bc03cdc300946ca"
+    },
+    {
+      "path": "src/features/settings/mutation-attempt.ts",
+      "raw_sha256": "08cf728f179e5f46460ae25b0a2cff560911a26c558ce9393ca04b6038c5cb7a",
+      "deb14_blob_oid": "8e32a6e38da163332eb42500c47e8b1ced5331d6",
+      "effective_oid": "8e32a6e38da163332eb42500c47e8b1ced5331d6"
+    },
+    {
+      "path": "src/features/settings/read.ts",
+      "raw_sha256": "e74b7fba575426e4dad33c1e011cc7b6ee66449a8492fd42f9d778ce43152c46",
+      "deb14_blob_oid": "ae769ecf10942f83da63497531db9e82bb90ee64",
+      "effective_oid": "ae769ecf10942f83da63497531db9e82bb90ee64"
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "raw_sha256": "a773473789c83d5074ce3e86efb21f748774f471c58b189ae72ae3142cb7ff62",
+      "deb14_blob_oid": "fabc0d6fdc0f7348218380f17dc1e3a4d8c05767",
+      "effective_oid": "fabc0d6fdc0f7348218380f17dc1e3a4d8c05767"
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "raw_sha256": "d6186842b73c983e02aec387e8058cc2d4b91149908f27a390eff10cd953a79a",
+      "deb14_blob_oid": "8370150ea5b632f63c601d1b5b90b40dce7ddb26",
+      "effective_oid": "8370150ea5b632f63c601d1b5b90b40dce7ddb26"
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "raw_sha256": "4b75cf42175c900540abae70f6e186807033e6693d79243cfbdea085932c02e1",
+      "deb14_blob_oid": "99f38f4cd12797def16766635a8698a68317731e",
+      "effective_oid": "99f38f4cd12797def16766635a8698a68317731e"
+    },
+    {
+      "path": "src/server/commands/pricing/pricing-db.ts",
+      "raw_sha256": "3685765993515b2bfef373cf282124f4839f42e609f27e7150478c1789c4fc47",
+      "deb14_blob_oid": "0e7da0908d751c20391c30984e7df4aa26d840b9",
+      "effective_oid": "0e7da0908d751c20391c30984e7df4aa26d840b9"
+    },
+    {
+      "path": "src/server/commands/pricing/validation.ts",
+      "raw_sha256": "39084403ed9aa0f5011fab4504f0f8264a80ccc3a303bae4fa926e9e8ac8ed2c",
+      "deb14_blob_oid": "cb798fb68c34b7baef308322e54044e6f0f426e1",
+      "effective_oid": "cb798fb68c34b7baef308322e54044e6f0f426e1"
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "raw_sha256": "740b6711cad49071f60b34c62497bb39858b3593254a83d175dc74b6942433ad",
+      "deb14_blob_oid": "d93e3230407957c18ade4d06888389bd30780c6b",
+      "effective_oid": "d93e3230407957c18ade4d06888389bd30780c6b"
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "raw_sha256": "1e144a7618e45b207c33d990204fd66e1ca53a72d599f8f1700e9f5aa28ae84f",
+      "deb14_blob_oid": "585412dd9b5a96bffa5a7bcfc3a57eaaab5b685e",
+      "effective_oid": "585412dd9b5a96bffa5a7bcfc3a57eaaab5b685e"
+    },
+    {
+      "path": "src/server/commands/settings/operation-recovery.ts",
+      "raw_sha256": "5a76decb31059f7e9572e120dfa3b74e76ea25d8a00e8a554805de9bc4e1e848",
+      "deb14_blob_oid": "e76d578631c380fdc856e76538ecbfdbd39e6c3f",
+      "effective_oid": "e76d578631c380fdc856e76538ecbfdbd39e6c3f"
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "raw_sha256": "07aeeacfb8d2300acad75c75127090bec2f31e1f21b022dd80f41c2103a9f005",
+      "deb14_blob_oid": "303f37644f8f3696f631a6c829d6d705c2928771",
+      "effective_oid": "303f37644f8f3696f631a6c829d6d705c2928771"
+    },
+    {
+      "path": "src/server/commands/settings/settings-db.ts",
+      "raw_sha256": "2365f40cc1d064fb0ed4cfbb43221e6499c0ed518bfb345b172202c393b540ea",
+      "deb14_blob_oid": "964c1f3fe520f30c73038e8fa09bb7b7b2bfdcb0",
+      "effective_oid": "964c1f3fe520f30c73038e8fa09bb7b7b2bfdcb0"
+    },
+    {
+      "path": "src/server/commands/settings/validation.ts",
+      "raw_sha256": "0859642e57b2fb45935b29c2f57ee0b23ee990b9255f3234a514d59f4f02afc4",
+      "deb14_blob_oid": "09961eea2be82781ccb443bf18bcd4759edef847",
+      "effective_oid": "09961eea2be82781ccb443bf18bcd4759edef847"
+    }
+  ],
+  "test_resource_scope": "Only existing own-fixture browser flows and capture/transport barriers. DCL/physical target deletion HOLD; no global factory/setup/config/workflow writes.",
+  "assessment": "No active SQLite claim competes with the sole sequential assignment; root retains shared metadata/publication ownership. Historical paused/closed worktrees are not resumed or adopted. Package source/writer intersections inspected below; an actual current conflict must stop admission."
+}

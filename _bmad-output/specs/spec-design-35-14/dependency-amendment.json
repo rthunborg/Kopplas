@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "kind": "owner-approved-operative-source-dependency-amendment",
+  "effective_date": "2026-11-12",
+  "story_source": "stories",
+  "spec_folder": "_bmad-output/specs/spec-design-35-14",
+  "story_id": "35-14",
+  "story_key": "spec-design-35-14-35-14",
+  "authority": "Owner explicitly approved exact seven-path E19.1-only35.14 delivery and reviewed35.13proposed-order amendment; relayed current coordinator2026-11-12. No message ID or approval quote invented.",
+  "historical_record": {
+    "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/story-index.json",
+    "raw_sha256": "36d2abaffaddbc84ac3f1b13ec72e93dd53b7140200b93c10347e417a90f93d4",
+    "row": {
+      "id": "35.14",
+      "key": "35-14-live-dashboard-pipeline",
+      "slice": "DT-6a",
+      "path": "_bmad-output/implementation-artifacts/spec-35-14-live-dashboard-pipeline.md",
+      "dependencies": "35.13 proposed order; independent preparation can continue without DT-B15",
+      "blockers": "B-BASE B-TEST B-APPROVAL",
+      "ac_count": 7
+    },
+    "preserved_unchanged": true
+  },
+  "removed_proposed_order_edges": [
+    {
+      "from": "35.13",
+      "to": "35.14",
+      "reason": "Proposed sequencing only; leaf consumes current E19.1 dashboard/quote projection, not future scheduling/time/profile output. Frozen onboarding/shared/producers and seven exact paths prevent cross-flow writes."
+    }
+  ],
+  "operative_prerequisites": [
+    "qualified-main-1091-foundations"
+  ],
+  "requires_contracts": [
+    {
+      "story": "qualified-main-1091-foundations",
+      "contract": "qualified-existing-dashboard-shell-read-contracts"
+    }
+  ],
+  "no_DT_B15_dependency_for_this_leaf": true,
+  "applies_only_to_exact_product_paths": [
+    "src/app/(app)/dashboard/page.tsx",
+    "src/components/dashboard/WidgetCard.tsx",
+    "src/components/dashboard/QuotePipelineWidget.tsx",
+    "src/components/dashboard/DashboardGrid.tsx",
+    "src/components/dashboard/DashboardRetry.tsx",
+    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts",
+    "tests/e2e/dashboard/dashboard-design.e2e.spec.ts"
+  ],
+  "product_scope_unchanged": true,
+  "published_source_required_before_native_claim": true
+}

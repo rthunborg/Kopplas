@@ -1,0 +1,37 @@
+{
+  "task_id": "35.7-P",
+  "local_target": "postgresql://postgres:postgres@127.0.0.1:56572/postgres (fixed synthetic local test target)",
+  "api": "http://127.0.0.1:56571",
+  "source_baseline_migrations": 120,
+  "target_before_apply": {
+    "ledger": null,
+    "company_settings": null,
+    "source": "author-target-preflight.json"
+  },
+  "baseline_push": {
+    "first_native_exit": 1,
+    "first_result": "TLS default refused before mutation",
+    "corrected_native_exit": 1,
+    "connection_correction": "sslmode=disable",
+    "committed_migrations": 115,
+    "max_version": "20261021102151",
+    "atomic_refused_migration": "20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "error": "SOURCE_ACL_NOT_COMPARABLE",
+    "evidence": "author-baseline-migrations.log",
+    "target_readback": "Actual read-only ledger count/max and calendar function ACLs in tool output this run; no blind retry, reset, history edit or ACL alteration."
+  },
+  "disposition": "Actual Root/workflow-owner handoff permits one CLI task migration file after verified partial target state; do not apply it on blocked local target. Runtime evidence assigned to existing exact-head checkpoint CI, not waived.",
+  "task_migration_applied": false,
+  "runtime_tests_executed": 0,
+  "resource": {
+    "id": "2ba7e47e-97d4-473c-b68a-054087248373",
+    "compose_native_exit": 0,
+    "active_operation_verified": true,
+    "stop_native_exit": 0,
+    "stop_ok": true,
+    "state": "stop_requested",
+    "verified_shutdown": false,
+    "preserves_data": true,
+    "evidence": "author-resource-stop.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "recorded_at_utc": "2026-11-02T18:52:03.5991299Z",
+  "scope": "Targeted b8 classifier/source-proof review",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "freeze_sha256": "21b830b9e05ad249d54e2d6efca3226ae95eb2c899e5c06e3984844387f9596f",
+  "source48_digest": "a05c86229a0b087a28e526038a5d1bf027ebd751331697ad34bcd90db8f46bf2",
+  "reviewers": [
+    "/root/producer_build/review_r1_verification",
+    "/root/producer_build/review_r1_edges"
+  ],
+  "verification_verdict": "CHANGES_REQUIRED",
+  "source_finding": "Recognizable original known-family spelling lost on realpath/canonical-family/package failure can silently skip a live foreign Playwright consumer before strict sole-owner check; no downstream guard restores it. Preserve original resolved family/.bin hint and fixed refusal on ambiguous known-family identity; unrelated scripts remain ignorable.",
+  "source_anchors": "pricing.e2e.spec.ts563,568-571,668-676",
+  "edges_verdict": "Pure-proof qualification unresolved, no independently verified15 coverage",
+  "proof_finding": "Names/expected/outcomes alone omit argv/cwd/fake realpath/package/bin inputs and extraction harness. Author reports exact executed script inline-only, tool output chunk c80159; no retained file exists yet. Do not invent historical inputs.",
+  "pin_checks": "All48 raw/effective and canonical9 pins matched; pricing patch/example report matched; captures/actions/timeouts and privatecap packet unchanged",
+  "limits": "Source-path review only/no runtime reproduction/oldCIargv claim; reviewers did not run tests, effects or CI; no visual/completion acceptance"
+}

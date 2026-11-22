@@ -1,0 +1,11 @@
+{
+  "captured_at_utc": "2026-11-02T11:41:27.782669+00:00",
+  "native_bounded_check": "passed",
+  "canonical_unchanged": 9,
+  "allocated_product_test_preimages_unchanged": 42,
+  "approved_additional_test_preimages_unchanged": 2,
+  "helper_unchanged_sha256": "73fbfab981b62391cfa1c5a7543d4eda14086c61a55dfdecb9f4316d740525d0",
+  "runtime_tests": 0,
+  "new_migrations": 0,
+  "product_test_writes": 0
+}

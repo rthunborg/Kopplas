@@ -1,3 +1,5 @@
+import type { UpdateCompanySettingsInput, UpdateQuoteTermsInput } from "@/server/commands/settings/validation";
+import type { UpsertWorkRoleInput } from "@/server/commands/pricing/validation";
 import { describe, expect, test, vi } from "vitest";
 import { runCommand } from "@/server/commands/envelope";
 import { updateCompanySettings } from "@/server/commands/settings/company-settings";
@@ -57,41 +59,53 @@ describe("12.3 first-admin onboarding lifecycle", () => {
       );
       if (!tenant?.normalized_organization_number) throw new Error("provisioned tenant organization number missing");
 
+      const companyBeforeIdentity=await firstAdminClient.from("company_settings").select("id,write_revision").eq("tenant_id",accepted.tenantId).single();
+      if(companyBeforeIdentity.error || !companyBeforeIdentity.data || !/^[0-9a-f-]{36}$/i.test(companyBeforeIdentity.data.write_revision))throw new Error("Expected real company baseline");
+      const companyIdentityOperationId=crypto.randomUUID();
       const companyIdentity = await runCommand(updateCompanySettings, {
         client: firstAdminClient as never,
         input: {
+          operationId:companyIdentityOperationId,targetId:companyBeforeIdentity.data.id,expectedRevision:companyBeforeIdentity.data.write_revision,
           company_name: "Lifecycle Electric AB",
           org_nr: tenant.normalized_organization_number,
           default_vat_display: "company_excl",
           vat_rate_bp: 2500,
-        },
-        correlationId: crypto.randomUUID(),
+        } satisfies UpdateCompanySettingsInput,
+        correlationId: companyIdentityOperationId,
       });
       expect(companyIdentity.ok).toBe(true);
 
+      const companyBeforeVat=await firstAdminClient.from("company_settings").select("id,write_revision").eq("tenant_id",accepted.tenantId).single();
+      if(companyBeforeVat.error || !companyBeforeVat.data || !/^[0-9a-f-]{36}$/i.test(companyBeforeVat.data.write_revision))throw new Error("Expected real company baseline");
+      const vatOperationId=crypto.randomUUID();
       const vat = await runCommand(updateCompanySettings, {
         client: firstAdminClient as never,
         input: {
+          operationId:vatOperationId,targetId:companyBeforeVat.data.id,expectedRevision:companyBeforeVat.data.write_revision,
           company_name: "Lifecycle Electric AB",
           org_nr: tenant.normalized_organization_number,
           default_vat_display: "company_togglable",
           vat_rate_bp: 2500,
-        },
-        correlationId: crypto.randomUUID(),
+        } satisfies UpdateCompanySettingsInput,
+        correlationId: vatOperationId,
       });
       expect(vat.ok).toBe(true);
 
+      const termsBefore=await firstAdminClient.from("quote_terms").select("id,write_revision").eq("tenant_id",accepted.tenantId).maybeSingle();
+      if(termsBefore.error || termsBefore.data!==null)throw new Error("Expected successfully observed terms absence");
+      const termsOperationId=crypto.randomUUID();
       const terms = await runCommand(updateQuoteTerms, {
         client: firstAdminClient as never,
-        input: { terms_text: "Betalningsvillkor 30 dagar." },
-        correlationId: crypto.randomUUID(),
+        input: { operationId:termsOperationId,targetId:crypto.randomUUID(),expectedRevision:null,terms_text: "Betalningsvillkor 30 dagar." } satisfies UpdateQuoteTermsInput,
+        correlationId: termsOperationId,
       });
       expect(terms.ok).toBe(true);
 
-      const role = await runCommand(upsertWorkRole as never, {
+      const roleOperationId=crypto.randomUUID();
+      const role = await runCommand(upsertWorkRole, {
         client: firstAdminClient as never,
-        input: { display_name: "Elektriker", cost_rate_ore: 45000, sell_rate_ore: 85000 },
-        correlationId: crypto.randomUUID(),
+        input: { operationId:roleOperationId,targetId:crypto.randomUUID(),expectedRevision:null,display_name: "Elektriker", cost_rate_ore: 45000, sell_rate_ore: 85000 } satisfies UpsertWorkRoleInput,
+        correlationId: roleOperationId,
       });
       expect(role.ok).toBe(true);
 

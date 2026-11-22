@@ -15,10 +15,15 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   VAT_DISPLAY_MODES,
-  validateApproveQuoteTerms,
-  validateUpdateCompanySettings,
-  validateUpdateQuoteTerms,
+  validateApproveQuoteTerms as actualvalidateApproveQuoteTerms,
+  validateUpdateCompanySettings as actualvalidateUpdateCompanySettings,
+  validateUpdateQuoteTerms as actualvalidateUpdateQuoteTerms,
 } from "@/server/commands/settings/validation";
+
+const operationFixture=(raw:unknown,approval=false)=>raw && typeof raw==="object"?{operationId:"aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",targetId:typeof (raw as {id?:unknown}).id==="string"?(raw as {id:string}).id:"bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",expectedRevision:approval?"cccccccc-cccc-4ccc-8ccc-cccccccccccc":null,...(approval?{terms_text:"Reviewed persisted terms"}:{}),...raw}:raw;
+const validateUpdateCompanySettings=(raw:unknown)=>actualvalidateUpdateCompanySettings(operationFixture(raw,false));
+const validateUpdateQuoteTerms=(raw:unknown)=>actualvalidateUpdateQuoteTerms(operationFixture(raw,false));
+const validateApproveQuoteTerms=(raw:unknown)=>actualvalidateApproveQuoteTerms(operationFixture(raw,true));
 
 const VALID_UUID = "11111111-1111-4111-8111-111111111111";
 
@@ -332,7 +337,7 @@ test("approve: the validated value carries ONLY the id (no smuggled fields survi
   });
   assert.equal(r.ok, true);
   if (r.ok) {
-    assert.deepEqual(Object.keys(r.data), ["id"]);
+    assert.deepEqual(Object.keys(r.data), ["operationId", "targetId", "expectedRevision", "id", "terms_text"]);
   }
 });
 

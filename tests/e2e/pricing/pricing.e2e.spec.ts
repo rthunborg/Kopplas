@@ -26,8 +26,8 @@
  *     modules — pricing adds NO new nav item (it lives under the existing Inställningar
  *     hub), so "Prissättning" is reachable from /settings but is NOT a top-nav link.
  */
-import { test, expect, type Page, type Locator } from "@playwright/test";
-import { readFileSync } from "node:fs";
+import { test, expect, type Dialog, type Page, type Locator } from "@playwright/test";
+import { readFileSync, readlinkSync, readdirSync, realpathSync } from "node:fs";
 import path from "node:path";
 import { expectActiveAdminNavigation } from "../support/active-admin-navigation";
 
@@ -181,6 +181,7 @@ test.describe("Pricing UI — Work roles + Articles (Story 3.4 E2E)", () => {
     const archived = editor.getByTestId("work-roles-archived");
     const archivedRow = archived.locator("li", { hasText: roleName });
     await expect(archivedRow).toHaveCount(1);
+    await expectRoleRate(archivedRow, "500,00");
 
     // REACTIVATE it — the SAME row returns to the active list (un-archived, not re-created).
     await archivedRow.getByRole("button", { name: "Återaktivera" }).click();
@@ -202,3 +203,2480 @@ test.describe("Pricing UI — Work roles + Articles (Story 3.4 E2E)", () => {
     await expect(page.getByRole("link", { name: "Prissättning" })).toBeVisible();
   });
 });
+
+import { mkdir, writeFile, open, stat, realpath } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
+import { adminInsertArticle, adminInsertWorkRole, createTwoTenantFixture, cleanupFixture, makeAuthedServerClient } from "../../factories/tenants";
+import { canonicalTermsEqual } from "@/features/settings/mutation-attempt";
+
+test("E35-7 ATDD no-match retains the article query and restores the authorized row", async ({ page }) => {
+    const own = await createTwoTenantFixture();
+    try {
+        const name = "Jordfelsbrytare";
+        await adminInsertArticle({ tenant_id: own.tenantA.id, name, unit_price_ore: 1250 });
+        await adminInsertArticle({ tenant_id: own.tenantB.id, name: "Jordfelsbrytare annan verksamhet" });
+        await page.setViewportSize({ width: 360, height: 640 });
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings/pricing");
+
+        const editor = page.getByTestId("articles-editor");
+        const row = editor.getByRole("listitem").filter({ hasText: name });
+        await waitForHydrated(row.getByRole("button", { name: "Redigera", exact: true }));
+        await expect(row).toHaveCount(1);
+        await expect(row).toContainText("12,50 kr");
+        const search = editor.getByLabel(/sök/i);
+        await expect(search).toBeVisible();
+        await search.fill("Kopplingsdosa");
+        const noMatch = editor.getByText(/inga matchningar|inga träffar|inga artiklar matchar/i);
+        await expect(noMatch).toBeVisible();
+        await expect(search).toHaveValue("Kopplingsdosa");
+        await expect(row).toHaveCount(0);
+        await expect(editor.getByText(/Inga artiklar ännu/)).toHaveCount(0);
+
+        await editor.getByRole("button", { name: "Rensa sökning", exact: true }).click();
+        await expect(search).toHaveValue("");
+        await expect(noMatch).toHaveCount(0);
+        await expect(row).toHaveCount(1);
+        await expect(row).toContainText("12,50 kr");
+        await expect(editor.getByText("Jordfelsbrytare annan verksamhet")).toHaveCount(0);
+    } finally {
+        await cleanupFixture(own);
+    }
+});
+
+test("E35-7 ATDD phone row edits expose 44px targets and preserve persisted pricing identities", async ({ page }, info) => {
+    const own = await createTwoTenantFixture();
+    let diagnostic: Awaited<ReturnType<typeof observeArticleDraft>> | undefined;
+    try {
+        const roleName = "Installationstekniker";
+        const articleName = "Kopplingsdosa";
+        const roleId = await adminInsertWorkRole({ tenant_id: own.tenantA.id, display_name: roleName, sell_rate_ore: 85000 });
+        const articleId = await adminInsertArticle({ tenant_id: own.tenantA.id, name: articleName, unit_price_ore: 1250 });
+        await page.setViewportSize({ width: 360, height: 640 });
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings/pricing");
+
+        const role = page.getByTestId("work-roles-editor");
+        const article = page.getByTestId("articles-editor");
+        const roleRow = role.getByRole("listitem").filter({ hasText: roleName });
+        const articleRow = article.getByRole("listitem").filter({ hasText: articleName });
+        await waitForHydrated(roleRow.getByRole("button", { name: "Redigera", exact: true }));
+        for (const [row, displayed] of [[roleRow, "850,00 kr/tim"], [articleRow, "12,50 kr"]] as const) {
+            await expect(row).toHaveCount(1);
+            const amount = row.getByText(displayed, { exact: true });
+            await expect(amount).toBeVisible();
+            const edit = row.getByRole("button", { name: "Redigera", exact: true });
+            const size = await edit.evaluate(element => {
+                const { width, height } = element.getBoundingClientRect();
+                return { width, height };
+            });
+            expect(Math.min(size.width, size.height), `${displayed} row edit target`).toBeGreaterThanOrEqual(44);
+            await expect(amount).toHaveCSS("font-variant-numeric", /tabular-nums/);
+        }
+
+        diagnostic = await observeArticleDraft(page, {
+            label: articleName, price: { original: "12,50", draft: "14,75" }, unit: { original: "", draft: "st" },
+        });
+        await roleRow.getByRole("button", { name: "Redigera", exact: true }).press("Enter");
+        const rate = role.getByLabel("Pris (kr/tim)");
+        await expect(rate).toHaveValue("850,00");
+        await rate.fill("875,25");
+        await role.getByRole("button", { name: "Spara roll", exact: true }).click();
+        await expect(roleRow).toContainText("875,25 kr/tim");
+        diagnostic.note("role-row-updated");
+
+        await articleRow.getByRole("button", { name: "Redigera", exact: true }).click();
+        const price = article.getByLabel("Enhetspris (kr)");
+        await expect(price).toHaveValue("12,50");
+        await price.fill("14,75");
+        await article.getByLabel("Enhet", { exact: true }).fill("st");
+        const discard = page.waitForEvent("dialog");
+        const startNew = article.getByRole("button", { name: "Ny post", exact: true }).click();
+        const prompt = await discard;
+        diagnostic.dialog("observed", prompt);
+        await prompt.dismiss();
+        diagnostic.dialog("dismissed", prompt);
+        await startNew;
+        diagnostic.note("new-post-click-settled");
+        await expect(price).toHaveValue("14,75");
+        await expect(article.getByLabel("Enhet", { exact: true })).toHaveValue("st");
+        const actions: BrowserRequest[] = [];
+        const countPricingActions = (request: BrowserRequest) => {
+            if (new URL(request.url()).pathname === "/settings/pricing" && request.method() === "POST" && request.headers()["next-action"]) {
+                actions.push(request);
+            }
+        };
+        page.on("request", countPricingActions);
+        try {
+            try {
+                await page.context().setOffline(true);
+                await articleRow.getByRole("button", { name: "Arkivera", exact: true }).click();
+                const connectionRequired = article.getByText("Du är offline. Ingen begäran skickades. Utkastet är inte sparat.");
+                await expect(connectionRequired).toBeVisible();
+                await expect(price).toHaveValue("14,75");
+                await expect(articleRow).toHaveCount(1);
+                await expect(article.getByTestId("settings-saved")).toHaveCount(0);
+                for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+                    await page.setViewportSize(viewport);
+                    await producerCapture(page, info, "article", "connection-required", connectionRequired, "center", {
+                        state: "connection-required", mechanism: "browser offline before dispatch, zero action POSTs and retained draft",
+                    });
+                }
+                expect(actions).toHaveLength(0);
+            } finally {
+                await page.context().setOffline(false);
+            }
+            await article.getByRole("button", { name: "Spara artikel", exact: true }).click();
+            await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            diagnostic.note("article-receipt-asserted");
+            expect(actions).toHaveLength(1);
+        } finally {
+            page.off("request", countPricingActions);
+        }
+        await expect(articleRow).toContainText("14,75 kr");
+        await expect(articleRow).toContainText(/\bst\b/);
+
+        const client = await makeAuthedServerClient(own.adminA);
+        const roles = await client.from("work_roles").select("id, sell_rate_ore").eq("tenant_id", own.tenantA.id);
+        const articles = await client.from("articles").select("id, unit_price_ore, unit").eq("tenant_id", own.tenantA.id);
+        expect(roles.error).toBeNull();
+        expect(articles.error).toBeNull();
+        expect(roles.data).toEqual([{ id: roleId, sell_rate_ore: 87525 }]);
+        expect(articles.data).toEqual([{ id: articleId, unit_price_ore: 1475, unit: "st" }]);
+        await expect(rate).toBeEnabled();
+        await expect(price).toBeEnabled();
+        await rate.fill("900,00");
+        await price.fill("17,00");
+        const dialogs: string[] = [];
+        const acceptDiscard = async (dialog: Dialog) => {
+            dialogs.push(dialog.type());
+            await dialog.accept();
+        };
+        page.on("dialog", acceptDiscard);
+        try {
+            await page.getByRole("link", { name: "← Inställningar" }).click();
+            await expect(page).toHaveURL(/\/settings$/);
+            expect(dialogs).toEqual(["confirm"]);
+        } finally {
+            page.off("dialog", acceptDiscard);
+        }
+    } catch (error) {
+        await diagnostic?.finish(error);
+        throw error;
+    } finally {
+        await diagnostic?.finish();
+        await cleanupFixture(own);
+    }
+});
+
+async function expectRenderedContrast(control: Locator, property: "color" | "borderTopColor", minimum: number) {
+    const colors = await control.evaluate((element, property) => {
+        let container: Element | null = property === "borderTopColor" ? element.parentElement : element;
+        while (container && getComputedStyle(container).backgroundColor === "rgba(0, 0, 0, 0)") {
+            container = container.parentElement;
+        }
+        return { foreground: getComputedStyle(element)[property], background: container && getComputedStyle(container).backgroundColor };
+    }, property);
+    function luminance(color: string | null) {
+        const channels = color?.match(/^rgb\((\d+), (\d+), (\d+)\)$/)?.slice(1).map(Number);
+        expect(channels, "Opaque rendered sRGB color").toHaveLength(3);
+        const [red, green, blue] = channels!.map(value => {
+            const srgb = value / 255;
+            return srgb <= 0.04045 ? srgb / 12.92 : ((srgb + 0.055) / 1.055) ** 2.4;
+        });
+        return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+    }
+    const values = [luminance(colors.foreground), luminance(colors.background)];
+    expect((Math.max(...values) + 0.05) / (Math.min(...values) + 0.05), `${property} ${colors.foreground} on ${colors.background}`).toBeGreaterThanOrEqual(minimum);
+}
+
+async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
+    for (const name of names) {
+        const control = scope.getByRole("button", { name, exact: true });
+        await expect(control).toBeVisible();
+        const box = await control.boundingBox();
+        expect(box, `${name} has an actual visible hit target`).not.toBeNull();
+        expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
+    }
+}
+async function producerCapture(page: Page, info: TestInfo, surface: string, state: string, explicitAnchor?: Locator, anchorBlock: "center" | "start" | "preserve" = "center", presentation?: { readonly state: string; readonly mechanism: string; readonly remaining?: () => number; readonly deferWrite?: (write: () => Promise<void>) => void }) {
+    const scope = surface === "company" || surface === "terms" ? page.locator("body") : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
+    const anchor = explicitAnchor ?? (state === "loading" ? scope.getByRole("button", { name: "Sparar…", exact: true })
+        : state === "unknown" || state.endsWith("-pending") ? scope.getByTestId("operation-unconfirmed")
+        : state === "stale" || state === "neighbor-stale" ? scope.getByTestId(surface === "company" ? "company-current-facts" : surface === "terms" ? "terms-current-facts" : "pricing-current-facts")
+        : state === "error" ? scope.locator('[aria-invalid="true"]').first().locator("..")
+        : state === "finished" ? scope.getByTestId(surface === "terms" ? "quote-terms-approved-status" : "settings-saved")
+        : surface === "company" ? page.getByLabel("Företagsnamn") : surface === "terms" ? page.getByLabel("Offertvillkor") : scope);
+    const timeout = () => presentation?.remaining ? { timeout: presentation.remaining() } : {};
+    await expect(anchor).toBeVisible(timeout());
+    if (anchorBlock !== "preserve") {
+        await anchor.evaluate((el, block) => el.scrollIntoView({ block }), anchorBlock, timeout());
+    }
+    await expect(anchor).toBeInViewport(timeout());
+    if (state === "loading") await expect(anchor).toBeDisabled();
+    const boot = JSON.parse(readFileSync(path.join(process.cwd(), "test-results/private/job-events-fetch-fault.json.startup.json"), "utf8"));
+    expect(boot.runId).toBe(process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID);
+    expect(boot.applicationUrl).toBe(new URL(page.url()).origin);
+    expect(Number.isSafeInteger(boot.serverPid)).toBe(true);
+    const viewport = page.viewportSize()!;
+    const dir = path.join(process.cwd(), "playwright-report", presentation ? "35-7-presentation" : "35-7-p", `${surface}-${viewport.width}x${viewport.height}`);
+    const captureState = presentation?.state ?? state;
+    const file = path.join(dir, `${captureState}.png`);
+    if (!presentation?.deferWrite) await mkdir(dir, { recursive: true });
+    const png = await page.screenshot({
+        ...(!presentation?.deferWrite ? { path: file } : {}),
+        fullPage: false, ...(presentation ? { timeout: 3_000, ...timeout() } : {}),
+    });
+    const captureAnchor = await anchor.evaluate(el => ({ tag: el.tagName, id: el.id, text: el.textContent?.trim().slice(0, 160) }), undefined, timeout());
+    const capturedAt = new Date().toISOString();
+    const write = async () => {
+        const candidate = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+        const metadata = JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading" || state.endsWith("-pending") || state === "refresh-notice" || Boolean(presentation && state === "pending-target"), captureAnchor, configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state: captureState, ...(presentation ? { mechanism: presentation.mechanism } : {}), viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt }, null, 2);
+        if (presentation?.deferWrite) {
+            await mkdir(dir, { recursive: true });
+            await writeFile(file, png);
+        }
+        await writeFile(path.join(dir, `${captureState}.json`), metadata);
+    };
+    if (presentation?.deferWrite) presentation.deferWrite(write);
+    else await write();
+}
+type ProducerReadTerminal = { kind: "finished" | "failed"; request: BrowserRequest };
+function producerReadIssue(stage: string, error: unknown) {
+    const category = error instanceof Error && ["TimeoutError", "TargetClosedError", "Error"].includes(error.name) ? error.name : "unknown";
+    return new Error(`Released read ${stage} failed (${category})`); // Never serialize native error messages/causes.
+}
+function observeProducerReadTerminal(page: Page, routePath: string) {
+    let held: BrowserRequest | undefined, observed: ProducerReadTerminal | undefined, actionResponseSeen = false;
+    let resolve!: (outcome: ProducerReadTerminal) => void;
+    const outcome = new Promise<ProducerReadTerminal>(done => { resolve = done; });
+    const diagnostics = { version: 1, matchingGets: { total: 0, prefetch: 0, unmarkedUndetermined: 0, unexpectedMarker: 0, unknown: 0 }, exact: { prefetchClass: "unobserved", actionResponseBeforeHold: false, responseSeen: false, statusClass: "none", failureCategory: "none" }, order: [] as string[], orderTruncated: false };
+    const mark = (stage: string) => { if (diagnostics.order.length < 24) diagnostics.order.push(stage); else diagnostics.orderTruncated = true; };
+    const matching = (request: BrowserRequest) => new URL(request.url()).pathname === routePath;
+    const prefetchClass = (request: BrowserRequest) => {
+        try {
+            const headers = request.headers(), marker = headers["next-router-prefetch"];
+            if (marker !== undefined && !["1", "2", "3"].includes(marker)) return "unexpectedMarker";
+            return ["1", "2", "3"].includes(marker ?? "") || Boolean(headers["next-router-segment-prefetch"]) || headers.purpose === "prefetch" ? "prefetch" : "unmarkedUndetermined";
+        }
+        catch { return "unknown"; }
+    };
+    const requested = (request: BrowserRequest) => {
+        try {
+            if (!matching(request) || request.method() !== "GET" || request.headers().rsc !== "1") return;
+            const kind = prefetchClass(request);
+            diagnostics.matchingGets.total = Math.min(65535, diagnostics.matchingGets.total + 1);
+            diagnostics.matchingGets[kind] = Math.min(65535, diagnostics.matchingGets[kind] + 1);
+        } catch { mark("request-class-unavailable"); }
+    };
+    const responded = (response: import("@playwright/test").Response) => {
+        try {
+            const request = response.request();
+            if (matching(request) && request.method() === "POST" && Boolean(request.headers()["next-action"])) { actionResponseSeen = true; mark("action-response"); }
+            if (request === held) { diagnostics.exact.responseSeen = true; const status = response.status(); diagnostics.exact.statusClass = status >= 100 && status < 600 ? `${Math.floor(status / 100)}xx` : "other"; mark("exact-response"); }
+        } catch { mark("response-class-unavailable"); }
+    };
+    const record = (kind: ProducerReadTerminal["kind"], request: BrowserRequest) => {
+        if (request !== held || observed) return;
+        if (kind === "failed") {
+            try { const failure = request.failure()?.errorText; diagnostics.exact.failureCategory = ["net::ERR_ABORTED", "net::ERR_FAILED", "net::ERR_CONNECTION_RESET", "net::ERR_CONNECTION_REFUSED", "net::ERR_EMPTY_RESPONSE", "net::ERR_NETWORK_CHANGED", "net::ERR_TIMED_OUT"].includes(failure ?? "") ? failure! : "other"; }
+            catch { diagnostics.exact.failureCategory = "unavailable"; }
+        }
+        mark(`terminal-${kind}`); observed = { kind, request }; resolve(observed);
+    };
+    const finished = (request: BrowserRequest) => record("finished", request), failed = (request: BrowserRequest) => record("failed", request);
+    page.on("request", requested); page.on("response", responded); page.on("requestfinished", finished); page.on("requestfailed", failed);
+    return { outcome, mark, summary: () => JSON.parse(JSON.stringify(diagnostics)) as typeof diagnostics, bind: (request: BrowserRequest) => {
+        held = request; diagnostics.exact.prefetchClass = prefetchClass(request); diagnostics.exact.actionResponseBeforeHold = actionResponseSeen; mark("exact-held");
+        if (request.failure()) failed(request);
+    }, dispose: () => { page.off("request", requested); page.off("response", responded); page.off("requestfinished", finished); page.off("requestfailed", failed); mark("observers-disposed"); } };
+}
+function producerReadSettlement(hold: { releaseHeld: () => Promise<void>; dispose: () => Promise<void>; request: () => BrowserRequest | undefined }, terminal: ReturnType<typeof observeProducerReadTerminal>) {
+    type Settlement = { kind: "not-held"; response: null } | (ProducerReadTerminal & { response: Awaited<ReturnType<BrowserRequest["response"]>> });
+    let cached: Promise<Settlement> | undefined;
+    return () => cached ??= (async () => {
+        let timer: ReturnType<typeof setTimeout> | undefined, phase = "release", expired = false;
+        const errors: Error[] = [];
+        let result: Settlement | undefined;
+        const deadline = new Promise<never>((_, reject) => { timer = setTimeout(() => { expired = true; reject(new Error("Released read combined deadline exhausted")); }, 10_000); });
+        try {
+            result = await Promise.race([
+                (async (): Promise<Settlement> => {
+                    terminal.mark("release-start");
+                    try { await hold.releaseHeld(); terminal.mark("fallback-complete"); } catch (error) { errors.push(producerReadIssue("release", error)); terminal.mark("release-error"); }
+                    phase = "terminal";
+                    const observed = hold.request() ? await terminal.outcome : undefined;
+                    phase = "completed-response";
+                    const response = observed?.kind === "finished" ? await observed.request.response() : null;
+                    return observed ? { ...observed, response } : { kind: "not-held", response: null };
+                })(), deadline,
+            ]);
+        } catch (error) { errors.push(expired ? new Error(`Released read combined deadline exhausted: ${phase}`) : producerReadIssue(phase, error)); }
+        finally {
+            phase = "disposal"; terminal.mark("unroute-start");
+            try {
+                const disposal = hold.dispose(); // Attempt even after expiry; an expired budget can never verify disposal.
+                if (expired) { void disposal.catch(() => undefined); throw new Error("Released read disposal deadline exhausted"); }
+                await Promise.race([disposal, deadline]); terminal.mark("disposal-verified");
+            }
+            catch (error) { errors.push(expired ? new Error("Released read disposal unverified within combined deadline") : producerReadIssue("disposal", error)); terminal.mark("disposal-unverified"); }
+            finally { if (timer) clearTimeout(timer); terminal.dispose(); }
+        }
+        if (errors.length) {
+            if (result?.kind === "failed") errors.unshift(new Error("Released read terminal=failed; no delivered-read credit"));
+            throw new AggregateError(errors, "Released read release/terminal/disposal failed");
+        }
+        return result!;
+    })();
+}
+async function holdNextProducerTransport(
+    page: Page, routePath: string, transport: "action" | "refresh",
+    onHeld?: (request: BrowserRequest) => void, selectRefresh?: (request: BrowserRequest) => boolean,
+) {
+    let release!: () => void, arrived!: () => void, settled!: () => void;
+    const gate = new Promise<void>(r => { release = r; });
+    const seen = new Promise<void>(r => { arrived = r; });
+    const done = new Promise<void>(r => { settled = r; });
+    let held = false, heldRequest: BrowserRequest | undefined, releaseError: unknown;
+    const matcher = (url: URL) => url.pathname === routePath;
+    const handler = async (route: import("@playwright/test").Route) => {
+        const request = route.request();
+        const matches = transport === "action" ? request.method() === "POST" && Boolean(request.headers()["next-action"])
+            : request.method() === "GET" && request.headers()["rsc"] === "1" && (selectRefresh?.(request) ?? true);
+        if (held || !matches) { await route.fallback(); return; }
+        held = true;
+        heldRequest = request;
+        onHeld?.(request);
+        arrived();
+        try { await gate; await route.fallback(); }
+        catch (error) { releaseError = error; if (!onHeld) throw error; }
+        finally { settled(); }
+    };
+    await page.route(matcher, handler);
+    const releaseHeld = async () => { release(); if (held) await done; if (releaseError) throw releaseError; };
+    const dispose = () => page.unroute(matcher, handler);
+    return { seen, release, request: () => heldRequest, releaseHeld, dispose, clear: async () => { release(); if (held) await done; await dispose(); } };
+}
+
+type ProducerReadDomainView = { scope: Locator; unavailable: Locator; name: string; save: string; price: string | null; surface: string };
+async function assertProducerReadBaseline(view: ProducerReadDomainView) {
+    await expect(view.unavailable).toHaveCount(0);
+    await expect(view.scope.getByLabel(view.name)).toBeEnabled();
+    await expect(view.scope.getByRole("button", { name: view.save, exact: true })).toBeEnabled();
+    if (view.price) await expect(view.scope.getByLabel(view.price)).toBeEnabled();
+}
+async function assertProducerReadUnavailable(view: ProducerReadDomainView, historical: NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>>, draft: string) {
+    const { scope, unavailable, name, save, price, surface } = view;
+    const receipt = scope.getByTestId("settings-saved");
+    await expect(unavailable).toBeVisible(); // Server reader/page props, never client transport-error copy.
+    await expect(receipt).toHaveCount(1); await expect(receipt).toBeVisible();
+    await expect(receipt).not.toContainText("Aktuella uppgifter är bekräftade.");
+    await expect(receipt).not.toContainText("Posten finns inte längre");
+    await expect(scope.getByTestId("operation-unconfirmed")).toHaveCount(0);
+    await expect(scope.getByRole("button", { name: "Sparar…", exact: true })).toHaveCount(0);
+    await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
+    await expect(scope.getByLabel(name)).toBeDisabled(); await expect(scope.getByLabel(name)).toHaveValue(draft);
+    await expect(scope.getByRole("button", { name: save, exact: true })).toBeDisabled();
+    if (surface === "company") await expect(scope.getByTestId("company-empty-defaults")).toHaveCount(0);
+    if (price) {
+        await expect(receipt).toContainText("Aktuella uppgifter är inte tillgängliga.");
+        await expect(scope.getByText(surface === "article" ? /Inga artiklar/ : /Inga arbetsroller/)).toHaveCount(0);
+        await expect(scope.getByLabel(price)).toBeDisabled(); await expect(scope.getByLabel(price)).toHaveValue("31,00");
+    }
+    expect(await historical.evaluate(element => element.isConnected)).toBe(true);
+}
+async function assertProducerDomainRead(releaseAndSettleRead: ReturnType<typeof producerReadSettlement>, readRequest: BrowserRequest, assertDomain: () => Promise<void>) {
+    const settledRead = await releaseAndSettleRead(); // Any release/deadline/disposal error still rejects before domain proof.
+    if (settledRead.kind !== "finished" && settledRead.kind !== "failed") throw new Error("Controlled read transport has no verified terminal outcome");
+    expect(settledRead.request).toBe(readRequest);
+    if (settledRead.kind === "finished") {
+        const response = settledRead.response; expect(response).not.toBeNull();
+        expect(response!.request()).toBe(readRequest);
+    }
+    // Failed is cleanup settlement only. Only the NEW server-derived UI conjunction can prove domain unavailability.
+    await assertDomain();
+}
+
+type ProducerTermsBaseline = { id: string; write_revision: string; terms_text: string; approved_at: string | null } | null;
+async function assertProducerTermsBaseline(scope: Locator, baseline: ProducerTermsBaseline, candidate: string) {
+    await expect(scope.getByLabel("Offertvillkor")).toHaveValue(baseline?.terms_text ?? "");
+    expect(canonicalTermsEqual(candidate, baseline?.terms_text ?? "")).toBe(false);
+    await expect(scope.getByTestId("terms-current-facts")).toHaveCount(0);
+    const approve = scope.getByRole("button", { name: "Markera som godkänd", exact: true });
+    if (!baseline || baseline.approved_at !== null) await expect(approve).toHaveCount(0);
+    else {
+        await expect(approve).toBeEnabled();
+        await expect(scope.locator('input[name="id"]')).toHaveValue(baseline.id);
+    }
+    await expect(scope.getByTestId("quote-terms-approved-status")).toHaveCount(baseline?.approved_at ? 1 : 0);
+}
+async function assertProducerPendingRead(view: ProducerReadDomainView, historical: NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>>, draft: string, receiptText: string, termsBaseline: ProducerTermsBaseline | undefined) {
+    const { scope, unavailable, name, price, surface } = view;
+    const receipt = scope.getByTestId("settings-saved");
+    await expect(unavailable).toHaveCount(0);
+    await expect(receipt).toHaveCount(1); await expect(receipt).toBeVisible();
+    await expect(receipt).toHaveText(receiptText);
+    await expect(receipt).toContainText(surface === "terms" ? "Aktuella uppgifter läses separat." : "Aktuella uppgifter hämtas separat.");
+    for (const claim of ["Aktuella uppgifter är bekräftade.", "Nyare aktuella uppgifter", "Posten finns inte längre", "Aktuella uppgifter är inte tillgängliga."]) await expect(receipt).not.toContainText(claim);
+    await expect(scope.getByTestId("operation-unconfirmed")).toHaveCount(0);
+    await expect(scope.getByRole("button", { name: /^(Sparar…|Godkänner…|Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska)$/ })).toHaveCount(0);
+    await expect(scope.getByLabel(name)).toHaveValue(draft);
+    if (price) await expect(scope.getByLabel(price)).toHaveValue("31,00");
+    await expect(scope.getByLabel(name)).toBeDisabled();
+    if (surface === "company") await expect(scope.getByTestId("company-empty-defaults")).toHaveCount(0);
+    expect(await historical.evaluate(element => element.isConnected)).toBe(true);
+    if (surface === "terms") {
+        expect(termsBaseline).not.toBeUndefined();
+        expect(canonicalTermsEqual(draft, termsBaseline?.terms_text ?? "")).toBe(false);
+        const approve = scope.getByRole("button", { name: "Markera som godkänd", exact: true });
+        // Matching own-save confirmation adopts the new unapproved baseline and enables approval.
+        if (termsBaseline === null) await expect(approve).toHaveCount(0);
+        else { await expect(approve).toHaveCount(1); await expect(approve).toBeDisabled(); }
+        const panel = scope.getByTestId("terms-current-facts");
+        const panels = await panel.count(); expect(panels).toBeLessThanOrEqual(1);
+        if (panels) {
+            // The renderer exposes wording/approval, not current ID/revision; the bound DB proof verifies those.
+            await expect(panel.getByText(draft.trim(), { exact: true })).toBeVisible();
+            await expect(panel.getByText("Aktuella villkor är inte godkända.", { exact: true })).toBeVisible();
+            await expect(panel).not.toContainText("Ingen aktuell post finns.");
+        }
+    }
+}
+
+async function operationIdOf(request: BrowserRequest): Promise<string> {
+    const body = request.postDataBuffer();
+    if (!body)
+        throw new Error("Missing server action body");
+    const form = await new globalThis.Request("http://capture.invalid", { method: "POST", headers: { "content-type": request.headers()["content-type"] }, body: new Uint8Array(body) }).formData();
+    let id: string | null = null;
+    form.forEach((value, key) => { if (key.endsWith("operationId") && typeof value === "string")
+        id = value; });
+    if (!id)
+        throw new Error("Missing captured operation identity before dispatch");
+    return id;
+}
+async function loseCommittedReply(page: Page, routePath: string, afterCommit = true) {
+    let release!: () => void, arrived!: () => void;
+    const gate = new Promise<void>(r => { release = r; }), seen = new Promise<void>(r => { arrived = r; });
+    const identities: string[] = [];
+    let first = true;
+    await page.route(`**${routePath}`, async (route) => {
+        if (route.request().method() !== "POST" || !route.request().headers()["next-action"]) {
+            await route.continue();
+            return;
+        }
+        identities.push(await operationIdOf(route.request()));
+        if (first) {
+            first = false;
+            if (afterCommit) {
+                const response = await route.fetch();
+                expect(response.ok()).toBe(true);
+            }
+            arrived();
+            await gate;
+            await route.abort("connectionfailed");
+        }
+        else
+            await route.continue();
+    });
+    return { seen, release, identities, clear: () => page.unroute(`**${routePath}`) };
+}
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }])
+    test(`P-E1/E2/E3 pricing all eight operation forms ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+        const own = await createTwoTenantFixture();
+        await page.setViewportSize(viewport);
+        try {
+            await signIn(page, own.adminA.email, own.adminA.password);
+            await page.goto("/settings/pricing");
+            await waitForHydrated(page.getByLabel("Benämning"));
+            for (const spec of [{ id: "work-roles-editor", surface: "work-role", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", archived: "work-roles-archived" }, { id: "articles-editor", surface: "article", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", archived: "articles-archived" }]) {
+                const editor = page.getByTestId(spec.id);
+                await producerCapture(page, info, spec.surface, "empty");
+                await producerCapture(page, info, spec.surface, "empty", undefined, "center", { state: "empty", mechanism: "authorized fresh-tenant absence" });
+                await editor.getByLabel(spec.name).fill(`Synthetic ${spec.surface}`);
+                await editor.getByLabel(spec.price).fill("-1");
+                await editor.getByRole("button", { name: spec.save }).click();
+                await expect(editor.getByLabel(spec.price)).toHaveAttribute("aria-invalid", "true");
+                await producerCapture(page, info, spec.surface, "error");
+                await producerCapture(page, info, spec.surface, "error", undefined, "center", { state: "validation", mechanism: "actual action validation" });
+                await editor.getByLabel(spec.price).fill("12,50");
+                const createLoss = await loseCommittedReply(page, "/settings/pricing");
+                await editor.getByRole("button", { name: spec.save }).dblclick();
+                await createLoss.seen;
+                expect(createLoss.identities).toHaveLength(1);
+                try {
+                    await expect(editor.getByRole("button", { name: "Sparar…", exact: true })).toBeDisabled();
+                    await expect(editor.getByLabel(spec.name)).toBeDisabled();
+                    await producerCapture(page, info, spec.surface, "loading");
+                    await producerCapture(page, info, spec.surface, "loading", undefined, "center", { state: "submitting", mechanism: "held action transport, pending client state" });
+                } finally { createLoss.release(); }
+                await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
+                await expect(editor.getByRole("button", { name: "Ny post" })).toBeDisabled();
+                if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
+                await producerCapture(page, info, spec.surface, "unknown");
+                await producerCapture(page, info, spec.surface, "unknown", undefined, "center", { state: "unknown", mechanism: "controlled loss of action reply" });
+                const reconcileHold = await holdNextProducerTransport(page, "/settings/pricing", "action");
+                try {
+                    await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
+                    await reconcileHold.seen;
+                    await expect(editor.getByRole("button", { name: "Kontrollera resultat" })).toBeDisabled();
+                    await expect(editor.getByRole("button", { name: "Försök igen med samma uppgifter" })).toBeDisabled();
+                    await producerCapture(page, info, spec.surface, "reconcile-pending");
+                } finally { await reconcileHold.clear(); }
+                await expect(editor.getByTestId("settings-saved")).toBeVisible();
+                expect(new Set(createLoss.identities).size).toBe(1);
+                await createLoss.clear();
+                const activeRow = editor.locator("li").filter({ hasText: `Synthetic ${spec.surface}` }).filter({ has: page.getByRole("button", { name: "Redigera", exact: true }) });
+                let row = activeRow;
+                await expect(row).toHaveCount(1);
+                await row.getByRole("button", { name: "Redigera" }).click();
+                await editor.getByLabel(spec.price).fill("25,00");
+                const editLoss = await loseCommittedReply(page, "/settings/pricing", false);
+                await editor.getByRole("button", { name: spec.save }).click();
+                await editLoss.seen;
+                editLoss.release();
+                await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
+                await editor.getByRole("button", { name: "Försök igen med samma uppgifter" }).click();
+                await expect(editor.getByTestId("settings-saved")).toBeVisible();
+                expect(new Set(editLoss.identities).size).toBe(1);
+                await editLoss.clear();
+                await expect(row).toContainText("25,00");
+                const archiveLoss = await loseCommittedReply(page, "/settings/pricing");
+                await row.getByRole("button", { name: "Arkivera" }).click();
+                await archiveLoss.seen;
+                archiveLoss.release();
+                await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
+                await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
+                await expect(editor.getByTestId("operation-unconfirmed")).toHaveCount(0);
+                expect(new Set(archiveLoss.identities).size).toBe(1);
+                await archiveLoss.clear();
+                await editor.getByRole("button", { name: /Visa arkiverade/ }).click();
+                row = editor.getByTestId(spec.archived).getByRole("listitem").filter({ hasText: `Synthetic ${spec.surface}` });
+                await expect(row).toHaveCount(1);
+                await expect(activeRow).toHaveCount(0);
+                await expect(row.getByRole("button", { name: "Återaktivera" })).toBeEnabled();
+                await producerCapture(page, info, spec.surface, "archived-restore", row);
+                await producerCapture(page, info, spec.surface, "archived-restore", row, "center", { state: "archived-restore", mechanism: "same selected row archived by a confirmed action" });
+                await expect(row.getByRole("button", { name: "Återaktivera" })).toBeInViewport();
+                const restoreLoss = await loseCommittedReply(page, "/settings/pricing");
+                await row.getByRole("button", { name: "Återaktivera" }).click();
+                await restoreLoss.seen;
+                restoreLoss.release();
+                await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
+                await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
+                await expect(editor.getByTestId("operation-unconfirmed")).toHaveCount(0);
+                expect(new Set(restoreLoss.identities).size).toBe(1);
+                await restoreLoss.clear();
+                await expect(editor.getByRole("list").first()).toContainText(`Synthetic ${spec.surface}`);
+                await expect(activeRow).toHaveCount(1);
+                await expect(activeRow).toContainText("25,00");
+                await expect(activeRow.getByRole("button", { name: "Arkivera" })).toBeEnabled();
+                await expect(row).toHaveCount(0);
+                await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+                await producerCapture(page, info, spec.surface, "finished", activeRow);
+                await producerCapture(page, info, spec.surface, "finished", activeRow, "center", { state: "finished", mechanism: "reactivated authorized row after current read" });
+                await expect(activeRow.getByRole("button", { name: "Arkivera" })).toBeInViewport();
+                await expect(editor.getByTestId("settings-saved")).toBeInViewport();
+            }
+        }
+        finally {
+            await cleanupFixture(own);
+        }
+    });
+
+async function positionProducerFrame(page: Page, anchors: readonly Locator[]) {
+    const handles: NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>>[] = [];
+    try {
+        for (const anchor of anchors) {
+            const handle = await anchor.elementHandle({ timeout: 3_000 });
+            if (!handle) throw new Error("Required producer capture anchor is missing");
+            handles.push(handle);
+        }
+        await page.evaluate(elements => {
+            const main = document.getElementById("main-content");
+            const root = document.scrollingElement;
+            if (!main || !root || elements.some(element => !main.contains(element) || !element.getClientRects().length)) {
+                throw new Error("All producer capture anchors must be rendered inside the main scroll container");
+            }
+            const mainBox = main.getBoundingClientRect();
+            const mainTop = mainBox.top + main.clientTop;
+            const mainBottom = Math.min(mainBox.bottom, mainTop + main.clientHeight);
+            const mainLeft = mainBox.left + main.clientLeft;
+            const left = Math.max(0, mainLeft);
+            const right = Math.min(window.innerWidth, mainBox.right, mainLeft + main.clientWidth);
+            const boxes = elements.map(element => element.getBoundingClientRect());
+            const first = Math.min(...boxes.map(box => box.top));
+            const last = Math.max(...boxes.map(box => box.bottom));
+
+            // Inner scroll moves the anchors within main. Document scroll moves
+            // main and anchors together. Limit both to their actual scroll ranges.
+            const inner = main.scrollTop;
+            const total = inner + root.scrollTop;
+            const maxInner = Math.max(0, main.scrollHeight - main.clientHeight);
+            const maxOuter = Math.max(0, root.scrollHeight - root.clientHeight);
+            const minTotal = Math.ceil(total + last - window.innerHeight);
+            const maxTotal = Math.floor(total + first);
+            const minInner = Math.max(0, Math.ceil(inner + last - mainBottom), minTotal - maxOuter);
+            const lastInner = Math.min(maxInner, Math.floor(inner + first - mainTop), maxTotal);
+            if (minInner > lastInner || minTotal > maxTotal || boxes.some(box => box.left < left || box.right > right)) {
+                throw new Error(`Producer capture anchors cannot fit together: ${(last - first).toFixed(1)}px with a ${(mainBottom - mainTop).toFixed(1)}px main scrollport and ${window.innerHeight}px viewport`);
+            }
+
+            const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+            const centeredInner = Math.round(inner + (first + last - mainTop - mainBottom) / 2);
+            const targetInner = clamp(centeredInner, minInner, lastInner);
+            const centeredOuter = Math.round(total + (first + last - window.innerHeight) / 2) - targetInner;
+            const targetOuter = clamp(centeredOuter, Math.max(0, minTotal - targetInner), Math.min(maxOuter, maxTotal - targetInner));
+            main.scrollTo({ top: targetInner, behavior: "instant" });
+            root.scrollTo({ top: targetOuter, behavior: "instant" });
+        }, handles);
+    } finally {
+        await Promise.all(handles.map(handle => handle.dispose()));
+    }
+}
+
+async function expectProducerFrame(anchors: readonly Locator[]) {
+    for (const anchor of anchors) await expect(anchor).toBeInViewport({ ratio: 1 });
+}
+
+async function captureStalePricingFrame(
+    page: Page, info: TestInfo, surface: string, state: "stale" | "neighbor-stale",
+    captureAnchor: Locator, simultaneouslyRequired: readonly Locator[],
+) {
+    const anchors = [captureAnchor, ...simultaneouslyRequired];
+    await positionProducerFrame(page, anchors);
+    await expectProducerFrame(anchors);
+    await producerCapture(page, info, surface, state, captureAnchor, "preserve");
+    await expectProducerFrame(anchors);
+}
+
+function isPricingAction(request: BrowserRequest) {
+    return new URL(request.url()).pathname === "/settings/pricing" && request.method() === "POST" && Boolean(request.headers()["next-action"]);
+}
+
+function isPricingRefresh(request: BrowserRequest) {
+    const headers = request.headers();
+    return new URL(request.url()).pathname === "/settings/pricing" && request.method() === "GET" && headers.rsc === "1"
+        && headers["next-router-prefetch"] === undefined && headers["next-router-segment-prefetch"] === undefined
+        && !headers.purpose?.includes("prefetch") && !headers["sec-purpose"]?.includes("prefetch");
+}
+
+async function fillBeforePricingHydration(page: Page, label: string) {
+    const script = (url: URL) => url.pathname.startsWith("/_next/static/") && url.pathname.endsWith(".js");
+    const article = page.getByTestId("articles-editor");
+    const name = article.getByRole("textbox", { name: "Artikelnamn", exact: true });
+    const sku = article.getByRole("textbox", { name: "Artikelnummer", exact: true });
+    const unit = article.getByRole("textbox", { name: "Enhet", exact: true });
+    const price = article.getByRole("textbox", { name: "Enhetspris (kr)", exact: true });
+    const fields = [[name, label], [sku, "  pre-hydration-01"], [unit, "m"], [price, " 7,5 "]] as const;
+    let release!: () => void;
+    let held = 0;
+    const gate = new Promise<void>(resolve => { release = resolve; });
+    const handler = async (route: import("@playwright/test").Route) => {
+        held++;
+        await gate;
+        await route.fallback();
+    };
+    await page.route(script, handler);
+    try {
+        await page.goto("/settings/pricing", { waitUntil: "commit" });
+        for (const [field, value] of fields) await field.fill(value);
+        expect(held).toBeGreaterThan(0);
+        for (const [field, value] of fields) {
+            expect(await field.evaluate(element => Object.keys(element).some(key => key.startsWith("__react")))).toBe(false);
+            await expect(field).toHaveValue(value);
+        }
+    } finally {
+        release();
+        await page.unroute(script, handler);
+    }
+    await expect(article.getByText("Osparade ändringar.", { exact: true })).toBeVisible();
+    for (const [field, value] of fields) await expect(field).toHaveValue(value);
+    await sku.fill("");
+    await unit.fill("");
+    await expect(sku).toHaveValue("");
+    await expect(unit).toHaveValue("");
+    await expect(name).toHaveValue(label);
+}
+
+function waitForPricingCreateRequest(page: Page, role: boolean, label: string, price: string) {
+    return page.waitForRequest(async request => {
+        if (!isPricingAction(request) || !request.headers()["content-type"]?.startsWith("multipart/form-data") || !request.postDataBuffer()) return false;
+        const form = await producerActionForm(request).catch(() => null);
+        if (!form) return false;
+        const values = (name: string) => [...form].filter(([key]) => key === name || key.endsWith(`_${name}`)).map(([, value]) => value);
+        const hasOne = (name: string, value: string) => {
+            const entries = values(name);
+            return entries.length === 1 && entries[0] === value;
+        };
+        return values("id").length === 0 && hasOne("expectedRevision", "absent")
+            && hasOne(role ? "display_name" : "name", label)
+            && hasOne(role ? "sell_rate_kronor" : "unit_price_kronor", price);
+    }, { timeout: 15_000 });
+}
+
+async function expectRoleRate(row: Locator, rate: string) {
+    const amount = row.getByText(/kr\/tim/);
+    const expected = `${rate} kr/tim`;
+    await expect(amount).toHaveText([expected]);
+    await expect.poll(() => amount.evaluate(element => Array.from(element.childNodes, node => [node.nodeType, node.textContent])))
+        .toEqual([[3, expected]]);
+}
+
+async function expectStoredPricingRow(
+    client: Awaited<ReturnType<typeof makeAuthedServerClient>>,
+    tenantId: string, targetId: string, role: boolean, label: string, amount: number,
+) {
+    const stored = role
+        ? await client.from("work_roles").select("id,write_revision,name:display_name,amount:sell_rate_ore").eq("tenant_id", tenantId).eq("id", targetId).single()
+        : await client.from("articles").select("id,write_revision,name,amount:unit_price_ore").eq("tenant_id", tenantId).eq("id", targetId).single();
+    expect(stored.error?.code ?? null).toBeNull();
+    expect(stored.data).toMatchObject({ id: targetId, name: label, amount });
+    return stored.data!;
+}
+
+async function expectPricingCommit(
+    client: Awaited<ReturnType<typeof makeAuthedServerClient>>,
+    owner: Awaited<ReturnType<typeof createTwoTenantFixture>>,
+    facts: Awaited<ReturnType<typeof producerCapturedFacts>>,
+    kind: "article.update" | "work_role.update", label: string, amount: number,
+) {
+    expect(facts.tenant === owner.tenantA.id && facts.actor === owner.adminA.id).toBe(true);
+    const role = kind === "work_role.update";
+    const stored = await expectStoredPricingRow(client, owner.tenantA.id, facts.target, role, label, amount);
+    const receipt = await client.rpc("reconcile_settings_pricing_operation", {
+        p_tenant_id: facts.tenant, p_actor_user_id: facts.actor, p_operation_id: facts.operation,
+        p_correlation_id: facts.operation, p_target_id: facts.target, p_operation_kind: kind,
+        p_expected_revision: facts.expectedRevision === "absent" ? null : facts.expectedRevision,
+        p_payload: role ? { display_name: label, cost_rate_ore: 0, sell_rate_ore: amount }
+            : { name: label, sku: null, unit: null, unit_price_ore: amount },
+    });
+    expect(receipt.error?.code ?? null).toBeNull();
+    expect(receipt.data).toMatchObject({ operationId: facts.operation, targetId: facts.target, committedRevision: stored.write_revision });
+}
+
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }])
+test(`R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+    test.setTimeout(120_000);
+    const own = await createTwoTenantFixture();
+    let other: Page | undefined;
+    let diagnostic: Awaited<ReturnType<typeof observeArticleDraft>> | undefined;
+    const specs = [
+        { id: "work-roles-editor", surface: "work-role", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", label: "Pinned role" },
+        { id: "articles-editor", surface: "article", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", label: "Pinned article" },
+    ];
+    try {
+        await page.setViewportSize(viewport);
+        await signIn(page, own.adminA.email, own.adminA.password);
+        const preHydrationArticle = viewport.width === 1440;
+        if (preHydrationArticle) await fillBeforePricingHydration(page, specs[1].label);
+        else await page.goto("/settings/pricing");
+        await waitForHydrated(page.getByLabel("Benämning"));
+        if (viewport.width === 360) diagnostic = await observeArticleDraft(page, {
+            label: "Pinned article", price: { original: "10,00", draft: "11,00", current: "20,00" }, unit: { original: "" },
+        });
+        const ordinary = await makeAuthedServerClient(own.adminA);
+        for (const spec of specs) {
+            const editor = page.getByTestId(spec.id);
+            if (!preHydrationArticle || spec.surface !== "article") await editor.getByLabel(spec.name).fill(spec.label);
+            await editor.getByLabel(spec.price).fill("10,00");
+            await expect(editor.getByLabel(spec.name)).toHaveValue(spec.label);
+            await expect(editor.getByLabel(spec.price)).toHaveValue("10,00");
+            await editor.getByRole("button", { name: spec.save }).click();
+            await expect(editor.getByRole("listitem").filter({ hasText: spec.label })).toHaveCount(1);
+            await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        }
+        other = await page.context().newPage();
+        await other.goto("/settings/pricing");
+        await waitForHydrated(other.getByLabel("Benämning"));
+        for (const [index, spec] of specs.entries()) {
+            const editor = page.getByTestId(spec.id), remote = other.getByTestId(spec.id);
+            const articleDiagnostic = spec.surface === "article" ? diagnostic : undefined;
+            const row = editor.getByRole("listitem").filter({ hasText: spec.label });
+            const remoteRow = remote.getByRole("listitem").filter({ hasText: spec.label });
+            const article = spec.surface === "article";
+            const table = article ? "articles" : "work_roles";
+            const nameColumn = article ? "name" : "display_name";
+            const readRevision = () => ordinary.from(table).select("id,write_revision").eq("tenant_id", own.tenantA.id).eq(nameColumn, spec.label).single();
+            const original = await readRevision();
+            expect(original.error?.code ?? null).toBeNull();
+            const price = editor.getByLabel(spec.price);
+            const save = editor.getByRole("button", { name: spec.save });
+            const facts = editor.getByTestId("pricing-current-facts");
+            const edit = row.getByRole("button", { name: "Redigera", exact: true });
+            if (article) await edit.click();
+            else {
+                await edit.press("Enter");
+                await expect(editor.getByLabel(spec.name)).toBeFocused();
+            }
+            await price.fill("11,00");
+            await expect(price).toHaveValue("11,00");
+            if (article) {
+                await editor.getByLabel(spec.name).fill(`${spec.label} draft`);
+                await editor.getByLabel("Artikelnummer").fill("  draft-01");
+                await editor.getByLabel("Enhet", { exact: true }).fill("m");
+                await expect(editor.getByText("Osparade ändringar.", { exact: true })).toBeVisible();
+            }
+            await remoteRow.getByRole("button", { name: "Redigera" }).click();
+            await remote.getByLabel(spec.price).fill("20,00");
+            await expect(remote.getByLabel(spec.price)).toHaveValue("20,00");
+            await remote.getByRole("button", { name: spec.save }).click();
+            await expect(remoteRow).toContainText("20,00");
+            if (!article) await expectRoleRate(remoteRow, "20,00");
+            await expect(remote.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            const terminal = observeProducerReadTerminal(page, "/settings/pricing");
+            const stalePosts: BrowserRequest[] = [], pricingRefreshes: BrowserRequest[] = [];
+            let staleHeaders: import("@playwright/test").Response | undefined;
+            let heldHeaders: import("@playwright/test").Response | undefined;
+            let heldRefresh: BrowserRequest | undefined;
+            const observeRequest = (request: BrowserRequest) => {
+                if (isPricingAction(request)) stalePosts.push(request);
+                if (isPricingRefresh(request)) pricingRefreshes.push(request);
+            };
+            const observeResponse = (response: import("@playwright/test").Response) => {
+                if (response.request() === stalePosts[0]) staleHeaders = response;
+                if (response.request() === heldRefresh) heldHeaders = response;
+            };
+            const hold = await holdNextProducerTransport(page, "/settings/pricing", "refresh", request => {
+                heldRefresh = request;
+                terminal.bind(request);
+            }, request => staleHeaders?.ok() === true && isPricingRefresh(request))
+                .catch(error => { terminal.dispose(); throw error; });
+            const releaseRead = producerReadSettlement(hold, terminal);
+            page.on("request", observeRequest);
+            page.on("response", observeResponse);
+            try {
+                const action = page.waitForResponse(response => response.request() === stalePosts[0], { timeout: 15_000 });
+                const [rejected] = await Promise.all([action, save.click()]);
+                const submitted = rejected.request();
+                expect(rejected.ok()).toBe(true);
+                const stale = await producerCapturedFacts(submitted);
+                expect(stale.target).toBe(original.data!.id);
+                expect(stale.expectedRevision).toBe(original.data!.write_revision);
+                await expect.poll(() => Boolean(hold.request()), { timeout: 15_000 }).toBe(true);
+                expect(pricingRefreshes.length === 1 && pricingRefreshes[0] === heldRefresh).toBe(true);
+                await expect(editor.getByRole("button", { name: "Uppdatera och granska" })).toBeVisible();
+                await expect(facts).toHaveCount(0);
+                await expect(row).toContainText("10,00");
+                await expect(price).toHaveValue("11,00");
+                await expect(price).toBeEnabled();
+                await price.focus();
+                await expect(price).toBeFocused();
+                const read = await releaseRead();
+                expect(read.kind !== "not-held" && read.request === heldRefresh).toBe(true);
+                // The router can cancel the stream after consuming the current facts.
+                if (read.kind === "failed") expect(terminal.summary().exact.failureCategory).toBe("net::ERR_ABORTED");
+                expect(heldHeaders?.ok()).toBe(true);
+                await expect(facts).toContainText("20,00");
+                await expect(price).toHaveValue("11,00");
+                await expect(price).toBeFocused();
+                expect(stalePosts.length === 1 && stalePosts[0] === submitted).toBe(true);
+                expect(pricingRefreshes.length === 1 && pricingRefreshes[0] === heldRefresh).toBe(true);
+            } finally {
+                page.off("request", observeRequest);
+                page.off("response", observeResponse);
+                await releaseRead();
+            }
+            if (article) {
+                await expect(editor.getByLabel(spec.name)).toHaveValue(`${spec.label} draft`);
+                await expect(editor.getByLabel("Artikelnummer")).toHaveValue("  draft-01");
+                await expect(editor.getByLabel("Enhet", { exact: true })).toHaveValue("m");
+            }
+            articleDiagnostic?.note("retained-draft-and-current-facts-asserted");
+            await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
+            if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
+            const adopt = editor.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
+            const refresh = editor.getByRole("button", { name: "Uppdatera och granska", exact: true });
+            const phoneRole = viewport.width === 360 && spec.surface === "work-role";
+            const staleAnchor = phoneRole ? refresh : facts;
+            const staleRequired = phoneRole ? [price, facts.getByText(/20,00/), adopt]
+                : viewport.width === 1440 ? [price] : [];
+            await captureStalePricingFrame(page, info, spec.surface, "stale", staleAnchor, staleRequired);
+            if (viewport.width === 360 && spec.surface === "article") {
+                await producerCapture(page, info, spec.surface, "stale-draft", editor.getByLabel(spec.price));
+                await expect(editor.getByLabel(spec.price)).toBeInViewport();
+            }
+            await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+            articleDiagnostic?.note("adopt-click-settled");
+            await expect(editor.getByLabel(spec.price)).toHaveValue("20,00");
+            if (article) {
+                await expect(editor.getByLabel(spec.name)).toHaveValue(spec.label);
+                await expect(editor.getByLabel("Artikelnummer")).toHaveValue("");
+                await expect(editor.getByLabel("Enhet", { exact: true })).toHaveValue("");
+                await expect(editor.getByText("Osparade ändringar.", { exact: true })).toHaveCount(0);
+            }
+            articleDiagnostic?.note("adoption-asserted");
+            await editor.getByLabel(spec.price).fill("21,00");
+            await remoteRow.getByRole("button", { name: "Redigera" }).click();
+            await remote.getByLabel(spec.price).fill("30,00");
+            await remote.getByRole("button", { name: spec.save }).click();
+            await expect(remoteRow).toContainText("30,00");
+            if (!article) await expectRoleRate(remoteRow, "30,00");
+            await expect(remote.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            const current = await readRevision();
+            expect(current.error?.code ?? null).toBeNull();
+            const neighborSpec = specs[1-index], neighbor = page.getByTestId(neighborSpec.id);
+            await neighbor.getByRole("button", { name: "Ny post" }).click();
+            await neighbor.getByLabel(neighborSpec.name).fill(`Neighbor refresh ${index}`);
+            await neighbor.getByLabel(neighborSpec.price).fill("99,00");
+            await neighbor.getByRole("button", { name: neighborSpec.save }).click();
+            await expect(neighbor.getByRole("listitem").filter({ hasText: `Neighbor refresh ${index}` })).toHaveCount(1);
+            await expect(editor.getByTestId("pricing-current-facts")).toContainText("30,00");
+            await expect(editor.getByLabel(spec.price)).toHaveValue("21,00");
+            await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
+            if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Använd aktuella uppgifter"]);
+            const neighborRequired = phoneRole ? [price, facts.getByText(/30,00/), adopt]
+                : viewport.width === 1440 ? [price] : [];
+            await captureStalePricingFrame(page, info, spec.surface, "neighbor-stale", facts, neighborRequired);
+            if (viewport.width === 360 && spec.surface === "article") {
+                await producerCapture(page, info, spec.surface, "neighbor-stale-draft", editor.getByLabel(spec.price));
+                await expect(editor.getByLabel(spec.price)).toBeInViewport();
+            }
+            await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+            await expect(editor.getByLabel(spec.price)).toHaveValue("30,00");
+            const submittedPrice = article ? "31" : "31,00";
+            await price.fill(submittedPrice);
+            await expect(price).toHaveValue(submittedPrice);
+            const receiptRequest = page.waitForRequest(isPricingAction, { timeout: 15_000 });
+            const receiptResponse = page.waitForResponse(async response => isPricingAction(response.request()) && response.request() === await receiptRequest, { timeout: 15_000 });
+            const [receiptPost, response] = await Promise.all([receiptRequest, receiptResponse, save.click()]);
+            expect(response.ok()).toBe(true);
+            const committed = await producerCapturedFacts(receiptPost);
+            expect(committed.target).toBe(current.data!.id);
+            expect(committed.expectedRevision).toBe(current.data!.write_revision);
+            await expectPricingCommit(ordinary, own, committed, article ? "article.update" : "work_role.update", spec.label, 3100);
+            const historicalOperationId = committed.operation;
+            await expect(row).toContainText("31,00");
+            if (!article) await expectRoleRate(row, "31,00");
+            await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            if (article) {
+                await expect(facts).toHaveCount(0);
+                await expect(save).toBeEnabled();
+                await expect(price).toHaveValue("31,00");
+            }
+            articleDiagnostic?.note("article-receipt-asserted");
+            const historicalReceipt = await editor.getByTestId("settings-saved").elementHandle();
+            expect(historicalReceipt).not.toBeNull();
+            // A normal checked UI edit changes the SAME target after this receipt.
+            // Only the secondary page reloads; the receipt-bearing page stays mounted.
+            await other.goto("/settings/pricing");
+            await waitForHydrated(other.getByLabel("Benämning"));
+            await expect(remoteRow).toContainText("31,00");
+            await remoteRow.getByRole("button", { name: "Redigera" }).click();
+            await remote.getByLabel(spec.price).fill("41,00");
+            await remote.getByRole("button", { name: spec.save }).click();
+            await expect(remoteRow).toContainText("41,00");
+            await expect(remote.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+            const laterActionRequests: BrowserRequest[] = [];
+            const observeLaterAction = (request: BrowserRequest) => {
+                if (isPricingAction(request)) laterActionRequests.push(request);
+            };
+            page.on("request", observeLaterAction);
+            try {
+                // Neighbor success performs the existing authorized reread without
+                // resetting/replaying the historical target's controller or receipt.
+                const label = `Current newer refresh ${index}`;
+                const role = neighborSpec.surface === "work-role";
+                const newHeading = page.getByRole("heading", { name: role ? "Ny arbetsroll" : "Ny artikel", exact: true });
+                const createForm = neighbor.locator("form").filter({ has: newHeading });
+                await neighbor.getByRole("button", { name: "Ny post", exact: true }).click();
+                const nameField = createForm.getByRole("textbox", { name: neighborSpec.name, exact: true });
+                const priceField = createForm.getByRole("textbox", { name: neighborSpec.price, exact: true });
+                const createSave = createForm.getByRole("button", { name: neighborSpec.save, exact: true });
+                await expect(createForm).toBeVisible();
+                await expect(nameField).toBeFocused();
+                await expect(nameField).toHaveValue("");
+                await expect(priceField).toHaveValue("");
+                await expect(createForm.locator('input[name="id"]')).toHaveCount(0);
+                await nameField.fill(label);
+                await priceField.fill("99,00");
+                await expect(nameField).toHaveValue(label);
+                await expect(priceField).toHaveValue("99,00");
+                await expect(createSave).toBeEnabled();
+
+                const actionDeadline = { timeout: 15_000 };
+                const createRequest = waitForPricingCreateRequest(page, role, label, "99,00");
+                // Observe headers for this exact POST; the streamed response can remain open.
+                const createHeaders = page.waitForResponse(async response =>
+                    response.request().method() === "POST" && response.request() === await createRequest, actionDeadline);
+                const [createdRequest, createResponse] = await Promise.all([createRequest, createHeaders, createSave.click()]);
+                expect(createResponse.request() === createdRequest && createResponse.ok()).toBe(true);
+                const created = await producerCapturedFacts(createdRequest);
+                expect(/^[0-9a-f-]{36}$/i.test(created.operation)).toBe(true);
+                expect(/^[0-9a-f-]{36}$/i.test(created.target)).toBe(true);
+                expect(created.tenant === own.tenantA.id && created.actor === own.adminA.id).toBe(true);
+                expect(created.expectedRevision).toBe("absent");
+                const createdRow = neighbor.getByRole("listitem").filter({ hasText: label });
+                await expect(createdRow).toHaveCount(1);
+                await expect(createdRow).toBeVisible();
+                if (role) await expectRoleRate(createdRow, "99,00");
+                await expect(neighbor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+
+                const persisted = role
+                    ? await ordinary.from("work_roles").select("id,amount:sell_rate_ore").eq("tenant_id", own.tenantA.id).eq("display_name", label)
+                    : await ordinary.from("articles").select("id,amount:unit_price_ore").eq("tenant_id", own.tenantA.id).eq("name", label);
+                expect(persisted.error?.code ?? null).toBeNull();
+                expect(persisted.data?.length).toBe(1);
+                expect(persisted.data?.[0]?.id === created.target).toBe(true);
+                expect(persisted.data?.[0]?.amount).toBe(9900);
+                await expect(row).toContainText("41,00");
+                if (!article) await expectRoleRate(row, "41,00");
+                await expect(editor.getByTestId("pricing-current-facts")).toContainText("41,00");
+                await expect(editor.getByLabel(spec.price)).toHaveValue("31,00");
+                await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
+                await expect(editor.getByTestId("settings-saved")).toContainText("Det tidigare försöket slutfördes.");
+                await expect(editor.getByTestId("settings-saved")).toContainText("Nyare ändringar finns. Granska aktuella uppgifter.");
+                await expect(editor.getByTestId("settings-saved")).not.toContainText("Aktuella uppgifter är bekräftade.");
+                expect(await historicalReceipt!.evaluate(element => element.isConnected)).toBe(true);
+                expect(await historicalReceipt!.textContent()).toContain("Nyare ändringar finns. Granska aktuella uppgifter.");
+                expect(laterActionRequests.length).toBe(1);
+                expect(laterActionRequests[0] === createdRequest).toBe(true);
+                expect(created.operation !== historicalOperationId).toBe(true);
+                await producerCapture(page, info, spec.surface, "current-newer", editor.getByTestId("pricing-current-facts"), "start");
+                await expect(editor.getByTestId("pricing-current-facts")).toBeInViewport();
+                await expect(editor.getByTestId("pricing-current-facts").getByText(/41,00/)).toBeVisible();
+                await expect(editor.getByTestId("pricing-current-facts").getByText(/41,00/)).toBeInViewport({ ratio: 1 });
+                await expect(editor.getByTestId("settings-saved")).toBeInViewport({ ratio: 1 });
+                if (viewport.width === 360) {
+                    // Preserve the primary receipt/current41 overview, then show
+                    // the retained actual31 input in a separate uncropped viewport.
+                    const phonePriceSupplement = editor.getByLabel(spec.price);
+                    await expect(phonePriceSupplement).toHaveValue("31,00");
+                    await expect(phonePriceSupplement).toBeVisible();
+                    await producerCapture(page, info, spec.surface, "current-newer-draft", phonePriceSupplement);
+                    await expect(phonePriceSupplement).toBeInViewport({ ratio: 1 });
+                    await expect(phonePriceSupplement).toHaveValue("31,00");
+                }
+            } finally { page.off("request", observeLaterAction); }
+
+        }
+    } catch (error) {
+        await diagnostic?.finish(error);
+        throw error;
+    } finally {
+        await diagnostic?.finish();
+        await other?.close();
+        await cleanupFixture(own);
+    }
+});
+
+
+// Human-authorized CI-only effects. No local invocation is admitted, and this
+// append-only job claim deliberately refuses ALL worker/test retries after entry.
+type ProducerPlaywrightEntry = { family: "@playwright/test" | "playwright"; canonical: string };
+function producerPlaywrightEntry(script: string, fsPath = path, resolveRealPath: (file: string) => string = realpathSync, read: (file: string, encoding: "utf8") => string = readFileSync): ProducerPlaywrightEntry | undefined {
+    // Preserve a recognizable original launcher even if its loaded entrypoint was
+    // unlinked or a conventional symlink resolves outside the named package.
+    let knownFamily = /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(fsPath.normalize(script));
+    let canonical: string;
+    try { canonical = resolveRealPath(script); }
+    catch { if (knownFamily) throw new Error("P-E5 family=playwright reason=entrypoint-unavailable"); return; }
+    knownFamily ||= /node_modules\/(?:@playwright\/test|playwright)\/cli\.js$/.test(canonical);
+    if (fsPath.basename(canonical) !== "cli.js") {
+        if (knownFamily) throw new Error("P-E5 family=playwright reason=canonical-entrypoint-mismatch");
+        return;
+    }
+    const directory = fsPath.dirname(canonical);
+    let pkg;
+    try { pkg = JSON.parse(read(fsPath.join(directory, "package.json"), "utf8")); }
+    catch { if (knownFamily) throw new Error("P-E5 family=playwright reason=package-identity-unavailable"); return; }
+    if (pkg.name !== "@playwright/test" && pkg.name !== "playwright") {
+        if (knownFamily) throw new Error("P-E5 family=playwright reason=package-identity-mismatch");
+        return;
+    }
+    const bin = typeof pkg.bin === "string" ? pkg.bin : pkg.bin?.playwright;
+    let binCanonical: string | undefined;
+    try { if (typeof bin === "string") binCanonical = resolveRealPath(fsPath.resolve(directory, bin)); } catch { /* Fixed reason only, no fsPath payload. */ }
+    if (binCanonical !== canonical) throw new Error("P-E5 family=playwright reason=package-bin-mismatch");
+    return { family: pkg.name, canonical };
+}
+function producerPlaywrightInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, unclassified?: (role: "parsed" | "opaque") => void, inspectedScript?: (canonical: string) => void, fsPath = path, resolveRealPath: (file: string) => string = realpathSync): ProducerPlaywrightEntry | undefined {
+    // Absolute scripts and proven non-test commands do not require another
+    // process's cwd. An unresolved relative test/ambiguous launch still refuses.
+    const resolveScript = (script: string, subcommand: "test" | "unresolved", resolutionBranch: "unsupported-option" | "non-test-script" | "test-script") => {
+        if (fsPath.isAbsolute(script)) return fsPath.normalize(script);
+        try { return fsPath.resolve(typeof cwd === "string" ? cwd : cwd(), script); }
+        catch (error) {
+            const code = (error as NodeJS.ErrnoException).code;
+            throw Object.assign(new Error("P-E5 family=node reason=consumer-cwd-unavailable"), {
+                producerErrorCategory: ["EACCES", "EPERM", "ENOENT", "ESRCH"].includes(code ?? "") ? code : "other",
+                producerScriptFamily: /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(fsPath.normalize(script)) ? "playwright-hint" : "unclassified",
+                producerSubcommandCategory: subcommand,
+                producerResolutionBranch: resolutionBranch,
+            });
+        }
+    };
+    let index = 1;
+    while (args[index]?.startsWith("-")) {
+        const option = args[index];
+        if (option === "--") { index++; break; }
+        if (["-e", "--eval", "-p", "--print"].includes(option) || option.startsWith("--eval=") || option.startsWith("--print=")) { unclassified?.("opaque"); return; } // Inline program, not an inspectable script.
+        if (["-r", "--require", "--import", "--loader", "--experimental-loader", "--conditions", "-C"].includes(option)) { if (!args[index + 1]) throw new Error("P-E5 family=node reason=missing-startup-option-value"); index += 2; continue; }
+        if (option.startsWith("--") && option.includes("=") || ["--no-warnings", "--enable-source-maps", "--experimental-strip-types", "--trace-warnings", "--inspect", "--inspect-brk"].includes(option)) { index++; continue; }
+        // Never accept an arbitrary argv payload just because it contains test.
+        // An unsupported Node launch with a real Playwright CLI is a refusal,
+        // including foreign projects, not an ignored consumer.
+        if (args.slice(index + 1).some(arg => identify(resolveScript(arg, "unresolved", "unsupported-option")))) throw new Error("P-E5 family=playwright reason=unsupported-node-launch");
+        unclassified?.("opaque");
+        return;
+    }
+    if (!args[index]) { unclassified?.("opaque"); return; }
+    if (args[index + 1] !== "test") {
+        // A confirmed Node with rewritten/opaque argv cannot be dismissed by
+        // missing tokens. Normal inspectable non-test scripts remain distinct.
+        if (unclassified) {
+            const script = resolveScript(args[index], "unresolved", "non-test-script");
+            try { const canonical = resolveRealPath(script); inspectedScript?.(canonical); unclassified("parsed"); } catch { unclassified("opaque"); }
+        }
+        return;
+    }
+    const script = resolveScript(args[index], "test", "test-script"), result = identify(script);
+    if (!result && unclassified) { try { const canonical = resolveRealPath(script); inspectedScript?.(canonical); unclassified("parsed"); } catch { unclassified("opaque"); } }
+    return result;
+}
+function producerNodeInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined, requireInspectable: boolean, inspectedScript?: (canonical: string) => void, fsPath = path, resolveRealPath: (file: string) => string = realpathSync): ProducerPlaywrightEntry | undefined {
+    let role: "parsed" | "opaque" = "opaque";
+    const invocation = producerPlaywrightInvocation(args, cwd, identify, requireInspectable ? value => { role = value; } : undefined, inspectedScript, fsPath, resolveRealPath);
+    if (requireInspectable && !invocation && role === "opaque") throw new Error("P-E5 family=node reason=opaque-node-consumer");
+    return invocation;
+}
+type ProducerExecutableKind = "node" | "non-node" | "unknown";
+function producerDriverInvocation(args: readonly string[], cwd: string | (() => string), identify: (script: string) => ProducerPlaywrightEntry | undefined,
+    executable: ProducerExecutableKind, owner: boolean): ProducerPlaywrightEntry | undefined {
+    if (owner && executable !== "node") throw new Error(`P-E5 family=node reason=owner-executable-${executable === "non-node" ? "contradiction" : "unverified"}`);
+    if (executable === "non-node") return;
+    const nodeLaunch = /(?:^|\/)(?:node|nodejs|npm|npx|pnpm)(?:$|\s)/.test(args[0] ?? "");
+    const playwrightEvidence = args.some(arg => /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(path.normalize(arg))
+        || /^npm (?:exec|x) (?:playwright|@playwright\/test)(?:@[^\s]+)?(?:\s|$)/.test(arg));
+    if (executable === "unknown" && !nodeLaunch && !playwrightEvidence) return;
+    try {
+        const invocation = producerNodeInvocation(args, cwd, identify, true);
+        if (owner && !invocation) throw new Error("P-E5 family=playwright reason=owner-entrypoint-unclassified");
+        return invocation;
+    } catch (error) { throw Object.assign(error as Error, { producerAffirmativeSignal: executable === "node" ? "kernel-node" : nodeLaunch && playwrightEvidence ? "both" : nodeLaunch ? "node-launch" : "playwright-entrypoint" }); }
+}
+type ProducerBrowserInspection = {
+    Config?: { Cmd?: unknown; Entrypoint?: unknown }; Path?: string; Args?: unknown;
+    HostConfig?: { Init?: boolean; PidMode?: string }; State?: { Running?: boolean; Pid?: number };
+};
+function producerBrowserLauncherPid(inspected: ProducerBrowserInspection, expected: readonly string[], top: string,
+    status: (pid: number) => string, processStat: (pid: number) => string, args: readonly string[]): number {
+    const refuse = () => { throw new Error("P-E5 family=node reason=browser-launcher-unverified"); };
+    // Role evidence never exempts a parsed/opaque test command, even in this container.
+    if (args.some(arg => /(?:^|\s)test(?:\s|$)/.test(arg))) refuse();
+    const init = inspected.State?.Pid;
+    if (!Number.isSafeInteger(init) || init! <= 1 || !inspected.State?.Running || inspected.HostConfig?.Init !== true
+        || inspected.HostConfig.PidMode !== "" || JSON.stringify(inspected.Config?.Cmd) !== JSON.stringify(expected)
+        || inspected.Config?.Entrypoint != null && JSON.stringify(inspected.Config.Entrypoint) !== "[]"
+        || inspected.Path !== expected[0] || JSON.stringify(inspected.Args) !== JSON.stringify(expected.slice(1))) refuse();
+    const lines = top.trim().split("\n");
+    if (lines.shift()?.trim().replace(/\s+/g, " ") !== "PID PPID") refuse();
+    const rows = lines.map(line => { const match = /^\s*(\d+)\s+(\d+)\s*$/.exec(line); if (!match) return refuse(); return { pid: Number(match[1]), parent: Number(match[2]) }; });
+    if (new Set(rows.map(row => row.pid)).size !== rows.length || !rows.some(row => row.pid === init)) refuse();
+    const children = rows.filter(row => row.parent === init);
+    if (children.length !== 1) refuse(); // No descendant/container-wide allowance.
+    const launcher = children[0].pid;
+    const parseStat = (pid: number) => {
+        const raw = processStat(pid), end = raw.lastIndexOf(")"), fields = raw.slice(end + 2).trim().split(/\s+/);
+        if (Number(raw.slice(0, raw.indexOf(" "))) !== pid || end < 0 || !/^\d+$/.test(fields[19] ?? "")) return refuse();
+        return { parent: Number(fields[1]), started: fields[19] };
+    };
+    const beforeInit = parseStat(init!), beforeLauncher = parseStat(launcher);
+    const parseStatus = (pid: number) => {
+        const raw = status(pid), id = Number(/^Pid:\s+(\d+)$/m.exec(raw)?.[1]), parent = Number(/^PPid:\s+(\d+)$/m.exec(raw)?.[1]);
+        const namespace = /^NSpid:\s+([\d\t ]+)$/m.exec(raw)?.[1].trim().split(/\s+/).map(Number);
+        if (id !== pid || !namespace || namespace.length < 2 || namespace[0] !== pid || !namespace.every(Number.isSafeInteger)) return refuse();
+        return { parent, namespace };
+    };
+    const initStatus = parseStatus(init!), launcherStatus = parseStatus(launcher);
+    if (launcherStatus.parent !== init || beforeLauncher.parent !== init || initStatus.parent !== beforeInit.parent
+        || rows.find(row => row.pid === init)?.parent !== initStatus.parent || initStatus.namespace.at(-1) !== 1
+        || launcherStatus.namespace.at(-1)! <= 1 || initStatus.namespace.length !== launcherStatus.namespace.length
+        || JSON.stringify(initStatus.namespace.slice(1, -1)) !== JSON.stringify(launcherStatus.namespace.slice(1, -1))
+        || JSON.stringify(beforeInit) !== JSON.stringify(parseStat(init!)) || JSON.stringify(beforeLauncher) !== JSON.stringify(parseStat(launcher))) refuse();
+    return launcher;
+}
+type ProducerNamespaceMapping = { hostPid: number; pid: number; parent: number; started: string; initStarted: string };
+type ProducerNamespaceInput = ProducerNamespaceMapping & { cmdlineSha256: string; version: string; service?: string; serviceMain?: boolean };
+type ProducerNamespaceOutput = { pid: number; parent: number; started: string; kind: "blocked" | "test" | "non-test" | "non-node"; executable: "unknown" | "node" | "non-node"; binding: "none" | "canonical-cli" | "pinned-cli" | "ordinary-script" | "service-main" | "non-node"; family: "none" | "playwright" | "@playwright/test"; reason: "none" | "identity-unavailable" | "opaque-node" };
+function producerBrowserMemberMapping(inspected: ProducerBrowserInspection, expected: readonly string[], top: string,
+    status: (pid: number) => string, processStat: (pid: number) => string, args: readonly string[], candidate: number): ProducerNamespaceMapping {
+    producerBrowserLauncherPid(inspected, expected, top, status, processStat, args);
+    return producerNamespaceMemberMapping(inspected, top, status, processStat, candidate);
+}
+function producerNamespaceMemberMapping(inspected: ProducerBrowserInspection, top: string, status: (pid: number) => string,
+    processStat: (pid: number) => string, candidate: number): ProducerNamespaceMapping {
+    const fail = (stage = "mapping-unverified") => { throw Object.assign(new Error("P-E5 family=node reason=namespace-membership-unverified"), { producerNamespaceStage: stage }); };
+    const rows = top.trim().split("\n").slice(1).map(line => { const m = /^\s*(\d+)\s+(\d+)\s*$/.exec(line); if (!m) return fail(); return { pid: Number(m[1]), parent: Number(m[2]) }; });
+    const row = rows.find(value => value.pid === candidate); if (!row) return fail("nonmember");
+    const identity = (pid: number) => {
+        const text = status(pid), raw = processStat(pid), fields = raw.slice(raw.lastIndexOf(")") + 2).trim().split(/\s+/);
+        const namespace = /^NSpid:\s+([\d\t ]+)$/m.exec(text)?.[1].trim().split(/\s+/).map(Number);
+        const parent = Number(/^PPid:\s+(\d+)$/m.exec(text)?.[1]);
+        if (Number(/^Pid:\s+(\d+)$/m.exec(text)?.[1]) !== pid || Number(raw.slice(0, raw.indexOf(" "))) !== pid
+            || !namespace || namespace.length < 2 || namespace[0] !== pid || !namespace.every(Number.isSafeInteger)
+            || parent !== Number(fields[1]) || !/^\d{1,24}$/.test(fields[19] ?? "")) return fail();
+        return { namespace, parent, started: fields[19] };
+    };
+    const init = identity(inspected.State!.Pid!), member = identity(candidate);
+    if (init.namespace.at(-1) !== 1) return fail("parent-or-namespace-unverified");
+    if (member.parent !== row.parent || member.namespace.length !== init.namespace.length
+        || JSON.stringify(member.namespace.slice(1, -1)) !== JSON.stringify(init.namespace.slice(1, -1))) return fail("parent-or-namespace-unverified");
+    let parent = 0;
+    if (candidate !== inspected.State!.Pid) {
+        if (!rows.some(value => value.pid === member.parent)) return fail("parent-unverified");
+        const parentIdentity = identity(member.parent);
+        if (parentIdentity.namespace.length !== member.namespace.length || JSON.stringify(parentIdentity.namespace.slice(1, -1)) !== JSON.stringify(member.namespace.slice(1, -1))) return fail();
+        parent = parentIdentity.namespace.at(-1)!;
+    }
+    if (JSON.stringify(init) !== JSON.stringify(identity(inspected.State!.Pid!)) || JSON.stringify(member) !== JSON.stringify(identity(candidate))) return fail("instance-changed");
+    return { hostPid: candidate, pid: member.namespace.at(-1)!, parent, started: member.started, initStarted: init.started };
+}
+function producerNamespaceClassify(input: ProducerNamespaceInput, fsPath = path, read: (file: string, encoding: "utf8") => string = readFileSync, link = readlinkSync, resolveRealPath: (file: string) => string = realpathSync, hash = createHash): ProducerNamespaceOutput {
+    const output: ProducerNamespaceOutput = { pid: input.pid, parent: input.parent, started: input.started, kind: "blocked", executable: "unknown", binding: "none", family: "none", reason: "identity-unavailable" };
+    try {
+        if (!Number.isSafeInteger(input.pid) || input.pid <= 0 || !Number.isSafeInteger(input.parent) || input.parent < 0
+            || !/^\d{1,24}$/.test(input.started) || !/^[a-f0-9]{64}$/.test(input.cmdlineSha256) || !/^\d+\.\d+\.\d+$/.test(input.version)) return output;
+        const snapshot = () => {
+            const base = `/proc/${input.pid}`, raw = read(`${base}/stat`, "utf8"), fields = raw.slice(raw.lastIndexOf(")") + 2).trim().split(/\s+/);
+            const status = read(`${base}/status`, "utf8"), cmdline = read(`${base}/cmdline`, "utf8");
+            const executable = link(`${base}/exe`), cwd = link(`${base}/cwd`);
+            if (Number(raw.slice(0, raw.indexOf(" "))) !== input.pid || Number(/^Pid:\s+(\d+)$/m.exec(status)?.[1]) !== input.pid
+                || Number(fields[1]) !== input.parent || Number(/^PPid:\s+(\d+)$/m.exec(status)?.[1]) !== input.parent || fields[19] !== input.started
+                || hash("sha256").update(cmdline).digest("hex") !== input.cmdlineSha256 || cmdline.length > 65536 || executable.length > 4096 || cwd.length > 4096) throw new Error("unstable");
+            return { executable, cwd, cmdline };
+        };
+        const packageSnapshots = new Map<string, string>(), canonicalSnapshots = new Map<string, string>();
+        const checkedRead = (file: string, encoding: "utf8") => {
+            const value = read(file, encoding);
+            if (fsPath.basename(file) === "package.json") { if (packageSnapshots.has(file) && packageSnapshots.get(file) !== value) throw new Error("package-changed"); packageSnapshots.set(file, value); }
+            return value;
+        };
+        const checkedRealPath = (file: string) => {
+            const value = resolveRealPath(file);
+            if (canonicalSnapshots.has(file) && canonicalSnapshots.get(file) !== value) throw new Error("entry-changed");
+            canonicalSnapshots.set(file, value); return value;
+        };
+        const before = snapshot(), args = before.cmdline.split("\0");
+        const node = /^(?:node|nodejs)(?: \(deleted\))?$/.test(fsPath.basename(before.executable));
+        output.executable = node ? "node" : "non-node";
+        if (!node) { output.kind = "non-node"; output.binding = "non-node"; }
+        else {
+            let inspected: string | undefined;
+            const entry = producerNodeInvocation(args, before.cwd, script => producerPlaywrightEntry(script, fsPath, checkedRealPath, checkedRead), true, canonical => { inspected = canonical; }, fsPath, checkedRealPath);
+            if (entry) {
+                const pkg = JSON.parse(checkedRead(fsPath.join(fsPath.dirname(entry.canonical), "package.json"), "utf8"));
+                output.kind = "test"; output.family = entry.family;
+                output.binding = pkg.version === input.version ? "pinned-cli" : "canonical-cli";
+            } else if (inspected) {
+                const cli = producerPlaywrightEntry(inspected, fsPath, checkedRealPath, checkedRead);
+                if (cli) {
+                    const pkg = JSON.parse(checkedRead(fsPath.join(fsPath.dirname(cli.canonical), "package.json"), "utf8"));
+                    if (pkg.version !== input.version) throw new Error("version");
+                    output.binding = "pinned-cli"; output.family = cli.family;
+                } else output.binding = "ordinary-script";
+                output.kind = "non-test";
+            } else { output.reason = "opaque-node"; return output; }
+        }
+        if (JSON.stringify(before) !== JSON.stringify(snapshot())) throw new Error("unstable");
+        for (const [file, value] of packageSnapshots) if (read(file, "utf8") !== value) throw new Error("package-changed");
+        for (const [file, value] of canonicalSnapshots) if (resolveRealPath(file) !== value) throw new Error("entry-changed");
+        output.reason = "none"; return output;
+    } catch (error) {
+        return { ...output, kind: "blocked", binding: "none", family: "none", reason: (error as Error).message === "P-E5 family=node reason=opaque-node-consumer" ? "opaque-node" : "identity-unavailable" };
+    }
+}
+// CLI v2.115.0 commit18ae43a3 embedded manifest + exact builders: no Cmd,
+// Entrypoint/User override. Unexpected linked-version pins or custom registries
+// change the resolved reference and therefore fail this CLOSED reference set.
+function producerClosedStackServices() {
+    const handoff = "a15ac9589c04baf9da95b08e0e79b5cf1d75ab8dc64e06a5e68e4ceb0ad7c8ea";
+    return [
+        { key: "studio", section: "studio", name: "/supabase_studio_kopplas", repository: "studio", tag: "2026.08.17-sha-0c1da8f", script: "apps/studio/server.js", cwd: "/app", alias: "studio", port: "3000/tcp", hostPort: "54323", handoff },
+        { key: "storage", section: "storage", name: "/supabase_storage_kopplas", repository: "storage-api", tag: "v1.69.11", script: "dist/start/server.js", cwd: "/app", alias: "storage", port: "5000/tcp", hostPort: "", handoff },
+        { key: "pgmeta", section: "studio", name: "/supabase_pg_meta_kopplas", repository: "postgres-meta", tag: "v0.98.0", script: "dist/server/server.js", cwd: "/usr/src/app", alias: "pg_meta", port: "8080/tcp", hostPort: "", handoff },
+    ] as const;
+}
+type ProducerClosedService = ReturnType<typeof producerClosedStackServices>[number];
+type ProducerServiceContainer = ProducerBrowserInspection & { Id?: string; Image?: string; Name?: string; Created?: string; Mounts?: { Destination?: string }[];
+    Config?: NonNullable<ProducerBrowserInspection["Config"]> & { Image?: string; User?: string; WorkingDir?: string; Labels?: Record<string, string>; ExposedPorts?: Record<string, unknown> };
+    NetworkSettings?: { Networks?: Record<string, { NetworkID?: string; Aliases?: string[] }>; Ports?: Record<string, { HostIp?: string; HostPort?: string }[] | null> } };
+function producerClosedServiceEnabled(service: ProducerClosedService, config: string): boolean {
+    const section = config.split(new RegExp(`^\\[${service.section}\\]\\s*$`, "m"))[1]?.split(/^\[/m)[0];
+    return Boolean(section && /^enabled\s*=\s*true\s*(?:#.*)?$/m.test(section));
+}
+function producerValidateClosedService(service: ProducerClosedService, config: string, inspected: ProducerServiceContainer,
+    imageRef: { Id?: string; RepoTags?: string[]; Config?: ProducerServiceContainer["Config"] }, imageId: { Id?: string; Config?: ProducerServiceContainer["Config"] },
+    db: ProducerServiceContainer, gateway: ProducerServiceContainer, checkoutTime: number, now: number): void {
+    const fail = () => { throw new Error("P-E5 family=node reason=closed-service-unverified"); };
+    const section = config.split(new RegExp(`^\\[${service.section}\\]\\s*$`, "m"))[1]?.split(/^\[/m)[0];
+    if (!producerClosedServiceEnabled(service, config)) fail();
+    if (service.key === "studio" && (!/^port\s*=\s*54323\s*(?:#.*)?$/m.test(section!) || !/^api_url\s*=\s*"http:\/\/127\.0\.0\.1"\s*(?:#.*)?$/m.test(section!))) fail();
+    const refs = [`supabase/${service.repository}:${service.tag}`, `public.ecr.aws/supabase/${service.repository}:${service.tag}`, `ghcr.io/supabase/${service.repository}:${service.tag}`];
+    const created = Date.parse(inspected.Created ?? ""), expectedCmd = ["node", service.script], expectedEntry = ["docker-entrypoint.sh"];
+    if (!/^[a-f0-9]{64}$/.test(inspected.Id ?? "") || inspected.Name !== service.name || !inspected.State?.Running || !Number.isSafeInteger(inspected.State.Pid) || inspected.State.Pid! <= 1
+        || inspected.Config?.Labels?.["com.supabase.cli.project"] !== "kopplas" || !Number.isFinite(created) || created < checkoutTime || created > now
+        || !refs.includes(inspected.Config?.Image ?? "") || !/^sha256:[a-f0-9]{64}$/.test(inspected.Image ?? "") || imageRef.Id !== inspected.Image || imageId.Id !== inspected.Image
+        || !imageRef.RepoTags?.includes(inspected.Config!.Image!) || JSON.stringify(imageRef.Config) !== JSON.stringify(imageId.Config)) fail();
+    const defaults = imageId.Config;
+    if (!defaults || JSON.stringify(defaults.Cmd) !== JSON.stringify(expectedCmd) || JSON.stringify(defaults.Entrypoint) !== JSON.stringify(expectedEntry)
+        || typeof defaults.User !== "string" || defaults.User.length > 128 || defaults.WorkingDir !== service.cwd || !Object.hasOwn(defaults.ExposedPorts ?? {}, service.port)
+        || inspected.Config!.User !== defaults.User || inspected.Config!.WorkingDir !== defaults.WorkingDir || JSON.stringify(inspected.Config!.Cmd) !== JSON.stringify(defaults.Cmd)
+        || JSON.stringify(inspected.Config!.Entrypoint) !== JSON.stringify(defaults.Entrypoint) || inspected.Path !== expectedEntry[0] || JSON.stringify(inspected.Args) !== JSON.stringify(expectedCmd)
+        || inspected.HostConfig?.PidMode !== "" || inspected.HostConfig.Init === true) fail();
+    const common = Object.values(db.NetworkSettings?.Networks ?? {}).map(value => value.NetworkID).filter(id => /^[a-f0-9]{64}$/.test(id ?? "") && Object.values(gateway.NetworkSettings?.Networks ?? {}).some(value => value.NetworkID === id));
+    const networks = Object.values(inspected.NetworkSettings?.Networks ?? {});
+    if (networks.length !== 1 || !common.includes(networks[0].NetworkID) || !networks[0].Aliases?.includes(service.alias)) fail();
+    const ports = Object.values(inspected.NetworkSettings?.Ports ?? {}).flatMap(value => value ?? []);
+    if (service.hostPort ? !inspected.NetworkSettings?.Ports?.[service.port]?.some(value => value.HostPort === service.hostPort && ["127.0.0.1", "0.0.0.0"].includes(value.HostIp ?? "")) || ports.some(value => value.HostPort !== service.hostPort)
+        : ports.length !== 0) fail();
+    for (const mount of inspected.Mounts ?? []) {
+        const destination = mount.Destination?.replace(/\/$/, "");
+        if (!destination || [service.cwd, "/usr/local/bin/docker-entrypoint.sh"].some(file => file === destination || file.startsWith(destination + "/"))) fail();
+    }
+}
+function producerNamespaceOpaqueMain(input: ProducerNamespaceInput, prior: ProducerNamespaceOutput, fsPath = path,
+    read: (file: string, encoding: "utf8") => string = readFileSync, link = readlinkSync, resolveRealPath: (file: string) => string = realpathSync, hash = createHash): ProducerNamespaceOutput {
+    try {
+        const service = producerClosedStackServices().find(value => value.key === input.service);
+        if (prior.kind !== "blocked" || prior.reason !== "opaque-node" || !service || input.serviceMain !== true || input.pid !== 1 || input.parent !== 0) return prior;
+        const expectedScript = fsPath.posix.join(service.cwd, service.script), handoffPath = "/usr/local/bin/docker-entrypoint.sh";
+        const snapshot = () => {
+            const raw = read("/proc/1/stat", "utf8"), fields = raw.slice(raw.lastIndexOf(")") + 2).trim().split(/\s+/), status = read("/proc/1/status", "utf8");
+            const cmdline = read("/proc/1/cmdline", "utf8"), executable = link("/proc/1/exe"), cwd = link("/proc/1/cwd");
+            if (Number(raw.slice(0, raw.indexOf(" "))) !== 1 || Number(fields[1]) !== 0 || fields[19] !== input.started || Number(/^Pid:\s+(\d+)$/m.exec(status)?.[1]) !== 1
+                || Number(/^PPid:\s+(\d+)$/m.exec(status)?.[1]) !== 0 || !/^(?:node|nodejs)$/.test(fsPath.basename(executable)) || cmdline.split("\0").some(arg => /(?:^|\s)test(?:\s|$)/.test(arg))
+                || hash("sha256").update(cmdline).digest("hex") !== input.cmdlineSha256 || resolveRealPath(expectedScript) !== expectedScript
+                || hash("sha256").update(read(handoffPath, "utf8")).digest("hex") !== service.handoff) throw new Error("unverified");
+            return { executable, cwd, cmdline, scriptHash: hash("sha256").update(read(expectedScript, "utf8")).digest("hex"), handoff: hash("sha256").update(read(handoffPath, "utf8")).digest("hex") };
+        };
+        const before = snapshot(); if (JSON.stringify(before) !== JSON.stringify(snapshot())) throw new Error("changed");
+        return { ...prior, kind: "non-test", executable: "node", binding: "service-main", family: "none", reason: "none" };
+    } catch { return { ...prior, kind: "blocked", binding: "none", family: "none", reason: "identity-unavailable" }; }
+}
+
+function producerNamespaceProgram(): string {
+    // Trusted source only; the sole argument contains bounded numeric identity,
+    // a cmdline digest and the reviewed version, never argv/cwd/environment.
+    return `"use strict";const fs=require("node:fs"),path=require("node:path"),{createHash}=require("node:crypto");
+const deadline=Date.now()+3000;
+const readFileSync=(file,encoding)=>{if(Date.now()>deadline)throw Error("deadline");const fd=fs.openSync(file,"r");try{const bytes=Buffer.alloc(65537);let size=0,count;while((count=fs.readSync(fd,bytes,size,bytes.length-size,null))>0){size+=count;if(size>=bytes.length)throw Error("size");}return bytes.subarray(0,size).toString(encoding);}finally{fs.closeSync(fd);}};
+const realpathSync=fs.realpathSync,readlinkSync=fs.readlinkSync;
+${producerPlaywrightEntry.toString()}
+${producerPlaywrightInvocation.toString()}
+${producerNodeInvocation.toString()}
+${producerNamespaceClassify.toString()}
+${producerClosedStackServices.toString()}
+${producerNamespaceOpaqueMain.toString()}
+try{const input=JSON.parse(process.argv[1]);const result=producerNamespaceClassify(input,path,readFileSync,readlinkSync,realpathSync,createHash);const final=producerNamespaceOpaqueMain(input,result,path,readFileSync,readlinkSync,realpathSync,createHash);process.stdout.write(JSON.stringify(final));}catch{process.stdout.write("{}");}`;
+}
+function producerNamespaceOutput(raw: string, input: ProducerNamespaceInput): ProducerNamespaceOutput {
+    const fail = () => { throw new Error("P-E5 family=node reason=namespace-output-unverified"); };
+    try {
+        if (Buffer.byteLength(raw, "utf8") > 2048) return fail();
+        const value = JSON.parse(raw);
+        if (!value || JSON.stringify(Object.keys(value).sort()) !== JSON.stringify(["binding", "executable", "family", "kind", "parent", "pid", "reason", "started"])) return fail();
+        if (value.pid !== input.pid || value.parent !== input.parent || value.started !== input.started
+            || !["blocked", "test", "non-test", "non-node"].includes(value.kind) || !["unknown", "node", "non-node"].includes(value.executable)
+            || !["none", "canonical-cli", "pinned-cli", "ordinary-script", "service-main", "non-node"].includes(value.binding)
+            || !["none", "playwright", "@playwright/test"].includes(value.family) || !["none", "identity-unavailable", "opaque-node"].includes(value.reason)) return fail();
+        if (value.kind === "blocked" ? value.binding !== "none" || value.family !== "none" || value.reason === "none"
+            : value.reason !== "none" || value.kind === "non-node" && (value.executable !== "non-node" || value.binding !== "non-node" || value.family !== "none")
+                || value.kind !== "non-node" && value.executable !== "node"
+                || value.kind === "test" && (!["canonical-cli", "pinned-cli"].includes(value.binding) || value.family === "none")
+                || value.kind === "non-test" && (!["pinned-cli", "ordinary-script", "service-main"].includes(value.binding)
+                    || ["ordinary-script", "service-main"].includes(value.binding) && value.family !== "none" || value.binding === "pinned-cli" && value.family === "none"
+                    || value.binding === "service-main" && (input.serviceMain !== true || input.pid !== 1 || input.parent !== 0 || !producerClosedStackServices().some(service => service.key === input.service)))) return fail();
+        return value;
+    } catch { return fail(); }
+}
+
+async function qualifyProducerRuntime(info: TestInfo) {
+    const runtime = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
+    runtime.validateAdmission("browser", process.env, process.platform);
+    expect(info.config.workers).toBe(1);
+    expect(info.config.fullyParallel).toBe(false);
+    expect(info.parallelIndex).toBe(0);
+    expect(info.project.name).toBe("chromium");
+    expect(info.config.projects).toHaveLength(1);
+    expect(await realpath(process.cwd())).toBe(await realpath(process.env.GITHUB_WORKSPACE!));
+    const checkout = await stat(path.join(process.cwd(), ".git"));
+    expect(checkout.isDirectory()).toBe(true);
+    const containers = JSON.parse(execFileSync("docker", ["inspect", "supabase_db_kopplas", "supabase_kong_kopplas"], { encoding: "utf8", timeout: 15_000, maxBuffer: 2_000_000 }));
+    const status = JSON.parse(execFileSync("supabase", ["status", "--output", "json"], { encoding: "utf8", timeout: 15_000, maxBuffer: 2_000_000 }));
+    const stack = { db: containers[0], gateway: containers[1], checkoutTime: checkout.birthtimeMs, now: Date.now(), status };
+    runtime.validateStackIdentity(stack); // Existing fresh GitHub stack authority.
+    const boot = JSON.parse(readFileSync("test-results/private/job-events-fetch-fault.json.startup.json", "utf8"));
+    expect(boot.runId).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
+    expect(boot.runId).toBe(process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID);
+    expect(Number.isSafeInteger(boot.ownerPid) && boot.ownerPid > 0).toBe(true);
+    expect(Number.isSafeInteger(boot.serverPid) && boot.serverPid > 0 && boot.serverPid !== boot.ownerPid).toBe(true);
+    expect(boot.origin).toBe(status.API_URL);
+    expect(boot.applicationUrl).toBe("http://127.0.0.1:3100");
+    expect(boot.startedAt).toBeGreaterThanOrEqual(checkout.birthtimeMs);
+    expect(boot.startedAt).toBeLessThanOrEqual(Date.now());
+    const servers = Array.isArray(info.config.webServer) ? info.config.webServer : [info.config.webServer];
+    expect(servers).toHaveLength(1);
+    expect(servers[0]?.reuseExistingServer).toBe(false);
+    // Worker config re-evaluates process.pid; only the actual server's
+    // initial launch environment can corroborate the nonce-bound runner PID.
+    // Select fixed non-secret binding fields in memory; never dump environ.
+    const startupBinding = readFileSync(`/proc/${boot.serverPid}/environ`, "utf8").split("\0")
+        .filter(entry => entry.startsWith("E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID=") || entry.startsWith("E2E_JOB_EVENTS_FETCH_FAULT_STARTUP="));
+    expect(startupBinding.sort()).toEqual([`E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID=${boot.ownerPid}`, "E2E_JOB_EVENTS_FETCH_FAULT_STARTUP=true"].sort());
+    const ancestors = new Set<number>();
+    let pid = process.pid, wrapperPid: number | undefined;
+    for (let depth = 0; pid > 1 && depth < 32; depth++) {
+        ancestors.add(pid);
+        const args = readFileSync(`/proc/${pid}/cmdline`, "utf8").split("\0").filter(Boolean);
+        const cwd = readlinkSync(`/proc/${pid}/cwd`);
+        if (args.some(arg => path.resolve(cwd, arg) === path.resolve("scripts/ci/with-calendar-feed-runtime.mjs")) && args.at(-1) === "browser") wrapperPid = pid;
+        pid = Number(/^PPid:\s+(\d+)$/m.exec(readFileSync(`/proc/${pid}/status`, "utf8"))?.[1] ?? 0);
+    }
+    expect(ancestors.has(boot.ownerPid)).toBe(true);
+    expect(wrapperPid).toBeDefined();
+    const serverArgs = readFileSync(`/proc/${boot.serverPid}/cmdline`, "utf8").split("\0");
+    expect(await realpath(`/proc/${boot.serverPid}/cwd`)).toBe(await realpath(process.cwd()));
+    // The installed Next start-server sets its process title to next-server.
+    expect(serverArgs.includes("start") && serverArgs.some(arg => arg.endsWith("node_modules/next/dist/bin/next")) || /^next-server \(v[0-9.]+\)/.test(serverArgs[0])).toBe(true);
+    const sockets = readdirSync(`/proc/${boot.serverPid}/fd`).flatMap(fd => { try { return [readlinkSync(`/proc/${boot.serverPid}/fd/${fd}`)]; } catch { return []; } });
+    const tcp = readFileSync("/proc/net/tcp", "utf8");
+    const socketIds = new Set(sockets.map(link => /^socket:\[(\d+)\]$/.exec(link)?.[1]).filter(Boolean));
+    // The unchanged browser command can bind IPv4/IPv6 wildcard. Require an
+    // actual listening socket owned by the nonce-bound PID, not a port probe.
+    const wildcardOwned = [tcp, readFileSync("/proc/net/tcp6", "utf8")].some(table => table.split("\n").slice(1).some(line => {
+        const fields = line.trim().split(/\s+/), address = fields[1]?.split(":");
+        return address?.[1] === "0C1C" && ["00000000", "0100007F", "00000000000000000000000000000000", "00000000000000000000000001000000"].includes(address[0]) && fields[3] === "0A" && socketIds.has(fields[9]);
+    }));
+    expect(runtime.ownsListenerRecord(3100, sockets, tcp) || wildcardOwned).toBe(true);
+    return { runtime, stack, boot, wrapperPid };
+}
+
+async function qualifyProducerBoundedEffects(info: TestInfo) {
+    const { runtime, stack, boot, wrapperPid } = await qualifyProducerRuntime(info);
+    // A fresh isolated job plus the single configured worker is not permission
+    // to affect another runner: inspect actual host CLI consumers as well.
+    const installedCli = producerPlaywrightEntry(path.resolve("node_modules/@playwright/test/cli.js"));
+    if (!installedCli) throw new Error("P-E5 family=playwright reason=installed-cli-unverified");
+    const browserRuntime = await import("../../../scripts/ci/browser-runtime.mjs");
+    const exactBrowserLauncher = (candidate: number, args: readonly string[]) => {
+        const owner = browserRuntime.assertHostedRunner();
+        const receipt = JSON.parse(readFileSync(path.join(process.env.RUNNER_TEMP!, `browser-runtime-${process.env.GITHUB_JOB}.json`), "utf8"));
+        const inspected = JSON.parse(execFileSync("docker", ["inspect", receipt.containerId], { encoding: "utf8", timeout: 15_000, maxBuffer: 1_000_000 }))[0];
+        browserRuntime.validateBrowserReceipt(receipt, owner, inspected);
+        const configured = browserRuntime.browserContainerArgs(owner);
+        const command = configured.slice(configured.indexOf(browserRuntime.PLAYWRIGHT_IMAGE) + 1);
+        const top = execFileSync("docker", ["top", receipt.containerId, "-eo", "pid,ppid"], { encoding: "utf8", timeout: 15_000, maxBuffer: 1_000_000 });
+        const launcher = producerBrowserLauncherPid(inspected, command, top,
+            pid => readFileSync(`/proc/${pid}/status`, "utf8"), pid => readFileSync(`/proc/${pid}/stat`, "utf8"), args);
+        return launcher === candidate;
+    };
+    const inspectBrowserMember = (candidate: number, args: readonly string[], cmdlineSha256: string): ProducerNamespaceOutput => {
+        let stage = "membership-unverified";
+        try {
+            const owner = browserRuntime.assertHostedRunner();
+            const receipt = JSON.parse(readFileSync(path.join(process.env.RUNNER_TEMP!, `browser-runtime-${process.env.GITHUB_JOB}.json`), "utf8"));
+            if (!/^[a-f0-9]{64}$/.test(receipt.containerId ?? "") || receipt.owner !== owner || receipt.image !== browserRuntime.PLAYWRIGHT_IMAGE) throw new Error("receipt");
+            const configured = browserRuntime.browserContainerArgs(owner), command = configured.slice(configured.indexOf(browserRuntime.PLAYWRIGHT_IMAGE) + 1);
+            const mapping = () => {
+                const inspected = JSON.parse(execFileSync("docker", ["inspect", receipt.containerId], { encoding: "utf8", timeout: 5000, maxBuffer: 1_000_000, stdio: ["ignore", "pipe", "ignore"] }))[0];
+                browserRuntime.validateBrowserReceipt(receipt, owner, inspected);
+                const top = execFileSync("docker", ["top", receipt.containerId, "-eo", "pid,ppid"], { encoding: "utf8", timeout: 5000, maxBuffer: 65536, stdio: ["ignore", "pipe", "ignore"] });
+                return producerBrowserMemberMapping(inspected, command, top, pid => readFileSync(`/proc/${pid}/status`, "utf8"), pid => readFileSync(`/proc/${pid}/stat`, "utf8"), args, candidate);
+            };
+            const before = mapping(), input: ProducerNamespaceInput = { ...before, cmdlineSha256, version: browserRuntime.PLAYWRIGHT_VERSION };
+            stage = "member-read-unavailable";
+            const raw = execFileSync("docker", ["exec", receipt.containerId, "node", "-e", producerNamespaceProgram(), JSON.stringify(input)], { encoding: "utf8", timeout: 5000, maxBuffer: 2048, stdio: ["ignore", "pipe", "ignore"] });
+            const result = producerNamespaceOutput(raw, input);
+            stage = "member-instance-changed";
+            if (JSON.stringify(before) !== JSON.stringify(mapping()) || createHash("sha256").update(readFileSync(`/proc/${candidate}/cmdline`)).digest("hex") !== cmdlineSha256) throw new Error("changed");
+            return result;
+        } catch (error) {
+            const reported = (error as { producerNamespaceStage?: string }).producerNamespaceStage;
+            const safeStage = ["nonmember", "parent-or-namespace-unverified", "parent-unverified", "instance-changed", "mapping-unverified"].includes(reported ?? "") ? reported : stage;
+            throw Object.assign(new Error("P-E5 family=node reason=namespace-inspection-unverified"), { producerNamespaceStage: safeStage });
+        } // Never expose Docker/helper stderr, argv or paths.
+    };
+    const inspectClosedStackMember = (candidate: number, args: readonly string[], cmdlineSha256: string): ProducerNamespaceOutput => {
+        let stage = "closed-service-unverified";
+        try {
+            const config = readFileSync("supabase/config.toml", "utf8");
+            const docker = (argv: readonly string[], limit = 1_000_000) => execFileSync("docker", [...argv], { encoding: "utf8", timeout: 5000, maxBuffer: limit, stdio: ["ignore", "pipe", "ignore"] });
+            for (const service of producerClosedStackServices()) {
+                if (!producerClosedServiceEnabled(service, config)) continue;
+                const mapping = () => {
+                    const [db, gateway] = JSON.parse(docker(["inspect", stack.db.Id, stack.gateway.Id]));
+                    runtime.validateStackIdentity({ ...stack, db, gateway, now: Date.now() });
+                    if (db.Id !== stack.db.Id || gateway.Id !== stack.gateway.Id) throw new Error("stack");
+                    const inspected = JSON.parse(docker(["inspect", service.name.slice(1)]))[0] as ProducerServiceContainer;
+                    const refs = [`supabase/${service.repository}:${service.tag}`, `public.ecr.aws/supabase/${service.repository}:${service.tag}`, `ghcr.io/supabase/${service.repository}:${service.tag}`];
+                    if (!refs.includes(inspected.Config?.Image ?? "")) throw new Error("reference");
+                    const byRef = JSON.parse(docker(["image", "inspect", inspected.Config!.Image!]))[0];
+                    if (!/^sha256:[a-f0-9]{64}$/.test(byRef.Id ?? "") || byRef.Id !== inspected.Image) throw new Error("image");
+                    const byId = JSON.parse(docker(["image", "inspect", byRef.Id]))[0];
+                    producerValidateClosedService(service, config, inspected, byRef, byId, db, gateway, stack.checkoutTime, Date.now());
+                    const top = docker(["top", inspected.Id!, "-eo", "pid,ppid"], 65536);
+                    const member = producerNamespaceMemberMapping(inspected, top, pid => readFileSync(`/proc/${pid}/status`, "utf8"), pid => readFileSync(`/proc/${pid}/stat`, "utf8"), candidate);
+                    return { container: inspected.Id!, image: inspected.Image!, mainPid: inspected.State!.Pid!, member };
+                };
+                let before: ReturnType<typeof mapping>;
+                try { before = mapping(); }
+                catch (error) { if ((error as { producerNamespaceStage?: string }).producerNamespaceStage === "nonmember") continue; throw error; }
+                const input: ProducerNamespaceInput = { ...before.member, cmdlineSha256, version: browserRuntime.PLAYWRIGHT_VERSION, service: service.key,
+                    serviceMain: before.mainPid === candidate && before.member.pid === 1 && before.member.parent === 0 };
+                stage = "closed-member-read-unavailable";
+                const raw = docker(["exec", before.container, "node", "-e", producerNamespaceProgram(), JSON.stringify(input)], 2048);
+                const result = producerNamespaceOutput(raw, input);
+                stage = "closed-member-instance-changed";
+                if (JSON.stringify(before) !== JSON.stringify(mapping()) || createHash("sha256").update(readFileSync(`/proc/${candidate}/cmdline`)).digest("hex") !== cmdlineSha256) throw new Error("changed");
+                return result;
+            }
+            stage = "closed-set-nonmember"; throw new Error("nonmember");
+        } catch { throw Object.assign(new Error("P-E5 family=node reason=closed-service-inspection-unverified"), { producerNamespaceStage: stage }); }
+    };
+    const consumers: number[] = [];
+    for (const entry of readdirSync("/proc").filter(value => /^\d+$/.test(value))) {
+        let args: string[], cmdlineSha256: string;
+        try { const raw = readFileSync(`/proc/${entry}/cmdline`); args = raw.toString("utf8").split("\0"); cmdlineSha256 = createHash("sha256").update(raw).digest("hex"); } catch { continue; }
+        let invocation: ProducerPlaywrightEntry | undefined;
+        let executable: ProducerExecutableKind = "unknown", executableError = "none";
+        try { executable = /^(?:node|nodejs)(?: \(deleted\))?$/.test(path.basename(readlinkSync(`/proc/${entry}/exe`))) ? "node" : "non-node"; }
+        catch (error) { const code = (error as NodeJS.ErrnoException).code; executableError = ["EACCES", "EPERM", "ENOENT", "ESRCH"].includes(code ?? "") ? code! : "other"; }
+        try {
+            invocation = producerDriverInvocation(args, () => readlinkSync(`/proc/${entry}/cwd`), producerPlaywrightEntry, executable, Number(entry) === boot.ownerPid);
+        }
+        catch (error) {
+            const detail = error as { message?: string; producerErrorCategory?: string; producerScriptFamily?: string; producerSubcommandCategory?: string; producerResolutionBranch?: string; producerAffirmativeSignal?: string };
+            const refusal = /^P-E5 family=(playwright|node) reason=([a-z-]+)$/.exec(detail.message ?? "");
+            // An exact already-validated server or job-owned launcher is a
+            // non-test role, never a general PID/container/title exemption.
+            const testVeto = args.some(arg => /(?:^|\s)test(?:\s|$)/.test(arg));
+            let roleOutcome = "not-eligible";
+            if (["consumer-cwd-unavailable", "opaque-node-consumer"].includes(refusal?.[2] ?? "") && !testVeto) {
+                if (Number(entry) === boot.serverPid) continue;
+                try {
+                    if (exactBrowserLauncher(Number(entry), args)) continue;
+                    roleOutcome = "validated-launcher-pid-mismatch";
+                    let inspected: ProducerNamespaceOutput;
+                    try { inspected = inspectBrowserMember(Number(entry), args, cmdlineSha256); }
+                    catch (error) {
+                        if ((error as { producerNamespaceStage?: string }).producerNamespaceStage !== "nonmember") throw error;
+                        inspected = inspectClosedStackMember(Number(entry), args, cmdlineSha256);
+                    }
+                    if (inspected.kind === "test") { consumers.push(Number(entry)); continue; }
+                    if (inspected.kind === "non-test" || inspected.kind === "non-node") continue;
+                    roleOutcome = "namespace-identity-blocked";
+                }
+                catch (error) {
+                    const value = (error as { producerNamespaceStage?: string }).producerNamespaceStage;
+                    const stage = ["nonmember", "parent-or-namespace-unverified", "parent-unverified", "instance-changed", "mapping-unverified", "membership-unverified", "member-read-unavailable", "member-instance-changed", "closed-service-unverified", "closed-set-nonmember", "closed-member-read-unavailable", "closed-member-instance-changed"].includes(value ?? "") ? value : "unverified";
+                    const signal = ["kernel-node", "both", "node-launch", "playwright-entrypoint"].includes(detail.producerAffirmativeSignal ?? "") ? detail.producerAffirmativeSignal : "unverified";
+                    throw new Error(`P-E5 family=node reason=browser-launcher-unverified pid=${entry} errorCategory=role-proof-unavailable scriptFamily=unclassified subcommandCategory=unresolved executable=${executable} executableError=${executableError} resolutionBranch=role-proof testVeto=false roleOutcome=namespace-${stage} affirmativeSignal=${signal}`);
+                }
+            } else if (["consumer-cwd-unavailable", "opaque-node-consumer"].includes(refusal?.[2] ?? "") && testVeto) roleOutcome = "test-veto";
+            // No argv, environment, cwd or package payload enters diagnostics.
+            const family = refusal?.[1] ?? "node", reason = refusal?.[2] ?? "consumer-inspection-failed";
+            const category = ["EACCES", "EPERM", "ENOENT", "ESRCH", "other"].includes(detail.producerErrorCategory ?? "") ? detail.producerErrorCategory : "none";
+            const scriptFamily = detail.producerScriptFamily === "playwright-hint" ? "playwright-hint" : refusal?.[1] === "playwright" ? "playwright" : "unclassified";
+            const subcommand = detail.producerSubcommandCategory === "test" ? "test" : "unresolved";
+            const branch = ["unsupported-option", "non-test-script", "test-script"].includes(detail.producerResolutionBranch ?? "") ? detail.producerResolutionBranch : refusal?.[2] === "opaque-node-consumer" ? "opaque-node" : "dispatch";
+            throw new Error(`P-E5 family=${family} reason=${reason} pid=${entry} errorCategory=${category} scriptFamily=${scriptFamily} subcommandCategory=${subcommand} executable=${executable} executableError=${executableError} resolutionBranch=${branch} testVeto=${testVeto} roleOutcome=${roleOutcome}`);
+        }
+        if (!invocation) {
+            if (Number(entry) === boot.ownerPid) throw new Error("P-E5 family=playwright reason=owner-entrypoint-unclassified");
+            continue;
+        }
+        if (Number(entry) === boot.ownerPid && invocation.canonical !== installedCli.canonical) throw new Error("P-E5 family=playwright reason=owner-cli-mismatch");
+        consumers.push(Number(entry)); // Other project paths remain consumers and fail exclusivity.
+    }
+    expect(consumers).toEqual([boot.ownerPid]);
+    const head = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+    const event = JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH!, "utf8"));
+    expect(head).toBe(event.pull_request?.head?.sha ?? process.env.GITHUB_SHA);
+    // Outside outputDir/reportDir: a restarted Playwright runner clears those.
+    // This fixed ignored job journal survives workers, retries AND runner restarts.
+    const directory = path.resolve("tmp/private/35-7-p-ci-effects");
+    expect(path.relative(info.project.outputDir, directory).startsWith("..")).toBe(true);
+    await mkdir(directory, { recursive: true });
+    expect(await realpath(directory)).toBe(directory);
+    // Fixed per job, NOT per retry, viewport, worker, server nonce or test attempt.
+    const file = path.join(directory, `35-7-p-effects-${process.env.GITHUB_RUN_ID}-${process.env.GITHUB_RUN_ATTEMPT}-${process.env.GITHUB_JOB}.jsonl`);
+    const journal = await open(file, "wx", 0o600); // Existing = consumed/uncertain; fail before reading any new baseline.
+    const record = async (fact: Readonly<Record<string, unknown>>) => {
+        const line = JSON.stringify(fact) + "\n";
+        await journal.writeFile(line); await journal.sync(); // Authority is the durable job claim, never the report copy.
+        const report = path.resolve("playwright-report/35-7-p");
+        await mkdir(report, { recursive: true });
+        await writeFile(path.join(report, "bounded-method-journal.jsonl"), line, { flag: "a", mode: 0o600 });
+    };
+    try {
+        await record({ state: "claimed-no-effects", run: process.env.GITHUB_RUN_ID, attempt: process.env.GITHUB_RUN_ATTEMPT, job: process.env.GITHUB_JOB, head, nonce: boot.runId, runner: boot.ownerPid, server: boot.serverPid, wrapper: wrapperPid, db: stack.db.Id, gateway: stack.gateway.Id });
+        const directoryHandle = await open(directory, "r");
+        try { await directoryHandle.sync(); } finally { await directoryHandle.close(); }
+    } catch (error) { await journal.close(); throw error; }
+    return { runtime, stack, record, close: () => journal.close() };
+}
+
+type ProducerAclTuple = { grantor: string; grantee: string; privilege: string; grantable: boolean };
+type ProducerAcl = { owner: string; tableAcl: ProducerAclTuple[]; columns: unknown[]; authSuper: boolean; authBypass: boolean; alternativeTable: boolean; alternativeColumn: boolean; dependent: boolean; hasSelect: boolean; hasColumnSelect: boolean };
+async function producerAclSnapshot(db: import("pg").Client, table: string): Promise<ProducerAcl> {
+    const result = await db.query(`select jsonb_build_object(
+      'owner',pg_get_userbyid(c.relowner),'oid',c.oid,'kind',c.relkind,'aclNull',c.relacl is null,
+      'rls',c.relrowsecurity,'forceRls',c.relforcerowsecurity,
+      'authSuper',u.rolsuper,'authBypass',u.rolbypassrls,
+      'roles',(select jsonb_agg(jsonb_build_array(r.oid,r.rolname,r.rolsuper,r.rolinherit,r.rolbypassrls) order by r.oid) from pg_roles r),
+      'memberships',(select coalesce(jsonb_agg(to_jsonb(m) order by m.roleid,m.member,m.grantor),'[]'::jsonb) from pg_auth_members m),
+      'tableAcl',(select jsonb_agg(jsonb_build_object('grantor',pg_get_userbyid(e.grantor),'grantee',case when e.grantee=0 then 'PUBLIC' else pg_get_userbyid(e.grantee) end,'privilege',e.privilege_type,'grantable',e.is_grantable) order by e.grantor,e.grantee,e.privilege_type,e.is_grantable) from aclexplode(coalesce(c.relacl,acldefault('r',c.relowner))) e),
+      'columns',(select jsonb_agg(jsonb_build_object('number',a.attnum,'name',a.attname,'dropped',a.attisdropped,'aclNull',a.attacl is null,'acl',(select coalesce(jsonb_agg(to_jsonb(e) order by e.grantor,e.grantee,e.privilege_type,e.is_grantable),'[]'::jsonb) from aclexplode(a.attacl) e)) order by a.attnum) from pg_attribute a where a.attrelid=c.oid and a.attnum>0),
+      'alternativeTable',exists(select 1 from aclexplode(coalesce(c.relacl,acldefault('r',c.relowner))) e where e.privilege_type='SELECT' and (e.grantee=0 or e.grantee<>u.oid and pg_has_role(u.oid,e.grantee,'MEMBER'))),
+      'alternativeColumn',exists(select 1 from pg_attribute a cross join lateral aclexplode(a.attacl) e where a.attrelid=c.oid and e.privilege_type='SELECT' and (e.grantee=0 or e.grantee=u.oid or pg_has_role(u.oid,e.grantee,'MEMBER'))),
+      'dependent',exists(select 1 from aclexplode(coalesce(c.relacl,acldefault('r',c.relowner))) e where e.grantor=u.oid and e.privilege_type='SELECT') or exists(select 1 from pg_attribute a cross join lateral aclexplode(a.attacl) e where a.attrelid=c.oid and e.grantor=u.oid and e.privilege_type='SELECT'),
+      'hasSelect',has_table_privilege(u.oid,c.oid,'SELECT'),'hasColumnSelect',has_any_column_privilege(u.oid,c.oid,'SELECT')) as snapshot
+      from pg_class c join pg_namespace n on n.oid=c.relnamespace cross join pg_roles u
+      where n.nspname='public' and c.relname=$1 and c.relkind='r' and u.rolname='authenticated'`, [table]);
+    expect(result.rows).toHaveLength(1);
+    return result.rows[0].snapshot as ProducerAcl;
+}
+function producerActionForm(request: BrowserRequest) {
+    const body = request.postDataBuffer();
+    if (!body) throw new Error("Missing server action body");
+    return new globalThis.Request("http://capture.invalid", { method: "POST", headers: { "content-type": request.headers()["content-type"] }, body: new Uint8Array(body) }).formData();
+}
+
+async function producerCapturedFacts(request: BrowserRequest) {
+    const form = await producerActionForm(request);
+    const field = (name: string) => { const values = [...form.entries()].filter(([key]) => key.endsWith(name)).map(([, value]) => value); expect(values).toHaveLength(1); expect(typeof values[0]).toBe("string"); return String(values[0]); };
+    return { operation: field("operationId"), target: field("targetId"), tenant: field("contextTenantId"), actor: field("contextActorId"), expectedRevision: field("expectedRevision") };
+}
+
+test("P-E5 CI-only bounded real read-unavailable and one historical target-missing example", async ({ page }, info) => {
+    test.setTimeout(120_000);
+    const admission = await qualifyProducerBoundedEffects(info); // Before DB connection, fixtures or effects.
+    const db = admission.runtime.createCalendarFeedDatabaseClient(admission.stack, "proof");
+    db.on("error", () => { /* Native secrets/connection internals never logged. Query/close still fail. */ });
+    let own: Awaited<ReturnType<typeof createTwoTenantFixture>> | undefined;
+    let damaged = false, methodError: unknown;
+    try {
+        await db.connect();
+        await admission.runtime.readCalendarFeedSetupAuthority(db);
+        const privacy = await admission.runtime.readCalendarFeedPrivacyPreflight(db);
+        expect(privacy.controls.every(control => control.matchesRequired)).toBe(true);
+        const began = (await db.query("select clock_timestamp()::text as started")).rows[0].started as string;
+        own = await createTwoTenantFixture();
+        const fixture = own;
+        const ordinary = await makeAuthedServerClient(fixture.adminA);
+        await signIn(page, fixture.adminA.email, fixture.adminA.password);
+        let deletionReceipt: { operation: string; target: string; revision: string; creation: string } | undefined;
+        let retainedReceipt: Awaited<ReturnType<Locator["elementHandle"]>> | undefined;
+        const cases = [
+            { table: "company_settings", route: "/settings/company", surface: "company", name: "Företagsnamn", price: null, save: "Spara", kind: "company.save" },
+            { table: "quote_terms", route: "/settings/quote-terms", surface: "terms", name: "Offertvillkor", price: null, save: "Spara villkor", kind: "terms.save" },
+            { table: "work_roles", route: "/settings/pricing", surface: "work-role", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", kind: "work_role.update" },
+            { table: "articles", route: "/settings/pricing", surface: "article", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", kind: "article.update" },
+        ] as const;
+        for (const spec of cases) {
+            expect(damaged).toBe(false);
+            await page.setViewportSize({ width: 1440, height: 900 });
+            await page.goto(spec.route);
+            const scope = spec.price ? page.getByTestId(spec.surface === "article" ? "articles-editor" : "work-roles-editor") : page.locator("body");
+            await waitForHydrated(scope.getByLabel(spec.name));
+            const unavailable = spec.price ? scope.getByTestId("pricing-current-unavailable") : page.getByRole("alert").filter({ hasText: "Ett tillfälligt fel inträffade. Försök igen om en stund." });
+            const domainView = { scope, unavailable, name: spec.name, save: spec.save, price: spec.price, surface: spec.surface };
+            await assertProducerReadBaseline(domainView); // Fail before any method effect if the target already has a read error.
+            const label = `Bounded owned ${spec.surface}`;
+            let termsBaseline: ProducerTermsBaseline | undefined;
+            if (spec.table === "quote_terms") {
+                const baselineRead = await ordinary.from("quote_terms").select("id,write_revision,terms_text,approved_at").eq("tenant_id", fixture.tenantA.id).maybeSingle();
+                expect(baselineRead.error).toBeNull();
+                termsBaseline = baselineRead.data as ProducerTermsBaseline;
+                await assertProducerTermsBaseline(scope, termsBaseline, label);
+            }
+            await scope.getByLabel(spec.name).fill(label);
+            await expect(scope.getByLabel(spec.name)).toHaveValue(label);
+            let creation: string | undefined;
+            if (spec.price) {
+                await scope.getByLabel(spec.price).fill("10,00");
+                await expect(scope.getByLabel(spec.price)).toHaveValue("10,00");
+                const createdRequest = page.waitForRequest(request => request.method() === "POST" && Boolean(request.headers()["next-action"]) && new URL(request.url()).pathname === spec.route);
+                await scope.getByRole("button", { name: spec.save, exact: true }).click();
+                creation = (await producerCapturedFacts(await createdRequest)).operation;
+                const row = scope.getByRole("listitem").filter({ hasText: label });
+                await expect(row).toHaveCount(1);
+                if (spec.surface === "work-role") await expectRoleRate(row, "10,00");
+                await row.getByRole("button", { name: "Redigera", exact: true }).click();
+                await scope.getByLabel(spec.price).fill("31,00");
+                await expect(scope.getByLabel(spec.price)).toHaveValue("31,00");
+            }
+            const before = await producerAclSnapshot(db, spec.table);
+            expect(before.owner).toBe("postgres");
+            expect(before.authSuper || before.authBypass || before.alternativeTable || before.alternativeColumn || before.dependent).toBe(false);
+            expect(before.hasSelect && before.hasColumnSelect).toBe(true);
+            const tuples = before.tableAcl.filter(tuple => tuple.grantee === "authenticated" && tuple.privilege === "SELECT");
+            expect(tuples).toHaveLength(1);
+            const tuple = tuples[0];
+            expect(tuple.grantor).toBe(before.owner);
+            expect(typeof tuple.grantable).toBe("boolean");
+            const faultShape = { ...before, tableAcl: before.tableAcl.filter(entry => entry !== tuple), hasSelect: false, hasColumnSelect: false };
+            const readTerminal = observeProducerReadTerminal(page, spec.route); // Arm before route registration or action dispatch.
+            let hold: Awaited<ReturnType<typeof holdNextProducerTransport>>;
+            try { hold = await holdNextProducerTransport(page, spec.route, "refresh", readTerminal.bind); }
+            catch (error) { readTerminal.dispose(); throw producerReadIssue("registration", error); }
+            const releaseAndSettleRead = producerReadSettlement(hold, readTerminal);
+            const actionRequest = page.waitForRequest(request => request.method() === "POST" && Boolean(request.headers()["next-action"]) && new URL(request.url()).pathname === spec.route);
+            const reread = page.waitForRequest(request => request.method() === "GET" && request.headers()["rsc"] === "1" && new URL(request.url()).pathname === spec.route);
+            void actionRequest.catch(() => undefined); void reread.catch(() => undefined);
+            let revoked = false, transaction = false, domainUnavailabilityVerified = false, scenarioError: unknown, cleanupError: unknown;
+            let ordinaryBefore: { id: string; write_revision: string } | undefined;
+            try {
+                await scope.getByRole("button", { name: spec.save, exact: true }).click();
+                await hold.seen;
+                const facts = await producerCapturedFacts(await actionRequest);
+                expect(facts.tenant).toBe(fixture.tenantA.id); expect(facts.actor).toBe(fixture.adminA.id);
+                if (spec.table === "quote_terms") {
+                    expect(facts.expectedRevision).toBe(termsBaseline?.write_revision ?? "absent");
+                    if (termsBaseline) expect(facts.target).toBe(termsBaseline.id);
+                    else expect(facts.target).toMatch(/^[0-9a-f-]{36}$/i);
+                }
+                const committedProof = () => db.query(`select p.committed_revision as revision,t.id from public.settings_pricing_operations p join public.${spec.table} t on t.id=p.target_id and t.tenant_id=p.tenant_id and t.write_revision=p.committed_revision where p.id=$1 and p.correlation_id=p.id and p.tenant_id=$2 and p.actor_user_id=$3 and p.target_id=$4 and p.operation_kind=$5`, [facts.operation, fixture.tenantA.id, fixture.adminA.id, facts.target, spec.kind]);
+                const proof = await committedProof();
+                expect(proof.rows).toHaveLength(1);
+                await expect(scope.getByTestId("settings-saved")).toBeVisible();
+                const historical = await scope.getByTestId("settings-saved").elementHandle();
+                expect(historical).not.toBeNull();
+                const predicate = () => ordinary.from(spec.table).select("id,write_revision").eq("tenant_id", fixture.tenantA.id).eq("id", facts.target).single();
+                const initialRead = await predicate(); expect(initialRead.error).toBeNull();
+                ordinaryBefore = initialRead.data as { id: string; write_revision: string };
+                expect(ordinaryBefore.write_revision).toBe(proof.rows[0].revision);
+                {
+                    const pendingReceipt = scope.getByTestId("settings-saved");
+                    const receiptText = await pendingReceipt.innerText();
+                    const heldRead = hold.request(); expect(heldRead).toBeDefined();
+                    expect(await reread).toBe(heldRead); // Original first matching GET; never substitute another request.
+                    let heldReadTerminal = false;
+                    void readTerminal.outcome.then(() => { heldReadTerminal = true; });
+                    void heldRead!.response().then(() => { heldReadTerminal = true; }, () => { heldReadTerminal = true; });
+                    const assertPendingBranch = async () => {
+                        expect(heldReadTerminal).toBe(false);
+                        expect(hold.request()).toBe(heldRead);
+                        await assertProducerPendingRead(domainView, historical!, label, receiptText, termsBaseline);
+                        expect(heldReadTerminal).toBe(false);
+                    };
+                    await assertPendingBranch();
+                    const adopt = scope.getByRole("button", { name: "Använd aktuella uppgifter", exact: true });
+                    const hasAdopt = await adopt.count(); expect(hasAdopt).toBeLessThanOrEqual(1);
+                    const pendingAnchor = hasAdopt ? adopt : pendingReceipt;
+                    const pendingFrame = hasAdopt ? [pendingReceipt, adopt] : [pendingReceipt];
+                    for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+                        await page.setViewportSize(viewport);
+                        await positionProducerFrame(page, pendingFrame);
+                        await expectProducerFrame(pendingFrame);
+                        expect(heldReadTerminal).toBe(false);
+                        await assertPendingBranch();
+                        await producerCapture(page, info, spec.surface, "receipt-read-pending", pendingAnchor, "preserve");
+                        await expectProducerFrame(pendingFrame);
+                        expect(heldReadTerminal).toBe(false);
+                        await assertPendingBranch();
+                    }
+                }
+                // finally is armed BEFORE the committed revoke; fsync intent first.
+                await expect(unavailable).toHaveCount(0); // Essential error-absence -> NEW server error transition while the fault is active.
+                await admission.record({ state: "revoke-intent", table: spec.table, before });
+                revoked = true;
+                await db.query("begin"); transaction = true;
+                await db.query('set local role "postgres"');
+                await db.query(`revoke select on table public.${spec.table} from authenticated restrict`);
+                expect(await producerAclSnapshot(db, spec.table)).toEqual(faultShape);
+                await db.query("commit"); transaction = false;
+                await admission.record({ state: "revoke-committed", table: spec.table });
+                const denied = await predicate(); expect(denied.error?.code).toBe("42501");
+                const readRequest = await reread;
+                const assertDomain = () => assertProducerReadUnavailable(domainView, historical!, label);
+                await assertProducerDomainRead(releaseAndSettleRead, readRequest, assertDomain);
+                expect((await committedProof()).rows).toEqual(proof.rows); // Same captured operation/actor/tenant/target/revision while SELECT is still revoked.
+                domainUnavailabilityVerified = true;
+                if (spec.price) {
+                    await expect(scope.getByTestId("pricing-current-unavailable")).toBeVisible();
+                    await expect(scope.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är inte tillgängliga.");
+                    await expect(scope.getByText(spec.surface === "article" ? /Inga artiklar/ : /Inga arbetsroller/)).toHaveCount(0);
+                } else await expect(page.getByRole("alert").filter({ hasText: "Ett tillfälligt fel inträffade. Försök igen om en stund." })).toBeVisible();
+                await expect(scope.getByTestId("settings-saved")).not.toContainText("Aktuella uppgifter är bekräftade.");
+                await expect(scope.getByTestId("settings-saved")).not.toContainText("Posten finns inte längre");
+                await expect(scope.getByLabel(spec.name)).toBeDisabled();
+                await expect(scope.getByRole("button", { name: spec.save, exact: true })).toBeDisabled();
+                expect(await historical!.evaluate(element => element.isConnected)).toBe(true);
+                // A committed receipt with a failed read has no unknown/conflict recovery controls.
+                await expect(scope.getByRole("button", { name: /^(Kontrollera resultat|Försök igen med samma uppgifter|Uppdatera och granska|Använd aktuella uppgifter)$/ })).toHaveCount(0);
+                const unavailableFrame = [unavailable, scope.getByTestId("settings-saved")];
+                for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+                    await page.setViewportSize(viewport);
+                    await positionProducerFrame(page, unavailableFrame);
+                    await expectProducerFrame(unavailableFrame);
+                    await assertDomain();
+                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, "preserve");
+                    await expectProducerFrame(unavailableFrame);
+                    await producerCapture(page, info, spec.surface, "read-unavailable", unavailable, "preserve", {
+                        state: "read-error", mechanism: "real checked read failure with preserved historical receipt (P-E5)",
+                    });
+                    await assertDomain();
+                    await expectProducerFrame(unavailableFrame);
+                    if (viewport.width === 360) {
+                        await assertDomain();
+                        await producerCapture(page, info, spec.surface, "read-unavailable-draft", scope.getByLabel(spec.name));
+                        await assertDomain();
+                        await expect(scope.getByLabel(spec.name)).toBeInViewport({ ratio: 1 });
+                        await expect(scope.getByLabel(spec.name)).toBeDisabled();
+                    }
+                }
+                if (spec.table === "articles") { deletionReceipt = { operation: facts.operation, target: facts.target, revision: proof.rows[0].revision, creation: creation! }; retainedReceipt = historical; }
+            } catch (error) { scenarioError = error; }
+            finally {
+                try { await releaseAndSettleRead(); }
+                catch (error) { damaged = true; cleanupError = error; } // Keep unsettled fixtures in disposable-job custody.
+                // Exact ACL recovery is still attempted even if transport settlement failed.
+                if (revoked) {
+                    try {
+                        if (transaction) { await db.query("rollback"); transaction = false; }
+                        const current = await producerAclSnapshot(db, spec.table);
+                        if (JSON.stringify(current) !== JSON.stringify(before)) {
+                            expect(current).toEqual(faultShape); // Never repair an ambiguous/different baseline.
+                            await db.query("begin"); transaction = true;
+                            await db.query('set local role "postgres"');
+                            await db.query(`grant select on table public.${spec.table} to authenticated${tuple.grantable ? " with grant option" : ""}`);
+                            await db.query("commit"); transaction = false;
+                        }
+                        expect(await producerAclSnapshot(db, spec.table)).toEqual(before);
+                        const restored = await ordinary.from(spec.table).select("id,write_revision").eq("tenant_id", fixture.tenantA.id).eq("id", ordinaryBefore!.id).single();
+                        expect(restored.error).toBeNull(); expect(restored.data).toEqual(ordinaryBefore);
+                        await admission.record({ state: "restore-verified", table: spec.table });
+                    } catch (error) { damaged = true; cleanupError = cleanupError ? new AggregateError([cleanupError, error], "Transport and ACL cleanup both failed") : error; }
+                }
+                try { await writeFile(path.resolve("playwright-report/35-7-p/released-read-diagnostics.jsonl"), JSON.stringify({ table: spec.table, proof: "server-domain-unavailability-with-settled-transport", domainUnavailabilityVerified, ...readTerminal.summary() }) + "\n", { flag: "a", mode: 0o600 }); }
+                catch { const diagnosticError = new Error("Released read categorical diagnostics could not be retained"); damaged = true; cleanupError = cleanupError ? new AggregateError([cleanupError, diagnosticError], "Read cleanup/diagnostics failed") : diagnosticError; }
+            }
+            if (scenarioError || cleanupError) throw new AggregateError([scenarioError, cleanupError].filter(error => error !== undefined), "Bounded read scenario/cleanup failed; no further fault or retry admitted");
+        }
+        // One total fresh article target, not one per viewport/worker/retry.
+        expect(deletionReceipt).toBeDefined();
+        const target = deletionReceipt!;
+        const article = page.getByTestId("articles-editor"), neighbor = page.getByTestId("work-roles-editor");
+        const refreshArticle = async (label: string) => {
+            await neighbor.getByRole("button", { name: "Ny post" }).click();
+            const form = neighbor.locator("form").filter({ has: page.getByRole("heading", { name: "Ny arbetsroll", exact: true }) });
+            const name = form.getByLabel("Benämning"), price = form.getByLabel("Pris (kr/tim)");
+            const save = form.getByRole("button", { name: "Spara roll", exact: true });
+            await expect(name).toBeFocused();
+            await expect(name).toHaveValue("");
+            await expect(price).toHaveValue("");
+            await name.fill(label);
+            await price.fill("19,00");
+            await expect(name).toHaveValue(label);
+            await expect(price).toHaveValue("19,00");
+            await expect(save).toBeEnabled();
+            const actions: BrowserRequest[] = [];
+            const observe = (request: BrowserRequest) => { if (isPricingAction(request)) actions.push(request); };
+            page.on("request", observe);
+            try {
+                const request = waitForPricingCreateRequest(page, true, label, "19,00");
+                const response = page.waitForResponse(async response => isPricingAction(response.request()) && response.request() === await request, { timeout: 15_000 });
+                const [posted, headers] = await Promise.all([request, response, save.click()]);
+                expect(headers.ok()).toBe(true);
+                const created = await producerCapturedFacts(posted);
+                expect(created.tenant === fixture.tenantA.id && created.actor === fixture.adminA.id).toBe(true);
+                expect(created.expectedRevision).toBe("absent");
+                const stored = await expectStoredPricingRow(ordinary, fixture.tenantA.id, created.target, true, label, 1900);
+                const receipt = await db.query("select committed_revision from public.settings_pricing_operations where id=$1 and correlation_id=id and tenant_id=$2 and actor_user_id=$3 and target_id=$4 and operation_kind='work_role.create'", [created.operation, fixture.tenantA.id, fixture.adminA.id, stored.id]);
+                expect(receipt.rows).toEqual([{ committed_revision: stored.write_revision }]);
+                await expect(neighbor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+                const row = neighbor.getByRole("listitem").filter({ hasText: label });
+                await expect(row).toHaveCount(1);
+                await expectRoleRate(row, "19,00");
+                expect(actions.length === 1 && actions[0] === posted).toBe(true);
+            } finally { page.off("request", observe); }
+        };
+        await refreshArticle("Bounded restored-read refresh");
+        await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        let transaction = false, deletionError: unknown;
+        try {
+            await db.query("begin"); transaction = true;
+            await db.query("set local lock_timeout='2s'");
+            await db.query("lock table public.articles in share row exclusive mode");
+            const proof = await db.query(`select t.id from public.articles t join public.settings_pricing_operations p on p.target_id=t.id and p.tenant_id=t.tenant_id join public.settings_pricing_operations created on created.id=$6 and created.target_id=t.id and created.tenant_id=t.tenant_id and created.actor_user_id=p.actor_user_id and created.operation_kind='article.create' where t.id=$1 and t.tenant_id=$2 and t.write_revision=$3 and p.id=$4 and p.actor_user_id=$5 and p.committed_revision=t.write_revision and p.operation_kind='article.update' and t.created_at>=$7::timestamptz for update of t`, [target.target, fixture.tenantA.id, target.revision, target.operation, fixture.adminA.id, target.creation, began]);
+            expect(proof.rows).toHaveLength(1);
+            const unexpectedDeleteTriggers = await db.query("select 1 from pg_trigger where tgrelid='public.articles'::regclass and not tgisinternal and tgenabled<>'D' and (tgtype::int & 8)=8");
+            expect(unexpectedDeleteTriggers.rows).toHaveLength(0);
+            expect((await db.query("select 1 from pg_rewrite where ev_class='public.articles'::regclass and rulename<>'_RETURN'")).rows).toHaveLength(0);
+            const unconstrainedReferences = await db.query("select 1 from pg_attribute a join pg_class c on c.oid=a.attrelid join pg_namespace n on n.oid=c.relnamespace where n.nspname='public' and c.relkind='r' and a.attnum>0 and not a.attisdropped and a.attname ~ '(^|_)article_ids?$' and not exists(select 1 from pg_constraint f where f.contype='f' and f.conrelid=c.oid and a.attnum=any(f.conkey) and f.confrelid='public.articles'::regclass)");
+            expect(unconstrainedReferences.rows).toHaveLength(0);
+            const foreignKeys = await db.query(`select n.nspname as schema,c.relname as relation,array_agg(a.attname order by pair.ordinality) as local,array_agg(b.attname order by pair.ordinality) as remote from pg_constraint f join pg_class c on c.oid=f.conrelid join pg_namespace n on n.oid=c.relnamespace cross join lateral unnest(f.conkey,f.confkey) with ordinality pair(local,remote,ordinality) join pg_attribute a on a.attrelid=f.conrelid and a.attnum=pair.local join pg_attribute b on b.attrelid=f.confrelid and b.attnum=pair.remote where f.contype='f' and f.confrelid='public.articles'::regclass group by f.oid,n.nspname,c.relname order by f.oid`);
+            const quote = (identifier: string) => '"' + identifier.replaceAll('"', '""') + '"';
+            for (const reference of foreignKeys.rows as { schema: string; relation: string; local: string[]; remote: string[] }[]) {
+                const table = `${quote(reference.schema)}.${quote(reference.relation)}`;
+                await db.query(`lock table ${table} in share mode`);
+                const linked = await db.query(`select 1 from ${table} r join public.articles t on ${reference.local.map((name, index) => `r.${quote(name)}=t.${quote(reference.remote[index])}`).join(" and ")} where t.id=$1 and t.tenant_id=$2 limit 1`, [target.target, fixture.tenantA.id]);
+                expect(linked.rows).toHaveLength(0);
+            }
+            await admission.record({ state: "ONE-delete-intent-budget-consumed", table: "articles", tenant: fixture.tenantA.id, actor: fixture.adminA.id, ...target });
+            const deleted = await db.query("delete from public.articles a where a.id=$1 and a.tenant_id=$2 and a.write_revision=$3 and exists(select 1 from public.settings_pricing_operations p where p.id=$4 and p.correlation_id=p.id and p.tenant_id=a.tenant_id and p.target_id=a.id and p.committed_revision=a.write_revision and p.actor_user_id=$5 and p.operation_kind='article.update') returning a.id", [target.target, fixture.tenantA.id, target.revision, target.operation, fixture.adminA.id]);
+            expect(deleted.rows).toEqual([{ id: target.target }]);
+            await db.query("commit"); transaction = false;
+            await admission.record({ state: "ONE-delete-committed", target: target.target });
+        } catch (error) { deletionError = error; }
+        finally {
+            if (transaction) try { await db.query("rollback"); } catch (error) { deletionError = new AggregateError([deletionError, error].filter(value => value !== undefined), "Delete outcome/rollback unverified; budget remains consumed"); }
+        }
+        if (deletionError) throw deletionError;
+        expect((await db.query("select 1 from public.articles where id=$1 and tenant_id=$2", [target.target, fixture.tenantA.id])).rows).toHaveLength(0);
+        expect((await db.query("select 1 from public.settings_pricing_operations where id=$1 and tenant_id=$2 and actor_user_id=$3 and target_id=$4 and committed_revision=$5", [target.operation, fixture.tenantA.id, fixture.adminA.id, target.target, target.revision])).rows).toHaveLength(1);
+        await refreshArticle("Bounded missing-target refresh");
+        await expect(article.getByTestId("settings-saved")).toContainText("Posten finns inte längre i aktuella uppgifter.");
+        await expect(article.getByTestId("pricing-current-facts")).toContainText("Ingen aktuell post finns.");
+        await expect(article.getByText(/Inga artiklar/)).toBeVisible();
+        await expect(article.getByRole("button", { name: "Spara artikel" })).toBeDisabled();
+        expect(await retainedReceipt!.evaluate(element => element.isConnected)).toBe(true);
+        const missingFacts = article.getByTestId("pricing-current-facts");
+        const missingFrame = [
+            missingFacts, article.getByTestId("settings-saved"),
+            article.getByRole("button", { name: "Använd aktuella uppgifter", exact: true }),
+            missingFacts.getByText("Ingen aktuell post finns.", { exact: true }),
+            article.getByText(/Inga artiklar/),
+        ];
+        for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+            await page.setViewportSize(viewport);
+            await positionProducerFrame(page, missingFrame);
+            await expectProducerFrame(missingFrame);
+            await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "preserve");
+            await expectProducerFrame(missingFrame);
+            await producerCapture(page, info, "article", "current-missing-empty", missingFacts, "preserve", {
+                state: "historical-target-missing", mechanism: "authorized reread after bounded test-owned row deletion (P-E5)",
+            });
+            await expectProducerFrame(missingFrame);
+            if (viewport.width === 360) {
+                await producerCapture(page, info, "article", "current-missing-draft", article.getByLabel("Enhetspris (kr)"));
+                await expect(article.getByLabel("Enhetspris (kr)")).toBeInViewport({ ratio: 1 });
+                await expect(article.getByLabel("Enhetspris (kr)")).toHaveValue("31,00");
+            }
+        }
+        await admission.record({ state: "all-effects-and-restoration-verified", deletions: 1 });
+    } catch (error) { methodError = error; }
+    finally {
+        // Closing a session is not a DCL rollback. Retain ALL scenario/cleanup
+        // failures, and leave damaged fixtures to disposable-job custody.
+        const failures: unknown[] = methodError === undefined ? [] : [methodError];
+        try { await db.end(); } catch (error) { failures.push(error); }
+        try { if (own && !damaged) await cleanupFixture(own); } catch (error) { failures.push(error); }
+        try { await admission.close(); } catch (error) { failures.push(error); }
+        if (failures.length) throw new AggregateError(failures, "Bounded producer effects failed; retry is refused by durable job claim");
+    }
+});
+
+const initialReads = [
+    { surface: "company", route: "/settings/company", relation: "public.company_settings",
+        loading: "Hämtar företagsinställningar…", absent: "Företagsnamn" },
+    { surface: "terms", route: "/settings/quote-terms", relation: "public.quote_terms",
+        loading: "Hämtar offertvillkor…", absent: "Offertvillkor" },
+    { surface: "pricing", route: "/settings/pricing", relation: "public.articles",
+        loading: "Hämtar arbetsroller och artiklar…", absent: "Artikelnamn" },
+] as const;
+
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+    test(`E35-7 initial route reads stream actual loading before authorized absence ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+        test.skip(process.env.CI !== "true", "Requires the fresh isolated hosted browser runtime");
+        test.setTimeout(90_000);
+        expect(info.retry).toBe(0); // Repeated acquisition after an ambiguous effect is refused.
+        const { runtime, stack } = await qualifyProducerRuntime(info);
+        const own = await createTwoTenantFixture();
+        let fixtureCleanupSafe = true;
+        try {
+            await page.setViewportSize(viewport);
+            await signIn(page, own.adminA.email, own.adminA.password);
+            for (const spec of initialReads) {
+                const field = page.getByRole("textbox", { name: spec.absent, exact: true });
+                const lock = runtime.createCalendarFeedDatabaseClient(stack, "proof");
+                let connectionLost = false;
+                lock.on("error", () => { connectionLost = true; });
+                let transaction = false;
+                let writeCapture: (() => Promise<void>) | undefined;
+                try {
+                    await lock.connect();
+                    await runtime.readCalendarFeedSetupAuthority(lock);
+                    const identity = await lock.query(`
+                        select current_database() as database,
+                            inet_server_port() as port, pg_is_in_recovery() as recovery
+                    `);
+                    expect(identity.rows).toEqual([{ database: "postgres", port: 5432, recovery: false }]);
+                    // Read the most conservative positive timeout across applicable
+                    // authenticator/authenticated and database settings. Require
+                    // explicit positive statement-timeout evidence before locking.
+                    const options = await lock.query(`
+                        select split_part(option, '=', 1) as name, split_part(option, '=', 2) as value
+                        from pg_db_role_setting s cross join lateral unnest(s.setconfig) option
+                        where (s.setdatabase = 0 or s.setdatabase = (select oid from pg_database where datname = current_database()))
+                            and (s.setrole = 0 or s.setrole in (select oid from pg_roles where rolname in ('authenticator', 'authenticated')))
+                            and split_part(option, '=', 1) in ('statement_timeout', 'lock_timeout', 'transaction_timeout')
+                    `);
+                    const bounds = options.rows.map(({ name, value }) => {
+                        const setting = /^(\d+(?:\.\d+)?)(ms|s|min)?$/.exec(value);
+                        if (!setting) throw new Error("Unrecognized checked-read timeout setting");
+                        return { name, ms: Number(setting[1]) * (setting[2] === "min" ? 60_000 : setting[2] === "s" ? 1_000 : 1) };
+                    }).filter(({ ms }) => ms > 0);
+                    expect(bounds.some(({ name }) => name === "statement_timeout")).toBe(true);
+                    const budget = Math.min(5_000, Math.min(...bounds.map(({ ms }) => ms)) - 1_500);
+                    expect(budget).toBeGreaterThanOrEqual(2_000);
+                    const deadline = performance.now() + budget;
+                    const remaining = () => {
+                        const ms = Math.floor(deadline - performance.now());
+                        if (ms <= 0 || connectionLost) throw new Error("Bounded initial-read capture expired");
+                        return ms;
+                    };
+                    await lock.query("begin");
+                    transaction = true;
+                    const holderLimits = {
+                        text: `select set_config('transaction_timeout', $1, true),
+                            set_config('idle_in_transaction_session_timeout', '3s', true),
+                            set_config('statement_timeout', '1s', true),
+                            set_config('lock_timeout', '1s', true)`,
+                        values: [`${remaining() + 1_500}ms`],
+                        query_timeout: 1_000,
+                    };
+                    await lock.query(holderLimits);
+                    fixtureCleanupSafe = false; // Arm before the first possibly uncertain relation effect.
+                    const holdRelation = { text: `lock table ${spec.relation} in access exclusive mode`, query_timeout: Math.min(1_000, remaining()) };
+                    await lock.query(holdRelation);
+                    const observe = (text: string, values: string[] = []) => {
+                        const query = { text, values, query_timeout: Math.min(1_000, remaining()) };
+                        return lock.query(query);
+                    };
+                    const started = await observe("select clock_timestamp()::text as at");
+                    await page.goto(spec.route, { waitUntil: "commit", timeout: remaining() });
+                    const loading = page.getByRole("status").filter({ hasText: spec.loading });
+                    await expect(loading).toBeVisible({ timeout: remaining() });
+                    const blockedPostgrestRead = async () => {
+                        await observe("select pg_stat_clear_snapshot()");
+                        const [schema, table] = spec.relation.split(".");
+                        const result = await observe(`
+                            select a.pid
+                            from pg_stat_activity a
+                            join pg_locks l on l.pid = a.pid and l.locktype = 'relation'
+                            where a.usename = 'authenticator' and a.datname = current_database()
+                                and a.state = 'active' and a.wait_event_type = 'Lock' and a.query_start >= $1::timestamptz
+                                and not l.granted and l.mode = 'AccessShareLock' and l.relation = to_regclass($2)
+                                and l.database = (select oid from pg_database where datname = current_database())
+                                and pg_backend_pid() = any(pg_blocking_pids(a.pid))
+                                and a.query ~* '^[[:space:]]*WITH[[:space:]]+pgrst_source[[:space:]]+AS[[:space:]]*[(][[:space:]]*SELECT[[:space:]]'
+                                and strpos(a.query, $3) > 0
+                        `, [started.rows[0].at, spec.relation, `"${schema}"."${table}"`]);
+                        remaining();
+                        return result.rows.map(({ pid }) => Number(pid));
+                    };
+                    let waiting: number[] = [];
+                    await expect.poll(async () => { waiting = await blockedPostgrestRead(); return waiting.length; },
+                        { timeout: remaining(), intervals: [50, 100, 200] }).toBeGreaterThan(0);
+                    await expect(field).toHaveCount(0, { timeout: remaining() });
+                    await expect(page.getByTestId("settings-saved")).toHaveCount(0, { timeout: remaining() });
+                    await expect(page.getByText(/förslag på 25 %|Inga artiklar ännu|Inga arbetsroller ännu/)).toHaveCount(0, { timeout: remaining() });
+                    await producerCapture(page, info, spec.surface, "initial-loading", loading, "center", {
+                        state: "loading", mechanism: `streamed route while PostgREST waits for ${spec.relation}; bounded transaction rollback`,
+                        remaining, deferWrite: write => { writeCapture = write; },
+                    });
+                    expect((await blockedPostgrestRead()).some(pid => waiting.includes(pid))).toBe(true);
+                    await expect(loading).toBeVisible({ timeout: remaining() });
+                } finally {
+                    try {
+                        if (transaction) {
+                            const rollback = { text: "rollback", query_timeout: 1_000 };
+                            await lock.query(rollback);
+                            fixtureCleanupSafe = !connectionLost;
+                        }
+                    } finally {
+                        await lock.end();
+                    }
+                }
+                if (!writeCapture || !fixtureCleanupSafe) throw new Error("Initial-read capture or lock release not established");
+                await expect(page).toHaveURL(new URL(spec.route, "http://127.0.0.1:3100").href);
+                await expect(page.getByText(spec.loading, { exact: true })).toHaveCount(0);
+                await expect(field).toBeEnabled();
+                await expect(field).toHaveValue("");
+                await expect(page.getByRole("button", { name: "Försök läsa igen", exact: true })).toHaveCount(0);
+                if (spec.surface === "company") {
+                    await expect(page.getByTestId("company-empty-defaults")).toContainText("förslag på 25 %");
+                    await expect(page.getByLabel("Momssats")).toHaveValue("25");
+                } else if (spec.surface === "terms") {
+                    await expect(page.getByTestId("quote-terms-signoff-warning")).toBeVisible();
+                    await expect(page.getByRole("button", { name: "Markera som godkänd" })).toHaveCount(0);
+                } else {
+                    await expect(page.getByText(/Inga arbetsroller ännu/)).toBeVisible();
+                    await expect(page.getByText(/Inga artiklar ännu/)).toBeVisible();
+                }
+                await writeCapture();
+            }
+        } finally {
+            if (fixtureCleanupSafe) await cleanupFixture(own);
+        }
+    });
+}
+
+test("E35-7 filters archived and active pricing by authorized identity", async ({ page }, info) => {
+    const own = await createTwoTenantFixture();
+    try {
+        const ordinary = await makeAuthedServerClient(own.adminA);
+        const roleId = await adminInsertWorkRole({ tenant_id: own.tenantA.id, display_name: "Installationstekniker" });
+        const articleId = await adminInsertArticle({ tenant_id: own.tenantA.id, name: "Kopplingsdosa", unit_price_ore: 1250 });
+        await adminInsertArticle({ tenant_id: own.tenantB.id, name: "Kopplingsdosa annan verksamhet" });
+        await signIn(page, own.adminA.email, own.adminA.password);
+        await page.goto("/settings/pricing");
+        const role = page.getByTestId("work-roles-editor");
+        const article = page.getByTestId("articles-editor");
+        const roleRow = role.getByRole("listitem").filter({ hasText: "Installationstekniker" });
+        const articleRow = article.getByRole("listitem").filter({ hasText: "Kopplingsdosa" });
+        const roleSearch = role.getByLabel("Sök arbetsroller");
+        const articleSearch = article.getByLabel("Sök artiklar");
+        const roleEdit = roleRow.getByRole("button", { name: "Redigera" });
+        await waitForHydrated(roleEdit);
+        await roleEdit.press("Enter");
+        await expect(roleEdit).toHaveAttribute("aria-current", "true");
+        await expectRenderedContrast(roleEdit, "borderTopColor", 3);
+        await expectRenderedContrast(roleSearch, "borderTopColor", 3);
+        await expectRenderedContrast(articleRow.getByRole("button", { name: "Redigera" }), "borderTopColor", 3);
+        await articleRow.getByRole("button", { name: "Redigera" }).press("Enter");
+        await article.getByLabel("Artikelnummer").fill("EL-725");
+        await article.getByLabel("Enhet", { exact: true }).fill("styck");
+        await article.getByRole("button", { name: "Spara artikel" }).press("Enter");
+        await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        await articleSearch.fill("EL-725");
+        await expect(articleRow).toHaveCount(1);
+        await articleSearch.fill("styck");
+        await expect(articleRow).toHaveCount(1);
+        await article.getByRole("button", { name: "Rensa sökning" }).press("Enter");
+        await articleRow.getByRole("button", { name: "Arkivera" }).press("Enter");
+        await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        await article.getByRole("button", { name: "Visa arkiverade (1)" }).press("Enter");
+        const archived = article.getByTestId("articles-archived");
+        const archivedRow = archived.getByRole("listitem").filter({ hasText: "Kopplingsdosa" });
+        await expect(archivedRow).toHaveCount(1);
+        await expectRenderedContrast(archivedRow.getByRole("button", { name: "Återaktivera" }), "borderTopColor", 3);
+        const archivedProof = await ordinary.from("articles").select("id,is_active,write_revision").eq("tenant_id", own.tenantA.id).single();
+        expect(archivedProof.error).toBeNull();
+        expect(archivedProof.data).toMatchObject({ id: articleId, is_active: false });
+
+        await roleSearch.fill("Ingen sådan roll");
+        await articleSearch.fill("Ingen sådan artikel");
+        const rolesNoMatch = role.getByRole("status").filter({ hasText: "Inga matchningar bland aktiva arbetsroller." });
+        const archivedNoMatch = archived.getByRole("status").filter({ hasText: "Inga matchningar bland arkiverade artiklar." });
+        await expect(rolesNoMatch).toBeVisible();
+        await expect(archivedNoMatch).toBeVisible();
+        await expect(roleRow).toHaveCount(0);
+        await expect(archivedRow).toHaveCount(0);
+        await expect(roleSearch).toHaveValue("Ingen sådan roll");
+        await expect(articleSearch).toHaveValue("Ingen sådan artikel");
+        for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+            await page.setViewportSize(viewport);
+            await producerCapture(page, info, "work-role", "no-match", rolesNoMatch, "center", {
+                state: "no-match", mechanism: "local filter over an authorized selected role",
+            });
+            await producerCapture(page, info, "article", "no-match", archivedNoMatch, "center", {
+                state: "no-match", mechanism: "local filter over an authorized archived article",
+            });
+        }
+        await role.getByRole("button", { name: "Rensa sökning" }).press("Enter");
+        await article.getByRole("button", { name: "Rensa sökning" }).press("Enter");
+        await expect(roleEdit).toHaveAttribute("aria-current", "true");
+        await expect(archivedRow).toHaveCount(1);
+        await expect(archived.getByText("Kopplingsdosa annan verksamhet")).toHaveCount(0);
+        await archivedRow.getByRole("button", { name: "Återaktivera" }).press("Enter");
+        await expect(article.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+        await expect(archivedRow).toHaveCount(0);
+        await expect(articleRow).toContainText("12,50 kr");
+        const activeProof = await ordinary.from("articles").select("id,is_active,write_revision").eq("tenant_id", own.tenantA.id).single();
+        expect(activeProof.error).toBeNull();
+        expect(activeProof.data).toMatchObject({ id: articleId, is_active: true });
+        expect(activeProof.data!.write_revision).not.toBe(archivedProof.data!.write_revision);
+        const roleProof = await ordinary.from("work_roles").select("id").eq("tenant_id", own.tenantA.id).single();
+        expect(roleProof.error).toBeNull();
+        expect(roleProof.data).toEqual({ id: roleId });
+    } finally {
+        await cleanupFixture(own);
+    }
+});
+
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }]) {
+    test(`E35-7 pending row A prevents selecting B and settles only its captured revision ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+        const own = await createTwoTenantFixture();
+        try {
+            const a = await adminInsertArticle({ tenant_id: own.tenantA.id, name: "Dosa A", unit_price_ore: 1250 });
+            const b = await adminInsertArticle({ tenant_id: own.tenantA.id, name: "Dosa B", unit_price_ore: 2175 });
+            const ordinary = await makeAuthedServerClient(own.adminA);
+            const readPrices = () => ordinary.from("articles").select("id,unit_price_ore,write_revision")
+                .eq("tenant_id", own.tenantA.id).order("name");
+            const baseline = await readPrices();
+            expect(baseline.error).toBeNull();
+            expect(baseline.data).toMatchObject([{ id: a, unit_price_ore: 1250 }, { id: b, unit_price_ore: 2175 }]);
+            await page.setViewportSize(viewport);
+            await signIn(page, own.adminA.email, own.adminA.password);
+            await page.goto("/settings/pricing");
+
+            const editor = page.getByTestId("articles-editor");
+            const edit = (name: string) => editor.getByRole("listitem").filter({ hasText: name }).getByRole("button", { name: "Redigera" });
+            const aEdit = edit("Dosa A");
+            const bEdit = edit("Dosa B");
+            await waitForHydrated(aEdit);
+            await aEdit.press("Enter");
+            await expect(aEdit).toHaveAttribute("aria-current", "true");
+            const price = editor.getByLabel("Enhetspris (kr)");
+            await price.fill("14,75");
+
+            const requests: BrowserRequest[] = [];
+            const observe = (request: BrowserRequest) => {
+                if (new URL(request.url()).pathname === "/settings/pricing" && request.method() === "POST" && request.headers()["next-action"]) {
+                    requests.push(request);
+                }
+            };
+            page.on("request", observe);
+            try {
+                const hold = await holdNextProducerTransport(page, "/settings/pricing", "action");
+                try {
+                    await editor.getByRole("button", { name: "Spara artikel" }).press("Enter");
+                    await hold.seen;
+                    const request = hold.request()!;
+                    expect(await producerCapturedFacts(request)).toEqual({
+                        operation: expect.stringMatching(/^[a-f0-9-]{36}$/i), target: a, tenant: own.tenantA.id,
+                        actor: own.adminA.id, expectedRevision: baseline.data![0].write_revision,
+                    });
+                    await expect(price).toBeDisabled();
+                    await expect(bEdit).toBeDisabled();
+                    await bEdit.scrollIntoViewIfNeeded();
+                    const target = (await bEdit.boundingBox())!;
+                    await page.mouse.click(target.x + target.width / 2, target.y + target.height / 2);
+                    await expect(bEdit).not.toHaveAttribute("aria-current", "true");
+                    await expect(aEdit).toHaveAttribute("aria-current", "true");
+                    await expect(price).toHaveValue("14,75");
+                    await expect(editor.getByTestId("settings-saved")).toHaveCount(0);
+                    await expect(page.getByTestId("work-roles-editor").getByRole("button", { name: "Spara roll" })).toBeEnabled();
+                    const back = page.getByRole("link", { name: "← Inställningar" });
+                    await back.click();
+                    await expect(page).toHaveURL(/\/settings\/pricing$/);
+                    await expect(editor.getByRole("status").filter({ hasText: /Behåll sidan öppen tills försöket är bekräftat/i })).toBeVisible();
+                    expect(requests).toEqual([request]);
+                    const stillBaseline = await readPrices();
+                    expect(stillBaseline.error).toBeNull();
+                    expect(stillBaseline.data).toEqual(baseline.data);
+                    await producerCapture(page, info, "article", "pending-target", bEdit, "center", {
+                        state: "pending-target", mechanism: "original action transport held before dispatch; selected A, disabled B",
+                    });
+                } finally {
+                    try { await hold.releaseHeld(); }
+                    finally { await hold.dispose(); }
+                }
+
+                await expect(editor.getByTestId("settings-saved")).toContainText("Aktuella uppgifter är bekräftade.");
+                await expect(aEdit).toHaveAttribute("aria-current", "true");
+                const persisted = await readPrices();
+                expect(persisted.error).toBeNull();
+                expect(persisted.data).toMatchObject([{ id: a, unit_price_ore: 1475 }, baseline.data![1]]);
+                expect(persisted.data![0].write_revision).not.toBe(baseline.data![0].write_revision);
+                await bEdit.press("Enter");
+                await expect(bEdit).toHaveAttribute("aria-current", "true");
+                await expect(price).toHaveValue("21,75");
+                await expect(editor.getByTestId("settings-saved")).toHaveCount(0);
+                expect(requests).toHaveLength(1);
+            } finally {
+                page.off("request", observe);
+            }
+        } finally {
+            await cleanupFixture(own);
+        }
+    });
+}
+
+type DraftSamples = { readonly original: string; readonly draft?: string; readonly current?: string };
+type PricingDraftTraceWindow = Window & {
+    __kopplasPricingDraftTrace?: {
+        mark(stage: string): void;
+        stop(): void;
+        checkpoints: unknown[];
+        transitions: unknown[];
+    };
+};
+
+async function observeArticleDraft(page: Page, samples: { readonly label: string; readonly price: DraftSamples; readonly unit: DraftSamples }) {
+    const began = Date.now();
+    const origin = new URL(page.url()).origin;
+    const requests = new WeakMap<BrowserRequest, number>();
+    let nextRequest = 0;
+    const transport: { at: number; event: string; request?: number }[] = [];
+    const record = (event: string, request?: number) => {
+        if (transport.length === 64) transport.shift();
+        transport.push({ at: Date.now() - began, event, ...(request === undefined ? {} : { request }) });
+    };
+    const onRequest = (request: BrowserRequest) => {
+        const url = new URL(request.url());
+        if (url.origin !== origin || url.pathname !== "/settings/pricing" || request.method() !== "GET"
+            || request.headers()["rsc"] !== "1") return;
+        const ordinal = ++nextRequest;
+        requests.set(request, ordinal);
+        record("rsc-request", ordinal);
+    };
+    const onResponse = (response: Awaited<ReturnType<BrowserRequest["response"]>>) => {
+        if (!response) return;
+        const ordinal = requests.get(response.request());
+        if (ordinal !== undefined) record(response.ok() ? "rsc-headers-ok" : "rsc-headers-other", ordinal);
+    };
+    const onFinished = (request: BrowserRequest) => {
+        const ordinal = requests.get(request);
+        if (ordinal !== undefined) record("rsc-finished", ordinal);
+    };
+    const onFailed = (request: BrowserRequest) => {
+        const ordinal = requests.get(request);
+        if (ordinal !== undefined) record("rsc-failed", ordinal);
+    };
+    await page.evaluate(({ began, samples }) => {
+        const state = window as PricingDraftTraceWindow;
+        const main = document.getElementById("main-content");
+        if (!main) throw new Error("Pricing diagnostic requires the main content region");
+        const nodes = new WeakMap<Element, number>();
+        let nextNode = 0, lastSnapshot = "", frame: number | undefined;
+        let trackedRow: Element | null = null;
+        const checkpoints: unknown[] = [], transitions: unknown[] = [];
+        const nodeId = (element: Element | null) => {
+            if (!element) return null;
+            if (!nodes.has(element)) nodes.set(element, ++nextNode);
+            return nodes.get(element);
+        };
+        const category = (value: string | undefined, values: DraftSamples) => value === values.original ? "original"
+            : values.draft !== undefined && value === values.draft ? "draft"
+            : values.current !== undefined && value === values.current ? "current" : "other";
+        const confirmed = (scope: Element | null) =>
+            scope?.querySelector('[data-testid="settings-saved"]')?.textContent?.includes("Aktuella uppgifter är bekräftade.") ?? false;
+        const sample = (stage: string, explicit = false) => {
+            const article = document.querySelector('[data-testid="articles-editor"]');
+            const role = document.querySelector('[data-testid="work-roles-editor"]');
+            const price = article?.querySelector<HTMLInputElement>('input[name="unit_price_kronor"]') ?? null;
+            const unit = article?.querySelector<HTMLInputElement>('input[name="unit"]') ?? null;
+            const isFixtureRow = (item: Element) => {
+                const name = item.querySelector("span")?.textContent?.trim();
+                return name === samples.label || name?.startsWith(`${samples.label} (`);
+            };
+            if (!trackedRow || !article?.contains(trackedRow) || !isFixtureRow(trackedRow)) {
+                trackedRow = Array.from(article?.querySelector("ul")?.children ?? []).find(isFixtureRow) ?? null;
+            }
+            const row = trackedRow;
+            const rowName = row?.querySelector("span")?.textContent?.trim();
+            const rowUnit = rowName === samples.label ? "" : rowName?.slice(samples.label.length + 2, -1);
+            const focus = document.activeElement;
+            const statuses = Array.from(article?.querySelectorAll('[role="status"]') ?? []);
+            const snapshot = {
+                priceNode: nodeId(price), unitNode: nodeId(unit),
+                price: category(price?.value, samples.price), priceDefault: category(price?.defaultValue, samples.price),
+                unit: category(unit?.value, samples.unit), unitDefault: category(unit?.defaultValue, samples.unit),
+                rowPresent: Boolean(row), rowSelected: Boolean(row?.querySelector('[aria-current="true"]')),
+                rowPrice: category(row?.querySelector(".tabular-nums")?.textContent?.trim().replace(/ kr$/, ""), samples.price),
+                rowUnit: category(rowUnit, samples.unit),
+                focus: focus === price ? "price" : focus === unit ? "unit"
+                    : focus === article?.querySelector('input[name="name"]') ? "name"
+                    : focus && article?.contains(focus) ? "article-other" : "outside",
+                priceDisabled: price?.matches(":disabled") ?? false,
+                dirty: statuses.some(status => status.textContent?.trim() === "Osparade ändringar."),
+                currentFacts: Boolean(article?.querySelector('[data-testid="pricing-current-facts"]')),
+                articleConfirmed: confirmed(article), roleConfirmed: confirmed(role),
+            };
+            const fingerprint = JSON.stringify(snapshot);
+            if (!explicit && fingerprint === lastSnapshot) return;
+            lastSnapshot = fingerprint;
+            const target = explicit ? checkpoints : transitions;
+            const limit = explicit ? 32 : 48;
+            if (target.length === limit) target.shift();
+            target.push({ at: Date.now() - began, stage, ...snapshot });
+        };
+        const onFieldInput = (event: Event) => {
+            const field = event.target;
+            if (!(field instanceof HTMLInputElement) || !field.closest('[data-testid="articles-editor"]')) return;
+            const kind = field.name === "unit_price_kronor" ? "price" : field.name === "unit" ? "unit" : null;
+            if (kind) sample(`${kind}-${event.type === "beforeinput" ? "before-input" : "input"}`, true);
+        };
+        const onFocus = () => sample("focus");
+        const onClick = (event: MouseEvent) => {
+            const button = event.target instanceof Element ? event.target.closest("button") : null;
+            if (!button) return;
+            const label = button.textContent?.trim();
+            if (label === "Spara roll" && button.closest('[data-testid="work-roles-editor"]')) {
+                sample("role-save-click-event", true);
+                return;
+            }
+            if (!button.closest('[data-testid="articles-editor"]')) return;
+            const stage = label === "Ny post" ? "new-post"
+                : label === "Använd aktuella uppgifter" ? "adopt"
+                : label === "Spara artikel" ? "article-save" : null;
+            if (!stage) return;
+            sample(`${stage}-click-event`, true);
+            if (frame !== undefined) cancelAnimationFrame(frame);
+            // Passive sample after the event handler, including any blocking dialog.
+            frame = requestAnimationFrame(() => {
+                frame = undefined;
+                sample(`${stage}-next-frame`, true);
+            });
+        };
+        const mutations = new MutationObserver(() => sample("dom-transition"));
+        mutations.observe(main, {
+            subtree: true, childList: true, characterData: true, attributes: true,
+            attributeFilter: ["aria-current", "disabled", "value"],
+        });
+        main.addEventListener("beforeinput", onFieldInput, true);
+        main.addEventListener("input", onFieldInput, true);
+        main.addEventListener("focusin", onFocus, true);
+        main.addEventListener("click", onClick, true);
+        state.__kopplasPricingDraftTrace = {
+            mark: stage => sample(stage, true),
+            stop: () => {
+                mutations.disconnect();
+                if (frame !== undefined) cancelAnimationFrame(frame);
+                main.removeEventListener("beforeinput", onFieldInput, true);
+                main.removeEventListener("input", onFieldInput, true);
+                main.removeEventListener("focusin", onFocus, true);
+                main.removeEventListener("click", onClick, true);
+            },
+            checkpoints, transitions,
+        };
+        sample("installed", true);
+    }, { began, samples });
+    page.on("request", onRequest);
+    page.on("response", onResponse);
+    page.on("requestfinished", onFinished);
+    page.on("requestfailed", onFailed);
+    let active = true;
+    return {
+        note: (stage: string) => record(stage),
+        dialog: (stage: "observed" | "dismissed", dialog: Dialog) => {
+            record(`dialog-${stage}-${dialog.type() === "confirm" ? "confirm" : "other"}`);
+        },
+        finish: async (failure?: unknown) => {
+            if (!active) return;
+            active = false;
+            page.off("request", onRequest);
+            page.off("response", onResponse);
+            page.off("requestfinished", onFinished);
+            page.off("requestfailed", onFailed);
+            const failed = failure instanceof Error;
+            const browserExport = page.evaluate(failed => {
+                const state = window as PricingDraftTraceWindow;
+                const trace = state.__kopplasPricingDraftTrace;
+                if (!trace) return null;
+                if (failed) trace.mark("failure");
+                trace.stop();
+                delete state.__kopplasPricingDraftTrace;
+                return failed ? { checkpoints: trace.checkpoints, transitions: trace.transitions } : null;
+            }, failed).catch(() => null);
+            let timer: ReturnType<typeof setTimeout> | undefined;
+            const deadline = new Promise<null>(resolve => { timer = setTimeout(() => resolve(null), 1_000); });
+            const dom = await Promise.race([browserExport, deadline]).finally(() => {
+                if (timer !== undefined) clearTimeout(timer);
+            });
+            if (failed) {
+                const diagnostic = `
+Pricing draft diagnostic (categorical): ${JSON.stringify({ dom, transport })}`;
+                failure.message += diagnostic;
+                if (failure.stack) failure.stack += diagnostic;
+            }
+        },
+    };
+}

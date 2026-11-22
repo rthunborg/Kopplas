@@ -1,0 +1,556 @@
+{
+  "recorded_at_utc": "2026-11-02T18:07:17.6966180Z",
+  "assessor": "/root/producer_build/review_r1_edges",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "assessment": "ACTUAL_IMAGE_ASSESSMENT_INCOMPLETE_QUALIFICATION",
+  "candidate_sha": "473067d47d5f883008d95bd426a3d8383f87395a",
+  "route_provenance": "High read-only image scope recorded in coordination message BEFORE dispatch; this receipt is written AFTER actual final, not a manufactured earlier file timestamp",
+  "actual_images_opened": 80,
+  "capability": "Model image understanding of original PNG inputs through view_image; no crop/composite/edit/generated image or runtime",
+  "integrity_provenance": "Root separately validated all PNG CRC/inflate/geometry/hash/GitOID/sidecars with zero issues; assessor independently opened all80",
+  "input_index": "C:/DEV/Kopplas/tmp/private/35-7-p-ci-473067d4/validated-captures.json",
+  "input_index_sha256": "fb29c99512cf1eef15f0f60e621fc2abdcf06afa7b46ce3d62b2889240bed176",
+  "server": "next start",
+  "server_pid": 12367,
+  "runner_pid": 11987,
+  "run_nonce": "bbaeb286-8191-4180-8898-58f0f9518396",
+  "findings": [
+    {
+      "captures": [
+        "article-1440x900/stale.png",
+        "article-1440x900/neighbor-stale.png"
+      ],
+      "finding": "Retained local11/21 price is below900",
+      "fix": "Start-align facts region and assert full retained-price visibility"
+    },
+    {
+      "captures": [
+        "work-role-360x640/stale.png",
+        "work-role-360x640/neighbor-stale.png"
+      ],
+      "finding": "Retained local11/21 price is below640 and no role supplement exists",
+      "fix": "Start-align refresh/facts region, assert full retained-price visibility; supplement only if necessary"
+    },
+    {
+      "captures": [
+        "company-360x640/stale.png"
+      ],
+      "finding": "Top refresh button clipped",
+      "fix": "Start-align actual refresh control; assert refresh and adopt fully visible; keep draft supplement"
+    },
+    {
+      "captures": [
+        "terms-360x640/retry-pending.png"
+      ],
+      "finding": "Byte-identical to unknown; recovery buttons visible but busy submit below640",
+      "fix": "Anchor pending original to actual busy submit and retain stableunknown for recovery controls"
+    }
+  ],
+  "actual_confirmed": "Current-newer primary current41 and historical receipt visible both domains; article phone local31 needs its supplement; work-role phone primary includes local31/cost0, supplement adds only unchanged lower controls shown elsewhere. Actual loading/VAT/active restored/currentconfirmed/approval/dirty/restore/draft frames materially improved.",
+  "pending_pixel_limits": "Unknown/reconcile-pending pairs can be pixel-identical despite distinct held-request/disabled-control assertions; pixels alone do not prove protocol phase",
+  "missing": "All15 P-E5 unavailable/missing frames absent because admission failed before effects/journal/fixtures. None of80 proves receipt plus actually pending current reread as distinct captured phase.",
+  "publication_candidate": {
+    "raw_defined": 95,
+    "provisional_selected": 80,
+    "omission_counts": [
+      6,
+      4,
+      4,
+      1
+    ],
+    "omissions": [
+      "6 terms/role/article stableunknown as shared AttemptRecovery only, not other-route page proof",
+      "4 pricing reconcilepending with same-route pricing initial-loading exemplar",
+      "4 terms/article initialloading with same-route terms retrypending/pricing role initialloading",
+      "1 work-role-phone newer draft supplement only; raw retained"
+    ],
+    "conditions": "Truthful component/form granularity, no cross-route captions/route arrays/falseNAs/whole-page pixel equivalence. Corrected captures and absent method originals must execute and be opened. New pending pair or any additional frame changes count and requires qualification; no accepted80 package."
+  },
+  "original_inputs": [
+    {
+      "id": "article-archived-restore-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-1440x900\\archived-restore.png",
+      "sha256": "41bd6431d75974fed3127e0690900ccc762a51a59368e0b57bffa47953d62c2b",
+      "git_blob": "e561c7337baadb63669a430762677068a6e83d6a"
+    },
+    {
+      "id": "article-current-newer-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-1440x900\\current-newer.png",
+      "sha256": "f6181706949671976a9eba6ba7fabfa6cab18db3c8f4a4bf2845b19d7ee9d430",
+      "git_blob": "445d444c6af8663158f2b317fb92250b7961cc22"
+    },
+    {
+      "id": "article-empty-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-1440x900\\empty.png",
+      "sha256": "8a69addec64cf9effa531f9bb50399649c9111da6896f080e502c8e361d58d32",
+      "git_blob": "ddbfeac5aa1dbc0b549cf880bd3f6177f9eb0f70"
+    },
+    {
+      "id": "article-error-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-1440x900\\error.png",
+      "sha256": "3a034529e749a27fa15e2ce3a3cafaea49d65889bca614b309f55853839b0b49",
+      "git_blob": "7516c7994a16cb914f044370f9ac71e88eb6e117"
+    },
+    {
+      "id": "article-finished-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-1440x900\\finished.png",
+      "sha256": "5c9a9ac3cab86a824856570210c17158d91ac703339f92b24b6d15ba006bc8be",
+      "git_blob": "a907860b92849466e987dae3f2273387f27bedd9"
+    },
+    {
+      "id": "article-loading-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-1440x900\\loading.png",
+      "sha256": "db670a29b05d927ad0599ecd934b829a972845ef854a83095d5a5b20311609c5",
+      "git_blob": "f41fd4fce4bde8162a3b19f238eb8d3a45861fd3"
+    },
+    {
+      "id": "article-neighbor-stale-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-1440x900\\neighbor-stale.png",
+      "sha256": "5d5d9faccdc5bff66adb0c345c115d86855e04a43898fc156d21c5675539ca96",
+      "git_blob": "add763a1db589df56f33ffa96261e5e89c23a1c4"
+    },
+    {
+      "id": "article-reconcile-pending-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-1440x900\\reconcile-pending.png",
+      "sha256": "ed9baa848d768174ff6f08f7573ee9edd3dc729fb9e86eb1ca933a80e48a64ff",
+      "git_blob": "23a784c4f89205ac113a12a2f9ca11e1224882bb"
+    },
+    {
+      "id": "article-stale-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-1440x900\\stale.png",
+      "sha256": "8516146f1605cebd9b02943a496cfc6edcb8b7e1d345f31046cd6753d8b0e98a",
+      "git_blob": "783ea7a4e0384dbf8ce6d891c94dbd1cd77ce865"
+    },
+    {
+      "id": "article-unknown-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-1440x900\\unknown.png",
+      "sha256": "b0f037e75d4bf46d2150e42784b043c666906158fcd7cc3c21e203575b456879",
+      "git_blob": "024d3884985a89ada99151ef133895b622018698"
+    },
+    {
+      "id": "article-archived-restore-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\archived-restore.png",
+      "sha256": "17da2cca5e5b42671e3d21e7dcc8b5a27afbaf26a464749bbae02699a1f926d5",
+      "git_blob": "041f0dc1cb8fb23806a16147edccdad68f058c75"
+    },
+    {
+      "id": "article-current-newer-draft-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\current-newer-draft.png",
+      "sha256": "d19a876fb6b1e9840a2afb40992864beb278f400090396d3af27b1c03e67058b",
+      "git_blob": "f42f7fecb12b79ccbf5bbfbb461f9e7d2f418b5b"
+    },
+    {
+      "id": "article-current-newer-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\current-newer.png",
+      "sha256": "c1f91bb1cd1a1723b8f07242354739d8b4b2aaee81a38542a2638c5c1cd6bf06",
+      "git_blob": "c49de8c337255b1bd6ed67f4fff371654b84c50e"
+    },
+    {
+      "id": "article-empty-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\empty.png",
+      "sha256": "a118627a2abd926cfef09f66d3db65b90ed39210c820ade4ab6455613fc8b13c",
+      "git_blob": "c7a260c90e4e17d843a9feee5cfc9885cc409ae6"
+    },
+    {
+      "id": "article-error-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\error.png",
+      "sha256": "c66009bcc7c3a62e4a6473b1d0afd3652f918a1ab543943468511f7fc406d714",
+      "git_blob": "16443d4e466060fd566a37b5662dfd13b0336fbb"
+    },
+    {
+      "id": "article-finished-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\finished.png",
+      "sha256": "d597306286175b447375b4c7c6c3c9ae938f81a96be9afe11b591a9e4d81bb5b",
+      "git_blob": "fa03f475f9b5ff873870321cc18226d89e1f282d"
+    },
+    {
+      "id": "article-loading-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\loading.png",
+      "sha256": "d3656a315f45d4c1fc1a86c6a36a87f90b0142934c0b5188f8b8eeff08138b8f",
+      "git_blob": "3c918160c478af8f05b962d1160386ae9a716acd"
+    },
+    {
+      "id": "article-neighbor-stale-draft-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\neighbor-stale-draft.png",
+      "sha256": "19338bfc1d890960b843ba7466abe60faf7cb2d246f1421c7e42a440d22d175f",
+      "git_blob": "4f2f97fd4bf1cf317c2b1ddd4e2908dbc30b6ca5"
+    },
+    {
+      "id": "article-neighbor-stale-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\neighbor-stale.png",
+      "sha256": "c8fe038edebf62e6df05fdb91ca6540d324b3ab993d5526b7515b29524232c17",
+      "git_blob": "1c67ae81cbdc32d9d2d0a48167068a443588af0a"
+    },
+    {
+      "id": "article-reconcile-pending-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\reconcile-pending.png",
+      "sha256": "01f9776a85875fc0526e9cf519348070de85a3ab28f7198d06fa7e7dfa151872",
+      "git_blob": "b7427619a8cccecd1b771c260424a0f32cb82814"
+    },
+    {
+      "id": "article-stale-draft-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\stale-draft.png",
+      "sha256": "4d82ab8a18363b191aabc7298fadf3d61fb02975f1c38f29c4bd8e14c88f9145",
+      "git_blob": "555381895a506e4985b1b643c4b4282a7f410856"
+    },
+    {
+      "id": "article-stale-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\stale.png",
+      "sha256": "5da7f823b95274f95935e5774e3f3fb3c5b2299ec8a45624d4e9349b3a4f40b9",
+      "git_blob": "f0c229bf9147832a0a1161c4f55170774a7c09ba"
+    },
+    {
+      "id": "article-unknown-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\article-360x640\\unknown.png",
+      "sha256": "01f9776a85875fc0526e9cf519348070de85a3ab28f7198d06fa7e7dfa151872",
+      "git_blob": "b7427619a8cccecd1b771c260424a0f32cb82814"
+    },
+    {
+      "id": "company-empty-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-1440x900\\empty.png",
+      "sha256": "ddc8f16363eb7759c26b24e09985a26bba4b9b7f9d1ced11c83a945ca323e391",
+      "git_blob": "23909462ea00f79d0ce79b42c905c85c9410fe36"
+    },
+    {
+      "id": "company-error-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-1440x900\\error.png",
+      "sha256": "fdda8d53cb2fa63fb3960012ee9635132741a99c6433d5c0251afdf055d00b09",
+      "git_blob": "936b22ffa5b7da448508d06d503ee2efd5df953d"
+    },
+    {
+      "id": "company-finished-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-1440x900\\finished.png",
+      "sha256": "63b2ce9fe5b44f8e99fadf3cbf3b3acde887681163ab4d67d22e2050200f8caa",
+      "git_blob": "3c3eb571bf7e79f08623f9061cb18fd5c0597d0d"
+    },
+    {
+      "id": "company-loading-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-1440x900\\loading.png",
+      "sha256": "bf315de508130b2f3948d41d086c8f2077a3353131b7b23f944c1fa49eb0e896",
+      "git_blob": "745cfa754cb1319d755679ef183cea8f1780c9be"
+    },
+    {
+      "id": "company-reconcile-pending-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-1440x900\\reconcile-pending.png",
+      "sha256": "86e0a8caecfabcde8866d1f363d57079ad26e2a6537cc5e7e7e8bc2dbdcc0968",
+      "git_blob": "1f08c020fa9a74e04470a3ddd0284315455f7865"
+    },
+    {
+      "id": "company-refresh-notice-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-1440x900\\refresh-notice.png",
+      "sha256": "b6797e5b1036c88559ce2767cbdc44f4079f90e737071030719f77d6d111f083",
+      "git_blob": "a9b401485140ab08130ea9c2386923860d364108"
+    },
+    {
+      "id": "company-stale-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-1440x900\\stale.png",
+      "sha256": "417b4ec4e76fa9e81d034d5919c2f815a4ebe915221eb00eb9d929425193a122",
+      "git_blob": "e6814a44991803b5b4886776681c498fbaf812ab"
+    },
+    {
+      "id": "company-unknown-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-1440x900\\unknown.png",
+      "sha256": "86e0a8caecfabcde8866d1f363d57079ad26e2a6537cc5e7e7e8bc2dbdcc0968",
+      "git_blob": "1f08c020fa9a74e04470a3ddd0284315455f7865"
+    },
+    {
+      "id": "company-empty-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-360x640\\empty.png",
+      "sha256": "b38e8a474c528338d0b8002889edb863061bbaa28774eda1ab1e50f6ecf793d9",
+      "git_blob": "d56daab9cca9321f8dd2f17c278dbd8bc4cd6bb9"
+    },
+    {
+      "id": "company-error-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-360x640\\error.png",
+      "sha256": "af3641d5a73deeb561efd5e21b657f64727c3cab2d0c394c809739cdf954c761",
+      "git_blob": "48c57b6359d0369440f4c4b360e19edf87cec224"
+    },
+    {
+      "id": "company-finished-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-360x640\\finished.png",
+      "sha256": "cf71ccfebf32f46fd89e56fefcd386c5956134ca9cef51a46fd8b84f0566eebf",
+      "git_blob": "e89ca71b3149fd072181c68691f6dbcd4f946818"
+    },
+    {
+      "id": "company-loading-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-360x640\\loading.png",
+      "sha256": "d758a57ce86757f3ece6fbaf7e33bb2ce89b66f99be85eb6b4f4495cae95d0b7",
+      "git_blob": "722ce11e157c57fff1cb0f9a61a6a1144e94264a"
+    },
+    {
+      "id": "company-reconcile-pending-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-360x640\\reconcile-pending.png",
+      "sha256": "b705893248251e19e0695bc5b4b952cd3299e7107bbdd28ac735c71361b79514",
+      "git_blob": "79e2627ac616acf2bc0f63e2e6fb6a07e30f80ef"
+    },
+    {
+      "id": "company-refresh-notice-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-360x640\\refresh-notice.png",
+      "sha256": "10f0d9922365b89adf66c583a2778c269213da2d67d19ab30197da6046100aa1",
+      "git_blob": "7dd19ef5d7fd4e54735f1fd1426ff73bb5c36587"
+    },
+    {
+      "id": "company-stale-draft-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-360x640\\stale-draft.png",
+      "sha256": "b4527df6d1c9ce821e2532296f4c913be78a88eb24e7ea0d8135a60bcf2c2e04",
+      "git_blob": "999a549401ebefe49499e6e30c7a192747d9f8e1"
+    },
+    {
+      "id": "company-stale-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-360x640\\stale.png",
+      "sha256": "07559ebd7da4e5b8d9f8998741b95758db6eeeac1172133b7de6df95a59e7071",
+      "git_blob": "f8576ab3b7e991e76e5784872339311cbdb6d541"
+    },
+    {
+      "id": "company-unknown-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\company-360x640\\unknown.png",
+      "sha256": "b705893248251e19e0695bc5b4b952cd3299e7107bbdd28ac735c71361b79514",
+      "git_blob": "79e2627ac616acf2bc0f63e2e6fb6a07e30f80ef"
+    },
+    {
+      "id": "terms-dirty-approval-disabled-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-1440x900\\dirty-approval-disabled.png",
+      "sha256": "89b0ae7fbbb7ef5a6ea80204b36c6b41c6d81784d8116e1e5d85c76d8f5e54ad",
+      "git_blob": "64faba33b01e4d11cb8d3fa556612044ebf8984b"
+    },
+    {
+      "id": "terms-empty-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-1440x900\\empty.png",
+      "sha256": "5a166912dc5e0712ed3ee965a883692912fe51ffe8849bca77937431e15c29dd",
+      "git_blob": "948e0f0107b48a4c21a6a477f0ae9ba61b7b80f0"
+    },
+    {
+      "id": "terms-error-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-1440x900\\error.png",
+      "sha256": "27376de72a18aed06f1ce1f2b3d7f3ab911eca9403e374f6afcc5c702bf21514",
+      "git_blob": "b462af69c280d50ac68e05cc388da3348026f08f"
+    },
+    {
+      "id": "terms-finished-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-1440x900\\finished.png",
+      "sha256": "dc26401388b0692a3e8963f9bf32deb2a8705e8b0d651df43eb19766e6952f3a",
+      "git_blob": "036c850d423425b4c5a7f9418b87f2c5e69bf0f0"
+    },
+    {
+      "id": "terms-loading-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-1440x900\\loading.png",
+      "sha256": "5ec55d0d36ca2f63b76d2b7d60a05cd55e2df74d4433c6eb99d92c3d1106a9c0",
+      "git_blob": "dde643f07fc2b03a3245825867db39e69c8fd28d"
+    },
+    {
+      "id": "terms-retry-pending-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-1440x900\\retry-pending.png",
+      "sha256": "c0033fe92bfd1562a97da92753890d1be618dbb0ae7de675bcb1657538b2d62e",
+      "git_blob": "06ae198630027709296265adb61bbb3d8957425c"
+    },
+    {
+      "id": "terms-saved-unapproved-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-1440x900\\saved-unapproved.png",
+      "sha256": "bc570ef0211ef4c0c3b2fc6077a85312e855d4201ba59bc89d8db2d17f84ef62",
+      "git_blob": "56f406ebc6f9d6187b95a998c18210ec178026e1"
+    },
+    {
+      "id": "terms-stale-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-1440x900\\stale.png",
+      "sha256": "fadbf77c75b77dd89d4f468465395a7a48da7073dab2ea16b42340a8942c456a",
+      "git_blob": "dccc8a61a396bddfa0f485bda802e8e34627fc1e"
+    },
+    {
+      "id": "terms-unknown-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-1440x900\\unknown.png",
+      "sha256": "21bcf40124b848e38a0937731aa9031f5534075cd3c8f5dca9c43f14b04c4a02",
+      "git_blob": "4c1e456a5783ec77f07716fc1659e6941596b8a0"
+    },
+    {
+      "id": "terms-dirty-approval-disabled-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-360x640\\dirty-approval-disabled.png",
+      "sha256": "2d097d76eb857907c811b114895d7318f8b0910b33331f6ec615e132888fec67",
+      "git_blob": "b27a8da11aefad617ae08627dda5032f5a301340"
+    },
+    {
+      "id": "terms-empty-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-360x640\\empty.png",
+      "sha256": "a90abfde99edef8c32c3736cc6fd22c1ee03013369f8c0a636bf7ff5f0c25012",
+      "git_blob": "d8598461eb637fa525c1b5ff7d873c78fec7ef10"
+    },
+    {
+      "id": "terms-error-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-360x640\\error.png",
+      "sha256": "aa9a35cef92242f917e914c8d9b4a2f136ad964b1984b6ee6961cf354eb6498a",
+      "git_blob": "ae36ebffe681c2f1e473c7f5353de0775f435051"
+    },
+    {
+      "id": "terms-finished-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-360x640\\finished.png",
+      "sha256": "cbaec7d6dfd89ab9ccec8a5493a480d0871491dedd30fa041089532484ad067e",
+      "git_blob": "821cb399db6dd614fadcaa4a8c56507b8ecd8cde"
+    },
+    {
+      "id": "terms-loading-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-360x640\\loading.png",
+      "sha256": "3ff51168884d73bcec8ce00bfcd1257c7e170d6e712fa8a989d13add6c3b85ee",
+      "git_blob": "2a8253f7bf03e2d23d9e5f8db647477c0f30f4da"
+    },
+    {
+      "id": "terms-retry-pending-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-360x640\\retry-pending.png",
+      "sha256": "a7ae78834df7f3615195393862f8e7b60e264ea550fb98c0b6136acb6d75117d",
+      "git_blob": "5a3ab8992eaa48bfc8b2047830d6853603113d96"
+    },
+    {
+      "id": "terms-saved-unapproved-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-360x640\\saved-unapproved.png",
+      "sha256": "47469f936916667bc56479ada0c199848c9ddd17392ad44924e832252e89defc",
+      "git_blob": "4af03a5ba01c57a25f03fa715e42a733619e4b17"
+    },
+    {
+      "id": "terms-stale-draft-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-360x640\\stale-draft.png",
+      "sha256": "4d187722e38aa5fea69ba3fc1c6ce97856bee2130b997112593196d19b5c21c1",
+      "git_blob": "b65269e9a73d14b16b3039d5e028d36205b0fb14"
+    },
+    {
+      "id": "terms-stale-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-360x640\\stale.png",
+      "sha256": "7cca72dd4fc506a6dc9d7d84cffd9bc864542ba34ccb98d60ed0852656d955d6",
+      "git_blob": "e69f7b67448fd935e17450e9be524f7436db5281"
+    },
+    {
+      "id": "terms-unknown-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\terms-360x640\\unknown.png",
+      "sha256": "a7ae78834df7f3615195393862f8e7b60e264ea550fb98c0b6136acb6d75117d",
+      "git_blob": "5a3ab8992eaa48bfc8b2047830d6853603113d96"
+    },
+    {
+      "id": "work-role-archived-restore-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-1440x900\\archived-restore.png",
+      "sha256": "0504e65cbecfecfadba6245f7df89fa486a7a2bec7828bcd32ac108d45b9c1ae",
+      "git_blob": "efa2627cd00c7b15a74bf3fac58b554e214ceacb"
+    },
+    {
+      "id": "work-role-current-newer-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-1440x900\\current-newer.png",
+      "sha256": "4ce4163d155492a2992caeece43174aa3b35065add957d07ae84b3fffebcca7f",
+      "git_blob": "feb7a5c9b1d807bc98821bf831922a23618f6c6c"
+    },
+    {
+      "id": "work-role-empty-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-1440x900\\empty.png",
+      "sha256": "c3b28792f998eb68291b5ccd197344a12ec506c125ccb1422e4e790a8d847e63",
+      "git_blob": "916bc001ef37692c7eddf17dbcb58c88ad66291f"
+    },
+    {
+      "id": "work-role-error-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-1440x900\\error.png",
+      "sha256": "362149ad8ac8edc1dc6f2782b83f92f0ebeebe5c9493f6f3579c83821887b07a",
+      "git_blob": "30f7916e05cd76c11608c6f09275b15ed840b3f6"
+    },
+    {
+      "id": "work-role-finished-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-1440x900\\finished.png",
+      "sha256": "49c511df732374e3f91c62b82ae8665641eccce657f808c5d41733f8adfbacec",
+      "git_blob": "e7793dbec6b7879033b6ac736a06c5a9d7ebc6fb"
+    },
+    {
+      "id": "work-role-loading-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-1440x900\\loading.png",
+      "sha256": "64e94f18e5168bbeb02461010bc22c53b818bb7e511f2c585da9638471a3a627",
+      "git_blob": "fa28bb7020a85fb03a2bbe9908f3051aaa26cb47"
+    },
+    {
+      "id": "work-role-neighbor-stale-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-1440x900\\neighbor-stale.png",
+      "sha256": "830ab7efda794ce808edd8f65e460eaa4b1d7747aa89592b06f5b89a01197584",
+      "git_blob": "6ca094c280c6e5ebb32b7fca3ba9ed058d371514"
+    },
+    {
+      "id": "work-role-reconcile-pending-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-1440x900\\reconcile-pending.png",
+      "sha256": "896ddd02dbff3056c9666c2346cba2ca2ee174474348e2a3393f949cb40fc07a",
+      "git_blob": "61fd70577fd54e43f4b4dbe35eee2de7944ba017"
+    },
+    {
+      "id": "work-role-stale-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-1440x900\\stale.png",
+      "sha256": "e06c899a7b9c9fcd229a691c9f970cb1948b8be10f91c9cfb6644ee68f932e23",
+      "git_blob": "32bbf483406be002a5f571958963dc3816952e46"
+    },
+    {
+      "id": "work-role-unknown-1440x900",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-1440x900\\unknown.png",
+      "sha256": "fb9a1d73b9a7587988449a2a865cad8ca5c079f67e26ada7c83887e3dd330bf6",
+      "git_blob": "bbd4160d13c16694185fcdc710776702b3200ec6"
+    },
+    {
+      "id": "work-role-archived-restore-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-360x640\\archived-restore.png",
+      "sha256": "6240603a1ff7c697b2af168591045dcc526e9e81b77e3ddce27c9f9badfcc551",
+      "git_blob": "ef22030e0b923e9235763e5f284e3fb9d2c8f877"
+    },
+    {
+      "id": "work-role-current-newer-draft-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-360x640\\current-newer-draft.png",
+      "sha256": "c43f818b1adbd533f203446d90bafae9ca5a2f393d7991f1702f1d1f06b84d4b",
+      "git_blob": "e1cbb8d5cc9df99fa70bf2e5dcdd9ea6efccaa72"
+    },
+    {
+      "id": "work-role-current-newer-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-360x640\\current-newer.png",
+      "sha256": "14b56c121b4f1d7464702c5dd6cd56d2ccdc02ea75f51956ffa7ff12ba6e8d90",
+      "git_blob": "14f503b8b8a44beb5ae369fa2c446ab2a2b7ab97"
+    },
+    {
+      "id": "work-role-empty-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-360x640\\empty.png",
+      "sha256": "5c64e480bbbc4cc5687e0137d564aa1df83a3e0a3e212620ebee2f1676697296",
+      "git_blob": "c2044b8cdb8d413bfb5c6600d87b00e1ce9d9f3d"
+    },
+    {
+      "id": "work-role-error-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-360x640\\error.png",
+      "sha256": "3ceedb286318bc0a08bfc513ad289b76876f83480b8c431432f4a6c32a7bda39",
+      "git_blob": "27e9f776180c77068896b4657dc5804b3cf8c371"
+    },
+    {
+      "id": "work-role-finished-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-360x640\\finished.png",
+      "sha256": "a0df602e72f61d61feca93ed9362fadf65597f23720c8aae6174cc39d78e7afd",
+      "git_blob": "1fef03f31250c8135cc54c1ff5de200a0bc84ff5"
+    },
+    {
+      "id": "work-role-loading-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-360x640\\loading.png",
+      "sha256": "15862480ebf85c7ee9fbc5e920c6c4a812abebce2c43f6d3740853eb21b516cd",
+      "git_blob": "f5a6e526305fef3c2a649aafea66d6bc22d732a7"
+    },
+    {
+      "id": "work-role-neighbor-stale-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-360x640\\neighbor-stale.png",
+      "sha256": "da8107a556e4f6b5ff103a00b7c59a65bf5b32bf107b9df9cac699d92033ee9e",
+      "git_blob": "26f99423a4d47a4406ddf05063aeb3df3705c12c"
+    },
+    {
+      "id": "work-role-reconcile-pending-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-360x640\\reconcile-pending.png",
+      "sha256": "69aa869c805da1f7f270766e3f20f808d3029812892cd0d97a7618bd1d854874",
+      "git_blob": "0fc38039f2517e5d66b8948a01ab2824174f7548"
+    },
+    {
+      "id": "work-role-stale-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-360x640\\stale.png",
+      "sha256": "91436f37023803d714de4b9c1d1d0aea62847ca5838d37b0dc78019cd93638b8",
+      "git_blob": "666ec7b506863e0b79b01619abd43e7446a2aee9"
+    },
+    {
+      "id": "work-role-unknown-360x640",
+      "path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-473067d4\\browser-current\\playwright-report\\35-7-p\\work-role-360x640\\unknown.png",
+      "sha256": "69aa869c805da1f7f270766e3f20f808d3029812892cd0d97a7618bd1d854874",
+      "git_blob": "0fc38039f2517e5d66b8948a01ab2824174f7548"
+    }
+  ],
+  "no_writes_tests_effects_resources_CI_or_trusted_submission": true,
+  "trusted_provider_acceptance": false,
+  "human_visual_acceptance": false,
+  "runtime_completion_or_release_pass": false
+}

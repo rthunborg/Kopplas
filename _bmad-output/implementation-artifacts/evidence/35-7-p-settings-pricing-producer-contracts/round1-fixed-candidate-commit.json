@@ -1,0 +1,401 @@
+{
+  "task_id": "35.7-P",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "parent_review_commit": "cad737c4399bb453ad3eb624911f3ce9218433c5",
+  "candidate_commit": "7f6a7be9e0544844b43842b46d498f7539602dde",
+  "commit_native_exit": 0,
+  "staged_owned_paths": [
+    "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-round1-approved-delta-preservation.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-round1-frozen-checkpoint.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-round1-gate-results.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-round1-helper-consumers.txt",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-round1-integration-collection-current.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-round1-integration-collection.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-round1-resume-integrity.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-round1-review-order-check.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-round1-source-manifest.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-round1-verification-summary.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/current-admission-disposition.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/effective-allocation-admission.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/implementation-review-round-1-full.diff",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/implementation-review-round-1-layer-receipts.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/implementation-review-round-1-source.diff",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/implementation-review-round-1-triage.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/implementation-review-round-1-triage.md",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/implementation-review-round-1.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/review-checkpoint-commit.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json",
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/six-file-owner-approval.json",
+    "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+    "src/app/(app)/settings/pricing/page.tsx",
+    "src/components/pricing/ArticlesEditor.tsx",
+    "src/components/pricing/WorkRolesEditor.tsx",
+    "src/components/settings/CompanySettingsForm.tsx",
+    "src/components/settings/QuoteTermsEditor.tsx",
+    "src/features/settings/mutation-attempt.ts",
+    "tests/e2e/pricing/pricing.e2e.spec.ts",
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+    "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+    "tests/integration/rls/role-harness.atdd.int.test.ts",
+    "tests/support/authz/role-harness.ts",
+    "tests/unit/features/settings/mutation-attempt.test.ts",
+    "tests/unit/scope/manifest-derivations.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/server/commands/pricing-validation-edges.test.ts"
+  ],
+  "source_frozen_count": 49,
+  "all_lf_normalized_equal": true,
+  "all_raw_equal": false,
+  "files": [
+    {
+      "path": "src/app/(app)/settings/company/page.tsx",
+      "frozen_raw_sha256": "11087b2bb0bd4c09207849058b9598e05bfda371be0da186b2a2a4bff075b58a",
+      "committed_blob_sha256": "5c6c34dedd9cfb719aad529b1c8ed2dca4e7cf276c87a371820dc5ec1eec2018",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/app/(app)/settings/pricing/page.tsx",
+      "frozen_raw_sha256": "194198e1edc1ce67a5f7e5fc575ab7e6934933ee3da5871bfb7f3a1dbe7d4904",
+      "committed_blob_sha256": "194198e1edc1ce67a5f7e5fc575ab7e6934933ee3da5871bfb7f3a1dbe7d4904",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/app/(app)/settings/quote-terms/page.tsx",
+      "frozen_raw_sha256": "2e4b02ac87a47b76e1ca3bb0e36d7e4dc0df0cd8e4d26ce56ae2ac7bea7473d4",
+      "committed_blob_sha256": "183f2e5b0f8c0d5827ba67722db9c2384aa1723c2a6206888c817036c3dfdd36",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "frozen_raw_sha256": "b307564bc0a4560bc03d1b2d7ea2055f3311a08b03a03613fbb9a054270c5714",
+      "committed_blob_sha256": "b307564bc0a4560bc03d1b2d7ea2055f3311a08b03a03613fbb9a054270c5714",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "frozen_raw_sha256": "a96d4964ec665fb40cce522dcb300b34b488be291a55e50c0f54cac1d2e528c9",
+      "committed_blob_sha256": "a96d4964ec665fb40cce522dcb300b34b488be291a55e50c0f54cac1d2e528c9",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/components/settings/CompanySettingsForm.tsx",
+      "frozen_raw_sha256": "c72a229903cc96024cad8e98a6744c4d2af226b39633ac2f92414bd4e2ba0fb6",
+      "committed_blob_sha256": "c72a229903cc96024cad8e98a6744c4d2af226b39633ac2f92414bd4e2ba0fb6",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "frozen_raw_sha256": "4ec6bcb81460cec47f2a3131c81017081e7eaa83ce5d7e8d868b1ec97f1c86ef",
+      "committed_blob_sha256": "4ec6bcb81460cec47f2a3131c81017081e7eaa83ce5d7e8d868b1ec97f1c86ef",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/features/pricing/action-state.ts",
+      "frozen_raw_sha256": "fbd741d75460bd33247ee3aed9da7fdb84800844636da2e513bfb4b72244655c",
+      "committed_blob_sha256": "fbd741d75460bd33247ee3aed9da7fdb84800844636da2e513bfb4b72244655c",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "frozen_raw_sha256": "cb7d115ea49cfaaa24464c66a52fd126e67d836edb9936125a1999f4388eb529",
+      "committed_blob_sha256": "27961767260d8fe6ae5b30795d0cbc242ab901f4518ba178651d3b057f5c1d08",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/features/pricing/form-parsing.ts",
+      "frozen_raw_sha256": "3719ae06f871fe73c256f287a6ec5ef72c1a3ad03d47ad123283b94078a45a9c",
+      "committed_blob_sha256": "3719ae06f871fe73c256f287a6ec5ef72c1a3ad03d47ad123283b94078a45a9c",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/features/pricing/read.ts",
+      "frozen_raw_sha256": "cd7a04cf1503076e8a6eb696fd94182bd5360cb8f0f811ee90689044b5d4f9d8",
+      "committed_blob_sha256": "cd7a04cf1503076e8a6eb696fd94182bd5360cb8f0f811ee90689044b5d4f9d8",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/features/settings/action-state.ts",
+      "frozen_raw_sha256": "e6f36ce75bf441fe3e7fab3eda974ffcf0ff6ce65c8c9d31e799488a9bb67477",
+      "committed_blob_sha256": "e6f36ce75bf441fe3e7fab3eda974ffcf0ff6ce65c8c9d31e799488a9bb67477",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "frozen_raw_sha256": "d62f86a5ae2f946c2871e71af654dfb1b744fa403fcb4532f6ef96d39bb4415f",
+      "committed_blob_sha256": "ed760e77b9bc3c918fd62525fb367d06d20d87480240f5298b95eeacd28abc35",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/features/settings/form-parsing.ts",
+      "frozen_raw_sha256": "c65df864d6466a9eaafad1bcdd1d8db1950a849a02b1804db60917b1615f75d8",
+      "committed_blob_sha256": "c65df864d6466a9eaafad1bcdd1d8db1950a849a02b1804db60917b1615f75d8",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/features/settings/mutation-attempt.ts",
+      "frozen_raw_sha256": "08cf728f179e5f46460ae25b0a2cff560911a26c558ce9393ca04b6038c5cb7a",
+      "committed_blob_sha256": "08cf728f179e5f46460ae25b0a2cff560911a26c558ce9393ca04b6038c5cb7a",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/features/settings/read.ts",
+      "frozen_raw_sha256": "e74b7fba575426e4dad33c1e011cc7b6ee66449a8492fd42f9d778ce43152c46",
+      "committed_blob_sha256": "e74b7fba575426e4dad33c1e011cc7b6ee66449a8492fd42f9d778ce43152c46",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "frozen_raw_sha256": "a773473789c83d5074ce3e86efb21f748774f471c58b189ae72ae3142cb7ff62",
+      "committed_blob_sha256": "a773473789c83d5074ce3e86efb21f748774f471c58b189ae72ae3142cb7ff62",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "frozen_raw_sha256": "d6186842b73c983e02aec387e8058cc2d4b91149908f27a390eff10cd953a79a",
+      "committed_blob_sha256": "d6186842b73c983e02aec387e8058cc2d4b91149908f27a390eff10cd953a79a",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "frozen_raw_sha256": "4b75cf42175c900540abae70f6e186807033e6693d79243cfbdea085932c02e1",
+      "committed_blob_sha256": "4b75cf42175c900540abae70f6e186807033e6693d79243cfbdea085932c02e1",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/server/commands/pricing/pricing-db.ts",
+      "frozen_raw_sha256": "3685765993515b2bfef373cf282124f4839f42e609f27e7150478c1789c4fc47",
+      "committed_blob_sha256": "3685765993515b2bfef373cf282124f4839f42e609f27e7150478c1789c4fc47",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/server/commands/pricing/validation.ts",
+      "frozen_raw_sha256": "39084403ed9aa0f5011fab4504f0f8264a80ccc3a303bae4fa926e9e8ac8ed2c",
+      "committed_blob_sha256": "39084403ed9aa0f5011fab4504f0f8264a80ccc3a303bae4fa926e9e8ac8ed2c",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "frozen_raw_sha256": "740b6711cad49071f60b34c62497bb39858b3593254a83d175dc74b6942433ad",
+      "committed_blob_sha256": "740b6711cad49071f60b34c62497bb39858b3593254a83d175dc74b6942433ad",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "frozen_raw_sha256": "1e144a7618e45b207c33d990204fd66e1ca53a72d599f8f1700e9f5aa28ae84f",
+      "committed_blob_sha256": "1e144a7618e45b207c33d990204fd66e1ca53a72d599f8f1700e9f5aa28ae84f",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/server/commands/settings/operation-recovery.ts",
+      "frozen_raw_sha256": "5a76decb31059f7e9572e120dfa3b74e76ea25d8a00e8a554805de9bc4e1e848",
+      "committed_blob_sha256": "5a76decb31059f7e9572e120dfa3b74e76ea25d8a00e8a554805de9bc4e1e848",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "frozen_raw_sha256": "07aeeacfb8d2300acad75c75127090bec2f31e1f21b022dd80f41c2103a9f005",
+      "committed_blob_sha256": "07aeeacfb8d2300acad75c75127090bec2f31e1f21b022dd80f41c2103a9f005",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/server/commands/settings/settings-db.ts",
+      "frozen_raw_sha256": "2365f40cc1d064fb0ed4cfbb43221e6499c0ed518bfb345b172202c393b540ea",
+      "committed_blob_sha256": "2365f40cc1d064fb0ed4cfbb43221e6499c0ed518bfb345b172202c393b540ea",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "src/server/commands/settings/validation.ts",
+      "frozen_raw_sha256": "0859642e57b2fb45935b29c2f57ee0b23ee990b9255f3234a514d59f4f02afc4",
+      "committed_blob_sha256": "0859642e57b2fb45935b29c2f57ee0b23ee990b9255f3234a514d59f4f02afc4",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "supabase/migrations/20261102121057_settings_pricing_operation_contract.sql",
+      "frozen_raw_sha256": "7f02c36c4ac03a7c6de9e2b4e34048c80e617ac42067398f6fa06d9ae0a299df",
+      "committed_blob_sha256": "b0a599581c2d97b6d723cdf19a5fb577e4a3a537a57a56f214f2e28d8f59e797",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/e2e/pricing/pricing.e2e.spec.ts",
+      "frozen_raw_sha256": "28e2464568158ce929f74ede09f77300abeaaf0163d331b38d8d3b2e03cfe8e2",
+      "committed_blob_sha256": "28e2464568158ce929f74ede09f77300abeaaf0163d331b38d8d3b2e03cfe8e2",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/e2e/settings/settings.e2e.spec.ts",
+      "frozen_raw_sha256": "cbcfd587f79f25a658edbcdabaeb34725d194a6bfe772bcd40f4571f2f45b7eb",
+      "committed_blob_sha256": "cbcfd587f79f25a658edbcdabaeb34725d194a6bfe772bcd40f4571f2f45b7eb",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "frozen_raw_sha256": "fed58b73ba50b51d4f577b2b418fc17a771e0001ada794325003b6a93f1e58c4",
+      "committed_blob_sha256": "7524b5e5095c5a2cbfe20088f6c620bfd77b45d34001fdcdfae3fd25439f5e8a",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/integration/commands/pricing-commands.int.test.ts",
+      "frozen_raw_sha256": "4f334d16deb7f93fbb3c74e5ebf3c221ad30a7b510fd2d026f13d763c3cf1291",
+      "committed_blob_sha256": "3c4aa78d82627048c3aec6bdb541c3c312af70062b1571e49bcb1e7a75d6f85f",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/integration/commands/settings-commands.int.test.ts",
+      "frozen_raw_sha256": "4bf2f70a50a3419e5e3fd550ad9042e1c656eb0c5c1eca413aedf1968ecd3fd5",
+      "committed_blob_sha256": "60b1ae619adb39f8b57b99ead40812f4f55c8bf925b04fdeae20b93a08d08308",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/integration/commands/settings-pricing-operation-contract.int.test.ts",
+      "frozen_raw_sha256": "9c5eec77b5417ea18cdc3be083618805f2a97c63d8640e0962a4acb084803912",
+      "committed_blob_sha256": "9c5eec77b5417ea18cdc3be083618805f2a97c63d8640e0962a4acb084803912",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "frozen_raw_sha256": "f1851ec2e178f8550105a0383e60da5ea986f3560c62877535e6b221229a5cdb",
+      "committed_blob_sha256": "02018f4bf5c65ea7c369ceb4430d91ef747c517a850c8ad362e5629b73f1f3bf",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "frozen_raw_sha256": "38d81b9c53e908791f2bd89add3c7e715954bfd1b15ad2176aa8d188a5a98ffe",
+      "committed_blob_sha256": "38d81b9c53e908791f2bd89add3c7e715954bfd1b15ad2176aa8d188a5a98ffe",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "frozen_raw_sha256": "8ad4e955267095a47d2ea7a1f124f3924f3f83e0e3dfd8a56a3b217efda78444",
+      "committed_blob_sha256": "8ad4e955267095a47d2ea7a1f124f3924f3f83e0e3dfd8a56a3b217efda78444",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/integration/rls/settings-pricing-operation-contract.rls.test.ts",
+      "frozen_raw_sha256": "96082dc1c0ee2954ca6d8d2f2084c966b33bd3826324a87ebb3889ee3a389aa7",
+      "committed_blob_sha256": "96082dc1c0ee2954ca6d8d2f2084c966b33bd3826324a87ebb3889ee3a389aa7",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "frozen_raw_sha256": "04626c68d6dde8c408fa68e309d4ff3b7533301cf3f5254ab8da9a4d8caa1f2c",
+      "committed_blob_sha256": "02c8d826e63ad6660cf89c7b8b61f400ea7a7baed0f2258b2cac597858014c9c",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "frozen_raw_sha256": "d5897875f3a2016bc5b3c0741773a42d88ee16c3c04a19083dc2e8244aa03741",
+      "committed_blob_sha256": "d5897875f3a2016bc5b3c0741773a42d88ee16c3c04a19083dc2e8244aa03741",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/support/booking-conflicts-atdd.ts",
+      "frozen_raw_sha256": "bf5b5ad1efa3b7ecd347494daf990a8224dc67c3a2e2e97eea0157fd3538b5f1",
+      "committed_blob_sha256": "35979120e0a6aec28265cd2239ec93fbcbdb9f3c42b0f8485177237430e22f71",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/unit/features/settings/mutation-attempt.test.ts",
+      "frozen_raw_sha256": "b297d8d24e977be24c3a91da61220deac9e5cf21ec745e5daa8cc001f0068964",
+      "committed_blob_sha256": "b297d8d24e977be24c3a91da61220deac9e5cf21ec745e5daa8cc001f0068964",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "frozen_raw_sha256": "2919ff514ee3a5943b5d5bcddb79b9d032bb654bbbab149db39f8238d6114bc6",
+      "committed_blob_sha256": "2919ff514ee3a5943b5d5bcddb79b9d032bb654bbbab149db39f8238d6114bc6",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "frozen_raw_sha256": "f8b3a69d50a621896b9b5e96fc7da523472d9fd3732ef3a4fb9d3650f71d3a47",
+      "committed_blob_sha256": "f8b3a69d50a621896b9b5e96fc7da523472d9fd3732ef3a4fb9d3650f71d3a47",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/unit/server/commands/pricing-validation-edges.test.ts",
+      "frozen_raw_sha256": "0e2eb837a1bffb55914798f809072459b21cb816ac80aec1f407cbaa543272db",
+      "committed_blob_sha256": "0e2eb837a1bffb55914798f809072459b21cb816ac80aec1f407cbaa543272db",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/unit/server/commands/pricing-validation.test.ts",
+      "frozen_raw_sha256": "3adbb57055dd632003da7f0d319e9afae30724cfdfc061b27b0e7f094333b949",
+      "committed_blob_sha256": "22b917c70e66ab24e5197ba544e2ffe03196dc580bf26e70af6a046d174bd476",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "tests/unit/server/commands/settings-validation.test.ts",
+      "frozen_raw_sha256": "a3ac0538a21faa93193a007462c573192781cf01f09df3125d40202c6defa6b7",
+      "committed_blob_sha256": "9c68373bce00a83b69d673b970f41dd848c9a4bb8bfd2154f32d0c18bbc136a7",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+      "frozen_raw_sha256": "32a93967dbe698d5a370fbd17d9f2bd2fd83999be502d01723c47816fc85cc70",
+      "committed_blob_sha256": "32a93967dbe698d5a370fbd17d9f2bd2fd83999be502d01723c47816fc85cc70",
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json",
+      "frozen_raw_sha256": "e9fe764f7bf544c1b33589c9838ead69f6d9ab581031ecd592d365539f65f746",
+      "committed_blob_sha256": "c38543358060f638289808af9260ab5d2d1ca93882e946ae082799fdabc07d0b",
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    }
+  ],
+  "source_digest_raw": "dc010cb2f9cba6dd67d51d03b46738f7629f650383bfd0bfe6d2f1355856d4c0",
+  "source_author_stopped": true,
+  "push_or_publication": false,
+  "development_complete": false,
+  "release_ready": false
+}

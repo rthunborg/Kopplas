@@ -1,0 +1,92 @@
+diff --git a/tests/e2e/pricing/pricing.e2e.spec.ts b/tests/e2e/pricing/pricing.e2e.spec.ts
+index ca30211c..be0b0e45 100644
+--- a/tests/e2e/pricing/pricing.e2e.spec.ts
++++ b/tests/e2e/pricing/pricing.e2e.spec.ts
+@@ -27,7 +27,7 @@
+  *     hub), so "Prissättning" is reachable from /settings but is NOT a top-nav link.
+  */
+ import { test, expect, type Page, type Locator } from "@playwright/test";
+-import { readFileSync, readlinkSync, readdirSync } from "node:fs";
++import { readFileSync, readlinkSync, readdirSync, realpathSync } from "node:fs";
+ import path from "node:path";
+ import { expectActiveAdminNavigation } from "../support/active-admin-navigation";
+ 
+@@ -557,6 +557,51 @@ test(`R1-1 pricing drafts retain their revision across stale rejection and neigh
+ 
+ // Human-authorized CI-only effects. No local invocation is admitted, and this
+ // append-only job claim deliberately refuses ALL worker/test retries after entry.
++type ProducerPlaywrightEntry = { family: "@playwright/test" | "playwright"; canonical: string };
++function producerPlaywrightEntry(script: string): ProducerPlaywrightEntry | undefined {
++    // Preserve a recognizable original launcher even if its loaded entrypoint was
++    // unlinked or a conventional symlink resolves outside the named package.
++    let knownFamily = /(?:^|\/)node_modules\/(?:(?:@playwright\/test|playwright)\/cli\.js|\.bin\/playwright)$/.test(path.normalize(script));
++    let canonical: string;
++    try { canonical = realpathSync(script); }
++    catch { if (knownFamily) throw new Error("P-E5 family=playwright reason=entrypoint-unavailable"); return; }
++    knownFamily ||= /node_modules\/(?:@playwright\/test|playwright)\/cli\.js$/.test(canonical);
++    if (path.basename(canonical) !== "cli.js") {
++        if (knownFamily) throw new Error("P-E5 family=playwright reason=canonical-entrypoint-mismatch");
++        return;
++    }
++    const directory = path.dirname(canonical);
++    let pkg;
++    try { pkg = JSON.parse(readFileSync(path.join(directory, "package.json"), "utf8")); }
++    catch { if (knownFamily) throw new Error("P-E5 family=playwright reason=package-identity-unavailable"); return; }
++    if (pkg.name !== "@playwright/test" && pkg.name !== "playwright") {
++        if (knownFamily) throw new Error("P-E5 family=playwright reason=package-identity-mismatch");
++        return;
++    }
++    const bin = typeof pkg.bin === "string" ? pkg.bin : pkg.bin?.playwright;
++    let binCanonical: string | undefined;
++    try { if (typeof bin === "string") binCanonical = realpathSync(path.resolve(directory, bin)); } catch { /* Fixed reason only, no path payload. */ }
++    if (binCanonical !== canonical) throw new Error("P-E5 family=playwright reason=package-bin-mismatch");
++    return { family: pkg.name, canonical };
++}
++function producerPlaywrightInvocation(args: readonly string[], cwd: string, identify: (script: string) => ProducerPlaywrightEntry | undefined): ProducerPlaywrightEntry | undefined {
++    let index = 1;
++    while (args[index]?.startsWith("-")) {
++        const option = args[index];
++        if (option === "--") { index++; break; }
++        if (["-e", "--eval", "-p", "--print"].includes(option) || option.startsWith("--eval=") || option.startsWith("--print=")) return; // Inline program, not a CLI script argument.
++        if (["-r", "--require", "--import", "--loader", "--experimental-loader", "--conditions", "-C"].includes(option)) { if (!args[index + 1]) throw new Error("P-E5 family=node reason=missing-startup-option-value"); index += 2; continue; }
++        if (option.startsWith("--") && option.includes("=") || ["--no-warnings", "--enable-source-maps", "--experimental-strip-types", "--trace-warnings", "--inspect", "--inspect-brk"].includes(option)) { index++; continue; }
++        // Never accept an arbitrary argv payload just because it contains test.
++        // An unsupported Node launch with a real Playwright CLI is a refusal,
++        // including foreign projects, not an ignored consumer.
++        if (args.slice(index + 1).some(arg => identify(path.resolve(cwd, arg)))) throw new Error("P-E5 family=playwright reason=unsupported-node-launch");
++        return;
++    }
++    if (!args[index]) return;
++    const entry = identify(path.resolve(cwd, args[index]));
++    return entry && args[index + 1] === "test" ? entry : undefined;
++}
+ async function qualifyProducerBoundedEffects(info: TestInfo) {
+     const runtime = await import("../../../scripts/ci/with-calendar-feed-runtime.mjs");
+     runtime.validateAdmission("browser", process.env, process.platform);
+@@ -617,11 +662,24 @@ async function qualifyProducerBoundedEffects(info: TestInfo) {
+     expect(runtime.ownsListenerRecord(3100, sockets, tcp) || wildcardOwned).toBe(true);
+     // A fresh isolated job plus the single configured worker is not permission
+     // to affect another runner: inspect actual host CLI consumers as well.
++    const installedCli = producerPlaywrightEntry(path.resolve("node_modules/@playwright/test/cli.js"));
++    if (!installedCli) throw new Error("P-E5 family=playwright reason=installed-cli-unverified");
+     const consumers: number[] = [];
+     for (const entry of readdirSync("/proc").filter(value => /^\d+$/.test(value))) {
+-        let args: string[];
++        let args: string[], cwd: string;
+         try { args = readFileSync(`/proc/${entry}/cmdline`, "utf8").split("\0"); } catch { continue; }
+-        if (args.some(arg => /\/node_modules\/(?:@playwright\/test|playwright)\/cli\.js$/.test(arg)) && args.includes("test")) consumers.push(Number(entry));
++        try { cwd = readlinkSync(`/proc/${entry}/cwd`); }
++        catch {
++            if (Number(entry) === boot.ownerPid || args.some(arg => /(?:^|\/)(?:cli\.js|\.bin\/playwright)$/.test(arg)) || producerPlaywrightInvocation(args, "/", producerPlaywrightEntry)) throw new Error("P-E5 family=playwright reason=consumer-cwd-unavailable");
++            continue;
++        }
++        const invocation = producerPlaywrightInvocation(args, cwd, producerPlaywrightEntry);
++        if (!invocation) {
++            if (Number(entry) === boot.ownerPid) throw new Error("P-E5 family=playwright reason=owner-entrypoint-unclassified");
++            continue;
++        }
++        if (Number(entry) === boot.ownerPid && invocation.canonical !== installedCli.canonical) throw new Error("P-E5 family=playwright reason=owner-cli-mismatch");
++        consumers.push(Number(entry)); // Other project paths remain consumers and fail exclusivity.
+     }
+     expect(consumers).toEqual([boot.ownerPid]);
+     const head = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();

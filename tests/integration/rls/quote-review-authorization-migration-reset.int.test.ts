@@ -105,7 +105,7 @@ describe("Story 10.8 quote review authorization migration", () => {
                 has_function_privilege('public', $1::oid, 'execute') as public_role`,
         [row.oid],
       );
-      expect(privilege[0]).toEqual({ authed: true, anon: false, public_role: false });
+      expect(privilege[0]).toEqual({ authed: !["authorize_quote_initial_review", "create_quote_version_from_calculation"].includes(row.proname), anon: false, public_role: false });
     }
 
     const successorRevokes = await adminQuery<{ function_name: string; service: boolean }>(

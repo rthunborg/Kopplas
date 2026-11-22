@@ -1,5 +1,11 @@
 # Production deployment from earned merges
 
+**Current amendment — 2026-11-03:** the owner has explicitly restored automatic
+deployments and merged-main Preview delivery. Follow the
+[current delivery policy](automatic-deployment-delivery-2026-11-03.md).
+The October 25 statements below remain historical evidence of that decision's
+original scope; the Preview-disable restriction is superseded.
+
 Owner decision: 2026-10-25. This standing authorization applies to production deployments triggered by earned merges. The owner authorizes that merge effect and asks agents to avoid merge/wait/deploy/find-issue/redeploy loops.
 
 Complete the existing applicable development checks, required GitHub CI for the actual head, independent review and merge requirements before merging. For E15, the final independent PR review remains a fresh-chat review bound to the actual PR head. This decision grants no waiver of authorization/RLS/privacy/transaction integrity, scope governance, review limits or evidence truth. It does not make a branch push deployment authorization.

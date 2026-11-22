@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1.0",
+  "evaluated_at": "2026-11-13T12:19:09.155182+00:00",
+  "repo": "rthunborg/Kopplas",
+  "target": {
+    "type": "epic",
+    "id": "spec-design-35-14",
+    "label": "Design35.14 approved E19.1 live dashboard pipeline"
+  },
+  "collection_status": "COLLECTED",
+  "gate_basis": "priority_thresholds",
+  "gate_status": "PASS",
+  "rationale": "P0 coverage100% (2/2), P1 coverage100% (5/5), overall100% (7/7) meet deterministic thresholds100/90/80. Formal high-confidence oracle; rerunnable static suites with fresh qualified M execution, no live-only requirement or uncovered required AC. PASS is bounded E19.1 development trace coverage only: both M workflows remain FAILED, all52DB/22General logical skips receive zero credit, and broader failures/unknown causes and separate release/E8/native-finalization obligations remain open. No release/deployment approval is granted.",
+  "p0_status": "MET",
+  "p1_status": "MET",
+  "overall_status": "MET",
+  "critical_open": 0,
+  "links": {
+    "trace_report_path": "_bmad-output/test-artifacts/spec-design-35-14-35-14/closeout-traceability.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  }
+}

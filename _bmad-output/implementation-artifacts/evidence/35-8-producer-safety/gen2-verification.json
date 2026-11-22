@@ -1,0 +1,397 @@
+{
+  "schema_version": 1,
+  "kind": "GEN2_IMPLEMENTED_CHECKPOINT_VERIFICATION_NOT_COMPLETION",
+  "recorded_at": "2026-11-13T17:35:58.595262+00:00",
+  "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+  "head": "15d8210e79a044babb9255b5aebd73bec2c54ae6",
+  "commits_by_this_author": [],
+  "story_baseline": "3a2fe5a565e2627b45b9b46880e26966ef0cd23f",
+  "independent_review_baseline": "1c53833c70ad61a26cbfbc117a040b1f99d33f2e",
+  "review_rounds_completed": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "frontend_accepted": false,
+  "commands": [
+    {
+      "argv": [
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "--test-timeout=180000",
+        "tests/unit/features/calculations/editor-operation.test.ts",
+        "tests/unit/features/calculations/action-state.test.ts",
+        "tests/unit/features/calculations/form-parsing.test.ts",
+        "tests/unit/server/commands/calc-validation.test.ts",
+        "tests/unit/server/commands/calc-validation-coverage.test.ts",
+        "tests/unit/server/commands/calc-source-validation.test.ts",
+        "tests/unit/server/commands/calculation-row-limit-command.test.ts",
+        "tests/unit/server/commands/quote-validation.test.ts",
+        "tests/unit/scope/manifest-shape.test.ts",
+        "tests/unit/scope/manifest-derivations.test.ts"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "executed": 186,
+        "passed": 186,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "raw": "gen2-focused-unit.tap",
+      "scope": "focused unit only",
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--pretty",
+        "false"
+      ],
+      "native_exit": 0,
+      "counts": null,
+      "scope": "full TypeScript static check",
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "."
+      ],
+      "native_exit": 0,
+      "counts": {
+        "errors": 0,
+        "warnings": 40
+      },
+      "raw": "gen2-lint-final.log",
+      "scope": "full lint, plus targeted native0 after final two test edits",
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+        "tests/integration/rls/calculation-editor-operation-contract.rls.test.ts"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/next/dist/bin/next",
+        "build"
+      ],
+      "native_exit": 0,
+      "counts": null,
+      "raw": "gen2-build-final.log",
+      "scope": "production build; no server start",
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-lockfiles.mjs"
+      ],
+      "native_exit": 0,
+      "counts": null,
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-service-role-containment.mjs"
+      ],
+      "native_exit": 0,
+      "counts": null,
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-bundle-containment.mjs"
+      ],
+      "native_exit": 0,
+      "counts": null,
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker"
+    },
+    {
+      "argv": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+        "--project=chromium",
+        "--list"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "registered": 10,
+        "executed": 0
+      },
+      "raw": "gen2-browser-collection.log",
+      "scope": "collection only, not browser execution",
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/quality/frontend-controller.mjs",
+        "local",
+        "--base",
+        "3a2fe5a565e2627b45b9b46880e26966ef0cd23f"
+      ],
+      "native_exit": 1,
+      "counts": null,
+      "output": "Commit the bounded candidate before claiming revision-bound acceptance; working-tree changes invalidate acceptance.",
+      "scope": "No published candidate, authenticated visual evidence or acceptance",
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker"
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify/check-review-order.mjs",
+        "_bmad-output/specs/spec-calculation-editor-mutation-safety/stories/35-8-p-calculation-editor-mutation-safety.md"
+      ],
+      "native_exit": 0,
+      "counts": {
+        "sections": 1,
+        "references": 20,
+        "errors": 0
+      },
+      "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker"
+    }
+  ],
+  "full_unit_diagnostic": {
+    "cwd": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+    "executable": "C:\\nvm4w\\nodejs\\node.exe",
+    "argv": [
+      "--experimental-strip-types",
+      "--import",
+      "./tests/support/register.mjs",
+      "--test",
+      "tests/unit/**/*.test.ts"
+    ],
+    "overall_timeout_ms": 240000,
+    "timed_out": true,
+    "native_exit": -1,
+    "owned_identities": [
+      {
+        "pid": 36688,
+        "created_at": "2026-11-13T17:26:38.7033869Z"
+      },
+      {
+        "pid": 43320,
+        "created_at": "2026-11-13T17:26:38.7100900Z"
+      },
+      {
+        "pid": 43352,
+        "created_at": "2026-11-13T17:26:45.0424350Z"
+      },
+      {
+        "pid": 58256,
+        "created_at": "2026-11-13T17:30:03.6413140Z"
+      },
+      {
+        "pid": 11948,
+        "created_at": "2026-11-13T17:30:22.4691040Z"
+      },
+      {
+        "pid": 55944,
+        "created_at": "2026-11-13T17:30:38.8791460Z"
+      },
+      {
+        "pid": 49176,
+        "created_at": "2026-11-13T17:30:38.8983560Z"
+      }
+    ],
+    "completed_at": "2026-11-13T17:30:39.1292516Z",
+    "observed_top_level_pass_results": 1283,
+    "observed_top_level_fail_results": 0,
+    "final_totals": null,
+    "coverage_status": "NOT_FULL_PASS; timeout; source changed during diagnostic run",
+    "terminal_proof": "gen2-full-unit-terminal-proof.json"
+  },
+  "unrun_required": [
+    "full integration/RLS with SUPABASE_TEST_REQUIRED=1 retaining two Vitest projects",
+    "direct recovery/storage integrity",
+    "full ordinary hosted unit/verify-development gate",
+    "configured full production-browser + dashboard hosted route on exact candidate",
+    "candidate-bound desktop and 360x640 captures and authenticated visual acceptance",
+    "configured independent High full-D product review",
+    "separate story TEA automate provenance"
+  ],
+  "blockers": [
+    {
+      "name": "outside-generation-2 initial quote caller adapter",
+      "path": "tests/integration/commands/tax-answer-reconciliation.int.test.ts",
+      "source_only": true,
+      "db_unrun": true,
+      "owner": "Root allocation/ownership disposition",
+      "evidence": "gen2-revoked-caller-closure.json",
+      "next": "Root current continuation sequencing and exact preserving adapter disposition; author does not edit outside57 or replay old transition"
+    },
+    {
+      "name": "candidate runtime and frontend qualification pending",
+      "owner": "Parent/Root hosted qualification route",
+      "next": "qualify exact candidate under existing gates; no local services launched by this author"
+    }
+  ],
+  "changed_product_paths_full_D": [
+    "src/components/calculations/CalculationEditor.tsx",
+    "src/components/calculations/CalculationList.tsx",
+    "src/components/calculations/PreQuotePreview.tsx",
+    "src/components/calculations/RowEditor.tsx",
+    "src/components/calculations/SectionEditor.tsx",
+    "src/components/calculations/TaxSettingsPanel.tsx",
+    "src/features/calculations/action-state.ts",
+    "src/features/calculations/actions.ts",
+    "src/features/calculations/editor-operation.ts",
+    "src/features/calculations/form-parsing.ts",
+    "src/features/quotes/actions.ts",
+    "src/features/quotes/create-quote-action-state.ts",
+    "src/scope/manifest.ts",
+    "src/server/commands/calculations/calculations.ts",
+    "src/server/commands/calculations/editor-operation-db.ts",
+    "src/server/commands/calculations/reorder.ts",
+    "src/server/commands/calculations/rows.ts",
+    "src/server/commands/calculations/sections.ts",
+    "src/server/commands/calculations/validation.ts",
+    "src/server/commands/quotes/quotes.ts",
+    "src/server/commands/quotes/validation.ts",
+    "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql",
+    "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+    "tests/integration/commands/calculation-commands.int.test.ts",
+    "tests/integration/commands/calculation-editor-safety-fixture.ts",
+    "tests/integration/commands/calculation-mutation-safety.int.test.ts",
+    "tests/integration/commands/calculation-parent-ownership.int.test.ts",
+    "tests/integration/commands/calculation-row-source.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-determinism.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-retry-consistency.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-source-of-truth.int.test.ts",
+    "tests/integration/commands/quote-audit-rollback.int.test.ts",
+    "tests/integration/commands/quote-initial-mutation-safety.int.test.ts",
+    "tests/integration/commands/quote-initial-non-admin-audit.int.test.ts",
+    "tests/integration/commands/quote-version.int.test.ts",
+    "tests/integration/commands/tax-answer-acceptance-job.int.test.ts",
+    "tests/integration/rls/calc-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/calculation-editor-operation-contract.rls.test.ts",
+    "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+    "tests/integration/rls/quote-review-authorization-migration-reset.int.test.ts",
+    "tests/integration/rls/quote-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/role-harness.atdd.int.test.ts",
+    "tests/integration/rls/tenant-table-inventory.ts",
+    "tests/support/authz/role-harness.ts",
+    "tests/unit/features/calculations/editor-operation.test.ts",
+    "tests/unit/scope/manifest-derivations.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/server/commands/calc-source-validation.test.ts",
+    "tests/unit/server/commands/calc-validation-coverage.test.ts",
+    "tests/unit/server/commands/calc-validation.test.ts",
+    "tests/unit/server/commands/calculation-row-limit-command.test.ts",
+    "tests/unit/server/commands/quote-validation.test.ts"
+  ],
+  "author_unstaged_paths": [
+    "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen2-focused-unit.tap",
+    "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen2-full-unit-receipt.json",
+    "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen2-full-unit-terminal-proof.json",
+    "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen2-full-unit.tap",
+    "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen2-handoff-paths.json",
+    "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen2-revoked-caller-closure.json",
+    "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen2-revoked-symbol-scan.txt",
+    "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen2-verification.json",
+    "_bmad-output/specs/spec-calculation-editor-mutation-safety/stories/35-8-p-calculation-editor-mutation-safety.md",
+    "src/components/calculations/CalculationList.tsx",
+    "src/components/calculations/TaxSettingsPanel.tsx",
+    "src/features/calculations/editor-operation.ts",
+    "src/server/commands/calculations/editor-operation-db.ts",
+    "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql",
+    "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts",
+    "tests/integration/commands/calculation-commands.int.test.ts",
+    "tests/integration/commands/calculation-mutation-safety.int.test.ts",
+    "tests/integration/commands/quote-initial-mutation-safety.int.test.ts",
+    "tests/integration/commands/quote-initial-non-admin-audit.int.test.ts",
+    "tests/integration/commands/quote-version.int.test.ts",
+    "tests/integration/rls/calc-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/calculation-editor-operation-contract.rls.test.ts",
+    "tests/integration/rls/quote-review-authorization-migration-reset.int.test.ts",
+    "tests/integration/rls/quote-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/role-harness.atdd.int.test.ts",
+    "tests/support/authz/role-harness.ts",
+    "tests/unit/features/calculations/editor-operation.test.ts",
+    "tests/unit/scope/manifest-derivations.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/server/commands/calc-source-validation.test.ts",
+    "tests/unit/server/commands/calc-validation-coverage.test.ts",
+    "tests/unit/server/commands/calc-validation.test.ts",
+    "tests/unit/server/commands/calculation-row-limit-command.test.ts",
+    "tests/unit/server/commands/quote-validation.test.ts"
+  ],
+  "outside_assignment_author_paths": [],
+  "source_sha256": {
+    "src/components/calculations/CalculationEditor.tsx": "c6281d31dbbf7a4145262449ea81f94b4b9113c7859fdbf99c7de6e5bf2947c7",
+    "src/components/calculations/CalculationList.tsx": "b24d066895e56966544708f568a9c2c86dc7470e09e10be35927b3bc84090205",
+    "src/components/calculations/PreQuotePreview.tsx": "cbb3ccd24a13433c84f00e01bfe3c182e0dff33bce6223d8536835f74e100b62",
+    "src/components/calculations/RowEditor.tsx": "2575dd758898289623aa5b7a2555fddce97f3f443ca3b4b48fa152fef7e5f46d",
+    "src/components/calculations/SectionEditor.tsx": "f890d0b3d57e91ae30b134bc9720d7844f3b2f841831b1feec1195770b5c6cb1",
+    "src/components/calculations/TaxSettingsPanel.tsx": "2bc8fcca46949fd025b185a87198952155d8170860cb0b950828670d6990e17d",
+    "src/features/calculations/action-state.ts": "a66dee11ee3488df506448dd8a4e96b1537d213e89b6813fa73f7704a9470391",
+    "src/features/calculations/actions.ts": "af0c3f5ab71fe8ac1f4ffa3ef6a8f42813ce82f9f853b440b6450a5ea6ec79e2",
+    "src/features/calculations/editor-operation.ts": "9553c272534b6b8ecf6b86d074d1d08e5ef9ada8bf9f6fcadfbcc6dc286ef00c",
+    "src/features/calculations/form-parsing.ts": "78216e6c96ace454a4eb7ee7009529595400c461fc92bcbfd94c730a7c5b11ae",
+    "src/features/quotes/actions.ts": "bc088cbd245dfc67c027963d1f2f9c94be73190feff604378ca2bdddbc3fd09c",
+    "src/features/quotes/create-quote-action-state.ts": "26a1e5ac788114fd253f46ed2a02cb58dbe5bff95ee475070a669f697447b10a",
+    "src/scope/manifest.ts": "eaa1c0cdf8d77fffe972a934e4762105b94255456fdf2923a640fb74e079f285",
+    "src/server/commands/calculations/calculations.ts": "df9e9c6bf20c2d604e312516be6d1585bb975f91efbe5e0df6d429608d4962f8",
+    "src/server/commands/calculations/editor-operation-db.ts": "5fc61d4dbc727834f11eb7333573002a7e714685961cc065df550fee862f2776",
+    "src/server/commands/calculations/reorder.ts": "b626c8d93b8aabf88a5ce6e83a32bed953916b1adadd07833dc60d10d2803fbf",
+    "src/server/commands/calculations/rows.ts": "8bd0ba4563d11205c27706a6fbd0d178ea0c8c39e228021b57d709bdd0b6b123",
+    "src/server/commands/calculations/sections.ts": "a5532dc712149fdf964eeda41f92f2abfe578d9c87e994ab02acab8e655b3d11",
+    "src/server/commands/calculations/validation.ts": "e0acff7716add359d99466fba341ba034e85081050e994c6a165f06bd9d45f49",
+    "src/server/commands/quotes/quotes.ts": "b1189630d97879c6f3587cc3a22c68d19c833e773cdca8af031eb2dfd7cf5225",
+    "src/server/commands/quotes/validation.ts": "80c415cbae3be51525785e37bfd64d5c3127daf312758f96e76d64b2453bdb61",
+    "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql": "8756798bf74c112182fcfdaeec6df14d45bb7c14a82663a229356b9ef862bbe5",
+    "tests/e2e/calculations/calculation-mutation-safety.e2e.spec.ts": "0db870cd3108ad31b037ca7ade11129a66d63a2c2bba59c5a68a87847ae58fb6",
+    "tests/integration/commands/calculation-commands.int.test.ts": "0d1ef348f6dabec61400a06dad90594c0bb4e0325030201d3574624686382d69",
+    "tests/integration/commands/calculation-editor-safety-fixture.ts": "7d0adb5861ecc3c7982916bea8716aa45bb472b42b145045baf1bda8db06be86",
+    "tests/integration/commands/calculation-mutation-safety.int.test.ts": "fea3dbe2f0c18eb4e3e59bc95800e7be28ecd88fdb9c7779e8d2e963708dd252",
+    "tests/integration/commands/calculation-parent-ownership.int.test.ts": "1ef382c8f8be2ba10fba63ac0119d0b746d982f96b688b40e27866735c1c4bc0",
+    "tests/integration/commands/calculation-row-source.int.test.ts": "1a04bfbc0d75d4a7fcd3535d486c563c989330cd68b53551264c829d4fb4701d",
+    "tests/integration/commands/generate-quote-pdf-determinism.int.test.ts": "3132bb2504a617e0bf58a81a89129b98eaee0b025e584440c0d07266d4add782",
+    "tests/integration/commands/generate-quote-pdf-retry-consistency.int.test.ts": "ee7676de51d647d9b2c942cadff06d5ab89e3d2fd22cbb721863e1508b5cb5c9",
+    "tests/integration/commands/generate-quote-pdf-source-of-truth.int.test.ts": "a3016314e449a9974b442b9b56aeae9810e1f9916f23bace4bc51398260fc61f",
+    "tests/integration/commands/quote-audit-rollback.int.test.ts": "ea3a98bd217bb3ccc0d632f8f7490634789307191f8a6f8c52b222cde2402f83",
+    "tests/integration/commands/quote-initial-mutation-safety.int.test.ts": "39f6b546facd1a853655edfc524c4281feaabb9a41b90b131376dc5f0134e351",
+    "tests/integration/commands/quote-initial-non-admin-audit.int.test.ts": "aa83ec939c5b28fe5fc256172e1d82ee2484179c6d8aaad647b3094919947750",
+    "tests/integration/commands/quote-version.int.test.ts": "ae6c1aaaa44b22f87e4513239dd7fb3ec042eb116c4a9e758daf31c67f6c42ca",
+    "tests/integration/commands/tax-answer-acceptance-job.int.test.ts": "a46c653b974e0ac05e7be094257a50a331b21b53bff70f0d4b9c882137073552",
+    "tests/integration/rls/calc-tables-migration-reset.int.test.ts": "6a2adfad6c35efda53093004b3f4ea3cd15d7cf850776c5334fa49c4c49cbbef",
+    "tests/integration/rls/calculation-editor-operation-contract.rls.test.ts": "8a63bc3491dc4533ab520e810f94b6a29e9d6572a886126d4b4f04917d03614d",
+    "tests/integration/rls/cross-tenant-isolation.rls.test.ts": "c2cd0688cc335af81bab0f6cdf98f983a18b1c7b3a38d9958d54622e99862795",
+    "tests/integration/rls/quote-review-authorization-migration-reset.int.test.ts": "c1181ea387099d9b0b94afedd9f057c6b7f86cfe0492ac2bce317b0a55a6a165",
+    "tests/integration/rls/quote-tables-migration-reset.int.test.ts": "394a6735fd09407014be9f743303871a66a82c44bbab0c954ab6c6fad8a52a15",
+    "tests/integration/rls/role-harness.atdd.int.test.ts": "3f8111c8e733fab5ef416df36bafbbfa5fb75d776f6245fcb5d2ff0de053f757",
+    "tests/integration/rls/tenant-table-inventory.ts": "539f76ad77fa94d5f7e0bf9b493ffc2114709a50eb4ccacdb94c589e51babc86",
+    "tests/support/authz/role-harness.ts": "839ed68fd17134154792d4f840fc1a6825edcb7033a960d60b13af8476f48771",
+    "tests/unit/features/calculations/editor-operation.test.ts": "e0c68bb4c38d2fe4cc825c97691e36ebb547c8f86e49efd1ddc81a7aeebb1471",
+    "tests/unit/scope/manifest-derivations.test.ts": "32cba48f496801955c0b3885d7c732cf16cdb89cdd115f02028f8de249c95fea",
+    "tests/unit/scope/manifest-shape.test.ts": "c789e24c14eb2f2517578aacf3b40b20a69f6a4c7d5df188ade0c91775b0470b",
+    "tests/unit/server/commands/calc-source-validation.test.ts": "f2812d1a6c7ef1e1a0c9dbe3ed6a74271c73105f087936fae7b77c623f170898",
+    "tests/unit/server/commands/calc-validation-coverage.test.ts": "b831630550123976c140824b4630240ce5a50ed284594e4840461dbf76ca53e1",
+    "tests/unit/server/commands/calc-validation.test.ts": "5f88b7a22b28c71c0978b13994c41fec274726f5455c79a3daf0a06547b33e21",
+    "tests/unit/server/commands/calculation-row-limit-command.test.ts": "5d7c0001b55b2b15c9460239d58fb8fbd3bbae46f0399d26801021956f971a4e",
+    "tests/unit/server/commands/quote-validation.test.ts": "837e3927149051e48e2658fddedfb377007f394a993118c023dc8940c2e43b44"
+  },
+  "own_runtime": "No managed database/browser/server/service launched. All tool sessions completed. Seven exact owned full-unit identities absent per terminal receipt.",
+  "source_writer_state": "quiescent_after_final_trail_check; available only for explicit synchronous follow-up",
+  "rollout": "Migration unapplied; separate factual owner-authorized matched app/schema pause/drain cutover remains required."
+}

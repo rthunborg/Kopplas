@@ -1,0 +1,392 @@
+diff --git a/_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json b/_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json
+index 78fa277c909ba1516b1ea7a382d61cd04fc7d215..9c97df289e826e3d88e76db80ac76f4bb6ff451b 100644
+--- a/_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json
++++ b/_bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json
+@@ -1,47 +1,47 @@
+ {
+   "policy_version": "2026-10-19",
+-  "contract_reconciliation": "Approved full ADR-B014 task35.7-P and nine immutable canonical hashes preserved. Source-reviewed candidate 7f6a7be9e0544844b43842b46d498f7539602dde includes the four Round1 patches and six actually approved bounded fixture deltas. All three independent SolHigh targeted follow-ups FIX_CONFIRMED, no remaining consequential finding; one broad round plus targeted follow-up only. All47 production/test/migration effective Git blobs remain equal that candidate, evidenced by author-publication-source-equality.json. This publication batch changes execution/review/evidence/delivery bookkeeping only. No task migration application or runtime approval. Qualified exact-final-head CI/browser/recovery and authenticated frontend acceptance remain development-blocking; Build in progress, Step5 not done, release_ready=false.",
+-  "evidence_revision": "Source Git blobs reviewed at 7f6a7be9e0544844b43842b46d498f7539602dde; 47-blob inventory SHA256 71463c560099227967b8814fe12393bd733377c9cdde410ce3fc4f221d934aca; final publication bookkeeping commit not yet created. Workflow owner must bind and run qualified checks at that final full head against original baseline ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657.",
++  "contract_reconciliation": "Approved ADR-B014 scope, canonical9, sole migration and original baseline preserved. Native exhaustive candidate A a24060287cb9e3bbea236741e74315b72785e4a7 failed29 cases, including2 producer terms cases from one proven introduced local-validation feedback bug. Actual noValidate disproves native-required hypothesis. Author made minimal kind-routing fix plus focused owned regression, explicit44px-token producer recovery/adoption control fix and capture-only both-viewport stale/phone assertion additions. No original E2E assertion/invalid input/foreign source/global-style change. author-browser-fix-source-manifest.json records40 unchanged and7 exactly authorized changed source blobs; author-browser-failure-audit.json classifies every29failure/1flaky/3explicit skip/19not-run with scoped fixture/first-caller provenance. Other27 unexpected cases remain unproven/unowned, not automatically baseline. Prior independent source review is retained; new narrow delta needs targeted High confirmation. Build in progress, Step5 not done, final-head CI/browser/visual gates required, release_ready=false. Actual candidate-A fresh-reset disposable GitHub CI applied the task migration and passed82 producer tests. No local partial-target/demo/production application is claimed; SQL/server/table-authority blobs are unchanged by this seven-file UI/test batch.",
++  "evidence_revision": "a24060287cb9e3bbea236741e74315b72785e4a7 plus uncommitted bounded7-file validation/touch/capture batch; source inventory be74b39bea7d48fc36c8c9df371a1a602e74ee89e4ecc73ef8dc3c6423da0644. Native exhaustive failures refer to A; focused29-file regression verifies the kind fix, final static checks cover all7. Final qualified head not created.",
+   "development_checks": [
+     {
+       "name": "canonical and approved fixture preservation",
+       "status": "passed",
+-      "evidence": "author-round1-resume-integrity.json nine unchanged canonical hashes; unchanged single migration; author-round1-approved-delta-preservation.json exact six bounded deltas and original E2E LF prefixes; original approved fixture pin evidence retained. Publication reconciliation: author-publication-source-equality.json verifies47 unchanged effective Git blobs at 7f6a7be9e0544844b43842b46d498f7539602dde and9 unchanged canonical raw hashes."
++      "evidence": "author-browser-fix-source-manifest.json: canonical9/migration/globals unchanged,40 source blobs equalA, only7 authorized paths changed. Original E2E literal expect statements retained (settings67→70/pricing62→65) and invalid empty terms assertion preserved; new captures/two-viewports/touch checks authored only."
+     },
+     {
+       "name": "focused units",
+       "status": "passed",
+-      "evidence": "author-round1-focused-current.log native0;155 tests/pass155/fail0/skip0. Includes4 actual pricing-page/editor SSR read-error combinations with mocked read and historical-receipt boundaries; no DB/browser proof."
++      "evidence": "author-browser-fix-regression-red-observed.log native1 reproduces missing terms aria-invalid with actual controller/markup before patch. author-browser-fix-regression-green.log native0,29tests/pass29/fail0/skip0;4 internal regression scenarios and unknown identity protection. Hook-state/effects/router/actions/globals mocked; no browser proof. First harness-construction syntax failure separately retained, not product RED."
+     },
+     {
+       "name": "lint and containment",
+       "status": "passed",
+-      "evidence": "author-round1-lint.log full native0 errors0/warnings31; latest test/source lint native0. Lockfile/service-role/built-bundle containment and git diff --check passed. Current production source build passed."
++      "evidence": "Current author-browser-fix-touch-eslint.log7paths native0 and author-browser-fix-touch-typecheck.log native0. Historical containment source retained; new production bundle/native44px measurements remain final-CI obligations."
+     },
+     {
+       "name": "full unit lane",
+-      "status": "failed",
+-      "evidence": "author-round1-full-unit-current.log native1;3808 tests/pass3805/fail2/skip1. Exact2 calendar failures actually reproduced by Root at clean original baseline; baseline-calendar-provenance.json has8 identical raw dependencies. Provenance is not waiver/current full-lane PASS. Linux-xattr recovery skip is not coverage. Final following changes are company current-VAT label display and integration finally cleanup; focused SSR/unit and static checks retained; required exact-candidate full CI remains unearned. The skip is tests/unit/ops/isolated-recovery-storage.test.ts:17, zero local body coverage; qualified Ubuntu CI plus recovery-loader must execute. Existing logs are reused, not rerun or waived."
++      "status": "not-run",
++      "evidence": "Current two-file patch: no broad full-unit rerun. Root-qualified candidate A Ubuntu native3808/3808passed/0skip; historical Windows3808/3805pass/2calendarfail/1xattrskip remains preserved separately with zero skipped body coverage. No old result is relabeled current patch PASS. Final exact-head Ubuntu full unit/recovery lane required."
+     },
+     {
+       "name": "typecheck and production build",
+-      "status": "passed",
+-      "evidence": "author-round1-typecheck-frozen.log native0; author-round1-build-current.log native0 production build. Build includes new SSR tests and final product source; final integration-only cleanup was checked with subsequent typecheck and collection."
++      "status": "not-run",
++      "evidence": "Current final typecheck author-browser-fix-touch-typecheck.log native0. Current build not rerun locally; previousA provenance retained and final exact-head build required."
+     },
+     {
+       "name": "required DB/RLS/recovery-storage and essential browser",
+-      "status": "not-run",
+-      "evidence": "Executed0 locally. author-round1-integration-collection-current.json collects82 only. Checkpoint CI must execute SUPABASE_TEST_REQUIRED=1 full DB/RLS/recovery and production browser/captures at1440x900/360x640. Changed browser regressions authored only."
++      "status": "failed",
++      "evidence": "Actual exhaustive run41455681949/job125313470420 at A:470expected/29unexpected/1flaky/22skipped=3explicit+19serialnot-run; producer3passed/2failed, pricing12expected/settings8expected2unexpected. Task DB82actuallypassed0skip, full DB2253passed0fail52skip (no skipped coverage), recovery1passed and dashboard79passed are separate root-qualified A evidence. Narrow fix unexecuted in browser. author-browser-failure-audit.json retains all nonpassing case IDs/attempts and1proven introduced cause; unowned27failures remain unproven. No full-run PASS or blanket deferral. Added definitions are52 nominalPNG paths and6 new producer source-registration cases. Real --list native1/0collected because existing auth fixture absent; no global setup/fixture/runtime created. Source-only model23defined, not native coverage. author-browser-capture-plan.json names remaining qualification gaps; no falseN/A or new-head relabel."
+     },
+     {
+       "name": "frontend exact-candidate authenticated acceptance",
+       "status": "failed",
+-      "evidence": "Historical author-round1-gate-results.json retains native1 dirty-candidate frontend/completion failures, not current acceptance. This doc-only bookkeeping does not rerun dirty gates. Workflow owner must invoke clean frontend-controller and supported completion-wrapper after the final bookkeeping commit, with original full baseline ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657. Exact-head CI/browser/captures/authenticated visual acceptance remain pending; no helper/status transition."
++      "evidence": "Only34partial A captures; terms empty2 only, settingscasesfailbeforeterms error/loading/unknown/finished. No complete current/future-head package, authenticated acceptance or gate PASS. No gates/resources launched by this fix author; workflow owner must bind final exact head and original full baseline."
+     }
+   ],
+   "independent_review": {
+-    "status": "passed",
+-    "evidence": "Source review only: implementation-review-round-1-fix-results.json and implementation-review-round-1-fix-confirmation.json retain actual three independent non-author SolHigh FIX_CONFIRMED finals at 7f6a7be9e0544844b43842b46d498f7539602dde, no remaining consequential finding. Broad Round1 completed once; follow-up was targeted four-fix/six-fixture confirmation. author-publication-source-equality.json proves all47 source blobs unchanged. No runtime/browser/visual acceptance or development-complete claim is inferred."
++    "status": "changes-required",
++    "evidence": "All3 prior Round1 targeted fixes FIX_CONFIRMED retained at7f6. NativeA proves local-feedback regression and actual phone artifact exposes producer touch-target gap. Bounded seven-file bug/touch/capture batch awaits separate independent SolHigh targeted confirmation; no new broad pass or future PASS."
+   },
+   "deferred_release_validation": [
+     {
+diff --git a/_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md b/_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md
+index 8317403ef07cb3e5ba863eebdb6c7904a8a4026b..f5c24f7306785e4a72e8ca809380d0ac46db602f 100644
+--- a/_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md
++++ b/_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md
+@@ -137,10 +137,22 @@ Executed Round1 evidence: focused units155 passed/0 failed/0 skipped; typecheck
+ 
+ The consolidated fixes were committed by Root as `7f6a7be9e0544844b43842b46d498f7539602dde`. All three actual independent Sol High targeted follow-ups returned FIX_CONFIRMED with no remaining consequential finding (`implementation-review-round-1-fix-results.json`, route in `implementation-review-round-1-fix-confirmation.json`). This retains one completed broad Round1 plus its targeted follow-up, not another broad review. `author-publication-source-equality.json` verifies all47 production/test/migration effective Git blobs still equal that source-reviewed candidate and all9 canonical raw hashes remain unchanged. This author changed only execution/review/evidence/delivery bookkeeping for publication. Historical local frontend/completion failures remain recorded; the workflow owner must rerun both clean final-head gates after the bookkeeping commit, always against the original full baseline. No gate, test or service was rerun for this bookkeeping. Runtime/CI/browser/visual acceptance remains unearned; Build stays in progress, Step5 stays not done and release_ready=false.
+ 
++## Current native-browser remediation — incomplete
++
++The actual exhaustive native run41455681949/job125313470420 at `a24060287cb9e3bbea236741e74315b72785e4a7` failed:470 expected,29 unexpected,1 flaky,22 skipped. The skipped total is3 explicit skips plus19 unexecuted serial scheduling cases, not22 covered cases. All29 failures repeat on attempts0/1; the flaky CRM case fails0 and passes1. The new producer cases are3 passed and2 failed; partial successful company steps do not make either failed settings case pass. Native task suites are pricing12 expected, settings8 expected/2 unexpected. Root retains34 partial captures; terms has only its two empty captures. No complete package, future-head capture or visual acceptance is inferred.
++
++Both new settings viewport cases fail at the unchanged E2E334 `aria-invalid` assertion. The native-required hypothesis is disproven: the actual terms form already uses noValidate. The parser emits the required terms_text error, and the local command validator rejects invalid input, but the mounted controller previously returned before assigning the submitted action kind. QuoteTermsEditor selects its saveState by that kind, hiding the real local error. The minimal product fix assigns kind only inside the local-validation rejection branch before publishing error state; all busy/unknown/current-read/offline guards still precede it. No invalid attempt is captured/dispatched; no server validation, native-validation behavior, invalid test input, original assertion or business invariant changes. The same explicitly authorized batch applies the existing44px token only to the7 new recovery/refresh/adoption controls, and adds nonvacuous visible-control/bounding-box phone assertions. The global token/styles and inherited controls remain unchanged. Terms stale capture and both-viewport pricing stale/neighbor captures are defined at existing asserted phases; all prior assertions and120s timeout are retained.
++
++`author-browser-fix-regression-red-observed.log` reproduces the actual controller-to-terms markup failure before the patch. `author-browser-fix-regression-green.log` then passes29 tests/0 failures/0 skips in the owned mutation-attempt file. Its new regression includes4 empty/whitespace and prior-invalid-approval scenarios, verifies field/summary accessibility and zero invalid dispatch, then proves an actual captured unknown attempt cannot be replaced by later invalid input. The controller, parsers, validators and terms SSR markup execute; hook-state/effect host, router/action and browser globals are mocked. This is not hydration, real server/DB or browser proof. Final seven-file typecheck and focused lint native0; no full Windows unit/build or browser rerun. Native test listing is blocked0 by the absent existing auth fixture; no fixture was fabricated. The separate source-registration model defines23 cases/6 new-producer titles, not native collection/PASS. `author-browser-capture-plan.json` maps all27 frontend source paths and52 nominal PNG definitions to supported package states/additional accurately named scenarios; actual new images remain0 and qualification gaps are explicit. The first harness syntax-construction failure is retained separately and is not counted as product RED.
++
++`author-browser-failure-audit.json` enumerates all29 unexpected cases,1 flaky and22 skipped/not-run records with native case IDs, first caller/error and both attempts. Only the2 terms cases have a proven introduced product cause; the other27 unexpected cases remain unproven/unowned, never labeled baseline merely because callers are unchanged. The bounded fixture trace verifies new tests create/sign in/clean only their own unique tenant/users, one CI worker and context-scoped routes/offline state. All7 dashboard waits failed before the first new producer case; calendar failures occur afterward and retain closed/unproven causal details. No foreign fix, assertion weakening, new allocation or blind full rerun is authorized by this audit.
++
++This current section supersedes prior source-freeze/runtime-zero descriptions only for the actual new evidence and this narrow patch. Candidate A fresh-reset GitHub CI did apply the task migration in its disposable database and passed all82 producer tests; the known partial local target has no task migration application, and demo/production application is not claimed. SQL/server/table authority is unchanged by this seven-file UI/test batch. `author-browser-fix-source-manifest.json` pins47 source/test/migration files:40 effective Git blobs equal candidate A. Only the4 allocated editors/controller, owned unit and2 owned E2E files differ for this bounded bug/touch/capture batch. Original E2E assertions, canonical9, migration, global styles and original full baseline remain unchanged. The earlier source FIX_CONFIRMED remains historical; this new seven-file delta requires targeted independent High regression confirmation. Build stays in progress, Step5 stays not done and release_ready=false; final exact-head CI/browser/visual gates remain unearned.
++
+ ## Suggested Review Order
+ 
+ Author: `/root/producer_build/implementation_author` (same implementation/fix author).
+-Refreshed for publication bookkeeping against source-reviewed `7f6a7be9e0544844b43842b46d498f7539602dde`; `author-publication-source-equality.json` pins47 unchanged source/test/migration Git blobs. Three targeted independent Sol High FIX_CONFIRMED results close the Round1 patches without a duplicate broad review. Original baseline remains `ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657`; final bookkeeping commit and its clean gates belong to the workflow owner.
++Refreshed for the narrow native-browser validation-feedback patch over `a24060287cb9e3bbea236741e74315b72785e4a7`, pinned by `author-browser-fix-source-manifest.json`. Earlier Round1 FIX_CONFIRMED provenance is retained; only this bounded seven-file bug/touch/capture delta awaits targeted High confirmation, not a duplicate broad review. Original baseline remains `ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657`.
+ 
+ ### Keep displayed drafts bound to their reviewed facts
+ 
+@@ -153,9 +165,9 @@ R1-1 preserves the baseline that belongs to the displayed draft across stale rej
+ 
+ ### Bind immutable capture and recovery to current authority
+ 
+-The shared controller validates before capture, retains one retry/reconcile payload and requires a reread after observing completion. The envelope remains authoritative for tenant/capability; local adapters compare captured context and exact correlation. Reconciliation revalidates the same closed candidate without hiding deleted-target history.
++The shared controller routes rejected local validation to the submitted form before any attempt dispatch, retains one retry/reconcile payload and requires a reread after observing completion. The envelope remains authoritative for tenant/capability; local adapters compare captured context and exact correlation. Reconciliation revalidates the same closed candidate without hiding deleted-target history.
+ 
+-- `src/components/settings/CompanySettingsForm.tsx:198` — `const submit = async`: captures validated form and context before dispatch.
++- `src/components/settings/CompanySettingsForm.tsx:219` — `setAttemptKind(kind)`: associates local validation feedback before returning without dispatch.
+ - `src/features/settings/mutation-attempt.ts:68` — `export function settleAttempt`: retains unknown after denial and ignores neighboring identity.
+ - `src/server/commands/settings/settings-db.ts:27` — `export function operationRpcArguments`: binds resolved authority, correlation and checked RPC arguments.
+ - `src/server/commands/settings/operation-recovery.ts:16` — `function validateRecovery`: closes recovery to approved kinds and canonical fields.
+@@ -174,8 +186,8 @@ The unchanged ADR-B014 migration locks current authority before receipt lookup a
+ P-AC1/2 still map to all-kind immutable/sticky-unknown units and replay/loss tests. R1-1/R1-2 browser assertions exercise stale draft retention, explicit adoption, both neighboring pricing refreshes and whitespace save-to-approval; execution awaits CI. R1-3 executes actual page-to-editor SSR error wiring with mocked read/receipt boundaries. R1-4 preserves real lock/current-authority/audit/receipt assertions and now dispatches the promises before observation (P-AC3/4/5/6).
+ 
+ - `tests/unit/features/settings/mutation-attempt.test.ts:146` — `test(`R1-3 actual pricing page/editor:`: checks both domain/error pairs and rendered write blocking.
+-- `tests/e2e/pricing/pricing.e2e.spec.ts:337` — `test("R1-1 pricing drafts`: asserts stale and neighboring-refresh adoption for both editors.
+-- `tests/e2e/settings/settings.e2e.spec.ts:322` — `await expect(page.getByTestId("company-current-facts"))`: asserts retained stale draft and independent current facts.
++- `tests/e2e/pricing/pricing.e2e.spec.ts:348` — `test(`R1-1 pricing drafts`: captures both viewports at asserted stale/neighbor review and phone controls.
++- `tests/unit/features/settings/mutation-attempt.test.ts:179` — `test("P-E local terms validation`: verifies real local-feedback routing and immutable unknown identity.
+ - `tests/integration/commands/settings-pricing-operation-contract.int.test.ts:348` — `writer = Promise.resolve(call(op))`: starts the real writer before authority-lock observation.
+ 
+ ### Retain private receipt enrollment and honest gate evidence
+@@ -187,6 +199,6 @@ P-AC7/P-R1/P-R3 map to the existing private ACL/RLS assertions, all-role raw-rea
+ - `tests/unit/server/commands/pricing-validation-edges.test.ts:21` — `function protocolFixture`: reaches positive and negative business branches nonvacuously.
+ - `tests/integration/rls/settings-pricing-operation-contract.rls.test.ts:16` — `test("P-R1/P-R3`: asserts private table, helpers and checked/legacy ACL boundaries.
+ 
+-Evidence: `author-round1-verification-summary.json` retains the executed commands/native exits:155 focused passes; full-unit3808total/3805pass/2fail/1skip; successful build/typecheck/lint;82 collected integration cases. `author-round1-approved-delta-preservation.json` proves the six bounded fixture changes. `implementation-review-round-1-fix-results.json` records all three actual targeted FIX_CONFIRMED results. `author-publication-review-trail.json` reconciles review provenance and unchanged source blobs; prior execution is reused, not rerun or relabeled as exact-final-head CI. The current named review-order checker validates source stops only.
++Evidence: earlier155 focused passes, build/typecheck/lint and independent Round1 confirmations retain their original source provenance. Current narrow patch:29 owned-file tests pass, including actual-controller/terms markup RED→GREEN with4 internal scenarios, final typecheck0 and seven-file lint0 (`author-browser-fix-diagnosis.json`). Native candidate A Ubuntu units actually passed3808/3808 with0 skips; required recovery1 passed, producer DB82 passed, but exhaustive browser failed29/470 expected/1 flaky/3 explicit skips/19 not-run. `author-browser-failure-audit.json` retains every nonpassing native case and scope limit. New touch/capture definitions are unexecuted in browser; native listing0 is blocked by absent auth fixture, while source-only registration defines23 cases/6 new-producer cases. No historical run is relabeled as the new uncommitted source's exact-head PASS. The named review-order checker validates source stops only.
+ 
+-Limits: required DB/RLS/recovery and production browser tests execute0 locally; SSR read/receipt boundaries are synthetic and do not prove authorization, hydration or refresh behavior. The two clean-baseline-reproduced calendar failures remain failures. The Windows/Linux-xattr skip in `tests/unit/ops/isolated-recovery-storage.test.ts:17` (versioned restore identity/refuse-overwrite) has zero local body coverage; qualified Ubuntu CI and the recovery-loader lane must execute it. No screenshot or authenticated frontend acceptance exists. Source review is FIX_CONFIRMED after one broad Round1 and targeted follow-up; exact-final-head CI, browser and frontend/completion acceptance remain required. In-memory attempts have no reload/crash reconstruction or polling; missing/denied reconciliation remains unconfirmed. Build in progress; Step5 not done; release_ready=false.
++Limits: current browser fix has no post-fix browser/server/DB execution. SSR/hook-state test boundaries are synthetic and do not prove hydration or authorized queries. Prior Windows calendar failures/xattr skip remain historical; actual candidate-A Ubuntu evidence is separate, with no skip coverage inferred. The exhaustive browser checkpoint failed; unowned/unproven cases remain visible, not waived as baseline or polish. Partial captures do not establish complete visual evidence. Prior source review is FIX_CONFIRMED, while this narrow new delta awaits independent targeted confirmation and qualified final-head CI/browser/visual evidence. In-memory attempts have no reload/crash reconstruction or polling; missing/denied reconciliation remains unconfirmed. Build in progress; Step5 not done; release_ready=false.
+diff --git a/src/components/pricing/ArticlesEditor.tsx b/src/components/pricing/ArticlesEditor.tsx
+index cea2ee0144057a3400f67231e8ae207febd3a96e..00a91118c9b4247d4c787cd21d03eef896636229 100644
+--- a/src/components/pricing/ArticlesEditor.tsx
++++ b/src/components/pricing/ArticlesEditor.tsx
+@@ -68,7 +68,7 @@ export function ArticlesEditor({ operationContext, readToken, readError, article
+       {baselineChanged && <div data-testid="pricing-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-sm text-text-secondary">
+         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
+         <p>{currentSelected ? `${currentSelected.name}: ${oreToKronorString(currentSelected.unit_price_ore)} kr; artikelnummer ${currentSelected.sku ?? "—"}; enhet ${currentSelected.unit ?? "—"}` : "Ingen aktuell post finns."}</p>
+-        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setSelected(currentSelected ?? null); }} className="self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
++        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setSelected(currentSelected ?? null); }} className="min-h-control-lg self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
+       </div>}
+       <fieldset disabled={operation.blocked || readError} className="contents">
+       {lifecycleError && (<p data-testid="article-archive-error" role="alert" className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800">
+diff --git a/src/components/pricing/WorkRolesEditor.tsx b/src/components/pricing/WorkRolesEditor.tsx
+index 4743725b968f899842433edd0d8c6d6ceaede052..15a007d0913fc48f2178a511ec1a24c612945a47 100644
+--- a/src/components/pricing/WorkRolesEditor.tsx
++++ b/src/components/pricing/WorkRolesEditor.tsx
+@@ -68,7 +68,7 @@ export function WorkRolesEditor({ operationContext, readToken, readError, workRo
+       {baselineChanged && <div data-testid="pricing-current-facts" role="status" className="flex flex-col gap-2 rounded-control border border-border-default p-4 text-sm text-text-secondary">
+         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
+         <p>{currentSelected ? `${currentSelected.display_name}: ${oreToKronorString(currentSelected.sell_rate_ore)} kr/tim; kostnad ${oreToKronorString(currentSelected.cost_rate_ore)} kr/tim` : "Ingen aktuell post finns."}</p>
+-        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setSelected(currentSelected ?? null); }} className="self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
++        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setSelected(currentSelected ?? null); }} className="min-h-control-lg self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
+       </div>}
+       <fieldset disabled={operation.blocked || readError} className="contents">
+       {lifecycleError && (<p data-testid="work-role-archive-error" role="alert" className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800">
+diff --git a/src/components/settings/CompanySettingsForm.tsx b/src/components/settings/CompanySettingsForm.tsx
+index b8460b1b5500bd074f5c9b0ed938eb7eb0e844fe..294cf899d75a053a2bc73495fe2d7899ea02f908 100644
+--- a/src/components/settings/CompanySettingsForm.tsx
++++ b/src/components/settings/CompanySettingsForm.tsx
+@@ -63,7 +63,7 @@ export function CompanySettingsForm({ defaults, }: {
+         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade uppgifter:</p>
+         <dl>{Object.entries(defaults).filter(([key]) => ["company_name", "org_nr", "address_line1", "address_line2", "postal_code", "city", "email", "phone", "default_vat_display", "vat_rate_percent"].includes(key)).map(([key, value]) => <div key={key}><dt className="font-medium">{({company_name:"Företagsnamn",org_nr:"Organisationsnummer",address_line1:"Adress",address_line2:"Adressrad 2",postal_code:"Postnummer",city:"Ort",email:"E-post",phone:"Telefon",default_vat_display:"Standardvisning av moms",vat_rate_percent:"Momssats"} as Record<string,string>)[key]}</dt><dd>{key === "default_vat_display" ? VAT_DISPLAY_OPTIONS.find(option => option.value === value)?.label ?? "—" : String(value ?? "—")}</dd></div>)}</dl>
+         {!defaults.id && <p>Ingen aktuell post finns.</p>}
+-        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); }} className="self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
++        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); }} className="min-h-control-lg self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
+       </div>}
+       <fieldset disabled={operation.blocked || defaults.readError} className="contents">
+       <FormErrorSummary message={state.formError}/>
+@@ -215,6 +215,8 @@ export function useMountedSettingsPricingAttempt<S extends SettingsActionState>(
+         const parsed = kind === "company.save" ? parseCompanySettingsForm(form) : kind === "terms.save" ? parseQuoteTermsForm(form) : kind === "terms.approve" ? parseApproveTermsForm(form) : kind === "work_role.create" || kind === "work_role.update" ? parseWorkRoleForm(form) : kind === "article.create" || kind === "article.update" ? parseArticleForm(form) : parseArchiveForm(form);
+         const checked = kind === "company.save" ? validateUpdateCompanySettings(parsed.input) : kind === "terms.save" ? validateUpdateQuoteTerms(parsed.input) : kind === "terms.approve" ? validateApproveQuoteTerms(parsed.input) : kind === "work_role.create" || kind === "work_role.update" ? validateUpsertWorkRole(parsed.input) : kind === "article.create" || kind === "article.update" ? validateUpsertArticle(parsed.input) : validateArchive(parsed.input);
+         if (!checked.ok || Object.keys(parsed.fieldErrors).length) {
++            // Local validation belongs to this form even though no attempt is dispatched.
++            setAttemptKind(kind);
+             setState({ ...initial, ...("form" in initial ? { form: kind.startsWith("work_role") ? "work_role" : "article" } : {}), status: "error", code: "VALIDATION_FAILED", formError: "Kontrollera uppgifterna innan du sparar.", fieldErrors: parsed.fieldErrors, values: parsed.values });
+             return;
+         }
+@@ -243,7 +245,7 @@ export function AttemptRecovery({ operation }: {
+ }) {
+     return <div aria-live="polite" className="flex flex-wrap gap-2">
+   {operation.notice && <p role="status" className="w-full text-sm text-text-secondary">{operation.notice}</p>}
+-  {operation.phase === "unknown" && <><p role="alert" data-testid="operation-unconfirmed" className="w-full text-sm text-warn-text">Resultatet är inte bekräftat. Samma försök behålls. Omladdning eller stängning kan förlora möjligheten att kontrollera det.</p><button type="button" disabled={operation.pending} onClick={() => void operation.reconcile()} className="rounded-control border border-border-default px-3 py-2">Kontrollera resultat</button><button type="button" disabled={operation.pending} onClick={() => void operation.retry()} className="rounded-control border border-border-default px-3 py-2">Försök igen med samma uppgifter</button></>}
+-  {operation.needsRefresh && <button type="button" onClick={operation.refresh} className="rounded-control border border-border-default px-3 py-2">Uppdatera och granska</button>}
++  {operation.phase === "unknown" && <><p role="alert" data-testid="operation-unconfirmed" className="w-full text-sm text-warn-text">Resultatet är inte bekräftat. Samma försök behålls. Omladdning eller stängning kan förlora möjligheten att kontrollera det.</p><button type="button" disabled={operation.pending} onClick={() => void operation.reconcile()} className="min-h-control-lg rounded-control border border-border-default px-3 py-2">Kontrollera resultat</button><button type="button" disabled={operation.pending} onClick={() => void operation.retry()} className="min-h-control-lg rounded-control border border-border-default px-3 py-2">Försök igen med samma uppgifter</button></>}
++  {operation.needsRefresh && <button type="button" onClick={operation.refresh} className="min-h-control-lg rounded-control border border-border-default px-3 py-2">Uppdatera och granska</button>}
+  </div>;
+ }
+diff --git a/src/components/settings/QuoteTermsEditor.tsx b/src/components/settings/QuoteTermsEditor.tsx
+index 056ef02d15d1d4aed0bf4db99fcd22dfd6e27375..94e42877a3f48bd32f3a4a4942dd90b5d6081e33 100644
+--- a/src/components/settings/QuoteTermsEditor.tsx
++++ b/src/components/settings/QuoteTermsEditor.tsx
+@@ -75,7 +75,7 @@ export function QuoteTermsEditor({ defaults, }: {
+         <p>Utkastet behåller sina ursprungliga uppgifter. Aktuella sparade villkor:</p>
+         <p className="whitespace-pre-wrap">{defaults.id ? defaults.terms_text : "Ingen aktuell post finns."}</p>
+         <p>{defaults.approved_at ? "Aktuella villkor är godkända." : "Aktuella villkor är inte godkända."}</p>
+-        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); setDraft(defaults.terms_text); }} className="self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
++        <button type="button" disabled={operation.blocked} onClick={() => { if (operation.blocked) return; operation.reset(); setBaseline(defaults); setDraft(defaults.terms_text); }} className="min-h-control-lg self-start rounded-control border border-border-default px-3 py-2">Använd aktuella uppgifter</button>
+       </div>}
+       <fieldset disabled={operation.blocked || defaults.readError} className="contents">
+       {/* SIGN-OFF STATUS / WARNING — always present, sourced from approval state. */}
+diff --git a/tests/e2e/pricing/pricing.e2e.spec.ts b/tests/e2e/pricing/pricing.e2e.spec.ts
+index 91c5dc10d5d8ae8037f49418539cffb86cf66bf4..2a97a8c2203e25191502943c98224abb3e624216 100644
+--- a/tests/e2e/pricing/pricing.e2e.spec.ts
++++ b/tests/e2e/pricing/pricing.e2e.spec.ts
+@@ -208,6 +208,15 @@ import { createHash } from "node:crypto";
+ import { execFileSync } from "node:child_process";
+ import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
+ import { createTwoTenantFixture, cleanupFixture } from "../../factories/tenants";
++async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
++    for (const name of names) {
++        const control = scope.getByRole("button", { name, exact: true });
++        await expect(control).toBeVisible();
++        const box = await control.boundingBox();
++        expect(box, `${name} has an actual visible hit target`).not.toBeNull();
++        expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
++    }
++}
+ async function producerCapture(page: Page, info: TestInfo, surface: string, state: string) {
+     const anchor = surface === "company" ? page.locator("form").filter({ has: page.getByLabel("Företagsnamn") }) : surface === "terms" ? page.getByRole("heading", { name: "Offertvillkor", level: 1 }) : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
+     await anchor.evaluate(el => el.scrollIntoView({ block: "start" }));
+@@ -286,6 +295,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640
+                 createLoss.release();
+                 await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
+                 await expect(editor.getByRole("button", { name: "Ny post" })).toBeDisabled();
++                if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
+                 await producerCapture(page, info, spec.surface, "unknown");
+                 await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
+                 await expect(editor.getByTestId("settings-saved")).toBeVisible();
+@@ -334,15 +344,17 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640
+         }
+     });
+ 
+-test("R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success", async ({ page }) => {
++for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }])
++test(`R1-1 pricing drafts retain their revision across stale rejection and neighboring editor success ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+     test.setTimeout(120_000);
+     const own = await createTwoTenantFixture();
+     let other: Page | undefined;
+     const specs = [
+-        { id: "work-roles-editor", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", label: "Pinned role" },
+-        { id: "articles-editor", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", label: "Pinned article" },
++        { id: "work-roles-editor", surface: "work-role", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", label: "Pinned role" },
++        { id: "articles-editor", surface: "article", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", label: "Pinned article" },
+     ];
+     try {
++        await page.setViewportSize(viewport);
+         await signIn(page, own.adminA.email, own.adminA.password);
+         await page.goto("/settings/pricing");
+         await waitForHydrated(page.getByLabel("Benämning"));
+@@ -371,6 +383,8 @@ test("R1-1 pricing drafts retain their revision across stale rejection and neigh
+             await expect(editor.getByTestId("pricing-current-facts")).toContainText("20,00");
+             await expect(editor.getByLabel(spec.price)).toHaveValue("11,00");
+             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
++            if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
++            await producerCapture(page, info, spec.surface, "stale");
+             await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+             await expect(editor.getByLabel(spec.price)).toHaveValue("20,00");
+             await editor.getByLabel(spec.price).fill("21,00");
+@@ -387,6 +401,8 @@ test("R1-1 pricing drafts retain their revision across stale rejection and neigh
+             await expect(editor.getByTestId("pricing-current-facts")).toContainText("30,00");
+             await expect(editor.getByLabel(spec.price)).toHaveValue("21,00");
+             await expect(editor.getByRole("button", { name: spec.save })).toBeDisabled();
++            if (viewport.width === 360) await assertProducerTouchTargets(editor, ["Använd aktuella uppgifter"]);
++            await producerCapture(page, info, spec.surface, "neighbor-stale");
+             await editor.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+             await expect(editor.getByLabel(spec.price)).toHaveValue("30,00");
+             await editor.getByLabel(spec.price).fill("31,00");
+diff --git a/tests/e2e/settings/settings.e2e.spec.ts b/tests/e2e/settings/settings.e2e.spec.ts
+index cfc4de1d8b0b744aec70907079b703d3de994dd0..654b7feb961ba8a303cc8cf479aa1480f5fe4ddc 100644
+--- a/tests/e2e/settings/settings.e2e.spec.ts
++++ b/tests/e2e/settings/settings.e2e.spec.ts
+@@ -201,6 +201,15 @@ import { createHash } from "node:crypto";
+ import { execFileSync } from "node:child_process";
+ import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
+ import { createTwoTenantFixture, cleanupFixture } from "../../factories/tenants";
++async function assertProducerTouchTargets(scope: Page | Locator, names: readonly string[]) {
++    for (const name of names) {
++        const control = scope.getByRole("button", { name, exact: true });
++        await expect(control).toBeVisible();
++        const box = await control.boundingBox();
++        expect(box, `${name} has an actual visible hit target`).not.toBeNull();
++        expect(box!.height, `${name} phone hit target`).toBeGreaterThanOrEqual(44);
++    }
++}
+ async function producerCapture(page: Page, info: TestInfo, surface: string, state: string) {
+     const anchor = surface === "company" ? page.locator("form").filter({ has: page.getByLabel("Företagsnamn") }) : surface === "terms" ? page.getByRole("heading", { name: "Offertvillkor", level: 1 }) : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
+     await anchor.evaluate(el => el.scrollIntoView({ block: "start" }));
+@@ -284,6 +293,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640
+             await producerCapture(page, info, "company", "loading");
+             loss.release();
+             await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
++            if (viewport.width === 360) await assertProducerTouchTargets(page, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
+             await producerCapture(page, info, "company", "unknown");
+             await expect(page.getByLabel("Företagsnamn")).toBeDisabled();
+             await page.getByRole("link", { name: "← Inställningar" }).click();
+@@ -318,9 +328,10 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640
+             await page.getByRole("button", { name: "Spara", exact: true }).click();
+             await expect(page.getByRole("button", { name: "Uppdatera och granska" })).toBeVisible();
+             await expect(page.getByLabel("Företagsnamn")).toHaveValue("Retained stale draft");
+-            await producerCapture(page, info, "company", "stale");
+             await expect(page.getByTestId("company-current-facts")).toContainText("Newer current company");
+             await expect(page.getByRole("button", { name: "Spara", exact: true })).toBeDisabled();
++            if (viewport.width === 360) await assertProducerTouchTargets(page, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
++            await producerCapture(page, info, "company", "stale");
+             await page.getByRole("button", { name: "Uppdatera och granska" }).click();
+             await expect(page.getByLabel("Företagsnamn")).toHaveValue("Retained stale draft");
+             await page.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+@@ -340,6 +351,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640
+             await producerCapture(page, info, "terms", "loading");
+             saveLoss.release();
+             await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
++            if (viewport.width === 360) await assertProducerTouchTargets(page, ["Kontrollera resultat", "Försök igen med samma uppgifter"]);
+             await producerCapture(page, info, "terms", "unknown");
+             await page.getByRole("button", { name: "Försök igen med samma uppgifter" }).click();
+             await expect(page.getByTestId("settings-saved")).toBeVisible();
+@@ -372,6 +384,8 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640
+                 await expect(page.getByTestId("terms-current-facts")).toContainText("Newer current terms");
+                 await expect(page.getByLabel("Offertvillkor")).toHaveValue("Retained stale terms draft");
+                 await expect(page.getByRole("button", { name: "Spara villkor" })).toBeDisabled();
++                if (viewport.width === 360) await assertProducerTouchTargets(page, ["Uppdatera och granska", "Använd aktuella uppgifter"]);
++                await producerCapture(page, info, "terms", "stale");
+                 await page.getByRole("button", { name: "Använd aktuella uppgifter" }).click();
+                 await expect(page.getByLabel("Offertvillkor")).toHaveValue("Newer current terms");
+                 await expect(page.getByRole("button", { name: "Markera som godkänd" })).toBeEnabled();
+diff --git a/tests/unit/features/settings/mutation-attempt.test.ts b/tests/unit/features/settings/mutation-attempt.test.ts
+index 8a26f003047b28d008804f2682106e6c07086e2d..06aff4b319960d71cc783c2bcd637086fc580059 100644
+--- a/tests/unit/features/settings/mutation-attempt.test.ts
++++ b/tests/unit/features/settings/mutation-attempt.test.ts
+@@ -171,3 +171,66 @@ for (const domain of ["work_role", "article"] as const)
+                 assert.equal((html.match(/data-testid="pricing-current-unavailable"/g) ?? []).length, 1);
+             } finally { delete renderFixtureGlobal.__producerR1Pricing; }
+         });
++
++// Isolated hook-state host executes the actual shared controller and actual terms
++// markup. React state/effects, router and actions are test boundaries; no browser,
++// hydration, server action, database or durable storage is involved.
++import { execFileSync } from "node:child_process";
++test("P-E local terms validation belongs to the submitted action before any dispatched attempt", () => {
++    const script = String.raw`
++import assert from "node:assert/strict";
++import { createRequire, register } from "node:module";
++import { pathToFileURL } from "node:url";
++import { createElement } from "react";
++import { renderToStaticMarkup } from "react-dom/server";
++const require=createRequire(import.meta.url), compiler=pathToFileURL(require.resolve("typescript")).href;
++const hooksSource=[
++ 'const host=()=>globalThis.__producerTermsHookHost;',
++ 'export function useState(initial){const h=host(),i=h.cursor++;if(!(i in h.slots))h.slots[i]=typeof initial==="function"?initial():initial;return [h.slots[i],v=>{h.slots[i]=typeof v==="function"?v(h.slots[i]):v;}];}',
++ 'export function useRef(initial){const h=host(),i=h.cursor++;if(!(i in h.slots))h.slots[i]={current:initial};return h.slots[i];}',
++ 'export function useEffect(){}',
++ 'export function useCallback(fn){return fn;}'
++].join("\n");
++const sources={
++ 'producer-terms:hooks':hooksSource,
++ 'next/navigation':'export function useRouter(){return {refresh(){globalThis.__producerTermsHookHost.refreshes++;}};}',
++ '@/features/settings/actions':'export async function saveCompanySettingsAction(){throw new Error("Unexpected action dispatch");} export async function saveQuoteTermsAction(){throw new Error("Unexpected action dispatch");} export async function approveTermsAction(){throw new Error("Unexpected action dispatch");}'
++};
++const loader=[
++ 'import {readFile} from "node:fs/promises";',
++ 'import ts from '+JSON.stringify(compiler)+';',
++ 'const sources='+JSON.stringify(sources)+';',
++ 'export async function resolve(specifier,context,next){if(specifier==="react"&&context.parentURL?.endsWith("/CompanySettingsForm.tsx"))return {url:"producer-terms:hooks",shortCircuit:true};if(specifier in sources)return {url:specifier.startsWith("producer-terms:")?specifier:"producer-terms:mock:"+specifier,shortCircuit:true};return next(specifier,context);}',
++ 'export async function load(url,context,next){if(url.startsWith("producer-terms:")){const key=url.startsWith("producer-terms:mock:")?url.slice(20):url;return {format:"module",source:sources[key],shortCircuit:true};}if(!url.endsWith(".tsx"))return next(url,context);return {format:"module",source:ts.transpileModule(await readFile(new URL(url),"utf8"),{fileName:new URL(url).pathname,compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText,shortCircuit:true};}'
++].join("\n");
++register("data:text/javascript,"+encodeURIComponent(loader),import.meta.url);
++Object.defineProperty(globalThis,"navigator",{value:{onLine:true},configurable:true});
++globalThis.window={location:{pathname:"/settings/quote-terms"}};
++const {SETTINGS_ACTION_INITIAL:initial}=await import("@/features/settings/action-state");
++const {useMountedSettingsPricingAttempt:controller}=await import("@/components/settings/CompanySettingsForm");
++const {QuoteTermsEditor}=await import("@/components/settings/QuoteTermsEditor");
++const context={tenantId:"bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",actorId:"cccccccc-cccc-4ccc-8ccc-cccccccccccc"};
++let cases=0;
++for(const scenario of [{text:"",priorApprove:false},{text:" \n ",priorApprove:false},{text:"",priorApprove:true},{text:" ",priorApprove:true}]){
++ const host=globalThis.__producerTermsHookHost={cursor:0,slots:[],refreshes:0};let calls=0;
++ const get=()=>{host.cursor=0;return controller(initial,context,"read-token");};
++ const never=async()=>{calls++;throw new Error("Invalid input must not dispatch");};
++ if(scenario.priorApprove)await get().submit(never,"terms.approve",new FormData(),null,null,false);
++ const form=new FormData();form.set("terms_text",scenario.text);
++ await get().submit(never,"terms.save",form,null,null,false);
++ const operation=get();assert.equal(operation.state.code,"VALIDATION_FAILED");assert.equal(operation.phase,"idle");assert.equal(operation.blocked,false);assert.equal(calls,0);assert.equal(host.refreshes,0);
++ const defaults={...context,operationContext:context,readToken:"read-token",id:null,write_revision:null,terms_text:scenario.text,approved_at:null,approved_by:null,readError:false};
++ host.cursor=0;const html=renderToStaticMarkup(createElement(QuoteTermsEditor,{defaults}));
++ assert.match(html,/<textarea[^>]*aria-invalid="true"/);assert.match(html,/aria-describedby="quote-terms-text-error"/);assert.match(html,/id="quote-terms-text-error"/);assert.match(html,/Kontrollera uppgifterna innan du sparar/);assert.doesNotMatch(html,/data-testid="settings-saved"|data-testid="quote-terms-approved-status"/);assert.equal(operation.kind,"terms.save");
++ // A subsequent real capture can become ambiguous; local errors cannot replace it.
++ const valid=new FormData();valid.set("terms_text","Reviewed valid wording");let identity;
++ await get().submit(async(_state,body)=>{calls++;identity={operationId:body.get("operationId"),targetId:body.get("targetId")};return {...initial,...identity,status:"unconfirmed"};},"terms.save",valid,null,null,false);
++ const unknown=get();assert.equal(unknown.phase,"unknown");assert.equal(unknown.blocked,true);assert.equal(calls,1);
++ await get().submit(never,"terms.approve",new FormData(),null,null,false);
++ const retained=get();assert.equal(retained.phase,"unknown");assert.equal(retained.kind,"terms.save");assert.equal(retained.state.operationId,identity.operationId);assert.equal(retained.state.targetId,identity.targetId);assert.equal(calls,1);cases++;
++}
++console.log(JSON.stringify({cases,actualControllerAndTermsMarkup:true,invalidDispatches:0}));
++`;
++    const output = execFileSync(process.execPath, ["--experimental-strip-types", "--import", "./tests/support/register.mjs", "--input-type=module", "--eval", script], { cwd: process.cwd(), encoding: "utf8", windowsHide: true });
++    assert.deepEqual(JSON.parse(output.trim()), { cases: 4, actualControllerAndTermsMarkup: true, invalidDispatches: 0 });
++});

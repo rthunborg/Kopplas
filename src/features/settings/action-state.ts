@@ -17,40 +17,43 @@
  * NO raw input, stack, SQL, or tenant/user-existence signal is ever put here.
  */
 import type { CommandErrorCode } from "@/server/commands/command-errors";
-
 /** The status discriminant of a settings action result. */
-export type SettingsActionStatus = "idle" | "success" | "error";
-
+export type SettingsActionStatus = "idle" | "success" | "error" | "unconfirmed";
 /** The state `useActionState` carries for a settings form. */
 export interface SettingsActionState {
-  readonly status: SettingsActionStatus;
-  /** The stable error code (when status === "error"); null otherwise. */
-  readonly code: CommandErrorCode | null;
-  /** A generic, user-safe top-of-form message (blocking error summary). */
-  readonly formError: string | null;
-  /** Per-field validation messages keyed by form field name (VALIDATION_FAILED only). */
-  readonly fieldErrors: Readonly<Record<string, string>>;
-  /** The submitted values echoed back so the form preserves input on failure (AC4). */
-  readonly values: Readonly<Record<string, string>>;
-  /** The affected row id on success (lets the caller refresh/close). */
-  readonly targetId: string | null;
+    readonly status: SettingsActionStatus;
+    /** The stable error code (when status === "error"); null otherwise. */
+    readonly code: CommandErrorCode | null;
+    /** A generic, user-safe top-of-form message (blocking error summary). */
+    readonly formError: string | null;
+    /** Per-field validation messages keyed by form field name (VALIDATION_FAILED only). */
+    readonly fieldErrors: Readonly<Record<string, string>>;
+    /** The submitted values echoed back so the form preserves input on failure (AC4). */
+    readonly values: Readonly<Record<string, string>>;
+    /** The affected row id on success (lets the caller refresh/close). */
+    readonly targetId: string | null;
+    readonly operationId: string | null;
+    readonly committedRevision: string | null;
+    readonly committedAt: string | null;
+    readonly approvedAt: string | null;
 }
-
 /** The initial, pristine action state. */
 export const SETTINGS_ACTION_INITIAL: SettingsActionState = {
-  status: "idle",
-  code: null,
-  formError: null,
-  fieldErrors: {},
-  values: {},
-  targetId: null,
+    status: "idle",
+    code: null,
+    formError: null,
+    fieldErrors: {},
+    values: {},
+    targetId: null,
+    operationId: null,
+    committedRevision: null,
+    committedAt: null,
+    approvedAt: null,
 };
-
 /** True iff the action result represents a transient, retryable failure. */
 export function isRetryableSettingsError(state: SettingsActionState): boolean {
-  return state.status === "error" && state.code === "SERVER_ERROR";
+    return state.status === "error" && state.code === "SERVER_ERROR";
 }
-
 /**
  * The inputs to the quote-terms SIGN-OFF precedence resolution. The three signals are
  * the server-read approval state and the two in-session action outcomes (a terms TEXT
@@ -59,14 +62,13 @@ export function isRetryableSettingsError(state: SettingsActionState): boolean {
  * unit-tested WITHOUT a browser.
  */
 export interface SignoffInputs {
-  /** The server-read approval instant (null = not approved when the page loaded). */
-  readonly serverApprovedAt: string | null;
-  /** True iff a terms TEXT save succeeded this session (it RESETS approval). */
-  readonly justSavedText: boolean;
-  /** True iff the deliberate APPROVE action succeeded this session. */
-  readonly justApproved: boolean;
+    /** The server-read approval instant (null = not approved when the page loaded). */
+    readonly serverApprovedAt: string | null;
+    /** True iff a terms TEXT save succeeded this session (it RESETS approval). */
+    readonly justSavedText: boolean;
+    /** True iff the deliberate APPROVE action succeeded this session. */
+    readonly justApproved: boolean;
 }
-
 /**
  * Resolve whether the quote-terms editor should render the APPROVED status (true) or
  * the not-approved WARNING (false), from the three sign-off signals.
@@ -83,7 +85,9 @@ export interface SignoffInputs {
  * lingering text-save success suppress the freshly-approved view — that is forbidden.
  */
 export function resolveTermsApproved(inputs: SignoffInputs): boolean {
-  if (inputs.justApproved) return true;
-  if (inputs.justSavedText) return false;
-  return inputs.serverApprovedAt !== null;
+    if (inputs.justApproved)
+        return true;
+    if (inputs.justSavedText)
+        return false;
+    return inputs.serverApprovedAt !== null;
 }

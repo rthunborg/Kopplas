@@ -1,0 +1,31 @@
+{
+  "reviewer_task": "/root/fixture_extension_review",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "context": "none; independent from proposal author",
+  "verdict": "PASS_FOR_ALLOCATION_DECISION",
+  "concrete_blockers": [],
+  "scope": "ONLY exact2test fixture extension and six semantic call adaptations; not implementation or runtime PASS",
+  "provenance": "Actual independent reviewer result relayed by Root in resume handoff2026-11-02. This stored receipt is a faithful parent-relayed record, not a claim that the proposal author performed independent review.",
+  "pinned_head": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "proposal_md_sha256": "8a2b4a446c07de246a8f468708bddc23dad9f502d073e928919459296552fd4d",
+  "proposal_json_sha256": "71ae1e0adabc4162c3979556ff4d5068312b73d4f77e881975d2db5f39ed619d",
+  "test_preimages": [
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "sha256": "db8bf110be77128ced37fa3cba52781f42336c9de7c9631720621af7ae75ebb2"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "sha256": "f26efe671b07aef0050faa5d8cc51bb75345748e4a7b132b03877284e6c0dbb9"
+    }
+  ],
+  "verified": "All6 BEFORE/expectation blocks match normalized current source. Existing assertions remain byte-for-byte; no sharedfactory/setup/provisioning/permission edits. Company existing row and successive revisions; terms metadata not seededrow and successfulnull needed; creates distinct proposedUUID+absence; current authority/money/audit unchanged; fields illustrative; cast removal not substitute validation.",
+  "work_not_performed": [
+    "implementation",
+    "runtime tests",
+    "database or service calls",
+    "broader code review"
+  ],
+  "release_ready": false
+}

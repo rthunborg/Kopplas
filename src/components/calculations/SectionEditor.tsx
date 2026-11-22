@@ -11,7 +11,9 @@
  * ordered-id array (pure `ordering.ts`) and sends it to `reorderRows` (R-503) — never a
  * client loop of single UPDATEs.
  */
-import { useActionState, useState } from "react";
+import { useState } from "react";
+import { useEditorOperation } from "./CalculationList";
+import { projectEditorFacts, SECTION_FACTS, ROW_FACTS } from "@/features/calculations/editor-operation";
 import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormField";
 import { RowEditor } from "./RowEditor";
 import {
@@ -41,6 +43,7 @@ const DISPLAY_MODE_OPTIONS = [
 ] as const;
 
 export function SectionEditor({
+  headerFacts,
   section,
   calculationId,
   sources,
@@ -48,6 +51,7 @@ export function SectionEditor({
   policyEffectiveDate,
   canAddRow,
 }: {
+  readonly headerFacts: Record<string, unknown>;
   readonly section: CalculationSectionRow;
   readonly calculationId: string;
   /** The ACTIVE pricing-source lists for the row-editor selection affordance (Story 5.3). */
@@ -59,22 +63,14 @@ export function SectionEditor({
   /** Whole-calculation row cap; the server and DB independently enforce the same invariant. */
   readonly canAddRow: boolean;
 }) {
-  const [renameState, renameAction, renamePending] = useActionState(
-    updateSectionAction,
-    CALC_ACTION_INITIAL,
-  );
-  const [archiveState, archiveAction] = useActionState(
-    archiveSectionAction,
-    CALC_ACTION_INITIAL,
-  );
-  const [reorderState, reorderAction] = useActionState(
-    reorderRowsAction,
-    CALC_ACTION_INITIAL,
-  );
-  const [rowArchiveState, rowArchiveAction] = useActionState(
-    archiveRowAction,
-    CALC_ACTION_INITIAL,
-  );
+  const renameOperation = useEditorOperation(updateSectionAction, CALC_ACTION_INITIAL, `${calculationId}/section/${section.id}`, () => ({ version: 1, form: "section", header: headerFacts, section: projectEditorFacts(section, SECTION_FACTS) }));
+  const [renameState, renameAction, renamePending] = [renameOperation.state, renameOperation.action, renameOperation.pending];
+  const archiveOperation = useEditorOperation(archiveSectionAction, CALC_ACTION_INITIAL, `${calculationId}/section/${section.id}/archive`, () => ({ version: 1, form: "archive_section", header: headerFacts, section: projectEditorFacts(section, SECTION_FACTS), rows: section.rows.map(r => projectEditorFacts(r, ROW_FACTS)) }));
+  const [archiveState, archiveAction] = [archiveOperation.state, archiveOperation.action];
+  const reorderOperation = useEditorOperation(reorderRowsAction, CALC_ACTION_INITIAL, `${calculationId}/section/${section.id}/order`, () => ({ version: 1, form: "reorder_rows", header: headerFacts, siblings: section.rows.map(r => ({ id: r.id, sort_order: r.sort_order })) }));
+  const [reorderState, reorderAction] = [reorderOperation.state, reorderOperation.action];
+  const rowArchiveOperation = useEditorOperation(archiveRowAction, CALC_ACTION_INITIAL, `${calculationId}/section/${section.id}/row-archive`, form => ({ version: 1, form: "archive_row", header: headerFacts, section: projectEditorFacts(section, SECTION_FACTS), row: projectEditorFacts(section.rows.find(r => r.id === form.get("id"))!, ROW_FACTS) }));
+  const [rowArchiveState, rowArchiveAction] = [rowArchiveOperation.state, rowArchiveOperation.action];
   const [confirmArchive, setConfirmArchive] = useState(false);
   const [showAddRow, setShowAddRow] = useState(false);
 
@@ -136,7 +132,8 @@ export function SectionEditor({
       )}
 
       {/* Rename / display-mode form. */}
-      <form action={renameAction} className="flex flex-col gap-3" noValidate>
+      {archiveOperation.recovery}{rowArchiveOperation.recovery}
+      <form {...renameOperation.formProps} action={renameAction} className="flex flex-col gap-3" noValidate>{renameOperation.recovery}
         <input type="hidden" name="id" value={section.id} />
         <input type="hidden" name="calculation_id" value={calculationId} />
         <FormErrorSummary message={renameMine ? renameState.formError : null} />
@@ -181,7 +178,7 @@ export function SectionEditor({
             {section.rows.map((row, index) => (
               <li key={row.id} className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
-                  <form action={reorderAction}>
+                  <form {...reorderOperation.formProps} action={reorderAction}>{reorderOperation.recovery}
                     <input type="hidden" name="section_id" value={section.id} />
                     <input type="hidden" name="calculation_id" value={calculationId} />
                     <input
@@ -199,7 +196,7 @@ export function SectionEditor({
                       ↑
                     </button>
                   </form>
-                  <form action={reorderAction}>
+                  <form {...reorderOperation.formProps} action={reorderAction}>{reorderOperation.recovery}
                     <input type="hidden" name="section_id" value={section.id} />
                     <input type="hidden" name="calculation_id" value={calculationId} />
                     <input
@@ -219,6 +216,8 @@ export function SectionEditor({
                   </form>
                 </div>
                 <RowEditor
+                  headerFacts={headerFacts}
+                  sectionFacts={projectEditorFacts(section, SECTION_FACTS)}
                   sectionId={section.id}
                   calculationId={calculationId}
                   row={row}
@@ -248,6 +247,8 @@ export function SectionEditor({
 
         {showAddRow && canAddRow ? (
           <RowEditor
+                  headerFacts={headerFacts}
+                  sectionFacts={projectEditorFacts(section, SECTION_FACTS)}
             sectionId={section.id}
             calculationId={calculationId}
             sources={sources}

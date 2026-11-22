@@ -137,3 +137,9 @@ use an isolated main-target PR per story, including backend prerequisites, under
 [the strategy protocol](../../.agents/skills/auto-bmad/references/sequential-pr-strategy.md).
 This changes no single-story or explicit parallel route and never hot-upgrades
 an existing run. Publication is distinct from acceptance, merge and completion.
+
+## Bounded operating context
+
+Apply the [bounded workflow operating policy](bounded-workflow-operating-policy.md)
+on authorized fresh runs or reconciled resumes. Existing claims, legacy
+reservations, qualification and completion gates remain authoritative.

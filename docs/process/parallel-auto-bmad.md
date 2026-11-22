@@ -222,3 +222,14 @@ folder (up to two explicitly planned folders). Terminal done_checkpoint is
 preserved: stop after the own PR, retain pending status until verified main merge.
 Unfulfilled spec_checkpoint approval and multi-entry continuation fail closed;
 no new checkpoint scheduler or source flag rewrite is introduced.
+
+## Bounded operating context
+
+Apply the [bounded workflow operating policy](bounded-workflow-operating-policy.md)
+on authorized fresh runs or reconciled resumes. Existing claims, legacy
+reservations, qualification and completion gates remain authoritative.
+
+Qualification evidence separates immutable source admission from synthetic-merge
+integration; use the [CI responsibilities](../quality/ci.md#qualification-responsibilities-and-early-feedback)
+and one named observer. Failed automatic checks cannot be replaced by direct-source
+or same-tree success.

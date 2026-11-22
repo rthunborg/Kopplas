@@ -1,0 +1,558 @@
+{
+  "task_id": "35.7-P",
+  "kind": "Read-only mapping/definition audit, not an evidence package or acceptance",
+  "captured_at_utc": "2026-11-02T15:00:11.014305+00:00",
+  "supported_states": [
+    "finished",
+    "loading",
+    "error",
+    "empty"
+  ],
+  "schema_anchor": "scripts/quality/frontend-gate.mjs:10,150–166",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "width": 360,
+      "height": 640
+    }
+  ],
+  "base_surfaces": [
+    {
+      "proposed_surface_id": "company",
+      "route": "/settings/company",
+      "component": "CompanySettingsForm",
+      "source_test": "tests/e2e/settings/settings.e2e.spec.ts:267",
+      "base_states": [
+        "finished",
+        "loading",
+        "error",
+        "empty"
+      ],
+      "base_capture_id_template": "company-<state>-<width>x<height>",
+      "defined_native_artifacts": [
+        {
+          "raw_state": "empty",
+          "path_template": "playwright-report/35-7-p/company-<width>x<height>/empty.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "error",
+          "path_template": "playwright-report/35-7-p/company-<width>x<height>/error.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "loading",
+          "path_template": "playwright-report/35-7-p/company-<width>x<height>/loading.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "unknown",
+          "path_template": "playwright-report/35-7-p/company-<width>x<height>/unknown.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "finished",
+          "path_template": "playwright-report/35-7-p/company-<width>x<height>/finished.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "stale",
+          "path_template": "playwright-report/35-7-p/company-<width>x<height>/stale.png",
+          "sidecar_same_basename": true
+        }
+      ],
+      "base_notApplicable": {},
+      "empty_meaning": "Successful absence of company singleton; VAT defaults still shown.",
+      "error_meaning": "Local VAT250 rejected; field feedback, not read failure.",
+      "loading_meaning": "Actual initial submit pending while controlled reply held; not a route-fetch skeleton.",
+      "finished_meaning": "Historical save receipt recovered; no automatic claim independent current revision has settled."
+    },
+    {
+      "proposed_surface_id": "terms",
+      "route": "/settings/quote-terms",
+      "component": "QuoteTermsEditor",
+      "source_test": "tests/e2e/settings/settings.e2e.spec.ts:267",
+      "base_states": [
+        "finished",
+        "loading",
+        "error",
+        "empty"
+      ],
+      "base_capture_id_template": "terms-<state>-<width>x<height>",
+      "defined_native_artifacts": [
+        {
+          "raw_state": "empty",
+          "path_template": "playwright-report/35-7-p/terms-<width>x<height>/empty.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "error",
+          "path_template": "playwright-report/35-7-p/terms-<width>x<height>/error.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "loading",
+          "path_template": "playwright-report/35-7-p/terms-<width>x<height>/loading.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "unknown",
+          "path_template": "playwright-report/35-7-p/terms-<width>x<height>/unknown.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "finished",
+          "path_template": "playwright-report/35-7-p/terms-<width>x<height>/finished.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "stale",
+          "path_template": "playwright-report/35-7-p/terms-<width>x<height>/stale.png",
+          "sidecar_same_basename": true
+        }
+      ],
+      "base_notApplicable": {},
+      "empty_meaning": "Successful absence of terms; not-approved warning and empty save textarea.",
+      "error_meaning": "Local required text rejected; error now routed to terms.save.",
+      "loading_meaning": "Actual initial submit pending while controlled reply held; not a route-fetch skeleton.",
+      "finished_meaning": "Explicit approval status visible after exact current reread."
+    },
+    {
+      "proposed_surface_id": "work-role",
+      "route": "/settings/pricing",
+      "component": "WorkRolesEditor",
+      "source_test": "tests/e2e/pricing/pricing.e2e.spec.ts:274",
+      "base_states": [
+        "finished",
+        "loading",
+        "error",
+        "empty"
+      ],
+      "base_capture_id_template": "work-role-<state>-<width>x<height>",
+      "defined_native_artifacts": [
+        {
+          "raw_state": "empty",
+          "path_template": "playwright-report/35-7-p/work-role-<width>x<height>/empty.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "error",
+          "path_template": "playwright-report/35-7-p/work-role-<width>x<height>/error.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "loading",
+          "path_template": "playwright-report/35-7-p/work-role-<width>x<height>/loading.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "unknown",
+          "path_template": "playwright-report/35-7-p/work-role-<width>x<height>/unknown.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "finished",
+          "path_template": "playwright-report/35-7-p/work-role-<width>x<height>/finished.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "stale",
+          "path_template": "playwright-report/35-7-p/work-role-<width>x<height>/stale.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "neighbor-stale",
+          "path_template": "playwright-report/35-7-p/work-role-<width>x<height>/neighbor-stale.png",
+          "sidecar_same_basename": true
+        }
+      ],
+      "base_notApplicable": {},
+      "empty_meaning": "No own active roles/create form.",
+      "error_meaning": "Local negative rate rejected; field feedback.",
+      "loading_meaning": "Actual initial submit pending while controlled reply held; not a route-fetch skeleton.",
+      "finished_meaning": "After archive/reactivate flow, active row visible and historical completion; inspect current-status sentence separately."
+    },
+    {
+      "proposed_surface_id": "article",
+      "route": "/settings/pricing",
+      "component": "ArticlesEditor",
+      "source_test": "tests/e2e/pricing/pricing.e2e.spec.ts:274",
+      "base_states": [
+        "finished",
+        "loading",
+        "error",
+        "empty"
+      ],
+      "base_capture_id_template": "article-<state>-<width>x<height>",
+      "defined_native_artifacts": [
+        {
+          "raw_state": "empty",
+          "path_template": "playwright-report/35-7-p/article-<width>x<height>/empty.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "error",
+          "path_template": "playwright-report/35-7-p/article-<width>x<height>/error.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "loading",
+          "path_template": "playwright-report/35-7-p/article-<width>x<height>/loading.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "unknown",
+          "path_template": "playwright-report/35-7-p/article-<width>x<height>/unknown.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "finished",
+          "path_template": "playwright-report/35-7-p/article-<width>x<height>/finished.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "stale",
+          "path_template": "playwright-report/35-7-p/article-<width>x<height>/stale.png",
+          "sidecar_same_basename": true
+        },
+        {
+          "raw_state": "neighbor-stale",
+          "path_template": "playwright-report/35-7-p/article-<width>x<height>/neighbor-stale.png",
+          "sidecar_same_basename": true
+        }
+      ],
+      "base_notApplicable": {},
+      "empty_meaning": "No own manual articles/create form.",
+      "error_meaning": "Local negative unit price rejected; field feedback.",
+      "loading_meaning": "Actual initial submit pending while controlled reply held; not a route-fetch skeleton.",
+      "finished_meaning": "After archive/reactivate flow, active row visible and historical completion; inspect current-status sentence separately."
+    }
+  ],
+  "additional_scenario_surfaces": [
+    {
+      "proposed_surface_id": "company-unconfirmed",
+      "route": "/settings/company",
+      "component": "CompanySettingsForm — stable unconfirmed-result recovery; mutation outcome unknown, not successful",
+      "proposed_schema_capture_state": "finished",
+      "proposed_capture_id_template": "company-unconfirmed-finished-<width>x<height>",
+      "raw_native_scenario": "unknown",
+      "raw_artifact_template": "playwright-report/35-7-p/company-<width>x<height>/unknown.png",
+      "mapping_limit": "Finished describes the rendered named scenario only. Preserve native sidecar scenario; do not rewrite business state or fabricate gate enum unknown/stale. Additional surface finished capture never means committed operation.",
+      "genuine_empty_NA_candidate": "Missing receipt remains unconfirmed, never an empty result UI.",
+      "applicability_limits": "Retry/reconcile pending and refresh/read-error/deleted-target variants are real branches; do not blanket-N/A missing captures. Exact final package must substantiate coverage or a specific legitimate reason per state."
+    },
+    {
+      "proposed_surface_id": "company-stale-review",
+      "route": "/settings/company",
+      "component": "CompanySettingsForm — stable rejected/stale draft review; retained draft plus independently current facts, not successful mutation",
+      "proposed_schema_capture_state": "finished",
+      "proposed_capture_id_template": "company-stale-review-finished-<width>x<height>",
+      "raw_native_scenario": "stale",
+      "raw_artifact_template": "playwright-report/35-7-p/company-<width>x<height>/stale.png",
+      "mapping_limit": "Finished describes the rendered named scenario only. Preserve native sidecar scenario; do not rewrite business state or fabricate gate enum unknown/stale. Additional surface finished capture never means committed operation.",
+      "genuine_empty_NA_candidate": null,
+      "applicability_limits": "Retry/reconcile pending and refresh/read-error/deleted-target variants are real branches; do not blanket-N/A missing captures. Exact final package must substantiate coverage or a specific legitimate reason per state."
+    },
+    {
+      "proposed_surface_id": "terms-unconfirmed",
+      "route": "/settings/quote-terms",
+      "component": "QuoteTermsEditor — stable unconfirmed-result recovery; mutation outcome unknown, not successful",
+      "proposed_schema_capture_state": "finished",
+      "proposed_capture_id_template": "terms-unconfirmed-finished-<width>x<height>",
+      "raw_native_scenario": "unknown",
+      "raw_artifact_template": "playwright-report/35-7-p/terms-<width>x<height>/unknown.png",
+      "mapping_limit": "Finished describes the rendered named scenario only. Preserve native sidecar scenario; do not rewrite business state or fabricate gate enum unknown/stale. Additional surface finished capture never means committed operation.",
+      "genuine_empty_NA_candidate": "Missing receipt remains unconfirmed, never an empty result UI.",
+      "applicability_limits": "Retry/reconcile pending and refresh/read-error/deleted-target variants are real branches; do not blanket-N/A missing captures. Exact final package must substantiate coverage or a specific legitimate reason per state."
+    },
+    {
+      "proposed_surface_id": "terms-stale-review",
+      "route": "/settings/quote-terms",
+      "component": "QuoteTermsEditor — stable rejected/stale draft review; retained draft plus independently current facts, not successful mutation",
+      "proposed_schema_capture_state": "finished",
+      "proposed_capture_id_template": "terms-stale-review-finished-<width>x<height>",
+      "raw_native_scenario": "stale",
+      "raw_artifact_template": "playwright-report/35-7-p/terms-<width>x<height>/stale.png",
+      "mapping_limit": "Finished describes the rendered named scenario only. Preserve native sidecar scenario; do not rewrite business state or fabricate gate enum unknown/stale. Additional surface finished capture never means committed operation.",
+      "genuine_empty_NA_candidate": null,
+      "applicability_limits": "Retry/reconcile pending and refresh/read-error/deleted-target variants are real branches; do not blanket-N/A missing captures. Exact final package must substantiate coverage or a specific legitimate reason per state."
+    },
+    {
+      "proposed_surface_id": "work-role-unconfirmed",
+      "route": "/settings/pricing",
+      "component": "WorkRolesEditor — stable unconfirmed-result recovery; mutation outcome unknown, not successful",
+      "proposed_schema_capture_state": "finished",
+      "proposed_capture_id_template": "work-role-unconfirmed-finished-<width>x<height>",
+      "raw_native_scenario": "unknown",
+      "raw_artifact_template": "playwright-report/35-7-p/work-role-<width>x<height>/unknown.png",
+      "mapping_limit": "Finished describes the rendered named scenario only. Preserve native sidecar scenario; do not rewrite business state or fabricate gate enum unknown/stale. Additional surface finished capture never means committed operation.",
+      "genuine_empty_NA_candidate": "Missing receipt remains unconfirmed, never an empty result UI.",
+      "applicability_limits": "Retry/reconcile pending and refresh/read-error/deleted-target variants are real branches; do not blanket-N/A missing captures. Exact final package must substantiate coverage or a specific legitimate reason per state."
+    },
+    {
+      "proposed_surface_id": "work-role-stale-review",
+      "route": "/settings/pricing",
+      "component": "WorkRolesEditor — stable rejected/stale draft review; retained draft plus independently current facts, not successful mutation",
+      "proposed_schema_capture_state": "finished",
+      "proposed_capture_id_template": "work-role-stale-review-finished-<width>x<height>",
+      "raw_native_scenario": "stale",
+      "raw_artifact_template": "playwright-report/35-7-p/work-role-<width>x<height>/stale.png",
+      "mapping_limit": "Finished describes the rendered named scenario only. Preserve native sidecar scenario; do not rewrite business state or fabricate gate enum unknown/stale. Additional surface finished capture never means committed operation.",
+      "genuine_empty_NA_candidate": null,
+      "applicability_limits": "Retry/reconcile pending and refresh/read-error/deleted-target variants are real branches; do not blanket-N/A missing captures. Exact final package must substantiate coverage or a specific legitimate reason per state."
+    },
+    {
+      "proposed_surface_id": "work-role-neighbor-review",
+      "route": "/settings/pricing",
+      "component": "WorkRolesEditor — stable rejected/stale draft review; retained draft plus independently current facts, not successful mutation",
+      "proposed_schema_capture_state": "finished",
+      "proposed_capture_id_template": "work-role-neighbor-review-finished-<width>x<height>",
+      "raw_native_scenario": "neighbor-stale",
+      "raw_artifact_template": "playwright-report/35-7-p/work-role-<width>x<height>/neighbor-stale.png",
+      "mapping_limit": "Finished describes the rendered named scenario only. Preserve native sidecar scenario; do not rewrite business state or fabricate gate enum unknown/stale. Additional surface finished capture never means committed operation.",
+      "genuine_empty_NA_candidate": null,
+      "applicability_limits": "Retry/reconcile pending and refresh/read-error/deleted-target variants are real branches; do not blanket-N/A missing captures. Exact final package must substantiate coverage or a specific legitimate reason per state."
+    },
+    {
+      "proposed_surface_id": "article-unconfirmed",
+      "route": "/settings/pricing",
+      "component": "ArticlesEditor — stable unconfirmed-result recovery; mutation outcome unknown, not successful",
+      "proposed_schema_capture_state": "finished",
+      "proposed_capture_id_template": "article-unconfirmed-finished-<width>x<height>",
+      "raw_native_scenario": "unknown",
+      "raw_artifact_template": "playwright-report/35-7-p/article-<width>x<height>/unknown.png",
+      "mapping_limit": "Finished describes the rendered named scenario only. Preserve native sidecar scenario; do not rewrite business state or fabricate gate enum unknown/stale. Additional surface finished capture never means committed operation.",
+      "genuine_empty_NA_candidate": "Missing receipt remains unconfirmed, never an empty result UI.",
+      "applicability_limits": "Retry/reconcile pending and refresh/read-error/deleted-target variants are real branches; do not blanket-N/A missing captures. Exact final package must substantiate coverage or a specific legitimate reason per state."
+    },
+    {
+      "proposed_surface_id": "article-stale-review",
+      "route": "/settings/pricing",
+      "component": "ArticlesEditor — stable rejected/stale draft review; retained draft plus independently current facts, not successful mutation",
+      "proposed_schema_capture_state": "finished",
+      "proposed_capture_id_template": "article-stale-review-finished-<width>x<height>",
+      "raw_native_scenario": "stale",
+      "raw_artifact_template": "playwright-report/35-7-p/article-<width>x<height>/stale.png",
+      "mapping_limit": "Finished describes the rendered named scenario only. Preserve native sidecar scenario; do not rewrite business state or fabricate gate enum unknown/stale. Additional surface finished capture never means committed operation.",
+      "genuine_empty_NA_candidate": null,
+      "applicability_limits": "Retry/reconcile pending and refresh/read-error/deleted-target variants are real branches; do not blanket-N/A missing captures. Exact final package must substantiate coverage or a specific legitimate reason per state."
+    },
+    {
+      "proposed_surface_id": "article-neighbor-review",
+      "route": "/settings/pricing",
+      "component": "ArticlesEditor — stable rejected/stale draft review; retained draft plus independently current facts, not successful mutation",
+      "proposed_schema_capture_state": "finished",
+      "proposed_capture_id_template": "article-neighbor-review-finished-<width>x<height>",
+      "raw_native_scenario": "neighbor-stale",
+      "raw_artifact_template": "playwright-report/35-7-p/article-<width>x<height>/neighbor-stale.png",
+      "mapping_limit": "Finished describes the rendered named scenario only. Preserve native sidecar scenario; do not rewrite business state or fabricate gate enum unknown/stale. Additional surface finished capture never means committed operation.",
+      "genuine_empty_NA_candidate": null,
+      "applicability_limits": "Retry/reconcile pending and refresh/read-error/deleted-target variants are real branches; do not blanket-N/A missing captures. Exact final package must substantiate coverage or a specific legitimate reason per state."
+    }
+  ],
+  "nominal_defined_PNGs_after_authorized_changes": 52,
+  "actual_new_PNGs_created_this_batch": 0,
+  "actual_prior_A_PNGs": {
+    "total": 34,
+    "company": 12,
+    "terms": 2,
+    "work-role": 10,
+    "article": 10,
+    "limit": "Root inspected actual A artifacts. Terms has empty only because both cases failed before error/loading/unknown/finished. No new-head relabeling."
+  },
+  "file_coverage_groups": [
+    {
+      "surfaces": [
+        "company",
+        "terms",
+        "work-role",
+        "article"
+      ],
+      "files": [
+        "src/components/settings/CompanySettingsForm.tsx",
+        "src/features/settings/mutation-attempt.ts",
+        "src/server/commands/envelope.ts",
+        "src/scope/manifest.ts",
+        "src/server/commands/settings/settings-db.ts",
+        "src/server/commands/settings/operation-recovery.ts"
+      ],
+      "basis": "Actual four consumers of shared mounted controller/protocol/receipt recovery. Envelope enrollment and private receipt manifest metadata introduce no new navigation/style surface."
+    },
+    {
+      "surfaces": [
+        "company",
+        "terms"
+      ],
+      "files": [
+        "src/features/settings/action-state.ts",
+        "src/features/settings/actions.ts",
+        "src/features/settings/form-parsing.ts",
+        "src/features/settings/read.ts",
+        "src/server/commands/settings/validation.ts"
+      ],
+      "basis": "Settings field errors, receipt/history rendering, canonical terms/approval, current read facts."
+    },
+    {
+      "surfaces": [
+        "company"
+      ],
+      "files": [
+        "src/app/(app)/settings/company/page.tsx",
+        "src/server/commands/settings/company-settings.ts"
+      ],
+      "basis": "Company defaults/revision/read error and checked singleton save."
+    },
+    {
+      "surfaces": [
+        "terms"
+      ],
+      "files": [
+        "src/app/(app)/settings/quote-terms/page.tsx",
+        "src/components/settings/QuoteTermsEditor.tsx",
+        "src/server/commands/settings/quote-terms.ts"
+      ],
+      "basis": "Exact wording, saved-unapproved warning, dirty guard, explicit approval/current facts."
+    },
+    {
+      "surfaces": [
+        "work-role",
+        "article"
+      ],
+      "files": [
+        "src/app/(app)/settings/pricing/page.tsx",
+        "src/features/pricing/action-state.ts",
+        "src/features/pricing/actions.ts",
+        "src/features/pricing/form-parsing.ts",
+        "src/features/pricing/read.ts",
+        "src/server/commands/pricing/pricing-db.ts",
+        "src/server/commands/pricing/validation.ts"
+      ],
+      "basis": "Both domain active/archived reads, revisioned drafts, integer-ore display, current-unavailable and lifecycle feedback."
+    },
+    {
+      "surfaces": [
+        "work-role"
+      ],
+      "files": [
+        "src/components/pricing/WorkRolesEditor.tsx",
+        "src/server/commands/pricing/work-roles.ts"
+      ],
+      "basis": "Create/update/archive/reactivate role controls, prices, selected/archived rows."
+    },
+    {
+      "surfaces": [
+        "article"
+      ],
+      "files": [
+        "src/components/pricing/ArticlesEditor.tsx",
+        "src/server/commands/pricing/articles.ts"
+      ],
+      "basis": "Manual article create/update/archive/reactivate; no supplier controls."
+    }
+  ],
+  "frontend_paths_covered_in_mapping": 27,
+  "shared_consumer_assessment": "No globals/layout/ui/shared/app-shell/theme/font change. Actual shared protocol/controller consumers are precisely these4 editors; map all27 src paths, including headless server code. Full final changedPaths still comes from exact PR API inventory; do not hand-copy this subset as complete PR inventory.",
+  "operation_forms": {
+    "company": [
+      "company.save"
+    ],
+    "terms": [
+      "terms.save",
+      "terms.approve"
+    ],
+    "work-role": [
+      "work_role.create",
+      "work_role.update",
+      "work_role.archive",
+      "work_role.reactivate"
+    ],
+    "article": [
+      "article.create",
+      "article.update",
+      "article.archive",
+      "article.reactivate"
+    ],
+    "count": 11,
+    "action_exports": 9,
+    "anchor": "src/features/settings/mutation-attempt.ts:2; settings/actions.ts30–32; pricing/actions.ts30–35",
+    "limit": "Common-controller captures do not claim individual action-specific screenshots. Native A passes3 new producer cases, fails2; no claim all11 flows passed."
+  },
+  "genuine_action_specific_empty_NA_reasons": {
+    "terms.approve": "No approval form renders without saved termsId; base terms empty warning/save form represents absence (QuoteTermsEditor conditional termsId).",
+    "work_role.update": "Edit requires selecting an existing role; base empty/create state represents no selectable target.",
+    "article.update": "Edit requires selecting an existing article; base empty/create state represents absence.",
+    "work_role.archive": "No archive form without active row; base empty list is the real absence UI.",
+    "article.archive": "No archive form without active row; base empty list is the real absence UI.",
+    "work_role.reactivate": "Restore form exists only when archivedWorkRoles has rows and is expanded; no empty restore form exists.",
+    "article.reactivate": "Restore form exists only when archivedArticles has rows and is expanded; no empty restore form exists."
+  },
+  "potential_gaps_not_NA_or_passed": [
+    {
+      "state": "read error/current unavailable",
+      "scope": "Both pricing domain active/archived read failures and company/terms read-error disabled forms",
+      "facts": "Real page alerts/disabled controls exist; current named error captures are local field validation only. Four pricing SSR cases prove mocked-boundary wiring, not an actual PNG.",
+      "next_action": "Workflow owner must qualify actual final-head error-state capture/representativeness before packaging; do not call read failure empty/deletion or invent a captured server error."
+    },
+    {
+      "state": "action-specific edit/archive/restore and terms saved-unapproved/dirty approval guards",
+      "facts": "Existing assertions exercise these phases; current screenshot calls are create/restore summary plus approval-finished, not standalone screenshots of every action.",
+      "next_action": "Inspect actual final-head frames and cover any distinct visible control/status that remains outside them; screenshots/assertions are different evidence."
+    },
+    {
+      "state": "unknown recovery pending / refresh pending",
+      "facts": "Retry/reconcile buttons disable while pending; stale refresh displays notice. Initial-request loading capture is a different phase.",
+      "next_action": "No blanket loading N/A. Qualify actual representation or capture that real state before accepted package if not shown by existing frames."
+    },
+    {
+      "state": "historical receipt versus current pending/confirmed/newer/missing/unavailable",
+      "facts": "Receipt proves history only. Current state branches exist; current newer/stale panels now captured, but deleted-target/read-failure/current-settled status cannot be inferred merely from finished filenames.",
+      "next_action": "Describe actual visible sentence and current-read proof; retain uncovered branches explicitly until qualified."
+    },
+    {
+      "state": "360x640 viewport completeness",
+      "facts": "Helper scrolls section/form anchor to start and uses fullPage=false; fullViewport flag does not prove lower controls/current draft fit one frame.",
+      "next_action": "Actual image audit must verify relevant text/controls visible; additional scrolled frames if needed, no cropping/phantom coverage."
+    }
+  ],
+  "capture_additions": {
+    "terms": "tests/e2e/settings/settings.e2e.spec.ts:388",
+    "pricing_stale": "tests/e2e/pricing/pricing.e2e.spec.ts:387",
+    "pricing_neighbor": "tests/e2e/pricing/pricing.e2e.spec.ts:405",
+    "R1_two_viewports": "tests/e2e/pricing/pricing.e2e.spec.ts:348",
+    "timeout_preserved_ms": 120000
+  },
+  "touch_target_fix": {
+    "scope": "Only7 producer-added recovery/retry/refresh/adopt buttons",
+    "requirement": [
+      "EXPERIENCE.md Accessibility Floor ≥44px other targets",
+      "DESIGN.md Layout360x640 ≥44px"
+    ],
+    "existing_token": "src/app/globals.css:131 --spacing-control-lg:44px under @theme inline",
+    "class": "min-h-control-lg",
+    "downstream_before_fix": "No global button minimum-height override exists; these buttons had px/py sizing only.",
+    "native_input": "Root actual A work-role360x640 unknown PNG exposed undersized recovery controls; not a new style preference.",
+    "runtime_assertions": "tests/e2e/settings/settings.e2e.spec.ts:204; tests/e2e/pricing/pricing.e2e.spec.ts:211",
+    "assertions": "Actual named controls visible; boundingBox non-null; height≥44 on360 unknown/stale/adopt frames. Neighbor stale checks existing adoption control only.",
+    "actual_new_browser_measurements": 0,
+    "inherited_controls_or_globals_modified": false
+  },
+  "presentation_contract": {
+    "retained_ref": "codex/visual-evidence/pr-126",
+    "path": "screenshots/<FINAL_FULL_HEAD>/<CAPTURE_ID>.png",
+    "url": "../blob/<PRESENTATION_EVIDENCE_COMMIT>/screenshots/<FINAL_FULL_HEAD>/<CAPTURE_ID>.png?raw=true",
+    "metadata": {
+      "schemaVersion": 1,
+      "dataPolicy": "synthetic-no-pii",
+      "evidenceRef": "codex/visual-evidence/pr-126",
+      "evidenceCommit": "Actual retained immutable commit, not invented",
+      "exceptions": "[] unless actual exact authenticated owner waiver",
+      "feedback": "Complete live authenticated issue-comment/review/review-comment inventory, exact fingerprints/root IDs/dispositions/replies/capture pairs; do not assume empty"
+    },
+    "PR_body": "Must start with exact renderPrScreenshots output for current package/head/digest, outside containers; labels include SHA/screen/route/supported state/viewport.",
+    "reference_limit": "Trusted references currently empty: every initial reference requires referenceSetting=true plus exact authenticated owner acceptance; valid actual/reference PNG blob hashes and correct geometry still required.",
+    "future_head_limit": "A240 provenance staysA240. Final integrated head needs its own real build/process capture provenance. No PNG/download/package/publish/API/gate/owner request performed by this audit."
+  }
+}

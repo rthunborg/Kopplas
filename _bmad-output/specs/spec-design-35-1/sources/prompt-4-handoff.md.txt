@@ -1,0 +1,33 @@
+# Scoped Prompt 4 handoff — applicability corrected 2026-10-26
+
+Run `bmad-testarch-test-design` as **documentation-only test-design preparation** for the approved DT-2026-10-23 package. Approval covers preparation, not approval of these stories or implementation admission. Do not wait for all E17/E18 decisions before designing unrelated E35 slices.
+
+Use GPT-6.1 Sol / Low for ordinary coverage mapping; record route/rationale before any dispatch. Route an actual new sensitive money/permission/completion/transaction judgment to Sol High; preserving existing assessed contracts alone needs no new policy decision. Do not settle missing material decisions by choosing test fixtures or expected values.
+
+Read the package [index](README.md), [applicability register](applicability.md)/[machine classifications](applicability.json), corrected 27 specs, [common catalogue](common-contract.md), [dated base/consumers](base-and-consumers.json), [output hashes](spec-hashes.json), source-screen crosswalk, detailed UX annex, current completion policy/CI, existing test designs/goldens/RLS/recovery evidence and [High blockers](sensitive-assessment.md). Check input identity/drift before relying on it. The 2026-10-23 base observations are historical; this correction does not establish today's integrated main, claims or DT-B15. Preserve original requirement and completed evidence provenance.
+
+## Lane A — concrete design work now
+
+**35.1:** design/document only the authority-crosswalk, route disposition, dated-base evidence, links/hashes/index identity, requirement preservation, per-spec applicability and handoff checks in E35-1-AC1–AC7. No live UI/dialog/upload/browser/database/build/application suite or visual-release requirement belongs to this documentation story.
+
+**35.2–35.11 and 35.14–35.19:** produce concrete changed-behavior test designs against their existing pinned contracts and actual route/read/command consumers now. Map numbered ACs and only common rows classified Applies to real caller/role/fixture/assertion; link relevant Inherited regression evidence and list N/A with scope reason. Preserve current active-only/nav, source-selected files, quote/PDF/manual acceptance, integer-öre, projection, transaction, draft/history and operational constraints where actually consumed. 35.14–35.19 can receive independent test design even though proposed implementation order follows DT-5. Do not change migration order or tracking.
+
+Record implementation admission conditions separately: B-BASE/current ownership and exact candidate refresh; B-SHARED/E15 reconciliation for shared CSS/primitives/shell; B-FONT provenance for Inter; later story approval/allocation. These do not prevent concrete test design for already specified behavior. If a specific assertion depends on a changed base or unverified font asset, label that assertion conditional, not the entire unrelated lane blocked. Retain minimum representative current-consumer regressions for global style inheritance; do not turn that into completion of E15 or a new feature.
+
+## Lane B — dependency-bound migration plans
+
+**35.12–35.13:** document requirements/risk coverage and retained E14/E15 regression categories provisionally, but leave final route/export/spec/hash/fixture/test binding and migration qualification **awaiting actual DT-B15 integrated E15 evidence and ownership reconciliation**. Use no invented URLs/APIs, branch-complete label or synthetic pass. Their uncertainty blocks their own concrete migration binding, not Lane A. Existing E15 work stays with its owner; no instruction to pause, resume or take over.
+
+## Lane C — accepted-policy contracts with precise technical gaps
+
+The owner accepted all seven [DR-B1–DR-B7 choices](../decision-resolution-2026-10-26/owner-decisions.md). Do not request repeat approval or leave earlier M/F/C business questions unanswered. Read [the applied High gate mapping](../decision-resolution-2026-10-26/application/contracts-and-gates.md) and dated eight-spec/architecture amendments. Exact engineering signatures/schema/ACL/proof/lock/source-snapshot/download boundaries, actual producer integration and evidence remain independently classified; accepted policy alone is not readiness.
+
+An existing test-design package now exists. Use [the precise file-by-file update instructions](../decision-resolution-2026-10-26/application/prompt-4-update-instructions.md), not a competing package. Preserve unrelated E35 plans and applicability. For E17/E18, add concrete settled-policy assertions and keep only unbound technical/producer/evidence parts conditional. E17 time valuation needs actual integrated submitted-time input; 35.12–35.13 await DT-B15. Neither creates a global E15/E17/E18 wait for E35 design.
+
+## Required output and evidence limits
+
+Produce per-slice rows with: source/base/spec identity; actual consumer/caller; AC/state/test ID; Applies/Inherited regression/N/A; meaningful assertion and authoritative input/fixture; existing regression/evidence reuse; concrete missing decision/dependency/owner; development evidence versus release obligation/owner/next action. Classify output as concrete plan, conditional dependency binding or material-decision gap; do not manufacture a global PASS/FAIL. Distinguish proposed IDs from executable tests and test plans from run evidence.
+
+For later actual implementation, preserve applicable current completion/CI gates, required full DB/RLS (`SUPABASE_TEST_REQUIRED=1`, actual execution/skips), recovery/storage integrity, money/PDF goldens and essential configured-production-server 360×640/desktop browser checks for actual UI owners. Do not add suites/features merely to satisfy the common catalogue, duplicate unchanged assertions, mirror CSS or treat screenshots as function proof. Broader visual/device/manual/accessibility/release evidence remains separately owned; 35.1/17.4 do not acquire UI release deliverables. Preserve E16's 14 deferred checks/E20 caveats and existing final Phase B checkpoint/ledger.
+
+No application/test execution, browser/database/service launch, implementation, schema/dependencies/.env, feature policy decision, story approval, sprint/status/tracking/order update, code claim, worker/loop, chat contact, merge or deployment. Deliver scoped plans and explicit gaps now; no need to wait for all Lane C decisions.

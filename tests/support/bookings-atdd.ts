@@ -9,7 +9,7 @@ import { BOOKING_CONFLICT_ENGINE_VERSION } from "@/server/bookings/conflict-atte
 import { reviewedFixtureInput } from "./booking-editor-production";
 import { adminQuery } from "../factories/admin-sql";
 import {
-  adminInsertContact, adminInsertCustomer, adminInsertFacility,
+  adminInsertContact, adminInsertCustomer, adminInsertFacility, E09FixtureError, type E09FixtureOptions,
   cleanupRoleAwarePhaseAFixture, createRoleAwarePhaseAFixture,
   makeAuthedServerClient, type FixtureUser, type TestServerClient,
 } from "../factories/tenants";
@@ -184,10 +184,31 @@ export async function rowSnapshot(table: "jobs" | "person_profiles", id: string)
   return adminQuery<{ row: DurableRow }>(`select to_jsonb(t) as row from public.${table} t where id=$1`, [id]);
 }
 
-export async function withBookingFixture(run: (fixture: Awaited<ReturnType<typeof seedBookingFixture>>) => Promise<void>) {
-  const roleFixture = await createRoleAwarePhaseAFixture();
-  try { await run(await seedBookingFixture(roleFixture)); }
-  finally { await cleanupRoleAwarePhaseAFixture(roleFixture); }
+export async function withBookingFixture(run: (fixture: Awaited<ReturnType<typeof seedBookingFixture>>) => Promise<void>, options?: E09FixtureOptions) {
+  if (!options?.e09Strict) {
+    const roleFixture = await createRoleAwarePhaseAFixture();
+    try { await run(await seedBookingFixture(roleFixture)); }
+    finally { await cleanupRoleAwarePhaseAFixture(roleFixture); }
+    return;
+  }
+  const roleFixture = await createRoleAwarePhaseAFixture(options);
+  let fx: BookingFixture;
+  try { fx = await seedBookingFixture(roleFixture); }
+  catch { throw new E09FixtureError("setup"); } // Incomplete custody: no inferred rollback.
+  let failure: E09FixtureError | undefined;
+  try { await run(fx); }
+  catch (error) { failure = error instanceof E09FixtureError ? error : new E09FixtureError("scenario"); }
+  let cleanupFailed = failure?.cleanupFailed ?? false;
+  try {
+    const { base, users } = roleFixture;
+    await cleanupRoleAwarePhaseAFixture(roleFixture, { ...options, profiles: [
+      { ...fx.adminProfile, tenantId: base.tenantA.id, userId: base.adminA.id },
+      { ...fx.ownProfile, tenantId: base.tenantA.id, userId: users.montor.id },
+      { ...fx.coworkerProfile, tenantId: base.tenantA.id, userId: users.projektledare.id },
+      { ...fx.foreignProfile, tenantId: base.tenantB.id, userId: base.adminB.id },
+    ] });
+  } catch { cleanupFailed = true; }
+  if (failure || cleanupFailed) throw new E09FixtureError(failure?.category ?? "cleanup", cleanupFailed);
 }
 async function seedBookingFixture(roleFixture: Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>>) {
   const { base, users } = roleFixture;

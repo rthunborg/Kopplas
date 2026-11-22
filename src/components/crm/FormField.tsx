@@ -17,12 +17,18 @@
  */
 import { useId } from "react";
 
+type TextFieldValue =
+  | { readonly defaultValue?: string; readonly value?: never; readonly onChange?: never }
+  | { readonly defaultValue?: never; readonly value: string; readonly onChange: (value: string) => void };
+
 export function TextField({
   name,
   label,
   type = "text",
   required = false,
   defaultValue = "",
+  value,
+  onChange,
   error,
   autoComplete,
   inputRef,
@@ -31,11 +37,10 @@ export function TextField({
   readonly label: string;
   readonly type?: string;
   readonly required?: boolean;
-  readonly defaultValue?: string;
   readonly error?: string | null;
   readonly autoComplete?: string;
   readonly inputRef?: React.Ref<HTMLInputElement>;
-}) {
+} & TextFieldValue) {
   const id = useId();
   const errorId = `${id}-error`;
   const hasError = Boolean(error);
@@ -56,7 +61,9 @@ export function TextField({
         type={type}
         autoComplete={autoComplete}
         required={required}
-        defaultValue={defaultValue}
+        {...(onChange
+          ? { value, onChange: (event: React.ChangeEvent<HTMLInputElement>) => onChange(event.currentTarget.value) }
+          : { defaultValue })}
         aria-invalid={hasError ? "true" : undefined}
         aria-describedby={hasError ? errorId : undefined}
         className="min-h-control-lg rounded-control border-0 bg-sunken in-[.bg-sunken]:bg-card px-3 py-2 text-body text-text-primary focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-ink"

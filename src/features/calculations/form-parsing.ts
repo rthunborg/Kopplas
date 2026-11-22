@@ -133,7 +133,7 @@ const CALC_FIELDS = ["id", "customer_id", "facility_id", "contact_id", "title", 
 /**
  * Parse a calc CREATE form: `customer_id` + required `title` (+ optional facility/contact).
  */
-export function parseCreateCalculationForm(form: FormData): ParsedCalcForm {
+function parseCreateCalculationFormDomain(form: FormData): ParsedCalcForm {
   const fieldErrors: Record<string, string> = {};
   const values = collectValues(form, CALC_FIELDS);
 
@@ -152,7 +152,7 @@ export function parseCreateCalculationForm(form: FormData): ParsedCalcForm {
 }
 
 /** Parse a calc UPDATE form: id + optional title/status (only CHANGED fields included). */
-export function parseUpdateCalculationForm(form: FormData): ParsedCalcForm {
+function parseUpdateCalculationFormDomain(form: FormData): ParsedCalcForm {
   const fieldErrors: Record<string, string> = {};
   const values = collectValues(form, CALC_FIELDS);
 
@@ -191,7 +191,7 @@ const TAX_INPUT_FIELDS = [
 ] as const;
 
 /** Parse the complete versioned document tax form into one atomic header snapshot. */
-export function parseUpdateTaxInputForm(form: FormData): ParsedCalcForm {
+function parseUpdateTaxInputFormDomain(form: FormData): ParsedCalcForm {
   const fieldErrors: Record<string, string> = {};
   const values = collectValues(form, TAX_INPUT_FIELDS);
   const id = trimmedField(form, "id");
@@ -387,7 +387,7 @@ function optionalTaxPrice(
 const SECTION_FIELDS = ["id", "calculation_id", "title", "display_mode"] as const;
 
 /** Parse a section CREATE form: calculation_id + optional title/display_mode. */
-export function parseCreateSectionForm(form: FormData): ParsedCalcForm {
+function parseCreateSectionFormDomain(form: FormData): ParsedCalcForm {
   const fieldErrors: Record<string, string> = {};
   const values = collectValues(form, SECTION_FIELDS);
 
@@ -403,7 +403,7 @@ export function parseCreateSectionForm(form: FormData): ParsedCalcForm {
 }
 
 /** Parse a section UPDATE form: id + optional title/display_mode. */
-export function parseUpdateSectionForm(form: FormData): ParsedCalcForm {
+function parseUpdateSectionFormDomain(form: FormData): ParsedCalcForm {
   const fieldErrors: Record<string, string> = {};
   const values = collectValues(form, SECTION_FIELDS);
 
@@ -467,7 +467,7 @@ const ROW_FIELDS = [
  * fields are entered as kronor/percent and converted at the boundary (öre / bp). The flags
  * are read via `parseFlag` (hidden-companion aware) so each is an explicit boolean.
  */
-export function parseCreateRowForm(form: FormData): ParsedCalcForm {
+function parseCreateRowFormDomain(form: FormData): ParsedCalcForm {
   const fieldErrors: Record<string, string> = {};
   const values = collectValues(form, ROW_FIELDS);
 
@@ -511,7 +511,7 @@ export function parseCreateRowForm(form: FormData): ParsedCalcForm {
  * (the epic-3 trap fix). Only CHANGED/present fields are included (the server short-circuits
  * an empty patch to a safe id-only no-op).
  */
-export function parseUpdateRowForm(form: FormData): ParsedCalcForm {
+function parseUpdateRowFormDomain(form: FormData): ParsedCalcForm {
   const fieldErrors: Record<string, string> = {};
   const values = collectValues(form, ROW_FIELDS);
 
@@ -646,7 +646,7 @@ function attachSource(form: FormData, input: Record<string, unknown>): void {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /** Parse an archive form (calc / section / row) — the target id only. */
-export function parseArchiveForm(form: FormData): ParsedCalcForm {
+function parseArchiveFormDomain(form: FormData): ParsedCalcForm {
   const fieldErrors: Record<string, string> = {};
   const id = trimmedField(form, "id");
   if (!id) fieldErrors.id = REQUIRED_MSG;
@@ -658,7 +658,7 @@ export function parseArchiveForm(form: FormData): ParsedCalcForm {
  * comma-separated id list submitted as a single hidden field). Splits + trims into an
  * array the `reorderSections` command consumes.
  */
-export function parseReorderSectionsForm(form: FormData): ParsedCalcForm {
+function parseReorderSectionsFormDomain(form: FormData): ParsedCalcForm {
   const fieldErrors: Record<string, string> = {};
   const calculationId = trimmedField(form, "calculation_id");
   if (!calculationId) fieldErrors.calculation_id = REQUIRED_MSG;
@@ -674,7 +674,7 @@ export function parseReorderSectionsForm(form: FormData): ParsedCalcForm {
 /**
  * Parse a row-reorder form: `section_id` + `ordered_row_ids` (a comma-separated id list).
  */
-export function parseReorderRowsForm(form: FormData): ParsedCalcForm {
+function parseReorderRowsFormDomain(form: FormData): ParsedCalcForm {
   const fieldErrors: Record<string, string> = {};
   const sectionId = trimmedField(form, "section_id");
   if (!sectionId) fieldErrors.section_id = REQUIRED_MSG;
@@ -782,4 +782,116 @@ function parseQuantity(
     return undefined;
   }
   return value;
+}
+
+export function parseCreateCalculationForm(form: FormData): ParsedCalcForm {
+  const parsed = parseCreateCalculationFormDomain(form);
+  return { ...parsed, input: { ...parsed.input, ...parseEditorSafetyFields(form) } };
+}
+
+export function parseUpdateCalculationForm(form: FormData): ParsedCalcForm {
+  const parsed = parseUpdateCalculationFormDomain(form);
+  return { ...parsed, input: { ...parsed.input, ...parseEditorSafetyFields(form) } };
+}
+
+export function parseUpdateTaxInputForm(form: FormData): ParsedCalcForm {
+  const parsed = parseUpdateTaxInputFormDomain(form);
+  return { ...parsed, input: { ...parsed.input, ...parseEditorSafetyFields(form) } };
+}
+
+export function parseCreateSectionForm(form: FormData): ParsedCalcForm {
+  const parsed = parseCreateSectionFormDomain(form);
+  return { ...parsed, input: { ...parsed.input, ...parseEditorSafetyFields(form) } };
+}
+
+export function parseUpdateSectionForm(form: FormData): ParsedCalcForm {
+  const parsed = parseUpdateSectionFormDomain(form);
+  return { ...parsed, input: { ...parsed.input, ...parseEditorSafetyFields(form) } };
+}
+
+export function parseCreateRowForm(form: FormData): ParsedCalcForm {
+  const parsed = parseCreateRowFormDomain(form);
+  return { ...parsed, input: { ...parsed.input, ...parseEditorSafetyFields(form) } };
+}
+
+export function parseUpdateRowForm(form: FormData): ParsedCalcForm {
+  const parsed = parseUpdateRowFormDomain(form);
+  return { ...parsed, input: { ...parsed.input, ...parseEditorSafetyFields(form) } };
+}
+
+export function parseArchiveForm(form: FormData): ParsedCalcForm {
+  const parsed = parseArchiveFormDomain(form);
+  return { ...parsed, input: { ...parsed.input, ...parseEditorSafetyFields(form) } };
+}
+
+export function parseReorderSectionsForm(form: FormData): ParsedCalcForm {
+  const parsed = parseReorderSectionsFormDomain(form);
+  return { ...parsed, input: { ...parsed.input, ...parseEditorSafetyFields(form) } };
+}
+
+export function parseReorderRowsForm(form: FormData): ParsedCalcForm {
+  const parsed = parseReorderRowsFormDomain(form);
+  return { ...parsed, input: { ...parsed.input, ...parseEditorSafetyFields(form) } };
+}
+
+export function parseEditorSafetyFields(form: FormData): Record<string, unknown> {
+  const safety: Record<string, unknown> = {};
+  if (form.has("operation_id")) safety.operation_id = form.get("operation_id");
+  if (form.has("expected")) {
+    try { safety.expected = JSON.parse(String(form.get("expected"))); }
+    catch { safety.expected = null; }
+  }
+  return safety;
+}
+
+
+// These existing validators are pure, browser-safe modules: their only runtime
+// dependencies are canonical money and editor-shape helpers. Their envelope
+// dependency is type-only; no database/auth/server-only code enters this graph.
+// money-input.ts already consumes this same calculation validation module.
+import {
+  validateCreateCalculation, validateUpdateCalculation, validateArchiveCalc,
+  validateCreateSection, validateUpdateSection, validateArchiveSection,
+  validateCreateRow, validateUpdateRow, validateArchiveRow,
+  validateReorderSections, validateReorderRows,
+} from "@/server/commands/calculations/validation";
+import { validateCreateReviewedQuoteVersionFromCalculation } from "@/server/commands/quotes/validation";
+
+export type EditorFormPreflight =
+  | { readonly ok: true }
+  | { readonly ok: false; readonly form: string; readonly fieldErrors: Readonly<Record<string, string>>; readonly values: Readonly<Record<string, string>> };
+/** NEW-intent admission only. This is never evidence about an earlier uncertain
+ * operation. Server validation/authorization and checked SQL remain authoritative. */
+export function preflightEditorForm(form: FormData): EditorFormPreflight {
+  const safety = parseEditorSafetyFields(form);
+  const expected = safety.expected;
+  const formKind = expected && typeof expected === "object" && "form" in expected && typeof expected.form === "string" ? expected.form : "";
+  let parsed: ParsedCalcForm;
+  let validate: (input: unknown) => { readonly ok: boolean };
+  switch (formKind) {
+    case "calculation":
+      parsed = form.has("id") ? parseUpdateCalculationForm(form) : parseCreateCalculationForm(form);
+      validate = form.has("id") ? validateUpdateCalculation : validateCreateCalculation;
+      // A lifecycle enum value is not an unchecked archive capability. Do not
+      // silently drop title/status from a combined update/archive request.
+      if (parsed.input.status === "archived") return { ok: false, form: formKind, fieldErrors: {status:"Använd Arkivera kalkyl så att hela underlaget kontrolleras."}, values: parsed.values };
+      break;
+    case "tax_input": parsed = parseUpdateTaxInputForm(form); validate = validateUpdateCalculation; break;
+    case "section": parsed = form.has("id") ? parseUpdateSectionForm(form) : parseCreateSectionForm(form); validate = form.has("id") ? validateUpdateSection : validateCreateSection; break;
+    case "row": parsed = form.has("id") ? parseUpdateRowForm(form) : parseCreateRowForm(form); validate = form.has("id") ? validateUpdateRow : validateCreateRow; break;
+    case "archive_calculation": parsed = parseArchiveForm(form); validate = validateArchiveCalc; break;
+    case "archive_section": parsed = parseArchiveForm(form); validate = validateArchiveSection; break;
+    case "archive_row": parsed = parseArchiveForm(form); validate = validateArchiveRow; break;
+    case "reorder_sections": parsed = parseReorderSectionsForm(form); validate = validateReorderSections; break;
+    case "reorder_rows": parsed = parseReorderRowsForm(form); validate = validateReorderRows; break;
+    case "reviewed-initial-quote":
+      parsed = { input: {...safety, calculation_id: form.get("calculation_id"), attachment_file_ids: form.getAll("attachment_file_ids"), reviewed_snapshot_digest: form.get("reviewed_snapshot_digest"), reviewed_quote_capture_date: form.get("reviewed_quote_capture_date")}, fieldErrors: {}, values: collectValues(form,["calculation_id"]) };
+      validate = validateCreateReviewedQuoteVersionFromCalculation; break;
+    default: return { ok: false, form: formKind, fieldErrors: {}, values: {} };
+  }
+  const list = parsed.input.ordered_section_ids ?? parsed.input.ordered_row_ids ?? parsed.input.attachment_file_ids;
+  const duplicateIds = Array.isArray(list) && new Set(list.map(id=>typeof id === "string" ? id.toLowerCase() : id)).size !== list.length;
+  return Object.keys(parsed.fieldErrors).length === 0 && !duplicateIds && validate(parsed.input).ok
+    ? { ok: true }
+    : { ok: false, form: formKind, fieldErrors: parsed.fieldErrors, values: parsed.values };
 }

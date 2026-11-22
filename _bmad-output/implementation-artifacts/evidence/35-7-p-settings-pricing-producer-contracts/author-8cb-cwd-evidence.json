@@ -1,0 +1,424 @@
+{
+  "current_followup": "d99 admitted phone-only framing and additive TimeReport diagnostics plus authorized type-only compile correction",
+  "candidate_before": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
+  "original_full_baseline": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "prior_committed_history": {
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-evidence.json": {
+      "commit": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
+      "git_blob_oid": "de97fb8e10958cd476d7791e4e5696f0d1201bdb",
+      "git_bytes_sha256": "0e0cb57505959a2697ecf197ded0c15d6052af0250d4cfb92ec491bbf9cfb552"
+    },
+    "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-checkpoint.json": {
+      "commit": "b276cab0d25b695bf784038b0ac4a224bfd28da8",
+      "git_blob_oid": "779453f72bdfdba0d27278a1c0d539c6a94cf436",
+      "git_bytes_sha256": "6a94e135dce04ce8a5da2122a165d828bf3d0a529814da6bb322907dcf7c2b76"
+    }
+  },
+  "authority_reconciliation": {
+    "original_method": {
+      "md": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.md",
+      "json": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.json",
+      "anchor": "Exact effects2; mandatory safety hold/release/settle",
+      "requirement": "Real production page/server read and actual unavailable/disabled UI; RSC abort alone is not proof. Settle every controlled transport; HTTP EOF not required."
+    },
+    "canonical": {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 53,
+      "requirement": "Historical receipt separate from independently authorized current facts; source unchanged."
+    },
+    "High_disposition": {
+      "source": "Parent /root/producer_build same-author DOMAIN-proof NEW_TASK",
+      "fact": "Parent+Coordinator explicit PROCEED after independent High supported domain route; route pre-recorded before dispatch. Root retains independent receipt and must return exact stopped diff+method/canonical/High refs to Coordinator BEFORE publication/CI. No fabricated receipt ID, no implementation/runtime PASS."
+    },
+    "server_mapping": [
+      {
+        "path": "src/features/settings/read.ts",
+        "anchor": "export async function readCompanySettings",
+        "binding": "Server query denial/throw becomes generic readerror",
+        "verified_lines": [
+          45
+        ]
+      },
+      {
+        "path": "src/app/(app)/settings/company/page.tsx",
+        "anchor": "readError: error !== null",
+        "binding": "Server page alert and readError props",
+        "verified_lines": [
+          35
+        ]
+      },
+      {
+        "path": "src/components/settings/CompanySettingsForm.tsx",
+        "anchor": "<fieldset disabled={operation.blocked || defaults.readError}",
+        "binding": "Server readError disables form; client transport reject cannot set it",
+        "verified_lines": [
+          68
+        ]
+      },
+      {
+        "path": "src/app/(app)/settings/quote-terms/page.tsx",
+        "anchor": "readQuoteTerms",
+        "binding": "Server terms page/readerror props",
+        "verified_lines": [
+          17,
+          24
+        ]
+      },
+      {
+        "path": "src/app/(app)/settings/pricing/page.tsx",
+        "anchor": "readError",
+        "binding": "Authorized active/archive failures govern domain props",
+        "verified_lines": [
+          78,
+          85
+        ]
+      },
+      {
+        "path": "src/components/pricing/ArticlesEditor.tsx",
+        "anchor": "data-testid=\"pricing-current-unavailable\"",
+        "binding": "Server readError marker/disabled fieldset; analogous WorkRoles",
+        "verified_lines": [
+          67
+        ]
+      }
+    ]
+  },
+  "required_before_publication": "Root returns exact frozen diff+originalmethod/canonical/Highauthority refs to Coordinator BEFOREpublication/CI. No child publication.",
+  "actual_b276": {
+    "run": "41615029035",
+    "browser_job": "125847225967",
+    "browser": {
+      "total": 104,
+      "expected": 103,
+      "unexpected": 1,
+      "flaky": 0,
+      "skip": 0
+    },
+    "P_E5_attempt_ms": [
+      4028,
+      2320
+    ],
+    "exact_GET": "ONE matching/unmarked/2xx/ERR_ABORTED afterresponse BEFOREunroute;causeUNKNOWN",
+    "failure": "Old finished-only proxy failed; no retroactive domainproof",
+    "prior23owned6producer": "firstpass",
+    "journal": [
+      "claimed-no-effects",
+      "revoke-intent(company_settings)",
+      "revoke-committed(company_settings)",
+      "restore-verified(company_settings)"
+    ],
+    "company_restore": "FullACL+sameordinaryread verified",
+    "other_fault_delete_intents": 0,
+    "PNG": {
+      "normal": 80,
+      "company_pending": 2,
+      "method_absent": 21
+    },
+    "DB": {
+      "terminal": "FAILURE",
+      "total": 2292,
+      "passed": 2228,
+      "failed": 1,
+      "explicit_skip": 52,
+      "pending_not_executed": 11,
+      "failed_suites": 2,
+      "failed_files": 1,
+      "producer75_RLS7": "PASS0skip",
+      "sole_failure": "Unallocated15.5-API009 public-feed.int.ts204 intended429;actualstatus/causeunreported;scenario-assertion/unknown/sqlstateunavailable. No author investigation/fix/retry.",
+      "native_sha256": "0c34f7b73962b48915514066d27447cf1565a6d3da0e291a7ea813420169de51",
+      "wrapper_children": [
+        0,
+        1
+      ],
+      "keyDeleted": false,
+      "dbClosed": true,
+      "keyOutcome": "unverified",
+      "diagnostic": "runtimeguard-refusal",
+      "pilot": "NOTREACHED",
+      "Authdiagnostic": "NOT_APPLICABLE/0credit",
+      "log_bytes": 101719,
+      "log_sha256": "e07b221c9c916a1790e3d7bc54c25fa8eeca8a8bde773086f0d2f397127e0929"
+    },
+    "whole_CI": "Terminal DB+BROWSERFAIL/no successorcredit"
+  },
+  "semantic_change": "Remove only EOF proxy. Finished or actualfailed is cleanupsettlement, not domainproof. Require new SERVER-derived error/disabled/draft/receipt/nonbusy/nonunknown/no current/missing/adoption conjunction after errorabsence and verifiedDCL while active; repeat bothviewports; same original bound readonly receipt query checked again. No failedGETdelivery or normal-abort claim.",
+  "preserved": "Observer/selector/lifecycle/disposal/single10s,originalUIassertions,103captures/24owned7producer/allactions/effects/budgets/ONEdelete/fullACL+ordinaryreadrestore/custody/failstop/canonical unchanged. No fetch/fulfill/buffer/seam.",
+  "new_pure_proof": {
+    "harness": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/harness.cjs",
+    "results": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/results.json",
+    "native_exit": 0,
+    "passed": 34,
+    "failed": 0,
+    "source_sha256": "9f43405f539716a2f75aecacf4235b5060890ee0afa40193e9e06a8e73fe9f3e",
+    "extraction_sha256": "b9bb4994c012fdc550b1d42da326d42e8e498c45b41cc6d06dc4b09fdb6bcf71",
+    "limits": "Actual assertion/settlement functions and exact committed-proof/domain call spans with mocked locator matchers, event emitter, clock and DB responses. This checks conjunction/ordering/refusal behavior, not real DOM/server-origin/RLS/SQL/browser evidence. Source authority mapping and fresh CI must prove actual server-derived UI. No live resources/network/process/Docker/SQL/CI.",
+    "history": "Two mock-only crossrealm RegExp/array fixture REDs retained/corrected; no projectsource change.",
+    "manifest": {
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/manifest.json",
+      "raw_sha256": "3207fdc5fd336cca3c9a3e86d0533a9be6a6c05e7a72f11ab3314fa5b8e5dd52",
+      "effective_git_blob_oid": "5df8c4dc3f45f53d4f425fdfe73eae62f6a20264"
+    },
+    "admission_function_comparison": {
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/admission-function-equality.json",
+      "raw_sha256": "c5e88b1624c157b75e667fc512f339b6f727943d8680ea1811d1f45d083c7159",
+      "effective_git_blob_oid": "81e6851d29a3e27a1cf30bdc3bb2638ba22e9792"
+    },
+    "preservation": {
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/preservation.json",
+      "raw_sha256": "b36d9ee688b49e2a927149997699aa53c0699dc0b8fb42bf1423c60edce69b4d",
+      "effective_git_blob_oid": "1383e0bdc3f1645828a34c2483a192816afecd62"
+    },
+    "authority_mapping": {
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/authority-mapping.json",
+      "raw_sha256": "8eb4b21dd22d738b093574cff2471ad862516074544e150ed5b4df571f84ea24",
+      "effective_git_blob_oid": "023c4b06180ca140afb802c5fa683671c6fd21a8"
+    }
+  },
+  "prior_proofs": {
+    "admission132_manifest_sha256": "1c8b82145b0bf709a0dbe09fd9743c19d38a84a17f2d36fba9881467e55d4b41",
+    "lifecycle32_manifest_sha256": "56bc7aa33b5a80dad5634f36e06694a6a00b1e18179a658f8a72890012c3c459",
+    "status": "Retained unchanged/not rerun;14admission bodies exact"
+  },
+  "focused_static": {
+    "typecheck": {
+      "native_exit": 0,
+      "log": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/typecheck.log"
+    },
+    "pricing_eslint": {
+      "native_exit": 0,
+      "log": "tmp/private/35-7-p-consumer-closed-service-proof/domain-b276/eslint.log"
+    }
+  },
+  "runtime_limits": "Modeled locators/events/clock/DB only; sourceauthoritymapping+freshCI must prove realserver/DOM/RLS/SQL/images. No local runtime/resources/network/process/Docker/SQL/CI. No retroactive b276 acceptance/cause/operationsuccess.",
+  "build_status": "in-progress",
+  "step5_done": false,
+  "release_ready": false,
+  "private_caps": "Global90proposal unapproved; actualcompletefit/images/acceptance remainblocking/no gatechange.",
+  "single_SRO": {
+    "native_exit": 0,
+    "verified_stops": 53,
+    "native_JSON": "_bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/author-8cb-cwd-review-order-check.json"
+  },
+  "current_df063c19_terms_hook_followup": {
+    "authority": {
+      "disposition": "Parent+Coordinator explicit PROCEED for exact combined TERMS pending-branch correction and owned integration diagnostic/error-preservation batch after independent High assessment; same SolHigh author; route recorded before dispatch by parent. No invented receipt ID.",
+      "terms_anchors": [
+        "src/components/settings/QuoteTermsEditor.tsx:55",
+        "src/components/settings/QuoteTermsEditor.tsx:57",
+        "src/components/settings/QuoteTermsEditor.tsx:74",
+        "src/components/settings/QuoteTermsEditor.tsx:112",
+        "src/features/settings/mutation-attempt.ts:96",
+        "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md:53",
+        "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md:105"
+      ],
+      "original_method": "C:/DEV/Kopplas/tmp/private/35-7-p-method-admission/proposal.md/json, original real-server-domain + settled controlled transports authority unchanged.",
+      "before_publication_HOLD": "Root returns exact STOPPED diff/pins plus original-method/canonical/High authority and current review receipts to Coordinator BEFORE commit/push/publication/CI. No author publication.",
+      "sentinel_fix_disposition": "Parent explicit PROCEED after both targeted CHANGES_REQUIRED, existing allocation, route before dispatch; source fix only absence sentinel. SAME verification sentinel-source + edges wire-proof/history confirmation and Coordinator stopped-diff assessment before commit/push/CI."
+    },
+    "source_change": "Current df063c19 combined batch: ordinary authorized pre-save terms absence/ID/revision/text is pinned to the initial display, candidate must differ under actual trim-only canonicalTermsEqual, and captured target/revision must match. Pending guards retain exact receipt text/DOM, draft, error absence, nonbusy/nonunknown and exact held nonterminal Request. Absent baseline requires absent approval; existing approved/unapproved baseline requires disabled approval. Matching confirmed/adopted/newer states fail; panel wording/unapproved facts are rechecked whenever present, not required when unchanged defaults legitimately omit it. ID/revision are not displayed by that panel; the captured/bound DB proof supplies their identity. Owned integration adds fixed awaited-phase/native-code-only diagnostics and original-error preservation; unchanged separate autocommit DROP order stops dependency removal on failure, independently attempts available fixture cleanup, and aggregates a distinct cleanup rejection. This is diagnostic/error-preservation work, NOT a deadlock cure. Shared cleanup returned is never verified cleanup; outer phase is not an inner failing-SQL claim.40 actual-source mocked cases PASS, final type/lint0; prior132/32/34 not rerun,22 protected helper bodies (14admission) byte-identical. Actual df browser and DB both FAILED: company domain/restoration earned, terms pre-DCL panel prerequisite failed;85actualPNG80normal5company/18missing. DB2305/2253ASSERTpass0ASSERTfail52skip/owned75assertspass BUT owned suite deadlock failed, RLS7P; native SQLSTATE/statement/lockcycle unknown. No retro/future runtime credit. Root returns stopped exact batch+authority+reviews to Coordinator BEFORE publication/CI. BuildinprogressStep5false/releasefalse; current High confirmation/fresh CI/method images/all103/fit/live80/authenticatedvisual/completion unearned.",
+    "actual_df063c19": {
+      "head": "df063c194a5abfbbb92705bca7ad05707603aef8",
+      "ci": 41620489004,
+      "browser": {
+        "status": "failed",
+        "native_cases": 104,
+        "expected": 103,
+        "unexpected": 1,
+        "flaky": 0,
+        "skipped": 0,
+        "prior_owned_first_pass": 23,
+        "prior_producer_first_pass": 6,
+        "first_ms": 22343,
+        "retry_ms": 3154,
+        "retry": "EEXIST refused",
+        "failure": "Terms pending precondition required exact saved wording in terms-current-facts; failure before terms DCL. Native does not establish the actual pending/confirmed/panel branch.",
+        "native_json_sha256": "422e1cfab28b21859165a077b42a66b3b4fcb34dda2475bca2ddb7099c68467b",
+        "log_bytes": 109489,
+        "log_sha256": "b53296e3c2898045846ff13852b87d14c9049fba88dc916741b77b44b8729a0e",
+        "pngs": 85,
+        "normal_pngs": 80,
+        "company_method_pngs": 5,
+        "remaining_method_pngs": 18,
+        "image_validation": "Root validated all85,0issues,df-only",
+        "nonce": "318b87d9-b1ff-43af-b0cd-dd236a432041",
+        "runner": 12349,
+        "server": 12744,
+        "journal": [
+          "claimed-no-effects",
+          "company revoke-intent",
+          "company revoke-committed",
+          "company restore-verified"
+        ],
+        "authority": "Company domain-unavailable both views/draft and full ACL+same ordinary-read restore earned only at df; no terms/other fault/delete intent."
+      },
+      "db": {
+        "status": "failed",
+        "total": 2305,
+        "assertion_passed": 2253,
+        "assertion_failed": 0,
+        "explicit_skip": 52,
+        "failed_suites": 1,
+        "owned_command_assertions_passed": 75,
+        "owned_command_suite_status": "failed",
+        "owned_suite_message": "deadlock detected",
+        "producer_rls_passed": 7,
+        "native_json_sha256": "baf1f2e335530c1078598f11d46fbd3999401edd2107780f1866cf2752b4d9a3",
+        "log_bytes": 101243,
+        "log_sha256": "23270c5ff8e6d6c2c2a32ec14755466d592a9bfabc620ffab69ce64510b12bf2",
+        "unknown": [
+          "SQLSTATE",
+          "failing statement",
+          "hook/session substage",
+          "lock graph",
+          "exact cycle"
+        ],
+        "wrapper_children": [
+          0,
+          1
+        ],
+        "keyDeleted": false,
+        "dbClosed": true,
+        "keyOutcome": "unverified",
+        "diagnostic": "runtimeguard-refusal",
+        "pilot": "not-reached",
+        "Authdiag": "NOT_APPLICABLE;0credit",
+        "scope": "No global fixture/calendar investigation or fixes; no suite/whole-DB PASS claim."
+      }
+    },
+    "modeled_proof": {
+      "path": "tmp/private/35-7-p-consumer-closed-service-proof/terms-db-df063c19/results.json",
+      "passed": 40,
+      "failed": 0,
+      "limits": "Source-bound functions plus exact pending/baseline/identity caller spans. Locator/ordinary-read/capture/native-error mocks only: no actual React rendering, hasCurrentRead inspection, server/DB/browser behavior, deadlock cause or cleanup verification. Fresh CI must establish real domain construction; failing guards remain fatal.",
+      "status": "Historical initial40 wrong-wire-fixture proof,CHANGES_REQUIRED; history-f6 retained,not current approval."
+    },
+    "source_protected_equality": "unchanged-functions.json records22 identical bodies including14admission; prior132/32/34 retained/not rerun",
+    "current_confirmation": "PENDING sentinel source and new wire-proof/history confirmations; broadRound1 remains one",
+    "source_staging_count": 2,
+    "metadata_staging_count": 6,
+    "source48_other_unchanged": 46,
+    "status": "Build in progress; Step5false;releasefalse",
+    "initial_f6_review": "Both CHANGES_REQUIRED; existing8cb-cwd-targeted-review-results.json#initial_df063_terms_DB_review. Exact f6history preserved, not publishable.",
+    "sentinel_review_fix": {
+      "rationale": "Sentinel-only review fix: both initial df combined-batch reviews were CHANGES_REQUIRED; f6 was not publishable. Before edits all8author files/exact2filepatch and entire40proof were preserved in ignored history-f6 (29files; manifest5ad34bbfa270081a8c336fb64e5903bbef22a26f4ad7c0ff229e922104c60f53). Actual terms saveAction passes reviewed null revision to mounted submit, which writes absent; invoke uses actual attemptForm, which also serializes absent. Actual producerCapturedFacts preserves the multipart raw string. Only test expected absence changes from empty to absent; existing revision comparison/integration/otherguards/effects/captures exact. Current43models execute extracted terms saveAction/mounted submit+invoke/captureAttempt+attemptForm/native multipart/actual capture projection/identityguard. Prior40 intent retained but raw wire fixtures changed honestly; empty/mutated fail actual identity guard, missing fails capture cardinality. Old40native0 remains wrong-fixture historical CHANGES_REQUIRED, never retroPASS. React/lifecycle/local validation/DOM/server/native are mocked or unexecuted, no mounted/runtime credit. Tsc/two-filelint0; current same two targeted High confirmations and Coordinator assessment of stopped diff/pins/authority/reviews mandatory BEFORE commit/push/CI. Historicaldf browser+ownedDBsuiteFAIL/85PNG/18missing remain; no deadlock remedy/cause/futurecredit. BuildinprogressStep5false/releasefalse.",
+      "history_manifest": "tmp/private/35-7-p-consumer-closed-service-proof/history-f6/manifest.json",
+      "history_manifest_sha256": "5ad34bbfa270081a8c336fb64e5903bbef22a26f4ad7c0ff229e922104c60f53",
+      "source_delta_from_f6": "One test sentinel literal only; integrationraw35dbeb...exact,all22protected helpers unchanged.",
+      "actual_terms_wire_sources": [
+        "QuoteTermsEditor.tsx70 saveAction",
+        "CompanySettingsForm.tsx198 submit /214 serialization /165 invoke serialization",
+        "mutation-attempt.ts65 attemptForm",
+        "actual producerCapturedFacts and baseline identity guard"
+      ],
+      "current_proof": {
+        "path": "tmp/private/35-7-p-consumer-closed-service-proof/terms-db-df063c19-sentinel/results.json",
+        "passed": 43,
+        "failed": 0,
+        "prior40": "Intent retained, raw positive and identity-negative wire fixtures changed from fabricated values to actual canonical serialization. Old40 remains CHANGES_REQUIRED history; no unchanged-input or retroPASS claim.",
+        "wire": "Actual terms saveAction and mounted submit/invoke, captureAttempt/attemptForm, native FormData multipart and actual producerCapturedFacts plus actual identity guard; local parse/validate/state/React lifecycle remain mocked.",
+        "limits": "Source-bound functions plus exact pending/baseline/identity caller spans. Locator/ordinary-read/capture/native-error mocks only: no actual React rendering, hasCurrentRead inspection, server/DB/browser behavior, deadlock cause or cleanup verification. Fresh CI must establish real domain construction; failing guards remain fatal."
+      },
+      "private_output_directory_correction": "Copied harness initially retained its old output directory; intermediate43 outputs retained in new proof directory, all original history40 files restored byte-for-byte, final harness uses __dirname. No history deletion or altered archived pins.",
+      "current_review": "PENDING same two fix-only confirmations"
+    }
+  },
+  "current_d99_framing_time_report_followup": {
+    "authority_before_source_writes": {
+      "recorded_before_source_writes_utc": "2026-11-03T12:17:58.681418+00:00",
+      "receipt_path": "C:\\DEV\\Kopplas\\tmp\\private\\35-7-p-ci-d99acbdc\\coordinator-additive-time-report-allocation-approval.json",
+      "receipt_sha256": "c0cfc0374950f83eef7631209a53332c6f9b8a0f6caca841540cb219f03b5365",
+      "authority": "Coordinator additive diagnostic-only approval under standing human authorization, parent relay; no new direct human quote.",
+      "direct_human_quote": null,
+      "historical_hold": "Receipt historical hold retained unedited; parent current implementation handoff explicitly relays Coordinator coordination hold RELEASED before this author resume.",
+      "existing_file_inventory55_retained": true,
+      "added_path": "tests/e2e/time-reports.e2e.spec.ts",
+      "new_file_count": 56,
+      "generated_evidence_token_retained": true,
+      "total_tokens": 57,
+      "semantic_domains_unchanged_from_authority": 7,
+      "approved_file_digest_from_receipt": "7cd272d1ec70e654c9d49b1850290abc6c8b079039110470b3a4bad12d6f0a45",
+      "no_releases": true,
+      "operative_writes": "Exact approved pricing framing and TimeReport diagnostics only plus existing author/admission metadata; this is not general write authority to the full inventory.",
+      "required_hold_after_freeze": "Root returns exact stopped batch/pins/authority/targeted review receipts to Coordinator BEFORE commit/push/CI."
+    },
+    "private_proposal_root": "tmp/private/35-7-p-framing-d99-proposal",
+    "private_freeze_sha256": "b18c94710642acbbca917d69fd9bccf0d4add278cbaa768c5f3a34b996b9a0ee",
+    "independent_proposal_review_sha256": "5432340a5b904c224e92ea4554236e7b71745f1ba8218706f562533271202874",
+    "status": "Exact admitted sources applied plus explicitly approved type-only callback correction; current stopped review pending, no runtime credit.",
+    "current_actual_d99": {
+      "head": "d99acbdcb1eb1aa99fa29594f6cbd7438325d5de",
+      "CI": 41627832529,
+      "browser": {
+        "status": "failed",
+        "native_total": 104,
+        "expected": 102,
+        "unexpected": 2,
+        "flaky": 0,
+        "skip": 0,
+        "P-E5_first_ms": 28540,
+        "retry_ms": 3236,
+        "retry": "EEXIST refused",
+        "actual4DomainUnavailabilityVerified": true,
+        "all4ExactAclAndSameOrdinaryReadRestores": true,
+        "journal_records": 13,
+        "delete_intents": 0,
+        "actual_pngs": 98,
+        "normal_pngs": 80,
+        "method_pngs": 18,
+        "method_pngs_absent": 5,
+        "native_json_sha256": "753ca2ab17bfd47fc3fe3ff2755f41f2c7b741515222f42ae8db3f564e830732",
+        "log_bytes": 106325,
+        "log_sha256": "33dc6ee3c9b7257b33fa6d42ce6928e40e79217915c930e4fa71ca4631a1dcb2",
+        "nonce": "59657cd4-6ea1-43b2-8330-a977ae1ca408",
+        "runner": 12194,
+        "server": 12666,
+        "trace_files_available": 0,
+        "indexHTML_available": false,
+        "trace_limitation": "Native JSON references retry ZIP path only; no embedded/local ZIP,trace,HTML. No artifact body/status reconstruction possible."
+      },
+      "DB": {
+        "status": "success",
+        "total": 2305,
+        "passed": 2253,
+        "failed": 0,
+        "explicit_skip": 52,
+        "failed_suites": 0,
+        "producer_command_suite": "75pass0skip",
+        "producer_RLS_suite": "7pass0skip",
+        "wrapper_children": [
+          0,
+          0
+        ],
+        "keyDeleted": true,
+        "dbClosed": true,
+        "keyOutcome": "deleted-confirmed",
+        "failures": [],
+        "custody": null,
+        "pilot": "PASS",
+        "native_json_sha256": "6bc7a9337c6df70b2b7c9100d073550d4dc0cc000a3acde2200f8edec76a549f",
+        "log_bytes": 102311,
+        "log_sha256": "f61b6379a7e42d914353e0a3b2fe8ca12ed9dbe8731e4226f81f127cb5c7733b",
+        "limits": "df deadlock history retained; current owned fixture cleanup helper RETURNED only, not independently verified cleanup or causal cure."
+      },
+      "whole_CI": "terminal browser-only failure; no successor/runtime/visual acceptance credit"
+    },
+    "implementation_summary": "Current d99 admitted batch: Coordinator approved additive TimeReport diagnostic allocation under standing human authority, receiptc0cfc0374950f83eef7631209a53332c6f9b8a0f6caca841540cb219f03b5365; historical hold explicitly released by parent Coordinator relay. Authority recorded in existing admission/evidence BEFORE source writes; old55files/evidence/semanticgrants retained,56file+generatedtoken57,receipt7domains/digest7cd272d1ec70e654c9d49b1850290abc6c8b079039110470b3a4bad12d6f0a45. Only article360x640 unavailable overview uses center at BOTH pre-guard scroll and capture; desktop/others start, strictjoint alert+receipt ratio1/fullviewport/draft/domain/capture103/effects retained. Exact approved copy had sole TS2322/native2; parent explicitly admitted only callback block:center|start annotation. Failedlog retained, private proposal unchanged, actual emittedJS matches approvedcopy byte-for-byte. TimeReport exact approved copy adds fixedphase/status/exactselectedRequest terminal categories around same wait/text/body/UI/snapshot assertions; no extra wait/retry/action/effect, unchanged originalerror rethrow, guarded privacy, all-exit listener disposal. Diagnostic is not cure/denialproof. Current source49=original48+TimeReport; producer24owned7producer unchanged, TimeReport3existing registrations/210assertion-expression nodes are adjacent coverage only.43/132 not rerun; proposed helper/caller equality and exact actual copies/type-erasure support reuse within modeled limits, not new runtime. Actuald99wholeDBPASS2305/2253P0F52skip/producer75suite+RLS7suitePASS0skip/wrapper[0,0]/keyDeleted+dbClosed/pilotPASS; helper cleanupRETURNEDONLY, no deadlockcure. Browser104/102expected2unexpected0flake0skip, all4domain+exactrestores13journal/0delete,98actualPNG18method5missing; phoneclippingdirection/BBox and TimeReportstatus/terminal/bodyfailurecause UNKNOWN. No successor geometry/denial/visual/fit/completion credit. Parent returns exact stopped batch+authority+targeted confirmations to Coordinator BEFOREcommit/push/CI. BuildinprogressStep5false/releasefalse/live80/private90unapproved; fresh native/methodimages/packagefit/humanvisual/completion remain blocking.",
+    "type_only_deviation": {
+      "authority": "Parent explicit PROCEED, callback annotation only after exact approved copy semantic TS2322. No new human quote.",
+      "priorTypecheckExit": 2,
+      "priorLintExit": 0,
+      "priorDiagnostic": "pricing1469:93 TS2322 string not assignable to ScrollLogicalPosition|undefined",
+      "approvedProposalSha256": "1fb6096be1895bc5f8d40746c382035867dffaac96d19e5e788c204340b100cd",
+      "actualPricingSha256": "39dbcac0e9eea2b8271da2d5a0f3ca849b5c26811eefc9b1770fbc067ab4af2a",
+      "difference": "Only callback parameter block: center|start annotation; erased by TypeScript",
+      "typeErasedRuntimeProjectionEqual": true,
+      "runtimeProjectionSha256": "66a39df511154e2179e3effbbf8fa6d531ea79ac844f276ae62c71a18a0de3c7",
+      "method": "Installed TypeScript transpileModule on actual/proposed copies using identical fileName/ES2022/CommonJS options; no browser/runtime test",
+      "privateApprovedPacketsUntouched": true
+    },
+    "retained43_132": "Not rerun; actual framing emittedJS equals reviewedproposal, TimeReport exactcopy; original43helpers/callers and14admission unaffected. Limits remain mocked, no geometry proof.",
+    "source_count": 49,
+    "producer_registration_scope": "24owned7producer unchanged;TimeReport3existing adjacent registrations/210assertion-expression nodes,notnewproducer cases",
+    "next_review": "SAME targeted High confirmations of stopped actualdiff/type-only deviation/allocation/privacy then Coordinator assessment BEFOREcommit/push/CI."
+  }
+}

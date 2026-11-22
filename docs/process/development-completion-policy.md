@@ -34,6 +34,113 @@ Exhaustive browser matrices, screenshot comparisons, visual inspection, manual w
 
 Use two distinct statements: development complete means applicable development checks and independent review passed; release ready additionally requires actual release-validation evidence and existing release/merge/deployment approvals. Development complete alone never authorizes deployment or claims release readiness. Existing BMAD done means development completion only. A deferred release check is deferred, never passed, waived, or falsely covered by unrelated evidence. TEA trace distinguishes development requirements from deferred release validation; only missing required development evidence blocks development. Release gaps remain visible to retrospective and reports.
 
+## Story-scoped TEA dispatch
+
+For a freshly admitted Auto-BMAD story, the coordinator and phase delegate apply
+this route at the actual dispatch of every selected story Phase 4 (`atdd`) and
+Phase 6 (`automate`). This includes sequential single stories, sequential epic
+story loops and admitted schema-2 story-PR workers. For these dispatches replace
+the stock `testarch-atdd` and `testarch-automate` Create prompt bodies with the
+project-owned test-architecture delegate instructions below. Retain the native
+phase selection, route and timing records, six-field result, ownership,
+checkpoints and ordering. Epic-wide TEA keeps its own dispatch. Existing pinned
+runs and assignments, including CRM and Epic 15, keep their admitted routes and
+evidence.
+
+### Admit and resolve
+
+1. The coordinator pins the independently reviewed policy and
+   `scripts/quality/story-tea-route.py` hashes from a qualified checkout, and
+   the trusted installed planner's full commit and LF-normalized SHA-256.
+   Before each helper invocation, compare the policy and helper bytes in the
+   qualified checkout with their pinned hashes. Execute that verified helper
+   and pass the assigned checkout as data. The helper executes the planner
+   from the pinned commit only after validating its bytes. Carry the reviewed
+   route and scope in the phase and nested delegate prompts.
+2. Record a private route JSON and its raw SHA-256 outside the assigned checkout.
+   Common fields are `schema_version: 1`, `route` (`sequential` or `schema-2`),
+   `checkout` (absolute physical worktree root), `branch`, `story_key` (canonical
+   planner key), `planner_revision`, `planner_sha256` and `phases` (the selected
+   subset of `["atdd", "automate"]`). Include `phase_test_paths`, an object mapping
+   each selected phase to its reviewed exact test file list. An empty list
+   permits an evidence-only phase. Each listed file must be an approved
+   `tests/unit/**/*.test.ts`, `tests/integration/**/*.{test,spec}.ts` or
+   `tests/e2e/**/*.e2e.spec.ts` path. Allocating a test directory does not give a
+   delegate permission to edit every file in it.
+   - Sequential adds the approved relative `spec_path`, `write_paths` and
+     `source`. A stories source has `mode: "stories"`, `spec_folder` and original
+     `story_id`. A sprint source has `mode: "sprint"`, `sprint_status`, `impl_dir`
+     and `story_ref`. Relative paths use forward slashes.
+   - Schema 2 adds `assignment_sha256` (raw file hash), `run_id`, `owner`,
+     `worker` and `generation` from the exact successful native assignment JSON.
+     Supply that private JSON with `--assignment <file>`. Before both resolver
+     calls, use the normal native ownership revalidation for the exact live
+     assignment. A changed owner, worker, generation, checkout or branch, or a
+     non-writable claim, blocks the phase. The resolver checks the pinned
+     assignment receipt and Git evidence. Claim admission and live claim
+     authority stay with the native workflow.
+3. Add only the story's allocated evidence directory (trailing slash) or its
+   exact selected evidence file paths to approved write scope. The directory
+   defaults to `_bmad-output/test-artifacts/<canonical-story-key>/`. The schema-2
+   `spec-design-35-7-35-7` assignment, from
+   `_bmad-output/specs/spec-design-35-7` with original ID `35-7`, uses the existing
+   `_bmad-output/test-artifacts/story-35-7/` allocation. The filenames are
+   `atdd-checklist.md` and `automation-summary.md`. A shared evidence prefix or
+   another story's allocation blocks this route.
+4. Fold the native route selection and timing start into the preceding
+   checkpoint where possible. Otherwise checkpoint only the verified
+   coordinator-owned bookkeeping before dispatch. The assigned checkout must
+   be clean across tracked and untracked files. Ordinary ignored dependencies
+   are allowed, and the evidence tree must have no pending changes, including
+   ignored files. The selected phase output must be new. Immediately before
+   dispatch, obtain the full clean phase HEAD and run the following command
+   (add `--assignment` for schema 2). Require exit 0 and `ok: true` and retain the
+   complete stdout JSON as a private pre-phase receipt.
+
+   ```text
+   python -I -B <qualified-helper> resolve --route <private-json> --route-sha256 <hash> --checkout <assigned-root> --phase <atdd|automate> --revision <full-HEAD>
+   ```
+
+### Delegate and verify
+
+- Dispatch a test-architecture delegate under the normal project model routing
+  and phase-result contract. Use distinct delegates for the two phases and Sol
+  High for tenant authority, money or transactional integrity. Give each
+  delegate the exact approved spec, worktree, revision, write allocation and
+  resolver's `output_absolute` and `evidence_header`. The delegate writes that
+  header verbatim as the first line of the assigned UTF-8 Markdown file. The
+  delegate edits only the approved `phase_test_paths` for this phase, leaves
+  tests unstaged and leaves the evidence untracked for verification before
+  the normal phase checkpoint.
+- Phase 4 maps the approved acceptance criteria to real checks and test
+  scaffolds, records command and executed counts and demonstrates the intended
+  red checkpoint before product implementation. Identify each expected failure
+  and its reason. Distinguish existing passing tests, expected failing tests,
+  skipped tests and tests that were unrun. Keep the native red checkpoint
+  before Phase 5.
+- Phase 6 reviews the implemented behavior against the matrix and existing
+  ATDD coverage, expands only material coverage gaps and records actual
+  commands, counts, outcomes and remaining gaps. Preserve the applicable native
+  browser, database/RLS and other required checks, independent review,
+  revision-bound visual gate and delivery evidence. The Markdown and resolver
+  establish artifact provenance. The observed commands and independent review
+  establish coverage.
+- The project delegates do not launch the stock story-level Create workflows,
+  edit the tracked TEA configuration or copy evidence out of a shared path.
+  Native spec edits and state changes stay with their existing owners. Before
+  pausing the phase timing, committing or recording the phase complete, the
+  orchestrator or schema-2 worker reruns the same command with `verify` and
+  `--receipt <pre-phase-json>`.
+  Use the same pinned inputs and phase HEAD. Require exit 0 and `ok: true`.
+  Retain the verified path, revision, artifact SHA-256 and changed test hashes
+  with the phase result.
+  A wrong checkout, stale revision, incompatible receipt, absent or wrong
+  artifact, staged change, or change outside the exact approved phase files
+  blocks the phase. Use the original receipt to verify a retained output on a
+  same-route recovery.
+  Preserve historical evidence and escalate unresolved mismatches through the
+  existing blocked handling.
+
 ## Final Phase B release checkpoint
 
 Owner decision — 2026-10-22: after all approved current Phase B epics are development-complete and integrated, the Coordinator opens and assigns the [Phase B release validation and stabilization checkpoint](../quality/phase-b-release-validation-checkpoint.md). This is a required final milestone; completing the epics does not complete this checkpoint. It consolidates deferred release validation across all epics and preserves actual evidence, owners and unresolved functional findings. Until its applicable checks pass and explicit release approval is recorded, `release_ready` remains false. This instruction schedules the work by completion of the epics, not by a calendar date, and does not authorize deployment.

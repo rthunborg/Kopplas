@@ -84,7 +84,7 @@ Do not hot-upgrade a running loop or use heartbeat age alone to take its work.
 
 ## Preview deployments and production merges
 
-**Owner decision — 2026-10-25:** [Earned merge-triggered production deployments are authorized](docs/process/production-merge-deployment-policy-2026-10-25.md) after the existing required CI, independent review and merge requirements. Automatic Previews remain disabled under October16; do not run post-merge automatic retry/redeployment loops. Manual deployment, provider/configuration changes and database pushes retain separate authorization. Earlier no-deployment records remain historical; E15 target-backend schema compatibility was not newly verified and `release_ready=false` remains.
+**Owner decision — 2026-11-03:** [Automatic deployments and merged-main Preview delivery are restored](docs/process/automatic-deployment-delivery-2026-11-03.md). Production remains the existing `main` Git integration; `codex/merged-main-preview` mirrors merged main for its distinct stable Preview. This supersedes the October16 Preview disable and the corresponding October25 restrictions. Existing required CI, independent review and merge requirements remain; do not run automatic post-merge retry/redeployment loops. The owner separately authorized the current-main production deployment. Keep actual provider and backend evidence separate from release readiness; `release_ready=false` remains until its existing release-validation requirements are met.
 
 ## Code Review Rules
 

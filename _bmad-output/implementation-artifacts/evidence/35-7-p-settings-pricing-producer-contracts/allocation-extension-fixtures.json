@@ -1,0 +1,468 @@
+{
+  "task_id": "35.7-P",
+  "status": "OWNER_APPROVED_EXACT_TWO_FILES_PENDING_INDEPENDENT_CONFIRMATION",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "scope": "Only local fixture construction/readback and operation-correlation binding at six calls in exactly two existing integration files; no implementation performed.",
+  "owner_approval": {
+    "date": "2026-11-02",
+    "actual_reply": "Approve both fixture updates and Coordinator messaging",
+    "source": "Actual human reply to request_user_input_async question0, relayed by Root; no message ID invented",
+    "bounds": "Exactly these two fixture files, existing business/security assertions preserved. No normative contract change. Product/test writes remain held until independent narrow confirmation and fresh ownership."
+  },
+  "field_spelling_status": "AFTER labels are illustrative semantic records, not normative TypeScript input/property signatures. Actual future adapter/validator fields and create/update discrimination remain bounded implementation details; business fields/approved operation-kind literals are pinned. Never put proposed UUID into the old optional id meaning update.",
+  "source_files": [
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "sha256": "db8bf110be77128ced37fa3cba52781f42336c9de7c9631720621af7ae75ebb2"
+    },
+    {
+      "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "sha256": "f26efe671b07aef0050faa5d8cc51bb75345748e4a7b132b03877284e6c0dbb9"
+    }
+  ],
+  "approved_contract": {
+    "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+    "sha256": "eb95ec27576fe9c8245b96d0e07fa66e6ff130397d9e4d3ad2da87f01b8c8652",
+    "approval_overlay": "ADR-B014 and allocation-and-admission.md"
+  },
+  "required_contract_clauses": [
+    {
+      "id": "C1",
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 29,
+      "requirement": "Capture operation UUID/kind, target/proposed UUID, revision/absence and canonical candidate before dispatch; envelope correlation equals the operation UUID."
+    },
+    {
+      "id": "C2",
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 31,
+      "requirement": "Resolve tenant/actor on server; bind complete canonical fields and expected facts, preserving omission, integer ore and bp."
+    },
+    {
+      "id": "C3",
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 41,
+      "requirement": "Current authenticated actor and membership/role remain authoritative through commit."
+    },
+    {
+      "id": "C4",
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 47,
+      "requirement": "First singleton creation requires actual expected absence; cannot overwrite via an upsert branch."
+    },
+    {
+      "id": "C5",
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 57,
+      "requirement": "Only successful null singleton reads establish expected absence; carry captured ID/revision through validators."
+    },
+    {
+      "id": "C6",
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 59,
+      "requirement": "Existing company/terms writes compare locked revision; each update renews it, including same-value saves."
+    },
+    {
+      "id": "C7",
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 73,
+      "requirement": "Revoke old writes; no missing-ID/revision compatibility bypass; dedicated provisioning insertion stays unchanged."
+    },
+    {
+      "id": "C8",
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 93,
+      "requirement": "Reuse existing role/authenticated/audit fixtures and regression gates without unrelated responsibility expansion."
+    }
+  ],
+  "fixture_source_facts": [
+    {
+      "fact": "company exists",
+      "conclusion": "Both onboarding company calls update the company row created during provisioning. Neither may use expected absence or a proposed target UUID.",
+      "evidence": [
+        {
+          "path": "tests/factories/platform-operators.ts",
+          "line": 561,
+          "literal": "export async function createAcceptedProvisionedFirstAdminFixture"
+        },
+        {
+          "path": "tests/factories/platform-operators.ts",
+          "line": 578,
+          "literal": "const provisioned = await executeApprovedProvisioning(input, { preserveFixture: true });"
+        },
+        {
+          "path": "supabase/migrations/20260919183425_provisioning_review_authority_fixes.sql",
+          "line": 114,
+          "literal": "insert into public.tenant_provisioning_requests(request_id"
+        },
+        {
+          "path": "supabase/migrations/20260919192619_provisioning_request_validation_persistence.sql",
+          "line": 42,
+          "literal": "create trigger tenant_provisioning_requests_apply_company_settings"
+        },
+        {
+          "path": "supabase/migrations/20260919193857_provisioning_company_settings_trigger_owner.sql",
+          "line": 8,
+          "literal": "insert into public.company_settings("
+        }
+      ]
+    },
+    {
+      "fact": "terms absent in current fixture source",
+      "conclusion": "Provisioning baseline termsPlaceholder=true is metadata, not a quote_terms seed. The current provisioner/acceptance fixture creates no quote_terms row for the new tenant. Still require actual authenticated error-free maybeSingle null before using absence; fail fixture setup on error or unexpected existing row.",
+      "evidence": [
+        {
+          "path": "src/server/provisioning/baselines.ts",
+          "line": 3,
+          "literal": "const entry ="
+        },
+        {
+          "path": "supabase/migrations/20260919120000_provisioning_decision_8a_authority.sql",
+          "line": 25,
+          "literal": "values ('standard-se',1,"
+        },
+        {
+          "path": "supabase/migrations/20260919183425_provisioning_review_authority_fixes.sql",
+          "line": 107,
+          "literal": "insert into public.tenants("
+        },
+        {
+          "path": "tests/factories/platform-operators.ts",
+          "line": 608,
+          "literal": "const accepted = await adminSession"
+        },
+        {
+          "path": "tests/factories/platform-operators.ts",
+          "line": 618,
+          "literal": "FIRST_ADMIN_ACCEPTANCE_FAILED"
+        }
+      ],
+      "negative_source_check": "Read exact provisioner INSERT sequence and full accepted fixture561-655; repository insertion search found quote_terms writes in command wrappers only, no provisioning/acceptance seed. Source inspection is not runtime verification."
+    },
+    {
+      "fact": "work-role deliberate create",
+      "conclusion": "Current provisioner/acceptance fixture creates no work_roles rows for the new tenant. The test deliberately creates a new target; never dedupe by Elektriker/name/price. Explicit absence concerns proposed target UUID, not the whole collection.",
+      "evidence": [
+        {
+          "path": "tests/factories/platform-operators.ts",
+          "line": 219,
+          "literal": "export async function executeApprovedProvisioning("
+        },
+        {
+          "path": "supabase/migrations/20260919183425_provisioning_review_authority_fixes.sql",
+          "line": 107,
+          "literal": "insert into public.tenants("
+        },
+        {
+          "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+          "line": 91,
+          "literal": "const role = await runCommand(upsertWorkRole as never"
+        }
+      ]
+    }
+  ],
+  "six_calls": [
+    {
+      "id": "EXT-1",
+      "source": {
+        "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+        "line": 428,
+        "command": "upsertWorkRole"
+      },
+      "before_verbatim_lf": "      const workRoleCorrelation = crypto.randomUUID();\n      const workRole = await runCommand(upsertWorkRole, {\n        client: seller as never,\n        input: {\n          display_name: `11.2 PM role ${crypto.randomUUID()}`,\n          cost_rate_ore: 45000,\n          sell_rate_ore: 85000,\n        },\n        correlationId: workRoleCorrelation,\n      });\n",
+      "after_semantic_shape": {
+        "operation_uuid": "workRoleCorrelation (existing fresh UUID variable)",
+        "operation_kind": "work_role.create",
+        "target_identity": "proposedWorkRoleId: new UUID captured once",
+        "expected_facts": "explicit absence of proposedWorkRoleId",
+        "canonical_candidate": {
+          "display_name": "`11.2 PM role ${crypto.randomUUID()}` (evaluate once)",
+          "cost_rate_ore": 45000,
+          "sell_rate_ore": 85000
+        },
+        "client": "seller as never",
+        "envelope_correlationId": "exactly the captured operation UUID above",
+        "fixture_preparation": "No label/price lookup. Existing workRoleCorrelation declaration and audit query binding retained."
+      },
+      "contract_refs": [
+        "C1",
+        "C2",
+        "C3",
+        "C7",
+        "C8"
+      ],
+      "ac_refs": "P-AC1/P-U1; P-AC2/P-I2; P-AC3/P-I3/P-R1; P-AC7/P-R3",
+      "current_validator": {
+        "path": "src/server/commands/pricing/validation.ts",
+        "line": 111,
+        "literal": "export function validateUpsertWorkRole("
+      },
+      "preserve_expectations": [
+        {
+          "start_line": 437,
+          "end_line": 451,
+          "text": "      expect(workRole.ok).toBe(true);\n      if (!workRole.ok) return;\n      const workRoleAudit = await adminSelectAuditEvents({\n        correlationId: workRoleCorrelation,\n      });\n      expect(workRoleAudit).toHaveLength(1);\n      expect(workRoleAudit[0]).toMatchObject({\n        tenant_id: fixture.tenantA.id,\n        actor_user_id: fixture.orphanUser.id,\n        command: \"work_role.upsert\",\n        event_type: \"work_role.upserted\",\n        target_type: \"work_role\",\n        target_id: workRole.data.targetId,\n        metadata: {},\n      });\n",
+          "lf_sha256": "0ceb65029bb4b35fd90c933bc1b1dd2c546ceb1865a4e59dec407aa67ebb1939"
+        }
+      ]
+    },
+    {
+      "id": "EXT-2",
+      "source": {
+        "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+        "line": 454,
+        "command": "upsertArticle"
+      },
+      "before_verbatim_lf": "      const articleCorrelation = crypto.randomUUID();\n      const article = await runCommand(upsertArticle, {\n        client: seller as never,\n        input: { name: `11.2 PM article ${crypto.randomUUID()}`, unit_price_ore: 1250 },\n        correlationId: articleCorrelation,\n      });\n",
+      "after_semantic_shape": {
+        "operation_uuid": "articleCorrelation (existing fresh UUID variable)",
+        "operation_kind": "article.create",
+        "target_identity": "proposedArticleId: new UUID captured once",
+        "expected_facts": "explicit absence of proposedArticleId",
+        "canonical_candidate": {
+          "name": "`11.2 PM article ${crypto.randomUUID()}` (evaluate once)",
+          "unit_price_ore": 1250
+        },
+        "client": "seller as never",
+        "envelope_correlationId": "exactly the captured operation UUID above",
+        "fixture_preparation": "No name/SKU/price lookup; optional sku/unit stay omitted. Existing articleCorrelation and audit query binding retained."
+      },
+      "contract_refs": [
+        "C1",
+        "C2",
+        "C3",
+        "C7",
+        "C8"
+      ],
+      "ac_refs": "P-AC1/P-U1; P-AC2/P-I2; P-AC3/P-I3/P-R1; P-AC7/P-R3",
+      "current_validator": {
+        "path": "src/server/commands/pricing/validation.ts",
+        "line": 156,
+        "literal": "export function validateUpsertArticle("
+      },
+      "preserve_expectations": [
+        {
+          "start_line": 459,
+          "end_line": 473,
+          "text": "      expect(article.ok).toBe(true);\n      if (!article.ok) return;\n      const articleAudit = await adminSelectAuditEvents({\n        correlationId: articleCorrelation,\n      });\n      expect(articleAudit).toHaveLength(1);\n      expect(articleAudit[0]).toMatchObject({\n        tenant_id: fixture.tenantA.id,\n        actor_user_id: fixture.orphanUser.id,\n        command: \"article.upsert\",\n        event_type: \"article.upserted\",\n        target_type: \"article\",\n        target_id: article.data.targetId,\n        metadata: {},\n      });\n",
+          "lf_sha256": "61cb4bec55beb22d448da837f420a6eea55e4e57e223e9dc81bb3374b540cef1"
+        },
+        {
+          "start_line": 475,
+          "end_line": 498,
+          "text": "      const direct = await seller\n        .from(\"work_roles\")\n        .insert({\n          tenant_id: fixture.tenantA.id,\n          display_name: `11.2 direct pricing ${crypto.randomUUID()}`,\n          cost_rate_ore: 1,\n          sell_rate_ore: 1,\n        })\n        .select(\"id\");\n      expect(direct.data).toBeNull();\n      expect(direct.error?.code).toBe(\"42501\");\n    } finally {\n      await adminQuery(\n        `update public.tenant_memberships\n            set role = 'saljare'\n          where tenant_id = $1 and user_id = $2`,\n        [fixture.tenantA.id, fixture.orphanUser.id],\n      );\n    }\n  });\n});\n",
+          "lf_sha256": "030e0f18d86a2445200b4e9c28639226e23565d9cab7deb4dc3f29691219b8e6"
+        }
+      ]
+    },
+    {
+      "id": "EXT-3",
+      "source": {
+        "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+        "line": 60,
+        "command": "updateCompanySettings"
+      },
+      "before_verbatim_lf": "      const companyIdentity = await runCommand(updateCompanySettings, {\n        client: firstAdminClient as never,\n        input: {\n          company_name: \"Lifecycle Electric AB\",\n          org_nr: tenant.normalized_organization_number,\n          default_vat_display: \"company_excl\",\n          vat_rate_bp: 2500,\n        },\n        correlationId: crypto.randomUUID(),\n      });\n",
+      "after_semantic_shape": {
+        "operation_uuid": "companyIdentityOperationId: new UUID captured once",
+        "operation_kind": "company.save",
+        "target_identity": "companyBeforeIdentity.id: real existing row ID",
+        "expected_facts": "existing ID + companyBeforeIdentity.write_revision",
+        "canonical_candidate": {
+          "company_name": "\"Lifecycle Electric AB\"",
+          "org_nr": "tenant.normalized_organization_number",
+          "default_vat_display": "\"company_excl\"",
+          "vat_rate_bp": 2500
+        },
+        "client": "firstAdminClient as never",
+        "envelope_correlationId": "exactly the captured operation UUID above",
+        "fixture_preparation": "Before capture, use firstAdminClient.from(\"company_settings\").select(\"id,write_revision\").eq(\"tenant_id\",accepted.tenantId).single(); require no error, actual row and valid UUID revision, otherwise throw fixture setup error. Never use absence."
+      },
+      "contract_refs": [
+        "C1",
+        "C2",
+        "C3",
+        "C7",
+        "C8",
+        "C5",
+        "C6"
+      ],
+      "ac_refs": "P-AC1/P-U1; P-AC3/P-I3; P-AC4/P-I4; P-AC7/P-R3",
+      "current_validator": {
+        "path": "src/server/commands/settings/validation.ts",
+        "line": 137,
+        "literal": "export function validateUpdateCompanySettings("
+      },
+      "preserve_expectations": [
+        {
+          "start_line": 70,
+          "end_line": 70,
+          "text": "      expect(companyIdentity.ok).toBe(true);\n",
+          "lf_sha256": "bf5e60e217b5f1812bb3b834d5740c27983129d20240cac67e5985ef0211b757"
+        }
+      ]
+    },
+    {
+      "id": "EXT-4",
+      "source": {
+        "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+        "line": 72,
+        "command": "updateCompanySettings"
+      },
+      "before_verbatim_lf": "      const vat = await runCommand(updateCompanySettings, {\n        client: firstAdminClient as never,\n        input: {\n          company_name: \"Lifecycle Electric AB\",\n          org_nr: tenant.normalized_organization_number,\n          default_vat_display: \"company_togglable\",\n          vat_rate_bp: 2500,\n        },\n        correlationId: crypto.randomUUID(),\n      });\n",
+      "after_semantic_shape": {
+        "operation_uuid": "vatOperationId: fresh UUID distinct from companyIdentityOperationId",
+        "operation_kind": "company.save",
+        "target_identity": "companyBeforeVat.id: real row ID from new read",
+        "expected_facts": "existing ID + new companyBeforeVat.write_revision",
+        "canonical_candidate": {
+          "company_name": "\"Lifecycle Electric AB\"",
+          "org_nr": "tenant.normalized_organization_number",
+          "default_vat_display": "\"company_togglable\"",
+          "vat_rate_bp": 2500
+        },
+        "client": "firstAdminClient as never",
+        "envelope_correlationId": "exactly the captured operation UUID above",
+        "fixture_preparation": "After await companyIdentity and unchanged expect(companyIdentity.ok).toBe(true), reread id/write_revision with same authenticated own-tenant single query; require successful real row. Capture new revision; never reuse first baseline or invent a future result field."
+      },
+      "contract_refs": [
+        "C1",
+        "C2",
+        "C3",
+        "C7",
+        "C8",
+        "C5",
+        "C6"
+      ],
+      "ac_refs": "P-AC1/P-U1; P-AC3/P-I3; P-AC4/P-I4; P-AC7/P-R3",
+      "current_validator": {
+        "path": "src/server/commands/settings/validation.ts",
+        "line": 137,
+        "literal": "export function validateUpdateCompanySettings("
+      },
+      "preserve_expectations": [
+        {
+          "start_line": 82,
+          "end_line": 82,
+          "text": "      expect(vat.ok).toBe(true);\n",
+          "lf_sha256": "aa7d26065374760f59b01f4e654e77ddba18537f767318ba4bdb2bba6f208955"
+        }
+      ]
+    },
+    {
+      "id": "EXT-5",
+      "source": {
+        "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+        "line": 84,
+        "command": "updateQuoteTerms"
+      },
+      "before_verbatim_lf": "      const terms = await runCommand(updateQuoteTerms, {\n        client: firstAdminClient as never,\n        input: { terms_text: \"Betalningsvillkor 30 dagar.\" },\n        correlationId: crypto.randomUUID(),\n      });\n",
+      "after_semantic_shape": {
+        "operation_uuid": "termsOperationId: new UUID captured after successful null read",
+        "operation_kind": "terms.save",
+        "target_identity": "proposedTermsId: new UUID captured once",
+        "expected_facts": "explicit singleton absence only from error-free data===null",
+        "canonical_candidate": {
+          "terms_text": "\"Betalningsvillkor 30 dagar.\""
+        },
+        "client": "firstAdminClient as never",
+        "envelope_correlationId": "exactly the captured operation UUID above",
+        "fixture_preparation": "Before capture, firstAdminClient.from(\"quote_terms\").select(\"id,write_revision\").eq(\"tenant_id\",accepted.tenantId).maybeSingle(); on error or data!==null throw fixture setup error. No null/error conflation, silent update branch or approval fields."
+      },
+      "contract_refs": [
+        "C1",
+        "C2",
+        "C3",
+        "C7",
+        "C8",
+        "C4",
+        "C5"
+      ],
+      "ac_refs": "P-AC1/P-U1; P-AC3/P-I3; P-AC4/P-I4; P-AC5/P-I5 (save-only semantics retained); P-AC7/P-R3",
+      "current_validator": {
+        "path": "src/server/commands/settings/validation.ts",
+        "line": 201,
+        "literal": "export function validateUpdateQuoteTerms("
+      },
+      "preserve_expectations": [
+        {
+          "start_line": 89,
+          "end_line": 89,
+          "text": "      expect(terms.ok).toBe(true);\n",
+          "lf_sha256": "9fefa446e23d90f706397ca18bb02a6b794609e24b9c349c03001acc1f7d23ab"
+        }
+      ]
+    },
+    {
+      "id": "EXT-6",
+      "source": {
+        "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+        "line": 91,
+        "command": "upsertWorkRole"
+      },
+      "before_verbatim_lf": "      const role = await runCommand(upsertWorkRole as never, {\n        client: firstAdminClient as never,\n        input: { display_name: \"Elektriker\", cost_rate_ore: 45000, sell_rate_ore: 85000 },\n        correlationId: crypto.randomUUID(),\n      });\n",
+      "after_semantic_shape": {
+        "operation_uuid": "roleOperationId: new UUID captured once",
+        "operation_kind": "work_role.create",
+        "target_identity": "proposedRoleId: new UUID captured once",
+        "expected_facts": "explicit absence of proposedRoleId, not the whole catalogue",
+        "canonical_candidate": {
+          "display_name": "\"Elektriker\"",
+          "cost_rate_ore": 45000,
+          "sell_rate_ore": 85000
+        },
+        "client": "firstAdminClient as never",
+        "envelope_correlationId": "exactly the captured operation UUID above",
+        "fixture_preparation": "Keep deliberate create; no Elektriker matching/dedupe. Remove command-level as never when actual revised exported Command is wired; client cast unchanged."
+      },
+      "contract_refs": [
+        "C1",
+        "C2",
+        "C3",
+        "C7",
+        "C8"
+      ],
+      "ac_refs": "P-AC1/P-U1; P-AC2/P-I2; P-AC3/P-I3; P-AC7/P-R3",
+      "current_validator": {
+        "path": "src/server/commands/pricing/validation.ts",
+        "line": 111,
+        "literal": "export function validateUpsertWorkRole("
+      },
+      "preserve_expectations": [
+        {
+          "start_line": 96,
+          "end_line": 96,
+          "text": "      expect(role.ok).toBe(true);\n",
+          "lf_sha256": "873ed05a1ec49aa9b6aa0373621bb15003e6293e826192f4309258c5dce2ffb8"
+        },
+        {
+          "start_line": 98,
+          "end_line": 126,
+          "text": "      const invite = await firstAdminClient.rpc(\"admin_prepare_membership_invitation\", {\n        p_tenant_id: accepted.tenantId,\n        p_email: `invite-${crypto.randomUUID()}@example.test`,\n        p_roles: [\"montor\"],\n        p_operation_id: crypto.randomUUID(),\n        p_token_hash: crypto.randomUUID().replaceAll(\"-\", \"\").padEnd(64, \"0\"),\n        p_expiry: new Date(Date.now() + 60 * 60 * 1000).toISOString(),\n      });\n      expect(invite.error).toBeNull();\n      expect(invite.data).toMatchObject({ membershipId: expect.any(String), fresh: true });\n\n      // A fresh production read-model invocation represents the reloaded dashboard.\n      const reloaded = await readOnboardingChecklist();\n      expect(reloaded).toMatchObject({ visible: true, checklist: { workingState: true } });\n      if (reloaded.visible) {\n        expect(reloaded.checklist.items).toEqual(expect.arrayContaining([\n          expect.objectContaining({ id: \"company\", complete: true }),\n          expect.objectContaining({ id: \"vat\", complete: true }),\n          expect.objectContaining({ id: \"terms\", complete: true }),\n          expect.objectContaining({ id: \"pricing\", complete: true }),\n          expect.objectContaining({ id: \"users\", complete: true }),\n        ]));\n      }\n\n      expect(await protectedRows(accepted.base.tenantB.id)).toEqual(existingTenantBefore);\n    } finally {\n      await accepted.cleanup();\n    }\n  });\n",
+          "lf_sha256": "b285a2b1d74d2dfde9d02e4094d55e3735c2dc4d78523ac183979c09a779c20a"
+        }
+      ]
+    }
+  ],
+  "cast_analysis": {
+    "journey_command_cast": "Propose removing only upsertWorkRole as never at original journey91 when actual exported revised Command is wired; it can hide generic result/input relations but does not change runtime authority or existing expect outcomes. Do not replace it with another broad command/input cast.",
+    "client_casts": "Keep existing seller as never / firstAdminClient as never unchanged in this bounded proposal; structural client casts can conceal interface mismatch but runtime auth/validation/SQL remain enforced. No new casts or elevated clients.",
+    "raw_input_anchor": {
+      "path": "src/server/commands/envelope.ts",
+      "line": 205,
+      "literal": "readonly input: unknown;"
+    },
+    "type_check_limit": "Even removing command cast does not itself type-check protocol input because runCommand raw input is unknown. Once revised actual exported validated input types exist, type local captured objects/satisfies against those real types, never illustrative-field casts; actual validator/DB evidence remains required."
+  },
+  "preservation": "All existing expect assertions/test titles/business values/optional omission/money rates/current tenant-actor resolution/role setup-restoration/audit command-event-target-metadata-count/direct-DML denial/onboarding invite-read-model/tenant-B protectedRows expectations remain byte-for-byte. Only local UUID/input capture and authorized successful readback/fixture guards change. No helper/global factory/provisioning/permission edits.",
+  "independent_review": {
+    "status": "not-yet-performed",
+    "acceptable_positive_verdict": "PASS_FOR_ALLOCATION_DECISION only; no implementation PASS",
+    "source_review_distinction": "Imported exact-byte source review is approved-proposal design provenance and did not review this new extension."
+  },
+  "runtime_tests_executed": 0,
+  "resources_started": 0,
+  "product_test_writes": 0,
+  "build_state": "in-progress/incomplete; implementation not dispatched",
+  "release_ready": false
+}
