@@ -58,19 +58,19 @@ export default async function CustomerDetailPage({
 
   if (error) {
     return (
-      <section className="mx-auto max-w-3xl">
+      <section className="mx-auto min-w-0 max-w-4xl">
         <div
           role="alert"
           data-testid="customer-detail-failed"
-          className="rounded-lg border border-red-300 bg-red-50 p-6"
+          className="rounded-card border border-risk-text bg-risk-surface p-4 sm:p-6 [overflow-wrap:anywhere]"
         >
-          <p className="text-sm font-medium text-red-800">
+          <h1 className="text-heading font-medium text-risk-text">
             Kunden kunde inte läsas in.
-          </p>
-          <p className="mt-1 text-sm text-red-700">{error}</p>
+          </h1>
+          <p className="mt-3 text-body text-risk-text">{error}</p>
           <Link
             href="/customers"
-            className="mt-4 inline-flex rounded-md border border-red-300 bg-white px-3 py-1.5 text-sm font-medium text-red-800 hover:bg-red-100"
+            className="mt-4 inline-flex min-h-control-lg items-center rounded-control border border-risk-text bg-card px-3 py-2 text-label font-medium text-risk-text hover:bg-risk-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
           >
             Tillbaka till kunder
           </Link>
@@ -82,18 +82,18 @@ export default async function CustomerDetailPage({
   if (!customer) {
     // Invisible under RLS (or genuinely absent) → GENERIC not-found, no leakage.
     return (
-      <section className="mx-auto max-w-3xl">
+      <section className="mx-auto min-w-0 max-w-4xl">
         <div
           data-testid="customer-not-found"
-          className="rounded-lg border border-dashed border-zinc-300 bg-white p-8 text-center"
+          className="rounded-card border border-dashed border-border-default bg-card px-4 py-12 text-center sm:p-12"
         >
-          <p className="text-sm font-medium text-zinc-900">Kunden hittades inte</p>
-          <p className="mt-1 text-sm text-zinc-600">
+          <h1 className="text-heading font-medium text-text-primary">Kunden hittades inte</h1>
+          <p className="mx-auto mt-3 max-w-prose-max text-body text-text-secondary">
             Kunden finns inte eller så har du inte åtkomst till den.
           </p>
           <Link
             href="/customers"
-            className="mt-4 inline-flex rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 hover:bg-zinc-100"
+            className="mt-4 inline-flex min-h-control-lg items-center rounded-control border border-border-strong px-3 py-2 text-label font-medium text-text-primary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
           >
             Tillbaka till kunder
           </Link>
