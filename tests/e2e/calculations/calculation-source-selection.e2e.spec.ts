@@ -102,6 +102,7 @@ test.describe("Calculation row pricing-source selection (Story 5.3 E2E / AC6)", 
     const uniqueTitle = `Material ${crypto.randomUUID().slice(0, 8)}`;
     await page.getByTestId("add-section").click();
     const addForm = page.getByTestId("add-section-form");
+    await expect(addForm).toHaveAttribute("data-editor-ready", "true");
     await addForm.getByLabel(/Sektionstitel/).fill(uniqueTitle);
     await addForm.getByRole("button", { name: /Skapa sektion/ }).click();
     const section = page.getByTestId("section-editor").filter({ hasText: uniqueTitle });
@@ -133,6 +134,7 @@ test.describe("Calculation row pricing-source selection (Story 5.3 E2E / AC6)", 
     const firstRowForm = page.getByTestId("row-edit-form").first();
     const sourceSelect = firstRowForm.getByTestId("row-source-select");
     await waitForHydrated(sourceSelect);
+    await expect(firstRowForm).toHaveAttribute("data-editor-ready", "true");
     // The "manual / no source" option is always available and is the default; it submits
     // an empty value (no source_kind/source_id) — a manual row (isPresent('')===false).
     await sourceSelect.selectOption({ value: "" });

@@ -27,13 +27,8 @@
  */
 import { defineCommand } from "../envelope";
 import { CommandError } from "../command-errors";
-import {
-  asQuoteReviewAuthorizationRpcClient,
-  asQuoteRpcClient,
-  extractQuoteReviewAuthorizationId,
-  throwMappedQuoteWriteError,
-  loadCalcHeader,
-} from "./quote-db";
+import { loadCalcHeader } from "./quote-db";
+import { editorOperationRpc, type EditorOperationProof } from "../calculations/editor-operation-db";
 import {
   attachmentsToPayload,
   buildFreshQuoteSnapshot,
@@ -42,7 +37,6 @@ import {
   snapshotToPayload,
 } from "./snapshot-build";
 import {
-  asQuoteInitialCustomerVisibleAuthorizationRpcClient,
   buildQuoteInitialCustomerVisibleReviewDigest,
   loadQuoteInitialCustomerVisibleSource,
 } from "./quote-initial-source-db";
@@ -54,6 +48,8 @@ import {
 /** Result of `createQuoteVersionFromCalculation` — the new version id + quote id + number. */
 export interface CreateQuoteVersionResult {
   readonly targetId: string;
+  readonly operationId: string;
+  readonly targetAvailable: boolean;
   readonly quoteId: string;
   readonly quoteNumber: number;
 }
@@ -70,6 +66,14 @@ export const createQuoteVersionFromCalculation = defineCommand<
   execute: async (ctx): Promise<CreateQuoteVersionResult> => {
     const db = ctx.db;
     const tenantId = ctx.tenantContext.tenantId;
+    if (ctx.correlationId !== ctx.input.operation_id) throw new CommandError("VALIDATION_FAILED");
+    const request = {
+      p_tenant_id: tenantId, p_actor_user_id: ctx.tenantContext.userId,
+      p_operation_id: ctx.input.operation_id, p_input: ctx.input,
+    };
+    // Existing prepared/committed intent enters SQL before any new snapshot/capture.
+    const resumed = await editorOperationRpc(db, "create_calculation_editor_quote", request);
+    if (resumed.status !== "unconfirmed") return initialEditorQuoteResult(resumed);
     const capturedAt = ctx.clock.now().toISOString();
     const roles = ctx.tenantContext.roles ?? [ctx.tenantContext.role];
     const sellerOnly = roles.includes("saljare")
@@ -120,89 +124,26 @@ export const createQuoteVersionFromCalculation = defineCommand<
     const snapshotPayload = snapshotToPayload(snapshot);
     const linesPayload = linesToPayload(snapshot);
     const attachmentsPayload = attachmentsToPayload(snapshot);
-    const authorization = sellerOnly
-      ? await asQuoteInitialCustomerVisibleAuthorizationRpcClient(db).rpc("authorize_quote_initial_customer_visible_review", {
-          p_tenant_id: tenantId,
-          p_calculation_id: ctx.input.calculation_id,
-          p_captured_at: capturedAt,
-          p_customer_id: customerId,
-          p_facility_id: facilityId,
-          p_contact_id: contactId,
-          p_snapshot: snapshotPayload,
-          p_lines: linesPayload,
-          p_attachments: attachmentsPayload,
-          p_reviewed_quote_capture_date: ctx.input.reviewed_quote_capture_date,
-          p_reviewed_calculation_status: reviewedCalculationStatus,
-          p_actor_user_id: ctx.tenantContext.userId,
-          p_correlation_id: ctx.correlationId,
-        })
-      : await asQuoteReviewAuthorizationRpcClient(db).rpc("authorize_quote_initial_review", {
-      p_tenant_id: tenantId,
-      p_calculation_id: ctx.input.calculation_id,
-      p_captured_at: capturedAt,
-      p_customer_id: customerId,
-      p_facility_id: facilityId,
-      p_contact_id: contactId,
-      p_snapshot: snapshotPayload,
-      p_lines: linesPayload,
-      p_attachments: attachmentsPayload,
-      p_reviewed_quote_capture_date: ctx.input.reviewed_quote_capture_date,
-      p_reviewed_calculation_status: reviewedCalculationStatus,
-      p_reviewed_readiness_rows: reviewedReadinessRows,
-      p_actor_user_id: ctx.tenantContext.userId,
-      p_correlation_id: ctx.correlationId,
-        });
-    if (authorization.error) throwMappedQuoteWriteError(authorization.error);
-    const authorizationId = extractQuoteReviewAuthorizationId(authorization.data);
-    if (authorizationId === null) {
-      throw new Error("authorizeQuoteInitialReview: RPC returned no authorization id");
-    }
-
-    const rpc = asQuoteRpcClient(db);
-    const { data, error } = await rpc.rpc(
-      "create_quote_version_from_calculation",
-      {
-        p_tenant_id: tenantId, // resolved tenant, never client id
-        p_authorization_id: authorizationId,
+    await editorOperationRpc(db, "authorize_calculation_editor_quote", {
+      ...request,
+      p_review: {
+        p_calculation_id: ctx.input.calculation_id,
         p_captured_at: capturedAt,
-        p_actor_user_id: ctx.tenantContext.userId,
-        p_correlation_id: ctx.correlationId,
+        p_customer_id: customerId, p_facility_id: facilityId, p_contact_id: contactId,
+        p_snapshot: snapshotPayload, p_lines: linesPayload, p_attachments: attachmentsPayload,
+        p_reviewed_quote_capture_date: ctx.input.reviewed_quote_capture_date,
+        p_reviewed_calculation_status: reviewedCalculationStatus,
+        p_reviewed_readiness_rows: reviewedReadinessRows,
       },
-    );
-    if (error) throwMappedQuoteWriteError(error);
-
-    const parsed = extractRpcResult(data);
-    if (parsed === null) {
-      throw new Error("createQuoteVersionFromCalculation: RPC returned no result");
-    }
-    return {
-      targetId: parsed.quoteVersionId,
-      quoteId: parsed.quoteId,
-      quoteNumber: parsed.quoteNumber,
-    };
+    });
+    return initialEditorQuoteResult(await editorOperationRpc(db, "create_calculation_editor_quote", request));
   },
 });
 
-/** Extract the RPC result (row array or single object) into a typed shape. */
-function extractRpcResult(
-  data: unknown,
-): { quoteId: string; quoteVersionId: string; quoteNumber: number } | null {
-  const row = Array.isArray(data) ? data[0] : data;
-  if (!row || typeof row !== "object") return null;
-  const r = row as {
-    quote_id?: unknown;
-    quote_version_id?: unknown;
-    quote_number?: unknown;
-  };
-  if (typeof r.quote_id !== "string" || typeof r.quote_version_id !== "string") {
-    return null;
-  }
-  // Raw pg / PostgREST can return a bigint as a string — coerce defensively.
-  const num = Number(r.quote_number);
-  if (!Number.isFinite(num)) return null;
-  return {
-    quoteId: r.quote_id,
-    quoteVersionId: r.quote_version_id,
-    quoteNumber: num,
-  };
+/** Historical proof carries no new review authority. Unavailable targets expose no record IDs. */
+function initialEditorQuoteResult(proof: EditorOperationProof): CreateQuoteVersionResult {
+  if (proof.status === "closed") throw new CommandError("COMMAND_CONFLICT");
+  if (proof.status !== "committed") throw new Error("Initial quote operation remains unconfirmed");
+  return { targetId: proof.targetId ?? "", quoteId: proof.quoteId ?? "", quoteNumber: proof.quoteNumber ?? 0,
+    operationId: proof.operationId, targetAvailable: proof.targetAvailable !== false };
 }

@@ -1,0 +1,168 @@
+{
+  "kind": "GEN2_ACTUAL_REVOKED_RPC_CALLER_CLOSURE_SOURCE_INSPECTION",
+  "runtime": "DB_UNRUN; this is a source dependency, not an observed database failure",
+  "checkout": "C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker",
+  "start_head": "15d8210e79a044babb9255b5aebd73bec2c54ae6",
+  "approved_migration": "supabase/migrations/20261112120000_calculation_editor_mutation_safety.sql",
+  "actual_revoked_legacy_symbols": [
+    "create_calculation_with_audit",
+    "update_calculation_with_audit",
+    "archive_calculation_with_audit",
+    "reorder_calculation_rows",
+    "reorder_calculation_sections",
+    "authorize_quote_initial_review",
+    "authorize_quote_initial_customer_visible_review",
+    "create_quote_version_from_calculation"
+  ],
+  "grants": {
+    "old": "calculation header/reorder and initial quote entry points were callable by authenticated; quote authorizers/consumer explicitly authenticated-only under latest role-aware/ADR-B008 migrations; anon/PUBLIC/service_role do not gain authority",
+    "new": "approved migration REVOKE ALL from PUBLIC,anon,authenticated,service_role for every listed signature; only four checked editor wrappers grant authenticated EXECUTE; downstream legacy implementations remain owner-callable private functions",
+    "downstream": "authorize_calculation_editor_quote invokes role-appropriate existing initial authorizer; create_calculation_editor_quote invokes existing initial consumer after retained operation + authorization + source/counter locks and wall-clock expiry. Legacy direct callers cannot reach those bodies after revocation."
+  },
+  "scan_artifact": "_bmad-output/implementation-artifacts/evidence/35-8-producer-safety/gen2-revoked-symbol-scan.txt",
+  "every_test_match_classification": [
+    {
+      "path": "tests/integration/rls/calculation-editor-operation-contract.rls.test.ts",
+      "line": 19,
+      "class": "allocated intentional effective-revocation assertions KEEP",
+      "role": "introspection as test-owned postgres; probes PUBLIC/anon/authenticated/service_role"
+    },
+    {
+      "path": "tests/integration/commands/calculation-commands.int.test.ts",
+      "line": 487,
+      "class": "allocated direct denial assertion, now exact 42501; checked command revival remains conflict without effect",
+      "role": "authenticated Projektledare fixture.orphanUser/projectManager"
+    },
+    {
+      "path": "tests/integration/rls/quote-review-authorization-migration-reset.int.test.ts",
+      "lines": [
+        65,
+        68,
+        94,
+        108,
+        118,
+        124,
+        141
+      ],
+      "class": "allocated metadata/privilege and obsolete-overload assertions; initial signatures retained privately and no authenticated EXECUTE expected",
+      "role": "test-owned postgres introspection"
+    },
+    {
+      "path": "tests/integration/rls/quote-tables-migration-reset.int.test.ts",
+      "lines": [
+        430,
+        437,
+        443,
+        449
+      ],
+      "class": "allocated private-consumer metadata and denied-grant assertions",
+      "role": "test-owned postgres introspection"
+    },
+    {
+      "path": "tests/integration/commands/quote-version.int.test.ts",
+      "lines": [
+        521,
+        541
+      ],
+      "class": "allocated functional success then deliberate 22007 rollback; migrated to checked prepare/create retaining malformed snapshot + no orphan number/version assertions",
+      "role": "authenticated tenant_admin adminA/a"
+    },
+    {
+      "path": "tests/integration/commands/quote-initial-non-admin-audit.int.test.ts",
+      "lines": [
+        109,
+        141,
+        156,
+        168,
+        180
+      ],
+      "class": "allocated metadata/stale and null-correlation probes migrated to checked prepare; explicit old-parser Seller and Montor denial probes retained as 42501",
+      "role": "authenticated Seller/seller and Montor/montor"
+    },
+    {
+      "path": "tests/integration/commands/tax-answer-reconciliation.int.test.ts",
+      "lines": [
+        315,
+        332
+      ],
+      "class": "outside57 mandatory functional helper; disposition required",
+      "role": "authenticated tenant_admin adminA/client, plus explicit tenant_admin adminB/tenantBClient denial"
+    },
+    {
+      "path": "tests/integration/commands/tax-answer-reconciliation.int.test.ts",
+      "lines": [
+        496,
+        1822
+      ],
+      "class": "nonexecuting historical source-text assertion and obsolete-signature introspection KEEP",
+      "role": "source reader / test-owned postgres introspection"
+    }
+  ],
+  "source_exact_symbol_matches": [
+    {
+      "path": "src/server/commands/calculations/calc-db.ts",
+      "lines": [
+        7,
+        57,
+        67,
+        95,
+        107,
+        117
+      ],
+      "class": "comments and legacy client interface overload names; no executable call in current production commands"
+    },
+    {
+      "path": "src/server/commands/files/validation.ts",
+      "lines": [
+        51
+      ],
+      "class": "historical comment"
+    },
+    {
+      "path": "src/server/commands/quotes/quote-db.ts",
+      "lines": [
+        11,
+        710,
+        713,
+        975
+      ],
+      "class": "historical comments and client interface names; current initial command uses editorOperationRpc"
+    },
+    {
+      "path": "src/server/commands/quotes/quote-initial-source-db.ts",
+      "lines": [
+        33
+      ],
+      "class": "legacy authorizer interface name only; customer-visible source read remains live and unchanged"
+    }
+  ],
+  "production_callers": "Approved matrix thirteen action callers/twelve kinds remain the six allocated UI hosts. Exact-symbol scan found no extra executable production caller of revoked names; type/comment references earn no write scope.",
+  "omitted_set": [
+    {
+      "path": "tests/integration/commands/tax-answer-reconciliation.int.test.ts",
+      "baseD_blob": "e72c8f676d1e7c8adf35f997eb505ba680cf26c9",
+      "current_blob": "e72c8f676d1e7c8adf35f997eb505ba680cf26c9",
+      "raw_sha256": "4632a8055df2b68263c107333f863faa657f1c2ced65948a53964b51b102c784",
+      "helper": "authorizeAndCreateInitial:308",
+      "direct_calls": [
+        315,
+        332
+      ],
+      "indirect_call_lines": [
+        406,
+        1702,
+        1718,
+        1761,
+        1832,
+        2598,
+        3036
+      ],
+      "caller_binding": "client=makeAuthedServerClient(fixture.adminA):431; deniedInitial uses tenantBClient=makeAuthedServerClient(fixture.adminB):2951 with explicit actorUserId adminB:3047",
+      "old_behavior": "valid initial V2 fixture creation (406), invalid V1/missing line tax/false math rejection, parameterized numeric contract rejection, Stockholm date-boundary creation, and foreign-tenant denial retain payload/assertion intent. Direct old EXECUTE refusal short-circuits these bodies.",
+      "minimum_preserving_adaptation": "Change only feature-local initial helper adapter: retain supplied source/payload/capture/actor/correlation and existing business assertions; bind mandatory operation_id/original reviewed digest/date/selected attachment IDs via allocated feature helper, call checked authorize_calculation_editor_quote(p_input,p_review) then checked create_calculation_editor_quote. Preserve private legacy grant denials and historical migration assertions. Any consumer result-shape adapter needed is confined to this initial helper; do not alter successor/send/acceptance paths, tests/support, config, arithmetic or expected business values.",
+      "ownership": "UNESTABLISHED; no permission to edit inferred",
+      "verification": "DB_UNRUN; full required two-project integration/RLS remains mandatory"
+    }
+  ],
+  "conclusion": "One known outside57 caller file. No grant restoration, skipped case, cast or expectation removal is proposed. No outside57 source edit performed."
+}

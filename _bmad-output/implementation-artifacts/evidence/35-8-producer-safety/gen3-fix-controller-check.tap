@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: actual create controller binds title-first mutable selection at submit
+ok 1 - actual create controller binds title-first mutable selection at submit
+  ---
+  duration_ms: 13.5816
+  type: 'test'
+  ...
+# Subtest: actual controller preserves live unsent controls on offline
+ok 2 - actual controller preserves live unsent controls on offline
+  ---
+  duration_ms: 1.4788
+  type: 'test'
+  ...
+# Subtest: actual controller preserves live unsent controls on scope
+ok 3 - actual controller preserves live unsent controls on scope
+  ---
+  duration_ms: 0.4624
+  type: 'test'
+  ...
+# Subtest: actual controller preserves live unsent controls on storage-read
+ok 4 - actual controller preserves live unsent controls on storage-read
+  ---
+  duration_ms: 0.4912
+  type: 'test'
+  ...
+# Subtest: actual controller preserves live unsent controls on storage-write
+ok 5 - actual controller preserves live unsent controls on storage-write
+  ---
+  duration_ms: 0.6643
+  type: 'test'
+  ...
+# Subtest: actual remounted controller requires whole matching reentry then explicit same-UUID retry
+ok 6 - actual remounted controller requires whole matching reentry then explicit same-UUID retry
+  ---
+  duration_ms: 3.1017
+  type: 'test'
+  ...
+# Subtest: actual remount cannot substitute changed expected facts into original reentry
+ok 7 - actual remount cannot substitute changed expected facts into original reentry
+  ---
+  duration_ms: 1.1962
+  type: 'test'
+  ...
+# Subtest: actual reconcile lifecycle cannot restore B1 over subsequent admitted B2
+ok 8 - actual reconcile lifecycle cannot restore B1 over subsequent admitted B2
+  ---
+  duration_ms: 1.1463
+  type: 'test'
+  ...
+# Subtest: actual tax panel keeps controller and field key through pending A/canonical refresh with B
+ok 9 - actual tax panel keeps controller and field key through pending A/canonical refresh with B
+  ---
+  duration_ms: 0.9809
+  type: 'test'
+  ...
+# Subtest: actual quote fault before-create ignores absent probe and targets prepared/committed stage
+ok 10 - actual quote fault before-create ignores absent probe and targets prepared/committed stage
+  ---
+  duration_ms: 0.6214
+  type: 'test'
+  ...
+# Subtest: actual quote fault after-create ignores absent probe and targets prepared/committed stage
+ok 11 - actual quote fault after-create ignores absent probe and targets prepared/committed stage
+  ---
+  duration_ms: 0.2354
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 322.019

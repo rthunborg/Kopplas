@@ -11,7 +11,7 @@ import ts from "typescript";
 
 const root = fileURLToPath(new URL("../../../../", import.meta.url));
 const ddlFile = "tests/integration/jobs/job-runs.int.test.ts";
-const ddlFiles = ["tests/integration/calendar-feed/public-feed.int.test.ts", "tests/integration/commands/calendar-feed.int.test.ts", "tests/integration/commands/conflict-resolver.int.test.ts", "tests/integration/commands/time-reports.int.test.ts", ddlFile, "tests/integration/notifications/time-report-nudge-producer.int.test.ts"];
+const ddlFiles = ["tests/integration/calendar-feed/public-feed.int.test.ts", "tests/integration/commands/calendar-feed.int.test.ts", "tests/integration/commands/conflict-resolver.int.test.ts", "tests/integration/commands/time-reports.int.test.ts", ddlFile, "tests/integration/notifications/time-report-nudge-producer.int.test.ts", "tests/integration/commands/settings-pricing-operation-contract.int.test.ts"];
 const configPath = join(root, "vitest.config.ts");
 const slash = (value: string) => value.replaceAll("\\", "/");
 
@@ -72,7 +72,7 @@ test("coverage and ordering checks reject duplicate, missing, overlapping, or re
   // Exact serial membership tolerates discovery permutations, never lost/extra files.
   const serialExpected = [...ddlFiles].sort();
   assertExactPartition([...ddlFiles].reverse(), serialExpected);
-  assertExactPartition([ddlFiles[0], ddlFiles[4], ...ddlFiles.slice(1, 4), ddlFiles[5]], serialExpected);
+  assertExactPartition([ddlFiles[0], ddlFiles[4], ...ddlFiles.slice(1, 4), ddlFiles[5], ddlFiles[6]], serialExpected);
   assert.throws(() => assertExactPartition(ddlFiles.slice(1), serialExpected), /exactly once/);
   assert.throws(() => assertExactPartition([...ddlFiles, ddlFiles[0]], serialExpected), /both projects/);
   assertOrdered(0, 1);

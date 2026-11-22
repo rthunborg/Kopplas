@@ -1,0 +1,218 @@
+TAP version 13
+# (node:47028) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/tests/unit/features/calculations/editor-operation.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: P-1 createCalculationAction: reject a legacy write with no retained operation or original expected facts
+ok 1 - P-1 createCalculationAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.6533
+  type: 'test'
+  ...
+# Subtest: P-1 updateCalculationAction: reject a legacy write with no retained operation or original expected facts
+ok 2 - P-1 updateCalculationAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0682
+  type: 'test'
+  ...
+# Subtest: P-1 updateTaxInputAction: reject a legacy write with no retained operation or original expected facts
+ok 3 - P-1 updateTaxInputAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0421
+  type: 'test'
+  ...
+# Subtest: P-1 archiveCalculationAction: reject a legacy write with no retained operation or original expected facts
+ok 4 - P-1 archiveCalculationAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0432
+  type: 'test'
+  ...
+# Subtest: P-1 createSectionAction: reject a legacy write with no retained operation or original expected facts
+ok 5 - P-1 createSectionAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0819
+  type: 'test'
+  ...
+# Subtest: P-1 updateSectionAction: reject a legacy write with no retained operation or original expected facts
+ok 6 - P-1 updateSectionAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0413
+  type: 'test'
+  ...
+# Subtest: P-1 archiveSectionAction: reject a legacy write with no retained operation or original expected facts
+ok 7 - P-1 archiveSectionAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0737
+  type: 'test'
+  ...
+# Subtest: P-1 createRowAction: reject a legacy write with no retained operation or original expected facts
+ok 8 - P-1 createRowAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0479
+  type: 'test'
+  ...
+# Subtest: P-1 updateRowAction: reject a legacy write with no retained operation or original expected facts
+ok 9 - P-1 updateRowAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.1335
+  type: 'test'
+  ...
+# Subtest: P-1 archiveRowAction: reject a legacy write with no retained operation or original expected facts
+ok 10 - P-1 archiveRowAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.198
+  type: 'test'
+  ...
+# Subtest: P-1 reorderSectionsAction: reject a legacy write with no retained operation or original expected facts
+ok 11 - P-1 reorderSectionsAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0518
+  type: 'test'
+  ...
+# Subtest: P-1 reorderRowsAction: reject a legacy write with no retained operation or original expected facts
+ok 12 - P-1 reorderRowsAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0378
+  type: 'test'
+  ...
+# Subtest: P-1 createReviewedQuoteVersionFromCalculationAction: reject a legacy write with no retained operation or original expected facts
+ok 13 - P-1 createReviewedQuoteVersionFromCalculationAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0391
+  type: 'test'
+  ...
+# Subtest: P-1 invalid row money remains rejected (existing rule, no replacement arithmetic)
+ok 14 - P-1 invalid row money remains rejected (existing rule, no replacement arithmetic)
+  ---
+  duration_ms: 0.0342
+  type: 'test'
+  ...
+# Subtest: P-4 reviewed digest/date remain mandatory for initial quote creation
+ok 15 - P-4 reviewed digest/date remain mandatory for initial quote creation
+  ---
+  duration_ms: 0.0309
+  type: 'test'
+  ...
+# Subtest: P-6 unknown/absent/prepared preserves original immutable request and scoped handle across remount; no automatic replay
+ok 16 - P-6 unknown/absent/prepared preserves original immutable request and scoped handle across remount; no automatic replay
+  ---
+  duration_ms: 0.6919
+  type: 'test'
+  ...
+# Subtest: E35-8-T-late-result / E35-8-T-confirmed: operation A proof cannot mark later draft B or a neighboring form saved
+ok 17 - E35-8-T-late-result / E35-8-T-confirmed: operation A proof cannot mark later draft B or a neighboring form saved
+  ---
+  duration_ms: 0.0923
+  type: 'test'
+  ...
+# Subtest: P-1/P-2 version-1 per-kind normalization rejects extra/missing expected keys and preserves original complete projection
+ok 18 - P-1/P-2 version-1 per-kind normalization rejects extra/missing expected keys and preserves original complete projection
+  ---
+  duration_ms: 0.2571
+  type: 'test'
+  ...
+# Subtest: P-2 canonical expected facts retain database Date instants instead of empty objects
+ok 19 - P-2 canonical expected facts retain database Date instants instead of empty objects
+  ---
+  duration_ms: 0.5621
+  type: 'test'
+  ...
+# Subtest: P-1 createCalculationAction: complete original expected shape is mandatory and closed
+ok 20 - P-1 createCalculationAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.4466
+  type: 'test'
+  ...
+# Subtest: P-1 updateCalculationAction: complete original expected shape is mandatory and closed
+ok 21 - P-1 updateCalculationAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.1164
+  type: 'test'
+  ...
+# Subtest: P-1 updateTaxInputAction: complete original expected shape is mandatory and closed
+ok 22 - P-1 updateTaxInputAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.3789
+  type: 'test'
+  ...
+# Subtest: P-1 archiveCalculationAction: complete original expected shape is mandatory and closed
+ok 23 - P-1 archiveCalculationAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.0999
+  type: 'test'
+  ...
+# Subtest: P-1 createSectionAction: complete original expected shape is mandatory and closed
+ok 24 - P-1 createSectionAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.0821
+  type: 'test'
+  ...
+# Subtest: P-1 updateSectionAction: complete original expected shape is mandatory and closed
+ok 25 - P-1 updateSectionAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.0698
+  type: 'test'
+  ...
+# Subtest: P-1 archiveSectionAction: complete original expected shape is mandatory and closed
+ok 26 - P-1 archiveSectionAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.075
+  type: 'test'
+  ...
+# Subtest: P-1 createRowAction: complete original expected shape is mandatory and closed
+ok 27 - P-1 createRowAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.2833
+  type: 'test'
+  ...
+# Subtest: P-1 updateRowAction: complete original expected shape is mandatory and closed
+ok 28 - P-1 updateRowAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.2098
+  type: 'test'
+  ...
+# Subtest: P-1 archiveRowAction: complete original expected shape is mandatory and closed
+ok 29 - P-1 archiveRowAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.0777
+  type: 'test'
+  ...
+# Subtest: P-1 reorderSectionsAction: complete original expected shape is mandatory and closed
+ok 30 - P-1 reorderSectionsAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.1237
+  type: 'test'
+  ...
+# Subtest: P-1 reorderRowsAction: complete original expected shape is mandatory and closed
+ok 31 - P-1 reorderRowsAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.0602
+  type: 'test'
+  ...
+# Subtest: P-1 createReviewedQuoteVersionFromCalculationAction: complete original expected shape is mandatory and closed
+ok 32 - P-1 createReviewedQuoteVersionFromCalculationAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.2037
+  type: 'test'
+  ...
+# Subtest: P-2 section expectations preserve 501-section reorder and uncapped complete archive subtrees
+ok 33 - P-2 section expectations preserve 501-section reorder and uncapped complete archive subtrees
+  ---
+  duration_ms: 5.3161
+  type: 'test'
+  ...
+# Subtest: P-6 matching reentry fingerprints business values and original facts, never React transport ordering
+ok 34 - P-6 matching reentry fingerprints business values and original facts, never React transport ordering
+  ---
+  duration_ms: 26.9716
+  type: 'test'
+  ...
+1..34
+# tests 34
+# suites 0
+# pass 34
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 225.0939

@@ -19,7 +19,7 @@
 import type { CommandErrorCode } from "@/server/commands/command-errors";
 
 /** The status discriminant of a calc-editor action result. */
-export type CalcActionStatus = "idle" | "success" | "error";
+export type CalcActionStatus = "idle" | "success" | "error" | "unknown";
 
 /**
  * Which editor sub-form produced the result — so the many forms on the one editor page can
@@ -40,6 +40,7 @@ export type CalcFormKind =
 /** The state `useActionState` carries for a calc-editor form. */
 export interface CalcActionState {
   readonly status: CalcActionStatus;
+  readonly operationId?: string | null;
   /** Which form produced this state (null when idle). */
   readonly form: CalcFormKind | null;
   /** The stable error code (when status === "error"); null otherwise. */

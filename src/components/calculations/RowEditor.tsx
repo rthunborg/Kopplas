@@ -29,7 +29,8 @@
  * editable and the form submits via its own action.
  */
 import { useMemo, useState } from "react";
-import { useActionState } from "react";
+import { useEditorOperation } from "./CalculationList";
+import { projectEditorFacts, ROW_FACTS } from "@/features/calculations/editor-operation";
 import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormField";
 import {
   createRowAction,
@@ -138,6 +139,7 @@ function FlagField({
 }
 
 export function RowEditor({
+  headerFacts, sectionFacts,
   sectionId,
   calculationId,
   row,
@@ -146,6 +148,8 @@ export function RowEditor({
   policyEffectiveDate,
   onArchive,
 }: {
+  readonly headerFacts: Record<string, unknown>;
+  readonly sectionFacts: Record<string, unknown>;
   readonly sectionId: string;
   readonly calculationId: string;
   /** When provided the form is an UPDATE (id present); absent → a CREATE. */
@@ -160,10 +164,8 @@ export function RowEditor({
   readonly onArchive?: (row: CalculationRowRow) => void;
 }) {
   const isUpdate = Boolean(row);
-  const [state, formAction, pending] = useActionState(
-    isUpdate ? updateRowAction : createRowAction,
-    CALC_ACTION_INITIAL,
-  );
+  const rowOperation = useEditorOperation(isUpdate ? updateRowAction : createRowAction, CALC_ACTION_INITIAL, `${calculationId}/section/${sectionId}/row/${row?.id ?? "new"}`, () => ({ version: 1, form: "row", header: headerFacts, section: sectionFacts, ...(row ? { row: projectEditorFacts(row, ROW_FACTS) } : {}) }));
+  const [state, formAction, pending] = [rowOperation.state, rowOperation.action, rowOperation.pending];
 
   // Only THIS form's own row result (the target id matches an existing row, or a create).
   const mine =
@@ -330,12 +332,12 @@ export function RowEditor({
     lineTotal && lineTotal.ok ? resolveTotalDisplay(lineTotal.value, posture) : null;
 
   return (
-    <form
+    <form {...rowOperation.formProps}
       action={formAction}
       data-testid={isUpdate ? "row-edit-form" : "row-create-form"}
       className="flex flex-col gap-3 rounded-md border border-zinc-200 p-3"
       noValidate
-    >
+    >{rowOperation.recovery}
       {/* Hidden routing fields so the action can target the section + revalidate the calc. */}
       {isUpdate && <input type="hidden" name="id" value={row!.id} />}
       {!isUpdate && <input type="hidden" name="section_id" value={sectionId} />}

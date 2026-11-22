@@ -22,7 +22,8 @@
  *  readiness review (pre-quote checkpoint) + #Readiness and safety; src/features/calculations/
  *  totals.ts]
  */
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useEditorOperation } from "./CalculationList";
 import { useRouter } from "next/navigation";
 import { oreToKronorString } from "@/features/calculations/money-input";
 import type { ReadinessReport } from "@/features/calculations/readiness";
@@ -91,10 +92,8 @@ export function PreQuotePreview({
   const [reviewedProof, setReviewedProof] = useState<ReviewedQuoteProof | null>(null);
   const refreshedExpiredCaptureDate = useRef<string | null>(null);
   const router = useRouter();
-  const [createState, createAction, createPending] = useActionState(
-    createReviewedQuoteVersionFromCalculationAction,
-    CREATE_QUOTE_ACTION_INITIAL,
-  );
+  const quoteOperation = useEditorOperation(createReviewedQuoteVersionFromCalculationAction, CREATE_QUOTE_ACTION_INITIAL, `${detail.header.id}/reviewed-initial-quote`, form => ({ version: 1, form: "reviewed-initial-quote", reviewed_snapshot_digest: form.get("reviewed_snapshot_digest"), reviewed_quote_capture_date: form.get("reviewed_quote_capture_date"), attachment_file_ids: form.getAll("attachment_file_ids") }));
+  const [createState, createAction, createPending] = [quoteOperation.state, quoteOperation.action, quoteOperation.pending];
   useEffect(() => {
     if (
       createState.status === "success" &&
@@ -463,7 +462,7 @@ export function PreQuotePreview({
             )}
           </div>
 
-          <form action={createAction} className="flex flex-col gap-2">
+          <form {...quoteOperation.formProps} action={createAction} className="flex flex-col gap-2">{quoteOperation.recovery}
             <input type="hidden" name="calculation_id" value={detail.header.id} />
             <input
               type="hidden"

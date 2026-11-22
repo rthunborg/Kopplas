@@ -1,0 +1,1190 @@
+TAP version 13
+# (node:55412) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/tests/unit/features/calculations/action-state.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: the initial state is pristine (idle, no errors, no values)
+ok 1 - the initial state is pristine (idle, no errors, no values)
+  ---
+  duration_ms: 1.5644
+  type: 'test'
+  ...
+# Subtest: a transient SERVER_ERROR is RETRYABLE
+ok 2 - a transient SERVER_ERROR is RETRYABLE
+  ---
+  duration_ms: 0.1845
+  type: 'test'
+  ...
+# Subtest: a TENANT_ACCESS_DENIED / VALIDATION_FAILED is NOT retryable
+ok 3 - a TENANT_ACCESS_DENIED / VALIDATION_FAILED is NOT retryable
+  ---
+  duration_ms: 0.2147
+  type: 'test'
+  ...
+# Subtest: an idle state is not retryable
+ok 4 - an idle state is not retryable
+  ---
+  duration_ms: 0.1228
+  type: 'test'
+  ...
+# (node:26832) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/tests/unit/features/calculations/editor-operation.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: P-1 createCalculationAction: reject a legacy write with no retained operation or original expected facts
+ok 5 - P-1 createCalculationAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.7553
+  type: 'test'
+  ...
+# Subtest: P-1 updateCalculationAction: reject a legacy write with no retained operation or original expected facts
+ok 6 - P-1 updateCalculationAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0751
+  type: 'test'
+  ...
+# Subtest: P-1 updateTaxInputAction: reject a legacy write with no retained operation or original expected facts
+ok 7 - P-1 updateTaxInputAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0425
+  type: 'test'
+  ...
+# Subtest: P-1 archiveCalculationAction: reject a legacy write with no retained operation or original expected facts
+ok 8 - P-1 archiveCalculationAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0505
+  type: 'test'
+  ...
+# Subtest: P-1 createSectionAction: reject a legacy write with no retained operation or original expected facts
+ok 9 - P-1 createSectionAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0913
+  type: 'test'
+  ...
+# Subtest: P-1 updateSectionAction: reject a legacy write with no retained operation or original expected facts
+ok 10 - P-1 updateSectionAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0449
+  type: 'test'
+  ...
+# Subtest: P-1 archiveSectionAction: reject a legacy write with no retained operation or original expected facts
+ok 11 - P-1 archiveSectionAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0771
+  type: 'test'
+  ...
+# Subtest: P-1 createRowAction: reject a legacy write with no retained operation or original expected facts
+ok 12 - P-1 createRowAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0469
+  type: 'test'
+  ...
+# Subtest: P-1 updateRowAction: reject a legacy write with no retained operation or original expected facts
+ok 13 - P-1 updateRowAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.1765
+  type: 'test'
+  ...
+# Subtest: P-1 archiveRowAction: reject a legacy write with no retained operation or original expected facts
+ok 14 - P-1 archiveRowAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.219
+  type: 'test'
+  ...
+# Subtest: P-1 reorderSectionsAction: reject a legacy write with no retained operation or original expected facts
+ok 15 - P-1 reorderSectionsAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0772
+  type: 'test'
+  ...
+# Subtest: P-1 reorderRowsAction: reject a legacy write with no retained operation or original expected facts
+ok 16 - P-1 reorderRowsAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0462
+  type: 'test'
+  ...
+# Subtest: P-1 createReviewedQuoteVersionFromCalculationAction: reject a legacy write with no retained operation or original expected facts
+ok 17 - P-1 createReviewedQuoteVersionFromCalculationAction: reject a legacy write with no retained operation or original expected facts
+  ---
+  duration_ms: 0.0422
+  type: 'test'
+  ...
+# Subtest: P-1 invalid row money remains rejected (existing rule, no replacement arithmetic)
+ok 18 - P-1 invalid row money remains rejected (existing rule, no replacement arithmetic)
+  ---
+  duration_ms: 0.0368
+  type: 'test'
+  ...
+# Subtest: P-4 reviewed digest/date remain mandatory for initial quote creation
+ok 19 - P-4 reviewed digest/date remain mandatory for initial quote creation
+  ---
+  duration_ms: 0.0364
+  type: 'test'
+  ...
+# Subtest: P-6 unknown/absent/prepared preserves original immutable request and scoped handle across remount; no automatic replay
+ok 20 - P-6 unknown/absent/prepared preserves original immutable request and scoped handle across remount; no automatic replay
+  ---
+  duration_ms: 0.7686
+  type: 'test'
+  ...
+# Subtest: E35-8-T-late-result / E35-8-T-confirmed: operation A proof cannot mark later draft B or a neighboring form saved
+ok 21 - E35-8-T-late-result / E35-8-T-confirmed: operation A proof cannot mark later draft B or a neighboring form saved
+  ---
+  duration_ms: 0.1431
+  type: 'test'
+  ...
+# Subtest: P-1/P-2 version-1 per-kind normalization rejects extra/missing expected keys and preserves original complete projection
+ok 22 - P-1/P-2 version-1 per-kind normalization rejects extra/missing expected keys and preserves original complete projection
+  ---
+  duration_ms: 0.3334
+  type: 'test'
+  ...
+# Subtest: P-2 canonical expected facts retain database Date instants instead of empty objects
+ok 23 - P-2 canonical expected facts retain database Date instants instead of empty objects
+  ---
+  duration_ms: 0.724
+  type: 'test'
+  ...
+# Subtest: P-1 createCalculationAction: complete original expected shape is mandatory and closed
+ok 24 - P-1 createCalculationAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.8116
+  type: 'test'
+  ...
+# Subtest: P-1 updateCalculationAction: complete original expected shape is mandatory and closed
+ok 25 - P-1 updateCalculationAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.4739
+  type: 'test'
+  ...
+# Subtest: P-1 updateTaxInputAction: complete original expected shape is mandatory and closed
+ok 26 - P-1 updateTaxInputAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.6597
+  type: 'test'
+  ...
+# Subtest: P-1 archiveCalculationAction: complete original expected shape is mandatory and closed
+ok 27 - P-1 archiveCalculationAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.2353
+  type: 'test'
+  ...
+# Subtest: P-1 createSectionAction: complete original expected shape is mandatory and closed
+ok 28 - P-1 createSectionAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.1658
+  type: 'test'
+  ...
+# Subtest: P-1 updateSectionAction: complete original expected shape is mandatory and closed
+ok 29 - P-1 updateSectionAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.1406
+  type: 'test'
+  ...
+# Subtest: P-1 archiveSectionAction: complete original expected shape is mandatory and closed
+ok 30 - P-1 archiveSectionAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.151
+  type: 'test'
+  ...
+# Subtest: P-1 createRowAction: complete original expected shape is mandatory and closed
+ok 31 - P-1 createRowAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.5944
+  type: 'test'
+  ...
+# Subtest: P-1 updateRowAction: complete original expected shape is mandatory and closed
+ok 32 - P-1 updateRowAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.2982
+  type: 'test'
+  ...
+# Subtest: P-1 archiveRowAction: complete original expected shape is mandatory and closed
+ok 33 - P-1 archiveRowAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.0936
+  type: 'test'
+  ...
+# Subtest: P-1 reorderSectionsAction: complete original expected shape is mandatory and closed
+ok 34 - P-1 reorderSectionsAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.1518
+  type: 'test'
+  ...
+# Subtest: P-1 reorderRowsAction: complete original expected shape is mandatory and closed
+ok 35 - P-1 reorderRowsAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.0684
+  type: 'test'
+  ...
+# Subtest: P-1 createReviewedQuoteVersionFromCalculationAction: complete original expected shape is mandatory and closed
+ok 36 - P-1 createReviewedQuoteVersionFromCalculationAction: complete original expected shape is mandatory and closed
+  ---
+  duration_ms: 0.256
+  type: 'test'
+  ...
+# Subtest: P-2 section expectations preserve 501-section reorder and uncapped complete archive subtrees
+ok 37 - P-2 section expectations preserve 501-section reorder and uncapped complete archive subtrees
+  ---
+  duration_ms: 8.9803
+  type: 'test'
+  ...
+# Subtest: P-6 matching reentry fingerprints business values and original facts, never React transport ordering
+ok 38 - P-6 matching reentry fingerprints business values and original facts, never React transport ordering
+  ---
+  duration_ms: 33.7984
+  type: 'test'
+  ...
+# (node:58276) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/tests/unit/features/calculations/form-parsing.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: createCalculation: a valid form parses customer_id + title
+ok 39 - createCalculation: a valid form parses customer_id + title
+  ---
+  duration_ms: 15.5491
+  type: 'test'
+  ...
+# Subtest: createCalculation: a missing title is a field error; input preserved for echo
+ok 40 - createCalculation: a missing title is a field error; input preserved for echo
+  ---
+  duration_ms: 0.1979
+  type: 'test'
+  ...
+# Subtest: updateCalculation: an EMPTY-STRING title is DROPPED (id-only no-op update)
+ok 41 - updateCalculation: an EMPTY-STRING title is DROPPED (id-only no-op update)
+  ---
+  duration_ms: 0.124
+  type: 'test'
+  ...
+# Subtest: updateCalculation: a WHITESPACE-ONLY title is PRESERVED (server rejects present-but-blank)
+ok 42 - updateCalculation: a WHITESPACE-ONLY title is PRESERVED (server rejects present-but-blank)
+  ---
+  duration_ms: 0.1131
+  type: 'test'
+  ...
+# Subtest: updateCalculation: a status is forwarded when present
+ok 43 - updateCalculation: a status is forwarded when present
+  ---
+  duration_ms: 0.1151
+  type: 'test'
+  ...
+# Subtest: createSection: parses calculation_id; an EMPTY title is dropped to undefined
+ok 44 - createSection: parses calculation_id; an EMPTY title is dropped to undefined
+  ---
+  duration_ms: 0.1005
+  type: 'test'
+  ...
+# Subtest: updateSection: an omitted title is NOT included (only changed fields)
+ok 45 - updateSection: an omitted title is NOT included (only changed fields)
+  ---
+  duration_ms: 0.1209
+  type: 'test'
+  ...
+# Subtest: updateSection: a display_mode is forwarded
+ok 46 - updateSection: a display_mode is forwarded
+  ---
+  duration_ms: 0.062
+  type: 'test'
+  ...
+# Subtest: createRow: kronor→öre and percent→bp conversions happen at the boundary
+ok 47 - createRow: kronor→öre and percent→bp conversions happen at the boundary
+  ---
+  duration_ms: 0.7696
+  type: 'test'
+  ...
+# Subtest: createRow: a Swedish-comma quantity (1,5) parses to 1.5
+ok 48 - createRow: a Swedish-comma quantity (1,5) parses to 1.5
+  ---
+  duration_ms: 0.301
+  type: 'test'
+  ...
+# Subtest: createRow: a NEGATIVE / malformed price is a FIELD error, not a coerced float
+ok 49 - createRow: a NEGATIVE / malformed price is a FIELD error, not a coerced float
+  ---
+  duration_ms: 0.1135
+  type: 'test'
+  ...
+# Subtest: createRow: a missing VAT is a field error (VAT is required on create)
+ok 50 - createRow: a missing VAT is a field error (VAT is required on create)
+  ---
+  duration_ms: 0.0724
+  type: 'test'
+  ...
+# Subtest: createRow: an out-of-set row_type is a field error
+ok 51 - createRow: an out-of-set row_type is a field error
+  ---
+  duration_ms: 0.0705
+  type: 'test'
+  ...
+# Subtest: createRow: a zero/negative quantity is a field error
+ok 52 - createRow: a zero/negative quantity is a field error
+  ---
+  duration_ms: 0.0622
+  type: 'test'
+  ...
+# Subtest: 5.2-UNIT-03: a CHECKED flag (companion + checkbox) parses to TRUE
+ok 53 - 5.2-UNIT-03: a CHECKED flag (companion + checkbox) parses to TRUE
+  ---
+  duration_ms: 0.1976
+  type: 'test'
+  ...
+# Subtest: 5.2-UNIT-03: an UNCHECKED flag (companion only) parses to an EXPLICIT FALSE (turn-OFF)
+ok 54 - 5.2-UNIT-03: an UNCHECKED flag (companion only) parses to an EXPLICIT FALSE (turn-OFF)
+  ---
+  duration_ms: 0.0704
+  type: 'test'
+  ...
+# Subtest: 5.2-UNIT-03: mixed flags — selected ON while hidden/optional OFF
+ok 55 - 5.2-UNIT-03: mixed flags — selected ON while hidden/optional OFF
+  ---
+  duration_ms: 0.1025
+  type: 'test'
+  ...
+# Subtest: 5.2-UNIT-03: a flag entirely ABSENT from the form is not included (undefined)
+ok 56 - 5.2-UNIT-03: a flag entirely ABSENT from the form is not included (undefined)
+  ---
+  duration_ms: 0.0608
+  type: 'test'
+  ...
+# Subtest: updateRow: an EMPTY unit is dropped; a whitespace-only unit is preserved
+ok 57 - updateRow: an EMPTY unit is dropped; a whitespace-only unit is preserved
+  ---
+  duration_ms: 0.087
+  type: 'test'
+  ...
+# Subtest: archive: the id-only parse requires an id
+ok 58 - archive: the id-only parse requires an id
+  ---
+  duration_ms: 0.1336
+  type: 'test'
+  ...
+# Subtest: reorderRows: a comma-separated id list splits into a trimmed array
+ok 59 - reorderRows: a comma-separated id list splits into a trimmed array
+  ---
+  duration_ms: 0.1229
+  type: 'test'
+  ...
+# Subtest: reorderSections: an empty id list is a field error
+ok 60 - reorderSections: an empty id list is a field error
+  ---
+  duration_ms: 0.0735
+  type: 'test'
+  ...
+# Subtest: reorderSections: a valid id list parses to the ordered array
+ok 61 - reorderSections: a valid id list parses to the ordered array
+  ---
+  duration_ms: 0.0551
+  type: 'test'
+  ...
+# Subtest: reorderRows: trailing commas / blank entries are FILTERED out of the id array
+ok 62 - reorderRows: trailing commas / blank entries are FILTERED out of the id array
+  ---
+  duration_ms: 0.1012
+  type: 'test'
+  ...
+# Subtest: reorderRows: a missing section_id is a field error
+ok 63 - reorderRows: a missing section_id is a field error
+  ---
+  duration_ms: 0.0468
+  type: 'test'
+  ...
+# Subtest: AC2: a failed createRow echoes back the submitted values verbatim (preserve input)
+ok 64 - AC2: a failed createRow echoes back the submitted values verbatim (preserve input)
+  ---
+  duration_ms: 1.0369
+  type: 'test'
+  ...
+# Subtest: AC2: a failed createCalculation echoes back the title/customer values
+ok 65 - AC2: a failed createCalculation echoes back the title/customer values
+  ---
+  duration_ms: 0.0661
+  type: 'test'
+  ...
+# Subtest: updateRow: kronor→öre / percent→bp conversions happen on UPDATE too
+ok 66 - updateRow: kronor→öre / percent→bp conversions happen on UPDATE too
+  ---
+  duration_ms: 0.103
+  type: 'test'
+  ...
+# Subtest: updateRow: a malformed price is a FIELD error and is NOT included in the input
+ok 67 - updateRow: a malformed price is a FIELD error and is NOT included in the input
+  ---
+  duration_ms: 0.0654
+  type: 'test'
+  ...
+# Subtest: updateRow: an OMITTED money field is not included (empty-patch friendly)
+ok 68 - updateRow: an OMITTED money field is not included (empty-patch friendly)
+  ---
+  duration_ms: 0.1248
+  type: 'test'
+  ...
+# Subtest: createRow: a missing section_id and unit are both field errors
+ok 69 - createRow: a missing section_id and unit are both field errors
+  ---
+  duration_ms: 0.0751
+  type: 'test'
+  ...
+# Subtest: createRow: free-text fields (label/description/notes) attach when present
+ok 70 - createRow: free-text fields (label/description/notes) attach when present
+  ---
+  duration_ms: 0.1101
+  type: 'test'
+  ...
+# Subtest: createRow: an EMPTY free-text field is dropped (isPresent('')===false)
+ok 71 - createRow: an EMPTY free-text field is dropped (isPresent('')===false)
+  ---
+  duration_ms: 0.0737
+  type: 'test'
+  ...
+# Subtest: updateCalculation: a missing id is a field error
+ok 72 - updateCalculation: a missing id is a field error
+  ---
+  duration_ms: 0.04
+  type: 'test'
+  ...
+# Subtest: updateSection: a missing id is a field error
+ok 73 - updateSection: a missing id is a field error
+  ---
+  duration_ms: 0.037
+  type: 'test'
+  ...
+# Subtest: createRow: a source pair (source_kind+source_id) round-trips onto the input
+ok 74 - createRow: a source pair (source_kind+source_id) round-trips onto the input
+  ---
+  duration_ms: 0.0935
+  type: 'test'
+  ...
+# Subtest: createRow: an EMPTY-STRING source pair is DROPPED (manual row — isPresent('')===false)
+ok 75 - createRow: an EMPTY-STRING source pair is DROPPED (manual row — isPresent('')===false)
+  ---
+  duration_ms: 0.0652
+  type: 'test'
+  ...
+# Subtest: updateRow: a source pair round-trips onto the update input
+ok 76 - updateRow: a source pair round-trips onto the update input
+  ---
+  duration_ms: 0.0655
+  type: 'test'
+  ...
+# Subtest: updateRow: an EXPLICIT source_clear companion maps to source_clear=true (cleared-binding)
+ok 77 - updateRow: an EXPLICIT source_clear companion maps to source_clear=true (cleared-binding)
+  ---
+  duration_ms: 0.0568
+  type: 'test'
+  ...
+# Subtest: updateRow: a source PAIR present suppresses the clear companion (pair wins)
+ok 78 - updateRow: a source PAIR present suppresses the clear companion (pair wins)
+  ---
+  duration_ms: 0.0524
+  type: 'test'
+  ...
+# Subtest: updateRow: no source fields at all leaves the input empty-patch safe (id only)
+ok 79 - updateRow: no source fields at all leaves the input empty-patch safe (id only)
+  ---
+  duration_ms: 0.0491
+  type: 'test'
+  ...
+# Subtest: 10.6 updateRow: inclusion, classification, and VAT type round-trip independently
+ok 80 - 10.6 updateRow: inclusion, classification, and VAT type round-trip independently
+  ---
+  duration_ms: 0.0727
+  type: 'test'
+  ...
+# Subtest: 10.6 updateRow: a changed VAT type posts the complete pair for atomic quarantine repair
+ok 81 - 10.6 updateRow: a changed VAT type posts the complete pair for atomic quarantine repair
+  ---
+  duration_ms: 0.0609
+  type: 'test'
+  ...
+# Subtest: 10.6 updateRow: option selection transition delegates inclusion to the atomic command intent
+ok 82 - 10.6 updateRow: option selection transition delegates inclusion to the atomic command intent
+  ---
+  duration_ms: 0.0685
+  type: 'test'
+  ...
+# Subtest: 10.6 updateRow: unchanged option selection preserves an independent inclusion-only edit
+ok 83 - 10.6 updateRow: unchanged option selection preserves an independent inclusion-only edit
+  ---
+  duration_ms: 0.0741
+  type: 'test'
+  ...
+# Subtest: 10.6 tax form: standard VAT clears a stale buyer VAT number
+ok 84 - 10.6 tax form: standard VAT clears a stale buyer VAT number
+  ---
+  duration_ms: 1.4869
+  type: 'test'
+  ...
+# Subtest: 10.6 tax form: inactive allowance fields are cleared when no deduction is selected
+ok 85 - 10.6 tax form: inactive allowance fields are cleared when no deduction is selected
+  ---
+  duration_ms: 0.2323
+  type: 'test'
+  ...
+# Subtest: 10.6 tax form: combined ROT/RUT capacity cannot be submitted without ROT capacity
+ok 86 - 10.6 tax form: combined ROT/RUT capacity cannot be submitted without ROT capacity
+  ---
+  duration_ms: 0.2265
+  type: 'test'
+  ...
+# Subtest: 10.6 tax form: inactive dates and fixed-price facts normalize to canonical nulls
+ok 87 - 10.6 tax form: inactive dates and fixed-price facts normalize to canonical nulls
+  ---
+  duration_ms: 0.2869
+  type: 'test'
+  ...
+# Subtest: 10.6 tax form: authoritative draft failures are associated with actionable fields
+ok 88 - 10.6 tax form: authoritative draft failures are associated with actionable fields
+  ---
+  duration_ms: 0.4343
+  type: 'test'
+  ...
+# Subtest: 10.6 tax form: reverse-charge requires a buyer VAT number
+ok 89 - 10.6 tax form: reverse-charge requires a buyer VAT number
+  ---
+  duration_ms: 0.194
+  type: 'test'
+  ...
+# Subtest: 10.6 tax form: reverse charge plus a deduction gets specific cross-field errors
+ok 90 - 10.6 tax form: reverse charge plus a deduction gets specific cross-field errors
+  ---
+  duration_ms: 0.426
+  type: 'test'
+  ...
+# Subtest: 10.6 tax form: fixed-price row scope is required, unique, canonical, and sorted
+ok 91 - 10.6 tax form: fixed-price row scope is required, unique, canonical, and sorted
+  ---
+  duration_ms: 0.3977
+  type: 'test'
+  ...
+# Subtest: NEW preflight rejects invalid original input without admitting an operation; correction uses existing validators
+ok 92 - NEW preflight rejects invalid original input without admitting an operation; correction uses existing validators
+  ---
+  duration_ms: 0.7396
+  type: 'test'
+  ...
+# Subtest: NEW preflight rejects combined header/archive route rather than silently dropping fields
+ok 93 - NEW preflight rejects combined header/archive route rather than silently dropping fields
+  ---
+  duration_ms: 0.2427
+  type: 'test'
+  ...
+# (node:49092) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/tests/unit/scope/manifest-derivations.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 10.1-UNIT-DERIVE-01 (AC3): FORBIDDEN_DEFERRED_CATEGORIES derives from `pending` modules == the pinned 7 tokens
+ok 94 - 10.1-UNIT-DERIVE-01 (AC3): FORBIDDEN_DEFERRED_CATEGORIES derives from `pending` modules == the pinned 7 tokens
+  ---
+  duration_ms: 26.0593
+  type: 'test'
+  ...
+# Subtest: 10.1-UNIT-DERIVE-02 (AC3): the LIVE deny-list export equals the manifest derivation (grounded on the pinned 7)
+ok 95 - 10.1-UNIT-DERIVE-02 (AC3): the LIVE deny-list export equals the manifest derivation (grounded on the pinned 7)
+  ---
+  duration_ms: 38.7621
+  type: 'test'
+  ...
+# Subtest: 10.1-UNIT-DERIVE-03 (AC3): the nav registry derives the expected route set from the manifest == the pinned 7 routes
+ok 96 - 10.1-UNIT-DERIVE-03 (AC3): the nav registry derives the expected route set from the manifest == the pinned 7 routes
+  ---
+  duration_ms: 5.3389
+  type: 'test'
+  ...
+# Subtest: 10.1-UNIT-DERIVE-04 (AC3): the manifest-derived nav routes equal the AUTHORED nav-items hrefs (non-circular grounding)
+ok 97 - 10.1-UNIT-DERIVE-04 (AC3): the manifest-derived nav routes equal the AUTHORED nav-items hrefs (non-circular grounding)
+  ---
+  duration_ms: 8.853
+  type: 'test'
+  ...
+# Subtest: 14.2-UNIT-DERIVE-05: TENANT_TABLES derives as the union of active modules' tenantTables == the pinned 60
+ok 98 - 14.2-UNIT-DERIVE-05: TENANT_TABLES derives as the union of active modules' tenantTables == the pinned 60
+  ---
+  duration_ms: 2.0164
+  type: 'test'
+  ...
+# Subtest: 10.1-UNIT-DERIVE-06 (AC3 fail-loud): a surface NOT listed in the manifest is not silently admitted by the derivation
+ok 99 - 10.1-UNIT-DERIVE-06 (AC3 fail-loud): a surface NOT listed in the manifest is not silently admitted by the derivation
+  ---
+  duration_ms: 1.7587
+  type: 'test'
+  ...
+# (node:13268) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/tests/unit/scope/manifest-shape.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 10.1-UNIT-SHAPE-01 (AC2): SCOPE_MANIFEST exists and every module carries the §5.2 field shape
+ok 100 - 10.1-UNIT-SHAPE-01 (AC2): SCOPE_MANIFEST exists and every module carries the §5.2 field shape
+  ---
+  duration_ms: 8.7548
+  type: 'test'
+  ...
+# Subtest: 10.1-UNIT-SHAPE-02 (AC2): every `active` module has an epic reference + an activatedAt date
+ok 101 - 10.1-UNIT-SHAPE-02 (AC2): every `active` module has an epic reference + an activatedAt date
+  ---
+  duration_ms: 10.3385
+  type: 'test'
+  ...
+# Subtest: 10.1-UNIT-SHAPE-03 (AC2): the `active` set reproduces exactly the 7 Phase-A nav routes (pinned, non-circular)
+ok 102 - 10.1-UNIT-SHAPE-03 (AC2): the `active` set reproduces exactly the 7 Phase-A nav routes (pinned, non-circular)
+  ---
+  duration_ms: 2.3977
+  type: 'test'
+  ...
+# Subtest: 14.2-UNIT-SHAPE-04: the `active` set reproduces exactly the 60 tenant tables (pinned, non-circular)
+ok 103 - 14.2-UNIT-SHAPE-04: the `active` set reproduces exactly the 60 tenant tables (pinned, non-circular)
+  ---
+  duration_ms: 1.412
+  type: 'test'
+  ...
+# Subtest: 10.1-UNIT-SHAPE-05 (AC2): the `active` set reproduces exactly the 7 Phase-A file owner types (pinned, non-circular)
+ok 104 - 10.1-UNIT-SHAPE-05 (AC2): the `active` set reproduces exactly the 7 Phase-A file owner types (pinned, non-circular)
+  ---
+  duration_ms: 1.3967
+  type: 'test'
+  ...
+# Subtest: 10.1-UNIT-SHAPE-06 (AC2): every Phase B module is `pending` (no live Phase B surface shipped in 10.1)
+ok 105 - 10.1-UNIT-SHAPE-06 (AC2): every Phase B module is `pending` (no live Phase B surface shipped in 10.1)
+  ---
+  duration_ms: 1.0646
+  type: 'test'
+  ...
+# Subtest: 10.1-UNIT-SHAPE-07 (AC2): the public-surface union stays inside the ADR-B004 closed set of three
+ok 106 - 10.1-UNIT-SHAPE-07 (AC2): the public-surface union stays inside the ADR-B004 closed set of three
+  ---
+  duration_ms: 3.2355
+  type: 'test'
+  ...
+# Subtest: 10.1-UNIT-SHAPE-08 (Task 1.3 uniqueness invariant): no tenant table / nav route / file owner type is declared by two modules
+ok 107 - 10.1-UNIT-SHAPE-08 (Task 1.3 uniqueness invariant): no tenant table / nav route / file owner type is declared by two modules
+  ---
+  duration_ms: 1.2128
+  type: 'test'
+  ...
+# (node:10648) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/tests/unit/server/commands/calc-source-validation.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: GUARD: the real calc validators are reachable and accept a manual (no-source) row today
+ok 108 - GUARD: the real calc validators are reachable and accept a manual (no-source) row today
+  ---
+  duration_ms: 2.908
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects a source_id with NO source_kind (both-or-neither)
+ok 109 - validateCreateRow rejects a source_id with NO source_kind (both-or-neither)
+  ---
+  duration_ms: 0.5677
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects a source_kind with NO source_id (both-or-neither)
+ok 110 - validateCreateRow rejects a source_kind with NO source_id (both-or-neither)
+  ---
+  duration_ms: 0.1524
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects an unknown source_kind (closed work_role|article subset)
+ok 111 - validateCreateRow rejects an unknown source_kind (closed work_role|article subset)
+  ---
+  duration_ms: 0.2466
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects a non-UUID source_id
+ok 112 - validateCreateRow rejects a non-UUID source_id
+  ---
+  duration_ms: 0.1799
+  type: 'test'
+  ...
+# Subtest: validateCreateRow ACCEPTS a valid both-present work_role pair and carries it on data
+ok 113 - validateCreateRow ACCEPTS a valid both-present work_role pair and carries it on data
+  ---
+  duration_ms: 0.2045
+  type: 'test'
+  ...
+# Subtest: validateCreateRow ACCEPTS a valid both-present article pair
+ok 114 - validateCreateRow ACCEPTS a valid both-present article pair
+  ---
+  duration_ms: 0.1289
+  type: 'test'
+  ...
+# Subtest: validateCreateRow treats an EMPTY-STRING source pair as ABSENT (manual row, not an error)
+ok 115 - validateCreateRow treats an EMPTY-STRING source pair as ABSENT (manual row, not an error)
+  ---
+  duration_ms: 0.1648
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow rejects a lone source_kind on the update path (both-or-neither)
+ok 116 - validateUpdateRow rejects a lone source_kind on the update path (both-or-neither)
+  ---
+  duration_ms: 0.3789
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow ACCEPTS a valid both-present pair on the update path
+ok 117 - validateUpdateRow ACCEPTS a valid both-present pair on the update path
+  ---
+  duration_ms: 0.3933
+  type: 'test'
+  ...
+# Subtest: validateCreateRow REJECTS a work_role source on a MATERIAL row (kind/row_type mismatch)
+ok 118 - validateCreateRow REJECTS a work_role source on a MATERIAL row (kind/row_type mismatch)
+  ---
+  duration_ms: 0.1088
+  type: 'test'
+  ...
+# Subtest: validateCreateRow REJECTS an article source on a LABOR row (kind/row_type mismatch)
+ok 119 - validateCreateRow REJECTS an article source on a LABOR row (kind/row_type mismatch)
+  ---
+  duration_ms: 0.1437
+  type: 'test'
+  ...
+# Subtest: validateCreateRow REJECTS any source on a NO-SOURCE row type (subcontractor/machinery/other)
+ok 120 - validateCreateRow REJECTS any source on a NO-SOURCE row type (subcontractor/machinery/other)
+  ---
+  duration_ms: 0.2604
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow REJECTS a source pair whose kind mismatches the supplied row_type
+ok 121 - validateUpdateRow REJECTS a source pair whose kind mismatches the supplied row_type
+  ---
+  duration_ms: 0.1414
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow ACCEPTS a source-only pair when NO row_type is supplied (persisted type unknown to the pure validator)
+ok 122 - validateUpdateRow ACCEPTS a source-only pair when NO row_type is supplied (persisted type unknown to the pure validator)
+  ---
+  duration_ms: 0.1561
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow ACCEPTS an explicit source_clear (switch back to manual) and carries it
+ok 123 - validateUpdateRow ACCEPTS an explicit source_clear (switch back to manual) and carries it
+  ---
+  duration_ms: 0.1837
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow REJECTS a contradictory source_clear + source pair
+ok 124 - validateUpdateRow REJECTS a contradictory source_clear + source pair
+  ---
+  duration_ms: 0.141
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow does NOT carry source_clear when it is absent (empty-patch-safe)
+ok 125 - validateUpdateRow does NOT carry source_clear when it is absent (empty-patch-safe)
+  ---
+  duration_ms: 0.1665
+  type: 'test'
+  ...
+# (node:16972) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/tests/unit/server/commands/calc-validation-coverage.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: validateCreateCalculation accepts a minimal customer + title payload
+ok 126 - validateCreateCalculation accepts a minimal customer + title payload
+  ---
+  duration_ms: 2.424
+  type: 'test'
+  ...
+# Subtest: validateCreateCalculation accepts optional facility_id + contact_id
+ok 127 - validateCreateCalculation accepts optional facility_id + contact_id
+  ---
+  duration_ms: 0.2252
+  type: 'test'
+  ...
+# Subtest: validateCreateCalculation rejects a missing / non-UUID customer_id
+ok 128 - validateCreateCalculation rejects a missing / non-UUID customer_id
+  ---
+  duration_ms: 0.1385
+  type: 'test'
+  ...
+# Subtest: validateCreateCalculation rejects a present-but-malformed facility/contact id
+ok 129 - validateCreateCalculation rejects a present-but-malformed facility/contact id
+  ---
+  duration_ms: 0.0791
+  type: 'test'
+  ...
+# Subtest: validateCreateCalculation rejects a missing / empty title
+ok 130 - validateCreateCalculation rejects a missing / empty title
+  ---
+  duration_ms: 0.1482
+  type: 'test'
+  ...
+# Subtest: validateCreateCalculation STRIPS a client-supplied tenant_id (never in output)
+ok 131 - validateCreateCalculation STRIPS a client-supplied tenant_id (never in output)
+  ---
+  duration_ms: 0.1462
+  type: 'test'
+  ...
+# Subtest: validateCreateCalculation rejects a non-record input
+ok 132 - validateCreateCalculation rejects a non-record input
+  ---
+  duration_ms: 0.0462
+  type: 'test'
+  ...
+# Subtest: SECTION_DISPLAY_MODES is exactly the three approved values
+ok 133 - SECTION_DISPLAY_MODES is exactly the three approved values
+  ---
+  duration_ms: 0.0888
+  type: 'test'
+  ...
+# Subtest: validateCreateSection accepts an untitled section (title optional)
+ok 134 - validateCreateSection accepts an untitled section (title optional)
+  ---
+  duration_ms: 0.2967
+  type: 'test'
+  ...
+# Subtest: validateCreateSection accepts every approved display_mode
+ok 135 - validateCreateSection accepts every approved display_mode
+  ---
+  duration_ms: 0.4231
+  type: 'test'
+  ...
+# Subtest: validateCreateSection rejects an unknown display_mode / missing calculation_id
+ok 136 - validateCreateSection rejects an unknown display_mode / missing calculation_id
+  ---
+  duration_ms: 0.116
+  type: 'test'
+  ...
+# Subtest: validateUpdateSection accepts an id-only patch and a display_mode patch
+ok 137 - validateUpdateSection accepts an id-only patch and a display_mode patch
+  ---
+  duration_ms: 0.1813
+  type: 'test'
+  ...
+# Subtest: validateUpdateSection rejects a bad id / whitespace title / bad display_mode
+ok 138 - validateUpdateSection rejects a bad id / whitespace title / bad display_mode
+  ---
+  duration_ms: 0.1205
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow accepts an id-only patch (no VAT required on update)
+ok 139 - validateUpdateRow accepts an id-only patch (no VAT required on update)
+  ---
+  duration_ms: 0.3698
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow accepts a valid partial patch (qty + öre + flags)
+ok 140 - validateUpdateRow accepts a valid partial patch (qty + öre + flags)
+  ---
+  duration_ms: 0.1366
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow rejects a bad id
+ok 141 - validateUpdateRow rejects a bad id
+  ---
+  duration_ms: 0.0809
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow rejects a present-but-invalid field (row_type/qty/unit/öre/vat)
+ok 142 - validateUpdateRow rejects a present-but-invalid field (row_type/qty/unit/öre/vat)
+  ---
+  duration_ms: 0.3983
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow rejects an invalid raw value WITHOUT echoing it (no-echo discipline)
+ok 143 - validateUpdateRow rejects an invalid raw value WITHOUT echoing it (no-echo discipline)
+  ---
+  duration_ms: 0.0997
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow accepts a well-formed markup_bp (integer basis points)
+ok 144 - validateUpdateRow accepts a well-formed markup_bp (integer basis points)
+  ---
+  duration_ms: 0.1154
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow accepts a markup_bp above 100% (a markup is not a VAT rate)
+ok 145 - validateUpdateRow accepts a markup_bp above 100% (a markup is not a VAT rate)
+  ---
+  duration_ms: 0.1959
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow rejects a malformed markup_bp (float / negative / absurd / string)
+ok 146 - validateUpdateRow rejects a malformed markup_bp (float / negative / absurd / string)
+  ---
+  duration_ms: 0.1628
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow accepts a markup_bp of 10001 (just over 100%)
+ok 147 - validateUpdateRow accepts a markup_bp of 10001 (just over 100%)
+  ---
+  duration_ms: 0.1253
+  type: 'test'
+  ...
+# Subtest: validateUpdateRow rejects a non-boolean visibility/option flag
+ok 148 - validateUpdateRow rejects a non-boolean visibility/option flag
+  ---
+  duration_ms: 0.1499
+  type: 'test'
+  ...
+# Subtest: validateReorderRows accepts a section + non-empty UUID id array
+ok 149 - validateReorderRows accepts a section + non-empty UUID id array
+  ---
+  duration_ms: 0.1778
+  type: 'test'
+  ...
+# Subtest: validateReorderRows rejects a bad section_id / empty array / non-UUID member
+ok 150 - validateReorderRows rejects a bad section_id / empty array / non-UUID member
+  ---
+  duration_ms: 0.1019
+  type: 'test'
+  ...
+# Subtest: validateReorderSections accepts a calculation + non-empty UUID id array
+ok 151 - validateReorderSections accepts a calculation + non-empty UUID id array
+  ---
+  duration_ms: 0.1086
+  type: 'test'
+  ...
+# Subtest: validateReorderSections rejects a bad calculation_id / empty array / non-UUID member
+ok 152 - validateReorderSections rejects a bad calculation_id / empty array / non-UUID member
+  ---
+  duration_ms: 0.1186
+  type: 'test'
+  ...
+# Subtest: validateUpdateCalculation accepts each known status VALUE (shape only)
+ok 153 - validateUpdateCalculation accepts each known status VALUE (shape only)
+  ---
+  duration_ms: 0.1717
+  type: 'test'
+  ...
+# Subtest: validateUpdateCalculation IGNORES any client-supplied currentStatus
+ok 154 - validateUpdateCalculation IGNORES any client-supplied currentStatus
+  ---
+  duration_ms: 0.0728
+  type: 'test'
+  ...
+# Subtest: isLegalTransition encodes the full forward-only state machine
+ok 155 - isLegalTransition encodes the full forward-only state machine
+  ---
+  duration_ms: 0.0686
+  type: 'test'
+  ...
+# Subtest: validateUpdateCalculation accepts a title-only patch (no status transition)
+ok 156 - validateUpdateCalculation accepts a title-only patch (no status transition)
+  ---
+  duration_ms: 0.0711
+  type: 'test'
+  ...
+# (node:7876) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/tests/unit/server/commands/calc-validation.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: ROW_TYPES is exactly the five approved values
+ok 157 - ROW_TYPES is exactly the five approved values
+  ---
+  duration_ms: 1.0459
+  type: 'test'
+  ...
+# Subtest: validateCreateRow accepts every approved row_type
+ok 158 - validateCreateRow accepts every approved row_type
+  ---
+  duration_ms: 1.8114
+  type: 'test'
+  ...
+# Subtest: validateCreateRow preserves omitted invoice inclusion for command-owned option defaults
+ok 159 - validateCreateRow preserves omitted invoice inclusion for command-owned option defaults
+  ---
+  duration_ms: 0.2634
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects a row_type outside the closed union
+ok 160 - validateCreateRow rejects a row_type outside the closed union
+  ---
+  duration_ms: 0.2466
+  type: 'test'
+  ...
+# Subtest: validateCreateRow accepts a fractional positive quantity
+ok 161 - validateCreateRow accepts a fractional positive quantity
+  ---
+  duration_ms: 0.2011
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects a non-positive quantity
+ok 162 - validateCreateRow rejects a non-positive quantity
+  ---
+  duration_ms: 0.1195
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects an empty or whitespace unit
+ok 163 - validateCreateRow rejects an empty or whitespace unit
+  ---
+  duration_ms: 0.1744
+  type: 'test'
+  ...
+# Subtest: validateCreateRow accepts an integer-öre money value at 0 and up to ORE_AMOUNT_MAX
+ok 164 - validateCreateRow accepts an integer-öre money value at 0 and up to ORE_AMOUNT_MAX
+  ---
+  duration_ms: 0.2053
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects a float öre (öre are whole integers)
+ok 165 - validateCreateRow rejects a float öre (öre are whole integers)
+  ---
+  duration_ms: 0.2709
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects a negative öre (no discount/negative money in Phase A)
+ok 166 - validateCreateRow rejects a negative öre (no discount/negative money in Phase A)
+  ---
+  duration_ms: 0.2563
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects an overflow öre (> ORE_AMOUNT_MAX)
+ok 167 - validateCreateRow rejects an overflow öre (> ORE_AMOUNT_MAX)
+  ---
+  duration_ms: 0.1485
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects a locale-comma / decimal-string öre (comma-decimal trap)
+ok 168 - validateCreateRow rejects a locale-comma / decimal-string öre (comma-decimal trap)
+  ---
+  duration_ms: 0.1583
+  type: 'test'
+  ...
+# Subtest: validateCreateRow accepts a well-formed integer basis-points VAT (e.g. 2500)
+ok 169 - validateCreateRow accepts a well-formed integer basis-points VAT (e.g. 2500)
+  ---
+  duration_ms: 0.1516
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects a missing or non-integer VAT assumption
+ok 170 - validateCreateRow rejects a missing or non-integer VAT assumption
+  ---
+  duration_ms: 0.163
+  type: 'test'
+  ...
+# Subtest: validateCreateRow rejects policy-incoherent fresh VAT type/rate pairs
+ok 171 - validateCreateRow rejects policy-incoherent fresh VAT type/rate pairs
+  ---
+  duration_ms: 0.2701
+  type: 'test'
+  ...
+# Subtest: validateUpdateCalculation accepts a well-formed status value (shape check)
+ok 172 - validateUpdateCalculation accepts a well-formed status value (shape check)
+  ---
+  duration_ms: 0.3521
+  type: 'test'
+  ...
+# Subtest: validateUpdateCalculation rejects an unknown status VALUE
+ok 173 - validateUpdateCalculation rejects an unknown status VALUE
+  ---
+  duration_ms: 0.146
+  type: 'test'
+  ...
+# Subtest: validateUpdateCalculation IGNORES a client-supplied currentStatus (never trusted)
+ok 174 - validateUpdateCalculation IGNORES a client-supplied currentStatus (never trusted)
+  ---
+  duration_ms: 0.1612
+  type: 'test'
+  ...
+# Subtest: isLegalTransition encodes the forward-only state machine (archived is terminal)
+ok 175 - isLegalTransition encodes the forward-only state machine (archived is terminal)
+  ---
+  duration_ms: 0.11
+  type: 'test'
+  ...
+# Subtest: a rejection NEVER carries the raw invalid value back (assertRejected enforces no data)
+ok 176 - a rejection NEVER carries the raw invalid value back (assertRejected enforces no data)
+  ---
+  duration_ms: 0.118
+  type: 'test'
+  ...
+# (node:35092) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/tests/unit/server/commands/calculation-row-limit-command.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: createRow maps the atomic SQL row-limit refusal without a direct insert bypass
+ok 177 - createRow maps the atomic SQL row-limit refusal without a direct insert bypass
+  ---
+  duration_ms: 1.4126
+  type: 'test'
+  ...
+# (node:57860) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/DEV/Kopplas/tmp/private/e35-8-producer-safety-20261112/worker/tests/unit/server/commands/quote-validation.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\DEV\\Kopplas\\tmp\\private\\e35-8-producer-safety-20261112\\worker\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [6.1-INT-02] accepts a uuid calculation_id with NO attachments (the common path)
+ok 178 - [6.1-INT-02] accepts a uuid calculation_id with NO attachments (the common path)
+  ---
+  duration_ms: 1.0998
+  type: 'test'
+  ...
+# Subtest: [6.1-INT-02] accepts a uuid calculation_id WITH a bounded uuid attachment array
+ok 179 - [6.1-INT-02] accepts a uuid calculation_id WITH a bounded uuid attachment array
+  ---
+  duration_ms: 0.2275
+  type: 'test'
+  ...
+# Subtest: accepts an UPPERCASE (case-insensitive) uuid calculation_id + attachment id
+ok 180 - accepts an UPPERCASE (case-insensitive) uuid calculation_id + attachment id
+  ---
+  duration_ms: 0.0676
+  type: 'test'
+  ...
+# Subtest: attachment_file_ids: null / undefined both narrow to the empty list
+ok 181 - attachment_file_ids: null / undefined both narrow to the empty list
+  ---
+  duration_ms: 0.0766
+  type: 'test'
+  ...
+# Subtest: attachment_file_ids: an explicit EMPTY array is accepted (no attachments)
+ok 182 - attachment_file_ids: an explicit EMPTY array is accepted (no attachments)
+  ---
+  duration_ms: 0.1039
+  type: 'test'
+  ...
+# Subtest: [VALIDATION_FAILED] a non-record raw value is rejected (never crashes)
+ok 183 - [VALIDATION_FAILED] a non-record raw value is rejected (never crashes)
+  ---
+  duration_ms: 0.072
+  type: 'test'
+  ...
+# Subtest: [VALIDATION_FAILED] a missing / non-uuid calculation_id is rejected
+ok 184 - [VALIDATION_FAILED] a missing / non-uuid calculation_id is rejected
+  ---
+  duration_ms: 0.1257
+  type: 'test'
+  ...
+# Subtest: [VALIDATION_FAILED] a non-array / non-uuid-element / over-bounded attachment list is rejected
+ok 185 - [VALIDATION_FAILED] a non-array / non-uuid-element / over-bounded attachment list is rejected
+  ---
+  duration_ms: 0.1194
+  type: 'test'
+  ...
+# Subtest: EXACTLY 100 attachment ids is at the bound (accepted); 101 is over (rejected)
+ok 186 - EXACTLY 100 attachment ids is at the bound (accepted); 101 is over (rejected)
+  ---
+  duration_ms: 0.1986
+  type: 'test'
+  ...
+# Subtest: a client-supplied tenant_id is STRIPPED — never surfaced on the validated data
+ok 187 - a client-supplied tenant_id is STRIPPED — never surfaced on the validated data
+  ---
+  duration_ms: 0.2942
+  type: 'test'
+  ...
+# Subtest: reviewed preview proof is accepted only as a complete digest/date pair
+ok 188 - reviewed preview proof is accepted only as a complete digest/date pair
+  ---
+  duration_ms: 0.2838
+  type: 'test'
+  ...
+# Subtest: preview-specific validation requires proof even though list-page direct creation does not
+ok 189 - preview-specific validation requires proof even though list-page direct creation does not
+  ---
+  duration_ms: 0.6115
+  type: 'test'
+  ...
+# Subtest: the validated attachment array is a COPY (a later mutation of the raw input can't reach it)
+ok 190 - the validated attachment array is a COPY (a later mutation of the raw input can't reach it)
+  ---
+  duration_ms: 0.0705
+  type: 'test'
+  ...
+1..190
+# tests 190
+# suites 0
+# pass 190
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 367.1016

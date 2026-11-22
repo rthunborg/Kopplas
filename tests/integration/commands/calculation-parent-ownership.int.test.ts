@@ -37,7 +37,7 @@ import {
 } from "../../factories/tenants";
 import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
-import { runCommand } from "@/server/commands/envelope";
+import { runEditorCommand as runCommand } from "./calculation-editor-safety-fixture";
 import { createCalculation } from "@/server/commands/calculations";
 import type { CommandClock } from "@/server/commands/clock";
 
