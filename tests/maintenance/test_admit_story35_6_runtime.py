@@ -1724,8 +1724,17 @@ class ColdProtocolRuntimeConsumption(unittest.TestCase):
 
     def test_committed_fence_consumption_and_exact_generation_two(self):
         import pathlib
+        import tempfile
         import time
-        cold_path = ROOT / 'scripts/maintenance/adopt_stopped_coordinator_context.py'
+        cold_relative = 'scripts/maintenance/adopt_stopped_coordinator_context.py'
+        cold_bytes = (ROOT / cold_relative).read_bytes().replace(b'\r\n', b'\n')
+        scratch = ROOT / 'tmp'
+        scratch.mkdir(exist_ok=True)
+        cold_source = tempfile.TemporaryDirectory(prefix='crm-cold-source-', dir=scratch)
+        self.addCleanup(cold_source.cleanup)
+        cold_path = Path(cold_source.name) / 'adopt_stopped_coordinator_context.py'
+        cold_path.write_bytes(cold_bytes)
+        self.assertEqual(cold_path.resolve().parents[2], ROOT.resolve())
         cold_spec = importlib.util.spec_from_file_location('synthetic_cold_pipeline', cold_path)
         cold = importlib.util.module_from_spec(cold_spec)
         cold_spec.loader.exec_module(cold)
@@ -1739,6 +1748,8 @@ class ColdProtocolRuntimeConsumption(unittest.TestCase):
         cold_fixture = json.loads(output.getvalue())
         cold_request = Path(cold_fixture['request'])
         ctx = cold.validate(cold_request)
+        self.assertEqual(ctx['proposal']['tool_sha256'], hashlib.sha256(cold_bytes).hexdigest())
+        self.assertEqual(cold.blob(ctx['repository'], ctx['proposal']['tool_revision'], cold_relative), cold_bytes)
         adopted = cold.recover(ctx, cold_request)
         self.assertEqual(adopted['status'], 'locally-adopted-publication-pending')
         with cold.database(ctx['store']) as db:
@@ -1798,6 +1809,8 @@ class ColdProtocolRuntimeConsumption(unittest.TestCase):
             args = adapter.parser().parse_args(['--repo', str(harness.repo), '--run', adapter.RUN,
                 '--owner', cold.NEW, '--story', adapter.STORY, '--worker', cold.WORKER,
                 '--generation', '1', '--request', str(request_path)])
+            cold_cache = harness.c / 'scripts/maintenance/__pycache__'
+            self.assertFalse(cold_cache.exists())
             with adapter.readonly_database(harness.repo) as db:
                 c = engine.get_claim(db, args, worker=True)
                 for key in ['cold_request_id', 'cold_request_digest']:
@@ -1821,6 +1834,7 @@ class ColdProtocolRuntimeConsumption(unittest.TestCase):
                             return [corrupted] if sql == 'SELECT * FROM coordinator_successions' else db.execute(sql, *values)
                     with self.subTest(field=field), self.assertRaises(adapter.engine.Refusal):
                         adapter.committed_protocol_fence(ForgedView(), harness.repo, r, harness.plan, c, adapter.Captures())
+            self.assertFalse(cold_cache.exists())
             native_bytes = ctx['store'].read_bytes()
             checked = adapter.validate_only(args)
             self.assertTrue(checked['validated'])
@@ -1830,6 +1844,7 @@ class ColdProtocolRuntimeConsumption(unittest.TestCase):
             self.assertEqual(result['generation'], 2)
             self.assertEqual(result['worker'], cold.WORKER)
             self.assertEqual(adapter.admit(args)['replayed'], True)
+            self.assertFalse(cold_cache.exists())
             with engine.database(harness.repo) as db:
                 self.assertEqual([dict(x) for x in db.execute('SELECT * FROM coordinator_successions')], [succession])
                 audit = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])

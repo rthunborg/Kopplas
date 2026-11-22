@@ -160,7 +160,7 @@ def qualified_cold_adapter(repo, r, snapshots):
             'Cold proof validator must match reviewed tooling source')
     spec = importlib.util.spec_from_file_location('runtime_committed_cold_proof', module_path)
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    exec(compile(data, str(module_path), 'exec', dont_inherit=True), module.__dict__)
     return module
 
 
