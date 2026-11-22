@@ -1,8 +1,8 @@
 ---
 title: "Story 35.8: Calculation Editor And Review"
-status: draft
+status: ready-for-dev
 tracking_key: 35-8-calculation-editor-and-review
-admission: preparation-only
+admission: design-readiness-proposed-native-admission-pending
 baseline_revision: 9308b8a814382910bc5fd895d7337bac1b53a9b3
 context:
   - docs/process/review-order.md
@@ -15,7 +15,7 @@ context:
 
 ## Status
 
-Current-format materialization of the existing planned story; not admitted or ready-for-dev. `draft` supports source discovery and is not approval. B-BASE, B-TEST and B-APPROVAL dispositions are in scope-and-allocation.md. No implementation, tests, captures, native plan/init/claim or resources started.
+The accepted nine-file presentation source packet is integrated at dbad29c60efb7e853bb53454fdf52169a245f510. `ready-for-dev` records design/source readiness for the installed story reader; the installed planner consumes this status from reviewed source on qualified main. It does not establish an implementation actor, positive six-path handoff, fresh base/CI qualification, reviewed native plan/init/claim or permission to start. B-BASE, B-TEST and B-APPROVAL activation/evidence requirements remain in scope-and-allocation.md. No presentation implementation, tests, captures or resources started.
 
 ## Story and intent
 
@@ -34,7 +34,7 @@ Read `../source-intent.md` and `../source-test-design.md` in full. Preserve E35-
 
 ## Dependencies and ownership
 
-Use `../scope-and-allocation.md`, `../source-binding.json` and `../retained-reservations.json`. Existing producer/settings/terms contracts and shared foundations are read-only prerequisites. The historical 35.7 order edge is not silently removed: the proposed current rationale needs independent review. Story 35.9 remains downstream. Neither this story nor its draft status releases CRM, producer, 35.2 or E15 reservations.
+Use `../scope-and-allocation.md`, `../source-binding.json` and `../retained-reservations.json`. Existing producer/settings/terms contracts and shared foundations are read-only prerequisites. The historical 35.7 order edge is not silently removed: the proposed current rationale needs independent review. Story 35.9 remains downstream. Neither this story nor its design-readiness status releases CRM, producer, 35.2 or E15 reservations.
 
 ## Verification and author trail
 
@@ -42,14 +42,14 @@ All verification in `../test-design.md` is planned. The preparation evidence dir
 
 ## Dev Agent Record
 
-Source/verification-contract author: gpt-6.1-sol High for money/tax, quote/source locks and critical independence. Implementation not started; independent review pending; development_complete=false; release_ready=false.
+Source/verification-contract author: gpt-6.1-sol High for money/tax, quote/source locks and critical independence. Implementation not started; actual current ownership, reviewed native plan/init/claim/start and implementation evidence remain pending; development_complete=false; release_ready=false. This status-only documentary correction is authored at Sol Low and changes no sensitive contract.
 
 ## 2026-11-21 source-only rebind precedence
 
-This section supersedes only obsolete current-base/producer-gap/route observations, not original ACs,17states, allocation or authority. Preparation snapshot is actual finalized producer main9308b8a814382910bc5fd895d7337bac1b53a9b3, treeae59aa521e57e9850e81cbea8e3e374fec4962a2. Hash-bound source-binding records actual native finalize and current trace/native/High receipts. No future source publication, product handoff, native claim or presentation implementation is inferred.
+This section supersedes only obsolete current-base/producer-gap/route observations, not original ACs,17states, allocation or authority. Preparation snapshot is actual finalized producer main9308b8a814382910bc5fd895d7337bac1b53a9b3, treeae59aa521e57e9850e81cbea8e3e374fec4962a2. Hash-bound source-binding records actual native finalize and current trace/native/High receipts. The nine-file source packet has since integrated at dbad29c60efb7e853bb53454fdf52169a245f510. Readiness status is consumed from the exact reviewed source on qualified main; it supplies no future CI result or actor assignment. No future product handoff, native claim or presentation implementation is inferred.
 
 The producer's durable original-operation identity, original submitted revision/expected facts and checked reconciliation/immutable outcomes resolve the earlier unknown/stale backend-prerequisite question. Preserve those existing semantics; do not replace the original expected facts with refreshed projections, treat a generic reread as outcome authority or reimplement the producer. Actual9308 P6 evidence proves same-mounted committed recovery refresh without extra mutation while later draft/facts remain protected. Retained709 accepted visual and once-only262 production proof keep their own source/run scope. Producer retrospective/NFR/test advisories are not presentation completion or a waiver.
 
 Current ordinary smoke covers21browserfiles/204actual cases, including the producer's two P6 viewport cases, and432namedrequiredDB assertions. The proposed new calculation-editor-design.e2e.spec.ts does NOT exist/select in this ordinary cohort. Retain the existing explicit full release_validation=true or focused five-spec route, actual selection/production-server/lifecycle/dispatch/source evidence and eventual candidate-bound visual gates. Do not edit workflow/package/selectors or infer dispatch/readiness from ordinary pass.
 
-Positive holder handoff remains required for the six overlapping producer hosts: CalculationEditor,CalculationList,PreQuotePreview,RowEditor,SectionEditor,TaxSettingsPanel. Shared ownership is real despite separate story IDs. Independently qualify/publish/integrate these nine source files, then obtain exact fresh product/test allocation/current source/native admission before presentation. Source-only draft discovery is not ready-for-dev. CRM/PR151 and every other retained reservation remain held and are not added as new dependencies. All7original ACs/17DT-B8 states and money/source/quote/revision authority stay unchanged; no new generic owner objective or checkpoint question is introduced.
+Positive holder handoff remains required for the six overlapping producer hosts: CalculationEditor,CalculationList,PreQuotePreview,RowEditor,SectionEditor,TaxSettingsPanel. Shared ownership is real despite separate story IDs. The nine-file source packet is integrated; use exact reviewed source on qualified main and obtain fresh product/test allocation/current source/native admission before presentation. Source design readiness is distinct from actual reviewed plan/init/claim/start. CRM/PR151 and every other retained reservation remain held and are not added as new dependencies. All7original ACs/17DT-B8 states and money/source/quote/revision authority stay unchanged; no new generic owner objective or checkpoint question is introduced.

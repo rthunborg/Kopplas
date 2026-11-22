@@ -307,6 +307,36 @@ Expected-head publication, signed journals, credential separation, narrow allowe
 paths, opt-in, budgets and opt-out behavior remain intact. No hosted fixer is
 activated by this local implementation.
 
+## Prospective planning within existing admission
+
+For prospective new admissions, apply the following guidance within existing
+planning and allocation. It creates no new gate, approval or review stage and
+changes no active contract, standing authority or current acceptance policy.
+
+For planned tenant-table or manifest changes, follow the existing
+[RLS enrollment guide](ci.md) and trace the table inventory/type into its
+mandatory test consumers before freezing the allocation. Check exhaustive seed
+records, role metadata and projection adapters against the planned table
+contract. Record the necessary edit paths or evidence that each remains valid
+in the existing write/read matrix; a blanket shared-fixture read-only boundary
+cannot satisfy a required enrollment change. Resolve exact-path custody through
+the existing allocation route. Reuse typecheck, relevant existing harness unit
+tests and the required DB/RLS lane as the changed inputs become available.
+
+When an intervening change to main is known or planned, include integration
+feasibility in the existing planning/admission assessment. Read the current provider
+strictness rule, main and candidate revisions, and immutable native claim base
+and allocation. Recheck changed facts before final candidate qualification,
+publication and any applicable existing owner checkpoint. A passing test-merge check alone does not
+establish eligibility under a strict up-to-date-branch rule.
+
+If the necessary base update has no supported admitted route, name that exact
+route or authority dependency in the current record before treating the
+candidate as final. Continue useful authorized implementation, diagnostics and
+checks while it is resolved. Use the existing scope and readmission decisions;
+this assessment grants no reanchor, scope expansion or hold on another story.
+Reuse the recorded assessment while its facts remain valid.
+
 ## Owner checkpoints and verification limits
 
 Before enforcement is claimed hosted: independently review this bounded change,
