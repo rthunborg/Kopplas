@@ -53,6 +53,7 @@ MAX_FILE = 4 * 1024 * 1024
 PROTOCOL_KIND = 'conditional-protocol-quarantine'
 CRITICAL_SECONDS = 30
 CRITICAL_DEADLINE = contextvars.ContextVar('cold_adoption_deadline', default=None)
+PROTOCOL_COMMIT_STATE = contextvars.ContextVar('cold_adoption_commit_state', default=None)
 DDL = [
     'CREATE TABLE coordinator_successions(request_id TEXT PRIMARY KEY, run TEXT NOT NULL UNIQUE, request_hash TEXT NOT NULL, before_snapshot TEXT NOT NULL, after_snapshot TEXT NOT NULL, request TEXT NOT NULL, context TEXT NOT NULL, response TEXT NOT NULL, created REAL NOT NULL)',
     "CREATE TRIGGER immutable_coordinator_successions_update BEFORE UPDATE ON coordinator_successions BEGIN SELECT RAISE(ABORT, 'Coordinator succession audit is append-only'); END",
@@ -260,6 +261,13 @@ def snapshot(db):
     return {'schema': schema, 'tables': rows, 'unrelated_state_digest': digest(unrelated)}
 
 
+def native_deadline():
+    deadline = CRITICAL_DEADLINE.get()
+    need(deadline is None or time.monotonic() < deadline, 'CRITICAL_SECTION_EXPIRED')
+    state = PROTOCOL_COMMIT_STATE.get()
+    need(state is None or time.time() < state['expires'], 'CUSTODY_EXPIRED')
+
+
 @contextlib.contextmanager
 def database(store, write=False):
     need(store.is_file() and not store.is_symlink(), 'MISSING_STORE')
@@ -268,17 +276,28 @@ def database(store, write=False):
     # A WAL read-only connection can create shared-memory sidecars. This bounded
     # operation supports the native engine's rollback-journal store only.
     need(header[:16] == b'SQLite format 3\0' and header[18:20] == b'\x01\x01', 'UNSUPPORTED_JOURNAL_MODE')
+    bounded_write = write and CRITICAL_DEADLINE.get() is not None
+    if bounded_write:
+        native_deadline()
     db = sqlite3.connect(store.as_uri() + ('?mode=rw' if write else '?mode=ro'), uri=True,
-                         isolation_level=None, timeout=2)
+                         isolation_level=None, timeout=0 if bounded_write else 2)
     db.row_factory = sqlite3.Row
     try:
         if not write:
             db.execute('PRAGMA query_only=ON')
         db.execute('BEGIN IMMEDIATE' if write else 'BEGIN')
+        if bounded_write:
+            native_deadline()
         yield db
-        deadline = CRITICAL_DEADLINE.get()
-        need(deadline is None or time.monotonic() < deadline, 'CRITICAL_SECTION_EXPIRED')
+        if bounded_write:
+            # Retain compatible readers during Git work; COMMIT must never wait
+            # for their locks after the final authority/deadline observation.
+            db.execute('PRAGMA busy_timeout=0')
+        native_deadline()
         db.execute('COMMIT' if write else 'ROLLBACK')
+        state = PROTOCOL_COMMIT_STATE.get()
+        if write and state is not None:
+            state['committed'] = True
     except BaseException:
         if db.in_transaction:
             db.execute('ROLLBACK')
@@ -669,13 +688,19 @@ def protocol_budget(ctx):
     remaining = ctx['protocol_eligibility']['expires'] - time.time()
     need(remaining > 0, 'CUSTODY_EXPIRED')
     token = CRITICAL_DEADLINE.set(time.monotonic() + min(CRITICAL_SECONDS, remaining))
+    state = {'expires': ctx['protocol_eligibility']['expires'], 'committed': False}
+    commit_token = PROTOCOL_COMMIT_STATE.set(state)
     started = time.monotonic()
     try:
         yield
     finally:
         ctx['_protocol_critical_ms'] = (time.monotonic() - started) * 1000
+        PROTOCOL_COMMIT_STATE.reset(commit_token)
         CRITICAL_DEADLINE.reset(token)
-    need(ctx['_protocol_critical_ms'] <= CRITICAL_SECONDS * 1000, 'CRITICAL_SECTION_OVERRUN')
+    # COMMIT was checked before entry and cannot wait for a lock. A delayed
+    # return/elapsed observation must not misreport its durable success as refusal.
+    need(state['committed'] or ctx['_protocol_critical_ms'] <= CRITICAL_SECONDS * 1000,
+         'CRITICAL_SECTION_OVERRUN')
 
 
 @contextlib.contextmanager

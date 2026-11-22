@@ -1714,6 +1714,152 @@ class NativeAllocationMetadata(unittest.TestCase):
 
 
 
+class ColdProtocolCommitBoundary(unittest.TestCase):
+    """Real rollback-journal lock/commit behavior, with bounded owned readers."""
+
+    def setUp(self):
+        import tempfile
+        spec = importlib.util.spec_from_file_location('cold_commit_boundary',
+            ROOT / 'scripts/maintenance/adopt_stopped_coordinator_context.py')
+        self.cold = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.cold)
+        self.temporary = tempfile.TemporaryDirectory(prefix='crm-commit-')
+        self.addCleanup(self.temporary.cleanup)
+        self.store = Path(self.temporary.name) / 'native.sqlite3'
+        with contextlib.closing(sqlite3.connect(self.store, isolation_level=None)) as db:
+            db.execute('CREATE TABLE native_owner(value INTEGER)')
+            db.execute('INSERT INTO native_owner VALUES(0)')
+            db.execute('CREATE TABLE audit(value INTEGER)')
+        self.clock = {'wall': 1000.0, 'mono': 50.0}
+
+    @contextlib.contextmanager
+    def budget(self, custody=900, critical=30):
+        ctx = {'protocol_eligibility': {'expires': self.clock['wall'] + custody}}
+        with patch.object(self.cold.time, 'time', side_effect=lambda: self.clock['wall']), \
+             patch.object(self.cold.time, 'monotonic', side_effect=lambda: self.clock['mono']), \
+             patch.object(self.cold, 'CRITICAL_SECONDS', critical), self.cold.protocol_budget(ctx):
+            yield ctx
+
+    @contextlib.contextmanager
+    def reader(self):
+        import threading
+        ready, release, errors = threading.Event(), threading.Event(), []
+        def hold():
+            try:
+                with self.cold.database(self.store) as db:
+                    db.execute('SELECT * FROM native_owner').fetchall()
+                    ready.set()
+                    if not release.wait(5):
+                        raise AssertionError('Owned reader release timed out')
+            except BaseException as error:
+                errors.append(error)
+                ready.set()
+        thread = threading.Thread(target=hold)
+        thread.start()
+        try:
+            self.assertTrue(ready.wait(5))
+            self.assertEqual(errors, [])
+            yield release, thread
+        finally:
+            release.set()
+            thread.join(5)
+            self.assertFalse(thread.is_alive(), 'Owned reader did not settle')
+            self.assertEqual(errors, [])
+
+    def write_pair(self, db):
+        db.execute('UPDATE native_owner SET value=1')
+        db.execute('INSERT INTO audit VALUES(1)')
+
+    def assert_pair(self, expected):
+        with contextlib.closing(sqlite3.connect(self.store, isolation_level=None)) as db:
+            self.assertEqual(db.execute('SELECT value FROM native_owner').fetchone()[0], expected)
+            self.assertEqual(db.execute('SELECT count(*) FROM audit').fetchone()[0], expected)
+        self.assertFalse(self.store.with_name(self.store.name + '-journal').exists())
+        self.assertIsNone(self.cold.CRITICAL_DEADLINE.get())
+        self.assertIsNone(self.cold.PROTOCOL_COMMIT_STATE.get())
+
+    def test_active_reader_keeps_begin_immediate_compatible_but_commit_refuses_without_wait(self):
+        for custody, critical in [(0.15, 30), (900, 0.15)]:
+            with self.subTest(custody=custody, critical=critical):
+                with self.reader(), self.assertRaisesRegex(sqlite3.OperationalError, 'locked'):
+                    with self.budget(custody, critical), self.cold.database(self.store, write=True) as db:
+                        self.assertEqual(db.execute('PRAGMA busy_timeout').fetchone()[0], 0)
+                        self.write_pair(db)
+                        # BEGIN IMMEDIATE still permits an independent reader during Git work.
+                        with contextlib.closing(sqlite3.connect(self.store, isolation_level=None, timeout=0)) as reader:
+                            self.assertEqual(reader.execute('SELECT value FROM native_owner').fetchone()[0], 0)
+                self.assert_pair(0)
+
+    def test_reader_released_before_commit_and_unlocked_within_budget_succeed(self):
+        with self.reader() as (release, thread):
+            with self.budget(custody=0.15), self.cold.database(self.store, write=True) as db:
+                self.write_pair(db)
+                release.set()
+                thread.join(5)
+                self.assertFalse(thread.is_alive())
+                self.clock.update(wall=1000.149, mono=50.149)
+        self.assert_pair(1)
+
+    def test_each_precommit_deadline_rolls_back_native_and_audit_together(self):
+        cases = [('custody-monotonic', 0.15, 30, 1000.2, 50.2, 'CRITICAL_SECTION_EXPIRED'),
+                 ('critical', 900, 30, 1030.0, 80.0, 'CRITICAL_SECTION_EXPIRED'),
+                 ('custody-wall-jump', 0.15, 30, 1000.15, 50.0, 'CUSTODY_EXPIRED')]
+        for name, custody, critical, wall, mono, reason in cases:
+            with self.subTest(case=name):
+                self.clock.update(wall=1000.0, mono=50.0)
+                with self.assertRaisesRegex(self.cold.Refusal, reason):
+                    with self.budget(custody, critical), self.cold.database(self.store, write=True) as db:
+                        self.write_pair(db)
+                        self.clock.update(wall=wall, mono=mono)
+                self.assert_pair(0)
+
+    def test_deadline_recheck_after_actual_begin_prevents_entering_mutation_body(self):
+        clock, connect = self.clock, sqlite3.connect
+        class ExpiredAfterBegin(sqlite3.Connection):
+            def execute(self, statement, *values):
+                result = super().execute(statement, *values)
+                if statement == 'BEGIN IMMEDIATE':
+                    clock['mono'] = 81.0
+                return result
+        with self.assertRaisesRegex(self.cold.Refusal, 'CRITICAL_SECTION_EXPIRED'):
+            with patch.object(self.cold.sqlite3, 'connect',
+                    side_effect=lambda *args, **kw: connect(*args, **kw, factory=ExpiredAfterBegin)), \
+                 self.budget(), self.cold.database(self.store, write=True):
+                self.fail('Expired BEGIN entered mutation body')
+        self.assert_pair(0)
+
+    def test_actual_commit_success_is_not_relabelled_refused_by_delayed_return(self):
+        clock, connect = self.clock, sqlite3.connect
+        class DelayedCommitReturn(sqlite3.Connection):
+            def execute(self, statement, *values):
+                result = super().execute(statement, *values)
+                if statement == 'COMMIT':
+                    clock.update(wall=1031.0, mono=81.0)
+                return result
+        with patch.object(self.cold.sqlite3, 'connect',
+                side_effect=lambda *args, **kw: connect(*args, **kw, factory=DelayedCommitReturn)), \
+             self.budget() as ctx, self.cold.database(self.store, write=True) as db:
+            self.write_pair(db)
+        self.assertEqual(ctx['_protocol_critical_ms'], 31000)
+        self.assert_pair(1)
+
+    def test_uncommitted_budget_overrun_still_refuses_and_resets_context(self):
+        with self.assertRaisesRegex(self.cold.Refusal, 'CRITICAL_SECTION_OVERRUN'):
+            with self.budget():
+                self.clock['mono'] = 81.0
+        self.assert_pair(0)
+
+    def test_stopped_mode_keeps_existing_timeout_and_atomic_commit(self):
+        with self.reader() as (release, thread):
+            with self.cold.database(self.store, write=True) as db:
+                self.assertEqual(db.execute('PRAGMA busy_timeout').fetchone()[0], 2000)
+                self.write_pair(db)
+                release.set()
+                thread.join(5)
+                self.assertFalse(thread.is_alive())
+        self.assert_pair(1)
+
+
 class ColdProtocolRuntimeConsumption(unittest.TestCase):
     """Actual cold adapter -> immutable audit -> runtime validate/CAS, all synthetic."""
 

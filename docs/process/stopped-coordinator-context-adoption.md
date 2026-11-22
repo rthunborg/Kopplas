@@ -369,11 +369,21 @@ snapshot before either retained checkout can advance. An earlier heartbeat
 changes that snapshot and refuses the attempt. A later approved helper cannot
 validate its old assignment while this writer reservation is held.
 
-The native critical section has one monotonic budget of at most 30 seconds,
-also bounded by the custody expiry. Child commands receive the remaining budget,
-SQL has a progress deadline, and expiry rolls back pending native writes. The
-public result retains `critical_section_ms` for actual qualification. All
-expensive immutable candidate/native predicate checks run before this section.
+The native critical section uses one monotonic commit-entry deadline set from
+the smaller of 30 seconds and the remaining custody window. Protocol
+`BEGIN IMMEDIATE` and `COMMIT` use nonblocking SQLite lock handling; compatible
+readers remain allowed during the retained Git moves. Fresh monotonic and
+absolute custody-expiry checks run before opening the native writer, after
+`BEGIN IMMEDIATE` acquisition and immediately before `COMMIT`. A busy lock or a
+missed check refuses the attempt and rolls back pending native writes. Child
+commands receive the remaining budget and SQL has a progress deadline.
+
+These checks bound commit entry and lock waiting, not host scheduling or
+synchronous storage I/O. A successful durable commit must remain a committed
+outcome if its return or the elapsed-time observation is delayed; it must not be
+relabeled as a refusal. The public result retains truthful
+`critical_section_ms`, and an observed overrun does not qualify as within budget.
+All expensive immutable candidate/native predicate checks run before this section.
 The conditional branch reuses their exact assignment packet only while fresh
 clean checkouts, exact heads, installed workflow, main, request and bound evidence
 still match. Committed workflow objects use the pinned engine's unchanged digest
