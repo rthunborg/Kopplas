@@ -1044,9 +1044,21 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
   let hasFailure = false, firstFailure: unknown;
   let notifyFailure!: () => void;
   const failed = new Promise<void>(resolve => { notifyFailure = resolve; });
-  const recordFailure = (error: unknown) => {
+  const recordFailure = (error: unknown, request: import("@playwright/test").Request | null = null,
+    source: "requestfailed-event" | "capture-rejection" | "no-request-at-latch" = "no-request-at-latch") => {
     if (shutdownStarted || hasFailure) return;
-    hasFailure = true; firstFailure = error; notifyFailure();
+    hasFailure = true; firstFailure = error;
+    // One private callback-owned reference, latched with the SAME original first error.
+    // No getters/listeners/acquisition; optional memory failure never replaces the error.
+    try {
+      const prior = Object.getOwnPropertyDescriptor(recordFailure, "__roleFirstFatalIdentityV1");
+      if (!prior || !("value" in prior) || prior.value?.closed !== true) {
+        const owned = request !== null && typeof request === "object" && source !== "no-request-at-latch";
+        Object.defineProperty(recordFailure, "__roleFirstFatalIdentityV1", { configurable: true,
+          value: { request: owned ? request : null, source: owned ? source : "no-request-at-latch", closed: false } });
+      }
+    } catch { /* Preserve original arbitration even if optional identity retention is unavailable. */ }
+    notifyFailure();
   };
   let responseDelivery: ReturnType<typeof createRoleResponseDelivery> | undefined;
   const releaseResponseDelivery = (success: boolean) => responseDelivery?.dispose(success) ?? Promise.resolve();
@@ -1224,6 +1236,33 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
   };
   const admitted = new WeakMap<import("@playwright/test").Request, NativeCapture>();
   // Controlled-target association is observation only; no result changes admission.
+  // NAVIGATION-IDENTITY-CANDIDATE: local public Request references only; no data/clock joins.
+  const resolveNavigationRequestIdentity = (
+    selected: import("@playwright/test").Request | null,
+    target: import("@playwright/test").Request | null,
+  ) => {
+    type Facts = { relation: "exact-target" | "redirect-ancestor" | "unassociated" | "unavailable";
+      lifetime: "target-finished-then-text-required" | "server-redirect-response-only" | "unassociated-no-waiver" | "unavailable";
+      availability: "informative" | "unavailable" };
+    const unavailable = (): Facts => ({ relation: "unavailable", lifetime: "unavailable", availability: "unavailable" });
+    const valid = (value: unknown): value is import("@playwright/test").Request => value !== null && typeof value === "object";
+    if (!valid(selected) || !valid(target)) return unavailable();
+    const seen = new Set<import("@playwright/test").Request>();
+    let current: import("@playwright/test").Request | null = target, matched: "exact-target" | "redirect-ancestor" | undefined;
+    try {
+      while (current !== null) {
+        if (!valid(current) || seen.has(current) || seen.size >= 16) return unavailable();
+        seen.add(current);
+        if (current === selected) matched = current === target ? "exact-target" : "redirect-ancestor";
+        // Public pinned API: synchronous local redirectedFrom reference, no URL/header/body acquisition.
+        current = current.redirectedFrom();
+      }
+      if (matched === "exact-target") return { relation: matched, lifetime: "target-finished-then-text-required", availability: "informative" } satisfies Facts;
+      if (matched === "redirect-ancestor") return { relation: matched, lifetime: "server-redirect-response-only", availability: "informative" } satisfies Facts;
+      return { relation: "unassociated", lifetime: "unassociated-no-waiver", availability: "informative" } satisfies Facts;
+    } catch { return unavailable(); }
+    finally { seen.clear(); current = null; }
+  };
   type TargetAssociationRecord = {
     kind: "scheduling-target-association-v1"; schemaVersion: 1;
     navigation: "not-invoked" | "pending" | "fulfilled-response" | "fulfilled-null" | "rejected" | "unavailable";
@@ -1248,6 +1287,7 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
   };
   const targetAssociation = (() => {
     let enabled = true, selected = false, fault = false;
+    let navigationIdentityObservations = 0; // More than one supplied navigation is ambiguous for this join only.
     let navigation: TargetAssociationRecord["navigation"] = "not-invoked";
     let failedRequest: import("@playwright/test").Request | null = null, returnedTarget: import("@playwright/test").Request | null = null;
     let actionRead: TargetAssociationRecord["actionRead"] = "no-failed-request";
@@ -1262,6 +1302,7 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
     };
     const observe = (original: Promise<import("@playwright/test").Response | null>) => {
       if (!enabled) return;
+      navigationIdentityObservations = Math.min(navigationIdentityObservations + 1, 2);
       navigation = "pending";
       try {
         const branch = Promise.prototype.then.call(original, (response: import("@playwright/test").Response | null) => {
@@ -1298,6 +1339,23 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
         failedRequest: selected ? failedRequest ? "first-native-snapshot" : "unavailable" : "none",
         targetRelation: relation, actionRead, availability, emission: "attempt-finalization",
       };
+      let navigationIdentity: ReturnType<typeof resolveNavigationRequestIdentity> = { relation: "unavailable", lifetime: "unavailable", availability: "unavailable" };
+      let fatalSource: "requestfailed-event" | "capture-rejection" | "no-request-at-latch" | "no-failure-at-finalization" | "unavailable" = hasFailure ? "unavailable" : "no-failure-at-finalization";
+      try {
+        const descriptor = Object.getOwnPropertyDescriptor(recordFailure, "__roleFirstFatalIdentityV1");
+        const owned = descriptor && "value" in descriptor ? descriptor.value as { request: import("@playwright/test").Request | null; source: string; closed: boolean } : undefined;
+        if (hasFailure && owned && !owned.closed) {
+          if (owned.source === "requestfailed-event" || owned.source === "capture-rejection" || owned.source === "no-request-at-latch") fatalSource = owned.source;
+          if (fatalSource !== "no-request-at-latch" && fatalSource !== "unavailable" && owned.request && !fault && navigationIdentityObservations === 1 && navigation === "fulfilled-response" && returnedTarget &&
+            admitted.get(returnedTarget)?.request === returnedTarget) {
+            navigationIdentity = resolveNavigationRequestIdentity(owned.request, returnedTarget);
+          }
+        }
+      } catch { /* Missing identity never changes the original failure, snapshot or association. */ }
+      finally {
+        try { Object.defineProperty(recordFailure, "__roleFirstFatalIdentityV1", { configurable: true, value: { request: null, source: "no-request-at-latch", closed: true } }); }
+        catch { /* Unverified reference release is unavailable, never success or failure replacement. */ navigationIdentity = { relation: "unavailable", lifetime: "unavailable", availability: "unavailable" }; fatalSource = "unavailable"; }
+      }
       failedRequest = null; returnedTarget = null;
       try {
         if (!validTargetAssociation(record)) return;
@@ -1305,6 +1363,11 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
         if (typeof json !== "string" || Buffer.byteLength(json, "utf8") > 1024) return;
         console.info("[scheduling-target-association] " + json);
       } catch { /* Missing output is unavailable, never permission to retry or proceed. */ }
+      // Separate prospective closed facts; original21+8 schemas/emission remain byte-exact.
+      try {
+        const identityJson = JSON.stringify({ kind: "scheduling-fatal-navigation-identity-v1", schemaVersion: 1, subject: "first-error-latch-request", source: fatalSource, ...navigationIdentity, emission: "attempt-finalization" });
+        if (Buffer.byteLength(identityJson, "utf8") <= 512) console.info("[scheduling-fatal-navigation-identity] " + identityJson);
+      } catch { /* Fixed-size optional facts cannot alter failure, cleanup or admission. */ }
     };
     return { select, method, observe, finish };
   })();
@@ -1377,7 +1440,7 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
     let reason: unknown = unavailableReason;
     try { const failure = request.failure(), text = failure?.errorText; if (typeof text === "string") reason = text; } catch { /* Use only the fixed unavailable carrier. */ }
     lifecycle.mark(page, "request-failed", "event", request);
-    recordFailure(reason);
+    recordFailure(reason, request, "requestfailed-event");
     wake();
     if (entry) snapshot(entry, "requestfailed");
   };
@@ -1431,7 +1494,7 @@ roleResponseTest("[P0] 15.1-INT-001 AC2 manager five views; own agenda rejects p
     }, error => {
       if (error === abandoned) return { ok: "abandoned" as const };
       if (shutdownStarted) return { ok: false as const, error };
-      recordFailure(error); rejectedCount++;
+      recordFailure(error, entry.request, "capture-rejection"); rejectedCount++;
       let trigger: "body-rejected" | "finished-rejected" = "finished-rejected";
       updateTiming(() => { trigger = entry.phase === "body" ? "body-rejected" : "finished-rejected"; });
       snapshot(entry, trigger);
