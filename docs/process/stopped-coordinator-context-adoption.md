@@ -334,3 +334,95 @@ The focused capture parent's exit was not separately observed; the actual Node
 exit0 and complete TAP are the native evidence. All existing hosted,
 current-tool-revision, live custody/approval, runtime,
 publication and product gates remain separate and held.
+
+## Fixed-run protocol quarantine — 2026-11-20
+
+The owner authorized private implementation and independent qualification of this
+six-file route. A live cold transition still requires its reviewed request digest,
+owner decision and current evidence. The only subject is the original CRM run and
+claim described above. The legacy scheduler queue is recorded as `UNKNOWN`.
+
+`custody.kind = conditional-protocol-quarantine` is an alternative to the existing
+`current-stopped-custody` shape. Its exact common fields bind the run, story,
+coordinator, worker, old archive/no-reopen state, retained holds, provenance and a
+window of at most 900 seconds. The alternative adds these required fields:
+
+- `scheduler_queue` equals `UNKNOWN` and `entry_model` equals
+  `truthful-identity-before-phase-validation`.
+- `before_workflow` and `after_workflow` equal the existing distinct old/current
+  workflow pins. The adapter checks the actual original and candidate workflow
+  contents, and the installed integration workflow, independently of commit IDs.
+- `boot_observation` references hashed private boot evidence with a boot identity,
+  boot time, observation time and provenance.
+- `writer_observations` contains exactly one hashed observation for each of OLD,
+  NEW, WORKER and the retired successor. Each observation is scoped to retained
+  CRM phase work, records no admitted phase/command, empty pending-command and
+  relevant-handle lists, required before-phase validation, time and provenance.
+- `historical_stops` binds exactly those four identities to completed scoped
+  stop/no-reopen history. The trusted coordinator and independent request review
+  establish the authenticity and completeness of these observations.
+
+Read-only validation and private preparation report `protocol_fence_committed`
+false. They establish eligibility for the conditional attempt. After acquiring
+`BEGIN IMMEDIATE`, the adapter compares the complete freshly observed native
+snapshot before either retained checkout can advance. An earlier heartbeat
+changes that snapshot and refuses the attempt. A later approved helper cannot
+validate its old assignment while this writer reservation is held.
+
+The native critical section uses one monotonic commit-entry deadline set from
+the smaller of 30 seconds and the remaining custody window. Protocol
+`BEGIN IMMEDIATE` and `COMMIT` use nonblocking SQLite lock handling; compatible
+readers remain allowed during the retained Git moves. Fresh monotonic and
+absolute custody-expiry checks run before opening the native writer, after
+`BEGIN IMMEDIATE` acquisition and immediately before `COMMIT`. A busy lock or a
+missed check refuses the attempt and rolls back pending native writes. Child
+commands receive the remaining budget and SQL has a progress deadline.
+
+These checks bound commit entry and lock waiting, not host scheduling or
+synchronous storage I/O. A successful durable commit must remain a committed
+outcome if its return or the elapsed-time observation is delayed; it must not be
+relabeled as a refusal. The public result retains truthful
+`critical_section_ms`, and an observed overrun does not qualify as within budget.
+All expensive immutable candidate/native predicate checks run before this section.
+The conditional branch reuses their exact assignment packet only while fresh
+clean checkouts, exact heads, installed workflow, main, request and bound evidence
+still match. Committed workflow objects use the pinned engine's unchanged digest
+with a bounded batch read. No workflow or generic helper is modified.
+
+The existing intent journal remains the recovery authority. Both Git moves and
+the owner/plan/base compare-and-swap occur under the same native reservation.
+The `native-done` journal event is written after the native commit. A crash after
+commit and before that event replays the immutable audit once. Git and SQLite
+have distinct commits, so an interruption can retain moved checkouts with the
+native before-state. Recovery must revalidate the same request and recorded
+stage. Once the new workflow is installed, an old plan's workflow validation
+refuses entry even before the owner transition commits. An interruption before
+that point retains the held state and requires explicit reconciliation.
+
+The committed response includes `protocol_fence.kind =
+committed-protocol-quarantine`, exact assignment/request/custody bindings and the
+unknown queue fact. It keeps generation 1 blocked. The runtime adapter consumes
+that exact immutable audit within its own native transaction, validates old/new
+plan, claim, publication-state and source conservation, and checks the current
+owner, workflow and claim. Its fresh current-writer receipt still covers the
+worker and all authorized delegates. Retired identities are classified by their
+protocol refusal and cannot be inserted into that receipt as scheduler-stopped.
+The runtime adapter retains its separate reviewed generation 1 to 2 admission.
+
+This guarantee relies on compliant actor identity and before-phase validation.
+Already admitted direct operations require current scoped closure evidence.
+Arbitrary hostile filesystem, credentials or SQLite access under the same OS
+user is outside this protocol guarantee.
+
+## Suggested Review Order
+
+1. Read the fixed-run scope and authority boundary above and the runtime proof
+   contract in `docs/process/parallel-auto-bmad-contract.md`.
+2. Review `protocol_eligibility`, `protocol_transaction`, `recover`, journal
+   completion and `receipt` in the cold adapter. Trace the old stopped branch as
+   an independent regression path.
+3. Review `committed_protocol_fence` and both quiescence rechecks in the runtime
+   adapter, followed by the unchanged generation-2 compare-and-swap.
+4. Inspect the disposable actual-helper races, interruption/deadline cases and
+   cold-to-runtime proof-consumption tests in the two allocated test files.
+   Qualification results are supplied with the final source handoff.
