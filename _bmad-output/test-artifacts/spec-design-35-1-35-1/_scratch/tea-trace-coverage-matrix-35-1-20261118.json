@@ -1,0 +1,333 @@
+{
+  "phase": "PHASE_1_COMPLETE",
+  "trace_target": {
+    "type": "epic",
+    "id": "spec-design-35-1",
+    "label": "Sole existing 35-1 documentary contract"
+  },
+  "collection_mode": "contract_static",
+  "collection_status": "COLLECTED",
+  "allow_gate": true,
+  "coverage_basis": "acceptance_criteria",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "sources": [
+      "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\SPEC.md",
+      "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\existing-evidence.md",
+      "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md"
+    ],
+    "external_pointer_status": "not_used",
+    "synthetic": false
+  },
+  "requirements": [
+    {
+      "id": "E35-1-AC1",
+      "description": "Account for 17 MAIN rows, eight FIELD rows, five frozen Phase A journeys and B1\u2013B7 through authority/screen-state crosswalk and actual route allocation. Each has an owner/destination or explicit retained, future or excluded disposition. Preserve detailed rules/deep links; no retirement without atomic destination/incoming-link proof.",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "E35-1-T-AC1",
+          "title": "Authority coverage. documentary inspection",
+          "file": "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md",
+          "line": 146,
+          "level": "other",
+          "evidence_kind": "documentary_inspection",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false,
+          "runtime": false
+        }
+      ],
+      "evidence": "Crosswalk preserves detailed domain annex and atomic transfer/incoming-link gate; route register distinguishes actual routes from embedded/unbuilt surfaces and retains 17 MAIN/eight FIELD/five frozen journeys/B1\u2013B7. No new route admission."
+    },
+    {
+      "id": "E35-1-AC2",
+      "description": "Distinguish authoring checkout, integrated inventory and dated remote observations. Record revision/date/provenance/hashes and missing evidence. Do not relabel the 2026-10-23 snapshot as current on 2026-10-26. Unverified ancestry/ownership/DT-B15 remains a later admission dependency; historical reservations allocate no paths.",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "E35-1-T-AC2",
+          "title": "Dated base evidence. documentary inspection",
+          "file": "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md",
+          "line": 147,
+          "level": "other",
+          "evidence_kind": "documentary_inspection",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false,
+          "runtime": false
+        }
+      ],
+      "evidence": "Primary base register dates checkout bbf7cef, inventory 99104d0, remote 0ae48a and remote_object_present=false to Oct23; adapter separates current preparation and disclosed source drift. No ancestry/current-main claim."
+    },
+    {
+      "id": "E35-1-AC3",
+      "description": "Classify slices as documentation checks, concrete test design now, material-decision-blocked contracts or dependency-bound migrations. E17/E18 gaps do not block unrelated E35 design. Name inputs, outputs, boundaries and next owners without approving or starting implementation.",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "E35-1-T-AC3",
+          "title": "Scoped handoff. documentary inspection",
+          "file": "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md",
+          "line": 148,
+          "level": "other",
+          "evidence_kind": "documentary_inspection",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false,
+          "runtime": false
+        }
+      ],
+      "evidence": "Archived handoff explicitly separates Lane A documentary/concrete-design, Lane B DT-B15 dependency and Lane C technical gaps; accepted DR-B1\u2013B7 remains settled without blanket technical ratification."
+    },
+    {
+      "id": "E35-1-AC4",
+      "description": "Validate new relative file links, output hashes and index/spec identities. Recompute changed output hashes while preserving historical input hashes. Record source drift rather than concealing it. Hash identity is not readiness or product correctness.",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "E35-1-T-AC4",
+          "title": "Link/hash/index consistency. documentary inspection",
+          "file": "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md",
+          "line": 149,
+          "level": "other",
+          "evidence_kind": "documentary_inspection",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false,
+          "runtime": false
+        }
+      ],
+      "evidence": "Four archive identity pairs and seven verbatim criteria verified in author receipt; current re-read confirms verbatim criteria, exact sole story and 13 current Markdown links. Raw/LF/Git representations and epics drift stay distinct. Root supplied final-byte/committed-head wrappers are provenance, not runtime coverage."
+    },
+    {
+      "id": "E35-1-AC5",
+      "description": "Every generated spec distinguishes requirements applying to its own changes, inherited regression obligations and N/A with scope reasons. Add no dialog, form, file operation, command, viewport or application suite merely to satisfy a template.",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "E35-1-T-AC5",
+          "title": "Applicability. documentary inspection",
+          "file": "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md",
+          "line": 150,
+          "level": "other",
+          "evidence_kind": "documentary_inspection",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false,
+          "runtime": false
+        }
+      ],
+      "evidence": "Primary applicability JSON has exactly 27 classifications with Applies/Inherited/N/A and nonempty reasons; 35.1 has documentation-only scope. Common catalogue preserves actual downstream owners without instantiating live UI/file tests."
+    },
+    {
+      "id": "E35-1-AC6",
+      "description": "Compare all eight original E17/E18 sketch/EP-06 sections verbatim; retain their unresolved blockers. Keep completed evidence and linked follow-ups intact. Record code conflicts without claiming/releasing paths or changing E15/tracking.",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "E35-1-T-AC6",
+          "title": "Preservation and ownership. documentary inspection",
+          "file": "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md",
+          "line": 151,
+          "level": "other",
+          "evidence_kind": "documentary_inspection",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false,
+          "runtime": false
+        }
+      ],
+      "evidence": "Retained primary Oct23/Oct26 proof records explicitly identify all eight original sections as verbatim preserved; identities match author evidence and adapter. AC6 is covered by dated-proof adoption in this contract, not by a fresh eight-original-section comparison. Unresolved blockers, completed evidence and follow-ups remain incorporated; no foreign ownership or E15/tracking change."
+    },
+    {
+      "id": "E35-1-AC7",
+      "description": "Publish documentation-check results/limitations separately from downstream runtime/release evidence. Preserve actual owner requirements for money/provenance/projections/transactions and release checks; no source mapping is a runtime/test-design PASS, release approval or implementation admission.",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "E35-1-T-AC7",
+          "title": "Honest evidence. documentary inspection",
+          "file": "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md",
+          "line": 152,
+          "level": "other",
+          "evidence_kind": "documentary_inspection",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false,
+          "runtime": false
+        }
+      ],
+      "evidence": "Current author table, adapter, common catalogue and handoff distinguish planned IDs, documentary outcomes, historical proof and downstream runtime/release obligations. No mapping or review verdict is used as runtime/test-design PASS or production approval."
+    }
+  ],
+  "coverage_statistics": {
+    "total_requirements": 7,
+    "fully_covered": 7,
+    "partially_covered": 0,
+    "uncovered": 0,
+    "overall_coverage_percentage": 100,
+    "priority_breakdown": {
+      "P0": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      },
+      "P1": {
+        "total": 7,
+        "covered": 7,
+        "percentage": 100
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      }
+    }
+  },
+  "gap_analysis": {
+    "critical_gaps": [],
+    "high_gaps": [],
+    "medium_gaps": [],
+    "low_gaps": [],
+    "partial_coverage_items": [],
+    "unit_only_items": []
+  },
+  "test_inventory": {
+    "summary": {
+      "files": 1,
+      "cases": 7,
+      "skipped_cases": 0,
+      "fixme_cases": 0,
+      "pending_cases": 0,
+      "by_level": {
+        "e2e": {
+          "tests": 0,
+          "criteria_covered": 0
+        },
+        "api": {
+          "tests": 0,
+          "criteria_covered": 0
+        },
+        "component": {
+          "tests": 0,
+          "criteria_covered": 0
+        },
+        "unit": {
+          "tests": 0,
+          "criteria_covered": 0
+        },
+        "live": {
+          "tests": 0,
+          "criteria_covered": 0
+        },
+        "other": {
+          "tests": 7,
+          "criteria_covered": 7
+        }
+      },
+      "documentary_inspection_cases": 7,
+      "executable_cases": 0,
+      "runtime_cases": 0
+    },
+    "blockers": []
+  },
+  "live_evidence": {
+    "present": false,
+    "results_file": "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\test-artifacts\\spec-design-35-1-35-1\\live-verification-results.json",
+    "freshness": "not_present",
+    "recorded_source_sha": "",
+    "current_source_sha": "f233a7f2d4815d3190649f0010b9fcc956308719",
+    "producer": "",
+    "counted": 0,
+    "stale": 0,
+    "unverifiable": 0,
+    "failed": 0,
+    "contradicted": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "unmatched": 0,
+    "invalid": 0,
+    "requirements_live_only": 0
+  },
+  "live_records": [],
+  "coverage_heuristics": {
+    "counts": {
+      "endpoints_without_tests": 0,
+      "auth_missing_negative_paths": 0,
+      "happy_path_only_criteria": 0,
+      "ui_journeys_without_e2e": 0,
+      "ui_states_missing_coverage": 0
+    },
+    "applicability": "Runtime endpoint/auth/error/UI checks not applicable to documentary-only scope."
+  },
+  "recommendations": [
+    {
+      "priority": "P2",
+      "action": "Retain dated AC6 proof limitation and original downstream runtime/release duties. No new runtime suite or owner approval is authorized by documentary trace PASS.",
+      "requirements": [
+        "E35-1-AC6",
+        "E35-1-AC7"
+      ]
+    }
+  ],
+  "blockers": [],
+  "input_preimages": {
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\.memlog.md": "9446a0e818a738ccafab22761807b88d628d2b0c24dcfb88f0ed5d59775693fb",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\existing-evidence.md": "1229ea8bfd9de348d7ada5d41acf8e2a7b05ae4ab559d0d8fe71a52a87dc33f8",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\SPEC.md": "da9170606a2d34e0303a0dd83b5553fbd619c36fccfc1dd892817e2daa00d8e9",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories.yaml": "8d145e6270cf7ad5060fbf07398007397230c4b98d7fd09ac4ad11e610bd7c57",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\sources\\approval-and-application.json": "feec72a6a5be193fa26058b49b6010dd121b86e2aec682563225ad2e9129d959",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\sources\\prompt-4-handoff.md.txt": "105a938989ae34b9920a8891bf1e43fef0e9046a25ffda8aaef612d77ae3678d",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\sources\\slice-35-1.md.txt": "cd8e18f8e5801df101fcbae3f1681ad40d1c73cc2652f8ee947ab4c32b10c6c4",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\sources\\spec-35-1-authority-and-base-contract.md.txt": "9a79f7917251deb44fbcbc6173d021032533900b84aac114989a03f246c7765e",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\specs\\spec-design-35-1\\stories\\35-1-authority-and-base-contract.md": "d87107ad961acab0b82eb69352a17a6d5fd6bd91226f95296b5058598dbfbcc1",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\planning-artifacts\\design-transition-2026-10-23\\authority-crosswalk.md": "2b8cfa8e04440c88499ec5d881155d464ea9123c9e8398f3fc722b029a1ab4ea",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\planning-artifacts\\design-transition-2026-10-23\\story-preparation\\route-allocation.md": "c1bc67657d279838ee53fef44236a7cf55570ae449ca386b41f087b8090db6cb",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\planning-artifacts\\design-transition-2026-10-23\\story-preparation\\base-and-consumers.json": "3de0415979ee7d7a6130ba76db15a6a24a5d82917ff614559900a0f1a5b245e5",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\planning-artifacts\\design-transition-2026-10-23\\story-preparation\\applicability.json": "1a0dc7dde4552ebed53192ade14f513d097eeae2c0e425c50de221e2b17575f7",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\planning-artifacts\\design-transition-2026-10-23\\story-preparation\\common-contract.md": "88d8dd91810f9be24c6da437cfa9c9418b761042bc9e1ae0f54c6e7cc5ee4a76",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\planning-artifacts\\design-transition-2026-10-23\\decision-resolution-2026-10-26\\owner-decisions.md": "d58dd816ad0490d8e28f4a61d9d85c67eff783ca3fef9af851c5c49bf38e19d9",
+    "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\test-artifacts\\test-design-spec-design-35-1.md": "3201f8b58e592d6d27ce901520e43518c79f76995a7c13916ea4be37031971a5",
+    "C:\\DEV\\Kopplas\\tmp\\private\\35-6-35-7-coordinator-2026-11-09\\epic-35-completion-20261118\\35-1-formal-closeout-route\\author-documentary-checks.json": "4114773a3a0e15e2a1352c22fa6a3162b225bf16546ac9363c37196b953595e7"
+  },
+  "retained_proofs": [
+    {
+      "path": "C:\\DEV\\Kopplas\\_bmad-output\\planning-artifacts\\design-transition-2026-10-23\\story-preparation\\validation.json",
+      "date": "2026-10-23",
+      "sha256": "8efe1c0290a8a4d6752851f092f52bc558e390840d2ad03f15492ed0c79e69de"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\_bmad-output\\planning-artifacts\\design-transition-2026-10-23\\story-preparation\\applicability-validation.json",
+      "date": "2026-10-26",
+      "sha256": "134d33ed96c99b9c711603623d34384ec639be5f6c12550a6454b268629027fc"
+    },
+    {
+      "path": "C:\\DEV\\Kopplas\\_bmad-output\\test-artifacts\\dt-2026-10-23-test-design\\amendment-validation.json",
+      "date": "2026-10-26",
+      "sha256": "d111c8dd37e8884be8c06a57ca338c5ebe1b330fd3d0c3a8ef2f41881ac1f847"
+    }
+  ],
+  "execution_mode": "sequential; bounded documentary run; no nested delegates needed",
+  "tempCoverageMatrixPath": "C:\\DEV\\Kopplas\\tmp\\private\\e35-1-documentary-closeout-20261118\\_bmad-output\\test-artifacts\\spec-design-35-1-35-1\\_scratch\\tea-trace-coverage-matrix-35-1-20261118.json"
+}
