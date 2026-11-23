@@ -205,6 +205,24 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     const retryCompletions = new WeakMap<BrowserRequest, boolean>();
     const recordRetryFinished = (request: BrowserRequest) => { retryCompletions.set(request, released); };
     page.on("requestfinished", recordRetryFinished);
+    let selectedPublicRequest: BrowserRequest | undefined;
+    let responseObservation: "unobserved" | "pending" | "resolved" | "unavailable" | "rejected" = "unobserved";
+    let responseRelease: "unobserved" | "before-release" | "after-release" = "unobserved";
+    let responseCategory: "unobserved" | "successful" | "unsuccessful" = "unobserved";
+    let finishedObservation: "unobserved" | "pending" | "complete" | "error" | "rejected" = "unobserved";
+    const retryFailures = new WeakMap<BrowserRequest, boolean>();
+    const recordRetryFailed = (request: BrowserRequest) => { retryFailures.set(request, released); };
+    page.on("requestfailed", recordRetryFailed);
+    const retryObservations: object[] = [];
+    function observeRetry(phase: "before-release" | "rendered-row" | "before-cleanup") {
+      try {
+        const terminal = (events: WeakMap<BrowserRequest, boolean>) => !selectedPublicRequest || !events.has(selectedPublicRequest)
+          ? "unobserved" : events.get(selectedPublicRequest) ? "after-release" : "before-release";
+        retryObservations.push({ phase, selectedPublicRequest: selectedPublicRequest !== undefined,
+          response: responseObservation, responseRelease, responseCategory, finished: finishedObservation,
+          requestFinished: terminal(retryCompletions), requestFailed: terminal(retryFailures), confirmed: retryConfirmed });
+      } catch { /* An unavailable diagnostic must not alter the test outcome. */ }
+    }
     function isPrefetch(request: BrowserRequest) {
       const headers = request.headers();
       return Boolean(headers["next-router-prefetch"] || headers["next-router-segment-prefetch"]
@@ -300,22 +318,35 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       retryFinished = page.waitForRequest(request => clickStarted && request.method() === "GET"
         && customersUrl?.(new URL(request.url())) === true && !isPrefetch(request), { timeout: 15_000 })
         .then(async request => {
+          selectedPublicRequest = request;
           retryObserved = true;
+          responseObservation = "pending";
           const response = await request.response();
+          responseObservation = response ? "resolved" : "unavailable";
+          responseRelease = released ? "after-release" : "before-release";
           if (!response) return false;
+          try { responseCategory = response.ok() ? "successful" : "unsuccessful"; }
+          catch { /* The original predicate remains responsible for response.ok(). */ }
+          finishedObservation = "pending";
           const finished = await response.finished() === null;
+          finishedObservation = finished ? "complete" : "error";
           // Headers may arrive while the backend read is held. Credit only the
           // exact request's terminal event after release, never a later sample
           // that could retroactively credit a request already finished before it.
           retryConfirmed = retryCompletions.get(request) === true && response.ok() && finished;
           return finished;
-        }).catch(() => false);
+        }).catch(() => {
+          if (responseObservation === "pending") responseObservation = "rejected";
+          else if (finishedObservation === "pending") finishedObservation = "rejected";
+          return false;
+        });
       expect(existsSync(attempt.held)).toBe(false);
       clickStarted = true;
       await retry.click({ noWaitAfter: true });
       await expect.poll(() => retryObserved).toBe(true);
       await expect.poll(() => readControl(attempt.held) === "held").toBe(true);
       await expect(page.getByTestId("customers-table-body")).toHaveCount(0);
+      observeRetry("before-release");
       releaseHold(attempt);
 
       await expect(page).toHaveURL(/\/customers$/);
@@ -325,6 +356,7 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       const customerLink = page.getByTestId("customers-table-body").getByRole("link", { name: marker, exact: true });
       await expect(customerLink).toHaveAttribute("href", `/customers/${customerId}`);
       await expect(customerLink).toBeVisible();
+      observeRetry("rendered-row");
       await expect.poll(() => retryConfirmed, { message: "The actual retry navigation must finish successfully after release" }).toBe(true);
       await expect(page.getByTestId("customers-table-body").getByRole("link")).toHaveCount(1);
       expect(await page.content()).not.toContain(foreignMarker);
@@ -335,7 +367,9 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       testFailed = true;
       throw error;
     } finally {
+      observeRetry("before-cleanup");
       page.off("requestfinished", recordRetryFinished);
+      page.off("requestfailed", recordRetryFailed);
       const cleanupErrors: unknown[] = [];
       const failedSteps: string[] = [];
       async function cleanup(step: string, run: () => void | Promise<void>) {
@@ -372,6 +406,14 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
         if (!closePage && customersUrl && !page.isClosed()) await page.unroute(customersUrl, blockPrefetch);
       });
       await fixtureCleanup;
+      try {
+        // These enums describe the selected public Request object by reference
+        // equality only; they do not prove which request owned the backend hold.
+        await test.info().attach("crm-p0-selected-request-observations.json", {
+          body: Buffer.from(JSON.stringify({ binding: "selected-public-request-only", observations: retryObservations })),
+          contentType: "application/json",
+        });
+      } catch { /* Diagnostics must not replace the original test/cleanup failure. */ }
       if (cleanupErrors.length > 0) {
         const description = failedSteps.join(", ");
         if (testFailed) test.info().annotations.push({ type: "crm-read-fault-cleanup-failed", description });
