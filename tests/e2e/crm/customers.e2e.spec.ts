@@ -651,6 +651,7 @@ async function customerActionGate(page: Page, marker: string, mode: "hold" | "be
   const delivered = new Promise<void>((resolve,reject) => { resolveDelivered=resolve; rejectDelivered=reject; });
   void delivered.catch(() => undefined);
   let attempts = 0;
+  let ownedRequest: BrowserRequest | undefined;
   const handler = async (route: Route) => {
     try {
       const form = await customerActionForm(route.request());
@@ -658,6 +659,7 @@ async function customerActionGate(page: Page, marker: string, mode: "hold" | "be
         await route.fallback(); return;
       }
       attempts += 1;
+      ownedRequest ??= route.request();
       if (mode === "before-forward") { await route.abort("failed"); resolveObserved(); resolveDelivered(); return; }
       const response = await route.fetch();
       expect(response.ok()).toBe(true); // Transport only: independent physical read follows.
@@ -674,7 +676,7 @@ async function customerActionGate(page: Page, marker: string, mode: "hold" | "be
   };
   // playwright-utils deviation: package absent; existing real route.fetch/abort pattern.
   await page.route("**/*", handler);
-  return { observed, attempts: () => attempts, dispose: async () => { release(); try { if(attempts>0) await delivered; } finally { await page.unroute("**/*", handler); } } };
+  return { observed, request: () => ownedRequest, attempts: () => attempts, dispose: async () => { release(); try { if(attempts>0) await delivered; } finally { await page.unroute("**/*", handler); } } };
 }
 
 test.describe("35.3 customer records acceptance (active RED, configured Chromium)", () => {
@@ -808,26 +810,58 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.getByRole("link",{name:marker,exact:true}).click();
     const historyState=()=>page.evaluate(()=>({url:location.href,length:history.length,key:(window as unknown as {navigation:{currentEntry:{key:string}}}).navigation.currentEntry.key}));
     const gate=await customerActionGate(page,id,"hold",marker);
+    type RequestOutcome = "unobserved" | "pending" | "finished" | "failed";
+    type RenderedView = "dashboard" | "customer-detail" | "customer-list" | "multiple" | "other" | "unobserved";
+    type ObservationPhase = "before-response-release" | "after-response-release" | "destination-settle";
+    const observations: { phase: ObservationPhase; archiveRequest: RequestOutcome; expectedHistoryEqual: boolean | null; renderedView: RenderedView }[] = [];
+    let archiveRequest: RequestOutcome = "unobserved";
+    let requested: Awaited<ReturnType<typeof historyState>> | undefined;
+    let testFailed = false;
+    const finished = (request: BrowserRequest) => { if (request === gate.request()) archiveRequest = "finished"; };
+    const failed = (request: BrowserRequest) => { if (request === gate.request()) archiveRequest = "failed"; };
+    // Compare object identity with the gate's multipart/id-matched archive POST,
+    // never an unrelated navigation/RSC request. Do not retain traffic or errors.
+    page.on("requestfinished", finished);
+    page.on("requestfailed", failed);
+    async function observe(phase: ObservationPhase) {
+      let expectedHistoryEqual: boolean | null = null;
+      let renderedView: RenderedView = "unobserved";
+      try {
+        const actual = await historyState();
+        if (requested) expectedHistoryEqual = actual.url === requested.url && actual.length === requested.length && actual.key === requested.key;
+        const views = await Promise.all([
+          page.getByRole("heading", {name:"Dashboard",exact:true}).isVisible(),
+          page.getByRole("heading", {name:marker,exact:true}).isVisible(),
+          page.getByTestId("new-customer-button").isVisible(),
+        ]);
+        renderedView = views.filter(Boolean).length > 1 ? "multiple"
+          : views[0] ? "dashboard" : views[1] ? "customer-detail" : views[2] ? "customer-list" : "other";
+      } catch { /* An unavailable observation is unknown, never a destination pass. */ }
+      observations.push({ phase, archiveRequest, expectedHistoryEqual, renderedView });
+    }
     try {
       await page.getByRole("button",{name:"Arkivera kund",exact:true}).click();
       await page.getByRole("button",{name:"Arkivera kund",exact:true}).click(); await gate.observed;
+      if (gate.request() && archiveRequest === "unobserved") archiveRequest = "pending";
       await expect(page.getByTestId("edit-customer-button")).toBeDisabled();
       const hint=await page.evaluate(()=>Object.entries(sessionStorage)); expect(hint).toHaveLength(1);
       await page.goBack(); await expect(page).toHaveURL(/\/customers$/);
       await page.goBack(); await expect(page).toHaveURL(/\/dashboard$/);
-      const requested=await historyState(); expect(requested.key).toBe(dashboardKey);
+      requested=await historyState(); expect(requested.key).toBe(dashboardKey);
       // Observed framework path retains A DOM; URL alone does not establish a new journey.
       await expect(page.getByRole("heading",{name:marker,exact:true})).toBeVisible();
       await expect(page.getByTestId("edit-customer-button")).toBeDisabled();
       expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hint);
-      await gate.dispose();
-      await expect(page).toHaveURL(/\/dashboard$/);
-      expect(await historyState()).toEqual(requested);
-      // Adopt the requested HTTP destination after the held archive completes.
-      // This is explicit recovery, not evidence that automatic CSR adoption finished.
-      await page.reload({waitUntil:"commit"});
-      await expect(page.getByRole("heading",{name:"Dashboard",exact:true})).toBeVisible();
-      expect(await historyState()).toEqual(requested);
+      await observe("before-response-release");
+      try {
+        await gate.dispose();
+        await observe("after-response-release");
+        // Original automatic Back contract: no reload/goto recovery substitutes
+        // for the requested destination's rendered heading and exact history.
+        await expect(page).toHaveURL(/\/dashboard$/);
+        await expect(page.getByRole("heading",{name:"Dashboard",exact:true})).toBeVisible();
+        expect(await historyState()).toEqual(requested);
+      } finally { await observe("destination-settle"); }
       expect(gate.attempts()).toBe(1);
       const row=(await customerSnapshot(marker))[0]; expect(row.archived_at).not.toBeNull(); expect(row.audits).toBe(2);
       await page.goForward(); await expect(page.getByTestId("new-customer-button")).toBeVisible();
@@ -836,7 +870,21 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       expect((await customerSnapshot(marker))[0].audits).toBe(2);
       await expect(returned.getByLabel("Ort")).toHaveValue("Returned after terminal draft");
       await expect(page).toHaveURL(new RegExp(`/customers/${id}$`));
-    } finally {await gate.dispose();}
+    } catch (error) { testFailed = true; throw error; }
+    finally {
+      let cleanup: "completed" | "failed" = "completed";
+      try { await gate.dispose(); }
+      catch (error) { cleanup = "failed"; if (!testFailed) throw error; }
+      finally {
+        page.off("requestfinished", finished);
+        page.off("requestfailed", failed);
+        try {
+          await test.info().attach("b03-automatic-back-observations.json", {
+            body: Buffer.from(JSON.stringify({ observations, cleanup })), contentType: "application/json",
+          });
+        } catch { /* Diagnostics must never replace the original test/cleanup error. */ }
+      }
+    }
   });
 
   test("B03 R1 archive: lost real response blocks replay through reopen and remount",async({page,context}) => {
