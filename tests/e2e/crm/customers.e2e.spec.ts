@@ -202,6 +202,9 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     let retryConfirmed = false;
     let testFailed = false;
     let customersUrl: ((url: URL) => boolean) | undefined;
+    const retryCompletions = new WeakMap<BrowserRequest, boolean>();
+    const recordRetryFinished = (request: BrowserRequest) => { retryCompletions.set(request, released); };
+    page.on("requestfinished", recordRetryFinished);
     function isPrefetch(request: BrowserRequest) {
       const headers = request.headers();
       return Boolean(headers["next-router-prefetch"] || headers["next-router-segment-prefetch"]
@@ -299,10 +302,12 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
         .then(async request => {
           retryObserved = true;
           const response = await request.response();
-          const afterRelease = released;
           if (!response) return false;
           const finished = await response.finished() === null;
-          retryConfirmed = afterRelease && response.ok() && finished;
+          // Headers may arrive while the backend read is held. Credit only the
+          // exact request's terminal event after release, never a later sample
+          // that could retroactively credit a request already finished before it.
+          retryConfirmed = retryCompletions.get(request) === true && response.ok() && finished;
           return finished;
         }).catch(() => false);
       expect(existsSync(attempt.held)).toBe(false);
@@ -330,6 +335,7 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       testFailed = true;
       throw error;
     } finally {
+      page.off("requestfinished", recordRetryFinished);
       const cleanupErrors: unknown[] = [];
       const failedSteps: string[] = [];
       async function cleanup(step: string, run: () => void | Promise<void>) {
