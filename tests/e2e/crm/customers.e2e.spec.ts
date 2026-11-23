@@ -25,11 +25,14 @@ const test = process.env.E2E_CDP_ENDPOINT ? base.extend({
     await browser.close(); // Disconnects this client; lifecycle remains with the root guard.
   }, {scope: "worker"}],
 }) : base;
+// Only P0 transmits a private synthetic header; disable its trace before context setup.
+const p0Test = test.extend({ trace: "off" });
 import {
   appendFileSync, closeSync, existsSync, linkSync, lstatSync, mkdirSync, openSync,
   readFileSync, renameSync, rmSync, writeFileSync,
 } from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { setTimeout as sleep } from "node:timers/promises";
 import { expectActiveAdminNavigation } from "../support/active-admin-navigation";
 import { adminExec, adminQuery, closeAdminPool } from "../../factories/admin-sql";
@@ -185,7 +188,8 @@ const DEFERRED_LABELS = [
 ];
 
 test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
-  test("[P0] E35-6-T-error-retry CustomerList retries a failed read through the real Försök igen link", async ({ page }) => {
+  p0Test("[P0] E35-6-T-error-retry CustomerList retries a failed read through the real Försök igen link", async ({ page, trace }) => {
+    expect(trace, "P0 marker transmission requires tracing disabled before context setup").toBe("off");
     const control = path.resolve("test-results/private/crm-read-fetch-fault.json");
     const runId = process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID;
     if (process.env.E2E_CRM_READ_FAULT_CONTROL !== control
@@ -195,7 +199,13 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
 
     const isolated = await createTwoTenantFixture();
     let ownedControl: string | undefined;
-    let hold: { held: string; release: string } | undefined;
+    type HeldAttempt = { held: string; release: string; attemptId: string; expiresAt: number; heldContents?: string; releaseContents?: string };
+    let hold: HeldAttempt | undefined;
+    const requestMarkerHeader = "x-kopplas-e2e-request-marker";
+    const markerRequests = new Map<string, BrowserRequest>();
+    const requestMarkers: string[] = [];
+    let clickStarted = false;
+    let refuseBinding: (() => void) | undefined;
     let released = false;
     let retryFinished: Promise<boolean> | undefined;
     let retryObserved = false;
@@ -231,12 +241,32 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     async function blockPrefetch(route: Route) {
       const request = route.request();
       if (request.method() === "GET" && isPrefetch(request)) await route.abort("blockedbyclient");
-      else await route.fallback();
+      else if (request.method() === "GET" && clickStarted && hold && !released) {
+        const headers = await request.allHeaders();
+        if (!clickStarted || !hold || released) { await route.fallback(); return; }
+        if (request.redirectedFrom() || headers[requestMarkerHeader] !== undefined || requestMarkers.length >= 8) {
+          await route.abort("blockedbyclient");
+          throw new Error("CRM retry request registration refused");
+        }
+        if (!ownedControl || readControl(control) !== ownedControl) throw new Error("CRM read fault control ownership changed");
+        const requestMarker = crypto.randomUUID();
+        const digest = createHash("sha256").update(requestMarker).digest("hex");
+        const current = JSON.parse(ownedControl);
+        if (current.attemptId !== hold.attemptId || current.outcome !== "hold" || current.expiresAt <= Date.now()) {
+          throw new Error("CRM retry request registration refused");
+        }
+        const contents = JSON.stringify({ ...current, requestMarkers: [...requestMarkers, requestMarker] });
+        publish(control, contents, ownedControl);
+        ownedControl = contents;
+        requestMarkers.push(requestMarker);
+        markerRequests.set(digest, request);
+        await route.fallback({ headers: { ...headers, [requestMarkerHeader]: requestMarker } });
+      } else await route.fallback();
     }
     function readControl(file: string): string | undefined {
       try {
         const stat = lstatSync(file);
-        if (!stat.isFile() || stat.size > 2048) throw new Error("CRM read fault control ownership changed");
+        if (!stat.isFile() || stat.isSymbolicLink() || stat.size > 2048) throw new Error("CRM read fault control ownership changed");
         return readFileSync(file, "utf8");
       }
       catch (error) {
@@ -251,6 +281,7 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       rmSync(file);
     }
     function publish(file: string, contents: string, previous?: string) {
+      if (Buffer.byteLength(contents) > 2048) throw new Error("CRM read fault control size refused");
       const temporary = `${file}.${runId}.${crypto.randomUUID()}.tmp`;
       const fd = openSync(temporary, "wx", 0o600);
       try {
@@ -263,21 +294,52 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
           renameSync(temporary, file);
         }
       } finally {
-        rmSync(temporary, { force: true });
+        removeOwned(temporary, contents);
       }
     }
     function arm(outcome: "error" | "hold") {
       const attemptId = crypto.randomUUID();
       const expiresAt = Date.now() + 60_000;
-      const contents = JSON.stringify({ schemaVersion: 1, runId, attemptId, actorUserId: isolated.adminA.id, outcome, expiresAt });
+      requestMarkers.length = 0;
+      markerRequests.clear();
+      const contents = JSON.stringify({ schemaVersion: 1, runId, attemptId, actorUserId: isolated.adminA.id, outcome, expiresAt,
+        ...(outcome === "hold" ? { requestMarkers: [] } : {}) });
       publish(control, contents, ownedControl);
       ownedControl = contents;
       const prefix = `${control}.${runId}.${attemptId}`;
-      return { held: `${prefix}.held`, release: `${prefix}.release` };
+      return { held: `${prefix}.held`, release: `${prefix}.release`, attemptId, expiresAt };
     }
-    function releaseHold(attempt: NonNullable<typeof hold>) {
-      if (readControl(attempt.held) !== "held") throw new Error("CRM retry read was not held");
-      publish(attempt.release, "release");
+    function readHeldBinding(attempt: HeldAttempt): string | undefined {
+      if (!ownedControl || readControl(control) !== ownedControl || attempt.expiresAt <= Date.now()) {
+        throw new Error("CRM retry held-request ownership refused");
+      }
+      const contents = readControl(attempt.held);
+      if (contents === undefined) return undefined;
+      let receipt;
+      try { receipt = JSON.parse(contents); }
+      catch { throw new Error("CRM retry held-request ownership refused"); }
+      if (Object.keys(receipt).length !== 6 || receipt.schemaVersion !== 1 || receipt.runId !== runId
+        || receipt.attemptId !== attempt.attemptId || receipt.actorUserId !== isolated.adminA.id
+        || receipt.expiresAt !== attempt.expiresAt || typeof receipt.markerDigest !== "string"
+        || !/^[a-f0-9]{64}$/.test(receipt.markerDigest) || !markerRequests.has(receipt.markerDigest)
+        || attempt.heldContents !== undefined && attempt.heldContents !== contents) {
+        throw new Error("CRM retry held-request ownership refused");
+      }
+      attempt.heldContents = contents;
+      return receipt.markerDigest;
+    }
+    function selectHeldRequest(attempt: HeldAttempt): BrowserRequest | undefined {
+      const digest = readHeldBinding(attempt);
+      if (digest === undefined) return undefined;
+      const request = markerRequests.get(digest);
+      if (!request) throw new Error("CRM retry public-request binding refused");
+      return request;
+    }
+    function releaseHold(attempt: HeldAttempt) {
+      if (readControl(control) !== ownedControl || readHeldBinding(attempt) === undefined) throw new Error("CRM retry read was not held");
+      const contents = JSON.stringify({ ...JSON.parse(attempt.heldContents!), released: true });
+      publish(attempt.release, contents);
+      attempt.releaseContents = contents;
       released = true;
     }
     try {
@@ -314,10 +376,12 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       // rather than accepting a cached failure or substituting page.reload().
       const attempt = arm("hold");
       hold = attempt;
-      let clickStarted = false;
-      retryFinished = page.waitForRequest(request => clickStarted && request.method() === "GET"
-        && customersUrl?.(new URL(request.url())) === true && !isPrefetch(request), { timeout: 15_000 })
-        .then(async request => {
+      let bindRequest!: (request: BrowserRequest) => void;
+      const boundRequest = new Promise<BrowserRequest>((resolve, reject) => {
+        bindRequest = resolve;
+        refuseBinding = () => reject(new Error("CRM retry public-request binding unavailable"));
+      });
+      retryFinished = boundRequest.then(async request => {
           selectedPublicRequest = request;
           retryObserved = true;
           responseObservation = "pending";
@@ -343,8 +407,13 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       expect(existsSync(attempt.held)).toBe(false);
       clickStarted = true;
       await retry.click({ noWaitAfter: true });
+      await expect.poll(() => {
+        const request = selectHeldRequest(attempt);
+        if (!request) return false;
+        bindRequest(request);
+        return true;
+      }, { timeout: 15_000, message: "The held read must bind its exact public retry request" }).toBe(true);
       await expect.poll(() => retryObserved).toBe(true);
-      await expect.poll(() => readControl(attempt.held) === "held").toBe(true);
       await expect(page.getByTestId("customers-table-body")).toHaveCount(0);
       observeRetry("before-release");
       releaseHold(attempt);
@@ -377,13 +446,16 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
         catch (error) { cleanupErrors.push(error); failedSteps.push(step); }
       }
       await cleanup("release hold", () => {
-        if (hold && retryFinished && !released && readControl(hold.held) === "held") releaseHold(hold);
+        if (hold && retryFinished && !released && readHeldBinding(hold) !== undefined) releaseHold(hold);
       });
       let disarmed = false;
       await cleanup("disarm control", () => {
         if (ownedControl !== undefined) removeOwned(control, ownedControl);
         disarmed = true;
       });
+      refuseBinding?.();
+      markerRequests.clear();
+      requestMarkers.length = 0;
       const closePage = !disarmed || !retryConfirmed;
       const settlement = cleanup("settle retry", async () => {
         if (!closePage || page.isClosed()) return;
@@ -400,17 +472,17 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       // Start fixture cleanup even if page closure stalls or fails.
       const fixtureCleanup = cleanup("clean fixture", () => cleanupFixture(isolated));
       await settlement;
-      await cleanup("remove held marker", () => { if (hold) removeOwned(hold.held, "held"); });
-      await cleanup("remove release marker", () => { if (hold && released) removeOwned(hold.release, "release"); });
+      await cleanup("remove held marker", () => { if (hold?.heldContents !== undefined) removeOwned(hold.held, hold.heldContents); });
+      await cleanup("remove release marker", () => { if (hold?.releaseContents !== undefined) removeOwned(hold.release, hold.releaseContents); });
       await cleanup("remove prefetch route", async () => {
         if (!closePage && customersUrl && !page.isClosed()) await page.unroute(customersUrl, blockPrefetch);
       });
       await fixtureCleanup;
       try {
-        // These enums describe the selected public Request object by reference
-        // equality only; they do not prove which request owned the backend hold.
+        // Association proves only the exact public Request reference; successful
+        // post-release native completion remains an independent hard requirement.
         await test.info().attach("crm-p0-selected-request-observations.json", {
-          body: Buffer.from(JSON.stringify({ binding: "selected-public-request-only", observations: retryObservations })),
+          body: Buffer.from(JSON.stringify({ binding: retryObserved ? "held-public-request-matched" : "held-public-request-unavailable", observations: retryObservations })),
           contentType: "application/json",
         });
       } catch { /* Diagnostics must not replace the original test/cleanup failure. */ }

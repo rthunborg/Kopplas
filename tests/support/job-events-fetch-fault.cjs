@@ -7,7 +7,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require("node:fs");
 const path = require("node:path");
-const { randomUUID } = require("node:crypto");
+const { randomUUID, createHash } = require("node:crypto");
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const expectedFile = path.resolve(process.cwd(), "test-results/private/job-events-fetch-fault.json");
@@ -16,6 +16,8 @@ const crmControlFile = path.resolve(process.cwd(), "test-results/private/crm-rea
 const crmListProjection = "id,customer_type,display_name,org_nr,email,phone,city,archived_at,created_at";
 const crmControlTtlMs = 60_000;
 const crmHoldMs = 15_000;
+const crmMarkerHeader = "x-kopplas-e2e-request-marker";
+const markerDigest = value => createHash("sha256").update(value).digest("hex");
 function localOrigin(value) {
   const target = new URL(value);
   if (target.protocol === "http:" && ["127.0.0.1", "localhost", "[::1]"].includes(target.hostname)
@@ -38,7 +40,12 @@ function readCrmControl(runId) {
   try {
     const control = readPrivateJson(crmControlFile);
     const now = Date.now();
-    if (Object.keys(control).length === 6 && control.schemaVersion === 1 && control.runId === runId
+    const markers = control.requestMarkers;
+    const markerShape = markers === undefined ? Object.keys(control).length === 6
+      : Object.keys(control).length === 7 && control.outcome === "hold" && Array.isArray(markers)
+        && markers.length <= 8 && new Set(markers).size === markers.length
+        && markers.every(value => typeof value === "string" && uuid.test(value));
+    if (markerShape && control.schemaVersion === 1 && control.runId === runId
       && typeof control.attemptId === "string" && uuid.test(control.attemptId)
       && typeof control.actorUserId === "string" && uuid.test(control.actorUserId)
       && (control.outcome === "error" || control.outcome === "hold")
@@ -63,22 +70,33 @@ function crmReadError() {
   return Response.json({ code: "TEST_UNAVAILABLE", message: "Synthetic customer-list fault" }, { status: 400 });
 }
 
-async function waitForCrmRelease(control) {
+async function waitForCrmRelease(control, digest, currentControl) {
   const attemptFile = `${crmControlFile}.${control.runId}.${control.attemptId}`;
   const releaseFile = `${attemptFile}.release`;
   try {
     if (fs.existsSync(releaseFile)) return false;
     // Claim this attempt once. The worker removes its files after disarming.
-    fs.writeFileSync(`${attemptFile}.held`, "held", { flag: "wx", mode: 0o600 });
+    const receipt = { schemaVersion: 1, runId: control.runId, attemptId: control.attemptId,
+      actorUserId: control.actorUserId, expiresAt: control.expiresAt, markerDigest: digest };
+    const contents = JSON.stringify(receipt), temporary = `${attemptFile}.${process.pid}.held.tmp`;
+    fs.writeFileSync(temporary, contents, { flag: "wx", mode: 0o600 });
+    try { fs.linkSync(temporary, `${attemptFile}.held`); }
+    finally {
+      const stat = fs.lstatSync(temporary);
+      if (!stat.isFile() || stat.isSymbolicLink() || stat.size !== Buffer.byteLength(contents)
+        || fs.readFileSync(temporary, "utf8") !== contents) throw new Error("CRM hold publication ownership changed");
+      fs.unlinkSync(temporary);
+    }
     const deadline = performance.now() + crmHoldMs;
     while (performance.now() < deadline) {
-      const current = readCrmControl(control.runId);
+      const current = currentControl();
       if (current?.attemptId !== control.attemptId || current.actorUserId !== control.actorUserId
-        || current.outcome !== "hold" || current.expiresAt !== control.expiresAt) return false;
+        || current.outcome !== "hold" || current.expiresAt !== control.expiresAt
+        || !current.requestMarkers?.some(value => markerDigest(value) === digest)) return false;
       if (fs.existsSync(releaseFile)) {
-        const stat = fs.lstatSync(releaseFile);
-        return stat.isFile() && !stat.isSymbolicLink() && stat.size === 7
-          && fs.readFileSync(releaseFile, "utf8") === "release";
+        const release = readPrivateJson(releaseFile);
+        return Object.keys(release).length === 7 && release.released === true
+          && Object.keys(receipt).every(key => release[key] === receipt[key]);
       }
       await new Promise(resolve => setTimeout(resolve, 25));
     }
@@ -130,6 +148,74 @@ if (process.env.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP === "true") {
   fs.writeFileSync(temporary, JSON.stringify({schemaVersion: 1, runId, controlFile,
     ownerPid, serverPid: process.pid, startedAt: Date.now(), origin, applicationUrl}), {flag: "wx", mode: 0o600});
   fs.renameSync(temporary, handshakeFile);
+  const http = require("node:http");
+  const { AsyncLocalStorage } = require("node:async_hooks");
+  const contexts = new AsyncLocalStorage();
+  const registry = new Map();
+  let registryAttempt;
+  let registryTimer;
+  function currentCrmControl() {
+    const control = readCrmControl(runId);
+    const identity = control?.outcome === "hold"
+      ? `${control.attemptId}:${control.actorUserId}:${control.expiresAt}` : undefined;
+    if (identity !== registryAttempt || identity === undefined) {
+      registry.clear();
+      registryAttempt = identity;
+    }
+    return control;
+  }
+  function watchRegistry() {
+    if (registryTimer !== undefined) return;
+    const check = () => {
+      registryTimer = undefined;
+      currentCrmControl();
+      if (registry.size) watchRegistry();
+    };
+    registryTimer = setTimeout(check, 25);
+    registryTimer?.unref?.();
+  }
+  function incomingContext(request) {
+    const values = [];
+    for (let index = 0; index < request.rawHeaders.length; index += 2) {
+      if (request.rawHeaders[index].toLowerCase() === crmMarkerHeader) values.push(request.rawHeaders[index + 1]);
+    }
+    const marker = request.headers[crmMarkerHeader];
+    // Strip only the synthetic header before any application listener observes it.
+    for (const name of Object.keys(request.headers)) {
+      if (name.toLowerCase() === crmMarkerHeader) delete request.headers[name];
+    }
+    for (let index = request.rawHeaders.length - 2; index >= 0; index -= 2) {
+      if (request.rawHeaders[index].toLowerCase() === crmMarkerHeader) request.rawHeaders.splice(index, 2);
+    }
+    const control = currentCrmControl();
+    if (values.length !== 1 || typeof marker !== "string" || marker !== values[0] || !uuid.test(marker)
+      || !control?.requestMarkers?.includes(marker)) return undefined;
+    const url = new URL(request.url, applicationUrl);
+    if (request.method !== "GET" || url.origin !== applicationUrl || url.pathname !== "/customers"
+      || request.headers["next-router-prefetch"] || request.headers["next-router-segment-prefetch"]
+      || request.headers.purpose?.includes("prefetch") || request.headers["sec-purpose"]?.includes("prefetch")) return undefined;
+    const digest = markerDigest(marker);
+    if (registry.has(digest) || registry.size >= 8) return undefined;
+    const context = Object.freeze({ digest, attemptId: control.attemptId, actorUserId: control.actorUserId,
+      expiresAt: control.expiresAt, claimed: { value: false } });
+    registry.set(digest, context);
+    watchRegistry();
+    return context;
+  }
+  const realCreateServer = http.createServer;
+  http.createServer = function crmRequestServer(...args) {
+    const listenerIndex = typeof args[0] === "function" ? 0 : typeof args[1] === "function" ? 1 : -1;
+    if (listenerIndex >= 0) {
+      const listener = args[listenerIndex];
+      args[listenerIndex] = function crmRequestListener(...listenerArgs) {
+        let context;
+        try { context = incomingContext(listenerArgs[0]); }
+        catch { /* Invalid correlation must not change listener return/error behavior. */ }
+        return contexts.run(context, () => Reflect.apply(listener, this, listenerArgs));
+      };
+    }
+    return Reflect.apply(realCreateServer, this, args);
+  };
   const realFetch = globalThis.fetch;
   globalThis.fetch = async function jobEventsFetchFault(input, init) {
     let shouldFail = false;
@@ -137,13 +223,20 @@ if (process.env.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP === "true") {
       const url = new URL(typeof input === "string" || input instanceof URL ? input : input.url);
       const method = (init?.method ?? (input instanceof Request ? input.method : "GET")).toUpperCase();
       if (isCrmListRead(url, method, origin)) {
-        const control = readCrmControl(runId);
+        const control = currentCrmControl();
         const claims = control && requestClaims(input, init);
         // Claims select the synthetic fault only. Recovery always goes through Supabase/RLS.
         if (claims?.role === "authenticated" && claims.sub === control.actorUserId && claims.aud === "authenticated"
           && typeof claims.session_id === "string" && uuid.test(claims.session_id)
           && Number.isSafeInteger(claims.exp) && claims.exp > Math.floor(Date.now() / 1000)) {
-          if (control.outcome !== "hold" || !(await waitForCrmRelease(control))) return crmReadError();
+          if (control.outcome !== "hold") return crmReadError();
+          const context = contexts.getStore();
+          if (!context || registry.get(context.digest) !== context || context.claimed.value
+            || context.attemptId !== control.attemptId || context.actorUserId !== control.actorUserId
+            || context.expiresAt !== control.expiresAt
+            || !control.requestMarkers?.some(value => markerDigest(value) === context.digest)) return crmReadError();
+          context.claimed.value = true;
+          if (!(await waitForCrmRelease(control, context.digest, currentCrmControl))) return crmReadError();
         }
       }
       // The legacy detail reader selects channel/reference too; root admission passes.
