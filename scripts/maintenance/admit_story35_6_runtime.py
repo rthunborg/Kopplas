@@ -57,6 +57,35 @@ FIELDS = ['schema_version', 'request_id', 'run_id', 'story_id', 'owner', 'worker
           'tool_sha256', 'tooling_author', 'tooling_review', 'tooling_ci', 'quiescence',
           'ownership_inventory', 'own_state', 'publication', 'admission_review']
 
+# One approved allocation, not a general reservation editing API. Hashes bind
+# private authority bytes without publishing their contents or filesystem paths.
+PAGE = OLD_PATHS[0]
+E15_CASE = {
+    'holder': '01a120bb-ec6d-7611-9dde-ca64bc8e280f',
+    'coordinator': '01a19bf5-183b-7ae1-ab86-8bd5804dcb6f',
+    'worker': '01a19c88-3c36-76f1-918b-88a00e4d222f',
+    'claim_identity_digest': '91e5f065185558b66132ee5e3e6e1727995de4100f366ced9cfdad26208f6a76',
+    'plan_hash': '35e66e9cc33cb261a4896e6ebb98930fd307e8ad480c2ecda8a13744e0780b15',
+    'base': '9a47b3fa2d593803ae4d780dba3b4c7c7cd10f16',
+    'published': '8406d23e96a6f98e1a4760f4cd1056a8bc2cf6d5',
+    'checkpoint': '09026f0a312fd0f9a4ec793a7eb0f3cb8d881f75',
+    'page_blob': 'c9509522de65163beef444030fcf31d289e5b9a2',
+    'holder_checkpoint': 'cbc34e1d2ca7fe96f295458608206cb5e29363a3',
+    'holder_blob': 'a5a66e33a694a114ba2aa25f9db98ac7d8b057c4',
+    'source_run': 'e35-8-producer-safety-20261112',
+    'source_plan_hash': '736186ecd96d9c57038549fb03008f5c979dfd15d781d30e8f3059738b4a3e39',
+    'original': 'e46b91a1dcc8c7070cd9b33efa12828991afba88d8a82436d397976b52bd3e59',
+    'remainder': '48d7a5948559654a335790d9a5686087749656b4ed8e677c9505fa9791149931',
+    'diagnostics': ['194130dd864dca766092d223f9b50724b0368e42474e08d9135a413022a10ee1',
+                    '498c69ac46cb65b07dad6d4373a4479051d653435806a28d8ed5cfd856ed8971'],
+    'authorities': {
+        'consent': '3cff28ea45406421412c36640253ce0303065c6c5faed06e0b558d3c86851dcc',
+        'proposal': '8f053472ee52561e58cd8bbcf7cc7cad71d87630b044ea2c592b4a9657418d3f',
+        'holder_review': '5da27d977d8d380e48e8d613a53eecfce5c522c6187dcc83f4262b366a0c6ef4',
+        'counterrecord': 'b46e30aead89615c72b8c287825b01a7a8a4fd1a22b120822c118f7cd4294125',
+    },
+}
+
 
 def tool_hash():
     return hashlib.sha256(Path(__file__).read_bytes().replace(b'\r\n', b'\n')).hexdigest()
@@ -460,7 +489,7 @@ def custody_window(attestation):
             'Current custody observation/quiet interval is stale or uncertain')
 
 
-def current_custody(repo, entry, inventory, p, r, snapshots):
+def current_custody(repo, entry, inventory, p, r, snapshots, prospective=None):
     """Exact E15 alternative: operator facts, not a historical-success proxy."""
     subject, scope = entry['subject'], entry['scope']
     proof = entry['proof']['current_custody']
@@ -545,8 +574,14 @@ def current_custody(repo, entry, inventory, p, r, snapshots):
                     'Current writing/queued execution lacks complete live reservation')
             target = copy.deepcopy(engine.story(p, STORY))
             target['write_paths'] += r['add_write_paths']; target['conflict_domains'] += r['add_conflict_domains']
-            require(all(not engine.conflicts(target, allocation[0]) for allocation in assigned),
+            # Keep actual 368 rights in coverage/record unions. Only the exact
+            # reviewed page handoff changes the prospective conflict comparison.
+            effective = lambda allocation: (prospective['remainder'] if prospective is not None and
+                allocation[0] == prospective['original'] else allocation[0])
+            require(all(not engine.conflicts(target, effective(allocation)) for allocation in assigned),
                     'Current custody overlaps admission scope')
+            if prospective is not None and any(engine.digest(allocation[0]) in E15_CASE['diagnostics'] for allocation in assigned):
+                require(not record['queued'] and not record['background'], 'Stopped E15 diagnostic copy has queued/background work')
             covered.update(references)
         records[identity] = record
     require(known <= {identity for identity, record in records.items() if record['kind'] == 'actor'} and
@@ -831,7 +866,109 @@ def closed_classifications(db, repo, inventory, p, r, snapshots):
     return refs, decisions
 
 
-def ownership(db, repo, p, c, revised_story, r, snapshots):
+def customer_page_transition(db, repo, p, c, r, pub, stopped, snapshots):
+    """Stage the exact effective projection; never mutate its finalized source."""
+    if 'e15_customer_page' not in r:
+        return None
+    case = E15_CASE
+    proof = r['e15_customer_page']
+    keys(proof, list(case['authorities']) + ['current_custody', 'method_confirmation'])
+    documents = {}
+    for name, expected in case['authorities'].items():
+        require(isinstance(proof[name], dict) and proof[name].get('sha256') == expected,
+                'E15 authority hash changed: ' + name)
+        documents[name] = artifact_json(proof[name], snapshots, repo)
+    consent, proposal = documents['consent'], documents['proposal']
+    require(consent['grantor'] == proposal['grantor'] == case['holder'] and
+            consent['recipientCoordinator'] == proposal['recipientCoordinator'] == p['coordinator'] == case['coordinator'] and
+            consent['path'] == proposal['path'] == PAGE and
+            consent['proposal']['sha256'] == case['authorities']['proposal'] and
+            consent['independentHighReview']['sha256'] == case['authorities']['holder_review'],
+            'E15 consent holder, recipient or authority binding changed')
+    require(p['base_sha'] == c['base_sha'] == case['base'] and engine.digest(p) == case['plan_hash'] and
+            c['worker'] == r['worker'] == case['worker'] and c['generation'] == 1 and
+            engine.digest({field: c[field] for field in ['branch', 'worktree']}) == case['claim_identity_digest'] and
+            r['checkpoint_sha'] == case['checkpoint'] and pub['observed']['head_sha'] == case['published'],
+            'E15 exact CRM plan, worker, base or checkpoint changed')
+    require(proposal['recipientTask'] == dict(run=RUN, story=STORY, worker=case['worker'],
+            currentGeneration=1, currentState='blocked', checkpoint=case['published'], PR=PR, base=case['base']),
+            'E15 proposal task changed')
+    require(engine.git(repo, 'rev-list', '--parents', '-n', '1', case['checkpoint']).split() ==
+            [case['checkpoint'], case['published']], 'E15 bookkeeping child parent changed')
+    for commit, expected in [(case['published'], case['page_blob']), (case['checkpoint'], case['page_blob']),
+                             (case['holder_checkpoint'], case['holder_blob'])]:
+        require(engine.git(repo, 'rev-parse', commit + ':' + PAGE).strip() == expected, 'E15 page preimage changed')
+    source = db.execute('SELECT * FROM runs WHERE run=?', (case['source_run'],)).fetchone()
+    require(source is not None and source['state'] == 'finalized' and source['owner'] == case['coordinator'] and
+            source['plan_hash'] == case['source_plan_hash'], 'E15 finalized source identity changed')
+    historical = parse_raw_json(source['plan'].encode())
+    require(engine.digest(historical) == case['source_plan_hash'], 'E15 historical plan integrity changed')
+    before = proposal['nativeBefore']
+    require(before['run'] == case['source_run'] and before['runState'] == 'finalized' and
+            before['owner'] == source['owner'] and before['planHash'] == source['plan_hash'] and
+            type(before['legacyIndex']) is int and before['legacyIndex'] == 1,
+            'E15 proposal source changed')
+    original = historical['legacy_reservations'][1]
+    require(original == before['reservation'] and engine.digest(original) == case['original'] and
+            original['epic'] == '15' and original['stories'] == E15_KEYS and
+            len(original['write_paths']) == 368 and original['write_paths'].count(PAGE) == 1 and
+            len(original['conflict_domains']) == 7, 'E15 original reservation changed')
+    remainder = copy.deepcopy(original)
+    remainder['write_paths'].remove(PAGE)
+    require(remainder == proposal['prospectiveRemainder']['reservation'] and
+            engine.digest(remainder) == case['remainder'] and len(remainder['write_paths']) == 367,
+            'E15 remainder must preserve ordered paths and all seven domains')
+    require(not any(res['epic'] == '15' or set(res['stories']).intersection(E15_KEYS) or
+                    any(engine.overlap(PAGE, path) for path in res['write_paths'])
+                    for res in p['legacy_reservations']), 'E15 was unexpectedly declared in the active CRM plan')
+    counter = documents['counterrecord']
+    require(counter['root'] == case['coordinator'] and counter['holder'] == case['holder'] and counter['paths'] == [PAGE] and
+            counter['native_before']['reservation_digest'] == case['original'] and
+            counter['prospective_remainder']['reservation_digest'] == case['remainder'], 'E15 counterrecord changed')
+    inventory = artifact_json(r['ownership_inventory'], snapshots, repo)
+    custody_entry = customer_page_custody_entry(original, inventory, case['holder'], proof['current_custody'])
+    custody = current_custody(repo, custody_entry, inventory, p, r, snapshots,
+                             prospective=dict(original=original, remainder=remainder))
+    custody['meaning'] = 'Current retained E15 rights; prospective customer-page standstill only. Legacy scheduler queue UNKNOWN.'
+    confirmation = artifact_json(proof['method_confirmation'], snapshots, repo)
+    expected = dict(schema_version=1, holder=case['holder'], coordinator=p['coordinator'], worker=c['worker'],
+        run_id=RUN, story_id=STORY, path=PAGE, reviewed_tooling_sha=r['reviewed_tooling_sha'],
+        tool_sha256=r['tool_sha256'], qualified_main_sha=r['qualified_main_sha'], expected_plan_hash=engine.digest(p),
+        expected_generation=1, checkpoint_sha=r['checkpoint_sha'], publication_head_sha=case['published'],
+        claim_identity_digest=case['claim_identity_digest'],
+        current_custody_digest=engine.digest(proof['current_custody']),
+        source_plan_hash=case['source_plan_hash'], original_reservation_digest=case['original'],
+        remainder_reservation_digest=case['remainder'], confirmed=True, explicit_handback_required=True,
+        holder_standstill=True, complete_relevant_writer_inventory=True, relevant_writers_stopped=True,
+        scheduler_queue='UNKNOWN', request_facts_digest=engine.digest({k: v for k, v in r.items()
+            if k not in {'admission_review', 'e15_customer_page'}}), authorities=case['authorities'])
+    keys(confirmation, list(expected) + ['review'])
+    require({k: v for k, v in confirmation.items() if k != 'review'} == expected and
+            type(confirmation['schema_version']) is int and type(confirmation['expected_generation']) is int,
+            'E15 holder method confirmation does not bind this qualified request')
+    require(all(confirmation[field] is True for field in ['confirmed', 'explicit_handback_required',
+            'holder_standstill', 'complete_relevant_writer_inventory', 'relevant_writers_stopped']),
+            'E15 affirmative holder and writer attestations required')
+    forbidden = ({p['coordinator'], case['holder']} | {writer['identity'] for writer in stopped['writers']} |
+        set(custody['known_current_identities']) | {record['owner'] for record in custody['attestation']['records']} |
+        {operator['identity'] for operator in custody['attestation']['operators']})
+    independent_review(confirmation['review'], r['reviewed_tooling_sha'], r['tooling_author'], forbidden)
+    return dict(original=original, remainder=remainder, source_row=dict(source),
+                method_confirmation=confirmation, current_custody=custody,
+                scheduler_queue='UNKNOWN', explicit_handback_required=True)
+
+
+def customer_page_custody_entry(original, inventory, holder, proof):
+    """Current proof identity only: never an E15 closed-anchor classification."""
+    return dict(subject=dict(key='epic-15', owner=holder, source_kind='sprint', source_folder=None,
+        story_keys=E15_KEYS, branch='codex/epic-15-scheduling-time-calendar'),
+        scope={key: original[key] for key in ['write_paths', 'conflict_domains']},
+        anchors=[dict(worktree=entry['reservation']['worktree'], anchors=entry['anchors'])
+                 for entry in inventory['reservations'] if engine.digest(entry['reservation']) in
+                 {E15_CASE['original'], *E15_CASE['diagnostics']}], proof=dict(current_custody=proof))
+
+
+def ownership(db, repo, p, c, revised_story, r, snapshots, transition=None):
     inventory = artifact_json(r['ownership_inventory'], snapshots)
     require(isinstance(inventory, dict), 'Expected ownership inventory object')
     version = inventory.get('schema_version')
@@ -869,6 +1006,20 @@ def ownership(db, repo, p, c, revised_story, r, snapshots):
                     'Reviewed concurrent source independence required')
     reservations = inventory['reservations']
     require(isinstance(reservations, list), 'Ownership reservations must be an array')
+    if transition is not None:
+        digests = [engine.digest(entry['reservation']) for entry in reservations]
+        require(digests.count(E15_CASE['original']) == 1 and
+                all(digests.count(value) == 1 for value in E15_CASE['diagnostics']) and
+                E15_CASE['remainder'] not in digests, 'E15 current original and both diagnostic reservations required')
+        expected_anchors = [state_path(key) for key in E15_KEYS[:-1]] + [state_path('epic-15')]
+        for entry in reservations:
+            if engine.digest(entry['reservation']) not in E15_CASE['diagnostics']:
+                continue
+            tree = next((tree for tree in inventory['snapshot']['worktrees']
+                         if Path(tree['worktree']).resolve() == Path(entry['reservation']['worktree']).resolve()), None)
+            require(entry['source_status'] == 'stopped' and entry['anchors'] == expected_anchors and
+                    tree is not None and set(expected_anchors) <= {ref['path'] for ref in tree['anchors']},
+                    'E15 diagnostic copies require stopped preservation of all six actual anchors')
     declared = [res for op in plans for res in op['legacy_reservations']]
     require(all(any(entry.get('reservation') == res for entry in reservations) for res in declared),
             'Inventory omitted declared legacy reservation')
@@ -891,7 +1042,8 @@ def ownership(db, repo, p, c, revised_story, r, snapshots):
         seen.add(key)
         require(entry['source_status'] in {'active', 'stopped'} and text(entry['evidence_ref']) and
                 entry['independent'] is True and text(entry['independence_ref']), 'Uncertain reservation source status/independence')
-        require(not engine.conflicts(revised_story, res) and str(res['epic']) != p['epic'] and
+        effective = transition['remainder'] if transition is not None and res == transition['original'] else res
+        require(not engine.conflicts(revised_story, effective) and str(res['epic']) != p['epic'] and
                 not {STORY, '35-6'}.intersection(res['stories']), 'Admission conflicts with legacy reservation')
         engine.strings(entry['anchors'], 'reservation anchors')
     # Existing anchor recognition MUST use the old authoritative plan, because
@@ -971,7 +1123,7 @@ def read_request(a):
     request_path = Path(a.request)
     raw_request = request_path.read_bytes()
     r = parse_raw_json(raw_request)
-    keys(r, FIELDS)
+    keys(r, FIELDS, ['e15_customer_page'])
     require(type(r['schema_version']) is int and r['schema_version'] == 1, 'Unsupported request schema')
     require(text(r['request_id']) and re.fullmatch('[A-Za-z0-9][A-Za-z0-9._-]{0,127}', r['request_id']), 'Invalid request token')
     require((a.run, a.story, r['run_id'], r['story_id']) == (RUN, STORY, RUN, STORY), 'Only the approved 35.6 assignment may be admitted')
@@ -1039,7 +1191,11 @@ def validate_request(db, repo, a, request_path, raw_request, r):
     independent_review(admission['review'], r['checkpoint_sha'], r['tooling_author'], forbidden)
     qualify_tooling(repo, p, c, r, snapshots, forbidden)
     pub = publication(repo, p, c, r, snapshots)
-    inventory, classifications = ownership(db, repo, p, c, revised_story, r, snapshots)
+    transition = customer_page_transition(db, repo, p, c, r, pub, stopped, snapshots)
+    if transition is not None:
+        revised['legacy_reservations'].append(copy.deepcopy(transition['remainder']))
+        engine.validate_plan(repo, revised)
+    inventory, classifications = ownership(db, repo, p, c, revised_story, r, snapshots, transition)
     # Recheck every external fact immediately before the transaction CAS.
     git_facts()
     qualify_tooling(repo, p, c, r, snapshots, forbidden)
@@ -1051,7 +1207,9 @@ def validate_request(db, repo, a, request_path, raw_request, r):
     for decision in classifications:
         if decision['kind'] == 'legacy-main-current-custody':
             custody_window(decision['proof']['current_custody']['attestation'])
-    return p, c, revised, stopped, pub, inventory, classifications, snapshots
+    if transition is not None:
+        custody_window(transition['current_custody']['attestation'])
+    return p, c, revised, stopped, pub, inventory, classifications, transition, snapshots
 
 
 @contextlib.contextmanager
@@ -1103,7 +1261,7 @@ def admit(a):
         if prior:
             require(prior['run'] == RUN and prior['story'] == STORY and prior['request_hash'] == engine.digest(r), 'Request token already used with different payload')
             return {**json.loads(prior['response']), 'replayed': True}
-        p, c, revised, stopped, pub, inventory, classifications, snapshots = validate_request(
+        p, c, revised, stopped, pub, inventory, classifications, transition, snapshots = validate_request(
             db, repo, a, request_path, raw_request, r)
         now = time.time()
         revised_hash = engine.digest(revised)
@@ -1119,6 +1277,12 @@ def admit(a):
         receipt = {'writers': stopped['writers'], 'quiescence': stopped, 'publication': pub,
                    'ownership_inventory': inventory, 'closed_classifications': classifications,
                    'raw_artifacts': [{'reference': ref, 'base64': base64.b64encode(data).decode('ascii')} for ref, data in snapshots]}
+        if transition is not None:
+            receipt['e15_customer_page'] = transition
+            response['e15_customer_page'] = dict(original_reservation_digest=E15_CASE['original'],
+                effective_reservation_digest=E15_CASE['remainder'], effective_paths=367,
+                preserved_domains=7, source_run=E15_CASE['source_run'],
+                explicit_handback_required=True, scheduler_queue='UNKNOWN')
         db.execute('INSERT INTO claim_amendments VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                    (r['request_id'], RUN, STORY, engine.digest(r), engine.canonical(p), engine.digest(p),
                     engine.canonical(revised), revised_hash, engine.canonical(c), engine.canonical(amended),

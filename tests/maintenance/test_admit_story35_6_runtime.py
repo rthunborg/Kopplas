@@ -350,7 +350,7 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
         entry['proof']['current_custody'] = {}
         return entry
 
-    def bind_custody(self, entry, transform=None, reservations=None):
+    def bind_custody(self, entry, transform=None, reservations=None, stopped_digests=(), record_transform=None):
         inventory = self.bind_closed([entry])
         inventory['reservations'] = reservations or []
         now = adapter.time.time()
@@ -369,13 +369,15 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
                       'turns': [{'id': 'actual-current-producer', 'status': 'inProgress', 'finals': []}]}
             records.append({'identity': identity, 'kind': 'actor', 'owner': identity, 'host': 'fixture-host',
                             'state': 'live-reserved', 'write_paths': res['write_paths'], 'conflict_domains': res['conflict_domains'],
-                            'queued': False, 'background': True,
+                            'queued': False, 'background': engine.digest(res) not in stopped_digests,
                             'allocation': engine.digest({'kind': 'legacy-reservation', 'reservation': res}),
                             'native_ref': self.raw('current-' + identity, native)})
         # Actual stopped execution, accounted for separately from actor metadata.
         records.append({'identity': 'known-old-execution', 'kind': 'execution', 'owner': identities[1],
                         'host': 'fixture-host', 'state': 'non-writing', 'write_paths': [], 'conflict_domains': [],
                         'queued': False, 'background': False, 'allocation': None, 'native_ref': None})
+        if record_transform:
+            record_transform(records)
         historical = [self.raw('failed-history', {'source': 'codex_app.read_thread', 'threadId': identities[1],
                        'turns': [{'id': 'actual-historical-failure', 'status': 'failed', 'finals': [],
                                   'observation': 'Historical writes are possible; failure is not a no-write proof.'}]}),
@@ -1664,6 +1666,367 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
             adapter.validate_only(self.args_for_admit())
         self.assertEqual(self.readonly_state(), before)
         self.assertTrue(self.admit()['replayed'])  # Existing historical replay stays operative.
+
+
+    def e15_fixture(self):
+        """Synthetic identities/authority bytes; unchanged Git/SQLite native engine."""
+        self.write(self.a, adapter.PAGE, 'synthetic CRM page\n')
+        published = self.commit(self.a, 'synthetic published customer page')
+        operation = json.loads(self.state['publication_operation_json'])
+        operation['head'] = published
+        self.state['publication_operation_json'] = json.dumps(operation)
+        self.save_state()
+        self.checkpoint_sha = self.commit(self.a, 'synthetic bookkeeping child')
+        holder_role = self.root / 'holder-role-preimage'
+        self.git(self.repo, 'worktree', 'add', '-b', 'codex/holder-role-preimage', str(holder_role), self.base)
+        self.write(holder_role, adapter.PAGE, 'synthetic distinct holder Role preimage\n')
+        holder_head = self.commit(holder_role, 'synthetic holder Role page')
+        self.write(self.b, 'retained/e15-current.txt', 'synthetic actual reservation checkout metadata\n')
+        holder_current = self.commit(self.b, 'synthetic generic E15 reservation checkpoint')
+        self.assertNotEqual(holder_current, holder_head)
+        retained = dict(epic='unrelated-retained', stories=['unrelated'], reason='synthetic retained rights',
+                        worktree=str(self.b), write_paths=['retained/55.txt'], conflict_domains=[])
+        self.plan['legacy_reservations'] = [retained]
+        original = dict(epic='15', stories=adapter.E15_KEYS.copy(), reason='synthetic original holder rights',
+            worktree=str(self.b), write_paths=['retained/e15-%03d.txt' % i for i in range(367)] + [adapter.PAGE],
+            conflict_domains=['synthetic-e15-domain-%d' % i for i in range(7)])
+        remainder = copy.deepcopy(original)
+        remainder['write_paths'].remove(adapter.PAGE)
+        diagnostic_anchors = [adapter.state_path(key) for key in adapter.E15_KEYS[:-1]] + [adapter.state_path('epic-15')]
+        diagnostics = []
+        for i in range(2):
+            wt = self.root / ('stopped-diagnostic-%d' % i)
+            self.git(self.repo, 'worktree', 'add', '-b', 'codex/stopped-diagnostic-%d' % i, str(wt), self.base)
+            for path in diagnostic_anchors:
+                self.write(wt, path, 'status: in-progress\nepic_num: 15\n')
+            self.commit(wt, 'synthetic preserved diagnostic anchors')
+            diagnostics.append(dict(epic='15', stories=adapter.E15_KEYS[:-1], reason='synthetic stopped diagnostic %d' % i,
+                worktree=str(wt), write_paths=['retained/diagnostic-%d.txt' % i] + diagnostic_anchors, conflict_domains=[]))
+        source = {**copy.deepcopy(self.plan), 'run_id': 'synthetic-e15-finalized', 'epic': 'synthetic-source',
+                  'legacy_reservations': [retained, original]}
+        with engine.database(self.repo) as db:
+            db.execute('UPDATE runs SET plan=?,plan_hash=? WHERE run=?',
+                       (engine.canonical(self.plan), engine.digest(self.plan), adapter.RUN))
+            db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?)', (source['run_id'], source['epic'],
+                self.plan['coordinator'], engine.canonical(source), engine.digest(source), 'finalized', self.base))
+            claim = db.execute('SELECT branch,worktree FROM claims WHERE run=? AND story=?',
+                               (adapter.RUN, adapter.STORY)).fetchone()
+            self.assertIsNotNone(claim)
+            # Native claim creation resolves paths (including Windows short-name
+            # aliases). Bind its exact stored identity, not fixture path spelling.
+            claim_identity = {field: claim[field] for field in ['branch', 'worktree']}
+        case = dict(holder='synthetic-e15-holder', coordinator=self.plan['coordinator'], worker='worker-a',
+            claim_identity_digest=engine.digest(claim_identity),
+            plan_hash=engine.digest(self.plan), base=self.base, published=published, checkpoint=self.checkpoint_sha,
+            page_blob=engine.git(self.repo, 'rev-parse', published + ':' + adapter.PAGE).strip(),
+            holder_checkpoint=holder_head,
+            holder_blob=engine.git(self.repo, 'rev-parse', holder_head + ':' + adapter.PAGE).strip(),
+            source_run=source['run_id'], source_plan_hash=engine.digest(source),
+            original=engine.digest(original), remainder=engine.digest(remainder),
+            diagnostics=[engine.digest(res) for res in diagnostics])
+        review_ref = self.raw('e15-holder-review', {'synthetic': 'independently reviewed conditional intent'})
+        proposal = dict(grantor=case['holder'], recipientCoordinator=case['coordinator'], path=adapter.PAGE,
+            recipientTask=dict(run=adapter.RUN, story=adapter.STORY, worker=case['worker'], currentGeneration=1,
+                currentState='blocked', checkpoint=published, PR=127, base=self.base),
+            nativeBefore=dict(run=source['run_id'], runState='finalized', owner=case['coordinator'],
+                planHash=case['source_plan_hash'], legacyIndex=1, reservation=original),
+            prospectiveRemainder=dict(reservation=remainder))
+        proposal_ref = self.raw('e15-proposal', proposal)
+        consent_ref = self.raw('e15-consent', dict(grantor=case['holder'], recipientCoordinator=case['coordinator'],
+            path=adapter.PAGE, proposal=proposal_ref, independentHighReview=review_ref))
+        counter_ref = self.raw('e15-counterrecord', dict(root=case['coordinator'], holder=case['holder'],
+            paths=[adapter.PAGE], native_before=dict(reservation_digest=case['original']),
+            prospective_remainder=dict(reservation_digest=case['remainder'])))
+        proof = dict(consent=consent_ref, proposal=proposal_ref, holder_review=review_ref, counterrecord=counter_ref)
+        case['authorities'] = {name: ref['sha256'] for name, ref in proof.items()}
+        case_patch = patch.object(adapter, 'E15_CASE', case)
+        case_patch.start()
+        self.addCleanup(case_patch.stop)
+        self.request = self.make_request()
+        observed = json.loads(Path(self.request['publication']['path']).read_text())
+        observed['head_sha'] = published
+        self.request['publication'] = self.raw('e15-publication', observed)
+        def entry(res):
+            return dict(reservation=res, head=engine.sha(Path(res['worktree']), 'HEAD'), source_status='stopped',
+                evidence_ref='synthetic-stopped-holder-evidence', independent=True,
+                independence_ref='synthetic-independent-scope-review', anchors=diagnostic_anchors.copy() if res in diagnostics else [])
+        self.e15_entries = [entry(res) for res in [retained, original] + diagnostics]
+        self.request['ownership_inventory'] = self.raw('e15-inventory', self.inventory(self.e15_entries))
+        self.request['e15_customer_page'] = proof
+        inventory = json.loads(Path(self.request['ownership_inventory']['path']).read_text())
+        entry = adapter.customer_page_custody_entry(original, inventory, case['holder'], {})
+        request_before_custody = self.request
+        self.bind_custody(entry, reservations=self.e15_entries, stopped_digests=case['diagnostics'])
+        inventory = json.loads(Path(self.request['ownership_inventory']['path']).read_text())
+        self.request = request_before_custody
+        inventory.pop('closed_anchors')
+        inventory['schema_version'] = 1
+        self.request['ownership_inventory'] = self.raw('e15-current-inventory', inventory)
+        proof['current_custody'] = entry['proof']['current_custody']
+        self.e15_method()
+        return original, remainder, source
+
+    def e15_method(self):
+        case, r = adapter.E15_CASE, self.request
+        method = dict(schema_version=1, holder=case['holder'], coordinator=case['coordinator'], worker=case['worker'],
+            run_id=adapter.RUN, story_id=adapter.STORY, path=adapter.PAGE, reviewed_tooling_sha=r['reviewed_tooling_sha'],
+            tool_sha256=r['tool_sha256'], qualified_main_sha=r['qualified_main_sha'], expected_plan_hash=case['plan_hash'],
+            expected_generation=1, checkpoint_sha=case['checkpoint'], publication_head_sha=case['published'],
+            claim_identity_digest=case['claim_identity_digest'],
+            current_custody_digest=engine.digest(r['e15_customer_page']['current_custody']),
+            source_plan_hash=case['source_plan_hash'], original_reservation_digest=case['original'],
+            remainder_reservation_digest=case['remainder'], confirmed=True, explicit_handback_required=True,
+            holder_standstill=True, complete_relevant_writer_inventory=True, relevant_writers_stopped=True,
+            scheduler_queue='UNKNOWN', request_facts_digest=engine.digest({k: v for k, v in r.items()
+                if k not in {'admission_review', 'e15_customer_page'}}), authorities=case['authorities'],
+            review={**self.review(r['reviewed_tooling_sha'], 'high'), 'reviewer': 'independent-holder-method-reviewer'})
+        r['e15_customer_page']['method_confirmation'] = self.raw('e15-method', method)
+
+    def e15_proof_refused(self, message='.'):
+        # Proof matrices invoke the real staged predicate/native read-only store.
+        # Full admit/CAS success, failure and rollback are exercised separately.
+        before = self.snapshot()
+        self.refresh_review()
+        args = self.args_for_admit()
+        with self.assertRaisesRegex(adapter.engine.Refusal, message), adapter.readonly_database(self.repo) as db:
+            p = adapter.engine.get_run(db, args)
+            c = adapter.engine.get_claim(db, args, worker=True)
+            snapshots = adapter.Captures()
+            stopped = adapter.stopped_receipt(self.request, c, p, snapshots, db, self.repo)
+            pub = adapter.publication(self.repo, p, c, self.request, snapshots)
+            transition = adapter.customer_page_transition(db, self.repo, p, c, self.request, pub, stopped, snapshots)
+            revised_story = copy.deepcopy(engine.story(p, adapter.STORY))
+            revised_story['write_paths'].append(adapter.RUNTIME)
+            revised_story['conflict_domains'].append(adapter.DOMAIN)
+            adapter.ownership(db, self.repo, p, c, revised_story, self.request, snapshots, transition)
+        self.assertEqual(self.snapshot(), before)
+
+    def test_e15_atomic_transition_native_effective_checks_history_and_exact_replay(self):
+        # Deterministically reproduce a noncanonical fixture spelling on every
+        # OS, without relying on Windows 8.3 support or temporary-root casing.
+        self.a = self.a / '..' / 'a'
+        self.assertNotEqual(str(self.a), str(self.a.resolve()))
+        original, remainder, source = self.e15_fixture()
+        with engine.database(self.repo) as db:
+            claim = dict(db.execute('SELECT branch,worktree FROM claims WHERE run=? AND story=?',
+                                   (adapter.RUN, adapter.STORY)).fetchone())
+        self.assertEqual(adapter.E15_CASE['claim_identity_digest'], engine.digest(claim))
+        self.assertNotEqual(adapter.E15_CASE['claim_identity_digest'],
+                            engine.digest({**claim, 'worktree': str(self.a)}))
+        self.assertTrue(engine.conflicts(self.item('a'), original))
+        self.assertFalse(engine.conflicts(self.item('a'), remainder))
+        before = self.snapshot()
+        args = self.args_for_admit()
+        store = engine.common(self.repo) / 'auto-bmad-parallel.sqlite3'
+        raw_before = store.read_bytes()
+        validated = adapter.validate_only(args)
+        self.assertTrue(validated['validated'])
+        self.assertEqual(validated['writes'], 0)
+        self.assertEqual(store.read_bytes(), raw_before)
+        self.assertEqual(self.snapshot(), before)
+        response = adapter.admit(args)
+        self.assertEqual(response['generation'], 2)
+        self.assertEqual(response['e15_customer_page']['effective_paths'], 367)
+        self.assertEqual(response['e15_customer_page']['scheduler_queue'], 'UNKNOWN')
+        with engine.database(self.repo) as db:
+            p = json.loads(db.execute('SELECT plan FROM runs WHERE run=?', (adapter.RUN,)).fetchone()[0])
+            self.assertEqual(p['legacy_reservations'], self.plan['legacy_reservations'] + [remainder])
+            self.assertFalse(engine.story_pr_legacy_conflicts(self.repo, p, engine.story(p, adapter.STORY)))
+            # Unchanged native guard protects every remaining path and each of seven domains.
+            for path in remainder['write_paths']:
+                probe = {**engine.story(p, adapter.STORY), 'write_paths': [path]}
+                self.assertTrue(engine.conflicts(probe, p['legacy_reservations'][-1]))
+            self.assertTrue(engine.story_pr_legacy_conflicts(self.repo, p, probe))
+            for domain in original['conflict_domains']:
+                probe = {**engine.story(p, adapter.STORY), 'conflict_domains': [domain]}
+                self.assertTrue(engine.story_pr_legacy_conflicts(self.repo, p, probe))
+            historical = dict(db.execute('SELECT * FROM runs WHERE run=?', (source['run_id'],)).fetchone())
+            self.assertEqual(historical['plan'], engine.canonical(source))
+            self.assertEqual(historical['plan_hash'], engine.digest(source))
+            audit = dict(db.execute('SELECT * FROM claim_amendments').fetchone())
+            self.assertEqual(json.loads(audit['before_plan']), self.plan)
+            self.assertEqual(json.loads(audit['after_plan']), p)
+            receipt = json.loads(audit['stopped_writers'])
+            self.assertEqual(receipt['ownership_inventory']['reservations'], self.e15_entries)
+            self.assertEqual(receipt['e15_customer_page']['source_row'], historical)
+            self.assertEqual(receipt['e15_customer_page']['original'], original)
+            self.assertEqual(receipt['e15_customer_page']['remainder'], remainder)
+            for statement in ['DELETE FROM claim_amendments', 'UPDATE claim_amendments SET response=\'{}\'']:
+                with self.assertRaises(sqlite3.IntegrityError):
+                    db.execute(statement)
+        self.call('heartbeat', story=adapter.STORY, worker='worker-a', generation=2)
+        after = self.snapshot()
+        # Historical replay needs no current external authority, and grants no fresh work.
+        Path(self.request['e15_customer_page']['method_confirmation']['path']).unlink()
+        self.assertEqual(adapter.admit(args), {**response, 'replayed': True})
+        self.assertEqual(self.snapshot(), after)
+        self.request['e15_customer_page']['consent']['sha256'] = '0' * 64
+        self.refused('different payload')
+
+    def test_e15_default_cannot_consume_prospective_remainder(self):
+        self.e15_fixture()
+        del self.request['e15_customer_page']
+        self.refused('legacy reservation')
+
+    def test_e15_wrong_authorities_and_holder_method_bindings_refuse(self):
+        self.e15_fixture()
+        baseline = copy.deepcopy(self.request)
+        for name in adapter.E15_CASE['authorities']:
+            with self.subTest(authority=name):
+                self.request = copy.deepcopy(baseline)
+                self.request['e15_customer_page'][name]['sha256'] = '0' * 64
+                self.e15_proof_refused('authority hash changed')
+        method_ref = baseline['e15_customer_page']['method_confirmation']
+        method = json.loads(Path(method_ref['path']).read_text())
+        changes = dict(holder='different-holder', coordinator='foreign', worker='other-worker', confirmed=False,
+            claim_identity_digest='0' * 64,
+            current_custody_digest='0' * 64,
+            tool_sha256='0' * 64, qualified_main_sha=self.checkpoint_sha, checkpoint_sha=self.base,
+            expected_plan_hash='0' * 64, original_reservation_digest='0' * 64,
+            request_facts_digest='0' * 64, explicit_handback_required=False, scheduler_queue='stopped',
+            complete_relevant_writer_inventory=False, relevant_writers_stopped=False, holder_standstill=False)
+        for field, value in changes.items():
+            with self.subTest(binding=field):
+                self.request = copy.deepcopy(baseline)
+                self.request['e15_customer_page']['method_confirmation'] = self.raw('e15-bad-method', {**method, field: value})
+                self.e15_proof_refused('method confirmation')
+        for reviewer in [adapter.E15_CASE['holder'], 'worker-a', self.plan['coordinator']]:
+            with self.subTest(reviewer=reviewer):
+                self.request = copy.deepcopy(baseline)
+                self.request['e15_customer_page']['method_confirmation'] = self.raw('e15-bad-review',
+                    {**method, 'review': {**method['review'], 'reviewer': reviewer}})
+                self.e15_proof_refused('independent')
+        self.request = copy.deepcopy(baseline)
+        with patch.dict(adapter.E15_CASE, {'claim_identity_digest': '0' * 64}):
+            self.e15_proof_refused('E15 exact CRM')
+
+    def test_e15_malformed_reduced_or_competing_inventory_refuses_atomically(self):
+        original, remainder, _ = self.e15_fixture()
+        baseline = copy.deepcopy(self.request)
+        for mutate in ['reduced', 'missing-diagnostic', 'diagnostic-active', 'diagnostic-anchor-missing',
+                       'competing-page', 'competing-domain', 'holder-head', 'duplicate']:
+            with self.subTest(case=mutate):
+                self.request = copy.deepcopy(baseline)
+                entries = copy.deepcopy(self.e15_entries)
+                if mutate == 'reduced':
+                    entries[1]['reservation'] = remainder
+                elif mutate == 'missing-diagnostic':
+                    entries.pop()
+                elif mutate == 'holder-head':
+                    entries[1]['head'] = adapter.E15_CASE['holder_checkpoint']
+                elif mutate == 'diagnostic-active':
+                    entries[2]['source_status'] = 'active'
+                elif mutate == 'diagnostic-anchor-missing':
+                    entries[3]['anchors'].pop()
+                elif mutate == 'duplicate':
+                    entries.append(entries[1])
+                else:
+                    competing = copy.deepcopy(entries[0])
+                    competing['reservation'].update(epic='competing-owner', stories=['competing'],
+                        write_paths=[adapter.PAGE] if mutate == 'competing-page' else ['retained/competitor.txt'],
+                        conflict_domains=[adapter.DOMAIN] if mutate == 'competing-domain' else [])
+                    entries.append(competing)
+                self.request['ownership_inventory'] = self.raw('e15-bad-inventory', self.inventory(entries))
+                self.e15_method()
+                self.e15_proof_refused()
+        self.request = copy.deepcopy(baseline)
+        self.request['e15_customer_page']['consent'] = []
+        self.e15_proof_refused('authority hash changed')
+
+    def test_e15_stopped_diagnostic_copy_queued_and_background_work_refuse(self):
+        original, remainder, _ = self.e15_fixture()
+        baseline = copy.deepcopy(self.request)
+        for index in [2, 3]:
+            for flag in ['queued', 'background']:
+                with self.subTest(diagnostic=index - 2, flag=flag):
+                    self.request = copy.deepcopy(baseline)
+                    inventory = self.inventory(self.e15_entries)
+                    diagnostic = self.e15_entries[index]
+                    allocation = engine.digest({'kind': 'legacy-reservation', 'reservation': diagnostic['reservation']})
+                    self.assertEqual(diagnostic['source_status'], 'stopped')
+                    def set_work_flag(records):
+                        matches = [record for record in records if record['allocation'] == allocation]
+                        self.assertEqual(len(matches), 1)
+                        record = matches[0]
+                        self.assertEqual(record['state'], 'live-reserved')
+                        self.assertEqual(record['write_paths'], diagnostic['reservation']['write_paths'])
+                        self.assertEqual(record['conflict_domains'], diagnostic['reservation']['conflict_domains'])
+                        self.assertFalse(record['queued'])
+                        self.assertFalse(record['background'])
+                        record[flag] = True
+                    entry = adapter.customer_page_custody_entry(original, inventory, adapter.E15_CASE['holder'], {})
+                    request_before_custody = self.request
+                    self.bind_custody(entry, reservations=self.e15_entries,
+                        stopped_digests=adapter.E15_CASE['diagnostics'], record_transform=set_work_flag)
+                    inventory = json.loads(Path(self.request['ownership_inventory']['path']).read_text())
+                    self.request = request_before_custody
+                    inventory.pop('closed_anchors')
+                    inventory['schema_version'] = 1
+                    self.request['ownership_inventory'] = self.raw('e15-diagnostic-work-inventory', inventory)
+                    self.request['e15_customer_page']['current_custody'] = entry['proof']['current_custody']
+                    self.e15_method()
+                    self.refresh_review()
+                    before = self.snapshot()
+                    # Counterfactual control: with only this diagnostic predicate
+                    # disabled, all raw host/operator corroboration must validate.
+                    # The original 368 allocation remains fully covered throughout.
+                    with patch.dict(adapter.E15_CASE, {'diagnostics': []}):
+                        accepted = adapter.current_custody(self.repo, entry, inventory, self.plan,
+                            self.request, adapter.Captures(), prospective=dict(original=original, remainder=remainder))
+                    observed = next(record for record in accepted['attestation']['records'] if record['allocation'] == allocation)
+                    self.assertTrue(observed[flag])
+                    self.assertEqual(self.snapshot(), before)
+                    self.e15_proof_refused('^Stopped E15 diagnostic copy has queued/background work$')
+                    self.assertEqual(self.snapshot(), before)
+
+    def test_e15_rollback_after_combined_cas_and_bound_evidence_drift(self):
+        self.e15_fixture()
+        baseline = copy.deepcopy(self.request)
+        ref = self.request['e15_customer_page']['current_custody']['evidence_ref']
+        attestation = json.loads(Path(ref['path']).read_text())
+        now = adapter.time.time()
+        self.request['e15_customer_page']['current_custody']['evidence_ref'] = self.raw('e15-stale-custody',
+            {**attestation, 'observed_at': now - 1200, 'valid_until': now - 300})
+        self.e15_method()
+        self.e15_proof_refused('Current custody observation/quiet interval is stale')
+        self.request = copy.deepcopy(baseline)
+        self.e15_method()
+        window = adapter.custody_window
+        window_calls = 0
+        def expire_before_cas(value):
+            nonlocal window_calls
+            window_calls += 1
+            if window_calls == 2:
+                with patch.object(adapter.time, 'time', return_value=value['valid_until'] + 1):
+                    return window(value)
+            return window(value)
+        with patch.object(adapter, 'custody_window', side_effect=expire_before_cas):
+            self.refused('Current custody observation/quiet interval is stale')
+        self.assertEqual(window_calls, 2)
+        before = self.snapshot()
+        with patch.object(adapter, 'checkpoint', side_effect=RuntimeError('synthetic post-audit crash')):
+            with self.assertRaises(RuntimeError):
+                self.admit()
+        self.assertEqual(self.snapshot(), before)
+        qualify = adapter.qualify_tooling
+        calls = 0
+        def drift(*args):
+            nonlocal calls
+            calls += 1
+            qualify(*args)
+            if calls == 2:
+                Path(self.request['e15_customer_page']['current_custody']['evidence_ref']['path']).write_text('{}')
+        with patch.object(adapter, 'qualify_tooling', side_effect=drift):
+            self.refused('Bound evidence changed')
+        self.assertEqual(calls, 2)
+
+    def test_e15_competing_request_and_stale_generation_cannot_reapply(self):
+        self.e15_fixture()
+        self.admit()
+        self.request['request_id'] = 'competing-e15-request'
+        self.refused()
+        with self.assertRaises(engine.Refusal):
+            self.call('heartbeat', story=adapter.STORY, worker='worker-a', generation=1)
 
 
 class NativeAllocationMetadata(unittest.TestCase):
