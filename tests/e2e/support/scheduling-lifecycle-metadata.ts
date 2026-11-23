@@ -68,35 +68,82 @@ type Lifecycle = ReturnType<typeof createLifecycle>;
 export function mark(page: Page, event: Event, phase: Phase = "event", request?: object, ordinal?: number, capture?: number, route?: Row["route"], reason?: Reason) {
   try { active.get(page)?.record(event, phase, request, ordinal, capture, route, reason); } catch { /* Inert without activation. */ }
 }
+type LifecycleOwner = { root: Page; aliases: Set<Page>; target: Page | undefined; detachTarget: () => boolean; moved: boolean };
+const owners = new WeakMap<Lifecycle, LifecycleOwner>();
+function attachTarget(page: Page, observer: Lifecycle): { detach: () => boolean; available: boolean } {
+  const removers: (() => void)[] = [];
+  let available = true;
+  const listen = (add: () => void, remove: () => void) => {
+    let removed = false;
+    const once = () => { if (!removed) { remove(); removed = true; } };
+    removers.push(once); observer.addRemoval(once);
+    try { add(); } catch { available = false; observer.unavailable(); }
+  };
+  const onClose = () => mark(page, "page-close"), onCrash = () => mark(page, "page-crash");
+  listen(() => { page.on("close", onClose); }, () => { page.off("close", onClose); });
+  listen(() => { page.on("crash", onCrash); }, () => { page.off("crash", onCrash); });
+  const onNavigation = (frame: Frame) => {
+    try {
+      if (frame !== page.mainFrame()) return;
+      const raw = page.url();
+      if (typeof raw !== "string" || raw.length > 2048) { observer.unavailable(); return; }
+      const pathname = new URL(raw).pathname;
+      const route = pathname === "/login" ? "login" : pathname === "/dashboard" ? "dashboard" : pathname === "/scheduling" ? "scheduling" : "other";
+      mark(page, "main-frame-navigation", "event", undefined, undefined, undefined, route);
+    } catch { observer.unavailable(); }
+  };
+  listen(() => { page.on("framenavigated", onNavigation); }, () => { page.off("framenavigated", onNavigation); });
+  const detach = () => {
+    let ok = true;
+    for (const remove of removers) { try { remove(); } catch { ok = false; observer.unavailable(); } }
+    return ok;
+  };
+  return { detach, available };
+}
 export function activate(page: Page, retry: number) {
   if (active.has(page)) return;
   try {
     const observer = createLifecycle(retry); active.set(page, observer);
+    const target = attachTarget(page, observer);
+    owners.set(observer, { root: page, aliases: new Set([page]), target: page, detachTarget: target.detach, moved: false });
     const listen = (add: () => void, remove: () => void) => {
       try { add(); observer.addRemoval(remove); } catch { observer.unavailable(); }
     };
-    const onClose = () => mark(page, "page-close"), onCrash = () => mark(page, "page-crash"), onContextClose = () => mark(page, "context-close"), onDisconnect = () => mark(page, "browser-disconnect");
-    listen(() => { page.on("close", onClose); }, () => { page.off("close", onClose); });
-    listen(() => { page.on("crash", onCrash); }, () => { page.off("crash", onCrash); });
+    const onContextClose = () => mark(page, "context-close"), onDisconnect = () => mark(page, "browser-disconnect");
     const context = page.context();
     listen(() => { context.on("close", onContextClose); }, () => { context.off("close", onContextClose); });
     const browser = context.browser(); if (browser) listen(() => { browser.on("disconnected", onDisconnect); }, () => { browser.off("disconnected", onDisconnect); });
-    const onNavigation = (frame: Frame) => {
-      try {
-        if (frame !== page.mainFrame()) return;
-        const raw = page.url();
-        if (typeof raw !== "string" || raw.length > 2048) { observer.unavailable(); return; }
-        const pathname = new URL(raw).pathname;
-        const route = pathname === "/login" ? "login" : pathname === "/dashboard" ? "dashboard" : pathname === "/scheduling" ? "scheduling" : "other";
-        mark(page, "main-frame-navigation", "event", undefined, undefined, undefined, route);
-      } catch { observer.unavailable(); }
-    };
-    listen(() => { page.on("framenavigated", onNavigation); }, () => { page.off("framenavigated", onNavigation); });
     mark(page, "attempt-start", "enter");
   } catch { try { active.get(page)?.unavailable(); } catch { /* Metadata cannot prevent original operations. */ } }
 }
+/** One owned target handoff; the original fixture remains the sole envelope finalizer. */
+export function retireOwnedTarget(page: Page): { attach: (fresh: Page) => void } {
+  const unavailable = () => new Error("Owned lifecycle handoff unavailable.");
+  const observer = active.get(page), owner = observer && owners.get(observer);
+  if (!observer || !owner || owner.root !== page || owner.target !== page || owner.moved || owner.aliases.size !== 1) throw unavailable();
+  owner.moved = true;
+  owner.target = undefined;
+  if (!owner.detachTarget()) throw unavailable();
+  let attached = false;
+  return { attach: fresh => {
+    if (attached) { observer.unavailable(); throw unavailable(); }
+    attached = true;
+    if (owner.target || !page.isClosed() || fresh.isClosed() || fresh.context() !== page.context() || active.has(fresh)) { observer.unavailable(); throw unavailable(); }
+    // Retain original alias for BookingEditor/resource-fixture late cleanup marks and finish.
+    active.set(fresh, observer); owner.aliases.add(fresh); owner.target = fresh;
+    const target = attachTarget(fresh, observer); owner.detachTarget = target.detach;
+    if (!target.available) { observer.unavailable(); throw unavailable(); }
+  } };
+}
 export function finish(page: Page) {
-  try { const observer = active.get(page); active.delete(page); observer?.finish(); } catch { /* No verdict or lifecycle authority. */ }
+  try {
+    const observer = active.get(page); if (!observer) return;
+    const owner = owners.get(observer);
+    if (owner && owner.root !== page) return; // A child close cannot freeze the original fixture's envelope.
+    if (owner) { for (const alias of owner.aliases) active.delete(alias); owner.aliases.clear(); owners.delete(observer); }
+    else active.delete(page);
+    observer.finish();
+  } catch { /* No verdict or lifecycle authority. */ }
 }
 export function observeAbort<T>(page: Page, reason: Reason, operation: () => Promise<T>): Promise<T> {
   mark(page, "route-abort", "invoked", undefined, undefined, undefined, "unknown", reason);

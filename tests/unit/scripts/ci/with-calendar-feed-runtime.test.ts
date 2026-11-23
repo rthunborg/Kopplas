@@ -9,7 +9,7 @@ import { mkdtemp, mkdir, writeFile, readFile, rm, stat } from "node:fs/promises"
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
-import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
+import { projectCalendarFeedCiCommands, projectReleaseBrowserBudget } from "../../../support/calendar-feed-ci-contract";
 import { INTEGRATION_ARGS, BROWSER_ARGS, RELEASE_BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, createIntegrationChildDiagnostic, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 import { captureCalendarFeedTrace, recordCalendarFeedTrace, recordCalendarFeedContext, recordCalendarFeedMembership, executeCalendarFeed } from "../../../../src/server/commands/calendar-feed/calendar-feed-db";
 import { CommandError } from "../../../../src/server/commands/command-errors";
@@ -47,7 +47,7 @@ test("CI command projection rejects entry and argv drift and cannot erase unrela
   assert.ok(projected.includes("run: pnpm run test:smoke"));
   const runner = "    runs-on: ubuntu-24.04\n";
   assert.ok(workflow.includes(runner));
-  assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(runner, "    runs-on: ubuntu-26.04\n"), wrapper), /exact diagnostic workflow fragment/);
+  assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(runner, "    runs-on: ubuntu-26.04\n"), wrapper), /release budget exact e2e fragment/);
   for (const [before, after] of [
     ["node scripts/ci/with-calendar-feed-runtime.mjs db", "pnpm run test:int"],
     ["node scripts/ci/with-calendar-feed-runtime.mjs db", "node scripts/ci/with-calendar-feed-runtime.mjs browser"],
@@ -121,7 +121,7 @@ test("Storage schema source excludes only Mailpit in its exact job and step", ()
   }
   assert.throws(() => projectCalendarFeedCiCommands(workflow.replace("  recovery-storage-loader:\n", "  recovery-storage-loader:\n  recovery-storage-loader:\n")), /Storage source exact workflow job/);
   const moved = workflow.replace(entry, "").replace("  e2e:\n", "  e2e:\n" + entry);
-  assert.throws(() => projectCalendarFeedCiCommands(moved), /Storage source exact/);
+  assert.throws(() => projectCalendarFeedCiCommands(moved), /release budget exact e2e fragment/);
 });
 
 test("Storage source inverse preserves other jobs, reset, dump, physical proof and native artifact contracts", () => {
@@ -4261,7 +4261,7 @@ test("temporary audit exact inverse is verify-job scoped and refuses moved dupli
     ["raw audit native exit ${result.nativeExitCode} retained","audit clean"],
   ]) {assert.ok(block.includes(before));assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,block.replaceAll(before,after))),/temporary picomatch/);}
   assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,block+block)),/temporary picomatch/);
-  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,"").replace("  e2e:\n","  e2e:\n"+block)),/verify-job/);
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,"").replace("  e2e:\n","  e2e:\n"+block)),/release budget exact e2e fragment/);
   assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace("  verify:\n","  verify:\n  verify:\n")),/CI performance exact reviewed job fragment: verify:|temporary picomatch exact verify job/);
   const unrelated=projectCalendarFeedCiCommands(workflow+"\n# unrelated audit drift\n");
   assert.notEqual(createHash("sha256").update(unrelated).digest("hex"),createHash("sha256").update(projected).digest("hex"));
@@ -4412,7 +4412,126 @@ test("DB startup facts exact inverse is one-db scoped and refuses moved duplicat
     assert.ok(block.includes(before));assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,block.replaceAll(before,after))),/DB startup facts/);
   }
   for(const replacement of ["",block+block])assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,replacement)),/DB startup facts/);
-  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,"").replace("  e2e:\n","  e2e:\n"+block)),/DB startup facts/);
+  assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,"").replace("  e2e:\n","  e2e:\n"+block)),/release budget exact e2e fragment/);
   assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace("  db:\n","  db:\n  db:\n")),/DB startup facts exact single db job/);
   assert.notEqual(projectCalendarFeedCiCommands(workflow+"\n# unrelated\n"),projected);
+});
+
+
+// Complete-route mechanical budgets: substantive assertions and ordinary limits remain unchanged.
+test("complete-route budget Dense setup changes only its first case ceiling before seed", async () => {
+  const ts = await import("typescript");
+  const text = readFileSync("tests/e2e/scheduling-views.atdd.e2e.spec.ts", "utf8").replaceAll("\r\n", "\n");
+  const parsed = ts.createSourceFile("spec.ts", text, ts.ScriptTarget.Latest, true);
+  let callback: import("typescript").ArrowFunction | undefined, overrides = 0;
+  const walk = (node: import("typescript").Node) => {
+    if (ts.isCallExpression(node) && node.expression.getText(parsed) === "testInfo.setTimeout") overrides++;
+    if (ts.isCallExpression(node) && node.arguments[0]?.getText(parsed).includes("15.1-E2E-006")) callback = node.arguments.find(ts.isArrowFunction);
+    ts.forEachChild(node, walk);
+  };
+  walk(parsed); assert.ok(callback && ts.isBlock(callback.body)); assert.equal(overrides, 1);
+  assert.equal(callback.body.statements[0]!.getText(parsed), "testInfo.setTimeout(360_000);");
+  const calls: unknown[] = [], stop = {};
+  const actual = new Function("return " + ts.transpileModule(`(${callback.getText(parsed)})`, { compilerOptions: { target: ts.ScriptTarget.ES2022 } }).outputText)() as (fixture: unknown, info: unknown) => Promise<void>;
+  await assert.rejects(actual({ schedulingViews: { seed: async (later: boolean) => { calls.push(["seed", later]); throw stop; } } }, { setTimeout: (ms: number) => { calls.push(["budget", ms]); } }), error => error === stop);
+  assert.deepEqual(calls, [["budget", 360_000], ["seed", true]]);
+  assert.match(text, /test\.setTimeout\(180_000\)/);
+  assert.ok(ts.isCallExpression(callback.parent) && ts.isExpressionStatement(callback.parent.parent));
+  assert.ok(callback.parent.parent.parent === parsed);
+  const inverse = (callback.parent.parent.getText(parsed) + "\n\n").replace("  testInfo.setTimeout(360_000);\n", "");
+  assert.equal(createHash("sha256").update(inverse).digest("hex"), "99e40ebbb4cd977ea2b51da876c6ca128d07ad435ccd55c0c00e26a0b4614788");
+  const config = readFileSync("playwright.config.ts", "utf8");
+  assert.match(config, /expect: \{ timeout: 15_000 \}/); assert.match(config, /actionTimeout: 15_000/); assert.match(config, /navigationTimeout: 30_000/);
+});
+test("complete-route budget pure inverse restores only the exact e2e job ceiling", () => {
+  const raw = readFileSync(".github/workflows/ci.yml", "utf8").replaceAll("\r\n", "\n");
+  const inverse = projectReleaseBrowserBudget(raw);
+  assert.equal(createHash("sha256").update(inverse).digest("hex"), "f6faa24f46be4ebd3a223f3184b568de69f27efcdad1aacb9e28ac3f44f19368");
+  const require = nodeModule.createRequire(import.meta.url), yaml = nodeModule.createRequire(require.resolve("eslint/package.json"))("js-yaml");
+  const jobs = yaml.load(raw).jobs;
+  const expression = "${{ github.event_name == 'workflow_dispatch' && inputs.release_validation && 50 || 45 }}";
+  assert.equal(jobs.e2e["timeout-minutes"], expression);
+  // Execute only the exact typed closed expression, never arbitrary YAML/code.
+  const evaluate = new Function("event", "release", "return " + expression.slice(3, -2).replace("github.event_name", "event").replace("inputs.release_validation", "release")) as (event: string, release: boolean) => number;
+  for (const event of ["push", "pull_request", "workflow_dispatch"]) for (const release of [false, true]) assert.equal(evaluate(event, release), event === "workflow_dispatch" && release ? 50 : 45);
+  const oldJobs = yaml.load(inverse).jobs;
+  for (const job of Object.keys(jobs)) if (job !== "e2e") assert.deepEqual(jobs[job], oldJobs[job]);
+  assert.equal(oldJobs.e2e["timeout-minutes"], 45);
+  const drift = "# unrelated budget drift\n" + raw;
+  assert.ok(projectReleaseBrowserBudget(drift).startsWith("# unrelated budget drift\n"));
+  assert.notEqual(createHash("sha256").update(projectReleaseBrowserBudget(drift)).digest("hex"), "f6faa24f46be4ebd3a223f3184b568de69f27efcdad1aacb9e28ac3f44f19368");
+});
+test("complete-route budget inverse refuses unknown moved missing duplicate reversed and foreign fragments", () => {
+  const raw = readFileSync(".github/workflows/ci.yml", "utf8").replaceAll("\r\n", "\n");
+  const line = "    timeout-minutes: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation && 50 || 45 }}\n";
+  for (const changed of [raw.replace(line, ""), raw.replace(line, line + line), raw.replace(line, "    timeout-minutes: 50\n"), raw.replace("&& 50 || 45", "&& 45 || 50"), raw.replace("&& 50 || 45", "&& 51 || 45"), raw.replace("inputs.release_validation && 50", "'true' && 50"), raw.replace("github.event_name == 'workflow_dispatch' && inputs.release_validation && 50", "inputs.release_validation && 50"), raw.replace("  e2e:\n", "  foreign-e2e:\n"), raw.replace(line, "    env:\n" + line), raw.replace("  e2e:\n", "  e2e:\n  e2e:\n")]) assert.throws(() => projectReleaseBrowserBudget(changed), /release budget/);
+  const foreign = raw.replace("    timeout-minutes: 45\n", "    timeout-minutes: 50\n");
+  assert.notEqual(foreign, raw); const projected = projectReleaseBrowserBudget(foreign);
+  assert.notEqual(createHash("sha256").update(projected).digest("hex"), "f6faa24f46be4ebd3a223f3184b568de69f27efcdad1aacb9e28ac3f44f19368"); // Unrelated job drift survives for the unchanged historical guard.
+});
+test("complete-route budget actual release and smoke children time out only at their selected finite ceilings", async t => {
+  t.mock.timers.enable({ apis: ["setTimeout"] });
+  for (const [selectedEnv, limit] of [[env, 1_800_000], [releaseEnv, 2_400_000]] as const) {
+    const h = harness(); let entered!: () => void, finish!: (result: { code: number; signal: null }) => void;
+    const launched = new Promise<void>(yes => { entered = yes; }); let settled = false;
+    const done = new Promise<{ code: number; signal: null }>(yes => { finish = yes; });
+    const pending = runCalendarFeedRuntime({ mode: "browser", env: selectedEnv, platform: "linux" }, { ...h.deps, launch: (command: string, args: string[], childEnv: Record<string, string>) => {
+      const handle = h.deps.launch(command, args, childEnv); entered();
+      return { ...handle, done, stop: async () => { finish({ code: 0, signal: null }); return await handle.stop(); } };
+    } });
+    void pending.then(() => { settled = true; }); await launched;
+    t.mock.timers.tick(limit - 1); await Promise.resolve(); assert.equal(settled, false);
+    t.mock.timers.tick(1); const result = await pending;
+    assert.equal(result.exitCode, 1); assert.ok(result.receipt.failures.includes("child-timeout"));
+    assert.equal(h.launches.length, 1); assert.equal(h.events.filter(event => event === "settled:0").length, 1); assert.ok(h.events.includes("db-closed"));
+    assert.deepEqual(h.launches[0].args, [...(selectedEnv === releaseEnv ? RELEASE_BROWSER_ARGS : BROWSER_ARGS)]);
+  }
+});
+test("complete-route budget keeps actual native failure cleanup and db ordinary bound unchanged", async () => {
+  const h = harness({ failChild: 0 });
+  const result = await runCalendarFeedRuntime({ mode: "browser", env: releaseEnv, platform: "linux" }, h.deps);
+  assert.equal(result.exitCode, 1); assert.deepEqual(result.receipt.childExitCodes, [17]); assert.equal(h.launches.length, 1);
+  assert.ok(h.events.lastIndexOf("settled:0") < h.events.indexOf("db-closed"));
+  assert.equal(h.events.includes("delete"), false); assert.equal(result.receipt.keyDeleted, false);
+  assert.equal(result.receipt.keyOutcome, "unverified"); assert.equal(result.receipt.custody?.vaultUuid, keyUuid);
+  assert.ok(result.receipt.failures.includes("browser-server-teardown-unverified"));
+  const wrapper = readFileSync("scripts/ci/with-calendar-feed-runtime.mjs", "utf8");
+  assert.ok(wrapper.includes('await run("pnpm", INTEGRATION_ARGS, childEnv, (line, stream, completeLine) => observe(line, "integration", stream, completeLine), 1_800_000);'));
+  assert.ok(wrapper.includes('env.CALENDAR_FEED_CI_BROWSER_SUITE === "release" ? 2_400_000 : 1_800_000'));
+  assert.throws(() => validateAdmission("browser", { ...releaseEnv, CALENDAR_FEED_CI_BROWSER_SUITE: "unknown" }, "linux"));
+  assert.throws(() => validateAdmission("db", releaseEnv, "linux"));
+  assert.throws(() => validateAdmission("browser", { ...releaseEnv, GITHUB_EVENT_NAME: "push" }, "linux"));
+});
+test("complete-route budget strict source pin still refuses a nonmatching wrapper", () => {
+  const workflow = readFileSync(".github/workflows/ci.yml", "utf8").replaceAll("\r\n", "\n");
+  const wrapper = readFileSync("scripts/ci/with-calendar-feed-runtime.mjs", "utf8").replaceAll("\r\n", "\n");
+  const support = readFileSync("tests/support/calendar-feed-ci-contract.ts", "utf8");
+  const pin = support.match(/^const wrapperSha256 = "([a-f0-9]{64})";/m)![1];
+  if (createHash("sha256").update(wrapper).digest("hex") !== pin) assert.throws(() => projectCalendarFeedCiCommands(workflow, wrapper), /reviewed wrapper source/);
+  else assert.equal(typeof projectCalendarFeedCiCommands(workflow, wrapper), "string");
+  assert.throws(() => projectCalendarFeedCiCommands(workflow, wrapper + "\n// unrelated wrapper drift\n"), /reviewed wrapper source/);
+});
+
+// Supported raw workflow callers must retain the same strict historical contract.
+test("complete-route budget CRLF callers preserve LF historical projection and strict drift guards", () => {
+  const lf = readFileSync(".github/workflows/ci.yml", "utf8").replaceAll("\r\n", "\n");
+  const crlf = lf.replaceAll("\n", "\r\n");
+  const historicalHash = (text: string) => createHash("sha256").update(text
+    .replace(/      # FIXED-APPLICATION-INPUT-BEGIN\n[\s\S]*?      # FIXED-APPLICATION-INPUT-END\n/, "")
+    .replace(/\n  # FIXED-APPLICATION-JOB-BEGIN\n[\s\S]*?  # FIXED-APPLICATION-JOB-END\n$/, "")).digest("hex");
+  const expected = "48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0";
+  const projected = projectCalendarFeedCiCommands(lf);
+  assert.equal(projectCalendarFeedCiCommands(crlf), projected);
+  assert.equal(projectCalendarFeedCiCommands(readFileSync(".github/workflows/ci.yml", "utf8")), projected);
+  assert.equal(projectReleaseBrowserBudget(crlf), projectReleaseBrowserBudget(lf));
+  assert.equal(historicalHash(projected), expected);
+  const line = "    timeout-minutes: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation && 50 || 45 }}\n";
+  for (const changed of [lf.replace(line, ""), lf.replace(line, line + line), lf.replace("&& 50 || 45", "&& 51 || 45"), lf.replace("&& 50 || 45", "&& 45 || 50"), lf.replace("  e2e:\n", "  foreign-e2e:\n"), lf.replace(line, "    env:\n" + line), lf.replace("  e2e:\n", "  e2e:\n  e2e:\n")]) {
+    assert.notEqual(changed, lf);
+    for (const text of [changed, changed.replaceAll("\n", "\r\n")]) assert.throws(() => projectCalendarFeedCiCommands(text), /release budget/);
+  }
+  for (const changed of ["# unrelated workflow drift\n" + lf, lf.replace("    timeout-minutes: 45\n", "    timeout-minutes: 50\n")]) {
+    assert.notEqual(changed, lf);
+    for (const text of [changed, changed.replaceAll("\n", "\r\n")]) assert.notEqual(historicalHash(projectCalendarFeedCiCommands(text)), expected);
+  }
 });

@@ -21,17 +21,16 @@ async function waitForHydrated(locator: Locator): Promise<void> {
   }));
 }
 
-async function signIn(page: Page, credentials = fixture.operator): Promise<void> {
+async function signIn(page: Page, credentials = fixture.operator, landing: "/dashboard" | "/" = "/dashboard"): Promise<void> {
   await page.goto("/login");
   const submit = page.getByRole("button", { name: "Logga in" });
   await waitForHydrated(submit);
   await page.getByLabel("E-post").fill(credentials.email);
   await page.getByLabel("Lösenord").fill(credentials.password);
   await submit.click();
-  // The login client refreshes the cookie-bound session before its canonical
-  // dashboard navigation. Wait for that navigation before testing another
-  // server-rendered protected route.
-  await expect(page).toHaveURL(/\/dashboard/);
+  // Wait for this exact fixture's cookie-bound canonical landing before
+  // testing another server-rendered protected route.
+  await expect(page).toHaveURL(landing);
 }
 
 function uniqueOrganisationNumber(): string {
@@ -68,7 +67,7 @@ test.describe("Story 12.2 operator console", () => {
     const membershiplessContext = await browser.newContext();
     try {
       const membershiplessPage = await membershiplessContext.newPage();
-      await signIn(membershiplessPage, fixture.membershiplessOperator);
+      await signIn(membershiplessPage, fixture.membershiplessOperator, "/");
       await membershiplessPage.goto("/operator");
       await expect(membershiplessPage.getByRole("heading", { name: /operatörskonsol/i })).toBeVisible();
       await expect(membershiplessPage.getByRole("navigation")).toHaveCount(0);
