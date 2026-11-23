@@ -1709,8 +1709,14 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
                        (engine.canonical(self.plan), engine.digest(self.plan), adapter.RUN))
             db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?)', (source['run_id'], source['epic'],
                 self.plan['coordinator'], engine.canonical(source), engine.digest(source), 'finalized', self.base))
+            claim = db.execute('SELECT branch,worktree FROM claims WHERE run=? AND story=?',
+                               (adapter.RUN, adapter.STORY)).fetchone()
+            self.assertIsNotNone(claim)
+            # Native claim creation resolves paths (including Windows short-name
+            # aliases). Bind its exact stored identity, not fixture path spelling.
+            claim_identity = {field: claim[field] for field in ['branch', 'worktree']}
         case = dict(holder='synthetic-e15-holder', coordinator=self.plan['coordinator'], worker='worker-a',
-            claim_identity_digest=engine.digest(dict(branch='codex/worker-a', worktree=str(self.a))),
+            claim_identity_digest=engine.digest(claim_identity),
             plan_hash=engine.digest(self.plan), base=self.base, published=published, checkpoint=self.checkpoint_sha,
             page_blob=engine.git(self.repo, 'rev-parse', published + ':' + adapter.PAGE).strip(),
             holder_checkpoint=holder_head,
@@ -1796,7 +1802,17 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
         self.assertEqual(self.snapshot(), before)
 
     def test_e15_atomic_transition_native_effective_checks_history_and_exact_replay(self):
+        # Deterministically reproduce a noncanonical fixture spelling on every
+        # OS, without relying on Windows 8.3 support or temporary-root casing.
+        self.a = self.a / '..' / 'a'
+        self.assertNotEqual(str(self.a), str(self.a.resolve()))
         original, remainder, source = self.e15_fixture()
+        with engine.database(self.repo) as db:
+            claim = dict(db.execute('SELECT branch,worktree FROM claims WHERE run=? AND story=?',
+                                   (adapter.RUN, adapter.STORY)).fetchone())
+        self.assertEqual(adapter.E15_CASE['claim_identity_digest'], engine.digest(claim))
+        self.assertNotEqual(adapter.E15_CASE['claim_identity_digest'],
+                            engine.digest({**claim, 'worktree': str(self.a)}))
         self.assertTrue(engine.conflicts(self.item('a'), original))
         self.assertFalse(engine.conflicts(self.item('a'), remainder))
         before = self.snapshot()
