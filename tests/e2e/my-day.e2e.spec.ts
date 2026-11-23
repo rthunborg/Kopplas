@@ -20,7 +20,7 @@
 import { createHash, randomUUID } from "node:crypto";
 import { open } from "node:fs/promises";
 import { isDeepStrictEqual } from "node:util";
-import type { CDPSession, Locator, Page, Request, Route } from "@playwright/test";
+import type { CDPSession, Locator, Page, Request, Route, TestInfo } from "@playwright/test";
 import playwrightPackage from "@playwright/test/package.json";
 import { test, expect } from "./support/resource-cdp-attachment";
 import {
@@ -49,6 +49,85 @@ async function openDay(page: Page, date = REPORT_DATE): Promise<void> {
 
 async function assertPhoneFits(page: Page): Promise<void> {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+}
+
+/** REL22 opt-in preliminary originals, never acceptance or a generated reference.
+ * Only fixed aliases/computed presentation data leave evaluate; no DOM/text/input/network/session dumps.
+ */
+async function rel22Capture(page: Page, info: TestInfo, state: string, anchor: Locator): Promise<void> {
+  if (process.env.E15_REL22_CAPTURE !== "1") return;
+  const original = page.viewportSize();
+  if (!original) throw new Error("REL22 requires a fixed original viewport.");
+  const scroll = await page.evaluate(() => ({ x: window.scrollX, y: window.scrollY }));
+  const focus = await page.evaluateHandle(() => document.activeElement);
+  let failed = false, first: unknown;
+  const retain = (error: unknown) => { if (!failed) { failed = true; first = error; } };
+  try {
+    for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 800 }]) {
+      await page.setViewportSize(viewport);
+      await page.evaluate(() => new Promise<void>(done => requestAnimationFrame(() => requestAnimationFrame(() => done()))));
+      await expect(anchor).toBeVisible();
+      await anchor.scrollIntoViewIfNeeded();
+      const samples = await anchor.evaluate(root => {
+        type RGB = [number, number, number]; type RGBA = [number, number, number, number];
+        const rgba = (value: string): RGBA | null => {
+          const match = /^rgba?\(([\d.]+)[, ]+([\d.]+)[, ]+([\d.]+)(?:[, /]+([\d.]+))?\)$/.exec(value);
+          if (!match) return null;
+          const c = [Number(match[1]), Number(match[2]), Number(match[3]), match[4] === undefined ? 1 : Number(match[4])] as RGBA;
+          return c.every(Number.isFinite) && c.slice(0, 3).every(v => v >= 0 && v <= 255) && c[3] >= 0 && c[3] <= 1 ? c : null;
+        };
+        const over = (a: RGBA, b: RGB): RGB => [0, 1, 2].map(i => a[i]! * a[3] + b[i]! * (1 - a[3])) as RGB;
+        const luminance = (rgb: RGB) => rgb.map(v => v / 255).map(v => v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4).reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i]!, 0);
+        const candidates = [root, ...root.querySelectorAll("h1,h2,h3,p,label,button,a,input,select,textarea,[role=status],[role=alert]")];
+        const active = document.activeElement;
+        if (active && root.contains(active) && !candidates.includes(active)) candidates.unshift(active);
+        const visible = candidates.filter(element => { const box = element.getBoundingClientRect(), style = getComputedStyle(element); return box.width > 0 && box.height > 0 && box.bottom > 0 && box.right > 0 && box.top < innerHeight && box.left < innerWidth && style.visibility === "visible" && style.display !== "none"; });
+        return { overflow: visible.length > 24, records: visible.slice(0, 24).map((element, index) => {
+          const style = getComputedStyle(element), box = element.getBoundingClientRect();
+          const layers: RGBA[] = []; let cursor: Element | null = element, unsupported = false, depth = 0;
+          while (cursor && depth++ < 32) {
+            const backing = getComputedStyle(cursor), color = rgba(backing.backgroundColor);
+            if (!color || backing.backgroundImage !== "none" || Number(backing.opacity) !== 1 || backing.filter !== "none" || backing.mixBlendMode !== "normal") unsupported = true;
+            if (color) layers.push(color);
+            cursor = cursor.parentElement;
+          }
+          if (cursor) unsupported = true;
+          let background: RGB | null = null;
+          for (const color of layers.reverse()) {
+            if (color[3] === 1) background = color.slice(0, 3) as RGB;
+            else if (background) background = over(color, background);
+            else if (color[3] !== 0) unsupported = true;
+          }
+          const foreground = rgba(style.color), rendered = foreground && background ? over(foreground, background) : null;
+          const supported = !unsupported && background !== null && rendered !== null;
+          const a = supported ? luminance(rendered!) : 0, b = supported ? luminance(background!) : 0;
+          return { alias: `sample-${index}`, kind: element.matches("button,a,input,select,textarea") ? "control" : "text-or-surface",
+            foreground, background: supported ? background : null, renderedForeground: supported ? rendered : null,
+            contrastRatio: supported ? Number(((Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)).toFixed(6)) : null,
+            availability: supported ? "flat-composite-measured" : "unsupported-or-unresolved-surface",
+            fontPx: Number.parseFloat(style.fontSize), fontWeight: Number.parseInt(style.fontWeight, 10) || null,
+            focused: element === active, disabled: (element as HTMLButtonElement).disabled === true,
+            outlineColor: rgba(style.outlineColor), outlinePx: Number.parseFloat(style.outlineWidth), focusBoundaryContrast: "unassessed",
+            bounds: [box.x, box.y, box.width, box.height].map(v => Math.round(v * 100) / 100) };
+        }) };
+      });
+      const stem = `rel22-${state}-${viewport.width}x${viewport.height}`;
+      const metadata = Buffer.from(JSON.stringify({ schemaVersion: 1, evidence: "preliminary-presentation-only", state, viewport, retry: info.retry,
+        method: "sRGB-relative-luminance/alpha-over-flat-opaque-ancestors", acceptance: "unassessed", samples }), "utf8");
+      if (metadata.length > 32768) throw new Error("REL22 presentation record exceeds its bound.");
+      const png = await page.screenshot({ fullPage: false, scale: "css" });
+      if (png.length > 4 * 1024 * 1024) throw new Error("REL22 original PNG exceeds its bound.");
+      await info.attach(stem, { body: png, contentType: "image/png" });
+      await info.attach(stem + "-presentation", { body: metadata, contentType: "application/json" });
+    }
+  } catch (error) { retain(error); }
+  finally {
+    try { await page.setViewportSize(original); } catch (error) { retain(error); }
+    try { await focus.evaluate(element => { if (!(element instanceof HTMLElement) || !element.isConnected) throw new Error("REL22 focus restoration unavailable."); element.focus({ preventScroll: true }); if (document.activeElement !== element) throw new Error("REL22 focus restoration unverified."); }); } catch (error) { retain(error); }
+    try { await page.evaluate(({ x, y }) => window.scrollTo(x, y), scroll); } catch (error) { retain(error); }
+    try { await focus.dispose(); } catch (error) { retain(error); }
+  }
+  if (failed) throw first;
 }
 
 type MyDayFixture = TimeReportBrowserFixture & { jobless: string; shared: string; allDay: string; facilityId: string; address: string };
@@ -132,7 +211,7 @@ async function nativeDrag(page: Page, touch: CDPSession, origin: Locator, dx: nu
 }
 
 test.describe("15.6 Min dag essential production-server journeys", () => {
-  test("[P0] 15.6-E01 pure Montör lands on today's phone agenda, ordered own cards, explicit map click and same-job workspace", async ({ resourcePage: page }) => {
+  test("[P0] 15.6-E01 pure Montör lands on today's phone agenda, ordered own cards, explicit map click and same-job workspace", async ({ resourcePage: page }, testInfo) => {
     await withMyDayFixture(async f => {
       await page.setViewportSize({ width: 360, height: 640 });
       const mapRequests: string[] = [];
@@ -172,6 +251,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       await expect(bookingCard(page, f.jobless).getByRole("link", { name: "Öppna jobbet", exact: true })).toHaveCount(0);
       await expect(bookingCard(page, f.jobless).getByRole("link", { name: /karta|adress/i })).toHaveCount(0);
       await assertPhoneFits(page);
+      await rel22Capture(page, testInfo, "e01-populated-day", agenda(page));
       if (jobsActive) {
         const open = own.getByRole("link", { name: "Öppna jobbet", exact: true });
         await expect(open).toHaveAttribute("href", `/jobs/${f.job.id}`);
@@ -188,7 +268,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
     });
   });
 
-  test("[P0] 15.6-E02 exact inline prefill, unknown committed response, frozen same attempt and one durable own report", async ({ resourcePage: page }) => {
+  test("[P0] 15.6-E02 exact inline prefill, unknown committed response, frozen same attempt and one durable own report", async ({ resourcePage: page }, testInfo) => {
     await withMyDayFixture(async f => {
       await page.setViewportSize({ width: 360, height: 640 });
       const reportBooking = jobsActive ? f.ownBooking : f.jobless;
@@ -234,12 +314,14 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         await expect(form.getByLabel("Slut", { exact: true })).toHaveValue(`${REPORT_DATE}T${reportEnd}`);
         await expect(form.getByLabel("Jobb", { exact: true })).toHaveValue(reportJob ?? "");
         await form.getByLabel("Anteckning", { exact: true }).fill(f.marker);
+        await rel22Capture(page, testInfo, "e02-prefilled-draft", form);
         await keyboardActivate(page, form.getByRole("button", { name: "Rapportera tid", exact: true }));
         const durable = await commit;
         await expect(form.getByText("Osänd", { exact: true })).toBeVisible();
         await expect(form.getByTestId("time-report-submit-status")).toHaveCount(0);
         await expect(form.getByLabel("Anteckning", { exact: true })).toHaveValue(f.marker);
         await expect(form.getByLabel("Start", { exact: true })).toBeDisabled();
+        await rel22Capture(page, testInfo, "e02-unknown-outcome", form);
         expect(attempts).toHaveLength(1);
         expect(attempts[0]).toMatchObject({ date: REPORT_DATE, minutes: reportMinutes, bookingId: reportBooking, jobId: reportJob, note: f.marker });
         const retry = form.getByRole("button", { name: "Försök igen med samma försök", exact: true });
@@ -251,12 +333,14 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         expect(attempts).toHaveLength(2);
         expect(attempts[1]).toEqual(attempts[0]);
         expect(await f.snapshot()).toEqual(durable);
+        await rel22Capture(page, testInfo, "e02-server-confirmed", form);
         await assertPhoneFits(page);
         const refresh = page.getByRole("button", { name: "Uppdatera", exact: true });
         await expect(refresh).toBeEnabled();
         await page.keyboard.press("Escape");
         await expect(form).toHaveCount(0);
         await expect(page.getByRole("heading", { name: "Min dag", exact: true })).toBeFocused();
+        await rel22Capture(page, testInfo, "e02-restored-focus", page.getByRole("heading", { name: "Min dag", exact: true }));
         expect(await f.snapshot()).toEqual(durable);
         await page.reload();
         expect(await f.snapshot()).toEqual(durable); // Reload must not refile.
@@ -264,7 +348,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
     });
   });
 
-  test("[P0] 15.6-E03 keyboard refresh failure clears lists, retries current date and a real pull fetches changed server facts", async ({ resourcePage: page }) => {
+  test("[P0] 15.6-E03 keyboard refresh failure clears lists, retries current date and a real pull fetches changed server facts", async ({ resourcePage: page }, testInfo) => {
     await withMyDayFixture(async f => {
       await page.setViewportSize({ width: 360, height: 640 });
       // Configured runner is Chromium; this uses native browser touch input,
@@ -312,6 +396,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         delayNext = true;
         await keyboardActivate(page, page.getByRole("button", { name: "Uppdatera", exact: true }));
         await oldFetched.promise;
+        await rel22Capture(page, testInfo, "e03-held-read-loading", page.getByText("Hämtar planeringen…", { exact: true }));
         fail = true;
         await page.getByLabel("Datum", { exact: true }).fill("2026-10-13");
         await expect(page.getByLabel("Datum", { exact: true })).toHaveValue("2026-10-13");
@@ -347,6 +432,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         await expect(page.getByRole("link", { name: "Öppna jobbet", exact: true })).toHaveCount(0);
         await expect(page.getByRole("button", { name: "Rapportera tid", exact: true })).toHaveCount(0);
         await expect(page.getByText("inga bokningar ännu", { exact: true })).toHaveCount(0);
+        await rel22Capture(page, testInfo, "e03-read-failed", page.getByRole("alert").filter({ has: page.getByText("Anslutning krävs", { exact: true }) }).filter({ has: page.getByRole("button", { name: "Försök igen", exact: true }) }));
         const failedSelectionRead = page.waitForRequest(request => isDayRead(request));
         await page.getByLabel("Datum", { exact: true }).fill("2026-10-13");
         await failedSelectionRead;
@@ -358,6 +444,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         await expect(page.getByLabel("Datum", { exact: true })).toHaveValue("2026-10-13");
         await expect(page.getByText("Anslutning krävs", { exact: true })).toHaveCount(0);
 
+        await rel22Capture(page, testInfo, "e03-explicit-retry", agenda(page));
         const changedDescription = `${f.marker} fresh after real pull`;
         await expect(bookingCard(page, f.missingBooking)).not.toContainText(changedDescription);
         await adminQuery("update public.bookings set description=$3 where tenant_id=$1 and id=$2",
@@ -415,7 +502,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
     });
   });
 
-  test("[P1] 15.6-E04 successful empty agenda differs from own-jobs empty; jobless card has no invented destination", async ({ resourcePage: page }) => {
+  test("[P1] 15.6-E04 successful empty agenda differs from own-jobs empty; jobless card has no invented destination", async ({ resourcePage: page }, testInfo) => {
     await withMyDayFixture(async f => {
       await page.setViewportSize({ width: 360, height: 640 });
       await signIn(page, f.fx.users.montor);
@@ -438,6 +525,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       await expect(bookingCard(page, f.allDay)).toBeVisible();
       await expect(bookingCard(page, f.allDay)).toContainText("Heldag");
       await expect(bookingCard(page, f.allDay)).toContainText(/15.*okt/i);
+      await rel22Capture(page, testInfo, "e04-populated-week", agenda(page));
       await keyboardActivate(page, page.getByRole("button", { name: "Visa vald dag", exact: true }));
       await expect(bookingCard(page, f.ownBooking)).toBeVisible();
       await expect(bookingCard(page, f.missingBooking)).toHaveCount(0);
@@ -453,6 +541,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       await page.getByLabel("Datum", { exact: true }).fill("2026-10-14");
       await expect(page.getByText("inga bokningar ännu", { exact: true })).toBeVisible();
       await expect(page.getByText("Anslutning krävs", { exact: true })).toHaveCount(0);
+      await rel22Capture(page, testInfo, "e04-empty-agenda", agenda(page));
       if (jobsActive) {
         await expect(ownJobs(page)).toBeVisible();
         await expect(ownJobs(page).getByTestId(`my-day-job-${f.otherJob.id}`)).toBeVisible();
@@ -465,6 +554,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         await expect(ownJobs(page).getByRole("link")).toHaveCount(0);
         // The own-jobs empty state is distinct from the booking empty state.
         await expect(ownJobs(page).getByText("Inga tilldelade jobb", { exact: true })).toBeVisible();
+        await rel22Capture(page, testInfo, "e04-empty-own-jobs", ownJobs(page));
         await expect(page.getByText("inga bokningar ännu", { exact: true })).toBeVisible();
       } else await expect(ownJobs(page)).toHaveCount(0);
       const selected = page.getByLabel("Datum", { exact: true });
@@ -491,7 +581,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
     });
   });
 
-  test("[P1] 15.6-E05 active jobs render own current designation and preserve identity; pending jobs contribute no UI", async ({ resourcePage: page }) => {
+  test("[P1] 15.6-E05 active jobs render own current designation and preserve identity; pending jobs contribute no UI", async ({ resourcePage: page }, testInfo) => {
     await withMyDayFixture(async f => {
       await adminQuery("update public.job_members set designation='arbetsledare' where tenant_id=$1 and job_id=$2 and person_profile_id=$3",
         [f.fx.base.tenantA.id, f.otherJob.id, f.fx.ownProfile.id]);
@@ -513,6 +603,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       await expect(ownJobs(page).getByTestId(`my-day-job-${f.job.id}`)).toContainText("Skapad");
       const link = row.getByRole("link");
       await expect(link).toHaveAttribute("href", `/jobs/${f.otherJob.id}`);
+      await rel22Capture(page, testInfo, "e05-active-own-jobs", ownJobs(page));
       await link.click();
       await expect(page).toHaveURL(new RegExp(`/jobs/${f.otherJob.id}(?:\\?|$)`));
       await expect(page.getByTestId("job-workspace-header")).toContainText(f.otherJob.title);
@@ -527,7 +618,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
     });
   });
 
-  test("[P1] 15.6-E06 own unread booking.changed is a safe generic banner with its existing route", async ({ resourcePage: page }) => {
+  test("[P1] 15.6-E06 own unread booking.changed is a safe generic banner with its existing route", async ({ resourcePage: page }, testInfo) => {
     await withMyDayFixture(async f => {
       // Existing recipient/category rows, with newer unrelated notices exceeding
       // a transport page: category filtering must precede the five-row page.
@@ -561,6 +652,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       expect(await banner.getByRole("link").evaluateAll(links => links.map(link => link.getAttribute("href")))).not.toContain(`/scheduling/${f.ownBooking}`);
       await expect(banner).not.toContainText(`${f.marker} unrelated category`);
       await expect(banner.getByText(bookingBodies[0], { exact: true })).toHaveCount(0);
+      await rel22Capture(page, testInfo, "e06-schedule-change", banner);
       const continuation = page.waitForResponse(reply => isDayRead(reply.request()) && (reply.request().postData() ?? "").includes('"noticePage":2'));
       await keyboardActivate(page, banner.getByRole("button", { name: "Visa fler ändringar", exact: true }));
       expect((await continuation).ok()).toBe(true);
@@ -579,7 +671,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
     });
   });
 
-  test("[P0] 15.6-E07 direct route requires login/current booking entitlement and office landing remains stable", async ({ resourcePage: page }) => {
+  test("[P0] 15.6-E07 direct route requires login/current booking entitlement and office landing remains stable", async ({ resourcePage: page }, testInfo) => {
     await withMyDayFixture(async f => {
       await page.context().clearCookies();
       await page.goto("/my-day");
@@ -591,6 +683,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       await expect(page.getByText(TENANT_CONTEXT_MESSAGES.TENANT_MEMBERSHIP_REQUIRED, { exact: true })).toBeVisible();
       await expect(bookingCard(page, f.ownBooking)).toHaveCount(0);
       await expect(page.getByRole("link", { name: "Min dag", exact: true })).toHaveCount(0);
+      await rel22Capture(page, testInfo, "e07-denied-role", page.getByText(TENANT_CONTEXT_MESSAGES.TENANT_MEMBERSHIP_REQUIRED, { exact: true }));
       await signIn(page, f.fx.roleUnionUser); // Current PL + salesperson office union.
       await expect(page).toHaveURL(/\/dashboard(?:\?|$)/);
       await signIn(page, f.fx.users.montor);
@@ -604,6 +697,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         await expect(page.getByRole("button", { name: "Rapportera tid", exact: true })).toHaveCount(0);
         await expect(page.getByText("inga bokningar ännu", { exact: true })).toHaveCount(0);
         await expect(page.getByText(TENANT_CONTEXT_MESSAGES.TENANT_MEMBERSHIP_REQUIRED, { exact: true })).toBeVisible();
+        await rel22Capture(page, testInfo, "e07-revoked-membership", page.getByText(TENANT_CONTEXT_MESSAGES.TENANT_MEMBERSHIP_REQUIRED, { exact: true }));
       } finally {
         await adminQuery("update public.tenant_memberships set status='active' where tenant_id=$1 and id=$2",
           [f.fx.base.tenantA.id, f.fx.ownProfile.membershipId]);
@@ -611,7 +705,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
     });
   });
 
-  test("[P0] 15.6-E08 manager's Min dag is still own-person and excludes other assignees' cards/actions", async ({ resourcePage: page }) => {
+  test("[P0] 15.6-E08 manager's Min dag is still own-person and excludes other assignees' cards/actions", async ({ resourcePage: page }, testInfo) => {
     await withMyDayFixture(async f => {
       await page.setViewportSize({ width: 1280, height: 800 });
       await signIn(page, f.fx.users.projektledare);
@@ -625,6 +719,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       await expect(agenda(page).getByRole("article")).toHaveCount(2);
       await expect(page.getByRole("combobox", { name: "Person", exact: true })).toHaveCount(0);
       await expect(agenda(page)).not.toContainText(/(?:pris|kostnad|marginal|timpris|offertnummer)/i);
+      await rel22Capture(page, testInfo, "e08-manager-own-person", agenda(page));
       await assertPhoneFits(page);
     });
   });
