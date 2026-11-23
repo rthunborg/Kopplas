@@ -1,0 +1,542 @@
+{
+  "schema_version": 1,
+  "status": "current-producer-rebound-presentation-source-only-not-admitted",
+  "story_source": {
+    "mode": "stories",
+    "spec_folder": "_bmad-output/specs/spec-design-35-8",
+    "story_id": "35-8",
+    "canonical_key": "spec-design-35-8-35-8"
+  },
+  "inspection_base": {
+    "head": "9308b8a814382910bc5fd895d7337bac1b53a9b3",
+    "tree": "ae59aa521e57e9850e81cbea8e3e374fec4962a2",
+    "qualification": "Exact target checkout object verified; Root native-finalized observed and independent current-main/trace/High receipts reused, not new provider/runtime query"
+  },
+  "authority_provenance": "Retained conditional owner authority and latest independent-work direction relayed in coordinator task; not revoked by stale preparation metadata; exact material admission pending review. PR151 rollout/trial parked. Current owner-authorized source-only rebind98e1fc10 applies; no new product scope or checkpoint preference. Producer finalize is not presentation admission.",
+  "inputs": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-8-calculation-editor-and-review.md",
+      "raw_sha256": "3a503ea913cf19f608c393f6484970e9312142c03fd403d7d7fe30ea0cc400d0"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-8.md",
+      "raw_sha256": "6a9063a2c8aa09dbecd871a59444ca717ea929f598dc394c03214ece1eea1387"
+    },
+    {
+      "path": "coordinator-record:frozen-exclusion-register",
+      "raw_sha256": "38295be6a28463205ae1cd37ae5d9d933bdf85319796dfc87e1123698f620d23"
+    },
+    {
+      "path": "coordinator-record:reviewed-settings-pricing-allocation",
+      "raw_sha256": "75a4a6d4132172f9efbaa07aee615f6dd20c9c21d358e6dbc5ea29ebc4f49665"
+    },
+    {
+      "path": "coordinator-record:independent-allocation-readiness",
+      "raw_sha256": "d6650212d5b390218bf0998a0f4ad3f455fb9a9272ab2a9b34ecb1232493248f"
+    },
+    {
+      "path": "coordinator-record:parked-trial-historical-inventory",
+      "raw_sha256": "da8a34dea01891a873f5355069128c8c9a43416562325527e5312bf24409f7eb"
+    }
+  ],
+  "proposed_production_write_paths": [
+    "src/app/(app)/calculations/page.tsx",
+    "src/app/(app)/calculations/[calculationId]/page.tsx",
+    "src/components/calculations/CalculationEditor.tsx",
+    "src/components/calculations/CalculationList.tsx",
+    "src/components/calculations/PreQuotePreview.tsx",
+    "src/components/calculations/ReadinessSummary.tsx",
+    "src/components/calculations/RowEditor.tsx",
+    "src/components/calculations/SectionEditor.tsx",
+    "src/components/calculations/TaxSettingsPanel.tsx",
+    "src/components/calculations/TotalsSummary.tsx"
+  ],
+  "proposed_test_write_paths": [
+    "tests/e2e/calculations/calculation-readiness.e2e.spec.ts",
+    "tests/e2e/calculations/calculation-source-selection.e2e.spec.ts",
+    "tests/e2e/calculations/calculations.e2e.spec.ts",
+    "tests/e2e/calculations/tax-answer-reconciliation.e2e.spec.ts",
+    "tests/e2e/calculations/calculation-editor-design.e2e.spec.ts"
+  ],
+  "proposed_bookkeeping_write_paths": [
+    "_bmad-output/specs/spec-design-35-8/stories/35-8-calculation-editor-and-review.md",
+    "_bmad-output/auto-bmad/state/spec-design-35-8-35-8.yaml",
+    "_bmad-output/auto-bmad/reports/spec-design-35-8-35-8.md",
+    "_bmad-output/auto-bmad/delivery/spec-design-35-8-35-8.json",
+    "_bmad-output/test-artifacts/spec-design-35-8-35-8/"
+  ],
+  "proposed_write_paths": [
+    "src/app/(app)/calculations/page.tsx",
+    "src/app/(app)/calculations/[calculationId]/page.tsx",
+    "src/components/calculations/CalculationEditor.tsx",
+    "src/components/calculations/CalculationList.tsx",
+    "src/components/calculations/PreQuotePreview.tsx",
+    "src/components/calculations/ReadinessSummary.tsx",
+    "src/components/calculations/RowEditor.tsx",
+    "src/components/calculations/SectionEditor.tsx",
+    "src/components/calculations/TaxSettingsPanel.tsx",
+    "src/components/calculations/TotalsSummary.tsx",
+    "tests/e2e/calculations/calculation-readiness.e2e.spec.ts",
+    "tests/e2e/calculations/calculation-source-selection.e2e.spec.ts",
+    "tests/e2e/calculations/calculations.e2e.spec.ts",
+    "tests/e2e/calculations/tax-answer-reconciliation.e2e.spec.ts",
+    "tests/e2e/calculations/calculation-editor-design.e2e.spec.ts",
+    "_bmad-output/specs/spec-design-35-8/stories/35-8-calculation-editor-and-review.md",
+    "_bmad-output/auto-bmad/state/spec-design-35-8-35-8.yaml",
+    "_bmad-output/auto-bmad/reports/spec-design-35-8-35-8.md",
+    "_bmad-output/auto-bmad/delivery/spec-design-35-8-35-8.json",
+    "_bmad-output/test-artifacts/spec-design-35-8-35-8/"
+  ],
+  "proposed_conflict_domains": [
+    "presentation:calculation-editor-review",
+    "test:e2e-calculations"
+  ],
+  "write_scope_granted": false,
+  "checkpoint_flags": "omitted; parser defaults are not human choices; no checkpoint preference question before substantive readiness",
+  "readonly_frozen_prefixes": [
+    "src/features/calculations/",
+    "src/lib/money/",
+    "src/server/",
+    "src/features/quotes/",
+    "src/features/crm/",
+    "src/features/settings/",
+    "src/features/pricing/",
+    "supabase/",
+    "tests/support/",
+    ".github/workflows/"
+  ],
+  "readonly_consumer_raw_sha256": {
+    ".github/workflows/ci.yml": "6499f2ec0a54809ea89b43935281be525cf0e130d14d7bcf296abe3001443fa2",
+    "_bmad-output/planning-artifacts/architecture-phase-b.md": "a39adde83a9d2635654fd4d23674c5faf007dd1d0a02176d6390f854f3bab553",
+    "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md": "ea1005cc620b7c9683db0db60f2be80e0b1c065ebac8f7cf13568012a679fd4e",
+    "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md": "d73d7fd80809c05350b4d403ed526812f831417a28dcbf23edd44317260673e6",
+    "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md": "f1eb82ae69f92ffb04b7a6aa9147e77d9f62be6fc4b45b4d6cf60ad33791c1d6",
+    "docs/decisions/ADR-B008-quote-review-authority-and-derived-artifact-validity.md": "a0ab3bc4dd0bc54883279e9ed47332c57ce6db952d96ef1ca7f6a1d883b32780",
+    "docs/process/development-completion-policy.md": "2aabc5bdbbc59fd4a0880fd826e0fcd80c46f7538c37cde6dc327b66ea741a05",
+    "package.json": "c99d0f968710a0d3de9d5cd496579947a4cef854399b329d2e266728f4fb7030",
+    "playwright.config.ts": "281b9bca4ab572c66bde2c6cad710d4aa527b7900b158970411fbf8be6d160bf",
+    "scripts/ci/checkpoint-dispatch.mjs": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+    "src/app/(app)/calculations/layout.tsx": "a097b61c606c0f96040f119257aa452cc6f54153dc52588c2e67602659360a37",
+    "src/components/crm/Dialog.tsx": "83d0e5cfd8874734f72669f7ba2beb6656da662e4fe73618ccb482e1c523a33c",
+    "src/components/crm/FormField.tsx": "d735c183170fb523684609b87df7f49abeaae1d0d625af3859c62e94a6ac0759",
+    "src/components/documents/EntityDocumentsLink.tsx": "e1e8e3d826b4d88c3bdea99bbbd8c228ce6c49f6721e014a516dcd5a7b556125",
+    "src/components/files/EntityFilePanel.tsx": "6e7878c8d831b58aa5cb8d3a4a38ca6e04e679ed6113ce162cf7a51b555201d5",
+    "src/components/quotes/BuyerVatNumberFact.tsx": "dea4e48f1916b0530af27f86223ca870c670405f3efd14e820388425967d566f",
+    "src/features/calculations/action-state.ts": "a66dee11ee3488df506448dd8a4e96b1537d213e89b6813fa73f7704a9470391",
+    "src/features/calculations/actions.ts": "af0c3f5ab71fe8ac1f4ffa3ef6a8f42813ce82f9f853b440b6450a5ea6ec79e2",
+    "src/features/calculations/allowance-editor.ts": "c5236e3d40fbbfdb4371a11e4e00764227b52be4128c6f1b6d0a87a36e84e380",
+    "src/features/calculations/form-parsing.ts": "ac2e9f211fc58bdcf385cfc0f5869ecce183b951e397ef992352ee40c4f39672",
+    "src/features/calculations/limits.ts": "f372b0e1ca7a51871015c036d889d48864203f2ee197ed48e6dc5b24ad036c31",
+    "src/features/calculations/money-input.ts": "8a559358187f9fc8f618e272e9409f0dc1154ea4dacfbc0eb49623ac2f6a7b25",
+    "src/features/calculations/ordering.ts": "d69c29c7a244fbf06650eaf63909423bb63b083fa01fbab9eec7cfb585c90358",
+    "src/features/calculations/pre-quote-review.ts": "047afafc54dbdc4ce4ff0cf16df69a2e75f5754f5a117cbb2e714c43d0ee2cc5",
+    "src/features/calculations/read.ts": "96aaa9e3d6195e342ee875016525ba2ea9dc723befdffd707f7fef37e63bb380",
+    "src/features/calculations/readiness.ts": "52953982b2d597630a5b03d48622de87e6f6bc3d3d6d9bc2a2cfc26b9651a48f",
+    "src/features/calculations/row-option-transition.ts": "da5ee99fee645edd86db8b4ad888242c34f11f2bdf84bc2a0a7f8455f2a84a38",
+    "src/features/calculations/row-vat-transition.ts": "484e4aa55f1f185d871f7171fae936ec52dae9cf7d96e915314fd903b03a2717",
+    "src/features/calculations/source-options.ts": "403d87bc5e02f879c69d07e364dc34b60ba228cb14f712c84e3b7b99e3453029",
+    "src/features/calculations/source-select.ts": "28aac5ae0e35661c7b2caa7939e122317376c690dd07915a5e9648752eb2528d",
+    "src/features/calculations/tax-readiness.ts": "e21e8aa5b0f3bdffafcba774e7d252dd5fc59544a36a49d0bfb2c041105f295b",
+    "src/features/calculations/tax-settings-ui.ts": "e0f733477b78d4f30a065f5a5c5a04a3c71c2bc8472a1f09caebe633baebd7ac",
+    "src/features/calculations/totals.ts": "e5a2bb8bc0e8070c504ff5c20ac43b1237234037556210b2815cef198af13383",
+    "src/features/calculations/vat-posture.ts": "2ecad481cd0c574f4da930e213ff30ac72844e5245ac9c4c070f0eef716a31f4",
+    "src/features/crm/read.ts": "aabfc8f8725ee2cdf32840d412e5702891a27305a8219e15a13c83290c9e8f71",
+    "src/features/pricing/action-state.ts": "b9aa40aaec4071eed6e0f614ba030fe8cd6d5e26c0732d7982e2c84e3fb81438",
+    "src/features/pricing/actions.ts": "cb7d115ea49cfaaa24464c66a52fd126e67d836edb9936125a1999f4388eb529",
+    "src/features/pricing/form-parsing.ts": "738f38fa0b9a167bdb4f66e7666e82c6253db684a3f2ca9eeeb2d13a26ebc5f1",
+    "src/features/pricing/money-display.ts": "b25eca73e84d27e80cc66dbc5aa35a8fb480dae8b72d73e0426d3289f3c77bc7",
+    "src/features/pricing/read.ts": "1742e320acc86158b1c6e0566155bac1dabe8bd7b8d572fd44db79800110b248",
+    "src/features/quotes/actions.ts": "bc088cbd245dfc67c027963d1f2f9c94be73190feff604378ca2bdddbc3fd09c",
+    "src/features/quotes/create-quote-action-state.ts": "26a1e5ac788114fd253f46ed2a02cb58dbe5bff95ee475070a669f697447b10a",
+    "src/features/settings/action-state.ts": "01a642a246ca65c99ac1e27306e0d7504e7f1c9aed177d8359b1e5118fbe432a",
+    "src/features/settings/actions.ts": "d62f86a5ae2f946c2871e71af654dfb1b744fa403fcb4532f6ef96d39bb4415f",
+    "src/features/settings/form-parsing.ts": "04d00a623f06073e48595029052fd0aa0c3f337f3a51c6789effde1550e6a508",
+    "src/features/settings/mutation-attempt.ts": "deaefa59730991a7e8f3f2765ed42f8aa7073ce821ed5c31fe179e6d2f0d95a9",
+    "src/features/settings/read.ts": "2d127fc20242700795b1d745ba721483a17a74c3638e9f0d0c62396699bd6546",
+    "src/features/settings/vat-display.ts": "53c6c1f223c8262681bbb58d1d5d0647a986b959cadb193aac53558cebffc97a",
+    "src/lib/money/domain.ts": "4ee0889cf30fdc839b4cda9340ed823925cde3a0c30c8915c53e242c1297320d",
+    "src/lib/money/index.ts": "cb706b5e9c305d2e7227632f303b38b4b4d810f179e73c721819d2f79247083a",
+    "src/lib/money/ore.ts": "186921bbe829ab0b6eeda23c35f96748deb4195f6dcbb74bc6919136aeb60c9a",
+    "src/lib/money/tax-answer.ts": "fdd41dfbcbd2435cd54273c0f6eb049ae0979414b92f5d18389520c1319d6aee",
+    "src/lib/money/tax-input.ts": "6a258963b6fea793d9f1554bd105c041e91d3b42841b3bbb6cdc3942148597c8",
+    "src/lib/money/tax-policy.ts": "975fdea4c13c21af4c9bd890aa43d0df5c74fd9c95ae88e75b44cd834759d93f",
+    "src/lib/money/tax.ts": "45ce0376f672e641c78c578b890bb6af480c6e5a397cd2ae500e76ba4cbddd03",
+    "src/lib/money/vat.ts": "a1f72e9e87e33f459b52fa92c6d1cdab867f1fd3574bb5ab85eecde193db0300",
+    "src/scope/manifest.ts": "eaa1c0cdf8d77fffe972a934e4762105b94255456fdf2923a640fb74e079f285",
+    "src/server/commands/calculations/calc-db.ts": "3a4bab836eda3bb85d79e5618a970262212826c2a8862baca07c0b75f5f409ad",
+    "src/server/commands/calculations/calculations.ts": "df9e9c6bf20c2d604e312516be6d1585bb975f91efbe5e0df6d429608d4962f8",
+    "src/server/commands/calculations/index.ts": "bf929002fca6cd43bf7f3ea1840ea131b9e34c06c85b6990bfc23584c0ec6569",
+    "src/server/commands/calculations/reorder.ts": "b626c8d93b8aabf88a5ce6e83a32bed953916b1adadd07833dc60d10d2803fbf",
+    "src/server/commands/calculations/rows.ts": "8bd0ba4563d11205c27706a6fbd0d178ea0c8c39e228021b57d709bdd0b6b123",
+    "src/server/commands/calculations/sections.ts": "a5532dc712149fdf964eeda41f92f2abfe578d9c87e994ab02acab8e655b3d11",
+    "src/server/commands/calculations/sort-order.ts": "1ae7806d0d14ed9606a710ebd89b99dfc1860a77a3c24eb10f941e4ab48d1eb6",
+    "src/server/commands/calculations/validation.ts": "e0acff7716add359d99466fba341ba034e85081050e994c6a165f06bd9d45f49",
+    "src/server/commands/envelope.ts": "1ce431d764125e190711760554a95dd4b78afbc38f1eb3283611039214955059",
+    "src/server/commands/quotes/accept-and-create-job.ts": "5b5f070bdd1bebf7f0b26a1fdfbcba47b5aa78e8a9ca0092726b2caf7645c086",
+    "src/server/commands/quotes/accept.ts": "80cd8f3c507b94460a9a5e92021d6c9542395a4d7eca2867e6e4b56b37475bad",
+    "src/server/commands/quotes/correct-delivery-recipient.ts": "5488b343b57fe423a2ed2df973770b50740e864c09014ec1428aa66fd2a7074f",
+    "src/server/commands/quotes/follow-ups.ts": "f67cff90a2055349debc0812d96173429f524e2163799618c7f5cd32fdfdd71e",
+    "src/server/commands/quotes/generate-pdf.ts": "8020f2b0bae8ce0fb18dac901a6e7b8217d7c42fc59beb72ce45d3197a6d4467",
+    "src/server/commands/quotes/index.ts": "3477e415828d82483144f930e07676fc038b450529510830aae8d85471f3fd9d",
+    "src/server/commands/quotes/lifecycle.ts": "5e2ba294bbce67e489808f91dd528b27142fca41a1b15e324fd2fe76426f668a",
+    "src/server/commands/quotes/lost.ts": "8b555363d32b036f069dad8e67a5a4bf12ab9c71aa59a5b1449fd1a96236dda7",
+    "src/server/commands/quotes/mark-sent.ts": "ab37463018d9846d0ffc376493e37eb391363b81913fc80adcc7124299c3c2d4",
+    "src/server/commands/quotes/new-version.ts": "4e6a983321865f4484321fc5ace2631771029f40704206de58a65557eee4ec25",
+    "src/server/commands/quotes/quote-db.ts": "6634c13ac4dc6a46c98d408ac3df13f765eed9c067c78964d4f4ff64bf16c036",
+    "src/server/commands/quotes/quote-initial-source-db.ts": "51fabe1516e89186e23414efdd0b4de6213389e19c353a88161fb5db2a587ce9",
+    "src/server/commands/quotes/quote-pdf-signed-access.ts": "f8207e7297d47a59dac698dab1c24f4f760f113a8f97787f41eb87c7f5a6ba7c",
+    "src/server/commands/quotes/quote-successor-source-db.ts": "99dba5f83461b9ae376721bdb478092eb2df83c59e882701bc99e77c35aa9dc2",
+    "src/server/commands/quotes/quotes.ts": "b1189630d97879c6f3587cc3a22c68d19c833e773cdca8af031eb2dfd7cf5225",
+    "src/server/commands/quotes/review-token.ts": "8758c24ca4a8a4c8d2e449092cbebd6acfb8f73b88eaa8e704e970a0c12ed51f",
+    "src/server/commands/quotes/send-track.ts": "17b6284a9c1c5a384bcfc08b0bd6543250bc1cb0ef1ac2bb1e7d9200b86ac9e6",
+    "src/server/commands/quotes/snapshot-build.ts": "d449947376ccb3d510da6846650b338288144f55fd4b31dde60cdf82ac30c70a",
+    "src/server/commands/quotes/update-draft.ts": "f435007e84bdbfd5ebd7f89ebd3003a943e71c9de4f748e07c439712ff9b3ea7",
+    "src/server/commands/quotes/validation.ts": "80c415cbae3be51525785e37bfd64d5c3127daf312758f96e76d64b2453bdb61",
+    "src/server/read-models/document-context.ts": "b5215c98e78a495b8f3fec1aa3ed1375c055eb1b52c0bed6c225fc5fa937b2fe",
+    "supabase/migrations/20260907171252_role_aware_phase_a_policy_evolution.sql": "b5810404c92f469f3ab2bc48a7cb3ad1c8775b7a7647dede38caf118f4ab60da",
+    "supabase/migrations/20260702120000_calculation_data_model.sql": "7983c22774ae80f9450f3ab956bf570483cf9b873db962b7735e683ce71c45e0",
+    "supabase/migrations/20260703120000_calculation_row_pricing_source.sql": "e255bb020e6b212ff20c2984bbb1870c0a9f81a0b7dbf3ac1e513ea91703fcda"
+  },
+  "existing_proposed_write_raw_sha256": {
+    "src/app/(app)/calculations/page.tsx": "a30ad70cfbbda935935071f823e3cc2a0c930a182f8e6d12fefa2ea378099562",
+    "src/app/(app)/calculations/[calculationId]/page.tsx": "57ee8e5ce6362a005128705a5f6340ffd1fada67c6010c74798b50f55db12e4f",
+    "src/components/calculations/CalculationEditor.tsx": "b721a5f5827fd6480eaf46ab68a51a61598c511f099a0dbe7d4760a3c3610cd9",
+    "src/components/calculations/CalculationList.tsx": "4643a012ff6344b071b4082e5d25f0419ecccb45e8c55a776c813132b648431b",
+    "src/components/calculations/PreQuotePreview.tsx": "cbb3ccd24a13433c84f00e01bfe3c182e0dff33bce6223d8536835f74e100b62",
+    "src/components/calculations/ReadinessSummary.tsx": "e5aea032b4520c00ac2d3ab4094faa5537acb12551b73db41447c060f8379c5e",
+    "src/components/calculations/RowEditor.tsx": "2575dd758898289623aa5b7a2555fddce97f3f443ca3b4b48fa152fef7e5f46d",
+    "src/components/calculations/SectionEditor.tsx": "f890d0b3d57e91ae30b134bc9720d7844f3b2f841831b1feec1195770b5c6cb1",
+    "src/components/calculations/TaxSettingsPanel.tsx": "2e9d21c1f2e0ec4080148d8b6f42d110999094329ae121a0eecf7697497be34f",
+    "src/components/calculations/TotalsSummary.tsx": "b585f6286c7e94ddbfe664d01771c444897174b294d4ecd4ef5dc4abfe800b0a",
+    "tests/e2e/calculations/calculation-readiness.e2e.spec.ts": "5abb41f4f14fc4d38dda70940195cd97bead08c57460bda94ba773f02a581ff8",
+    "tests/e2e/calculations/calculation-source-selection.e2e.spec.ts": "855eea646294a204749ecec07d72bf282846625a82998b02d3e258135c2e3fc2",
+    "tests/e2e/calculations/calculations.e2e.spec.ts": "303c98b0f6eff22be5dff4409bee132b89478e86b7a11e4cefd11e8b5451d603",
+    "tests/e2e/calculations/tax-answer-reconciliation.e2e.spec.ts": "638b590c248555931bb49b4290d2763efb1b6870d5f02bf62de921fa2eb08dbb"
+  },
+  "prerequisite_ancestry_observations": [
+    {
+      "label": "producer",
+      "reference": "01523c97eddec423288ef988217eedc3c9f0c258",
+      "full_commit": "01523c97eddec423288ef988217eedc3c9f0c258",
+      "is_ancestor_of_inspected_head": true,
+      "checks_passed": "not-established-by-this-source-inspection"
+    },
+    {
+      "label": "35.7 product",
+      "reference": "9e2c412",
+      "full_commit": "9e2c412dd30a03f9ab7fb8690ab41d06bb30da5f",
+      "is_ancestor_of_inspected_head": true,
+      "checks_passed": "not-established-by-this-source-inspection"
+    },
+    {
+      "label": "35.7 pricing follow-up",
+      "reference": "3d7d2b36",
+      "full_commit": "3d7d2b3672995b63e2a34170ffeece6f12d27922",
+      "is_ancestor_of_inspected_head": true,
+      "checks_passed": "not-established-by-this-source-inspection"
+    }
+  ],
+  "retained_allocation_comparisons": [
+    {
+      "id": "05b7d3ce97f465c020ad7878a4121ee529a25dbd4fe0561a185f832ad699c5b6",
+      "retained_token_count": 55,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "6e5337c293c17caed5f3c7ca05f83b6d9ce23f946d82dd6de38b19305cc27d76",
+      "retained_token_count": 55,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "4aaf4467e8ff773ea35344e2ea5af88dc35bdff63cdc0b88ad09de64c549cb4e",
+      "retained_token_count": 75,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "c2c09707bee69bc4e0f3a21b1ab0ea4e3bc5c73e24773ebb09a12bc210bffd5b",
+      "retained_token_count": 1,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "retained-plan:spec-design-35-2",
+      "retained_token_count": 75,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "retained-plan:15",
+      "retained_token_count": 386,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    },
+    {
+      "id": "held-crm35.6",
+      "retained_token_count": 11,
+      "path_overlaps": [],
+      "domain_overlaps": []
+    }
+  ],
+  "independence": "No blanket disjointness claim: six exact producer presentation hosts overlap and need positive holder handoff. All CRM/E15/foreign reservations retained; PR151/CRM hold is not a new prerequisite.",
+  "runtime_route": {
+    "proposed": "retain existing exact-head hosted release_validation=true full route OR existing focused five-spec route after actual lifecycle/dispatch admission",
+    "ordinary_smoke_covers_calculations": true,
+    "ordinary_actual_current_files": 21,
+    "ordinary_actual_current_cases": 204,
+    "new_design_e2e_selected_by_ordinary_smoke": false,
+    "new_design_e2e": "tests/e2e/calculations/calculation-editor-design.e2e.spec.ts",
+    "local_focused_lifecycle_bound": false,
+    "presentation_executed": false,
+    "limit": "9308 producer ordinary pass does not execute a new design spec or prove later changed presentation; full/focused route must actually select it and bind exact candidate outputs."
+  },
+  "remaining_gates": [
+    "Positive exact six-path producer/presentation handoff and current ownership/capacity",
+    "Independent current nine-file source qualification and source publication/integration",
+    "Exact eventual qualified base/workflow/source/native assignment and normal admission",
+    "Actual later presentation sevenAC/seventeenstate behavior/visual evidence including newdesignE2E through existing full/focused route"
+  ],
+  "admitted": false,
+  "implementation_started": false,
+  "development_complete": false,
+  "release_ready": false,
+  "admission_blocker": "Producer unknown/stale prerequisite resolved at finalized9308; presentation remains source-only pending exact six-path handoff, independently reviewed source publication/integration and ordinary admission/evidence.",
+  "historical_20261111_snapshot": {
+    "inspection_base": {
+      "head": "1091cd4c3b16b66e8757a021fe016dce4f82a04d",
+      "tree": "d38c07a57e42d05a1abfe7a78785416ab31d3bed",
+      "qualification": "coordinator-supplied-qualified-main; exact local object verified; no live provider requalification here"
+    },
+    "readonly_consumer_raw_sha256": {
+      ".github/workflows/ci.yml": "1f49ccb948a4bc62f329319502dae70e8d6c2ae5eb60580f97972c9d9c9a8b22",
+      "_bmad-output/planning-artifacts/architecture-phase-b.md": "a39adde83a9d2635654fd4d23674c5faf007dd1d0a02176d6390f854f3bab553",
+      "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md": "900c7042df868050095e55d69a16a4f53d2430b7b5d90a291ce56e3d24de07f0",
+      "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+      "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md": "cf36a61123676e175dd8e26678bf7da98bb666dc076bb50e34f3f432db1e54d8",
+      "docs/decisions/ADR-B008-quote-review-authority-and-derived-artifact-validity.md": "5202ff40e11ad5895ce59574b5b8f868ff40b4dedc01b682fb85b53c53e1d5ff",
+      "docs/process/development-completion-policy.md": "9e4b727d08baf53bc0f2575b2b749abd158ab0e5983038fe1ac7de1a6505ebec",
+      "package.json": "044b5c0eed087f052ab4011dab993bcc0b081f720557125e015cb34f588efb9c",
+      "playwright.config.ts": "82d974a9810ab79fc0b841fe2d83c7d341eed129198fa06181d864b989f0ee4d",
+      "scripts/ci/checkpoint-dispatch.mjs": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f",
+      "src/app/(app)/calculations/layout.tsx": "51eb80618c163fb3e1db7cf4ca67fbc1493efe57f9448b6779fb97f322e1dfa2",
+      "src/components/crm/Dialog.tsx": "afcd7c21b9ce5b5b8a1473ee5b1454668d82e6bdd958cd49bbeeeea33edd742e",
+      "src/components/crm/FormField.tsx": "2a270c96b265e02de2c5a0d68bc2554fd7f6c572ac9c3f37f3d676c5e3c27181",
+      "src/components/documents/EntityDocumentsLink.tsx": "ef39d6f98169fd3fd15f81a47f4ce7a092f7219e8ba0a744bea959ae7dbd19f7",
+      "src/components/files/EntityFilePanel.tsx": "3b4491cc1e7d6d7f9909dc7deeacf3935f99a415cdc1bf9223db6593186223ee",
+      "src/components/quotes/BuyerVatNumberFact.tsx": "1b5e580270f69782f73305000f1cb9e123d7f584a414d542d6422d7e6bb61f4f",
+      "src/features/calculations/action-state.ts": "2f67aab2fe21cbba7bd6caf5832453bb2a5006e459b7135975a22a06534aa3d1",
+      "src/features/calculations/actions.ts": "cc3bfbf50ace96ac7035a6e4bb51fd90d857ff0e86d3aa11576f840c45b72928",
+      "src/features/calculations/allowance-editor.ts": "058e7a2a6cb6c80466bb4ca4bbdc0cfaf7dc6033b6e5f5c04031619abcef9eef",
+      "src/features/calculations/form-parsing.ts": "8f49a4ceff602bc01b5da6502782420f5a57ac9fdc0c1a6f77b3cf57e32ff259",
+      "src/features/calculations/limits.ts": "e6352ec7b8d51f5cf6675d7a64ed29b69fade03a86a5eb03f4ca58b2fc7e6a13",
+      "src/features/calculations/money-input.ts": "86cb35badbd21a4392a53666bab165aa680289981889e8a339c0a4684d37a7c4",
+      "src/features/calculations/ordering.ts": "bb8d8692bfdb17c016c29b11c9c111e32ab93ce59ac5a12e2f003696e4942f8e",
+      "src/features/calculations/pre-quote-review.ts": "ee8a477366be20d1b416324b8d7d07eb6b6e483def518b087398a9335310258a",
+      "src/features/calculations/read.ts": "3af242fc3a85d8c5d46f9b1bc78cba067f9c2e06d12035e6b24324a7547156ff",
+      "src/features/calculations/readiness.ts": "d41f9bc9cdd738dd415ff2c0e7e9e9df76f985a4f686d3d76bcb31a013870aab",
+      "src/features/calculations/row-option-transition.ts": "a009d2480067ed17e963fd612443049fe04323296acd287c853e1fc23552dcf1",
+      "src/features/calculations/row-vat-transition.ts": "1bfd664143cd725b7c7cfd5c9f3e27a2baed0406ec16c330037e002463d703dc",
+      "src/features/calculations/source-options.ts": "7a8d0459e794718145459fc076b68e2addfa63fb37f1b6e464431bd3bc93089a",
+      "src/features/calculations/source-select.ts": "ecd64cc7d75cbb500c6812f1da6fe1e27d8628dc3120db758f76373d4ea5a474",
+      "src/features/calculations/tax-readiness.ts": "8468aeab705463e48387621dc2d862878d44c6af881c8c2fe6d08053138e9f5e",
+      "src/features/calculations/tax-settings-ui.ts": "cccc2108b0a957e0b8e8a3bcc2bfaf35220328ec254661445aa5ebfc1e86bfd0",
+      "src/features/calculations/totals.ts": "41721849ede1488fc5748ac8f818fc608823261150a81f592c3239c3199ec8da",
+      "src/features/calculations/vat-posture.ts": "dc9fec5c39c8223b94108f4bed05b50a091abfdffb32de2362914314c856e970",
+      "src/features/crm/read.ts": "136b6f0a8c8fca52721802bc6a22a385261c9d9bf0bcd973edd57b2eed7cfa65",
+      "src/features/pricing/action-state.ts": "fbd741d75460bd33247ee3aed9da7fdb84800844636da2e513bfb4b72244655c",
+      "src/features/pricing/actions.ts": "27961767260d8fe6ae5b30795d0cbc242ab901f4518ba178651d3b057f5c1d08",
+      "src/features/pricing/form-parsing.ts": "3719ae06f871fe73c256f287a6ec5ef72c1a3ad03d47ad123283b94078a45a9c",
+      "src/features/pricing/money-display.ts": "8c0cf803275e7cdb4b1a730162c1896cc6a2515ba31e6df8982a51aee56da0ae",
+      "src/features/pricing/read.ts": "cd7a04cf1503076e8a6eb696fd94182bd5360cb8f0f811ee90689044b5d4f9d8",
+      "src/features/quotes/actions.ts": "33db97dcf5ba73d84a76cfcf241db559f5580ce43dca663fcd6ee0a8f1d0c978",
+      "src/features/quotes/create-quote-action-state.ts": "e061a933d421f14363b5810b5363ee853349f4b96e3d59d54b0d6904172b7dfc",
+      "src/features/settings/action-state.ts": "e6f36ce75bf441fe3e7fab3eda974ffcf0ff6ce65c8c9d31e799488a9bb67477",
+      "src/features/settings/actions.ts": "ed760e77b9bc3c918fd62525fb367d06d20d87480240f5298b95eeacd28abc35",
+      "src/features/settings/form-parsing.ts": "c65df864d6466a9eaafad1bcdd1d8db1950a849a02b1804db60917b1615f75d8",
+      "src/features/settings/mutation-attempt.ts": "08cf728f179e5f46460ae25b0a2cff560911a26c558ce9393ca04b6038c5cb7a",
+      "src/features/settings/read.ts": "e74b7fba575426e4dad33c1e011cc7b6ee66449a8492fd42f9d778ce43152c46",
+      "src/features/settings/vat-display.ts": "fd49a4cd3401049a7f98ab8c0cfc4c9d4224d1d1c9f0cc400172cda2473e3010",
+      "src/lib/money/domain.ts": "6cbfad4e8860c43458e4c01132c861cdebd8da2e826c9628a7f9ff3349fa195f",
+      "src/lib/money/index.ts": "da9988c9989588344538650d31b787dac20e1ce4cae3aba2764b21370750608e",
+      "src/lib/money/ore.ts": "27e00b46d6e54bdff58e18c75493e0c3313f1e350fcea418dca6c3917ad7894a",
+      "src/lib/money/tax-answer.ts": "09abd93f4759ba654eec65836e9347b3d48ac9dabca07cfdb46fbfd11a4180c4",
+      "src/lib/money/tax-input.ts": "2d5a58dac25d051922d9f9e332ef5d76b25fb5f8671b6262061f847cf100e1c0",
+      "src/lib/money/tax-policy.ts": "aac7c64c076c316dbde0540492af76a93674497f01174d10a24580b29044326d",
+      "src/lib/money/tax.ts": "b16825d59e5f7c7fb0b2dae799934e3f065398d8b3b4a86402fb931e68716157",
+      "src/lib/money/vat.ts": "1da91874a42cc1d57197d9833167509ab5753b53b5144a65d308367a46f6c4ce",
+      "src/scope/manifest.ts": "a773473789c83d5074ce3e86efb21f748774f471c58b189ae72ae3142cb7ff62",
+      "src/server/commands/calculations/calc-db.ts": "7946fa1f300992b2ef597bbb43542372dcfc07fdee51676f1ee9f7dcdac22aa9",
+      "src/server/commands/calculations/calculations.ts": "cab1cfca28dfd5c1725d2277b4990d58fcaff8e118f9fe22872ddce5ac9e04c7",
+      "src/server/commands/calculations/index.ts": "3ed5679a1147d6830870a8d52d3a94268a68bfad5ecaf6b5bf27210dc561d28d",
+      "src/server/commands/calculations/reorder.ts": "73c0a68752d54cc5be6c149f5f854c0a2b2beb94deca8d524733c1ca5c48ed07",
+      "src/server/commands/calculations/rows.ts": "fb3a0016e8c389ee895bb5215c74e46b97fba270904e76170364c6b7318c28fd",
+      "src/server/commands/calculations/sections.ts": "ca3536c401120dd44fbd2f4be73bb2bf4d0e7e9b98be5784822ab4835d99d7c4",
+      "src/server/commands/calculations/sort-order.ts": "f923adc0f8b9064accfacfcefa6ed2a8ab9a5fa35ba7d89fee2ba8275cd6d84a",
+      "src/server/commands/calculations/validation.ts": "99749b589b2adad6591558995f01c2944c34017ccfa9cc7b84f61c8b3719d50f",
+      "src/server/commands/envelope.ts": "d6186842b73c983e02aec387e8058cc2d4b91149908f27a390eff10cd953a79a",
+      "src/server/commands/quotes/accept-and-create-job.ts": "00c2857f1998b6c11e361e610b9ca083b7184930f032330e2a8c1bfaa62bd319",
+      "src/server/commands/quotes/accept.ts": "3948d8e14676552ca47024982fb0fd701140367afc70c0b8c9e9c95814a91f97",
+      "src/server/commands/quotes/correct-delivery-recipient.ts": "af84bfa5306aa7e14712588648984f85c2864b00852d7360e561d9d2ea4f587d",
+      "src/server/commands/quotes/follow-ups.ts": "d7a51498be7f8307be4cd54590a8c5c6ad931f9d2e4bfd79ff055bceac4d2570",
+      "src/server/commands/quotes/generate-pdf.ts": "3dd97ef7ccb3c9d1294255cd0c0b781ab451f0436aa024e672be9e00b7c4f0c0",
+      "src/server/commands/quotes/index.ts": "9c794f1d946f0c7bbcc81c4c365648fe72db0a6d69b81716b5d97ce3d8bd68fb",
+      "src/server/commands/quotes/lifecycle.ts": "9cbfb3ecb1480ae9396bf44e470c11d0fe5ae311e52bc99e60b8a552c006c415",
+      "src/server/commands/quotes/lost.ts": "6b76a2a5bc462e4828188c91eae1cb0f8e51dcba03e464a11d5ea5ccc49fd462",
+      "src/server/commands/quotes/mark-sent.ts": "ae2c77f03ff081bd9ecd5fe37a3a5bf96f7896ac68c8e69ebf786b7850635224",
+      "src/server/commands/quotes/new-version.ts": "c2184b66166dbde1ea29941ac5ef531c778288469a6849ac16a0fa208013ed3b",
+      "src/server/commands/quotes/quote-db.ts": "f61c9ac6840e5fe71adbb15f836653db8c4f1aa766bc82fbf434ea6685a77b96",
+      "src/server/commands/quotes/quote-initial-source-db.ts": "2be078e66625e70e31022282033d16819bd4753ea104ec4aaa49851e281d8416",
+      "src/server/commands/quotes/quote-pdf-signed-access.ts": "443101fa433a77f9ae19d3fb42a9e0d881b0b4b92c0cffd0ec34d1a4e1da8481",
+      "src/server/commands/quotes/quote-successor-source-db.ts": "29fbaf37f8ecf1d022eb8138aac44fa843dd4452b6a178f4ef246042a3768ff6",
+      "src/server/commands/quotes/quotes.ts": "111d6903dca426e1ff7fc27e07fe6779770e96cd5dc7039a64598b18c89e126c",
+      "src/server/commands/quotes/review-token.ts": "297fb4725714b1ca1f3bb9ea5286f7e6eefd611e0a5afa281702c3d980dd7f37",
+      "src/server/commands/quotes/send-track.ts": "e544909b5cfea6bd2769cb0129cc390eda4a7146a85cd06e4882799037acbd71",
+      "src/server/commands/quotes/snapshot-build.ts": "5bdbf1a11d3cf1925316beda204cb16f78b1cb18cb456aeb85b0b90ef56af5bc",
+      "src/server/commands/quotes/update-draft.ts": "677d3dee81614f8d7ef31a6a078d0c86f95e57918356efdc82b042d09900e5a4",
+      "src/server/commands/quotes/validation.ts": "f0dabfff954b21bb973f2232d73187704087418cec3bbe6b690133bfd40c1da3",
+      "src/server/read-models/document-context.ts": "eac180cf5cbd46fab55568218e09fbdf809001975b267fef31be17ef2a5aca8a",
+      "supabase/migrations/20260907171252_role_aware_phase_a_policy_evolution.sql": "58bf32e862da0cdc17efd7ed58a2ea5eabaf82735855a28927ddf82123ef96de",
+      "supabase/migrations/20260702120000_calculation_data_model.sql": "7930eb53748b6a57fb1be69cdf669be7f737c48336700cbbf7b320bc45f5e9d6",
+      "supabase/migrations/20260703120000_calculation_row_pricing_source.sql": "5ca52c894bc2e27f16c18ed7b16d970316a7c651afe14683b083622822a5f771"
+    },
+    "existing_proposed_write_raw_sha256": {
+      "src/app/(app)/calculations/page.tsx": "1aa3e10312614f26969447e0ea15b6c4eb1ed9ce845cf2aa2f4bc23133426951",
+      "src/app/(app)/calculations/[calculationId]/page.tsx": "40b816a16e6e594c0605d801860d3e416f849d721f46581282da97e5ef1c8856",
+      "src/components/calculations/CalculationEditor.tsx": "1636f1fc0637648c210c522fbffdac8826a1c6b2f0094a6225c70bc090c2735d",
+      "src/components/calculations/CalculationList.tsx": "0e94259684e550cb815a123ced8a67a30716f5737aa6a75c55d33f3748816940",
+      "src/components/calculations/PreQuotePreview.tsx": "5cc4e2704c9a7d078ee0c6e468e80aee862bdd30f60ca712c1db3712ac038ce3",
+      "src/components/calculations/ReadinessSummary.tsx": "a2a563621b2f1f5a2a0a131793c5b0ab741036071676c2f6ebc2dfbfdb237b1d",
+      "src/components/calculations/RowEditor.tsx": "8e05ae3ccda819a783101e88bf5880f5ea07f70520be8d5b98a4608c0b88192e",
+      "src/components/calculations/SectionEditor.tsx": "6b45a7619818cf2de2924286f51527188b9b5eea3e1399a29a1e9df444916a94",
+      "src/components/calculations/TaxSettingsPanel.tsx": "c32b16046f4e9b82b69457303d4ac10a481bee9a43d10c4fb88afa9940a9b295",
+      "src/components/calculations/TotalsSummary.tsx": "4f9658f541178cf574a98e043ebb72c2ce425730234b7d538e09bf8ebc4282ad",
+      "tests/e2e/calculations/calculation-readiness.e2e.spec.ts": "919295b4042ecdd61fb950974e7f55b9ba3d1a70e4d8cdc409ca3bdc9b03f4f8",
+      "tests/e2e/calculations/calculation-source-selection.e2e.spec.ts": "01df8f91a51ace0f3492356e1420a36a2bdf53249c125862b23c27f0251f292f",
+      "tests/e2e/calculations/calculations.e2e.spec.ts": "173de50b4aabb7fc39f6f7be1c95c2e89098d2ef4fa5551e65f139434b12777d",
+      "tests/e2e/calculations/tax-answer-reconciliation.e2e.spec.ts": "cce8793b97a9da1d8d6efafd48d4f2423c34aa6f46139c2d6325dee52e6981d0"
+    },
+    "prerequisite_ancestry_observations": [
+      {
+        "label": "producer",
+        "reference": "01523c97eddec423288ef988217eedc3c9f0c258",
+        "full_commit": "01523c97eddec423288ef988217eedc3c9f0c258",
+        "is_ancestor_of_inspected_head": true,
+        "checks_passed": "not-established-by-this-source-inspection"
+      },
+      {
+        "label": "35.7 product",
+        "reference": "9e2c412",
+        "full_commit": "9e2c412dd30a03f9ab7fb8690ab41d06bb30da5f",
+        "is_ancestor_of_inspected_head": true,
+        "checks_passed": "not-established-by-this-source-inspection"
+      },
+      {
+        "label": "35.7 pricing follow-up",
+        "reference": "3d7d2b36",
+        "full_commit": "3d7d2b3672995b63e2a34170ffeece6f12d27922",
+        "is_ancestor_of_inspected_head": true,
+        "checks_passed": "not-established-by-this-source-inspection"
+      }
+    ],
+    "retained_allocation_comparisons": [
+      {
+        "id": "05b7d3ce97f465c020ad7878a4121ee529a25dbd4fe0561a185f832ad699c5b6",
+        "retained_token_count": 55,
+        "path_overlaps": [],
+        "domain_overlaps": []
+      },
+      {
+        "id": "6e5337c293c17caed5f3c7ca05f83b6d9ce23f946d82dd6de38b19305cc27d76",
+        "retained_token_count": 55,
+        "path_overlaps": [],
+        "domain_overlaps": []
+      },
+      {
+        "id": "4aaf4467e8ff773ea35344e2ea5af88dc35bdff63cdc0b88ad09de64c549cb4e",
+        "retained_token_count": 75,
+        "path_overlaps": [],
+        "domain_overlaps": []
+      },
+      {
+        "id": "c2c09707bee69bc4e0f3a21b1ab0ea4e3bc5c73e24773ebb09a12bc210bffd5b",
+        "retained_token_count": 1,
+        "path_overlaps": [],
+        "domain_overlaps": []
+      },
+      {
+        "id": "retained-plan:spec-design-35-2",
+        "retained_token_count": 75,
+        "path_overlaps": [],
+        "domain_overlaps": []
+      },
+      {
+        "id": "retained-plan:15",
+        "retained_token_count": 386,
+        "path_overlaps": [],
+        "domain_overlaps": []
+      },
+      {
+        "id": "held-crm35.6",
+        "retained_token_count": 11,
+        "path_overlaps": [],
+        "domain_overlaps": []
+      }
+    ],
+    "runtime_route": {
+      "proposed": "existing-exact-head-hosted-release_validation=true",
+      "ordinary_smoke_covers_calculations": false,
+      "local_focused_lifecycle_bound": false,
+      "executed": false
+    },
+    "remaining_gates": [
+      "B-BASE future qualified-main integrated source binding",
+      "B-TEST unknown outcome authoritative reconciliation",
+      "B-TEST generic stale write assertion scope",
+      "B-TEST exact candidate runtime/visual evidence contract approval",
+      "B-APPROVAL exact scope/dependency/concurrency and checkpoint provenance",
+      "fresh native capacity/ownership observation and supported ordinary plan/init/claim only after admission"
+    ],
+    "admission_blocker": "Frozen unknown-operation reconciliation and generic old-write no-overwrite promises are not furnished by existing action/producer/downstream guards; exact source disposition or separately approved producer prerequisite required."
+  },
+  "producer_prerequisite_disposition": {
+    "status": "resolved-by-finalized-registered-producer-only",
+    "source": "9308b8a814382910bc5fd895d7337bac1b53a9b3",
+    "refs": {
+      "nativeFinalized": {
+        "path": "coordinator-record:producer-9308-native-finalized",
+        "sha256": "d827f24e47f9deb3a90d30c763bdceaa27eed2061d748c1257d1454911a8904d"
+      },
+      "trace": {
+        "path": "coordinator-record:producer-9308-trace-pass",
+        "sha256": "d1db5c8b8cb56380fd127f22bacb642398dc3a46151c1ae8012cb16ab971f78b"
+      },
+      "native": {
+        "path": "coordinator-record:producer-9308-current-main-native-evidence",
+        "sha256": "24e73797d3d812b56136b480607e6a3e7bbc8d2134e75115d45e1f823369359f"
+      },
+      "High": {
+        "path": "coordinator-record:producer-9308-independent-final-evidence-qualification",
+        "sha256": "4b3fac841c112e72d965cba55f9d276ab08d3db332ed40ad178c3e404e2dfceb"
+      }
+    },
+    "semantics": "Use original durable operation identity/revision and original expected-fact binding; committed/closed/unknown outcomes and current authorization remain existing producer authority. Actual same-mounted P6 totals refresh preserves later draft without extra write. No new policy, generic receipt, receipt authority or operation implementation chosen here.",
+    "counts": "Actual9308 ordinary21browserfiles/204cases and432namedrequiredDB assertions;52explicit wholeDB skips zero credit; retained709 visual/262controlledproof have original provenance. Not presentation test execution.",
+    "remaining": "Positive six-path producer-to-presentation handoff, independent exact-source review/publication integration and ordinary current allocation/native admission remain pending."
+  },
+  "current_preimage_limit": "Hashes are observed target9308 preparation preimages only; historical pins retained separately. Refresh exact final source/test/base/native allocation at implementation admission.",
+  "positive_handoff_pending_paths": [
+    "src/components/calculations/CalculationEditor.tsx",
+    "src/components/calculations/CalculationList.tsx",
+    "src/components/calculations/PreQuotePreview.tsx",
+    "src/components/calculations/RowEditor.tsx",
+    "src/components/calculations/SectionEditor.tsx",
+    "src/components/calculations/TaxSettingsPanel.tsx"
+  ],
+  "publication_hygiene": {
+    "statement": "Public sanitized projection only. Machine checkout routes and private actor identifiers are intentionally omitted. Exact private artifact digests identify the retained full coordinator records; actual ownership/custody verification must use those records and fresh positive holder handoff. Logical labels grant no rights, change no reservation/write/conflict constraints and establish no closure, source publication, implementation admission or readiness.",
+    "private_custody_record_sha256": "38295be6a28463205ae1cd37ae5d9d933bdf85319796dfc87e1123698f620d23",
+    "retained_plan_sha256": "75a4a6d4132172f9efbaa07aee615f6dd20c9c21d358e6dbc5ea29ebc4f49665"
+  }
+}

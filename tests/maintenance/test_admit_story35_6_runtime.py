@@ -350,7 +350,7 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
         entry['proof']['current_custody'] = {}
         return entry
 
-    def bind_custody(self, entry, transform=None, reservations=None):
+    def bind_custody(self, entry, transform=None, reservations=None, stopped_digests=(), record_transform=None):
         inventory = self.bind_closed([entry])
         inventory['reservations'] = reservations or []
         now = adapter.time.time()
@@ -369,13 +369,15 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
                       'turns': [{'id': 'actual-current-producer', 'status': 'inProgress', 'finals': []}]}
             records.append({'identity': identity, 'kind': 'actor', 'owner': identity, 'host': 'fixture-host',
                             'state': 'live-reserved', 'write_paths': res['write_paths'], 'conflict_domains': res['conflict_domains'],
-                            'queued': False, 'background': True,
+                            'queued': False, 'background': engine.digest(res) not in stopped_digests,
                             'allocation': engine.digest({'kind': 'legacy-reservation', 'reservation': res}),
                             'native_ref': self.raw('current-' + identity, native)})
         # Actual stopped execution, accounted for separately from actor metadata.
         records.append({'identity': 'known-old-execution', 'kind': 'execution', 'owner': identities[1],
                         'host': 'fixture-host', 'state': 'non-writing', 'write_paths': [], 'conflict_domains': [],
                         'queued': False, 'background': False, 'allocation': None, 'native_ref': None})
+        if record_transform:
+            record_transform(records)
         historical = [self.raw('failed-history', {'source': 'codex_app.read_thread', 'threadId': identities[1],
                        'turns': [{'id': 'actual-historical-failure', 'status': 'failed', 'finals': [],
                                   'observation': 'Historical writes are possible; failure is not a no-write proof.'}]}),
@@ -1666,6 +1668,367 @@ class RuntimeAdmission(fixture.StoriesPrFixture, unittest.TestCase):
         self.assertTrue(self.admit()['replayed'])  # Existing historical replay stays operative.
 
 
+    def e15_fixture(self):
+        """Synthetic identities/authority bytes; unchanged Git/SQLite native engine."""
+        self.write(self.a, adapter.PAGE, 'synthetic CRM page\n')
+        published = self.commit(self.a, 'synthetic published customer page')
+        operation = json.loads(self.state['publication_operation_json'])
+        operation['head'] = published
+        self.state['publication_operation_json'] = json.dumps(operation)
+        self.save_state()
+        self.checkpoint_sha = self.commit(self.a, 'synthetic bookkeeping child')
+        holder_role = self.root / 'holder-role-preimage'
+        self.git(self.repo, 'worktree', 'add', '-b', 'codex/holder-role-preimage', str(holder_role), self.base)
+        self.write(holder_role, adapter.PAGE, 'synthetic distinct holder Role preimage\n')
+        holder_head = self.commit(holder_role, 'synthetic holder Role page')
+        self.write(self.b, 'retained/e15-current.txt', 'synthetic actual reservation checkout metadata\n')
+        holder_current = self.commit(self.b, 'synthetic generic E15 reservation checkpoint')
+        self.assertNotEqual(holder_current, holder_head)
+        retained = dict(epic='unrelated-retained', stories=['unrelated'], reason='synthetic retained rights',
+                        worktree=str(self.b), write_paths=['retained/55.txt'], conflict_domains=[])
+        self.plan['legacy_reservations'] = [retained]
+        original = dict(epic='15', stories=adapter.E15_KEYS.copy(), reason='synthetic original holder rights',
+            worktree=str(self.b), write_paths=['retained/e15-%03d.txt' % i for i in range(367)] + [adapter.PAGE],
+            conflict_domains=['synthetic-e15-domain-%d' % i for i in range(7)])
+        remainder = copy.deepcopy(original)
+        remainder['write_paths'].remove(adapter.PAGE)
+        diagnostic_anchors = [adapter.state_path(key) for key in adapter.E15_KEYS[:-1]] + [adapter.state_path('epic-15')]
+        diagnostics = []
+        for i in range(2):
+            wt = self.root / ('stopped-diagnostic-%d' % i)
+            self.git(self.repo, 'worktree', 'add', '-b', 'codex/stopped-diagnostic-%d' % i, str(wt), self.base)
+            for path in diagnostic_anchors:
+                self.write(wt, path, 'status: in-progress\nepic_num: 15\n')
+            self.commit(wt, 'synthetic preserved diagnostic anchors')
+            diagnostics.append(dict(epic='15', stories=adapter.E15_KEYS[:-1], reason='synthetic stopped diagnostic %d' % i,
+                worktree=str(wt), write_paths=['retained/diagnostic-%d.txt' % i] + diagnostic_anchors, conflict_domains=[]))
+        source = {**copy.deepcopy(self.plan), 'run_id': 'synthetic-e15-finalized', 'epic': 'synthetic-source',
+                  'legacy_reservations': [retained, original]}
+        with engine.database(self.repo) as db:
+            db.execute('UPDATE runs SET plan=?,plan_hash=? WHERE run=?',
+                       (engine.canonical(self.plan), engine.digest(self.plan), adapter.RUN))
+            db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?)', (source['run_id'], source['epic'],
+                self.plan['coordinator'], engine.canonical(source), engine.digest(source), 'finalized', self.base))
+            claim = db.execute('SELECT branch,worktree FROM claims WHERE run=? AND story=?',
+                               (adapter.RUN, adapter.STORY)).fetchone()
+            self.assertIsNotNone(claim)
+            # Native claim creation resolves paths (including Windows short-name
+            # aliases). Bind its exact stored identity, not fixture path spelling.
+            claim_identity = {field: claim[field] for field in ['branch', 'worktree']}
+        case = dict(holder='synthetic-e15-holder', coordinator=self.plan['coordinator'], worker='worker-a',
+            claim_identity_digest=engine.digest(claim_identity),
+            plan_hash=engine.digest(self.plan), base=self.base, published=published, checkpoint=self.checkpoint_sha,
+            page_blob=engine.git(self.repo, 'rev-parse', published + ':' + adapter.PAGE).strip(),
+            holder_checkpoint=holder_head,
+            holder_blob=engine.git(self.repo, 'rev-parse', holder_head + ':' + adapter.PAGE).strip(),
+            source_run=source['run_id'], source_plan_hash=engine.digest(source),
+            original=engine.digest(original), remainder=engine.digest(remainder),
+            diagnostics=[engine.digest(res) for res in diagnostics])
+        review_ref = self.raw('e15-holder-review', {'synthetic': 'independently reviewed conditional intent'})
+        proposal = dict(grantor=case['holder'], recipientCoordinator=case['coordinator'], path=adapter.PAGE,
+            recipientTask=dict(run=adapter.RUN, story=adapter.STORY, worker=case['worker'], currentGeneration=1,
+                currentState='blocked', checkpoint=published, PR=127, base=self.base),
+            nativeBefore=dict(run=source['run_id'], runState='finalized', owner=case['coordinator'],
+                planHash=case['source_plan_hash'], legacyIndex=1, reservation=original),
+            prospectiveRemainder=dict(reservation=remainder))
+        proposal_ref = self.raw('e15-proposal', proposal)
+        consent_ref = self.raw('e15-consent', dict(grantor=case['holder'], recipientCoordinator=case['coordinator'],
+            path=adapter.PAGE, proposal=proposal_ref, independentHighReview=review_ref))
+        counter_ref = self.raw('e15-counterrecord', dict(root=case['coordinator'], holder=case['holder'],
+            paths=[adapter.PAGE], native_before=dict(reservation_digest=case['original']),
+            prospective_remainder=dict(reservation_digest=case['remainder'])))
+        proof = dict(consent=consent_ref, proposal=proposal_ref, holder_review=review_ref, counterrecord=counter_ref)
+        case['authorities'] = {name: ref['sha256'] for name, ref in proof.items()}
+        case_patch = patch.object(adapter, 'E15_CASE', case)
+        case_patch.start()
+        self.addCleanup(case_patch.stop)
+        self.request = self.make_request()
+        observed = json.loads(Path(self.request['publication']['path']).read_text())
+        observed['head_sha'] = published
+        self.request['publication'] = self.raw('e15-publication', observed)
+        def entry(res):
+            return dict(reservation=res, head=engine.sha(Path(res['worktree']), 'HEAD'), source_status='stopped',
+                evidence_ref='synthetic-stopped-holder-evidence', independent=True,
+                independence_ref='synthetic-independent-scope-review', anchors=diagnostic_anchors.copy() if res in diagnostics else [])
+        self.e15_entries = [entry(res) for res in [retained, original] + diagnostics]
+        self.request['ownership_inventory'] = self.raw('e15-inventory', self.inventory(self.e15_entries))
+        self.request['e15_customer_page'] = proof
+        inventory = json.loads(Path(self.request['ownership_inventory']['path']).read_text())
+        entry = adapter.customer_page_custody_entry(original, inventory, case['holder'], {})
+        request_before_custody = self.request
+        self.bind_custody(entry, reservations=self.e15_entries, stopped_digests=case['diagnostics'])
+        inventory = json.loads(Path(self.request['ownership_inventory']['path']).read_text())
+        self.request = request_before_custody
+        inventory.pop('closed_anchors')
+        inventory['schema_version'] = 1
+        self.request['ownership_inventory'] = self.raw('e15-current-inventory', inventory)
+        proof['current_custody'] = entry['proof']['current_custody']
+        self.e15_method()
+        return original, remainder, source
+
+    def e15_method(self):
+        case, r = adapter.E15_CASE, self.request
+        method = dict(schema_version=1, holder=case['holder'], coordinator=case['coordinator'], worker=case['worker'],
+            run_id=adapter.RUN, story_id=adapter.STORY, path=adapter.PAGE, reviewed_tooling_sha=r['reviewed_tooling_sha'],
+            tool_sha256=r['tool_sha256'], qualified_main_sha=r['qualified_main_sha'], expected_plan_hash=case['plan_hash'],
+            expected_generation=1, checkpoint_sha=case['checkpoint'], publication_head_sha=case['published'],
+            claim_identity_digest=case['claim_identity_digest'],
+            current_custody_digest=engine.digest(r['e15_customer_page']['current_custody']),
+            source_plan_hash=case['source_plan_hash'], original_reservation_digest=case['original'],
+            remainder_reservation_digest=case['remainder'], confirmed=True, explicit_handback_required=True,
+            holder_standstill=True, complete_relevant_writer_inventory=True, relevant_writers_stopped=True,
+            scheduler_queue='UNKNOWN', request_facts_digest=engine.digest({k: v for k, v in r.items()
+                if k not in {'admission_review', 'e15_customer_page'}}), authorities=case['authorities'],
+            review={**self.review(r['reviewed_tooling_sha'], 'high'), 'reviewer': 'independent-holder-method-reviewer'})
+        r['e15_customer_page']['method_confirmation'] = self.raw('e15-method', method)
+
+    def e15_proof_refused(self, message='.'):
+        # Proof matrices invoke the real staged predicate/native read-only store.
+        # Full admit/CAS success, failure and rollback are exercised separately.
+        before = self.snapshot()
+        self.refresh_review()
+        args = self.args_for_admit()
+        with self.assertRaisesRegex(adapter.engine.Refusal, message), adapter.readonly_database(self.repo) as db:
+            p = adapter.engine.get_run(db, args)
+            c = adapter.engine.get_claim(db, args, worker=True)
+            snapshots = adapter.Captures()
+            stopped = adapter.stopped_receipt(self.request, c, p, snapshots, db, self.repo)
+            pub = adapter.publication(self.repo, p, c, self.request, snapshots)
+            transition = adapter.customer_page_transition(db, self.repo, p, c, self.request, pub, stopped, snapshots)
+            revised_story = copy.deepcopy(engine.story(p, adapter.STORY))
+            revised_story['write_paths'].append(adapter.RUNTIME)
+            revised_story['conflict_domains'].append(adapter.DOMAIN)
+            adapter.ownership(db, self.repo, p, c, revised_story, self.request, snapshots, transition)
+        self.assertEqual(self.snapshot(), before)
+
+    def test_e15_atomic_transition_native_effective_checks_history_and_exact_replay(self):
+        # Deterministically reproduce a noncanonical fixture spelling on every
+        # OS, without relying on Windows 8.3 support or temporary-root casing.
+        self.a = self.a / '..' / 'a'
+        self.assertNotEqual(str(self.a), str(self.a.resolve()))
+        original, remainder, source = self.e15_fixture()
+        with engine.database(self.repo) as db:
+            claim = dict(db.execute('SELECT branch,worktree FROM claims WHERE run=? AND story=?',
+                                   (adapter.RUN, adapter.STORY)).fetchone())
+        self.assertEqual(adapter.E15_CASE['claim_identity_digest'], engine.digest(claim))
+        self.assertNotEqual(adapter.E15_CASE['claim_identity_digest'],
+                            engine.digest({**claim, 'worktree': str(self.a)}))
+        self.assertTrue(engine.conflicts(self.item('a'), original))
+        self.assertFalse(engine.conflicts(self.item('a'), remainder))
+        before = self.snapshot()
+        args = self.args_for_admit()
+        store = engine.common(self.repo) / 'auto-bmad-parallel.sqlite3'
+        raw_before = store.read_bytes()
+        validated = adapter.validate_only(args)
+        self.assertTrue(validated['validated'])
+        self.assertEqual(validated['writes'], 0)
+        self.assertEqual(store.read_bytes(), raw_before)
+        self.assertEqual(self.snapshot(), before)
+        response = adapter.admit(args)
+        self.assertEqual(response['generation'], 2)
+        self.assertEqual(response['e15_customer_page']['effective_paths'], 367)
+        self.assertEqual(response['e15_customer_page']['scheduler_queue'], 'UNKNOWN')
+        with engine.database(self.repo) as db:
+            p = json.loads(db.execute('SELECT plan FROM runs WHERE run=?', (adapter.RUN,)).fetchone()[0])
+            self.assertEqual(p['legacy_reservations'], self.plan['legacy_reservations'] + [remainder])
+            self.assertFalse(engine.story_pr_legacy_conflicts(self.repo, p, engine.story(p, adapter.STORY)))
+            # Unchanged native guard protects every remaining path and each of seven domains.
+            for path in remainder['write_paths']:
+                probe = {**engine.story(p, adapter.STORY), 'write_paths': [path]}
+                self.assertTrue(engine.conflicts(probe, p['legacy_reservations'][-1]))
+            self.assertTrue(engine.story_pr_legacy_conflicts(self.repo, p, probe))
+            for domain in original['conflict_domains']:
+                probe = {**engine.story(p, adapter.STORY), 'conflict_domains': [domain]}
+                self.assertTrue(engine.story_pr_legacy_conflicts(self.repo, p, probe))
+            historical = dict(db.execute('SELECT * FROM runs WHERE run=?', (source['run_id'],)).fetchone())
+            self.assertEqual(historical['plan'], engine.canonical(source))
+            self.assertEqual(historical['plan_hash'], engine.digest(source))
+            audit = dict(db.execute('SELECT * FROM claim_amendments').fetchone())
+            self.assertEqual(json.loads(audit['before_plan']), self.plan)
+            self.assertEqual(json.loads(audit['after_plan']), p)
+            receipt = json.loads(audit['stopped_writers'])
+            self.assertEqual(receipt['ownership_inventory']['reservations'], self.e15_entries)
+            self.assertEqual(receipt['e15_customer_page']['source_row'], historical)
+            self.assertEqual(receipt['e15_customer_page']['original'], original)
+            self.assertEqual(receipt['e15_customer_page']['remainder'], remainder)
+            for statement in ['DELETE FROM claim_amendments', 'UPDATE claim_amendments SET response=\'{}\'']:
+                with self.assertRaises(sqlite3.IntegrityError):
+                    db.execute(statement)
+        self.call('heartbeat', story=adapter.STORY, worker='worker-a', generation=2)
+        after = self.snapshot()
+        # Historical replay needs no current external authority, and grants no fresh work.
+        Path(self.request['e15_customer_page']['method_confirmation']['path']).unlink()
+        self.assertEqual(adapter.admit(args), {**response, 'replayed': True})
+        self.assertEqual(self.snapshot(), after)
+        self.request['e15_customer_page']['consent']['sha256'] = '0' * 64
+        self.refused('different payload')
+
+    def test_e15_default_cannot_consume_prospective_remainder(self):
+        self.e15_fixture()
+        del self.request['e15_customer_page']
+        self.refused('legacy reservation')
+
+    def test_e15_wrong_authorities_and_holder_method_bindings_refuse(self):
+        self.e15_fixture()
+        baseline = copy.deepcopy(self.request)
+        for name in adapter.E15_CASE['authorities']:
+            with self.subTest(authority=name):
+                self.request = copy.deepcopy(baseline)
+                self.request['e15_customer_page'][name]['sha256'] = '0' * 64
+                self.e15_proof_refused('authority hash changed')
+        method_ref = baseline['e15_customer_page']['method_confirmation']
+        method = json.loads(Path(method_ref['path']).read_text())
+        changes = dict(holder='different-holder', coordinator='foreign', worker='other-worker', confirmed=False,
+            claim_identity_digest='0' * 64,
+            current_custody_digest='0' * 64,
+            tool_sha256='0' * 64, qualified_main_sha=self.checkpoint_sha, checkpoint_sha=self.base,
+            expected_plan_hash='0' * 64, original_reservation_digest='0' * 64,
+            request_facts_digest='0' * 64, explicit_handback_required=False, scheduler_queue='stopped',
+            complete_relevant_writer_inventory=False, relevant_writers_stopped=False, holder_standstill=False)
+        for field, value in changes.items():
+            with self.subTest(binding=field):
+                self.request = copy.deepcopy(baseline)
+                self.request['e15_customer_page']['method_confirmation'] = self.raw('e15-bad-method', {**method, field: value})
+                self.e15_proof_refused('method confirmation')
+        for reviewer in [adapter.E15_CASE['holder'], 'worker-a', self.plan['coordinator']]:
+            with self.subTest(reviewer=reviewer):
+                self.request = copy.deepcopy(baseline)
+                self.request['e15_customer_page']['method_confirmation'] = self.raw('e15-bad-review',
+                    {**method, 'review': {**method['review'], 'reviewer': reviewer}})
+                self.e15_proof_refused('independent')
+        self.request = copy.deepcopy(baseline)
+        with patch.dict(adapter.E15_CASE, {'claim_identity_digest': '0' * 64}):
+            self.e15_proof_refused('E15 exact CRM')
+
+    def test_e15_malformed_reduced_or_competing_inventory_refuses_atomically(self):
+        original, remainder, _ = self.e15_fixture()
+        baseline = copy.deepcopy(self.request)
+        for mutate in ['reduced', 'missing-diagnostic', 'diagnostic-active', 'diagnostic-anchor-missing',
+                       'competing-page', 'competing-domain', 'holder-head', 'duplicate']:
+            with self.subTest(case=mutate):
+                self.request = copy.deepcopy(baseline)
+                entries = copy.deepcopy(self.e15_entries)
+                if mutate == 'reduced':
+                    entries[1]['reservation'] = remainder
+                elif mutate == 'missing-diagnostic':
+                    entries.pop()
+                elif mutate == 'holder-head':
+                    entries[1]['head'] = adapter.E15_CASE['holder_checkpoint']
+                elif mutate == 'diagnostic-active':
+                    entries[2]['source_status'] = 'active'
+                elif mutate == 'diagnostic-anchor-missing':
+                    entries[3]['anchors'].pop()
+                elif mutate == 'duplicate':
+                    entries.append(entries[1])
+                else:
+                    competing = copy.deepcopy(entries[0])
+                    competing['reservation'].update(epic='competing-owner', stories=['competing'],
+                        write_paths=[adapter.PAGE] if mutate == 'competing-page' else ['retained/competitor.txt'],
+                        conflict_domains=[adapter.DOMAIN] if mutate == 'competing-domain' else [])
+                    entries.append(competing)
+                self.request['ownership_inventory'] = self.raw('e15-bad-inventory', self.inventory(entries))
+                self.e15_method()
+                self.e15_proof_refused()
+        self.request = copy.deepcopy(baseline)
+        self.request['e15_customer_page']['consent'] = []
+        self.e15_proof_refused('authority hash changed')
+
+    def test_e15_stopped_diagnostic_copy_queued_and_background_work_refuse(self):
+        original, remainder, _ = self.e15_fixture()
+        baseline = copy.deepcopy(self.request)
+        for index in [2, 3]:
+            for flag in ['queued', 'background']:
+                with self.subTest(diagnostic=index - 2, flag=flag):
+                    self.request = copy.deepcopy(baseline)
+                    inventory = self.inventory(self.e15_entries)
+                    diagnostic = self.e15_entries[index]
+                    allocation = engine.digest({'kind': 'legacy-reservation', 'reservation': diagnostic['reservation']})
+                    self.assertEqual(diagnostic['source_status'], 'stopped')
+                    def set_work_flag(records):
+                        matches = [record for record in records if record['allocation'] == allocation]
+                        self.assertEqual(len(matches), 1)
+                        record = matches[0]
+                        self.assertEqual(record['state'], 'live-reserved')
+                        self.assertEqual(record['write_paths'], diagnostic['reservation']['write_paths'])
+                        self.assertEqual(record['conflict_domains'], diagnostic['reservation']['conflict_domains'])
+                        self.assertFalse(record['queued'])
+                        self.assertFalse(record['background'])
+                        record[flag] = True
+                    entry = adapter.customer_page_custody_entry(original, inventory, adapter.E15_CASE['holder'], {})
+                    request_before_custody = self.request
+                    self.bind_custody(entry, reservations=self.e15_entries,
+                        stopped_digests=adapter.E15_CASE['diagnostics'], record_transform=set_work_flag)
+                    inventory = json.loads(Path(self.request['ownership_inventory']['path']).read_text())
+                    self.request = request_before_custody
+                    inventory.pop('closed_anchors')
+                    inventory['schema_version'] = 1
+                    self.request['ownership_inventory'] = self.raw('e15-diagnostic-work-inventory', inventory)
+                    self.request['e15_customer_page']['current_custody'] = entry['proof']['current_custody']
+                    self.e15_method()
+                    self.refresh_review()
+                    before = self.snapshot()
+                    # Counterfactual control: with only this diagnostic predicate
+                    # disabled, all raw host/operator corroboration must validate.
+                    # The original 368 allocation remains fully covered throughout.
+                    with patch.dict(adapter.E15_CASE, {'diagnostics': []}):
+                        accepted = adapter.current_custody(self.repo, entry, inventory, self.plan,
+                            self.request, adapter.Captures(), prospective=dict(original=original, remainder=remainder))
+                    observed = next(record for record in accepted['attestation']['records'] if record['allocation'] == allocation)
+                    self.assertTrue(observed[flag])
+                    self.assertEqual(self.snapshot(), before)
+                    self.e15_proof_refused('^Stopped E15 diagnostic copy has queued/background work$')
+                    self.assertEqual(self.snapshot(), before)
+
+    def test_e15_rollback_after_combined_cas_and_bound_evidence_drift(self):
+        self.e15_fixture()
+        baseline = copy.deepcopy(self.request)
+        ref = self.request['e15_customer_page']['current_custody']['evidence_ref']
+        attestation = json.loads(Path(ref['path']).read_text())
+        now = adapter.time.time()
+        self.request['e15_customer_page']['current_custody']['evidence_ref'] = self.raw('e15-stale-custody',
+            {**attestation, 'observed_at': now - 1200, 'valid_until': now - 300})
+        self.e15_method()
+        self.e15_proof_refused('Current custody observation/quiet interval is stale')
+        self.request = copy.deepcopy(baseline)
+        self.e15_method()
+        window = adapter.custody_window
+        window_calls = 0
+        def expire_before_cas(value):
+            nonlocal window_calls
+            window_calls += 1
+            if window_calls == 2:
+                with patch.object(adapter.time, 'time', return_value=value['valid_until'] + 1):
+                    return window(value)
+            return window(value)
+        with patch.object(adapter, 'custody_window', side_effect=expire_before_cas):
+            self.refused('Current custody observation/quiet interval is stale')
+        self.assertEqual(window_calls, 2)
+        before = self.snapshot()
+        with patch.object(adapter, 'checkpoint', side_effect=RuntimeError('synthetic post-audit crash')):
+            with self.assertRaises(RuntimeError):
+                self.admit()
+        self.assertEqual(self.snapshot(), before)
+        qualify = adapter.qualify_tooling
+        calls = 0
+        def drift(*args):
+            nonlocal calls
+            calls += 1
+            qualify(*args)
+            if calls == 2:
+                Path(self.request['e15_customer_page']['current_custody']['evidence_ref']['path']).write_text('{}')
+        with patch.object(adapter, 'qualify_tooling', side_effect=drift):
+            self.refused('Bound evidence changed')
+        self.assertEqual(calls, 2)
+
+    def test_e15_competing_request_and_stale_generation_cannot_reapply(self):
+        self.e15_fixture()
+        self.admit()
+        self.request['request_id'] = 'competing-e15-request'
+        self.refused()
+        with self.assertRaises(engine.Refusal):
+            self.call('heartbeat', story=adapter.STORY, worker='worker-a', generation=1)
+
+
 class NativeAllocationMetadata(unittest.TestCase):
     def test_complete_immutable_e15_blob_is_parsed_and_entirely_collected(self):
         # HEAD's existing tracked Git blob works in shallow CI checkouts too.
@@ -1710,6 +2073,294 @@ class NativeAllocationMetadata(unittest.TestCase):
                       {'conflict_domains': 3}, {'shared_domains': [False]}]:
             with self.subTest(value=value), self.assertRaises(adapter.engine.Refusal):
                 adapter.allocation_arrays(value, e15_main=True)
+
+
+
+
+class ColdProtocolCommitBoundary(unittest.TestCase):
+    """Real rollback-journal lock/commit behavior, with bounded owned readers."""
+
+    def setUp(self):
+        import tempfile
+        spec = importlib.util.spec_from_file_location('cold_commit_boundary',
+            ROOT / 'scripts/maintenance/adopt_stopped_coordinator_context.py')
+        self.cold = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.cold)
+        self.temporary = tempfile.TemporaryDirectory(prefix='crm-commit-')
+        self.addCleanup(self.temporary.cleanup)
+        self.store = Path(self.temporary.name) / 'native.sqlite3'
+        with contextlib.closing(sqlite3.connect(self.store, isolation_level=None)) as db:
+            db.execute('CREATE TABLE native_owner(value INTEGER)')
+            db.execute('INSERT INTO native_owner VALUES(0)')
+            db.execute('CREATE TABLE audit(value INTEGER)')
+        self.clock = {'wall': 1000.0, 'mono': 50.0}
+
+    @contextlib.contextmanager
+    def budget(self, custody=900, critical=30):
+        ctx = {'protocol_eligibility': {'expires': self.clock['wall'] + custody}}
+        with patch.object(self.cold.time, 'time', side_effect=lambda: self.clock['wall']), \
+             patch.object(self.cold.time, 'monotonic', side_effect=lambda: self.clock['mono']), \
+             patch.object(self.cold, 'CRITICAL_SECONDS', critical), self.cold.protocol_budget(ctx):
+            yield ctx
+
+    @contextlib.contextmanager
+    def reader(self):
+        import threading
+        ready, release, errors = threading.Event(), threading.Event(), []
+        def hold():
+            try:
+                with self.cold.database(self.store) as db:
+                    db.execute('SELECT * FROM native_owner').fetchall()
+                    ready.set()
+                    if not release.wait(5):
+                        raise AssertionError('Owned reader release timed out')
+            except BaseException as error:
+                errors.append(error)
+                ready.set()
+        thread = threading.Thread(target=hold)
+        thread.start()
+        try:
+            self.assertTrue(ready.wait(5))
+            self.assertEqual(errors, [])
+            yield release, thread
+        finally:
+            release.set()
+            thread.join(5)
+            self.assertFalse(thread.is_alive(), 'Owned reader did not settle')
+            self.assertEqual(errors, [])
+
+    def write_pair(self, db):
+        db.execute('UPDATE native_owner SET value=1')
+        db.execute('INSERT INTO audit VALUES(1)')
+
+    def assert_pair(self, expected):
+        with contextlib.closing(sqlite3.connect(self.store, isolation_level=None)) as db:
+            self.assertEqual(db.execute('SELECT value FROM native_owner').fetchone()[0], expected)
+            self.assertEqual(db.execute('SELECT count(*) FROM audit').fetchone()[0], expected)
+        self.assertFalse(self.store.with_name(self.store.name + '-journal').exists())
+        self.assertIsNone(self.cold.CRITICAL_DEADLINE.get())
+        self.assertIsNone(self.cold.PROTOCOL_COMMIT_STATE.get())
+
+    def test_active_reader_keeps_begin_immediate_compatible_but_commit_refuses_without_wait(self):
+        for custody, critical in [(0.15, 30), (900, 0.15)]:
+            with self.subTest(custody=custody, critical=critical):
+                with self.reader(), self.assertRaisesRegex(sqlite3.OperationalError, 'locked'):
+                    with self.budget(custody, critical), self.cold.database(self.store, write=True) as db:
+                        self.assertEqual(db.execute('PRAGMA busy_timeout').fetchone()[0], 0)
+                        self.write_pair(db)
+                        # BEGIN IMMEDIATE still permits an independent reader during Git work.
+                        with contextlib.closing(sqlite3.connect(self.store, isolation_level=None, timeout=0)) as reader:
+                            self.assertEqual(reader.execute('SELECT value FROM native_owner').fetchone()[0], 0)
+                self.assert_pair(0)
+
+    def test_reader_released_before_commit_and_unlocked_within_budget_succeed(self):
+        with self.reader() as (release, thread):
+            with self.budget(custody=0.15), self.cold.database(self.store, write=True) as db:
+                self.write_pair(db)
+                release.set()
+                thread.join(5)
+                self.assertFalse(thread.is_alive())
+                self.clock.update(wall=1000.149, mono=50.149)
+        self.assert_pair(1)
+
+    def test_each_precommit_deadline_rolls_back_native_and_audit_together(self):
+        cases = [('custody-monotonic', 0.15, 30, 1000.2, 50.2, 'CRITICAL_SECTION_EXPIRED'),
+                 ('critical', 900, 30, 1030.0, 80.0, 'CRITICAL_SECTION_EXPIRED'),
+                 ('custody-wall-jump', 0.15, 30, 1000.15, 50.0, 'CUSTODY_EXPIRED')]
+        for name, custody, critical, wall, mono, reason in cases:
+            with self.subTest(case=name):
+                self.clock.update(wall=1000.0, mono=50.0)
+                with self.assertRaisesRegex(self.cold.Refusal, reason):
+                    with self.budget(custody, critical), self.cold.database(self.store, write=True) as db:
+                        self.write_pair(db)
+                        self.clock.update(wall=wall, mono=mono)
+                self.assert_pair(0)
+
+    def test_deadline_recheck_after_actual_begin_prevents_entering_mutation_body(self):
+        clock, connect = self.clock, sqlite3.connect
+        class ExpiredAfterBegin(sqlite3.Connection):
+            def execute(self, statement, *values):
+                result = super().execute(statement, *values)
+                if statement == 'BEGIN IMMEDIATE':
+                    clock['mono'] = 81.0
+                return result
+        with self.assertRaisesRegex(self.cold.Refusal, 'CRITICAL_SECTION_EXPIRED'):
+            with patch.object(self.cold.sqlite3, 'connect',
+                    side_effect=lambda *args, **kw: connect(*args, **kw, factory=ExpiredAfterBegin)), \
+                 self.budget(), self.cold.database(self.store, write=True):
+                self.fail('Expired BEGIN entered mutation body')
+        self.assert_pair(0)
+
+    def test_actual_commit_success_is_not_relabelled_refused_by_delayed_return(self):
+        clock, connect = self.clock, sqlite3.connect
+        class DelayedCommitReturn(sqlite3.Connection):
+            def execute(self, statement, *values):
+                result = super().execute(statement, *values)
+                if statement == 'COMMIT':
+                    clock.update(wall=1031.0, mono=81.0)
+                return result
+        with patch.object(self.cold.sqlite3, 'connect',
+                side_effect=lambda *args, **kw: connect(*args, **kw, factory=DelayedCommitReturn)), \
+             self.budget() as ctx, self.cold.database(self.store, write=True) as db:
+            self.write_pair(db)
+        self.assertEqual(ctx['_protocol_critical_ms'], 31000)
+        self.assert_pair(1)
+
+    def test_uncommitted_budget_overrun_still_refuses_and_resets_context(self):
+        with self.assertRaisesRegex(self.cold.Refusal, 'CRITICAL_SECTION_OVERRUN'):
+            with self.budget():
+                self.clock['mono'] = 81.0
+        self.assert_pair(0)
+
+    def test_stopped_mode_keeps_existing_timeout_and_atomic_commit(self):
+        with self.reader() as (release, thread):
+            with self.cold.database(self.store, write=True) as db:
+                self.assertEqual(db.execute('PRAGMA busy_timeout').fetchone()[0], 2000)
+                self.write_pair(db)
+                release.set()
+                thread.join(5)
+                self.assertFalse(thread.is_alive())
+        self.assert_pair(1)
+
+
+class ColdProtocolRuntimeConsumption(unittest.TestCase):
+    """Actual cold adapter -> immutable audit -> runtime validate/CAS, all synthetic."""
+
+    def test_malformed_quiescence_keeps_structured_refusal(self):
+        for malformed in [None, [], True, 'not-an-object']:
+            with self.subTest(value=malformed), self.assertRaisesRegex(adapter.engine.Refusal, 'Expected JSON object'):
+                adapter.stopped_receipt({'quiescence': malformed}, None, None, adapter.Captures())
+
+    def test_committed_fence_consumption_and_exact_generation_two(self):
+        import pathlib
+        import tempfile
+        import time
+        cold_relative = 'scripts/maintenance/adopt_stopped_coordinator_context.py'
+        cold_bytes = (ROOT / cold_relative).read_bytes().replace(b'\r\n', b'\n')
+        scratch = ROOT / 'tmp'
+        scratch.mkdir(exist_ok=True)
+        cold_source = tempfile.TemporaryDirectory(prefix='crm-cold-source-', dir=scratch)
+        self.addCleanup(cold_source.cleanup)
+        cold_path = Path(cold_source.name) / 'adopt_stopped_coordinator_context.py'
+        cold_path.write_bytes(cold_bytes)
+        self.assertEqual(cold_path.resolve().parents[2], ROOT.resolve())
+        cold_spec = importlib.util.spec_from_file_location('synthetic_cold_pipeline', cold_path)
+        cold = importlib.util.module_from_spec(cold_spec)
+        cold_spec.loader.exec_module(cold)
+        source = (ROOT / 'tests/unit/scripts/adopt-stopped-coordinator-context.test.ts').read_text()
+        setup = source.split('const setup = String.raw`', 1)[1].split('`;', 1)[0]
+        namespace = dict(m=cold, pathlib=pathlib, sys=sys, json=json, sqlite3=sqlite3,
+                         time=time, importlib=importlib)
+        output = io.StringIO()
+        with patch.object(sys, 'argv', ['synthetic', str(cold_path), str(ROOT), 'protocol-runtime']), contextlib.redirect_stdout(output):
+            exec(compile(setup, '<existing-synthetic-cold-fixture>', 'exec'), namespace)
+        cold_fixture = json.loads(output.getvalue())
+        cold_request = Path(cold_fixture['request'])
+        ctx = cold.validate(cold_request)
+        self.assertEqual(ctx['proposal']['tool_sha256'], hashlib.sha256(cold_bytes).hexdigest())
+        self.assertEqual(cold.blob(ctx['repository'], ctx['proposal']['tool_revision'], cold_relative), cold_bytes)
+        adopted = cold.recover(ctx, cold_request)
+        self.assertEqual(adopted['status'], 'locally-adopted-publication-pending')
+        with cold.database(ctx['store']) as db:
+            before_runtime = cold.snapshot(db)
+            succession = dict(db.execute('SELECT * FROM coordinator_successions').fetchone())
+        self.assertEqual(before_runtime['tables']['claims'][0]['generation'], 1)
+        self.assertEqual(before_runtime['tables']['claims'][0]['state'], 'blocked')
+
+        # The existing runtime fixture builder supplies its ordinary authorities.
+        # Point it at the genuinely cold-adopted disposable run and fixed identities.
+        harness = RuntimeAdmission(methodName='runTest')
+        harness.repo = ctx['integration']
+        harness.a = ctx['worker']
+        harness.c = ctx['integration_staging']
+        harness.root = ctx['private_root'] / 'runtime-evidence'
+        harness.root.mkdir()
+        harness.plan = ctx['after_plan']
+        harness.base = ctx['proposal']['main']
+        identity = {'base_branch': 'main', 'base_revision': harness.base,
+                    'branch': engine.branch(harness.a), 'repository': adapter.REPOSITORY,
+                    'run_id': adapter.RUN, 'story_key': adapter.STORY, 'worktree': str(harness.a)}
+        operation = {'pr_url': 'https://github.com/rthunborg/Kopplas/pull/127', 'base': 'main',
+                     'head': harness.base, 'evidence': 'SYNTHETIC same-PR publication after cold adoption',
+                     'story_key': adapter.STORY, 'repository': adapter.REPOSITORY, 'run_id': adapter.RUN,
+                     'pr_number': 127, 'operation': 'push', 'status': 'confirmed', 'branch': identity['branch']}
+        harness.state = {'story_key': adapter.STORY, 'story_source': 'stories', 'story_id': '35-6',
+                         'spec_folder': str(harness.a / adapter.FOLDER), 'branch': identity['branch'],
+                         'status': 'in-progress', 'parallel_run_id': adapter.RUN, 'merge_state': 'not-requested',
+                         'pr_number': 127, 'pr_url': operation['pr_url'],
+                         'publication_identity_json': json.dumps(identity), 'publication_operation_json': json.dumps(operation)}
+        harness.save_state()
+        engine.git(harness.a, 'add', adapter.OWN_STATE)
+        engine.git(harness.a, 'commit', '-m', 'Synthetic same-PR cold publication record')
+        harness.checkpoint_sha = engine.sha(harness.a, 'HEAD')
+        with patch.object(adapter, 'ROOT', harness.c.resolve()), patch.object(adapter, '__file__', str(harness.c / 'scripts/maintenance/admit_story35_6_runtime.py')):
+            harness.request = harness.make_request()
+            r = harness.request
+            r.update(owner=cold.NEW, worker=cold.WORKER)
+            writers = {'schema_version': 1, 'run_id': adapter.RUN, 'story_id': adapter.STORY,
+                       'worker': cold.WORKER, 'generation': 1, 'branch': identity['branch'],
+                       'worktree': str(harness.a), 'checkpoint_sha': harness.checkpoint_sha,
+                       'writers': [{'identity': cold.WORKER, 'role': 'worker', 'state': 'stopped',
+                                    'evidence_ref': 'SYNTHETIC current authorized-worker closure'}]}
+            ref = harness.raw('protocol-current-writers', writers)
+            r['quiescence'] = {'kind': 'committed-protocol-quarantine', 'coordinator': cold.NEW,
+                               'attested': True, 'complete_writer_inventory': True,
+                               'evidence_path': ref['path'], 'evidence_sha256': ref['sha256'],
+                               'cold_request_id': succession['request_id'], 'cold_request_digest': succession['request_hash']}
+            inventory = harness.inventory()
+            inventory['coordinator'] = cold.NEW
+            r['ownership_inventory'] = harness.raw('protocol-inventory', inventory)
+            observed = adapter.artifact_json(r['publication'], adapter.Captures())
+            observed['head_branch'] = identity['branch']
+            r['publication'] = harness.raw('protocol-publication', observed)
+            harness.refresh_review()
+            request_path = harness.file('protocol-runtime-request', r)
+            args = adapter.parser().parse_args(['--repo', str(harness.repo), '--run', adapter.RUN,
+                '--owner', cold.NEW, '--story', adapter.STORY, '--worker', cold.WORKER,
+                '--generation', '1', '--request', str(request_path)])
+            cold_cache = harness.c / 'scripts/maintenance/__pycache__'
+            self.assertFalse(cold_cache.exists())
+            with adapter.readonly_database(harness.repo) as db:
+                c = engine.get_claim(db, args, worker=True)
+                for key in ['cold_request_id', 'cold_request_digest']:
+                    altered = copy.deepcopy(r)
+                    altered['quiescence'][key] = 'forged'
+                    with self.subTest(key=key), self.assertRaises(adapter.engine.Refusal):
+                        adapter.committed_protocol_fence(db, harness.repo, altered, harness.plan, c, adapter.Captures())
+                # Assert forged stored proof/context is refused without modifying the append-only audit.
+                for field in ['response', 'context', 'after_snapshot']:
+                    corrupted = dict(succession)
+                    value = json.loads(corrupted[field])
+                    if field == 'response':
+                        value['protocol_fence']['scheduler_queue'] = 'EMPTY'
+                    elif field == 'context':
+                        value['new_state'] = base64.b64encode(b'corrupted state').decode()
+                    else:
+                        value['unrelated_state_digest'] = 'forged'
+                    corrupted[field] = engine.canonical(value)
+                    class ForgedView:
+                        def execute(self, sql, *values):
+                            return [corrupted] if sql == 'SELECT * FROM coordinator_successions' else db.execute(sql, *values)
+                    with self.subTest(field=field), self.assertRaises(adapter.engine.Refusal):
+                        adapter.committed_protocol_fence(ForgedView(), harness.repo, r, harness.plan, c, adapter.Captures())
+            self.assertFalse(cold_cache.exists())
+            native_bytes = ctx['store'].read_bytes()
+            checked = adapter.validate_only(args)
+            self.assertTrue(checked['validated'])
+            self.assertFalse(checked['admitted'])
+            self.assertEqual(ctx['store'].read_bytes(), native_bytes)
+            result = adapter.admit(args)
+            self.assertEqual(result['generation'], 2)
+            self.assertEqual(result['worker'], cold.WORKER)
+            self.assertEqual(adapter.admit(args)['replayed'], True)
+            self.assertFalse(cold_cache.exists())
+            with engine.database(harness.repo) as db:
+                self.assertEqual([dict(x) for x in db.execute('SELECT * FROM coordinator_successions')], [succession])
+                audit = json.loads(db.execute('SELECT stopped_writers FROM claim_amendments').fetchone()[0])
+                self.assertEqual(audit['quiescence']['protocol_fence']['scheduler_queue'], 'UNKNOWN')
+                # Current coordinator with a stale worker generation is isolated from old-owner refusal.
+                with self.assertRaisesRegex(engine.Refusal, 'Stale generation'):
+                    engine.get_claim(db, args, worker=True)
 
 
 if __name__ == '__main__':

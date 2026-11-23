@@ -40,11 +40,15 @@ for name in paths:
     if name in ['_bmad/custom/bmad-build.toml','_bmad/custom/bmad-build-auto.toml']:
         data=data.replace(b'"file:{project-root}/docs/process/bounded-workflow-operating-policy.md", ',b'')
     put(name,data)
+for name in ['scripts/maintenance/adopt_stopped_coordinator_context.py','scripts/maintenance/admit_story35_6_runtime.py']:
+    put(name,(src/name).read_bytes().replace(b'\r\n',b'\n'))
 folder='_bmad-output/specs/spec-design-35-6'; storyfile=folder+'/stories/35-6-crm-record-journeys.md'
 for name in [folder+'/SPEC.md',folder+'/stories.yaml',storyfile]: put(name,(src/name).read_bytes().replace(b'\r\n',b'\n'))
 owned=['src/app/(app)/customers/[customerId]/page.tsx','src/components/crm/CustomerDetail.tsx','src/components/crm/FacilityDialog.tsx','src/components/crm/ContactDialog.tsx','src/components/crm/ArchiveButton.tsx','tests/e2e/crm/customers.e2e.spec.ts',storyfile,m.STATE,'_bmad-output/auto-bmad/reports/'+m.STORY+'.md','_bmad-output/auto-bmad/delivery/'+m.STORY+'.json','_bmad-output/test-artifacts/atdd-checklist-35-6-crm-record-journeys.md']
 for name in owned:
     if name not in {storyfile,m.STATE}: put(name,b'synthetic original\n')
+if len(sys.argv)>3 and sys.argv[3]=='protocol-tree-size':
+    for index in range(7500): put('synthetic-tree/file-%05d.txt'%index,b'SYNTHETIC inert tree-size fixture\n')
 g('add','.'); g('commit','-m','Synthetic old workflow and exact frozen sources'); base=g('rev-parse','HEAD')
 assert h.workflow_version(repo)==m.BEFORE_PIN
 g('branch','codex/e35-6-coordinator',base); g('branch','codex/story-35-6-crm-record-journeys',base)
@@ -72,7 +76,7 @@ plan=dict(schema_version=2,story_source='stories',publication_strategy='story-pr
 with h.database(repo) as db:
     db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,NULL)',(m.RUN,plan['epic'],m.OLD,h.canonical(plan),h.digest(plan),'active'))
     db.execute('INSERT INTO claims VALUES(?,?,?,?,?,?,?,?,?,NULL,NULL,NULL,?)',(m.RUN,m.STORY,m.WORKER,1,'codex/story-35-6-crm-record-journeys',str(worker),base,123456.0,'blocked','synthetic original hold'))
-    db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?)',('unrelated-finalized','other-epic','other-owner','UNRELATED_SENTINEL_SECRET','unrelated','finalized',base))
+    if variant != 'protocol-runtime': db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,?)',('unrelated-finalized','other-epic','other-owner','UNRELATED_SENTINEL_SECRET','unrelated','finalized',base))
     if variant.startswith('audit-extra'):
         for statement in m.DDL: db.execute(statement)
         trigger='sqliteevil_audit_side_effect' if variant=='audit-extra-prefix' else 'unexpected_audit_side_effect'
@@ -84,6 +88,14 @@ def ev(name,value):
 now=time.time()-(901 if variant=='expired' else 0); request_id=str(uuid.uuid4()); toolhash=m.rawhash(pathlib.Path(m.__file__).read_bytes())
 after=plan.copy(); after.update(coordinator=m.NEW,base_sha=main,workflow_version=m.AFTER_PIN)
 proposal=dict(environment='fixture',private_root=str(private),repository=str(repo),integration=str(integration),worker=str(worker),integration_staging=str(stage),before_integration=base,before_worker=checkpoint,integration_candidate=main,worker_candidate=candidate,checkpoint=checkpoint,published_head=published,selected_checkpoint=checkpoint,old_base=base,main=main,expected_snapshot=m.digest(snap),after_plan_hash=m.digest(after),original_plan=ev('original-plan',plan),exclusion_register=ev('exclusions',dict(synthetic=True,tokens=57,domains=7,allocations=3,provenance='SYNTHETIC historical exclusions, never current clearance')),main_observation=ev('main-observation',dict(kind='current-provider-main-observation',repository=plan['repository'],branch='main',head=main,issued=now-1,expires=now+899,provenance='SYNTHETIC fixture; no provider queried')),custody=ev('custody',dict(kind='current-stopped-custody',run=m.RUN,story=m.STORY,coordinator=m.NEW,worker=m.WORKER,old_archived=True,writers_stopped=[m.OLD,m.NEW,m.WORKER,m.RETIRED_SUCCESSOR],no_reopen=True,delegates=[],queued_operations=[],native_operations=[],holds=['35.6','35.7','35.7-P-producer-reservation'],issued=now-1,expires=now+899,provenance='SYNTHETIC fixture; no live custody')),tool_sha256=toolhash,tool_revision=main,tool_author='synthetic-author')
+if variant.startswith('protocol'):
+    custody=m.evidence(proposal['custody'],private)
+    for key in ['writers_stopped','delegates','queued_operations','native_operations']: del custody[key]
+    custody.update(kind=m.PROTOCOL_KIND,scheduler_queue='UNKNOWN',entry_model='truthful-identity-before-phase-validation',before_workflow=m.BEFORE_PIN,after_workflow=m.AFTER_PIN,
+      boot_observation=ev('boot',dict(kind='host-boot-observation',boot_id='synthetic-boot',booted_at=now-20,observed_at=now,provenance='SYNTHETIC boot observation')),
+      writer_observations=[ev('observed-'+identity,dict(kind='current-protocol-writer-observation',identity=identity,scope='retained-crm-phase-work',observed_at=now,state='no-admitted-phase-or-command',pending_commands=[],relevant_handles=[],direct_entry='phase-validation-required',provenance='SYNTHETIC complete scoped current observation')) for identity in m.STOPPED_WRITERS],
+      historical_stops=[ev('stopped-'+identity,dict(kind='historical-writer-stop',identity=identity,scope='retained-crm-phase-work',completed=True,no_reopen=True,provenance='SYNTHETIC settled/no-reopen history')) for identity in m.STOPPED_WRITERS])
+    proposal['custody']=ev('protocol-custody',custody)
 proposal['qualification']=ev('qualification',dict(kind='qualified-cold-adoption-tool',environment='fixture',tool_sha256=toolhash,tool_revision=main,workflow=m.AFTER_PIN,model='gpt-6.1-sol',effort='high',status='passed',evidence='SYNTHETIC fixture, never live qualification',provenance='fixture'))
 q=dict(schema_version=1,request_id=request_id,proposal=proposal)
 d=m.digest(q); q['owner_approval']=dict(proposal_digest=d,evidence=ev('owner',dict(kind='trusted-channel-owner-decision',proposal_digest=d,decision='authorize-exact-cold-context-adoption',provenance='SYNTHETIC fixture; no owner authorization')))
@@ -667,4 +679,255 @@ test("V10: native pending, unknown, finalized, extra-author and nonnull-evidence
     const physical = disk(f.root), result = cli(f, "apply");
     assert.equal(result.code, 2); assert.equal(result.result.reason, reason); assert.deepEqual(disk(f.root), physical);
   });
+});
+
+
+test("protocol quarantine commits the conserved audit and leaves generation one blocked", { timeout: 240000 }, t => {
+  const f = fixture("protocol"), before = state(f);
+  const validated = cli(f); assert.equal(validated.code, 0, validated.stdout);
+  assert.deepEqual(state(f), before);
+  const result = cli(f, "apply"); assert.equal(result.code, 0, result.stdout);
+  assert.equal(result.result.protocol_fence_committed, true);
+  assert.ok(result.result.critical_section_ms >= 0 && result.result.critical_section_ms <= 30000);
+  t.diagnostic(`SYNTHETIC native writer section ${result.result.critical_section_ms} ms`);
+  const after = state(f); assert.equal(after.audit.length, 1);
+  const proof = JSON.parse(after.audit[0].response).protocol_fence;
+  assert.equal(proof.kind, "committed-protocol-quarantine");
+  assert.equal(proof.scheduler_queue, "UNKNOWN");
+  assert.equal(proof.generation, 1); assert.equal(proof.state, "blocked");
+  assert.notEqual(proof.before_workflow, proof.after_workflow);
+  assert.deepEqual(after.snapshot, py(`ctx=m.validate(pathlib.Path(sys.argv[2]))
+print(m.canonical(m.expected_after(m.decode(m.read(m.journal_path(ctx)))['before_snapshot'],ctx)))`, [f.request]));
+  assert.equal(after.snapshot.unrelated_state_digest, before.snapshot.unrelated_state_digest);
+  const replay = cli(f, "recover"); assert.equal(replay.code, 0, replay.stdout);
+  assert.equal(replay.result.replayed, true);
+  assert.notEqual(native(f, "status", old).status, 0);
+});
+
+
+test("protocol earlier actual heartbeat and its delayed reply both invalidate the checked before-image", { timeout: 300000 }, async t => {
+  await t.test("earlier committed heartbeat", () => {
+    const f = fixture("protocol"), before = state(f);
+    assert.equal(native(f, "heartbeat", old, ["--story", story, "--worker", worker, "--generation", "1"]).status, 0);
+    const changed = state(f); assert.notDeepEqual(changed, before);
+    const result = cli(f, "apply"); assert.equal(result.code, 2, result.stdout);
+    assert.equal(result.result.reason, "NATIVE_SNAPSHOT_CHANGED");
+    assert.deepEqual(state(f), changed);
+    assert.equal(py(`print(m.canonical([m.head(pathlib.Path(sys.argv[2])),m.head(pathlib.Path(sys.argv[3]))]))`, [f.integration, f.worker])[0], f.base);
+  });
+  await t.test("committed native heartbeat whose reply is still withheld", async () => {
+    const f = fixture("protocol");
+    const code = importTool + String.raw`
+spec=importlib.util.spec_from_file_location('heartbeat',pathlib.Path(sys.argv[2])/m.HELPER); h=importlib.util.module_from_spec(spec); spec.loader.exec_module(h)
+original=h.database
+@contextlib.contextmanager
+def gated(repo):
+ with original(repo) as db: yield db
+ print('HEARTBEAT_COMMITTED_REPLY_WITHHELD',flush=True)
+ if sys.stdin.readline().strip()!='release': raise RuntimeError('synthetic reply gate closed')
+h.database=gated
+sys.argv=[sys.argv[0],'--repo',sys.argv[2],'heartbeat','--run',m.RUN,'--owner',m.OLD,'--story',m.STORY,'--worker',m.WORKER,'--generation','1']
+sys.exit(h.main())
+`;
+    const child = spawn(python, ["-B", "-c", code, tool, f.integration], { cwd: sourceRoot, stdio: ["pipe", "pipe", "pipe"] });
+    let stdout = "", stderr = "";
+    const ended = new Promise<number | null>(yes => child.once("close", yes));
+    try {
+      await new Promise<void>((yes, no) => {
+        const timer = setTimeout(() => no(new Error(stdout + stderr)), 180000);
+        child.stdout.on("data", data => { stdout += data; if (stdout.includes("HEARTBEAT_COMMITTED_REPLY_WITHHELD")) { clearTimeout(timer); yes(); } });
+        child.stderr.on("data", data => { stderr += data; });
+        child.once("exit", () => { if (!stdout.includes("HEARTBEAT_COMMITTED_REPLY_WITHHELD")) { clearTimeout(timer); no(new Error(stdout + stderr)); } });
+      });
+      const changed = state(f), result = cli(f, "apply");
+      assert.equal(result.code, 2, result.stdout); assert.equal(result.result.reason, "NATIVE_SNAPSHOT_CHANGED");
+      assert.deepEqual(state(f), changed);
+      child.stdin.end("release\n"); assert.equal(await ended, 0, stdout + stderr);
+    } finally { if (child.exitCode === null) child.kill("SIGKILL"); }
+  });
+});
+
+test("protocol actual heartbeat between validation and writer reservation refuses before Git or journal movement", { timeout: 240000 }, () => {
+  const f = fixture("protocol");
+  const result = py(String.raw`
+ctx=m.validate(pathlib.Path(sys.argv[2]))
+m.command([sys.executable,'-B',str(ctx['integration']/m.HELPER),'--repo',str(ctx['integration']),
+ 'heartbeat','--run',m.RUN,'--owner',m.OLD,'--story',m.STORY,'--worker',m.WORKER,'--generation','1'])
+with m.database(ctx['store']) as db: changed=m.snapshot(db)
+try: m.recover(ctx,pathlib.Path(sys.argv[2])); reason='unexpected-success'
+except m.Refusal as error: reason=str(error)
+with m.database(ctx['store']) as db: conserved=m.snapshot(db)==changed
+print(m.canonical(dict(reason=reason,heartbeat_changed=changed!=ctx['snapshot'],conserved=conserved,
+ journal_exists=m.journal_path(ctx).exists(),heads_unchanged=[m.head(ctx[key]) for key in ['integration','worker']]==
+ [ctx['proposal'][key] for key in ['before_integration','before_worker']])))
+`, [f.request]);
+  assert.deepEqual(result, { reason: "NATIVE_SNAPSHOT_CHANGED", heartbeat_changed: true,
+    conserved: true, journal_exists: false, heads_unchanged: true });
+});
+
+test("protocol later native old-owner entry cannot validate across the held transition", { timeout: 240000 }, async () => {
+  const f = fixture("protocol");
+  const code = importTool + String.raw`
+release_path=pathlib.Path(sys.argv[2]).parent/'release-writer'
+original=m.append
+def gated(j,d,phase):
+ original(j,d,phase)
+ if phase=='integration-intent':
+  print('PROTOCOL_WRITER_HELD',flush=True)
+  until=time.monotonic()+10
+  while not release_path.exists():
+   if time.monotonic()>=until: raise RuntimeError('synthetic release expired')
+   time.sleep(.01)
+m.append=gated
+sys.argv=[sys.argv[0],'apply','--request',sys.argv[2]]
+sys.exit(m.main())
+`;
+  const child = spawn(python, ["-B", "-c", code, tool, f.request], { cwd: sourceRoot, stdio: ["ignore", "pipe", "pipe"] });
+  let stdout = "", stderr = "";
+  const ended = new Promise<number | null>(yes => child.once("close", yes));
+  let late: ReturnType<typeof spawn> | undefined;
+  try {
+    await new Promise<void>((yes, no) => {
+      const timer = setTimeout(() => no(new Error(stdout + stderr)), 180000);
+      child.stdout.on("data", data => { stdout += data; if (stdout.includes("PROTOCOL_WRITER_HELD")) { clearTimeout(timer); yes(); } });
+      child.stderr.on("data", data => { stderr += data; });
+      child.once("exit", () => { if (!stdout.includes("PROTOCOL_WRITER_HELD")) { clearTimeout(timer); no(new Error(stdout + stderr)); } });
+    });
+    late = spawn(python, ["-B", resolve(f.integration, ".agents/skills/auto-bmad/scripts/parallel_run.py"),
+      "--repo", f.integration, "heartbeat", "--run", "e35-6-20261102", "--owner", old,
+      "--story", story, "--worker", worker, "--generation", "1"], { cwd: sourceRoot, stdio: ["ignore", "pipe", "pipe"] });
+    let lateOutput = "";
+    late.stdout!.on("data", data => lateOutput += data);
+    late.stderr!.on("data", data => lateOutput += data);
+    const lateEnded = new Promise<number | null>(yes => late!.once("close", yes));
+    await new Promise(yes => setTimeout(yes, 100));
+    assert.equal(late.exitCode, null, lateOutput);
+    writeFileSync(resolve(f.private, "release-writer"), "release");
+    assert.equal(await ended, 0, stdout + stderr);
+    assert.notEqual(await lateEnded, 0, lateOutput);
+    assert.match(lateOutput, /Exact coordinator owner required/);
+    assert.equal(state(f).audit.length, 1);
+  } finally {
+    if (child.exitCode === null) child.kill("SIGKILL");
+    if (late?.exitCode === null) late.kill("SIGKILL");
+  }
+});
+
+for (const phase of ["prepared", "integration-intent", "integration-done", "worker-intent", "worker-done", "native-intent", "native-done"]) {
+  test(`protocol process interruption after ${phase} resumes only the same journalled state`, { timeout: 240000 }, async () => {
+    const f = fixture("protocol"), before = state(f);
+    await crash(f, phase);
+    const current = state(f);
+    assert.equal(current.snapshot.unrelated_state_digest, before.snapshot.unrelated_state_digest);
+    const result = cli(f, "recover"); assert.equal(result.code, 0, result.stdout);
+    assert.equal(state(f).audit.length, 1);
+  });
+}
+
+test("protocol malformed custody union keeps the existing structured refusal", () => {
+  const result = py(String.raw`
+ctx=dict(request={},proposal=dict(tool_sha256=m.rawhash(m.read(pathlib.Path(m.__file__))),
+ original_plan='plan',exclusion_register='exclusions',custody='bad',environment='fixture'),private_root=pathlib.Path.cwd())
+results=[]; original=m.evidence
+try:
+ for malformed in [None,[],True,'not-an-object']:
+  m.evidence=lambda ref,private: dict(synthetic=True,tokens=57,domains=7,allocations=3) if ref=='exclusions' else (malformed if ref=='bad' else {})
+  try: m.authorities(ctx); results.append('unexpected-success')
+  except m.Refusal as error: results.append(str(error))
+finally: m.evidence=original
+print(m.canonical(results))
+`);
+  assert.deepEqual(result, ["REQUEST_SHAPE", "REQUEST_SHAPE", "REQUEST_SHAPE", "REQUEST_SHAPE"]);
+});
+
+test("protocol common budget refuses an overrun even without a final child command", () => {
+  const result = py(String.raw`
+ctx=dict(protocol_eligibility=dict(expires=time.time()+900)); ticks=iter([100.0,100.0,131.0]); original=m.time.monotonic
+m.time.monotonic=lambda:next(ticks)
+try:
+ try:
+  with m.protocol_budget(ctx): pass
+  reason='unexpected-success'
+ except m.Refusal as error: reason=str(error)
+finally: m.time.monotonic=original
+print(m.canonical(dict(reason=reason,elapsed=ctx['_protocol_critical_ms'],deadline_reset=m.CRITICAL_DEADLINE.get() is None)))
+`);
+  assert.deepEqual(result, { reason: "CRITICAL_SECTION_OVERRUN", elapsed: 31000, deadline_reset: true });
+});
+
+test("protocol monotonic deadline rolls back native changes and preserves the staged recovery", { timeout: 240000 }, () => {
+  const f = fixture("protocol"), before = state(f);
+  const result = py(String.raw`
+ctx=m.validate(pathlib.Path(sys.argv[2])); original=m.append
+
+def expire(j,d,phase):
+ original(j,d,phase)
+ if phase=='worker-done': m.CRITICAL_DEADLINE.set(time.monotonic()-1)
+m.append=expire
+try: m.recover(ctx,pathlib.Path(sys.argv[2])); result='unexpected-success'
+except m.Refusal as error: result=str(error)
+print(m.canonical(result))
+`, [f.request]);
+  assert.equal(result, "CRITICAL_SECTION_EXPIRED");
+  assert.deepEqual(state(f), before);
+  const oldEntry = native(f, "status", old);
+  assert.notEqual(oldEntry.status, 0); assert.match(oldEntry.stdout, /Integration workflow changed since run admission/);
+  const recovered = cli(f, "recover"); assert.equal(recovered.code, 0, recovered.stdout);
+  assert.ok(recovered.result.critical_section_ms <= 30000);
+});
+
+test("protocol evidence refuses unknown entry, queue claims and omitted writers without a transition", { timeout: 240000 }, () => {
+  const f = fixture("protocol");
+  const result = py(String.raw`
+ctx=m.validate(pathlib.Path(sys.argv[2])); original=m.evidence(ctx['proposal']['custody'],ctx['private_root'])
+results={}
+for name,patch in [('queue',dict(scheduler_queue='EMPTY')),('entry',dict(entry_model='raw-shell')),
+                   ('missing',dict(writer_observations=original['writer_observations'][:-1])),
+                   ('no-pin-transition',dict(before_workflow=m.AFTER_PIN))]:
+ custody=dict(original,**patch)
+ try: m.protocol_eligibility(ctx,custody,time.time()); results[name]='unexpected-success'
+ except m.Refusal as error: results[name]=str(error)
+print(m.canonical(results))
+`, [f.request]);
+  assert.deepEqual(result, { entry: "PROTOCOL_ENTRY_MODEL", missing: "PROTOCOL_WRITER_INVENTORY", "no-pin-transition": "PROTOCOL_ENTRY_MODEL", queue: "PROTOCOL_ENTRY_MODEL" });
+  assert.equal(state(f).audit.length, 0);
+});
+
+
+for (const sql of ["UPDATE runs SET owner", "UPDATE claims SET base_sha", "INSERT INTO coordinator_successions"]) {
+  test(`protocol interruption after SQL ${sql} conserves the native before-image`, { timeout: 240000 }, async () => {
+    const f = fixture("protocol"), before = state(f);
+    await crash(f, sql, "sql");
+    assert.deepEqual(state(f), before);
+    const result = cli(f, "recover"); assert.equal(result.code, 0, result.stdout);
+    assert.equal(state(f).audit.length, 1);
+  });
+}
+
+test("protocol response loss after commit before native-done replays one immutable audit", { timeout: 240000 }, async () => {
+  const f = fixture("protocol");
+  await crash(f, "native-done", "beforephase");
+  const committed = state(f); assert.equal(committed.audit.length, 1);
+  const result = cli(f, "recover"); assert.equal(result.code, 0, result.stdout);
+  assert.equal(result.result.replayed, true);
+  assert.deepEqual(state(f), committed);
+});
+
+test("protocol explicit hot-journal recovery retains the same request and transaction boundaries", { timeout: 300000 }, async () => {
+  const f = fixture("protocol"), before = state(f);
+  await crash(f, "INSERT INTO coordinator_successions", "spill-sql");
+  const diskBefore = disk(f.root);
+  const validation = cli(f); assert.equal(validation.code, 2);
+  assert.deepEqual(disk(f.root), diskBefore);
+  const recovered = cli(f, "recover"); assert.equal(recovered.code, 0, recovered.stdout);
+  const settled = state(f);
+  assert.equal(settled.audit.length, 1);
+  assert.equal(settled.snapshot.unrelated_state_digest, before.snapshot.unrelated_state_digest);
+});
+
+test("protocol synthetic 7500-file filler qualifies the native writer budget", { timeout: 360000 }, t => {
+  const f = fixture("protocol-tree-size");
+  const result = cli(f, "apply"); assert.equal(result.code, 0, result.stdout);
+  assert.ok(result.result.critical_section_ms >= 0 && result.result.critical_section_ms <= 30000);
+  t.diagnostic(`SYNTHETIC inert 7500-file filler, native writer section ${result.result.critical_section_ms} ms; not a live-checkout timing certificate`);
 });

@@ -485,6 +485,116 @@ raw sources. Rollback and historical replay semantics are unchanged. No proof
 overrides live/reopened ownership or custody, and no operational packet, live
 admission, tooling CI or product/runtime success follows from synthetic tests.
 
+#### Exact E15 customer-page transition with runtime admission
+
+An optional `e15_customer_page` request member adds one closed allocation case
+to the existing admission transaction. Omitting it preserves the original
+request/proof behavior. This case is limited to the approved CRM run, original
+coordinator and worker, generation 1, original plan/base, PR127 published
+checkpoint and its exact local bookkeeping child, and
+`src/app/(app)/customers/[customerId]/page.tsx`. The signed historical holder
+proposal, consent, independent High review and Root counterrecord are bound by
+their exact raw SHA256 values in `E15_CASE`. Private authority content and file
+locations are not public fixtures. The existing runtime authorization remains
+separate: page consent grants neither the runtime path nor its domain.
+
+`e15_customer_page` contains exactly five raw artifact references: `consent`,
+`proposal`, `holder_review`, `counterrecord`, and `method_confirmation`, plus
+the existing `current_custody` proof object described below.
+The adapter verifies the named holder/recipient, original finalized producer
+run/owner/plan hash and reservation index, the actual 368-path reservation, the
+exact 367-path remainder, preserved order/fields/seven domains, and the distinct
+holder/CRM page Git blobs. It requires the original CRM base in both plan and
+claim and the exact parent relationship of the bookkeeping child. The active
+claim's original branch/worktree pair is pinned by a canonical digest, retaining
+exact identity without publishing a private checkout path. The active
+CRM pre-plan must have no E15 declaration or customer-page reservation; an
+already-declared or drifted variant requires fresh authority, not reuse.
+The holder's Role-candidate blob checkpoint and the generic reservation
+checkout's current HEAD are distinct facts. The former is a pinned preimage;
+the latter is checked against its actual registered worktree by the existing
+inventory predicate and bound through the holder-confirmed request digest.
+
+The holder must confirm the **qualified implemented method**, after independent
+review and protected-main tooling qualification. `method_confirmation` has
+exactly these fields (no inferred consent from the earlier in-principle review):
+
+| Fields | Exact binding |
+| --- | --- |
+| `schema_version`, `holder`, `coordinator`, `worker`, `run_id`, `story_id`, `path` | Integer 1 and the named case identities/path. |
+| `reviewed_tooling_sha`, `tool_sha256`, `qualified_main_sha` | Current qualified tooling revision, normalized adapter source hash and qualified main. |
+| `expected_plan_hash`, `expected_generation`, `checkpoint_sha`, `publication_head_sha` | Exact original CRM plan, integer 1, bookkeeping checkpoint and published PR127 checkpoint. |
+| `claim_identity_digest` | Canonical digest of the exact original claim's `branch` and `worktree`. |
+| `current_custody_digest` | Canonical digest of the exact `current_custody` proof object and raw attestation reference. |
+| `source_plan_hash`, `original_reservation_digest`, `remainder_reservation_digest` | Exact finalized source and approved 368-to-367 allocation. |
+| `authorities` | Exact four-name raw authority hash map from `E15_CASE`. |
+| `request_facts_digest` | Canonical digest of the whole request excluding only `admission_review` and `e15_customer_page`; binds current ownership, source, writer and provider evidence without a self-reference. The outer independent admission review binds this confirmation and every authority reference. |
+| `confirmed`, `holder_standstill`, `complete_relevant_writer_inventory`, `relevant_writers_stopped`, `explicit_handback_required` | All literal `true`; actual scoped holder confirmation and current complete relevant writer evidence are required. |
+| `scheduler_queue` | Literal `UNKNOWN`; no scheduler completeness is manufactured. |
+| `review` | Existing independent Sol High review at exact tooling SHA, separate from tooling author, holder, coordinator and stopped writers. |
+
+These are captured operational attestations, not cryptographic authentication
+of their authors. Root and the independent reviewer must verify the actual
+holder's issuance, current complete writer/custody evidence and reference
+authenticity. A field claiming to be the holder does not replace that evidence.
+
+The opted-in `current_custody` uses the existing proof/attestation/host-observation
+schemas in the current-custody alternative below, without classifying E15 closed.
+`customer_page_custody_entry` derives its subject, original full scope and captured
+generic/diagnostic anchor identities. All original 368 rights remain in actual
+allocation coverage and raw record unions. Only the final prospective conflict
+comparison substitutes the verified 367 remainder for that one allocation.
+Every other claim and reservation retains its actual scope. Both stopped
+diagnostic copies also require no queued/background work in these observations.
+
+The complete raw actor, host assignment, execution and external-writer evidence,
+known-actor coverage and independent-review rules remain enforced. The existing
+`custody_window` requires a current interval of at most 900 seconds and a quiet
+interval attestation through CAS; it runs initially and again after all final
+source/readback checks immediately before CAS. Expiry, uncertainty or changed
+raw evidence refuses. This current scoped proof is distinct from the retained
+committed no-reopen protocol proof; neither establishes an empty or inspected
+legacy scheduler queue, which remains `UNKNOWN`.
+
+Current inventory must still contain the full original 368 reservation and
+both exact retained stopped diagnostic-copy reservation shapes. Supplying the
+prospective 367 as current inventory refuses. Both copies must remain `stopped`,
+with exactly their five story markers
+and epic marker declared and present in their actual captured worktrees.
+Existing full ownership checks still validate all registered worktrees, current HEADs, native claims, shared
+paths, domains, source independence and anchors; neither generic E15 nor its
+diagnostic copies may be classified closed to evade those checks. Only the
+verified original reservation is evaluated against its prospective remainder
+for the staged allocation. Every other reservation is checked unchanged.
+
+Run the ordinary read-only `--validate-only` command first. A successful dry run
+performs no schema initialization or writes and is an observation, not admission.
+Apply repeats the complete predicate and immediate source/inventory/writer
+rechecks under the native `BEGIN IMMEDIATE` transaction. One CRM plan CAS appends
+the exact remainder to existing legacy reservations, while one claim CAS advances
+the blocked generation to 2 and the existing immutable amendment audit records
+the original source row, before/after allocation, method confirmation, full
+inventory and captured raw evidence. The finalized historical plan/reservation,
+unrelated declarations and other store rows are untouched. No native helper or
+workflow-pin change is needed: after commit its ordinary reservation checks
+consume the effective 367 paths and all seven domains in the stored active plan.
+
+Refusal, drift, competing owners or a failed CAS/audit write rolls the entire
+transaction back, retaining generation 1 and original rights. A request-token
+replay returns only its exact original immutable response; changed payloads
+refuse. Replay neither revalidates current custody nor grants another transition.
+
+Before source continuation, Root reads back the effective reservation, original
+finalized row/hash, generation/base/assignment, full inventory and immutable
+audit against the reviewed request, then obtains the unchanged native helper
+heartbeat and explicit worker acknowledgement. The worker receives the amended
+allocation only after those readbacks; no direct store edits or live-plan-file
+rewrites substitute for this route. Existing source/assertion compatibility,
+runtime/browser obligations and separate release gates remain. Holder reentry
+requires explicit fresh coordinator handback, including after completion or
+expiry. Local synthetic transaction tests do not establish protected-main CI,
+actual holder method confirmation, live activation or product readiness.
+
 #### Exact E15 current-custody alternative
 
 `legacy-main-current-custody` is a separate strict discriminator for only the
@@ -1124,3 +1234,37 @@ first failures and all35.6/35.7/live-adoption/merge/deployment holds. Actual nor
 first-clean gates may earn exact-source evidence, never cause, historical repair
 or automatic hold release. Current E09 mode/jobs/observer, ci.yml, cold four,
 tests/readers/helpers, dependencies and PRIMARY remain unchanged.
+
+## CRM committed protocol-quarantine proof
+
+The fixed-run private recovery amendment of 2026-11-20 adds an executable custody
+alternative only for `e35-6-20261102` / `spec-design-35-6-35-6`. Its development and
+qualification authority preserves the separate live cold-transfer decision.
+
+For runtime admission, `quiescence.kind = committed-protocol-quarantine` adds
+`cold_request_id` and `cold_request_digest` to the existing coordinator,
+attestation, complete-writer inventory and evidence fields. The referenced
+writer evidence retains the ordinary strict shape and actual current worker /
+delegate closure. It cannot describe OLD or the retired successor as stopped
+based on an unavailable scheduler record.
+
+The runtime validator reads the single append-only `coordinator_successions` row
+from the same transaction used for its own admission. It binds the exact cold
+request/digest, original and resulting native snapshots, original plan and
+byte-preserving publication-state reassessment, qualified cold-tool source,
+committed protocol receipt and unchanged current generation-1 assignment.
+Missing, altered, wrong-run or stale proof refuses. Source and external evidence
+are captured and independently rechecked immediately before compare-and-swap.
+The ordinary stopped-quiescence request shape remains available.
+
+A valid cold proof carries the scheduler state `UNKNOWN` and the distinct old /
+installed workflow pins. The current owner/pin checks reject the retired old
+assignment. The subsequent runtime transition increments the existing claim to
+generation 2 through its existing audit and request/review gates. Old generation
+validation continues through the generic helper. The proof neither releases
+unrelated reservations nor resolves their ownership classifications.
+
+Current boot, named actor/command/handle observations and independently reviewed
+exact requests are real execution inputs. Synthetic adapter fixtures establish
+code behavior only. Runtime tests, visual acceptance, PR qualification and
+release validation retain their recorded requirements.
