@@ -537,18 +537,86 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         }
         const before = await navigationEntry(page);
         if (!before.entry) {
+          if (direction === "forward") throw new Error("Forward witness requires the actual native Navigation API/currentEntry");
           info.annotations.push({ type: "compatibility-gap", description: `${direction}: native Navigation API/currentEntry absent; AC5 history proof UNPASSED` });
           test.skip(true, "Compatibility gap: no actual Navigation API entry; this is not passing history proof");
         }
+        if (direction === "forward" && !destinationEntry.entry) throw new Error("Forward witness requires its original link-created native target entry");
         const draft = `Osparad ${direction} Åsby`;
         await titleForm(page).getByLabel("Titel", { exact: true }).fill(draft);
         const writes = observeWrites(page);
         // Passive observation only. No fake API, sentinel, compensating popstate,
         // pushState/replaceState, or interception added by the test.
         let traversalPhase: "cancel" | "accept" = "cancel";
-        const events: { phase: string; cancelable: boolean; defaultPrevented: boolean; sameDocument: boolean; url: string; type: string }[] = [];
+        type EntryFacts = { key: string; id: string; url: string; index: number };
+        const events: { phase: string; cancelable: boolean; defaultPrevented: boolean; sameDocument: boolean; url: string; type: string;
+          key?: string; index?: number; currentEntry?: EntryFacts | null; topLevel?: boolean; entryCount?: number; length?: number }[] = [];
         const forwardStates: { phase: string; state: unknown }[] = [];
         const forwardPrompts: { phase: string; type: string }[] = [];
+        const forwardSettlements: { phase: string; result: unknown }[] = [];
+        const expectedCurrent = Object.freeze({ ...before.entry! });
+        const expectedForward = Object.freeze({ ...destinationEntry.entry! });
+        const forwardCounts = direction === "forward" ? await page.evaluate(() => {
+          const navigation = (window as Window & { navigation?: { entries?: () => unknown[] } }).navigation;
+          if (!navigation?.entries) throw new Error("Forward witness requires native Navigation.entries");
+          return { topLevel: window === window.top, entryCount: navigation.entries().length, length: history.length };
+        }) : null;
+        const markerSelector = '[data-testid="calculation-editor"] [data-editor-dirty], [data-testid="calculation-editor"] [data-editor-protected]';
+        const forwardMarkers = direction === "forward" ? await page.locator(markerSelector).evaluateAll(elements => elements.map(element => ({
+          testId: element.getAttribute("data-testid"), dirty: element.getAttribute("data-editor-dirty"), protected: element.getAttribute("data-editor-protected"),
+        }))) : null;
+        // Only the existing adjacent top-level Forward slot qualifies; no new entry/state or fallback.
+        const invokeForward = async (phase: "cancel" | "accept") => {
+          const result = await page.evaluate(async ({ current, target, counts }) => {
+            type Entry = { key: string; id: string; url: string; index: number };
+            const navigation = (window as Window & { navigation?: {
+              currentEntry?: Entry; entries?: () => Entry[];
+              traverseTo?: (key: string) => { committed: Promise<Entry>; finished: Promise<Entry> };
+            } }).navigation;
+            if (!navigation?.currentEntry || !navigation.entries || !navigation.traverseTo || !counts) {
+              throw new Error("Forward witness requires actual native entries/currentEntry/traverseTo");
+            }
+            const facts = (entry: Entry) => ({ key: entry.key, id: entry.id, url: entry.url, index: entry.index });
+            const entries = navigation.entries();
+            const adjacent = entries[navigation.currentEntry.index + 1];
+            const invocation = { topLevel: window === window.top, entryCount: entries.length, length: history.length,
+              currentEntry: facts(navigation.currentEntry), adjacent: adjacent ? facts(adjacent) : null };
+            if (!invocation.topLevel || invocation.topLevel !== counts.topLevel || invocation.entryCount !== counts.entryCount ||
+              invocation.length !== counts.length || location.href !== current.url ||
+              invocation.currentEntry.key !== current.key || invocation.currentEntry.id !== current.id ||
+              invocation.currentEntry.url !== current.url || invocation.currentEntry.index !== current.index || !adjacent ||
+              adjacent.key !== target.key || adjacent.url !== target.url || adjacent.index !== target.index || target.index !== current.index + 1) {
+              throw new Error("Forward witness lost its frozen current identity/counts or exact adjacent target key/URL/index");
+            }
+            const fulfilled = (entry: Entry) => ({ status: "fulfilled" as const, ...facts(entry) });
+            const rejected = (error: unknown) => ({ status: "rejected" as const,
+              domException: error instanceof DOMException, name: error instanceof Error ? error.name : typeof error });
+            const native = navigation.traverseTo(target.key);
+            // Attach BOTH rejection handlers immediately, before awaiting either native promise.
+            const committed = native.committed.then(fulfilled, rejected);
+            const finished = native.finished.then(fulfilled, rejected);
+            const outcomes = await Promise.all([committed, finished]);
+            return { invocation, committed: outcomes[0]!, finished: outcomes[1]! };
+          }, { current: expectedCurrent, target: expectedForward, counts: forwardCounts });
+          forwardSettlements.push({ phase, result });
+          return result;
+        };
+        const assertForwardEvent = (phase: "cancel" | "accept", defaultPrevented: boolean) => {
+          const actual = events.filter(event => event.phase === phase);
+          expect(actual, "Each Forward phase needs exactly one actual native event").toHaveLength(1);
+          expect(actual[0]).toEqual({ phase, cancelable: true, defaultPrevented, sameDocument: true, type: "traverse",
+            key: expectedForward.key, index: expectedForward.index, url: expectedForward.url,
+            currentEntry: expectedCurrent, ...forwardCounts });
+        };
+        const assertForwardCounts = async (retainMarkers = false) => {
+          expect(await page.evaluate(() => {
+            const navigation = (window as Window & { navigation?: { entries?: () => unknown[] } }).navigation;
+            return { topLevel: window === window.top, entryCount: navigation?.entries?.().length ?? null, length: history.length };
+          })).toEqual(forwardCounts);
+          if (retainMarkers) expect(await page.locator(markerSelector).evaluateAll(elements => elements.map(element => ({
+            testId: element.getAttribute("data-testid"), dirty: element.getAttribute("data-editor-dirty"), protected: element.getAttribute("data-editor-protected"),
+          })))).toEqual(forwardMarkers);
+        };
         const promptListener = (dialog: Dialog) => {
           if (direction === "forward" && forwardPrompts.length < 8) forwardPrompts.push({ phase: traversalPhase, type: dialog.type() });
         };
@@ -563,7 +631,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
             const entryFacts = (entry: Entry) => ({ key: entry.key, id: entry.id, url: entry.url, index: entry.index });
             const entries = navigation?.entries?.();
             const markers = Array.from(document.querySelectorAll('[data-testid="calculation-editor"] [data-editor-dirty], [data-testid="calculation-editor"] [data-editor-protected]'));
-            return { url: location.href, length: history.length,
+            return { topLevel: window === window.top, url: location.href, length: history.length,
               currentEntry: navigation?.currentEntry ? entryFacts(navigation.currentEntry) : null,
               entriesAvailable: entries !== undefined, entryCount: entries?.length ?? null,
               entries: entries?.slice(0, 32).map(entryFacts) ?? [], entriesTruncated: (entries?.length ?? 0) > 32,
@@ -579,27 +647,34 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         };
         page.on("console", consoleListener);
         page.on("dialog", promptListener);
-        const observation = await page.evaluateHandle(() => {
-          const navigation = (window as Window & { navigation?: EventTarget }).navigation;
+        const observation = await page.evaluateHandle(forward => {
+          type Entry = { key: string; id: string; url: string; index: number };
+          const navigation = (window as Window & { navigation?: EventTarget & { currentEntry?: Entry; entries?: () => Entry[] } }).navigation;
           const listener = (event: Event) => {
-            const movement = event as Event & { navigationType: string; destination: { sameDocument: boolean; url: string } };
+            const movement = event as Event & { navigationType: string; destination: { sameDocument: boolean; url: string; key: string; index: number } };
             // The passive observation reaches Node even when an unsupported
             // cross-document traverse destroys this document's JS handles.
-            if (movement.navigationType === "traverse") console.debug("E35_8_TRAVERSAL_OBSERVED " + JSON.stringify({ cancelable: event.cancelable, defaultPrevented: event.defaultPrevented,
-              sameDocument: movement.destination.sameDocument, url: movement.destination.url, type: movement.navigationType }));
+            if (forward || movement.navigationType === "traverse") {
+              const current = navigation?.currentEntry;
+              console.debug("E35_8_TRAVERSAL_OBSERVED " + JSON.stringify({ cancelable: event.cancelable, defaultPrevented: event.defaultPrevented,
+                sameDocument: movement.destination.sameDocument, url: movement.destination.url, type: movement.navigationType,
+                ...(forward ? { key: movement.destination.key, index: movement.destination.index, topLevel: window === window.top,
+                  entryCount: navigation?.entries?.().length, length: history.length,
+                  currentEntry: current ? { key: current.key, id: current.id, url: current.url, index: current.index } : null } : {}) }));
+            }
           };
           navigation?.addEventListener("navigate", listener);
           return { remove: () => navigation?.removeEventListener("navigate", listener) };
-        });
+        }, direction === "forward");
         const prompts = nativePrompts(page, "dismiss");
         try {
           await recordForwardState("before-cancel");
           try {
-            await page.evaluate(value => value === "back" ? history.back() : history.forward(), direction);
+            const cancelled = direction === "forward" ? await invokeForward("cancel") : await page.evaluate(() => history.back());
             await expect.poll(() => events.length).toBe(1);
             const actual = events[0]!;
             await info.attach(`history-${direction}-observed.json`, { body: Buffer.from(JSON.stringify({ before, actual })), contentType: "application/json" });
-            if (!actual.cancelable || !actual.sameDocument) {
+            if (direction === "back" && (!actual.cancelable || !actual.sameDocument)) {
               info.annotations.push({ type: "compatibility-gap", description: `${direction}: actual traverse cancelable=${actual.cancelable}, sameDocument=${actual.sameDocument}; AC5 history proof UNPASSED` });
               test.skip(true, "Compatibility gap: actual traversal is not cancellable same-document navigation");
             }
@@ -609,11 +684,19 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
             await renderedFrame(page);
             expect(prompts.seen.map(dialog => dialog.type)).toEqual(["confirm"]);
             expect(actual.defaultPrevented, "The real traverse must be cancelled before its history commit").toBe(true);
+            if (direction === "forward") {
+              expect(cancelled!.committed).toEqual({ status: "rejected", domException: true, name: "AbortError" });
+              expect(cancelled!.finished).toEqual({ status: "rejected", domException: true, name: "AbortError" });
+              assertForwardEvent("cancel", true);
+              expect(prompts.seen[0]?.message).toMatch(/osparade ändringar.*obekräftat resultat/i);
+              await assertForwardCounts(true);
+            }
             expect(await navigationEntry(page)).toEqual(before);
             expect(writes.writes).toHaveLength(0);
             await capture(page, info, "calculation-header", `${direction}-cancelled`, calculation.url.split("/").at(-1)!, titleForm(page), async () => {
               await assertUnsent(page, calculation, draft);
               expect(await navigationEntry(page)).toEqual(before);
+              if (direction === "forward") await assertForwardCounts(true);
               expect(writes.writes).toHaveLength(0);
             });
           } finally { prompts.stop(); }
@@ -621,7 +704,19 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           traversalPhase = "accept";
           const acceptedWrites = observeWrites(page);
           try {
-            await confirmOnce(page, "accept", () => page.evaluate(value => value === "back" ? history.back() : history.forward(), direction));
+            await confirmOnce(page, "accept", async () => {
+              if (direction === "back") return page.evaluate(() => history.back());
+              const accepted = await invokeForward("accept");
+              for (const outcome of [accepted.committed, accepted.finished]) {
+                expect(outcome).toMatchObject({ status: "fulfilled", key: expectedForward.key, url: expectedForward.url, index: expectedForward.index });
+              }
+            });
+            if (direction === "forward") {
+              await expect.poll(() => events.filter(event => event.phase === "accept").length).toBe(1);
+              assertForwardEvent("accept", false);
+              expect(events).toHaveLength(2);
+              await assertForwardCounts();
+            }
             await recordForwardState("after-accept");
             await expect(page).toHaveURL(/\/calculations$/);
             await expect(page.getByRole("heading", { level: 1, name: "Kalkyler", exact: true })).toBeVisible();
@@ -634,7 +729,13 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
               expect({ key: after.entry?.key, url: after.entry?.url, index: after.entry?.index }).toEqual({
                 key: destinationEntry.entry?.key, url: destinationEntry.entry?.url, index: destinationEntry.entry?.index,
               });
-            } else { expect(after.entry).toEqual(destinationEntry.entry); }
+            } else {
+              await info.attach("history-forward-accepted.json", { body: Buffer.from(JSON.stringify({ destinationEntry, after, settlements: forwardSettlements })), contentType: "application/json" });
+              // As with accepted Back, IDs are evidence; stable key/URL/index remain mandatory.
+              expect({ key: after.entry?.key, url: after.entry?.url, index: after.entry?.index }).toEqual({
+                key: expectedForward.key, url: expectedForward.url, index: expectedForward.index,
+              });
+            }
             expect(acceptedWrites.writes).toHaveLength(0);
             await page.getByTestId("calculation-list-row").filter({ hasText: calculation.title }).click();
             await expect(titleForm(page).getByLabel("Titel", { exact: true })).toHaveValue(calculation.title);
@@ -645,7 +746,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
             await recordForwardState("failure");
             await info.attach("history-forward-diagnostic.json", { body: Buffer.from(JSON.stringify({
               before, destinationEntry, states: forwardStates, eventCount: events.length,
-              events: events.slice(0, 8), prompts: forwardPrompts,
+              events: events.slice(0, 8), prompts: forwardPrompts, settlements: forwardSettlements,
               failure: String(error).slice(0, 400), observationOnly: true,
             })), contentType: "application/json" });
           }
