@@ -70,7 +70,7 @@ function crmReadError() {
   return Response.json({ code: "TEST_UNAVAILABLE", message: "Synthetic customer-list fault" }, { status: 400 });
 }
 
-async function waitForCrmRelease(control, digest, currentControl) {
+async function waitForCrmRelease(control, digest, currentControl, held, released) {
   const attemptFile = `${crmControlFile}.${control.runId}.${control.attemptId}`;
   const releaseFile = `${attemptFile}.release`;
   try {
@@ -88,6 +88,7 @@ async function waitForCrmRelease(control, digest, currentControl) {
       fs.unlinkSync(temporary);
     }
     const deadline = performance.now() + crmHoldMs;
+    held(receipt, contents);
     while (performance.now() < deadline) {
       const current = currentControl();
       if (current?.attemptId !== control.attemptId || current.actorUserId !== control.actorUserId
@@ -95,8 +96,10 @@ async function waitForCrmRelease(control, digest, currentControl) {
         || !current.requestMarkers?.some(value => markerDigest(value) === digest)) return false;
       if (fs.existsSync(releaseFile)) {
         const release = readPrivateJson(releaseFile);
-        return Object.keys(release).length === 7 && release.released === true
+        const valid = Object.keys(release).length === 7 && release.released === true
           && Object.keys(receipt).every(key => release[key] === receipt[key]);
+        if (valid) released();
+        return valid;
       }
       await new Promise(resolve => setTimeout(resolve, 25));
     }
@@ -150,6 +153,7 @@ if (process.env.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP === "true") {
   fs.renameSync(temporary, handshakeFile);
   const http = require("node:http");
   const { AsyncLocalStorage } = require("node:async_hooks");
+  const { errorMonitor } = require("node:events");
   const contexts = new AsyncLocalStorage();
   const registry = new Map();
   let registryAttempt;
@@ -159,6 +163,7 @@ if (process.env.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP === "true") {
     const identity = control?.outcome === "hold"
       ? `${control.attemptId}:${control.actorUserId}:${control.expiresAt}` : undefined;
     if (identity !== registryAttempt || identity === undefined) {
+      for (const context of registry.values()) detachResponse(context);
       registry.clear();
       registryAttempt = identity;
     }
@@ -173,6 +178,87 @@ if (process.env.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP === "true") {
     };
     registryTimer = setTimeout(check, 25);
     registryTimer?.unref?.();
+  }
+  function detachResponse(context) {
+    const state = context.response;
+    state.active = false;
+    for (const [event, listener] of state.listeners) {
+      try { state.target.off(event, listener); } catch { /* Never replace an application failure. */ }
+    }
+    state.listeners.length = 0;
+    state.target = undefined;
+    state.owner = undefined;
+    state.slots = {};
+  }
+  function responseCurrent(context) {
+    const control = currentCrmControl(), state = context.response;
+    const heldFile = `${crmControlFile}.${runId}.${context.attemptId}.held`;
+    const stat = fs.lstatSync(heldFile);
+    return state.active && state.owner && registry.get(context.digest) === context
+      && control?.attemptId === context.attemptId && control.actorUserId === context.actorUserId
+      && control.expiresAt === context.expiresAt && control.outcome === "hold"
+      && control.requestMarkers.some(value => markerDigest(value) === context.digest)
+      && stat.isFile() && !stat.isSymbolicLink() && stat.size <= 2048
+      && fs.readFileSync(heldFile, "utf8") === state.heldContents;
+  }
+  function removeResponseReceipt(file, contents) {
+    if (!fs.existsSync(file)) return;
+    const stat = fs.lstatSync(file);
+    if (!stat.isFile() || stat.isSymbolicLink() || stat.size !== Buffer.byteLength(contents)
+      || fs.readFileSync(file, "utf8") !== contents) throw new Error("Response receipt ownership changed");
+    fs.unlinkSync(file);
+  }
+  function publishResponse(context, kind) {
+    const state = context.response;
+    if (!state.active || !state.owner || !state.slots[kind] || state.attempted.has(kind)) return;
+    state.attempted.add(kind);
+    let temporary, contents, created = false;
+    try {
+      if (!responseCurrent(context)) return;
+      contents = JSON.stringify({ ...state.owner, event: kind, ...state.slots[kind] });
+      if (Buffer.byteLength(contents) > 2048) return;
+      const file = `${crmControlFile}.${runId}.${context.attemptId}.response-${kind.toLowerCase()}`;
+      temporary = `${file}.${process.pid}.tmp`;
+      fs.writeFileSync(temporary, contents, { flag: "wx", mode: 0o600 });
+      created = true;
+      fs.linkSync(temporary, file);
+      let current = false;
+      try { current = !!responseCurrent(context); } catch { /* Failed ownership recheck is not credit. */ }
+      if (!current) removeResponseReceipt(file, contents);
+    } catch { /* Diagnostic publication must never alter listener/error behavior. */ }
+    finally {
+      if (created) {
+        try { removeResponseReceipt(temporary, contents); } catch { /* Retain changed/unknown files. */ }
+      }
+    }
+  }
+  function observeResponse(context, kind) {
+    try {
+      const state = context.response;
+      if (!state.active || state.slots[kind]) return;
+      let writableFinished = "UNKNOWN";
+      try {
+        const value = state.target.writableFinished;
+        if (typeof value === "boolean") writableFinished = value ? "YES" : "NO";
+      } catch { /* An unavailable public flag stays UNKNOWN. */ }
+      if (kind === "FINISH") state.finishSeen = true;
+      state.slots[kind] = Object.freeze({
+        phase: !state.owner ? "PRE_HOLD_CLAIM" : state.released ? "AFTER_RELEASE_OBSERVED" : "HELD_BEFORE_RELEASE_OBSERVED",
+        finishSeen: state.finishSeen, writableFinished,
+      });
+      publishResponse(context, kind);
+    } catch { /* Synchronous, argument-discarding observers cannot escape. */ }
+  }
+  function attachResponse(context, target) {
+    const state = context.response;
+    try {
+      state.target = target;
+      for (const [event, kind] of [["finish", "FINISH"], ["close", "CLOSE"], [errorMonitor, "ERROR"]]) {
+        const listener = () => { observeResponse(context, kind); };
+        state.listeners.push([event, listener]);
+        target.once(event, listener);
+      }
+    } catch { detachResponse(context); }
   }
   function incomingContext(request) {
     const values = [];
@@ -197,7 +283,10 @@ if (process.env.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP === "true") {
     const digest = markerDigest(marker);
     if (registry.has(digest) || registry.size >= 8) return undefined;
     const context = Object.freeze({ digest, attemptId: control.attemptId, actorUserId: control.actorUserId,
-      expiresAt: control.expiresAt, claimed: { value: false } });
+      expiresAt: control.expiresAt, claimed: { value: false }, response: {
+        active: true, target: undefined, owner: undefined, heldContents: undefined,
+        listeners: [], slots: {}, attempted: new Set(), finishSeen: false, released: false,
+      } });
     registry.set(digest, context);
     watchRegistry();
     return context;
@@ -211,6 +300,7 @@ if (process.env.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP === "true") {
         let context;
         try { context = incomingContext(listenerArgs[0]); }
         catch { /* Invalid correlation must not change listener return/error behavior. */ }
+        if (context) attachResponse(context, listenerArgs[1]);
         return contexts.run(context, () => Reflect.apply(listener, this, listenerArgs));
       };
     }
@@ -236,7 +326,14 @@ if (process.env.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP === "true") {
             || context.expiresAt !== control.expiresAt
             || !control.requestMarkers?.some(value => markerDigest(value) === context.digest)) return crmReadError();
           context.claimed.value = true;
-          if (!(await waitForCrmRelease(control, context.digest, currentCrmControl))) return crmReadError();
+          if (!(await waitForCrmRelease(control, context.digest, currentCrmControl, (owner, contents) => {
+            try {
+              if (!context.response.active) return;
+              context.response.owner = owner;
+              context.response.heldContents = contents;
+              for (const kind of ["FINISH", "CLOSE", "ERROR"]) publishResponse(context, kind);
+            } catch { /* No observer outcome can change the held read. */ }
+          }, () => { context.response.released = true; }))) return crmReadError();
         }
       }
       // The legacy detail reader selects channel/reference too; root admission passes.

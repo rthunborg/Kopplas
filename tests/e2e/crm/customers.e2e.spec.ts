@@ -204,6 +204,8 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
     const requestMarkerHeader = "x-kopplas-e2e-request-marker";
     const markerRequests = new Map<string, BrowserRequest>();
     const requestMarkers: string[] = [];
+    const responseKinds = ["FINISH", "CLOSE", "ERROR"] as const;
+    const responseReceipts = new Map<string, string>();
     let clickStarted = false;
     let refuseBinding: (() => void) | undefined;
     let released = false;
@@ -230,7 +232,7 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
           ? "unobserved" : events.get(selectedPublicRequest) ? "after-release" : "before-release";
         retryObservations.push({ phase, selectedPublicRequest: selectedPublicRequest !== undefined,
           response: responseObservation, responseRelease, responseCategory, finished: finishedObservation,
-          requestFinished: terminal(retryCompletions), requestFailed: terminal(retryFailures), confirmed: retryConfirmed });
+          requestFinished: terminal(retryCompletions), requestFailed: terminal(retryFailures), confirmed: retryConfirmed, serverResponse: responseLifecycle() });
       } catch { /* An unavailable diagnostic must not alter the test outcome. */ }
     }
     function isPrefetch(request: BrowserRequest) {
@@ -334,6 +336,42 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       const request = markerRequests.get(digest);
       if (!request) throw new Error("CRM retry public-request binding refused");
       return request;
+    }
+    function readResponseReceipt(attempt: HeldAttempt, kind: typeof responseKinds[number]) {
+      const file = `${control}.${runId}.${attempt.attemptId}.response-${kind.toLowerCase()}`;
+      const contents = readControl(file);
+      if (contents === undefined) return undefined;
+      let receipt, owner;
+      try { receipt = JSON.parse(contents); owner = JSON.parse(attempt.heldContents ?? ""); }
+      catch { throw new Error("CRM response receipt ownership refused"); }
+      const previous = responseReceipts.get(file);
+      if (!receipt || !owner || Object.keys(receipt).length !== 10 || Object.keys(owner).length !== 6
+        || !Object.keys(owner).every(key => receipt[key] === owner[key]) || receipt.event !== kind
+        || !["PRE_HOLD_CLAIM", "HELD_BEFORE_RELEASE_OBSERVED", "AFTER_RELEASE_OBSERVED", "UNKNOWN"].includes(receipt.phase)
+        || typeof receipt.finishSeen !== "boolean" || !["YES", "NO", "UNKNOWN"].includes(receipt.writableFinished)
+        || previous !== undefined && previous !== contents) throw new Error("CRM response receipt ownership refused");
+      responseReceipts.set(file, contents);
+      return {file, contents, phase: receipt.phase as string, finishSeen: receipt.finishSeen as boolean, writableFinished: receipt.writableFinished as string};
+    }
+    function responseLifecycle() {
+      const result = {coverage: "UNAVAILABLE", finish: "UNOBSERVED", finishWritableFinished: "UNKNOWN",
+        close: "UNOBSERVED", closePhase: "UNOBSERVED", closeWritableFinished: "UNKNOWN", responseError: "UNOBSERVED",
+        errorPhase: "UNOBSERVED", errorFinishSeen: "UNKNOWN", errorWritableFinished: "UNKNOWN", handlerRejection: "UNKNOWN"};
+      try {
+        if (!hold?.heldContents) return result;
+        for (const kind of responseKinds) {
+          const receipt = readResponseReceipt(hold, kind);
+          if (!receipt) continue;
+          result.coverage = "BOUND";
+          if (kind === "FINISH") { result.finish = receipt.phase; result.finishWritableFinished = receipt.writableFinished; }
+          if (kind === "CLOSE") { result.close = receipt.finishSeen ? "AFTER_FINISH" : "BEFORE_FINISH"; result.closePhase = receipt.phase; result.closeWritableFinished = receipt.writableFinished; }
+          if (kind === "ERROR") { result.responseError = "OBSERVED"; result.errorPhase = receipt.phase; result.errorFinishSeen = receipt.finishSeen ? "YES" : "NO"; result.errorWritableFinished = receipt.writableFinished; }
+        }
+        return result;
+      } catch {
+        return {coverage: "UNAVAILABLE", finish: "UNKNOWN", finishWritableFinished: "UNKNOWN", close: "UNKNOWN", closePhase: "UNKNOWN",
+          closeWritableFinished: "UNKNOWN", responseError: "UNKNOWN", errorPhase: "UNKNOWN", errorFinishSeen: "UNKNOWN", errorWritableFinished: "UNKNOWN", handlerRejection: "UNKNOWN"};
+      }
     }
     function releaseHold(attempt: HeldAttempt) {
       if (readControl(control) !== ownedControl || readHeldBinding(attempt) === undefined) throw new Error("CRM retry read was not held");
@@ -472,6 +510,12 @@ test.describe("CRM tenant-admin UX (Story 3.2 E2E)", () => {
       // Start fixture cleanup even if page closure stalls or fails.
       const fixtureCleanup = cleanup("clean fixture", () => cleanupFixture(isolated));
       await settlement;
+      for (const kind of responseKinds) await cleanup(`remove response ${kind}`, () => {
+        if (!hold) return;
+        const receipt = readResponseReceipt(hold, kind);
+        if (receipt) removeOwned(receipt.file, receipt.contents);
+      });
+      responseReceipts.clear();
       await cleanup("remove held marker", () => { if (hold?.heldContents !== undefined) removeOwned(hold.held, hold.heldContents); });
       await cleanup("remove release marker", () => { if (hold?.releaseContents !== undefined) removeOwned(hold.release, hold.releaseContents); });
       await cleanup("remove prefetch route", async () => {

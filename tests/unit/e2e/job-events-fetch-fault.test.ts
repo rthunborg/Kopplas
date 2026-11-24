@@ -8,6 +8,7 @@ import ts from "typescript";
 import { AsyncLocalStorage } from "node:async_hooks";
 import { createHash } from "node:crypto";
 import { createRequire } from "node:module";
+import { EventEmitter, errorMonitor } from "node:events";
 
 const preload = readFileSync("tests/support/job-events-fetch-fault.cjs", "utf8");
 const origin = "http://127.0.0.1:54321";
@@ -34,6 +35,8 @@ const exactQuery = new URLSearchParams({
   archived_at: "is.null", order: "display_name.asc",
 });
 const customerUrl = `${origin}/rest/v1/customers?${exactQuery}`;
+function serverResponse() {return Object.assign(new EventEmitter(), {writableFinished: false});}
+const responseFile = (kind: string) => `${controlFile}.${runId}.${attemptId}.response-${kind.toLowerCase()}`;
 
 function token(overrides: Record<string, unknown> = {}) {
   const claims = { role: "authenticated", aud: "authenticated", sub: actorUserId, session_id: sessionId, exp: 200, ...overrides };
@@ -48,6 +51,7 @@ function harness() {
   const timers: Array<() => void> = [];
   let elapsed = 0;
   let wallElapsed = 0;
+  let linkHook: ((from: string, to: string) => void) | undefined;
   const startupEnv = {
     E2E_JOB_EVENTS_FETCH_FAULT_STARTUP: "true",
     E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID: String(ownerPid),
@@ -80,6 +84,7 @@ function harness() {
     linkSync(from: string, to: string) {
       if (files.has(to)) throw new Error("EEXIST");
       files.set(to, files.get(from)!);
+      linkHook?.(from, to);
     },
     unlinkSync(file: string) {if (!files.delete(file)) throw new Error("ENOENT");},
   };
@@ -113,6 +118,7 @@ function harness() {
         if (name === "node:path") return path;
         if (name === "node:http") return http;
         if (name === "node:async_hooks") return {AsyncLocalStorage};
+        if (name === "node:events") return {errorMonitor};
         assert.equal(name, "node:crypto");
         return { randomUUID: () => runId, createHash };
       },
@@ -129,17 +135,18 @@ function harness() {
   return {
     ...server, files, directories, probes, calls, load, startupEnv,
     incoming<T>(listener: (request: {headers: Record<string, string>; rawHeaders: string[]}, response: unknown) => T,
-      marker: string | null = requestMarker, overrides: Record<string, unknown> = {}): T {
+      marker: string | null = requestMarker, overrides: Record<string, unknown> = {}, response: unknown = serverResponse()): T {
       const request = {method: "GET", url: "/customers", headers: {host: "127.0.0.1:3100", ...(marker === null ? {} : {[markerHeader]: marker})},
         rawHeaders: ["Host", "127.0.0.1:3100", ...(marker === null ? [] : ["X-Kopplas-E2e-Request-Marker", marker])], ...overrides};
       const created = server.http.createServer(listener);
-      return Reflect.apply(created.listener, created, [request, {original: "response"}]) as T;
+      return Reflect.apply(created.listener, created, [request, response]) as T;
     },
     releaseHeld(file = held) {
       const receipt = JSON.parse(files.get(file)!.contents);
       files.set(file.replace(/\.held$/, ".release"), {contents: JSON.stringify({...receipt, released: true})});
     },
     timerCount: () => timers.length,
+    onLink(hook: (from: string, to: string) => void) {linkHook = hook;},
     arm(overrides: Record<string, unknown> = {}) {
       files.set(controlFile, { contents: JSON.stringify({
         schemaVersion: 1, runId, attemptId, actorUserId, outcome: "error", expiresAt: now + 60_000, ...overrides,
@@ -621,4 +628,218 @@ test("actual P0 private cleanup refuses changed files and release ownership, and
   contents = undefined; api.removeOwned("synthetic", "owned"); assert.equal(removed.length, 1);
   assert.throws(() => api.releaseHold({}), /not held/);
   assert.throws(() => api.publish(controlFile, "x".repeat(2049)), /size refused/);
+});
+
+test("winning response publishes separate immutable finish/close facts with guarded flags and server release phase", async () => {
+  const h = harness(), response = serverResponse(); h.arm({outcome: "hold"});
+  const pending = h.incoming(() => h.fetch(customerUrl, authenticated), requestMarker, {}, response);
+  const heldContents = h.files.get(held)!.contents;
+  assert.equal(h.files.has(responseFile("FINISH")), false);
+  response.writableFinished = true; response.emit("finish");
+  const finish = JSON.parse(h.files.get(responseFile("FINISH"))!.contents);
+  assert.equal(finish.event, "FINISH"); assert.equal(finish.phase, "HELD_BEFORE_RELEASE_OBSERVED");
+  assert.equal(finish.finishSeen, true); assert.equal(finish.writableFinished, "YES");
+  h.releaseHeld(); h.tick(25); assert.equal((await pending).status, 200);
+  response.emit("close");
+  const close = JSON.parse(h.files.get(responseFile("CLOSE"))!.contents);
+  assert.equal(close.phase, "AFTER_RELEASE_OBSERVED"); assert.equal(close.finishSeen, true);
+  assert.equal(close.writableFinished, "YES");
+  const before = h.files.get(responseFile("FINISH"))!.contents;
+  response.emit("finish"); assert.ok(h.files.get(responseFile("FINISH"))!.contents === before);
+  assert.ok(h.files.get(held)!.contents === heldContents);
+  for (const kind of ["FINISH", "CLOSE"]) {
+    const contents = h.files.get(responseFile(kind))!.contents;
+    assert.equal(Object.keys(JSON.parse(contents)).length, 10); assert.ok(Buffer.byteLength(contents) <= 2048);
+    assert.equal(contents.includes(requestMarker), false); assert.equal(contents.includes(markerHeader), false);
+  }
+});
+
+test("close-before-finish and an error-monitor event remain distinct; unhandled errors and listener promise identity are preserved", async () => {
+  const h = harness(), response = serverResponse(), original = new Error("synthetic original"); h.arm({outcome: "hold"});
+  const pending = h.incoming(() => h.fetch(customerUrl, authenticated), requestMarker, {}, response);
+  assert.equal(response.listenerCount("error"), 0);
+  response.emit("close");
+  assert.throws(() => response.emit("error", original), failure => failure === original);
+  const close = JSON.parse(h.files.get(responseFile("CLOSE"))!.contents), error = JSON.parse(h.files.get(responseFile("ERROR"))!.contents);
+  assert.equal(close.finishSeen, false); assert.equal(close.writableFinished, "NO");
+  assert.equal(error.event, "ERROR"); assert.equal(error.finishSeen, false);
+  response.writableFinished = true; response.emit("finish");
+  assert.equal(JSON.parse(h.files.get(responseFile("CLOSE"))!.contents).finishSeen, false);
+  h.releaseHeld(); h.tick(25); assert.equal((await pending).status, 200);
+  const direct = harness(); direct.arm({outcome: "hold"});
+  assert.throws(() => direct.incoming(() => {throw original;}), failure => failure === original);
+  const promised = Promise.reject(original); promised.catch(() => {});
+  const promiseHarness = harness(); promiseHarness.arm({outcome: "hold"});
+  assert.equal(promiseHarness.incoming(() => promised), promised);
+  await assert.rejects(promised, failure => failure === original);
+});
+
+test("early events are retained before the held claim without publishing another interleaved response", async () => {
+  const h = harness(), a = deferred(), b = deferred(), entered = deferred(), firstResponse = serverResponse(), secondResponse = serverResponse();
+  h.arm({outcome: "hold", requestMarkers: [requestMarker, secondMarker]});
+  const first = h.incoming(async () => {firstResponse.emit("close"); await a.promise; return h.fetch(customerUrl, authenticated);}, requestMarker, {}, firstResponse);
+  const second = h.incoming(async () => {
+    secondResponse.writableFinished = true; secondResponse.emit("finish");
+    assert.equal(h.files.has(responseFile("FINISH")), false);
+    await b.promise; const pending = h.fetch(customerUrl, authenticated); entered.resolve(); return pending;
+  }, secondMarker, {}, secondResponse);
+  b.resolve(); await entered.promise;
+  const receipt = JSON.parse(h.files.get(responseFile("FINISH"))!.contents);
+  assert.equal(receipt.phase, "PRE_HOLD_CLAIM"); assert.ok(receipt.markerDigest === digest(secondMarker));
+  a.resolve(); assert.equal((await first).status, 400);
+  assert.equal(h.files.has(responseFile("CLOSE")), false);
+  h.releaseHeld(); h.tick(25); assert.equal((await second).status, 200);
+});
+
+test("observer error arguments are unread, unavailable writable flags remain UNKNOWN, and attachment/removal failures cannot escape", async () => {
+  const h = harness(), response = serverResponse(); h.arm({outcome: "hold"}); let reads = 0;
+  Object.defineProperty(response, "writableFinished", {get() {throw new Error("synthetic flag unavailable");}});
+  const error = Object.defineProperties(new Error("synthetic"), Object.fromEntries(["message", "name", "stack", "cause", "code"].map(key => [key, {get() {reads++; throw new Error("unread");}}])));
+  response.on("error", () => {});
+  const pending = h.incoming(() => h.fetch(customerUrl, authenticated), requestMarker, {}, response);
+  response.emit("error", error); response.emit("close");
+  assert.equal(reads, 0); assert.equal(JSON.parse(h.files.get(responseFile("ERROR"))!.contents).writableFinished, "UNKNOWN");
+  h.releaseHeld(); h.tick(25); assert.equal((await pending).status, 200);
+  for (const target of [{once() {throw new Error("synthetic attach refusal");}, off() {throw new Error("synthetic removal refusal");}}, null]) {
+    const isolated = harness(); isolated.arm({outcome: "hold"}); const original = {};
+    assert.equal(isolated.incoming(() => original, requestMarker, {}, target), original);
+  }
+});
+
+test("disarm and expiry detach only owned listeners and make retained late callbacks inert", async () => {
+  for (const disarm of [true, false]) {
+    const h = harness(), response = serverResponse(); h.arm({outcome: "hold", expiresAt: now + 25});
+    const unrelated = () => {}; response.on("close", unrelated);
+    const pending = h.incoming(() => h.fetch(customerUrl, authenticated), requestMarker, {}, response);
+    const late = response.listeners("finish")[0];
+    if (disarm) h.files.delete(controlFile);
+    h.tick(25); assert.equal((await pending).status, 400);
+    assert.equal(response.listenerCount("finish"), 0); assert.equal(response.listenerCount(errorMonitor), 0);
+    assert.equal(response.listenerCount("close"), 1); assert.equal(response.listeners("close")[0], unrelated);
+    late(); response.emit("close");
+    assert.equal(h.files.has(responseFile("FINISH")), false); assert.equal(h.files.has(responseFile("CLOSE")), false);
+  }
+});
+
+test("publication rechecks disarm after atomic link and removes only its own late immutable record", async () => {
+  for (const replaced of [false, true]) {
+    const h = harness(), response = serverResponse(); h.arm({outcome: "hold"});
+    const pending = h.incoming(() => h.fetch(customerUrl, authenticated), requestMarker, {}, response);
+    h.onLink((_from, to) => {
+      if (to !== responseFile("FINISH")) return;
+      h.files.delete(controlFile);
+      if (replaced) h.files.set(to, {contents: "foreign record retained"});
+    });
+    response.writableFinished = true; response.emit("finish");
+    assert.equal(h.files.has(responseFile("FINISH")), replaced);
+    if (replaced) assert.ok(h.files.get(responseFile("FINISH"))!.contents === "foreign record retained");
+    assert.equal([...h.files.keys()].some(file => file.endsWith(".response-finish.2345.tmp")), false);
+    h.tick(25); assert.equal((await pending).status, 400);
+    response.emit("close"); assert.equal(h.files.has(responseFile("CLOSE")), false);
+  }
+});
+
+test("observer publication time cannot extend the original monotonic hold deadline", async () => {
+  const h = harness(), response = serverResponse(); h.arm({outcome: "hold"});
+  h.onLink((_from, to) => {if (to === responseFile("FINISH")) h.tick(15_000, 0);});
+  const pending = h.incoming(() => {
+    response.emit("finish");
+    return h.fetch(customerUrl, authenticated);
+  }, requestMarker, {}, response);
+  assert.equal((await pending).status, 400); assert.equal(h.calls.length, 0);
+});
+
+test("failed owned-listener removal still leaves retained callbacks inert after disarm", async () => {
+  const h = harness(), response = serverResponse(); h.arm({outcome: "hold"});
+  const pending = h.incoming(() => h.fetch(customerUrl, authenticated), requestMarker, {}, response);
+  const late = response.listeners("finish")[0];
+  response.off = () => {throw new Error("synthetic removal unavailable");};
+  h.files.delete(controlFile); h.tick(25); assert.equal((await pending).status, 400);
+  late(); response.emit("close");
+  assert.equal(h.files.has(responseFile("FINISH")), false); assert.equal(h.files.has(responseFile("CLOSE")), false);
+});
+
+test("existing foreign receipts and publication failures never replace contents or change real forwarding", async () => {
+  for (const fault of ["foreign", "failure"] as const) {
+    const h = harness(), response = serverResponse(); h.arm({outcome: "hold"});
+    const pending = h.incoming(() => h.fetch(customerUrl, authenticated), requestMarker, {}, response);
+    if (fault === "foreign") h.files.set(responseFile("FINISH"), {contents: "foreign"});
+    else h.onLink((_from, to) => {if (to === responseFile("FINISH")) throw new Error("synthetic publication failure");});
+    assert.doesNotThrow(() => response.emit("finish"));
+    if (fault === "foreign") assert.ok(h.files.get(responseFile("FINISH"))!.contents === "foreign");
+    h.releaseHeld(); h.tick(25); assert.equal((await pending).status, 200); assert.equal(h.calls.length, 1);
+  }
+});
+
+function responseReader() {
+  const owner = {schemaVersion: 1, runId, attemptId, actorUserId, expiresAt: now + 60_000, markerDigest: digest(requestMarker)};
+  const hold = {attemptId, heldContents: JSON.stringify(owner)}, files = new Map<string, {contents: string; symlink?: boolean}>();
+  const responseReceipts = new Map<string, string>(), removed: string[] = [];
+  const scope = {
+    control: controlFile, runId, hold, responseKinds: ["FINISH", "CLOSE", "ERROR"], responseReceipts,
+    lstatSync: (file: string) => {
+      const record = files.get(file); if (!record) throw Object.assign(new Error("absent"), {code: "ENOENT"});
+      return {isFile: () => true, isSymbolicLink: () => record.symlink === true, size: Buffer.byteLength(record.contents)};
+    },
+    readFileSync: (file: string) => files.get(file)!.contents,
+    rmSync: (file: string) => {removed.push(file); files.delete(file);},
+  };
+  const api = browserFunctions(["readControl", "readResponseReceipt", "responseLifecycle", "removeOwned"], scope);
+  const record = (kind: string, patch: Record<string, unknown> = {}) => {
+    const contents = JSON.stringify({...owner, event: kind, phase: "AFTER_RELEASE_OBSERVED", finishSeen: kind === "FINISH", writableFinished: "YES", ...patch});
+    files.set(responseFile(kind), {contents}); return contents;
+  };
+  return {api, scope, files, owner, hold, record, removed};
+}
+
+test("actual P0 lifecycle reader exports only enum facts, ordering and guarded flags; absent evidence and handler rejection remain unknown", () => {
+  const r = responseReader();
+  let observed = r.api.responseLifecycle() as Record<string, unknown>;
+  assert.equal(observed.coverage, "UNAVAILABLE"); assert.equal(observed.finish, "UNOBSERVED");
+  r.record("FINISH"); r.record("CLOSE", {finishSeen: false, writableFinished: "UNKNOWN"}); r.record("ERROR");
+  observed = r.api.responseLifecycle() as Record<string, unknown>;
+  assert.equal(observed.coverage, "BOUND"); assert.equal(observed.finish, "AFTER_RELEASE_OBSERVED");
+  assert.equal(observed.close, "BEFORE_FINISH"); assert.equal(observed.closeWritableFinished, "UNKNOWN");
+  assert.equal(observed.closePhase, "AFTER_RELEASE_OBSERVED");
+  assert.equal(observed.responseError, "OBSERVED"); assert.equal(observed.handlerRejection, "UNKNOWN");
+  assert.equal(observed.errorFinishSeen, "NO"); assert.equal(observed.errorWritableFinished, "YES");
+  const output = JSON.stringify(observed);
+  for (const forbidden of [requestMarker, digest(requestMarker), actorUserId, runId, attemptId, "markerDigest", "headers", "contents", "body"])
+    assert.equal(output.includes(forbidden), false);
+});
+
+test("actual P0 lifecycle reader refuses wrong owners, schema, altered immutable bytes, symlinks and oversized data without raw exceptions", () => {
+  for (const patch of [{attemptId: sessionId}, {runId: sessionId}, {markerDigest: digest(secondMarker)}, {event: "ERROR"}, {extra: true},
+    {phase: "foreign"}, {finishSeen: "false"}, {writableFinished: "foreign"}]) {
+    const r = responseReader(); r.record("FINISH", patch);
+    assert.equal((r.api.responseLifecycle() as {coverage: string}).coverage, "UNAVAILABLE");
+    assert.throws(() => r.api.readResponseReceipt(r.hold, "FINISH"), /ownership refused/);
+    assert.equal(r.removed.length, 0);
+  }
+  const r = responseReader(); r.record("FINISH"); r.api.responseLifecycle();
+  r.files.set(responseFile("FINISH"), {contents: r.files.get(responseFile("FINISH"))!.contents + " "});
+  assert.equal((r.api.responseLifecycle() as {finish: string}).finish, "UNKNOWN");
+  for (const record of [{contents: "malformed"}, {contents: "x".repeat(2049)}, {contents: "{}", symlink: true}]) {
+    r.files.set(responseFile("FINISH"), record);
+    assert.equal((r.api.responseLifecycle() as {coverage: string}).coverage, "UNAVAILABLE");
+  }
+});
+
+test("actual P0 per-kind cleanup attempts every immutable receipt, preserves foreign files and keeps its primary failure policy", async () => {
+  const r = responseReader(); r.record("FINISH", {runId: sessionId}); r.record("CLOSE"); r.record("ERROR");
+  const cleanupErrors: unknown[] = [], failedSteps: string[] = [];
+  const names = ["readControl", "readResponseReceipt", "removeOwned", "cleanup"];
+  const functions = names.map(name => findNode(node => ts.isFunctionDeclaration(node) && node.name?.text === name, p0Callback).getText(crmAst));
+  const loop = findNode(node => ts.isForOfStatement(node) && node.getText(crmAst).includes('await cleanup(`remove response'), p0Callback);
+  const statements = (loop.parent as ts.Block).statements;
+  const releaseCache = statements[statements.indexOf(loop as ts.Statement) + 1];
+  const compiled = ts.transpileModule(functions.join("\n") + `\nasync function run() {${loop.getText(crmAst)}\n${releaseCache.getText(crmAst)}}`,
+    {compilerOptions: {target: ts.ScriptTarget.ES2022}}).outputText;
+  const exports: {run?: () => Promise<void>} = {};
+  vm.runInNewContext(compiled + "exports.run = run;", {Buffer, ...r.scope, cleanupErrors, failedSteps, exports});
+  await exports.run!();
+  assert.equal(cleanupErrors.length, 1); assert.deepEqual(failedSteps, ["remove response FINISH"]);
+  assert.equal(r.files.has(responseFile("FINISH")), true);
+  assert.equal(r.files.has(responseFile("CLOSE")), false); assert.equal(r.files.has(responseFile("ERROR")), false);
+  assert.equal(r.scope.responseReceipts.size, 0);
 });
