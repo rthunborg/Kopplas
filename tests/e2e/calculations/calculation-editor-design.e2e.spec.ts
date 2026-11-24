@@ -995,13 +995,45 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
       } finally { writes.stop(); await loss.remove(); }
     });
 
-    test("E35-8-T-denied / AC6 / AC7: foreign detail is generic denial, never a successful empty editor", async ({ page }) => {
+    test("E35-8-T-denied / AC6 / AC7: foreign detail is generic denial, never a successful empty editor", async ({ page }, info) => {
       await signIn(page, fixture().adminB);
       await page.goto(`/calculations/${fixture().calc.id}`);
       await expect(page.getByTestId("calculation-not-found")).toBeVisible();
       await expect(page.getByText(fixture().calc.title, { exact: true })).toHaveCount(0);
       await expect(page.getByTestId("calculation-editor")).toHaveCount(0);
       await expect(page.getByTestId("sections-empty")).toHaveCount(0);
+      const denial = page.getByTestId("calculation-not-found");
+      await capture(page, info, "calculation-detail", "foreign-denial", fixture().calc.id, denial, async () => {
+        await expect(denial).toBeVisible();
+        await expect(page.getByText(fixture().calc.title, { exact: true })).toHaveCount(0);
+        await expect(page.getByTestId("calculation-editor")).toHaveCount(0);
+        await expect(page.getByTestId("sections-empty")).toHaveCount(0);
+        const back = denial.getByRole("link", { name: "Tillbaka till kalkyler", exact: true });
+        await expect(back).toHaveAttribute("href", "/calculations");
+        if (viewport.width === 360) await phoneTarget(back);
+      });
+    });
+
+    test("E35-8-T-read-error / AC6: authenticated malformed detail ID renders a generic read failure", async ({ page }, info) => {
+      await signIn(page);
+      const invalidId = "not-a-calculation-id";
+      await page.goto(`/calculations/${invalidId}`);
+      const failure = page.getByTestId("calculation-detail-failed");
+      const assertReadError = async () => {
+        await expect(failure).toBeVisible();
+        await expect(failure).toHaveAttribute("role", "alert");
+        await expect(failure).toContainText("Kalkylen kunde inte läsas in.");
+        await expect(failure).toContainText("Ett tillfälligt fel inträffade. Försök igen om en stund.");
+        for (const testId of ["calculation-editor", "calculation-not-found", "calculation-list-empty", "sections-empty", "totals-summary"]) {
+          await expect(page.getByTestId(testId)).toHaveCount(0);
+        }
+        await expect(page.locator("body")).not.toContainText(invalidId, { useInnerText: true });
+        const back = failure.getByRole("link", { name: "Tillbaka till kalkyler", exact: true });
+        await expect(back).toHaveAttribute("href", "/calculations");
+        if (viewport.width === 360) await phoneTarget(back);
+      };
+      await assertReadError();
+      await capture(page, info, "calculation-detail", "read-error", invalidId, failure, assertReadError);
     });
 
     test("E35-8-T-AC2 / AC3 / stale: STOP stays blocked; checked review rejects changed rows before a fresh review creates a quote", async ({ page }, info) => {
@@ -1014,6 +1046,14 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
       await expect(tax.getByRole("status")).toContainText(/sparats/);
       const open = page.getByTestId("create-quote").filter({ visible: true });
       await expect(open).toBeEnabled();
+      // Derived quote-readiness permits warnings; it is not a persisted lifecycle status.
+      const readiness = page.getByTestId("readiness-summary").filter({ visible: true });
+      await capture(page, info, "readiness-summary", "quote-ready-with-warnings", calculation.url.split("/").at(-1)!, readiness, async () => {
+        await expect(readiness).toHaveAttribute("data-can-create-quote", "true");
+        await expect(readiness.getByTestId("readiness-blockers")).toHaveCount(0);
+        await expect(readiness.getByTestId("readiness-warnings")).toBeVisible();
+        await expect(open).toBeEnabled();
+      });
       await open.click();
       const preview = page.getByTestId("pre-quote-preview").filter({ visible: true });
       await expect(preview.locator("form")).toHaveAttribute("data-editor-ready", "true");
