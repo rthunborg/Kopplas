@@ -1051,5 +1051,281 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           await expect(page.getByTestId("create-quote")).toBeDisabled();
         });
     });
+
+    test("E35-8-T-revoked / AC6 / AC7: isolated current membership revocation rejects the rendered editor without saving", async ({ page }, info) => {
+      // Lazy imports and all provisioning stay inside the body: --list has no DB dependency.
+      const environment = await import("../../support/test-env.js");
+      const apiUrl = new URL(environment.LOCAL_SUPABASE_URL), dbUrl = new URL(environment.LOCAL_SUPABASE_DB_URL);
+      const loopback = ["127.0.0.1", "localhost", "[::1]"];
+      if (!loopback.includes(apiUrl.hostname) || !["http:", "https:"].includes(apiUrl.protocol)
+        || apiUrl.pathname !== "/" || apiUrl.username || apiUrl.password || apiUrl.search || apiUrl.hash
+        || !loopback.includes(dbUrl.hostname) || !["postgres:", "postgresql:"].includes(dbUrl.protocol)
+        || dbUrl.pathname !== "/postgres" || dbUrl.username !== "postgres" || dbUrl.search || dbUrl.hash) {
+        throw new Error("Isolated revocation requires the exact parsed local test API/Postgres target");
+      }
+      environment.assertLocalStack();
+      const factories = await import("../../factories/tenants.js");
+      const { adminQuery, adminExec, closeAdminPool } = await import("../../factories/admin-sql.js");
+      type Membership = { id: string; tenant_id: string; user_id: string; role: string; status: string; business: Record<string, unknown>; updated_at: string };
+      let owned: Awaited<ReturnType<typeof factories.createRoleAwarePhaseAFixture>> | undefined;
+      let customerId: string | undefined, calculationId: string | undefined, original: Membership | undefined;
+      let revocationAttempted = false, readMembership: (() => Promise<Membership[]>) | undefined;
+      let writes: ReturnType<typeof observeWrites> | undefined;
+      const failures: unknown[] = [];
+      try {
+        owned = await factories.createRoleAwarePhaseAFixture();
+        const tenantId = owned.base.tenantA.id, user = owned.users.projektledare;
+        expect(user.id).not.toBe(owned.base.adminA.id);
+        readMembership = () => adminQuery<Membership>(
+          "select id,tenant_id,user_id,role,status,to_jsonb(m)-'updated_at' as business,updated_at::text as updated_at from public.tenant_memberships m where user_id=$1",
+          [user.id]);
+        const initialMemberships = await readMembership();
+        expect(initialMemberships, "The dedicated project manager must own exactly one membership").toHaveLength(1);
+        expect(initialMemberships[0]).toMatchObject({ tenant_id: tenantId, user_id: user.id, role: "projektledare", status: "active" });
+        customerId = await factories.adminInsertCustomer({ tenant_id: tenantId, customer_type: "company", display_name: "Åsby behörighetsprov" });
+        const initialTitle = `Behörighetsprov Åsby ${crypto.randomUUID()}`;
+        calculationId = await factories.adminInsertCalculation({ tenant_id: tenantId, customer_id: customerId, title: initialTitle });
+        await signIn(page, user);
+        const calculationUrl = new URL(`/calculations/${calculationId}`, page.url()).href;
+        await page.goto(calculationUrl);
+        const form = titleForm(page), input = form.getByLabel("Titel", { exact: true });
+        const save = form.getByRole("button", { name: "Spara titel", exact: true });
+        await expect(form).toHaveAttribute("data-editor-ready", "true");
+        await expect(form.locator('input[name="id"]')).toHaveValue(calculationId);
+        await expect(page.getByRole("heading", { level: 1, name: initialTitle, exact: true })).toBeVisible();
+        // Prove this same account's actual current write authority before revoking it.
+        const confirmedTitle = `${initialTitle} bekräftad`;
+        await input.fill(confirmedTitle);
+        await save.click();
+        await expect(form.getByRole("status")).toHaveText("Kalkylen har sparats.");
+        await expect(page.getByRole("heading", { level: 1, name: confirmedTitle, exact: true })).toBeVisible();
+        await expect(form).toHaveAttribute("data-editor-dirty", "false");
+        const readEntity = () => adminQuery<{ entity: Record<string, unknown> }>(
+          "select to_jsonb(c) as entity from public.calculations c where id=$1 and tenant_id=$2", [calculationId, tenantId]);
+        const persistedBefore = await readEntity();
+        expect(persistedBefore).toHaveLength(1);
+        expect(persistedBefore[0].entity).toMatchObject({ id: calculationId, tenant_id: tenantId, title: confirmedTitle });
+        const current = await readMembership();
+        expect(current).toHaveLength(1);
+        expect(current[0].business).toEqual(initialMemberships[0].business);
+        original = current[0];
+        const attemptedTitle = `${initialTitle} avvisad`;
+        await input.fill(attemptedTitle);
+        await expect(form).toHaveAttribute("data-editor-dirty", "true");
+        await expect(save).toBeEnabled();
+        revocationAttempted = true;
+        // Exact id + tenant + user + original role/status + every business column.
+        // The normal updated_at trigger stays enabled; it is not rolled back.
+        await adminExec(
+          "update public.tenant_memberships m set status='disabled' where id=$1 and tenant_id=$2 and user_id=$3 and role='projektledare' and status='active' and (to_jsonb(m)-'updated_at')=$4::jsonb",
+          [original.id, tenantId, user.id, JSON.stringify(original.business)]);
+        const disabled = await readMembership();
+        expect(disabled).toHaveLength(1);
+        expect(disabled[0].business).toEqual({ ...original.business, status: "disabled" });
+        expect(Date.parse(disabled[0].updated_at)).toBeGreaterThanOrEqual(Date.parse(original.updated_at));
+        writes = observeWrites(page);
+        const requestPromise = page.waitForRequest(request => request.method() === "POST"
+          && new URL(request.url()).pathname === `/calculations/${calculationId}`
+          && Boolean(request.headers()["next-action"]) && Boolean(request.postData()?.includes("operation_id")));
+        void requestPromise.catch(() => {});
+        await save.click();
+        const request = await requestPromise, fields = await postedFields(request);
+        expect(fields("id")).toBe(calculationId);
+        expect(fields("title")).toBe(attemptedTitle);
+        const operationId = fields("operation_id");
+        expect(operationId).toMatch(/^[0-9a-f-]{36}$/i);
+        const rejection = await request.response();
+        expect(rejection, "The actual rendered editor mutation must receive a real checked rejection").not.toBeNull();
+        expect(rejection!.status()).toBe(200);
+        expect(rejection!.headers()["content-type"]).toContain("text/x-component");
+        const responseBody = await rejection!.text();
+        expect(responseBody).toContain('"code":"TENANT_MEMBERSHIP_REQUIRED"');
+        expect(responseBody).toContain('"status":"error"');
+        expect(responseBody).toContain(`"operationId":"${operationId}"`);
+        const assertRejected = async () => {
+          await expect(page).toHaveURL(calculationUrl);
+          await expect(form.getByRole("alert")).toHaveText("Ditt konto har ingen aktiv behörighet till ett företag. Kontakta din administratör.");
+          await expect(form.getByText("Kalkylen har sparats.", { exact: true })).toHaveCount(0);
+          await expect(input).toHaveValue(attemptedTitle);
+          await expect(form).toHaveAttribute("data-editor-dirty", "true");
+          await expect(form.locator('input[name="id"]')).toHaveValue(calculationId!);
+          await expect(page.getByRole("heading", { level: 1, name: confirmedTitle, exact: true })).toBeVisible();
+          expect(writes!.writes).toEqual([request]);
+        };
+        await assertRejected();
+        expect(await readEntity(), "Independent owned-row reread must show no mutation from the rejected request").toEqual(persistedBefore);
+        await capture(page, info, "calculation-editor", "revoked-membership-rejected", calculationId, form.getByRole("alert"), assertRejected);
+        expect(await readEntity()).toEqual(persistedBefore);
+      } catch (error) { failures.push(error); }
+      finally {
+        writes?.stop();
+        // Restoration precedes cleanup even when request or UI assertions fail.
+        // Preserve exact identity and all business columns; only trigger-owned time advances.
+        try {
+          if (owned && original && revocationAttempted && readMembership) {
+            const current = await readMembership();
+            expect(current).toHaveLength(1);
+            if (current[0].status === "disabled") {
+              const disabledBusiness = { ...original.business, status: "disabled" };
+              expect(current[0].business).toEqual(disabledBusiness);
+              await adminExec(
+                "update public.tenant_memberships m set status=$4 where id=$1 and tenant_id=$2 and user_id=$3 and role='projektledare' and status='disabled' and (to_jsonb(m)-'updated_at')=$5::jsonb",
+                [original.id, original.tenant_id, original.user_id, original.status, JSON.stringify(disabledBusiness)]);
+            } else expect(current[0].business).toEqual(original.business);
+            const restored = await readMembership();
+            expect(restored).toHaveLength(1);
+            expect(restored[0].business).toEqual(original.business);
+            expect(Date.parse(restored[0].updated_at)).toBeGreaterThanOrEqual(Date.parse(current[0].updated_at));
+            await info.attach("revocation-owned-restoration.json", { contentType: "application/json", body: Buffer.from(JSON.stringify({
+              sameMembershipRestored: true, allBusinessColumnsRestored: true,
+              triggerOwnedUpdatedAtNondecreasing: true, timestampRollbackClaimed: false,
+            })) });
+          }
+        } catch (error) { failures.push(error); }
+        try {
+          // The facade's legacy replica-mode tenant removal bypasses root cascades.
+          // Remove only this isolated actor/entity's own title-operation fixtures first.
+          if (owned && calculationId) await adminExec(
+            "delete from public.calculation_editor_operations where tenant_id=$1 and actor_user_id=$2 and calculation_id=$3 and operation_kind='calculation.update'",
+            [owned.base.tenantA.id, owned.users.projektledare.id, calculationId]);
+        } catch (error) { failures.push(error); }
+        try {
+          if (owned && calculationId) await adminExec("delete from public.calculations where id=$1 and tenant_id=$2", [calculationId, owned.base.tenantA.id]);
+        } catch (error) { failures.push(error); }
+        try {
+          if (owned && customerId) await adminExec("delete from public.customers where id=$1 and tenant_id=$2", [customerId, owned.base.tenantA.id]);
+        } catch (error) { failures.push(error); }
+        try { if (owned) await factories.cleanupRoleAwarePhaseAFixture(owned); }
+        catch (error) { failures.push(error); }
+        try {
+          if (owned) {
+            const tenants = [owned.base.tenantA.id, owned.base.tenantB.id];
+            const users = [owned.base.adminA.id, owned.base.adminB.id, owned.base.orphanUser.id, ...owned.extraUsers.map(user => user.id)];
+            // The existing facade is best-effort: separately require actual absence.
+            for (const table of ["tenants", "auth.users"]) {
+              const qualified = table === "tenants" ? "public.tenants" : "auth.users";
+              expect(await adminQuery(`select id from ${qualified} where id=any($1::uuid[])`, [table === "tenants" ? tenants : users])).toHaveLength(0);
+            }
+            expect(await adminQuery("select id from public.tenant_memberships where tenant_id=any($1::uuid[]) or user_id=any($2::uuid[])", [tenants, users])).toHaveLength(0);
+            expect(await adminQuery("select operation_id from public.calculation_editor_operations where tenant_id=any($1::uuid[]) and actor_user_id=$2", [tenants, owned.users.projektledare.id])).toHaveLength(0);
+            if (calculationId) expect(await adminQuery("select id from public.calculations where id=$1", [calculationId])).toHaveLength(0);
+            if (customerId) expect(await adminQuery("select id from public.customers where id=$1", [customerId])).toHaveLength(0);
+          }
+        } catch (error) { failures.push(error); }
+        let knownPoolCloseOutcome: "completed" | "failed" = "failed";
+        try { await closeAdminPool(); knownPoolCloseOutcome = "completed"; }
+        catch (error) { failures.push(error); }
+        if (!owned) {
+          // No returned handle authorizes per-fixture deletion or cleanup credit.
+          // Attach only fixed categories after the known pool-close attempt settles.
+          try {
+            await info.attach("revocation-setup-failure.json", { contentType: "application/json", body: Buffer.from(JSON.stringify({
+              setup: "failed-before-ownership-return", perFixtureCleanup: "unknown",
+              scenarioCredit: "none", cleanupCredit: "none", knownPoolCloseOutcome,
+              wholeStackTeardown: "not-observed-by-case",
+            })) });
+          } catch (error) { failures.push(error); }
+        }
+      }
+      if (failures.length) throw new AggregateError(failures, "Isolated revocation journey or owned restoration/cleanup failed");
+    });
+
+    test("E35-8-T-loading / AC6: held authoritative detail navigation retains selected identity until the real response", async ({ page }, info) => {
+      await signIn(page);
+      const selectedCalculation = fixture().calc;
+      const detailPath = `/calculations/${selectedCalculation.id}`;
+      const origin = new URL(page.url()).origin;
+      const ownsUrl = (url: URL) => url.origin === origin && url.pathname === detailPath;
+      let release!: () => void, interactionStarted = false, closing = false;
+      let journeyFailed = false, journeyError: unknown;
+      const released = new Promise<void>(resolve => { release = resolve; });
+      const held: { request: BrowserRequest; kind: "prefetch" | "navigation"; afterInteraction: boolean; dispatched: boolean; responded: boolean; done: Promise<void> }[] = [];
+      const handler: Parameters<Page["route"]>[1] = route => {
+        const request = route.request(), headers = request.headers();
+        const documentNavigation = request.isNavigationRequest() && request.frame() === page.mainFrame();
+        const nextRead = headers.rsc === "1" && Boolean(headers["next-router-state-tree"] || headers["next-router-prefetch"] || headers["next-router-segment-prefetch"]);
+        if (closing || request.method() !== "GET" || (!documentNavigation && !nextRead)) return route.continue();
+        // Next distinguishes prefetch/segment requests from authoritative navigation.
+        // A held prefetch alone is never credited as an exercised loading journey.
+        const prefetch = Boolean(headers["next-router-prefetch"] || headers["next-router-segment-prefetch"] || /prefetch/i.test(headers.purpose ?? headers["sec-purpose"] ?? ""));
+        const entry = { request, kind: prefetch ? "prefetch" as const : "navigation" as const,
+          afterInteraction: interactionStarted, dispatched: false, responded: false, done: Promise.resolve() };
+        held.push(entry);
+        entry.done = (async () => { await released; entry.dispatched = true; await route.continue(); })();
+        void entry.done.catch(() => {});
+        return entry.done;
+      };
+      const responseListener = (response: import("@playwright/test").Response) => {
+        const entry = held.find(item => item.request === response.request());
+        if (entry) entry.responded = true;
+      };
+      // Install before the list can mount any real Link or schedule its prefetch.
+      await page.route(ownsUrl, handler);
+      page.on("response", responseListener);
+      try {
+        await page.goto("/calculations");
+        const selected = page.getByTestId("calculation-list-row").filter({ hasText: selectedCalculation.title });
+        await expect(selected).toHaveCount(1);
+        await expect(selected).toHaveAttribute("href", detailPath);
+        await hydrated(selected);
+        await selected.focus();
+        interactionStarted = true;
+        await selected.press("Enter", { noWaitAfter: true });
+        await expect.poll(() => held.filter(entry => entry.kind === "navigation" && entry.afterInteraction).length, {
+          message: "Missing selected-detail authoritative navigation correlation after the real Link interaction; prefetch alone is insufficient",
+        }).toBeGreaterThan(0);
+        const navigation = held.find(entry => entry.kind === "navigation" && entry.afterInteraction)!;
+        const assertHeld = async () => {
+          expect(navigation.dispatched, "Selected detail must still be held before upstream dispatch").toBe(false);
+          expect(navigation.responded, "A pending detail cannot already have a real response").toBe(false);
+          await expect(page.getByRole("heading", { level: 1, name: "Kalkyler", exact: true })).toBeVisible();
+          await expect(selected).toBeVisible();
+          await expect(selected).toHaveAttribute("href", detailPath);
+          await expect(selected).toContainText(selectedCalculation.title);
+          await expect(page.getByTestId("calculation-list-empty")).toHaveCount(0);
+          await expect(page.getByText("Inga träffar", { exact: true })).toHaveCount(0);
+          for (const testId of ["calculation-editor", "calculation-not-found", "calculation-detail-failed", "sections-empty", "totals-summary"]) {
+            await expect(page.getByTestId(testId)).toHaveCount(0);
+          }
+        };
+        await capture(page, info, "calculation-list", "loading-selected-detail", selectedCalculation.id, selected, assertHeld);
+        release();
+        await navigation.done;
+        const actualResponse = await navigation.request.response();
+        expect(actualResponse, "The same continued original request must return an actual response").not.toBeNull();
+        expect(actualResponse!.status()).toBe(200);
+        expect(await actualResponse!.finished()).toBeNull();
+        expect(new URL(actualResponse!.url()).pathname).toBe(detailPath);
+        expect(actualResponse!.headers()["content-type"]).toContain(navigation.request.isNavigationRequest() ? "text/html" : "text/x-component");
+        await expect(page).toHaveURL(new URL(detailPath, origin).href);
+        await expect(page.getByRole("heading", { level: 1, name: selectedCalculation.title, exact: true })).toBeVisible();
+        await expect(titleForm(page).locator('input[name="id"]')).toHaveValue(selectedCalculation.id);
+        await expect(page.getByTestId("calculation-not-found")).toHaveCount(0);
+        await expect(page.getByTestId("calculation-detail-failed")).toHaveCount(0);
+        // The unchanged golden fixture, rather than an invented pending zero.
+        const summary = page.getByTestId("totals-summary").filter({ visible: true });
+        await expect(summary.getByTestId("summary-net")).toContainText("2200,00");
+        await expect(summary.getByTestId("summary-vat")).toContainText("550,00");
+        await expect(summary.getByTestId("summary-gross")).toContainText("2750,00");
+        await info.attach("loading-navigation-correlation.json", { contentType: "application/json", body: Buffer.from(JSON.stringify({
+          originalRequestContinued: true, selectedDetailRendered: true,
+          heldRequestCount: held.length, requests: held.slice(0, 8).map(entry => ({ kind: entry.kind,
+            afterInteraction: entry.afterInteraction, dispatched: entry.dispatched, responded: entry.responded })),
+          truncated: held.length > 8,
+        })) });
+      } catch (error) { journeyFailed = true; journeyError = error; throw error; }
+      finally {
+        closing = true;
+        release();
+        try {
+          await page.unroute(ownsUrl, handler);
+          const settled = await Promise.allSettled(held.map(entry => entry.done));
+          const failures = settled.filter((result): result is PromiseRejectedResult => result.status === "rejected");
+          if (failures.length) throw new AggregateError([
+            ...(journeyFailed ? [journeyError] : []), ...failures.map(result => result.reason),
+          ], "Owned detail-route release failed");
+        } finally { page.off("response", responseListener); }
+      }
+    });
   });
 }
