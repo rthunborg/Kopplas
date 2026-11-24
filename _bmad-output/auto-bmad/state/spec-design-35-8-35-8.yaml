@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-8-presentation-20261122/worker/_bma
 story_id: 35-8
 branch: codex/story-35-8-calculation-editor-presentation-20261122
 status: in-progress
-updated_at: "2026-11-24T00:22:34Z"
+updated_at: "2026-11-24T02:03:54Z"
 started_at: "2026-11-24T00:18:26Z"
 completed_at: null
 active_seconds: 0
-timing_anchor: null
+timing_anchor: 1795485834
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: null
