@@ -48,10 +48,10 @@ async function ownCalculation(page: Page): Promise<{ url: string; title: string 
   await hydrated(create);
   await create.click();
   const form = page.getByTestId("new-calculation-form");
-  const title = `Anläggning Åsby ${crypto.randomUUID()}`;
-  await form.getByLabel("Titel", { exact: true }).fill(title);
-  await form.getByRole("combobox", { name: "Kund", exact: true }).selectOption({ index: 1 });
   await expect(form).toHaveAttribute("data-editor-ready", "true");
+  const title = `Anläggning Åsby ${crypto.randomUUID()}`;
+  await form.getByRole("textbox", { name: "Titel", exact: true }).fill(title);
+  await form.getByRole("combobox", { name: "Kund", exact: true }).selectOption({ index: 1 });
   await form.getByRole("button", { name: "Skapa kalkyl", exact: true }).click();
   await expect(page).toHaveURL(/\/calculations\/[a-f0-9-]+$/);
   await expect(page.getByRole("heading", { level: 1, name: title, exact: true })).toBeVisible();
@@ -63,7 +63,7 @@ async function addSection(page: Page, title: string): Promise<Locator> {
   await page.getByTestId("add-section").click();
   const form = page.getByTestId("add-section-form");
   await expect(form).toHaveAttribute("data-editor-ready", "true");
-  await form.getByLabel("Sektionstitel", { exact: true }).fill(title);
+  await form.getByLabel("Sektionstitel (valfritt)", { exact: true }).fill(title);
   await form.getByRole("button", { name: "Skapa sektion", exact: true }).click();
   const section = page.getByTestId("section-editor").filter({ has: page.getByRole("heading", { level: 2, name: title, exact: true }) });
   await expect(section).toHaveCount(1);
@@ -77,10 +77,10 @@ async function addRow(section: Locator): Promise<Locator> {
   await expect(form).toHaveAttribute("data-editor-ready", "true");
   // Same established inputs as the existing P-6 real-app row fixture, not a UI formula.
   await form.getByRole("textbox", { name: "Antal", exact: true }).fill("1");
-  await form.getByLabel("Enhet", { exact: true }).fill("h");
+  await form.getByRole("textbox", { name: "Enhet", exact: true }).fill("h");
   await form.getByLabel("Kostnad (kr)", { exact: true }).fill("20");
   await form.getByLabel("Pris (kr)", { exact: true }).fill("100");
-  await form.getByLabel("Moms (%)", { exact: true }).fill("25");
+  await form.getByRole("textbox", { name: "Moms (%)", exact: true }).fill("25");
   await form.getByRole("button", { name: "Lägg till rad", exact: true }).click();
   const row = section.getByTestId("row-edit-form");
   await expect(row).toHaveCount(1);
