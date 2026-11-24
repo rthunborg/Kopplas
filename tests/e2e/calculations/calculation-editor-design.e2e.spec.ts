@@ -5,6 +5,7 @@
 import { test, expect, type ConsoleMessage, type Dialog, type Locator, type Page, type Request as BrowserRequest, type TestInfo } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, adminInsertCustomer, adminInsertCalculation } from "../../factories/tenants";
 
 interface Fixture {
   adminA: { email: string; password: string };
@@ -603,10 +604,16 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         };
         const assertForwardEvent = (phase: "cancel" | "accept", defaultPrevented: boolean) => {
           const actual = events.filter(event => event.phase === phase);
-          expect(actual, "Each Forward phase needs exactly one actual native event").toHaveLength(1);
-          expect(actual[0]).toEqual({ phase, cancelable: true, defaultPrevented, sameDocument: true, type: "traverse",
+          const traverse = { phase, cancelable: true, defaultPrevented, sameDocument: true, type: "traverse",
             key: expectedForward.key, index: expectedForward.index, url: expectedForward.url,
-            currentEntry: expectedCurrent, ...forwardCounts });
+            currentEntry: expectedCurrent, ...forwardCounts };
+          // Keep every observation: only this exact ordered sequence qualifies.
+          expect(actual, "Forward must contain only its exact traversal and accepted same-slot replacement").toEqual(
+            phase === "cancel" ? [traverse] : [traverse, {
+              phase, cancelable: true, defaultPrevented: false, sameDocument: true, type: "replace",
+              key: "", index: -1, url: expectedForward.url,
+              currentEntry: expectedForward, ...forwardCounts,
+            }]);
         };
         const assertForwardCounts = async (retainMarkers = false) => {
           expect(await page.evaluate(() => {
@@ -708,18 +715,27 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
               if (direction === "back") return page.evaluate(() => history.back());
               const accepted = await invokeForward("accept");
               for (const outcome of [accepted.committed, accepted.finished]) {
-                expect(outcome).toMatchObject({ status: "fulfilled", key: expectedForward.key, url: expectedForward.url, index: expectedForward.index });
+                // These sampled native identities bind the replacement's pre-commit current entry; final replacement IDs remain evidence.
+                expect(outcome).toEqual({ status: "fulfilled", ...expectedForward });
               }
             });
             if (direction === "forward") {
-              await expect.poll(() => events.filter(event => event.phase === "accept").length).toBe(1);
+              await expect.poll(() => events.filter(event => event.phase === "accept").length).toBe(2);
+              assertForwardEvent("cancel", true);
               assertForwardEvent("accept", false);
-              expect(events).toHaveLength(2);
+              expect(events).toHaveLength(3);
               await assertForwardCounts();
             }
             await recordForwardState("after-accept");
             await expect(page).toHaveURL(/\/calculations$/);
             await expect(page.getByRole("heading", { level: 1, name: "Kalkyler", exact: true })).toBeVisible();
+            if (direction === "forward") {
+              await renderedFrame(page);
+              assertForwardEvent("cancel", true);
+              assertForwardEvent("accept", false);
+              expect(events).toHaveLength(3);
+              await assertForwardCounts();
+            }
             const after = await navigationEntry(page);
             expect(after.length).toBe(before.length);
             expect(after.entry?.index).toBe(before.entry!.index + (direction === "back" ? -1 : 1));
@@ -1053,7 +1069,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
     });
 
     test("E35-8-T-revoked / AC6 / AC7: isolated current membership revocation rejects the rendered editor without saving", async ({ page }, info) => {
-      // Lazy imports and all provisioning stay inside the body: --list has no DB dependency.
+      // Environment/SQL imports and all provisioning stay inside the body; the static facade creates no client/pool at collection.
       const environment = await import("../../support/test-env.js");
       const apiUrl = new URL(environment.LOCAL_SUPABASE_URL), dbUrl = new URL(environment.LOCAL_SUPABASE_DB_URL);
       const loopback = ["127.0.0.1", "localhost", "[::1]"];
@@ -1064,16 +1080,15 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         throw new Error("Isolated revocation requires the exact parsed local test API/Postgres target");
       }
       environment.assertLocalStack();
-      const factories = await import("../../factories/tenants.js");
       const { adminQuery, adminExec, closeAdminPool } = await import("../../factories/admin-sql.js");
       type Membership = { id: string; tenant_id: string; user_id: string; role: string; status: string; business: Record<string, unknown>; updated_at: string };
-      let owned: Awaited<ReturnType<typeof factories.createRoleAwarePhaseAFixture>> | undefined;
+      let owned: Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>> | undefined;
       let customerId: string | undefined, calculationId: string | undefined, original: Membership | undefined;
       let revocationAttempted = false, readMembership: (() => Promise<Membership[]>) | undefined;
       let writes: ReturnType<typeof observeWrites> | undefined;
       const failures: unknown[] = [];
       try {
-        owned = await factories.createRoleAwarePhaseAFixture();
+        owned = await createRoleAwarePhaseAFixture();
         const tenantId = owned.base.tenantA.id, user = owned.users.projektledare;
         expect(user.id).not.toBe(owned.base.adminA.id);
         readMembership = () => adminQuery<Membership>(
@@ -1082,9 +1097,9 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         const initialMemberships = await readMembership();
         expect(initialMemberships, "The dedicated project manager must own exactly one membership").toHaveLength(1);
         expect(initialMemberships[0]).toMatchObject({ tenant_id: tenantId, user_id: user.id, role: "projektledare", status: "active" });
-        customerId = await factories.adminInsertCustomer({ tenant_id: tenantId, customer_type: "company", display_name: "Åsby behörighetsprov" });
+        customerId = await adminInsertCustomer({ tenant_id: tenantId, customer_type: "company", display_name: "Åsby behörighetsprov" });
         const initialTitle = `Behörighetsprov Åsby ${crypto.randomUUID()}`;
-        calculationId = await factories.adminInsertCalculation({ tenant_id: tenantId, customer_id: customerId, title: initialTitle });
+        calculationId = await adminInsertCalculation({ tenant_id: tenantId, customer_id: customerId, title: initialTitle });
         await signIn(page, user);
         const calculationUrl = new URL(`/calculations/${calculationId}`, page.url()).href;
         await page.goto(calculationUrl);
@@ -1195,7 +1210,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         try {
           if (owned && customerId) await adminExec("delete from public.customers where id=$1 and tenant_id=$2", [customerId, owned.base.tenantA.id]);
         } catch (error) { failures.push(error); }
-        try { if (owned) await factories.cleanupRoleAwarePhaseAFixture(owned); }
+        try { if (owned) await cleanupRoleAwarePhaseAFixture(owned); }
         catch (error) { failures.push(error); }
         try {
           if (owned) {
