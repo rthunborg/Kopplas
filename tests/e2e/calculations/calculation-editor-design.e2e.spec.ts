@@ -1109,6 +1109,30 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
     });
 
     test("E35-8-T-revoked / AC6 / AC7: isolated current membership revocation rejects the rendered editor without saving", async ({ page }, info) => {
+      const enteredAt = Date.now(), workDeadline = enteredAt + 45_000, cleanupDeadline = enteredAt + 59_000;
+      const outcomes: { phase: string; status: "pending" | "fulfilled" | "rejected" }[] = [];
+      const pending = new Set<Promise<unknown>>(), timers = new Set<ReturnType<typeof setTimeout>>();
+      const failures: unknown[] = [];
+      let cleaning = false;
+      function observe<T>(phase: string, promise: Promise<T>): Promise<T> {
+        const outcome = { phase, status: "pending" as "pending" | "fulfilled" | "rejected" };
+        outcomes.push(outcome); pending.add(promise);
+        void promise.then(() => { outcome.status = "fulfilled"; pending.delete(promise); },
+          () => { outcome.status = "rejected"; pending.delete(promise); });
+        return promise;
+      }
+      async function bounded<T>(phase: string, start: () => Promise<T>, cleanup = false, ceiling = 15_000): Promise<T> {
+        const remaining = Math.min(ceiling, (cleanup ? cleanupDeadline : workDeadline) - Date.now());
+        if ((!cleanup && cleaning) || remaining <= 0) throw new Error(`${phase}: rolling deadline exhausted`);
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        const actual = observe(phase, start());
+        try {
+          return await Promise.race([actual, new Promise<never>((_, reject) => {
+            timer = setTimeout(() => reject(new Error(`${phase}: timed out; actual operation may still be pending`)), remaining);
+            timers.add(timer);
+          })]);
+        } finally { if (timer) { clearTimeout(timer); timers.delete(timer); } }
+      }
       // Environment/SQL imports and all provisioning stay inside the body; the static facade creates no client/pool at collection.
       const environment = await import("../../support/test-env.js");
       const apiUrl = new URL(environment.LOCAL_SUPABASE_URL), dbUrl = new URL(environment.LOCAL_SUPABASE_DB_URL);
@@ -1126,261 +1150,398 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
       let customerId: string | undefined, calculationId: string | undefined, original: Membership | undefined;
       let revocationAttempted = false, readMembership: (() => Promise<Membership[]>) | undefined;
       let writes: ReturnType<typeof observeWrites> | undefined;
-      const failures: unknown[] = [];
+      let ownedHandler: Parameters<Page["route"]>[1] | undefined;
+      let ownsMutationUrl: ((url: URL) => boolean) | undefined;
+      let releaseMutation: ((dispatch: boolean) => void) | undefined, failCapture: ((error: unknown) => void) | undefined;
+      let dispatched = false, checkedServerRejection = false, scenarioComplete = false, verifiedDisabled = false;
+      const gateFailures: unknown[] = [];
       try {
-        owned = await createRoleAwarePhaseAFixture();
-        const tenantId = owned.base.tenantA.id, user = owned.users.projektledare;
-        expect(user.id).not.toBe(owned.base.adminA.id);
+        owned = await bounded("createRoleAwarePhaseAFixture", () => createRoleAwarePhaseAFixture());
+        const tenantId = owned!.base.tenantA.id, user = owned!.users.projektledare;
+        expect(user.id).not.toBe(owned!.base.adminA.id);
         readMembership = () => adminQuery<Membership>(
           "select id,tenant_id,user_id,role,status,to_jsonb(m)-'updated_at' as business,updated_at::text as updated_at from public.tenant_memberships m where user_id=$1",
           [user.id]);
-        const initialMemberships = await readMembership();
+        const initialMemberships = await bounded("readMembership", () => readMembership!());
         expect(initialMemberships, "The dedicated project manager must own exactly one membership").toHaveLength(1);
         expect(initialMemberships[0]).toMatchObject({ tenant_id: tenantId, user_id: user.id, role: "projektledare", status: "active" });
-        customerId = await adminInsertCustomer({ tenant_id: tenantId, customer_type: "company", display_name: "Åsby behörighetsprov" });
+        customerId = await bounded("adminInsertCustomer", () => adminInsertCustomer({ tenant_id: tenantId, customer_type: "company", display_name: "Åsby behörighetsprov" }));
         const initialTitle = `Behörighetsprov Åsby ${crypto.randomUUID()}`;
-        calculationId = await adminInsertCalculation({ tenant_id: tenantId, customer_id: customerId, title: initialTitle });
-        await signIn(page, user);
+        calculationId = await bounded("adminInsertCalculation", () => adminInsertCalculation({ tenant_id: tenantId, customer_id: customerId!, title: initialTitle }));
+        await bounded("signIn", () => signIn(page, user));
         const calculationUrl = new URL(`/calculations/${calculationId}`, page.url()).href;
-        await page.goto(calculationUrl);
+        await bounded("page.goto", () => page.goto(calculationUrl));
         const form = titleForm(page), input = form.getByLabel("Titel", { exact: true });
         const save = form.getByRole("button", { name: "Spara titel", exact: true });
-        await expect(form).toHaveAttribute("data-editor-ready", "true");
-        await expect(form.locator('input[name="id"]')).toHaveValue(calculationId);
-        await expect(page.getByRole("heading", { level: 1, name: initialTitle, exact: true })).toBeVisible();
+        await bounded("UI assertion", () => expect(form).toHaveAttribute("data-editor-ready", "true"));
+        await bounded("UI assertion", () => expect(form.locator('input[name="id"]')).toHaveValue(calculationId!));
+        await bounded("UI assertion", () => expect(page.getByRole("heading", { level: 1, name: initialTitle, exact: true })).toBeVisible());
         // Prove this same account's actual current write authority before revoking it.
         const confirmedTitle = `${initialTitle} bekräftad`;
-        await input.fill(confirmedTitle);
-        await save.click();
-        await expect(form.getByRole("status")).toHaveText("Kalkylen har sparats.");
-        await expect(page.getByRole("heading", { level: 1, name: confirmedTitle, exact: true })).toBeVisible();
-        await expect(form).toHaveAttribute("data-editor-dirty", "false");
+        await bounded("input.fill", () => input.fill(confirmedTitle));
+        await bounded("save.click", () => save.click());
+        await bounded("UI assertion", () => expect(form.getByRole("status")).toHaveText("Kalkylen har sparats."));
+        await bounded("UI assertion", () => expect(page.getByRole("heading", { level: 1, name: confirmedTitle, exact: true })).toBeVisible());
+        await bounded("UI assertion", () => expect(form).toHaveAttribute("data-editor-dirty", "false"));
         const readEntity = () => adminQuery<{ entity: Record<string, unknown> }>(
           "select to_jsonb(c) as entity from public.calculations c where id=$1 and tenant_id=$2", [calculationId, tenantId]);
-        const persistedBefore = await readEntity();
+        const persistedBefore = await bounded("readEntity", () => readEntity());
         expect(persistedBefore).toHaveLength(1);
         expect(persistedBefore[0].entity).toMatchObject({ id: calculationId, tenant_id: tenantId, title: confirmedTitle });
-        const current = await readMembership();
+        const current = await bounded("readMembership", () => readMembership!());
         expect(current).toHaveLength(1);
         expect(current[0].business).toEqual(initialMemberships[0].business);
         original = current[0];
         const attemptedTitle = `${initialTitle} avvisad`;
-        await input.fill(attemptedTitle);
-        await expect(form).toHaveAttribute("data-editor-dirty", "true");
-        await expect(save).toBeEnabled();
-        revocationAttempted = true;
-        // Exact id + tenant + user + original role/status + every business column.
-        // The normal updated_at trigger stays enabled; it is not rolled back.
-        await adminExec(
-          "update public.tenant_memberships m set status='disabled' where id=$1 and tenant_id=$2 and user_id=$3 and role='projektledare' and status='active' and (to_jsonb(m)-'updated_at')=$4::jsonb",
-          [original.id, tenantId, user.id, JSON.stringify(original.business)]);
-        const disabled = await readMembership();
-        expect(disabled).toHaveLength(1);
-        expect(disabled[0].business).toEqual({ ...original.business, status: "disabled" });
-        expect(Date.parse(disabled[0].updated_at)).toBeGreaterThanOrEqual(Date.parse(original.updated_at));
+        await bounded("input.fill", () => input.fill(attemptedTitle));
+        await bounded("UI assertion", () => expect(form).toHaveAttribute("data-editor-dirty", "true"));
+        await bounded("UI assertion", () => expect(save).toBeEnabled());
+        const origin = new URL(calculationUrl).origin;
+        ownsMutationUrl = url => url.origin === origin && url.pathname === `/calculations/${calculationId}`;
+        let capturedOnce = false, originalRequest: BrowserRequest | undefined;
+        let acceptCapture!: (request: BrowserRequest) => void;
+        const captured = observe("original mutation captured before upstream", new Promise<BrowserRequest>((resolve, reject) => {
+          acceptCapture = resolve; failCapture = reject;
+        }));
+        const decision = observe("owned mutation gate decision", new Promise<boolean>(resolve => { releaseMutation = resolve; }));
+        ownedHandler = route => {
+          const request = route.request();
+          // Other server-action authority READs are not editor mutation candidates.
+          if (request.method() !== "POST" || !request.headers()["next-action"] || !request.postData()?.includes("operation_id")) {
+            return observe("unrelated authority read continuation", route.continue());
+          }
+          const validSeam = ownsMutationUrl!(new URL(request.url())) && request.frame() === page.mainFrame();
+          if (!validSeam || capturedOnce || cleaning) {
+            const error = new Error("Wrong or duplicate original mutation candidate: abort before upstream");
+            gateFailures.push(error); failCapture!(error);
+            return observe("abort wrong/duplicate mutation", route.abort("failed"));
+          }
+          capturedOnce = true; originalRequest = request; acceptCapture(request);
+          return observe("owned original mutation route", (async () => {
+            const permit = await decision;
+            if (!permit || !verifiedDisabled || gateFailures.length || cleaning) {
+              await observe("abort unreleased original mutation", route.abort("failed")); return;
+            }
+            dispatched = true;
+            // Parameterless continuation sends this SAME browser request, never a fetched replacement.
+            await observe("original POST route.continue", route.continue());
+          })());
+        };
+        await bounded("page.route", () => page.route(ownsMutationUrl!, ownedHandler!));
         writes = observeWrites(page);
-        const requestPromise = page.waitForRequest(request => request.method() === "POST"
-          && new URL(request.url()).pathname === `/calculations/${calculationId}`
-          && Boolean(request.headers()["next-action"]) && Boolean(request.postData()?.includes("operation_id")));
-        void requestPromise.catch(() => {});
-        await save.click();
-        const request = await requestPromise, fields = await postedFields(request);
+        // The rendered form and exact dedicated membership remain active for this one real Save.
+        // No later edits: the operation hook's numeric draft revision is internal, not a wire field.
+        const submission = observe("original real Save action", save.click());
+        void submission.then(() => {}, error => failCapture!(error));
+        const request = await bounded("original pre-upstream POST captured", () => captured);
+        expect(request).toBe(originalRequest);
+        expect(request.method()).toBe("POST");
+        expect(new URL(request.url()).origin).toBe(origin);
+        expect(new URL(request.url()).pathname).toBe(`/calculations/${calculationId}`);
+        expect(request.frame()).toBe(page.mainFrame());
+        expect(request.headers()["next-action"]).toBeTruthy();
+        const fields = await bounded("postedFields", () => postedFields(request));
         expect(fields("id")).toBe(calculationId);
         expect(fields("title")).toBe(attemptedTitle);
         const operationId = fields("operation_id");
-        expect(operationId).toMatch(/^[0-9a-f-]{36}$/i);
-        const rejection = await request.response();
+        expect(operationId).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i);
+        expect(JSON.parse(fields("expected"))).toEqual({ version: 1, form: "calculation",
+          header: Object.fromEntries(["id", "title", "status", "archived_at", "tax_input_snapshot"].map(key => [key, persistedBefore[0].entity[key]])),
+        });
+        expect(await bounded("readEntity", () => readEntity()), "The pre-upstream held POST must leave the complete baseline unchanged").toEqual(persistedBefore);
+        const activeAtCapture = await bounded("readMembership", () => readMembership!());
+        expect(activeAtCapture).toHaveLength(1);
+        expect(activeAtCapture[0].business).toEqual(original!.business);
+        expect(gateFailures).toHaveLength(0);
+        revocationAttempted = true;
+        // Exact id + tenant + user + original role/status + every business column.
+        // The normal updated_at trigger stays enabled; it is not rolled back.
+        await bounded("adminExec", () => adminExec(
+          "update public.tenant_memberships m set status='disabled' where id=$1 and tenant_id=$2 and user_id=$3 and role='projektledare' and status='active' and (to_jsonb(m)-'updated_at')=$4::jsonb",
+          [original!.id, tenantId, user.id, JSON.stringify(original!.business)]));
+        const disabled = await bounded("readMembership", () => readMembership!());
+        expect(disabled).toHaveLength(1);
+        expect(disabled[0].business).toEqual({ ...original!.business, status: "disabled" });
+        expect(Date.parse(disabled[0].updated_at)).toBeGreaterThanOrEqual(Date.parse(original!.updated_at));
+        verifiedDisabled = true;
+        releaseMutation!(true);
+        const rejection = await bounded("request.response", () => request.response());
         expect(rejection, "The actual rendered editor mutation must receive a real checked rejection").not.toBeNull();
+        expect(rejection!.request()).toBe(request);
+        expect(rejection!.url()).toBe(request.url());
         expect(rejection!.status()).toBe(200);
         expect(rejection!.headers()["content-type"]).toContain("text/x-component");
-        const responseBody = await rejection!.text();
+        expect(await bounded("original mutation response terminal", () => rejection!.finished())).toBeNull();
+        const responseBody = await bounded("original mutation response body", () => rejection!.text());
         expect(responseBody).toContain('"code":"TENANT_MEMBERSHIP_REQUIRED"');
         expect(responseBody).toContain('"status":"error"');
         expect(responseBody).toContain(`"operationId":"${operationId}"`);
+        checkedServerRejection = true;
+        await bounded("original Save action settled", () => submission);
         const assertRejected = async () => {
-          await expect(page).toHaveURL(calculationUrl);
-          await expect(form.getByRole("alert")).toHaveText("Ditt konto har ingen aktiv behörighet till ett företag. Kontakta din administratör.");
-          await expect(form.getByText("Kalkylen har sparats.", { exact: true })).toHaveCount(0);
-          await expect(input).toHaveValue(attemptedTitle);
-          await expect(form).toHaveAttribute("data-editor-dirty", "true");
-          await expect(form.locator('input[name="id"]')).toHaveValue(calculationId!);
-          await expect(page.getByRole("heading", { level: 1, name: confirmedTitle, exact: true })).toBeVisible();
+          await bounded("UI assertion", () => expect(page).toHaveURL(calculationUrl));
+          await bounded("UI assertion", () => expect(form.getByRole("alert")).toHaveText("Ditt konto har ingen aktiv behörighet till ett företag. Kontakta din administratör."));
+          await bounded("UI assertion", () => expect(form.getByText("Kalkylen har sparats.", { exact: true })).toHaveCount(0));
+          await bounded("UI assertion", () => expect(input).toHaveValue(attemptedTitle));
+          await bounded("UI assertion", () => expect(form).toHaveAttribute("data-editor-dirty", "true"));
+          await bounded("UI assertion", () => expect(form.locator('input[name="id"]')).toHaveValue(calculationId!));
+          await bounded("UI assertion", () => expect(page.getByRole("heading", { level: 1, name: confirmedTitle, exact: true })).toBeVisible());
           expect(writes!.writes).toEqual([request]);
         };
-        await assertRejected();
-        expect(await readEntity(), "Independent owned-row reread must show no mutation from the rejected request").toEqual(persistedBefore);
-        await capture(page, info, "calculation-editor", "revoked-membership-rejected", calculationId, form.getByRole("alert"), assertRejected);
-        expect(await readEntity()).toEqual(persistedBefore);
+        await bounded("assertRejected", () => assertRejected());
+        expect(await bounded("readEntity", () => readEntity()), "Independent owned-row reread must show no mutation from the rejected request").toEqual(persistedBefore);
+        await bounded("capture", () => capture(page, info, "calculation-editor", "revoked-membership-rejected", calculationId!, form.getByRole("alert"), assertRejected));
+        expect(await bounded("readEntity", () => readEntity())).toEqual(persistedBefore);
+        expect(gateFailures).toHaveLength(0);
+        scenarioComplete = true;
       } catch (error) { failures.push(error); }
       finally {
+        cleaning = true;
+        // Default is ABORT, including setup/capture/disable failure and no request arrival.
+        releaseMutation?.(false); failCapture?.(new Error("Original capture gate closed during cleanup"));
+        try {
+          const settled = await bounded("settle owned browser work", () => Promise.allSettled([...pending]), true, 2_000);
+          for (const result of settled) if (result.status === "rejected") failures.push(result.reason);
+        } catch (error) { failures.push(error); }
+        if (pending.size) {
+          try { await bounded("close owned page/client channels only", () => page.close({ runBeforeUnload: false }), true, 2_000); }
+          catch (error) { failures.push(error); }
+        }
+        try {
+          const settled = await bounded("collect actual browser settlements", () => Promise.allSettled([...pending]), true, 1_000);
+          for (const result of settled) if (result.status === "rejected") failures.push(result.reason);
+        } catch (error) { failures.push(error); }
+        try { if (ownedHandler && ownsMutationUrl) await bounded("remove exact mutation handler", () => page.unroute(ownsMutationUrl!, ownedHandler!), true, 1_000); }
+        catch (error) { failures.push(error); }
         writes?.stop();
+        failures.push(...gateFailures);
+        if (dispatched && !checkedServerRejection) failures.push(new Error("SERVER_OUTCOME_UNKNOWN: client termination is not checked rejection or backend rollback"));
         // Restoration precedes cleanup even when request or UI assertions fail.
         // Preserve exact identity and all business columns; only trigger-owned time advances.
         try {
           if (owned && original && revocationAttempted && readMembership) {
-            const current = await readMembership();
+            const current = await bounded("readMembership", () => readMembership!(), true, 1_000);
             expect(current).toHaveLength(1);
             if (current[0].status === "disabled") {
-              const disabledBusiness = { ...original.business, status: "disabled" };
+              const disabledBusiness = { ...original!.business, status: "disabled" };
               expect(current[0].business).toEqual(disabledBusiness);
-              await adminExec(
+              await bounded("adminExec", () => adminExec(
                 "update public.tenant_memberships m set status=$4 where id=$1 and tenant_id=$2 and user_id=$3 and role='projektledare' and status='disabled' and (to_jsonb(m)-'updated_at')=$5::jsonb",
-                [original.id, original.tenant_id, original.user_id, original.status, JSON.stringify(disabledBusiness)]);
-            } else expect(current[0].business).toEqual(original.business);
-            const restored = await readMembership();
+                [original!.id, original!.tenant_id, original!.user_id, original!.status, JSON.stringify(disabledBusiness)]), true, 1_000);
+            } else expect(current[0].business).toEqual(original!.business);
+            const restored = await bounded("readMembership", () => readMembership!(), true, 1_000);
             expect(restored).toHaveLength(1);
-            expect(restored[0].business).toEqual(original.business);
+            expect(restored[0].business).toEqual(original!.business);
             expect(Date.parse(restored[0].updated_at)).toBeGreaterThanOrEqual(Date.parse(current[0].updated_at));
-            await info.attach("revocation-owned-restoration.json", { contentType: "application/json", body: Buffer.from(JSON.stringify({
+            await bounded("info.attach", () => info.attach("revocation-owned-restoration.json", { contentType: "application/json", body: Buffer.from(JSON.stringify({
               sameMembershipRestored: true, allBusinessColumnsRestored: true,
               triggerOwnedUpdatedAtNondecreasing: true, timestampRollbackClaimed: false,
-            })) });
+            })) }), true, 1_000);
           }
         } catch (error) { failures.push(error); }
         try {
           // The facade's legacy replica-mode tenant removal bypasses root cascades.
           // Remove only this isolated actor/entity's own title-operation fixtures first.
-          if (owned && calculationId) await adminExec(
+          if (owned && calculationId) await bounded("adminExec", () => adminExec(
             "delete from public.calculation_editor_operations where tenant_id=$1 and actor_user_id=$2 and calculation_id=$3 and operation_kind='calculation.update'",
-            [owned.base.tenantA.id, owned.users.projektledare.id, calculationId]);
+            [owned!.base.tenantA.id, owned!.users.projektledare.id, calculationId]), true, 1_000);
         } catch (error) { failures.push(error); }
         try {
-          if (owned && calculationId) await adminExec("delete from public.calculations where id=$1 and tenant_id=$2", [calculationId, owned.base.tenantA.id]);
+          if (owned && calculationId) await bounded("adminExec", () => adminExec("delete from public.calculations where id=$1 and tenant_id=$2", [calculationId, owned!.base.tenantA.id]), true, 1_000);
         } catch (error) { failures.push(error); }
         try {
-          if (owned && customerId) await adminExec("delete from public.customers where id=$1 and tenant_id=$2", [customerId, owned.base.tenantA.id]);
+          if (owned && customerId) await bounded("adminExec", () => adminExec("delete from public.customers where id=$1 and tenant_id=$2", [customerId, owned!.base.tenantA.id]), true, 1_000);
         } catch (error) { failures.push(error); }
-        try { if (owned) await cleanupRoleAwarePhaseAFixture(owned); }
+        try { if (owned) await bounded("cleanupRoleAwarePhaseAFixture", () => cleanupRoleAwarePhaseAFixture(owned!), true, 3_000); }
         catch (error) { failures.push(error); }
-        try {
-          if (owned) {
-            const tenants = [owned.base.tenantA.id, owned.base.tenantB.id];
-            const users = [owned.base.adminA.id, owned.base.adminB.id, owned.base.orphanUser.id, ...owned.extraUsers.map(user => user.id)];
+        if (owned) {
+            const tenants = [owned!.base.tenantA.id, owned!.base.tenantB.id];
+            const users = [owned!.base.adminA.id, owned!.base.adminB.id, owned!.base.orphanUser.id, ...owned!.extraUsers.map(user => user.id)];
             // The existing facade is best-effort: separately require actual absence.
             for (const table of ["tenants", "auth.users"]) {
               const qualified = table === "tenants" ? "public.tenants" : "auth.users";
-              expect(await adminQuery(`select id from ${qualified} where id=any($1::uuid[])`, [table === "tenants" ? tenants : users])).toHaveLength(0);
+              try { expect(await bounded("adminQuery", () => adminQuery(`select id from ${qualified} where id=any($1::uuid[])`, [table === "tenants" ? tenants : users]), true, 1_000)).toHaveLength(0); }
+              catch (error) { failures.push(error); }
             }
-            expect(await adminQuery("select id from public.tenant_memberships where tenant_id=any($1::uuid[]) or user_id=any($2::uuid[])", [tenants, users])).toHaveLength(0);
-            expect(await adminQuery("select operation_id from public.calculation_editor_operations where tenant_id=any($1::uuid[]) and actor_user_id=$2", [tenants, owned.users.projektledare.id])).toHaveLength(0);
-            if (calculationId) expect(await adminQuery("select id from public.calculations where id=$1", [calculationId])).toHaveLength(0);
-            if (customerId) expect(await adminQuery("select id from public.customers where id=$1", [customerId])).toHaveLength(0);
-          }
-        } catch (error) { failures.push(error); }
-        let knownPoolCloseOutcome: "completed" | "failed" = "failed";
-        try { await closeAdminPool(); knownPoolCloseOutcome = "completed"; }
+            try { expect(await bounded("adminQuery", () => adminQuery("select id from public.tenant_memberships where tenant_id=any($1::uuid[]) or user_id=any($2::uuid[])", [tenants, users]), true, 1_000)).toHaveLength(0); } catch (error) { failures.push(error); }
+            try { expect(await bounded("adminQuery", () => adminQuery("select operation_id from public.calculation_editor_operations where tenant_id=any($1::uuid[]) and actor_user_id=$2", [tenants, owned!.users.projektledare.id]), true, 1_000)).toHaveLength(0); } catch (error) { failures.push(error); }
+            try { if (calculationId) expect(await bounded("adminQuery", () => adminQuery("select id from public.calculations where id=$1", [calculationId]), true, 1_000)).toHaveLength(0); } catch (error) { failures.push(error); }
+            try { if (customerId) expect(await bounded("adminQuery", () => adminQuery("select id from public.customers where id=$1", [customerId]), true, 1_000)).toHaveLength(0); } catch (error) { failures.push(error); }
+        }
+        let knownPoolCloseOutcome: "completed" | "failed" | "unknown" = "unknown";
+        // Attempt the real known pool close even when an earlier cleanup phase consumed its budget.
+        const poolClose = observe("actual known pool close", closeAdminPool().then(() => {
+          knownPoolCloseOutcome = "completed";
+        }, error => { knownPoolCloseOutcome = "failed"; throw error; }));
+        try { await bounded("known pool close settlement", () => poolClose, true, 1_000); }
         catch (error) { failures.push(error); }
         if (!owned) {
           // No returned handle authorizes per-fixture deletion or cleanup credit.
-          // Attach only fixed categories after the known pool-close attempt settles.
+          // Fixed categories only: a real attempted pool close still pending is unknown.
           try {
-            await info.attach("revocation-setup-failure.json", { contentType: "application/json", body: Buffer.from(JSON.stringify({
+            await bounded("info.attach", () => info.attach("revocation-setup-failure.json", { contentType: "application/json", body: Buffer.from(JSON.stringify({
               setup: "failed-before-ownership-return", perFixtureCleanup: "unknown",
               scenarioCredit: "none", cleanupCredit: "none", knownPoolCloseOutcome,
               wholeStackTeardown: "not-observed-by-case",
-            })) });
+            })) }), true, 1_000);
           } catch (error) { failures.push(error); }
         }
       }
+      for (const timer of timers) clearTimeout(timer);
+      try { await bounded("attach actual revocation phases", () => info.attach("revocation-real-request-phases.json", { contentType: "application/json", body: Buffer.from(JSON.stringify({
+        outcomes, dispatched, checkedServerRejection, verifiedDisabled,
+        serverOutcome: dispatched ? (checkedServerRejection ? "checked-rejection" : "SERVER_OUTCOME_UNKNOWN") : "not-dispatched",
+        scenarioCredit: scenarioComplete && failures.length === 0 && pending.size === 0 ? "asserted" : "none",
+        cleanupCredit: owned && failures.length === 0 && pending.size === 0 && (!dispatched || checkedServerRejection) ? "asserted-owned-absence" : "none",
+        pendingOperations: pending.size, clientPageCloseIsBackendCancellation: false,
+      })) }), true, 1_000); } catch (error) { failures.push(error); }
+      if (pending.size) failures.push(new Error("Revocation operation settlement remains unknown; no cleanup credit inferred"));
       if (failures.length) throw new AggregateError(failures, "Isolated revocation journey or owned restoration/cleanup failed");
     });
 
     test("E35-8-T-loading / AC6: held authoritative detail navigation retains selected identity until the real response", async ({ page }, info) => {
-      await signIn(page);
+      const enteredAt = Date.now(), workDeadline = enteredAt + 45_000, cleanupDeadline = enteredAt + 59_000;
+      const outcomes: { phase: string; status: "pending" | "fulfilled" | "rejected" }[] = [];
+      const pending = new Set<Promise<unknown>>(), timers = new Set<ReturnType<typeof setTimeout>>();
+      const failures: unknown[] = [];
+      let cleaning = false;
+      function observe<T>(phase: string, promise: Promise<T>): Promise<T> {
+        const outcome = { phase, status: "pending" as "pending" | "fulfilled" | "rejected" };
+        outcomes.push(outcome); pending.add(promise);
+        void promise.then(() => { outcome.status = "fulfilled"; pending.delete(promise); },
+          () => { outcome.status = "rejected"; pending.delete(promise); });
+        return promise;
+      }
+      async function bounded<T>(phase: string, start: () => Promise<T>, cleanup = false, ceiling = 15_000): Promise<T> {
+        const remaining = Math.min(ceiling, (cleanup ? cleanupDeadline : workDeadline) - Date.now());
+        if ((!cleanup && cleaning) || remaining <= 0) throw new Error(`${phase}: rolling deadline exhausted`);
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        const actual = observe(phase, start());
+        try {
+          return await Promise.race([actual, new Promise<never>((_, reject) => {
+            timer = setTimeout(() => reject(new Error(`${phase}: timed out; actual operation may still be pending`)), remaining);
+            timers.add(timer);
+          })]);
+        } finally { if (timer) { clearTimeout(timer); timers.delete(timer); } }
+      }
       const selectedCalculation = fixture().calc;
       const detailPath = `/calculations/${selectedCalculation.id}`;
-      const origin = new URL(page.url()).origin;
+      let origin = "", interactionStarted = false, closing = false, releasePublished = false;
       const ownsUrl = (url: URL) => url.origin === origin && url.pathname === detailPath;
-      let release!: () => void, interactionStarted = false, closing = false;
-      let journeyFailed = false, journeyError: unknown;
-      const released = new Promise<void>(resolve => { release = resolve; });
-      const held: { request: BrowserRequest; kind: "prefetch" | "navigation"; afterInteraction: boolean; dispatched: boolean; responded: boolean; done: Promise<void> }[] = [];
+      let release!: () => void;
+      const released = observe("owned hold release", new Promise<void>(resolve => { release = resolve; }));
+      const held: { request: BrowserRequest; kind: "prefetch" | "navigation"; afterInteraction: boolean;
+        dispatched: boolean; responded: boolean; continuation: "held" | "pending" | "fulfilled" | "rejected"; done: Promise<void> }[] = [];
       const handler: Parameters<Page["route"]>[1] = route => {
         const request = route.request(), headers = request.headers();
-        const documentNavigation = request.isNavigationRequest() && request.frame() === page.mainFrame();
-        const nextRead = headers.rsc === "1" && Boolean(headers["next-router-state-tree"] || headers["next-router-prefetch"] || headers["next-router-segment-prefetch"]);
-        if (closing || request.method() !== "GET" || (!documentNavigation && !nextRead)) return route.continue();
-        // Next distinguishes prefetch/segment requests from authoritative navigation.
-        // A held prefetch alone is never credited as an exercised loading journey.
+        const mainFrame = request.frame() === page.mainFrame();
+        const documentNavigation = request.isNavigationRequest() && mainFrame;
+        const nextRead = mainFrame && headers.rsc === "1" && Boolean(headers["next-router-state-tree"] || headers["next-router-prefetch"] || headers["next-router-segment-prefetch"]);
+        if (closing || !ownsUrl(new URL(request.url())) || request.method() !== "GET" || (!documentNavigation && !nextRead)) {
+          return observe("unheld route continuation", route.continue());
+        }
         const prefetch = Boolean(headers["next-router-prefetch"] || headers["next-router-segment-prefetch"] || /prefetch/i.test(headers.purpose ?? headers["sec-purpose"] ?? ""));
         const entry = { request, kind: prefetch ? "prefetch" as const : "navigation" as const,
-          afterInteraction: interactionStarted, dispatched: false, responded: false, done: Promise.resolve() };
+          afterInteraction: interactionStarted, dispatched: false, responded: false,
+          continuation: "held" as "held" | "pending" | "fulfilled" | "rejected", done: Promise.resolve() };
         held.push(entry);
-        entry.done = (async () => { await released; entry.dispatched = true; await route.continue(); })();
-        void entry.done.catch(() => {});
+        entry.done = observe("owned route lifecycle", (async () => {
+          await released;
+          entry.dispatched = true; entry.continuation = "pending";
+          try { await observe("original route.continue", route.continue()); entry.continuation = "fulfilled"; }
+          catch (error) { entry.continuation = "rejected"; throw error; }
+        })());
         return entry.done;
       };
       const responseListener = (response: import("@playwright/test").Response) => {
         const entry = held.find(item => item.request === response.request());
         if (entry) entry.responded = true;
       };
-      // Install before the list can mount any real Link or schedule its prefetch.
-      await page.route(ownsUrl, handler);
-      page.on("response", responseListener);
+      let installed = false;
+      let responseState: "not-started" | "pending" | "received" | "null" | "rejected" = "not-started";
+      let terminalState: "not-started" | "pending" | "finished" | "returned-error" | "rejected" = "not-started";
       try {
-        await page.goto("/calculations");
+        await bounded("sign in", () => signIn(page));
+        origin = new URL(page.url()).origin;
+        // Own every selected-detail hold, including prefetch dependencies, before list mount.
+        await bounded("install selected route", () => page.route(ownsUrl, handler)); installed = true;
+        page.on("response", responseListener);
+        await bounded("render list", () => page.goto("/calculations"));
         const selected = page.getByTestId("calculation-list-row").filter({ hasText: selectedCalculation.title });
-        await expect(selected).toHaveCount(1);
-        await expect(selected).toHaveAttribute("href", detailPath);
-        await hydrated(selected);
-        await selected.focus();
+        await bounded("selected row cardinality", () => expect(selected).toHaveCount(1));
+        await bounded("selected href", () => expect(selected).toHaveAttribute("href", detailPath));
+        await bounded("selected hydration", () => hydrated(selected));
+        await bounded("selected focus", () => selected.focus());
         interactionStarted = true;
-        await selected.press("Enter", { noWaitAfter: true });
-        await expect.poll(() => held.filter(entry => entry.kind === "navigation" && entry.afterInteraction).length, {
-          message: "Missing selected-detail authoritative navigation correlation after the real Link interaction; prefetch alone is insufficient",
-        }).toBeGreaterThan(0);
+        // Pinned Playwright bypasses the navigation barrier with noWaitAfter. Keep the real awaited action.
+        await bounded("real Enter returned", () => selected.press("Enter", { noWaitAfter: true }));
+        await bounded("post-Link non-prefetch request", () => expect.poll(() => held.filter(entry => entry.kind === "navigation" && entry.afterInteraction).length).toBeGreaterThan(0));
         const navigation = held.find(entry => entry.kind === "navigation" && entry.afterInteraction)!;
         const assertHeld = async () => {
           expect(navigation.dispatched, "Selected detail must still be held before upstream dispatch").toBe(false);
           expect(navigation.responded, "A pending detail cannot already have a real response").toBe(false);
-          await expect(page.getByRole("heading", { level: 1, name: "Kalkyler", exact: true })).toBeVisible();
-          await expect(selected).toBeVisible();
-          await expect(selected).toHaveAttribute("href", detailPath);
-          await expect(selected).toContainText(selectedCalculation.title);
-          await expect(page.getByTestId("calculation-list-empty")).toHaveCount(0);
-          await expect(page.getByText("Inga träffar", { exact: true })).toHaveCount(0);
+          await bounded("held list heading", () => expect(page.getByRole("heading", { level: 1, name: "Kalkyler", exact: true })).toBeVisible());
+          await bounded("held selected visible", () => expect(selected).toBeVisible());
+          await bounded("held selected href", () => expect(selected).toHaveAttribute("href", detailPath));
+          await bounded("held selected title", () => expect(selected).toContainText(selectedCalculation.title));
+          await bounded("held no empty list", () => expect(page.getByTestId("calculation-list-empty")).toHaveCount(0));
+          await bounded("held no false filter empty", () => expect(page.getByText("Inga träffar", { exact: true })).toHaveCount(0));
           for (const testId of ["calculation-editor", "calculation-not-found", "calculation-detail-failed", "sections-empty", "totals-summary"]) {
-            await expect(page.getByTestId(testId)).toHaveCount(0);
+            await bounded(`held absent ${testId}`, () => expect(page.getByTestId(testId)).toHaveCount(0));
           }
         };
-        await capture(page, info, "calculation-list", "loading-selected-detail", selectedCalculation.id, selected, assertHeld);
-        release();
-        await navigation.done;
-        const actualResponse = await navigation.request.response();
+        await bounded("held original capture completed", () => capture(page, info, "calculation-list", "loading-selected-detail", selectedCalculation.id, selected, assertHeld));
+        releasePublished = true; release();
+        outcomes.push({ phase: "release published for ALL owned holds", status: "fulfilled" });
+        await bounded("original route.continue settled", () => navigation.done);
+        responseState = "pending";
+        const actualResponse = await bounded("same original request.response", () => navigation.request.response().then(response => {
+          responseState = response ? "received" : "null"; return response;
+        }, error => { responseState = "rejected"; throw error; }));
         expect(actualResponse, "The same continued original request must return an actual response").not.toBeNull();
+        expect(actualResponse!.request()).toBe(navigation.request);
         expect(actualResponse!.status()).toBe(200);
-        expect(await actualResponse!.finished()).toBeNull();
+        expect(new URL(actualResponse!.url()).origin).toBe(origin);
         expect(new URL(actualResponse!.url()).pathname).toBe(detailPath);
         expect(actualResponse!.headers()["content-type"]).toContain(navigation.request.isNavigationRequest() ? "text/html" : "text/x-component");
-        await expect(page).toHaveURL(new URL(detailPath, origin).href);
-        await expect(page.getByRole("heading", { level: 1, name: selectedCalculation.title, exact: true })).toBeVisible();
-        await expect(titleForm(page).locator('input[name="id"]')).toHaveValue(selectedCalculation.id);
-        await expect(page.getByTestId("calculation-not-found")).toHaveCount(0);
-        await expect(page.getByTestId("calculation-detail-failed")).toHaveCount(0);
-        // The unchanged golden fixture, rather than an invented pending zero.
+        terminalState = "pending";
+        expect(await bounded("same response.finished terminal", () => actualResponse!.finished().then(result => {
+          terminalState = result === null ? "finished" : "returned-error"; return result;
+        }, error => { terminalState = "rejected"; throw error; }))).toBeNull();
+        await bounded("matching detail URL rendered", () => expect(page).toHaveURL(new URL(detailPath, origin).href));
+        await bounded("matching detail heading rendered", () => expect(page.getByRole("heading", { level: 1, name: selectedCalculation.title, exact: true })).toBeVisible());
+        await bounded("matching detail entity rendered", () => expect(titleForm(page).locator('input[name="id"]')).toHaveValue(selectedCalculation.id));
+        await bounded("no detail not found", () => expect(page.getByTestId("calculation-not-found")).toHaveCount(0));
+        await bounded("no detail read failure", () => expect(page.getByTestId("calculation-detail-failed")).toHaveCount(0));
         const summary = page.getByTestId("totals-summary").filter({ visible: true });
-        await expect(summary.getByTestId("summary-net")).toContainText("2200,00");
-        await expect(summary.getByTestId("summary-vat")).toContainText("550,00");
-        await expect(summary.getByTestId("summary-gross")).toContainText("2750,00");
-        await info.attach("loading-navigation-correlation.json", { contentType: "application/json", body: Buffer.from(JSON.stringify({
-          originalRequestContinued: true, selectedDetailRendered: true,
-          heldRequestCount: held.length, requests: held.slice(0, 8).map(entry => ({ kind: entry.kind,
-            afterInteraction: entry.afterInteraction, dispatched: entry.dispatched, responded: entry.responded })),
-          truncated: held.length > 8,
-        })) });
-      } catch (error) { journeyFailed = true; journeyError = error; throw error; }
+        await bounded("unchanged golden net rendered", () => expect(summary.getByTestId("summary-net")).toContainText("2200,00"));
+        await bounded("unchanged golden VAT rendered", () => expect(summary.getByTestId("summary-vat")).toContainText("550,00"));
+        await bounded("unchanged golden gross rendered", () => expect(summary.getByTestId("summary-gross")).toContainText("2750,00"));
+      } catch (error) { failures.push(error); }
       finally {
-        closing = true;
-        release();
-        try {
-          await page.unroute(ownsUrl, handler);
-          const settled = await Promise.allSettled(held.map(entry => entry.done));
-          const failures = settled.filter((result): result is PromiseRejectedResult => result.status === "rejected");
-          if (failures.length) throw new AggregateError([
-            ...(journeyFailed ? [journeyError] : []), ...failures.map(result => result.reason),
-          ], "Owned detail-route release failed");
-        } finally { page.off("response", responseListener); }
+        cleaning = true; closing = true; release();
+        try { await bounded("settle every owned route", () => Promise.all(held.map(entry => entry.done)), true, 2_000); }
+        catch (error) { failures.push(error); }
+        // A race timeout does not cancel. Close only this owned page to terminate pending client channels.
+        if (pending.size) {
+          try { await bounded("close owned page/client channels only", () => page.close({ runBeforeUnload: false }), true, 3_000); }
+          catch (error) { failures.push(error); }
+        }
+        try { await bounded("collect actual client settlements", () => Promise.allSettled([...pending]), true, 2_000); }
+        catch (error) { failures.push(error); }
+        try { if (installed) await bounded("remove exact owned handler", () => page.unroute(ownsUrl, handler), true, 2_000); }
+        catch (error) { failures.push(error); }
+        page.off("response", responseListener);
+        for (const timer of timers) clearTimeout(timer);
+        try { await bounded("attach actual loading phases", () => info.attach("loading-navigation-correlation.json", { contentType: "application/json", body: Buffer.from(JSON.stringify({
+          releasePublished, responseState, terminalState, outcomes, pendingClientOperations: pending.size,
+          clientPageCloseIsBackendCancellation: false, heldRequestCount: held.length,
+          requests: held.slice(0, 8).map(entry => ({ kind: entry.kind, afterInteraction: entry.afterInteraction,
+            dispatched: entry.dispatched, responded: entry.responded, continuation: entry.continuation })), truncated: held.length > 8,
+        })) }), true, 1_000); } catch (error) { failures.push(error); }
+        if (pending.size) failures.push(new Error("Loading client operation settlement remains unknown"));
       }
+      if (failures.length) throw new AggregateError(failures, "Loading journey primary/cleanup phases failed; see actual phase outcomes");
     });
   });
 }
