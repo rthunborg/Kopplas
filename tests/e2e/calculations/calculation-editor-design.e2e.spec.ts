@@ -545,12 +545,40 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         const writes = observeWrites(page);
         // Passive observation only. No fake API, sentinel, compensating popstate,
         // pushState/replaceState, or interception added by the test.
-        const events: { cancelable: boolean; defaultPrevented: boolean; sameDocument: boolean; url: string; type: string }[] = [];
+        let traversalPhase: "cancel" | "accept" = "cancel";
+        const events: { phase: string; cancelable: boolean; defaultPrevented: boolean; sameDocument: boolean; url: string; type: string }[] = [];
+        const forwardStates: { phase: string; state: unknown }[] = [];
+        const forwardPrompts: { phase: string; type: string }[] = [];
+        const promptListener = (dialog: Dialog) => {
+          if (direction === "forward" && forwardPrompts.length < 8) forwardPrompts.push({ phase: traversalPhase, type: dialog.type() });
+        };
+        // Bounded snapshots observe both real actions without changing history or guards.
+        const recordForwardState = async (phase: string) => {
+          if (direction !== "forward") return;
+          const state = await page.evaluate(() => {
+            type Entry = { key: string; id: string; url: string; index: number };
+            const navigation = (window as Window & { navigation?: {
+              currentEntry?: Entry; entries?: () => Entry[];
+            } }).navigation;
+            const entryFacts = (entry: Entry) => ({ key: entry.key, id: entry.id, url: entry.url, index: entry.index });
+            const entries = navigation?.entries?.();
+            const markers = Array.from(document.querySelectorAll('[data-testid="calculation-editor"] [data-editor-dirty], [data-testid="calculation-editor"] [data-editor-protected]'));
+            return { url: location.href, length: history.length,
+              currentEntry: navigation?.currentEntry ? entryFacts(navigation.currentEntry) : null,
+              entriesAvailable: entries !== undefined, entryCount: entries?.length ?? null,
+              entries: entries?.slice(0, 32).map(entryFacts) ?? [], entriesTruncated: (entries?.length ?? 0) > 32,
+              markerCount: markers.length, markersTruncated: markers.length > 32,
+              markers: markers.slice(0, 32).map(element => ({ testId: element.getAttribute("data-testid"),
+                dirty: element.getAttribute("data-editor-dirty"), protected: element.getAttribute("data-editor-protected") })) };
+          }).catch(error => ({ unavailable: String(error).slice(0, 240) }));
+          forwardStates.push({ phase, state });
+        };
         const consoleListener = (message: ConsoleMessage) => {
           const prefix = "E35_8_TRAVERSAL_OBSERVED ";
-          if (message.text().startsWith(prefix)) events.push(JSON.parse(message.text().slice(prefix.length)));
+          if (message.text().startsWith(prefix)) events.push({ ...JSON.parse(message.text().slice(prefix.length)), phase: traversalPhase });
         };
         page.on("console", consoleListener);
+        page.on("dialog", promptListener);
         const observation = await page.evaluateHandle(() => {
           const navigation = (window as Window & { navigation?: EventTarget }).navigation;
           const listener = (event: Event) => {
@@ -565,51 +593,74 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         });
         const prompts = nativePrompts(page, "dismiss");
         try {
-          await page.evaluate(value => value === "back" ? history.back() : history.forward(), direction);
-          await expect.poll(() => events.length).toBe(1);
-          const actual = events[0]!;
-          await info.attach(`history-${direction}-observed.json`, { body: Buffer.from(JSON.stringify({ before, actual })), contentType: "application/json" });
-          if (!actual.cancelable || !actual.sameDocument) {
-            info.annotations.push({ type: "compatibility-gap", description: `${direction}: actual traverse cancelable=${actual.cancelable}, sameDocument=${actual.sameDocument}; AC5 history proof UNPASSED` });
-            test.skip(true, "Compatibility gap: actual traversal is not cancellable same-document navigation");
-          }
-          await expect.poll(() => prompts.seen.length).toBe(1);
-          await prompts.settle();
-          await assertUnsent(page, calculation, draft);
-          await renderedFrame(page);
-          expect(prompts.seen.map(dialog => dialog.type)).toEqual(["confirm"]);
-          expect(actual.defaultPrevented, "The real traverse must be cancelled before its history commit").toBe(true);
-          expect(await navigationEntry(page)).toEqual(before);
-          expect(writes.writes).toHaveLength(0);
-          await capture(page, info, "calculation-header", `${direction}-cancelled`, calculation.url.split("/").at(-1)!, titleForm(page), async () => {
+          await recordForwardState("before-cancel");
+          try {
+            await page.evaluate(value => value === "back" ? history.back() : history.forward(), direction);
+            await expect.poll(() => events.length).toBe(1);
+            const actual = events[0]!;
+            await info.attach(`history-${direction}-observed.json`, { body: Buffer.from(JSON.stringify({ before, actual })), contentType: "application/json" });
+            if (!actual.cancelable || !actual.sameDocument) {
+              info.annotations.push({ type: "compatibility-gap", description: `${direction}: actual traverse cancelable=${actual.cancelable}, sameDocument=${actual.sameDocument}; AC5 history proof UNPASSED` });
+              test.skip(true, "Compatibility gap: actual traversal is not cancellable same-document navigation");
+            }
+            await expect.poll(() => prompts.seen.length).toBe(1);
+            await prompts.settle();
             await assertUnsent(page, calculation, draft);
+            await renderedFrame(page);
+            expect(prompts.seen.map(dialog => dialog.type)).toEqual(["confirm"]);
+            expect(actual.defaultPrevented, "The real traverse must be cancelled before its history commit").toBe(true);
             expect(await navigationEntry(page)).toEqual(before);
             expect(writes.writes).toHaveLength(0);
-          });
+            await capture(page, info, "calculation-header", `${direction}-cancelled`, calculation.url.split("/").at(-1)!, titleForm(page), async () => {
+              await assertUnsent(page, calculation, draft);
+              expect(await navigationEntry(page)).toEqual(before);
+              expect(writes.writes).toHaveLength(0);
+            });
+          } finally { prompts.stop(); }
+          await recordForwardState("before-accept");
+          traversalPhase = "accept";
+          const acceptedWrites = observeWrites(page);
+          try {
+            await confirmOnce(page, "accept", () => page.evaluate(value => value === "back" ? history.back() : history.forward(), direction));
+            await recordForwardState("after-accept");
+            await expect(page).toHaveURL(/\/calculations$/);
+            await expect(page.getByRole("heading", { level: 1, name: "Kalkyler", exact: true })).toBeVisible();
+            const after = await navigationEntry(page);
+            expect(after.length).toBe(before.length);
+            expect(after.entry?.index).toBe(before.entry!.index + (direction === "back" ? -1 : 1));
+            if (direction === "back") {
+              await info.attach("history-back-accepted.json", { body: Buffer.from(JSON.stringify({ destinationEntry, after })), contentType: "application/json" });
+              // Accepted traversal preserves the entry key/URL/index; its document ID may change.
+              expect({ key: after.entry?.key, url: after.entry?.url, index: after.entry?.index }).toEqual({
+                key: destinationEntry.entry?.key, url: destinationEntry.entry?.url, index: destinationEntry.entry?.index,
+              });
+            } else { expect(after.entry).toEqual(destinationEntry.entry); }
+            expect(acceptedWrites.writes).toHaveLength(0);
+            await page.getByTestId("calculation-list-row").filter({ hasText: calculation.title }).click();
+            await expect(titleForm(page).getByLabel("Titel", { exact: true })).toHaveValue(calculation.title);
+            expect(acceptedWrites.writes).toHaveLength(0);
+          } finally { acceptedWrites.stop(); }
+        } catch (error) {
+          if (direction === "forward") {
+            await recordForwardState("failure");
+            await info.attach("history-forward-diagnostic.json", { body: Buffer.from(JSON.stringify({
+              before, destinationEntry, states: forwardStates, eventCount: events.length,
+              events: events.slice(0, 8), prompts: forwardPrompts,
+              failure: String(error).slice(0, 400), observationOnly: true,
+            })), contentType: "application/json" });
+          }
+          throw error;
         } finally {
           prompts.stop();
           page.off("console", consoleListener);
-          // Supported cancellation retains this same document/observation.
+          page.off("dialog", promptListener);
+          // Keep the passive observer through both actions; acceptance may replace the document.
           await observation.evaluate(value => value.remove()).catch(error => {
             if (!(error instanceof Error) || !/Execution context was destroyed|Cannot find context|JSHandle is disposed/i.test(error.message)) throw error;
           });
           await observation.dispose();
           writes.stop();
         }
-        const acceptedWrites = observeWrites(page);
-        try {
-          await confirmOnce(page, "accept", () => page.evaluate(value => value === "back" ? history.back() : history.forward(), direction));
-          await expect(page).toHaveURL(/\/calculations$/);
-          await expect(page.getByRole("heading", { level: 1, name: "Kalkyler", exact: true })).toBeVisible();
-          const after = await navigationEntry(page);
-          expect(after.length).toBe(before.length);
-          expect(after.entry?.index).toBe(before.entry!.index + (direction === "back" ? -1 : 1));
-          expect(after.entry).toEqual(destinationEntry.entry);
-          expect(acceptedWrites.writes).toHaveLength(0);
-          await page.getByTestId("calculation-list-row").filter({ hasText: calculation.title }).click();
-          await expect(titleForm(page).getByLabel("Titel", { exact: true })).toHaveValue(calculation.title);
-          expect(acceptedWrites.writes).toHaveLength(0);
-        } finally { acceptedWrites.stop(); }
       });
     }
 
@@ -701,16 +752,16 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
       await toggle.click();
       await expect(form).toHaveAttribute("data-editor-ready", "true");
       const draft = "Osparad ny kalkyl Åsby";
-      await form.getByLabel("Titel", { exact: true }).fill(draft);
+      await form.getByRole("textbox", { name: "Titel", exact: true }).fill(draft);
       const writes = observeWrites(page);
       try {
         await confirmOnce(page, "dismiss", () => toggle.click());
-        await expect(form.getByLabel("Titel", { exact: true })).toHaveValue(draft);
+        await expect(form.getByRole("textbox", { name: "Titel", exact: true })).toHaveValue(draft);
         await expect(form).toHaveAttribute("data-editor-dirty", "true");
         await expect(toggle).toHaveAttribute("aria-expanded", "true");
         expect(writes.writes).toHaveLength(0);
         await capture(page, info, "calculation-list", "dirty-hide-cancelled", "unsent-new-calculation", form, async () => {
-          await expect(form.getByLabel("Titel", { exact: true })).toHaveValue(draft);
+          await expect(form.getByRole("textbox", { name: "Titel", exact: true })).toHaveValue(draft);
           expect(writes.writes).toHaveLength(0);
         });
         await confirmOnce(page, "accept", () => toggle.click());
@@ -718,9 +769,9 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         expect(writes.writes).toHaveLength(0);
         await toggle.click();
         await expect(form).toHaveAttribute("data-editor-ready", "true");
-        await expect(form.getByLabel("Titel", { exact: true })).toHaveValue("");
+        await expect(form.getByRole("textbox", { name: "Titel", exact: true })).toHaveValue("");
         const title = `Skyddad ny kalkyl Åsby ${crypto.randomUUID()}`;
-        await form.getByLabel("Titel", { exact: true }).fill(title);
+        await form.getByRole("textbox", { name: "Titel", exact: true }).fill(title);
         await form.getByRole("combobox", { name: "Kund", exact: true }).selectOption({ index: 1 });
         const loss = await interceptedWrite(page, "**/calculations", true);
         try {
@@ -734,7 +785,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           expect(retained).toHaveLength(1);
           expect(JSON.parse(retained[0]![1]).operationId).toBe(original("operation_id"));
           await confirmOnce(page, "dismiss", () => toggle.click());
-          await expect(form.getByLabel("Titel", { exact: true })).toHaveValue(title);
+          await expect(form.getByRole("textbox", { name: "Titel", exact: true })).toHaveValue(title);
           await expect(form.getByRole("button", { name: "Kontrollera resultat", exact: true })).toBeVisible();
           expect(await handles()).toEqual(retained);
           await confirmOnce(page, "accept", () => toggle.click());

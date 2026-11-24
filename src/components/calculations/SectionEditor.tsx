@@ -76,6 +76,7 @@ export function SectionEditor({
   const archiveDialog = useRef<HTMLDialogElement>(null);
   const archiveTrigger = useRef<HTMLButtonElement>(null);
   const archiveCancel = useRef<HTMLButtonElement>(null);
+  const archiveConfirm = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (!confirmArchive) return;
     const dialog = archiveDialog.current;
@@ -304,6 +305,15 @@ export function SectionEditor({
           <dialog
             ref={archiveDialog}
             onCancel={event => { event.preventDefault(); setConfirmArchive(false); }}
+            onKeyDown={event => {
+              if (event.key !== "Tab") return;
+              const endpoint = event.shiftKey ? archiveCancel.current : archiveConfirm.current;
+              const destination = event.shiftKey ? archiveConfirm.current : archiveCancel.current;
+              if (endpoint && destination && document.activeElement === endpoint) {
+                event.preventDefault();
+                destination.focus();
+              }
+            }}
             data-testid="archive-section-confirm"
             role="alertdialog"
             aria-modal="true"
@@ -327,6 +337,7 @@ export function SectionEditor({
               </button>
               <button
                 type="button"
+                ref={archiveConfirm}
                 data-testid="archive-section-confirm-button"
                 onClick={() => {
                   const fd = new FormData();

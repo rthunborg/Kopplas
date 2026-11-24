@@ -88,3 +88,51 @@ The coordinator owns same-receipt verification, checkpointing and candidate publ
 After the test delta's independent High review, qualify actual production-server function and integrity results, final-candidate original PNGs, immutable visual package/candidate/tree/digests, image review and authenticated human visual acceptance under the existing policy. Loading, revoked and immutable-source presentation cases above need a precise approved seam/allocation rather than fabricated routes/permissions. Native browser compatibility and shell exits remain separately allocated prerequisites; there is no AC5 waiver. Full static/build/DB/RLS/recovery gates, frontend acceptance, delivery/completion, release and native finalization remain open. No story/status/checklist or terminal completion was written.
 
 STOP: zero launched resources, active browser/DB handles, helper sessions or pending delegate queues. No lease or retained running workload exists.
+
+## Hosted corrective follow-up — 2026-11-24
+
+The preparation header and preceding preparation record remain historical provenance for revision `51129306f1183ca986cde3f6859f2df119984e77`. This is a narrow pinned Build Auto review-fix on the working tree based on `50e023b80547eb6c19a9aefba27ada45217a1ed6`, authored by a distinct context-free Sol High delegate. No fresh TEA resolver, preparation receipt or phase-completion claim was created. `development_complete=false`; `release_ready=false`; canonical story remains `in-review`.
+
+### Frozen actual521 evidence and limits
+
+Candidate `521a51f2` ordinary run `45317726878` passed204/204. Expanded run `45317751869` contains30 design cases:22 first passes and8 failures on both attempts (four behaviors across two viewports);24 mandatory calculation regressions and21 P6 cases passed. Its full cohort is549 expected/19 unexpected/22 skipped, including11 other failures outside these four behaviors. Database evidence remains2303 passed/0 failed/52 pending in its original run scope. The46 PNG occurrences/42 unique captures remain **UNAPPROVED**. None of these results qualifies the corrective working tree or a new candidate.
+
+The retained logical reports were SHA-256 verified by this corrective author:
+
+| Logical report | Raw SHA-256 |
+| --- | --- |
+| `release-native-summary.json` | `395315dc579614d61bfa60cfb05e7e9d8b519584ec00362340840120601113e0` |
+| `native-general-browser/general-browser.json` | `a98002b49415d5c39d478ca16a8a911743fdafc0c07662055c80f97f8f5c9ad6` |
+
+The full browser report supplies case results; `browser-runtime-e2e.json` is metadata only. Artifact `14888321390` contains181 PNG,181 JSON and2 JSONL files, with zero available trace ZIP, HTML, stdout or stderr files. Report strings naming trace/error-context paths are not available artifact files. No browser cause is inferred from unavailable evidence.
+
+### Four bounded corrections
+
+- **Section confirmation:** all four hosted attempts failed Confirm→Tab→Cancel focus wrapping; opening inside the actual dialog and phone44px controls passed. SectionEditor now explicitly wraps only Tab from Confirm and Shift+Tab from Cancel. Native HTML dialog, initial Cancel focus, Escape/cleanup/restoration, consequence description and every original focus/persisted-row assertion remain. The prior actual focus destination was not recorded; no browser-cause claim is made.
+- **Accepted Back:** all four attempts reached the second confirmation, rendered list, history length and index offset, then failed a target comparison differing only in ID; exact key/URL/index matched. The accepted Back comparison now requires those exact three facts and attaches original/actual IDs as metadata. Full cancellation identity including ID/history length remains unchanged, as do prompt, heading, no-write and persisted-title checks. Those last two checks were previously unreached after the identity failure. No exact framework runtime call is asserted from package comments.
+- **Forward:** all four attempts fully passed genuine cancellable same-document cancellation, `defaultPrevented=true`, one confirmation, retained draft/URL/dirty marker, complete entry identity/count, no writes and capture. Second acceptance expected one confirmation and got zero. Previously the passive observer was removed before that action; no second event, entry-list or marker evidence distinguished target loss from guard bypass or compatibility. The observer now stays through both actions in the same case. Forward-only snapshots record current and available key/ID/URL/index, history/entry counts and dirty/protected markers before cancellation, before acceptance and after acceptance or failure. Entries/markers are capped at32 with total counts/truncation flags; failure diagnostics retain up to8 event/prompt records and bounded error text. `history-forward-diagnostic.json` attaches on failure, including second-action facts or their absence, and emits no success diagnostic. All confirmation/route/entry/heading/no-write/original-title assertions remain; missing confirmation still fails. This is **source-observation-only**, not a product fix or unsupported-browser classification. No new skip, waiver, route, history manipulation, fake API, sleep/retry or generic guard change was added.
+- **Create-form hide:** clean open/hide/reopen passed, then the required-star title's exact label lookup failed in all four attempts before dirty/protected assertions. Only the six new-form title references now use `form.getByRole('textbox', { name: 'Titel', exact: true })`, matching the established create helper. The observer detail's optional-title label locator remains unchanged. Mutation counts, original operation ID, submitted revision/expected facts, retained session handle, checked reconciliation and result assertions remain intact.
+
+No changes were made to `confirmMatchingDraft`, checked committed/closed/unconfirmed authority, later-draft protection, money/tax or reviewed-quote authority. Only the allocated SectionEditor, design E2E, canonical story and this summary were edited. The canonical author's existing Suggested Review Order was refreshed in place with verified stops and these evidence limits.
+
+### Actual corrective cheap checks
+
+All commands used existing `<ancestor-node_modules>` dependencies from the assigned working tree; no install or retry was attempted.
+
+| Command | Native exit | Observed result |
+| --- | --- | --- |
+| `node <ancestor-node_modules>/eslint/bin/eslint.js src/components/calculations/SectionEditor.tsx tests/e2e/calculations/calculation-editor-design.e2e.spec.ts` | 0 | No warnings/errors |
+| `node <ancestor-node_modules>/typescript/lib/tsc.js --noEmit --strict --skipLibCheck --target ES2022 --module NodeNext --moduleResolution NodeNext --esModuleInterop tests/e2e/calculations/calculation-editor-design.e2e.spec.ts` | 0 | Focused E2E file check; no diagnostics |
+| `node <ancestor-node_modules>/@playwright/test/cli.js test tests/e2e/calculations/calculation-editor-design.e2e.spec.ts --list --project=chromium --reporter=list` | 0 | 30 collected tests in one file; zero test bodies executed |
+| `node scripts/verify/check-review-order.mjs _bmad-output/specs/spec-design-35-8/stories/35-8-calculation-editor-and-review.md` | 0 | One section,34 verified references,zero errors |
+| `git diff --check` | 0 | No whitespace errors |
+
+The historical preparation header was separately compared byte-for-byte with the base revision's first line and is unchanged. Git status contains exactly the four allocated paths; no other source/test/state/helper/configuration file was changed by this author.
+
+These are static/collection results for the uncommitted corrective source, not a qualified frozen install, full application typecheck/build, browser or integrity pass. This author executed zero runtime cases and launched zero resources. Existing hosted counts retain their actual521 scope. Both original AC5 shell-exit and unsupported/noncancellable traversal prerequisites remain **UNPASSED**.
+
+Independent High review acknowledgment: a different reviewer returned **no findings** on frozen four-file delta SHA-256 `a42ba0db262200bace38f3f0b9ea102bae502be1eb85269d0d677b88a85d7c59` (39470 bytes). It independently verified all four raw file hashes/allocation, zero untracked files, the complete unchanged historical summary/header prefix including newline,34 valid review stops and the preserved dialog, Back cancellation, Forward missing-confirmation failure and six-locator-only create-hide/recovery assertions. This later acknowledgment changes documentation only; it supplies no runtime evidence.
+
+Next: the coordinator owns any subsequent candidate publication and qualified runtime dispatch. The corrected candidate remains **UNRUN**. A new-candidate run must establish dialog wrapping, accepted Back and dirty/protected form-hide outcomes and supply the missing second Forward observations; no same-head blind rerun or new-candidate credit is claimed here. Forward remains observation-only, both original AC5 prerequisites remain unpassed, and `development_complete=false` / `release_ready=false`. Visual acceptance, remaining integrity/compatibility requirements and completion/release gates remain open.
+
+STOP: source work and permitted cheap checks only; no browser, server, database, hosted/provider action, commit, push or PR operation. No active managed resource, lease or pending helper remains.
