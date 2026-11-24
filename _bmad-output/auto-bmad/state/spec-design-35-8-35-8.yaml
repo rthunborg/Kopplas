@@ -9,7 +9,7 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-8-presentation-20261122/worker/_bma
 story_id: 35-8
 branch: codex/story-35-8-calculation-editor-presentation-20261122
 status: in-progress
-updated_at: "2026-11-24T00:19:09Z"
+updated_at: "2026-11-24T00:22:34Z"
 started_at: "2026-11-24T00:18:26Z"
 completed_at: null
 active_seconds: 0
@@ -18,17 +18,18 @@ is_first_in_epic: true
 is_last_in_epic: true
 git_mode: null
 base_branch: null
-selected_phase: tea_triage
-selected_role: test-risk-triage
-selected_profile: light
+selected_phase: atdd
+selected_role: test-architecture
+selected_profile: standard
 selected_model: gpt-6.1-sol
-selected_effort: low
+selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Metadata-only triage of approved presentation story; actual sensitive implementation/review routed High separately."
+escalation_reason: "Scoped ATDD includes actual stale quote/tax and recovered original-operation transactional invariant checks; distinct High author, no business semantics changes."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Metadata-only triage of approved presentation story; actual sensitive implementation/review routed High separately.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Scoped ATDD includes actual stale quote/tax and recovered original-operation transactional invariant checks; distinct High author, no business semantics changes.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"atdd\",\"profile\":\"standard\",\"role\":\"test-architecture\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Metadata-only triage: original money/tax, archive and quote-create outcomes plus original-operation/revision integrity require ATDD+automate. Testing-risk high does not authorize business-semantic writes or alter ordinary Low implementation route."
