@@ -9,29 +9,30 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-8-presentation-20261122/worker/_bma
 story_id: 35-8
 branch: codex/story-35-8-calculation-editor-presentation-20261122
 status: in-progress
-updated_at: "2026-11-24T02:55:35Z"
+updated_at: "2026-11-24T03:57:31Z"
 started_at: "2026-11-24T00:18:26Z"
 completed_at: null
-active_seconds: 3101
-timing_anchor: 1795488935
+active_seconds: 6816
+timing_anchor: 1795492651
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: null
 base_branch: null
-selected_phase: tea_per_story
-selected_role: tea-delegate
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
-selected_effort: high
+selected_effort: low
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Scoped automate preparation for reviewed source checkpoint; real dirty navigation, confirmed quote/later-draft and no-duplicate mutation proof require High. Phase5 remains in-review and no runtime or visual acceptance is inferred."
+escalation_reason: "Narrow coordination of actual521a51f2 hosted failures. Independent High diagnosis retained; all AC5 navigation/identity and test repair implementation plus changed-case review explicitly High. No broad review replay or completion inference."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Metadata-only triage of approved presentation story; actual sensitive implementation/review routed High separately.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Scoped ATDD includes actual stale quote/tax and recovered original-operation transactional invariant checks; distinct High author, no business semantics changes.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"atdd\",\"profile\":\"standard\",\"role\":\"test-architecture\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary approved calculation presentation only; frozen money/source/review/original-operation semantics read-only, sensitive decisions and independent review routed High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Scoped automate preparation for reviewed source checkpoint; real dirty navigation, confirmed quote/later-draft and no-duplicate mutation proof require High. Phase5 remains in-review and no runtime or visual acceptance is inferred.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Narrow coordination of actual521a51f2 hosted failures. Independent High diagnosis retained; all AC5 navigation/identity and test repair implementation plus changed-case review explicitly High. No broad review replay or completion inference.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Metadata-only triage: original money/tax, archive and quote-create outcomes plus original-operation/revision integrity require ATDD+automate. Testing-risk high does not authorize business-semantic writes or alter ordinary Low implementation route."
