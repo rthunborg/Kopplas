@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-8-presentation-20261122/worker/_bma
 story_id: 35-8
 branch: codex/story-35-8-calculation-editor-presentation-20261122
 status: in-progress
-updated_at: "2026-11-24T06:04:12Z"
+updated_at: "2026-11-24T06:14:53Z"
 started_at: "2026-11-24T00:18:26Z"
 completed_at: null
-active_seconds: 14417
-timing_anchor: 1795500252
+active_seconds: 15058
+timing_anchor: 1795500893
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: null
@@ -26,7 +26,7 @@ selected_effort: low
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Narrow coordination of42076f41 actual accepted same-slot replacement classification and Playwright facade import interop. Independent High source disposition supports exact test-only corrections; implementation and different changed-case review High. All product/shared code unchanged, runtime/phase completion not inferred."
+escalation_reason: "Root-authorized additive real denial/derived-ready captures and read-only malformed-ID generic-error case only after distinct High UUID/filter disposition. Existing corrections qualified; product/shared/fixture/SQL unchanged. High author and same independent changed-case reviewer; no runtime or completion credit."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Metadata-only triage of approved presentation story; actual sensitive implementation/review routed High separately.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Scoped ATDD includes actual stale quote/tax and recovered original-operation transactional invariant checks; distinct High author, no business semantics changes.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"atdd\",\"profile\":\"standard\",\"role\":\"test-architecture\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -36,6 +36,7 @@ routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Narrow coordination after independent High qualification of equivalent genuine native Forward witness on509d6faf. Test implementation and independent changed-case review explicitly High; product remains unchanged, historical History.forward failures retained, no completion or runtime inference.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Root-qualified feature-local loading and isolated post-render membership revocation evidence batch. Coordination Low; fixture/tenant/auth authority and test implementation plus distinct review explicitly High. Only existing test/summary/story, no product/shared/provider or runtime changes now.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Narrow coordination of42076f41 actual accepted same-slot replacement classification and Playwright facade import interop. Independent High source disposition supports exact test-only corrections; implementation and different changed-case review High. All product/shared code unchanged, runtime/phase completion not inferred.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Root-authorized additive real denial/derived-ready captures and read-only malformed-ID generic-error case only after distinct High UUID/filter disposition. Existing corrections qualified; product/shared/fixture/SQL unchanged. High author and same independent changed-case reviewer; no runtime or completion credit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Metadata-only triage: original money/tax, archive and quote-create outcomes plus original-operation/revision integrity require ATDD+automate. Testing-risk high does not authorize business-semantic writes or alter ordinary Low implementation route."
