@@ -55,15 +55,15 @@ export default async function CalculationEditorPage({
         <div
           role="alert"
           data-testid="calculation-detail-failed"
-          className="rounded-lg border border-red-300 bg-red-50 p-6"
+          className="rounded-card border border-risk-text bg-risk-surface p-6"
         >
-          <p className="text-sm font-medium text-red-800">
+          <p className="text-label font-medium text-risk-text">
             Kalkylen kunde inte läsas in.
           </p>
-          <p className="mt-1 text-sm text-red-700">{error}</p>
+          <p className="mt-1 text-label text-risk-text">{error}</p>
           <Link
             href="/calculations"
-            className="mt-4 inline-flex rounded-md border border-red-300 bg-white px-3 py-1.5 text-sm font-medium text-red-800 hover:bg-red-100"
+            className="mt-4 inline-flex min-h-control-lg min-w-control-lg items-center rounded-control border border-risk-text bg-card px-3 py-1.5 text-label font-medium text-risk-text hover:bg-risk-surface"
           >
             Tillbaka till kalkyler
           </Link>
@@ -78,15 +78,15 @@ export default async function CalculationEditorPage({
       <section className="mx-auto max-w-3xl">
         <div
           data-testid="calculation-not-found"
-          className="rounded-lg border border-dashed border-zinc-300 bg-white p-8 text-center"
+          className="rounded-card border border-dashed border-border-strong bg-card p-8 text-center"
         >
-          <p className="text-sm font-medium text-zinc-900">Kalkylen hittades inte</p>
-          <p className="mt-1 text-sm text-zinc-600">
+          <p className="text-label font-medium text-text-primary">Kalkylen hittades inte</p>
+          <p className="mt-1 text-label text-text-secondary">
             Kalkylen finns inte eller så har du inte åtkomst till den.
           </p>
           <Link
             href="/calculations"
-            className="mt-4 inline-flex rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 hover:bg-zinc-100"
+            className="mt-4 inline-flex min-h-control-lg min-w-control-lg items-center rounded-control border border-border-strong bg-card px-3 py-1.5 text-label font-medium text-text-secondary hover:bg-active"
           >
             Tillbaka till kalkyler
           </Link>

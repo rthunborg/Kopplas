@@ -25,6 +25,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useEditorOperation } from "./CalculationList";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { oreToKronorString } from "@/features/calculations/money-input";
 import type { ReadinessReport } from "@/features/calculations/readiness";
 import type { CalculationDetail } from "@/features/calculations/read";
@@ -72,6 +73,7 @@ export function PreQuotePreview({
   taxAnswer,
   quoteCaptureDate,
   reviewedSnapshotDigest,
+  confirmDeparture,
 }: {
   readonly detail: CalculationDetail;
   readonly report: ReadinessReport;
@@ -85,6 +87,7 @@ export function PreQuotePreview({
   readonly taxAnswer: TaxAnswerSnapshotV2 | null;
   readonly quoteCaptureDate: string;
   readonly reviewedSnapshotDigest: string;
+  readonly confirmDeparture: () => boolean;
 }) {
   const { customer, sections } = detail;
   const [open, setOpen] = useState(false);
@@ -92,6 +95,7 @@ export function PreQuotePreview({
   const [reviewedProof, setReviewedProof] = useState<ReviewedQuoteProof | null>(null);
   const refreshedExpiredCaptureDate = useRef<string | null>(null);
   const router = useRouter();
+  const attemptedDestination = useRef<string | null>(null);
   const quoteOperation = useEditorOperation(createReviewedQuoteVersionFromCalculationAction, CREATE_QUOTE_ACTION_INITIAL, `${detail.header.id}/reviewed-initial-quote`, form => ({ version: 1, form: "reviewed-initial-quote", reviewed_snapshot_digest: form.get("reviewed_snapshot_digest"), reviewed_quote_capture_date: form.get("reviewed_quote_capture_date"), attachment_file_ids: form.getAll("attachment_file_ids") }));
   const [createState, createAction, createPending] = [quoteOperation.state, quoteOperation.action, quoteOperation.pending];
   useEffect(() => {
@@ -100,9 +104,12 @@ export function PreQuotePreview({
       createState.quoteId &&
       createState.targetId
     ) {
-      router.push(`/quotes/${createState.quoteId}/versions/${createState.targetId}`);
+      const destination = `/quotes/${createState.quoteId}/versions/${createState.targetId}`;
+      if (attemptedDestination.current === destination) return;
+      attemptedDestination.current = destination;
+      if (confirmDeparture()) router.push(destination);
     }
-  }, [createState.status, createState.quoteId, createState.targetId, router]);
+  }, [createState.status, createState.quoteId, createState.targetId, router, confirmDeparture]);
   useEffect(() => {
     const intervalId = window.setInterval(() => setNow(new Date()), 60_000);
     return () => window.clearInterval(intervalId);
@@ -150,10 +157,16 @@ export function PreQuotePreview({
   return (
     <section
       data-testid="pre-quote"
+      data-editor-dirty={quoteOperation.hasDraftChanges}
+      data-editor-protected={quoteOperation.hasProtectedOperation}
       aria-label="Skapa offertversion"
-      className="flex flex-col gap-3 rounded-lg border border-zinc-200 bg-white p-4"
+      className="flex flex-col gap-3 rounded-card border border-border-default bg-card p-4"
     >
-      <h2 className="text-sm font-semibold text-zinc-900">Skapa offert</h2>
+      <h2 className="text-section font-medium text-text-primary">Skapa offert</h2>
+
+      {createState.status === "success" && createState.quoteId && createState.targetId && (
+        <Link href={`/quotes/${createState.quoteId}/versions/${createState.targetId}`} className="min-h-control-lg text-text-primary underline">Öppna skapad offertversion</Link>
+      )}
 
       {/* AC3 — the "a new version is required after send" forward-seam message. Rendered where
           the create-quote affordance lives; a PRESENT static explanatory affordance (Epic 6 owns
@@ -161,18 +174,17 @@ export function PreQuotePreview({
       <p
         role="note"
         data-testid="new-version-after-send-message"
-        className="rounded-md border border-blue-200 bg-blue-50 px-3 py-2 text-xs text-blue-900"
+        className="rounded-control border border-info-text bg-info-surface px-3 py-2 text-caption text-info-text"
       >
         Obs: När en offert har skickats till kund kräver ändringar som påverkar det kunden ser en
-        NY offertversion — den skickade versionen ändras inte. (Preliminär text; hanteras när
-        offertversioner införs.)
+        ny offertversion — den skickade versionen ändras inte.
       </p>
 
       {gated ? (
         <p
           role="status"
           data-testid="create-quote-gated-note"
-          className="text-sm text-red-800"
+          className="text-label text-risk-text"
         >
           Åtgärda de blockerande problemen ovan innan du kan skapa en offertversion.
         </p>
@@ -188,12 +200,15 @@ export function PreQuotePreview({
             router.refresh();
             return;
           }
+          const closing = open && !previewNotReviewed && !previewStale;
+          if (closing && (quoteOperation.hasDraftChanges || quoteOperation.hasProtectedOperation) &&
+            !window.confirm("Du har osparade ändringar eller ett obekräftat resultat. Vill du lämna formuläret?")) return;
           setReviewedProof({ digest: reviewedSnapshotDigest, quoteCaptureDate });
           setOpen((current) =>
             previewNotReviewed || previewStale ? true : !current,
           );
         }}
-        className="self-start rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
+        className="min-h-control-lg min-w-control-lg self-start rounded-control bg-ink px-4 py-2 text-body font-medium text-white hover:bg-n-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:cursor-not-allowed disabled:bg-inset disabled:text-text-disabled"
       >
         {captureDateExpired
           ? "Hämta dagens förhandsvisning"
@@ -207,13 +222,13 @@ export function PreQuotePreview({
       {open && !gated && (
         <div
           data-testid="pre-quote-preview"
-          className="flex flex-col gap-4 rounded-md border border-zinc-200 bg-zinc-50 p-4"
+          className="flex flex-col gap-4 rounded-control border border-border-default bg-sunken p-4"
         >
           {/* Customer / facility / contact. */}
-          <div data-testid="preview-customer" className="text-sm">
-            <h3 className="font-semibold text-zinc-900">Kund</h3>
-            <p className="text-zinc-800">{customer.customer_display_name ?? "—"}</p>
-            <p className="text-zinc-600">
+          <div data-testid="preview-customer" className="text-label tabular-nums">
+            <h3 className="font-medium text-text-primary">Kund</h3>
+            <p className="text-text-primary">{customer.customer_display_name ?? "—"}</p>
+            <p className="text-text-secondary">
               Anläggning: {customer.facility_name ?? "—"} · Kontakt:{" "}
               {customer.contact_name ?? "—"}
             </p>
@@ -221,27 +236,27 @@ export function PreQuotePreview({
 
           {/* Sections — respecting each display_mode; visible vs hidden + options/tillval. */}
           <div data-testid="preview-sections" className="flex flex-col gap-3">
-            <h3 className="text-sm font-semibold text-zinc-900">Sektioner</h3>
+            <h3 className="text-section font-medium text-text-primary">Sektioner</h3>
             {sections.length === 0 ? (
-              <p className="text-sm text-zinc-600">Inga sektioner.</p>
+              <p className="text-label text-text-secondary">Inga sektioner.</p>
             ) : (
               sections.map((section) => (
                 <div
                   key={section.id}
                   data-testid="preview-section"
                   data-display-mode={section.display_mode}
-                  className="rounded border border-zinc-200 bg-white p-3 text-sm"
+                  className="rounded-control border border-border-default bg-card p-3 text-label"
                 >
-                  <p className="font-medium text-zinc-900">
+                  <p className="font-medium text-text-primary">
                     {section.title ?? "(namnlös sektion)"}{" "}
-                    <span className="text-xs font-normal text-zinc-500">
+                    <span className="text-caption font-normal text-text-tertiary">
                       ({SECTION_MODE_LABELS[section.display_mode] ?? section.display_mode})
                     </span>
                   </p>
                   {section.display_mode === "text_only" ? (
-                    <p className="text-zinc-600">Endast text — rader visas inte i offerten.</p>
+                    <p className="text-text-secondary">Endast text — rader visas inte i offerten.</p>
                   ) : section.display_mode === "summary" ? (
-                    <p className="text-zinc-600">
+                    <p className="text-text-secondary">
                       Sammanfattning — raderna summeras utan radvis specifikation.
                     </p>
                   ) : (
@@ -256,7 +271,7 @@ export function PreQuotePreview({
                             data-optional={row.is_optional ? "true" : "false"}
                             data-selected={row.is_selected === true ? "true" : "false"}
                             data-included={row.included_in_invoice_total ? "true" : "false"}
-                            className="flex items-center justify-between gap-2 text-zinc-700"
+                            className="flex items-center justify-between gap-2 text-text-secondary"
                           >
                             <span>
                               {ROW_TYPE_LABELS[row.row_type] ?? row.row_type}
@@ -264,7 +279,7 @@ export function PreQuotePreview({
                               {row.is_hidden ? (
                                 <span
                                   data-testid="preview-row-hidden-badge"
-                                  className="ml-2 rounded bg-zinc-200 px-1 text-xs text-zinc-700"
+                                  className="ml-2 rounded-control bg-active px-1 text-caption text-text-secondary"
                                 >
                                   dold i offert
                                 </span>
@@ -272,7 +287,7 @@ export function PreQuotePreview({
                               {row.is_optional ? (
                                 <span
                                   data-testid="preview-row-option-badge"
-                                  className="ml-2 rounded bg-zinc-200 px-1 text-xs text-zinc-700"
+                                  className="ml-2 rounded-control bg-active px-1 text-caption text-text-secondary"
                                 >
                                   tillval ({unselectedOption ? "ej vald" : "vald"})
                                 </span>
@@ -280,10 +295,10 @@ export function PreQuotePreview({
                               <span
                                 data-testid="preview-row-inclusion-badge"
                                 className={[
-                                  "ml-2 rounded px-1 text-xs",
+                                  "ml-2 rounded-control px-1 text-caption",
                                   row.included_in_invoice_total
-                                    ? "bg-green-100 text-green-900"
-                                    : "bg-amber-100 text-amber-900",
+                                    ? "bg-ok-surface text-ok-text"
+                                    : "bg-warn-surface text-warn-text",
                                 ].join(" ")}
                               >
                                 {row.included_in_invoice_total
@@ -310,13 +325,13 @@ export function PreQuotePreview({
               so a `company_excl` preview stops contradicting the resolved posture. */}
           {(() => {
             const netPrimary = view?.posture === "company_excl";
-            const netEmphasis = netPrimary ? "flex justify-between font-semibold" : "flex justify-between";
-            const netDt = netPrimary ? "text-zinc-900" : "text-zinc-600";
-            const grossEmphasis = netPrimary ? "flex justify-between" : "flex justify-between font-semibold";
-            const grossDt = netPrimary ? "text-zinc-600" : "text-zinc-900";
+            const netEmphasis = netPrimary ? "flex justify-between font-medium" : "flex justify-between";
+            const netDt = netPrimary ? "text-text-primary" : "text-text-secondary";
+            const grossEmphasis = netPrimary ? "flex justify-between" : "flex justify-between font-medium";
+            const grossDt = netPrimary ? "text-text-secondary" : "text-text-primary";
             return (
-          <div data-testid="preview-totals" className="text-sm">
-            <h3 className="font-semibold text-zinc-900">Summering</h3>
+          <div data-testid="preview-totals" className="text-label tabular-nums">
+            <h3 className="font-medium text-text-primary">Summering</h3>
             {total && taxAnswer ? (
               <dl className="flex flex-col gap-1">
                 {(["labor", "material", "other"] as const).map((summaryKey) => {
@@ -328,7 +343,7 @@ export function PreQuotePreview({
                       : "Övrigt";
                   return (
                     <div key={summaryKey} className="flex justify-between gap-3">
-                      <dt className="text-zinc-600">{label}</dt>
+                      <dt className="text-text-secondary">{label}</dt>
                       <dd data-testid={`preview-summary-${summaryKey}`} className="text-right">
                         {oreToKronorString(summary.netOre)} + {oreToKronorString(summary.vatOre)} moms
                         = {oreToKronorString(summary.grossOre)} kr
@@ -341,7 +356,7 @@ export function PreQuotePreview({
                   <dd data-testid="preview-net">{oreToKronorString(taxAnswer.netOre)} kr</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-zinc-600">Moms</dt>
+                  <dt className="text-text-secondary">Moms</dt>
                   <dd data-testid="preview-vat">{oreToKronorString(taxAnswer.vatOre)} kr</dd>
                 </div>
                 <div className={grossEmphasis}>
@@ -349,25 +364,25 @@ export function PreQuotePreview({
                   <dd data-testid="preview-gross">{oreToKronorString(taxAnswer.grossOre)} kr</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-zinc-600">Skatteavdrag</dt>
+                  <dt className="text-text-secondary">Skatteavdrag</dt>
                   <dd data-testid="preview-deduction">
                     −{oreToKronorString(taxAnswer.deductionOre)} kr
                   </dd>
                 </div>
-                <div className="flex justify-between font-semibold">
+                <div className="flex justify-between font-medium">
                   <dt>Att betala</dt>
                   <dd data-testid="preview-payable">{oreToKronorString(taxAnswer.payableOre)} kr</dd>
                 </div>
               </dl>
             ) : (
-              <p className="text-red-800">Totalsumman kunde inte beräknas.</p>
+              <p className="text-risk-text">Totalsumman kunde inte beräknas.</p>
             )}
-            <p data-testid="preview-vat-display" className="mt-1 text-xs text-zinc-500">
+            <p data-testid="preview-vat-display" className="mt-1 text-caption text-text-tertiary">
               Momsvisning: {vatPostureLabel}.
             </p>
             {taxAnswer ? (
               <>
-                <ul className="mt-2 flex flex-col gap-1 text-xs text-zinc-700">
+                <ul className="mt-2 flex flex-col gap-1 text-caption text-text-secondary">
                   {taxAnswer.categories.map((category) => {
                     const suffix =
                       category.vatType === "STANDARD_VAT_25"
@@ -392,7 +407,7 @@ export function PreQuotePreview({
                 <BuyerVatNumberFact
                   value={taxAnswer.buyerVatNumber}
                   testId="preview-buyer-vat-number"
-                  className="mt-2 text-xs text-zinc-700"
+                  className="mt-2 text-caption text-text-secondary"
                 />
               </>
             ) : null}
@@ -402,33 +417,33 @@ export function PreQuotePreview({
 
           {/* Tax assumptions — surfaced from the warnings captured at snapshot time (unapproved +
               sign-off framing; never rendered final). */}
-          <div data-testid="preview-tax-assumptions" className="text-sm">
-            <h3 className="font-semibold text-zinc-900">Skatteantaganden</h3>
+          <div data-testid="preview-tax-assumptions" className="text-label tabular-nums">
+            <h3 className="font-medium text-text-primary">Skatteantaganden</h3>
             {taxSignOffWarning ? (
-              <p className="text-amber-900">{taxSignOffWarning.message}</p>
+              <p className="text-warn-text">{taxSignOffWarning.message}</p>
             ) : (
-              <p className="text-zinc-600">Inga ROT-/grön teknik-antaganden på kalkylen.</p>
+              <p className="text-text-secondary">Inga ROT-/grön teknik-antaganden på kalkylen.</p>
             )}
           </div>
 
           {/* Terms (from the tenant quote-terms read; approval enforcement is Epic 6). */}
-          <div data-testid="preview-terms" className="text-sm">
-            <h3 className="font-semibold text-zinc-900">Offertvillkor</h3>
+          <div data-testid="preview-terms" className="text-label tabular-nums">
+            <h3 className="font-medium text-text-primary">Offertvillkor</h3>
             {quoteTerms ? (
               <>
-                <p className="whitespace-pre-wrap text-zinc-700">{quoteTerms.termsText}</p>
+                <p className="whitespace-pre-wrap text-text-secondary">{quoteTerms.termsText}</p>
                 {!quoteTerms.approved && (
                   <p
                     role="status"
                     data-testid="preview-terms-unapproved"
-                    className="mt-1 text-amber-900"
+                    className="mt-1 text-warn-text"
                   >
                     Villkoren är inte godkända ännu och kräver godkännande innan de skickas.
                   </p>
                 )}
               </>
             ) : (
-              <p className="text-zinc-600">
+              <p className="text-text-secondary">
                 Inga offertvillkor angivna ännu. Lägg till villkor i Inställningar.
               </p>
             )}
@@ -436,20 +451,20 @@ export function PreQuotePreview({
 
           {/* Selected attachments — a DOCUMENTED deferral (Story 8.1/8.2 file foundation
               has not landed, R-513). Surfaced, never silently omitted. */}
-          <div data-testid="preview-attachments" className="text-sm">
-            <h3 className="font-semibold text-zinc-900">Bifogade filer</h3>
-            <p className="text-zinc-600">
+          <div data-testid="preview-attachments" className="text-label tabular-nums">
+            <h3 className="font-medium text-text-primary">Bifogade filer</h3>
+            <p className="text-text-secondary">
               Bilagor är ännu inte tillgängliga — funktionen för filer är inte på plats än.
             </p>
           </div>
 
           {/* Warnings captured at snapshot time. */}
-          <div data-testid="preview-warnings" className="text-sm">
-            <h3 className="font-semibold text-zinc-900">Anmärkningar vid tidpunkten</h3>
+          <div data-testid="preview-warnings" className="text-label tabular-nums">
+            <h3 className="font-medium text-text-primary">Anmärkningar vid tidpunkten</h3>
             {report.warnings.length === 0 ? (
-              <p className="text-zinc-600">Inga anmärkningar.</p>
+              <p className="text-text-secondary">Inga anmärkningar.</p>
             ) : (
-              <ul className="flex list-disc flex-col gap-1 pl-5 text-amber-900">
+              <ul className="flex list-disc flex-col gap-1 pl-5 text-warn-text">
                 {report.warnings.map((w, i) => (
                   <li
                     key={`${w.code}-${i}`}
@@ -475,23 +490,23 @@ export function PreQuotePreview({
               value={reviewedProof?.quoteCaptureDate ?? ""}
             />
             {previewNotReviewed ? (
-              <p role="alert" className="text-sm text-red-800">
+              <p role="alert" className="text-label text-risk-text">
                 Öppna och granska förhandsvisningen innan offertversionen skapas.
               </p>
             ) : null}
             {previewStale ? (
-              <p role="alert" className="text-sm text-red-800">
+              <p role="alert" className="text-label text-risk-text">
                 Kalkylen har ändrats – öppna och granska en ny förhandsvisning.
               </p>
             ) : null}
             {captureDateExpired ? (
-              <p role="alert" className="text-sm text-red-800">
+              <p role="alert" className="text-label text-risk-text">
                 Förhandsvisningen gäller en tidigare svensk affärsdag. Dagens underlag hämtas;
                 granska sedan den uppdaterade förhandsvisningen.
               </p>
             ) : null}
             {createState.status === "error" ? (
-              <p role="alert" className="text-sm text-red-800">
+              <p role="alert" className="text-label text-risk-text">
                 {createState.formError}
                 {isRetryableCreateQuoteError(createState) ? " Försök igen." : ""}
               </p>
@@ -500,7 +515,7 @@ export function PreQuotePreview({
               type="submit"
               data-testid="confirm-create-quote-version"
               disabled={confirmationDisabled}
-              className="self-start rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
+              className="min-h-control-lg min-w-control-lg self-start rounded-control bg-ink px-4 py-2 text-body font-medium text-white disabled:bg-inset disabled:text-text-disabled focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
             >
               {createPending
                 ? "Skapar…"

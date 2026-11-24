@@ -121,7 +121,7 @@ function FlagField({
   readonly onChange?: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex items-center gap-2 text-sm text-zinc-800">
+    <label className="flex min-h-control-lg items-center gap-2 text-label text-text-primary">
       {/* Companion submits `false` when the checkbox is unchecked — so a flag can be
           turned OFF on update (the parser reads the LAST value; a checked box wins). */}
       <input type="hidden" name={name} value="false" />
@@ -131,7 +131,7 @@ function FlagField({
         value="true"
         {...(checked === undefined ? { defaultChecked } : { checked })}
         onChange={(event) => onChange?.(event.target.checked)}
-        className="size-4 rounded border-zinc-300 text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+        className="size-5 shrink-0 rounded-control border-border-strong accent-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
       />
       {label}
     </label>
@@ -335,7 +335,7 @@ export function RowEditor({
     <form {...rowOperation.formProps}
       action={formAction}
       data-testid={isUpdate ? "row-edit-form" : "row-create-form"}
-      className="flex flex-col gap-3 rounded-md border border-zinc-200 p-3"
+      className="flex min-w-0 flex-col gap-4 rounded-card border border-border-default bg-inset p-4"
       noValidate
     >{rowOperation.recovery}
       {/* Hidden routing fields so the action can target the section + revalidate the calc. */}
@@ -368,14 +368,14 @@ export function RowEditor({
         </>
       ) : null}
 
-      <FormErrorSummary message={mine ? state.formError : null} />
+      <FormErrorSummary message={mine ? state.formError : null} fieldErrors={mine ? state.fieldErrors : undefined} />
       {mine && state.status === "success" && (
-        <p role="status" data-testid="row-saved" className="text-sm text-green-800">
+        <p role="status" data-testid="row-saved" className="text-label text-ok-text">
           Raden har sparats.
         </p>
       )}
       {retryable && (
-        <p role="status" className="text-sm text-amber-800">
+        <p role="status" className="text-label text-warn-text">
           Ett tillfälligt fel inträffade. Försök igen.
         </p>
       )}
@@ -499,7 +499,7 @@ export function RowEditor({
           {provenance && provenance.name && (
             <p
               data-testid="row-source-provenance"
-              className="text-xs text-zinc-600"
+              className="text-caption text-text-secondary"
             >
               Källa: <span className="font-medium">{provenance.name}</span>
               {provenance.priceOre != null && (
@@ -565,22 +565,22 @@ export function RowEditor({
       />
 
       {lineTotal && lineTotal.ok && lineDisplay && (
-        <p className="text-sm text-zinc-700">
+        <p className="text-label text-text-secondary">
           Radsumma:{" "}
           <span data-testid="row-line-total" className="font-medium">
             {oreToKronorString(lineDisplay.primaryOre)} kr
           </span>{" "}
-          <span data-testid="row-line-total-qualifier" className="text-xs text-zinc-500">
+          <span data-testid="row-line-total-qualifier" className="text-caption text-text-tertiary">
             {posture === "company_excl" ? "(exkl. moms)" : "(inkl. moms)"}
           </span>
         </p>
       )}
 
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <button
           type="submit"
           disabled={pending}
-          className="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60"
+          className="min-h-control-lg min-w-control-lg rounded-control bg-ink px-4 py-2 text-body font-medium text-white hover:bg-n-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:bg-inset disabled:text-text-disabled"
         >
           {pending ? "Sparar…" : isUpdate ? "Spara rad" : "Lägg till rad"}
         </button>
@@ -589,7 +589,7 @@ export function RowEditor({
             type="button"
             data-testid="row-delete"
             onClick={() => onArchive(row!)}
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-3 py-2 text-body text-text-secondary hover:bg-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
           >
             Ta bort rad
           </button>

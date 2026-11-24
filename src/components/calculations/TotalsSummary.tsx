@@ -30,32 +30,32 @@ export function TotalsSummary({
       data-inline={inline ? "true" : "false"}
       aria-label="Summering"
       className={[
-        "flex flex-col gap-3 rounded-lg border border-zinc-200 bg-white p-4",
+        "flex flex-col gap-3 rounded-card border border-border-default bg-sunken p-4",
         inline ? "" : "lg:sticky lg:top-6",
       ].join(" ")}
     >
-      <h2 className="text-sm font-semibold text-zinc-900">Summering</h2>
-      <dl className="flex flex-col gap-2 text-sm">
+      <h2 className="text-section font-medium text-text-primary">Summering</h2>
+      <dl className="flex flex-col gap-3 text-label tabular-nums">
         <div className="flex items-center justify-between">
-          <dt className="text-zinc-600">Netto (exkl. moms)</dt>
-          <dd data-testid="summary-net" className="font-medium text-zinc-900">
+          <dt className="text-text-secondary">Netto (exkl. moms)</dt>
+          <dd data-testid="summary-net" className="font-semibold text-text-primary">
             {oreToKronorString(total.netOre)} kr
           </dd>
         </div>
         <div className="flex items-center justify-between">
-          <dt className="text-zinc-600">Moms</dt>
-          <dd data-testid="summary-vat" className="font-medium text-zinc-900">
+          <dt className="text-text-secondary">Moms</dt>
+          <dd data-testid="summary-vat" className="font-semibold text-text-primary">
             {oreToKronorString(total.vatOre)} kr
           </dd>
         </div>
-        <div className="flex items-center justify-between border-t border-zinc-200 pt-2">
-          <dt className="text-zinc-900">Totalt (inkl. moms)</dt>
-          <dd data-testid="summary-gross" className="font-semibold text-zinc-900">
+        <div className="flex items-center justify-between border-t border-border-default pt-2">
+          <dt className="text-text-primary">Totalt (inkl. moms)</dt>
+          <dd data-testid="summary-gross" className="font-semibold text-text-primary">
             {oreToKronorString(total.grossOre)} kr
           </dd>
         </div>
       </dl>
-      <p className="text-xs text-zinc-500">
+      <p className="text-caption text-text-tertiary">
         Belopp beräknas radvis och avrundas till hela öre av kalkylmotorn. Standardvy:{" "}
         {view.posture === "company_excl"
           ? "exkl. moms"

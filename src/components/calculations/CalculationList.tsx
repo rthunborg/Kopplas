@@ -13,7 +13,7 @@
  * The list is a thin index — the EDITOR is the heart of this story. No deferred-workflow
  * label appears; no new nav item (Kalkyler already exists in the seven-item shell).
  */
-import { useActionState, useEffect, useState, useRef, startTransition } from "react";
+import { useActionState, useCallback, useEffect, useState, useRef, startTransition } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormField";
@@ -49,15 +49,46 @@ export function CalculationList({
 }) {
   const router = useRouter();
   const [showCreate, setShowCreate] = useState(false);
+  const [query, setQuery] = useState("");
+  const normalizedQuery = query.trim().toLocaleLowerCase("sv-SE");
+  const visibleRows = rows.filter(row =>
+    `${row.title} ${row.customer_display_name ?? ""}`.toLocaleLowerCase("sv-SE").includes(normalizedQuery),
+  );
   const createOperation = useEditorOperation(createCalculationAction, CALC_ACTION_INITIAL, "new/calculation", form => ({ version: 1, form: "calculation", customer_id: form.get("customer_id"), facility_id: form.get("facility_id") || null, contact_id: form.get("contact_id") || null }));
   const [state, formAction, pending] = [createOperation.state, createOperation.action, createOperation.pending];
+  const root = useRef<HTMLElement>(null);
+  const attemptedDestination = useRef<string | null>(null);
+  const confirmDeparture = useCallback(() => {
+    const protectedDraft = root.current?.querySelector('[data-editor-dirty="true"], [data-editor-protected="true"]');
+    return !protectedDraft || window.confirm("Du har osparade ändringar eller ett obekräftat resultat. Vill du lämna formuläret?");
+  }, []);
+  useEffect(() => {
+    const beforeUnload = (event: BeforeUnloadEvent) => {
+      if (!root.current?.querySelector('[data-editor-dirty="true"], [data-editor-protected="true"]')) return;
+      event.preventDefault(); event.returnValue = "";
+    };
+    const navigation = (window as Window & { navigation?: EventTarget }).navigation;
+    const traverse = (event: Event) => {
+      const movement = event as Event & { navigationType: string; destination: { sameDocument: boolean; url: string } };
+      if (event.defaultPrevented || !event.cancelable || movement.navigationType !== "traverse" || !movement.destination.sameDocument) return;
+      const destination = new URL(movement.destination.url);
+      if (destination.origin === location.origin && destination.pathname === location.pathname && destination.search === location.search) return;
+      if (!confirmDeparture()) event.preventDefault();
+    };
+    window.addEventListener("beforeunload", beforeUnload);
+    navigation?.addEventListener("navigate", traverse);
+    return () => { window.removeEventListener("beforeunload", beforeUnload); navigation?.removeEventListener("navigate", traverse); };
+  }, [confirmDeparture]);
 
   // On a successful create, navigate to the new calc's editor.
   useEffect(() => {
     if (state.status === "success" && state.targetId) {
-      router.push(`/calculations/${state.targetId}`);
+      const destination = `/calculations/${state.targetId}`;
+      if (attemptedDestination.current === destination) return;
+      attemptedDestination.current = destination;
+      if (confirmDeparture()) router.push(destination);
     }
-  }, [state.status, state.targetId, router]);
+  }, [state.status, state.targetId, router, confirmDeparture]);
 
   const isMine = state.form === "calculation";
   const v = (field: string, fallback: string): string =>
@@ -68,30 +99,44 @@ export function CalculationList({
 
   return (
     <section
+      ref={root}
+      onClickCapture={event => {
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[href]") : null;
+        if (!link || (link.target && link.target !== "_self") || link.hasAttribute("download")) return;
+        const destination = new URL(link.href);
+        if (destination.origin !== location.origin || (destination.pathname === location.pathname && destination.search === location.search)) return;
+        if (!confirmDeparture()) { event.preventDefault(); event.stopPropagation(); }
+      }}
       data-testid="calculation-list"
       aria-labelledby="calculations-heading"
-      className="flex flex-col gap-6 p-6"
+      className="flex min-w-0 flex-col gap-6 break-words p-4 sm:p-6 [&_input]:min-w-0 [&_select]:min-w-0 [&_select]:max-w-full"
     >
-      <div className="flex items-center justify-between gap-4">
-        <h1 id="calculations-heading" className="text-2xl font-semibold text-zinc-900">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <h1 id="calculations-heading" className="break-words text-title font-medium text-text-primary">
           Kalkyler
         </h1>
         <button
           type="button"
           data-testid="new-calculation"
-          onClick={() => setShowCreate((s) => !s)}
+          onClick={() => { if (!showCreate || confirmDeparture()) setShowCreate(s => !s); }}
           aria-expanded={showCreate}
-          className="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+          className="min-h-control-lg min-w-control-lg rounded-control bg-ink px-4 py-2 text-body font-medium text-white hover:bg-n-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
         >
           Ny kalkyl
         </button>
       </div>
 
+      {state.status === "success" && state.targetId && (
+        <Link href={`/calculations/${state.targetId}`} className="min-h-control-lg text-text-primary underline">Öppna skapad kalkyl</Link>
+      )}
+      <span hidden data-editor-dirty={showCreate && createOperation.hasDraftChanges} data-editor-protected={createOperation.hasProtectedOperation} />
+
       {loadError && (
         <p
           role="alert"
           data-testid="calculation-list-error"
-          className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"
+          className="rounded-control border border-risk-text bg-risk-surface px-3 py-2 text-label text-risk-text"
         >
           {loadError}
         </p>
@@ -101,12 +146,12 @@ export function CalculationList({
         <form {...createOperation.formProps}
           action={formAction}
           data-testid="new-calculation-form"
-          className="flex max-w-xl flex-col gap-4 rounded-lg border border-zinc-200 bg-white p-4"
+          className="flex max-w-xl flex-col gap-4 rounded-card border border-border-default bg-card p-4"
           noValidate
         >{createOperation.recovery}
-          <FormErrorSummary message={isMine ? state.formError : null} />
+          <FormErrorSummary message={isMine ? state.formError : null} fieldErrors={isMine ? state.fieldErrors : undefined} />
           {retryable && (
-            <p role="status" className="text-sm text-amber-800">
+            <p role="status" className="text-label text-warn-text">
               Försök igen.
             </p>
           )}
@@ -118,7 +163,7 @@ export function CalculationList({
             error={err("title")}
           />
           {customerOptions.length === 0 ? (
-            <p className="text-sm text-zinc-600">
+            <p className="text-label text-text-secondary">
               Lägg till en kund först under Kunder för att skapa en kalkyl.
             </p>
           ) : (
@@ -138,7 +183,7 @@ export function CalculationList({
             <button
               type="submit"
               disabled={pending || customerOptions.length === 0}
-              className="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60"
+              className="min-h-control-lg min-w-control-lg rounded-control bg-ink px-4 py-2 text-body font-medium text-white hover:bg-n-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:bg-inset disabled:text-text-disabled"
             >
               {pending ? "Skapar…" : "Skapa kalkyl"}
             </button>
@@ -146,35 +191,48 @@ export function CalculationList({
         </form>
       )}
 
-      {rows.length === 0 ? (
-        <p data-testid="calculation-list-empty" className="text-sm text-zinc-600">
+      <label className="flex max-w-xl flex-col gap-1 text-label font-medium text-text-secondary">
+        Sök kalkyler
+        <input type="search" value={query} onChange={event => setQuery(event.target.value)}
+          placeholder="Sök på titel eller kund"
+          className="min-h-control-lg min-w-0 rounded-control border-0 bg-sunken px-3 py-2 text-body text-text-primary focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-ink" />
+      </label>
+
+      {!loadError && rows.length === 0 ? (
+        <p data-testid="calculation-list-empty" className="rounded-card border border-border-default px-4 py-6 text-label text-text-secondary">
           Inga kalkyler ännu. Skapa din första kalkyl med “Ny kalkyl”.
         </p>
-      ) : (
+      ) : !loadError && visibleRows.length === 0 ? (
+        <div role="status" className="rounded-card border border-border-default px-4 py-6">
+          <p className="text-section font-medium text-text-primary">Inga träffar</p>
+          <p className="mt-2 text-label text-text-secondary">Prova en annan titel eller kund.</p>
+          <button type="button" onClick={() => setQuery("")} className="mt-3 min-h-control-lg rounded-control border border-border-strong px-4 text-body focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Rensa sökning</button>
+        </div>
+      ) : !loadError ? (
         <ul className="flex flex-col gap-2">
-          {rows.map((row) => (
+          {visibleRows.map((row) => (
             <li key={row.id}>
               <Link
                 href={`/calculations/${row.id}`}
                 data-testid="calculation-list-row"
-                className="flex items-center justify-between gap-4 rounded-md border border-zinc-200 px-4 py-3 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                className="flex min-h-control-lg items-center justify-between gap-4 rounded-control border border-border-default px-4 py-row-block hover:bg-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
               >
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium text-zinc-900">
+                <div className="flex min-w-0 flex-col break-words">
+                  <span className="text-label font-medium text-text-primary">
                     {row.title}
                   </span>
-                  <span className="text-xs text-zinc-600">
+                  <span className="text-caption text-text-secondary">
                     {row.customer_display_name ?? "—"}
                   </span>
                 </div>
-                <span className="text-xs font-medium text-zinc-500">
+                <span className="text-caption font-medium text-text-tertiary">
                   {STATUS_LABELS[row.status] ?? row.status}
                 </span>
               </Link>
             </li>
           ))}
         </ul>
-      )}
+      ) : null}
     </section>
   );
 }
@@ -198,6 +256,7 @@ export function useEditorOperation<S extends EditorActionState>(
   const replayContext = useRef<{ requestFingerprint: string } | null>(null);
   const busy = useRef(false), revision = useRef(0), submitting = useRef(false);
   const formElement = useRef<HTMLFormElement | null>(null);
+  const validationFocus = useRef<{ form: HTMLFormElement; key: string | null; revision: number } | null>(null);
   const draftExpected = useRef<Record<string, unknown> | null>(null);
   const currentKey = useRef<string | null>(null);
   const originalRevision = useRef<number | null>(null);
@@ -283,6 +342,18 @@ export function useEditorOperation<S extends EditorActionState>(
       return handle.current ? { ...previous, status: "unknown", operationId, targetId: null } : { ...previous, status: "idle", targetId: null };
     } finally { busy.current = false; submitting.current = false; }
   }, initial as Awaited<S>);
+  // Validation focus belongs only to the submitted draft while focus stays with that form.
+  useEffect(() => {
+    const submittedFocus = validationFocus.current;
+    validationFocus.current = null;
+    if (state.status !== "error" || !submittedFocus || !submittedFocus.form.isConnected ||
+      submittedFocus.key !== currentKey.current || submittedFocus.revision !== revision.current) return;
+    const active = document.activeElement;
+    if (active !== document.body && !submittedFocus.form.contains(active)) return;
+    const invalid = submittedFocus.form.querySelector<HTMLElement>('[aria-invalid="true"]');
+    invalid?.focus();
+    invalid?.scrollIntoView({ block: "nearest" });
+  }, [state]);
   async function reconcile() { if(!key || !handle.current || busy.current) return;
     const reconciledKey = key, operationId = handle.current;
     busy.current = true; setRecoveryPending(true);
@@ -310,20 +381,28 @@ export function useEditorOperation<S extends EditorActionState>(
     revision.current++; setHasDraftChanges(true);
     if (formKey !== "new/calculation" && formElement.current) draftExpected.current ??= expected(new FormData(formElement.current));
   }
-  return { state, action: dispatch, pending: actionPending || recoveryPending, hasDraftChanges, markChanged, formProps: {
+  const hasProtectedOperation = actionPending || recoveryPending || recoverable;
+  return { state, action: dispatch, pending: actionPending || recoveryPending, hasDraftChanges, hasProtectedOperation, markChanged, formProps: {
       ref: formElement,
       "data-editor-ready": Boolean(scope),
+      "data-editor-dirty": hasDraftChanges,
+      "data-editor-protected": hasProtectedOperation,
       // Explicit transition dispatch avoids React's action-form auto-reset on
       // refused submissions and late results. The live controls stay the draft.
       onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault(); if (submitting.current || busy.current) return;
+        validationFocus.current = { form: event.currentTarget, key: currentKey.current, revision: revision.current };
         submitting.current = true; const form = new FormData(event.currentTarget);
         startTransition(() => { dispatch(form); });
       },
       onChange: markChanged,
+      onBlurCapture: (event: React.FocusEvent<HTMLFormElement>) => {
+        if (validationFocus.current?.form === event.currentTarget && event.relatedTarget instanceof Node &&
+          !event.currentTarget.contains(event.relatedTarget)) validationFocus.current = null;
+      },
     },
-    recovery: <>{notice && <p role="status">{notice}</p>}{resultLink && <Link href={resultLink} className="min-h-control-lg text-text-primary underline">Öppna bekräftat resultat</Link>}{recoverable && <div className="flex flex-wrap gap-2">
-      <button type="button" disabled={recoveryPending} className="min-h-control-lg rounded-control border border-border-strong px-4" onClick={() => { void reconcile(); }}>Kontrollera resultat</button>
-      {checked && hasOriginalRequest && <button type="button" disabled={recoveryPending} className="min-h-control-lg rounded-control border border-border-strong px-4" onClick={() => { void retry(); }}>Försök samma åtgärd igen</button>}
+    recovery: <><span hidden data-editor-dirty={hasDraftChanges} data-editor-protected={hasProtectedOperation} />{notice && <p role="status">{notice}</p>}{resultLink && <Link href={resultLink} className="min-h-control-lg text-text-primary underline">Öppna bekräftat resultat</Link>}{recoverable && <div className="flex flex-wrap gap-2">
+      <button type="button" disabled={recoveryPending} className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink" onClick={() => { void reconcile(); }}>Kontrollera resultat</button>
+      {checked && hasOriginalRequest && <button type="button" disabled={recoveryPending} className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink" onClick={() => { void retry(); }}>Försök samma åtgärd igen</button>}
     </div>}</> };
 }

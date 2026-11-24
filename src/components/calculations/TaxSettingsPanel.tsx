@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useEditorOperation } from "./CalculationList";
 import { useRouter } from "next/navigation";
 
@@ -124,6 +124,8 @@ function TaxSettingsForm({
   readonly input: TaxInputSnapshotV2;
   readonly fixedPriceScopeRows: readonly FixedPriceScopeRowOption[];
 }) {
+  const genuineFixedPriceControlId = useId();
+  const genuineFixedPriceErrorId = `${genuineFixedPriceControlId}-error`;
   const [state, action, pending] = [taxOperation.state, taxOperation.action, taxOperation.pending];
   const router = useRouter();
   const mine = state.form === "tax_input";
@@ -172,12 +174,12 @@ function TaxSettingsForm({
     <section
       data-testid="tax-document-settings"
       aria-labelledby="tax-document-settings-title"
-      className="rounded-lg border border-zinc-200 bg-white p-4"
+      className="rounded-card border border-border-default bg-card p-4"
     >
-      <h2 id="tax-document-settings-title" className="text-base font-semibold text-zinc-900">
+      <h2 id="tax-document-settings-title" className="text-section font-medium text-text-primary">
         Skatteinställningar
       </h2>
-      <p className="mt-1 text-sm text-zinc-600">
+      <p className="mt-1 text-label text-text-secondary">
         Ange explicita moms- och avdragsfakta. Uppgifterna fryses när en offertversion skapas.
       </p>
 
@@ -193,14 +195,19 @@ function TaxSettingsForm({
       >
         {taxOperation.recovery}
         <input type="hidden" name="id" value={calculationId} />
-        <FormErrorSummary message={mine ? state.formError : null} />
+        {/* namedItem resolves this unique control ID, avoiding the hidden/checkbox name pair. */}
+        <FormErrorSummary message={mine ? state.formError : null} fieldErrors={mine ? {
+          ...state.fieldErrors,
+          genuine_fixed_price: undefined,
+          [genuineFixedPriceControlId]: state.fieldErrors.genuine_fixed_price,
+        } : undefined} />
         {mine && state.status === "success" ? (
-          <p role="status" className="text-sm text-green-800">
+          <p role="status" className="text-label text-ok-text">
             Skatte- och momsuppgifterna har sparats.
           </p>
         ) : null}
         {mine && isRetryableCalcError(state) ? (
-          <p role="status" className="text-sm text-amber-800">
+          <p role="status" className="text-label text-warn-text">
             Ett tillfälligt fel inträffade. Försök igen.
           </p>
         ) : null}
@@ -284,16 +291,16 @@ function TaxSettingsForm({
             id="tax-posture-conflict"
             role="alert"
             data-testid="tax-posture-conflict"
-            className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"
+            className="rounded-control border border-risk-text bg-risk-surface px-3 py-2 text-label text-risk-text"
           >
             {REVERSE_CHARGE_DEDUCTION_CONFLICT_MESSAGE}
           </p>
         ) : null}
 
         {readsRot || readsGreen ? (
-        <fieldset className="rounded-md border border-zinc-200 p-3">
-          <legend className="px-1 text-sm font-medium text-zinc-800">Återstående utrymme per person</legend>
-          <p className="mb-3 text-xs text-zinc-600">
+        <fieldset className="rounded-control border border-border-default p-3">
+          <legend className="px-1 text-label font-medium text-text-primary">Återstående utrymme per person</legend>
+          <p className="mb-3 text-caption text-text-secondary">
             Använd endast neutrala platser som PERSON_1, PERSON_2 osv.; personnummer och namn lagras inte här.
           </p>
           {allowanceSlots.map((editorSlot, index) => {
@@ -356,7 +363,7 @@ function TaxSettingsForm({
                       removeAllowanceEditorSlot(current, editorSlot.key),
                     );
                   }}
-                  className="rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-40"
+                  className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-3 py-2 text-body text-text-secondary hover:bg-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:bg-inset disabled:text-text-disabled"
                 >
                   Ta bort
                 </button>
@@ -373,11 +380,11 @@ function TaxSettingsForm({
                 nextAllowanceKey.current += 1;
                 setAllowanceSlots((current) => addAllowanceEditorSlot(current, key));
               }}
-              className="rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-40"
+              className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-3 py-2 text-body text-text-secondary hover:bg-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:bg-inset disabled:text-text-disabled"
             >
               Lägg till person
             </button>
-            <span aria-live="polite" className="text-xs text-zinc-600">
+            <span aria-live="polite" className="text-caption text-text-secondary">
               {allowanceSlots.length} av {MAX_PERSON_ALLOWANCE_SLOTS} personer
             </span>
           </div>
@@ -385,23 +392,26 @@ function TaxSettingsForm({
         ) : null}
 
         {readsGreen && usesFixedPrice ? (
-        <fieldset className="rounded-md border border-zinc-200 p-3">
-          <legend className="px-1 text-sm font-medium text-zinc-800">Fastprisunderlag (endast vid 97 %)</legend>
-          <label className="mb-3 flex items-center gap-2 text-sm text-zinc-800">
+        <fieldset className="rounded-control border border-border-default p-3">
+          <legend className="px-1 text-label font-medium text-text-primary">Fastprisunderlag (endast vid 97 %)</legend>
+          <label htmlFor={genuineFixedPriceControlId} className="mb-3 flex min-h-control-lg items-center gap-2 text-label text-text-primary">
             <input type="hidden" name="genuine_fixed_price" value="false" />
             <input
+              id={genuineFixedPriceControlId}
               type="checkbox"
               name="genuine_fixed_price"
+              aria-invalid={err("genuine_fixed_price") ? "true" : undefined}
+              aria-describedby={err("genuine_fixed_price") ? genuineFixedPriceErrorId : undefined}
               value="true"
               defaultChecked={
                 v("genuine_fixed_price", String(input.genuineFixedPrice)) === "true"
               }
-              className="size-4 rounded border-zinc-300"
+              className="size-5 shrink-0 rounded-control border-border-strong"
             />
             Äkta fastprisavtal
           </label>
           {err("genuine_fixed_price") ? (
-            <p role="alert" className="mb-3 text-sm text-red-700">
+            <p id={genuineFixedPriceErrorId} role="alert" className="mb-3 text-label text-risk-text">
               {err("genuine_fixed_price")}
             </p>
           ) : null}
@@ -431,17 +441,17 @@ function TaxSettingsForm({
               error={err("fixed_charging_kronor")}
             />
           </div>
-          <fieldset className="mt-4 rounded-md border border-zinc-200 p-3">
-            <legend className="px-1 text-sm font-medium text-zinc-800">
+          <fieldset className="mt-4 rounded-control border border-border-default p-3">
+            <legend className="px-1 text-label font-medium text-text-primary">
               Rader som omfattas av fastprisavtalet
             </legend>
-            <p className="mb-3 text-xs text-zinc-600">
+            <p className="mb-3 text-caption text-text-secondary">
               Välj endast de inkluderade raderna för grön teknik som ingår i det äkta
               fastprisavtalet. Eventuella ROT-rader och övriga rader ligger uttryckligen utanför
               detta avtal.
             </p>
             {fixedPriceScopeRows.length === 0 ? (
-              <p className="text-sm text-amber-900">
+              <p className="text-label text-warn-text">
                 Det finns inga inkluderade och grönklassificerade rader att välja.
               </p>
             ) : (
@@ -452,7 +462,7 @@ function TaxSettingsForm({
                     <label
                       key={row.id}
                       htmlFor={checkboxId}
-                      className="flex items-start gap-2 text-sm text-zinc-800"
+                      className="flex min-h-control-lg items-center gap-2 text-label text-text-primary"
                     >
                       <input
                         id={checkboxId}
@@ -468,7 +478,7 @@ function TaxSettingsForm({
                             return next;
                           });
                         }}
-                        className="mt-0.5 size-4 rounded border-zinc-300"
+                        className="mt-0.5 size-5 shrink-0 rounded-control border-border-strong"
                       />
                       <span>{row.label}</span>
                     </label>
@@ -481,7 +491,7 @@ function TaxSettingsForm({
                 id="fixed-price-row-scope-error"
                 role="alert"
                 data-testid="fixed-price-row-scope-error"
-                className="mt-3 text-sm text-red-700"
+                className="mt-3 text-label text-risk-text"
               >
                 {err("fixed_price_row_ids") ??
                   "Välj minst en inkluderad rad för det äkta fastprisavtalet."}
@@ -503,7 +513,7 @@ function TaxSettingsForm({
                 ? "fixed-price-row-scope-error"
                 : undefined
           }
-          className="self-start rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
+          className="min-h-control-lg min-w-control-lg self-start rounded-control bg-ink px-4 py-2 text-body font-medium text-white disabled:bg-inset disabled:text-text-disabled focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
         >
           {pending ? "Sparar…" : "Spara skatte- och momsuppgifter"}
         </button>
