@@ -361,3 +361,77 @@ Exact literal-repair freeze: existing-dependency targeted ESLint exit0, strict f
 The same independent Sol High reviewer returned FINAL Resolved/No findings on the corrected76324-byte three-file candidate diff SHA-256 fdd4b8489b70ed702db4d95eecc0578945c778e004d6d7eb2aa325dfbd41a522. Reviewed raw bindings: E2E188d9637dae39ca49cc5b4d75dd4082173783fa339b53f5190413135a7cf20d6; summary10ef151590459685ea7c5eef38a8f64a3b58d5d3f0e31437efe3373eccceae2d; storyd9db6faf5cf3ee0f5e2b2416961c29ccee0437d5025f7f1650c1cfa9c286c978. The reviewer verified the exact original Swedish literal, zero full-source U+FFFD characters, one-literal reversal reproducing the entire prior E2E, unchanged other source bytes/document prefixes and allocated scope, with no regression or misleading claim. This acknowledgment changes documentation only; the preceding77901-byte summary and59273-byte story remain byte-identical, and E2E is unchanged.
 
 New-candidate runtime and captures remain UNRUN. All historical failures, the expanded DB startup failure with no expanded DB tests executed, separate ordinary DB evidence, SERVER_OUTCOME_UNKNOWN or pending pool outcomes with zero unsupported scenario/cleanup credit, both original AC5 prerequisites and unpassed visual/delivery requirements remain. Story stays in-review; development_complete=false; release_ready=false. No Phase5/6 completion, runtime/query/resource/provider/commit/push or visual acceptance is inferred. STOP: final documentation acknowledgment; coordinator owns the next exact three-file technical checkpoint.
+
+
+## Finite loading branch-order correction — 2026-11-24
+
+Author route: context-free gpt-6.1-sol High on state-only a446cbc23d9c0a38cef4998da12b5d4342bb9090, based on reviewed technical checkpoint 199a567cba6d0066ed34cbd4e90529da7951518f. Only the existing loading case changes source. The preceding 79,450-byte summary, including its original TEA header and entire history, remains byte-identical (raw SHA-256 d73b3444ad8b666abbe0f48f58c0f6a0f227d2247a85cb00e4e5e607689be486). The canonical story receives factual append-only outcome notes and only necessary updates to its existing author trail. No product or other test behavior changes.
+
+### Supplied actual 199 observations; no new runtime inference
+
+Immutable native summary: tmp/private/35-6-35-7-coordinator-2026-11-09/35-8-bounded-199a567c-release45349380407/bounded-native-result.json, SHA-256 6641725ebf698844dd3f952f12c70363b1a8284659b0837d14f328bdaf560c97. These root-qualified historical facts were supplied and reused; this author performed no runtime or database query.
+
+Ordinary 45349359452 succeeded with 204 first-pass browser cases, 45 calculation regressions and separate required database 2303 passed / 0 failed / 52 pending. Expanded 45349380407 collected 36 design cases / 35 first-pass. Both revoked scenarios genuinely rejected the original post-revocation request and passed same-membership restoration plus physical fixture cleanup; mobile loading passed. Both desktop loading attempts received the valid same-original response after continuation. Their bounded same-response finished() wait remained pending until owned-page close; detail and golden assertions were UNEXECUTED because the test serialized them after that terminal wait. Unroute after close rejected as cleanup aftermath. No transport root cause, source cure, new-head passing credit or accepted image package is inferred.
+
+### Proposed concurrent proof; runtime UNRUN
+
+After the original same-request response identity, HTTP status, origin/path and content-type assertions, the original matching URL/heading/entity/no-error/golden-total sequence and original bounded same-Response.finished()===null assertion now start concurrently. Both promises attach immediate fulfillment/rejection observation through the existing observe/outcomes phase receipts. Promise.allSettled requires both; either or both rejection reasons fail the test. Existing actual per-assertion receipts can show render success while the terminal branch remains pending, without substituting render/header/close credit for terminal success. The unchanged rendered totals remain 2200,00 / 550,00 / 2750,00. The real Enter remains awaited with noWaitAfter; all selected request/hold/release/no-false-empty oracles remain.
+
+Cleanup publishes release, settles all owned route lifecycles while retaining their actual rejections, removes only the exact owned handler before any owned-page close, then closes only this page if client operations remain pending and collects actual client settlements/rejections. An externally closed page or unroute failure remains an actual failure. Existing work deadline 45,000 ms, cleanup deadline 59,000 ms, phase ceiling 15,000 ms and configured test timeout 60,000 ms are unchanged. Existing shorter cleanup ceilings are unchanged. A timeout is not cancellation; own-page closure earns no assertion, rollback or backend-cancellation credit. Original and cleanup errors remain failures.
+
+### Actual permitted static checks and conservation
+
+All commands ran from <allocated worker> using existing ancestor dependencies:
+
+- `node <existing dependency root>/node_modules/eslint/bin/eslint.js tests/e2e/calculations/calculation-editor-design.e2e.spec.ts` — exit 0, no findings.
+- `node -` with the exact strict single-root compiler program below — exit 0; one E2E root, strict=true, zero diagnostics.
+- `node <existing dependency root>/node_modules/@playwright/test/cli.js test tests/e2e/calculations/calculation-editor-design.e2e.spec.ts --list` — exit 0, 36 tests in one file; zero test bodies, global setup, browser or database execution.
+- `node scripts/verify/check-review-order.mjs _bmad-output/specs/spec-design-35-8/stories/35-8-calculation-editor-and-review.md` — exit 0; exactly one author trail, 54 references, zero errors.
+- `git diff --check` — exit 0.
+
+```javascript
+const ts = require("typescript");
+const file = "tests/e2e/calculations/calculation-editor-design.e2e.spec.ts";
+const config = ts.readConfigFile("tsconfig.json", ts.sys.readFile);
+if (config.error) throw new Error(ts.flattenDiagnosticMessageText(config.error.messageText, "\n"));
+const parsed = ts.parseJsonConfigFileContent(config.config, ts.sys, process.cwd());
+const options = {...parsed.options, strict: true, noEmit: true, incremental: false};
+const program = ts.createProgram([file], options);
+const diagnostics = [...parsed.errors, ...ts.getPreEmitDiagnostics(program)];
+if (diagnostics.length) console.log(ts.formatDiagnosticsWithColorAndContext(diagnostics, { getCanonicalFileName: p => p, getCurrentDirectory: () => process.cwd(), getNewLine: () => "\n" }));
+console.log(JSON.stringify({rootFiles: program.getRootFileNames(), strict: options.strict, diagnostics: diagnostics.length}));
+process.exitCode = diagnostics.length ? 1 : 0;
+```
+
+Source conservation compares directly with `git show 199a567cba6d0066ed34cbd4e90529da7951518f:tests/e2e/calculations/calculation-editor-design.e2e.spec.ts`. The entire 93,749-byte prefix before the loading case is identical, SHA-256 b6a4613d1a4e8a919c63124f654f9bb66c5274f7599fb68fdff98cf300255fca. The 8-byte outer suffix is identical, SHA-256 a01bf2a568dbf62c4e480cb19b8fc3d153c3232dcb75ed5d191b0dc1818c6732. This preserves every non-loading case, both revoked scenarios, Forward/Back, shared helpers and capture implementation. AST exact-text comparisons preserve all 6 import declarations/expressions (JSON-array SHA-256 a7b49e943d923433033c7fa27a6eb9df12376728b839e1a107dfd8494f391be6), 12 SQL literals/templates (27cfb2df548d8fe3d5396c1e84ea944f881b7797ad72ea7ccb0b67e95a1cea57), 29 capture call sites (2916d0a0c682b9c4ab6dcd2a878929fe398856a7664c2f517b1b400c0a7d7f41) and 17 source test-title expressions (fdff97a6a46872171d09b8092771017732e9f761dcdb20e478b8413ff919a44c), expanded by the unchanged loops into 36 identities and 30 capture pairs per viewport / maximum 60 PNG calls. Exact render-sequence and same-Response terminal assertion comparisons pass after stripping indentation only.
+
+A dependency-resolution diagnostic command initially queried an unexported ESLint package subpath; direct invocation above succeeded without installs. An initial source-comparison script selected an earlier catch delimiter; correcting only its comparison range verified the unchanged assertion bodies. Neither diagnostic changed source or produced runtime evidence.
+
+New concurrent proof and captures remain UNRUN. All historical evidence and unpassed requirements retain their original scope. Story remains in-review; development_complete=false; release_ready=false; both original AC5 prerequisites remain unpassed. No Phase 5/6 completion, final HALT/done, visual acceptance, product fix, runtime experiment, query, managed resource, provider action, commit or push occurred.
+
+STOP: three allocated uncommitted files frozen for a different independent High source review. That review must falsify render SUCCESS + terminal FAIL => test FAIL and terminal SUCCESS + wrong/missing render => test FAIL, and inspect actual concurrent start, immediate outcome handling, existing phase receipts and exact cleanup order. These source/static checks grant no runtime or completion credit; the root owns any later specific hosted checkpoint/publication.
+
+
+## Independent High finite loading correction acknowledgment — 2026-11-24
+
+Different independent Sol High reviewer loading_concurrent_reviewer returned FINAL Qualified / No Findings on the exact 33,409-byte frozen three-file diff, raw/LF SHA-256 031fefb13d38983328e250930583474728f60a2bcccc7da4f52a41a860e195cf, and its recorded raw/LF file bindings. The reviewer source-falsified both required failure combinations: rendered success plus terminal failure still fails, and terminal success plus wrong/missing render still fails. Immediate observation, concurrent branch start, existing phase receipts, cleanup order/error retention and unchanged deadlines were verified. Independent authorized focused lint, strict single-file TypeScript, collection of 36 cases, whitespace and 54-reference author-trail checks passed. The exact 93,749-byte non-loading prefix, 8-byte outer suffix, 12 SQL literals, 6 imports, maximum 60 PNG calls and original 79,450-byte historical summary/header were preserved.
+
+This acknowledgment appends documentation only; the entire preceding summary remains byte-identical. E2E source remains raw/LF SHA-256 2fe1f83e0d8666f7a7bfe86fee2760f1892b0406647871cab662320a2b7cf0d3. The unchanged source needs no trail-stop refresh. New concurrent proof/captures remain UNRUN; historical evidence is not new-head runtime or source-cure proof. Story stays in-review, development_complete=false and release_ready=false; both original AC5 prerequisites and all unpassed visual/delivery requirements remain. No scenario credit, acceptance, Phase 5/6 completion, final HALT/done, runtime/query/resource/provider/commit or push follows. STOP: documentation-only review acknowledgment; the coordinator owns the next exact three-file technical checkpoint.
+
+
+## Same-High temporal-evidence correction — 2026-11-24
+
+Same targeted High disposition: the prior No Findings remains sufficient for mandatory assertions and cleanup, but does not qualify a temporal claim from final phase statuses alone. Render completion can occur after the terminal branch settles while its separate rolling work budget remains. Earlier freeze/review history is retained without relabeling it; the preceding 88,965-byte summary/header prefix remains byte-identical, raw/LF SHA-256 c95113f303fffbcdbb4cf3c82bf94861da2635ef3878e0180e85f2ce1cffb4ac.
+
+The root-permitted smallest correction adds only try/finally around the exact existing bounded same-Response.finished()===null assertion. Finally synchronously copies the pre-existing render sequence receipt's primitive pending/fulfilled/rejected status into one closed entry in the existing outcomes attachment: matching detail render sequence at bounded terminal settlement. It executes on success, rejection or timeout; subsequent render completion cannot mutate the copied primitive. This supports only observed ordering at bounded terminal assertion settlement, not independent wall-clock timing, response transport cause or source-cure proof. No timestamp, raw data, new attachment/logging, assertion, wait, deadline, cleanup or acceptance condition changes. Both required branches and both failure combinations remain unchanged.
+
+Witness-only reversal exactly reproduces the entire previous 106,552-byte E2E, raw/LF SHA-256 2fe1f83e0d8666f7a7bfe86fee2760f1892b0406647871cab662320a2b7cf0d3. The same previously recorded focused command bodies were rerun using existing dependencies: targeted ESLint exit 0; strict TypeScript via node stdin using repository tsconfig, one E2E root, strict=true/noEmit=true/incremental=false and all pre-emit diagnostics, exit 0/zero diagnostics; Playwright --list exit 0/36 cases/one file and zero runtime bodies. Conservation against 199a567c passed: identical 93,749-byte non-loading prefix (SHA-256 b6a4613d1a4e8a919c63124f654f9bb66c5274f7599fb68fdff98cf300255fca) and 8-byte suffix, all 6 imports, 12 SQL literals/templates, 29 capture call sites and 17 source title expressions unchanged, with unchanged loops producing 36 identities and maximum 60 PNG calls. The author trail only refreshes moved stops and adds the exact witness stop; all other history remains.
+
+New witness and concurrent proof remain UNRUN; same-High targeted temporal review is next. Historical ordinary/expanded evidence, all failures and AC5 prerequisites retain their original scope. In-review, development_complete=false and release_ready=false remain. No new-head scenario/gate credit, acceptance, runtime/query/resource/provider/commit/push or Phase 5/6/final HALT completion occurred. STOP on this witness-only three-file candidate.
+
+
+## Same-High final temporal-review acknowledgment — 2026-11-24
+
+The same independent High reviewer returned FINAL No Findings on the exact 42,158-byte witness-correction freeze, raw/LF diff SHA-256 bbc6c43dc4b68e640ba87f8b32f20bd3e5a843a2877f1bb3572f782480827ce8, and all recorded file bindings. The reviewer verified one primitive copy of the existing render receipt in terminal finally on success, rejection or timeout, unaffected by later render completion. Qualification covers only observed render status at bounded terminal assertion settlement, not independent wall-clock timing or transport cause. Both branch-failure combinations still fail; witness reversal reproduces the entire preceding 106,552-byte E2E (SHA-256 2fe1f83e0d8666f7a7bfe86fee2760f1892b0406647871cab662320a2b7cf0d3). Targeted trail validation passed 55 references/zero errors, and whitespace passed.
+
+This acknowledgment appends documentation only and preserves the entire preceding summary/header. E2E remains raw/LF SHA-256 2f6eb17f2b65076a6a5379a86c4fa75c29003ac84fa26d0fbb56ac2adb79d253; all source, assertions, waits, cleanup and other cases are unchanged. New witness/concurrent proof and captures remain UNRUN; prior reviews/freezes and historical run evidence retain their original limits. In-review, development_complete=false, release_ready=false, both original AC5 prerequisites and all unpassed requirements remain. STOP: no runtime/query/resource/provider/commit/push, acceptance or Phase 5/6/final HALT completion; coordinator owns the exact three-file technical checkpoint.

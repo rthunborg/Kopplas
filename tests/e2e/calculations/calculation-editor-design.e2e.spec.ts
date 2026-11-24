@@ -1504,32 +1504,48 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         expect(new URL(actualResponse!.url()).origin).toBe(origin);
         expect(new URL(actualResponse!.url()).pathname).toBe(detailPath);
         expect(actualResponse!.headers()["content-type"]).toContain(navigation.request.isNavigationRequest() ? "text/html" : "text/x-component");
-        terminalState = "pending";
-        expect(await bounded("same response.finished terminal", () => actualResponse!.finished().then(result => {
-          terminalState = result === null ? "finished" : "returned-error"; return result;
-        }, error => { terminalState = "rejected"; throw error; }))).toBeNull();
-        await bounded("matching detail URL rendered", () => expect(page).toHaveURL(new URL(detailPath, origin).href));
-        await bounded("matching detail heading rendered", () => expect(page.getByRole("heading", { level: 1, name: selectedCalculation.title, exact: true })).toBeVisible());
-        await bounded("matching detail entity rendered", () => expect(titleForm(page).locator('input[name="id"]')).toHaveValue(selectedCalculation.id));
-        await bounded("no detail not found", () => expect(page.getByTestId("calculation-not-found")).toHaveCount(0));
-        await bounded("no detail read failure", () => expect(page.getByTestId("calculation-detail-failed")).toHaveCount(0));
-        const summary = page.getByTestId("totals-summary").filter({ visible: true });
-        await bounded("unchanged golden net rendered", () => expect(summary.getByTestId("summary-net")).toContainText("2200,00"));
-        await bounded("unchanged golden VAT rendered", () => expect(summary.getByTestId("summary-vat")).toContainText("550,00"));
-        await bounded("unchanged golden gross rendered", () => expect(summary.getByTestId("summary-gross")).toContainText("2750,00"));
+        const rendered = observe("matching detail render sequence", (async () => {
+          await bounded("matching detail URL rendered", () => expect(page).toHaveURL(new URL(detailPath, origin).href));
+          await bounded("matching detail heading rendered", () => expect(page.getByRole("heading", { level: 1, name: selectedCalculation.title, exact: true })).toBeVisible());
+          await bounded("matching detail entity rendered", () => expect(titleForm(page).locator('input[name="id"]')).toHaveValue(selectedCalculation.id));
+          await bounded("no detail not found", () => expect(page.getByTestId("calculation-not-found")).toHaveCount(0));
+          await bounded("no detail read failure", () => expect(page.getByTestId("calculation-detail-failed")).toHaveCount(0));
+          const summary = page.getByTestId("totals-summary").filter({ visible: true });
+          await bounded("unchanged golden net rendered", () => expect(summary.getByTestId("summary-net")).toContainText("2200,00"));
+          await bounded("unchanged golden VAT rendered", () => expect(summary.getByTestId("summary-vat")).toContainText("550,00"));
+          await bounded("unchanged golden gross rendered", () => expect(summary.getByTestId("summary-gross")).toContainText("2750,00"));
+        })());
+        const terminal = observe("same response terminal assertion", (async () => {
+          terminalState = "pending";
+          try {
+            expect(await bounded("same response.finished terminal", () => actualResponse!.finished().then(result => {
+              terminalState = result === null ? "finished" : "returned-error"; return result;
+            }, error => { terminalState = "rejected"; throw error; }))).toBeNull();
+          } finally {
+            outcomes.push({ phase: "matching detail render sequence at bounded terminal settlement", status: outcomes.find(outcome => outcome.phase === "matching detail render sequence")!.status });
+          }
+        })());
+        const branches = await Promise.allSettled([rendered, terminal]);
+        const branchErrors = branches.filter(result => result.status === "rejected").map(result => result.reason);
+        if (branchErrors.length) throw new AggregateError(branchErrors, "Matching detail render and same-response terminal are both required");
       } catch (error) { failures.push(error); }
       finally {
         cleaning = true; closing = true; release();
-        try { await bounded("settle every owned route", () => Promise.all(held.map(entry => entry.done)), true, 2_000); }
+        try { await bounded("settle every owned route", () => Promise.allSettled(held.map(entry => entry.done)).then(results => {
+          for (const result of results) if (result.status === "rejected") failures.push(result.reason);
+        }), true, 2_000); }
+        catch (error) { failures.push(error); }
+        // Remove only this case's handler before any owned-page close; preserve an actual unroute failure.
+        try { if (installed) await bounded("remove exact owned handler", () => page.unroute(ownsUrl, handler), true, 2_000); }
         catch (error) { failures.push(error); }
         // A race timeout does not cancel. Close only this owned page to terminate pending client channels.
         if (pending.size) {
           try { await bounded("close owned page/client channels only", () => page.close({ runBeforeUnload: false }), true, 3_000); }
           catch (error) { failures.push(error); }
         }
-        try { await bounded("collect actual client settlements", () => Promise.allSettled([...pending]), true, 2_000); }
-        catch (error) { failures.push(error); }
-        try { if (installed) await bounded("remove exact owned handler", () => page.unroute(ownsUrl, handler), true, 2_000); }
+        try { await bounded("collect actual client settlements", () => Promise.allSettled([...pending]).then(results => {
+          for (const result of results) if (result.status === "rejected") failures.push(result.reason);
+        }), true, 2_000); }
         catch (error) { failures.push(error); }
         page.off("response", responseListener);
         for (const timer of timers) clearTimeout(timer);
