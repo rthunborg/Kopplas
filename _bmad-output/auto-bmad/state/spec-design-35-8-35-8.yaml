@@ -1,0 +1,90 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: spec-design-35-8-35-8
+epic_num: null
+story_num: null
+story_suffix: ""
+story_source: stories
+spec_folder: "C:/DEV/Kopplas/tmp/private/e35-8-presentation-20261122/worker/_bmad-output/specs/spec-design-35-8"
+story_id: 35-8
+branch: codex/story-35-8-calculation-editor-presentation-20261122
+status: in-progress
+updated_at: "2026-11-24T00:19:09Z"
+started_at: "2026-11-24T00:18:26Z"
+completed_at: null
+active_seconds: 0
+timing_anchor: null
+is_first_in_epic: true
+is_last_in_epic: true
+git_mode: null
+base_branch: null
+selected_phase: tea_triage
+selected_role: test-risk-triage
+selected_profile: light
+selected_model: gpt-6.1-sol
+selected_effort: low
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Metadata-only triage of approved presentation story; actual sensitive implementation/review routed High separately."
+routing_ledger:
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Metadata-only triage of approved presentation story; actual sensitive implementation/review routed High separately.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: "Metadata-only triage: original money/tax, archive and quote-create outcomes plus original-operation/revision integrity require ATDD+automate. Testing-risk high does not authorize business-semantic writes or alter ordinary Low implementation route."
+epic_story_count: 1
+stories_after_in_epic: 0
+completed_phases: [0]
+spec_path: "C:/DEV/Kopplas/tmp/private/e35-8-presentation-20261122/worker/_bmad-output/specs/spec-design-35-8/stories/35-8-calculation-editor-and-review.md"
+spec_approved: false
+build:
+  status: null
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: []
+followup_passes: 0
+hitl_halt: null
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: []
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: null
+ci_run_url: null
+ci_status: unknown
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers: []
+overrides:
+  worker_activation: "Exact assignmentSHA2d88dafe, first gen1heartbeat state running; base36c166e7, branch/worktree/workflow pins verified. Central/full preflight PASS; no source replan/copied anchor/config healing."
+  next_phase_prerequisite: "Project scoped TEA Phase4 reviewed schema2 route/qualified helper/private resolver receipt and actual red-check route pending Root coordination; no shared fixture/runtime adoption."
+constraints: []
+parallel_run_id: e35-8-presentation-20261122
+baseline_revision: 36c166e7e4a69477d4e1a3990d5d4c881fcd7c94
+spec_checkpoint: false
+done_checkpoint: false
