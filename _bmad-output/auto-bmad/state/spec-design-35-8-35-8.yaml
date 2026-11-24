@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-8-presentation-20261122/worker/_bma
 story_id: 35-8
 branch: codex/story-35-8-calculation-editor-presentation-20261122
 status: in-progress
-updated_at: "2026-11-24T04:49:32Z"
+updated_at: "2026-11-24T05:00:50Z"
 started_at: "2026-11-24T00:18:26Z"
 completed_at: null
-active_seconds: 9937
-timing_anchor: 1795495772
+active_seconds: 10615
+timing_anchor: 1795496450
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: null
@@ -26,7 +26,7 @@ selected_effort: low
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Narrow coordination after independent High qualification of equivalent genuine native Forward witness on509d6faf. Test implementation and independent changed-case review explicitly High; product remains unchanged, historical History.forward failures retained, no completion or runtime inference."
+escalation_reason: "Root-qualified feature-local loading and isolated post-render membership revocation evidence batch. Coordination Low; fixture/tenant/auth authority and test implementation plus distinct review explicitly High. Only existing test/summary/story, no product/shared/provider or runtime changes now."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Metadata-only triage of approved presentation story; actual sensitive implementation/review routed High separately.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Scoped ATDD includes actual stale quote/tax and recovered original-operation transactional invariant checks; distinct High author, no business semantics changes.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"atdd\",\"profile\":\"standard\",\"role\":\"test-architecture\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -34,6 +34,7 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Scoped automate preparation for reviewed source checkpoint; real dirty navigation, confirmed quote/later-draft and no-duplicate mutation proof require High. Phase5 remains in-review and no runtime or visual acceptance is inferred.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Narrow coordination of actual521a51f2 hosted failures. Independent High diagnosis retained; all AC5 navigation/identity and test repair implementation plus changed-case review explicitly High. No broad review replay or completion inference.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Narrow coordination after independent High qualification of equivalent genuine native Forward witness on509d6faf. Test implementation and independent changed-case review explicitly High; product remains unchanged, historical History.forward failures retained, no completion or runtime inference.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Root-qualified feature-local loading and isolated post-render membership revocation evidence batch. Coordination Low; fixture/tenant/auth authority and test implementation plus distinct review explicitly High. Only existing test/summary/story, no product/shared/provider or runtime changes now.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Metadata-only triage: original money/tax, archive and quote-create outcomes plus original-operation/revision integrity require ATDD+automate. Testing-risk high does not authorize business-semantic writes or alter ordinary Low implementation route."
