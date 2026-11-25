@@ -1427,6 +1427,98 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
       const selectedCalculation = fixture().calc;
       const detailPath = `/calculations/${selectedCalculation.id}`;
       let origin = "", interactionStarted = false, closing = false, releasePublished = false;
+      // Passive public events only: sequence is this client's observed order, never server-clock causality.
+      function createPassiveLoadingObserver(observedPage: Page, afterInput: () => boolean) {
+        type FailureCategory = "aborted" | "blocked-by-client" | "other" | "unavailable";
+        type Event = "requestfinished" | "requestfailed" | "main-frame-commit" | "release-published" |
+          "terminal-assertion-settled" | "cleanup-started" | "owned-routes-attempt-ended" |
+          "owned-handler-removal-attempt-ended" | "owned-page-close-started" |
+          "owned-page-close-attempt-ended" | "client-collection-attempt-ended" | "owned-observer-detach-attempt-ended";
+        type Receipt = { event: Event; failure?: FailureCategory };
+        type Commit = { order: number; cleanupOnly: boolean };
+        let unavailable = false, cleanupOnly = false, order = 0, terminalOrder: number | undefined;
+        let exactRequest: BrowserRequest | undefined, selectedKind: "document" | "client-rsc" | "unavailable" = "unavailable";
+        let exactTerminal: "not-observed" | "requestfinished" | "requestfailed" | "multiple-events" = "not-observed";
+        let detached = false, eventsTruncated = false, commitsTruncated = false;
+        const before: Receipt[] = [], cleanup: Receipt[] = [], commits: Commit[] = [];
+        const safe = (action: () => void) => { try { action(); } catch { unavailable = true; } };
+        const record = (event: Event, failure?: FailureCategory) => {
+          order++;
+          const entries = cleanupOnly ? cleanup : before;
+          if (entries.length < 16) entries.push(failure ? { event, failure } : { event });
+          else { eventsTruncated = true; unavailable = true; }
+        };
+        const terminal = (request: BrowserRequest, event: "requestfinished" | "requestfailed") => safe(() => {
+          if (!exactRequest || request !== exactRequest) return;
+          let failure: FailureCategory | undefined;
+          if (event === "requestfailed") {
+            failure = "unavailable";
+            try {
+              const raw = request.failure()?.errorText;
+              if (typeof raw === "string" && raw.length) {
+                failure = /\bERR_BLOCKED_BY_CLIENT\b/i.test(raw) ? "blocked-by-client" :
+                  /\bERR_ABORTED\b|\bNS_BINDING_ABORTED\b/i.test(raw) ? "aborted" : "other";
+              }
+            } catch { unavailable = true; }
+          }
+          record(event, failure);
+          terminalOrder ??= order;
+          exactTerminal = exactTerminal === "not-observed" ? event : "multiple-events";
+        });
+        const finished = (request: BrowserRequest) => terminal(request, "requestfinished");
+        const failed = (request: BrowserRequest) => terminal(request, "requestfailed");
+        const committed = (frame: import("@playwright/test").Frame) => safe(() => {
+          if (!afterInput() || frame !== observedPage.mainFrame()) return;
+          record("main-frame-commit");
+          if (commits.length < 4) commits.push({ order, cleanupOnly });
+          else { commitsTruncated = true; unavailable = true; }
+        });
+        const snapshot = (onlyCleanup: boolean) => ({
+          availability: unavailable ? "unavailable" as const : "available" as const,
+          exactRequestSelected: Boolean(exactRequest), selectedKind, exactTerminal,
+          events: (onlyCleanup ? cleanup : before).map(entry => ({ ...entry })), eventsTruncated,
+          mainFrameCommits: commits.filter(entry => entry.cleanupOnly === onlyCleanup).map(entry => ({
+            relativeToExactTerminal: terminalOrder === undefined ? "exact-terminal-not-observed" as const :
+              entry.order < terminalOrder ? "before" as const : "after" as const,
+          })), commitsTruncated,
+        });
+        let preCleanup: ReturnType<typeof snapshot> | undefined;
+        return {
+          select: (request: BrowserRequest, documentNavigation: boolean) => safe(() => {
+            if (!exactRequest) { exactRequest = request; selectedKind = documentNavigation ? "document" : "client-rsc"; }
+          }),
+          install: () => {
+            safe(() => { observedPage.on("requestfinished", finished); });
+            safe(() => { observedPage.on("requestfailed", failed); });
+            safe(() => { observedPage.on("framenavigated", committed); });
+          },
+          mark: (event: Event) => safe(() => record(event)),
+          beginCleanup: () => safe(() => {
+            preCleanup = snapshot(false); cleanupOnly = true; record("cleanup-started");
+          }),
+          detach: () => {
+            // Each removal is isolated; an observer error never replaces the journey/cleanup failure.
+            let removed = true;
+            for (const remove of [() => observedPage.off("requestfinished", finished),
+              () => observedPage.off("requestfailed", failed), () => observedPage.off("framenavigated", committed)]) {
+              try { remove(); } catch { removed = false; unavailable = true; }
+            }
+            detached = removed; safe(() => record("owned-observer-detach-attempt-ended"));
+          },
+          evidence: () => {
+            try {
+              return { availability: unavailable ? "unavailable" as const : "available" as const,
+                preCleanup: preCleanup ?? { availability: "unavailable" as const }, cleanupOnly: snapshot(true), detached,
+                firstPostInputMainFrameCommit: commits.length ? {
+                  relativeToExactTerminal: terminalOrder === undefined ? "exact-terminal-not-observed" as const :
+                    commits[0].order < terminalOrder ? "before" as const : "after" as const,
+                  relativeToCleanup: commits[0].cleanupOnly ? "cleanup-only" as const : "before-cleanup" as const,
+                } : "not-observed" as const };
+            } catch { return { availability: "unavailable" as const }; }
+          },
+        };
+      }
+      const passiveLoading = createPassiveLoadingObserver(page, () => interactionStarted);
       const ownsUrl = (url: URL) => url.origin === origin && url.pathname === detailPath;
       let release!: () => void;
       const released = observe("owned hold release", new Promise<void>(resolve => { release = resolve; }));
@@ -1445,6 +1537,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           afterInteraction: interactionStarted, dispatched: false, responded: false,
           continuation: "held" as "held" | "pending" | "fulfilled" | "rejected", done: Promise.resolve() };
         held.push(entry);
+        if (entry.kind === "navigation" && entry.afterInteraction) passiveLoading.select(request, documentNavigation);
         entry.done = observe("owned route lifecycle", (async () => {
           await released;
           entry.dispatched = true; entry.continuation = "pending";
@@ -1466,6 +1559,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         // Own every selected-detail hold, including prefetch dependencies, before list mount.
         await bounded("install selected route", () => page.route(ownsUrl, handler)); installed = true;
         page.on("response", responseListener);
+        passiveLoading.install();
         await bounded("render list", () => page.goto("/calculations"));
         const selected = page.getByTestId("calculation-list-row").filter({ hasText: selectedCalculation.title });
         await bounded("selected row cardinality", () => expect(selected).toHaveCount(1));
@@ -1492,6 +1586,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         };
         await bounded("held original capture completed", () => capture(page, info, "calculation-list", "loading-selected-detail", selectedCalculation.id, selected, assertHeld));
         releasePublished = true; release();
+        passiveLoading.mark("release-published");
         outcomes.push({ phase: "release published for ALL owned holds", status: "fulfilled" });
         await bounded("original route.continue settled", () => navigation.done);
         responseState = "pending";
@@ -1523,6 +1618,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
             }, error => { terminalState = "rejected"; throw error; }))).toBeNull();
           } finally {
             outcomes.push({ phase: "matching detail render sequence at bounded terminal settlement", status: outcomes.find(outcome => outcome.phase === "matching detail render sequence")!.status });
+            passiveLoading.mark("terminal-assertion-settled");
           }
         })());
         const branches = await Promise.allSettled([rendered, terminal]);
@@ -1530,28 +1626,36 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         if (branchErrors.length) throw new AggregateError(branchErrors, "Matching detail render and same-response terminal are both required");
       } catch (error) { failures.push(error); }
       finally {
+        passiveLoading.beginCleanup();
         cleaning = true; closing = true; release();
         try { await bounded("settle every owned route", () => Promise.allSettled(held.map(entry => entry.done)).then(results => {
           for (const result of results) if (result.status === "rejected") failures.push(result.reason);
         }), true, 2_000); }
         catch (error) { failures.push(error); }
+        finally { passiveLoading.mark("owned-routes-attempt-ended"); }
         // Remove only this case's handler before any owned-page close; preserve an actual unroute failure.
         try { if (installed) await bounded("remove exact owned handler", () => page.unroute(ownsUrl, handler), true, 2_000); }
         catch (error) { failures.push(error); }
+        finally { passiveLoading.mark("owned-handler-removal-attempt-ended"); }
         // A race timeout does not cancel. Close only this owned page to terminate pending client channels.
         if (pending.size) {
+          passiveLoading.mark("owned-page-close-started");
           try { await bounded("close owned page/client channels only", () => page.close({ runBeforeUnload: false }), true, 3_000); }
           catch (error) { failures.push(error); }
+          finally { passiveLoading.mark("owned-page-close-attempt-ended"); }
         }
         try { await bounded("collect actual client settlements", () => Promise.allSettled([...pending]).then(results => {
           for (const result of results) if (result.status === "rejected") failures.push(result.reason);
         }), true, 2_000); }
         catch (error) { failures.push(error); }
+        finally { passiveLoading.mark("client-collection-attempt-ended"); }
+        passiveLoading.detach();
         page.off("response", responseListener);
         for (const timer of timers) clearTimeout(timer);
         try { await bounded("attach actual loading phases", () => info.attach("loading-navigation-correlation.json", { contentType: "application/json", body: Buffer.from(JSON.stringify({
           releasePublished, responseState, terminalState, outcomes, pendingClientOperations: pending.size,
           clientPageCloseIsBackendCancellation: false, heldRequestCount: held.length,
+          passiveRequestLifecycle: passiveLoading.evidence(),
           requests: held.slice(0, 8).map(entry => ({ kind: entry.kind, afterInteraction: entry.afterInteraction,
             dispatched: entry.dispatched, responded: entry.responded, continuation: entry.continuation })), truncated: held.length > 8,
         })) }), true, 1_000); } catch (error) { failures.push(error); }
