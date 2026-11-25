@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { projectCiPerformanceChanges } from "./ci-performance-contract";
 
 const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
-const wrapperSha256 = "d9a01e97ab0da21bfbc11769698a8a429e75c7cdd6f9bff4e3075f86e2cad615";
+const wrapperSha256 = "817cee33139cf84d709cf0c9c061f8ff58faf69363b6bf843dc404b25b86951f";
 const integrationArgs = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
 const browserArgs = ["run", "test:smoke"];
 const releaseBrowserArgs = ["run", "test:e2e", "--reporter=list,json"];
@@ -60,6 +60,47 @@ export function projectReleaseBrowserBudget(workflow: string): string {
   return workflow.slice(0, start) + job.replace(releaseBudgetJobEntry, releaseBudgetJobEntry.replace(
     "    timeout-minutes: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation && 50 || 45 }}\n",
     "    timeout-minutes: 45\n")) + workflow.slice(end);
+}
+
+// Finite REL22 fragments only: preserve all unrelated workflow bytes and historical guards.
+const rel22WorkflowInverse: readonly [string, string][] = [
+  [
+    "run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.rel22_capture && format('checkpoint:rel22:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}",
+    "run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}"
+  ],
+  [
+    "      release_validation:\n        description: Also run exhaustive browser and dashboard diagnostics\n        type: boolean\n        required: false\n        default: false\n      rel22_capture:\n        description: Preliminary Min dag E01-E08 originals and presentation measurements\n        type: boolean\n        required: false\n        default: false\n  pull_request:",
+    "      release_validation:\n        description: Also run exhaustive browser and dashboard diagnostics\n        type: boolean\n        required: false\n        default: false\n  pull_request:"
+  ],
+  [
+    "          RELEASE_VALIDATION: ${{ inputs.release_validation || false }}\n          REL22_CAPTURE: ${{ inputs.rel22_capture || false }}\n          OTHER_DIAGNOSTICS:",
+    "          RELEASE_VALIDATION: ${{ inputs.release_validation || false }}\n          OTHER_DIAGNOSTICS:"
+  ],
+  [
+    "          if [ \"$REL22_CAPTURE\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$RELEASE_VALIDATION\" = false\n            test \"$CAUSE_PROOF\" = false\n            test \"$OTHER_DIAGNOSTICS\" = false\n          fi\n          if [ \"$CAUSE_PROOF\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$RELEASE_VALIDATION\" = false\n            test \"$OTHER_DIAGNOSTICS\" = false\n            test \"$REL22_CAPTURE\" = false\n          fi\n",
+    "          if [ \"$CAUSE_PROOF\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$RELEASE_VALIDATION\" = false\n            test \"$OTHER_DIAGNOSTICS\" = false\n          fi\n"
+  ],
+  [
+    "        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.release_validation || inputs.rel22_capture)) }}",
+    "        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}"
+  ],
+  [
+    "      - name: REL22 Min dag capture (explicit fixed opt-in)\n        if: ${{ github.event_name == 'workflow_dispatch' && inputs.rel22_capture }}\n        env:\n          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json\n          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}\n          CALENDAR_FEED_CI_BROWSER_SUITE: rel22\n        run: node scripts/ci/with-calendar-feed-runtime.mjs browser\n\n      - name: Upload native general browser JSON",
+    "      - name: Upload native general browser JSON"
+  ]
+];
+export function projectRel22Capture(workflow: string): string {
+  let projected = workflow.replaceAll("\r\n", "\n");
+  const jobs = [...projected.matchAll(/^  [A-Za-z0-9_-]+:\n/gm)], owned = jobs.filter(job => job[0] === "  e2e:\n");
+  assert.equal(owned.length, 1, "REL22 exact e2e job");
+  const start = owned[0].index!, end = jobs.find(job => job.index! > start)?.index ?? projected.length;
+  assert.ok(projected.slice(start, end).includes("      - name: REL22 Min dag capture (explicit fixed opt-in)\n        if: ${{ github.event_name == 'workflow_dispatch' && inputs.rel22_capture }}\n        env:\n          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json\n          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}\n          CALENDAR_FEED_CI_BROWSER_SUITE: rel22\n        run: node scripts/ci/with-calendar-feed-runtime.mjs browser\n\n"), "REL22 exact e2e entry placement");
+  for (const [entry, original] of rel22WorkflowInverse) {
+    assert.equal(projected.split(entry).length - 1, 1, "REL22 exact workflow fragment");
+    projected = projected.replace(entry, original);
+  }
+  assert.ok(!projected.includes("rel22_capture"), "REL22 unexpected input or reference");
+  return projected;
 }
 
 // Exact newly reviewed diagnostic fragments only. Every unrelated byte survives.
@@ -507,11 +548,12 @@ export function projectCalendarFeedCiCommands(workflow: string, wrapperSource = 
   const integration = literalArgs(source, "INTEGRATION_ARGS", integrationArgs);
   const browser = literalArgs(source, "BROWSER_ARGS", browserArgs);
   const releaseBrowser = literalArgs(source, "RELEASE_BROWSER_ARGS", releaseBrowserArgs);
+  literalArgs(source, "REL22_BROWSER_ARGS", ["exec", "playwright", "test", "tests/e2e/my-day.e2e.spec.ts", "--project=chromium", "--grep", "15[.]6-E0[1-8]\\b", "--workers=1", "--retries=1", "--reporter=list,json", "--trace=off"]);
   assert.equal(createHash("sha256").update(source).digest("hex"), wrapperSha256, "calendar feed CI reviewed wrapper source");
   literalArgs(source, "CAUSE_PROOF_ARGS", ["exec","vitest","run","tests/integration/commands/calendar-feed.int.test.ts","--maxWorkers=1","--no-file-parallelism","--testNamePattern=^15[.]5-DIAG001$","--reporter=default","--reporter=github-actions","--reporter=json","--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
   // Compose independently reviewed finite inverses before the historical
   // calendar/fixed-browser projection. Preserve every unrelated workflow byte.
-  let projected = projectStorageSourceMailExclusion(projectTemporaryPicomatchAudit(projectDbStartupFacts(projectCiPerformanceChanges(projectReleaseBrowserBudget(workflow)))));
+  let projected = projectStorageSourceMailExclusion(projectTemporaryPicomatchAudit(projectDbStartupFacts(projectCiPerformanceChanges(projectRel22Capture(projectReleaseBrowserBudget(workflow))))));
   assert.equal(projected.split(authCleanupEntry).length - 1, 1, "Auth cleanup exact diagnostic workflow fragment");
   const collectorSource = readFileSync(new URL("../../scripts/ci/auth-cleanup-collector.mjs", import.meta.url), "utf8").replaceAll("\r\n", "\n");
   assert.equal(createHash("sha256").update(collectorSource).digest("hex"), authCleanupCollectorSha256, "Auth cleanup reviewed collector source");

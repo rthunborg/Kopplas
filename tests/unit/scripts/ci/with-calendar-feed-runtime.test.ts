@@ -9,8 +9,8 @@ import { mkdtemp, mkdir, writeFile, readFile, rm, stat } from "node:fs/promises"
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
-import { projectCalendarFeedCiCommands, projectReleaseBrowserBudget } from "../../../support/calendar-feed-ci-contract";
-import { INTEGRATION_ARGS, BROWSER_ARGS, RELEASE_BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, createIntegrationChildDiagnostic, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { projectCalendarFeedCiCommands, projectReleaseBrowserBudget, projectRel22Capture } from "../../../support/calendar-feed-ci-contract";
+import { INTEGRATION_ARGS, BROWSER_ARGS, RELEASE_BROWSER_ARGS, REL22_BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, createIntegrationChildDiagnostic, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 import { captureCalendarFeedTrace, recordCalendarFeedTrace, recordCalendarFeedContext, recordCalendarFeedMembership, executeCalendarFeed } from "../../../../src/server/commands/calendar-feed/calendar-feed-db";
 import { CommandError } from "../../../../src/server/commands/command-errors";
 import { validateCalendarFeedIntent } from "../../../../src/features/calendar-feed/validation";
@@ -4445,10 +4445,10 @@ test("complete-route budget Dense setup changes only its first case ceiling befo
 });
 test("complete-route budget pure inverse restores only the exact e2e job ceiling", () => {
   const raw = readFileSync(".github/workflows/ci.yml", "utf8").replaceAll("\r\n", "\n");
-  const inverse = projectReleaseBrowserBudget(raw);
+  const inverse = projectRel22Capture(projectReleaseBrowserBudget(raw));
   assert.equal(createHash("sha256").update(inverse).digest("hex"), "f6faa24f46be4ebd3a223f3184b568de69f27efcdad1aacb9e28ac3f44f19368");
   const require = nodeModule.createRequire(import.meta.url), yaml = nodeModule.createRequire(require.resolve("eslint/package.json"))("js-yaml");
-  const jobs = yaml.load(raw).jobs;
+  const jobs = yaml.load(projectRel22Capture(raw)).jobs;
   const expression = "${{ github.event_name == 'workflow_dispatch' && inputs.release_validation && 50 || 45 }}";
   assert.equal(jobs.e2e["timeout-minutes"], expression);
   // Execute only the exact typed closed expression, never arbitrary YAML/code.
@@ -4534,4 +4534,71 @@ test("complete-route budget CRLF callers preserve LF historical projection and s
     assert.notEqual(changed, lf);
     for (const text of [changed, changed.replaceAll("\n", "\r\n")]) assert.notEqual(historicalHash(projectCalendarFeedCiCommands(text)), expected);
   }
+});
+
+
+const rel22Env = { ...env, GITHUB_JOB: "e2e", CALENDAR_FEED_CI_DISPOSABLE_STACK: "123:1:e2e", GITHUB_EVENT_NAME: "workflow_dispatch", GITHUB_SHA: "a".repeat(40), CALENDAR_FEED_CI_BROWSER_SUITE: "rel22" };
+
+test("REL22 selects only E01-E08 with one literal regexp backslash and derives the child-only capture flag", async () => {
+  assert.deepEqual(REL22_BROWSER_ARGS, ["exec", "playwright", "test", "tests/e2e/my-day.e2e.spec.ts", "--project=chromium", "--grep", "15[.]6-E0[1-8]\\b", "--workers=1", "--retries=1", "--reporter=list,json", "--trace=off"]);
+  assert.equal(REL22_BROWSER_ARGS[6].split("\\").length - 1, 1); assert.ok(Object.isFrozen(REL22_BROWSER_ARGS));
+  const grep = new RegExp(REL22_BROWSER_ARGS[6]);
+  for (let i = 1; i <= 8; i++) assert.ok(grep.test(`15.6-E0${i} prepared`));
+  for (const title of ["15.6-E09", "15.6-E010", "15.6-E081", "15.4-E01"]) assert.equal(grep.test(title), false);
+  for (const [selected, args, flag] of [[env, BROWSER_ARGS, undefined], [releaseEnv, RELEASE_BROWSER_ARGS, undefined], [rel22Env, REL22_BROWSER_ARGS, "1"]] as const) {
+    const h = harness(); const result = await runCalendarFeedRuntime({ mode: "browser", env: selected, platform: "linux" }, h.deps);
+    assert.equal(result.exitCode, 0); assert.equal(h.launches.length, 1);
+    assert.deepEqual(h.launches[0].args, [...args]); assert.equal(h.launches[0].childEnv.E15_REL22_CAPTURE, flag);
+    assert.ok(h.events.indexOf("COMMIT") < h.events.indexOf("launch:0"));
+    assert.ok(h.events.indexOf("settled:0") < h.events.indexOf("db-closed"));
+  }
+});
+
+test("REL22 rejects non-owned selectors and ambient capture injection before qualification or SQL", async () => {
+  for (const bad of [{ ...rel22Env, GITHUB_EVENT_NAME: "push" }, { ...rel22Env, GITHUB_RUN_ATTEMPT: "2" }, { ...rel22Env, GITHUB_JOB: "db", CALENDAR_FEED_CI_DISPOSABLE_STACK: "123:1:db" }, { ...rel22Env, GITHUB_SHA: "unknown" }, { ...rel22Env, E15_REL22_CAPTURE: "1" }, { ...env, E15_REL22_CAPTURE: "1" }]) {
+    assert.throws(() => validateAdmission("browser", bad, "linux"));
+    const h = harness(); const result = await runCalendarFeedRuntime({ mode: "browser", env: bad, platform: "linux" }, h.deps);
+    assert.equal(result.exitCode, 1); assert.equal(h.launches.length, 0); assert.equal(h.queries.length, 0); assert.equal(h.events.includes("qualified"), false);
+  }
+  assert.throws(() => validateAdmission("db", rel22Env, "linux"));
+  assert.throws(() => validateAdmission("browser", rel22Env, "win32"));
+});
+
+test("REL22 retains child failure and custody uncertainty with exactly one stopped child and independent database close", async () => {
+  for (const options of [{ failChild: 0 }, { failStops: true }, { closeFailure: true }]) {
+    const h = harness(options); const result = await runCalendarFeedRuntime({ mode: "browser", env: rel22Env, platform: "linux" }, h.deps);
+    assert.equal(result.exitCode, 1); assert.equal(h.launches.length, 1); assert.deepEqual(h.launches[0].args, [...REL22_BROWSER_ARGS]);
+    assert.ok(h.events.includes("settled:0")); assert.ok(h.events.includes("db-closed"));
+    if ("failChild" in options) assert.deepEqual(result.receipt.childExitCodes, [17]);
+    if (!("closeFailure" in options)) { assert.equal(result.receipt.keyDeleted, false); assert.equal(result.receipt.keyOutcome, "unverified"); }
+    else assert.ok(result.receipt.failures.includes("db-close-unverified"));
+  }
+});
+
+test("REL22 has the ordinary thirty-minute child ceiling without changing release forty minutes", async t => {
+  t.mock.timers.enable({ apis: ["setTimeout"] });
+  const h = harness(); let enter!: () => void, finish!: (r: { code: number; signal: null }) => void;
+  const entered = new Promise<void>(yes => { enter = yes; }); const done = new Promise<{ code: number; signal: null }>(yes => { finish = yes; });
+  let settled = false;
+  const pending = runCalendarFeedRuntime({ mode: "browser", env: rel22Env, platform: "linux" }, { ...h.deps, launch: (command: string, args: string[], childEnv: Record<string, string>) => {
+    const handle = h.deps.launch(command, args, childEnv); enter(); return { ...handle, done, stop: async () => { finish({ code: 0, signal: null }); return handle.stop(); } };
+  } });
+  void pending.then(() => { settled = true; }); await entered;
+  t.mock.timers.tick(1_799_999); await Promise.resolve(); assert.equal(settled, false);
+  t.mock.timers.tick(1); const result = await pending;
+  assert.equal(result.exitCode, 1); assert.ok(result.receipt.failures.includes("child-timeout")); assert.ok(h.events.includes("db-closed"));
+});
+
+test("REL22 finite inverse preserves the prepared workflow and rejects mode drift on LF and CRLF", () => {
+  const raw = readFileSync(".github/workflows/ci.yml", "utf8").replaceAll("\r\n", "\n");
+  const wrapper = readFileSync("scripts/ci/with-calendar-feed-runtime.mjs", "utf8").replaceAll("\r\n", "\n");
+  assert.equal(projectRel22Capture(raw), projectRel22Capture(raw.replaceAll("\n", "\r\n")));
+  assert.equal(createHash("sha256").update(projectRel22Capture(raw)).digest("hex"), "156250250b2c2c3841990262390b53eb62498df9cb87875d2e6b60f6d954700c");
+  for (const changed of [raw.replace("CALENDAR_FEED_CI_BROWSER_SUITE: rel22", "CALENDAR_FEED_CI_BROWSER_SUITE: release"), raw.replace("      rel22_capture:\n", "      foreign_capture:\n"), raw.replace("      rel22_capture:\n", "      rel22_capture:\n      rel22_capture:\n"), raw.replace("inputs.rel22_capture))", "inputs.rel22_capture || true))")]) {
+    assert.notEqual(changed, raw);
+    for (const text of [changed, changed.replaceAll("\n", "\r\n")]) assert.throws(() => projectCalendarFeedCiCommands(text, wrapper), /REL22/);
+  }
+  const foreign = "# unrelated drift\n" + raw;
+  assert.ok(projectRel22Capture(foreign).startsWith("# unrelated drift\n"));
+  assert.throws(() => projectCalendarFeedCiCommands(raw, wrapper.replace('"--trace=off"', '"--trace=on"')), /REL22_BROWSER_ARGS argv/);
 });

@@ -5,7 +5,7 @@ import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "no
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { checkpoint, checkpointTitle, parseArgs, validateRequest, assertCauseProofWorkflow, assertDefaultDispatchWorkflow } from "../../../../scripts/ci/checkpoint-dispatch.mjs";
+import { checkpoint, checkpointTitle, parseArgs, validateRequest, assertCauseProofWorkflow, assertDefaultDispatchWorkflow, assertRel22Workflow } from "../../../../scripts/ci/checkpoint-dispatch.mjs";
 import { createHash } from "node:crypto";
 
 const sha = "a".repeat(40);
@@ -201,11 +201,16 @@ test("native workflow admission executes exact source binding and preserves PR/p
   assert.ok(block, "extract the checked-in admission block, not a duplicate implementation");
   const script = block[1].split(/\r?\n/).map((line) => line.slice(10)).join("\n");
   const base = { GITHUB_EVENT_NAME: "workflow_dispatch", EXPECTED_SHA: sha, GITHUB_SHA: sha,
-    CAUSE_PROOF: "false", RELEASE_VALIDATION: "false", OTHER_DIAGNOSTICS: "false",
+    CAUSE_PROOF: "false", RELEASE_VALIDATION: "false", REL22_CAPTURE: "false", OTHER_DIAGNOSTICS: "false",
     CHECKPOINT_ID: "12345678-1234-4123-8123-123456789abc", GITHUB_RUN_ATTEMPT: "1", GITHUB_REF_TYPE: "branch" };
   const cases: [string, Record<string, string>, boolean][] = [
     ["valid dispatch", {}, true],
     ["valid diagnostic", { CAUSE_PROOF: "true" }, true],
+    ["valid REL22", { REL22_CAPTURE: "true" }, true],
+    ["REL22 release conflict", { REL22_CAPTURE: "true", RELEASE_VALIDATION: "true" }, false],
+    ["REL22 diagnostic conflict", { REL22_CAPTURE: "true", CAUSE_PROOF: "true" }, false],
+    ["REL22 other probe conflict", { REL22_CAPTURE: "true", OTHER_DIAGNOSTICS: "true" }, false],
+    ["REL22 PR refused", { REL22_CAPTURE: "true", GITHUB_EVENT_NAME: "pull_request" }, false],
     ["diagnostic release conflict", { CAUSE_PROOF: "true", RELEASE_VALIDATION: "true" }, false],
     ["diagnostic other probe conflict", { CAUSE_PROOF: "true", OTHER_DIAGNOSTICS: "true" }, false],
     ["diagnostic PR refused", { CAUSE_PROOF: "true", GITHUB_EVENT_NAME: "pull_request" }, false],
@@ -298,8 +303,8 @@ test("default recognizer refuses comments strings block scalars nested duplicate
   assertDefaultDispatchWorkflow("# leading comment\nname: CI\non: # manual dispatch\n  workflow_dispatch: # empty declaration\n  pull_request:\n    branches:\n      - main\n      - codex/story\njobs:\n  x: {}\n");
 });
 test("candidate diagnostic capability cannot be replaced by default presence and object/ref checks still precede POST",()=>{
-  const current=readFileSync(".github/workflows/ci.yml","utf8");
-  for(const source of [current.replace("calendar_feed_cause_proof:","other_input:"),current.replace("checkpoint:cause-proof:{0}:{1}","checkpoint:other:{0}:{1}"),current.replace('test "$RELEASE_VALIDATION" = false','test "$RELEASE_VALIDATION" = true'),current.replace("node scripts/ci/with-calendar-feed-runtime.mjs cause-proof","pnpm run test:int")]){
+  const current=readFileSync(".github/workflows/ci.yml","utf8").replaceAll("\r\n","\n");
+  for(const source of [current.replace("calendar_feed_cause_proof:","other_input:"),current.replace("checkpoint:cause-proof:{0}:{1}","checkpoint:other:{0}:{1}"),current.replace('if [ "$CAUSE_PROOF" = true ]; then\n            test "$GITHUB_EVENT_NAME" = workflow_dispatch\n            test "$RELEASE_VALIDATION" = false','if [ "$CAUSE_PROOF" = true ]; then\n            test "$GITHUB_EVENT_NAME" = workflow_dispatch\n            test "$RELEASE_VALIDATION" = true'),current.replace("node scripts/ci/with-calendar-feed-runtime.mjs cause-proof","pnpm run test:int")]){
     assert.throws(()=>assertCauseProofWorkflow(source));withFixture(f=>{const old=f.dependencies.api;f.dependencies.api=(method,endpoint,body)=>{const reply=old(method,endpoint,body);if(endpoint.includes("/contents/")&&!endpoint.endsWith("ref=main")){const bytes=Buffer.from(source);return{encoding:"base64",content:bytes.toString("base64"),sha:createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex")};}return reply;};assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies));assert.equal(mutations(f).length,0);});
   }
   for(const change of ["blob","disabled","path"]){withFixture(f=>{const old=f.dependencies.api;f.dependencies.api=(method,endpoint,body)=>{const reply=old(method,endpoint,body);if(change==="blob"&&endpoint.endsWith("ref=main"))return{...(reply as object),sha:"b".repeat(40)};if(endpoint.endsWith("/workflows/ci.yml"))return{...(reply as object),...(change==="disabled"?{state:"disabled_manually"}:change==="path"?{path:"other.yml"}:{})};return reply;};assert.throws(()=>checkpoint("dispatch",{...request,state:f.state,cause_proof:"true"},f.dependencies));assert.equal(mutations(f).length,0);});}
@@ -355,3 +360,59 @@ test("preselected nonce is correlation only and uncertain dispatch retains its o
   for(const command of ["status","cancel"]){const count=f.calls.length;assert.throws(()=>checkpoint(command,{state:f.state,checkpoint_id:preselectedId},f.dependencies),/dispatch-only/);assert.equal(f.calls.length,count);}
   f.setRuns([f.run({display_title:checkpointTitle("6d5651ea-6abf-432e-a1a2-a4c76c641f69",sha,"calendar-feed-cause-proof")})]);assert.equal(f.status().phase,"dispatch-uncertain");assert.equal(mutations(f).length,1);
 }));
+
+
+test("REL22 candidate capability uses structural default bootstrap and persists fixed mode before its sole POST", () => withFixture(f => {
+  f.defaultWorkflow("name: CI\non:\n  workflow_dispatch:\njobs:\n  check:\n    runs-on: ubuntu-latest\n");
+  const api = f.dependencies.api;
+  f.dependencies.api = (method, endpoint, body) => {
+    if (method === "POST") {
+      assert.equal(f.record().phase, "dispatch-uncertain");
+      assert.equal(f.record().verification_mode, "rel22-capture");
+      assert.equal(f.record().rel22_capture, true);
+    }
+    return api(method, endpoint, body);
+  };
+  const receipt = checkpoint("dispatch", { ...request, state: f.state, rel22_capture: "true", release_validation: "false" }, f.dependencies);
+  assert.equal(receipt.evidence_class, "rel22-preliminary-only"); assert.equal(receipt.acceptance_credit, 0);
+  assert.deepEqual(mutations(f)[0].body, { ref: request.ref, inputs: { expected_sha: sha, checkpoint_id: f.record().checkpoint_id, release_validation: "false", rel22_capture: "true" } });
+  assert.equal(checkpointTitle(f.record().checkpoint_id, sha, "rel22-capture"), `checkpoint:rel22:${f.record().checkpoint_id}:${sha}`);
+  f.setRuns([f.run()]); assert.equal(f.status().run_id, 123);
+  assert.throws(() => checkpoint("dispatch", { ...request, state: f.state, rel22_capture: "true" }, f.dependencies), /already exists/);
+  assert.equal(mutations(f).length, 1);
+}));
+
+test("REL22 refuses absent duplicate misplaced and altered selected-ref capability before intent or POST", () => {
+  const raw = readFileSync(".github/workflows/ci.yml", "utf8").replaceAll("\r\n", "\n");
+  assert.doesNotThrow(() => assertRel22Workflow(raw));
+  const step = raw.slice(raw.indexOf("      - name: REL22 Min dag capture"), raw.indexOf("      - name: Upload native general browser JSON"));
+  assert.ok(step.includes("CALENDAR_FEED_CI_BROWSER_SUITE: rel22"));
+  for (const changed of [raw.replace("      rel22_capture:\n", "      foreign_capture:\n"), raw.replace("      rel22_capture:\n", "      rel22_capture:\n      rel22_capture:\n"), raw.replace("CALENDAR_FEED_CI_BROWSER_SUITE: rel22", "CALENDAR_FEED_CI_BROWSER_SUITE: release"), raw.replace('test "$CAUSE_PROOF" = false\n', 'test "$CAUSE_PROOF" = true\n'), raw.replace(step, "") + "\n  foreign:\n" + step]) {
+    assert.notEqual(changed, raw);
+    withFixture(f => {
+      const api = f.dependencies.api;
+      f.dependencies.api = (method, endpoint, body) => {
+        if (endpoint.endsWith(`ref=${sha}`)) { const bytes = Buffer.from(changed); return { encoding: "base64", content: bytes.toString("base64"), sha: createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex") }; }
+        return api(method, endpoint, body);
+      };
+      assert.throws(() => checkpoint("dispatch", { ...request, state: f.state, rel22_capture: "true" }, f.dependencies));
+      assert.equal(existsSync(f.state), false); assert.equal(mutations(f).length, 0);
+    });
+  }
+});
+
+test("REL22 mode conflicts and injection refuse before state and uncertain delivery never retries", () => {
+  for (const options of [{ rel22_capture: "yes" }, { rel22_capture: "true", release_validation: "true" }, { rel22_capture: "true", cause_proof: "true" }]) withFixture(f => {
+    assert.throws(() => checkpoint("dispatch", { ...request, state: f.state, ...options }, f.dependencies));
+    assert.equal(existsSync(f.state), false); assert.equal(mutations(f).length, 0);
+  });
+  assert.equal((parseArgs(["dispatch", "--rel22-capture", "true"]).options as Record<string, string>).rel22_capture, "true");
+  assert.throws(() => parseArgs(["dispatch", "--rel22-capture", "true", "--rel22-capture", "false"]));
+  assert.throws(() => parseArgs(["status", "--rel22-capture", "true"]));
+  withFixture(f => {
+    f.failDispatch(); assert.throws(() => checkpoint("dispatch", { ...request, state: f.state, rel22_capture: "true" }, f.dependencies), /outcome uncertain/);
+    assert.equal(f.status().phase, "dispatch-uncertain"); assert.equal(mutations(f).length, 1);
+    writeFileSync(f.state, JSON.stringify({ ...f.record(), rel22_capture: "true" }));
+    assert.throws(f.status, /verification mode/); assert.equal(mutations(f).length, 1);
+  });
+});

@@ -12,6 +12,7 @@ import pg from "pg";
 export const INTEGRATION_ARGS = Object.freeze(["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"]);
 export const BROWSER_ARGS = Object.freeze(["run", "test:smoke"]);
 export const RELEASE_BROWSER_ARGS = Object.freeze(["run", "test:e2e", "--reporter=list,json"]);
+export const REL22_BROWSER_ARGS = Object.freeze(["exec", "playwright", "test", "tests/e2e/my-day.e2e.spec.ts", "--project=chromium", "--grep", "15[.]6-E0[1-8]\\b", "--workers=1", "--retries=1", "--reporter=list,json", "--trace=off"]);
 export const CAUSE_PROOF_ARGS = Object.freeze(["exec", "vitest", "run", "tests/integration/commands/calendar-feed.int.test.ts", "--maxWorkers=1", "--no-file-parallelism", "--testNamePattern=^15[.]5-DIAG001$", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
 export const CAUSE_PROOF_OUTCOMES = Object.freeze(["PRE_SQL_STOP", "AMBIGUOUS_SQL42501", "NONREPRODUCED", "UNKNOWN_ENGINE_ERROR", "INCOMPARABLE", "CLEANUP_UNVERIFIED", "ORDINARY_SUCCESS", "CAPTURE_UNAVAILABLE"]);
 const CAUSE_DIRECTORY = "test-results/calendar-feed-cause-proof";
@@ -201,8 +202,11 @@ export function createCalendarFeedDatabaseClient(stack, purpose = "runtime") {
 export function validateAdmission(mode, env, platform) {
   if (!["db", "browser", "cause-proof"].includes(mode)) fail("mode-refused");
   if (env.CALENDAR_FEED_CI_BROWSER_SUITE !== undefined
-    && (env.CALENDAR_FEED_CI_BROWSER_SUITE !== "release" || mode !== "browser"
+    && (!["release", "rel22"].includes(env.CALENDAR_FEED_CI_BROWSER_SUITE) || mode !== "browser"
       || env.GITHUB_EVENT_NAME !== "workflow_dispatch")) fail("browser-suite-refused");
+  if (env.E15_REL22_CAPTURE !== undefined) fail("capture-flag-refused");
+  if (env.CALENDAR_FEED_CI_BROWSER_SUITE === "rel22" && (env.GITHUB_RUN_ATTEMPT !== "1" || env.GITHUB_JOB !== "e2e"
+    || !/^[a-f0-9]{40}$/.test(env.GITHUB_SHA ?? ""))) fail("rel22-admission-refused");
   if (platform !== "linux" || env.CI !== "true" || env.GITHUB_ACTIONS !== "true" || env.RUNNER_ENVIRONMENT !== "github-hosted"
     || !/^\d+$/.test(env.GITHUB_RUN_ID ?? "") || !/^\d+$/.test(env.GITHUB_RUN_ATTEMPT ?? "")
     || !/^[a-zA-Z0-9_-]+$/.test(env.GITHUB_JOB ?? "")
@@ -726,6 +730,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       NEXT_PUBLIC_APP_URL: `http://127.0.0.1:${mode === "db" ? 3195 : 3100}`, E2E_PORT: "3100",
       CALENDAR_FEED_ATTESTATION_KEY_ID: keyId, CALENDAR_FEED_ATTESTATION_SECRET: secret,
       CALENDAR_FEED_TEST_LOG_FILE: telemetry.path, CALENDAR_FEED_TEST_BASE_URL: `http://127.0.0.1:${mode === "db" ? 3195 : 3100}` };
+    if (mode === "browser" && env.CALENDAR_FEED_CI_BROWSER_SUITE === "rel22") childEnv.E15_REL22_CAPTURE = "1";
     if (mode === "cause-proof") {
       childEnv.CALENDAR_FEED_CAUSE_PROOF_MODE = "1";
       await run("pnpm", CAUSE_PROOF_ARGS, childEnv, observe, 240_000);
@@ -736,7 +741,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       await deps.ready(childEnv.CALENDAR_FEED_TEST_BASE_URL, server, abort.signal); receipt.ready = true;
       await run("pnpm", INTEGRATION_ARGS, childEnv, (line, stream, completeLine) => observe(line, "integration", stream, completeLine), 1_800_000);
     } else {
-      await run("pnpm", env.CALENDAR_FEED_CI_BROWSER_SUITE === "release" ? RELEASE_BROWSER_ARGS : BROWSER_ARGS, childEnv, observe, env.CALENDAR_FEED_CI_BROWSER_SUITE === "release" ? 2_400_000 : 1_800_000);
+      await run("pnpm", env.CALENDAR_FEED_CI_BROWSER_SUITE === "rel22" ? REL22_BROWSER_ARGS : env.CALENDAR_FEED_CI_BROWSER_SUITE === "release" ? RELEASE_BROWSER_ARGS : BROWSER_ARGS, childEnv, observe, env.CALENDAR_FEED_CI_BROWSER_SUITE === "release" ? 2_400_000 : 1_800_000);
     }
     checkSignal();
   } catch (error) {

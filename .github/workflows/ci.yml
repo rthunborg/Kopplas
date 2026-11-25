@@ -1,5 +1,5 @@
 name: CI
-run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}
+run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.rel22_capture && format('checkpoint:rel22:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}
 
 # Phase A verification gates (architecture §19).
 # `verify` job — stages 1-5 + 10: install, lockfile guard, service-role containment
@@ -56,6 +56,11 @@ on:
         type: boolean
         required: false
         default: false
+      rel22_capture:
+        description: Preliminary Min dag E01-E08 originals and presentation measurements
+        type: boolean
+        required: false
+        default: false
   pull_request:
     # Verify the dependent Epic 11 repair PRs before their approved retarget to main.
     branches:
@@ -88,14 +93,22 @@ jobs:
           CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
           CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}
           RELEASE_VALIDATION: ${{ inputs.release_validation || false }}
+          REL22_CAPTURE: ${{ inputs.rel22_capture || false }}
           OTHER_DIAGNOSTICS: ${{ inputs.native_stream_probe || inputs.fixed_chromium_paired_probe || inputs.fixed_chromium_application_verification || false }}
         shell: bash
         run: |
           set -euo pipefail
+          if [ "$REL22_CAPTURE" = true ]; then
+            test "$GITHUB_EVENT_NAME" = workflow_dispatch
+            test "$RELEASE_VALIDATION" = false
+            test "$CAUSE_PROOF" = false
+            test "$OTHER_DIAGNOSTICS" = false
+          fi
           if [ "$CAUSE_PROOF" = true ]; then
             test "$GITHUB_EVENT_NAME" = workflow_dispatch
             test "$RELEASE_VALIDATION" = false
             test "$OTHER_DIAGNOSTICS" = false
+            test "$REL22_CAPTURE" = false
           fi
           if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
             [[ "$EXPECTED_SHA" =~ ^[a-f0-9]{40}$ ]]
@@ -914,7 +927,7 @@ jobs:
       # (NEXT_PUBLIC_* are inlined from playwright.config.ts), globalSetup seeds the
       # two-tenant fixture, and the specs drive the real browser journeys (G-2/G-3).
       - name: Essential authentication smoke (production app and local Auth)
-        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}
+        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.release_validation || inputs.rel22_capture)) }}
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
           CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
@@ -926,6 +939,14 @@ jobs:
           PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
           CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
           CALENDAR_FEED_CI_BROWSER_SUITE: release
+        run: node scripts/ci/with-calendar-feed-runtime.mjs browser
+
+      - name: REL22 Min dag capture (explicit fixed opt-in)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.rel22_capture }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+          CALENDAR_FEED_CI_BROWSER_SUITE: rel22
         run: node scripts/ci/with-calendar-feed-runtime.mjs browser
 
       - name: Upload native general browser JSON
