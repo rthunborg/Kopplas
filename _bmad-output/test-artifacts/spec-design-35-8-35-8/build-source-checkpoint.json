@@ -1,0 +1,82 @@
+{
+  "kind": "independently-reviewed-technical-source-checkpoint-not-final-completion",
+  "baseline": "489ad4ae781db884352e64f7d9bb2a4abfdc2dca",
+  "initial_review_diff_sha256": "20e02b0f926c341e70c27834d48b44668cc9e181fb02505e42c6038cc301911a",
+  "repair_diff_sha256": "5069e79268737150348804cf11556b53c7cc3d1d4ad4d4e01cf50fdbe43e279f",
+  "six_layers_completed": true,
+  "triage": {
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch_medium": 12,
+    "defer_medium": 2,
+    "reject_low": 1,
+    "product_patches_source_resolved": 8,
+    "phase6_patches_unaddressed": 4
+  },
+  "targeted_high_followup": {
+    "consequential_regressions": 0,
+    "trail_references": 28,
+    "anchor_mismatches": 0
+  },
+  "checks": {
+    "targeted_lint": "passed,zero warnings/errors",
+    "diff_whitespace": "passed",
+    "review_order": "passed,one section/28 references",
+    "qualified_typecheck_build": "pending hosted; local attempts failed",
+    "runtime_integrity_visual": "unpassed"
+  },
+  "product_files": [
+    {
+      "path": "src/app/(app)/calculations/[calculationId]/page.tsx",
+      "sha256": "402ed8dbcf0672dd65a3067c1e146a87c0717c49a8108a902ac1252adf30d618"
+    },
+    {
+      "path": "src/components/calculations/CalculationEditor.tsx",
+      "sha256": "6040f305387a4997a317755cc33b65d1b953634d6020f15cc39b82d835e054ad"
+    },
+    {
+      "path": "src/components/calculations/CalculationList.tsx",
+      "sha256": "953b4010ba8e5c26b3ee608ae43f174a6546e4587e18a19fa205b1fb560d900b"
+    },
+    {
+      "path": "src/components/calculations/PreQuotePreview.tsx",
+      "sha256": "0522673782a49c6554edb8801df40c47ee608bd7349335da42388bf39d3252af"
+    },
+    {
+      "path": "src/components/calculations/ReadinessSummary.tsx",
+      "sha256": "68d7d7ab632903ddc50d26108357dc667edcd9a886f09d779a83ef7b789b496c"
+    },
+    {
+      "path": "src/components/calculations/RowEditor.tsx",
+      "sha256": "224864cc3629f232853cb4855e494e8e928eb464fe232c313bde45173cadcd1b"
+    },
+    {
+      "path": "src/components/calculations/SectionEditor.tsx",
+      "sha256": "f0ace1119ab2c91a3e810481f50ce75b27349908a7ccf69c3a830e46ebba8c5b"
+    },
+    {
+      "path": "src/components/calculations/TaxSettingsPanel.tsx",
+      "sha256": "0b569696f614899546451a27c9ec0e1b5164196920d7de8bc6c4f077591a0a3f"
+    },
+    {
+      "path": "src/components/calculations/TotalsSummary.tsx",
+      "sha256": "115380c34fcc4c2eeb42e9b13e5ea676f3b5e1f9213fb742f03d31b96ac67a92"
+    }
+  ],
+  "private_custody": {
+    "logical_id": "presentation-build-review-source-baseline-489ad4ae",
+    "manifest_sha256": "ad7e974a335e49ad9edb934aec7b09a2cb57e80da06abafe57f7a04951268b7d",
+    "canonical_preimage_sha256": "7844d49eedde10a18efcf190f170052292a2d21a27043a9e974020d7fead118f",
+    "retained_raw_files": 42,
+    "retained_raw_bytes": 8541405,
+    "raw_transport_results_published": false
+  },
+  "open_conditions": [
+    "Phase6 verification patches and reorder fixture setup",
+    "outside-root shell navigation and unsupported traversal prerequisites; original AC5 unresolved",
+    "qualified candidate typecheck/build and required runtime/integrity lanes",
+    "candidate captures/image review/human visual acceptance/delivery gates"
+  ],
+  "development_complete": false,
+  "release_ready": false
+}

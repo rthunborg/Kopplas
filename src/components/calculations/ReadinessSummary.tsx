@@ -33,21 +33,21 @@ export function ReadinessSummary({
       data-inline={inline ? "true" : "false"}
       data-can-create-quote={report.canCreateQuote ? "true" : "false"}
       aria-label="Kontroll inför offert"
-      className="flex flex-col gap-3 rounded-lg border border-zinc-200 bg-white p-4"
+      className="flex flex-col gap-3 rounded-card border border-border-default bg-card p-4"
     >
-      <h2 className="text-sm font-semibold text-zinc-900">Kontroll inför offert</h2>
+      <h2 className="text-section font-medium text-text-primary">Kontroll inför offert</h2>
 
       {/* BLOCKERS — a distinct alert region. Present ONLY when there is at least one blocker. */}
       {blockers.length > 0 && (
         <div
           role="alert"
           data-testid="readiness-blockers"
-          className="flex flex-col gap-2 rounded-md border border-red-300 bg-red-50 p-3"
+          className="flex flex-col gap-2 rounded-control border border-risk-text bg-risk-surface p-3"
         >
-          <h3 className="text-sm font-semibold text-red-800">
+          <h3 className="text-section font-medium text-risk-text">
             Blockerande problem — måste åtgärdas
           </h3>
-          <ul className="flex list-disc flex-col gap-1 pl-5 text-sm text-red-800">
+          <ul className="flex list-disc flex-col gap-1 pl-5 text-label text-risk-text">
             {blockers.map((issue, i) => (
               <li
                 key={`${issue.code}-${i}`}
@@ -65,12 +65,12 @@ export function ReadinessSummary({
         <div
           role="status"
           data-testid="readiness-warnings"
-          className="flex flex-col gap-2 rounded-md border border-amber-300 bg-amber-50 p-3"
+          className="flex flex-col gap-2 rounded-control border border-warn-text bg-warn-surface p-3"
         >
-          <h3 className="text-sm font-semibold text-amber-900">
+          <h3 className="text-section font-medium text-warn-text">
             Varningar — kontrollera innan du skapar en offert
           </h3>
-          <ul className="flex list-disc flex-col gap-1 pl-5 text-sm text-amber-900">
+          <ul className="flex list-disc flex-col gap-1 pl-5 text-label text-warn-text">
             {warnings.map((issue, i) => (
               <li
                 key={`${issue.code}-${i}`}
@@ -84,7 +84,7 @@ export function ReadinessSummary({
       )}
 
       {blockers.length === 0 && warnings.length === 0 && (
-        <p role="status" className="text-sm text-green-800">
+        <p role="status" className="text-label text-ok-text">
           Inga anmärkningar. Kalkylen är redo för nästa steg.
         </p>
       )}

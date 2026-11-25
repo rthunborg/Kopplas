@@ -18,7 +18,7 @@
  * never inline). Kronor/percent at the input boundary; öre/rounding wording only in the totals
  * summary (AC6).
  */
-import { useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { useEditorOperation } from "./CalculationList";
 import { projectEditorFacts, HEADER_FACTS, SECTION_FACTS, ROW_FACTS } from "@/features/calculations/editor-operation";
 import Link from "next/link";
@@ -114,6 +114,28 @@ export function CalculationEditor({
   const [sectionReorderState, sectionReorderAction] = [reorderOperation.state, reorderOperation.action];
   const [showAddSection, setShowAddSection] = useState(false);
   const router = useRouter();
+  const root = useRef<HTMLDivElement>(null);
+  const confirmDeparture = useCallback(() => {
+    const protectedDraft = root.current?.querySelector('[data-editor-dirty="true"], [data-editor-protected="true"]');
+    return !protectedDraft || window.confirm("Du har osparade ändringar eller ett obekräftat resultat. Vill du lämna formuläret?");
+  }, []);
+  useEffect(() => {
+    const beforeUnload = (event: BeforeUnloadEvent) => {
+      if (!root.current?.querySelector('[data-editor-dirty="true"], [data-editor-protected="true"]')) return;
+      event.preventDefault(); event.returnValue = "";
+    };
+    const navigation = (window as Window & { navigation?: EventTarget }).navigation;
+    const traverse = (event: Event) => {
+      const movement = event as Event & { navigationType: string; destination: { sameDocument: boolean; url: string } };
+      if (event.defaultPrevented || !event.cancelable || movement.navigationType !== "traverse" || !movement.destination.sameDocument) return;
+      const destination = new URL(movement.destination.url);
+      if (destination.origin === location.origin && destination.pathname === location.pathname && destination.search === location.search) return;
+      if (!confirmDeparture()) event.preventDefault();
+    };
+    window.addEventListener("beforeunload", beforeUnload);
+    navigation?.addEventListener("navigate", traverse);
+    return () => { window.removeEventListener("beforeunload", beforeUnload); navigation?.removeEventListener("navigate", traverse); };
+  }, [confirmDeparture]);
 
   const titleMine = titleState.form === "calculation";
   useEffect(() => {
@@ -297,10 +319,22 @@ export function CalculationEditor({
   const sectionReorderRetryable = isRetryableCalcError(sectionReorderState);
 
   return (
-    <div data-testid="calculation-editor" className="flex flex-col gap-6 p-6">
+    <div ref={root} data-testid="calculation-editor"
+      onClickCapture={event => {
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[href]") : null;
+        if (!link || (link.target && link.target !== "_self") || link.hasAttribute("download")) return;
+        const destination = new URL(link.href);
+        if (destination.origin !== location.origin || (destination.pathname === location.pathname && destination.search === location.search)) return;
+        if (!confirmDeparture()) { event.preventDefault(); event.stopPropagation(); }
+      }}
+      className="flex min-w-0 flex-col gap-6 break-words p-4 sm:p-6 [&_input]:min-w-0 [&_select]:min-w-0 [&_select]:max-w-full">
+      {[titleOperation, sectionOperation, archiveOperation, reorderOperation].map((operation, index) => (
+        <span key={index} hidden data-editor-dirty={operation.hasDraftChanges} data-editor-protected={operation.hasProtectedOperation} />
+      ))}
       <Link
         href="/calculations"
-        className="text-sm text-blue-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+        className="inline-flex min-h-control-lg min-w-control-lg self-start items-center text-label text-text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
       >
         ← Kalkyler
       </Link>
@@ -308,13 +342,13 @@ export function CalculationEditor({
       {/* Record header (title + status) + customer context. */}
       <header
         data-testid="calculation-header"
-        className="flex flex-col gap-4 rounded-lg border border-zinc-200 bg-white p-4"
+        className="flex flex-col gap-4 rounded-card border border-border-default bg-card p-4"
       >
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h1 className="text-2xl font-semibold text-zinc-900">{header.title}</h1>
+          <h1 className="break-words text-title font-medium text-text-primary">{header.title}</h1>
           <span
             data-testid="calculation-status"
-            className="rounded-full border border-zinc-300 px-3 py-1 text-xs font-medium text-zinc-700"
+            className="rounded-full border border-border-strong px-3 py-1 text-caption font-medium text-text-secondary"
           >
             {STATUS_LABELS[header.status] ?? header.status}
           </span>
@@ -322,24 +356,24 @@ export function CalculationEditor({
 
         <dl
           data-testid="customer-context"
-          className="grid grid-cols-1 gap-2 text-sm sm:grid-cols-3"
+          className="grid grid-cols-1 gap-2 text-label sm:grid-cols-3"
         >
           <div>
-            <dt className="text-zinc-500">Kund</dt>
-            <dd className="font-medium text-zinc-900">
+            <dt className="text-text-tertiary">Kund</dt>
+            <dd className="font-medium text-text-primary">
               {customer.customer_display_name ?? "—"}
             </dd>
           </div>
           {customer.facility_name && (
             <div>
-              <dt className="text-zinc-500">Anläggning</dt>
-              <dd className="font-medium text-zinc-900">{customer.facility_name}</dd>
+              <dt className="text-text-tertiary">Anläggning</dt>
+              <dd className="font-medium text-text-primary">{customer.facility_name}</dd>
             </div>
           )}
           {customer.contact_name && (
             <div>
-              <dt className="text-zinc-500">Kontakt</dt>
-              <dd className="font-medium text-zinc-900">{customer.contact_name}</dd>
+              <dt className="text-text-tertiary">Kontakt</dt>
+              <dd className="font-medium text-text-primary">{customer.contact_name}</dd>
             </div>
           )}
         </dl>
@@ -347,19 +381,19 @@ export function CalculationEditor({
         {/* Rename the calc + change status. */}
         <form {...titleOperation.formProps} action={titleAction} className="flex flex-col gap-3" noValidate>{titleOperation.recovery}
           <input type="hidden" name="id" value={header.id} />
-          <FormErrorSummary message={titleMine ? titleState.formError : null} />
+          <FormErrorSummary message={titleMine ? titleState.formError : null} fieldErrors={titleMine ? titleState.fieldErrors : undefined} />
           {titleMine && titleState.status === "success" && (
-            <p role="status" className="text-sm text-green-800">
+            <p role="status" className="text-label text-ok-text">
               Kalkylen har sparats.
             </p>
           )}
           {titleMine && isRetryableCalcError(titleState) && (
-            <p role="status" className="text-sm text-amber-800">
+            <p role="status" className="text-label text-warn-text">
               Ett tillfälligt fel inträffade. Försök igen.
             </p>
           )}
-          <div className="flex items-end gap-3">
-            <div className="min-w-0 flex-1">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+            <div className="min-w-0 sm:flex-1">
               <TextField
                 name="title"
                 label="Titel"
@@ -372,7 +406,7 @@ export function CalculationEditor({
             <button
               type="submit"
               disabled={titlePending}
-              className="rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60"
+              className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-3 py-2 text-body text-text-secondary hover:bg-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:bg-inset disabled:text-text-disabled"
             >
               Spara titel
             </button>
@@ -389,12 +423,12 @@ export function CalculationEditor({
 
       {/* Workspace: sections (left/center) + totals summary (right on desktop). */}
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
-        <div className="flex flex-1 flex-col gap-4">
+        <div className="flex min-w-0 flex-1 flex-col gap-4">
           {sectionReorderError && (
             <p
               role="alert"
               data-testid="section-reorder-error"
-              className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"
+              className="rounded-control border border-risk-text bg-risk-surface px-3 py-2 text-label text-risk-text"
             >
               {sectionReorderError}
               {sectionReorderRetryable ? " Försök igen." : ""}
@@ -405,7 +439,7 @@ export function CalculationEditor({
             <p
               role="status"
               data-testid="calculation-row-limit"
-              className="rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-900"
+              className="rounded-control border border-warn-text bg-warn-surface px-3 py-2 text-label text-warn-text"
             >
               Kalkylen har nått gränsen på {MAX_CALCULATION_ROWS} aktiva rader. Ta bort en rad
               innan du lägger till en ny.
@@ -413,7 +447,7 @@ export function CalculationEditor({
           ) : null}
 
           {sections.length === 0 ? (
-            <p data-testid="sections-empty" className="text-sm text-zinc-600">
+            <p data-testid="sections-empty" className="text-label text-text-secondary">
               Inga sektioner ännu. Lägg till din första sektion nedan.
             </p>
           ) : (
@@ -436,7 +470,7 @@ export function CalculationEditor({
                       aria-label="Flytta sektion upp"
                       data-testid="section-move-up"
                       disabled={index === 0}
-                      className="rounded border border-zinc-300 px-2 py-1 text-xs text-zinc-700 hover:bg-zinc-50 disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                      className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-2 py-1 text-caption text-text-secondary hover:bg-sunken disabled:bg-inset disabled:text-text-disabled focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
                     >
                       ↑
                     </button>
@@ -457,7 +491,7 @@ export function CalculationEditor({
                       aria-label="Flytta sektion ned"
                       data-testid="section-move-down"
                       disabled={index === sections.length - 1}
-                      className="rounded border border-zinc-300 px-2 py-1 text-xs text-zinc-700 hover:bg-zinc-50 disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                      className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-2 py-1 text-caption text-text-secondary hover:bg-sunken disabled:bg-inset disabled:text-text-disabled focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
                     >
                       ↓
                     </button>
@@ -480,12 +514,13 @@ export function CalculationEditor({
             <form {...sectionOperation.formProps}
               action={sectionAction}
               data-testid="add-section-form"
-              className="flex max-w-xl flex-col gap-3 rounded-lg border border-dashed border-zinc-300 bg-white p-4"
+              className="flex max-w-xl flex-col gap-3 rounded-card border border-dashed border-border-strong bg-card p-4"
               noValidate
             >{sectionOperation.recovery}
               <input type="hidden" name="calculation_id" value={header.id} />
               <FormErrorSummary
                 message={sectionState.form === "section" ? sectionState.formError : null}
+                fieldErrors={sectionState.form === "section" ? sectionState.fieldErrors : undefined}
               />
               <TextField
                 name="title"
@@ -503,7 +538,7 @@ export function CalculationEditor({
                 <button
                   type="submit"
                   disabled={sectionPending}
-                  className="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60"
+                  className="min-h-control-lg min-w-control-lg rounded-control bg-ink px-4 py-2 text-body font-medium text-white hover:bg-n-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:bg-inset disabled:text-text-disabled"
                 >
                   {sectionPending ? "Skapar…" : "Skapa sektion"}
                 </button>
@@ -514,22 +549,33 @@ export function CalculationEditor({
               type="button"
               data-testid="add-section"
               onClick={() => setShowAddSection(true)}
-              className="self-start rounded-md border border-dashed border-zinc-300 px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              className="min-h-control-lg min-w-control-lg self-start rounded-control border border-dashed border-border-strong px-4 py-2 text-body text-text-secondary hover:bg-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
             >
               Lägg till sektion
             </button>
           )}
         </div>
 
-        {/* Desktop: sticky right-hand summary + readiness + pre-quote panel. */}
-        <div className="hidden w-80 shrink-0 flex-col gap-4 lg:flex lg:sticky lg:top-6">
-          {calcTotal.ok && view ? (
-            <TotalsSummary total={calcTotal.value} view={view} />
-          ) : (
-            <TotalsFailure />
-          )}
-          <ReadinessSummary report={readinessReport} />
+        {/* One mounted quote owner; only the stateless summaries have viewport variants. */}
+        <div className="flex min-w-0 flex-col gap-4 lg:sticky lg:top-6 lg:w-80 lg:shrink-0">
+          <div className="hidden flex-col gap-4 lg:flex">
+            {calcTotal.ok && view ? (
+              <TotalsSummary total={calcTotal.value} view={view} />
+            ) : (
+              <TotalsFailure />
+            )}
+            <ReadinessSummary report={readinessReport} />
+          </div>
+          <div className="flex flex-col gap-4 lg:hidden">
+            {calcTotal.ok && view ? (
+              <TotalsSummary total={calcTotal.value} view={view} inline />
+            ) : (
+              <TotalsFailure inline />
+            )}
+            <ReadinessSummary report={readinessReport} inline />
+          </div>
           <PreQuotePreview
+            confirmDeparture={confirmDeparture}
             detail={detail}
             report={readinessReport}
             total={calcTotal.ok ? calcTotal.value : null}
@@ -542,43 +588,23 @@ export function CalculationEditor({
         </div>
       </div>
 
-      {/* Narrow viewport: the summary + readiness + pre-quote stack inline BELOW the editor. */}
-      <div className="flex flex-col gap-4 lg:hidden">
-        {calcTotal.ok && view ? (
-          <TotalsSummary total={calcTotal.value} view={view} inline />
-        ) : (
-          <TotalsFailure inline />
-        )}
-        <ReadinessSummary report={readinessReport} inline />
-        <PreQuotePreview
-          detail={detail}
-          report={readinessReport}
-          total={calcTotal.ok ? calcTotal.value : null}
-          view={view}
-          quoteTerms={quoteTerms}
-          taxAnswer={taxResolution.answer}
-          quoteCaptureDate={previewQuoteCaptureDate}
-          reviewedSnapshotDigest={reviewedSnapshotDigest}
-        />
-      </div>
-
       {/* File upload panel (Story 8.2 — calculation_attachment upload + own-tenant list). */}
       {filesPanel ? <div>{filesPanel}</div> : null}
 
       {/* Archive the whole calculation (soft-archive via the command). */}
-      <div className="flex justify-end border-t border-zinc-200 pt-4">
+      <div className="flex justify-end border-t border-border-default pt-4">
         <form {...archiveOperation.formProps} action={archiveAction}>{archiveOperation.recovery}
           <input type="hidden" name="id" value={header.id} />
           <button
             type="submit"
             data-testid="archive-calculation"
-            className="rounded-md border border-red-300 px-3 py-2 text-sm text-red-700 hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
+            className="min-h-control-lg min-w-control-lg rounded-control border border-risk-text px-3 py-2 text-body text-risk-text hover:bg-risk-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
           >
             Arkivera kalkyl
           </button>
         </form>
         {archiveState.status === "error" && (
-          <p role="alert" className="ml-3 self-center text-sm text-red-700">
+          <p role="alert" className="ml-3 self-center text-label text-risk-text">
             {archiveState.formError}
           </p>
         )}
@@ -602,12 +628,12 @@ function TotalsFailure({ inline = false }: { readonly inline?: boolean }) {
       data-inline={inline ? "true" : "false"}
       aria-label="Summering kunde inte beräknas"
       className={[
-        "flex flex-col gap-2 rounded-lg border border-red-300 bg-red-50 p-4",
+        "flex flex-col gap-2 rounded-card border border-risk-text bg-risk-surface p-4",
         inline ? "" : "lg:sticky lg:top-6",
       ].join(" ")}
     >
-      <h2 className="text-sm font-semibold text-red-800">Summering</h2>
-      <p className="text-sm text-red-800">
+      <h2 className="text-section font-medium text-risk-text">Summering</h2>
+      <p className="text-label text-risk-text">
         Totalsumman kunde inte beräknas. Kontrollera raderna och försök igen.
       </p>
     </aside>

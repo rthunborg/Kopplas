@@ -11,7 +11,7 @@
  * ordered-id array (pure `ordering.ts`) and sends it to `reorderRows` (R-503) — never a
  * client loop of single UPDATEs.
  */
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useEditorOperation } from "./CalculationList";
 import { projectEditorFacts, SECTION_FACTS, ROW_FACTS } from "@/features/calculations/editor-operation";
 import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormField";
@@ -72,6 +72,19 @@ export function SectionEditor({
   const rowArchiveOperation = useEditorOperation(archiveRowAction, CALC_ACTION_INITIAL, `${calculationId}/section/${section.id}/row-archive`, form => ({ version: 1, form: "archive_row", header: headerFacts, section: projectEditorFacts(section, SECTION_FACTS), row: projectEditorFacts(section.rows.find(r => r.id === form.get("id"))!, ROW_FACTS) }));
   const [rowArchiveState, rowArchiveAction] = [rowArchiveOperation.state, rowArchiveOperation.action];
   const [confirmArchive, setConfirmArchive] = useState(false);
+  const archiveConsequenceId = useId();
+  const archiveDialog = useRef<HTMLDialogElement>(null);
+  const archiveTrigger = useRef<HTMLButtonElement>(null);
+  const archiveCancel = useRef<HTMLButtonElement>(null);
+  const archiveConfirm = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!confirmArchive) return;
+    const dialog = archiveDialog.current;
+    const trigger = archiveTrigger.current;
+    dialog?.showModal();
+    archiveCancel.current?.focus();
+    return () => { dialog?.close(); trigger?.focus(); };
+  }, [confirmArchive]);
   const [showAddRow, setShowAddRow] = useState(false);
 
   const hasRows = section.rows.length > 0;
@@ -114,9 +127,9 @@ export function SectionEditor({
     <section
       data-testid="section-editor"
       aria-label={section.title ?? "Namnlös sektion"}
-      className="flex flex-col gap-4 rounded-lg border border-zinc-200 bg-white p-4"
+      className="flex flex-col gap-4 rounded-card border border-border-default bg-card p-4"
     >
-      <h2 data-testid="section-title" className="text-base font-semibold text-zinc-900">
+      <h2 data-testid="section-title" className="-mx-4 -mt-4 rounded-t-card border-t border-border-strong bg-active px-4 py-3 text-section font-medium text-text-primary">
         {section.title ?? "Namnlös sektion"}
       </h2>
 
@@ -124,7 +137,7 @@ export function SectionEditor({
         <p
           role="alert"
           data-testid="section-lifecycle-error"
-          className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"
+          className="rounded-control border border-risk-text bg-risk-surface px-3 py-2 text-label text-risk-text"
         >
           {lifecycleError}
           {lifecycleRetryable ? " Försök igen." : ""}
@@ -136,9 +149,9 @@ export function SectionEditor({
       <form {...renameOperation.formProps} action={renameAction} className="flex flex-col gap-3" noValidate>{renameOperation.recovery}
         <input type="hidden" name="id" value={section.id} />
         <input type="hidden" name="calculation_id" value={calculationId} />
-        <FormErrorSummary message={renameMine ? renameState.formError : null} />
+        <FormErrorSummary message={renameMine ? renameState.formError : null} fieldErrors={renameMine ? renameState.fieldErrors : undefined} />
         {renameMine && renameState.status === "success" && (
-          <p role="status" className="text-sm text-green-800">
+          <p role="status" className="text-label text-ok-text">
             Sektionen har sparats.
           </p>
         )}
@@ -161,7 +174,7 @@ export function SectionEditor({
           <button
             type="submit"
             disabled={renamePending}
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60"
+            className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-3 py-2 text-body text-text-secondary hover:bg-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:bg-inset disabled:text-text-disabled"
           >
             Spara sektion
           </button>
@@ -170,9 +183,9 @@ export function SectionEditor({
 
       {/* Rows. */}
       <div className="flex flex-col gap-3">
-        <h3 className="text-sm font-medium text-zinc-700">Rader</h3>
+        <h3 className="text-section font-medium text-text-secondary">Rader</h3>
         {!hasRows ? (
-          <p className="text-sm text-zinc-600">Inga rader ännu i den här sektionen.</p>
+          <p className="text-label text-text-secondary">Inga rader ännu i den här sektionen.</p>
         ) : (
           <ul className="flex flex-col gap-3">
             {section.rows.map((row, index) => (
@@ -191,7 +204,7 @@ export function SectionEditor({
                       aria-label="Flytta upp"
                       data-testid="row-move-up"
                       disabled={index === 0}
-                      className="rounded border border-zinc-300 px-2 py-1 text-xs text-zinc-700 hover:bg-zinc-50 disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                      className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-2 py-1 text-caption text-text-secondary hover:bg-sunken disabled:bg-inset disabled:text-text-disabled focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
                     >
                       ↑
                     </button>
@@ -209,7 +222,7 @@ export function SectionEditor({
                       aria-label="Flytta ned"
                       data-testid="row-move-down"
                       disabled={index === section.rows.length - 1}
-                      className="rounded border border-zinc-300 px-2 py-1 text-xs text-zinc-700 hover:bg-zinc-50 disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                      className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-2 py-1 text-caption text-text-secondary hover:bg-sunken disabled:bg-inset disabled:text-text-disabled focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
                     >
                       ↓
                     </button>
@@ -237,7 +250,7 @@ export function SectionEditor({
         )}
 
         {sectionTotal.ok && (
-          <p className="text-sm text-zinc-700">
+          <p className="text-label text-text-secondary">
             Sektionssumma:{" "}
             <span data-testid="section-total" className="font-medium">
               {oreToKronorString(sectionTotal.value.grossOre)} kr
@@ -261,7 +274,7 @@ export function SectionEditor({
             data-testid="add-row"
             disabled={!canAddRow}
             onClick={() => setShowAddRow(true)}
-            className="self-start rounded-md border border-dashed border-zinc-300 px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:cursor-not-allowed disabled:opacity-40"
+            className="min-h-control-lg min-w-control-lg self-start rounded-control border border-dashed border-border-strong px-3 py-2 text-body text-text-secondary hover:bg-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:cursor-not-allowed disabled:bg-inset disabled:text-text-disabled"
           >
             Lägg till rad
           </button>
@@ -269,9 +282,9 @@ export function SectionEditor({
       </div>
 
       {/* Destructive archive — CONFIRMATION required when rows would be removed. */}
-      <div className="flex items-center justify-end gap-2 border-t border-zinc-200 pt-3">
-        {!confirmArchive ? (
+      <div className="flex items-center justify-end gap-2 border-t border-border-default pt-3">
           <button
+            ref={archiveTrigger}
             type="button"
             data-testid="archive-section"
             onClick={() => {
@@ -284,32 +297,47 @@ export function SectionEditor({
                 archiveAction(fd);
               }
             }}
-            className="rounded-md border border-red-300 px-3 py-2 text-sm text-red-700 hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
+            className="min-h-control-lg min-w-control-lg rounded-control border border-risk-text px-3 py-2 text-body text-risk-text hover:bg-risk-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
           >
             Ta bort sektion
           </button>
-        ) : (
-          <div
+        {confirmArchive && (
+          <dialog
+            ref={archiveDialog}
+            onCancel={event => { event.preventDefault(); setConfirmArchive(false); }}
+            onKeyDown={event => {
+              if (event.key !== "Tab") return;
+              const endpoint = event.shiftKey ? archiveCancel.current : archiveConfirm.current;
+              const destination = event.shiftKey ? archiveConfirm.current : archiveCancel.current;
+              if (endpoint && destination && document.activeElement === endpoint) {
+                event.preventDefault();
+                destination.focus();
+              }
+            }}
             data-testid="archive-section-confirm"
             role="alertdialog"
+            aria-modal="true"
             aria-label="Bekräfta borttagning"
-            className="flex flex-col gap-2 rounded-md border border-red-300 bg-red-50 p-3"
+            aria-describedby={archiveConsequenceId}
+            className="fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg overflow-y-auto rounded-sheet border border-border-default bg-card p-6 text-text-primary shadow-sheet backdrop:bg-scrim"
           >
-            <p className="text-sm text-red-800">
-              Sektionen innehåller {section.rows.length} rad
+            <p id={archiveConsequenceId} className="text-label text-risk-text">
+              Sektionen ”{section.title ?? "Namnlös sektion"}” innehåller {section.rows.length} rad
               {section.rows.length === 1 ? "" : "er"} som tas bort. Vill du fortsätta?
             </p>
-            <div className="flex justify-end gap-2">
+            <div className="mt-4 flex flex-wrap justify-end gap-2">
               <button
                 type="button"
+                ref={archiveCancel}
                 data-testid="archive-section-cancel"
                 onClick={() => setConfirmArchive(false)}
-                className="rounded-md border border-zinc-300 px-3 py-1.5 text-sm text-zinc-700 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                className="min-h-control-lg min-w-control-lg rounded-control border border-border-strong px-3 py-1.5 text-body text-text-secondary hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
               >
                 Avbryt
               </button>
               <button
                 type="button"
+                ref={archiveConfirm}
                 data-testid="archive-section-confirm-button"
                 onClick={() => {
                   const fd = new FormData();
@@ -318,12 +346,12 @@ export function SectionEditor({
                   archiveAction(fd);
                   setConfirmArchive(false);
                 }}
-                className="rounded-md bg-red-700 px-3 py-1.5 text-sm font-medium text-white hover:bg-red-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
+                className="min-h-control-lg min-w-control-lg rounded-control bg-ink px-3 py-1.5 text-body font-medium text-white hover:bg-n-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
               >
                 Ta bort
               </button>
             </div>
-          </div>
+          </dialog>
         )}
       </div>
     </section>

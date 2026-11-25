@@ -1,0 +1,100 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: spec-design-35-8-35-8
+epic_num: null
+story_num: null
+story_suffix: ""
+story_source: stories
+spec_folder: "C:/DEV/Kopplas/tmp/private/e35-8-presentation-20261122/worker/_bmad-output/specs/spec-design-35-8"
+story_id: 35-8
+branch: codex/story-35-8-calculation-editor-presentation-20261122
+status: in-progress
+updated_at: "2026-11-24T08:14:12Z"
+started_at: "2026-11-24T00:18:26Z"
+completed_at: null
+active_seconds: 22216
+timing_anchor: 1795508052
+is_first_in_epic: true
+is_last_in_epic: true
+git_mode: null
+base_branch: null
+selected_phase: build
+selected_role: build-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: low
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Finite Root-qualified exact199 loading correction only: run unchanged rendered-detail and same-response terminal branches concurrently, retain all bounds/assertions, unroute owned handler before own page close. Context-free High author and different targeted High reviewer; no other case/product/provider/scope decision."
+routing_ledger:
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Metadata-only triage of approved presentation story; actual sensitive implementation/review routed High separately.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Scoped ATDD includes actual stale quote/tax and recovered original-operation transactional invariant checks; distinct High author, no business semantics changes.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"atdd\",\"profile\":\"standard\",\"role\":\"test-architecture\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary approved calculation presentation only; frozen money/source/review/original-operation semantics read-only, sensitive decisions and independent review routed High.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Scoped automate preparation for reviewed source checkpoint; real dirty navigation, confirmed quote/later-draft and no-duplicate mutation proof require High. Phase5 remains in-review and no runtime or visual acceptance is inferred.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Narrow coordination of actual521a51f2 hosted failures. Independent High diagnosis retained; all AC5 navigation/identity and test repair implementation plus changed-case review explicitly High. No broad review replay or completion inference.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Narrow coordination after independent High qualification of equivalent genuine native Forward witness on509d6faf. Test implementation and independent changed-case review explicitly High; product remains unchanged, historical History.forward failures retained, no completion or runtime inference.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Root-qualified feature-local loading and isolated post-render membership revocation evidence batch. Coordination Low; fixture/tenant/auth authority and test implementation plus distinct review explicitly High. Only existing test/summary/story, no product/shared/provider or runtime changes now.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Narrow coordination of42076f41 actual accepted same-slot replacement classification and Playwright facade import interop. Independent High source disposition supports exact test-only corrections; implementation and different changed-case review High. All product/shared code unchanged, runtime/phase completion not inferred.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Root-authorized additive real denial/derived-ready captures and read-only malformed-ID generic-error case only after distinct High UUID/filter disposition. Existing corrections qualified; product/shared/fixture/SQL unchanged. High author and same independent changed-case reviewer; no runtime or completion credit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Root-authorized narrow b67 loading post-capture bounded phases and original revocation POST held before upstream dispatch. Independent High disposition preserves real assertions/current authority; High implementation and different changed-case review. No timeout increase, product/shared changes, runtime or completion inference.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Finite Root-qualified exact199 loading correction only: run unchanged rendered-detail and same-response terminal branches concurrently, retain all bounds/assertions, unroute owned handler before own page close. Context-free High author and different targeted High reviewer; no other case/product/provider/scope decision.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: "Metadata-only triage: original money/tax, archive and quote-create outcomes plus original-operation/revision integrity require ATDD+automate. Testing-risk high does not authorize business-semantic writes or alter ordinary Low implementation route."
+epic_story_count: 1
+stories_after_in_epic: 0
+completed_phases: [0, 4]
+spec_path: "C:/DEV/Kopplas/tmp/private/e35-8-presentation-20261122/worker/_bmad-output/specs/spec-design-35-8/stories/35-8-calculation-editor-and-review.md"
+spec_approved: false
+build:
+  status: in-review
+  blocking_condition: null
+  followup_review_recommended: true
+  review_loop_iteration: 0
+  deferred_count: 2
+  warnings: []
+followup_passes: 0
+hitl_halt: null
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: [f490f5b14850bf8f2425465f7c1e2f5400fd68af]
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: null
+ci_run_url: null
+ci_status: unknown
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers: []
+overrides:
+  worker_activation: "Exact assignmentSHA2d88dafe, first gen1heartbeat state running; base36c166e7, branch/worktree/workflow pins verified. Central/full preflight PASS; no source replan/copied anchor/config healing."
+  next_phase_prerequisite: "Project scoped TEA Phase4 reviewed schema2 route/qualified helper/private resolver receipt and actual red-check route pending Root coordination; no shared fixture/runtime adoption."
+constraints: []
+parallel_run_id: e35-8-presentation-20261122
+baseline_revision: 36c166e7e4a69477d4e1a3990d5d4c881fcd7c94
+spec_checkpoint: false
+done_checkpoint: false
