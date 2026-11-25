@@ -6,6 +6,8 @@ export const timeReportFieldClass="min-h-12 w-full rounded-md border border-zinc
 
 export const timeReportButtonClass="min-h-12 rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60";
 
+const timeReportPrimarySubmitClass="min-h-12 w-full rounded-control border border-border-default bg-ink px-4 py-2 text-ds-14 font-medium text-white focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-2 disabled:bg-inset disabled:text-text-disabled";
+
 export function TimeReportForm({draft,state,onChange,onSubmit,onRetry,jobs=[],bookings=[],onBookingChange}:{readonly draft:TimeReportDraft;readonly state:{status:string;message?:string};readonly onChange?:(patch:Partial<TimeReportDraft>)=>void;readonly onSubmit:()=>void;readonly onRetry:()=>void;readonly jobs?:readonly {id:string;label:string}[];readonly bookings?:readonly TimeReportBookingPrefill[];readonly onBookingChange?:(id:string)=>void}) {
 
  const id=useId(),locked=["pending","unknown","confirmed"].includes(state.status),mode=draft.mode??"hours";
@@ -34,7 +36,7 @@ export function TimeReportForm({draft,state,onChange,onSubmit,onRetry,jobs=[],bo
 
   </fieldset>
 
-  {state.status==="unknown"?<div className="space-y-2"><p className="text-sm">Svaret saknas. Uppgifterna är låsta tills samma försök har bekräftats.</p><button type="button" onClick={onRetry} className={timeReportButtonClass}>Försök igen med samma försök</button></div>:state.status!=="confirmed"&&<div className="sticky bottom-0 bg-white py-2"><button type="submit" disabled={locked} className={`${timeReportButtonClass} w-full bg-blue-700 text-white`}>{state.status==="pending"?"Sparar…":"Rapportera tid"}</button></div>}
+  {state.status==="unknown"?<div className="space-y-2"><p className="text-sm">Svaret saknas. Uppgifterna är låsta tills samma försök har bekräftats.</p><button type="button" onClick={onRetry} className={timeReportButtonClass}>Försök igen med samma försök</button></div>:state.status!=="confirmed"&&<div className="sticky bottom-0 bg-white py-2"><button type="submit" disabled={locked} className={timeReportPrimarySubmitClass}>{state.status==="pending"?"Sparar…":"Rapportera tid"}</button></div>}
 
  </form>;
 
