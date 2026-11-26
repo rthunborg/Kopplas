@@ -2,7 +2,7 @@
  * Collection is not execution. The original calculation/tax/source/recovery suites remain
  * unchanged and own their money, authorization and original-operation invariants.
  */
-import { test, expect, errors, type ConsoleMessage, type Dialog, type Locator, type Page, type Request as BrowserRequest, type TestInfo } from "@playwright/test";
+import { test, expect, type ConsoleMessage, type Dialog, type Locator, type Page, type Request as BrowserRequest, type TestInfo } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture, adminInsertCustomer, adminInsertCalculation } from "../../factories/tenants";
@@ -309,24 +309,38 @@ async function naturalTraversalWitness(page: Page, direction: "back" | "forward"
   }, direction);
 }
 
-/** Await the actual first command through settlement. A prevented traversal has
- * no commit for Playwright 1.61.1 to observe. Only this exact API's existing
- * five-second commit wait (or exact destination ERR_ABORTED) is eligible; the
- * caller must still prove cancellation before starting any second command. */
-async function settleFirstNativeTraversal(page: Page, direction: "back" | "forward", destination: string): Promise<"fulfilled" | "cancelled-commit-timeout" | "cancelled-abort"> {
+/** Playwright 1.61.1's Chromium delegate uses these same history commands.
+ * The first command must settle independently of a commit that cancellation
+ * prevents. Bind its exact natural destination, and detach only this owned
+ * public per-page session before allowing the caller to verify or continue. */
+async function settleFirstNativeTraversal(page: Page, direction: "back" | "forward", before: Awaited<ReturnType<typeof naturalTraversalWitness>>): Promise<"fulfilled"> {
   if (direction !== "back" && direction !== "forward") throw new Error("Unknown native traversal direction");
-  const method = direction === "back" ? "page.goBack" : "page.goForward";
+  const session = await page.context().newCDPSession(page);
+  const failures: unknown[] = [];
   try {
-    if (direction === "back") await page.goBack({ waitUntil: "commit", timeout: 5_000 });
-    else await page.goForward({ waitUntil: "commit", timeout: 5_000 });
-    return "fulfilled";
-  } catch (error) {
-    const lines = error instanceof Error ? error.message.replace(/\r\n/g, "\n").trimEnd().split("\n") : [];
-    const commitOnly = lines.length === 3 && lines[1] === "Call log:" && lines[2] === '  - waiting for navigation until "commit"';
-    if (error instanceof errors.TimeoutError && lines[0] === `${method}: Timeout 5000ms exceeded.` && commitOnly) return "cancelled-commit-timeout";
-    if (error instanceof Error && error.name === "Error" && lines[0] === `${method}: net::ERR_ABORTED at ${destination}` && (lines.length === 1 || commitOnly)) return "cancelled-abort";
-    throw error;
-  }
+    const history = await session.send("Page.getNavigationHistory");
+    const step = direction === "back" ? -1 : 1;
+    const current = history.entries[history.currentIndex], destination = history.entries[history.currentIndex + step];
+    if (!Number.isInteger(history.currentIndex) || !current || !destination || history.entries.length > 128) throw new Error("Native first transport requires bounded current and adjacent Chromium history entries");
+    expect(history.entries).toHaveLength(before.length);
+    expect(current.url).toBe(before.current.url);
+    expect(current.url).toBe(before.url);
+    expect(destination.url).toBe(before.target.url);
+    expect(Number.isInteger(current.id) && Number.isInteger(destination.id)).toBe(true);
+    expect(destination.id).not.toBe(current.id);
+    expect(before.target.index).toBe(before.current.index + step);
+    expect(before.entries.filter(entry => entry.index === before.current.index)).toEqual([before.current]);
+    expect(before.entries.filter(entry => entry.index === before.target.index)).toEqual([before.target]);
+    // No movement or entry replacement between the original Navigation API
+    // witness and this exact browser history input; this read adds no activation.
+    expect(await naturalTraversalWitness(page, direction)).toEqual(before);
+    expect(await session.send("Page.getNavigationHistory")).toEqual(history);
+    await session.send("Page.navigateToHistoryEntry", { entryId: destination.id });
+  } catch (error) { failures.push(error); }
+  try { await session.detach(); } catch (error) { failures.push(error); }
+  if (failures.length > 1) throw new AggregateError(failures, "Native first traversal and owned CDP session detach failed");
+  if (failures.length === 1) throw failures[0];
+  return "fulfilled";
 }
 
 /** A transport outcome is never a cancellation witness. Verify the one native
@@ -352,6 +366,34 @@ async function verifyCancelledNativeTraversal(input: {
   }]);
   expect(input.after, "Cancelled first traversal must preserve the exact current URL and natural history identities").toEqual(input.before);
   await input.assertUnchanged();
+}
+
+/** Reuse the original five-second first-attempt budget across event and commit
+ * observation. An absent event never implies cancellation or forced success. */
+function remainingFirstNativeMillis(deadline: number): number {
+  const remaining = deadline - Date.now();
+  if (remaining <= 0) throw new Error("First native traversal observation deadline exhausted");
+  return remaining;
+}
+async function firstNativeTraversalWitness(input: {
+  read: () => Promise<readonly NativeTraversalEvent[]>; direction: "back" | "forward";
+  before: Awaited<ReturnType<typeof naturalTraversalWitness>>; deadline: number;
+}): Promise<"cancelled" | "forced"> {
+  if (input.direction !== "back" && input.direction !== "forward") throw new Error("Unknown native traversal direction");
+  await expect.poll(async () => (await input.read()).length, { timeout: remainingFirstNativeMillis(input.deadline), intervals: [16, 32, 64, 128] }).toBeGreaterThan(0);
+  const actual = await input.read();
+  expect(actual).toHaveLength(1);
+  const event = actual[0]!;
+  const cancelled = event.cancelable === true && event.prevented === true;
+  const forced = event.cancelable === false && event.prevented === false;
+  expect(cancelled || forced).toBe(true);
+  expect(input.before.target.index).toBe(input.before.current.index + (input.direction === "back" ? -1 : 1));
+  expect(actual).toEqual([{
+    trusted: true, sameDocument: true, cancelable: cancelled, prevented: cancelled, type: "traverse",
+    url: input.before.target.url, key: input.before.target.key, index: input.before.target.index,
+  }]);
+  remainingFirstNativeMillis(input.deadline);
+  return cancelled ? "cancelled" : "forced";
 }
 
 for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 }]) {
@@ -565,6 +607,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           await page.getByTestId("new-calculation").click();
         }
         const form = host === "editor" ? titleForm(page) : page.getByTestId("new-calculation-form");
+        const title = host === "list" ? form.getByRole("textbox", { name: "Titel", exact: true }) : form.getByLabel("Titel", { exact: true });
         await expect(form).toHaveAttribute("data-editor-ready", "true");
         const originalUrl = page.url(), originalEntry = await navigationEntry(page);
         const originalRows = host === "list" ? await root.getByTestId("calculation-list-row").count() : undefined;
@@ -577,7 +620,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         };
         page.on("framenavigated", committed);
         try {
-          await form.getByLabel("Titel", { exact: true }).fill(draft);
+          await title.fill(draft);
           await expect(form).toHaveAttribute("data-editor-dirty", "true");
           const profile = page.getByRole("button", { name: "Profil", exact: true });
           await hydrated(profile);
@@ -588,13 +631,13 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           await expect(page).toHaveURL(originalUrl);
           expect(await navigationEntry(page)).toEqual(originalEntry);
           expect(await mountedRoot!.evaluate(element => element.isConnected)).toBe(true);
-          await expect(form.getByLabel("Titel", { exact: true })).toHaveValue(draft);
+          await expect(title).toHaveValue(draft);
           await expect(form).toHaveAttribute("data-editor-dirty", "true");
           await expect(profile).toHaveAttribute("aria-expanded", "true");
           expect(profileCommits).toBe(0);
           expect(writes.writes).toHaveLength(0);
           // A subsequent edit must be checked by the same mounted listener, using current state.
-          await form.getByLabel("Titel", { exact: true }).fill(`${draft} ändrad`);
+          await title.fill(`${draft} ändrad`);
           await expect(form).toHaveAttribute("data-editor-dirty", "true");
           await confirmOnce(page, "accept", () => destination.click());
           await expect(page).toHaveURL(new URL("/settings/notifications", originalUrl).href);
@@ -991,9 +1034,12 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           const prompts = nativePrompts(page, "dismiss");
           try {
             const beforeCancellation = await naturalTraversalWitness(page, "back");
-            const firstOutcome = await settleFirstNativeTraversal(page, "back", beforeCancellation.target.url);
+            const firstDeadline = Date.now() + 5_000;
+            const firstOutcome = await settleFirstNativeTraversal(page, "back", beforeCancellation);
+            const firstWitness = await firstNativeTraversalWitness({ read: () => events.evaluate(value => value.identities), direction: "back", before: beforeCancellation, deadline: firstDeadline });
             await prompts.settle();
-            if (new URL(page.url()).pathname === targetPath) {
+            remainingFirstNativeMillis(firstDeadline);
+            if (firstWitness === "cancelled") {
               await verifyCancelledNativeTraversal({
                 direction: "back", before: beforeCancellation, after: await naturalTraversalWitness(page, "back"),
                 events: await events.evaluate(value => value.identities), prompts,
@@ -1004,17 +1050,20 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
                   expect(writes.writes).toHaveLength(0);
                 },
               });
+              remainingFirstNativeMillis(firstDeadline);
               // This is a separate actual second native command. Never catch its failure.
               await page.goBack({ waitUntil: "commit", timeout: 5_000 });
             } else {
               // A genuine first forced commit was already valid for revocation.
-              // A swallowed timeout without cancellation evidence cannot take this path.
+              // Protocol settlement without the exact forced event cannot take this path.
               expect(firstOutcome).toBe("fulfilled");
               expect(prompts.seen).toHaveLength(0);
               expect(await events.evaluate(value => value.identities)).toEqual([{
                 trusted: true, sameDocument: true, cancelable: false, prevented: false, type: "traverse",
                 url: beforeCancellation.target.url, key: beforeCancellation.target.key, index: beforeCancellation.target.index,
               }]);
+              await expect(page).toHaveURL(beforeCancellation.target.url, { timeout: remainingFirstNativeMillis(firstDeadline) });
+              await expect(page.getByTestId("calculation-list")).toBeVisible({ timeout: remainingFirstNativeMillis(firstDeadline) });
             }
             const committed = await naturalTraversalWitness(page, "forward");
             expect({ key: committed.current.key, url: committed.current.url, index: committed.current.index }).toEqual({ key: beforeCancellation.target.key, url: beforeCancellation.target.url, index: beforeCancellation.target.index });
@@ -1023,6 +1072,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
             expect(writes.writes).toHaveLength(0);
             await info.attach(`retained-${revoke}-first-cancellation-transport.json`, { body: Buffer.from(JSON.stringify({ firstOutcome, beforeCancellation, committed })), contentType: "application/json" });
             await expect(page).toHaveURL(/\/calculations$/);
+            await expect(page.getByTestId("calculation-list")).toBeVisible();
             const actual = await events.evaluate(value => value.actual);
             expect(actual, "No substitute for a genuine forced native retention event").toContainEqual({ trusted: true, sameDocument: true, cancelable: false, prevented: false });
             await info.attach(`retained-${revoke}-native-event.json`, { body: Buffer.from(JSON.stringify(actual)), contentType: "application/json" });
@@ -1161,7 +1211,12 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           // Real browser-driven cancellation attempt, followed by another native
           // traversal with NO intervening click, keyboard event or added activation.
           const beforeCancellation = await naturalTraversalWitness(page, direction);
-          const firstOutcome = await settleFirstNativeTraversal(page, direction, beforeCancellation.target.url);
+          const firstDeadline = Date.now() + 5_000;
+          const firstOutcome = await settleFirstNativeTraversal(page, direction, beforeCancellation);
+          const firstWitness = await firstNativeTraversalWitness({ read: () => events.evaluate(value => value.observed), direction, before: beforeCancellation, deadline: firstDeadline });
+          expect(firstWitness, "Native retention requires a cancelled first traversal before its separate forced attempt").toBe("cancelled");
+          await prompts.settle();
+          remainingFirstNativeMillis(firstDeadline);
           const afterCancellation = await naturalTraversalWitness(page, direction);
           await verifyCancelledNativeTraversal({
             direction, before: beforeCancellation, after: afterCancellation,
@@ -1183,6 +1238,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           expect(cancelled, "Qualification OPEN unless a real trusted cancellable traversal was cancelled").toEqual([
             expect.objectContaining({ trusted: true, sameDocument: true, cancelable: true, prevented: true }),
           ]);
+          remainingFirstNativeMillis(firstDeadline);
           await traverse();
           await expect(page).toHaveURL(/\/calculations$/);
           await expect(page).toHaveURL(beforeCancellation.target.url);
