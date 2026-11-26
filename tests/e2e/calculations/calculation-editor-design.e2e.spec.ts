@@ -223,6 +223,42 @@ async function interceptedWrite(page: Page, pattern: string, lose = false) {
   };
 }
 
+/** Cleanup never lets missing native witness evidence retain a held mutation.
+ * Context replacement is an unavailable witness, never a qualified native event. */
+async function finishNativeRetention(input: {
+  release: () => void; stopPrompts: () => void; stopWrites: () => void;
+  removeHold: () => Promise<void>; closeObserver: () => Promise<void>;
+  readEvents: () => Promise<unknown>; removeEvents: () => Promise<unknown>; disposeEvents: () => Promise<void>;
+  attach: (value: unknown) => Promise<void>; priorFailure: unknown;
+}): Promise<void> {
+  const failures: unknown[] = [];
+  for (const stop of [input.release, input.stopPrompts, input.stopWrites]) {
+    try { stop(); } catch (error) { failures.push(error); }
+  }
+  const unavailable = (error: unknown) => /Execution context was destroyed|Cannot find context|JSHandle is disposed|Target page, context or browser has been closed/i.test(String(error));
+  const witness = async () => {
+    let observed: unknown;
+    try { observed = await input.readEvents(); }
+    catch (error) {
+      observed = { qualification: "OPEN", witness: "unavailable", category: unavailable(error) ? "document-context-unavailable" : "witness-read-failed" };
+      if (!unavailable(error)) failures.push(error);
+    }
+    try { await input.attach(observed); } catch (error) { failures.push(error); }
+    try { await input.removeEvents(); } catch (error) { if (!unavailable(error)) failures.push(error); }
+    finally { try { await input.disposeEvents(); } catch (error) { if (!unavailable(error)) failures.push(error); } }
+  };
+  // Start each cleanup independently, including synchronous throws from a seam.
+  const settled = await Promise.allSettled([
+    Promise.resolve().then(input.removeHold), Promise.resolve().then(input.closeObserver), Promise.resolve().then(witness),
+  ]);
+  for (const result of settled) if (result.status === "rejected") failures.push(result.reason);
+  if (failures.length && input.priorFailure === undefined) throw new AggregateError(failures, "Native retention cleanup failed");
+  if (failures.length && input.priorFailure !== undefined) {
+    // Retain the primary qualification/assertion failure, with cleanup facts separately.
+    try { await input.attach({ qualification: "OPEN", cleanupFailures: failures.length, primaryFailurePreserved: true }); } catch { /* The original failure remains primary. */ }
+  }
+}
+
 async function preparedQuote(page: Page) {
   const calculation = await ownCalculation(page);
   const section = await addSection(page, "Granskning Åsby");
@@ -450,6 +486,82 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         expect(writes.writes).toHaveLength(0);
       } finally { writes.stop(); }
     });
+
+    // These real shell-profile journeys require the independently integrated shell prerequisite.
+    // They do not exercise sidebar, drawer or notification acknowledgement navigation.
+    for (const host of ["list", "editor"] as const) {
+      test(`E35-8-T-shell-profile-${host} / AC5: current draft cancel and one confirmed departure never replay a write`, async ({ page }) => {
+        let calculation: Awaited<ReturnType<typeof ownCalculation>> | undefined;
+        if (host === "editor") calculation = await ownCalculation(page);
+        else { await signIn(page); await page.goto("/calculations"); }
+        const root = page.getByTestId(host === "editor" ? "calculation-editor" : "calculation-list");
+        await expect(root).toHaveCount(1);
+        await expect(root).toHaveAttribute("data-calculation-departure-root", "true");
+        const mountedRoot = await root.elementHandle();
+        expect(mountedRoot).not.toBeNull();
+        if (host === "list") {
+          await hydrated(page.getByTestId("new-calculation"));
+          await page.getByTestId("new-calculation").click();
+        }
+        const form = host === "editor" ? titleForm(page) : page.getByTestId("new-calculation-form");
+        await expect(form).toHaveAttribute("data-editor-ready", "true");
+        const originalUrl = page.url(), originalEntry = await navigationEntry(page);
+        const originalRows = host === "list" ? await root.getByTestId("calculation-list-row").count() : undefined;
+        const draft = `Osparad profilresa ${crypto.randomUUID()}`;
+        const writes = observeWrites(page);
+        const mainFrame = page.mainFrame();
+        let profileCommits = 0;
+        const committed = (frame: import("@playwright/test").Frame) => {
+          if (frame === mainFrame && new URL(frame.url()).pathname === "/settings/notifications") profileCommits++;
+        };
+        page.on("framenavigated", committed);
+        try {
+          await form.getByLabel("Titel", { exact: true }).fill(draft);
+          await expect(form).toHaveAttribute("data-editor-dirty", "true");
+          const profile = page.getByRole("button", { name: "Profil", exact: true });
+          await hydrated(profile);
+          await profile.click();
+          const destination = page.getByRole("link", { name: "Notisinställningar", exact: true });
+          await expect(destination).toHaveAttribute("href", "/settings/notifications");
+          await confirmOnce(page, "dismiss", () => destination.click());
+          await expect(page).toHaveURL(originalUrl);
+          expect(await navigationEntry(page)).toEqual(originalEntry);
+          expect(await mountedRoot!.evaluate(element => element.isConnected)).toBe(true);
+          await expect(form.getByLabel("Titel", { exact: true })).toHaveValue(draft);
+          await expect(form).toHaveAttribute("data-editor-dirty", "true");
+          await expect(profile).toHaveAttribute("aria-expanded", "true");
+          expect(profileCommits).toBe(0);
+          expect(writes.writes).toHaveLength(0);
+          // A subsequent edit must be checked by the same mounted listener, using current state.
+          await form.getByLabel("Titel", { exact: true }).fill(`${draft} ändrad`);
+          await expect(form).toHaveAttribute("data-editor-dirty", "true");
+          await confirmOnce(page, "accept", () => destination.click());
+          await expect(page).toHaveURL(new URL("/settings/notifications", originalUrl).href);
+          await expect(page.getByRole("heading", { level: 1, name: "Notisinställningar", exact: true })).toBeVisible();
+          await renderedFrame(page);
+          expect(profileCommits).toBe(1);
+          const departedEntry = await navigationEntry(page);
+          expect(originalEntry.entry).not.toBeNull();
+          expect(departedEntry.entry).not.toBeNull();
+          expect(departedEntry.entry!.index).toBe(originalEntry.entry!.index + 1);
+          expect(departedEntry.length).toBe(originalEntry.length + 1);
+          expect(writes.writes).toHaveLength(0);
+          await page.goto(originalUrl);
+          if (calculation) {
+            await expect(page.getByRole("heading", { level: 1, name: calculation.title, exact: true })).toBeVisible();
+            await expect(titleForm(page).getByLabel("Titel", { exact: true })).toHaveValue(calculation.title);
+            await expect(titleForm(page)).toHaveAttribute("data-editor-dirty", "false");
+          } else {
+            await expect(page.getByRole("heading", { level: 1, name: "Kalkyler", exact: true })).toBeVisible();
+            await expect(root.getByTestId("calculation-list-row")).toHaveCount(originalRows!);
+            await expect(root.getByTestId("calculation-list-row").filter({ hasText: draft })).toHaveCount(0);
+            await expect(page.getByTestId("new-calculation-form")).toHaveCount(0);
+          }
+          expect(profileCommits).toBe(1);
+          expect(writes.writes).toHaveLength(0);
+        } finally { page.off("framenavigated", committed); writes.stop(); }
+      });
+    }
 
     test("E35-8-T-no-match / AC6: filtering keeps no-match distinct from an empty authorized list", async ({ page }, info) => {
       await signIn(page);
@@ -777,6 +889,239 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           });
           await observation.dispose();
           writes.stop();
+        }
+      });
+    }
+
+    for (const revoke of ["role", "target"] as const) {
+      test(`E35-8-T-retention-revocation / ${revoke}: retained business values require current exact write authority`, async ({ page }, info) => {
+        const { adminQuery, adminExec, closeAdminPool } = await import("../../factories/admin-sql.js");
+        let owned: Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>> | undefined;
+        let membership: { id: string; tenant_id: string; user_id: string } | undefined;
+        let roleChanged = false;
+        const writes = observeWrites(page);
+        try {
+          owned = await createRoleAwarePhaseAFixture();
+          const tenantId = owned.base.tenantA.id, user = owned.users.projektledare;
+          const customerId = await adminInsertCustomer({ tenant_id: tenantId, customer_type: "company", display_name: "Åsby återinträdesprov" });
+          const calculationId = await adminInsertCalculation({ tenant_id: tenantId, customer_id: customerId, title: `Återinträde ${revoke} ${crypto.randomUUID()}` });
+          await signIn(page, user);
+          await page.goto("/calculations");
+          const targetPath = `/calculations/${calculationId}`;
+          await page.locator(`[data-testid="calculation-list-row"][href="${targetPath}"]`).click();
+          await expect(titleForm(page)).toHaveAttribute("data-editor-ready", "true");
+          const secret = `Behåll endast med aktuell rätt ${crypto.randomUUID()}`;
+          await titleForm(page).getByLabel("Titel", { exact: true }).fill(secret);
+          const events = await page.evaluateHandle(() => {
+            const navigation = (window as Window & { navigation?: EventTarget }).navigation;
+            if (!navigation) throw new Error("Retention revocation qualification OPEN: Navigation API absent");
+            const actual: { trusted: boolean; sameDocument: boolean; cancelable: boolean; prevented: boolean }[] = [];
+            const listener = (event: Event) => {
+              const movement = event as Event & { navigationType: string; destination: { sameDocument: boolean } };
+              if (movement.navigationType === "traverse") queueMicrotask(() => actual.push({ trusted: event.isTrusted, sameDocument: movement.destination.sameDocument, cancelable: event.cancelable, prevented: event.defaultPrevented }));
+            };
+            navigation.addEventListener("navigate", listener);
+            return { actual, remove: () => navigation.removeEventListener("navigate", listener) };
+          });
+          const prompts = nativePrompts(page, "dismiss");
+          try {
+            await page.goBack({ waitUntil: "commit", timeout: 5_000 }).catch(error => { if (!/ERR_ABORTED|aborted/i.test(String(error))) throw error; });
+            await prompts.settle();
+            if (new URL(page.url()).pathname === targetPath) await page.goBack({ waitUntil: "commit", timeout: 5_000 });
+            await expect(page).toHaveURL(/\/calculations$/);
+            const actual = await events.evaluate(value => value.actual);
+            expect(actual, "No substitute for a genuine forced native retention event").toContainEqual({ trusted: true, sameDocument: true, cancelable: false, prevented: false });
+            await info.attach(`retained-${revoke}-native-event.json`, { body: Buffer.from(JSON.stringify(actual)), contentType: "application/json" });
+          } finally { prompts.stop(); await events.evaluate(value => value.remove()); await events.dispose(); }
+          if (revoke === "role") {
+            const rows = await adminQuery<{ id: string; tenant_id: string; user_id: string }>("select id,tenant_id,user_id from public.tenant_memberships where tenant_id=$1 and user_id=$2 and role='projektledare' and status='active'", [tenantId, user.id]);
+            expect(rows).toHaveLength(1); membership = rows[0];
+            await adminExec("update public.tenant_memberships set role='ekonomi' where id=$1 and tenant_id=$2 and user_id=$3 and role='projektledare' and status='active'", [membership.id, tenantId, user.id]);
+            roleChanged = true;
+            const current = await adminQuery<{ role: string }>("select role from public.tenant_memberships where id=$1 and tenant_id=$2 and user_id=$3", [membership.id, tenantId, user.id]);
+            expect(current).toEqual([{ role: "ekonomi" }]);
+          } else {
+            await adminExec("update public.calculations set archived_at=clock_timestamp(),status='archived' where id=$1 and tenant_id=$2 and archived_at is null", [calculationId, tenantId]);
+            const current = await adminQuery<{ archived: boolean }>("select archived_at is not null as archived from public.calculations where id=$1 and tenant_id=$2", [calculationId, tenantId]);
+            expect(current).toEqual([{ archived: true }]);
+          }
+          // The already-rendered ordinary link is the exact original resource.
+          // Current per-request authority, not that stale link or its old read, decides reentry.
+          await page.locator(`[data-testid="calculation-list-row"][href="${targetPath}"]`).click();
+          await expect(page).toHaveURL(new URL(targetPath, page.url()).href);
+          await expect(page.getByTestId("calculation-not-found")).toBeVisible();
+          await expect.poll(() => page.locator('input').evaluateAll((inputs, value) => inputs.some(input => (input as HTMLInputElement).value === value), secret)).toBe(false);
+          await expect(page.locator('[data-editor-restored="true"]')).toHaveCount(0);
+          expect(writes.writes).toHaveLength(0);
+          await info.attach(`retained-${revoke}-denial.json`, { body: Buffer.from(JSON.stringify({ exactCalculationId: calculationId, revocation: revoke, restoredBusinessValues: false, writes: writes.writes.length })), contentType: "application/json" });
+        } finally {
+          writes.stop();
+          const failures: unknown[] = [];
+          if (roleChanged && membership) {
+            try { await adminExec("update public.tenant_memberships set role='projektledare' where id=$1 and tenant_id=$2 and user_id=$3 and role='ekonomi' and status='active'", [membership.id, membership.tenant_id, membership.user_id]); }
+            catch (error) { failures.push(error); }
+          }
+          if (owned) { try { await cleanupRoleAwarePhaseAFixture(owned); } catch (error) { failures.push(error); } }
+          try { await closeAdminPool(); } catch (error) { failures.push(error); }
+          if (failures.length) throw new AggregateError(failures, "Owned retention revocation fixture cleanup failed");
+        }
+      });
+    }
+
+    test("E35-8-T-retention-pending-authority / real early input is blocked and stale reentry cannot erase a draft", async ({ page }, info) => {
+      const calculation = await ownCalculation(page);
+      const targetPath = new URL(calculation.url).pathname;
+      await departureLink(page).click();
+      await expect(page).toHaveURL(/\/calculations$/);
+      const writes = observeWrites(page);
+      let release!: () => void;
+      const released = new Promise<void>(resolve => { release = resolve; });
+      const held: Promise<void>[] = [];
+      let cleaning = false;
+      const handler: Parameters<Page["route"]>[1] = route => {
+        const request = route.request();
+        if (request.method() !== "POST" || !request.headers()["next-action"] || request.postData()?.includes("operation_id") || cleaning) return route.continue();
+        const work = (async () => { await released; await route.continue(); })();
+        held.push(work); void work.catch(() => {}); return work;
+      };
+      await page.route(`**${targetPath}`, handler);
+      try {
+        await page.locator(`[data-testid="calculation-list-row"][href="${targetPath}"]`).click();
+        await expect.poll(() => held.length).toBeGreaterThan(0);
+        const form = titleForm(page), input = form.getByLabel("Titel", { exact: true });
+        await expect(form).toHaveAttribute("data-editor-ready", "false");
+        await expect(input).toBeDisabled();
+        await expect(form.getByRole("button", { name: "Spara titel", exact: true })).toBeDisabled();
+        // Actual keyboard input while the fieldset is disabled cannot author a
+        // value. No force-fill, synthetic input dispatch or DOM value assignment.
+        await input.focus();
+        await page.keyboard.type("Får inte skrivas före aktuell behörighet");
+        await expect(input).toHaveValue(calculation.title);
+        await expect(form).toHaveAttribute("data-editor-dirty", "false");
+        await page.goBack({ waitUntil: "commit" });
+        await expect(page).toHaveURL(/\/calculations$/);
+        release(); await Promise.all(held);
+        await renderedFrame(page);
+        expect(writes.writes).toHaveLength(0);
+        // A late authorization result from the departed form must not install
+        // an old writer; returning starts another fresh authorization.
+        cleaning = true; await page.unroute(`**${targetPath}`, handler);
+        await page.locator(`[data-testid="calculation-list-row"][href="${targetPath}"]`).click();
+        await expect(titleForm(page)).toHaveAttribute("data-editor-ready", "true");
+        await expect(titleForm(page).getByLabel("Titel", { exact: true })).toHaveValue(calculation.title);
+        await expect(titleForm(page)).toHaveAttribute("data-editor-dirty", "false");
+        expect(writes.writes).toHaveLength(0);
+        await info.attach("pending-authority-boundary.json", { body: Buffer.from(JSON.stringify({ actualHeldReads: held.length, earlyKeyboardValueBlocked: true, staleResultReturnedAfterDeparture: true, writes: writes.writes.length })), contentType: "application/json" });
+      } finally {
+        cleaning = true; release(); writes.stop();
+        const settled = await Promise.allSettled(held);
+        await page.unroute(`**${targetPath}`, handler);
+        const failed = settled.filter((value): value is PromiseRejectedResult => value.status === "rejected");
+        if (failed.length) throw new AggregateError(failed.map(value => value.reason), "Pending-authority read release failed");
+      }
+    });
+
+    for (const direction of ["back", "forward"] as const) {
+      test(`E35-8-T-native-retention / genuine Chromium ${direction}: committed destination, exact old operation and newer unsent draft`, async ({ page, context }, info) => {
+        const calculation = await ownCalculation(page);
+        const targetPath = new URL(calculation.url).pathname;
+        // Every slot is created by the actual application's links/router.
+        // Forward reuses the naturally linked list entry, never pushState/traverseTo.
+        if (direction === "forward") {
+          await departureLink(page).click();
+          await expect(page).toHaveURL(/\/calculations$/);
+          await page.goBack({ waitUntil: "commit" });
+          await expect(page).toHaveURL(calculation.url);
+          await expect(titleForm(page)).toHaveAttribute("data-editor-ready", "true");
+        }
+        const events = await page.evaluateHandle(() => {
+          const navigation = (window as Window & { navigation?: EventTarget }).navigation;
+          if (!navigation) throw new Error("Native retention qualification OPEN: actual Navigation API absent");
+          const observed: { trusted: boolean; sameDocument: boolean; cancelable: boolean; prevented: boolean; url: string; type: string }[] = [];
+          const listener = (event: Event) => {
+            const movement = event as Event & { navigationType: string; destination: { sameDocument: boolean; url: string } };
+            queueMicrotask(() => observed.push({ trusted: event.isTrusted, sameDocument: movement.destination.sameDocument,
+              cancelable: event.cancelable, prevented: event.defaultPrevented, url: movement.destination.url, type: movement.navigationType }));
+          };
+          navigation.addEventListener("navigate", listener);
+          return { observed, remove: () => navigation.removeEventListener("navigate", listener) };
+        });
+        const writes = observeWrites(page);
+        const response = await interceptedWrite(page, "**/calculations/**");
+        const prompts = nativePrompts(page, "dismiss");
+        const observer = await context.newPage();
+        const submitted = `Ursprunglig native ${direction} ${crypto.randomUUID()}`;
+        const draft = `Nyare osparad native ${direction} ${crypto.randomUUID()}`;
+        let scenarioFailure: unknown;
+        try {
+          await titleForm(page).getByLabel("Titel", { exact: true }).fill(submitted);
+          await titleForm(page).getByRole("button", { name: "Spara titel", exact: true }).click();
+          await expect.poll(response.ready).toBe(true);
+          expect(writes.writes).toHaveLength(1);
+          const original = await postedFields(writes.writes[0]!);
+          const operationId = original("operation_id");
+          const originalExpected = original("expected");
+          await titleForm(page).getByLabel("Titel", { exact: true }).fill(draft);
+          const traverse = () => direction === "back" ? page.goBack({ waitUntil: "commit", timeout: 5_000 }) : page.goForward({ waitUntil: "commit", timeout: 5_000 });
+          // Real browser-driven cancellation attempt, followed by another native
+          // traversal with NO intervening click, keyboard event or added activation.
+          await traverse().catch(error => { if (!/ERR_ABORTED|aborted/i.test(String(error))) throw error; });
+          await prompts.settle();
+          await expect(page).toHaveURL(calculation.url);
+          const cancelled = await events.evaluate(value => value.observed.filter(event => event.type === "traverse"));
+          expect(cancelled, "Qualification OPEN unless a real trusted cancellable traversal was cancelled").toEqual([
+            expect.objectContaining({ trusted: true, sameDocument: true, cancelable: true, prevented: true }),
+          ]);
+          await traverse();
+          await expect(page).toHaveURL(/\/calculations$/);
+          const native = await events.evaluate(value => value.observed.filter(event => event.type === "traverse"));
+          expect(native, "Qualification OPEN unless Chromium actually committed a trusted noncancellable same-document traversal").toEqual([
+            cancelled[0], expect.objectContaining({ trusted: true, sameDocument: true, cancelable: false, prevented: false, url: page.url() }),
+          ]);
+          await expect(page.getByTestId("calculation-list")).toBeVisible();
+          expect(writes.writes).toHaveLength(1);
+          // Returning is an ordinary link to exactly the original form/resource.
+          await page.locator(`[data-testid="calculation-list-row"][href="${targetPath}"]`).click();
+          await expect(page).toHaveURL(calculation.url);
+          await expect(titleForm(page)).toHaveAttribute("data-editor-restored", "true");
+          await expect(titleForm(page).getByLabel("Titel", { exact: true })).toHaveValue(draft);
+          await expect(titleForm(page).getByRole("button", { name: "Kontrollera resultat", exact: true })).toBeVisible();
+          const handles = await page.evaluate(() => Object.entries(sessionStorage).filter(([key]) => key.startsWith("kopplas/editor/v1/")).map(([, value]) => JSON.parse(value) as { operationId: string }));
+          expect(handles.map(handle => handle.operationId)).toContain(operationId);
+          // The old callback is stale even though its actual server effect committed.
+          response.release(); await response.completed;
+          await renderedFrame(page);
+          await expect(page).toHaveURL(calculation.url);
+          await expect(titleForm(page).getByLabel("Titel", { exact: true })).toHaveValue(draft);
+          expect(writes.writes).toHaveLength(1);
+          expect(original("expected")).toBe(originalExpected);
+          await titleForm(page).getByRole("button", { name: "Kontrollera resultat", exact: true }).click();
+          await expect(titleForm(page).getByText(/Den ursprungliga åtgärden är bekräftad/)).toBeVisible();
+          await expect(titleForm(page).getByLabel("Titel", { exact: true })).toHaveValue(draft);
+          await expect(titleForm(page)).toHaveAttribute("data-editor-dirty", "true");
+          await expect(page).toHaveURL(calculation.url);
+          expect(writes.writes).toHaveLength(1); // reauthorization/reconciliation are read-only POSTs
+          await observer.goto(calculation.url);
+          await expect(titleForm(observer).getByLabel("Titel", { exact: true })).toHaveValue(submitted);
+          const { adminQuery, closeAdminPool } = await import("../../factories/admin-sql.js");
+          try {
+            const proof = await adminQuery<{ operation_id: string; status: string }>("select operation_id,status from public.calculation_editor_operations where calculation_id=$1 and operation_id=$2", [targetPath.split("/").at(-1), operationId]);
+            expect(proof).toEqual([{ operation_id: operationId, status: "committed" }]);
+          } finally { await closeAdminPool(); }
+          await capture(page, info, "calculation-header", `native-${direction}-restored-newer-draft`, targetPath.split("/").at(-1)!, titleForm(page), async () => {
+            await expect(titleForm(page).getByLabel("Titel", { exact: true })).toHaveValue(draft);
+            await expect(page).toHaveURL(calculation.url);
+            expect(writes.writes).toHaveLength(1);
+          });
+        } catch (error) { scenarioFailure = error; throw error; }
+        finally {
+          await finishNativeRetention({
+            release: response.release, stopPrompts: prompts.stop, stopWrites: writes.stop,
+            removeHold: response.remove, closeObserver: () => observer.close(),
+            readEvents: () => events.evaluate(value => value.observed), removeEvents: () => events.evaluate(value => value.remove()), disposeEvents: () => events.dispose(),
+            attach: value => info.attach(`native-${direction}-retention-observations.json`, { body: Buffer.from(JSON.stringify(value)), contentType: "application/json" }),
+            priorFailure: scenarioFailure,
+          });
         }
       });
     }
@@ -1430,7 +1775,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
       // Passive public events only: sequence is this client's observed order, never server-clock causality.
       function createPassiveLoadingObserver(observedPage: Page, afterInput: () => boolean) {
         type FailureCategory = "aborted" | "blocked-by-client" | "other" | "unavailable";
-        type Event = "requestfinished" | "requestfailed" | "main-frame-commit" | "release-published" |
+        type Event = "requestfinished" | "requestfailed" | "document-request-issued" | "main-frame-commit" | "release-published" |
           "terminal-assertion-settled" | "cleanup-started" | "owned-routes-attempt-ended" |
           "owned-handler-removal-attempt-ended" | "owned-page-close-started" |
           "owned-page-close-attempt-ended" | "client-collection-attempt-ended" | "owned-observer-detach-attempt-ended";
@@ -1441,6 +1786,12 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         let exactTerminal: "not-observed" | "requestfinished" | "requestfailed" | "multiple-events" = "not-observed";
         let detached = false, eventsTruncated = false, commitsTruncated = false;
         const before: Receipt[] = [], cleanup: Receipt[] = [], commits: Commit[] = [];
+        let mainFrame: ReturnType<Page["mainFrame"]> | undefined;
+        let documentUnobservable = false, documentRequests = 0, documentRequestsTruncated = false;
+        let firstDocument: Commit | undefined;
+        // Bind once before input; failed or missing frame association is never negative evidence.
+        try { mainFrame = observedPage.mainFrame(); if (!mainFrame) documentUnobservable = true; }
+        catch { documentUnobservable = true; unavailable = true; }
         const safe = (action: () => void) => { try { action(); } catch { unavailable = true; } };
         const record = (event: Event, failure?: FailureCategory) => {
           order++;
@@ -1467,8 +1818,19 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         });
         const finished = (request: BrowserRequest) => terminal(request, "requestfinished");
         const failed = (request: BrowserRequest) => terminal(request, "requestfailed");
+        const issued = (request: BrowserRequest) => {
+          try {
+            if (!afterInput() || !request.isNavigationRequest() || request.resourceType() !== "document") return;
+            const frame = request.frame();
+            if (!mainFrame || !frame) { documentUnobservable = true; unavailable = true; return; }
+            if (frame !== mainFrame) return;
+            if (documentRequests < 8) documentRequests++;
+            else documentRequestsTruncated = true;
+            if (!firstDocument) { record("document-request-issued"); firstDocument = { order, cleanupOnly }; }
+          } catch { documentUnobservable = true; unavailable = true; }
+        };
         const committed = (frame: import("@playwright/test").Frame) => safe(() => {
-          if (!afterInput() || frame !== observedPage.mainFrame()) return;
+          if (!afterInput() || !mainFrame || frame !== mainFrame) return;
           record("main-frame-commit");
           if (commits.length < 4) commits.push({ order, cleanupOnly });
           else { commitsTruncated = true; unavailable = true; }
@@ -1481,6 +1843,19 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
             relativeToExactTerminal: terminalOrder === undefined ? "exact-terminal-not-observed" as const :
               entry.order < terminalOrder ? "before" as const : "after" as const,
           })), commitsTruncated,
+          documentRequests, documentRequestsTruncated,
+          // Issuance order is observation, not cancellation/fallback causation. None observed
+          // excludes neither earlier router intent nor other fetches or unbound browser activity.
+          firstPostInputDocumentRequest: {
+            relativeToExactSelectedRscTerminal: documentUnobservable || unavailable || selectedKind !== "client-rsc" || terminalOrder === undefined
+              ? "unobservable" as const : !firstDocument ? "none-observed" as const :
+                firstDocument.order < terminalOrder ? "issued-before" as const : "issued-after" as const,
+            relativeToFirstMainFrameCommit: documentUnobservable || unavailable ? "unobservable" as const :
+              !firstDocument ? "none-observed" as const : !commits.length ? "commit-not-observed" as const :
+                firstDocument.order < commits[0].order ? "issued-before" as const : "issued-after" as const,
+            relativeToCleanup: documentUnobservable || unavailable ? "unobservable" as const :
+              !firstDocument ? "none-observed" as const : firstDocument.cleanupOnly ? "cleanup-only" as const : "before-cleanup" as const,
+          },
         });
         let preCleanup: ReturnType<typeof snapshot> | undefined;
         return {
@@ -1488,6 +1863,8 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
             if (!exactRequest) { exactRequest = request; selectedKind = documentNavigation ? "document" : "client-rsc"; }
           }),
           install: () => {
+            try { observedPage.on("request", issued); }
+            catch { documentUnobservable = true; unavailable = true; }
             safe(() => { observedPage.on("requestfinished", finished); });
             safe(() => { observedPage.on("requestfailed", failed); });
             safe(() => { observedPage.on("framenavigated", committed); });
@@ -1499,7 +1876,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           detach: () => {
             // Each removal is isolated; an observer error never replaces the journey/cleanup failure.
             let removed = true;
-            for (const remove of [() => observedPage.off("requestfinished", finished),
+            for (const remove of [() => observedPage.off("request", issued), () => observedPage.off("requestfinished", finished),
               () => observedPage.off("requestfailed", failed), () => observedPage.off("framenavigated", committed)]) {
               try { remove(); } catch { removed = false; unavailable = true; }
             }

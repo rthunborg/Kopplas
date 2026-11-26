@@ -13,6 +13,7 @@ import { readEntityDocumentsLink } from "@/server/read-models/document-context";
  * auth boundary (this page adds no auth mechanism).
  */
 import Link from "next/link";
+import { CalculationAuthorityProvider, type EditorAuthority, type EditorReentryCheck } from "@/components/calculations/CalculationList";
 import { CalculationEditor } from "@/components/calculations/CalculationEditor";
 import { EntityFilePanel } from "@/components/files/EntityFilePanel";
 import { readCalculationDetail } from "@/features/calculations/read";
@@ -26,6 +27,49 @@ import { toSourceOptions } from "@/features/calculations/source-options";
 import { DEFAULT_TENANT_VAT_DISPLAY } from "@/features/calculations/vat-posture";
 import { buildQuoteReviewDigest } from "@/server/commands/quotes/review-token";
 import { stockholmBusinessDate } from "@/lib/datetime/business-date";
+
+import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
+import { createSupabaseServerClient } from "@/server/db/supabase-server-client";
+import { requireCapability } from "@/server/authz/require-capability";
+
+/** The bound route id plus live RLS detail authorize the exact form, never a client tenant. */
+async function readEditorAuthority(calculationId: string, check: EditorReentryCheck): Promise<EditorAuthority> {
+  try {
+    const client = await createSupabaseServerClient();
+    const context = await resolveTenantContext({ client });
+    if (!context.ok) return { status: context.code === "SERVER_ERROR" ? "unavailable" : "denied" };
+    const { data, error } = await client.auth.getClaims();
+    if (error) return { status: "unavailable" };
+    const epoch = data?.claims.session_id;
+    if (typeof epoch !== "string" || data?.claims.sub !== context.data.userId) return { status: "denied" };
+    const { userId, tenantId, role, roles } = context.data;
+    if (!check.formKey.startsWith(`${calculationId}/`)) return { status: "denied" };
+    const path = check.formKey.slice(calculationId.length + 1).split("/");
+    const quote = ["reviewed-initial-quote", "mount"].includes(path.join("/"));
+    if (!requireCapability({ roles: roles ?? [role], module: quote ? "quotes" : "calculations", capability: quote ? "Quotes.Create" : "Calculations.Edit" }).ok) return { status: "denied" };
+    const { detail, error: readError } = await readCalculationDetail(calculationId);
+    if (readError) return { status: "unavailable" };
+    if (!detail || detail.header.archived_at !== null) return { status: "denied" };
+    const section = path[0] === "section" ? detail.sections.find(s => s.id === path[1]) : null;
+    let targetId = calculationId;
+    if (path[0] === "section") {
+      if (!section) return { status: "denied" };
+      targetId = section.id;
+      if (path.length === 4 && path[2] === "row") {
+        if (path[3] !== "new" && !section.rows.some(r => r.id === path[3])) return { status: "denied" };
+        targetId = path[3] === "new" ? "" : path[3];
+      } else if (!(path.length === 2 || (path.length === 3 && ["archive", "order", "row-archive"].includes(path[2]!)))) return { status: "denied" };
+    } else if (path.length !== 1 || !["title", "tax", "new-section", "archive", "section-order", "reviewed-initial-quote", "mount"].includes(path[0]!)) return { status: "denied" };
+    for (const values of check.requests) {
+      const form = new Map(values);
+      if ((form.has("calculation_id") && form.get("calculation_id") !== calculationId) || (form.has("section_id") && form.get("section_id") !== section?.id)) return { status: "denied" };
+      if (path[2] === "row-archive") {
+        if (!section?.rows.some(r => r.id === form.get("id"))) return { status: "denied" };
+      } else if (form.has("id") && form.get("id") !== targetId) return { status: "denied" };
+    }
+    return { status: "allowed", scope: `${userId}/${tenantId}`, epoch };
+  } catch { return { status: "unavailable" }; }
+}
 
 export const dynamic = "force-dynamic";
 
@@ -51,6 +95,7 @@ export default async function CalculationEditorPage({
 
   if (error) {
     return (
+      <CalculationAuthorityProvider authority={{ status: "unavailable" }} authorize={authorizeReentry}>
       <section className="mx-auto max-w-3xl">
         <div
           role="alert"
@@ -69,12 +114,14 @@ export default async function CalculationEditorPage({
           </Link>
         </div>
       </section>
+      </CalculationAuthorityProvider>
     );
   }
 
   if (!detail) {
     // Invisible under RLS (or genuinely absent) → GENERIC not-found, no leakage.
     return (
+      <CalculationAuthorityProvider authority={{ status: "denied" }} authorize={authorizeReentry}>
       <section className="mx-auto max-w-3xl">
         <div
           data-testid="calculation-not-found"
@@ -92,6 +139,7 @@ export default async function CalculationEditorPage({
           </Link>
         </div>
       </section>
+      </CalculationAuthorityProvider>
     );
   }
 
@@ -198,8 +246,15 @@ export default async function CalculationEditorPage({
     attachments: [],
   });
 
+  const authority = await readEditorAuthority(calculationId, { formKey: `${calculationId}/mount`, requests: [] });
+  async function authorizeReentry(check: EditorReentryCheck): Promise<EditorAuthority> {
+    "use server";
+    return readEditorAuthority(calculationId, check);
+  }
   return (
+    <CalculationAuthorityProvider authority={authority} authorize={authorizeReentry}>
     <CalculationEditor
+      key={authority.status === "allowed" ? `${authority.scope}/${authority.epoch}` : authority.status}
       detail={detail}
       sources={sources}
       defaultVatDisplay={defaultVatDisplay}
@@ -221,5 +276,6 @@ export default async function CalculationEditorPage({
         </>
       }
     />
+    </CalculationAuthorityProvider>
   );
 }

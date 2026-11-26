@@ -172,7 +172,7 @@ export function RowEditor({
     state.form === "row" &&
     (isUpdate ? state.targetId === row?.id || state.status === "error" : true);
   const v = (field: string, fallback: string): string =>
-    (mine && state.values[field]) || fallback;
+    rowOperation.draftValue(field, (mine && state.values[field]) || fallback);
   const checked = (field: string, fallback: boolean): boolean =>
     v(field, String(fallback)) === "true";
   const err = (field: string): string | undefined =>
@@ -216,6 +216,17 @@ export function RowEditor({
   const [includedInInvoiceTotal, setIncludedInInvoiceTotal] = useState(() =>
     checked("included_in_invoice_total", row?.included_in_invoice_total ?? true),
   );
+
+  const [hydratedGeneration, setHydratedGeneration] = useState("");
+  if (rowOperation.hydrationKey !== hydratedGeneration) {
+    setHydratedGeneration(rowOperation.hydrationKey);
+    setRowType(v("row_type", row?.row_type ?? "labor"));
+    setSourceValue(v("row_source_ref", initialSourceValue));
+    setPrefillValue(v("unit_sell_kronor", prefillValue));
+    setIsOptional(checked("is_optional", row?.is_optional ?? false));
+    setIsSelected(checked("is_selected", row?.is_selected ?? false));
+    setIncludedInInvoiceTotal(checked("included_in_invoice_total", row?.included_in_invoice_total ?? true));
+  }
 
   const offeredSources = useMemo(
     () => sourcesForRowType(rowType, sources),
@@ -275,6 +286,7 @@ export function RowEditor({
 
   /** On a row-type change: switch the offered source list; a stale pick resets to manual. */
   function onRowTypeChange(value: string): void {
+    rowOperation.forgetRestoredFields(["unit_sell_kronor"]);
     setRowType(value);
     // A source picked for the old type is not valid for the new type's list → back to manual.
     if (value !== "labor" && value !== "material") {
@@ -289,6 +301,7 @@ export function RowEditor({
 
   /** On a source pick: prefill the price from the source rate (via the öre→kronor boundary). */
   function onSourceChange(value: string): void {
+    rowOperation.forgetRestoredFields(["unit_sell_kronor"]);
     setSourceValue(value);
     const pair = decodeSourceValue(value);
     if (!pair) return; // manual → keep the current (editable) price
@@ -332,12 +345,13 @@ export function RowEditor({
     lineTotal && lineTotal.ok ? resolveTotalDisplay(lineTotal.value, posture) : null;
 
   return (
-    <form {...rowOperation.formProps}
+    <form key={rowOperation.hydrationKey} {...rowOperation.formProps}
       action={formAction}
       data-testid={isUpdate ? "row-edit-form" : "row-create-form"}
       className="flex min-w-0 flex-col gap-4 rounded-card border border-border-default bg-inset p-4"
       noValidate
     >{rowOperation.recovery}
+        <fieldset disabled={!rowOperation.ready} className="contents">
       {/* Hidden routing fields so the action can target the section + revalidate the calc. */}
       {isUpdate && <input type="hidden" name="id" value={row!.id} />}
       {!isUpdate && <input type="hidden" name="section_id" value={sectionId} />}
@@ -595,6 +609,8 @@ export function RowEditor({
           </button>
         )}
       </div>
-    </form>
+
+        </fieldset>
+      </form>
   );
 }

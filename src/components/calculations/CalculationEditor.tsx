@@ -19,7 +19,7 @@
  * summary (AC6).
  */
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
-import { useEditorOperation } from "./CalculationList";
+import { useEditorOperation, useRetainedEditorHost } from "./CalculationList";
 import { projectEditorFacts, HEADER_FACTS, SECTION_FACTS, ROW_FACTS } from "@/features/calculations/editor-operation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -113,6 +113,7 @@ export function CalculationEditor({
   const reorderOperation = useEditorOperation(reorderSectionsAction, CALC_ACTION_INITIAL, `${header.id}/section-order`, () => ({ version: 1, form: "reorder_sections", header: headerFacts, siblings: sections.map(s => ({ id: s.id, sort_order: s.sort_order })) }));
   const [sectionReorderState, sectionReorderAction] = [reorderOperation.state, reorderOperation.action];
   const [showAddSection, setShowAddSection] = useState(false);
+  const restoreSectionHost = useRetainedEditorHost(`${header.id}/new-section`);
   const router = useRouter();
   const root = useRef<HTMLDivElement>(null);
   const confirmDeparture = useCallback(() => {
@@ -132,9 +133,19 @@ export function CalculationEditor({
       if (destination.origin === location.origin && destination.pathname === location.pathname && destination.search === location.search) return;
       if (!confirmDeparture()) event.preventDefault();
     };
+    const mountedRoot = root.current;
+    const shellDeparture = (event: Event) => {
+      if (event.target !== mountedRoot || event.defaultPrevented || !event.cancelable) return;
+      if (!confirmDeparture()) event.preventDefault();
+    };
+    mountedRoot?.addEventListener("kopplas:calculation-departure-request", shellDeparture);
     window.addEventListener("beforeunload", beforeUnload);
     navigation?.addEventListener("navigate", traverse);
-    return () => { window.removeEventListener("beforeunload", beforeUnload); navigation?.removeEventListener("navigate", traverse); };
+    return () => {
+      mountedRoot?.removeEventListener("kopplas:calculation-departure-request", shellDeparture);
+      window.removeEventListener("beforeunload", beforeUnload);
+      navigation?.removeEventListener("navigate", traverse);
+    };
   }, [confirmDeparture]);
 
   const titleMine = titleState.form === "calculation";
@@ -319,7 +330,7 @@ export function CalculationEditor({
   const sectionReorderRetryable = isRetryableCalcError(sectionReorderState);
 
   return (
-    <div ref={root} data-testid="calculation-editor"
+    <div ref={root} data-testid="calculation-editor" data-calculation-departure-root="true"
       onClickCapture={event => {
         if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[href]") : null;
@@ -379,7 +390,8 @@ export function CalculationEditor({
         </dl>
 
         {/* Rename the calc + change status. */}
-        <form {...titleOperation.formProps} action={titleAction} className="flex flex-col gap-3" noValidate>{titleOperation.recovery}
+        <form key={titleOperation.hydrationKey} {...titleOperation.formProps} action={titleAction} className="flex flex-col gap-3" noValidate>{titleOperation.recovery}
+        <fieldset disabled={!titleOperation.ready} className="contents">
           <input type="hidden" name="id" value={header.id} />
           <FormErrorSummary message={titleMine ? titleState.formError : null} fieldErrors={titleMine ? titleState.fieldErrors : undefined} />
           {titleMine && titleState.status === "success" && (
@@ -398,7 +410,7 @@ export function CalculationEditor({
                 name="title"
                 label="Titel"
                 defaultValue={
-                  (titleMine && titleState.values.title) || header.title
+                  titleOperation.draftValue("title", (titleMine && titleState.values.title) || header.title)
                 }
                 error={titleMine ? titleState.fieldErrors.title : undefined}
               />
@@ -411,7 +423,9 @@ export function CalculationEditor({
               Spara titel
             </button>
           </div>
-        </form>
+
+        </fieldset>
+      </form>
       </header>
 
       <TaxSettingsPanel
@@ -510,13 +524,14 @@ export function CalculationEditor({
             ))
           )}
 
-          {showAddSection ? (
-            <form {...sectionOperation.formProps}
+          {(showAddSection || restoreSectionHost) ? (
+            <form key={sectionOperation.hydrationKey} {...sectionOperation.formProps}
               action={sectionAction}
               data-testid="add-section-form"
               className="flex max-w-xl flex-col gap-3 rounded-card border border-dashed border-border-strong bg-card p-4"
               noValidate
             >{sectionOperation.recovery}
+        <fieldset disabled={!sectionOperation.ready} className="contents">
               <input type="hidden" name="calculation_id" value={header.id} />
               <FormErrorSummary
                 message={sectionState.form === "section" ? sectionState.formError : null}
@@ -526,7 +541,7 @@ export function CalculationEditor({
                 name="title"
                 label="Sektionstitel (valfritt)"
                 defaultValue={
-                  (sectionState.form === "section" && sectionState.values.title) || ""
+                  sectionOperation.draftValue("title", (sectionState.form === "section" && sectionState.values.title) || "")
                 }
                 error={
                   sectionState.form === "section"
@@ -543,7 +558,9 @@ export function CalculationEditor({
                   {sectionPending ? "Skapar…" : "Skapa sektion"}
                 </button>
               </div>
-            </form>
+
+        </fieldset>
+      </form>
           ) : (
             <button
               type="button"

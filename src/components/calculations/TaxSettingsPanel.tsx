@@ -8,6 +8,7 @@ import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormF
 import { CALC_ACTION_INITIAL, isRetryableCalcError, type CalcActionState } from "@/features/calculations/action-state";
 import { updateTaxInputAction } from "@/features/calculations/actions";
 import {
+  type AllowanceEditorSlot,
   MAX_PERSON_ALLOWANCE_SLOTS,
   addAllowanceEditorSlot,
   initializeAllowanceEditorSlots,
@@ -104,7 +105,7 @@ export function TaxSettingsPanel({
   if (!taxOperation.hasDraftChanges && !taxOperation.pending && displayedRevision !== canonicalRevision) setDisplayedRevision(canonicalRevision);
   return (
     <TaxSettingsForm
-      key={displayedRevision}
+      key={`${displayedRevision}/${taxOperation.hydrationKey}`}
       taxOperation={taxOperation}
       calculationId={calculationId}
       input={input}
@@ -132,7 +133,7 @@ function TaxSettingsForm({
   const v = (field: string, fallback: string): string =>
     (mine && state.status === "error" && state.values[field] !== undefined
       ? state.values[field]
-      : fallback) ?? fallback;
+      : taxOperation.draftValue(field, fallback)) ?? fallback;
   const err = (field: string): string | undefined =>
     mine ? state.fieldErrors[field] : undefined;
   useEffect(() => {
@@ -148,7 +149,7 @@ function TaxSettingsForm({
     v("green_basis_method", input.greenBasisMethod) as GreenBasisMethod,
   );
   const [selectedFixedPriceRowIds, setSelectedFixedPriceRowIds] = useState(
-    () => new Set(input.fixedPriceRowIds ?? []),
+    () => new Set(taxOperation.restored ? taxOperation.draftValues("fixed_price_row_ids") : input.fixedPriceRowIds ?? []),
   );
   const readsRot = deductionChoice === "ROT" || deductionChoice === "ROT_AND_GREEN";
   const readsGreen = deductionChoice === "GREEN" || deductionChoice === "ROT_AND_GREEN";
@@ -164,8 +165,10 @@ function TaxSettingsForm({
     usesFixedPrice && selectedEligibleFixedPriceRows.length === 0;
   // Persisted slot identifiers are intentionally ignored. Array order carries the compatibility
   // order; visible names and submitted ids are freshly canonical PERSON_1..PERSON_50 positions.
-  const [allowanceSlots, setAllowanceSlots] = useState(() =>
-    initializeAllowanceEditorSlots(input.personAllowanceSlots),
+  const [allowanceSlots, setAllowanceSlots] = useState<readonly AllowanceEditorSlot[]>(() =>
+    taxOperation.restored && (taxOperation.draftValue("deduction_choice", "NONE") !== "NONE")
+      ? Array.from({ length: Math.max(2, ...taxOperation.restored.map(([field]) => Number(/^person_(\d+)_/.exec(field)?.[1] ?? 0))) }, (_, i) => ({ key: `restored-${i + 1}` }))
+      : initializeAllowanceEditorSlots(input.personAllowanceSlots),
   );
   const nextAllowanceKey = useRef(allowanceSlots.length + 1);
   const canAddAllowanceSlot = allowanceSlots.length < MAX_PERSON_ALLOWANCE_SLOTS;
@@ -194,6 +197,7 @@ function TaxSettingsForm({
         }}
       >
         {taxOperation.recovery}
+        <fieldset disabled={!taxOperation.ready} className="contents">
         <input type="hidden" name="id" value={calculationId} />
         {/* namedItem resolves this unique control ID, avoiding the hidden/checkbox name pair. */}
         <FormErrorSummary message={mine ? state.formError : null} fieldErrors={mine ? {
@@ -217,7 +221,7 @@ function TaxSettingsForm({
             name="document_vat_type"
             label="Momshantering"
             options={[...VAT_OPTIONS]}
-            defaultValue={v("document_vat_type", input.documentVatType)}
+            defaultValue={documentVatType}
             error={
               err("document_vat_type") ??
               (reverseChargeDeductionConflict
@@ -241,7 +245,7 @@ function TaxSettingsForm({
             name="deduction_choice"
             label="Skatteavdrag"
             options={[...DEDUCTION_OPTIONS]}
-            defaultValue={v("deduction_choice", input.deductionChoice)}
+            defaultValue={deductionChoice}
             error={
               err("deduction_choice") ??
               (reverseChargeDeductionConflict
@@ -255,7 +259,7 @@ function TaxSettingsForm({
               name="green_basis_method"
               label="Beräkningsgrund för grön teknik"
               options={[...BASIS_OPTIONS]}
-              defaultValue={v("green_basis_method", input.greenBasisMethod)}
+              defaultValue={greenBasisMethod}
               error={err("green_basis_method")}
               onChange={(next) => setGreenBasisMethod(next as GreenBasisMethod)}
             />
@@ -517,6 +521,8 @@ function TaxSettingsForm({
         >
           {pending ? "Sparar…" : "Spara skatte- och momsuppgifter"}
         </button>
+
+        </fieldset>
       </form>
     </section>
   );

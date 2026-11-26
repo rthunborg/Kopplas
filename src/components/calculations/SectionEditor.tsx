@@ -12,7 +12,7 @@
  * client loop of single UPDATEs.
  */
 import { useEffect, useId, useRef, useState } from "react";
-import { useEditorOperation } from "./CalculationList";
+import { useEditorOperation, useRetainedEditorHost } from "./CalculationList";
 import { projectEditorFacts, SECTION_FACTS, ROW_FACTS } from "@/features/calculations/editor-operation";
 import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormField";
 import { RowEditor } from "./RowEditor";
@@ -86,12 +86,13 @@ export function SectionEditor({
     return () => { dialog?.close(); trigger?.focus(); };
   }, [confirmArchive]);
   const [showAddRow, setShowAddRow] = useState(false);
+  const restoreRowHost = useRetainedEditorHost(`${calculationId}/section/${section.id}/row/new`);
 
   const hasRows = section.rows.length > 0;
 
   const renameMine = renameState.form === "section";
   const rv = (field: string, fallback: string): string =>
-    (renameMine && renameState.values[field]) || fallback;
+    renameOperation.draftValue(field, (renameMine && renameState.values[field]) || fallback);
   const rerr = (field: string): string | undefined =>
     renameMine ? renameState.fieldErrors[field] : undefined;
 
@@ -146,7 +147,8 @@ export function SectionEditor({
 
       {/* Rename / display-mode form. */}
       {archiveOperation.recovery}{rowArchiveOperation.recovery}
-      <form {...renameOperation.formProps} action={renameAction} className="flex flex-col gap-3" noValidate>{renameOperation.recovery}
+      <form key={renameOperation.hydrationKey} {...renameOperation.formProps} action={renameAction} className="flex flex-col gap-3" noValidate>{renameOperation.recovery}
+        <fieldset disabled={!renameOperation.ready} className="contents">
         <input type="hidden" name="id" value={section.id} />
         <input type="hidden" name="calculation_id" value={calculationId} />
         <FormErrorSummary message={renameMine ? renameState.formError : null} fieldErrors={renameMine ? renameState.fieldErrors : undefined} />
@@ -179,6 +181,8 @@ export function SectionEditor({
             Spara sektion
           </button>
         </div>
+
+        </fieldset>
       </form>
 
       {/* Rows. */}
@@ -258,7 +262,7 @@ export function SectionEditor({
           </p>
         )}
 
-        {showAddRow && canAddRow ? (
+        {(showAddRow || restoreRowHost) && canAddRow ? (
           <RowEditor
                   headerFacts={headerFacts}
                   sectionFacts={projectEditorFacts(section, SECTION_FACTS)}

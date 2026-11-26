@@ -97,6 +97,12 @@ export function PreQuotePreview({
   const router = useRouter();
   const attemptedDestination = useRef<string | null>(null);
   const quoteOperation = useEditorOperation(createReviewedQuoteVersionFromCalculationAction, CREATE_QUOTE_ACTION_INITIAL, `${detail.header.id}/reviewed-initial-quote`, form => ({ version: 1, form: "reviewed-initial-quote", reviewed_snapshot_digest: form.get("reviewed_snapshot_digest"), reviewed_quote_capture_date: form.get("reviewed_quote_capture_date"), attachment_file_ids: form.getAll("attachment_file_ids") }));
+  const [hydratedGeneration, setHydratedGeneration] = useState("");
+  if (quoteOperation.hydrationKey !== hydratedGeneration) {
+    setHydratedGeneration(quoteOperation.hydrationKey);
+    setOpen(Boolean(quoteOperation.restored));
+    setReviewedProof(quoteOperation.restored ? { digest: quoteOperation.draftValue("reviewed_snapshot_digest", ""), quoteCaptureDate: quoteOperation.draftValue("reviewed_quote_capture_date", "") } : null);
+  }
   const [createState, createAction, createPending] = [quoteOperation.state, quoteOperation.action, quoteOperation.pending];
   useEffect(() => {
     if (
@@ -203,6 +209,8 @@ export function PreQuotePreview({
           const closing = open && !previewNotReviewed && !previewStale;
           if (closing && (quoteOperation.hasDraftChanges || quoteOperation.hasProtectedOperation) &&
             !window.confirm("Du har osparade ändringar eller ett obekräftat resultat. Vill du lämna formuläret?")) return;
+          if (!closing && reviewedProof && (reviewedProof.digest !== reviewedSnapshotDigest || reviewedProof.quoteCaptureDate !== quoteCaptureDate)) quoteOperation.markChanged();
+          quoteOperation.retainValues([["calculation_id", detail.header.id], ["reviewed_snapshot_digest", reviewedSnapshotDigest], ["reviewed_quote_capture_date", quoteCaptureDate]]);
           setReviewedProof({ digest: reviewedSnapshotDigest, quoteCaptureDate });
           setOpen((current) =>
             previewNotReviewed || previewStale ? true : !current,
@@ -477,7 +485,8 @@ export function PreQuotePreview({
             )}
           </div>
 
-          <form {...quoteOperation.formProps} action={createAction} className="flex flex-col gap-2">{quoteOperation.recovery}
+          <form key={quoteOperation.hydrationKey} {...quoteOperation.formProps} action={createAction} className="flex flex-col gap-2">{quoteOperation.recovery}
+        <fieldset disabled={!quoteOperation.ready} className="contents">
             <input type="hidden" name="calculation_id" value={detail.header.id} />
             <input
               type="hidden"
@@ -527,7 +536,9 @@ export function PreQuotePreview({
                       ? "Granska förhandsvisningen först"
                       : "Bekräfta och skapa offertversion"}
             </button>
-          </form>
+
+        </fieldset>
+      </form>
         </div>
       )}
     </section>
