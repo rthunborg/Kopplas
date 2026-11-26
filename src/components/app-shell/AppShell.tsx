@@ -56,11 +56,13 @@ function NavLinks({
   pathname,
   navigation,
   onNavigate,
+  beforeNavigate,
 }: {
   variant: "sidebar" | "drawer";
   pathname: string | null;
   navigation: readonly NavItem[];
   onNavigate?: () => void;
+  beforeNavigate: () => boolean;
 }) {
   const sections: { label: string; items: NavItem[] }[] = [];
   for (const item of navigation) {
@@ -80,7 +82,14 @@ function NavLinks({
           <li key={item.href} className="relative">
             <Link
               href={item.href}
-              onClick={onNavigate}
+              onClick={(event) => {
+                // Modified clicks open another context; only this window departs.
+                if (!event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && !beforeNavigate()) {
+                  event.preventDefault();
+                  return;
+                }
+                onNavigate?.();
+              }}
               aria-current={active ? "page" : undefined}
               // Sidebar collapses to icon-only at md, so the link needs an explicit
               // accessible name there. The drawer always shows its text label.
@@ -148,6 +157,23 @@ export function AppShell({
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
+
+  const requestCalculationDeparture = useCallback(() => {
+    // Dormant unless the mounted calculation host explicitly opts in. Its listener
+    // checks current local state synchronously and prevents default to stay here.
+    // This request carries no draft, operation or tenant data and never bubbles.
+    const root = mainRef.current?.querySelector<HTMLElement>('[data-calculation-departure-root="true"]');
+    return !root || root.dispatchEvent(new Event("kopplas:calculation-departure-request", { cancelable: true }));
+  }, []);
+
+  const handleProfileNavigate = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && !requestCalculationDeparture()) {
+      event.preventDefault();
+      return;
+    }
+    setProfileOpen(false);
+  };
 
   const activeItem = navigation.find((item) => isActive(pathname, item.href));
   const pageTitle = activeItem?.label ?? "Kopplas";
@@ -254,7 +280,7 @@ export function AppShell({
               `left-full` (outside the 64px rail), and a scroll container would clip it
               (CSS coerces overflow-x to auto). Scroll is only needed at lg (labels). */}
           <nav aria-label="Huvudnavigation" className="flex-1 px-2 py-4 lg:overflow-y-auto">
-            <NavLinks variant="sidebar" pathname={pathname} navigation={navigation} />
+            <NavLinks variant="sidebar" pathname={pathname} navigation={navigation} beforeNavigate={requestCalculationDeparture} />
           </nav>
         </aside>
 
@@ -296,11 +322,11 @@ export function AppShell({
                 attribute is preserved as the owning-module action mount point. */}
             <div data-slot="primary-action" className="relative flex w-full min-w-0 flex-wrap items-center gap-2 lg:w-auto lg:flex-nowrap">
               <div className="[&_button]:min-h-11 [&_button]:min-w-11 [&_button]:rounded-lg [&_button]:text-text-secondary [&_button]:focus-visible:outline-2 [&_button]:focus-visible:outline-offset-2 [&_button]:focus-visible:outline-ink [&_a]:flex [&_a]:min-h-11 [&_a]:min-w-11 [&_a]:items-center [&_a]:rounded-control [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-offset-2 [&_a]:focus-visible:outline-ink [&_[role=dialog]]:left-0 [&_[role=dialog]]:right-auto [&_[role=dialog]]:max-w-[calc(100vw-2rem)] lg:[&_[role=dialog]]:left-auto lg:[&_[role=dialog]]:right-0">
-                <NotificationBell />
+                <NotificationBell beforeNavigate={requestCalculationDeparture} />
               </div>
               <div>
                 <button type="button" aria-label="Profil" aria-expanded={profileOpen} onClick={() => setProfileOpen((current) => !current)} className="min-h-11 min-w-11 rounded-lg px-2 text-ds-13 text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Profil</button>
-                {profileOpen && <div className="absolute left-0 z-50 mt-2 w-56 max-w-[calc(100vw-2rem)] rounded-lg border border-border-default bg-page p-2 shadow lg:left-auto lg:right-0 [&_a]:flex [&_a]:min-h-11 [&_a]:items-center [&_a]:rounded-lg [&_a]:px-2 [&_a]:text-ds-13 [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-ink">{navigation.some(item => item.href === "/scheduling") && <Link href="/settings/calendar" onClick={() => setProfileOpen(false)}>Min kalender</Link>}<Link href="/settings/notifications" onClick={() => setProfileOpen(false)}>Notisinställningar</Link></div>}
+                {profileOpen && <div className="absolute left-0 z-50 mt-2 w-56 max-w-[calc(100vw-2rem)] rounded-lg border border-border-default bg-page p-2 shadow lg:left-auto lg:right-0 [&_a]:flex [&_a]:min-h-11 [&_a]:items-center [&_a]:rounded-lg [&_a]:px-2 [&_a]:text-ds-13 [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-ink">{navigation.some(item => item.href === "/scheduling") && <Link href="/settings/calendar" onClick={handleProfileNavigate}>Min kalender</Link>}<Link href="/settings/notifications" onClick={handleProfileNavigate}>Notisinställningar</Link></div>}
               </div>
               {(context.tenantName || context.userEmail) && (
                 <div className="order-last flex w-full min-w-0 flex-col leading-tight lg:order-none lg:w-auto lg:items-end">
@@ -332,6 +358,7 @@ export function AppShell({
 
           <main
             id="main-content"
+            ref={mainRef}
             tabIndex={-1}
             className="min-w-0 flex-1 overflow-y-auto p-4 focus:outline-none lg:p-6"
           >
@@ -384,7 +411,7 @@ export function AppShell({
               </button>
             </div>
             <nav aria-label="Huvudnavigation" className="min-h-0 flex-1 overflow-y-auto px-2 py-4">
-              <NavLinks variant="drawer" pathname={pathname} navigation={navigation} onNavigate={handleDrawerNavigate} />
+              <NavLinks variant="drawer" pathname={pathname} navigation={navigation} onNavigate={handleDrawerNavigate} beforeNavigate={requestCalculationDeparture} />
             </nav>
           </div>
         </div>
