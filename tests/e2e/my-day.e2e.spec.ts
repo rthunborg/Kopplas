@@ -130,6 +130,193 @@ async function rel22Capture(page: Page, info: TestInfo, state: string, anchor: L
   if (failed) throw first;
 }
 
+/** E02-only exact primary observation. Existing REL22 captures stay byte-for-byte intact.
+ * Computed flat-paint evidence is conditional; no raster/reference/acceptance claim.
+ */
+async function rel22E02SubmitCapture(page: Page, info: TestInfo, form: Locator,
+  owned: NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>>,
+  state: "e02-submit-enabled" | "e02-submit-keyboard-focus" | "e02-submit-held-pending", onFailure: (error: unknown) => void,
+  cleanupStage: (stage: string, run: () => Promise<unknown>, capMs?: number) => Promise<void>): Promise<void> {
+  if (process.env.E15_REL22_CAPTURE !== "1") return;
+  if (info.retry !== 0 && info.retry !== 1) throw new Error("REL22 E02 retry outside configured bound.");
+  const pending = state === "e02-submit-held-pending", keyboard = state === "e02-submit-keyboard-focus";
+  const label = pending ? "Sparar…" : "Rapportera tid";
+  const original = page.viewportSize();
+  if (!original) throw new Error("REL22 E02 fixed viewport unavailable.");
+  const saved = await owned.evaluateHandle(node => {
+    const ancestors: { node: Element; left: number; top: number }[] = [];
+    let cursor: Element | null = node;
+    while (cursor && ancestors.length < 32) {
+      ancestors.push({ node: cursor, left: cursor.scrollLeft, top: cursor.scrollTop });
+      cursor = cursor.parentElement;
+    }
+    if (cursor) throw new Error("REL22 E02 scroll ownership exceeds bound.");
+    return { focus: document.activeElement, ancestors, x: scrollX, y: scrollY };
+  });
+  let failed = false, first: unknown;
+  const retain = (error: unknown, stage: string) => {
+    if (!failed) { failed = true; first = error; onFailure(error); }
+    else info.annotations.push({ type: "rel22-e02-secondary", description: stage });
+  };
+  try {
+    for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 800 }]) {
+      await page.setViewportSize(viewport);
+      await expect(form.locator('button[type="submit"]')).toHaveCount(1);
+      const primary = form.getByRole("button", { name: label, exact: true });
+      await expect(primary).toHaveCount(1);
+      await expect(primary).toHaveText(label);
+      await expect(primary).toBeVisible();
+      expect(await primary.evaluate((node, originalNode) => node === originalNode && node.isConnected, owned)).toBe(true);
+      expect(await owned.evaluate(node => node instanceof HTMLButtonElement && node.disabled)).toBe(pending);
+      if (pending) await expect(form.getByRole("status")).toHaveText("Sparar…");
+      if (keyboard) {
+        // Establish a keyboard starting point, then prove the actual native Tab result.
+        await form.getByLabel("Anteckning", { exact: true }).focus();
+        await page.keyboard.press("Tab");
+        await expect(primary).toBeFocused();
+        expect(await owned.evaluate(node => node.matches(":focus-visible"))).toBe(true);
+      }
+      await owned.scrollIntoViewIfNeeded();
+      const sample = await owned.evaluate((node, expected) => {
+        type RGB = [number, number, number]; type RGBA = [number, number, number, number];
+        const rgba = (value: string): RGBA | null => {
+          const match = /^rgba?\(([\d.]+)[, ]+([\d.]+)[, ]+([\d.]+)(?:[, /]+([\d.]+))?\)$/.exec(value);
+          if (!match) return null;
+          const c = [Number(match[1]), Number(match[2]), Number(match[3]), match[4] === undefined ? 1 : Number(match[4])] as RGBA;
+          return c.every(Number.isFinite) && c.slice(0, 3).every(v => v >= 0 && v <= 255) && c[3] >= 0 && c[3] <= 1 ? c : null;
+        };
+        const over = (a: RGBA, b: RGB): RGB => [0, 1, 2].map(i => a[i]! * a[3] + b[i]! * (1 - a[3])) as RGB;
+        const luminance = (rgb: RGB) => rgb.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4)
+          .reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i]!, 0);
+        const numeric = (value: string) => { const result = Number.parseFloat(value); return Number.isFinite(result) ? result : null; };
+        const boxArray = (box: DOMRect) => [box.x, box.y, box.width, box.height].map(v => Math.round(v * 100) / 100);
+        const reasons = new Set<"identity" | "label-structure" | "text-paint" | "pseudo-content" | "color-syntax" | "compositing" |
+          "ancestor-bound" | "backdrop-unresolved" | "viewport-clipped" | "ancestor-clipped" | "occluded" | "rect-bound">();
+        const style = getComputedStyle(node), box = node.getBoundingClientRect();
+        const identity = node instanceof HTMLButtonElement && node.type === "submit" && node.isConnected;
+        if (!identity) reasons.add("identity");
+        const children = [...node.childNodes];
+        const directText = children.length === 1 && children[0]?.nodeType === Node.TEXT_NODE && node.childElementCount === 0;
+        const labelMatchesExpected = directText && children[0]?.textContent === expected;
+        if (!directText || !labelMatchesExpected) reasons.add("label-structure");
+        const range = document.createRange();
+        if (directText) range.selectNodeContents(node);
+        const allRects = directText ? [...range.getClientRects()] : [];
+        if (allRects.length === 0 || allRects.length > 8) reasons.add("rect-bound");
+        const rects = allRects.slice(0, 8);
+        const pseudoClear = (element: Element) => ["::before", "::after"].every(pseudo => {
+          const content = getComputedStyle(element, pseudo).content; return content === "none" || content === "normal";
+        });
+        const ownPseudoClear = pseudoClear(node);
+        const color = rgba(style.color), fillValue = style.getPropertyValue("-webkit-text-fill-color");
+        const fill = fillValue === "currentcolor" || fillValue === "currentColor" ? color : rgba(fillValue);
+        const textStrokePx = numeric(style.getPropertyValue("-webkit-text-stroke-width"));
+        const textPaintSupported = !!fill && style.textShadow === "none" && textStrokePx === 0 && style.textTransform === "none"
+          && style.getPropertyValue("background-clip") !== "text" && style.getPropertyValue("-webkit-background-clip") !== "text";
+        if (!textPaintSupported) reasons.add("text-paint");
+        const layers: RGBA[] = []; let cursor: Element | null = node, depth = 0, minOpacity = 1;
+        const frame = Math.max(0, numeric(style.outlineWidth) ?? 0) + Math.max(0, numeric(style.outlineOffset) ?? 0);
+        const focused = document.activeElement === node, focusVisible = node.matches(":focus-visible");
+        const margin = focused && focusVisible ? frame : 0;
+        const viewportContained = box.left - margin >= 0 && box.top - margin >= 0 && box.right + margin <= innerWidth && box.bottom + margin <= innerHeight
+          && rects.every(rect => rect.left >= 0 && rect.top >= 0 && rect.right <= innerWidth && rect.bottom <= innerHeight);
+        if (!viewportContained) reasons.add("viewport-clipped");
+        while (cursor && depth++ < 32) {
+          const backing = getComputedStyle(cursor), background = rgba(backing.backgroundColor), opacity = Number(backing.opacity);
+          minOpacity = Math.min(minOpacity, opacity);
+          if (!background) reasons.add("color-syntax"); else layers.push(background);
+          if (!Number.isFinite(opacity) || opacity !== 1 || backing.backgroundImage !== "none" || backing.filter !== "none"
+            || backing.getPropertyValue("backdrop-filter") !== "none" || backing.mixBlendMode !== "normal"
+            || backing.clipPath !== "none" || backing.getPropertyValue("mask-image") !== "none" || backing.transform !== "none") reasons.add("compositing");
+          if (!pseudoClear(cursor)) reasons.add("pseudo-content");
+          if (cursor !== node) {
+            const clip = cursor.getBoundingClientRect();
+            const clipsX = /^(hidden|clip|scroll|auto)$/.test(backing.overflowX), clipsY = /^(hidden|clip|scroll|auto)$/.test(backing.overflowY);
+            if ((clipsX && (box.left - margin < clip.left || box.right + margin > clip.right))
+              || (clipsY && (box.top - margin < clip.top || box.bottom + margin > clip.bottom))) reasons.add("ancestor-clipped");
+          }
+          cursor = cursor.parentElement;
+        }
+        if (cursor) reasons.add("ancestor-bound");
+        if (!ownPseudoClear) reasons.add("pseudo-content");
+        // Bounded hit tests qualify the CSS association; they do not certify raster glyphs.
+        const hitBoxes = [box, ...rects];
+        for (const rect of hitBoxes) {
+          for (const [fx, fy] of [[.1, .1], [.9, .1], [.5, .5], [.1, .9], [.9, .9]]) {
+            const hit = document.elementFromPoint(rect.left + rect.width * fx!, rect.top + rect.height * fy!);
+            if (hit !== node && (!hit || !node.contains(hit))) reasons.add("occluded");
+          }
+        }
+        let background: RGB | null = null;
+        for (const layer of layers.reverse()) {
+          if (layer[3] === 1) background = layer.slice(0, 3) as RGB;
+          else if (background) background = over(layer, background);
+          else if (layer[3] !== 0) reasons.add("backdrop-unresolved");
+        }
+        if (!background) reasons.add("backdrop-unresolved");
+        const supported = reasons.size === 0 && fill !== null && background !== null;
+        const rendered = supported ? over(fill!, background!) : null;
+        const a = rendered ? luminance(rendered) : 0, b = supported ? luminance(background!) : 0;
+        const ratio = supported ? Number(((Math.max(a, b) + .05) / (Math.min(a, b) + .05)).toFixed(6)) : null;
+        const outlineStyle = ["none", "solid", "dashed", "dotted", "double"].includes(style.outlineStyle) ? style.outlineStyle : "other";
+        return { alias: "e02-primary-submit", sameControlIdentity: identity, typeSubmit: identity, labelMatchesExpected,
+          nativeDisabled: node instanceof HTMLButtonElement && node.disabled, focused, matchesFocusVisible: focusVisible,
+          visible: box.width > 0 && box.height > 0 && style.visibility === "visible" && style.display !== "none",
+          directTextSupported: directText, pseudoSupported: ownPseudoClear, textFillSupported: textPaintSupported,
+          foreground: color, textFill: fill, background: supported ? background : null, renderedForeground: rendered,
+          contrastRatio: ratio, conditionalTextThresholdMet: ratio === null ? null : ratio >= 4.5,
+          fontPx: numeric(style.fontSize), fontWeight: numeric(style.fontWeight), interFamilyPresent: /\bInter\b/.test(style.fontFamily),
+          ownOpacity: numeric(style.opacity), minimumAncestorOpacity: Number.isFinite(minOpacity) ? minOpacity : null,
+          textStrokePx, minHeightPx: numeric(style.minHeight), radiusPx: numeric(style.borderTopLeftRadius),
+          outline: { style: outlineStyle, color: rgba(style.outlineColor), widthPx: numeric(style.outlineWidth), offsetPx: numeric(style.outlineOffset),
+            boundaryContrastRatio: null, availability: "UNKNOWN", reason: "outer-backing-unqualified" },
+          bounds: boxArray(box), textRects: rects.map(boxArray), viewportContained,
+          availability: supported ? "conditional-flat-composite" : "UNKNOWN", reasons: [...reasons],
+          clippingAndOcclusion: "bounded-css-and-hit-test-association", rasterGlyphPaint: "unassessed" };
+      }, label);
+      expect(sample.sameControlIdentity && sample.typeSubmit && sample.labelMatchesExpected && sample.visible).toBe(true);
+      expect(sample.nativeDisabled).toBe(pending);
+      if (keyboard) expect(sample.focused && sample.matchesFocusVisible).toBe(true);
+      const stem = `rel22-${state}-${viewport.width}x${viewport.height}`;
+      const metadata = Buffer.from(JSON.stringify({ schemaVersion: 1, evidence: "preliminary-exact-submit", state, viewport, retry: info.retry,
+        method: "sRGB-relative-luminance/alpha-over-flat-opaque-ancestors", acceptance: "unassessed", sample }), "utf8");
+      if (metadata.length > 32768) throw new Error("REL22 E02 exact-submit record exceeds bound.");
+      const png = await page.screenshot({ fullPage: false, scale: "css" });
+      if (png.length > 4 * 1024 * 1024) throw new Error("REL22 E02 original PNG exceeds retained bound.");
+      await info.attach(stem, { body: png, contentType: "image/png" });
+      await info.attach(stem + "-submit-measurement", { body: metadata, contentType: "application/json" });
+    }
+  } catch (error) { retain(error, "observation"); }
+  finally {
+    // Four independent stages share at most the existing 15s operation allowance.
+    // A deadline classifies an unsettled operation; it never cancels or closes it.
+    const stageCap = 15000 / 4;
+    try { await cleanupStage("viewport-restore", () => page.setViewportSize(original), stageCap); } catch (error) { retain(error, "viewport-restore"); }
+    try { await cleanupStage("focus-restore", () => saved.evaluate((snapshot, disabled) => {
+      const focus = snapshot.focus;
+      if (!(focus instanceof HTMLElement) || !focus.isConnected) throw new Error("REL22 E02 focus restoration unavailable.");
+      if (document.activeElement !== focus) {
+        if (disabled || focus.matches(":disabled")) throw new Error("REL22 E02 pending focus restoration unqualified.");
+        focus.focus({ preventScroll: true });
+      }
+      if (document.activeElement !== focus) throw new Error("REL22 E02 focus restoration unverified.");
+    }, pending), stageCap); } catch (error) { retain(error, "focus-restore"); }
+    try { await cleanupStage("scroll-restore", () => saved.evaluate(snapshot => {
+      for (const entry of snapshot.ancestors) {
+        if (!entry.node.isConnected) throw new Error("REL22 E02 scroll restoration unavailable.");
+        entry.node.scrollLeft = entry.left; entry.node.scrollTop = entry.top;
+      }
+      window.scrollTo(snapshot.x, snapshot.y);
+      if (window.scrollX !== snapshot.x || window.scrollY !== snapshot.y
+        || snapshot.ancestors.some(entry => entry.node.scrollLeft !== entry.left || entry.node.scrollTop !== entry.top)) {
+        throw new Error("REL22 E02 scroll restoration unverified.");
+      }
+    }), stageCap); } catch (error) { retain(error, "scroll-restore"); }
+    try { await cleanupStage("snapshot-dispose", () => saved.dispose(), stageCap); } catch (error) { retain(error, "snapshot-dispose"); }
+  }
+  if (failed) throw first;
+}
+
 type MyDayFixture = TimeReportBrowserFixture & { jobless: string; shared: string; allDay: string; facilityId: string; address: string };
 /** Only fresh factory-owned tenants/rows. Outer fixture owns report/audit/job
  * cleanup; this local extension owns its three bookings, facility and notifications.
@@ -269,6 +456,8 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
   });
 
   test("[P0] 15.6-E02 exact inline prefill, unknown committed response, frozen same attempt and one durable own report", async ({ resourcePage: page }, testInfo) => {
+    // E02-body elapsed bound only; fixture time may precede this callback clock.
+    const captureStarted = process.env.E15_REL22_CAPTURE === "1" ? performance.now() : undefined;
     await withMyDayFixture(async f => {
       await page.setViewportSize({ width: 360, height: 640 });
       const reportBooking = jobsActive ? f.ownBooking : f.jobless;
@@ -284,8 +473,60 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       void commit.catch(() => undefined);
       // playwright-utils deviation: dependency absent; real action fetch commits,
       // SQL proves it, then abort loses only the response. No fulfilled fake success.
-      const handler = async (route: Route) => {
-        if (!isFiling(route.request(), f.marker)) { await route.fallback(); return; }
+      const observation = captureStarted === undefined ? undefined : (() => {
+        const entered = barrier<void>(), release = barrier<void>(), failure = barrier<never>();
+        let failed = false, first: unknown;
+        const retain = (error: unknown, stage: string) => {
+          release.resolve(undefined); // Every failure, including a deadline, releases the same owned gate.
+          if (!failed) { failed = true; first = error; failure.reject(error); }
+          else testInfo.annotations.push({ type: "rel22-e02-secondary", description: stage });
+        };
+        const within = async <T,>(work: Promise<T>, stage: string, capMs = 15000): Promise<T> => {
+          // Observe rejection immediately; an eventual failure remains consequential after a deadline.
+          void work.catch(error => retain(error, stage));
+          const ms = Math.min(15000, capMs, testInfo.timeout - (performance.now() - captureStarted));
+          let timer: ReturnType<typeof setTimeout> | undefined;
+          try {
+            if (ms <= 0) throw new Error("REL22 E02 body operation budget exhausted.");
+            return await Promise.race([work, new Promise<never>((_, reject) => {
+              timer = setTimeout(() => {
+                const error = new Error("REL22 E02 bounded operation did not settle.");
+                retain(error, stage); reject(error);
+              }, ms);
+            })]);
+          } catch (error) { retain(error, stage); throw error; }
+          finally { if (timer !== undefined) clearTimeout(timer); }
+        };
+        const cleanupWork = new Set<{ stage: string; run: () => Promise<unknown>; work?: Promise<unknown>;
+          settlement: "pending" | "fulfilled" | "rejected" }>();
+        const cleanupStage = async (stage: string, run: () => Promise<unknown>, capMs = 15000): Promise<void> => {
+          // Keep the owned closure/handle and native promise until actual fulfillment.
+          // Rejection or a deadline preserves truthful failed/unsettled custody.
+          const custody: { stage: string; run: () => Promise<unknown>; work?: Promise<unknown>;
+            settlement: "pending" | "fulfilled" | "rejected" } = { stage, run, settlement: "pending" };
+          cleanupWork.add(custody);
+          try {
+            custody.work = run(); // Invoke every later stage even if the body budget is exhausted.
+            void custody.work.then(() => { custody.settlement = "fulfilled"; cleanupWork.delete(custody); }, error => {
+              custody.settlement = "rejected"; retain(error, stage);
+            });
+            await within(custody.work, stage, capMs);
+          } catch (error) {
+            if (!custody.work) custody.settlement = "rejected";
+            retain(error, stage);
+            testInfo.annotations.push({ type: "rel22-e02-cleanup-custody", description: `${stage}:${custody.settlement}` });
+            throw error;
+          }
+        };
+        return { entered, release, failure, retain, within, cleanupStage, cleanupWork, work: new Set<Promise<void>>(),
+          activation: undefined as Promise<void> | undefined, capture: undefined as Promise<void> | undefined,
+          control: undefined as NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>> | undefined,
+          outcome: () => ({ failed, first }) };
+      })();
+      if (observation) void commit.catch(error => observation.retain(error, "commit"));
+      const handler = (route: Route) => {
+        if (!isFiling(route.request(), f.marker)) return route.fallback();
+        const work = (async () => {
         try {
           attempts.push(filingAttempt(route.request()));
           if (attempts.length !== 1) { expect(attempts.at(-1)).toEqual(attempts[0]); await route.continue(); return; }
@@ -299,9 +540,24 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
           expect(state.reports.length - before.reports.length).toBe(1);
           expect(state.audit.filter(row => row.target_id === rows[0].id)).toHaveLength(1);
           expect(state.audit.length - before.audit.length).toBe(1);
+          let holdFailed = false, holdError: unknown;
+          if (observation) {
+            observation.entered.resolve(undefined);
+            try { await observation.within(observation.release.promise, "hold-release"); }
+            catch (error) { holdFailed = true; holdError = error; }
+          }
           await route.abort("failed");
           committed(state);
+          if (holdFailed) throw holdError;
         } catch (error) { rejectCommit(error); throw error; }
+        })();
+        if (observation) {
+          observation.work.add(work);
+          void work.then(() => observation.work.delete(work), error => {
+            observation.work.delete(work); observation.retain(error, "owned-handler");
+          });
+        }
+        return work;
       };
       await page.route("**/*", handler); // Installed before navigation/submit.
       try {
@@ -315,8 +571,34 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         await expect(form.getByLabel("Jobb", { exact: true })).toHaveValue(reportJob ?? "");
         await form.getByLabel("Anteckning", { exact: true }).fill(f.marker);
         await rel22Capture(page, testInfo, "e02-prefilled-draft", form);
-        await keyboardActivate(page, form.getByRole("button", { name: "Rapportera tid", exact: true }));
-        const durable = await commit;
+        if (observation) {
+          const primary = form.locator('button[type="submit"]');
+          await expect(primary).toHaveCount(1);
+          observation.control = await primary.elementHandle() ?? undefined;
+          if (!observation.control) throw new Error("REL22 E02 primary control unavailable.");
+          observation.capture = rel22E02SubmitCapture(page, testInfo, form, observation.control, "e02-submit-enabled", error => observation.retain(error, "exact-control-observer"), observation.cleanupStage);
+          await observation.within(observation.capture, "enabled-observation");
+          observation.capture = rel22E02SubmitCapture(page, testInfo, form, observation.control, "e02-submit-keyboard-focus", error => observation.retain(error, "exact-control-observer"), observation.cleanupStage);
+          await observation.within(observation.capture, "keyboard-observation");
+          expect(page.viewportSize()).toEqual({ width: 360, height: 640 });
+          const action = form.getByRole("button", { name: "Rapportera tid", exact: true });
+          expect(await action.evaluate((node, originalNode) => node === originalNode, observation.control)).toBe(true);
+          await expect(action).toBeEnabled();
+          // Start the original single activation, but never let its auto-wait admit the hold.
+          observation.activation = keyboardActivate(page, action);
+          void observation.activation.catch(error => observation.retain(error, "activation"));
+          await observation.within(Promise.race([observation.entered.promise, observation.failure.promise]), "hold-entry");
+          try {
+            expect(attempts).toHaveLength(1);
+            observation.capture = rel22E02SubmitCapture(page, testInfo, form, observation.control, "e02-submit-held-pending", error => observation.retain(error, "exact-control-observer"), observation.cleanupStage);
+            await observation.within(observation.capture, "pending-observation");
+            expect(page.viewportSize()).toEqual({ width: 360, height: 640 });
+          } finally { observation.release.resolve(undefined); }
+          await observation.within(observation.activation, "activation-settlement");
+        } else {
+          await keyboardActivate(page, form.getByRole("button", { name: "Rapportera tid", exact: true }));
+        }
+        const durable = observation ? await observation.within(commit, "commit-settlement") : await commit;
         await expect(form.getByText("Osänd", { exact: true })).toBeVisible();
         await expect(form.getByTestId("time-report-submit-status")).toHaveCount(0);
         await expect(form.getByLabel("Anteckning", { exact: true })).toHaveValue(f.marker);
@@ -344,7 +626,28 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         expect(await f.snapshot()).toEqual(durable);
         await page.reload();
         expect(await f.snapshot()).toEqual(durable); // Reload must not refile.
-      } finally { await page.unroute("**/*", handler); }
+      } catch (error) {
+        if (!observation) throw error;
+        observation.retain(error, "journey");
+      } finally {
+        if (observation) {
+          observation.release.resolve(undefined);
+          const cleanup = async (stage: string, run: () => Promise<unknown>) => {
+            try { await observation.cleanupStage(stage, run); } catch (error) { observation.retain(error, stage); }
+          };
+          // Classify every actually-started owned operation before unroute/fixture cleanup.
+          // A timed-out drain is failure/unknown custody, never evidence of settlement.
+          if (observation.capture) await cleanup("capture-drain", () => observation.capture!);
+          for (const work of [...observation.work]) await cleanup("handler-drain", () => work);
+          if (observation.activation) await cleanup("activation-drain", () => observation.activation!);
+          await cleanup("owned-unroute", () => page.unroute("**/*", handler));
+          if (observation.control) await cleanup("control-dispose", () => observation.control!.dispose());
+          // Preserve pending/rejected cleanup closures and capture/activation/control references.
+          // A deadline alone never proves settlement, disposal or closed custody.
+        } else { await page.unroute("**/*", handler); }
+      }
+      const result = observation?.outcome();
+      if (result?.failed) throw result.first;
     });
   });
 
