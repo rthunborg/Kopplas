@@ -1516,7 +1516,14 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
       });
       await open.click();
       const preview = page.getByTestId("pre-quote-preview").filter({ visible: true });
+      await expect(preview).toBeVisible();
+      const openedDigest = await preview.locator('input[name="reviewed_snapshot_digest"]').inputValue();
+      expect(openedDigest).not.toBe("");
+      await expect(preview.getByTestId("preview-sections")).toContainText("Granskning Åsby");
       await expect(preview.locator("form")).toHaveAttribute("data-editor-ready", "true");
+      await expect(preview).toBeVisible();
+      await expect(preview.locator('input[name="reviewed_snapshot_digest"]')).toHaveValue(openedDigest);
+      await expect(preview.getByTestId("preview-sections")).toContainText("Granskning Åsby");
       const digest = await preview.locator('input[name="reviewed_snapshot_digest"]').inputValue();
       expect(digest).not.toBe("");
       await capture(page, info, "pre-quote-preview", "reviewed", calculation.url.split("/").at(-1)!, preview.getByTestId("preview-sections"), async () => {

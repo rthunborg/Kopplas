@@ -97,11 +97,19 @@ export function PreQuotePreview({
   const router = useRouter();
   const attemptedDestination = useRef<string | null>(null);
   const quoteOperation = useEditorOperation(createReviewedQuoteVersionFromCalculationAction, CREATE_QUOTE_ACTION_INITIAL, `${detail.header.id}/reviewed-initial-quote`, form => ({ version: 1, form: "reviewed-initial-quote", reviewed_snapshot_digest: form.get("reviewed_snapshot_digest"), reviewed_quote_capture_date: form.get("reviewed_quote_capture_date"), attachment_file_ids: form.getAll("attachment_file_ids") }));
-  const [hydratedGeneration, setHydratedGeneration] = useState("");
-  if (quoteOperation.hydrationKey !== hydratedGeneration) {
-    setHydratedGeneration(quoteOperation.hydrationKey);
-    setOpen(Boolean(quoteOperation.restored));
-    setReviewedProof(quoteOperation.restored ? { digest: quoteOperation.draftValue("reviewed_snapshot_digest", ""), quoteCaptureDate: quoteOperation.draftValue("reviewed_quote_capture_date", "") } : null);
+  const [hydrated, setHydrated] = useState({ key: "", scope: "", ready: false });
+  // The key's prefix binds actor/tenant/authentication epoch/form; its final
+  // fields are readiness and writer generation. A fresh ready result in the
+  // same scope must preserve a preview the user already opened for review.
+  const hydrationScope = quoteOperation.hydrationKey.replace(/\/(?:true|false)\/\d+$/, "");
+  if (quoteOperation.hydrationKey !== hydrated.key) {
+    const preserveCurrentReview = quoteOperation.ready && !quoteOperation.restored &&
+      !hydrated.ready && hydrated.scope === hydrationScope;
+    setHydrated({ key: quoteOperation.hydrationKey, scope: hydrationScope, ready: quoteOperation.ready });
+    if (!preserveCurrentReview) {
+      setOpen(Boolean(quoteOperation.restored));
+      setReviewedProof(quoteOperation.restored ? { digest: quoteOperation.draftValue("reviewed_snapshot_digest", ""), quoteCaptureDate: quoteOperation.draftValue("reviewed_quote_capture_date", "") } : null);
+    }
   }
   const [createState, createAction, createPending] = [quoteOperation.state, quoteOperation.action, quoteOperation.pending];
   useEffect(() => {
