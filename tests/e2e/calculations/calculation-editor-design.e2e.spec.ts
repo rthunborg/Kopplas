@@ -194,7 +194,8 @@ async function postedFields(request: BrowserRequest) {
 
 /** Hold or lose only the response to one REAL server mutation. Every allocated
  * route/promise has bounded cleanup, including failure before release. */
-async function interceptedWrite(page: Page, pattern: string, lose = false) {
+async function interceptedWrite(page: Page, pattern: string, lose = false, cleanupMark?: (phase: string) => void) {
+  const mark = (phase: string) => { try { cleanupMark?.(phase); } catch { /* Keep the original route/cleanup outcome. */ } };
   let intercepted = false, release!: () => void, complete!: () => void, fail!: (error: unknown) => void;
   const released = new Promise<void>(resolve => { release = resolve; });
   const completed = new Promise<void>((resolve, reject) => { complete = resolve; fail = reject; });
@@ -216,9 +217,15 @@ async function interceptedWrite(page: Page, pattern: string, lose = false) {
   return {
     ready: () => upstreamDone, completed, release,
     async remove() {
+      mark("REMOVE_HOLD_RELEASE_BEGIN");
       release();
+      mark("REMOVE_HOLD_RELEASE_RETURNED");
       try { if (intercepted) await completed; }
-      finally { await page.unroute(pattern, handler); }
+      finally {
+        mark("UNROUTE_BEGIN");
+        try { await page.unroute(pattern, handler); mark("UNROUTE_END"); }
+        catch (error) { mark("UNROUTE_FAILED"); throw error; }
+      }
     },
   };
 }
@@ -230,28 +237,57 @@ async function finishNativeRetention(input: {
   removeHold: () => Promise<void>; closeObserver: () => Promise<void>;
   readEvents: () => Promise<unknown>; removeEvents: () => Promise<unknown>; disposeEvents: () => Promise<void>;
   attach: (value: unknown) => Promise<void>; priorFailure: unknown;
+  cleanupRelease?: ReturnType<typeof observeCleanupRelease>;
 }): Promise<void> {
   const failures: unknown[] = [];
-  for (const stop of [input.release, input.stopPrompts, input.stopWrites]) {
-    try { stop(); } catch (error) { failures.push(error); }
+  const mark = (phase: string) => { try { input.cleanupRelease?.mark(phase); } catch { /* Observation cannot block cleanup. */ } };
+  for (const [index, stop] of [input.release, input.stopPrompts, input.stopWrites].entries()) {
+    if (index === 0) mark("RELEASE_BEGIN");
+    try { stop(); if (index === 0) mark("RELEASE_RETURNED"); }
+    catch (error) { failures.push(error); if (index === 0) mark("RELEASE_FAILED"); }
+  }
+  if (input.cleanupRelease) {
+    const abort = new AbortController();
+    mark("SAMPLING_BEGIN");
+    try {
+      const sampled = await boundedDestinationObservation(() => input.cleanupRelease!.sample(abort.signal), input.cleanupRelease.budget());
+      mark(sampled.state === "AVAILABLE" ? "SAMPLING_END" : sampled.state === "DEADLINE" ? "SAMPLING_DEADLINE" : "SAMPLING_UNAVAILABLE");
+    } catch { mark("SAMPLING_UNAVAILABLE"); }
+    finally { abort.abort(); }
   }
   const unavailable = (error: unknown) => /Execution context was destroyed|Cannot find context|JSHandle is disposed|Target page, context or browser has been closed/i.test(String(error));
   const witness = async () => {
     let observed: unknown;
+    if (input.cleanupRelease) {
+      try { await input.cleanupRelease.checkpoint(); } catch { failures.push(new Error("Cleanup release checkpoint unavailable")); }
+    }
+    mark("WITNESS_READ_BEGIN");
     try { observed = await input.readEvents(); }
     catch (error) {
       observed = { qualification: "OPEN", witness: "unavailable", category: unavailable(error) ? "document-context-unavailable" : "witness-read-failed" };
       if (!unavailable(error)) failures.push(error);
     }
+    mark("WITNESS_READ_END");
     try { await input.attach(observed); } catch (error) { failures.push(error); }
-    try { await input.removeEvents(); } catch (error) { if (!unavailable(error)) failures.push(error); }
-    finally { try { await input.disposeEvents(); } catch (error) { if (!unavailable(error)) failures.push(error); } }
+    mark("WITNESS_REMOVE_BEGIN");
+    try { await input.removeEvents(); mark("WITNESS_REMOVE_END"); } catch (error) { mark("WITNESS_REMOVE_FAILED"); if (!unavailable(error)) failures.push(error); }
+    finally {
+      mark("WITNESS_DISPOSE_BEGIN");
+      try { await input.disposeEvents(); mark("WITNESS_DISPOSE_END"); } catch (error) { mark("WITNESS_DISPOSE_FAILED"); if (!unavailable(error)) failures.push(error); }
+    }
+  };
+  const cleanupStep = async (phase: "REMOVE_HOLD" | "CLOSE_OBSERVER", run: () => Promise<void>) => {
+    mark(`${phase}_BEGIN`);
+    try { await run(); mark(`${phase}_END`); } catch (error) { mark(`${phase}_FAILED`); throw error; }
   };
   // Start each cleanup independently, including synchronous throws from a seam.
   const settled = await Promise.allSettled([
-    Promise.resolve().then(input.removeHold), Promise.resolve().then(input.closeObserver), Promise.resolve().then(witness),
+    Promise.resolve().then(() => cleanupStep("REMOVE_HOLD", input.removeHold)), Promise.resolve().then(() => cleanupStep("CLOSE_OBSERVER", input.closeObserver)), Promise.resolve().then(witness),
   ]);
   for (const result of settled) if (result.status === "rejected") failures.push(result.reason);
+  if (input.cleanupRelease) {
+    try { await input.cleanupRelease.finish(); } catch { failures.push(new Error("Cleanup release observation unavailable")); }
+  }
   if (failures.length && input.priorFailure === undefined) throw new AggregateError(failures, "Native retention cleanup failed");
   if (failures.length && input.priorFailure !== undefined) {
     // Retain the primary qualification/assertion failure, with cleanup facts separately.
@@ -375,6 +411,13 @@ async function passiveNativeTraversal(page: Page, observeDestination = false) {
       if (result.exceptionDetails) throw new Error("Destination passive observation unavailable");
       return result.result.value as unknown;
     },
+    async cleanupDestination(expected: { key: string; index: number; url: string }) {
+      const result = await session.send("Runtime.callFunctionOn", { objectId, userGesture: false, returnByValue: true,
+        functionDeclaration: "function(expected) { const value = this.read('back', true); return { targetUnchanged: value.natural.current.key === expected.key && value.natural.current.index === expected.index && value.natural.current.url === expected.url && value.natural.url === expected.url, destination: value.destination }; }",
+        arguments: [{ value: expected }] });
+      if (result.exceptionDetails) throw new Error("Cleanup passive observation unavailable");
+      return result.result.value as { targetUnchanged?: unknown; destination?: unknown };
+    },
     async remove() {
       const result = await session.send("Runtime.callFunctionOn", { objectId, userGesture: false, returnByValue: true, functionDeclaration: "function() { this.remove(); return true; }" });
       if (result.exceptionDetails || result.result.value !== true) throw new Error("Native passive observation removal failed");
@@ -465,12 +508,13 @@ function observeHeldSaveDestination(page: Page, input: {
 
 /** Independent capture bounds occur only AFTER the unchanged visibility
  * assertion settles. Pending RSC/save work is sampled, never awaited. */
-async function boundedDestinationObservation<T>(run: () => Promise<T>) {
+async function boundedDestinationObservation<T>(run: () => Promise<T>, ceiling = 250) {
+  if (ceiling <= 0) return { state: "DEADLINE" as const };
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     return await Promise.race([
       Promise.resolve().then(run).then(value => ({ state: "AVAILABLE" as const, value }), () => ({ state: "UNAVAILABLE" as const })),
-      new Promise<{ state: "DEADLINE" }>(resolve => { timer = setTimeout(() => resolve({ state: "DEADLINE" }), 250); }),
+      new Promise<{ state: "DEADLINE" }>(resolve => { timer = setTimeout(() => resolve({ state: "DEADLINE" }), ceiling); }),
     ]);
   } finally { if (timer) clearTimeout(timer); }
 }
@@ -478,13 +522,15 @@ async function boundedDestinationObservation<T>(run: () => Promise<T>) {
 async function heldSaveDestinationVisibility(input: {
   visible: () => Promise<void>; observation: Pick<Awaited<ReturnType<typeof passiveNativeTraversal>>, "latestDestination" | "destination">;
   requests: ReturnType<typeof observeHeldSaveDestination>; attach: (report: unknown) => Promise<void>;
+  failed?: (error: unknown) => void;
+  observed?: (sample: ReturnType<typeof destinationSurfaceProjection>, capture: "AVAILABLE" | "UNAVAILABLE" | "DEADLINE") => void;
 }) {
   let beforeVisibility = destinationSurfaceProjection(null);
   try { beforeVisibility = destinationSurfaceProjection(input.observation.latestDestination()); } catch { /* The original assertion still runs. */ }
   let assertionFailed = false;
   const reasonCodes: string[] = [];
   try { await input.visible(); }
-  catch (error) { assertionFailed = true; throw error; }
+  catch (error) { assertionFailed = true; try { input.failed?.(error); } catch { /* Retain the original exception. */ } throw error; }
   finally {
     try {
       // Freeze Node facts before any capture await or the existing mutation cleanup.
@@ -492,6 +538,7 @@ async function heldSaveDestinationVisibility(input: {
       const network = input.requests.snapshot();
       const after = await boundedDestinationObservation(input.observation.destination);
       const afterVisibility = destinationSurfaceProjection(after.state === "AVAILABLE" ? after.value : null);
+      input.observed?.(afterVisibility, after.state);
       if (beforeVisibility.state !== "AVAILABLE") reasonCodes.push("BEFORE_SURFACE_UNAVAILABLE");
       if (afterVisibility.state !== "AVAILABLE") reasonCodes.push("AFTER_SURFACE_UNAVAILABLE");
       if (after.state === "UNAVAILABLE") reasonCodes.push("SNAPSHOT_UNAVAILABLE");
@@ -508,6 +555,150 @@ async function heldSaveDestinationVisibility(input: {
     } catch { reasonCodes.push("OBSERVER_FINALIZATION_UNAVAILABLE"); }
   }
   return { category: reasonCodes.length ? "EVIDENCE_INCOMPLETE" as const : "COMPLETE" as const, reasonCodes };
+}
+
+/** Cleanup-only discriminator. The route's fulfill ACK, the exact browser
+ * Response.finished and native Request terminal remain three separate facts. */
+function observeCleanupRelease(input: {
+  page: Page; request: BrowserRequest; fulfilled: Promise<void>; initialTerminal: string;
+  remaining: () => number; primaryPreserved: () => boolean;
+  baseline: () => { surface: ReturnType<typeof destinationSurfaceProjection>; capture: string; held: boolean } | undefined;
+  passive: () => Promise<{ targetUnchanged?: unknown; destination?: unknown }>;
+  attach: (phase: "BEFORE_WITNESS_TEARDOWN" | "AFTER_CLEANUP", report: unknown) => Promise<void>;
+}) {
+  const allowed = new Set([
+    "WATCH_STARTED", "BROWSER_RESPONSE_MATCHED", "BROWSER_RESPONSE_NULL", "BROWSER_RESPONSE_MISMATCH", "BROWSER_RESPONSE_REJECTED",
+    "BROWSER_FINISHED", "BROWSER_FINISHED_ERROR", "BROWSER_FINISHED_REJECTED", "REQUEST_FINISHED", "REQUEST_FAILED", "REQUEST_TERMINAL_CONFLICT",
+    "FULFILL_ACK_FULFILLED", "FULFILL_ACK_REJECTED", "RELEASE_BEGIN", "RELEASE_RETURNED", "RELEASE_FAILED",
+    "SAMPLING_BEGIN", "SAMPLING_END", "SAMPLING_DEADLINE", "SAMPLING_UNAVAILABLE", "SAMPLE_ISSUED", "SAMPLE_RETURNED", "SAMPLE_UNAVAILABLE",
+    "REMOVE_HOLD_BEGIN", "REMOVE_HOLD_END", "REMOVE_HOLD_FAILED", "REMOVE_HOLD_RELEASE_BEGIN", "REMOVE_HOLD_RELEASE_RETURNED",
+    "UNROUTE_BEGIN", "UNROUTE_END", "UNROUTE_FAILED", "CLOSE_OBSERVER_BEGIN", "CLOSE_OBSERVER_END", "CLOSE_OBSERVER_FAILED",
+    "WITNESS_READ_BEGIN", "WITNESS_READ_END", "WITNESS_REMOVE_BEGIN", "WITNESS_REMOVE_END", "WITNESS_REMOVE_FAILED",
+    "WITNESS_DISPOSE_BEGIN", "WITNESS_DISPOSE_END", "WITNESS_DISPOSE_FAILED", "REPORT_FROZEN",
+  ]);
+  const events: { order: number; event: string }[] = [];
+  const samples: { issued: number; returned: number; targetUnchanged: boolean | null; surface: ReturnType<typeof destinationSurfaceProjection> }[] = [];
+  const pending = new Set<string>();
+  let order = 0, unavailable = false, saturated = false, closed = false, releaseOrder: number | undefined, browserFinishedOrder: number | undefined, requestFinishedOrder: number | undefined;
+  let fulfillAck: "PENDING" | "FULFILLED" | "REJECTED" = "PENDING";
+  let browserResponse: "PENDING" | "MATCHED" | "NULL" | "MISMATCH" | "REJECTED" = "PENDING";
+  let browserFinished: "NOT_STARTED" | "PENDING" | "FINISHED" | "RETURNED_ERROR" | "REJECTED" = "NOT_STARTED";
+  let nativeTerminal: "PENDING" | "FINISHED" | "FAILED" | "CONFLICT" | "UNAVAILABLE" = input.initialTerminal === "PENDING" ? "PENDING" : "UNAVAILABLE";
+  let finishRun: Promise<void> | undefined, checkpointRun: Promise<void> | undefined, samplingPending = false;
+  const mark = (event: string) => {
+    if (closed) return order;
+    if (!allowed.has(event)) { unavailable = true; return order; }
+    if (events.length === 64) { saturated = true; return order; }
+    events.push({ order: ++order, event });
+    if (event === "RELEASE_RETURNED") releaseOrder = order;
+    return order;
+  };
+  const safe = (run: () => void) => { if (!closed) try { run(); } catch { unavailable = true; } };
+  const track = <T,>(alias: string, start: () => Promise<T>, yes: (value: T) => void, no: () => void) => {
+    pending.add(alias);
+    void Promise.resolve().then(start).then(value => { pending.delete(alias); safe(() => yes(value)); }, () => { pending.delete(alias); safe(no); });
+  };
+  const terminal = (request: BrowserRequest, value: "FINISHED" | "FAILED") => safe(() => {
+    if (request !== input.request) return;
+    nativeTerminal = nativeTerminal === "PENDING" ? value : "CONFLICT";
+    const settled = mark(nativeTerminal === "CONFLICT" ? "REQUEST_TERMINAL_CONFLICT" : value === "FINISHED" ? "REQUEST_FINISHED" : "REQUEST_FAILED");
+    if (nativeTerminal === "FINISHED") requestFinishedOrder = settled;
+  });
+  const finished = (request: BrowserRequest) => terminal(request, "FINISHED");
+  const failed = (request: BrowserRequest) => terminal(request, "FAILED");
+  safe(() => { input.page.on("requestfinished", finished); }); safe(() => { input.page.on("requestfailed", failed); });
+  mark("WATCH_STARTED");
+  track("FULFILL_ACK", () => input.fulfilled, () => { fulfillAck = "FULFILLED"; mark("FULFILL_ACK_FULFILLED"); }, () => { fulfillAck = "REJECTED"; mark("FULFILL_ACK_REJECTED"); });
+  track("BROWSER_RESPONSE", () => input.request.response(), response => {
+    if (!response) { browserResponse = "NULL"; mark("BROWSER_RESPONSE_NULL"); return; }
+    if (response.request() !== input.request) { browserResponse = "MISMATCH"; mark("BROWSER_RESPONSE_MISMATCH"); return; }
+    browserResponse = "MATCHED"; mark("BROWSER_RESPONSE_MATCHED"); browserFinished = "PENDING";
+    track("BROWSER_FINISHED", () => response.finished(), result => {
+      browserFinished = result === null ? "FINISHED" : "RETURNED_ERROR";
+      const settled = mark(result === null ? "BROWSER_FINISHED" : "BROWSER_FINISHED_ERROR");
+      if (result === null) browserFinishedOrder = settled;
+    }, () => { browserFinished = "REJECTED"; mark("BROWSER_FINISHED_REJECTED"); });
+  }, () => { browserResponse = "REJECTED"; mark("BROWSER_RESPONSE_REJECTED"); });
+  const stop = () => {
+    if (closed) return;
+    try { input.page.off("requestfinished", finished); } catch { unavailable = true; }
+    try { input.page.off("requestfailed", failed); } catch { unavailable = true; }
+    closed = true;
+  };
+  const snapshot = (phase: "BEFORE_WITNESS_TEARDOWN" | "AFTER_CLEANUP") => {
+    const baseline = input.baseline();
+    const primaryPreserved = input.primaryPreserved();
+    const before = baseline?.surface;
+    const initialHeldEditor = baseline?.capture === "AVAILABLE" && baseline.held && before?.state === "AVAILABLE" && before.oldEditor.visible && !before.list.present;
+    const exactTarget = samples.length > 0 && samples.every(sample => sample.targetUnchanged === true);
+    const actualCompletion = browserResponse === "MATCHED" && browserFinished === "FINISHED" && nativeTerminal === "FINISHED"
+      && releaseOrder !== undefined && browserFinishedOrder !== undefined && browserFinishedOrder > releaseOrder && requestFinishedOrder !== undefined && requestFinishedOrder > releaseOrder;
+    const preCompletion = samples.some(sample => browserFinishedOrder !== undefined && requestFinishedOrder !== undefined && sample.returned < browserFinishedOrder && sample.returned < requestFinishedOrder
+      && sample.surface.state === "AVAILABLE" && sample.surface.oldEditor.visible && !sample.surface.list.present);
+    const postCompletion = samples.some(sample => browserFinishedOrder !== undefined && requestFinishedOrder !== undefined && sample.issued > browserFinishedOrder && sample.issued > requestFinishedOrder
+      && sample.surface.state === "AVAILABLE" && sample.surface.list.visible && !sample.surface.oldEditor.present);
+    const earlyList = samples.some(sample => browserFinishedOrder !== undefined && sample.returned < browserFinishedOrder && sample.surface.state === "AVAILABLE" && sample.surface.list.visible);
+    const last = samples.at(-1), lastSurface = last?.surface;
+    const samplingIncomplete = samplingPending || events.some(event => event.event === "SAMPLING_DEADLINE" || event.event === "SAMPLING_UNAVAILABLE");
+    const samplingStart = events.find(event => event.event === "SAMPLING_BEGIN")?.order;
+    const samplingEnd = events.find(event => ["SAMPLING_END", "SAMPLING_DEADLINE", "SAMPLING_UNAVAILABLE"].includes(event.event))?.order;
+    const overlaps = (phases: string[]) => events.some(event => phases.includes(event.event) && samplingStart !== undefined && samplingEnd !== undefined && event.order > samplingStart && event.order < samplingEnd);
+    const cleanupOverlap = overlaps(["REMOVE_HOLD_BEGIN", "UNROUTE_BEGIN", "CLOSE_OBSERVER_BEGIN"]);
+    const witnessOverlap = overlaps(["WITNESS_REMOVE_BEGIN", "WITNESS_DISPOSE_BEGIN"]);
+    const category = unavailable || saturated || samplingIncomplete || !primaryPreserved || !baseline || !samples.length || samples.some(sample => sample.surface.state !== "AVAILABLE" || sample.targetUnchanged === null) ? "EVIDENCE_INCOMPLETE"
+      : !exactTarget ? "TARGET_CHANGED" : cleanupOverlap || witnessOverlap ? "CLEANUP_OVERLAPPED_OBSERVATION" : !initialHeldEditor ? "BASELINE_UNQUALIFIED" : !actualCompletion ? "BROWSER_COMPLETION_UNVERIFIED"
+      : earlyList ? "LIST_OBSERVED_BEFORE_COMPLETION" : preCompletion && postCompletion ? "ORDERED_POST_COMPLETION_RENDER"
+      : lastSurface?.state === "AVAILABLE" && lastSurface.oldEditor.visible && last!.issued > browserFinishedOrder! ? "OLD_EDITOR_PERSISTS" : "NO_ORDERED_RENDER_OBSERVATION";
+    const report = { phase, kind: "story35_8.cleanup_release", schemaVersion: 1, diagnosticOnly: true, acceptanceCredit: 0, attribution: "NONE",
+      originalFailure: "ORIGINAL_LIST_VISIBILITY_FAILURE", primaryIdentityPreserved: primaryPreserved, category,
+      initialHeldEditor: Boolean(initialHeldEditor), exactTarget, fulfillAck, browserResponse, browserFinished, nativeTerminal,
+      pending: [...pending, ...(samplingPending ? ["PASSIVE_SAMPLE"] : [])].sort(), events: events.map(event => ({ ...event })), samples: samples.map(sample => ({ ...sample })),
+      confounds: { orderIsDeliveryNotCausation: true, genericMarkersAreNotRouteAuthority: true, initialTerminalWasPending: input.initialTerminal === "PENDING",
+        eventLimitReached: saturated, samplingIncomplete, noPreCompletionSample: !preCompletion,
+        cleanupOverlappedSampling: cleanupOverlap, witnessTeardownOverlappedSampling: witnessOverlap,
+        completionObservedAfterSampling: browserFinishedOrder !== undefined && samplingEnd !== undefined && browserFinishedOrder > samplingEnd,
+        unrouteSeparatelyObserved: events.some(event => event.event === "UNROUTE_BEGIN") },
+      attachmentSettlement: "PENDING" };
+    return report;
+  };
+  const publish = async (phase: "BEFORE_WITNESS_TEARDOWN" | "AFTER_CLEANUP") => {
+    const report = snapshot(phase);
+    const attached = await boundedDestinationObservation(() => input.attach(phase, report), Math.max(0, Math.min(250, input.remaining())));
+    if (attached.state !== "AVAILABLE") throw new Error("E35_8_CLEANUP_RELEASE_EVIDENCE_INCOMPLETE");
+  };
+  return {
+    mark, stop,
+    // Leave the original cleanup at least five seconds of its existing case budget.
+    budget: () => Math.max(0, Math.min(750, input.remaining() - 5_000)),
+    async sample(signal: AbortSignal) {
+      samplingPending = true;
+      try {
+        if (!releaseOrder) return;
+        for (const delay of [0, 50, 150, 350]) {
+          if (signal.aborted) return;
+          if (delay) await new Promise<void>(resolve => {
+            const done = () => { clearTimeout(timer); signal.removeEventListener("abort", done); resolve(); };
+            const timer = setTimeout(done, delay); signal.addEventListener("abort", done, { once: true });
+            if (signal.aborted) done();
+          });
+          if (signal.aborted) return;
+          const issued = mark("SAMPLE_ISSUED");
+          let result: { targetUnchanged?: unknown; destination?: unknown };
+          try { result = await input.passive(); } catch { if (!signal.aborted) { unavailable = true; mark("SAMPLE_UNAVAILABLE"); } return; }
+          if (signal.aborted) return;
+          const returned = mark("SAMPLE_RETURNED"), surface = destinationSurfaceProjection(result.destination);
+          const targetUnchanged = typeof result.targetUnchanged === "boolean" ? result.targetUnchanged : null;
+          samples.push({ issued, returned, targetUnchanged, surface });
+          if (surface.state === "AVAILABLE" && surface.list.visible && !surface.oldEditor.present && browserFinished === "FINISHED" && nativeTerminal === "FINISHED"
+            && browserFinishedOrder !== undefined && requestFinishedOrder !== undefined && issued > browserFinishedOrder && issued > requestFinishedOrder) return;
+        }
+      } finally { samplingPending = false; }
+    },
+    checkpoint() { return checkpointRun ??= publish("BEFORE_WITNESS_TEARDOWN"); },
+    finish() {
+      return finishRun ??= (async () => { mark("REPORT_FROZEN"); const publishing = publish("AFTER_CLEANUP"); stop(); await publishing; })();
+    },
+  };
 }
 
 async function naturalTraversalWitness(observation: Awaited<ReturnType<typeof passiveNativeTraversal>>, direction: "back" | "forward") {
@@ -1385,6 +1576,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
 
     for (const direction of ["back", "forward"] as const) {
       test(`E35-8-T-native-retention / genuine Chromium ${direction}: committed destination, exact old operation and newer unsent draft`, async ({ page, context }, info) => {
+        const enteredAt = Date.now();
         const calculation = await ownCalculation(page);
         const targetPath = new URL(calculation.url).pathname;
         // Every slot is created by the actual application's links/router.
@@ -1398,12 +1590,16 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         }
         const events = await passiveNativeTraversal(page, true);
         const writes = observeWrites(page);
-        const response = await interceptedWrite(page, "**/calculations/**");
+        let cleanupWitness: ReturnType<typeof observeCleanupRelease> | undefined;
+        const response = await interceptedWrite(page, "**/calculations/**", false, phase => cleanupWitness?.mark(phase));
         const prompts = nativePrompts(page, "dismiss");
         const observer = await context.newPage();
         const submitted = `Ursprunglig native ${direction} ${crypto.randomUUID()}`;
         const draft = `Nyare osparad native ${direction} ${crypto.randomUUID()}`;
         let scenarioFailure: unknown;
+        let listVisibilityFailed = false, listVisibilityFailure: unknown;
+        let cleanupTarget: { key: string; index: number; url: string } | undefined;
+        let cleanupBaseline: { surface: ReturnType<typeof destinationSurfaceProjection>; capture: string; held: boolean } | undefined;
         let destinationEvidence: Awaited<ReturnType<typeof heldSaveDestinationVisibility>> | undefined;
         let destinationRequests: ReturnType<typeof observeHeldSaveDestination> | undefined;
         let originalResponseTerminal: "PENDING" | "FULFILLED" | "FAILED" = "PENDING";
@@ -1419,6 +1615,14 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           const original = await postedFields(originalRequest);
           const operationId = original("operation_id");
           const originalExpected = original("expected");
+          const initial = destinationRequests.snapshot();
+          cleanupWitness = observeCleanupRelease({ page, request: originalRequest, fulfilled: response.completed,
+            initialTerminal: initial.state === "AVAILABLE" ? initial.original.clientTerminal : "UNAVAILABLE",
+            remaining: () => Math.max(0, info.timeout - (Date.now() - enteredAt)),
+            primaryPreserved: () => listVisibilityFailed && scenarioFailure === listVisibilityFailure, baseline: () => cleanupBaseline,
+            passive: () => events.cleanupDestination(cleanupTarget!),
+            attach: (phase, report) => info.attach(`native-${direction}-cleanup-release-${phase}.json`, { body: Buffer.from(JSON.stringify(report)), contentType: "application/json" }),
+          });
           await titleForm(page).getByLabel("Titel", { exact: true }).fill(draft);
           // Real browser-driven cancellation attempt, followed by another native
           // traversal with NO intervening click, keyboard event or added activation.
@@ -1467,8 +1671,11 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           expect(native, "Qualification OPEN unless Chromium actually committed a trusted noncancellable same-document traversal").toEqual([
             cancelled[0], expect.objectContaining({ trusted: true, sameDocument: true, cancelable: false, prevented: false, url: beforeCancellation.target.url, key: beforeCancellation.target.key, index: beforeCancellation.target.index }),
           ]);
+          cleanupTarget = { key: committed.current.key, index: committed.current.index, url: committed.current.url };
           destinationEvidence = await heldSaveDestinationVisibility({
             visible: () => expect(page.getByTestId("calculation-list")).toBeVisible(), observation: events, requests: destinationRequests,
+            failed: error => { listVisibilityFailed = true; listVisibilityFailure = error; },
+            observed: (surface, capture) => { if (listVisibilityFailed) cleanupBaseline = { surface, capture, held: response.ready() && originalResponseTerminal === "PENDING" }; },
             attach: report => info.attach(`native-${direction}-held-save-destination.json`, { body: Buffer.from(JSON.stringify(report)), contentType: "application/json" }),
           });
           expect(writes.writes).toHaveLength(1);
@@ -1510,13 +1717,15 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         } catch (error) { scenarioFailure = error; throw error; }
         finally {
           destinationRequests?.stop();
-          await finishNativeRetention({
+          const releaseWitness = listVisibilityFailed && scenarioFailure === listVisibilityFailure && cleanupTarget ? cleanupWitness : undefined;
+          if (!releaseWitness) cleanupWitness?.stop();
+          try { await finishNativeRetention({
             release: response.release, stopPrompts: prompts.stop, stopWrites: writes.stop,
             removeHold: response.remove, closeObserver: () => observer.close(),
             readEvents: () => events.read(direction).then(value => value.observed), removeEvents: () => events.remove(), disposeEvents: () => events.dispose(),
             attach: value => info.attach(`native-${direction}-retention-observations.json`, { body: Buffer.from(JSON.stringify(value)), contentType: "application/json" }),
-            priorFailure: scenarioFailure,
-          });
+            priorFailure: scenarioFailure, cleanupRelease: releaseWitness,
+          }); } finally { cleanupWitness?.stop(); }
         }
       });
     }
