@@ -297,7 +297,7 @@ type NativeTraversalEvent = { trusted: boolean; sameDocument: boolean; cancelabl
 
 /** One owned public session spans both transports. Standard Playwright evaluation
  * grants DevTools user activation; no such evaluation belongs between attempts. */
-async function passiveNativeTraversal(page: Page) {
+async function passiveNativeTraversal(page: Page, observeDestination = false) {
   const session = await page.context().newCDPSession(page);
   const commits: { frameId: string; url: string }[] = [];
   let objectId: string | undefined, frameId: string | undefined;
@@ -308,32 +308,49 @@ async function passiveNativeTraversal(page: Page) {
     await session.send("Page.enable");
     frameId = (await session.send("Page.getFrameTree")).frameTree.frame.id;
     session.on("Page.navigatedWithinDocument", committed);
-    const installed = await session.send("Runtime.evaluate", { userGesture: false, expression: `(${(() => {
+    const installed = await session.send("Runtime.evaluate", { userGesture: false, expression: `(${((observeDestination: boolean) => {
       const navigation = (window as Window & { navigation?: EventTarget & {
         currentEntry?: { key: string; id: string; index: number; url: string };
         entries?: () => { key: string; id: string; index: number; url: string }[];
       } }).navigation;
       if (!navigation) throw new Error("Native retention qualification OPEN: actual Navigation API absent");
       const observed: NativeTraversalEvent[] = [];
+      let popstateCount = 0, trustedPopstate = false;
+      const popstate = (event: Event) => { popstateCount = Math.min(4, popstateCount + 1); trustedPopstate ||= event.isTrusted; };
+      if (observeDestination) window.addEventListener("popstate", popstate, { passive: true });
+      const destination = () => {
+        const surface = (selector: string) => {
+          const elements = [...document.querySelectorAll(selector)];
+          return { present: elements.length > 0, visible: elements.some(element => {
+            const style = getComputedStyle(element);
+            return element.getClientRects().length > 0 && style.display !== "none" && style.visibility !== "hidden" && style.visibility !== "collapse";
+          }) };
+        };
+        return { oldEditor: surface('[data-testid="calculation-editor"]'), list: surface('[data-testid="calculation-list"]'),
+          loading: surface('main [aria-busy="true"], main [role="progressbar"], main progress'),
+          error: surface('main [role="alert"], [data-testid="calculation-list-error"], [data-testid="calculation-detail-failed"], [data-testid="calculation-not-found"]'),
+          popstate: { received: popstateCount > 0, trusted: trustedPopstate, count: popstateCount } };
+      };
       const listener = (event: Event) => {
         const movement = event as Event & { navigationType: string; destination: { sameDocument: boolean; url: string; key: string; index: number } };
         queueMicrotask(() => observed.push({ trusted: event.isTrusted, sameDocument: movement.destination.sameDocument,
           cancelable: event.cancelable, prevented: event.defaultPrevented, url: movement.destination.url, type: movement.navigationType, key: movement.destination.key, index: movement.destination.index }));
       };
       navigation.addEventListener("navigate", listener);
-      return { observed, remove: () => navigation.removeEventListener("navigate", listener), read(direction: "back" | "forward") {
+      return { observed, destination: () => observeDestination ? destination() : null,
+        remove: () => { navigation.removeEventListener("navigate", listener); if (observeDestination) window.removeEventListener("popstate", popstate); }, read(direction: "back" | "forward", includeDestination = false) {
         type Entry = { key: string; id: string; index: number; url: string };
         const current = navigation.currentEntry, all = navigation.entries?.();
         if (!current || !all || all.length > 128) throw new Error("Native cancellation qualification OPEN: bounded natural history identity unavailable");
         const target = all.find(entry => entry.index === current.index + (direction === "back" ? -1 : 1));
         const identity = (entry: Entry) => ({ key: entry.key, id: entry.id, index: entry.index, url: entry.url });
         const form = document.querySelector('[data-testid="calculation-header"] form');
-        return { observed: [...observed], natural: { url: location.href, length: history.length,
+        return { observed: [...observed], destination: observeDestination && includeDestination ? destination() : null, natural: { url: location.href, length: history.length,
           current: identity(current), target: target ? identity(target) : null, entries: all.map(identity) },
           form: { title: form?.querySelector<HTMLInputElement>('input[name="title"]')?.value ?? null,
             dirty: form?.getAttribute("data-editor-dirty") ?? null } };
       } };
-    }).toString()})()` });
+    }).toString()})(${JSON.stringify(observeDestination)})` });
     if (installed.exceptionDetails || !installed.result.objectId) throw new Error("Native passive observation installation failed");
     objectId = installed.result.objectId;
   } catch (error) {
@@ -341,16 +358,23 @@ async function passiveNativeTraversal(page: Page) {
     try { await session.detach(); } catch (cleanup) { throw new AggregateError([error, cleanup], "Native passive setup and owned session detach failed"); }
     throw error;
   }
-  const read = async (direction: "back" | "forward") => {
+  let latestDestination: unknown = null;
+  const read = async (direction: "back" | "forward", includeDestination = false) => {
     const result = await session.send("Runtime.callFunctionOn", { objectId, userGesture: false, returnByValue: true,
-      functionDeclaration: "function(direction) { return this.read(direction); }", arguments: [{ value: direction }] });
+      functionDeclaration: "function(direction, includeDestination) { return this.read(direction, includeDestination); }", arguments: [{ value: direction }, { value: includeDestination }] });
     if (result.exceptionDetails || !result.result.value) throw new Error("Native passive observation unavailable");
+    if (includeDestination) latestDestination = result.result.value.destination;
     type Entry = { key: string; id: string; index: number; url: string };
     return result.result.value as { observed: NativeTraversalEvent[];
       natural: { url: string; length: number; current: Entry; target: Entry | null; entries: Entry[] };
       form: { title: string | null; dirty: string | null } };
   };
-  return { session, commits, frameId, read,
+  return { session, commits, frameId, read, latestDestination: () => latestDestination,
+    async destination() {
+      const result = await session.send("Runtime.callFunctionOn", { objectId, userGesture: false, returnByValue: true, functionDeclaration: "function() { return this.destination(); }" });
+      if (result.exceptionDetails) throw new Error("Destination passive observation unavailable");
+      return result.result.value as unknown;
+    },
     async remove() {
       const result = await session.send("Runtime.callFunctionOn", { objectId, userGesture: false, returnByValue: true, functionDeclaration: "function() { this.remove(); return true; }" });
       if (result.exceptionDetails || result.result.value !== true) throw new Error("Native passive observation removal failed");
@@ -363,6 +387,127 @@ async function passiveNativeTraversal(page: Page) {
       if (failures.length) throw new AggregateError(failures, "Native passive observation owned session cleanup failed");
     },
   };
+}
+
+/** Closed aliases only. The native witness retains its own exact identities;
+ * this separate diagnostic never publishes DOM text, URLs or request payloads. */
+function destinationSurfaceProjection(value: unknown) {
+  const unavailable = () => ({ state: "UNAVAILABLE" as const });
+  try {
+    if (!value || typeof value !== "object") return unavailable();
+    const input = value as Record<string, unknown>;
+    const surface = (name: string) => {
+      const entry = input[name] as { present?: unknown; visible?: unknown } | undefined;
+      if (typeof entry?.present !== "boolean" || typeof entry.visible !== "boolean") throw new Error("Invalid fixed surface flags");
+      return { present: entry.present, visible: entry.visible };
+    };
+    const popstate = input.popstate as { received?: unknown; trusted?: unknown; count?: unknown } | undefined;
+    if (typeof popstate?.received !== "boolean" || typeof popstate.trusted !== "boolean"
+      || !Number.isInteger(popstate.count) || Number(popstate.count) < 0 || Number(popstate.count) > 4) return unavailable();
+    return { state: "AVAILABLE" as const, oldEditor: surface("oldEditor"), list: surface("list"), loading: surface("loading"), error: surface("error"),
+      popstate: { received: popstate.received, trusted: popstate.trusted, count: Number(popstate.count), capped: popstate.count === 4 } };
+  } catch { return unavailable(); }
+}
+
+/** Actual Request identity binds terminal facts. No request is routed, read to
+ * completion or attributed a browser commit by this passive observer. */
+function observeHeldSaveDestination(page: Page, input: {
+  destination: URL; original: () => BrowserRequest | undefined; writes: () => readonly BrowserRequest[];
+  response: () => { ready: boolean; terminal: "PENDING" | "FULFILLED" | "FAILED" };
+}) {
+  type Terminal = "PENDING" | "FINISHED" | "FAILED" | "CONFLICT";
+  const mainFrame = page.mainFrame();
+  const requests = new Map<BrowserRequest, { alias: string; kind: "NAVIGATION" | "PREFETCH"; terminal: Terminal }>();
+  let original: BrowserRequest | undefined, originalTerminal: Terminal = "PENDING", saturated = false, unavailable = false, stopped = false;
+  const safe = (run: () => void) => { try { run(); } catch { unavailable = true; } };
+  const issued = (request: BrowserRequest) => safe(() => {
+    if (stopped) return;
+    if (!original && request === input.original()) original = request;
+    const url = new URL(request.url()), headers = request.headers();
+    if (request.frame() !== mainFrame || request.method() !== "GET" || url.origin !== input.destination.origin
+      || url.pathname !== input.destination.pathname || [...url.searchParams.keys()].some(key => key !== "_rsc")
+      || headers.rsc !== "1" || !(headers["next-router-state-tree"] || headers["next-router-prefetch"] || headers["next-router-segment-prefetch"])) return;
+    if (requests.has(request)) return;
+    if (requests.size === 8) { saturated = true; return; }
+    requests.set(request, { alias: `RSC_${requests.size + 1}`, kind: headers["next-router-prefetch"] || headers["next-router-segment-prefetch"] ? "PREFETCH" : "NAVIGATION", terminal: "PENDING" });
+  });
+  const terminal = (request: BrowserRequest, value: "FINISHED" | "FAILED") => safe(() => {
+    if (stopped) return;
+    if (original && request === original) originalTerminal = originalTerminal === "PENDING" ? value : "CONFLICT";
+    const record = requests.get(request);
+    if (record) record.terminal = record.terminal === "PENDING" ? value : "CONFLICT";
+  });
+  const finished = (request: BrowserRequest) => terminal(request, "FINISHED");
+  const failed = (request: BrowserRequest) => terminal(request, "FAILED");
+  safe(() => { page.on("request", issued); }); safe(() => { page.on("requestfinished", finished); }); safe(() => { page.on("requestfailed", failed); });
+  return {
+    stop() {
+      if (stopped) return;
+      stopped = true;
+      safe(() => { page.off("request", issued); }); safe(() => { page.off("requestfinished", finished); }); safe(() => { page.off("requestfailed", failed); });
+    },
+    snapshot() {
+      let held = false, onlyOriginalWrite = false, responseTerminal: "PENDING" | "FULFILLED" | "FAILED" | "UNAVAILABLE" = "UNAVAILABLE";
+      safe(() => {
+        const response = input.response(), writes = input.writes();
+        if (!["PENDING", "FULFILLED", "FAILED"].includes(response.terminal)) throw new Error("Invalid fixed response phase");
+        responseTerminal = response.terminal;
+        onlyOriginalWrite = Boolean(original && writes.length === 1 && writes[0] === original);
+        // This boundary precedes the original scenario's only owned release.
+        held = Boolean(original && response.ready === true && response.terminal === "PENDING");
+      });
+      return { state: unavailable ? "UNAVAILABLE" as const : "AVAILABLE" as const,
+        original: { issued: Boolean(original), onlyOriginalWrite, held, responseTerminal, clientTerminal: original ? originalTerminal : "NOT_OBSERVED" },
+        rsc: { saturated, requests: [...requests.values()].map(record => ({ ...record })) } };
+    },
+  };
+}
+
+/** Independent capture bounds occur only AFTER the unchanged visibility
+ * assertion settles. Pending RSC/save work is sampled, never awaited. */
+async function boundedDestinationObservation<T>(run: () => Promise<T>) {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([
+      Promise.resolve().then(run).then(value => ({ state: "AVAILABLE" as const, value }), () => ({ state: "UNAVAILABLE" as const })),
+      new Promise<{ state: "DEADLINE" }>(resolve => { timer = setTimeout(() => resolve({ state: "DEADLINE" }), 250); }),
+    ]);
+  } finally { if (timer) clearTimeout(timer); }
+}
+
+async function heldSaveDestinationVisibility(input: {
+  visible: () => Promise<void>; observation: Pick<Awaited<ReturnType<typeof passiveNativeTraversal>>, "latestDestination" | "destination">;
+  requests: ReturnType<typeof observeHeldSaveDestination>; attach: (report: unknown) => Promise<void>;
+}) {
+  let beforeVisibility = destinationSurfaceProjection(null);
+  try { beforeVisibility = destinationSurfaceProjection(input.observation.latestDestination()); } catch { /* The original assertion still runs. */ }
+  let assertionFailed = false;
+  const reasonCodes: string[] = [];
+  try { await input.visible(); }
+  catch (error) { assertionFailed = true; throw error; }
+  finally {
+    try {
+      // Freeze Node facts before any capture await or the existing mutation cleanup.
+      input.requests.stop();
+      const network = input.requests.snapshot();
+      const after = await boundedDestinationObservation(input.observation.destination);
+      const afterVisibility = destinationSurfaceProjection(after.state === "AVAILABLE" ? after.value : null);
+      if (beforeVisibility.state !== "AVAILABLE") reasonCodes.push("BEFORE_SURFACE_UNAVAILABLE");
+      if (afterVisibility.state !== "AVAILABLE") reasonCodes.push("AFTER_SURFACE_UNAVAILABLE");
+      if (after.state === "UNAVAILABLE") reasonCodes.push("SNAPSHOT_UNAVAILABLE");
+      if (after.state === "DEADLINE") reasonCodes.push("SNAPSHOT_DEADLINE");
+      if (network.state !== "AVAILABLE") reasonCodes.push("REQUEST_OBSERVER_UNAVAILABLE");
+      if (network.rsc.saturated) reasonCodes.push("REQUEST_LIMIT_REACHED");
+      const report = { kind: "story35_8.held_save_destination", schemaVersion: 1, window: "SAVE_TO_VISIBILITY_SETTLEMENT",
+        functionalPhase: "VISIBILITY_ONLY", outcome: assertionFailed ? "VISIBILITY_FAILED" : "VISIBILITY_PASSED", diagnosticOnly: true, acceptanceCredit: 0,
+        observationStatus: reasonCodes.length ? "EVIDENCE_INCOMPLETE" : "OBSERVATION_CAPTURED", reasonCodes: [...reasonCodes], attachmentSettlement: "PENDING",
+        beforeVisibility, afterVisibility, snapshotCapture: after.state, network };
+      const attachment = await boundedDestinationObservation(() => input.attach(report));
+      if (attachment.state === "UNAVAILABLE") reasonCodes.push("ATTACHMENT_UNAVAILABLE");
+      if (attachment.state === "DEADLINE") reasonCodes.push("ATTACHMENT_DEADLINE");
+    } catch { reasonCodes.push("OBSERVER_FINALIZATION_UNAVAILABLE"); }
+  }
+  return { category: reasonCodes.length ? "EVIDENCE_INCOMPLETE" as const : "COMPLETE" as const, reasonCodes };
 }
 
 async function naturalTraversalWitness(observation: Awaited<ReturnType<typeof passiveNativeTraversal>>, direction: "back" | "forward") {
@@ -1251,7 +1396,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           await expect(page).toHaveURL(calculation.url);
           await expect(titleForm(page)).toHaveAttribute("data-editor-ready", "true");
         }
-        const events = await passiveNativeTraversal(page);
+        const events = await passiveNativeTraversal(page, true);
         const writes = observeWrites(page);
         const response = await interceptedWrite(page, "**/calculations/**");
         const prompts = nativePrompts(page, "dismiss");
@@ -1259,7 +1404,13 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
         const submitted = `Ursprunglig native ${direction} ${crypto.randomUUID()}`;
         const draft = `Nyare osparad native ${direction} ${crypto.randomUUID()}`;
         let scenarioFailure: unknown;
+        let destinationEvidence: Awaited<ReturnType<typeof heldSaveDestinationVisibility>> | undefined;
+        let destinationRequests: ReturnType<typeof observeHeldSaveDestination> | undefined;
+        let originalResponseTerminal: "PENDING" | "FULFILLED" | "FAILED" = "PENDING";
         try {
+          destinationRequests = observeHeldSaveDestination(page, { destination: new URL("/calculations", calculation.url),
+            original: () => writes.writes[0], writes: () => writes.writes, response: () => ({ ready: response.ready(), terminal: originalResponseTerminal }) });
+          void response.completed.then(() => { originalResponseTerminal = "FULFILLED"; }, () => { originalResponseTerminal = "FAILED"; });
           await titleForm(page).getByLabel("Titel", { exact: true }).fill(submitted);
           await titleForm(page).getByRole("button", { name: "Spara titel", exact: true }).click();
           await expect.poll(response.ready).toBe(true);
@@ -1312,11 +1463,14 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           await expect(page).toHaveURL(beforeCancellation.target.url);
           expect({ key: committed.current.key, url: committed.current.url, index: committed.current.index }).toEqual({ key: beforeCancellation.target.key, url: beforeCancellation.target.url, index: beforeCancellation.target.index });
           expect(committed.length).toBe(beforeCancellation.length);
-          const native = (await events.read(direction)).observed.filter(event => event.type === "traverse");
+          const native = (await events.read(direction, true)).observed.filter(event => event.type === "traverse");
           expect(native, "Qualification OPEN unless Chromium actually committed a trusted noncancellable same-document traversal").toEqual([
             cancelled[0], expect.objectContaining({ trusted: true, sameDocument: true, cancelable: false, prevented: false, url: beforeCancellation.target.url, key: beforeCancellation.target.key, index: beforeCancellation.target.index }),
           ]);
-          await expect(page.getByTestId("calculation-list")).toBeVisible();
+          destinationEvidence = await heldSaveDestinationVisibility({
+            visible: () => expect(page.getByTestId("calculation-list")).toBeVisible(), observation: events, requests: destinationRequests,
+            attach: report => info.attach(`native-${direction}-held-save-destination.json`, { body: Buffer.from(JSON.stringify(report)), contentType: "application/json" }),
+          });
           expect(writes.writes).toHaveLength(1);
           // Returning is an ordinary link to exactly the original form/resource.
           await page.locator(`[data-testid="calculation-list-row"][href="${targetPath}"]`).click();
@@ -1351,8 +1505,11 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
             await expect(page).toHaveURL(calculation.url);
             expect(writes.writes).toHaveLength(1);
           });
+          // Evidence completeness is separate and follows every original functional assertion.
+          if (destinationEvidence?.category !== "COMPLETE") throw new Error(`E35_8_DESTINATION_EVIDENCE_INCOMPLETE functionalStatus=PASSED reasons=${destinationEvidence?.reasonCodes.join(",") ?? "BOUNDARY_NOT_OBSERVED"}`);
         } catch (error) { scenarioFailure = error; throw error; }
         finally {
+          destinationRequests?.stop();
           await finishNativeRetention({
             release: response.release, stopPrompts: prompts.stop, stopWrites: writes.stop,
             removeHold: response.remove, closeObserver: () => observer.close(),
