@@ -348,7 +348,37 @@ async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Lo
       cursor = cursor.parentElement;
     }
     if (cursor) throw new Error("REL22 E02 phone ancestor ownership exceeds bound.");
-    return { node, context, dialog, header, ancestors, focus: document.activeElement, x: scrollX, y: scrollY };
+    const sheet = dialog.parentElement;
+    // A viewport-looking rectangle alone does not establish the fixed containing
+    // block. Recheck the actual fixed wrapper and every exterior ancestor at use.
+    const fixedBoundary = () => {
+      const reasons: string[] = [];
+      const checked: { alias: string; unsupportedEffect: boolean }[] = [];
+      const rect = sheet?.getBoundingClientRect(), style = sheet && getComputedStyle(sheet);
+      if (!sheet?.isConnected || !sheet.contains(dialog) || style?.position !== "fixed" || !rect
+        || rect.left !== 0 || rect.top !== 0 || rect.width !== innerWidth || rect.height !== innerHeight
+        || [style.top, style.right, style.bottom, style.left].some(value => value !== "0px")) reasons.push("not-viewport-fixed-sheet");
+      let exterior: Element | null = sheet, depth = 0;
+      while (exterior && depth < 32) {
+        const current = getComputedStyle(exterior);
+        const nonDefault = (property: string, allowed: string[]) => {
+          const value = current.getPropertyValue(property).trim(); return value !== "" && !allowed.includes(value);
+        };
+        const unsupportedEffect = current.transform !== "none" || current.filter !== "none" || current.perspective !== "none"
+          || current.clipPath !== "none" || current.getPropertyValue("mask-image") !== "none"
+          || nonDefault("backdrop-filter", ["none"]) || nonDefault("translate", ["none"]) || nonDefault("rotate", ["none"])
+          || nonDefault("scale", ["none"]) || nonDefault("transform-style", ["flat"]) || nonDefault("contain", ["none"])
+          || nonDefault("content-visibility", ["visible"]) || nonDefault("container-type", ["normal"])
+          || nonDefault("will-change", ["auto"]) || nonDefault("zoom", ["1", "normal"]) || nonDefault("clip", ["auto"]);
+        checked.push({ alias: depth === 0 ? "fixed-sheet" : `exterior-${depth - 1}`, unsupportedEffect });
+        if (unsupportedEffect) reasons.push("unsupported-fixed-containing-block-or-clip");
+        exterior = exterior.parentElement; depth++;
+      }
+      if (exterior) reasons.push("fixed-ancestor-bound");
+      return { qualified: reasons.length === 0, reasons, checked,
+        bounds: rect ? [rect.x, rect.y, rect.width, rect.height] : null };
+    };
+    return { node, context, dialog, header, sheet, retry, fixedBoundary, ancestors, focus: document.activeElement, x: scrollX, y: scrollY };
   }, unknown);
   let failed = false, first: unknown;
   const retain = (error: unknown, stage: string) => {
@@ -363,9 +393,11 @@ async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Lo
     // client scrollports determine the exposure area; no assumed pixel correction.
     await saved.evaluate(snapshot => {
       const { context, header } = snapshot;
+      if (!snapshot.fixedBoundary().qualified) return; // No exterior-overflow exception without positive current proof.
       context.scrollIntoView({ block: "center", inline: "nearest", behavior: "instant" });
       for (let pass = 0; pass < 2; pass++) {
         for (const entry of snapshot.ancestors) {
+          if (!snapshot.sheet!.contains(entry.node)) continue;
           const port = entry.node, style = getComputedStyle(port), box = port.getBoundingClientRect();
           const rect = context.getBoundingClientRect(), head = header.getBoundingClientRect();
           const left = Math.max(0, box.left + port.clientLeft), right = Math.min(innerWidth, box.left + port.clientLeft + port.clientWidth);
@@ -393,20 +425,25 @@ async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Lo
         || viewport.offsetTop !== 0 || viewport.width !== 360 || viewport.height !== 640) reasons.add("viewport-mapping");
       if (!node.isConnected || !context.isConnected || !header.isConnected || !dialog.contains(node)) reasons.add("identity");
       if (document.activeElement !== snapshot.focus) reasons.add("focus-changed");
+      const fixedBoundary = snapshot.fixedBoundary();
+      if (!fixedBoundary.qualified) reasons.add("fixed-boundary-unqualified");
       let left = 0, top = 0, right = innerWidth, bottom = innerHeight;
-      const ports: { alias: string; bounds: number[]; clipX: boolean; clipY: boolean; scroll: number[] }[] = [];
+      const ports: { alias: string; bounds: number[]; clipX: boolean; clipY: boolean; scroll: number[];
+        effective: boolean; scope: "sheet" | "exterior" }[] = [];
       for (const [index, entry] of snapshot.ancestors.entries()) {
         const ancestor = entry.node, style = getComputedStyle(ancestor), rect = ancestor.getBoundingClientRect();
         if (style.clipPath !== "none" || style.getPropertyValue("mask-image") !== "none" || style.transform !== "none"
+          || style.filter !== "none" || style.perspective !== "none" || !["", "none"].includes(style.getPropertyValue("backdrop-filter"))
           || /paint|strict|content/.test(style.contain)) reasons.add("unsupported-clipping");
         if (style.visibility !== "visible" || style.display === "none" || Number(style.opacity) !== 1) reasons.add("ancestor-visibility");
         if (ancestor === node || ancestor === context) continue;
         const clipX = /^(auto|scroll|hidden|clip)$/.test(style.overflowX), clipY = /^(auto|scroll|hidden|clip)$/.test(style.overflowY);
         const portLeft = rect.left + ancestor.clientLeft, portTop = rect.top + ancestor.clientTop;
-        if (clipX) { left = Math.max(left, portLeft); right = Math.min(right, portLeft + ancestor.clientWidth); }
-        if (clipY) { top = Math.max(top, portTop); bottom = Math.min(bottom, portTop + ancestor.clientHeight); }
+        const exterior = !snapshot.sheet?.contains(ancestor), effective = !exterior || !fixedBoundary.qualified;
+        if (clipX && effective) { left = Math.max(left, portLeft); right = Math.min(right, portLeft + ancestor.clientWidth); }
+        if (clipY && effective) { top = Math.max(top, portTop); bottom = Math.min(bottom, portTop + ancestor.clientHeight); }
         if (clipX || clipY) ports.push({ alias: `ancestor-${index}`, bounds: [portLeft, portTop, ancestor.clientWidth, ancestor.clientHeight].map(rounded),
-          clipX, clipY, scroll: [ancestor.scrollLeft, ancestor.scrollTop].map(rounded) });
+          clipX, clipY, scroll: [ancestor.scrollLeft, ancestor.scrollTop].map(rounded), effective, scope: exterior ? "exterior" : "sheet" });
       }
       if (head.right > left && head.left < right && head.bottom > top && head.top < bottom) top = head.bottom;
       const contains = (rect: DOMRect, margin = 0) => rect.width > 0 && rect.height > 0 && rect.left - margin >= left
@@ -423,10 +460,45 @@ async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Lo
       for (const rect of rects.slice(0, 32)) if (!contains(rect)) reasons.add("context-content-clipped");
       const elements = [context, ...context.querySelectorAll("*")];
       if (elements.length > 16) reasons.add("context-element-bound");
+      type HitIdentity = { alias: string; tag: string; role: string | null; relation: "self" | "descendant" | "ancestor" | "outside";
+        contextRelation: "self" | "descendant" | "ancestor" | "outside"; bounds: number[]; position: string; zIndex: number | null };
       const hitSamples: { elementAlias: string; pointAlias: string; x: number; y: number;
-        insideSupportedShape: boolean; hit: "self" | "descendant" | "none" | "other-element" }[] = [];
+        probe: "rounded-box" | "receipt-text-range"; insideSupportedShape: boolean;
+        hit: "self" | "descendant" | "none" | "other-element"; actualHit: HitIdentity | null }[] = [];
       const shapes: { elementAlias: string; radii: number[][] }[] = [];
+      const misses: { sampleIndex: number; stack: HitIdentity[]; stackTruncated: boolean }[] = [];
+      const relation = (root: Element, element: Element): "self" | "descendant" | "ancestor" | "outside" =>
+        root === element ? "self" : root.contains(element) ? "descendant" : element.contains(root) ? "ancestor" : "outside";
+      const hitIdentity = (element: Element): HitIdentity => {
+        const ancestorIndex = snapshot.ancestors.findIndex(entry => entry.node === element), childIndex = elements.indexOf(element);
+        const alias = element === node ? "target" : element === context ? "context" : element === header ? "sheet-header"
+          : element === dialog ? "dialog" : element === snapshot.sheet ? "fixed-sheet" : childIndex > 0 ? `context-child-${childIndex - 1}`
+            : ancestorIndex >= 0 ? `ancestor-${ancestorIndex}` : "foreign-element";
+        const role = element.getAttribute("role"), tag = element.tagName.toLowerCase(), style = getComputedStyle(element);
+        const roles = ["alert", "alertdialog", "button", "dialog", "document", "generic", "heading", "img", "link", "main", "navigation",
+          "none", "presentation", "progressbar", "region", "status", "textbox", "tooltip"];
+        return { alias, tag: /^[a-z][a-z0-9-]{0,39}$/.test(tag) ? tag : "unsupported-tag",
+          role: role === null ? null : roles.includes(role) ? role : "unrecognized-role", relation: relation(node, element),
+          contextRelation: relation(context, element), bounds: bounds(element.getBoundingClientRect()),
+          position: ["static", "relative", "absolute", "fixed", "sticky"].includes(style.position) ? style.position : "unsupported-position",
+          zIndex: /^-?\d{1,8}$/.test(style.zIndex) ? Number(style.zIndex) : null };
+      };
       let hitTests = 0;
+      const recordHit = (element: Element, elementAlias: string, point: { pointAlias: string; x: number; y: number },
+        probe: "rounded-box" | "receipt-text-range") => {
+        const hit = document.elementFromPoint(point.x, point.y); hitTests++;
+        const classification = !hit ? "none" : hit === element ? "self" : element.contains(hit) ? "descendant" : "other-element";
+        const sampleIndex = hitSamples.length;
+        hitSamples.push({ elementAlias, ...point, probe, insideSupportedShape: true, hit: classification, actualHit: hit ? hitIdentity(hit) : null });
+        if (classification === "none" || classification === "other-element") {
+          reasons.add("context-occluded");
+          if (misses.length < 4) {
+            const stack = document.elementsFromPoint(point.x, point.y);
+            misses.push({ sampleIndex, stack: stack.slice(0, 8).map(hitIdentity), stackTruncated: stack.length > 8 });
+          }
+        }
+      };
+      let receiptText: { identityVerified: boolean; rects: number[][]; probeCount: number } | null = null;
       for (const [index, element] of elements.slice(0, 16).entries()) {
         const style = getComputedStyle(element), rect = element.getBoundingClientRect();
         if (style.display === "none" || style.visibility !== "visible" || Number(style.opacity) !== 1) reasons.add("context-visibility");
@@ -435,6 +507,30 @@ async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Lo
           reasons.add("unsupported-hit-shape"); continue;
         }
         const elementAlias = element === node ? "target" : index === 0 ? "context" : `context-child-${index - 1}`;
+        if (element === node && !snapshot.retry) {
+          const child = node.firstChild;
+          const identityVerified = node.tagName === "SPAN" && node.getAttribute("data-testid") === "time-report-submit-status"
+            && context.getAttribute("role") === "status" && node.childNodes.length === 1 && child?.nodeType === Node.TEXT_NODE
+            && child.textContent === "Rapporterad" && style.display === "inline";
+          if (!identityVerified) reasons.add("identity");
+          const textRange = document.createRange(); textRange.selectNodeContents(node);
+          const textRects = [...textRange.getClientRects()];
+          receiptText = { identityVerified, rects: textRects.slice(0, 8).map(bounds), probeCount: 0 };
+          if (!identityVerified || textRects.length === 0 || textRects.length > 8 || textRects.some(text => text.width < 2 || text.height < 2
+            || text.left < rect.left || text.top < rect.top || text.right > rect.right || text.bottom > rect.bottom || !contains(text))) {
+            reasons.add("receipt-text-geometry"); continue;
+          }
+          for (const [textIndex, text] of textRects.entries()) {
+            for (const [part, fraction] of [["quarter", .25], ["center", .5], ["three-quarter", .75]] as const) {
+              const point = { pointAlias: `text-${textIndex}-${part}`, x: rounded(text.left + text.width * fraction), y: rounded(text.top + text.height / 2) };
+              if (!(point.x > text.left && point.x < text.right && point.y > text.top && point.y < text.bottom)) {
+                reasons.add("receipt-text-geometry"); continue;
+              }
+              recordHit(element, elementAlias, point, "receipt-text-range"); receiptText.probeCount++;
+            }
+          }
+          continue;
+        }
         // Computed radii may be px or percentages, including elliptical pairs.
         // Normalize them with the CSS overlap rule before choosing real hit points.
         const radius = (value: string, extent: number): number | null => {
@@ -475,17 +571,16 @@ async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Lo
         for (const point of points) {
           const insideSupportedShape = inside(point.x, point.y);
           if (!insideSupportedShape) { reasons.add("unsupported-hit-shape"); continue; }
-          const hit = document.elementFromPoint(point.x, point.y); hitTests++;
-          const classification = !hit ? "none" : hit === element ? "self" : element.contains(hit) ? "descendant" : "other-element";
-          hitSamples.push({ elementAlias, ...point, insideSupportedShape, hit: classification });
-          if (classification === "none" || classification === "other-element") reasons.add("context-occluded");
+          recordHit(element, elementAlias, point, "rounded-box");
         }
       }
       // Explicit header intersection plus bounded hit tests also covers this sheet's
       // non-sticky, non-scrolling header sibling. No whole-paint occlusion claim.
       return { alias: "e02-phone-target", sameTargetIdentity: true, bounds: bounds(targetBox), contextBounds: bounds(box),
         headerBounds: bounds(head), effectiveVisibleArea: [left, top, right - left, bottom - top].map(rounded), ports,
-        contextRects: rects.slice(0, 32).map(bounds), hitTests, hitSamples, shapes, focusUnchanged: document.activeElement === snapshot.focus,
+        contextRects: rects.slice(0, 32).map(bounds), hitTests, hitSamples, shapes, receiptText, fixedBoundary, misses,
+        missDetailOverflow: hitSamples.filter(sample => sample.hit === "none" || sample.hit === "other-element").length > misses.length,
+        focusUnchanged: document.activeElement === snapshot.focus,
         focusOutlineMargin: rounded(focusMargin), viewport: { width: innerWidth, height: innerHeight, dpr: devicePixelRatio,
           visualWidth: viewport?.width, visualHeight: viewport?.height, scale: viewport?.scale, offsetX: viewport?.offsetLeft, offsetY: viewport?.offsetTop },
         qualifiedWholeTargetFraming: reasons.size === 0, reasons: [...reasons], rasterPaint: "unassessed", acceptance: "unassessed" };
