@@ -322,7 +322,7 @@ async function rel22E02SubmitCapture(page: Page, info: TestInfo, form: Locator,
  */
 async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Locator,
   state: "e02-unknown-outcome-phone-target-whole" | "e02-server-confirmed-phone-target-whole",
-  onFailure: (error: unknown) => void,
+  onFailure: (error: unknown) => void, onFramingRefusal: (error: Error) => void,
   cleanupStage: (stage: string, run: () => Promise<unknown>, capMs?: number) => Promise<void>): Promise<void> {
   if (process.env.E15_REL22_CAPTURE !== "1") return;
   if (info.retry !== 0 && info.retry !== 1) throw new Error("REL22 E02 phone retry outside configured bound.");
@@ -355,7 +355,7 @@ async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Lo
     if (!failed) { failed = true; first = error; onFailure(error); }
     else info.annotations.push({ type: "rel22-e02-secondary", description: stage });
   };
-  let sample: unknown = null, png: Buffer | undefined;
+  let sample: unknown = null, png: Buffer | undefined, framingRefusal: Error | undefined;
   const restored = { viewport: false, focus: false, scroll: false, disposed: false };
   try {
     await page.setViewportSize({ width: 360, height: 640 });
@@ -423,21 +423,69 @@ async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Lo
       for (const rect of rects.slice(0, 32)) if (!contains(rect)) reasons.add("context-content-clipped");
       const elements = [context, ...context.querySelectorAll("*")];
       if (elements.length > 16) reasons.add("context-element-bound");
+      const hitSamples: { elementAlias: string; pointAlias: string; x: number; y: number;
+        insideSupportedShape: boolean; hit: "self" | "descendant" | "none" | "other-element" }[] = [];
+      const shapes: { elementAlias: string; radii: number[][] }[] = [];
       let hitTests = 0;
-      for (const element of elements.slice(0, 16)) {
+      for (const [index, element] of elements.slice(0, 16).entries()) {
         const style = getComputedStyle(element), rect = element.getBoundingClientRect();
         if (style.display === "none" || style.visibility !== "visible" || Number(style.opacity) !== 1) reasons.add("context-visibility");
         if (rect.width <= 0 || rect.height <= 0) { reasons.add("context-empty-box"); continue; }
-        for (const [fx, fy] of [[.01, .01], [.99, .01], [.5, .5], [.01, .99], [.99, .99]]) {
-          const hit = document.elementFromPoint(rect.left + rect.width * fx!, rect.top + rect.height * fy!); hitTests++;
-          if (!hit || (hit !== element && !element.contains(hit))) reasons.add("context-occluded");
+        if (style.clipPath !== "none" || style.getPropertyValue("mask-image") !== "none" || style.transform !== "none") {
+          reasons.add("unsupported-hit-shape"); continue;
+        }
+        const elementAlias = element === node ? "target" : index === 0 ? "context" : `context-child-${index - 1}`;
+        // Computed radii may be px or percentages, including elliptical pairs.
+        // Normalize them with the CSS overlap rule before choosing real hit points.
+        const radius = (value: string, extent: number): number | null => {
+          const match = /^(\d+(?:\.\d+)?)(px|%)$/.exec(value);
+          if (!match) return null;
+          const number = Number(match[1]) * (match[2] === "%" ? extent / 100 : 1);
+          return Number.isFinite(number) && number >= 0 ? number : null;
+        };
+        const radii = [style.borderTopLeftRadius, style.borderTopRightRadius, style.borderBottomRightRadius, style.borderBottomLeftRadius].map(value => {
+          const pair = value.trim().split(/\s+/);
+          return pair.length === 1 || pair.length === 2 ? [radius(pair[0]!, rect.width), radius(pair[1] ?? pair[0]!, rect.height)] : [null, null];
+        });
+        if (radii.some(pair => pair.some(value => value === null)) || rect.width < 2 || rect.height < 2) {
+          reasons.add("unsupported-hit-shape"); continue;
+        }
+        const corners = radii as [number, number][];
+        const scale = Math.min(1, rect.width / (corners[0]![0] + corners[1]![0] || 1), rect.width / (corners[3]![0] + corners[2]![0] || 1),
+          rect.height / (corners[0]![1] + corners[3]![1] || 1), rect.height / (corners[1]![1] + corners[2]![1] || 1));
+        const normalized = corners.map(pair => [pair[0] * scale, pair[1] * scale] as const);
+        shapes.push({ elementAlias, radii: normalized.map(pair => [...pair]) });
+        const inside = (x: number, y: number) => {
+          if (!(x > rect.left && x < rect.right && y > rect.top && y < rect.bottom)) return false;
+          return normalized.every(([rx, ry], corner) => {
+            if (rx === 0 || ry === 0) return true;
+            const east = corner === 1 || corner === 2, south = corner >= 2;
+            const cx = east ? rect.right - rx : rect.left + rx, cy = south ? rect.bottom - ry : rect.top + ry;
+            if ((east ? x <= cx : x >= cx) || (south ? y <= cy : y >= cy)) return true;
+            return ((x - cx) / rx) ** 2 + ((y - cy) / ry) ** 2 < 1;
+          });
+        };
+        const points = normalized.map(([rx, ry], corner) => {
+          const east = corner === 1 || corner === 2, south = corner >= 2;
+          const dx = Math.min(rect.width / 2, Math.max(1, rx / 2)), dy = Math.min(rect.height / 2, Math.max(1, ry / 2));
+          return { pointAlias: ["northwest-interior", "northeast-interior", "southeast-interior", "southwest-interior"][corner]!,
+            x: rounded(east ? rect.right - dx : rect.left + dx), y: rounded(south ? rect.bottom - dy : rect.top + dy) };
+        });
+        points.push({ pointAlias: "center", x: rounded(rect.left + rect.width / 2), y: rounded(rect.top + rect.height / 2) });
+        for (const point of points) {
+          const insideSupportedShape = inside(point.x, point.y);
+          if (!insideSupportedShape) { reasons.add("unsupported-hit-shape"); continue; }
+          const hit = document.elementFromPoint(point.x, point.y); hitTests++;
+          const classification = !hit ? "none" : hit === element ? "self" : element.contains(hit) ? "descendant" : "other-element";
+          hitSamples.push({ elementAlias, ...point, insideSupportedShape, hit: classification });
+          if (classification === "none" || classification === "other-element") reasons.add("context-occluded");
         }
       }
       // Explicit header intersection plus bounded hit tests also covers this sheet's
       // non-sticky, non-scrolling header sibling. No whole-paint occlusion claim.
       return { alias: "e02-phone-target", sameTargetIdentity: true, bounds: bounds(targetBox), contextBounds: bounds(box),
         headerBounds: bounds(head), effectiveVisibleArea: [left, top, right - left, bottom - top].map(rounded), ports,
-        contextRects: rects.slice(0, 32).map(bounds), hitTests, focusUnchanged: document.activeElement === snapshot.focus,
+        contextRects: rects.slice(0, 32).map(bounds), hitTests, hitSamples, shapes, focusUnchanged: document.activeElement === snapshot.focus,
         focusOutlineMargin: rounded(focusMargin), viewport: { width: innerWidth, height: innerHeight, dpr: devicePixelRatio,
           visualWidth: viewport?.width, visualHeight: viewport?.height, scale: viewport?.scale, offsetX: viewport?.offsetLeft, offsetY: viewport?.offsetTop },
         qualifiedWholeTargetFraming: reasons.size === 0, reasons: [...reasons], rasterPaint: "unassessed", acceptance: "unassessed" };
@@ -445,7 +493,13 @@ async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Lo
     sample = measurement;
     png = await page.screenshot({ fullPage: false, scale: "css" });
     if (png.length > 4 * 1024 * 1024) { png = undefined; throw new Error("REL22 E02 phone PNG exceeds retained bound."); }
-    if (!measurement.qualifiedWholeTargetFraming) throw new Error("REL22 E02 phone whole-target framing unqualified; see bounded diagnostic measurement.");
+    if (!measurement.qualifiedWholeTargetFraming) {
+      const geometryOnly = new Set(["target-context-clipped", "focus-outline-clipped", "context-content-clipped", "context-occluded",
+        "unsupported-hit-shape", "unsupported-clipping"]);
+      const error = new Error(`REL22 E02 ${state} framing refused; see bounded diagnostic measurement.`);
+      if (measurement.reasons.length > 0 && measurement.reasons.every(reason => geometryOnly.has(reason))) framingRefusal = error;
+      else throw error; // Identity/focus/viewport/visibility/bounds or unknown failures stop immediately.
+    }
   } catch (error) { retain(error, "phone-target-observation"); }
   finally {
     const cap = 15000 / 4;
@@ -482,12 +536,97 @@ async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Lo
   const stem = `rel22-${state}-360x640`;
   const metadata = Buffer.from(JSON.stringify({ schemaVersion: 1, evidence: "preliminary-phone-target-framing", state,
     viewport: { width: 360, height: 640 }, retry: info.retry, acceptance: "unassessed", sample, restored,
-    outcome: failed ? "failed-or-unqualified" : "whole-target-framing-observed" }), "utf8");
+    outcome: failed ? "failed-or-unqualified" : framingRefusal ? "framing-refused" : "whole-target-framing-observed" }), "utf8");
   try {
     if (metadata.length > 32768) throw new Error("REL22 E02 phone measurement exceeds retained bound.");
     if (png) await info.attach(stem, { body: png, contentType: "image/png" });
     await info.attach(stem + "-framing-measurement", { body: metadata, contentType: "application/json" });
   } catch (error) { retain(error, "phone-target-attachments"); }
+  if (failed) throw first;
+  if (framingRefusal) {
+    // Only actual attachment settlement and all four successful restoration stages
+    // admit the original journey to continue. This refusal must still fail its case.
+    if (!png || !Object.values(restored).every(Boolean)) throw new Error("REL22 E02 framing refusal restoration/attachment custody unqualified.");
+    onFramingRefusal(framingRefusal);
+    info.annotations.push({ type: "rel22-e02-settled-framing-refusal", description: state });
+  }
+}
+
+/** Passive, bounded evidence around the original single keyboard retry.
+ * It records trusted events on that exact control; it never dispatches an event or refiles.
+ */
+async function rel22E02ObservedRetry(page: Page, info: TestInfo, retry: Locator, onFailure: (error: unknown) => void,
+  cleanupStage: (stage: string, run: () => Promise<unknown>, capMs?: number) => Promise<void>): Promise<void> {
+  await expect(retry).toHaveCount(1);
+  const saved = await retry.evaluateHandle(node => {
+    if (!(node instanceof HTMLButtonElement) || node.type !== "button" || node.textContent !== "Försök igen med samma försök") {
+      throw new Error("REL22 E02 original retry identity unavailable.");
+    }
+    const focus = document.activeElement, x = scrollX, y = scrollY;
+    const ancestors: { node: Element; left: number; top: number }[] = [];
+    let cursor: Element | null = node;
+    while (cursor && ancestors.length < 32) {
+      ancestors.push({ node: cursor, left: cursor.scrollLeft, top: cursor.scrollTop }); cursor = cursor.parentElement;
+    }
+    if (cursor) throw new Error("REL22 E02 retry observation ancestry exceeds bound.");
+    const events = { enterKeydowns: 0, trustedEnterKeydowns: 0, clicks: 0, trustedClicks: 0,
+      exactEventTarget: true, connectedAtEnter: true, connectedAtClick: true, overflow: false };
+    const increment = (key: "enterKeydowns" | "trustedEnterKeydowns" | "clicks" | "trustedClicks") => {
+      events[key] = Math.min(2, events[key] + 1); if (events[key] > 1) events.overflow = true;
+    };
+    const onKeydown = (event: KeyboardEvent) => {
+      if (event.key !== "Enter") return;
+      increment("enterKeydowns"); if (event.isTrusted) increment("trustedEnterKeydowns");
+      events.exactEventTarget &&= event.target === node;
+      events.connectedAtEnter &&= node.isConnected;
+    };
+    const onClick = (event: MouseEvent) => {
+      increment("clicks"); if (event.isTrusted) increment("trustedClicks"); events.exactEventTarget &&= event.target === node;
+      events.connectedAtClick &&= node.isConnected;
+    };
+    node.addEventListener("keydown", onKeydown, { capture: true, passive: true });
+    node.addEventListener("click", onClick, { capture: true, passive: true });
+    const observerPreservedFocusScroll = document.activeElement === focus && scrollX === x && scrollY === y
+      && ancestors.every(entry => entry.node.scrollLeft === entry.left && entry.node.scrollTop === entry.top);
+    return { node, events, onKeydown, onClick, observerPreservedFocusScroll };
+  });
+  let failed = false, first: unknown, activationFulfilled = false, sample: unknown = null;
+  const cleanup = { read: false, detached: false, disposed: false };
+  const retain = (error: unknown, stage: string) => {
+    if (!failed) { failed = true; first = error; onFailure(error); }
+    else info.annotations.push({ type: "rel22-e02-secondary", description: stage });
+  };
+  try {
+    expect(await retry.evaluate((node, snapshot) => node === snapshot.node && node.isConnected, saved)).toBe(true);
+    await keyboardActivate(page, retry); // The existing original action, exactly once.
+    activationFulfilled = true;
+  } catch (error) { retain(error, "original-retry-activation"); }
+  finally {
+    const cap = 15000 / 3;
+    try { await cleanupStage("retry-witness-read", async () => {
+      const witness = await saved.evaluate(snapshot => ({ alias: "e02-original-retry", sameControlIdentity:
+        snapshot.node.type === "button" && snapshot.node.textContent === "Försök igen med samma försök", connectedAtRead: snapshot.node.isConnected,
+        ...snapshot.events, observerPreservedFocusScroll: snapshot.observerPreservedFocusScroll }));
+      sample = witness; cleanup.read = true;
+      expect(witness.sameControlIdentity && witness.observerPreservedFocusScroll && witness.exactEventTarget
+        && witness.connectedAtEnter && witness.connectedAtClick && !witness.overflow).toBe(true);
+      expect([witness.enterKeydowns, witness.trustedEnterKeydowns, witness.clicks, witness.trustedClicks]).toEqual([1, 1, 1, 1]);
+    }, cap); } catch (error) { retain(error, "retry-witness-read"); }
+    try { await cleanupStage("retry-observer-detach", async () => {
+      await saved.evaluate(snapshot => {
+        snapshot.node.removeEventListener("keydown", snapshot.onKeydown, true);
+        snapshot.node.removeEventListener("click", snapshot.onClick, true);
+      }); cleanup.detached = true;
+    }, cap); } catch (error) { retain(error, "retry-observer-detach"); }
+    try { await cleanupStage("retry-observer-dispose", async () => { await saved.dispose(); cleanup.disposed = true; }, cap); }
+    catch (error) { retain(error, "retry-observer-dispose"); }
+  }
+  try {
+    const metadata = Buffer.from(JSON.stringify({ schemaVersion: 1, evidence: "preliminary-original-retry-interaction", state: "e02-original-retry",
+      retry: info.retry, viewport: page.viewportSize(), activationFulfilled, sample, cleanup, acceptance: "unassessed" }), "utf8");
+    if (metadata.length > 32768) throw new Error("REL22 E02 retry witness exceeds retained bound.");
+    await info.attach("rel22-e02-original-retry-interaction", { body: metadata, contentType: "application/json" });
+  } catch (error) { retain(error, "retry-witness-attachment"); }
   if (failed) throw first;
 }
 
@@ -641,6 +780,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       const reportMinutes = jobsActive ? 120 : 60;
       const before = await f.snapshot();
       const attempts: FilingAttempt[] = [];
+      const phoneFramingRefusals: Error[] = [];
       let committed!: (snapshot: ReportSnapshot) => void;
       let rejectCommit!: (error: unknown) => void;
       const commit = new Promise<ReportSnapshot>((resolve, reject) => { committed = resolve; rejectCommit = reject; });
@@ -694,6 +834,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         };
         return { entered, release, failure, retain, within, cleanupStage, cleanupWork, work: new Set<Promise<void>>(),
           activation: undefined as Promise<void> | undefined, capture: undefined as Promise<void> | undefined,
+          confirmation: undefined as ReturnType<Page["waitForResponse"]> | undefined,
           control: undefined as NonNullable<Awaited<ReturnType<Locator["elementHandle"]>>> | undefined,
           outcome: () => ({ failed, first }) };
       })();
@@ -783,12 +924,17 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         const retry = form.getByRole("button", { name: "Försök igen med samma försök", exact: true });
         if (observation) {
           observation.capture = rel22E02PhoneTargetCapture(page, testInfo, retry, "e02-unknown-outcome-phone-target-whole",
-            error => observation.retain(error, "phone-target-observer"), observation.cleanupStage);
+            error => observation.retain(error, "phone-target-observer"), error => phoneFramingRefusals.push(error), observation.cleanupStage);
           await observation.within(observation.capture, "unknown-phone-target-observation");
         }
         // playwright-utils deviation: observe the real existing filing action before retry.
         const confirmation = page.waitForResponse(reply => isFiling(reply.request(), f.marker));
-        await keyboardActivate(page, retry);
+        if (observation) {
+          observation.confirmation = confirmation;
+          void confirmation.catch(error => observation.retain(error, "retry-confirmation"));
+          observation.activation = rel22E02ObservedRetry(page, testInfo, retry, error => observation.retain(error, "original-retry-observer"), observation.cleanupStage);
+          await observation.within(observation.activation, "original-retry-activation-settlement");
+        } else { await keyboardActivate(page, retry); }
         expect((await confirmation).ok()).toBe(true);
         await expect(form.getByTestId("time-report-submit-status")).toHaveText("Rapporterad");
         expect(attempts).toHaveLength(2);
@@ -797,7 +943,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         await rel22Capture(page, testInfo, "e02-server-confirmed", form);
         if (observation) {
           observation.capture = rel22E02PhoneTargetCapture(page, testInfo, form.getByTestId("time-report-submit-status"), "e02-server-confirmed-phone-target-whole",
-            error => observation.retain(error, "phone-target-observer"), observation.cleanupStage);
+            error => observation.retain(error, "phone-target-observer"), error => phoneFramingRefusals.push(error), observation.cleanupStage);
           await observation.within(observation.capture, "confirmed-phone-target-observation");
         }
         await assertPhoneFits(page);
@@ -824,6 +970,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
           if (observation.capture) await cleanup("capture-drain", () => observation.capture!);
           for (const work of [...observation.work]) await cleanup("handler-drain", () => work);
           if (observation.activation) await cleanup("activation-drain", () => observation.activation!);
+          if (observation.confirmation) await cleanup("retry-confirmation-drain", () => observation.confirmation!);
           await cleanup("owned-unroute", () => page.unroute("**/*", handler));
           if (observation.control) await cleanup("control-dispose", () => observation.control!.dispose());
           // Preserve pending/rejected cleanup closures and capture/activation/control references.
@@ -832,6 +979,7 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       }
       const result = observation?.outcome();
       if (result?.failed) throw result.first;
+      if (phoneFramingRefusals.length) throw phoneFramingRefusals[0]; // After original retry/receipt/close/reload and custody drains, never a pass.
     });
   });
 
