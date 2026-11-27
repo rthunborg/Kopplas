@@ -51,3 +51,32 @@ test("cause-proof capture is distinct mode-bound and uploads closed results on f
   assert.throws(()=>projectCalendarFeedCiCommands(raw.replace("native-calendar-feed-cause-proof\n","native-full-integration\n")));
   assert.throws(()=>projectCalendarFeedCiCommands(raw.replace("cause-proof/upload/","cause-proof/")));
 });
+
+test("Story 35.8 native browser and cleanup artifacts have distinct stable paths fail capture visibly and give zero ordinary credit", () => {
+  const raw = read(".github/workflows/ci.yml");
+  const start = raw.indexOf("      - name: Story 35.8 calculation design"), end = raw.indexOf("      - name: Upload native general browser JSON");
+  assert.ok(start > 0 && end > start);
+  const focused = raw.slice(start, end);
+  assert.match(focused, /PLAYWRIGHT_JSON_OUTPUT_NAME: test-results\/story-35-8-focused-browser\/native\.json/);
+  assert.match(focused, /CALENDAR_FEED_CI_BROWSER_SUITE: story-35-8-focused/);
+  assert.match(focused, /run: node scripts\/ci\/with-calendar-feed-runtime\.mjs browser\n/);
+  assert.doesNotMatch(focused, /continue-on-error|\|\| true|test-results\/general-browser\.json|--retries|--grep/);
+  const uploads = [...focused.matchAll(/      - name: (?:Upload native Story 35\.8 focused browser JSON|Upload Story 35\.8 focused browser lifecycle JSON)\n        if: \$\{\{ !cancelled\(\) && github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser \}\}\n        uses: actions\/upload-artifact@v4\n        with:\n          name: ([^\n]+)\n          path: ([^\n]+)\n          retention-days: 7\n          if-no-files-found: error/g)].map(match => [match[1], match[2]]);
+  assert.deepEqual(uploads, [
+    ["native-story-35-8-focused-browser", "test-results/story-35-8-focused-browser/native.json"],
+    ["lifecycle-story-35-8-focused-browser", "test-results/story-35-8-focused-browser/lifecycle.json"],
+  ]);
+  const normal = raw.slice(end, raw.indexOf("      - name: Upload Playwright report", end));
+  assert.match(normal, /!cancelled\(\) && !\(github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser\)/);
+  assert.match(normal, /name: native-general-browser\n/); assert.match(normal, /path: test-results\/general-browser\.json/);
+  assert.ok(!ci.includes("story_35_8_focused_browser")); assert.ok(!ci.includes("native-story-35-8-focused-browser"));
+  for (const [before, after] of [
+    ["native-story-35-8-focused-browser\n", "native-general-browser\n"],
+    ["lifecycle-story-35-8-focused-browser\n", "native-story-35-8-focused-browser\n"],
+    ["path: test-results/story-35-8-focused-browser/native.json\n", "path: test-results/\n"],
+    ["path: test-results/story-35-8-focused-browser/lifecycle.json\n", "path: test-results/story-35-8-focused-browser/native.json\n"],
+  ]) assert.throws(() => projectCalendarFeedCiCommands(raw.replace(before, after)), /Story 35.8 exact/);
+  for (const changed of [focused.replaceAll("if-no-files-found: error", "if-no-files-found: ignore"), focused.replaceAll("!cancelled() && ", "success() && ")]) {
+    assert.throws(() => projectCalendarFeedCiCommands(raw.replace(focused, changed)), /Story 35.8 exact/);
+  }
+});

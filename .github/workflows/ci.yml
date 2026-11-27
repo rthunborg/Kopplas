@@ -1,5 +1,5 @@
 name: CI
-run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}
+run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.story_35_8_focused_browser && format('checkpoint:35-8-focused-diagnostic:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}
 
 # Phase A verification gates (architecture §19).
 # `verify` job — stages 1-5 + 10: install, lockfile guard, service-role containment
@@ -56,6 +56,11 @@ on:
         type: boolean
         required: false
         default: false
+      story_35_8_focused_browser:
+        description: Story 35.8 full calculation design Chromium diagnostic only; zero acceptance
+        type: boolean
+        required: false
+        default: false
   pull_request:
     # Verify the dependent Epic 11 repair PRs before their approved retarget to main.
     branches:
@@ -88,14 +93,23 @@ jobs:
           CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
           CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}
           RELEASE_VALIDATION: ${{ inputs.release_validation || false }}
+          STORY_35_8_FOCUSED_BROWSER: ${{ inputs.story_35_8_focused_browser || false }}
           OTHER_DIAGNOSTICS: ${{ inputs.native_stream_probe || inputs.fixed_chromium_paired_probe || inputs.fixed_chromium_application_verification || false }}
         shell: bash
         run: |
           set -euo pipefail
+          if [ "$STORY_35_8_FOCUSED_BROWSER" = true ]; then
+            test "$GITHUB_EVENT_NAME" = workflow_dispatch
+            test "$RELEASE_VALIDATION" = false
+            test "$CAUSE_PROOF" = false
+            test "$OTHER_DIAGNOSTICS" = false
+            test "$GITHUB_REF" != refs/heads/main
+          fi
           if [ "$CAUSE_PROOF" = true ]; then
             test "$GITHUB_EVENT_NAME" = workflow_dispatch
             test "$RELEASE_VALIDATION" = false
             test "$OTHER_DIAGNOSTICS" = false
+            test "$STORY_35_8_FOCUSED_BROWSER" = false
           fi
           if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
             [[ "$EXPECTED_SHA" =~ ^[a-f0-9]{40}$ ]]
@@ -914,7 +928,7 @@ jobs:
       # (NEXT_PUBLIC_* are inlined from playwright.config.ts), globalSetup seeds the
       # two-tenant fixture, and the specs drive the real browser journeys (G-2/G-3).
       - name: Essential authentication smoke (production app and local Auth)
-        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}
+        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.release_validation || inputs.story_35_8_focused_browser)) }}
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
           CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
@@ -928,8 +942,36 @@ jobs:
           CALENDAR_FEED_CI_BROWSER_SUITE: release
         run: node scripts/ci/with-calendar-feed-runtime.mjs browser
 
+      - name: Story 35.8 calculation design Chromium (diagnostic only; zero acceptance)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/story-35-8-focused-browser/native.json
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+          CALENDAR_FEED_CI_BROWSER_SUITE: story-35-8-focused
+          CALENDAR_FEED_CI_FOCUSED_EXPECTED_SHA: ${{ inputs.expected_sha }}
+          CALENDAR_FEED_CI_FOCUSED_CHECKPOINT: ${{ inputs.checkpoint_id }}
+        run: node scripts/ci/with-calendar-feed-runtime.mjs browser
+
+      - name: Upload native Story 35.8 focused browser JSON
+        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-story-35-8-focused-browser
+          path: test-results/story-35-8-focused-browser/native.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Upload Story 35.8 focused browser lifecycle JSON
+        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lifecycle-story-35-8-focused-browser
+          path: test-results/story-35-8-focused-browser/lifecycle.json
+          retention-days: 7
+          if-no-files-found: error
+
       - name: Upload native general browser JSON
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser) }}
         uses: actions/upload-artifact@v4
         with:
           name: native-general-browser

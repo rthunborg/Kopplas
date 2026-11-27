@@ -12,6 +12,8 @@ import pg from "pg";
 export const INTEGRATION_ARGS = Object.freeze(["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"]);
 export const BROWSER_ARGS = Object.freeze(["run", "test:smoke"]);
 export const RELEASE_BROWSER_ARGS = Object.freeze(["run", "test:e2e", "--reporter=list,json"]);
+export const STORY_35_8_BROWSER_ARGS = Object.freeze(["exec", "playwright", "test", "tests/e2e/calculations/calculation-editor-design.e2e.spec.ts", "--project=chromium", "--reporter=list,json"]);
+const FOCUSED_BROWSER_DIRECTORY = "test-results/story-35-8-focused-browser";
 export const CAUSE_PROOF_ARGS = Object.freeze(["exec", "vitest", "run", "tests/integration/commands/calendar-feed.int.test.ts", "--maxWorkers=1", "--no-file-parallelism", "--testNamePattern=^15[.]5-DIAG001$", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
 export const CAUSE_PROOF_OUTCOMES = Object.freeze(["PRE_SQL_STOP", "AMBIGUOUS_SQL42501", "NONREPRODUCED", "UNKNOWN_ENGINE_ERROR", "INCOMPARABLE", "CLEANUP_UNVERIFIED", "ORDINARY_SUCCESS", "CAPTURE_UNAVAILABLE"]);
 const CAUSE_DIRECTORY = "test-results/calendar-feed-cause-proof";
@@ -201,8 +203,15 @@ export function createCalendarFeedDatabaseClient(stack, purpose = "runtime") {
 export function validateAdmission(mode, env, platform) {
   if (!["db", "browser", "cause-proof"].includes(mode)) fail("mode-refused");
   if (env.CALENDAR_FEED_CI_BROWSER_SUITE !== undefined
-    && (env.CALENDAR_FEED_CI_BROWSER_SUITE !== "release" || mode !== "browser"
+    && (!["release", "story-35-8-focused"].includes(env.CALENDAR_FEED_CI_BROWSER_SUITE) || mode !== "browser"
       || env.GITHUB_EVENT_NAME !== "workflow_dispatch")) fail("browser-suite-refused");
+  const focused = env.CALENDAR_FEED_CI_BROWSER_SUITE === "story-35-8-focused";
+  if (!focused && [env.CALENDAR_FEED_CI_FOCUSED_EXPECTED_SHA, env.CALENDAR_FEED_CI_FOCUSED_CHECKPOINT].some(value => value !== undefined)) fail("focused-browser-admission-refused");
+  if (focused && (env.GITHUB_JOB !== "e2e" || env.GITHUB_RUN_ATTEMPT !== "1" || env.GITHUB_REF_TYPE !== "branch"
+    || !/^refs\/heads\/[^\s]+$/.test(env.GITHUB_REF ?? "") || env.GITHUB_REF === "refs/heads/main"
+    || !/^[a-f0-9]{40}$/.test(env.GITHUB_SHA ?? "") || env.CALENDAR_FEED_CI_FOCUSED_EXPECTED_SHA !== env.GITHUB_SHA
+    || !UUID.test(env.CALENDAR_FEED_CI_FOCUSED_CHECKPOINT ?? "")
+    || env.PLAYWRIGHT_JSON_OUTPUT_NAME !== FOCUSED_BROWSER_DIRECTORY + "/native.json")) fail("focused-browser-admission-refused");
   if (platform !== "linux" || env.CI !== "true" || env.GITHUB_ACTIONS !== "true" || env.RUNNER_ENVIRONMENT !== "github-hosted"
     || !/^\d+$/.test(env.GITHUB_RUN_ID ?? "") || !/^\d+$/.test(env.GITHUB_RUN_ATTEMPT ?? "")
     || !/^[a-zA-Z0-9_-]+$/.test(env.GITHUB_JOB ?? "")
@@ -579,12 +588,26 @@ function defaultDependencies(env, cwd) {
       if ((await readdir(folder)).length) fail("diagnostic-output-not-fresh");
     },
     finishDiagnostic: (receipt, observe, privacy) => finishCauseProof(cwd, env, receipt, observe, privacy),
+    prepareFocusedBrowser: () => prepareStory358Browser(cwd),
+    finishFocusedBrowser: receipt => finishStory358Browser(cwd, receipt),
     async readDiagnostic() { return validateCauseProofObservation(JSON.parse(await readFile(join(cwd, CAUSE_DIRECTORY, "observation.json"), "utf8"))); },
     connect: createCalendarFeedDatabaseClient,
     async createTelemetry() { const folder = await mkdtemp(join(tmpdir(), "kopplas-feed-ci-")); const path = join(folder, "responses.jsonl"); await writeFile(path, "", { mode: 0o600 }); return { path, persist: line => appendFile(path, line, { mode: 0o600 }) }; },
     launch: (command, args, childEnv, observe) => launchOwned(command, args, childEnv, cwd, observe),
     ready: (url, child, signal) => waitForOwnedHttp({ url, child, signal }),
   };
+}
+
+/** Fixed fresh diagnostic files only; native Playwright output is uploaded separately. */
+export async function prepareStory358Browser(cwd) {
+  const folder = join(cwd, FOCUSED_BROWSER_DIRECTORY);
+  await mkdir(folder, { recursive: true });
+  if ((await readdir(folder)).length) fail("focused-browser-output-not-fresh");
+}
+export async function finishStory358Browser(cwd, receipt) {
+  // Playwright owns its output directory and may remove it before reporter startup.
+  await mkdir(join(cwd, FOCUSED_BROWSER_DIRECTORY), { recursive: true });
+  await writeFile(join(cwd, FOCUSED_BROWSER_DIRECTORY, "lifecycle.json"), JSON.stringify(receipt) + "\n", { flag: "wx", mode: 0o600 });
 }
 
 /** Test-only dedicated qualification. No credential export to child environments. */
@@ -599,7 +622,11 @@ export async function qualifyCalendarFeedCauseProof(env = process.env) {
  * @param {object} injected
  */
 export async function runCalendarFeedRuntime({ mode, env = process.env, platform = process.platform, cwd = ROOT } = {}, injected = {}) {
-  const receipt = { event: "calendar_feed.ci_lifecycle", mode: ["db", "browser", "cause-proof"].includes(mode) ? mode : "refused", ready: false,
+  const focused = mode === "browser" && env.CALENDAR_FEED_CI_BROWSER_SUITE === "story-35-8-focused";
+  let focusedPrepared = false;
+  const receipt = { ...(focused ? { verificationMode: "story-35-8-focused-browser", evidenceClass: "diagnostic-only", acceptanceCredit: 0,
+    source: { sha: env.GITHUB_SHA ?? null, ref: env.GITHUB_REF ?? null, checkpoint: env.CALENDAR_FEED_CI_FOCUSED_CHECKPOINT ?? null } } : {}),
+    event: "calendar_feed.ci_lifecycle", mode: ["db", "browser", "cause-proof"].includes(mode) ? mode : "refused", ready: false,
     launchAttempted: false, childLaunchState: "not-attempted",
     childExitCodes: /** @type {(number|null)[]} */ ([]), keyDeleted: false, dbClosed: false,
     failures: /** @type {string[]} */ ([]),
@@ -667,6 +694,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
   try {
     validateAdmission(mode, env, platform);
     unregister = deps.registerSignal(() => abort.abort()); // Before any resource mutation.
+    if (focused) { stage = "focused-output"; await deps.prepareFocusedBrowser(); focusedPrepared = true; checkSignal(); }
     stage = "qualification";
     const { status, migrations, stack } = await deps.qualify(); checkSignal();
     stage = "port-check";
@@ -736,7 +764,7 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       await deps.ready(childEnv.CALENDAR_FEED_TEST_BASE_URL, server, abort.signal); receipt.ready = true;
       await run("pnpm", INTEGRATION_ARGS, childEnv, (line, stream, completeLine) => observe(line, "integration", stream, completeLine), 1_800_000);
     } else {
-      await run("pnpm", env.CALENDAR_FEED_CI_BROWSER_SUITE === "release" ? RELEASE_BROWSER_ARGS : BROWSER_ARGS, childEnv, observe, 1_800_000);
+      await run("pnpm", focused ? STORY_35_8_BROWSER_ARGS : env.CALENDAR_FEED_CI_BROWSER_SUITE === "release" ? RELEASE_BROWSER_ARGS : BROWSER_ARGS, childEnv, observe, 1_800_000);
     }
     checkSignal();
   } catch (error) {
@@ -796,6 +824,10 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
     catch { receipt.failures.push("diagnostic-capture-failed"); }
   }
   if (integrationDiagnostic) receipt.integrationChildDiagnostic = integrationDiagnostic.freeze();
+  if (focusedPrepared) {
+    try { await deps.finishFocusedBrowser(receipt); }
+    catch { receipt.failures.push("focused-browser-capture-failed"); }
+  }
   return { exitCode: receipt.failures.length ? 1 : 0, receipt };
 }
 

@@ -11,14 +11,16 @@ const SHA = /^[a-f0-9]{40}$/;
 const ID = /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/;
 const REPO = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 const ACTOR = /^[A-Za-z0-9-]+(?:\[bot\])?$/;
-export const checkpointTitle = (id, sha, mode = "normal") => mode === "calendar-feed-cause-proof" ? `checkpoint:cause-proof:${id}:${sha}` : `checkpoint:${id}:${sha}`;
+export const checkpointTitle = (id, sha, mode = "normal") => mode === "story-35-8-focused-browser" ? `checkpoint:35-8-focused-diagnostic:${id}:${sha}` : mode === "calendar-feed-cause-proof" ? `checkpoint:cause-proof:${id}:${sha}` : `checkpoint:${id}:${sha}`;
 function verificationMode(state) {
-  if (state.verification_mode === undefined && state.cause_proof === undefined) return state.release_validation === true ? "release" : "normal";
-  const expected = state.cause_proof === true ? "calendar-feed-cause-proof" : state.release_validation === true ? "release" : "normal";
-  if (typeof state.cause_proof !== "boolean" || state.verification_mode !== expected || (state.cause_proof && state.release_validation)) throw new Error("Invalid checkpoint verification mode.");
+  if (state.story_35_8_focused_browser !== undefined && typeof state.story_35_8_focused_browser !== "boolean") throw new Error("Invalid checkpoint verification mode.");
+  if (state.verification_mode === undefined && state.cause_proof === undefined && state.story_35_8_focused_browser !== true) return state.release_validation === true ? "release" : "normal";
+  const expected = state.story_35_8_focused_browser === true ? "story-35-8-focused-browser" : state.cause_proof === true ? "calendar-feed-cause-proof" : state.release_validation === true ? "release" : "normal";
+  if (typeof state.cause_proof !== "boolean" || state.verification_mode !== expected
+    || [state.cause_proof, state.story_35_8_focused_browser, state.release_validation].filter(value => value === true).length > 1) throw new Error("Invalid checkpoint verification mode.");
   return expected;
 }
-const modeReceipt = state => ({ verification_mode: verificationMode(state), evidence_class: verificationMode(state) === "calendar-feed-cause-proof" ? "diagnostic-only" : "normal-gates-pending", acceptance_credit: 0 });
+const modeReceipt = state => ({ verification_mode: verificationMode(state), evidence_class: ["calendar-feed-cause-proof", "story-35-8-focused-browser"].includes(verificationMode(state)) ? "diagnostic-only" : "normal-gates-pending", acceptance_credit: 0 });
 
 /** Deliberately narrow block-mapping recognizer, not a permissive YAML parser.
  * Unsupported declarations stop before POST. Default presence does not require
@@ -77,10 +79,28 @@ export function assertCauseProofWorkflow(source) {
   if (typeof source !== "string" || source.length > 512_000) throw new Error("Diagnostic workflow availability unverified.");
   const text = source.replaceAll("\r\n", "\n");
   if (!text.includes("      calendar_feed_cause_proof:\n        description: One diagnostic call and unmodified rollback-only baseline; zero acceptance\n        type: boolean\n        required: false\n        default: false\n")
-    || !text.includes("checkpoint:cause-proof:{0}:{1}") || !text.includes('test "$RELEASE_VALIDATION" = false')
+    || !text.includes("checkpoint:cause-proof:{0}:{1}") || !text.includes('if [ "$CAUSE_PROOF" = true ]; then\n            test "$GITHUB_EVENT_NAME" = workflow_dispatch\n            test "$RELEASE_VALIDATION" = false\n            test "$OTHER_DIAGNOSTICS" = false\n            test "$STORY_35_8_FOCUSED_BROWSER" = false\n          fi\n')
     || !text.includes("node scripts/ci/with-calendar-feed-runtime.mjs cause-proof")) throw new Error("Diagnostic workflow input/admission is unavailable; no dispatch sent.");
 }
-function diagnosticAvailability(api, options) {
+/** Selected-candidate capability follows the retained REL22 branch-only precedent. */
+export function assertStory358Workflow(source) {
+  assertDefaultDispatchWorkflow(source);
+  const text = source.replaceAll("\r\n", "\n");
+  const fragments = [
+  "run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.story_35_8_focused_browser && format('checkpoint:35-8-focused-diagnostic:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}",
+  "      story_35_8_focused_browser:\n        description: Story 35.8 full calculation design Chromium diagnostic only; zero acceptance\n        type: boolean\n        required: false\n        default: false\n",
+  "      - name: Bind dispatch to its immutable source revision\n        env:\n          EXPECTED_SHA: ${{ inputs.expected_sha }}\n          CHECKPOINT_ID: ${{ inputs.checkpoint_id }}\n          CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}\n          RELEASE_VALIDATION: ${{ inputs.release_validation || false }}\n          STORY_35_8_FOCUSED_BROWSER: ${{ inputs.story_35_8_focused_browser || false }}\n          OTHER_DIAGNOSTICS: ${{ inputs.native_stream_probe || inputs.fixed_chromium_paired_probe || inputs.fixed_chromium_application_verification || false }}\n        shell: bash\n        run: |\n          set -euo pipefail\n          if [ \"$STORY_35_8_FOCUSED_BROWSER\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$RELEASE_VALIDATION\" = false\n            test \"$CAUSE_PROOF\" = false\n            test \"$OTHER_DIAGNOSTICS\" = false\n            test \"$GITHUB_REF\" != refs/heads/main\n          fi\n          if [ \"$CAUSE_PROOF\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$RELEASE_VALIDATION\" = false\n            test \"$OTHER_DIAGNOSTICS\" = false\n            test \"$STORY_35_8_FOCUSED_BROWSER\" = false\n          fi\n          if [ \"$GITHUB_EVENT_NAME\" = workflow_dispatch ]; then\n            [[ \"$EXPECTED_SHA\" =~ ^[a-f0-9]{40}$ ]]\n            [[ \"$CHECKPOINT_ID\" =~ ^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$ ]]\n            test \"$EXPECTED_SHA\" = \"$GITHUB_SHA\"\n            test \"$GITHUB_RUN_ATTEMPT\" = 1\n            test \"$GITHUB_REF_TYPE\" = branch\n          fi\n",
+  "      - name: Story 35.8 calculation design Chromium (diagnostic only; zero acceptance)\n        if: ${{ github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser }}\n        env:\n          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/story-35-8-focused-browser/native.json\n          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}\n          CALENDAR_FEED_CI_BROWSER_SUITE: story-35-8-focused\n          CALENDAR_FEED_CI_FOCUSED_EXPECTED_SHA: ${{ inputs.expected_sha }}\n          CALENDAR_FEED_CI_FOCUSED_CHECKPOINT: ${{ inputs.checkpoint_id }}\n        run: node scripts/ci/with-calendar-feed-runtime.mjs browser\n\n      - name: Upload native Story 35.8 focused browser JSON\n        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser }}\n        uses: actions/upload-artifact@v4\n        with:\n          name: native-story-35-8-focused-browser\n          path: test-results/story-35-8-focused-browser/native.json\n          retention-days: 7\n          if-no-files-found: error\n\n      - name: Upload Story 35.8 focused browser lifecycle JSON\n        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser }}\n        uses: actions/upload-artifact@v4\n        with:\n          name: lifecycle-story-35-8-focused-browser\n          path: test-results/story-35-8-focused-browser/lifecycle.json\n          retention-days: 7\n          if-no-files-found: error\n\n",
+  "        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.release_validation || inputs.story_35_8_focused_browser)) }}",
+  "      - name: Upload native general browser JSON\n        if: ${{ !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser) }}\n"
+];
+  if (fragments.some(fragment => text.split(fragment).length - 1 !== 1)) throw new Error("Story 35.8 diagnostic workflow input/admission unavailable; no dispatch sent.");
+  const jobs = [...text.matchAll(/^  [A-Za-z0-9_-]+:\n/gm)], owned = jobs.filter(job => job[0] === "  e2e:\n");
+  if (owned.length !== 1) throw new Error("Story 35.8 diagnostic workflow job unavailable; no dispatch sent.");
+  const start = owned[0].index, end = jobs.find(job => job.index > start)?.index ?? text.length;
+  if (!text.slice(start, end).includes(fragments[3])) throw new Error("Story 35.8 diagnostic workflow entry misplaced; no dispatch sent.");
+}
+function diagnosticAvailability(api, options, assertCapability = assertCauseProofWorkflow) {
   const read = ref => {
     const value = api("GET", `repos/${options.repo}/contents/${WORKFLOW_PATH}?ref=${encodeURIComponent(ref)}`);
     if (value?.encoding !== "base64" || typeof value.content !== "string" || value.content.length > 700_000 || !/^[a-f0-9]{40}$/.test(value.sha ?? "")) throw new Error("Diagnostic workflow source unavailable; no dispatch sent.");
@@ -90,10 +110,11 @@ function diagnosticAvailability(api, options) {
     return { text, oid: value.sha };
   };
   const candidate = read(options.sha);
-  assertCauseProofWorkflow(candidate.text);
+  assertCapability(candidate.text);
   if (candidate.text.replaceAll("\r\n", "\n") !== readFileSync(resolve(WORKFLOW_PATH), "utf8").replaceAll("\r\n", "\n")) throw new Error("Diagnostic candidate workflow differs from reviewed checkout; no dispatch sent.");
   const repository = api("GET", `repos/${options.repo}`);
   validateRequest({ ...options, ref: repository?.default_branch });
+  if (assertCapability === assertStory358Workflow && options.ref === repository.default_branch) throw new Error("Story 35.8 diagnostic requires a verification branch; no dispatch sent.");
   const primary = read(repository.default_branch);
   assertDefaultDispatchWorkflow(primary.text);
   return { candidate_workflow_oid: candidate.oid, default_workflow_oid: primary.oid };
@@ -191,7 +212,8 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
       validateRequest(options);
       if (options.release_validation !== undefined && !["true", "false"].includes(options.release_validation)) throw new Error("--release-validation must be true or false.");
       if (options.cause_proof !== undefined && !["true", "false"].includes(options.cause_proof)) throw new Error("--cause-proof must be true or false.");
-      if (options.cause_proof === "true" && options.release_validation === "true") throw new Error("Diagnostic and release modes are mutually exclusive.");
+      if (options.story_35_8_focused_browser !== undefined && !["true", "false"].includes(options.story_35_8_focused_browser)) throw new Error("--story-35-8-focused-browser must be true or false.");
+      if ([options.cause_proof, options.story_35_8_focused_browser, options.release_validation].filter(value => value === "true").length > 1) throw new Error("Diagnostic and release modes are mutually exclusive.");
       const actor = api("GET", "user").login;
       if (!ACTOR.test(actor ?? "")) throw new Error("Cannot establish authenticated actor.");
       const permission = api("GET", `repos/${options.repo}/collaborators/${encodeURIComponent(actor)}/permission`).permission;
@@ -200,14 +222,15 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
       if (branch.commit?.sha !== options.sha) throw new Error("Remote branch differs from the requested SHA; no dispatch sent.");
       const workflow = api("GET", `repos/${options.repo}/actions/workflows/${WORKFLOW}`);
       if (workflow.path !== WORKFLOW_PATH || workflow.state !== "active" || !Number.isSafeInteger(workflow.id) || workflow.id < 1) throw new Error("Expected active CI workflow is unavailable on the default branch.");
-      const availability = options.cause_proof === "true" ? diagnosticAvailability(api, options) : undefined;
+      const availability = options.story_35_8_focused_browser === "true" ? diagnosticAvailability(api, options, assertStory358Workflow) : options.cause_proof === "true" ? diagnosticAvailability(api, options) : undefined;
       const created = now();
       const state = {
         version: 1, repo: options.repo, ref: options.ref, sha: options.sha,
         actor, workflow_id: workflow.id, checkpoint_id: suppliedId ? selectedId : randomUUID(),
         release_validation: options.release_validation === "true",
         cause_proof: options.cause_proof === "true",
-        verification_mode: options.cause_proof === "true" ? "calendar-feed-cause-proof" : options.release_validation === "true" ? "release" : "normal",
+        story_35_8_focused_browser: options.story_35_8_focused_browser === "true",
+        verification_mode: options.story_35_8_focused_browser === "true" ? "story-35-8-focused-browser" : options.cause_proof === "true" ? "calendar-feed-cause-proof" : options.release_validation === "true" ? "release" : "normal",
         ...(availability ? { workflow_availability: availability } : {}),
         created_at: created.toISOString(), deadline_at: new Date(created.getTime() + 60 * 60 * 1000).toISOString(),
         phase: "dispatch-uncertain", run_id: null,
@@ -218,7 +241,7 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
       try { writeFileSync(fd, `${JSON.stringify(state, null, 2)}\n`); fsyncSync(fd); } finally { closeSync(fd); }
       try {
         api("POST", `repos/${state.repo}/actions/workflows/${state.workflow_id}/dispatches`, {
-          ref: state.ref, inputs: { expected_sha: state.sha, checkpoint_id: state.checkpoint_id, release_validation: String(state.release_validation), ...(state.cause_proof ? { calendar_feed_cause_proof: "true" } : {}) },
+          ref: state.ref, inputs: { expected_sha: state.sha, checkpoint_id: state.checkpoint_id, release_validation: String(state.release_validation), ...(state.cause_proof ? { calendar_feed_cause_proof: "true" } : {}), ...(state.story_35_8_focused_browser ? { story_35_8_focused_browser: "true" } : {}) },
         });
       } catch {
         throw new Error("Dispatch outcome uncertain. Ownership record retained; use status, never repeat dispatch.");
@@ -265,10 +288,10 @@ export function checkpoint(command, options, { api = githubApi, now = () => new 
 export function parseArgs(args) {
   const [command, ...rest] = args;
   const options = {};
-  const allowed = command === "dispatch" ? ["repo", "ref", "sha", "state", "release-validation", "cause-proof", "checkpoint-id"] : ["state"];
+  const allowed = command === "dispatch" ? ["repo", "ref", "sha", "state", "release-validation", "cause-proof", "story-35-8-focused-browser", "checkpoint-id"] : ["state"];
   for (let index = 0; index < rest.length; index += 2) {
     const key = rest[index]?.slice(2);
-    if (!rest[index]?.startsWith("--") || !allowed.includes(key) || options[key.replaceAll("-", "_")] !== undefined || !rest[index + 1] || rest[index + 1].startsWith("--")) throw new Error("Invalid, duplicate or missing option. Dispatch: --repo --ref --sha --state [--release-validation true|false] [--cause-proof true|false] [--checkpoint-id lowercase-UUIDv4]; status/cancel: --state.");
+    if (!rest[index]?.startsWith("--") || !allowed.includes(key) || options[key.replaceAll("-", "_")] !== undefined || !rest[index + 1] || rest[index + 1].startsWith("--")) throw new Error("Invalid, duplicate or missing option. Dispatch: --repo --ref --sha --state [--release-validation true|false] [--cause-proof true|false] [--story-35-8-focused-browser true|false] [--checkpoint-id lowercase-UUIDv4]; status/cancel: --state.");
     options[key.replaceAll("-", "_")] = rest[index + 1];
   }
   if (Object.hasOwn(options, "checkpoint_id") && !ID.test(options.checkpoint_id)) throw new Error("--checkpoint-id requires a canonical lowercase UUIDv4.");

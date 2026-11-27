@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { projectCiPerformanceChanges } from "./ci-performance-contract";
 
 const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
-const wrapperSha256 = "52d9b270f66f9ec5e68b8d4398e817c42aeb55311504b72a2439383a7aeea2ab";
+const wrapperSha256 = "c0914255fed0e0f2d55f9f1406e3f221290caef747179361930d61502c73a3a3";
 const integrationArgs = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
 const browserArgs = ["run", "test:smoke"];
 const releaseBrowserArgs = ["run", "test:e2e", "--reporter=list,json"];
@@ -38,6 +38,51 @@ const releaseBrowserEntry = [
   "          CALENDAR_FEED_CI_BROWSER_SUITE: release",
   "        run: node scripts/ci/with-calendar-feed-runtime.mjs browser",
 ].join("\n") + "\n";
+
+// Finite Story 35.8 inverse: retain ordinary/exhaustive bytes and separate diagnostic credit.
+const story358WorkflowInverse: readonly [string, string][] = [
+  [
+    "run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.story_35_8_focused_browser && format('checkpoint:35-8-focused-diagnostic:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}",
+    "run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}"
+  ],
+  [
+    "      story_35_8_focused_browser:\n        description: Story 35.8 full calculation design Chromium diagnostic only; zero acceptance\n        type: boolean\n        required: false\n        default: false\n",
+    ""
+  ],
+  [
+    "          STORY_35_8_FOCUSED_BROWSER: ${{ inputs.story_35_8_focused_browser || false }}\n",
+    ""
+  ],
+  [
+    "          if [ \"$STORY_35_8_FOCUSED_BROWSER\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$RELEASE_VALIDATION\" = false\n            test \"$CAUSE_PROOF\" = false\n            test \"$OTHER_DIAGNOSTICS\" = false\n            test \"$GITHUB_REF\" != refs/heads/main\n          fi\n          if [ \"$CAUSE_PROOF\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$RELEASE_VALIDATION\" = false\n            test \"$OTHER_DIAGNOSTICS\" = false\n            test \"$STORY_35_8_FOCUSED_BROWSER\" = false\n          fi\n",
+    "          if [ \"$CAUSE_PROOF\" = true ]; then\n            test \"$GITHUB_EVENT_NAME\" = workflow_dispatch\n            test \"$RELEASE_VALIDATION\" = false\n            test \"$OTHER_DIAGNOSTICS\" = false\n          fi\n"
+  ],
+  [
+    "        if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.release_validation || inputs.story_35_8_focused_browser)) }}",
+    "        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}"
+  ],
+  [
+    "      - name: Story 35.8 calculation design Chromium (diagnostic only; zero acceptance)\n        if: ${{ github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser }}\n        env:\n          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/story-35-8-focused-browser/native.json\n          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}\n          CALENDAR_FEED_CI_BROWSER_SUITE: story-35-8-focused\n          CALENDAR_FEED_CI_FOCUSED_EXPECTED_SHA: ${{ inputs.expected_sha }}\n          CALENDAR_FEED_CI_FOCUSED_CHECKPOINT: ${{ inputs.checkpoint_id }}\n        run: node scripts/ci/with-calendar-feed-runtime.mjs browser\n\n      - name: Upload native Story 35.8 focused browser JSON\n        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser }}\n        uses: actions/upload-artifact@v4\n        with:\n          name: native-story-35-8-focused-browser\n          path: test-results/story-35-8-focused-browser/native.json\n          retention-days: 7\n          if-no-files-found: error\n\n      - name: Upload Story 35.8 focused browser lifecycle JSON\n        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser }}\n        uses: actions/upload-artifact@v4\n        with:\n          name: lifecycle-story-35-8-focused-browser\n          path: test-results/story-35-8-focused-browser/lifecycle.json\n          retention-days: 7\n          if-no-files-found: error\n\n",
+    ""
+  ],
+  [
+    "      - name: Upload native general browser JSON\n        if: ${{ !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.story_35_8_focused_browser) }}\n",
+    "      - name: Upload native general browser JSON\n        if: ${{ !cancelled() }}\n"
+  ]
+];
+export function projectStory358FocusedBrowser(workflow: string): string {
+  let projected = workflow.replaceAll("\r\n", "\n");
+  const jobs = [...projected.matchAll(/^  [A-Za-z0-9_-]+:\n/gm)], owned = jobs.filter(job => job[0] === "  e2e:\n");
+  assert.equal(owned.length, 1, "Story 35.8 exact e2e job");
+  const start = owned[0].index!, end = jobs.find(job => job.index! > start)?.index ?? projected.length;
+  assert.ok(projected.slice(start, end).includes(story358WorkflowInverse[5][0]), "Story 35.8 exact e2e entry placement");
+  for (const [entry, original] of story358WorkflowInverse) {
+    assert.equal(projected.split(entry).length - 1, 1, "Story 35.8 exact workflow fragment");
+    projected = projected.replace(entry, original);
+  }
+  assert.ok(!projected.includes("story_35_8_focused_browser"), "Story 35.8 unexpected input or reference");
+  return projected;
+}
 
 // Exact newly reviewed diagnostic fragments only. Every unrelated byte survives.
 const causeProofInverse: readonly [string, string][] = [
@@ -485,10 +530,11 @@ export function projectCalendarFeedCiCommands(workflow: string, wrapperSource = 
   const browser = literalArgs(source, "BROWSER_ARGS", browserArgs);
   const releaseBrowser = literalArgs(source, "RELEASE_BROWSER_ARGS", releaseBrowserArgs);
   assert.equal(createHash("sha256").update(source).digest("hex"), wrapperSha256, "calendar feed CI reviewed wrapper source");
+  literalArgs(source, "STORY_35_8_BROWSER_ARGS", ["exec", "playwright", "test", "tests/e2e/calculations/calculation-editor-design.e2e.spec.ts", "--project=chromium", "--reporter=list,json"]);
   literalArgs(source, "CAUSE_PROOF_ARGS", ["exec","vitest","run","tests/integration/commands/calendar-feed.int.test.ts","--maxWorkers=1","--no-file-parallelism","--testNamePattern=^15[.]5-DIAG001$","--reporter=default","--reporter=github-actions","--reporter=json","--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
   // Compose independently reviewed finite inverses before the historical
   // calendar/fixed-browser projection. Preserve every unrelated workflow byte.
-  let projected = projectStorageSourceMailExclusion(projectTemporaryPicomatchAudit(projectDbStartupFacts(projectCiPerformanceChanges(workflow))));
+  let projected = projectStorageSourceMailExclusion(projectTemporaryPicomatchAudit(projectDbStartupFacts(projectCiPerformanceChanges(projectStory358FocusedBrowser(workflow)))));
   assert.equal(projected.split(authCleanupEntry).length - 1, 1, "Auth cleanup exact diagnostic workflow fragment");
   const collectorSource = readFileSync(new URL("../../scripts/ci/auth-cleanup-collector.mjs", import.meta.url), "utf8").replaceAll("\r\n", "\n");
   assert.equal(createHash("sha256").update(collectorSource).digest("hex"), authCleanupCollectorSha256, "Auth cleanup reviewed collector source");

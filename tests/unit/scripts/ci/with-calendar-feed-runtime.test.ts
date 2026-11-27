@@ -9,8 +9,8 @@ import { mkdtemp, mkdir, writeFile, readFile, rm, stat } from "node:fs/promises"
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
-import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
-import { INTEGRATION_ARGS, BROWSER_ARGS, RELEASE_BROWSER_ARGS, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, createIntegrationChildDiagnostic, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+import { projectCalendarFeedCiCommands, projectStory358FocusedBrowser } from "../../../support/calendar-feed-ci-contract";
+import { INTEGRATION_ARGS, BROWSER_ARGS, RELEASE_BROWSER_ARGS, STORY_35_8_BROWSER_ARGS, prepareStory358Browser, finishStory358Browser, CAUSE_PROOF_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, validateCauseProofObservation, finishCauseProof, createCalendarFeedDatabaseClient, createTelemetryObserver, createIntegrationChildDiagnostic, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime, launchOwned } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
 import { captureCalendarFeedTrace, recordCalendarFeedTrace, recordCalendarFeedContext, recordCalendarFeedMembership, executeCalendarFeed } from "../../../../src/server/commands/calendar-feed/calendar-feed-db";
 import { CommandError } from "../../../../src/server/commands/command-errors";
 import { validateCalendarFeedIntent } from "../../../../src/features/calendar-feed/validation";
@@ -4415,4 +4415,129 @@ test("DB startup facts exact inverse is one-db scoped and refuses moved duplicat
   assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace(block,"").replace("  e2e:\n","  e2e:\n"+block)),/DB startup facts/);
   assert.throws(()=>projectCalendarFeedCiCommands(workflow.replace("  db:\n","  db:\n  db:\n")),/DB startup facts exact single db job/);
   assert.notEqual(projectCalendarFeedCiCommands(workflow+"\n# unrelated\n"),projected);
+});
+
+const focusedEnv = { ...env, GITHUB_EVENT_NAME: "workflow_dispatch", GITHUB_JOB: "e2e", CALENDAR_FEED_CI_DISPOSABLE_STACK: "123:1:e2e",
+  GITHUB_REF_TYPE: "branch", GITHUB_REF: "refs/heads/codex/story-35-8-checkpoint", GITHUB_SHA: "a".repeat(40),
+  CALENDAR_FEED_CI_BROWSER_SUITE: "story-35-8-focused", CALENDAR_FEED_CI_FOCUSED_EXPECTED_SHA: "a".repeat(40),
+  CALENDAR_FEED_CI_FOCUSED_CHECKPOINT: "2c7241ac-d51e-4a6f-8f85-533739b3e472", PLAYWRIGHT_JSON_OUTPUT_NAME: "test-results/story-35-8-focused-browser/native.json" };
+function focusedHarness(options: Parameters<typeof harness>[0] = {}) {
+  const h = harness(options), captures: unknown[] = [];
+  return { ...h, captures, deps: { ...h.deps,
+    async prepareFocusedBrowser() { h.events.push("focused-prepared"); },
+    async finishFocusedBrowser(receipt: unknown) { h.events.push("focused-captured"); captures.push(JSON.parse(JSON.stringify(receipt))); },
+  } };
+}
+
+test("Story 35.8 fixed Chromium argv retains configured retries production build fixture and cleanup with zero credit", async () => {
+  const h = focusedHarness();
+  const result = await runCalendarFeedRuntime({ mode: "browser", env: focusedEnv, platform: "linux" }, h.deps);
+  assert.equal(result.exitCode, 0); assert.equal(h.launches.length, 1); assert.equal(h.launches[0].command, "pnpm");
+  const exact = ["exec", "playwright", "test", "tests/e2e/calculations/calculation-editor-design.e2e.spec.ts", "--project=chromium", "--reporter=list,json"];
+  assert.ok(Object.isFrozen(STORY_35_8_BROWSER_ARGS)); assert.deepEqual([...STORY_35_8_BROWSER_ARGS], exact); assert.deepEqual(h.launches[0].args, exact);
+  assert.equal(h.launches[0].childEnv.PLAYWRIGHT_JSON_OUTPUT_NAME, focusedEnv.PLAYWRIGHT_JSON_OUTPUT_NAME);
+  assert.equal(h.launches[0].childEnv.SUPABASE_TEST_REQUIRED, "1"); assert.equal(h.launches[0].childEnv.SUPABASE_TEST_URL, status.API_URL);
+  assert.equal(h.launches[0].childEnv.NEXT_PUBLIC_APP_URL, "http://127.0.0.1:3100");
+  assert.equal(result.receipt.keyOutcome, "deleted-confirmed"); assert.equal(result.receipt.dbClosed, true);
+  assert.equal(result.receipt.verificationMode, "story-35-8-focused-browser"); assert.equal(result.receipt.evidenceClass, "diagnostic-only"); assert.equal(result.receipt.acceptanceCredit, 0);
+  assert.deepEqual(result.receipt.source, { sha: focusedEnv.GITHUB_SHA, ref: focusedEnv.GITHUB_REF, checkpoint: focusedEnv.CALENDAR_FEED_CI_FOCUSED_CHECKPOINT });
+  assert.deepEqual(h.captures, [result.receipt]);
+  assert.ok(h.events.indexOf("focused-prepared") < h.events.indexOf("qualified"));
+  assert.ok(h.events.indexOf("commit") < h.events.indexOf("launch:0"));
+  assert.ok(h.events.lastIndexOf("settled:0") < h.events.indexOf("delete"));
+  assert.ok(h.events.indexOf("db-closed") < h.events.indexOf("focused-captured"));
+  const config = readFileSync("playwright.config.ts", "utf8");
+  assert.match(config, /retries: process.env.CI \? 1 : 0/); assert.match(config, /next build && node/);
+  assert.match(config, /globalTeardown: "\.\/tests\/e2e\/global-teardown.ts"/);
+  const wrapper = readFileSync("scripts/ci/with-calendar-feed-runtime.mjs", "utf8");
+  assert.match(wrapper, /focused \? STORY_35_8_BROWSER_ARGS : env.CALENDAR_FEED_CI_BROWSER_SUITE === "release" \? RELEASE_BROWSER_ARGS : BROWSER_ARGS, childEnv, observe, 1_800_000/);
+});
+
+test("Story 35.8 admission refuses wrong mode platform event job branch ref SHA checkpoint and artifact path before qualification", async () => {
+  for (const [mode, selectedEnv, platform] of [
+    ["db", focusedEnv, "linux"], ["cause-proof", focusedEnv, "linux"], ["browser", focusedEnv, "win32"],
+    ...[
+      { GITHUB_EVENT_NAME: "push" }, { GITHUB_EVENT_NAME: "pull_request" }, { GITHUB_JOB: "db", CALENDAR_FEED_CI_DISPOSABLE_STACK: "123:1:db" },
+      { GITHUB_RUN_ATTEMPT: "2", CALENDAR_FEED_CI_DISPOSABLE_STACK: "123:2:e2e" }, { GITHUB_REF_TYPE: "tag" }, { GITHUB_REF: "refs/tags/tag" },
+      { GITHUB_REF: "refs/heads/main" }, { GITHUB_REF: undefined }, { GITHUB_SHA: "b".repeat(40) }, { GITHUB_SHA: "a" },
+      { CALENDAR_FEED_CI_FOCUSED_EXPECTED_SHA: undefined }, { CALENDAR_FEED_CI_FOCUSED_CHECKPOINT: "not-uuid" },
+      { CALENDAR_FEED_CI_FOCUSED_CHECKPOINT: undefined }, { PLAYWRIGHT_JSON_OUTPUT_NAME: "test-results/general-browser.json" },
+      { CALENDAR_FEED_CI_BROWSER_SUITE: "release" }, { CALENDAR_FEED_CI_BROWSER_SUITE: undefined }, { CI: "false" },
+    ].map(patch => ["browser", { ...focusedEnv, ...patch }, "linux"] as const),
+  ] as const) {
+    const h = focusedHarness();
+    const result = await runCalendarFeedRuntime({ mode, env: selectedEnv, platform }, h.deps);
+    assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyOutcome, "not-attempted");
+    assert.deepEqual(h.events, []); assert.deepEqual(h.queries, []); assert.deepEqual(h.launches, []); assert.deepEqual(h.captures, []);
+  }
+});
+
+test("Story 35.8 native child and cleanup failures remain separate captured failures without exact-key deletion or acceptance", async () => {
+  for (const options of [{ failChild: 0 }, { forcedStop: true }, { failStops: true }, { closeFailure: true }]) {
+    const h = focusedHarness(options);
+    const result = await runCalendarFeedRuntime({ mode: "browser", env: focusedEnv, platform: "linux" }, h.deps);
+    assert.equal(result.exitCode, 1); assert.equal(result.receipt.acceptanceCredit, 0); assert.deepEqual(h.captures, [result.receipt]);
+    assert.equal(result.receipt.evidenceClass, "diagnostic-only");
+    if (options.failChild !== undefined) { assert.deepEqual(result.receipt.childExitCodes, [17]); assert.ok(result.receipt.failures.includes("child-failed")); }
+    if (!options.closeFailure) {
+      assert.equal(result.receipt.keyOutcome, "unverified"); assert.equal(result.receipt.custody?.vaultUuid, keyUuid);
+      assert.ok(!h.queries.some(call => call.sql.startsWith("delete")));
+    } else assert.ok(result.receipt.failures.includes("db-close-unverified"));
+  }
+});
+
+test("Story 35.8 failed preparation and receipt write propagate while ordinary and exhaustive modes never request diagnostic files", async () => {
+  const unprepared = focusedHarness();
+  unprepared.deps.prepareFocusedBrowser = async () => { throw Error("PRIVATE capture failure"); };
+  const first = await runCalendarFeedRuntime({ mode: "browser", env: focusedEnv, platform: "linux" }, unprepared.deps);
+  assert.equal(first.exitCode, 1); assert.deepEqual(unprepared.queries, []); assert.deepEqual(unprepared.launches, []); assert.deepEqual(unprepared.captures, []);
+  const h = focusedHarness(); h.deps.finishFocusedBrowser = async () => { throw Error("PRIVATE capture failure"); };
+  const result = await runCalendarFeedRuntime({ mode: "browser", env: focusedEnv, platform: "linux" }, h.deps);
+  assert.equal(result.exitCode, 1); assert.equal(result.receipt.keyOutcome, "deleted-confirmed");
+  assert.ok(result.receipt.failures.includes("focused-browser-capture-failed")); assert.ok(!JSON.stringify(result.receipt).includes("PRIVATE"));
+  for (const selectedEnv of [env, releaseEnv]) {
+    const ordinary = focusedHarness();
+    const run = await runCalendarFeedRuntime({ mode: "browser", env: selectedEnv, platform: "linux" }, ordinary.deps);
+    assert.equal(run.exitCode, 0); assert.deepEqual(ordinary.captures, []); assert.ok(!ordinary.events.includes("focused-prepared"));
+    assert.equal(run.receipt.verificationMode, undefined); assert.equal(run.receipt.source, undefined);
+  }
+});
+
+test("Story 35.8 actual fixed receipt writer preserves native bytes refuses stale or duplicate capture and fails closed on capture IO", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "focused-browser-capture-"));
+  try {
+    await prepareStory358Browser(directory);
+    const folder = join(directory, "test-results/story-35-8-focused-browser");
+    const native = '{"native":"preserved failure","stats":{"unexpected":1}}\n';
+    await writeFile(join(folder, "native.json"), native);
+    const receipt = { evidenceClass: "diagnostic-only", acceptanceCredit: 0, failures: ["child-failed", "browser-server-teardown-unverified"], keyOutcome: "unverified" };
+    await finishStory358Browser(directory, receipt);
+    assert.equal(await readFile(join(folder, "native.json"), "utf8"), native);
+    assert.deepEqual(JSON.parse(await readFile(join(folder, "lifecycle.json"), "utf8")), receipt);
+    await assert.rejects(() => prepareStory358Browser(directory), /output-not-fresh/);
+    await assert.rejects(() => finishStory358Browser(directory, receipt));
+    const blocked = await mkdtemp(join(directory, "blocked-")); await prepareStory358Browser(blocked);
+    await mkdir(join(blocked, "test-results/story-35-8-focused-browser/lifecycle.json"));
+    const h = focusedHarness(); h.deps.finishFocusedBrowser = value => finishStory358Browser(blocked, value);
+    const result = await runCalendarFeedRuntime({ mode: "browser", env: focusedEnv, platform: "linux" }, h.deps);
+    assert.equal(result.exitCode, 1); assert.ok(result.receipt.failures.includes("focused-browser-capture-failed"));
+  } finally { await rm(directory, { recursive: true, force: true }); }
+});
+
+test("Story 35.8 finite inverse rejects command condition binding report selection duplicate and misplaced diagnostic drift", () => {
+  const workflow = readFileSync(".github/workflows/ci.yml", "utf8").replaceAll("\r\n", "\n");
+  const entry = workflow.slice(workflow.indexOf("      - name: Story 35.8 calculation design"), workflow.indexOf("      - name: Upload native general browser JSON"));
+  const ordinary = projectStory358FocusedBrowser(workflow);
+  assert.ok(!ordinary.includes("story_35_8_focused_browser"));
+  assert.ok(ordinary.includes("CALENDAR_FEED_CI_BROWSER_SUITE: release"));
+  for (const changed of [
+    workflow.replace("CALENDAR_FEED_CI_BROWSER_SUITE: story-35-8-focused", "CALENDAR_FEED_CI_BROWSER_SUITE: release"),
+    workflow.replace(entry, entry.replace(".mjs browser", ".mjs browser --retries=0")),
+    workflow.replace(entry, entry.replace("inputs.story_35_8_focused_browser", "inputs.release_validation")),
+    workflow.replace(entry, entry.replace("inputs.expected_sha", "github.sha")),
+    workflow.replace(entry, entry.replace("native.json", "general-browser.json")),
+    workflow.replace(entry, ""), workflow.replace(entry, entry + entry), workflow.replace(entry, "") + "\n  foreign:\n" + entry,
+  ]) assert.throws(() => projectCalendarFeedCiCommands(changed), /Story 35.8 exact/);
+  const unrelated = projectCalendarFeedCiCommands("# retained unrelated change\n" + workflow);
+  assert.ok(unrelated.startsWith("# retained unrelated change\n"));
 });
