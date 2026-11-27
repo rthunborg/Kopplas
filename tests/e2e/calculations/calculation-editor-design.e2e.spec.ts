@@ -295,52 +295,133 @@ async function navigationEntry(page: Page) {
 
 type NativeTraversalEvent = { trusted: boolean; sameDocument: boolean; cancelable: boolean; prevented: boolean; url: string; type: string; key: string; index: number };
 
-/** Passive bounded identity of the naturally created adjacent history slot. */
-async function naturalTraversalWitness(page: Page, direction: "back" | "forward") {
-  return page.evaluate(direction => {
+/** One owned public session spans both transports. Standard Playwright evaluation
+ * grants DevTools user activation; no such evaluation belongs between attempts. */
+async function passiveNativeTraversal(page: Page) {
+  const session = await page.context().newCDPSession(page);
+  const commits: { frameId: string; url: string }[] = [];
+  let objectId: string | undefined, frameId: string | undefined;
+  const committed = (event: { frameId: string; url: string }) => {
+    if (event.frameId === frameId) commits.push({ frameId: event.frameId, url: event.url });
+  };
+  try {
+    await session.send("Page.enable");
+    frameId = (await session.send("Page.getFrameTree")).frameTree.frame.id;
+    session.on("Page.navigatedWithinDocument", committed);
+    const installed = await session.send("Runtime.evaluate", { userGesture: false, expression: `(${(() => {
+      const navigation = (window as Window & { navigation?: EventTarget & {
+        currentEntry?: { key: string; id: string; index: number; url: string };
+        entries?: () => { key: string; id: string; index: number; url: string }[];
+      } }).navigation;
+      if (!navigation) throw new Error("Native retention qualification OPEN: actual Navigation API absent");
+      const observed: NativeTraversalEvent[] = [];
+      const listener = (event: Event) => {
+        const movement = event as Event & { navigationType: string; destination: { sameDocument: boolean; url: string; key: string; index: number } };
+        queueMicrotask(() => observed.push({ trusted: event.isTrusted, sameDocument: movement.destination.sameDocument,
+          cancelable: event.cancelable, prevented: event.defaultPrevented, url: movement.destination.url, type: movement.navigationType, key: movement.destination.key, index: movement.destination.index }));
+      };
+      navigation.addEventListener("navigate", listener);
+      return { observed, remove: () => navigation.removeEventListener("navigate", listener), read(direction: "back" | "forward") {
+        type Entry = { key: string; id: string; index: number; url: string };
+        const current = navigation.currentEntry, all = navigation.entries?.();
+        if (!current || !all || all.length > 128) throw new Error("Native cancellation qualification OPEN: bounded natural history identity unavailable");
+        const target = all.find(entry => entry.index === current.index + (direction === "back" ? -1 : 1));
+        const identity = (entry: Entry) => ({ key: entry.key, id: entry.id, index: entry.index, url: entry.url });
+        const form = document.querySelector('[data-testid="calculation-header"] form');
+        return { observed: [...observed], natural: { url: location.href, length: history.length,
+          current: identity(current), target: target ? identity(target) : null, entries: all.map(identity) },
+          form: { title: form?.querySelector<HTMLInputElement>('input[name="title"]')?.value ?? null,
+            dirty: form?.getAttribute("data-editor-dirty") ?? null } };
+      } };
+    }).toString()})()` });
+    if (installed.exceptionDetails || !installed.result.objectId) throw new Error("Native passive observation installation failed");
+    objectId = installed.result.objectId;
+  } catch (error) {
+    session.off("Page.navigatedWithinDocument", committed);
+    try { await session.detach(); } catch (cleanup) { throw new AggregateError([error, cleanup], "Native passive setup and owned session detach failed"); }
+    throw error;
+  }
+  const read = async (direction: "back" | "forward") => {
+    const result = await session.send("Runtime.callFunctionOn", { objectId, userGesture: false, returnByValue: true,
+      functionDeclaration: "function(direction) { return this.read(direction); }", arguments: [{ value: direction }] });
+    if (result.exceptionDetails || !result.result.value) throw new Error("Native passive observation unavailable");
     type Entry = { key: string; id: string; index: number; url: string };
-    const navigation = (window as Window & { navigation?: { currentEntry?: Entry; entries?: () => Entry[] } }).navigation;
-    const current = navigation?.currentEntry, all = navigation?.entries?.();
-    if (!current || !all || all.length > 128) throw new Error("Native cancellation qualification OPEN: bounded natural history identity unavailable");
-    const target = all.find(entry => entry.index === current.index + (direction === "back" ? -1 : 1));
-    if (!target) throw new Error("Native cancellation qualification OPEN: natural adjacent destination absent");
-    const identity = (entry: Entry) => ({ key: entry.key, id: entry.id, index: entry.index, url: entry.url });
-    return { url: location.href, length: history.length, current: identity(current), target: identity(target), entries: all.map(identity) };
-  }, direction);
+    return result.result.value as { observed: NativeTraversalEvent[];
+      natural: { url: string; length: number; current: Entry; target: Entry | null; entries: Entry[] };
+      form: { title: string | null; dirty: string | null } };
+  };
+  return { session, commits, frameId, read,
+    async remove() {
+      const result = await session.send("Runtime.callFunctionOn", { objectId, userGesture: false, returnByValue: true, functionDeclaration: "function() { this.remove(); return true; }" });
+      if (result.exceptionDetails || result.result.value !== true) throw new Error("Native passive observation removal failed");
+    },
+    async dispose() {
+      session.off("Page.navigatedWithinDocument", committed);
+      const failures: unknown[] = [];
+      try { await session.send("Runtime.releaseObject", { objectId: objectId! }); } catch (error) { failures.push(error); }
+      try { await session.detach(); } catch (error) { failures.push(error); }
+      if (failures.length) throw new AggregateError(failures, "Native passive observation owned session cleanup failed");
+    },
+  };
 }
 
-/** Playwright 1.61.1's Chromium delegate uses these same history commands.
- * The first command must settle independently of a commit that cancellation
- * prevents. Bind its exact natural destination, and detach only this owned
- * public per-page session before allowing the caller to verify or continue. */
-async function settleFirstNativeTraversal(page: Page, direction: "back" | "forward", before: Awaited<ReturnType<typeof naturalTraversalWitness>>): Promise<"fulfilled"> {
+async function naturalTraversalWitness(observation: Awaited<ReturnType<typeof passiveNativeTraversal>>, direction: "back" | "forward") {
+  const natural = (await observation.read(direction)).natural;
+  if (!natural.target) throw new Error("Native cancellation qualification OPEN: natural adjacent destination absent");
+  return { ...natural, target: natural.target };
+}
+
+/** Protocol completion settles transport only. Revalidate the same original
+ * current/adjacent browser IDs and passive native identities for each command. */
+async function settleNativeTraversal(observation: Awaited<ReturnType<typeof passiveNativeTraversal>>, direction: "back" | "forward", before: Awaited<ReturnType<typeof naturalTraversalWitness>>,
+  originalHistory?: Awaited<ReturnType<typeof nativeBrowserHistory>>) {
   if (direction !== "back" && direction !== "forward") throw new Error("Unknown native traversal direction");
-  const session = await page.context().newCDPSession(page);
-  const failures: unknown[] = [];
-  try {
-    const history = await session.send("Page.getNavigationHistory");
-    const step = direction === "back" ? -1 : 1;
-    const current = history.entries[history.currentIndex], destination = history.entries[history.currentIndex + step];
-    if (!Number.isInteger(history.currentIndex) || !current || !destination || history.entries.length > 128) throw new Error("Native first transport requires bounded current and adjacent Chromium history entries");
-    expect(history.entries).toHaveLength(before.length);
-    expect(current.url).toBe(before.current.url);
-    expect(current.url).toBe(before.url);
-    expect(destination.url).toBe(before.target.url);
-    expect(Number.isInteger(current.id) && Number.isInteger(destination.id)).toBe(true);
-    expect(destination.id).not.toBe(current.id);
-    expect(before.target.index).toBe(before.current.index + step);
-    expect(before.entries.filter(entry => entry.index === before.current.index)).toEqual([before.current]);
-    expect(before.entries.filter(entry => entry.index === before.target.index)).toEqual([before.target]);
-    // No movement or entry replacement between the original Navigation API
-    // witness and this exact browser history input; this read adds no activation.
-    expect(await naturalTraversalWitness(page, direction)).toEqual(before);
-    expect(await session.send("Page.getNavigationHistory")).toEqual(history);
-    await session.send("Page.navigateToHistoryEntry", { entryId: destination.id });
-  } catch (error) { failures.push(error); }
-  try { await session.detach(); } catch (error) { failures.push(error); }
-  if (failures.length > 1) throw new AggregateError(failures, "Native first traversal and owned CDP session detach failed");
-  if (failures.length === 1) throw failures[0];
-  return "fulfilled";
+  const { session } = observation;
+  const history = await nativeBrowserHistory(observation);
+  if (originalHistory) expect(history).toEqual(originalHistory);
+  const step = direction === "back" ? -1 : 1;
+  const current = history.entries[history.currentIndex], destination = history.entries[history.currentIndex + step];
+  if (!Number.isInteger(history.currentIndex) || !current || !destination || history.entries.length > 128) throw new Error("Native first transport requires bounded current and adjacent Chromium history entries");
+  expect(history.entries).toHaveLength(before.length);
+  expect(current.url).toBe(before.current.url);
+  expect(current.url).toBe(before.url);
+  expect(destination.url).toBe(before.target.url);
+  expect(Number.isInteger(current.id) && Number.isInteger(destination.id)).toBe(true);
+  expect(destination.id).not.toBe(current.id);
+  expect(before.target.index).toBe(before.current.index + step);
+  expect(before.entries.filter(entry => entry.index === before.current.index)).toEqual([before.current]);
+  expect(before.entries.filter(entry => entry.index === before.target.index)).toEqual([before.target]);
+  // No movement or entry replacement between the original Navigation API
+  // witness and this exact browser history input; this read adds no activation.
+  expect(await naturalTraversalWitness(observation, direction)).toEqual(before);
+  expect(await session.send("Page.getNavigationHistory")).toEqual(history);
+  await session.send("Page.navigateToHistoryEntry", { entryId: destination.id });
+  return { outcome: "fulfilled" as const, history };
+}
+
+async function nativeBrowserHistory(observation: Awaited<ReturnType<typeof passiveNativeTraversal>>) {
+  return observation.session.send("Page.getNavigationHistory");
+}
+
+/** A separate browser commit and exact native event/current identity are all
+ * mandatory. An acknowledged command or a second cancellation cannot qualify. */
+async function committedNativeTraversal(observation: Awaited<ReturnType<typeof passiveNativeTraversal>>, direction: "back" | "forward",
+  before: Awaited<ReturnType<typeof naturalTraversalWitness>>, preceding: readonly NativeTraversalEvent[], deadline: number) {
+  let result: Awaited<ReturnType<typeof observation.read>> | undefined;
+  await expect.poll(async () => {
+    result = await observation.read(direction === "back" ? "forward" : "back");
+    return { browserCommitted: observation.commits.length > 0 && observation.commits.every(commit => commit.frameId === observation.frameId && commit.url === before.target.url),
+      current: { key: result.natural.current.key, url: result.natural.current.url, index: result.natural.current.index },
+      length: result.natural.length, entries: result.natural.entries.length,
+      traversals: result.observed.filter(event => event.type === "traverse") };
+  }, { timeout: remainingFirstNativeMillis(deadline), intervals: [16, 32, 64, 128] }).toEqual({
+    browserCommitted: true, current: { key: before.target.key, url: before.target.url, index: before.target.index },
+    length: before.length, entries: before.entries.length,
+    traversals: [...preceding, { trusted: true, sameDocument: true, cancelable: false, prevented: false, type: "traverse",
+      url: before.target.url, key: before.target.key, index: before.target.index }],
+  });
+  remainingFirstNativeMillis(deadline);
+  return naturalTraversalWitness(observation, direction === "back" ? "forward" : "back");
 }
 
 /** A transport outcome is never a cancellation witness. Verify the one native
@@ -1016,67 +1097,59 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           await expect(titleForm(page)).toHaveAttribute("data-editor-ready", "true");
           const secret = `Behåll endast med aktuell rätt ${crypto.randomUUID()}`;
           await titleForm(page).getByLabel("Titel", { exact: true }).fill(secret);
-          const events = await page.evaluateHandle(() => {
-            const navigation = (window as Window & { navigation?: EventTarget }).navigation;
-            if (!navigation) throw new Error("Retention revocation qualification OPEN: Navigation API absent");
-            const actual: { trusted: boolean; sameDocument: boolean; cancelable: boolean; prevented: boolean }[] = [];
-            const identities: NativeTraversalEvent[] = [];
-            const listener = (event: Event) => {
-              const movement = event as Event & { navigationType: string; destination: { sameDocument: boolean; url: string; key: string; index: number } };
-              if (movement.navigationType === "traverse") queueMicrotask(() => {
-                actual.push({ trusted: event.isTrusted, sameDocument: movement.destination.sameDocument, cancelable: event.cancelable, prevented: event.defaultPrevented });
-                identities.push({ trusted: event.isTrusted, sameDocument: movement.destination.sameDocument, cancelable: event.cancelable, prevented: event.defaultPrevented, type: movement.navigationType, url: movement.destination.url, key: movement.destination.key, index: movement.destination.index });
-              });
-            };
-            navigation.addEventListener("navigate", listener);
-            return { actual, identities, remove: () => navigation.removeEventListener("navigate", listener) };
-          });
+          const events = await passiveNativeTraversal(page);
           const prompts = nativePrompts(page, "dismiss");
           try {
-            const beforeCancellation = await naturalTraversalWitness(page, "back");
+            const beforeCancellation = await naturalTraversalWitness(events, "back");
             const firstDeadline = Date.now() + 5_000;
-            const firstOutcome = await settleFirstNativeTraversal(page, "back", beforeCancellation);
-            const firstWitness = await firstNativeTraversalWitness({ read: () => events.evaluate(value => value.identities), direction: "back", before: beforeCancellation, deadline: firstDeadline });
+            const firstTransport = await settleNativeTraversal(events, "back", beforeCancellation);
+            const firstOutcome = firstTransport.outcome;
+            const firstWitness = await firstNativeTraversalWitness({ read: () => events.read("back").then(value => value.observed.filter(event => event.type === "traverse")), direction: "back", before: beforeCancellation, deadline: firstDeadline });
             await prompts.settle();
             remainingFirstNativeMillis(firstDeadline);
             if (firstWitness === "cancelled") {
               await verifyCancelledNativeTraversal({
-                direction: "back", before: beforeCancellation, after: await naturalTraversalWitness(page, "back"),
-                events: await events.evaluate(value => value.identities), prompts,
+                direction: "back", before: beforeCancellation, after: await naturalTraversalWitness(events, "back"),
+                events: await events.read("back").then(value => value.observed.filter(event => event.type === "traverse")), prompts,
                 assertUnchanged: async () => {
-                  await expect(page).toHaveURL(beforeCancellation.url);
-                  await expect(titleForm(page).getByLabel("Titel", { exact: true })).toHaveValue(secret);
-                  await expect(titleForm(page)).toHaveAttribute("data-editor-dirty", "true");
+                  const unchanged = await events.read("back");
+                  expect(unchanged.natural.url).toBe(beforeCancellation.url);
+                  expect(unchanged.form.title).toBe(secret);
+                  expect(unchanged.form.dirty).toBe("true");
+                  expect(events.commits).toEqual([]);
                   expect(writes.writes).toHaveLength(0);
                 },
               });
               remainingFirstNativeMillis(firstDeadline);
+              const cancelled = (await events.read("back")).observed.filter(event => event.type === "traverse");
               // This is a separate actual second native command. Never catch its failure.
-              await page.goBack({ waitUntil: "commit", timeout: 5_000 });
+              const secondDeadline = Date.now() + 5_000;
+              await settleNativeTraversal(events, "back", beforeCancellation, firstTransport.history);
+              await committedNativeTraversal(events, "back", beforeCancellation, cancelled, secondDeadline);
             } else {
               // A genuine first forced commit was already valid for revocation.
               // Protocol settlement without the exact forced event cannot take this path.
               expect(firstOutcome).toBe("fulfilled");
               expect(prompts.seen).toHaveLength(0);
-              expect(await events.evaluate(value => value.identities)).toEqual([{
+              expect(await events.read("back").then(value => value.observed.filter(event => event.type === "traverse"))).toEqual([{
                 trusted: true, sameDocument: true, cancelable: false, prevented: false, type: "traverse",
                 url: beforeCancellation.target.url, key: beforeCancellation.target.key, index: beforeCancellation.target.index,
               }]);
-              await expect(page).toHaveURL(beforeCancellation.target.url, { timeout: remainingFirstNativeMillis(firstDeadline) });
-              await expect(page.getByTestId("calculation-list")).toBeVisible({ timeout: remainingFirstNativeMillis(firstDeadline) });
+              await committedNativeTraversal(events, "back", beforeCancellation, [], firstDeadline);
             }
-            const committed = await naturalTraversalWitness(page, "forward");
+            const committed = await naturalTraversalWitness(events, "forward");
             expect({ key: committed.current.key, url: committed.current.url, index: committed.current.index }).toEqual({ key: beforeCancellation.target.key, url: beforeCancellation.target.url, index: beforeCancellation.target.index });
             expect(committed.length).toBe(beforeCancellation.length);
             expect(committed.entries).toHaveLength(beforeCancellation.entries.length);
             expect(writes.writes).toHaveLength(0);
-            await info.attach(`retained-${revoke}-first-cancellation-transport.json`, { body: Buffer.from(JSON.stringify({ firstOutcome, beforeCancellation, committed })), contentType: "application/json" });
+            await info.attach(`retained-${revoke}-first-cancellation-transport.json`, { body: Buffer.from(JSON.stringify({ firstOutcome, beforeCancellation, committed,
+              originalBrowserHistory: firstTransport.history, browserCommits: events.commits })), contentType: "application/json" });
             await expect(page).toHaveURL(/\/calculations$/);
             await expect(page.getByTestId("calculation-list")).toBeVisible();
-            const actual = await events.evaluate(value => value.actual);
+            const actual = (await events.read("forward")).observed.filter(event => event.type === "traverse").map(({ trusted, sameDocument, cancelable, prevented }) => ({ trusted, sameDocument, cancelable, prevented }));
             expect(actual, "No substitute for a genuine forced native retention event").toContainEqual({ trusted: true, sameDocument: true, cancelable: false, prevented: false });
             await info.attach(`retained-${revoke}-native-event.json`, { body: Buffer.from(JSON.stringify(actual)), contentType: "application/json" });
-          } finally { prompts.stop(); await events.evaluate(value => value.remove()); await events.dispose(); }
+          } finally { prompts.stop(); try { await events.remove(); } finally { await events.dispose(); } }
           if (revoke === "role") {
             const rows = await adminQuery<{ id: string; tenant_id: string; user_id: string }>("select id,tenant_id,user_id from public.tenant_memberships where tenant_id=$1 and user_id=$2 and role='projektledare' and status='active'", [tenantId, user.id]);
             expect(rows).toHaveLength(1); membership = rows[0];
@@ -1178,18 +1251,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           await expect(page).toHaveURL(calculation.url);
           await expect(titleForm(page)).toHaveAttribute("data-editor-ready", "true");
         }
-        const events = await page.evaluateHandle(() => {
-          const navigation = (window as Window & { navigation?: EventTarget }).navigation;
-          if (!navigation) throw new Error("Native retention qualification OPEN: actual Navigation API absent");
-          const observed: NativeTraversalEvent[] = [];
-          const listener = (event: Event) => {
-            const movement = event as Event & { navigationType: string; destination: { sameDocument: boolean; url: string; key: string; index: number } };
-            queueMicrotask(() => observed.push({ trusted: event.isTrusted, sameDocument: movement.destination.sameDocument,
-              cancelable: event.cancelable, prevented: event.defaultPrevented, url: movement.destination.url, type: movement.navigationType, key: movement.destination.key, index: movement.destination.index }));
-          };
-          navigation.addEventListener("navigate", listener);
-          return { observed, remove: () => navigation.removeEventListener("navigate", listener) };
-        });
+        const events = await passiveNativeTraversal(page);
         const writes = observeWrites(page);
         const response = await interceptedWrite(page, "**/calculations/**");
         const prompts = nativePrompts(page, "dismiss");
@@ -1207,24 +1269,26 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           const operationId = original("operation_id");
           const originalExpected = original("expected");
           await titleForm(page).getByLabel("Titel", { exact: true }).fill(draft);
-          const traverse = () => direction === "back" ? page.goBack({ waitUntil: "commit", timeout: 5_000 }) : page.goForward({ waitUntil: "commit", timeout: 5_000 });
           // Real browser-driven cancellation attempt, followed by another native
           // traversal with NO intervening click, keyboard event or added activation.
-          const beforeCancellation = await naturalTraversalWitness(page, direction);
+          const beforeCancellation = await naturalTraversalWitness(events, direction);
           const firstDeadline = Date.now() + 5_000;
-          const firstOutcome = await settleFirstNativeTraversal(page, direction, beforeCancellation);
-          const firstWitness = await firstNativeTraversalWitness({ read: () => events.evaluate(value => value.observed), direction, before: beforeCancellation, deadline: firstDeadline });
+          const firstTransport = await settleNativeTraversal(events, direction, beforeCancellation);
+          const firstOutcome = firstTransport.outcome;
+          const firstWitness = await firstNativeTraversalWitness({ read: () => events.read(direction).then(value => value.observed), direction, before: beforeCancellation, deadline: firstDeadline });
           expect(firstWitness, "Native retention requires a cancelled first traversal before its separate forced attempt").toBe("cancelled");
           await prompts.settle();
           remainingFirstNativeMillis(firstDeadline);
-          const afterCancellation = await naturalTraversalWitness(page, direction);
+          const afterCancellation = await naturalTraversalWitness(events, direction);
           await verifyCancelledNativeTraversal({
             direction, before: beforeCancellation, after: afterCancellation,
-            events: await events.evaluate(value => value.observed), prompts,
+            events: await events.read(direction).then(value => value.observed), prompts,
             assertUnchanged: async () => {
-              await expect(page).toHaveURL(calculation.url);
-              await expect(titleForm(page).getByLabel("Titel", { exact: true })).toHaveValue(draft);
-              await expect(titleForm(page)).toHaveAttribute("data-editor-dirty", "true");
+              const unchanged = await events.read(direction);
+              expect(unchanged.natural.url).toBe(calculation.url);
+              expect(unchanged.form.title).toBe(draft);
+              expect(unchanged.form.dirty).toBe("true");
+              expect(events.commits).toEqual([]);
               expect(writes.writes).toEqual([originalRequest]);
               expect(original("operation_id")).toBe(operationId);
               expect(original("expected")).toBe(originalExpected);
@@ -1233,19 +1297,22 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           });
           await info.attach(`native-${direction}-first-cancellation-transport.json`, { body: Buffer.from(JSON.stringify({ firstOutcome, beforeCancellation, afterCancellation })), contentType: "application/json" });
           await prompts.settle();
-          await expect(page).toHaveURL(calculation.url);
-          const cancelled = await events.evaluate(value => value.observed.filter(event => event.type === "traverse"));
+          expect((await events.read(direction)).natural.url).toBe(calculation.url);
+          const cancelled = (await events.read(direction)).observed.filter(event => event.type === "traverse");
           expect(cancelled, "Qualification OPEN unless a real trusted cancellable traversal was cancelled").toEqual([
             expect.objectContaining({ trusted: true, sameDocument: true, cancelable: true, prevented: true }),
           ]);
           remainingFirstNativeMillis(firstDeadline);
-          await traverse();
+          const secondDeadline = Date.now() + 5_000;
+          await settleNativeTraversal(events, direction, beforeCancellation, firstTransport.history);
+          const committed = await committedNativeTraversal(events, direction, beforeCancellation, cancelled, secondDeadline);
+          await info.attach(`native-${direction}-committed-browser.json`, { body: Buffer.from(JSON.stringify({ beforeCancellation, committed,
+            originalBrowserHistory: firstTransport.history, browserCommits: events.commits })), contentType: "application/json" });
           await expect(page).toHaveURL(/\/calculations$/);
           await expect(page).toHaveURL(beforeCancellation.target.url);
-          const committed = await naturalTraversalWitness(page, direction === "back" ? "forward" : "back");
           expect({ key: committed.current.key, url: committed.current.url, index: committed.current.index }).toEqual({ key: beforeCancellation.target.key, url: beforeCancellation.target.url, index: beforeCancellation.target.index });
           expect(committed.length).toBe(beforeCancellation.length);
-          const native = await events.evaluate(value => value.observed.filter(event => event.type === "traverse"));
+          const native = (await events.read(direction)).observed.filter(event => event.type === "traverse");
           expect(native, "Qualification OPEN unless Chromium actually committed a trusted noncancellable same-document traversal").toEqual([
             cancelled[0], expect.objectContaining({ trusted: true, sameDocument: true, cancelable: false, prevented: false, url: beforeCancellation.target.url, key: beforeCancellation.target.key, index: beforeCancellation.target.index }),
           ]);
@@ -1289,7 +1356,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 1280, height: 900 
           await finishNativeRetention({
             release: response.release, stopPrompts: prompts.stop, stopWrites: writes.stop,
             removeHold: response.remove, closeObserver: () => observer.close(),
-            readEvents: () => events.evaluate(value => value.observed), removeEvents: () => events.evaluate(value => value.remove()), disposeEvents: () => events.dispose(),
+            readEvents: () => events.read(direction).then(value => value.observed), removeEvents: () => events.remove(), disposeEvents: () => events.dispose(),
             attach: value => info.attach(`native-${direction}-retention-observations.json`, { body: Buffer.from(JSON.stringify(value)), contentType: "application/json" }),
             priorFailure: scenarioFailure,
           });
