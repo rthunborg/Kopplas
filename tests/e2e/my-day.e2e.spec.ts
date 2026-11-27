@@ -317,6 +317,180 @@ async function rel22E02SubmitCapture(page: Page, info: TestInfo, form: Locator,
   if (failed) throw first;
 }
 
+/** E02-only whole-target phone originals. No activation, DOM/style changes or new filing.
+ * Geometry/hit tests qualify framing only; paint, reference and acceptance remain unassessed.
+ */
+async function rel22E02PhoneTargetCapture(page: Page, info: TestInfo, target: Locator,
+  state: "e02-unknown-outcome-phone-target-whole" | "e02-server-confirmed-phone-target-whole",
+  onFailure: (error: unknown) => void,
+  cleanupStage: (stage: string, run: () => Promise<unknown>, capMs?: number) => Promise<void>): Promise<void> {
+  if (process.env.E15_REL22_CAPTURE !== "1") return;
+  if (info.retry !== 0 && info.retry !== 1) throw new Error("REL22 E02 phone retry outside configured bound.");
+  const original = page.viewportSize();
+  if (!original) throw new Error("REL22 E02 phone fixed viewport unavailable.");
+  await expect(target).toHaveCount(1);
+  const unknown = state === "e02-unknown-outcome-phone-target-whole";
+  const saved = await target.evaluateHandle((node, retry) => {
+    const context = node.parentElement, dialog = node.closest('[role="dialog"]');
+    const header = dialog?.firstElementChild;
+    const identity = retry ? node instanceof HTMLButtonElement && node.type === "button"
+      && node.textContent === "Försök igen med samma försök"
+      && context?.firstElementChild?.textContent === "Svaret saknas. Uppgifterna är låsta tills samma försök har bekräftats."
+      : node.getAttribute("data-testid") === "time-report-submit-status" && node.textContent === "Rapporterad"
+        && context?.getAttribute("role") === "status";
+    if (!identity || !context || !dialog || !header || header.contains(node) || !header.querySelector("h2")) {
+      throw new Error("REL22 E02 phone target/context identity unavailable.");
+    }
+    const ancestors: { node: Element; left: number; top: number }[] = [];
+    let cursor: Element | null = node;
+    while (cursor && ancestors.length < 32) {
+      ancestors.push({ node: cursor, left: cursor.scrollLeft, top: cursor.scrollTop });
+      cursor = cursor.parentElement;
+    }
+    if (cursor) throw new Error("REL22 E02 phone ancestor ownership exceeds bound.");
+    return { node, context, dialog, header, ancestors, focus: document.activeElement, x: scrollX, y: scrollY };
+  }, unknown);
+  let failed = false, first: unknown;
+  const retain = (error: unknown, stage: string) => {
+    if (!failed) { failed = true; first = error; onFailure(error); }
+    else info.annotations.push({ type: "rel22-e02-secondary", description: stage });
+  };
+  let sample: unknown = null, png: Buffer | undefined;
+  const restored = { viewport: false, focus: false, scroll: false, disposed: false };
+  try {
+    await page.setViewportSize({ width: 360, height: 640 });
+    // Only ordinary scrolling of the already owned ancestry. The actual header and
+    // client scrollports determine the exposure area; no assumed pixel correction.
+    await saved.evaluate(snapshot => {
+      const { context, header } = snapshot;
+      context.scrollIntoView({ block: "center", inline: "nearest", behavior: "instant" });
+      for (let pass = 0; pass < 2; pass++) {
+        for (const entry of snapshot.ancestors) {
+          const port = entry.node, style = getComputedStyle(port), box = port.getBoundingClientRect();
+          const rect = context.getBoundingClientRect(), head = header.getBoundingClientRect();
+          const left = Math.max(0, box.left + port.clientLeft), right = Math.min(innerWidth, box.left + port.clientLeft + port.clientWidth);
+          let top = Math.max(0, box.top + port.clientTop);
+          const bottom = Math.min(innerHeight, box.top + port.clientTop + port.clientHeight);
+          if (!port.contains(header) && head.right > left && head.left < right && head.bottom > top && head.top < bottom) top = head.bottom;
+          if (/^(auto|scroll)$/.test(style.overflowY) && port.scrollHeight > port.clientHeight && bottom > top) {
+            port.scrollTop += (rect.top + rect.bottom - top - bottom) / 2;
+          }
+          if (/^(auto|scroll)$/.test(style.overflowX) && port.scrollWidth > port.clientWidth && right > left) {
+            port.scrollLeft += (rect.left + rect.right - left - right) / 2;
+          }
+        }
+      }
+    });
+    await page.evaluate(() => new Promise<void>(done => requestAnimationFrame(() => requestAnimationFrame(() => done()))));
+    const measurement = await saved.evaluate(snapshot => {
+      const { node, context, header, dialog } = snapshot;
+      const rounded = (value: number) => Math.round(value * 100) / 100;
+      const bounds = (box: DOMRect) => [box.x, box.y, box.width, box.height].map(rounded);
+      const reasons = new Set<string>();
+      const box = context.getBoundingClientRect(), targetBox = node.getBoundingClientRect(), head = header.getBoundingClientRect();
+      const viewport = visualViewport;
+      if (innerWidth !== 360 || innerHeight !== 640 || !viewport || viewport.scale !== 1 || viewport.offsetLeft !== 0
+        || viewport.offsetTop !== 0 || viewport.width !== 360 || viewport.height !== 640) reasons.add("viewport-mapping");
+      if (!node.isConnected || !context.isConnected || !header.isConnected || !dialog.contains(node)) reasons.add("identity");
+      if (document.activeElement !== snapshot.focus) reasons.add("focus-changed");
+      let left = 0, top = 0, right = innerWidth, bottom = innerHeight;
+      const ports: { alias: string; bounds: number[]; clipX: boolean; clipY: boolean; scroll: number[] }[] = [];
+      for (const [index, entry] of snapshot.ancestors.entries()) {
+        const ancestor = entry.node, style = getComputedStyle(ancestor), rect = ancestor.getBoundingClientRect();
+        if (style.clipPath !== "none" || style.getPropertyValue("mask-image") !== "none" || style.transform !== "none"
+          || /paint|strict|content/.test(style.contain)) reasons.add("unsupported-clipping");
+        if (style.visibility !== "visible" || style.display === "none" || Number(style.opacity) !== 1) reasons.add("ancestor-visibility");
+        if (ancestor === node || ancestor === context) continue;
+        const clipX = /^(auto|scroll|hidden|clip)$/.test(style.overflowX), clipY = /^(auto|scroll|hidden|clip)$/.test(style.overflowY);
+        const portLeft = rect.left + ancestor.clientLeft, portTop = rect.top + ancestor.clientTop;
+        if (clipX) { left = Math.max(left, portLeft); right = Math.min(right, portLeft + ancestor.clientWidth); }
+        if (clipY) { top = Math.max(top, portTop); bottom = Math.min(bottom, portTop + ancestor.clientHeight); }
+        if (clipX || clipY) ports.push({ alias: `ancestor-${index}`, bounds: [portLeft, portTop, ancestor.clientWidth, ancestor.clientHeight].map(rounded),
+          clipX, clipY, scroll: [ancestor.scrollLeft, ancestor.scrollTop].map(rounded) });
+      }
+      if (head.right > left && head.left < right && head.bottom > top && head.top < bottom) top = head.bottom;
+      const contains = (rect: DOMRect, margin = 0) => rect.width > 0 && rect.height > 0 && rect.left - margin >= left
+        && rect.top - margin >= top && rect.right + margin <= right && rect.bottom + margin <= bottom;
+      if (!contains(box) || !contains(targetBox)) reasons.add("target-context-clipped");
+      const targetStyle = getComputedStyle(node);
+      const focusMargin = document.activeElement === node && node.matches(":focus-visible")
+        ? Math.max(0, Number.parseFloat(targetStyle.outlineWidth) || 0) + Math.max(0, Number.parseFloat(targetStyle.outlineOffset) || 0) : 0;
+      if (!contains(targetBox, focusMargin)) reasons.add("focus-outline-clipped");
+      if (document.activeElement === node && targetStyle.boxShadow !== "none") reasons.add("focus-shadow-unqualified");
+      const range = document.createRange(); range.selectNodeContents(context);
+      const rects = [...range.getClientRects()];
+      if (rects.length === 0 || rects.length > 32) reasons.add("context-rect-bound");
+      for (const rect of rects.slice(0, 32)) if (!contains(rect)) reasons.add("context-content-clipped");
+      const elements = [context, ...context.querySelectorAll("*")];
+      if (elements.length > 16) reasons.add("context-element-bound");
+      let hitTests = 0;
+      for (const element of elements.slice(0, 16)) {
+        const style = getComputedStyle(element), rect = element.getBoundingClientRect();
+        if (style.display === "none" || style.visibility !== "visible" || Number(style.opacity) !== 1) reasons.add("context-visibility");
+        if (rect.width <= 0 || rect.height <= 0) { reasons.add("context-empty-box"); continue; }
+        for (const [fx, fy] of [[.01, .01], [.99, .01], [.5, .5], [.01, .99], [.99, .99]]) {
+          const hit = document.elementFromPoint(rect.left + rect.width * fx!, rect.top + rect.height * fy!); hitTests++;
+          if (!hit || (hit !== element && !element.contains(hit))) reasons.add("context-occluded");
+        }
+      }
+      // Explicit header intersection plus bounded hit tests also covers this sheet's
+      // non-sticky, non-scrolling header sibling. No whole-paint occlusion claim.
+      return { alias: "e02-phone-target", sameTargetIdentity: true, bounds: bounds(targetBox), contextBounds: bounds(box),
+        headerBounds: bounds(head), effectiveVisibleArea: [left, top, right - left, bottom - top].map(rounded), ports,
+        contextRects: rects.slice(0, 32).map(bounds), hitTests, focusUnchanged: document.activeElement === snapshot.focus,
+        focusOutlineMargin: rounded(focusMargin), viewport: { width: innerWidth, height: innerHeight, dpr: devicePixelRatio,
+          visualWidth: viewport?.width, visualHeight: viewport?.height, scale: viewport?.scale, offsetX: viewport?.offsetLeft, offsetY: viewport?.offsetTop },
+        qualifiedWholeTargetFraming: reasons.size === 0, reasons: [...reasons], rasterPaint: "unassessed", acceptance: "unassessed" };
+    });
+    sample = measurement;
+    png = await page.screenshot({ fullPage: false, scale: "css" });
+    if (png.length > 4 * 1024 * 1024) { png = undefined; throw new Error("REL22 E02 phone PNG exceeds retained bound."); }
+    if (!measurement.qualifiedWholeTargetFraming) throw new Error("REL22 E02 phone whole-target framing unqualified; see bounded diagnostic measurement.");
+  } catch (error) { retain(error, "phone-target-observation"); }
+  finally {
+    const cap = 15000 / 4;
+    try { await cleanupStage("phone-viewport-restore", async () => {
+      await page.setViewportSize(original); expect(page.viewportSize()).toEqual(original); restored.viewport = true;
+    }, cap); } catch (error) { retain(error, "phone-viewport-restore"); }
+    try { await cleanupStage("phone-focus-restore", async () => {
+      await saved.evaluate(snapshot => {
+        const focus = snapshot.focus;
+        if (!(focus instanceof HTMLElement) || !focus.isConnected) throw new Error("REL22 E02 phone focus restoration unavailable.");
+        if (document.activeElement !== focus) {
+          if (focus.matches(":disabled")) throw new Error("REL22 E02 phone disabled focus restoration unqualified.");
+          focus.focus({ preventScroll: true });
+        }
+        if (document.activeElement !== focus) throw new Error("REL22 E02 phone focus restoration unverified.");
+      }); restored.focus = true;
+    }, cap); } catch (error) { retain(error, "phone-focus-restore"); }
+    try { await cleanupStage("phone-scroll-restore", async () => {
+      await saved.evaluate(snapshot => {
+        for (const entry of snapshot.ancestors) {
+          if (!entry.node.isConnected) throw new Error("REL22 E02 phone scroll restoration unavailable.");
+          entry.node.scrollLeft = entry.left; entry.node.scrollTop = entry.top;
+        }
+        window.scrollTo(snapshot.x, snapshot.y);
+        if (scrollX !== snapshot.x || scrollY !== snapshot.y
+          || snapshot.ancestors.some(entry => entry.node.scrollLeft !== entry.left || entry.node.scrollTop !== entry.top)) {
+          throw new Error("REL22 E02 phone scroll restoration unverified.");
+        }
+      }); restored.scroll = true;
+    }, cap); } catch (error) { retain(error, "phone-scroll-restore"); }
+    try { await cleanupStage("phone-snapshot-dispose", async () => { await saved.dispose(); restored.disposed = true; }, cap); }
+    catch (error) { retain(error, "phone-snapshot-dispose"); }
+  }
+  const stem = `rel22-${state}-360x640`;
+  const metadata = Buffer.from(JSON.stringify({ schemaVersion: 1, evidence: "preliminary-phone-target-framing", state,
+    viewport: { width: 360, height: 640 }, retry: info.retry, acceptance: "unassessed", sample, restored,
+    outcome: failed ? "failed-or-unqualified" : "whole-target-framing-observed" }), "utf8");
+  try {
+    if (metadata.length > 32768) throw new Error("REL22 E02 phone measurement exceeds retained bound.");
+    if (png) await info.attach(stem, { body: png, contentType: "image/png" });
+    await info.attach(stem + "-framing-measurement", { body: metadata, contentType: "application/json" });
+  } catch (error) { retain(error, "phone-target-attachments"); }
+  if (failed) throw first;
+}
+
 type MyDayFixture = TimeReportBrowserFixture & { jobless: string; shared: string; allDay: string; facilityId: string; address: string };
 /** Only fresh factory-owned tenants/rows. Outer fixture owns report/audit/job
  * cleanup; this local extension owns its three bookings, facility and notifications.
@@ -607,6 +781,11 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         expect(attempts).toHaveLength(1);
         expect(attempts[0]).toMatchObject({ date: REPORT_DATE, minutes: reportMinutes, bookingId: reportBooking, jobId: reportJob, note: f.marker });
         const retry = form.getByRole("button", { name: "Försök igen med samma försök", exact: true });
+        if (observation) {
+          observation.capture = rel22E02PhoneTargetCapture(page, testInfo, retry, "e02-unknown-outcome-phone-target-whole",
+            error => observation.retain(error, "phone-target-observer"), observation.cleanupStage);
+          await observation.within(observation.capture, "unknown-phone-target-observation");
+        }
         // playwright-utils deviation: observe the real existing filing action before retry.
         const confirmation = page.waitForResponse(reply => isFiling(reply.request(), f.marker));
         await keyboardActivate(page, retry);
@@ -616,6 +795,11 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         expect(attempts[1]).toEqual(attempts[0]);
         expect(await f.snapshot()).toEqual(durable);
         await rel22Capture(page, testInfo, "e02-server-confirmed", form);
+        if (observation) {
+          observation.capture = rel22E02PhoneTargetCapture(page, testInfo, form.getByTestId("time-report-submit-status"), "e02-server-confirmed-phone-target-whole",
+            error => observation.retain(error, "phone-target-observer"), observation.cleanupStage);
+          await observation.within(observation.capture, "confirmed-phone-target-observation");
+        }
         await assertPhoneFits(page);
         const refresh = page.getByRole("button", { name: "Uppdatera", exact: true });
         await expect(refresh).toBeEnabled();
