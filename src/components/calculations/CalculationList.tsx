@@ -13,7 +13,7 @@
  * The list is a thin index — the EDITOR is the heart of this story. No deferred-workflow
  * label appears; no new nav item (Kalkyler already exists in the seven-item shell).
  */
-import { createContext, useContext, useLayoutEffect, useActionState, useCallback, useEffect, useState, useRef, startTransition, type ReactNode } from "react";
+import { createContext, useContext, useLayoutEffect, useCallback, useEffect, useState, useRef, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormErrorSummary, SelectField, TextField } from "@/components/crm/FormField";
@@ -353,7 +353,7 @@ export function useEditorOperation<S extends EditorActionState>(
   useLayoutEffect(() => { authorizeRef.current = authorize; }, [authorize]);
   const hasAuthorize = Boolean(authorize);
   const writer = useRef<{ registry: DocumentRegistry; key: string; entry: DocumentDraft; generation: number } | null>(null);
-  const [authorization, setAuthorization] = useState<{ identity: string; formKey: string } | null>(null);
+  const [authorization, setAuthorization] = useState<{ identity: string; formKey: string; generation: number } | null>(null);
   const ready = Boolean(authorization && authorization.identity === mountIdentity && authorization.formKey === formKey);
   const [restored, setRestored] = useState<EditorValues | null>(null);
   const [hydrationGeneration, setHydrationGeneration] = useState(0);
@@ -362,11 +362,17 @@ export function useEditorOperation<S extends EditorActionState>(
   const [recoverable, setRecoverable] = useState(false);
   const [checked, setChecked] = useState(false);
   const [hasOriginalRequest, setHasOriginalRequest] = useState(false);
-  const [recoveryPending, setRecoveryPending] = useState(false);
   const [hasDraftChanges, setHasDraftChanges] = useState(false);
   const handle = useRef<string | null>(null), original = useRef<FormData | null>(null);
   const replayContext = useRef<{ requestFingerprint: string } | null>(null);
-  const busy = useRef(false), revision = useRef(0), submitting = useRef(false);
+  const revision = useRef(0);
+  type Lease = { writer: NonNullable<typeof writer.current>; key: string; kind: "submit" | "recovery" };
+  const inFlight = useRef<Lease | null>(null);
+  const [pendingLease, setPendingLease] = useState<Lease | null>(null);
+  const [state, setState] = useState(initial);
+  const stateRef = useRef(initial);
+  const liveContext = useRef({ identity: mountIdentity, formKey });
+  useLayoutEffect(() => { liveContext.current = { identity: mountIdentity, formKey }; }, [mountIdentity, formKey]);
   const formElement = useRef<HTMLFormElement | null>(null);
   const validationFocus = useRef<{ form: HTMLFormElement; key: string | null; revision: number } | null>(null);
   const draftExpected = useRef<Record<string, unknown> | null>(null);
@@ -376,8 +382,30 @@ export function useEditorOperation<S extends EditorActionState>(
   const key = scope ? `kopplas/editor/v1/${scope}/${formKey}` : null;
   function currentWriter() {
     const owned = writer.current;
-    return owned && owned.registry.entries.get(owned.key) === owned.entry && owned.entry.generation === owned.generation && !owned.entry.detached && !owned.entry.quarantined ? owned : null;
+    return owned && liveContext.current.identity && owned.key === `${liveContext.current.identity}/${liveContext.current.formKey}` && owned.registry.entries.get(owned.key) === owned.entry && owned.entry.generation === owned.generation && !owned.entry.detached && !owned.entry.quarantined ? owned : null;
   }
+  function ownsLease(lease: Lease) {
+    return inFlight.current === lease && currentKey.current === lease.key && currentWriter() === lease.writer;
+  }
+  function beginLease(kind: Lease["kind"]) {
+    const owned = currentWriter(), storageKey = currentKey.current;
+    if (!ready || !owned || owned.key !== `${mountIdentity}/${formKey}` || owned.generation !== authorization?.generation || !storageKey || storageKey !== key || (inFlight.current && ownsLease(inFlight.current))) return null;
+    const lease: Lease = { writer: owned, key: storageKey, kind };
+    inFlight.current = lease; setPendingLease(lease);
+    return lease;
+  }
+  function finishLease(lease: Lease) {
+    // An old completion must not unlock a replacement writer's submission.
+    if (!ownsLease(lease)) return;
+    inFlight.current = null; setPendingLease(null);
+  }
+  const resetLocalOperation = useCallback(() => {
+    inFlight.current = null; setPendingLease(null);
+    stateRef.current = initial; setState(initial);
+    validationFocus.current = null; setChecked(false); setResultLink(null); setNotice(null);
+    handle.current = null; original.current = null; originalRevision.current = null; replayContext.current = null;
+    draftExpected.current = null; setRecoverable(false); setHasOriginalRequest(false); setRestored(null); setHasDraftChanges(false);
+  }, [initial]);
   function captureDraft(form?: FormData) {
     const owned = currentWriter(); if (!owned) return;
     if (form) owned.entry.values = editorValues(form);
@@ -388,11 +416,15 @@ export function useEditorOperation<S extends EditorActionState>(
     let active = true;
     const registry = documentRegistry();
     const authorizeCurrent = authorizeRef.current;
-    currentKey.current = null; writer.current = null;
+    currentKey.current = null; writer.current = null; inFlight.current = null;
+    queueMicrotask(() => {
+      if (!active || liveContext.current.identity !== mountIdentity || liveContext.current.formKey !== formKey) return;
+      resetLocalOperation(); setAuthorization(null); setScope(null);
+    });
     if (!mountIdentity || !authorizeCurrent) {
       if (mountAuthority?.status === "denied") { registry.entries.clear(); registry.identity = null; }
       else for (const entry of registry.entries.values()) entry.quarantined = true;
-      return;
+      return () => { active = false; };
     }
     if (registry.identity !== mountIdentity) { registry.entries.clear(); registry.identity = mountIdentity; }
     const registryKey = `${mountIdentity}/${formKey}`;
@@ -401,7 +433,7 @@ export function useEditorOperation<S extends EditorActionState>(
     if (retained) { retained.generation = generation; retained.quarantined = true; }
     const requests = retained?.retained ? [retained.values, ...(retained.operation ? [retained.operation.values] : [])].filter(values => values.length) : [];
     authorizeCurrent({ formKey, requests: requests.map(values => values.filter(([field]) => ["id", "calculation_id", "section_id", "customer_id", "facility_id", "contact_id"].includes(field))) }).then(fresh => {
-      if (!active || registry.identity !== mountIdentity || (retained && (registry.entries.get(registryKey) !== retained || retained.generation !== generation))) return;
+      if (!active || liveContext.current.identity !== mountIdentity || liveContext.current.formKey !== formKey || registry.identity !== mountIdentity || (registry.entries.get(registryKey)?.generation ?? generation) > generation || (retained && (registry.entries.get(registryKey) !== retained || retained.generation !== generation))) return;
       if (fresh.status !== "allowed" || identityOf(fresh) !== mountIdentity) {
         if (fresh.status === "allowed") { registry.entries.clear(); registry.identity = null; }
         else if (fresh.status === "denied") registry.entries.delete(registryKey);
@@ -413,7 +445,7 @@ export function useEditorOperation<S extends EditorActionState>(
       writer.current = { registry, key: registryKey, entry, generation };
       const storageKey = `kopplas/editor/v1/${fresh.scope}/${formKey}`;
       currentKey.current = storageKey; setScope(fresh.scope);
-      setAuthorization({ identity: mountIdentity, formKey });
+      setAuthorization({ identity: mountIdentity, formKey, generation });
       draftExpected.current = entry.expected; revision.current = entry.revision; setHasDraftChanges(entry.dirty);
       if (entry.retained) { setRestored(entry.values); setHydrationGeneration(generation); }
       try {
@@ -425,29 +457,30 @@ export function useEditorOperation<S extends EditorActionState>(
         setRecoverable(Boolean(handle.current)); setHasOriginalRequest(Boolean(original.current));
         if (handle.current) setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen.");
       } catch { setNotice("Sessionslagring krävs för att bevara åtgärdens identitet."); }
-    }).catch(() => { if (active) setNotice("Anslutning krävs för att kontrollera åtgärder."); });
+    }).catch(() => { if (active && liveContext.current.identity === mountIdentity && liveContext.current.formKey === formKey && registry.identity === mountIdentity && (registry.entries.get(registryKey)?.generation ?? generation) <= generation && (!retained || (registry.entries.get(registryKey) === retained && retained.generation === generation))) setNotice("Anslutning krävs för att kontrollera åtgärder."); });
     return () => {
-      active = false; currentKey.current = null;
+      active = false;
       const owned = writer.current;
       if (owned?.generation === generation) {
+        currentKey.current = null; inFlight.current = null;
         owned.entry.detached = true;
         if (!owned.entry.retained && owned.registry.entries.get(owned.key) === owned.entry) owned.registry.entries.delete(owned.key);
         writer.current = null;
       }
     };
-  }, [mountIdentity, mountAuthority?.status, hasAuthorize, formKey]);
+  }, [mountIdentity, mountAuthority?.status, hasAuthorize, formKey, resetLocalOperation]);
   useEffect(() => {
     const invalidate = () => {
-      writer.current = null; currentKey.current = null; draftExpected.current = null;
+      writer.current = null; currentKey.current = null; draftExpected.current = null; resetLocalOperation();
       original.current = null; originalRevision.current = null; replayContext.current = null; handle.current = null;
       setAuthorization(null); setScope(null); setRestored(null); setHasDraftChanges(false); setRecoverable(false); setHasOriginalRequest(false);
       setHydrationGeneration(value => value + 1);
     };
     window.addEventListener("kopplas:calculation-identity-invalidated", invalidate);
     return () => window.removeEventListener("kopplas:calculation-identity-invalidated", invalidate);
-  }, []);
+  }, [resetLocalOperation]);
   useEffect(() => {
-    const detach = () => setAuthorization(null);
+    const detach = () => { inFlight.current = null; setPendingLease(null); validationFocus.current = null; setAuthorization(null); };
     window.addEventListener("kopplas:calculation-native-detached", detach);
     return () => window.removeEventListener("kopplas:calculation-native-detached", detach);
   }, []);
@@ -460,13 +493,13 @@ export function useEditorOperation<S extends EditorActionState>(
       draftExpected.current = null; setHasDraftChanges(false); const owned = currentWriter(); if (owned) { owned.entry.dirty = false; owned.entry.expected = null; }
     }
   }
-  const [state, dispatch, actionPending] = useActionState<S, FormData>(async (previous: S, form: FormData): Promise<S> => {
-    if (busy.current) { submitting.current = false; return previous; }
-    if (!navigator.onLine || !key || !scope || !currentWriter()) { setNotice("Anslutning krävs. Uppgifterna är inte skickade."); submitting.current = false; return { ...previous, status: "error", targetId: null }; }
+  async function submit(lease: Lease, previous: S, form: FormData): Promise<S> {
+    if (!ownsLease(lease)) return previous;
+    if (!navigator.onLine || !key || !scope) { setNotice("Anslutning krävs. Uppgifterna är inte skickade."); return { ...previous, status: "error", targetId: null }; }
     try {
       const raw = sessionStorage.getItem(key), saved = raw ? readEditorHandle(raw, `${scope}/${formKey}`) : null;
       if (!handle.current && saved) { handle.current = saved.operationId; replayContext.current = saved.replay ?? null; setRecoverable(true); }
-    } catch { setNotice("Åtgärden skickades inte. Identiteten kunde inte kontrolleras."); submitting.current = false; return { ...previous, status: "idle", targetId: null }; }
+    } catch { setNotice("Åtgärden skickades inte. Identiteten kunde inte kontrolleras."); return { ...previous, status: "idle", targetId: null }; }
     captureDraft(form);
     const submitted = new FormData(); for (const [k,v] of form.entries()) if (!k.startsWith("$ACTION_")) submitted.append(k,v);
     if (handle.current) {
@@ -475,13 +508,16 @@ export function useEditorOperation<S extends EditorActionState>(
           submitted.set("operation_id", handle.current);
           submitted.set("expected", JSON.stringify((formKey === "new/calculation" ? null : draftExpected.current) ?? expected(form)));
           const reenteredRevision = revision.current;
-          if (await editorRequestFingerprint(submitted) === replayContext.current.requestFingerprint) {
+          const fingerprint = replayContext.current.requestFingerprint;
+          const matching = await editorRequestFingerprint(submitted) === fingerprint;
+          if (!ownsLease(lease)) return previous;
+          if (matching) {
             original.current = submitted; originalRevision.current = reenteredRevision; setHasOriginalRequest(true);
             setNotice("Underlaget matchar den ursprungliga åtgärden. Välj Försök samma åtgärd igen för att skicka det.");
           } else setNotice("Underlaget matchar inte den ursprungliga åtgärden. Behåll samma ursprungliga uppgifter och kontrollera igen.");
         } else setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen.");
-      } catch { setNotice("Det ursprungliga underlaget kunde inte kontrolleras. Ingen åtgärd skickades."); }
-      submitting.current = false; return { ...previous, status: "unknown", targetId: null };
+      } catch { if (ownsLease(lease)) setNotice("Det ursprungliga underlaget kunde inte kontrolleras. Ingen åtgärd skickades."); }
+      return { ...previous, status: "unknown", targetId: null };
     }
     // A NEW calculation's selections are editable until this actual submission.
     // Existing entities retain the server-projected facts from the first edit.
@@ -490,37 +526,55 @@ export function useEditorOperation<S extends EditorActionState>(
     submitted.set("expected", JSON.stringify((formKey === "new/calculation" ? null : draftExpected.current) ?? expected(form)));
     const preflight = preflightEditorForm(submitted);
     if (!preflight.ok) {
-      setNotice("Kontrollera uppgifterna. Åtgärden har inte skickats."); submitting.current = false;
+      setNotice("Kontrollera uppgifterna. Åtgärden har inte skickats.");
       return { ...initial, status: "error", targetId: null, code: "VALIDATION_FAILED", form: preflight.form, formError: "Kontrollera uppgifterna. Åtgärden har inte skickats.", fieldErrors: preflight.fieldErrors, values: preflight.values };
     }
     const intent = retainEditorIntent(`${scope}/${formKey}`, [...submitted.entries()], operationId);
-    const submittedRevision = revision.current, submittedKey = key;
-    const submissionWriter = currentWriter();
-    if (!submissionWriter) return initial;
+    const submittedRevision = revision.current;
+    const submissionWriter = lease.writer;
     // Original identity and expected facts precede the first submission await.
-    submissionWriter.entry.operation = { id: operationId, values: editorValues(submitted), revision: submittedRevision, replay: null };
-    busy.current = true;
+    const operation = { id: operationId, values: editorValues(submitted), revision: submittedRevision, replay: null as { requestFingerprint: string } | null };
+    submissionWriter.entry.operation = operation;
     try {
       const context = { requestFingerprint: await editorRequestFingerprint(submitted) };
-      if (currentWriter() !== submissionWriter) return initial;
-      submissionWriter.entry.operation!.replay = context;
+      if (!ownsLease(lease) || submissionWriter.entry.operation !== operation) return previous;
+      operation.replay = context;
       try { sessionStorage.setItem(key, editorHandle(intent, context)); }
       catch { submissionWriter.entry.operation = null; setNotice("Åtgärden skickades inte. Fliken kan inte bevara identiteten."); return { ...previous, status: "idle", targetId: null }; }
       handle.current = operationId; original.current = submitted; originalRevision.current = submittedRevision; replayContext.current = context;
       setHasOriginalRequest(true); setRecoverable(true); setChecked(false);
       const next = await action(previous, submitted);
-      if (currentKey.current !== submittedKey || currentWriter() !== submissionWriter) return initial;
+      if (!ownsLease(lease) || submissionWriter.entry.operation !== operation) return previous;
       if(next.status === "unknown") { setNotice("Resultatet är obekräftat. Kontrollera innan du försöker igen."); return next; }
       clearOperation();
       if(next.status === "success" && submittedRevision !== revision.current) { setNotice("Tidigare åtgärd bekräftad. Dina nya ändringar är inte sparade."); return { ...next, status: "idle", targetId: null }; }
       if (next.status === "success") confirmMatchingDraft(submittedRevision);
       setNotice(null); return next;
     } catch {
-      if (currentKey.current !== submittedKey || currentWriter() !== submissionWriter) return initial;
+      if (!ownsLease(lease) || submissionWriter.entry.operation !== operation) return previous;
       setNotice(handle.current ? "Resultatet är obekräftat. Kontrollera innan du försöker igen." : "Åtgärden skickades inte. Underlaget kunde inte bevaras.");
       return handle.current ? { ...previous, status: "unknown", operationId, targetId: null } : { ...previous, status: "idle", targetId: null };
-    } finally { busy.current = false; submitting.current = false; }
-  }, initial as Awaited<S>);
+    }
+  }
+  function dispatch(form: FormData): void {
+    const lease = beginLease("submit"); if (!lease) return;
+    const previous = stateRef.current;
+    // Both onSubmit and the form-action fallback return synchronously. Start
+    // checked async work after React has left any enclosing Action/transition.
+    queueMicrotask(() => { void runSubmission(lease); });
+    async function runSubmission(ownedLease: Lease) {
+      try {
+        const next = await submit(ownedLease, previous, form);
+        if (!ownsLease(ownedLease)) return;
+        stateRef.current = next; setState(next);
+      } catch {
+        if (!ownsLease(ownedLease)) return;
+        setNotice(handle.current ? "Resultatet är obekräftat. Kontrollera innan du försöker igen." : "Åtgärden skickades inte. Underlaget kunde inte bevaras.");
+        const next: S = { ...previous, status: handle.current ? "unknown" : "idle", targetId: null };
+        stateRef.current = next; setState(next);
+      } finally { finishLease(ownedLease); }
+    }
+  }
   // Validation focus belongs only to the submitted draft while focus stays with that form.
   useEffect(() => {
     const submittedFocus = validationFocus.current;
@@ -533,12 +587,11 @@ export function useEditorOperation<S extends EditorActionState>(
     invalid?.focus();
     invalid?.scrollIntoView({ block: "nearest" });
   }, [state]);
-  async function reconcile() { if(!key || !handle.current || busy.current || !currentWriter()) return;
-    const reconciliationWriter = currentWriter();
-    const reconciledKey = key, operationId = handle.current;
-    busy.current = true; setRecoveryPending(true);
+  async function reconcile() { if(!key || !handle.current) return;
+    const lease = beginLease("recovery"); if (!lease) return;
+    const operationId = handle.current;
     try { const proof = await reconcileCalculationEditorOperationAction(operationId);
-      if (currentKey.current !== reconciledKey || handle.current !== operationId || currentWriter() !== reconciliationWriter) return;
+      if (!ownsLease(lease) || handle.current !== operationId) return;
       setChecked(true);
       if(proof.status === "unconfirmed") { setNotice(original.current ? "Resultatet är fortfarande obekräftat. Du kan försöka samma ursprungliga åtgärd igen." : replayContext.current ? "Resultatet är fortfarande obekräftat. Ange samma ursprungliga uppgifter och välj Spara för att kontrollera underlaget före samma åtgärd." : "Resultatet är fortfarande obekräftat. Det ursprungliga underlaget finns inte kvar i fliken."); return; }
       if (proof.status === "committed" && proof.targetAvailable !== false && proof.targetId) {
@@ -548,15 +601,17 @@ export function useEditorOperation<S extends EditorActionState>(
       // A read-only receipt carries no refreshed server projection. Preserve
       // later drafts and their expected facts while rereading committed data.
       if (proof.status === "committed") router.refresh();
-    } catch { if (currentKey.current === reconciledKey && handle.current === operationId && currentWriter() === reconciliationWriter) setNotice("Resultatet kunde inte kontrolleras. Försök kontrollera igen."); } finally { busy.current = false; setRecoveryPending(false); }
+    } catch { if (ownsLease(lease) && handle.current === operationId) setNotice("Resultatet kunde inte kontrolleras. Försök kontrollera igen."); } finally { finishLease(lease); }
   }
-  async function retry() { if(!checked || !original.current || busy.current || !currentWriter()) return; const retryWriter = currentWriter(); busy.current = true; setRecoveryPending(true);
-    try { const next = await action(initial, original.current);
-      if (currentWriter() !== retryWriter) return;
+  async function retry() { if(!checked || !original.current) return;
+    const lease = beginLease("recovery"); if (!lease) return;
+    const operationId = handle.current, request = original.current, submittedRevision = originalRevision.current;
+    try { const next = await action(initial, request);
+      if (!ownsLease(lease) || handle.current !== operationId || original.current !== request) return;
       if(next.status === "error") { setNotice(next.formError ?? "Resultatet kunde inte bekräftas. Kontrollera innan du fattar ett nytt beslut."); }
       else if(next.status !== "success") setNotice("Resultatet är fortfarande obekräftat. Kontrollera innan du fattar ett nytt beslut.");
-      else { setNotice("Den ursprungliga åtgärden är bekräftad. Nya ändringar är inte sparade."); if(next.targetId) setResultLink("quoteId" in next && typeof next.quoteId === "string" ? `/quotes/${next.quoteId}/versions/${next.targetId}` : formKey === "new/calculation" ? `/calculations/${next.targetId}` : null); confirmMatchingDraft(originalRevision.current); clearOperation(); }
-    } catch { setNotice("Resultatet är fortfarande obekräftat."); } finally { busy.current = false; setRecoveryPending(false); }
+      else { setNotice("Den ursprungliga åtgärden är bekräftad. Nya ändringar är inte sparade."); if(next.targetId) setResultLink("quoteId" in next && typeof next.quoteId === "string" ? `/quotes/${next.quoteId}/versions/${next.targetId}` : formKey === "new/calculation" ? `/calculations/${next.targetId}` : null); confirmMatchingDraft(submittedRevision); clearOperation(); }
+    } catch { if (ownsLease(lease) && handle.current === operationId && original.current === request) setNotice("Resultatet är fortfarande obekräftat."); } finally { finishLease(lease); }
   }
   function markChanged() {
     if (!ready || !currentWriter()) return;
@@ -564,6 +619,9 @@ export function useEditorOperation<S extends EditorActionState>(
     if (formKey !== "new/calculation" && formElement.current) draftExpected.current ??= expected(new FormData(formElement.current));
     captureDraft(formElement.current ? new FormData(formElement.current) : undefined);
   }
+  const pendingHere = ready && pendingLease?.writer.key === `${mountIdentity}/${formKey}` && pendingLease?.writer.generation === authorization?.generation;
+  const actionPending = Boolean(pendingHere && pendingLease?.kind === "submit");
+  const recoveryPending = Boolean(pendingHere && pendingLease?.kind === "recovery");
   const hasProtectedOperation = actionPending || recoveryPending || recoverable;
   const restoredValues = ready ? restored : null;
   const hydrationKey = `${mountIdentity ?? "unavailable"}/${formKey}/${ready}/${hydrationGeneration}`;
@@ -579,13 +637,13 @@ export function useEditorOperation<S extends EditorActionState>(
       "data-editor-restored": hydrationGeneration > 0,
       "data-editor-dirty": hasDraftChanges,
       "data-editor-protected": hasProtectedOperation,
-      // Explicit transition dispatch avoids React's action-form auto-reset on
-      // refused submissions and late results. The live controls stay the draft.
+      // Imperative submission avoids React's action-form auto-reset on refused
+      // submissions and late results. The live controls stay the draft.
       onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault(); if (!ready || !currentWriter() || submitting.current || busy.current) return;
+        event.preventDefault(); if (!ready || !currentWriter() || (inFlight.current && ownsLease(inFlight.current))) return;
         validationFocus.current = { form: event.currentTarget, key: currentKey.current, revision: revision.current };
-        submitting.current = true; const form = new FormData(event.currentTarget); captureDraft(form);
-        startTransition(() => { dispatch(form); });
+        const form = new FormData(event.currentTarget); captureDraft(form);
+        dispatch(form);
       },
       onChange: markChanged,
       onBlurCapture: (event: React.FocusEvent<HTMLFormElement>) => {
